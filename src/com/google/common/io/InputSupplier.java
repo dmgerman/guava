@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An factory for readable streams of bytes or characters.  *  * @author Chris Nokleberg  * @param<T> the type of object being supplied  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An factory for readable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
 end_comment
 
 begin_interface

@@ -1204,7 +1204,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * An implementation of {@code ListenableFuture} that also implements    * {@code Runnable} so that it can be used to nest ListenableFutures.    * Once the passed-in {@code ListenableFuture} is complete, it calls the    * passed-in {@code Function} to generate the result.    * The resulting future doesn't interrupt when aborted.    *    * If the function throws any checked exceptions, they should be wrapped in a    * {@code UndeclaredThrowableException} so that this class can get access to    * the cause.    *    * @param<I> This should match the type<I> returned by the provided    *     ListenableFuture.get() and the parameter of    *     Function<I,ListenableFuture<O>>.apply.    * @param<O> This should match the type<O> returned by the resulting    *     ListenableFuture.get() and the return type of    *     Function<I,ListenableFuture<O>>.apply.    */
+comment|/**    * An implementation of {@code ListenableFuture} that also implements    * {@code Runnable} so that it can be used to nest ListenableFutures.    * Once the passed-in {@code ListenableFuture} is complete, it calls the    * passed-in {@code Function} to generate the result.    * The resulting future doesn't interrupt when aborted.    *    * If the function throws any checked exceptions, they should be wrapped in a    * {@code UndeclaredThrowableException} so that this class can get access to    * the cause.    */
 DECL|class|ChainingListenableFuture
 specifier|private
 specifier|static
