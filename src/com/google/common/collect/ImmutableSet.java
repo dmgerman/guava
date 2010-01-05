@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  */
+comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1186,9 +1186,9 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|elements
 argument_list|,
@@ -1267,9 +1267,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|elements
 argument_list|,
@@ -1379,6 +1379,29 @@ block|}
 block|}
 return|return
 literal|true
+return|;
+block|}
+DECL|method|createAsList ()
+annotation|@
+name|Override
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|createAsList
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ImmutableAsList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|elements
+argument_list|,
+name|this
+argument_list|)
 return|;
 block|}
 block|}

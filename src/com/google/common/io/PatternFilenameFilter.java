@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * File name filter that only accepts files matching a regular expression.  *  * @author Apple Chow  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * File name filter that only accepts files matching a regular expression.  *  * @author Apple Chow  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -135,8 +135,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|accept (File dir, String fileName)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|boolean
 name|accept

@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to object arrays.  *  * @author Kevin Bourrillion  */
+comment|/**  * Static utility methods pertaining to object arrays.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -202,9 +202,9 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|first
 argument_list|,
@@ -219,9 +219,9 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|second
 argument_list|,
@@ -285,9 +285,9 @@ index|]
 operator|=
 name|element
 expr_stmt|;
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|array
 argument_list|,
@@ -385,9 +385,9 @@ argument_list|,
 name|newLength
 argument_list|)
 decl_stmt|;
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|original
 argument_list|,

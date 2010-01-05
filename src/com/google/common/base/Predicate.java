@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines a true or false value for a given input. For example, a  * {@code RegexPredicate} might implement {@code Predicate<String>}, and return  * {@code true} for any string that matches its given regular expression.  *  *<p>Implementations which may cause side effects upon evaluation are strongly  * encouraged to state this fact clearly in their API documentation.  *  * @author Kevin Bourrillion  */
+comment|/**  * Determines a true or false value for a given input. For example, a  * {@code RegexPredicate} might implement {@code Predicate<String>}, and return  * {@code true} for any string that matches its given regular expression.  *  *<p>Implementations which may cause side effects upon evaluation are strongly  * encouraged to state this fact clearly in their API documentation.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty immutable sorted set.  *   * @author Jared Levy  */
+comment|/**  * An empty immutable sorted set.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -424,6 +424,21 @@ parameter_list|()
 block|{
 return|return
 literal|false
+return|;
+block|}
+DECL|method|indexOf (Object target)
+annotation|@
+name|Override
+name|int
+name|indexOf
+parameter_list|(
+name|Object
+name|target
+parameter_list|)
+block|{
+return|return
+operator|-
+literal|1
 return|;
 block|}
 block|}

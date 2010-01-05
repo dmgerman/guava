@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An extension of {@code DataInput} for reading from in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  * If any method encounters the end of the array prematurely, it throws {@link  * IllegalStateException}.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An extension of {@code DataInput} for reading from in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  * If any method encounters the end of the array prematurely, it throws {@link  * IllegalStateException}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_interface
@@ -49,8 +49,7 @@ extends|extends
 name|DataInput
 block|{
 DECL|method|readFully (byte b[])
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|readFully
 parameter_list|(
@@ -60,8 +59,7 @@ index|[]
 parameter_list|)
 function_decl|;
 DECL|method|readFully (byte b[], int off, int len)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|readFully
 parameter_list|(
@@ -77,8 +75,7 @@ name|len
 parameter_list|)
 function_decl|;
 DECL|method|skipBytes (int n)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|int
 name|skipBytes
 parameter_list|(
@@ -87,85 +84,73 @@ name|n
 parameter_list|)
 function_decl|;
 DECL|method|readBoolean ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|boolean
 name|readBoolean
 parameter_list|()
 function_decl|;
 DECL|method|readByte ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|byte
 name|readByte
 parameter_list|()
 function_decl|;
 DECL|method|readUnsignedByte ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|int
 name|readUnsignedByte
 parameter_list|()
 function_decl|;
 DECL|method|readShort ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|short
 name|readShort
 parameter_list|()
 function_decl|;
 DECL|method|readUnsignedShort ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|int
 name|readUnsignedShort
 parameter_list|()
 function_decl|;
 DECL|method|readChar ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|char
 name|readChar
 parameter_list|()
 function_decl|;
 DECL|method|readInt ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|int
 name|readInt
 parameter_list|()
 function_decl|;
 DECL|method|readLong ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|long
 name|readLong
 parameter_list|()
 function_decl|;
 DECL|method|readFloat ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|float
 name|readFloat
 parameter_list|()
 function_decl|;
 DECL|method|readDouble ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|double
 name|readDouble
 parameter_list|()
 function_decl|;
 DECL|method|readLine ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|String
 name|readLine
 parameter_list|()
 function_decl|;
 DECL|method|readUTF ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|String
 name|readUTF
 parameter_list|()

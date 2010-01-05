@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A reference queue with an associated background thread that dequeues  * references and invokes {@link FinalizableReference#finalizeReferent()} on  * them.  *  *<p>Keep a strong reference to this object until all of the associated  * referents have been finalized. If this object is garbage collected earlier,  * the backing thread will not invoke {@code finalizeReferent()} on the  * remaining references.  *  * @author Bob Lee  */
+comment|/**  * A reference queue with an associated background thread that dequeues  * references and invokes {@link FinalizableReference#finalizeReferent()} on  * them.  *  *<p>Keep a strong reference to this object until all of the associated  * referents have been finalized. If this object is garbage collected earlier,  * the backing thread will not invoke {@code finalizeReferent()} on the  * remaining references.  *  * @author Bob Lee  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object representing the differences between two maps.  *  * @author Kevin Bourrillion  */
+comment|/**  * An object representing the differences between two maps.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

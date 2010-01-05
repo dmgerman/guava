@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A list which forwards all its method calls to another list. Subclasses should  * override one or more methods to modify the behavior of the backing list as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the  * delegate supports random access, the {@code ForwadingList} subclass should  * implement the {@code RandomAccess} interface.  *  * @author Mike Bostock  */
+comment|/**  * A list which forwards all its method calls to another list. Subclasses should  * override one or more methods to modify the behavior of the backing list as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the  * delegate supports random access, the {@code ForwadingList} subclass should  * implement the {@code RandomAccess} interface.  *  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

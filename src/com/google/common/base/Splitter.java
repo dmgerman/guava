@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that divides strings (or other instances of {@code CharSequence})  * into substrings, by recognizing a<i>separator</i> (a.k.a. "delimiter")  * which can be expressed as a single character, literal string, regular  * expression, {@code CharMatcher}, or by using a fixed substring length. This  * class provides the complementary functionality to {@link Joiner}.  *  *<p>Here is the most basic example of {@code Splitter} usage:<pre>   {@code  *  *   Splitter.on(',').split("foo,bar")}</pre>  *  * This invocation returns an {@code Iterable<String>} containing {@code "foo"}  * and {@code "bar"}, in that order.  *  *<p>By default {@code Splitter}'s behavior is very simplistic:<pre>   {@code  *  *   Splitter.on(',').split("foo,,bar,  quux")}</pre>  *  * This returns an iterable containing {@code ["foo", "", "bar", "  quux"]}.  * Notice that the splitter does not assume that you want empty strings removed,  * or that you wish to trim whitespace. If you want features like these, simply  * ask for them:<pre> {@code  *  *   private static final Splitter MY_SPLITTER = Splitter.on(',')  *       .trimResults()  *       .omitEmptyStrings();}</pre>  *  * Now {@code MY_SPLITTER.split("foo, ,bar,  quux,")} returns an iterable  * containing just {@code ["foo", "bar", "quux"]}. Note that the order in which  * the configuration methods are called is never significant; for instance,  * trimming is always applied first before checking for an empty result,  * regardless of the order in which the {@link #trimResults()} and  * {@link #omitEmptyStrings()} methods were invoked.  *  *<p><b>Warning: splitter instances are always immutable</b>; a configuration  * method such as {@code omitEmptyStrings} has no effect on the instance it  * is invoked on! You must store and use the new splitter instance returned by  * the method. This makes splitters thread-safe, and safe to store as {@code  * static final} constants (as illustrated above).<pre>   {@code  *  *   // Bad! Do not do this!  *   Splitter splitter = Splitter.on('/');  *   splitter.trimResults(); // does nothing!  *   return splitter.split("wrong / wrong / wrong");}</pre>  *  * The separator recognized by the splitter does not have to be a single  * literal character as in the examples above. See the methods {@link  * #on(String)}, {@link #on(Pattern)} and {@link #on(CharMatcher)} for examples  * of other ways to specify separators.  *  *<p><b>Note:</b> this class does not mimic any of the quirky behaviors of  * similar JDK methods; for instance, it does not silently discard trailing  * separators, as does {@link String#split(String)}, nor does it have a default  * behavior of using five particular whitespace characters as separators, like  * {@link StringTokenizer}.  *    * @author Julien Silland  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An object that divides strings (or other instances of {@code CharSequence})  * into substrings, by recognizing a<i>separator</i> (a.k.a. "delimiter")  * which can be expressed as a single character, literal string, regular  * expression, {@code CharMatcher}, or by using a fixed substring length. This  * class provides the complementary functionality to {@link Joiner}.  *  *<p>Here is the most basic example of {@code Splitter} usage:<pre>   {@code  *  *   Splitter.on(',').split("foo,bar")}</pre>  *  * This invocation returns an {@code Iterable<String>} containing {@code "foo"}  * and {@code "bar"}, in that order.  *  *<p>By default {@code Splitter}'s behavior is very simplistic:<pre>   {@code  *  *   Splitter.on(',').split("foo,,bar,  quux")}</pre>  *  * This returns an iterable containing {@code ["foo", "", "bar", "  quux"]}.  * Notice that the splitter does not assume that you want empty strings removed,  * or that you wish to trim whitespace. If you want features like these, simply  * ask for them:<pre> {@code  *  *   private static final Splitter MY_SPLITTER = Splitter.on(',')  *       .trimResults()  *       .omitEmptyStrings();}</pre>  *  * Now {@code MY_SPLITTER.split("foo, ,bar,  quux,")} returns an iterable  * containing just {@code ["foo", "bar", "quux"]}. Note that the order in which  * the configuration methods are called is never significant; for instance,  * trimming is always applied first before checking for an empty result,  * regardless of the order in which the {@link #trimResults()} and  * {@link #omitEmptyStrings()} methods were invoked.  *  *<p><b>Warning: splitter instances are always immutable</b>; a configuration  * method such as {@code omitEmptyStrings} has no effect on the instance it  * is invoked on! You must store and use the new splitter instance returned by  * the method. This makes splitters thread-safe, and safe to store as {@code  * static final} constants (as illustrated above).<pre>   {@code  *  *   // Bad! Do not do this!  *   Splitter splitter = Splitter.on('/');  *   splitter.trimResults(); // does nothing!  *   return splitter.split("wrong / wrong / wrong");}</pre>  *  * The separator recognized by the splitter does not have to be a single  * literal character as in the examples above. See the methods {@link  * #on(String)}, {@link #on(Pattern)} and {@link #on(CharMatcher)} for examples  * of other ways to specify separators.  *  *<p><b>Note:</b> this class does not mimic any of the quirky behaviors of  * similar JDK methods; for instance, it does not silently discard trailing  * separators, as does {@link String#split(String)}, nor does it have a default  * behavior of using five particular whitespace characters as separators, like  * {@link StringTokenizer}.  *  * @author Julien Silland  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -260,8 +260,7 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -357,8 +356,7 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -540,8 +538,7 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -677,8 +674,7 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -754,7 +750,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * automatically omits empty strings from the results. For example, {@code    * Splitter.on(',').omitEmptyStrings().split(",a,,,b,c,,")} returns an    * iterable containing only {@code ["a", "b", "c"]}.    *    *<p>If either {@code trimResults} option is also specified when creating a    * splitter, that splitter always trims results first before checking for    * emptiness. So, for example, {@code    * Splitter.on(':').omitEmptyStrings().trimResults().split(": : : ")} returns    * an empty iterable.    *     *<p>Note that it is ordinarily not possible for {@link #split(CharSequence)}    * to return an empty iterable, but when using this option, it can (if the    * input sequence consists of nothing but separators).    *    * @return a splitter with the desired configuration    */
+comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * automatically omits empty strings from the results. For example, {@code    * Splitter.on(',').omitEmptyStrings().split(",a,,,b,c,,")} returns an    * iterable containing only {@code ["a", "b", "c"]}.    *    *<p>If either {@code trimResults} option is also specified when creating a    * splitter, that splitter always trims results first before checking for    * emptiness. So, for example, {@code    * Splitter.on(':').omitEmptyStrings().trimResults().split(": : : ")} returns    * an empty iterable.    *    *<p>Note that it is ordinarily not possible for {@link #split(CharSequence)}    * to return an empty iterable, but when using this option, it can (if the    * input sequence consists of nothing but separators).    *    * @return a splitter with the desired configuration    */
 DECL|method|omitEmptyStrings ()
 specifier|public
 name|Splitter
@@ -843,8 +839,7 @@ name|String
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|Iterator
 argument_list|<
@@ -1301,8 +1296,7 @@ name|next
 return|;
 block|}
 DECL|method|remove ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|remove

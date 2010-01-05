@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time  * at all.  This may be desirable to use in some unit tests.  More importantly,  * attempting to debug a call which is time-limited would be extremely annoying,  * so this gives you a time-limiter you can easily swap in for your real  * time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time  * at all.  This may be desirable to use in some unit tests.  More importantly,  * attempting to debug a call which is time-limited would be extremely annoying,  * so this gives you a time-limiter you can easily swap in for your real  * time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

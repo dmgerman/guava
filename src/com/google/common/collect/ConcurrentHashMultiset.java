@@ -203,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset that supports concurrent modifications and that provides atomic  * versions of most {@code Multiset} operations (exceptions where noted). Null  * elements are not supported.  *  * @author Cliff L. Biffle  */
+comment|/**  * A multiset that supports concurrent modifications and that provides atomic  * versions of most {@code Multiset} operations (exceptions where noted). Null  * elements are not supported.  *  * @author Cliff L. Biffle  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

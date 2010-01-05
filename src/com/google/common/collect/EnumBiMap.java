@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  */
+comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *   * @author Sven Mawson  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *   * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

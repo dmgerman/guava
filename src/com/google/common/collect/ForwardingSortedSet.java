@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sorted set which forwards all its method calls to another sorted set.  * Subclasses should override one or more methods to modify the behavior of the  * backing sorted set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Mike Bostock  */
+comment|/**  * A sorted set which forwards all its method calls to another sorted set.  * Subclasses should override one or more methods to modify the behavior of the  * backing sorted set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

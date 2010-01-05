@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *   * @author Sven Mawson  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *   * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

@@ -87,54 +87,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -242,8 +194,56 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  */
+comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -660,9 +660,9 @@ return|return
 name|modified
 return|;
 block|}
-comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    */
-comment|// TODO: make public post-1.0
+comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since 2010.01.04<b>tentative</b>    */
 DECL|method|removeIf ( Iterator<T> removeFrom, Predicate<? super T> predicate)
+specifier|public
 specifier|static
 parameter_list|<
 name|T
@@ -2493,6 +2493,84 @@ name|next
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} is {@code true}, or    * {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since 2010.01.04<b>tentative</b>    */
+DECL|method|indexOf ( Iterator<T> iterator, Predicate<? super T> predicate)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|int
+name|indexOf
+parameter_list|(
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+parameter_list|)
+block|{
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|predicate
+argument_list|,
+literal|"predicate"
+argument_list|)
+expr_stmt|;
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|T
+name|current
+init|=
+name|iterator
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|predicate
+operator|.
+name|apply
+argument_list|(
+name|current
+argument_list|)
+condition|)
+block|{
+return|return
+name|i
+return|;
+block|}
+name|i
+operator|++
+expr_stmt|;
+block|}
+return|return
+operator|-
+literal|1
+return|;
+block|}
 comment|/**    * Returns an iterator that applies {@code function} to each element of {@code    * fromIterator}.    *    *<p>The returned iterator supports {@code remove()} if the provided iterator    * does. After a successful {@code remove()} call, {@code fromIterator} no    * longer contains the corresponding element.    */
 DECL|method|transform (final Iterator<F> fromIterator, final Function<? super F, ? extends T> function)
 specifier|public
@@ -2729,6 +2807,77 @@ return|;
 block|}
 block|}
 block|}
+comment|/**    * Returns a view of the supplied {@code iterator} that removes each element    * from the supplied {@code iterator} as it is returned.    *    *<p>The provided iterator must support {@link Iterator#remove()} or    * else the returned iterator will fail on the first call to {@code    * next}.    *    * @param iterator the iterator to remove and return elements from    * @return an iterator that removes and returns elements from the    *     supplied iterator    * @since 2010.01.04<b>tentative</b>    */
+DECL|method|consumingIterator (final Iterator<T> iterator)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|consumingIterator
+parameter_list|(
+specifier|final
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|iterator
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|UnmodifiableIterator
+argument_list|<
+name|T
+argument_list|>
+argument_list|()
+block|{
+specifier|public
+name|boolean
+name|hasNext
+parameter_list|()
+block|{
+return|return
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+return|;
+block|}
+specifier|public
+name|T
+name|next
+parameter_list|()
+block|{
+name|T
+name|next
+init|=
+name|iterator
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+return|return
+name|next
+return|;
+block|}
+block|}
+return|;
+block|}
 comment|// Methods only in Iterators, not in Iterables
 comment|/**    * Returns an iterator containing the elements of {@code array} in order. The    * returned iterator is a view of the array; subsequent changes to the array    * will be reflected in the iterator.    *    *<p><b>Note:</b> It is often preferable to represent your data using a    * collection type, for example using {@link Arrays#asList(Object[])}, making    * this method unnecessary.    *    *<p>The {@code Iterable} equivalent of this method is either {@link    * Arrays#asList(Object[])} or {@link ImmutableList#of(Object[])}}.    */
 DECL|method|forArray (final T... array)
@@ -2749,7 +2898,13 @@ modifier|...
 name|array
 parameter_list|)
 block|{
-comment|// optimized. benchmarks at nearly 2x of the straightforward impl
+comment|// TODO: compare performance with Arrays.asList(array).iterator().
+name|checkNotNull
+argument_list|(
+name|array
+argument_list|)
+expr_stmt|;
+comment|// eager for GWT.
 return|return
 operator|new
 name|UnmodifiableIterator
@@ -2787,29 +2942,22 @@ name|T
 name|next
 parameter_list|()
 block|{
-try|try
+if|if
+condition|(
+name|i
+operator|<
+name|length
+condition|)
 block|{
-comment|// 'return array[i++];' almost works
-name|T
-name|t
-init|=
+return|return
 name|array
 index|[
 name|i
-index|]
-decl_stmt|;
-name|i
 operator|++
-expr_stmt|;
-return|return
-name|t
+index|]
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|ArrayIndexOutOfBoundsException
-name|e
-parameter_list|)
+else|else
 block|{
 throw|throw
 operator|new

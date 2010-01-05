@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Phantom reference with a {@code finalizeReferent()} method which a  * background thread invokes after the garbage collector reclaims the  * referent. This is a simpler alternative to using a {@link  * java.lang.ref.ReferenceQueue}.  *  *<p>Unlike a normal phantom reference, this reference will be cleared  * automatically.  *  * @author Bob Lee  */
+comment|/**  * Phantom reference with a {@code finalizeReferent()} method which a  * background thread invokes after the garbage collector reclaims the  * referent. This is a simpler alternative to using a {@link  * java.lang.ref.ReferenceQueue}.  *  *<p>Unlike a normal phantom reference, this reference will be cleared  * automatically.  *  * @author Bob Lee  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

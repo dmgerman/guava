@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link InputStream} that counts the number of bytes read.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An {@link InputStream} that counts the number of bytes read.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *   * @see ForwardingObject  * @author Sven Mawson  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -113,8 +113,7 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
@@ -134,8 +133,7 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
@@ -150,8 +148,7 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|isDone ()
 specifier|public
 name|boolean
@@ -166,8 +163,7 @@ name|isDone
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|get ()
 specifier|public
 name|V
@@ -186,8 +182,7 @@ name|get
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V

@@ -103,7 +103,6 @@ literal|"serial"
 argument_list|)
 comment|// uses writeReplace(), not default serialization
 DECL|class|RegularImmutableList
-specifier|final
 class|class
 name|RegularImmutableList
 parameter_list|<
@@ -289,9 +288,9 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|array
 argument_list|,
@@ -363,9 +362,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|System
+name|Platform
 operator|.
-name|arraycopy
+name|unsafeArrayCopy
 argument_list|(
 name|array
 argument_list|,
@@ -1124,6 +1123,25 @@ argument_list|)
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+DECL|method|offset ()
+name|int
+name|offset
+parameter_list|()
+block|{
+return|return
+name|offset
+return|;
+block|}
+DECL|method|array ()
+name|Object
+index|[]
+name|array
+parameter_list|()
+block|{
+return|return
+name|array
 return|;
 block|}
 block|}

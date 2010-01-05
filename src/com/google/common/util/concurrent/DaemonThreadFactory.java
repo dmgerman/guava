@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps another {@link ThreadFactory}, making all new threads daemon threads.  *  * @author Charles Fry  * @author Harendra Verma  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Wraps another {@link ThreadFactory}, making all new threads daemon threads.  *  * @author Charles Fry  * @author Harendra Verma  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

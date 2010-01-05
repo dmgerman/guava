@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -302,8 +302,7 @@ return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
 DECL|method|start ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|Future
@@ -321,8 +320,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|startAndWait ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|State
@@ -337,8 +335,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|isRunning ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|boolean
@@ -353,8 +350,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|state ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|State
@@ -369,8 +365,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|stop ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|Future
@@ -388,8 +383,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|stopAndWait ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|State

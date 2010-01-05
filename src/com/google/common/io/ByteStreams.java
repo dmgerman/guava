@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -912,8 +912,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|readFully (byte b[])
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|readFully
@@ -949,8 +948,7 @@ throw|;
 block|}
 block|}
 DECL|method|readFully (byte b[], int off, int len)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|readFully
@@ -996,8 +994,7 @@ throw|;
 block|}
 block|}
 DECL|method|skipBytes (int n)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|int
 name|skipBytes
@@ -1033,8 +1030,7 @@ throw|;
 block|}
 block|}
 DECL|method|readBoolean ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|boolean
 name|readBoolean
@@ -1065,8 +1061,7 @@ throw|;
 block|}
 block|}
 DECL|method|readByte ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|byte
 name|readByte
@@ -1111,8 +1106,7 @@ throw|;
 block|}
 block|}
 DECL|method|readUnsignedByte ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|int
 name|readUnsignedByte
@@ -1143,8 +1137,7 @@ throw|;
 block|}
 block|}
 DECL|method|readShort ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|short
 name|readShort
@@ -1175,8 +1168,7 @@ throw|;
 block|}
 block|}
 DECL|method|readUnsignedShort ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|int
 name|readUnsignedShort
@@ -1207,8 +1199,7 @@ throw|;
 block|}
 block|}
 DECL|method|readChar ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|char
 name|readChar
@@ -1239,8 +1230,7 @@ throw|;
 block|}
 block|}
 DECL|method|readInt ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|int
 name|readInt
@@ -1271,8 +1261,7 @@ throw|;
 block|}
 block|}
 DECL|method|readLong ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|long
 name|readLong
@@ -1303,8 +1292,7 @@ throw|;
 block|}
 block|}
 DECL|method|readFloat ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|float
 name|readFloat
@@ -1335,8 +1323,7 @@ throw|;
 block|}
 block|}
 DECL|method|readDouble ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|double
 name|readDouble
@@ -1367,8 +1354,7 @@ throw|;
 block|}
 block|}
 DECL|method|readLine ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|String
 name|readLine
@@ -1399,8 +1385,7 @@ throw|;
 block|}
 block|}
 DECL|method|readUTF ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|String
 name|readUTF
@@ -1553,8 +1538,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|write (int b)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|write
@@ -1589,8 +1573,7 @@ throw|;
 block|}
 block|}
 DECL|method|write (byte[] b)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|write
@@ -1626,8 +1609,7 @@ throw|;
 block|}
 block|}
 DECL|method|write (byte[] b, int off, int len)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|write
@@ -1673,8 +1655,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeBoolean (boolean v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeBoolean
@@ -1709,8 +1690,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeByte (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeByte
@@ -1745,8 +1725,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeBytes (String s)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeBytes
@@ -1781,8 +1760,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeChar (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeChar
@@ -1817,8 +1795,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeChars (String s)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeChars
@@ -1853,8 +1830,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeDouble (double v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeDouble
@@ -1889,8 +1865,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeFloat (float v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeFloat
@@ -1925,8 +1900,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeInt (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeInt
@@ -1961,8 +1935,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeLong (long v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeLong
@@ -1997,8 +1970,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeShort (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeShort
@@ -2033,8 +2005,7 @@ throw|;
 block|}
 block|}
 DECL|method|writeUTF (String s)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|writeUTF
@@ -2069,8 +2040,7 @@ throw|;
 block|}
 block|}
 DECL|method|toByteArray ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|byte
 index|[]
@@ -2955,8 +2925,7 @@ name|InputStream
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|InputStream
 name|getInput
@@ -3053,8 +3022,7 @@ name|InputStream
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|InputStream
 name|getInput

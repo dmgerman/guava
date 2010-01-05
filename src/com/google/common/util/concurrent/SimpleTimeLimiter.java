@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

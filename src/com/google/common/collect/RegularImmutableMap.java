@@ -62,6 +62,22 @@ name|TransformedImmutableSet
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link ImmutableMap} with two or more entries.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  */
 end_comment
@@ -143,6 +159,7 @@ name|immutableEntries
 parameter_list|)
 block|{
 comment|// each of our 6 callers carefully put only Entry<K, V>s into the array!
+comment|// checkNotNull for GWT.
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -166,7 +183,10 @@ name|V
 argument_list|>
 index|[]
 operator|)
+name|checkNotNull
+argument_list|(
 name|immutableEntries
+argument_list|)
 decl_stmt|;
 name|this
 operator|.
@@ -222,14 +242,24 @@ operator|.
 name|entries
 control|)
 block|{
+name|checkNotNull
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+comment|// checkNotNull for GWT.
 name|K
 name|key
 init|=
+name|checkNotNull
+argument_list|(
 name|entry
 operator|.
 name|getKey
 argument_list|()
+argument_list|)
 decl_stmt|;
+comment|// checkNotNull for GWT.
 name|int
 name|keyHashCode
 init|=
@@ -285,11 +315,15 @@ block|{
 name|V
 name|value
 init|=
+name|checkNotNull
+argument_list|(
 name|entry
 operator|.
 name|getValue
 argument_list|()
+argument_list|)
 decl_stmt|;
+comment|// checkNotNull for GWT.
 name|table
 index|[
 name|index

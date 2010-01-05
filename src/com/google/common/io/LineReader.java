@@ -66,7 +66,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayDeque
+name|LinkedList
 import|;
 end_import
 
@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for reading lines of text. Provides the same functionality  * as {@link java.io.BufferedReader#readLine()} but for all {@link Readable}  * objects, not just instances of {@link Reader}.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A class for reading lines of text. Provides the same functionality  * as {@link java.io.BufferedReader#readLine()} but for all {@link Readable}  * objects, not just instances of {@link Reader}.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -140,7 +140,7 @@ argument_list|>
 name|lines
 init|=
 operator|new
-name|ArrayDeque
+name|LinkedList
 argument_list|<
 name|String
 argument_list|>

@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable collection. Does not permit null elements.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside of this package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @author Jesse Wilson  */
+comment|/**  * An immutable collection. Does not permit null elements.  *  *<p>In addition to the {@link Collection} methods, this class has an {@link  * #asList()} method, which returns a list view of the collection's elements.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside of this package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @author Jesse Wilson  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -517,6 +517,106 @@ operator|new
 name|UnsupportedOperationException
 argument_list|()
 throw|;
+block|}
+comment|// TODO: Restructure code so ImmutableList doesn't contain this variable,
+comment|// which it doesn't use.
+DECL|field|asList
+specifier|private
+specifier|transient
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|asList
+decl_stmt|;
+comment|/**    * Returns a list view of the collection.    *    * @since 2010.01.04<b>tentative</b>    */
+DECL|method|asList ()
+specifier|public
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|asList
+parameter_list|()
+block|{
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|list
+init|=
+name|asList
+decl_stmt|;
+return|return
+operator|(
+name|list
+operator|==
+literal|null
+operator|)
+condition|?
+operator|(
+name|asList
+operator|=
+name|createAsList
+argument_list|()
+operator|)
+else|:
+name|list
+return|;
+block|}
+DECL|method|createAsList ()
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|createAsList
+parameter_list|()
+block|{
+switch|switch
+condition|(
+name|size
+argument_list|()
+condition|)
+block|{
+case|case
+literal|0
+case|:
+return|return
+name|ImmutableList
+operator|.
+name|of
+argument_list|()
+return|;
+case|case
+literal|1
+case|:
+return|return
+name|ImmutableList
+operator|.
+name|of
+argument_list|(
+name|iterator
+argument_list|()
+operator|.
+name|next
+argument_list|()
+argument_list|)
+return|;
+default|default:
+return|return
+operator|new
+name|ImmutableAsList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|toArray
+argument_list|()
+argument_list|,
+name|this
+argument_list|)
+return|;
+block|}
 block|}
 DECL|class|EmptyImmutableCollection
 specifier|private

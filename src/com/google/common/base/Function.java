@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A transformation from one object to another. For example, a  * {@code StringToIntegerFunction} may implement  *<code>Function&lt;String,Integer&gt;</code> and transform integers in  * {@code String} format to {@code Integer} format.  *  *<p>The transformation on the source object does not necessarily result in  * an object of a different type.  For example, a  * {@code FarenheitToCelsiusFunction} may implement  *<code>Function&lt;Float,Float&gt;</code>.  *  *<p>Implementations which may cause side effects upon evaluation are strongly  * encouraged to state this fact clearly in their API documentation.  *  * @param<F> the type of the function input  * @param<T> the type of the function output  * @author Kevin Bourrillion  * @author Scott Bonneau  */
+comment|/**  * A transformation from one object to another. For example, a  * {@code StringToIntegerFunction} may implement  *<code>Function&lt;String,Integer&gt;</code> and transform integers in  * {@code String} format to {@code Integer} format.  *  *<p>The transformation on the source object does not necessarily result in  * an object of a different type.  For example, a  * {@code FarenheitToCelsiusFunction} may implement  *<code>Function&lt;Float,Float&gt;</code>.  *  *<p>Implementations which may cause side effects upon evaluation are strongly  * encouraged to state this fact clearly in their API documentation.  *  * @param<F> the type of the function input  * @param<T> the type of the function output  * @author Kevin Bourrillion  * @author Scott Bonneau  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

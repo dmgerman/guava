@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and  * should return {@code false} when you want to stop processing.  *  * @author Miles Barr  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and  * should return {@code false} when you want to stop processing.  *  * @author Miles Barr  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_interface

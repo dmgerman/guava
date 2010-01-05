@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -83,8 +83,7 @@ name|delegate
 parameter_list|()
 function_decl|;
 DECL|method|start ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|Future
 argument_list|<
@@ -102,8 +101,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|state ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|State
 name|state
@@ -118,8 +116,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|stop ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|Future
 argument_list|<
@@ -137,8 +134,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|startAndWait ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|State
 name|startAndWait
@@ -153,8 +149,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|stopAndWait ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|State
 name|stopAndWait
@@ -169,8 +164,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|isRunning ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|boolean
 name|isRunning

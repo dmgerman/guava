@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection which forwards all its method calls to another collection.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Kevin Bourrillion  */
+comment|/**  * A collection which forwards all its method calls to another collection.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

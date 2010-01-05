@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map.  * See also {@link ImmutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  */
+comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map.  * See also {@link ImmutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -501,6 +501,15 @@ argument_list|)
 operator|.
 name|build
 argument_list|()
+decl_stmt|;
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
 decl_stmt|;
 block|}
 end_class

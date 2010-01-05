@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Future} whose {@code get} calls cannot be interrupted. If a thread  * is interrupted during such a call, the call continues to block until the  * result is available or the timeout elapses, and only then re-interrupts the  * thread. Obtain an instance of this type using {@link  * Futures#makeUninterruptible(Future)}.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A {@code Future} whose {@code get} calls cannot be interrupted. If a thread  * is interrupted during such a call, the call continues to block until the  * result is available or the timeout elapses, and only then re-interrupts the  * thread. Obtain an instance of this type using {@link  * Futures#makeUninterruptible(Future)}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_interface
@@ -85,8 +85,7 @@ name|V
 argument_list|>
 block|{
 DECL|method|get ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|V
 name|get
 parameter_list|()
@@ -94,8 +93,7 @@ throws|throws
 name|ExecutionException
 function_decl|;
 DECL|method|get (long timeout, TimeUnit unit)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|V
 name|get
 parameter_list|(

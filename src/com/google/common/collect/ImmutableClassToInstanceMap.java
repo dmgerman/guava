@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class-to-instance map backed by an {@link ImmutableMap}. See also {@link  * MutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  */
+comment|/**  * A class-to-instance map backed by an {@link ImmutableMap}. See also {@link  * MutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

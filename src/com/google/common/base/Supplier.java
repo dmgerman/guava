@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class that can supply objects of a single type.  Semantically, this could  * be a factory, generator, builder, closure, or something else entirely. No  * guarantees are implied by this interface.  *  * @author Harry Heymann  */
+comment|/**  * A class that can supply objects of a single type.  Semantically, this could  * be a factory, generator, builder, closure, or something else entirely. No  * guarantees are implied by this interface.  *  * @author Harry Heymann  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException}.  *  * @author Kevin Bourrillion  * @since 9.09.15  */
+comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

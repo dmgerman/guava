@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BiMap} backed by two {@link HashMap} instances. This implementation  * allows null keys and values. A {@code HashBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  */
+comment|/**  * A {@link BiMap} backed by two {@link HashMap} instances. This implementation  * allows null keys and values. A {@code HashBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

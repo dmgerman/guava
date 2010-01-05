@@ -87,38 +87,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -252,8 +220,40 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  */
+comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -589,8 +589,9 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    */
+comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2010.01.04<b>tentative</b>    */
 DECL|method|removeIf ( Iterable<T> removeFrom, Predicate<? super T> predicate)
+specifier|public
 specifier|static
 parameter_list|<
 name|T
@@ -2111,6 +2112,45 @@ name|predicate
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} is {@code true} or    * {@code -1} if there is no such index.    *    * @since 2010.01.04<b>tentative</b>    */
+DECL|method|indexOf ( Iterable<T> iterable, Predicate<? super T> predicate)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|int
+name|indexOf
+parameter_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+parameter_list|)
+block|{
+return|return
+name|Iterators
+operator|.
+name|indexOf
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an iterable that applies {@code function} to each element of {@code    * fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * provided iterator does. After a successful {@code remove()} call,    * {@code fromIterable} no longer contains the corresponding element.    */
 DECL|method|transform (final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
 specifier|public
@@ -2417,6 +2457,63 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a view of the supplied iterable that wraps each generated    * {@link Iterator} through {@link Iterators#consumingIterator(Iterator)}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator    *     through {@link Iterators#consumingIterator(Iterator)}    *    * @see Iterators#consumingIterator(Iterator)    * @since 2010.01.04<b>tentative</b>    */
+DECL|method|consumingIterable (final Iterable<T> iterable)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|consumingIterable
+parameter_list|(
+specifier|final
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|iterable
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+argument_list|()
+block|{
+specifier|public
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|Iterators
+operator|.
+name|consumingIterator
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
+return|;
+block|}
+block|}
+return|;
+block|}
 comment|// Methods only in Iterables, not in Iterators
 comment|/**    * Adapts a list to an iterable with reversed iteration order. It is    * especially useful in foreach-style loops:<pre class="code">   {@code    *    *   List<String> mylist = ...    *   for (String str : Iterables.reverse(mylist)) {    *     ...    *   }}</pre>    *    * There is no corresponding method in {@link Iterators}, since {@link    * Iterable#iterator} can simply be invoked on the result of calling this    * method.    *    * @return an iterable with the same elements as the list, in reverse    */
 DECL|method|reverse (final List<T> list)
@@ -2554,6 +2651,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+comment|// Non-public
 comment|/**    * Removes the specified element from the specified iterable.    *    *<p>This method iterates over the iterable, checking each element returned    * by the iterator in turn to see if it equals the object {@code o}. If they    * are equal, it is removed from the iterable with the iterator's    * {@code remove} method. At most one element is removed, even if the iterable    * contains multiple members that equal {@code o}.    *    *<p><b>Warning</b>: Do not use this method for a collection, such as a    * {@link HashSet}, that has a fast {@code remove} method.    *    * @param iterable the iterable from which to remove    * @param o an element to remove from the collection    * @return {@code true} if the iterable changed as a result    * @throws UnsupportedOperationException if the iterator does not support the    *     {@code remove} method and the iterable contains the object    */
 DECL|method|remove (Iterable<?> iterable, @Nullable Object o)
 specifier|static

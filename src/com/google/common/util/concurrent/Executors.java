@@ -191,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link  * ExecutorService}, and {@link ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link  * ExecutorService}, and {@link ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -484,7 +484,7 @@ name|factory
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an executor service that runs each task in the thread     * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *     *<p>Although all tasks are immediately executed in the thread that     * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown     * and termination behavior.    *     *<p>The implementation deviates from the {@code ExecutorService}     * specification with regards to the {@code shutdownNow} method.  First,     * "best-effort" with regards to canceling running tasks is implemented     * as "no-effort".  No interrupts or other attempts are made to stop     * threads executing tasks.  Second, the returned list will always be empty,     * as any submitted task is considered to have started execution.       * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that     * have not yet started execution.  It is unclear from the     * {@code ExecutorService} specification if these should be included, and     * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result     * in concurrent calls to {@code invokeAll/invokeAny} throwing     * RejectedExecutionException, although a subset of the tasks may already     * have been executed.    */
+comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    */
 DECL|method|sameThreadExecutor ()
 specifier|public
 specifier|static
@@ -507,7 +507,7 @@ name|SameThreadExecutorService
 extends|extends
 name|AbstractExecutorService
 block|{
-comment|/**      * Lock used whenever accessing the state variables       * (runningTasks, shutdown, terminationCondition) of the executor       */
+comment|/**      * Lock used whenever accessing the state variables      * (runningTasks, shutdown, terminationCondition) of the executor      */
 DECL|field|lock
 specifier|private
 specifier|final
@@ -530,7 +530,7 @@ operator|.
 name|newCondition
 argument_list|()
 decl_stmt|;
-comment|/*      * Conceptually, these two variables describe the executor being in       * one of three states:      *   - Active: shutdown == false      *   - Shutdown: runningTasks> 0 and shutdown == true      *   - Terminated: runningTasks == 0 and shutdown == true      */
+comment|/*      * Conceptually, these two variables describe the executor being in      * one of three states:      *   - Active: shutdown == false      *   - Shutdown: runningTasks> 0 and shutdown == true      *   - Terminated: runningTasks == 0 and shutdown == true      */
 DECL|field|runningTasks
 specifier|private
 name|int
@@ -545,8 +545,7 @@ name|shutdown
 init|=
 literal|false
 decl_stmt|;
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|execute (Runnable command)
 specifier|public
 name|void
@@ -574,8 +573,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|isShutdown ()
 specifier|public
 name|boolean
@@ -602,8 +600,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|shutdown ()
 specifier|public
 name|void
@@ -632,8 +629,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// See sameThreadExecutor javadoc for unusual behavior of this method.
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|shutdownNow ()
 specifier|public
 name|List
@@ -653,8 +649,7 @@ name|emptyList
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|isTerminated ()
 specifier|public
 name|boolean
@@ -685,8 +680,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|/*@Override*/
 DECL|method|awaitTermination (long timeout, TimeUnit unit)
 specifier|public
 name|boolean
@@ -769,7 +763,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Checks if the executor has been shut down and increments the running       * task count.      *       * @throws RejectedExecutionException if the executor has been previously       *         shutdown      */
+comment|/**      * Checks if the executor has been shut down and increments the running      * task count.      *      * @throws RejectedExecutionException if the executor has been previously      *         shutdown      */
 DECL|method|startTask ()
 specifier|private
 name|void

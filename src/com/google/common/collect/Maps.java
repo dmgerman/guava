@@ -75,38 +75,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -336,8 +304,40 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Map} instances. Also see this  * class's counterparts {@link Lists} and {@link Sets}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  */
+comment|/**  * Static utility methods pertaining to {@link Map} instances. Also see this  * class's counterparts {@link Lists} and {@link Sets}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -6035,6 +6035,89 @@ argument_list|(
 literal|"="
 argument_list|)
 decl_stmt|;
+comment|/**    * Delegates to {@link Map#get}.  Returns {@code null} on {@code    * ClassCastException}.    */
+DECL|method|safeGet (Map<?, V> map, Object key)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|V
+name|safeGet
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+argument_list|,
+name|V
+argument_list|>
+name|map
+parameter_list|,
+name|Object
+name|key
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|map
+operator|.
+name|get
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+block|}
+comment|/**    * Delegates to {@link Map#containsKey}.  Returns {@code false} on {@code    * ClassCastException}    */
+DECL|method|safeContainsKey (Map<?, ?> map, Object key)
+specifier|static
+name|boolean
+name|safeContainsKey
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+parameter_list|,
+name|Object
+name|key
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|map
+operator|.
+name|containsKey
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
 block|}
 end_class
 

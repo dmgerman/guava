@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -727,7 +727,7 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Copies a collection of {@code Byte} instances into a new array of    * primitive {@code byte} values.    *    * @param collection a collection of {@code Byte} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
+comment|/**    * Copies a collection of {@code Byte} instances into a new array of    * primitive {@code byte} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Byte} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
 DECL|method|toArray (Collection<Byte> collection)
 specifier|public
 specifier|static
@@ -761,11 +761,21 @@ name|toByteArray
 argument_list|()
 return|;
 block|}
-comment|// TODO: handle collection being concurrently modified
-name|int
-name|counter
+name|Object
+index|[]
+name|boxedArray
 init|=
-literal|0
+name|collection
+operator|.
+name|toArray
+argument_list|()
+decl_stmt|;
+name|int
+name|len
+init|=
+name|boxedArray
+operator|.
+name|length
 decl_stmt|;
 name|byte
 index|[]
@@ -774,27 +784,36 @@ init|=
 operator|new
 name|byte
 index|[
-name|collection
-operator|.
-name|size
-argument_list|()
+name|len
 index|]
 decl_stmt|;
 for|for
 control|(
-name|Byte
-name|value
-range|:
-name|collection
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|len
+condition|;
+name|i
+operator|++
 control|)
 block|{
 name|array
 index|[
-name|counter
-operator|++
+name|i
 index|]
 operator|=
-name|value
+operator|(
+name|Byte
+operator|)
+name|boxedArray
+index|[
+name|i
+index|]
 expr_stmt|;
 block|}
 return|return

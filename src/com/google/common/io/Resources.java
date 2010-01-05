@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even those these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even those these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

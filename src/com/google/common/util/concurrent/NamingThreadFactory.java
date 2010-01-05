@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ThreadFactory which decorates another ThreadFactory to set a name on  * each thread created.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A ThreadFactory which decorates another ThreadFactory to set a name on  * each thread created.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map, each entry of which maps a Java  *<a href="http://tinyurl.com/2cmwkz">raw type</a> to an instance of that type.  * In addition to implementing {@code Map}, the additional type-safe operations  * {@link #putInstance} and {@link #getInstance} are available.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries  * for primitive types, and a primitive type and its corresponding wrapper type  * may map to different values.  *  * @param<B> the common supertype that all entries must share; often this is  *     simply {@link Object}  *  * @author Kevin Bourrillion  */
+comment|/**  * A map, each entry of which maps a Java  *<a href="http://tinyurl.com/2cmwkz">raw type</a> to an instance of that type.  * In addition to implementing {@code Map}, the additional type-safe operations  * {@link #putInstance} and {@link #getInstance} are available.  *  *<p>Like any other {@code Map<Class, Object>}, this map may contain entries  * for primitive types, and a primitive type and its corresponding wrapper type  * may map to different values.  *  * @param<B> the common supertype that all entries must share; often this is  *     simply {@link Object}  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

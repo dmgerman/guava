@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A simple ListenableFuture that holds a value or an exception.  *  * @author Sven Mawson  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A simple ListenableFuture that holds a value or an exception.  *  * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

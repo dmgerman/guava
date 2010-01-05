@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of  * those interfaces. Similarly for {@code Appendable& Closeable} and  * {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of  * those interfaces. Similarly for {@code Appendable& Closeable} and  * {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -1230,8 +1230,7 @@ name|Reader
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|Reader
 name|getInput

@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An extension of {@code DataOutput} for writing to in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  *  * @author Jayaprabhakar Kadarkarai  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An extension of {@code DataOutput} for writing to in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  *  * @author Jayaprabhakar Kadarkarai  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_interface
@@ -49,8 +49,7 @@ extends|extends
 name|DataOutput
 block|{
 DECL|method|write (int b)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|write
 parameter_list|(
@@ -59,8 +58,7 @@ name|b
 parameter_list|)
 function_decl|;
 DECL|method|write (byte b[])
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|write
 parameter_list|(
@@ -70,8 +68,7 @@ index|[]
 parameter_list|)
 function_decl|;
 DECL|method|write (byte b[], int off, int len)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|write
 parameter_list|(
@@ -87,8 +84,7 @@ name|len
 parameter_list|)
 function_decl|;
 DECL|method|writeBoolean (boolean v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeBoolean
 parameter_list|(
@@ -97,8 +93,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeByte (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeByte
 parameter_list|(
@@ -107,8 +102,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeShort (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeShort
 parameter_list|(
@@ -117,8 +111,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeChar (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeChar
 parameter_list|(
@@ -127,8 +120,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeInt (int v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeInt
 parameter_list|(
@@ -137,8 +129,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeLong (long v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeLong
 parameter_list|(
@@ -147,8 +138,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeFloat (float v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeFloat
 parameter_list|(
@@ -157,8 +147,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeDouble (double v)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeDouble
 parameter_list|(
@@ -167,8 +156,7 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeChars (String s)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeChars
 parameter_list|(
@@ -177,8 +165,7 @@ name|s
 parameter_list|)
 function_decl|;
 DECL|method|writeUTF (String s)
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeUTF
 parameter_list|(
@@ -190,8 +177,7 @@ comment|/**    * @deprecated This method is dangerous as it discards the high by
 DECL|method|writeBytes (String s)
 annotation|@
 name|Deprecated
-annotation|@
-name|Override
+comment|/*@Override*/
 name|void
 name|writeBytes
 parameter_list|(

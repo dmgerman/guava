@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

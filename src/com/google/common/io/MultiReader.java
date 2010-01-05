@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Reader} that will concatenates multiple readers  *  * @author Bin Zhu  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * A {@link Reader} that will concatenates multiple readers  *  * @author Bin Zhu  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

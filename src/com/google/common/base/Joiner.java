@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which joins pieces of text (specified as an array, {@link  * Iterable}, varargs or even a {@link Map}) with a separator. It either  * appends the results to an {@link Appendable} or returns them as a {@link  * String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input  * elements are converted to strings using {@link Object#toString()} before  * being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is  * specified, the joining methods will throw {@link NullPointerException} if any  * given element is null.  *  * @author Kevin Bourrillion  */
+comment|/**  * An object which joins pieces of text (specified as an array, {@link  * Iterable}, varargs or even a {@link Map}) with a separator. It either  * appends the results to an {@link Appendable} or returns them as a {@link  * String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input  * elements are converted to strings using {@link Object#toString()} before  * being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is  * specified, the joining methods will throw {@link NullPointerException} if any  * given element is null.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

@@ -48,6 +48,10 @@ name|State
 import|;
 end_import
 
+begin_comment
+comment|// for javadoc
+end_comment
+
 begin_import
 import|import
 name|com
@@ -87,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -131,8 +135,7 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|run
@@ -193,8 +196,7 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|void
 name|run
@@ -322,8 +324,7 @@ return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
 DECL|method|start ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|Future
@@ -341,8 +342,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|startAndWait ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|State
@@ -357,8 +357,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|isRunning ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|boolean
@@ -373,8 +372,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|state ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|State
@@ -389,8 +387,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|stop ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|Future
@@ -408,8 +405,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|stopAndWait ()
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 specifier|final
 name|State

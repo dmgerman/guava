@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains constant definitions for the six standard {@link Charset}  * instances, which are guaranteed to be supported by all Java platform  * implementations.  *  * @author Mike Bostock  * @since 9.09.15  */
+comment|/**  * Contains constant definitions for the six standard {@link Charset}  * instances, which are guaranteed to be supported by all Java platform  * implementations.  *  * @author Mike Bostock  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

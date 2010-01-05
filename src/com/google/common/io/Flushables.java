@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods for working with {@link Flushable} objects.  *  * @author Michael Lancaster  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Utility methods for working with {@link Flushable} objects.  *  * @author Michael Lancaster  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

@@ -50,12 +50,22 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|NoSuchElementException
 import|;
 end_import
 
 begin_comment
-comment|/**  * Simple static methods to be called at the start of your own methods to verify  * correct arguments and state. This allows constructs such as  *<pre>  *     if (count<= 0) {  *       throw new IllegalArgumentException("must be positive: " + count);  *     }</pre>  *  * to be replaced with the more compact  *<pre>  *     checkArgument(count> 0, "must be positive: %s", count);</pre>  *  * Note that the sense of the expression is inverted; with {@code Preconditions}  * you declare what you expect to be<i>true</i>, just as you do with an  *<a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html">  * {@code assert}</a> or a JUnit {@code assertTrue} call.  *  *<p><b>Warning:</b> only the {@code "%s"} specifier is recognized as a  * placeholder in these messages, not the full range of {@link  * String#format(String, Object[])} specifiers.  *  *<p>Take care not to confuse precondition checking with other similar types  * of checks! Precondition exceptions -- including those provided here, but also  * {@link IndexOutOfBoundsException}, {@link NoSuchElementException}, {@link  * UnsupportedOperationException} and others -- are used to signal that the  *<i>calling method</i> has made an error. This tells the caller that it should  * not have invoked the method when it did, with the arguments it did, or  * perhaps ever. Postcondition or other invariant failures should not throw  * these types of exceptions.  *  * @author Kevin Bourrillion  */
+comment|/**  * Simple static methods to be called at the start of your own methods to verify  * correct arguments and state. This allows constructs such as  *<pre>  *     if (count<= 0) {  *       throw new IllegalArgumentException("must be positive: " + count);  *     }</pre>  *  * to be replaced with the more compact  *<pre>  *     checkArgument(count> 0, "must be positive: %s", count);</pre>  *  * Note that the sense of the expression is inverted; with {@code Preconditions}  * you declare what you expect to be<i>true</i>, just as you do with an  *<a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html">  * {@code assert}</a> or a JUnit {@code assertTrue} call.  *  *<p><b>Warning:</b> only the {@code "%s"} specifier is recognized as a  * placeholder in these messages, not the full range of {@link  * String#format(String, Object[])} specifiers.  *  *<p>Take care not to confuse precondition checking with other similar types  * of checks! Precondition exceptions -- including those provided here, but also  * {@link IndexOutOfBoundsException}, {@link NoSuchElementException}, {@link  * UnsupportedOperationException} and others -- are used to signal that the  *<i>calling method</i> has made an error. This tells the caller that it should  * not have invoked the method when it did, with the arguments it did, or  * perhaps ever. Postcondition or other invariant failures should not throw  * these types of exceptions.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -382,6 +392,7 @@ return|return
 name|reference
 return|;
 block|}
+comment|/*    * All recent hotspots (as of 2009) *really* like to have the natural code    *    * if (guardExpression) {    *    throw new BadException(messageExpression);    * }    *    * refactored so that messageExpression is moved to a separate    * String-returning method.    *    * if (guardExpression) {    *    throw new BadException(badMsg(...));    * }    *    * The alternative natural refactorings into void or Exception-returning    * methods are much slower.  This is a big deal - we're talking factors of    * 2-8 in microbenchmarks, not just 10-20%.  (This is a hotspot optimizer    * bug, which should be fixed, but that's a separate, big project).    *    * The coding pattern above is heavily used in java.util, e.g. in ArrayList.    * There is a RangeCheckMicroBenchmark in the JDK that was used to test this.    *    * But the methods in this class want to throw different exceptions,    * depending on the args, so it appears that this pattern is not directly    * applicable.  But we can use the ridiculous, devious trick of throwing an    * exception in the middle of the construction of another exception.    * Hotspot is fine with that.    */
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array,    * list or string of size {@code size}. An element index may range from zero,    * inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list    *     or string    * @param size the size of that array, list or string    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not    *     less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|checkElementIndex (int index, int size)
 specifier|public

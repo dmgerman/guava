@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to the {@link Callable} interface.  *  * @author Isaac Shum  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to the {@link Callable} interface.  *  * @author Isaac Shum  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
@@ -84,8 +84,7 @@ name|T
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|T
 name|call

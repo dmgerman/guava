@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

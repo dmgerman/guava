@@ -59,38 +59,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -168,8 +136,40 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  */
+comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -353,6 +353,44 @@ name|predicate
 argument_list|)
 argument_list|)
 return|;
+block|}
+comment|/**    * Delegates to {@link Collection#contains}.  Returns {@code false} on {@code    * ClassCastException}    */
+DECL|method|safeContains (Collection<?> collection, Object object)
+specifier|static
+name|boolean
+name|safeContains
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+name|collection
+parameter_list|,
+name|Object
+name|object
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|collection
+operator|.
+name|contains
+argument_list|(
+name|object
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 DECL|class|FilteredCollection
 specifier|static

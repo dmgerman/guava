@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given  * serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  */
+comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given  * serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

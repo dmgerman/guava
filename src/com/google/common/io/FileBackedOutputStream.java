@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

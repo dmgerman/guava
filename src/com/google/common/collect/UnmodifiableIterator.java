@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator that does not support {@link #remove}.  *  * @author Jared Levy  */
+comment|/**  * An iterator that does not support {@link #remove}.  *  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

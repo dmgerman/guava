@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static factory methods for creating {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  */
+comment|/**  * Contains static factory methods for creating {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
 end_comment
 
 begin_class

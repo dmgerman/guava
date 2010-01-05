@@ -17,6 +17,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -79,10 +93,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines a true or false value for any Java {@code char} value, just as  * {@link Predicate} does for any {@link Object}. Also offers basic text  * processing methods based on this function. Implementations are strongly  * encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching  * character" is used to mean "any character {@code c} for which {@code  * this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not  * understand supplementary Unicode code points in the range {@code 0x10000} to  * {@code 0x10FFFF}. Such logical characters are encoded into a {@code String}  * using surrogate pairs, and a {@code CharMatcher} treats these just as two  * separate characters.  *  * @author Kevin Bourrillion  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Determines a true or false value for any Java {@code char} value, just as  * {@link Predicate} does for any {@link Object}. Also offers basic text  * processing methods based on this function. Implementations are strongly  * encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching  * character" is used to mean "any character {@code c} for which {@code  * this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not  * understand supplementary Unicode code points in the range {@code 0x10000} to  * {@code 0x10FFFF}. Such logical characters are encoded into a {@code String}  * using surrogate pairs, and a {@code CharMatcher} treats these just as two  * separate characters.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|CharMatcher
 specifier|public
 specifier|abstract
@@ -94,8 +110,28 @@ argument_list|<
 name|Character
 argument_list|>
 block|{
-comment|// Public constants
-comment|/**    * Determines whether a character is whitespace according to the latest    * Unicode standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. See a comparison    * of several definitions of "whitespace" at    *<a href="http://go/white+space">go/white+space</a>.    *    *<b>Note:</b> as the Unicode definition evolves, we will modify this    * constant to keep it up to date.    */
+comment|// Constants
+comment|// Excludes 2000-2000a, which is handled as a range
+DECL|field|BREAKING_WHITESPACE_CHARS
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|BREAKING_WHITESPACE_CHARS
+init|=
+literal|"\t\n\013\f\r \u0085\u1680\u2028\u2029\u205f\u3000"
+decl_stmt|;
+comment|// Excludes 2007, which is handled as a gap in a pair of ranges
+DECL|field|NON_BREAKING_WHITESPACE_CHARS
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|NON_BREAKING_WHITESPACE_CHARS
+init|=
+literal|"\u00a0\u180e\u202f"
+decl_stmt|;
+comment|/**    * Determines whether a character is whitespace according to the latest    * Unicode standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. See a comparison    * of several definitions of "whitespace" at    *<a href="TODO">(TODO)</a>.    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this    * constant to keep it up to date.    */
 DECL|field|WHITESPACE
 specifier|public
 specifier|static
@@ -105,7 +141,9 @@ name|WHITESPACE
 init|=
 name|anyOf
 argument_list|(
-literal|"\t\n\013\f\r \u0085\u00a0\u1680\u180e\u2028\u2029\u202f\u205f\u3000"
+name|BREAKING_WHITESPACE_CHARS
+operator|+
+name|NON_BREAKING_WHITESPACE_CHARS
 argument_list|)
 operator|.
 name|or
@@ -117,11 +155,40 @@ argument_list|,
 literal|'\u200a'
 argument_list|)
 argument_list|)
-operator|.
-name|precomputed
-argument_list|()
 decl_stmt|;
-comment|// TODO: should we do this more lazily?
+comment|/**    * Determines whether a character is a breaking whitespace (that is,    * a whitespace which can be interpreted as a break between words    * for formatting purposes).  See {@link #WHITESPACE} for a discussion    * of that term.    *    * @since 2010.01.04<b>tentative</b>    */
+DECL|field|BREAKING_WHITESPACE
+specifier|public
+specifier|static
+specifier|final
+name|CharMatcher
+name|BREAKING_WHITESPACE
+init|=
+name|anyOf
+argument_list|(
+name|BREAKING_WHITESPACE_CHARS
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u2000'
+argument_list|,
+literal|'\u2006'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u2008'
+argument_list|,
+literal|'\u200a'
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|/**    * Determines whether a character is ASCII, meaning that its code point is    * less than 128.    */
 DECL|field|ASCII
 specifier|public
@@ -144,26 +211,22 @@ specifier|static
 specifier|final
 name|CharMatcher
 name|DIGIT
-init|=
-operator|new
+decl_stmt|;
+static|static
+block|{
 name|CharMatcher
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|setBits
-parameter_list|(
-name|LookupTable
-name|table
-parameter_list|)
-block|{
+name|digit
+init|=
+name|inRange
+argument_list|(
+literal|'0'
+argument_list|,
+literal|'9'
+argument_list|)
+decl_stmt|;
 name|String
 name|zeroes
 init|=
-literal|"0"
-operator|+
 literal|"\u0660\u06f0\u07c0\u0966\u09e6\u0a66\u0ae6\u0b66\u0be6\u0c66"
 operator|+
 literal|"\u0ce6\u0d66\u0e50\u0ed0\u0f20\u1040\u1090\u17e0\u1810\u1946"
@@ -181,61 +244,33 @@ name|toCharArray
 argument_list|()
 control|)
 block|{
-for|for
-control|(
-name|char
-name|value
-init|=
-literal|0
-init|;
-name|value
-operator|<
-literal|10
-condition|;
-name|value
-operator|++
-control|)
-block|{
-name|table
+name|digit
+operator|=
+name|digit
 operator|.
-name|set
+name|or
 argument_list|(
+name|inRange
+argument_list|(
+name|base
+argument_list|,
 call|(
 name|char
 call|)
 argument_list|(
 name|base
 operator|+
-name|value
+literal|9
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|DIGIT
+operator|=
+name|digit
+expr_stmt|;
 block|}
-block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|matches
-parameter_list|(
-name|char
-name|c
-parameter_list|)
-block|{
-comment|// nicer way to do this?
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-comment|// COV_NF_LINE
-block|}
-block|}
-operator|.
-name|precomputed
-argument_list|()
-decl_stmt|;
 comment|/**    * Determines whether a character is whitespace according to {@link    * Character#isWhitespace(char) Java's definition}; it is usually preferable    * to use {@link #WHITESPACE}. See a comparison of several definitions of    * "whitespace" at<a href="http://go/white+space">go/white+space</a>.    */
 DECL|field|JAVA_WHITESPACE
 specifier|public
@@ -244,30 +279,88 @@ specifier|final
 name|CharMatcher
 name|JAVA_WHITESPACE
 init|=
-operator|new
-name|CharMatcher
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|matches
-parameter_list|(
-name|char
-name|c
-parameter_list|)
-block|{
-return|return
-name|Character
-operator|.
-name|isWhitespace
+name|inRange
 argument_list|(
-name|c
+literal|'\u0009'
+argument_list|,
+operator|(
+name|char
+operator|)
+literal|13
 argument_list|)
-return|;
-block|}
-block|}
+comment|// \\u000d doesn't work as a char literal
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u001c'
+argument_list|,
+literal|'\u0020'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|is
+argument_list|(
+literal|'\u1680'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|is
+argument_list|(
+literal|'\u180e'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u2000'
+argument_list|,
+literal|'\u2006'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u2008'
+argument_list|,
+literal|'\u200b'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u2028'
+argument_list|,
+literal|'\u2029'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|is
+argument_list|(
+literal|'\u205f'
+argument_list|)
+argument_list|)
+operator|.
+name|or
+argument_list|(
+name|is
+argument_list|(
+literal|'\u3000'
+argument_list|)
+argument_list|)
 decl_stmt|;
 comment|/**    * Determines whether a character is a digit according to {@link    * Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    */
 DECL|field|JAVA_DIGIT
@@ -442,30 +535,22 @@ specifier|final
 name|CharMatcher
 name|JAVA_ISO_CONTROL
 init|=
-operator|new
-name|CharMatcher
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|matches
-parameter_list|(
-name|char
-name|c
-parameter_list|)
-block|{
-return|return
-name|Character
-operator|.
-name|isISOControl
+name|inRange
 argument_list|(
-name|c
+literal|'\u0000'
+argument_list|,
+literal|'\u001f'
 argument_list|)
-return|;
-block|}
-block|}
+operator|.
+name|or
+argument_list|(
+name|inRange
+argument_list|(
+literal|'\u007f'
+argument_list|,
+literal|'\u009f'
+argument_list|)
+argument_list|)
 decl_stmt|;
 comment|/**    * Determines whether a character is invisible; that is, if its Unicode    * category is any of SPACE_SEPARATOR, LINE_SEPARATOR,    * PARAGRAPH_SEPARATOR, CONTROL, FORMAT, SURROGATE, and PRIVATE_USE according    * to ICU4J.    */
 DECL|field|INVISIBLE
@@ -583,12 +668,7 @@ argument_list|(
 literal|"\ufeff\ufff9\ufffa\ufffb"
 argument_list|)
 argument_list|)
-operator|.
-name|precomputed
-argument_list|()
 decl_stmt|;
-comment|// TODO: should we do this more lazily?
-comment|// TODO: this tableize is taking forever, need to make it faster
 comment|/**    * Determines whether a character is single-width (not double-width).  When    * in doubt, this matcher errs on the side of returning {@code false} (that    * is, it tends to assume a character is double-width).    *    *<b>Note:</b> as the reference file evolves, we will modify this constant    * to keep it up to date.    */
 DECL|field|SINGLE_WIDTH
 specifier|public
@@ -717,11 +797,7 @@ argument_list|,
 literal|'\uffdc'
 argument_list|)
 argument_list|)
-operator|.
-name|precomputed
-argument_list|()
 decl_stmt|;
-comment|// TODO: should we do this more lazily?
 comment|/** Matches any character. */
 DECL|field|ANY
 specifier|public
@@ -2573,11 +2649,26 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a {@code char} matcher functionally equivalent to this one, but    * which may be faster to query than the original; your mileage may vary.    * Precomputation takes time and is likely to be worthwhile only if the    * precomputed matcher is queried many thousands of times.    *    *<p>The default precomputation is to cache the configuration of the original    * matcher in an eight-kilobyte bit array. In some situations this produces a    * matcher which is faster to query than the original.    *    *<p>The default implementation creates a new bit array and passes it to    * {@link #setBits(LookupTable)}.    */
+comment|/**    * Returns a {@code char} matcher functionally equivalent to this one, but    * which may be faster to query than the original; your mileage may vary.    * Precomputation takes time and is likely to be worthwhile only if the    * precomputed matcher is queried many thousands of times.    *    *<p>This method has no effect (returns {@code this}) when called in GWT:    * it's unclear whether a precomputed matcher is faster, but it certainly    * consumes more memory, which doesn't seem like a worthwhile tradeoff in a    * browser.    */
 DECL|method|precomputed ()
 specifier|public
 name|CharMatcher
 name|precomputed
+parameter_list|()
+block|{
+return|return
+name|Platform
+operator|.
+name|precomputeCharMatcher
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+comment|/**    * This is the actual implementation of {@link #precomputed}, but we bounce    * calls through a method on {@link Platform} so that we can have different    * behavior in GWT.    *    *<p>The default precomputation is to cache the configuration of the original    * matcher in an eight-kilobyte bit array. In some situations this produces a    * matcher which is faster to query than the original.    *    *<p>The default implementation creates a new bit array and passes it to    * {@link #setBits(LookupTable)}.    */
+DECL|method|precomputedInternal ()
+name|CharMatcher
+name|precomputedInternal
 parameter_list|()
 block|{
 specifier|final
@@ -2632,7 +2723,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * For use by implementors; sets the bit corresponding to each character ('\0'    * to '\uFFFF') that matches this matcher in the given bit array, leaving all    * other bits untouched.    *    *<p>The default implementation loops over every possible character value,    * invoking {@link #matches} for each one.    */
+comment|/**    * For use by implementors; sets the bit corresponding to each character ('\0'    * to '{@literal \}uFFFF') that matches this matcher in the given bit array,    * leaving all other bits untouched.    *    *<p>The default implementation loops over every possible character value,    * invoking {@link #matches} for each one.    */
 DECL|method|setBits (LookupTable table)
 specifier|protected
 name|void
@@ -4011,8 +4102,7 @@ block|}
 comment|// Predicate interface
 comment|/**    * Returns {@code true} if this matcher matches the given character.    *    * @throws NullPointerException if {@code character} is null    */
 DECL|method|apply (Character character)
-annotation|@
-name|Override
+comment|/*@Override*/
 specifier|public
 name|boolean
 name|apply

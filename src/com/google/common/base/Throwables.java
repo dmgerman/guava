@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

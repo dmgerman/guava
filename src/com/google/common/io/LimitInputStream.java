@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_class

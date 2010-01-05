@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class for converting between various case formats.  *  * @author Mike Bostock  * @since 9.09.15<b>tentative</b>  */
+comment|/**  * Utility class for converting between various case formats.  *  * @author Mike Bostock  * @since 2009.09.15<b>tentative</b>  */
 end_comment
 
 begin_enum
