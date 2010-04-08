@@ -81,6 +81,10 @@ argument_list|(
 name|serializable
 operator|=
 literal|true
+argument_list|,
+name|emulated
+operator|=
+literal|true
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -102,7 +106,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/*    * Notes on EnumSet and<E extends Enum<E>>:    *    * This class isn't an arbitrary ForwardingImmutableSet because we need to    * know that calling {@code clone()} during deserialization will return an    * object that no one else has a reference to, allowing us to guarantee    * immutability. Hence, we support only {@link EnumSet}.    *    * GWT complicates matters. If we declare the class's type parameter as    *<E extends Enum<E>> (as is necessary to declare a field of type    * EnumSet<E>), GWT generates serializers for every available enum. This    * increases the size of some applications' JavaScript by over 10%. To avoid    * this, we declare the type parameter as just<E> and the field as just    * Set<E>. writeReplace() must then use an unchecked cast to return to    * EnumSet, guaranteeing immutability as described above.    */
+comment|/*    * Notes on EnumSet and<E extends Enum<E>>:    *    * This class isn't an arbitrary ForwardingImmutableSet because we need to    * know that calling {@code clone()} during deserialization will return an    * object that no one else has a reference to, allowing us to guarantee    * immutability. Hence, we support only {@link EnumSet}.    *    * GWT complicates matters. If we declare the class's type parameter as    *<E extends Enum<E>> (as is necessary to declare a field of type    * EnumSet<E>), GWT generates serializers for every available enum. This    * increases the size of some applications' JavaScript by over 10%. To avoid    * this, we declare the type parameter as just<E> and the field as just    * Set<E>. writeReplace() must then use an unchecked cast to return to    * EnumSet, guaranteeing immutability as described above.    *    * TODO: Revert back to<E extends Enum<E>> and EnumSet now that this class    * is GWT emulated.    */
 DECL|field|delegate
 specifier|private
 specifier|final

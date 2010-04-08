@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A high-performance, immutable, random-access {@code List} implementation.  * Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableList}, which is a<i>view</i> of a  * separate collection that can still change, an instance of {@code  * ImmutableList} contains its own private data and will<i>never</i> change.  * {@code ImmutableList} is convenient for {@code public static final} lists  * ("constant lists") and also lets you easily make a "defensive copy" of a list  * provided to your class by a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A high-performance, immutable, random-access {@code List} implementation.  * Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableList}, which is a<i>view</i> of a  * separate collection that can still change, an instance of {@code  * ImmutableList} contains its own private data and will<i>never</i> change.  * {@code ImmutableList} is convenient for {@code public static final} lists  * ("constant lists") and also lets you easily make a "defensive copy" of a list  * provided to your class by a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -155,6 +155,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)
@@ -245,7 +249,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
@@ -281,7 +285,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
@@ -322,7 +326,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
@@ -368,7 +372,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
@@ -419,7 +423,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6)
 specifier|public
 specifier|static
@@ -475,7 +479,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7)
 specifier|public
 specifier|static
@@ -536,7 +540,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8)
 specifier|public
 specifier|static
@@ -602,7 +606,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9)
 specifier|public
 specifier|static
@@ -673,7 +677,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10)
 specifier|public
 specifier|static
@@ -749,7 +753,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Identical to {@link #of(Object[])}.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10, E e11)
 specifier|public
 specifier|static
@@ -832,8 +836,8 @@ return|;
 block|}
 comment|// These go up to eleven. After that, you just get the varargs form, and
 comment|// whatever warnings might come along with it. :(
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|of (E... elements)
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10, E e11, E e12, E... others)
 specifier|public
 specifier|static
 parameter_list|<
@@ -846,16 +850,137 @@ argument_list|>
 name|of
 parameter_list|(
 name|E
+name|e1
+parameter_list|,
+name|E
+name|e2
+parameter_list|,
+name|E
+name|e3
+parameter_list|,
+name|E
+name|e4
+parameter_list|,
+name|E
+name|e5
+parameter_list|,
+name|E
+name|e6
+parameter_list|,
+name|E
+name|e7
+parameter_list|,
+name|E
+name|e8
+parameter_list|,
+name|E
+name|e9
+parameter_list|,
+name|E
+name|e10
+parameter_list|,
+name|E
+name|e11
+parameter_list|,
+name|E
+name|e12
+parameter_list|,
+name|E
 modifier|...
+name|others
+parameter_list|)
+block|{
+specifier|final
+name|int
+name|paramCount
+init|=
+literal|12
+decl_stmt|;
+name|Object
+index|[]
+name|array
+init|=
+operator|new
+name|Object
+index|[
+name|paramCount
+operator|+
+name|others
+operator|.
+name|length
+index|]
+decl_stmt|;
+name|copyIntoArray
+argument_list|(
+name|array
+argument_list|,
+literal|0
+argument_list|,
+name|e1
+argument_list|,
+name|e2
+argument_list|,
+name|e3
+argument_list|,
+name|e4
+argument_list|,
+name|e5
+argument_list|,
+name|e6
+argument_list|,
+name|e7
+argument_list|,
+name|e8
+argument_list|,
+name|e9
+argument_list|,
+name|e10
+argument_list|,
+name|e11
+argument_list|,
+name|e12
+argument_list|)
+expr_stmt|;
+name|copyIntoArray
+argument_list|(
+name|array
+argument_list|,
+name|paramCount
+argument_list|,
+name|others
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|RegularImmutableList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|array
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}    * @throws NullPointerException if any of {@code elements} is null    */
+annotation|@
+name|Deprecated
+DECL|method|of (E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|of
+parameter_list|(
+name|E
+index|[]
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 switch|switch
 condition|(
 name|elements
@@ -966,7 +1091,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableList}, no copy will actually be performed, and the    * given list itself will be returned.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code    * ImmutableList.copyOf(list)} returns an {@code ImmutableList<String>}    * containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>}    * containing one element (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 2010.01.04<b>stable</b> (Iterable overload existed previously)    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableList}, no copy will actually be performed, and the    * given list itself will be returned.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code    * ImmutableList.copyOf(list)} returns an {@code ImmutableList<String>}    * containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>}    * containing one element (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (Iterable overload existed previously)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -988,19 +1113,11 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// TODO: Once the ImmutableAsList and ImmutableSortedAsList are
-comment|// GWT-compatible, return elements.asList() when elements is an
-comment|// ImmutableCollection.
 if|if
 condition|(
 name|elements
 operator|instanceof
-name|ImmutableList
+name|ImmutableCollection
 condition|)
 block|{
 comment|/*        * TODO: When given an ImmutableList that's a sublist, copy the referenced        * portion of the array into a new array to save space?        */
@@ -1010,14 +1127,14 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// all supported methods are covariant
-name|ImmutableList
+name|ImmutableCollection
 argument_list|<
 name|E
 argument_list|>
 name|list
 init|=
 operator|(
-name|ImmutableList
+name|ImmutableCollection
 argument_list|<
 name|E
 argument_list|>
@@ -1026,6 +1143,9 @@ name|elements
 decl_stmt|;
 return|return
 name|list
+operator|.
+name|asList
+argument_list|()
 return|;
 block|}
 return|return
@@ -1068,6 +1188,72 @@ name|elements
 argument_list|)
 argument_list|)
 return|;
+block|}
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3    */
+DECL|method|copyOf (E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|E
+index|[]
+name|elements
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|elements
+operator|.
+name|length
+condition|)
+block|{
+case|case
+literal|0
+case|:
+return|return
+name|ImmutableList
+operator|.
+name|of
+argument_list|()
+return|;
+case|case
+literal|1
+case|:
+return|return
+operator|new
+name|SingletonImmutableList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|elements
+index|[
+literal|0
+index|]
+argument_list|)
+return|;
+default|default:
+return|return
+operator|new
+name|RegularImmutableList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|copyIntoArray
+argument_list|(
+name|elements
+argument_list|)
+argument_list|)
+return|;
+block|}
 block|}
 DECL|method|copyFromCollection ( Collection<? extends E> collection)
 specifier|private
@@ -1317,10 +1503,9 @@ modifier|...
 name|source
 parameter_list|)
 block|{
-name|Object
-index|[]
-name|array
-init|=
+return|return
+name|copyIntoArray
+argument_list|(
 operator|new
 name|Object
 index|[
@@ -1328,11 +1513,36 @@ name|source
 operator|.
 name|length
 index|]
-decl_stmt|;
+argument_list|,
+literal|0
+argument_list|,
+name|source
+argument_list|)
+return|;
+block|}
+DECL|method|copyIntoArray (Object[] dest, int pos, Object... source)
+specifier|private
+specifier|static
+name|Object
+index|[]
+name|copyIntoArray
+parameter_list|(
+name|Object
+index|[]
+name|dest
+parameter_list|,
+name|int
+name|pos
+parameter_list|,
+name|Object
+modifier|...
+name|source
+parameter_list|)
+block|{
 name|int
 name|index
 init|=
-literal|0
+name|pos
 decl_stmt|;
 for|for
 control|(
@@ -1359,7 +1569,7 @@ name|index
 argument_list|)
 throw|;
 block|}
-name|array
+name|dest
 index|[
 name|index
 operator|++
@@ -1369,10 +1579,10 @@ name|element
 expr_stmt|;
 block|}
 return|return
-name|array
+name|dest
 return|;
 block|}
-comment|/**    * Returns this list instance.    *    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns this list instance.    *    * @since 2    */
 DECL|method|asList ()
 annotation|@
 name|Override
@@ -1424,7 +1634,7 @@ name|readResolve
 parameter_list|()
 block|{
 return|return
-name|of
+name|copyOf
 argument_list|(
 name|elements
 argument_list|)
@@ -1649,12 +1859,6 @@ modifier|...
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 name|contents
 operator|.
 name|ensureCapacity
@@ -1711,6 +1915,9 @@ return|return
 name|this
 return|;
 block|}
+comment|// TODO: should this be promoted to ImmutableCollection.Builder?
+comment|// TODO: get rid of it or replace it with
+comment|// .addAll(elements.subList(fromIndex, toIndex)?
 comment|/**      * Returns a newly-created {@code ImmutableList} based on the contents of      * the {@code Builder}.      */
 DECL|method|build ()
 annotation|@

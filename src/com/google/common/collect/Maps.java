@@ -296,6 +296,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentMap
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -337,7 +349,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Map} instances. Also see this  * class's counterparts {@link Lists} and {@link Sets}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@link Map} instances. Also see this  * class's counterparts {@link Lists} and {@link Sets}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -564,6 +576,38 @@ argument_list|>
 argument_list|(
 name|map
 argument_list|)
+return|;
+block|}
+comment|/**    * Returns a general-purpose instance of {@code ConcurrentMap}, which    * supports all optional operations of the ConcurrentMap interface. It does    * not permit null keys or values. It is serializable.    *    *<p>This is currently accomplished by calling {@link MapMaker#makeMap()}.    *    *<p>It is preferable to use {@code MapMaker} directly (rather than through    * this method), as it presents numerous useful configuration options,    * such as the concurrency level, load factor, key/value reference types,    * and value computation.    *    * @return a new, empty {@code ConcurrentMap}    * @since 3    */
+DECL|method|newConcurrentMap ()
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ConcurrentMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newConcurrentMap
+parameter_list|()
+block|{
+return|return
+operator|new
+name|MapMaker
+argument_list|()
+operator|.
+operator|<
+name|K
+operator|,
+name|V
+operator|>
+name|makeMap
+argument_list|()
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural    * ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#of()} instead.    *    * @return a new, empty {@code TreeMap}    */

@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -243,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -660,7 +674,7 @@ return|return
 name|modified
 return|;
 block|}
-comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since 2    */
 DECL|method|removeIf ( Iterator<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -1749,7 +1763,7 @@ name|concat
 argument_list|(
 name|ImmutableList
 operator|.
-name|of
+name|copyOf
 argument_list|(
 name|inputs
 argument_list|)
@@ -2159,12 +2173,10 @@ operator|)
 condition|?
 name|list
 else|:
-name|Platform
+name|list
 operator|.
 name|subList
 argument_list|(
-name|list
-argument_list|,
 literal|0
 argument_list|,
 name|count
@@ -2493,7 +2505,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} is {@code true}, or    * {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} is {@code true}, or    * {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since 2    */
 DECL|method|indexOf ( Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2673,7 +2685,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Advances {@code iterator} {@code position + 1} times, returning the element    * at the {@code position}th position.    *    * @param position position of the element to return    * @return the element at the specified position in {@code iterator}    * @throws IndexOutOfBoundsException if {@code position} is negative or    *     greater than or equal to the number of elements remaining in    *     {@code iterator}    */
+comment|/**    * Advances {@code iterator} {@code position + 1} times, returning the    * element at the {@code position}th position.    *    * @param position position of the element to return    * @return the element at the specified position in {@code iterator}    * @throws IndexOutOfBoundsException if {@code position} is negative or    *     greater than or equal to the number of elements remaining in    *     {@code iterator}    */
 DECL|method|get (Iterator<T> iterator, int position)
 specifier|public
 specifier|static
@@ -2693,25 +2705,11 @@ name|int
 name|position
 parameter_list|)
 block|{
-if|if
-condition|(
-name|position
-operator|<
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IndexOutOfBoundsException
+name|checkNonnegative
 argument_list|(
-literal|"position ("
-operator|+
 name|position
-operator|+
-literal|") must not be negative"
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|int
 name|skipped
 init|=
@@ -2762,6 +2760,36 @@ literal|")"
 argument_list|)
 throw|;
 block|}
+DECL|method|checkNonnegative (int position)
+specifier|private
+specifier|static
+name|void
+name|checkNonnegative
+parameter_list|(
+name|int
+name|position
+parameter_list|)
+block|{
+if|if
+condition|(
+name|position
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IndexOutOfBoundsException
+argument_list|(
+literal|"position ("
+operator|+
+name|position
+operator|+
+literal|") must not be negative"
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/**    * Advances {@code iterator} to the end, returning the last element.    *    * @return the last element of {@code iterator}    * @throws NoSuchElementException if the iterator has no remaining elements    */
 DECL|method|getLast (Iterator<T> iterator)
 specifier|public
@@ -2807,7 +2835,226 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a view of the supplied {@code iterator} that removes each element    * from the supplied {@code iterator} as it is returned.    *    *<p>The provided iterator must support {@link Iterator#remove()} or    * else the returned iterator will fail on the first call to {@code    * next}.    *    * @param iterator the iterator to remove and return elements from    * @return an iterator that removes and returns elements from the    *     supplied iterator    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Advances {@code iterator} to the end, returning the last element or    * {@code defaultValue} if the iterator is empty.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the last element of {@code iterator}    * @since 3    */
+DECL|method|getLast (Iterator<T> iterator, @Nullable T defaultValue)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|getLast
+parameter_list|(
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|,
+annotation|@
+name|Nullable
+name|T
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|?
+name|getLast
+argument_list|(
+name|iterator
+argument_list|)
+else|:
+name|defaultValue
+return|;
+block|}
+comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3    */
+annotation|@
+name|Beta
+comment|// naming issue, unclear user demand
+DECL|method|skip (Iterator<T> iterator, int numberToSkip)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|int
+name|skip
+parameter_list|(
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|,
+name|int
+name|numberToSkip
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|iterator
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|numberToSkip
+operator|>=
+literal|0
+argument_list|,
+literal|"number to skip cannot be negative"
+argument_list|)
+expr_stmt|;
+name|int
+name|i
+decl_stmt|;
+for|for
+control|(
+name|i
+operator|=
+literal|0
+init|;
+name|i
+operator|<
+name|numberToSkip
+operator|&&
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|iterator
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|i
+return|;
+block|}
+comment|/**    * Creates an iterator returning the first {@code limitSize} elements of the    * given iterator. If the original iterator does not contain that many    * elements, the returned iterator will have the same behavior as the original    * iterator. The returned iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3    */
+annotation|@
+name|Beta
+comment|// naming issue
+DECL|method|limit ( final Iterator<T> iterator, final int limitSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|limit
+parameter_list|(
+specifier|final
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|,
+specifier|final
+name|int
+name|limitSize
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|iterator
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|limitSize
+operator|>=
+literal|0
+argument_list|,
+literal|"limit is negative"
+argument_list|)
+expr_stmt|;
+return|return
+operator|new
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+argument_list|()
+block|{
+specifier|private
+name|int
+name|count
+decl_stmt|;
+specifier|public
+name|boolean
+name|hasNext
+parameter_list|()
+block|{
+return|return
+name|count
+operator|<
+name|limitSize
+operator|&&
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+return|;
+block|}
+specifier|public
+name|T
+name|next
+parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|hasNext
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|()
+throw|;
+block|}
+name|count
+operator|++
+expr_stmt|;
+return|return
+name|iterator
+operator|.
+name|next
+argument_list|()
+return|;
+block|}
+specifier|public
+name|void
+name|remove
+parameter_list|()
+block|{
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+return|;
+block|}
+comment|/**    * Returns a view of the supplied {@code iterator} that removes each element    * from the supplied {@code iterator} as it is returned.    *    *<p>The provided iterator must support {@link Iterator#remove()} or    * else the returned iterator will fail on the first call to {@code    * next}.    *    * @param iterator the iterator to remove and return elements from    * @return an iterator that removes and returns elements from the    *     supplied iterator    * @since 2    */
+annotation|@
+name|Beta
 DECL|method|consumingIterator (final Iterator<T> iterator)
 specifier|public
 specifier|static
@@ -2879,7 +3126,7 @@ block|}
 return|;
 block|}
 comment|// Methods only in Iterators, not in Iterables
-comment|/**    * Returns an iterator containing the elements of {@code array} in order. The    * returned iterator is a view of the array; subsequent changes to the array    * will be reflected in the iterator.    *    *<p><b>Note:</b> It is often preferable to represent your data using a    * collection type, for example using {@link Arrays#asList(Object[])}, making    * this method unnecessary.    *    *<p>The {@code Iterable} equivalent of this method is either {@link    * Arrays#asList(Object[])} or {@link ImmutableList#of(Object[])}}.    */
+comment|/**    * Returns an iterator containing the elements of {@code array} in order. The    * returned iterator is a view of the array; subsequent changes to the array    * will be reflected in the iterator.    *    *<p><b>Note:</b> It is often preferable to represent your data using a    * collection type, for example using {@link Arrays#asList(Object[])}, making    * this method unnecessary.    *    *<p>The {@code Iterable} equivalent of this method is either {@link    * Arrays#asList(Object[])}, {@link ImmutableList#copyOf(Object[])}},    * or {@link ImmutableList#of}.    */
 DECL|method|forArray (final T... array)
 specifier|public
 specifier|static

@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -27,10 +41,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An factory for writable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * An factory for writable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|OutputSupplier
 specifier|public
 interface|interface

@@ -4,8 +4,13 @@ comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache Lic
 end_comment
 
 begin_comment
-comment|/**  * Miscellaneous common util classes and annotations.  */
+comment|/**  * Basic utility libraries and interfaces.  *  *<p>This package is a part of the open-source  *<a href="http://guava-libraries.googlecode.com">Guava libraries</a>.  *  *<h2>Contents</h2>  *  *<h3>String-related utilities</h3>  *  *<ul>  *<li>{@link com.google.common.base.CaseFormat}  *<li>{@link com.google.common.base.CharMatcher}  *<li>{@link com.google.common.base.Charsets}  *<li>{@link com.google.common.base.Joiner}  *<li>{@link com.google.common.base.Splitter}  *<li>{@link com.google.common.base.Strings}  *</ul>  *  *<h3>Functional types</h3>  *  *<ul>  *<li>{@link com.google.common.base.Function},  *     {@link com.google.common.base.Functions}  *<li>{@link com.google.common.base.Predicate},  *     {@link com.google.common.base.Predicates}  *<li>{@link com.google.common.base.Supplier},  *     {@link com.google.common.base.Suppliers}  *</ul>  *  *<h3>Other</h3>  *  *<ul>  *<li>{@link com.google.common.base.Defaults}  *<li>{@link com.google.common.base.FinalizableReference} and subtypes  *<li>{@link com.google.common.base.Objects}  *<li>{@link com.google.common.base.Preconditions}  *<li>{@link com.google.common.base.Throwables}  *</ul>  */
 end_comment
+
+begin_annotation
+annotation|@
+name|ParametersAreNonnullByDefault
+end_annotation
 
 begin_package
 DECL|package|com.google.common.base
@@ -19,6 +24,16 @@ operator|.
 name|base
 package|;
 end_package
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|ParametersAreNonnullByDefault
+import|;
+end_import
 
 end_unit
 

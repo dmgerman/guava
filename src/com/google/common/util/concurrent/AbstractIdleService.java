@@ -26,9 +26,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Service
+name|Beta
 import|;
 end_import
 
@@ -43,14 +43,8 @@ operator|.
 name|base
 operator|.
 name|Service
-operator|.
-name|State
 import|;
 end_import
-
-begin_comment
-comment|// for javadoc
-end_comment
 
 begin_import
 import|import
@@ -91,10 +85,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|AbstractIdleService
 specifier|public
 specifier|abstract
@@ -258,7 +254,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    *    * @param state {@link State#STARTING} or {@link State#STOPPING}, used by the    *     default implementation for naming the thread    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    *    * @param state {@link com.google.common.base.Service.State#STARTING} or    *     {@link com.google.common.base.Service.State#STOPPING}, used by the    *     default implementation for naming the thread    */
 DECL|method|executor (final State state)
 specifier|protected
 name|Executor
@@ -287,11 +283,7 @@ name|Thread
 argument_list|(
 name|command
 argument_list|,
-name|AbstractIdleService
-operator|.
-name|this
-operator|.
-name|toString
+name|getServiceName
 argument_list|()
 operator|+
 literal|" "
@@ -315,11 +307,15 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|getClass
+name|getServiceName
 argument_list|()
-operator|.
-name|getSimpleName
+operator|+
+literal|" ["
+operator|+
+name|state
 argument_list|()
+operator|+
+literal|"]"
 return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
@@ -416,6 +412,20 @@ return|return
 name|delegate
 operator|.
 name|stopAndWait
+argument_list|()
+return|;
+block|}
+DECL|method|getServiceName ()
+specifier|private
+name|String
+name|getServiceName
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
 argument_list|()
 return|;
 block|}

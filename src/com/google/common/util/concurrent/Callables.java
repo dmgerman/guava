@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -41,10 +55,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to the {@link Callable} interface.  *  * @author Isaac Shum  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to the {@link Callable} interface.  *  * @author Isaac Shum  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Callables
 specifier|public
 specifier|final

@@ -101,6 +101,10 @@ argument_list|(
 name|serializable
 operator|=
 literal|true
+argument_list|,
+name|emulated
+operator|=
+literal|true
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -608,9 +612,9 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,
@@ -690,9 +694,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,

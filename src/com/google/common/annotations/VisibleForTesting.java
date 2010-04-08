@@ -27,7 +27,7 @@ DECL|annotation|VisibleForTesting
 specifier|public
 annotation_defn|@interface
 name|VisibleForTesting
-block|{}
+block|{ }
 end_annotation_defn
 
 end_unit

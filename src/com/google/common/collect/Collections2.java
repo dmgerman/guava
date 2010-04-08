@@ -59,6 +59,38 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -136,40 +168,8 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
-comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -278,6 +278,9 @@ operator|.
 name|newArrayList
 argument_list|(
 name|iterable
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 return|;
 block|}

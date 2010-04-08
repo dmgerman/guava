@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -43,10 +57,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time  * at all.  This may be desirable to use in some unit tests.  More importantly,  * attempting to debug a call which is time-limited would be extremely annoying,  * so this gives you a time-limiter you can easily swap in for your real  * time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time  * at all.  This may be desirable to use in some unit tests.  More importantly,  * attempting to debug a call which is time-limited would be extremely annoying,  * so this gives you a time-limiter you can easily swap in for your real  * time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|FakeTimeLimiter
 specifier|public
 class|class

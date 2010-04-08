@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A bimap (or "bidirectional map") is a map that preserves the uniqueness of  * its values as well as that of its keys. This constraint enables bimaps to  * support an "inverse view", which is another bimap containing the same entries  * as this bimap but with reversed keys and values.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A bimap (or "bidirectional map") is a map that preserves the uniqueness of  * its values as well as that of its keys. This constraint enables bimaps to  * support an "inverse view", which is another bimap containing the same entries  * as this bimap but with reversed keys and values.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

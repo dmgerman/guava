@@ -31,54 +31,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkElementIndex
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkPositionIndex
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkPositionIndexes
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -128,6 +80,54 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkElementIndex
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkPositionIndex
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkPositionIndexes
+import|;
+end_import
+
 begin_comment
 comment|/**  * An empty immutable list.  *   * @author Kevin Bourrillion  */
 end_comment
@@ -137,6 +137,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)

@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -341,7 +355,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Set} instances. Also see this  * class's counterparts {@link Lists} and {@link Maps}.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@link Set} instances. Also see this  * class's counterparts {@link Lists} and {@link Maps}.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -953,8 +967,6 @@ name|collection
 argument_list|)
 return|;
 block|}
-else|else
-block|{
 name|LinkedHashSet
 argument_list|<
 name|E
@@ -983,7 +995,6 @@ block|}
 return|return
 name|set
 return|;
-block|}
 block|}
 comment|// TreeSet
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance sorted by the    * natural sort ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedSet#of()} instead.    *    * @return a new, empty {@code TreeSet}    */
@@ -2413,6 +2424,72 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Returns an unmodifiable<b>view</b> of the symmetric difference of two    * sets. The returned set contains all elements that are contained in either    * {@code set1} or {@code set2} but not in both. The iteration order of the    * returned set is undefined.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based    * on different equivalence relations (as {@code HashSet}, {@code TreeSet},    * and the keySet of an {@code IdentityHashMap} all are).    *    * @since 3    */
+annotation|@
+name|Beta
+DECL|method|symmetricDifference ( Set<? extends E> set1, Set<? extends E> set2)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|SetView
+argument_list|<
+name|E
+argument_list|>
+name|symmetricDifference
+parameter_list|(
+name|Set
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|set1
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|set2
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|set1
+argument_list|,
+literal|"set1"
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|set2
+argument_list|,
+literal|"set2"
+argument_list|)
+expr_stmt|;
+comment|// TODO: Replace this with a more efficient implementation
+return|return
+name|difference
+argument_list|(
+name|union
+argument_list|(
+name|set1
+argument_list|,
+name|set2
+argument_list|)
+argument_list|,
+name|intersection
+argument_list|(
+name|set1
+argument_list|,
+name|set2
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned set is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. The set's {@code add()} and    * {@code addAll()} methods throw an {@link IllegalArgumentException} if an    * element that doesn't satisfy the predicate is provided. When methods such    * as {@code removeAll()} and {@code clear()} are called on the filtered set,    * only elements that satisfy the filter will be removed from the underlying    * collection.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate    * across every element in the underlying set and determine which elements    * satisfy the filter. When a live view is<i>not</i> needed, it may be faster    * to copy {@code Iterables.filter(unfiltered, predicate)} and use the copy.    */
 DECL|method|filter ( Set<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
@@ -2609,7 +2686,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given sets in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:<pre class="code">   {@code    *    *   cartesianProduct(ImmutableList.of(    *       ImmutableSet.of(1, 2),    *       ImmutableSet.of("A", "B", "C")))}</pre>    *    * returns a set containing six lists:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    * The order in which these lists are returned is not guaranteed, however the    * position of an element inside a tuple always corresponds to the position of    * the set from which it came in the input list. Note that if any input set is    * empty, the Cartesian product will also be empty. If no sets at all are    * provided (an empty list), the resulting Cartesian product has one element,    * an empty list (counter-intuitive, but mathematically consistent).    *    * @param sets the sets to choose elements from, in the order that    *     the elements chosen from those sets should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable set containing immutable    *     lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets},    *     or any element of a provided set is null    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given sets in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:<pre class="code">   {@code    *    *   cartesianProduct(ImmutableList.of(    *       ImmutableSet.of(1, 2),    *       ImmutableSet.of("A", "B", "C")))}</pre>    *    * returns a set containing six lists:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    * The order in which these lists are returned is not guaranteed, however the    * position of an element inside a tuple always corresponds to the position of    * the set from which it came in the input list. Note that if any input set is    * empty, the Cartesian product will also be empty. If no sets at all are    * provided (an empty list), the resulting Cartesian product has one element,    * an empty list (counter-intuitive, but mathematically consistent).    *    * @param sets the sets to choose elements from, in the order that    *     the elements chosen from those sets should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable set containing immutable    *     lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets},    *     or any element of a provided set is null    * @since 2    */
 DECL|method|cartesianProduct ( List<? extends Set<? extends B>> sets)
 specifier|public
 specifier|static
@@ -2674,7 +2751,7 @@ else|:
 name|cartesianSet
 return|;
 block|}
-comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given sets in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:<pre class="code">   {@code    *    *   cartesianProduct(    *       ImmutableSet.of(1, 2),    *       ImmutableSet.of("A", "B", "C"))}</pre>    *    * returns a set containing six lists:    w    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    * The order in which these lists are returned is not guaranteed, however the    * position of an element inside a tuple always corresponds to the position of    * the set from which it came in the input list. Note that if any input set is    * empty, the Cartesian product will also be empty. If no sets at all are    * provided, the resulting Cartesian product has one element, an empty list    * (counter-intuitive, but mathematically consistent).    *    * @param sets the sets to choose elements from, in the order that    *     the elements chosen from those sets should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable set containing immutable    *     lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets},    *     or any element of a provided set is null    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given sets in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:<pre class="code">   {@code    *    *   cartesianProduct(    *       ImmutableSet.of(1, 2),    *       ImmutableSet.of("A", "B", "C"))}</pre>    *    * returns a set containing six lists:    w    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    * The order in which these lists are returned is not guaranteed, however the    * position of an element inside a tuple always corresponds to the position of    * the set from which it came in the input list. Note that if any input set is    * empty, the Cartesian product will also be empty. If no sets at all are    * provided, the resulting Cartesian product has one element, an empty list    * (counter-intuitive, but mathematically consistent).    *    * @param sets the sets to choose elements from, in the order that    *     the elements chosen from those sets should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable set containing immutable    *     lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets},    *     or any element of a provided set is null    * @since 2    */
 DECL|method|cartesianProduct ( Set<? extends B>.... sets)
 specifier|public
 specifier|static
@@ -2982,7 +3059,7 @@ argument_list|>
 operator|)
 name|ImmutableList
 operator|.
-name|of
+name|copyOf
 argument_list|(
 name|tuple
 argument_list|)

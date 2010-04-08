@@ -36,7 +36,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Reader
+name|IOException
 import|;
 end_import
 
@@ -46,7 +46,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Reader
 import|;
 end_import
 
@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Reader} that will concatenates multiple readers  *  * @author Bin Zhu  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A {@link Reader} that will concatenates multiple readers  *  * @author Bin Zhu  * @since 1  */
 end_comment
 
 begin_class

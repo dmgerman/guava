@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -111,10 +125,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|FileBackedOutputStream
 specifier|public
 specifier|final
@@ -218,7 +234,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and    * optionally resets the data when the {@link InputSupplier} returned    * by {@link #getSupplier} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will    *     be called when the {@link InputSupplier} returned by {@link #getSupplier}    *     is finalized    */
+comment|/**    * Creates a new instance that uses the given file threshold, and    * optionally resets the data when the {@link InputSupplier} returned    * by {@link #getSupplier} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will    *     be called when the {@link InputSupplier} returned by {@link    *     #getSupplier} is finalized    */
 DECL|method|FileBackedOutputStream (int fileThreshold, boolean resetOnFinalize)
 specifier|public
 name|FileBackedOutputStream

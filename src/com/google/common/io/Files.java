@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -241,10 +255,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with files.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with files.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Files
 specifier|public
 specifier|final
@@ -1752,7 +1768,7 @@ name|md
 argument_list|)
 return|;
 block|}
-comment|/**    * Fully maps a file read-only in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @return a read-only buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Fully maps a file read-only in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @return a read-only buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2    */
 DECL|method|map (File file)
 specifier|public
 specifier|static
@@ -1776,7 +1792,7 @@ name|READ_ONLY
 argument_list|)
 return|;
 block|}
-comment|/**    * Fully maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Fully maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2    */
 DECL|method|map (File file, MapMode mode)
 specifier|public
 specifier|static
@@ -1826,7 +1842,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist,    * it will be created with the requested {@code size}. Thus this method is    * useful for creating memory mapped files which do not yet exist.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist,    * it will be created with the requested {@code size}. Thus this method is    * useful for creating memory mapped files which do not yet exist.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2    */
 DECL|method|map (File file, MapMode mode, long size)
 specifier|public
 specifier|static

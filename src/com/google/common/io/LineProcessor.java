@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -27,10 +41,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and  * should return {@code false} when you want to stop processing.  *  * @author Miles Barr  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and  * should return {@code false} when you want to stop processing.  *  * @author Miles Barr  * @since 1  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|LineProcessor
 specifier|public
 interface|interface

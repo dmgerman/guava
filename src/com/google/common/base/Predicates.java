@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -41,22 +55,6 @@ operator|.
 name|annotations
 operator|.
 name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
 import|;
 end_import
 
@@ -122,6 +120,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -130,8 +140,24 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * Contains static factory methods for creating {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Contains static factory methods for creating {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -454,7 +480,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as as soon as a    * true predicate is found. It defensively copies the iterable passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found. It defensively copies the iterable passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
 DECL|method|or ( Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
@@ -495,7 +521,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as as soon as a    * true predicate is found. It defensively copies the array passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found. It defensively copies the array passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
 DECL|method|or (Predicate<? super T>.... components)
 specifier|public
 specifier|static
@@ -532,8 +558,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if either of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as as soon as a    * true predicate is found.    */
-DECL|method|or (Predicate<? super T> first, Predicate<? super T> second)
+comment|/**    * Returns a predicate that evaluates to {@code true} if either of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found.    */
+DECL|method|or ( Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
 parameter_list|<
@@ -608,7 +634,6 @@ name|T
 name|target
 parameter_list|)
 block|{
-comment|// TODO: Change signature to return Predicate<Object>.
 return|return
 operator|(
 name|target
@@ -744,6 +769,290 @@ name|function
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since 3    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+name|value
+operator|=
+literal|"java.util.regex.Pattern"
+argument_list|)
+DECL|method|containsPattern (String pattern)
+specifier|public
+specifier|static
+name|Predicate
+argument_list|<
+name|CharSequence
+argument_list|>
+name|containsPattern
+parameter_list|(
+name|String
+name|pattern
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ContainsPatternPredicate
+argument_list|(
+name|pattern
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code regex.matcher(arg).find()}    *    * @since 3    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+name|value
+operator|=
+literal|"java.util.regex.Pattern"
+argument_list|)
+DECL|method|contains (Pattern pattern)
+specifier|public
+specifier|static
+name|Predicate
+argument_list|<
+name|CharSequence
+argument_list|>
+name|contains
+parameter_list|(
+name|Pattern
+name|pattern
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ContainsPatternPredicate
+argument_list|(
+name|pattern
+argument_list|)
+return|;
+block|}
+comment|/**    * @see Predicates#contains(Pattern)    * @see Predicates#containsPattern(String)    */
+DECL|class|ContainsPatternPredicate
+specifier|private
+specifier|static
+class|class
+name|ContainsPatternPredicate
+implements|implements
+name|Predicate
+argument_list|<
+name|CharSequence
+argument_list|>
+implements|,
+name|Serializable
+block|{
+DECL|field|pattern
+specifier|final
+name|Pattern
+name|pattern
+decl_stmt|;
+DECL|method|ContainsPatternPredicate (Pattern pattern)
+name|ContainsPatternPredicate
+parameter_list|(
+name|Pattern
+name|pattern
+parameter_list|)
+block|{
+name|this
+operator|.
+name|pattern
+operator|=
+name|checkNotNull
+argument_list|(
+name|pattern
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|ContainsPatternPredicate (String patternStr)
+name|ContainsPatternPredicate
+parameter_list|(
+name|String
+name|patternStr
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|patternStr
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|apply (CharSequence t)
+specifier|public
+name|boolean
+name|apply
+parameter_list|(
+name|CharSequence
+name|t
+parameter_list|)
+block|{
+return|return
+name|pattern
+operator|.
+name|matcher
+argument_list|(
+name|t
+argument_list|)
+operator|.
+name|find
+argument_list|()
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+comment|// Pattern uses Object.hashCode, so we have to reach
+comment|// inside to build a hashCode consistent with equals.
+return|return
+name|Objects
+operator|.
+name|hashCode
+argument_list|(
+name|pattern
+operator|.
+name|pattern
+argument_list|()
+argument_list|,
+name|pattern
+operator|.
+name|flags
+argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|method|equals (@ullable Object obj)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|ContainsPatternPredicate
+condition|)
+block|{
+name|ContainsPatternPredicate
+name|that
+init|=
+operator|(
+name|ContainsPatternPredicate
+operator|)
+name|obj
+decl_stmt|;
+comment|// Pattern uses Object (identity) equality, so we have to reach
+comment|// inside to compare individual fields.
+return|return
+name|Objects
+operator|.
+name|equal
+argument_list|(
+name|pattern
+operator|.
+name|pattern
+argument_list|()
+argument_list|,
+name|that
+operator|.
+name|pattern
+operator|.
+name|pattern
+argument_list|()
+argument_list|)
+operator|&&
+name|Objects
+operator|.
+name|equal
+argument_list|(
+name|pattern
+operator|.
+name|flags
+argument_list|()
+argument_list|,
+name|that
+operator|.
+name|pattern
+operator|.
+name|flags
+argument_list|()
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|Objects
+operator|.
+name|toStringHelper
+argument_list|(
+name|this
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"pattern"
+argument_list|,
+name|pattern
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"pattern.flags"
+argument_list|,
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|pattern
+operator|.
+name|flags
+argument_list|()
+argument_list|)
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+block|}
 comment|/** @see Predicates#alwaysTrue() */
 comment|// Package private for GWT serialization.
 DECL|enum|AlwaysTruePredicate
@@ -758,11 +1067,13 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|apply (Object o)
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -798,11 +1109,13 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|apply (Object o)
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -842,7 +1155,6 @@ implements|,
 name|Serializable
 block|{
 DECL|field|predicate
-specifier|private
 specifier|final
 name|Predicate
 argument_list|<
@@ -851,7 +1163,6 @@ argument_list|>
 name|predicate
 decl_stmt|;
 DECL|method|NotPredicate (Predicate<T> predicate)
-specifier|private
 name|NotPredicate
 parameter_list|(
 name|Predicate
@@ -905,15 +1216,16 @@ operator|.
 name|hashCode
 argument_list|()
 return|;
-comment|/* Invert all bits. */
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -923,9 +1235,6 @@ condition|(
 name|obj
 operator|instanceof
 name|NotPredicate
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|NotPredicate
@@ -1140,13 +1449,15 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1156,9 +1467,6 @@ condition|(
 name|obj
 operator|instanceof
 name|AndPredicate
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|AndPredicate
@@ -1359,13 +1667,15 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1375,9 +1685,6 @@ condition|(
 name|obj
 operator|instanceof
 name|OrPredicate
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|OrPredicate
@@ -1511,13 +1818,15 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1628,11 +1937,13 @@ name|clazz
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|apply (Object o)
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -1663,13 +1974,15 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1745,11 +2058,13 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|apply (Object o)
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -1788,11 +2103,13 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|apply (Object o)
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -1904,13 +2221,15 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1920,9 +2239,6 @@ condition|(
 name|obj
 operator|instanceof
 name|InPredicate
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|InPredicate
@@ -2097,13 +2413,15 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -2113,11 +2431,6 @@ condition|(
 name|obj
 operator|instanceof
 name|CompositionPredicate
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|CompositionPredicate

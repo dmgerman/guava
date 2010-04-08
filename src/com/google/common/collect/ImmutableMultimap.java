@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link Multimap}. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableMultimap(Multimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * An immutable {@link Multimap}. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableMultimap(Multimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

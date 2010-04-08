@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -197,10 +211,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|ByteStreams
 specifier|public
 specifier|final

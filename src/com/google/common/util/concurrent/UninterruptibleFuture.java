@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -67,10 +81,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Future} whose {@code get} calls cannot be interrupted. If a thread  * is interrupted during such a call, the call continues to block until the  * result is available or the timeout elapses, and only then re-interrupts the  * thread. Obtain an instance of this type using {@link  * Futures#makeUninterruptible(Future)}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A {@code Future} whose {@code get} calls cannot be interrupted. If a thread  * is interrupted during such a call, the call continues to block until the  * result is available or the timeout elapses, and only then re-interrupts the  * thread. Obtain an instance of this type using {@link  * Futures#makeUninterruptible(Future)}.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|UninterruptibleFuture
 specifier|public
 interface|interface

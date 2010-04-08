@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -55,10 +69,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *   * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *   * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|ListenableFutureTask
 specifier|public
 class|class

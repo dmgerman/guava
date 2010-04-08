@@ -31,70 +31,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkElementIndex
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkPositionIndexes
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -164,8 +100,72 @@ name|RandomAccess
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkElementIndex
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkPositionIndexes
+import|;
+end_import
+
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class

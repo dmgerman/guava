@@ -307,7 +307,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static methods acting on or generating a {@code Multimap}.  *  * @author Jared Levy  * @author Robert Konigsberg  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Provides static methods acting on or generating a {@code Multimap}.  *  * @author Jared Levy  * @author Robert Konigsberg  * @author Mike Bostock  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1465,6 +1465,11 @@ name|M
 name|dest
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|dest
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Map
@@ -1680,7 +1685,10 @@ name|this
 operator|.
 name|delegate
 operator|=
+name|checkNotNull
+argument_list|(
 name|delegate
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|delegate ()

@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class that can supply objects of a single type.  Semantically, this could  * be a factory, generator, builder, closure, or something else entirely. No  * guarantees are implied by this interface.  *  * @author Harry Heymann  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A class that can supply objects of a single type.  Semantically, this could  * be a factory, generator, builder, closure, or something else entirely. No  * guarantees are implied by this interface.  *  * @author Harry Heymann  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface
@@ -47,7 +47,6 @@ parameter_list|>
 block|{
 comment|/**    * Retrieves an instance of the appropriate type. The returned object may or    * may not be a new instance, depending on the implementation.    *    * @return an instance of the appropriate type    */
 DECL|method|get ()
-specifier|public
 name|T
 name|get
 parameter_list|()

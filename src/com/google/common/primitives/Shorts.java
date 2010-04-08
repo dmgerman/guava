@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not  * already found in either {@link Short} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not  * already found in either {@link Short} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class
@@ -237,7 +237,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**    * Returns the {@code short} value that is equal to {@code value}, if possible.    *    * @param value any value in the range of the {@code short} type    * @return the {@code short} value that equals {@code value}    * @throws IllegalArgumentException if {@code value} is greater than {@link    *     Short#MAX_VALUE} or less than {@link Short#MIN_VALUE}    */
+comment|/**    * Returns the {@code short} value that is equal to {@code value}, if    * possible.    *    * @param value any value in the range of the {@code short} type    * @return the {@code short} value that equals {@code value}    * @throws IllegalArgumentException if {@code value} is greater than {@link    *     Short#MAX_VALUE} or less than {@link Short#MIN_VALUE}    */
 DECL|method|checkedCast (long value)
 specifier|public
 specifier|static
@@ -1202,7 +1202,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code short} arrays    * lexicographically. That is, it compares, using {@link    * #compare(short, short)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [(short) 1]<    * [(short) 1, (short) 2]< [(short) 2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(short[], short[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order</a> article at Wikipedia    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns a comparator that compares two {@code short} arrays    * lexicographically. That is, it compares, using {@link    * #compare(short, short)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [(short) 1]<    * [(short) 1, (short) 2]< [(short) 2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(short[], short[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order</a> article at Wikipedia    * @since 2    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

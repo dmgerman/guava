@@ -50,22 +50,22 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
+name|NoSuchElementException
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|util
+name|annotation
 operator|.
-name|NoSuchElementException
+name|Nullable
 import|;
 end_import
 
 begin_comment
-comment|/**  * Simple static methods to be called at the start of your own methods to verify  * correct arguments and state. This allows constructs such as  *<pre>  *     if (count<= 0) {  *       throw new IllegalArgumentException("must be positive: " + count);  *     }</pre>  *  * to be replaced with the more compact  *<pre>  *     checkArgument(count> 0, "must be positive: %s", count);</pre>  *  * Note that the sense of the expression is inverted; with {@code Preconditions}  * you declare what you expect to be<i>true</i>, just as you do with an  *<a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html">  * {@code assert}</a> or a JUnit {@code assertTrue} call.  *  *<p><b>Warning:</b> only the {@code "%s"} specifier is recognized as a  * placeholder in these messages, not the full range of {@link  * String#format(String, Object[])} specifiers.  *  *<p>Take care not to confuse precondition checking with other similar types  * of checks! Precondition exceptions -- including those provided here, but also  * {@link IndexOutOfBoundsException}, {@link NoSuchElementException}, {@link  * UnsupportedOperationException} and others -- are used to signal that the  *<i>calling method</i> has made an error. This tells the caller that it should  * not have invoked the method when it did, with the arguments it did, or  * perhaps ever. Postcondition or other invariant failures should not throw  * these types of exceptions.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Simple static methods to be called at the start of your own methods to verify  * correct arguments and state. This allows constructs such as  *<pre>  *     if (count<= 0) {  *       throw new IllegalArgumentException("must be positive: " + count);  *     }</pre>  *  * to be replaced with the more compact  *<pre>  *     checkArgument(count> 0, "must be positive: %s", count);</pre>  *  * Note that the sense of the expression is inverted; with {@code Preconditions}  * you declare what you expect to be<i>true</i>, just as you do with an  *<a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html">  * {@code assert}</a> or a JUnit {@code assertTrue} call.  *  *<p><b>Warning:</b> only the {@code "%s"} specifier is recognized as a  * placeholder in these messages, not the full range of {@link  * String#format(String, Object[])} specifiers.  *  *<p>Take care not to confuse precondition checking with other similar types  * of checks! Precondition exceptions -- including those provided here, but also  * {@link IndexOutOfBoundsException}, {@link NoSuchElementException}, {@link  * UnsupportedOperationException} and others -- are used to signal that the  *<i>calling method</i> has made an error. This tells the caller that it should  * not have invoked the method when it did, with the arguments it did, or  * perhaps ever. Postcondition or other invariant failures should not throw  * these types of exceptions.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -107,7 +107,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the    * calling method.    *    * @param expression a boolean expression    * @param errorMessage the exception message to use if the check fails; will    *     be converted to a string using {@link String#valueOf(Object)}    * @throws IllegalArgumentException if {@code expression} is false    */
-DECL|method|checkArgument (boolean expression, Object errorMessage)
+DECL|method|checkArgument ( boolean expression, @Nullable Object errorMessage)
 specifier|public
 specifier|static
 name|void
@@ -116,6 +116,8 @@ parameter_list|(
 name|boolean
 name|expression
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|errorMessage
 parameter_list|)
@@ -141,7 +143,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the    * calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the    *     check fail. The message is formed by replacing each {@code %s}    *     placeholder in the template with an argument. These are matched by    *     position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.    *     Unmatched arguments will be appended to the formatted message in square    *     braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}.    * @throws IllegalArgumentException if {@code expression} is false    * @throws NullPointerException if the check fails and either {@code    *     errorMessageTemplate} or {@code errorMessageArgs} is null (don't let    *     this happen)    */
-DECL|method|checkArgument (boolean expression, String errorMessageTemplate, Object... errorMessageArgs)
+DECL|method|checkArgument (boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -150,9 +152,13 @@ parameter_list|(
 name|boolean
 name|expression
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|errorMessageArgs
@@ -203,7 +209,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling    * instance, but not involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessage the exception message to use if the check fails; will    *     be converted to a string using {@link String#valueOf(Object)}    * @throws IllegalStateException if {@code expression} is false    */
-DECL|method|checkState (boolean expression, Object errorMessage)
+DECL|method|checkState ( boolean expression, @Nullable Object errorMessage)
 specifier|public
 specifier|static
 name|void
@@ -212,6 +218,8 @@ parameter_list|(
 name|boolean
 name|expression
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|errorMessage
 parameter_list|)
@@ -237,7 +245,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling    * instance, but not involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the    *     check fail. The message is formed by replacing each {@code %s}    *     placeholder in the template with an argument. These are matched by    *     position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.    *     Unmatched arguments will be appended to the formatted message in square    *     braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}.    * @throws IllegalStateException if {@code expression} is false    * @throws NullPointerException if the check fails and either {@code    *     errorMessageTemplate} or {@code errorMessageArgs} is null (don't let    *     this happen)    */
-DECL|method|checkState (boolean expression, String errorMessageTemplate, Object... errorMessageArgs)
+DECL|method|checkState (boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -246,9 +254,13 @@ parameter_list|(
 name|boolean
 name|expression
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|errorMessageArgs
@@ -306,7 +318,7 @@ name|reference
 return|;
 block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling    * method is not null.    *    * @param reference an object reference    * @param errorMessage the exception message to use if the check fails; will    *     be converted to a string using {@link String#valueOf(Object)}    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    */
-DECL|method|checkNotNull (T reference, Object errorMessage)
+DECL|method|checkNotNull (T reference, @Nullable Object errorMessage)
 specifier|public
 specifier|static
 parameter_list|<
@@ -318,6 +330,8 @@ parameter_list|(
 name|T
 name|reference
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|errorMessage
 parameter_list|)
@@ -347,7 +361,7 @@ name|reference
 return|;
 block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling    * method is not null.    *    * @param reference an object reference    * @param errorMessageTemplate a template for the exception message should the    *     check fail. The message is formed by replacing each {@code %s}    *     placeholder in the template with an argument. These are matched by    *     position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.    *     Unmatched arguments will be appended to the formatted message in square    *     braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}.    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    */
-DECL|method|checkNotNull (T reference, String errorMessageTemplate, Object... errorMessageArgs)
+DECL|method|checkNotNull (T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 parameter_list|<
@@ -359,9 +373,13 @@ parameter_list|(
 name|T
 name|reference
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|errorMessageTemplate
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|errorMessageArgs
@@ -419,7 +437,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array,    * list or string of size {@code size}. An element index may range from zero,    * inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list    *     or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not    *     less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-DECL|method|checkElementIndex (int index, int size, String desc)
+DECL|method|checkElementIndex ( int index, int size, @Nullable String desc)
 specifier|public
 specifier|static
 name|int
@@ -431,6 +449,8 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -561,7 +581,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Ensures that {@code index} specifies a valid<i>position</i> in an array,    * list or string of size {@code size}. A position index may range from zero    * to {@code size}, inclusive.    *    * @param index a user-supplied index identifying a position in an array, list    *     or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is    *     greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-DECL|method|checkPositionIndex (int index, int size, String desc)
+DECL|method|checkPositionIndex ( int index, int size, @Nullable String desc)
 specifier|public
 specifier|static
 name|int
@@ -573,6 +593,8 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|desc
 parameter_list|)
@@ -799,7 +821,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Substitutes each {@code %s} in {@code template} with an argument. These    * are matched by position - the first {@code %s} gets {@code args[0]}, etc.    * If there are more arguments than placeholders, the unmatched arguments will    * be appended to the end of the formatted message in square braces.    *    * @param template a non-null string containing 0 or more {@code %s}    *     placeholders.    * @param args the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}. Arguments can be null.    */
-DECL|method|format (String template, Object... args)
+DECL|method|format (String template, @Nullable Object... args)
 annotation|@
 name|VisibleForTesting
 specifier|static
@@ -809,11 +831,23 @@ parameter_list|(
 name|String
 name|template
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 modifier|...
 name|args
 parameter_list|)
 block|{
+name|template
+operator|=
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|template
+argument_list|)
+expr_stmt|;
+comment|// null -> "null"
 comment|// start substituting the arguments into the '%s' placeholders
 name|StringBuilder
 name|builder

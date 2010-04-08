@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of the {@link ListMultimap} interface. It's a wrapper  * around {@link AbstractMultimap} that converts the returned collections into  * {@code Lists}. The {@link #createCollection} method must return a {@code  * List}.  *  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Basic implementation of the {@link ListMultimap} interface. It's a wrapper  * around {@link AbstractMultimap} that converts the returned collections into  * {@code Lists}. The {@link #createCollection} method must return a {@code  * List}.  *  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

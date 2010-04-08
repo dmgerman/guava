@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -37,10 +51,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An extension of {@code DataInput} for reading from in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  * If any method encounters the end of the array prematurely, it throws {@link  * IllegalStateException}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * An extension of {@code DataInput} for reading from in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  * If any method encounters the end of the array prematurely, it throws {@link  * IllegalStateException}.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|ByteArrayDataInput
 specifier|public
 interface|interface

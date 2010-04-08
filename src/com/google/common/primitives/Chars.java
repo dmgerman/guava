@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code char} primitives, that are not  * already found in either {@link Character} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to {@code char} primitives, that are not  * already found in either {@link Character} or {@link Arrays}.  *  *<p>All the operations in this class treat {@code char} values strictly  * numerically; they are neither Unicode-aware nor locale-dependent.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class
@@ -1211,7 +1211,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code char} arrays    * lexicographically. That is, it compares, using {@link    * #compare(char, char)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< ['a']< ['a', 'b']< ['b']}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(char[], char[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order</a> article at Wikipedia    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns a comparator that compares two {@code char} arrays    * lexicographically. That is, it compares, using {@link    * #compare(char, char)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< ['a']< ['a', 'b']< ['b']}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(char[], char[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order</a> article at Wikipedia    * @since 2    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

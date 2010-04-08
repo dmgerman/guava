@@ -19,6 +19,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -221,10 +235,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|SimpleTimeLimiter
 specifier|public
 class|class
@@ -730,7 +746,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO: replace with version in common.reflect if and when that gets open-sourced
+comment|// TODO: replace with version in common.reflect if and when it's open-sourced
 DECL|method|newProxy ( Class<T> interfaceType, InvocationHandler handler)
 specifier|private
 specifier|static

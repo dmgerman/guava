@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -79,10 +93,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *   * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *   * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|AbstractCheckedFuture
 specifier|public
 specifier|abstract

@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable hash-based multiset. Does not permit null elements.  *  *<p>Its iterator orders elements according to the first appearance of the  * element among the items passed to the factory method or builder. When the  * multiset contains multiple instances of an element, those instances are  * consecutive in the iteration order.  *  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * An immutable hash-based multiset. Does not permit null elements.  *  *<p>Its iterator orders elements according to the first appearance of the  * element among the items passed to the factory method or builder. When the  * multiset contains multiple instances of an element, those instances are  * consecutive in the iteration order.  *  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1335,6 +1335,132 @@ return|return
 literal|false
 return|;
 block|}
+comment|// TODO: Revert once this class is emulated in GWT.
+DECL|method|toArray ()
+annotation|@
+name|Override
+specifier|public
+name|Object
+index|[]
+name|toArray
+parameter_list|()
+block|{
+name|Object
+index|[]
+name|newArray
+init|=
+operator|new
+name|Object
+index|[
+name|size
+argument_list|()
+index|]
+decl_stmt|;
+return|return
+name|toArray
+argument_list|(
+name|newArray
+argument_list|)
+return|;
+block|}
+comment|// TODO: Revert once this class is emulated in GWT.
+DECL|method|toArray (T[] other)
+annotation|@
+name|Override
+specifier|public
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+index|[]
+name|toArray
+parameter_list|(
+name|T
+index|[]
+name|other
+parameter_list|)
+block|{
+name|int
+name|size
+init|=
+name|size
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|other
+operator|.
+name|length
+operator|<
+name|size
+condition|)
+block|{
+name|other
+operator|=
+name|ObjectArrays
+operator|.
+name|newArray
+argument_list|(
+name|other
+argument_list|,
+name|size
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|other
+operator|.
+name|length
+operator|>
+name|size
+condition|)
+block|{
+name|other
+index|[
+name|size
+index|]
+operator|=
+literal|null
+expr_stmt|;
+block|}
+comment|// Writes will produce ArrayStoreException when the toArray() doc requires
+name|Object
+index|[]
+name|otherAsObjectArray
+init|=
+name|other
+decl_stmt|;
+name|int
+name|index
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|Entry
+argument_list|<
+name|?
+argument_list|>
+name|element
+range|:
+name|this
+control|)
+block|{
+name|otherAsObjectArray
+index|[
+name|index
+operator|++
+index|]
+operator|=
+name|element
+expr_stmt|;
+block|}
+return|return
+name|other
+return|;
+block|}
 DECL|method|hashCode ()
 annotation|@
 name|Override
@@ -1352,9 +1478,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+comment|// TODO: Revert the comment-out once this class is emulated in GWT.
 DECL|method|writeReplace ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|Object
 name|writeReplace
 parameter_list|()
@@ -1555,9 +1681,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: Revert the comment-out once this class is emulated in GWT.
 DECL|method|writeReplace ()
-annotation|@
-name|Override
+comment|/*@Override*/
 name|Object
 name|writeReplace
 parameter_list|()

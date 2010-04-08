@@ -22,7 +22,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
+name|IOException
 import|;
 end_import
 
@@ -32,7 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|InputStream
 import|;
 end_import
 
@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link InputStream} that concatenates multiple substreams. At most  * one stream will be open at a time.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * An {@link InputStream} that concatenates multiple substreams. At most  * one stream will be open at a time.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_class

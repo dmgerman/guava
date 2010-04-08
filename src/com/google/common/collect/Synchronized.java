@@ -40,7 +40,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtIncompatible
+name|VisibleForTesting
 import|;
 end_import
 
@@ -207,8 +207,8 @@ specifier|private
 name|Synchronized
 parameter_list|()
 block|{}
-comment|/** Abstract base class for synchronized views. */
 DECL|class|SynchronizedObject
+specifier|private
 specifier|static
 class|class
 name|SynchronizedObject
@@ -216,19 +216,16 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|delegate
-specifier|private
 specifier|final
 name|Object
 name|delegate
 decl_stmt|;
 DECL|field|mutex
-specifier|protected
 specifier|final
 name|Object
 name|mutex
 decl_stmt|;
 DECL|method|SynchronizedObject (Object delegate, @Nullable Object mutex)
-specifier|public
 name|SynchronizedObject
 parameter_list|(
 name|Object
@@ -265,7 +262,6 @@ name|mutex
 expr_stmt|;
 block|}
 DECL|method|delegate ()
-specifier|protected
 name|Object
 name|delegate
 parameter_list|()
@@ -333,8 +329,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) collection backed by the specified    * collection using the specified mutex. In order to guarantee serial access,    * it is critical that<b>all</b> access to the backing collection is    * accomplished through the returned collection.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned collection:<pre>  {@code    *    *  Collection<E> s = Synchronized.collection(    *      new HashSet<E>(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param collection the collection to be wrapped in a synchronized view    * @return a synchronized view of the specified collection    */
 DECL|method|collection ( Collection<E> collection, @Nullable Object mutex)
+specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -370,8 +366,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#collection */
 DECL|class|SynchronizedCollection
+annotation|@
+name|VisibleForTesting
 specifier|static
 class|class
 name|SynchronizedCollection
@@ -387,7 +384,7 @@ name|E
 argument_list|>
 block|{
 DECL|method|SynchronizedCollection ( Collection<E> delegate, @Nullable Object mutex)
-specifier|public
+specifier|private
 name|SynchronizedCollection
 parameter_list|(
 name|Collection
@@ -418,7 +415,6 @@ argument_list|)
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|Collection
 argument_list|<
 name|E
@@ -766,9 +762,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) set backed by the specified set using    * the specified mutex. In order to guarantee serial access, it is critical    * that<b>all</b> access to the backing set is accomplished through the    * returned set.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned set:<pre>  {@code    *    *  Set<E> s = Synchronized.set(new HashSet<E>(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param set the set to be wrapped in a synchronized view    * @return a synchronized view of the specified set    */
 DECL|method|set (Set<E> set, @Nullable Object mutex)
-specifier|public
+annotation|@
+name|VisibleForTesting
 specifier|static
 parameter_list|<
 name|E
@@ -804,8 +800,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#set */
 DECL|class|SynchronizedSet
+annotation|@
+name|VisibleForTesting
 specifier|static
 class|class
 name|SynchronizedSet
@@ -824,7 +821,7 @@ name|E
 argument_list|>
 block|{
 DECL|method|SynchronizedSet (Set<E> delegate, @Nullable Object mutex)
-specifier|public
+specifier|private
 name|SynchronizedSet
 parameter_list|(
 name|Set
@@ -850,7 +847,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|Set
 argument_list|<
 name|E
@@ -941,8 +937,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) sorted set backed by the specified    * sorted set using the specified mutex. In order to guarantee serial access,    * it is critical that<b>all</b> access to the backing sorted set is    * accomplished through the returned sorted set.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned sorted set:<pre>  {@code    *    *  SortedSet<E> s = Synchronized.sortedSet(    *      new TreeSet<E>(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param set the sorted set to be wrapped in a synchronized view    * @return a synchronized view of the specified sorted set    */
-DECL|method|sortedSet (SortedSet<E> set, @Nullable Object mutex)
+DECL|method|sortedSet ( SortedSet<E> set, @Nullable Object mutex)
+specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -978,8 +974,8 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#sortedSet */
 DECL|class|SynchronizedSortedSet
+specifier|private
 specifier|static
 class|class
 name|SynchronizedSortedSet
@@ -997,8 +993,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedSet ( SortedSet<E> delegate, @Nullable Object mutex)
-specifier|public
+DECL|method|SynchronizedSortedSet (SortedSet<E> delegate, @Nullable Object mutex)
 name|SynchronizedSortedSet
 parameter_list|(
 name|SortedSet
@@ -1024,7 +1019,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|SortedSet
 argument_list|<
 name|E
@@ -1224,8 +1218,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) list backed by the specified list    * using the specified mutex. In order to guarantee serial access, it is    * critical that<b>all</b> access to the backing list is accomplished    * through the returned list.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned list:<pre>  {@code    *    *  List<E> l = Synchronized.list(new ArrayList<E>(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = l.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned list implements {@link RandomAccess} if the specified list    * implements {@code RandomAccess}.    *    * @param list the list to be wrapped in a synchronized view    * @return a synchronized view of the specified list    */
 DECL|method|list (List<E> list, @Nullable Object mutex)
+specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -1278,8 +1272,8 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#list */
 DECL|class|SynchronizedList
+specifier|private
 specifier|static
 class|class
 name|SynchronizedList
@@ -1298,7 +1292,6 @@ name|E
 argument_list|>
 block|{
 DECL|method|SynchronizedList (List<E> delegate, @Nullable Object mutex)
-specifier|public
 name|SynchronizedList
 parameter_list|(
 name|List
@@ -1324,7 +1317,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|List
 argument_list|<
 name|E
@@ -1580,11 +1572,6 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"List.subList"
-argument_list|)
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
@@ -1608,13 +1595,11 @@ block|{
 return|return
 name|list
 argument_list|(
-name|Platform
+name|delegate
+argument_list|()
 operator|.
 name|subList
 argument_list|(
-name|delegate
-argument_list|()
-argument_list|,
 name|fromIndex
 argument_list|,
 name|toIndex
@@ -1695,8 +1680,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/** @see Synchronized#list */
 DECL|class|SynchronizedRandomAccessList
+specifier|private
 specifier|static
 class|class
 name|SynchronizedRandomAccessList
@@ -1712,7 +1697,6 @@ implements|implements
 name|RandomAccess
 block|{
 DECL|method|SynchronizedRandomAccessList (List<E> list, @Nullable Object mutex)
-specifier|public
 name|SynchronizedRandomAccessList
 parameter_list|(
 name|List
@@ -1745,9 +1729,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) multiset backed by the specified    * multiset using the specified mutex. In order to guarantee serial access, it    * is critical that<b>all</b> access to the backing multiset is accomplished    * through the returned multiset.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned multiset:<pre>  {@code    *    *  Multiset<E> s = Synchronized.multiset(    *      HashMultiset.<E>create(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param multiset the multiset to be wrapped    * @return a synchronized view of the specified multiset    */
 DECL|method|multiset ( Multiset<E> multiset, @Nullable Object mutex)
-specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -1783,8 +1765,8 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#multiset */
 DECL|class|SynchronizedMultiset
+specifier|private
 specifier|static
 class|class
 name|SynchronizedMultiset
@@ -1803,7 +1785,6 @@ name|E
 argument_list|>
 block|{
 DECL|field|elementSet
-specifier|private
 specifier|transient
 name|Set
 argument_list|<
@@ -1812,7 +1793,6 @@ argument_list|>
 name|elementSet
 decl_stmt|;
 DECL|field|entrySet
-specifier|private
 specifier|transient
 name|Set
 argument_list|<
@@ -1824,7 +1804,6 @@ argument_list|>
 name|entrySet
 decl_stmt|;
 DECL|method|SynchronizedMultiset (Multiset<E> delegate, @Nullable Object mutex)
-specifier|public
 name|SynchronizedMultiset
 parameter_list|(
 name|Multiset
@@ -1850,7 +1829,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|Multiset
 argument_list|<
 name|E
@@ -2174,9 +2152,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) multimap backed by the specified    * multimap using the specified mutex. In order to guarantee serial access, it    * is critical that<b>all</b> access to the backing multimap is accomplished    * through the returned multimap.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when accessing any of the return multimap's collection views:    *<pre>  {@code    *    *  Multimap<K, V> m = Synchronized.multimap(    *      HashMultimap.create(), mutex);    *  ...    *  Set<K> s = m.keySet();  // Needn't be in synchronized block    *  ...    *  synchronized (mutex) {    *    Iterator<K> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param multimap the multimap to be wrapped in a synchronized view    * @return a synchronized view of the specified multimap    */
 DECL|method|multimap ( Multimap<K, V> multimap, @Nullable Object mutex)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -2220,7 +2196,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#multimap */
 DECL|class|SynchronizedMultimap
 specifier|private
 specifier|static
@@ -2301,7 +2276,6 @@ argument_list|)
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|Multimap
 argument_list|<
 name|K
@@ -3008,9 +2982,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) list multimap backed by the specified    * multimap using the specified mutex.    *    *<p>You must follow the warnings described for {@link #multimap}.    *    * @param multimap the multimap to be wrapped in a synchronized view    * @return a synchronized view of the specified multimap    */
 DECL|method|listMultimap ( ListMultimap<K, V> multimap, @Nullable Object mutex)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -3054,7 +3026,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#listMultimap */
 DECL|class|SynchronizedListMultimap
 specifier|private
 specifier|static
@@ -3108,7 +3079,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|ListMultimap
 argument_list|<
 name|K
@@ -3250,9 +3220,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) set multimap backed by the specified    * multimap using the specified mutex.    *    *<p>You must follow the warnings described for {@link #multimap}.    *    * @param multimap the multimap to be wrapped in a synchronized view    * @return a synchronized view of the specified multimap    */
 DECL|method|setMultimap ( SetMultimap<K, V> multimap, @Nullable Object mutex)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -3296,7 +3264,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#setMultimap */
 DECL|class|SynchronizedSetMultimap
 specifier|private
 specifier|static
@@ -3365,7 +3332,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|SetMultimap
 argument_list|<
 name|K
@@ -3556,9 +3522,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) sorted set multimap backed by the    * specified multimap using the specified mutex.    *    *<p>You must follow the warnings described for {@link #multimap}.    *    * @param multimap the multimap to be wrapped in a synchronized view    * @return a synchronized view of the specified multimap    */
 DECL|method|sortedSetMultimap ( SortedSetMultimap<K, V> multimap, @Nullable Object mutex)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -3602,7 +3566,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#sortedSetMultimap */
 DECL|class|SynchronizedSortedSetMultimap
 specifier|private
 specifier|static
@@ -3656,7 +3619,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3823,7 +3785,6 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) collection backed by the specified    * collection using the specified mutex. In order to guarantee serial access,    * it is critical that<b>all</b> access to the backing collection is    * accomplished through the returned collection.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned collection:<pre>  {@code    *    *  Collection<E> s = Synchronized.typePreservingCollection(    *      new HashSet<E>(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>If the specified collection is a {@code SortedSet}, {@code Set} or    * {@code List}, this method will behave identically to {@link #sortedSet},    * {@link #set} or {@link #list} respectively, in that order of specificity.    *    * @param collection the collection to be wrapped in a synchronized view    * @return a synchronized view of the specified collection    */
 DECL|method|typePreservingCollection ( Collection<E> collection, @Nullable Object mutex)
 specifier|private
 specifier|static
@@ -3870,7 +3831,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-elseif|else
 if|if
 condition|(
 name|collection
@@ -3893,7 +3853,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-elseif|else
 if|if
 condition|(
 name|collection
@@ -3916,8 +3875,6 @@ name|mutex
 argument_list|)
 return|;
 block|}
-else|else
-block|{
 return|return
 name|collection
 argument_list|(
@@ -3927,10 +3884,8 @@ name|mutex
 argument_list|)
 return|;
 block|}
-block|}
-comment|/**    * Returns a synchronized (thread-safe) set backed by the specified set using    * the specified mutex. In order to guarantee serial access, it is critical    * that<b>all</b> access to the backing collection is accomplished through    * the returned collection.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when iterating over the returned collection:<pre>  {@code    *    *  Set<E> s = Synchronized.typePreservingSet(    *      new HashSet<E>(), mutex);    *  ...    *  synchronized (mutex) {    *    Iterator<E> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>If the specified collection is a {@code SortedSet} this method will    * behave identically to {@link #sortedSet}.    *    * @param set the set to be wrapped in a synchronized view    * @return a synchronized view of the specified set    */
 DECL|method|typePreservingSet ( Set<E> set, @Nullable Object mutex)
-specifier|public
+specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -3987,8 +3942,8 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** @see Synchronized#multimap */
 DECL|class|SynchronizedAsMapEntries
+specifier|private
 specifier|static
 class|class
 name|SynchronizedAsMapEntries
@@ -4014,7 +3969,6 @@ argument_list|>
 argument_list|>
 block|{
 DECL|method|SynchronizedAsMapEntries ( Set<Map.Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
-specifier|public
 name|SynchronizedAsMapEntries
 parameter_list|(
 name|Set
@@ -4501,9 +4455,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) map backed by the specified map using    * the specified mutex. In order to guarantee serial access, it is critical    * that<b>all</b> access to the backing map is accomplished through the    * returned map.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when accessing any of the return map's collection views:    *<pre>  {@code    *    *  Map<K, V> m = Synchronized.map(    *      new HashMap<K, V>(), mutex);    *  ...    *  Set<K> s = m.keySet();  // Needn't be in synchronized block    *  ...    *  synchronized (mutex) {    *    Iterator<K> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param map the map to be wrapped in a synchronized view    * @return a synchronized view of the specified map    */
+annotation|@
+name|VisibleForTesting
 DECL|method|map (Map<K, V> map, @Nullable Object mutex)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -4547,8 +4501,8 @@ name|mutex
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#map */
 DECL|class|SynchronizedMap
+specifier|private
 specifier|static
 class|class
 name|SynchronizedMap
@@ -4568,7 +4522,6 @@ name|V
 argument_list|>
 block|{
 DECL|field|keySet
-specifier|private
 specifier|transient
 name|Set
 argument_list|<
@@ -4577,7 +4530,6 @@ argument_list|>
 name|keySet
 decl_stmt|;
 DECL|field|values
-specifier|private
 specifier|transient
 name|Collection
 argument_list|<
@@ -4586,7 +4538,6 @@ argument_list|>
 name|values
 decl_stmt|;
 DECL|field|entrySet
-specifier|private
 specifier|transient
 name|Set
 argument_list|<
@@ -4602,7 +4553,7 @@ argument_list|>
 name|entrySet
 decl_stmt|;
 DECL|method|SynchronizedMap (Map<K, V> delegate, @Nullable Object mutex)
-specifier|public
+specifier|private
 name|SynchronizedMap
 parameter_list|(
 name|Map
@@ -4635,7 +4586,6 @@ argument_list|)
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|Map
 argument_list|<
 name|K
@@ -5079,9 +5029,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a synchronized (thread-safe) bimap backed by the specified bimap    * using the specified mutex. In order to guarantee serial access, it is    * critical that<b>all</b> access to the backing bimap is accomplished    * through the returned bimap.    *    *<p>It is imperative that the user manually synchronize on the specified    * mutex when accessing any of the return bimap's collection views:    *<pre>  {@code    *    *  BiMap<K, V> m = Synchronized.biMap(    *      HashBiMap.<K, V>create(), mutex);    *  ...    *  Set<K> s = m.keySet();  // Needn't be in synchronized block    *  ...    *  synchronized (mutex) {    *    Iterator<K> i = s.iterator(); // Must be in synchronized block    *    while (i.hasNext()) {    *      foo(i.next());    *    }    *  }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    * @param bimap the bimap to be wrapped in a synchronized view    * @return a synchronized view of the specified bimap    */
-DECL|method|biMap ( BiMap<K, V> bimap, @Nullable Object mutex)
-specifier|public
+DECL|method|biMap (BiMap<K, V> bimap, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -5127,8 +5075,9 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** @see Synchronized#biMap */
 DECL|class|SynchronizedBiMap
+annotation|@
+name|VisibleForTesting
 specifier|static
 class|class
 name|SynchronizedBiMap
@@ -5174,8 +5123,8 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-DECL|method|SynchronizedBiMap ( BiMap<K, V> delegate, @Nullable Object mutex, @Nullable BiMap<V, K> inverse)
-specifier|public
+DECL|method|SynchronizedBiMap (BiMap<K, V> delegate, @Nullable Object mutex, @Nullable BiMap<V, K> inverse)
+specifier|private
 name|SynchronizedBiMap
 parameter_list|(
 name|BiMap
@@ -5219,7 +5168,6 @@ block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
-specifier|protected
 name|BiMap
 argument_list|<
 name|K
@@ -5376,8 +5324,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/** @see SynchronizedMultimap#asMap */
 DECL|class|SynchronizedAsMap
+specifier|private
 specifier|static
 class|class
 name|SynchronizedAsMap
@@ -5398,7 +5346,6 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|asMapEntrySet
-specifier|private
 specifier|transient
 name|Set
 argument_list|<
@@ -5417,7 +5364,6 @@ argument_list|>
 name|asMapEntrySet
 decl_stmt|;
 DECL|field|asMapValues
-specifier|private
 specifier|transient
 name|Collection
 argument_list|<
@@ -5428,8 +5374,7 @@ argument_list|>
 argument_list|>
 name|asMapValues
 decl_stmt|;
-DECL|method|SynchronizedAsMap ( Map<K, Collection<V>> delegate, @Nullable Object mutex)
-specifier|public
+DECL|method|SynchronizedAsMap (Map<K, Collection<V>> delegate, @Nullable Object mutex)
 name|SynchronizedAsMap
 parameter_list|(
 name|Map
@@ -5646,8 +5591,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/** @see SynchronizedMultimap#asMap */
 DECL|class|SynchronizedAsMapValues
+specifier|private
 specifier|static
 class|class
 name|SynchronizedAsMapValues

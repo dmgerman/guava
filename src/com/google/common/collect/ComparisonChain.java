@@ -24,6 +24,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|primitives
 operator|.
 name|Booleans
@@ -79,10 +107,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A utility for performing a "lazy" chained comparison statement, which   * performs comparisons only until it finds a nonzero result. For example:  *  *<pre class="code">   {@code  *  *   public int compareTo(Foo that) {  *     return ComparisonChain.start()  *         .compare(this.aString, that.aString)  *         .compare(this.anInt, that.anInt)  *         .compare(this.anEnum, that.anEnum, Ordering.nullsLast())  *         .result();  *   }}</pre>  *  * The value of this expression will have the same sign as the<i>first  * nonzero</i> comparison result in the chain, or will be zero if every  * comparison result was zero.  *  *<p>Once any comparison returns a nonzero value, remaining comparisons are  * "short-circuited".  *  * @author Mark Davis  * @author Kevin Bourrillion  * @since 2010.01.04<b>tentative</b>  */
+comment|/**  * A utility for performing a "lazy" chained comparison statement, which   * performs comparisons only until it finds a nonzero result. For example:  *  *<pre class="code">   {@code  *  *   public int compareTo(Foo that) {  *     return ComparisonChain.start()  *         .compare(this.aString, that.aString)  *         .compare(this.anInt, that.anInt)  *         .compare(this.anEnum, that.anEnum, Ordering.natural().nullsLast())  *         .result();  *   }}</pre>  *  * The value of this expression will have the same sign as the<i>first  * nonzero</i> comparison result in the chain, or will be zero if every  * comparison result was zero.  *  *<p>Once any comparison returns a nonzero value, remaining comparisons are  * "short-circuited".  *  * @author Mark Davis  * @author Kevin Bourrillion  * @since 2  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
+annotation|@
+name|GwtCompatible
 DECL|class|ComparisonChain
 specifier|public
 specifier|abstract

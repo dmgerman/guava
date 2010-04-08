@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to object arrays.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to object arrays.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

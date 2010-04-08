@@ -18,6 +18,36 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -42,16 +72,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|ArrayList
 import|;
 end_import
@@ -66,11 +86,33 @@ name|Collections
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -83,7 +125,7 @@ name|Throwables
 parameter_list|()
 block|{}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an    * instance of {@code declaredType}.  Example usage:    *<pre>    *   try {    *     someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     handle(e);    *   } catch (Throwable t) {    *     Throwables.propagateIfInstanceOf(t, IOException.class);    *     Throwables.propagateIfInstanceOf(t, SQLException.class);    *     throw Throwables.propagate(t);    *   }    *</pre>    */
-DECL|method|propagateIfInstanceOf ( Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfInstanceOf ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -94,6 +136,8 @@ parameter_list|>
 name|void
 name|propagateIfInstanceOf
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|,
@@ -127,12 +171,14 @@ throw|;
 block|}
 block|}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an    * instance of {@link RuntimeException} or {@link Error}.  Example usage:    *<pre>    *   try {    *     someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     handle(e);    *   } catch (Throwable t) {    *     Throwables.propagateIfPossible(t);    *     throw new RuntimeException("unexpected", t);    *   }    *</pre>    */
-DECL|method|propagateIfPossible (Throwable throwable)
+DECL|method|propagateIfPossible (@ullable Throwable throwable)
 specifier|public
 specifier|static
 name|void
 name|propagateIfPossible
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|)
@@ -157,7 +203,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an    * instance of {@link RuntimeException}, {@link Error}, or    * {@code declaredType}. Example usage:    *<pre>    *   try {    *     someMethodThatCouldThrowAnything();    *   } catch (IKnowWhatToDoWithThisException e) {    *     handle(e);    *   } catch (Throwable t) {    *     Throwables.propagateIfPossible(t, OtherException.class);    *     throw new RuntimeException("unexpected", t);    *   }    *</pre>    *    * @param throwable the Throwable to possibly propagate    * @param declaredType the single checked exception type declared by the    *     calling method    */
-DECL|method|propagateIfPossible ( Throwable throwable, Class<X> declaredType)
+DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X> declaredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -168,6 +214,8 @@ parameter_list|>
 name|void
 name|propagateIfPossible
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|,
@@ -193,7 +241,7 @@ name|throwable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an    * instance of {@link RuntimeException}, {@link Error}, {@code aDeclaredType},    * or {@code anotherDeclaredType}.  In the unlikely case that you have three    * or more declared checked exception types, you can handle them all by    * invoking these methods repeatedly. See usage example in    * {@link #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param aDeclaredType any checked exception type declared by the calling    *     method    * @param anotherDeclaredType any other checked exception type declared by the    *     calling method    */
+comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an    * instance of {@link RuntimeException}, {@link Error}, {@code declaredType1},    * or {@code declaredType2}.  In the unlikely case that you have three or more    * declared checked exception types, you can handle them all by invoking these    * methods repeatedly. See usage example in {@link    * #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling    *     method    * @param declaredType2 any other checked exception type declared by the    *     calling method    */
 specifier|public
 specifier|static
 parameter_list|<
@@ -205,10 +253,12 @@ name|X2
 extends|extends
 name|Throwable
 parameter_list|>
+DECL|method|propagateIfPossible (@ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 name|void
-DECL|method|propagateIfPossible (Throwable throwable, Class<X1> aDeclaredType, Class<X2> anotherDeclaredType)
 name|propagateIfPossible
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|throwable
 parameter_list|,
@@ -216,35 +266,40 @@ name|Class
 argument_list|<
 name|X1
 argument_list|>
-name|aDeclaredType
+name|declaredType1
 parameter_list|,
 name|Class
 argument_list|<
 name|X2
 argument_list|>
-name|anotherDeclaredType
+name|declaredType2
 parameter_list|)
 throws|throws
 name|X1
 throws|,
 name|X2
 block|{
+name|checkNotNull
+argument_list|(
+name|declaredType2
+argument_list|)
+expr_stmt|;
 name|propagateIfInstanceOf
 argument_list|(
 name|throwable
 argument_list|,
-name|aDeclaredType
+name|declaredType1
 argument_list|)
 expr_stmt|;
 name|propagateIfPossible
 argument_list|(
 name|throwable
 argument_list|,
-name|anotherDeclaredType
+name|declaredType2
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Propagates {@code throwable} as-is if it is an instance of    * {@link RuntimeException} or {@link Error}, or else as a last resort, wraps    * it in a {@code RuntimeException} then propagates.    *<p>    * This method always throws an exception. The {@code RuntimeException} return    * type is only for client code to make Java type system happy in case a    * return value is required by the enclosing method. Example usage:    *<pre>    *   T doSomething() {    *     try {    *       return someMethodThatCouldThrowAnything();    *     } catch (IKnowWhatToDoWithThisException e) {    *       return handle(e);    *     } catch (Throwable t) {    *       throw Throwables.propagate(t);    *     }    *   }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned    */
+comment|/**    * Propagates {@code throwable} as-is if it is an instance of    * {@link RuntimeException} or {@link Error}, or else as a last resort, wraps    * it in a {@code RuntimeException} then propagates.    *<p>    * This method always throws an exception. The {@code RuntimeException} return    * type is only for client code to make Java type system happy in case a    * return value is required by the enclosing method. Example usage:    *<pre>    *   T doSomething() {    *     try {    *       return someMethodThatCouldThrowAnything();    *     } catch (IKnowWhatToDoWithThisException e) {    *       return handle(e);    *     } catch (Throwable t) {    *       throw Throwables.propagate(t);    *     }    *   }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your    *     convenience, as illustrated in the example above    */
 DECL|method|propagate (Throwable throwable)
 specifier|public
 specifier|static
@@ -257,7 +312,10 @@ parameter_list|)
 block|{
 name|propagateIfPossible
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|throwable
+argument_list|)
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -319,8 +377,6 @@ name|Throwable
 name|throwable
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|throwable

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Implemented by references that have code to run after garbage collection of  * their referents.  *  * @see FinalizableReferenceQueue  * @author Bob Lee  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Implemented by references that have code to run after garbage collection of  * their referents.  *  * @see FinalizableReferenceQueue  * @author Bob Lee  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

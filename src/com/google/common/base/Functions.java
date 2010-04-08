@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given  * serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given  * serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -383,13 +383,15 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|equals (Object o)
+DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -620,13 +622,15 @@ else|:
 name|defaultValue
 return|;
 block|}
-DECL|method|equals (Object o)
+DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -897,13 +901,15 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1115,13 +1121,15 @@ name|t
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)
@@ -1276,11 +1284,13 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|apply (Object from)
+DECL|method|apply (@ullable Object from)
 specifier|public
 name|E
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|from
 parameter_list|)
@@ -1289,13 +1299,15 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

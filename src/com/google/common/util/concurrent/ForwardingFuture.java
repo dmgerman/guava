@@ -26,6 +26,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ForwardingObject
@@ -81,10 +95,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|ForwardingFuture
 specifier|public
 specifier|abstract

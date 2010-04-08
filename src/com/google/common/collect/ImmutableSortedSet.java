@@ -17,34 +17,16 @@ package|;
 end_package
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
+name|Beta
 import|;
 end_import
 
@@ -89,6 +71,16 @@ operator|.
 name|io
 operator|.
 name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
 import|;
 end_import
 
@@ -162,8 +154,44 @@ name|SortedSet
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * An immutable {@code SortedSet} that stores its elements in a sorted array.  * Some instances are ordered by an explicit comparator, while others follow the  * natural sort ordering of their elements. Either way, null elements are not  * supported.  *  *<p>Unlike {@link Collections#unmodifiableSortedSet}, which is a<i>view</i>  * of a separate collection that can still change, an instance of {@code  * ImmutableSortedSet} contains its own private data and will<i>never</i>  * change. This class is convenient for {@code public static final} sets  * ("constant sets") and also lets you easily make a "defensive copy" of a set  * provided to your class by a caller.  *  *<p>The sets returned by {@link #headSet}, {@link #tailSet}, and  * {@link #subSet} methods share the same array as the original set, preventing  * that array from being garbage collected. If this is a concern, the data may  * be copied into a correctly-sized array by calling {@link #copyOfSorted}.  *  *<p><b>Note on element equivalence:</b> The {@link #contains(Object)},  * {@link #containsAll(Collection)}, and {@link #equals(Object)}  * implementations must check whether a provided object is equivalent to an  * element in the collection. Unlike most collections, an  * {@code ImmutableSortedSet} doesn't use {@link Object#equals} to determine if  * two elements are equivalent. Instead, with an explicit comparator, the  * following relation determines whether elements {@code x} and {@code y} are  * equivalent:<pre>   {@code  *  *   {(x, y) | comparator.compare(x, y) == 0}}</pre>  *  * With natural ordering of elements, the following relation determines whether  * two elements are equivalent:<pre>   {@code  *  *   {(x, y) | x.compareTo(y) == 0}}</pre>  *  *<b>Warning:</b> Like most sets, an {@code ImmutableSortedSet} will not  * function correctly if an element is modified after being placed in the set.  * For this reason, and to avoid general confusion, it is strongly recommended  * to place only immutable objects into this collection.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableSet  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * An immutable {@code SortedSet} that stores its elements in a sorted array.  * Some instances are ordered by an explicit comparator, while others follow the  * natural sort ordering of their elements. Either way, null elements are not  * supported.  *  *<p>Unlike {@link Collections#unmodifiableSortedSet}, which is a<i>view</i>  * of a separate collection that can still change, an instance of {@code  * ImmutableSortedSet} contains its own private data and will<i>never</i>  * change. This class is convenient for {@code public static final} sets  * ("constant sets") and also lets you easily make a "defensive copy" of a set  * provided to your class by a caller.  *  *<p>The sets returned by {@link #headSet}, {@link #tailSet}, and  * {@link #subSet} methods share the same array as the original set, preventing  * that array from being garbage collected. If this is a concern, the data may  * be copied into a correctly-sized array by calling {@link #copyOfSorted}.  *  *<p><b>Note on element equivalence:</b> The {@link #contains(Object)},  * {@link #containsAll(Collection)}, and {@link #equals(Object)}  * implementations must check whether a provided object is equivalent to an  * element in the collection. Unlike most collections, an  * {@code ImmutableSortedSet} doesn't use {@link Object#equals} to determine if  * two elements are equivalent. Instead, with an explicit comparator, the  * following relation determines whether elements {@code x} and {@code y} are  * equivalent:<pre>   {@code  *  *   {(x, y) | comparator.compare(x, y) == 0}}</pre>  *  * With natural ordering of elements, the following relation determines whether  * two elements are equivalent:<pre>   {@code  *  *   {(x, y) | x.compareTo(y) == 0}}</pre>  *  *<b>Warning:</b> Like most sets, an {@code ImmutableSortedSet} will not  * function correctly if an element is modified after being placed in the set.  * For this reason, and to avoid general confusion, it is strongly recommended  * to place only immutable objects into this collection.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableSet  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+end_comment
+
+begin_comment
+comment|// TODO: benchmark and optimize all creation paths, which are a mess right now
 end_comment
 
 begin_class
@@ -171,6 +199,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)
@@ -602,10 +634,13 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|// TODO: Consider adding factory methods that throw an exception when given
-comment|// duplicate elements.
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|of ( E... elements)
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any element is null    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
 specifier|public
 specifier|static
 parameter_list|<
@@ -625,7 +660,164 @@ argument_list|>
 name|of
 parameter_list|(
 name|E
+name|e1
+parameter_list|,
+name|E
+name|e2
+parameter_list|,
+name|E
+name|e3
+parameter_list|,
+name|E
+name|e4
+parameter_list|,
+name|E
+name|e5
+parameter_list|,
+name|E
+name|e6
+parameter_list|,
+name|E
 modifier|...
+name|remaining
+parameter_list|)
+block|{
+name|int
+name|size
+init|=
+name|remaining
+operator|.
+name|length
+operator|+
+literal|6
+decl_stmt|;
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|all
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|size
+argument_list|)
+decl_stmt|;
+name|Collections
+operator|.
+name|addAll
+argument_list|(
+name|all
+argument_list|,
+name|e1
+argument_list|,
+name|e2
+argument_list|,
+name|e3
+argument_list|,
+name|e4
+argument_list|,
+name|e5
+argument_list|,
+name|e6
+argument_list|)
+expr_stmt|;
+name|Collections
+operator|.
+name|addAll
+argument_list|(
+name|all
+argument_list|,
+name|remaining
+argument_list|)
+expr_stmt|;
+comment|// This is a mess (see TODO at top of file)
+return|return
+name|ofInternal
+argument_list|(
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+argument_list|,
+operator|(
+name|Object
+index|[]
+operator|)
+name|all
+operator|.
+name|toArray
+argument_list|(
+operator|new
+name|Comparable
+index|[
+literal|0
+index|]
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|// TODO: Consider adding factory methods that throw an exception when given
+comment|// duplicate elements.
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Comparable[])}.    */
+annotation|@
+name|Deprecated
+DECL|method|of ( E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|of
+parameter_list|(
+name|E
+index|[]
+name|elements
+parameter_list|)
+block|{
+return|return
+name|copyOf
+argument_list|(
+name|elements
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    */
+DECL|method|copyOf ( E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|E
+index|[]
 name|elements
 parameter_list|)
 block|{
@@ -637,11 +829,15 @@ operator|.
 name|natural
 argument_list|()
 argument_list|,
+operator|(
+name|Object
+index|[]
+operator|)
 name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|ofInternal ( Comparator<? super E> comparator, E... elements)
+DECL|method|ofInternal ( Comparator<? super E> comparator, Object... elements)
 specifier|private
 specifier|static
 parameter_list|<
@@ -661,17 +857,11 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
-name|E
+name|Object
 modifier|...
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 switch|switch
 condition|(
 name|elements
@@ -1141,7 +1331,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from    * {@link #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code sortedSet}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from    * {@link #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code sortedSet}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1389,23 +1579,9 @@ name|T
 argument_list|>
 name|collection
 init|=
-operator|(
-name|iterable
-operator|instanceof
-name|Collection
-operator|)
-condition|?
-operator|(
-name|Collection
-argument_list|<
-name|T
-argument_list|>
-operator|)
-name|iterable
-else|:
-name|Lists
+name|Collections2
 operator|.
-name|newArrayList
+name|toCollection
 argument_list|(
 name|iterable
 argument_list|)
@@ -1623,6 +1799,74 @@ return|;
 block|}
 return|return
 literal|false
+return|;
+block|}
+comment|/**    * Returns an immutable sorted set containing the elements in the given list    * in the same order. It is useful when the elements already have the desired    * order but constructing the appropriate comparator is difficult.    *    * @throws NullPointerException if any of the elements is null    * @throws IllegalArgumentException if {@code elements} contains any    *     duplicate values (according to {@link Object#equals})    * @since 3    */
+annotation|@
+name|Beta
+DECL|method|withExplicitOrder (List<E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|withExplicitOrder
+parameter_list|(
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+return|return
+name|ExplicitOrderedImmutableSortedSet
+operator|.
+name|create
+argument_list|(
+name|elements
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an immutable sorted set containing the provided elements in the    * same order. It is useful when the elements already have the desired order    * but constructing the appropriate comparator is difficult.    *    * @param firstElement the value which should appear first in the generated    *     set    * @param remainingElementsInOrder the rest of the values in the generated    *     set, in the order they should appear    * @throws NullPointerException if any of the elements is null    * @throws IllegalArgumentException if any duplicate values (according to    *     {@link Object#equals(Object)}) are present among the method arguments    * @since 3    */
+annotation|@
+name|Beta
+DECL|method|withExplicitOrder ( E firstElement, E... remainingElementsInOrder)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|withExplicitOrder
+parameter_list|(
+name|E
+name|firstElement
+parameter_list|,
+name|E
+modifier|...
+name|remainingElementsInOrder
+parameter_list|)
+block|{
+return|return
+name|withExplicitOrder
+argument_list|(
+name|Lists
+operator|.
+name|asList
+argument_list|(
+name|firstElement
+argument_list|,
+name|remainingElementsInOrder
+argument_list|)
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns a builder that creates immutable sorted sets with an explicit    * comparator. If the comparator has a more general type than the set being    * generated, such as creating a {@code SortedSet<Integer>} with a    * {@code Comparator<Number>}, use the {@link Builder} constructor instead.    *    * @throws NullPointerException if {@code comparator} is null    */

@@ -89,7 +89,6 @@ operator|.
 name|METHOD
 block|}
 argument_list|)
-comment|// @Documented - uncomment when GWT support is official
 annotation|@
 name|GwtCompatible
 DECL|annotation|GwtCompatible

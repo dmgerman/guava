@@ -26,6 +26,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Service
@@ -71,10 +85,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|AbstractExecutionThreadService
 specifier|public
 specifier|abstract
@@ -269,11 +285,7 @@ name|Thread
 argument_list|(
 name|command
 argument_list|,
-name|AbstractExecutionThreadService
-operator|.
-name|this
-operator|.
-name|toString
+name|getServiceName
 argument_list|()
 argument_list|)
 operator|.
@@ -293,11 +305,15 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|getClass
+name|getServiceName
 argument_list|()
-operator|.
-name|getSimpleName
+operator|+
+literal|" ["
+operator|+
+name|state
 argument_list|()
+operator|+
+literal|"]"
 return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
@@ -394,6 +410,20 @@ return|return
 name|delegate
 operator|.
 name|stopAndWait
+argument_list|()
+return|;
+block|}
+DECL|method|getServiceName ()
+specifier|private
+name|String
+name|getServiceName
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
 argument_list|()
 return|;
 block|}

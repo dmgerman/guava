@@ -50,22 +50,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
 comment|/**  * Implementation of {@link ImmutableMap} with exactly one entry.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  */
 end_comment
@@ -75,6 +59,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)
@@ -163,38 +151,26 @@ name|this
 operator|.
 name|entry
 operator|=
-name|checkNotNull
-argument_list|(
 name|entry
-argument_list|)
 expr_stmt|;
-comment|// checkNotNull for GWT.
 name|this
 operator|.
 name|singleKey
 operator|=
-name|checkNotNull
-argument_list|(
 name|entry
 operator|.
 name|getKey
 argument_list|()
-argument_list|)
 expr_stmt|;
-comment|// checkNotNull for GWT.
 name|this
 operator|.
 name|singleValue
 operator|=
-name|checkNotNull
-argument_list|(
 name|entry
 operator|.
 name|getValue
 argument_list|()
-argument_list|)
 expr_stmt|;
-comment|// checkNotNull for GWT.
 block|}
 DECL|method|entry ()
 specifier|private

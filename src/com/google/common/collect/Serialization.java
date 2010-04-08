@@ -136,7 +136,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|readCount (ObjectInputStream stream)
-specifier|public
 specifier|static
 name|int
 name|readCount
@@ -161,7 +160,6 @@ argument_list|(
 literal|"java.io.ObjectOutputStream"
 argument_list|)
 DECL|method|writeMap (Map<K, V> map, ObjectOutputStream stream)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -242,7 +240,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|populateMap (Map<K, V> map, ObjectInputStream stream)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -293,7 +290,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|populateMap (Map<K, V> map, ObjectInputStream stream, int size)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -389,7 +385,6 @@ argument_list|(
 literal|"java.io.ObjectOutputStream"
 argument_list|)
 DECL|method|writeMultiset ( Multiset<E> multiset, ObjectOutputStream stream)
-specifier|public
 specifier|static
 parameter_list|<
 name|E
@@ -472,7 +467,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|populateMultiset ( Multiset<E> multiset, ObjectInputStream stream)
-specifier|public
 specifier|static
 parameter_list|<
 name|E
@@ -519,7 +513,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|populateMultiset ( Multiset<E> multiset, ObjectInputStream stream, int distinctElements)
-specifier|public
 specifier|static
 parameter_list|<
 name|E
@@ -602,7 +595,6 @@ argument_list|(
 literal|"java.io.ObjectOutputStream"
 argument_list|)
 DECL|method|writeMultimap ( Multimap<K, V> multimap, ObjectOutputStream stream)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -714,7 +706,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|populateMultimap ( Multimap<K, V> multimap, ObjectInputStream stream)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -765,7 +756,6 @@ argument_list|(
 literal|"java.io.ObjectInputStream"
 argument_list|)
 DECL|method|populateMultimap ( Multimap<K, V> multimap, ObjectInputStream stream, int distinctKeys)
-specifier|public
 specifier|static
 parameter_list|<
 name|K

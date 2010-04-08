@@ -147,7 +147,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  * @since 2 (imported from Google Collections Library)  */
+end_comment
+
+begin_comment
+comment|// TODO: benchmark and optimize all creation paths, which are a mess right now
 end_comment
 
 begin_class
@@ -155,6 +159,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)
@@ -411,8 +419,13 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored (but too many of these may result in the set being    * sized inappropriately).    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|of (E... elements)
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static
 parameter_list|<
@@ -425,16 +438,135 @@ argument_list|>
 name|of
 parameter_list|(
 name|E
+name|e1
+parameter_list|,
+name|E
+name|e2
+parameter_list|,
+name|E
+name|e3
+parameter_list|,
+name|E
+name|e4
+parameter_list|,
+name|E
+name|e5
+parameter_list|,
+name|E
+name|e6
+parameter_list|,
+name|E
 modifier|...
+name|others
+parameter_list|)
+block|{
+name|int
+name|size
+init|=
+name|others
+operator|.
+name|length
+operator|+
+literal|6
+decl_stmt|;
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|all
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|size
+argument_list|)
+decl_stmt|;
+name|Collections
+operator|.
+name|addAll
+argument_list|(
+name|all
+argument_list|,
+name|e1
+argument_list|,
+name|e2
+argument_list|,
+name|e3
+argument_list|,
+name|e4
+argument_list|,
+name|e5
+argument_list|,
+name|e6
+argument_list|)
+expr_stmt|;
+name|Collections
+operator|.
+name|addAll
+argument_list|(
+name|all
+argument_list|,
+name|others
+argument_list|)
+expr_stmt|;
+return|return
+name|create
+argument_list|(
+name|all
+argument_list|,
+name|size
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.    * @throws NullPointerException if any of {@code elements} is null    */
+comment|// TODO: when this is removed, remember to remove from ISS and ISSFS too
+annotation|@
+name|Deprecated
+DECL|method|of (E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|of
+parameter_list|(
+name|E
+index|[]
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
+return|return
+name|copyOf
 argument_list|(
 name|elements
 argument_list|)
-expr_stmt|;
-comment|// for GWT
+return|;
+block|}
+comment|/**   * Returns an immutable set containing the given elements, in order. Repeated   * occurrences of an element (according to {@link Object#equals}) after the   * first are ignored.   *   * @throws NullPointerException if any of {@code elements} is null   */
+DECL|method|copyOf (E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|E
+index|[]
+name|elements
+parameter_list|)
+block|{
 switch|switch
 condition|(
 name|elements
@@ -470,7 +602,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored (but too many of these may result in the set being    * sized inappropriately). This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSet} (but not an {@code ImmutableSortedSet}), no copy    * will actually be performed, and the given set itself will be returned.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSet} (but not an {@code ImmutableSortedSet}), no copy    * will actually be performed, and the given set itself will be returned.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -901,12 +1033,6 @@ range|:
 name|iterable
 control|)
 block|{
-name|checkNotNull
-argument_list|(
-name|element
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 name|int
 name|hash
 init|=
@@ -1186,9 +1312,9 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,
@@ -1267,9 +1393,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,
@@ -1626,7 +1752,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|// Writes will produce ArrayStoreException when the toArray() doc requires.
+comment|// Writes will produce ArrayStoreException when the toArray() doc requires
 name|Object
 index|[]
 name|objectArray
@@ -1729,7 +1855,7 @@ name|readResolve
 parameter_list|()
 block|{
 return|return
-name|of
+name|copyOf
 argument_list|(
 name|elements
 argument_list|)
@@ -1866,12 +1992,6 @@ modifier|...
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 name|contents
 operator|.
 name|ensureCapacity

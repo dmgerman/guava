@@ -42,7 +42,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Writer
+name|IOException
 import|;
 end_import
 
@@ -52,12 +52,12 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Writer
 import|;
 end_import
 
 begin_comment
-comment|/**  * Writer that places all output on an {@link Appendable} target. If the target  * is {@link Flushable} or {@link Closeable}, flush()es and close()s will also  * be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Writer that places all output on an {@link Appendable} target. If the target  * is {@link Flushable} or {@link Closeable}, flush()es and close()s will also  * be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since 1  */
 end_comment
 
 begin_class

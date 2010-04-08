@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -71,10 +85,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods for working with {@link Closeable} objects.  *  * @author Michael Lancaster  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Utility methods for working with {@link Closeable} objects.  *  * @author Michael Lancaster  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Closeables
 specifier|public
 specifier|final

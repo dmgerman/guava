@@ -17,18 +17,16 @@ package|;
 end_package
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|collect
+name|primitives
 operator|.
-name|MutableClassToInstanceMap
-operator|.
-name|cast
+name|Primitives
 import|;
 end_import
 
@@ -43,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class-to-instance map backed by an {@link ImmutableMap}. See also {@link  * MutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A class-to-instance map backed by an {@link ImmutableMap}. See also {@link  * MutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -262,6 +260,43 @@ expr_stmt|;
 block|}
 return|return
 name|this
+return|;
+block|}
+DECL|method|cast (Class<T> type, B value)
+specifier|private
+specifier|static
+parameter_list|<
+name|B
+parameter_list|,
+name|T
+extends|extends
+name|B
+parameter_list|>
+name|T
+name|cast
+parameter_list|(
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|type
+parameter_list|,
+name|B
+name|value
+parameter_list|)
+block|{
+return|return
+name|Primitives
+operator|.
+name|wrap
+argument_list|(
+name|type
+argument_list|)
+operator|.
+name|cast
+argument_list|(
+name|value
+argument_list|)
 return|;
 block|}
 comment|/**      * Returns a new immutable class-to-instance map containing the entries      * provided to this builder.      *      * @throws IllegalArgumentException if duplicate keys were added      */

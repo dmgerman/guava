@@ -26,9 +26,39 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
 import|;
 end_import
 
@@ -105,6 +135,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -140,27 +184,13 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
-comment|/**  * Static utility methods pertaining to the {@link Future} interface.  *  * @author Kevin Bourrillion  * @author Nishant Thakkar  * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Static utility methods pertaining to the {@link Future} interface.  *  * @author Kevin Bourrillion  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Futures
 specifier|public
 class|class
@@ -305,26 +335,10 @@ argument_list|()
 operator|+
 name|timeoutNanos
 decl_stmt|;
-for|for
-control|(
-name|long
-name|remaining
-init|=
-name|timeoutNanos
-init|;
-name|remaining
-operator|>
-literal|0
-condition|;
-name|remaining
-operator|=
-name|end
-operator|-
-name|System
-operator|.
-name|nanoTime
-argument_list|()
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 try|try
 block|{
@@ -333,10 +347,8 @@ name|future
 operator|.
 name|get
 argument_list|(
-name|remaining
+name|timeoutNanos
 argument_list|,
-name|TimeUnit
-operator|.
 name|NANOSECONDS
 argument_list|)
 return|;
@@ -344,20 +356,25 @@ block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
-name|ignored
+name|e
 parameter_list|)
 block|{
+comment|// Future treats negative timeouts just like zero.
+name|timeoutNanos
+operator|=
+name|end
+operator|-
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+expr_stmt|;
 name|interrupted
 operator|=
 literal|true
 expr_stmt|;
 block|}
 block|}
-throw|throw
-operator|new
-name|TimeoutException
-argument_list|()
-throw|;
 block|}
 finally|finally
 block|{
@@ -816,14 +833,14 @@ name|input
 argument_list|,
 name|function
 argument_list|,
-name|Executors
+name|MoreExecutors
 operator|.
 name|sameThreadExecutor
 argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link Executors#sameThreadExecutor}, the    * thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
+comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function, Executor exec)
 specifier|public
 specifier|static
@@ -941,14 +958,14 @@ name|future
 argument_list|,
 name|function
 argument_list|,
-name|Executors
+name|MoreExecutors
 operator|.
 name|sameThreadExecutor
 argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link Executors#sameThreadExecutor}, the    * thread chained Function executes in will be whichever thread set the result    * of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the composition.    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the composition.    * @since 2    */
 DECL|method|compose (ListenableFuture<I> future, final Function<? super I, ? extends O> function, Executor exec)
 specifier|public
 specifier|static
@@ -986,6 +1003,11 @@ name|Executor
 name|exec
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|function
+argument_list|)
+expr_stmt|;
 name|Function
 argument_list|<
 name|I
@@ -1009,7 +1031,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|ListenableFuture
 argument_list|<
@@ -1087,6 +1110,16 @@ argument_list|>
 name|function
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|future
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|function
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Future
@@ -1338,7 +1371,10 @@ name|this
 operator|.
 name|function
 operator|=
+name|checkNotNull
+argument_list|(
 name|function
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -1465,7 +1501,7 @@ block|}
 block|}
 block|}
 argument_list|,
-name|Executors
+name|MoreExecutors
 operator|.
 name|sameThreadExecutor
 argument_list|()
@@ -1579,7 +1615,10 @@ name|this
 operator|.
 name|mapper
 operator|=
+name|checkNotNull
+argument_list|(
 name|mapper
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -1691,7 +1730,10 @@ name|this
 operator|.
 name|delegate
 operator|=
+name|checkNotNull
+argument_list|(
 name|delegate
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

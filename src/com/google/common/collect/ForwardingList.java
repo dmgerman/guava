@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -85,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A list which forwards all its method calls to another list. Subclasses should  * override one or more methods to modify the behavior of the backing list as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the  * delegate supports random access, the {@code ForwadingList} subclass should  * implement the {@code RandomAccess} interface.  *  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A list which forwards all its method calls to another list. Subclasses should  * override one or more methods to modify the behavior of the backing list as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the  * delegate supports random access, the {@code ForwardingList} subclass should  * implement the {@code RandomAccess} interface.  *  * @author Mike Bostock  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -313,11 +299,6 @@ name|element
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"List.subList"
-argument_list|)
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
@@ -334,13 +315,11 @@ name|toIndex
 parameter_list|)
 block|{
 return|return
-name|Platform
+name|delegate
+argument_list|()
 operator|.
 name|subList
 argument_list|(
-name|delegate
-argument_list|()
-argument_list|,
 name|fromIndex
 argument_list|,
 name|toIndex

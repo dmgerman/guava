@@ -598,7 +598,6 @@ parameter_list|>
 block|{
 comment|/**      * Constructs a new entry for the given key with a pointer to the given      * next entry.      *      *<p>This method may return different entry implementations      * depending upon whether next is null or not. For example, if next is      * null (as will often be the case), this factory might use an entry      * class that doesn't waste memory on an unnecessary field.      *      * @param key for this entry      * @param hash of key returned by {@link #hashKey}      * @param next entry (used when implementing a hash bucket as a linked      *  list, for example), possibly null      * @return a new entry      */
 DECL|method|newEntry (K key, int hash, E next)
-specifier|abstract
 name|E
 name|newEntry
 parameter_list|(

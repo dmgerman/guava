@@ -17,6 +17,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -121,16 +135,23 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even those these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even those these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Resources
 specifier|public
 specifier|final
 class|class
 name|Resources
 block|{
+DECL|method|Resources ()
+specifier|private
+name|Resources
+parameter_list|()
+block|{}
 comment|/**    * Returns a factory that will supply instances of {@link InputStream} that    * read from the given URL.    *    * @param url the URL to read from    * @return the factory    */
 DECL|method|newInputStreamSupplier ( final URL url)
 specifier|public

@@ -31,22 +31,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -87,12 +71,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable collection. Does not permit null elements.  *  *<p>In addition to the {@link Collection} methods, this class has an {@link  * #asList()} method, which returns a list view of the collection's elements.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside of this package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @author Jesse Wilson  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * An immutable collection. Does not permit null elements.  *  *<p>In addition to the {@link Collection} methods, this class has an {@link  * #asList()} method, which returns a list view of the collection's elements.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed  * outside of this package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @author Jesse Wilson  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -529,7 +518,14 @@ name|E
 argument_list|>
 name|asList
 decl_stmt|;
-comment|/**    * Returns a list view of the collection.    *    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns a list view of the collection.    *    * @since 2    */
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|serializable
+operator|=
+literal|false
+argument_list|)
 DECL|method|asList ()
 specifier|public
 name|ImmutableList
@@ -952,12 +948,6 @@ modifier|...
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 for|for
 control|(
 name|E
@@ -994,12 +984,6 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 for|for
 control|(
 name|E
@@ -1036,12 +1020,6 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|elements
-argument_list|)
-expr_stmt|;
-comment|// for GWT
 while|while
 condition|(
 name|elements

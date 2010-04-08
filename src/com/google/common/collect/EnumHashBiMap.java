@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and  * a {@code HashMap} instance for values-to-keys. Null keys are not permitted,  * but null values are. An {@code EnumHashBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and  * a {@code HashMap} instance for values-to-keys. Null keys are not permitted,  * but null values are. An {@code EnumHashBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

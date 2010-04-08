@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -183,10 +197,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of  * those interfaces. Similarly for {@code Appendable& Closeable} and  * {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of  * those interfaces. Similarly for {@code Appendable& Closeable} and  * {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|CharStreams
 specifier|public
 specifier|final
@@ -209,7 +225,7 @@ name|CharStreams
 parameter_list|()
 block|{}
 comment|/**    * Returns a factory that will supply instances of {@link StringReader} that    * read a string value.    *    * @param value the string to read    * @return the factory    */
-DECL|method|newReaderSupplier (final String value)
+DECL|method|newReaderSupplier ( final String value)
 specifier|public
 specifier|static
 name|InputSupplier
@@ -570,7 +586,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Opens a {@link Readable} object from the supplier, copies all characters    * to the {@link Appendable} object, and closes the input. Does not close    * or flush the output.    *    * @param from the input factory    * @param to the object to write to    * @return the number of characters copied    * @throws IOException if an I/O error occurs    */
-DECL|method|copy (InputSupplier<R> from, Appendable to)
+DECL|method|copy ( InputSupplier<R> from, Appendable to)
 specifier|public
 specifier|static
 parameter_list|<

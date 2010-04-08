@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator that supports a one-element lookahead while iterating.  *  * @author Mick Killianey  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * An iterator that supports a one-element lookahead while iterating.  *  * @author Mick Killianey  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

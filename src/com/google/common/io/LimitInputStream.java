@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -46,7 +60,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
+name|IOException
 import|;
 end_import
 
@@ -56,17 +70,20 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|InputStream
 import|;
 end_import
 
 begin_comment
-comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|LimitInputStream
 specifier|public
+specifier|final
 class|class
 name|LimitInputStream
 extends|extends

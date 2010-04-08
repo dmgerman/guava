@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class
@@ -90,7 +90,7 @@ parameter_list|()
 block|{}
 comment|/** A map from primitive types to their corresponding wrapper types. */
 DECL|field|PRIMITIVE_TO_WRAPPER_TYPE
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|Map
@@ -109,7 +109,7 @@ name|PRIMITIVE_TO_WRAPPER_TYPE
 decl_stmt|;
 comment|/** A map from wrapper types to their corresponding primitive types. */
 DECL|field|WRAPPER_TO_PRIMITIVE_TYPE
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|Map
@@ -411,11 +411,10 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** All nine primitive types (including void). */
-DECL|field|PRIMITIVE_TYPES
+comment|/**    * Returns an immutable set of all nine primitive types (including {@code    * void}). Note that a simpler way to test whether a {@code Class} instance    * is a member of this set is to call {@link Class#isPrimitive}.    *    * @since 3    */
+DECL|method|allPrimitiveTypes ()
 specifier|public
 specifier|static
-specifier|final
 name|Set
 argument_list|<
 name|Class
@@ -423,18 +422,20 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-name|PRIMITIVE_TYPES
-init|=
+name|allPrimitiveTypes
+parameter_list|()
+block|{
+return|return
 name|PRIMITIVE_TO_WRAPPER_TYPE
 operator|.
 name|keySet
 argument_list|()
-decl_stmt|;
-comment|/** All nine wrapper types (including Void). */
-DECL|field|WRAPPER_TYPES
+return|;
+block|}
+comment|/**    * Returns an immutable set of all nine primitive-wrapper types (including    * {@link Void}).    *    * @since 3    */
+DECL|method|allWrapperTypes ()
 specifier|public
 specifier|static
-specifier|final
 name|Set
 argument_list|<
 name|Class
@@ -442,13 +443,16 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-name|WRAPPER_TYPES
-init|=
+name|allWrapperTypes
+parameter_list|()
+block|{
+return|return
 name|WRAPPER_TO_PRIMITIVE_TYPE
 operator|.
 name|keySet
 argument_list|()
-decl_stmt|;
+return|;
+block|}
 comment|/**    * Returns {@code true} if {@code type} is one of the nine    * primitive-wrapper types, such as {@link Integer}.    *    * @see Class#isPrimitive    */
 DECL|method|isWrapperType (Class<?> type)
 specifier|public

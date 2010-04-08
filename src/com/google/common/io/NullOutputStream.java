@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -27,12 +41,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|NullOutputStream
 specifier|public
+specifier|final
 class|class
 name|NullOutputStream
 extends|extends

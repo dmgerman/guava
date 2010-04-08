@@ -229,8 +229,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Not supported.<b>You are attempting to create a set that may contain    * non-{@code Comparable} elements.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable[])}.</b>    */
-DECL|method|of (E... elements)
+comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable, Comparable,     *     Comparable, Comparable, Comparable...)}.</b>    */
+DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
 annotation|@
 name|Deprecated
 specifier|public
@@ -245,7 +245,79 @@ argument_list|>
 name|of
 parameter_list|(
 name|E
+name|e1
+parameter_list|,
+name|E
+name|e2
+parameter_list|,
+name|E
+name|e3
+parameter_list|,
+name|E
+name|e4
+parameter_list|,
+name|E
+name|e5
+parameter_list|,
+name|E
+name|e6
+parameter_list|,
+name|E
 modifier|...
+name|remaining
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Not supported.<b>You are attempting to create a set that may contain    * non-{@code Comparable} elements.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable[])}.</b>    */
+comment|// NOTE: This one is "really" deprecated - we must remove it when we remove
+comment|// the corresponding Immutable(Sorted)Set methods!
+DECL|method|of (E[] elements)
+annotation|@
+name|Deprecated
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|of
+parameter_list|(
+name|E
+index|[]
+name|elements
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+comment|/**    * Not supported.<b>You are attempting to create a set that may contain    * non-{@code Comparable} elements.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#copyOf(Comparable[])}.</b>    */
+DECL|method|copyOf (E[] elements)
+annotation|@
+name|Deprecated
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|E
+index|[]
 name|elements
 parameter_list|)
 block|{

@@ -66,6 +66,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -116,16 +126,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|concurrent
 operator|.
 name|atomic
@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset which maintains the ordering of its elements, according to either  * their natural order or an explicit {@link Comparator}. In all cases, this  * implementation uses {@link Comparable#compareTo} or {@link  * Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link Collection} contract, which it is  * specified in terms of {@link Object#equals}.  *  * @author Neal Kanodia  * @author Jared Levy  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * A multiset which maintains the ordering of its elements, according to either  * their natural order or an explicit {@link Comparator}. In all cases, this  * implementation uses {@link Comparable#compareTo} or {@link  * Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link Collection} contract, which it is  * specified in terms of {@link Object#equals}.  *  * @author Neal Kanodia  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

@@ -17,20 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -59,6 +45,34 @@ operator|.
 name|Preconditions
 operator|.
 name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
 import|;
 end_import
 
@@ -93,10 +107,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines a true or false value for any Java {@code char} value, just as  * {@link Predicate} does for any {@link Object}. Also offers basic text  * processing methods based on this function. Implementations are strongly  * encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching  * character" is used to mean "any character {@code c} for which {@code  * this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not  * understand supplementary Unicode code points in the range {@code 0x10000} to  * {@code 0x10FFFF}. Such logical characters are encoded into a {@code String}  * using surrogate pairs, and a {@code CharMatcher} treats these just as two  * separate characters.  *  * @author Kevin Bourrillion  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Determines a true or false value for any Java {@code char} value, just as  * {@link Predicate} does for any {@link Object}. Also offers basic text  * processing methods based on this function. Implementations are strongly  * encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching  * character" is used to mean "any character {@code c} for which {@code  * this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not  * understand supplementary Unicode code points in the range {@code 0x10000} to  * {@code 0x10FFFF}. Such logical characters are encoded into a {@code String}  * using surrogate pairs, and a {@code CharMatcher} treats these just as two  * separate characters.  *  * @author Kevin Bourrillion  * @since 1  */
+end_comment
+
+begin_comment
+comment|// TODO: release as "stable" after changing from chars to code points, and
+end_comment
+
+begin_comment
+comment|// deciding whether constants should change to methods
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 annotation|@
 name|GwtCompatible
 DECL|class|CharMatcher
@@ -131,7 +155,7 @@ name|NON_BREAKING_WHITESPACE_CHARS
 init|=
 literal|"\u00a0\u180e\u202f"
 decl_stmt|;
-comment|/**    * Determines whether a character is whitespace according to the latest    * Unicode standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. See a comparison    * of several definitions of "whitespace" at    *<a href="TODO">(TODO)</a>.    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this    * constant to keep it up to date.    */
+comment|/**    * Determines whether a character is whitespace according to the latest    * Unicode standard, as illustrated    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bwhitespace%7D">here</a>.    * This is not the same definition used by other Java APIs. (See a<a href=    * "http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison    * of several definitions of "whitespace"</a>.)    *    *<p><b>Note:</b> as the Unicode definition evolves, we will modify this    * constant to keep it up to date.    */
 DECL|field|WHITESPACE
 specifier|public
 specifier|static
@@ -156,7 +180,7 @@ literal|'\u200a'
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**    * Determines whether a character is a breaking whitespace (that is,    * a whitespace which can be interpreted as a break between words    * for formatting purposes).  See {@link #WHITESPACE} for a discussion    * of that term.    *    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Determines whether a character is a breaking whitespace (that is,    * a whitespace which can be interpreted as a break between words    * for formatting purposes).  See {@link #WHITESPACE} for a discussion    * of that term.    *    * @since 2    */
 DECL|field|BREAKING_WHITESPACE
 specifier|public
 specifier|static
@@ -271,7 +295,7 @@ operator|=
 name|digit
 expr_stmt|;
 block|}
-comment|/**    * Determines whether a character is whitespace according to {@link    * Character#isWhitespace(char) Java's definition}; it is usually preferable    * to use {@link #WHITESPACE}. See a comparison of several definitions of    * "whitespace" at<a href="http://go/white+space">go/white+space</a>.    */
+comment|/**    * Determines whether a character is whitespace according to {@link    * Character#isWhitespace(char) Java's definition}; it is usually preferable    * to use {@link #WHITESPACE}.  (See a<a href=    * "http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison    * of several definitions of "whitespace"</a>.)    */
 DECL|field|JAVA_WHITESPACE
 specifier|public
 specifier|static
@@ -527,7 +551,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Determines whether a character is an ISO control character according to    * {@link Character#isISOControl(char)}.    */
+comment|/**    * Determines whether a character is an ISO control character as specified by    * {@link Character#isISOControl(char)}.    */
 DECL|field|JAVA_ISO_CONTROL
 specifier|public
 specifier|static
@@ -1510,7 +1534,6 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -1659,7 +1682,6 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -1882,7 +1904,6 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -1970,7 +1991,6 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -2069,7 +2089,6 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -2623,7 +2642,6 @@ block|}
 DECL|method|setBits (LookupTable table)
 annotation|@
 name|Override
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -2650,6 +2668,7 @@ block|}
 block|}
 block|}
 comment|/**    * Returns a {@code char} matcher functionally equivalent to this one, but    * which may be faster to query than the original; your mileage may vary.    * Precomputation takes time and is likely to be worthwhile only if the    * precomputed matcher is queried many thousands of times.    *    *<p>This method has no effect (returns {@code this}) when called in GWT:    * it's unclear whether a precomputed matcher is faster, but it certainly    * consumes more memory, which doesn't seem like a worthwhile tradeoff in a    * browser.    */
+comment|// TODO: must seriously evaluate the benefits of this
 DECL|method|precomputed ()
 specifier|public
 name|CharMatcher
@@ -2725,7 +2744,6 @@ return|;
 block|}
 comment|/**    * For use by implementors; sets the bit corresponding to each character ('\0'    * to '{@literal \}uFFFF') that matches this matcher in the given bit array,    * leaving all other bits untouched.    *    *<p>The default implementation loops over every possible character value,    * invoking {@link #matches} for each one.    */
 DECL|method|setBits (LookupTable table)
-specifier|protected
 name|void
 name|setBits
 parameter_list|(
@@ -2777,8 +2795,9 @@ block|}
 block|}
 comment|/**    * A bit array with one bit per {@code char} value, used by {@link    * CharMatcher#precomputed}.    *    *<p>TODO: possibly share a common BitArray class with BloomFilter    * and others... a simpler java.util.BitSet.    */
 DECL|class|LookupTable
-specifier|protected
+specifier|private
 specifier|static
+specifier|final
 class|class
 name|LookupTable
 block|{
@@ -2897,7 +2916,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains no matching    * characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link    * #matches} for each character, until this returns {@code false} or the end is    * reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the    *     sequence, including when the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains no matching    * characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link    * #matches} for each character, until this returns {@code false} or the end    * is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the    *     sequence, including when the sequence is empty    */
 DECL|method|matchesNoneOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -3402,7 +3421,7 @@ name|chars
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each character    * that matches this matcher replaced by a given replacement sequence. For    * example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character,    * you are better off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place    *     of each matching character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each character    * that matches this matcher replaced by a given replacement sequence. For    * example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one    * character, you are better off calling {@link #replaceFrom(CharSequence,    * char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place    *     of each matching character in {@code sequence}    * @return the new string    */
 DECL|method|replaceFrom (CharSequence sequence, CharSequence replacement)
 specifier|public
 name|String
@@ -3500,14 +3519,13 @@ init|=
 operator|new
 name|StringBuilder
 argument_list|(
-call|(
-name|int
-call|)
-argument_list|(
+operator|(
 name|len
 operator|*
-literal|1.5
-argument_list|)
+literal|3
+operator|/
+literal|2
+operator|)
 operator|+
 literal|16
 argument_list|)
@@ -4102,7 +4120,8 @@ block|}
 comment|// Predicate interface
 comment|/**    * Returns {@code true} if this matcher matches the given character.    *    * @throws NullPointerException if {@code character} is null    */
 DECL|method|apply (Character character)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|apply

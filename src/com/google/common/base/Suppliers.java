@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -63,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2010.01.04<b>stable</b> (imported from Google Collections Library)  */
+comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -78,8 +92,8 @@ specifier|private
 name|Suppliers
 parameter_list|()
 block|{}
-comment|/**    * Returns a new supplier which is the composition of the provided function    * and supplier. In other words, the new supplier's value will be computed by    * retrieving the value from {@code first}, and then applying    * {@code function} to that value. Note that the resulting supplier will not    * call {@code first} or invoke {@code function} until it is called.    */
-DECL|method|compose ( Function<? super F, T> function, Supplier<F> first)
+comment|/**    * Returns a new supplier which is the composition of the provided function    * and supplier. In other words, the new supplier's value will be computed by    * retrieving the value from {@code supplier}, and then applying    * {@code function} to that value. Note that the resulting supplier will not    * call {@code supplier} or invoke {@code function} until it is called.    */
+DECL|method|compose ( Function<? super F, T> function, Supplier<F> supplier)
 specifier|public
 specifier|static
 parameter_list|<
@@ -107,7 +121,7 @@ name|Supplier
 argument_list|<
 name|F
 argument_list|>
-name|first
+name|supplier
 parameter_list|)
 block|{
 name|Preconditions
@@ -121,7 +135,7 @@ name|Preconditions
 operator|.
 name|checkNotNull
 argument_list|(
-name|first
+name|supplier
 argument_list|)
 expr_stmt|;
 return|return
@@ -135,7 +149,7 @@ argument_list|>
 argument_list|(
 name|function
 argument_list|,
-name|first
+name|supplier
 argument_list|)
 return|;
 block|}
@@ -165,23 +179,19 @@ name|?
 super|super
 name|F
 argument_list|,
-name|?
-extends|extends
 name|T
 argument_list|>
 name|function
 decl_stmt|;
-DECL|field|first
+DECL|field|supplier
 specifier|final
 name|Supplier
 argument_list|<
-name|?
-extends|extends
 name|F
 argument_list|>
-name|first
+name|supplier
 decl_stmt|;
-DECL|method|SupplierComposition (Function<? super F, ? extends T> function, Supplier<? extends F> first)
+DECL|method|SupplierComposition (Function<? super F, T> function, Supplier<F> supplier)
 name|SupplierComposition
 parameter_list|(
 name|Function
@@ -190,19 +200,15 @@ name|?
 super|super
 name|F
 argument_list|,
-name|?
-extends|extends
 name|T
 argument_list|>
 name|function
 parameter_list|,
 name|Supplier
 argument_list|<
-name|?
-extends|extends
 name|F
 argument_list|>
-name|first
+name|supplier
 parameter_list|)
 block|{
 name|this
@@ -213,9 +219,9 @@ name|function
 expr_stmt|;
 name|this
 operator|.
-name|first
+name|supplier
 operator|=
-name|first
+name|supplier
 expr_stmt|;
 block|}
 DECL|method|get ()
@@ -229,7 +235,7 @@ name|function
 operator|.
 name|apply
 argument_list|(
-name|first
+name|supplier
 operator|.
 name|get
 argument_list|()
@@ -282,9 +288,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|class|MemoizingSupplier
 annotation|@
 name|VisibleForTesting
+DECL|class|MemoizingSupplier
 specifier|static
 class|class
 name|MemoizingSupplier
@@ -373,7 +379,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier that caches the instance supplied by the delegate and    * removes the cached value after the specified time has passed. Subsequent    * calls to {@code get()} return the cached value if the expiration time has    * not passed. After the expiration time, a new value is retrieved, cached,    * and returned. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form    * does not contain the cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    * @param duration the length of time after a value is created that it    *     should stop being returned by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2010.01.04<b>tentative</b>    */
+comment|/**    * Returns a supplier that caches the instance supplied by the delegate and    * removes the cached value after the specified time has passed. Subsequent    * calls to {@code get()} return the cached value if the expiration time has    * not passed. After the expiration time, a new value is retrieved, cached,    * and returned. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form    * does not contain the cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    * @param duration the length of time after a value is created that it    *     should stop being returned by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2    */
+annotation|@
+name|Beta
 DECL|method|memoizeWithExpiration ( Supplier<T> delegate, long duration, TimeUnit unit)
 specifier|public
 specifier|static

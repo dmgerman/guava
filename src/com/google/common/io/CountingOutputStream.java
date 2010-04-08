@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -47,12 +61,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An OutputStream that counts the number of bytes written.  *  * @author Chris Nokleberg  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * An OutputStream that counts the number of bytes written.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|CountingOutputStream
 specifier|public
+specifier|final
 class|class
 name|CountingOutputStream
 extends|extends

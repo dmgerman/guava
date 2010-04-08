@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -79,10 +93,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code CheckedFuture} is an extension of {@link Future} that includes  * versions of the {@code get} methods that can throw a checked exception and  * allows listeners to be attached to the future.  This makes it easier to  * create a future that executes logic which can throw an exception.  *   *<p>Implementations of this interface must adapt the exceptions thrown by  * {@code Future#get()}: {@link CancellationException},  * {@link ExecutionException} and {@link InterruptedException} into the type  * specified by the {@code E} type parameter.  *   *<p>This interface also extends the ListenableFuture interface to allow  * listeners to be added. This allows the future to be used as a normal  * {@link Future} or as an asynchronous callback mechanism as needed. This  * allows multiple callbacks to be registered for a particular task, and the  * future will guarantee execution of all listeners when the task completes.  *   * @author Sven Mawson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * A {@code CheckedFuture} is an extension of {@link Future} that includes  * versions of the {@code get} methods that can throw a checked exception and  * allows listeners to be attached to the future.  This makes it easier to  * create a future that executes logic which can throw an exception.  *   *<p>Implementations of this interface must adapt the exceptions thrown by  * {@code Future#get()}: {@link CancellationException},  * {@link ExecutionException} and {@link InterruptedException} into the type  * specified by the {@code E} type parameter.  *   *<p>This interface also extends the ListenableFuture interface to allow  * listeners to be added. This allows the future to be used as a normal  * {@link Future} or as an asynchronous callback mechanism as needed. This  * allows multiple callbacks to be registered for a particular task, and the  * future will guarantee execution of all listeners when the task completes.  *   * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|CheckedFuture
 specifier|public
 interface|interface
@@ -102,7 +118,6 @@ argument_list|>
 block|{
 comment|/**    * Exception checking version of {@link Future#get()} that will translate    * {@link InterruptedException}, {@link CancellationException} and    * {@link ExecutionException} into application-specific exceptions.    *     * @return the result of executing the future.    * @throws E on interruption, cancellation or execution exceptions.    */
 DECL|method|checkedGet ()
-specifier|public
 name|V
 name|checkedGet
 parameter_list|()
@@ -111,7 +126,6 @@ name|E
 function_decl|;
 comment|/**    * Exception checking version of {@link Future#get(long, TimeUnit)} that will    * translate {@link InterruptedException}, {@link CancellationException} and    * {@link ExecutionException} into application-specific exceptions.  On    * timeout this method throws a normal {@link TimeoutException}.    *     * @return the result of executing the future.    * @throws TimeoutException if retrieving the result timed out.    * @throws E on interruption, cancellation or execution exceptions.    */
 DECL|method|checkedGet (long timeout, TimeUnit unit)
-specifier|public
 name|V
 name|checkedGet
 parameter_list|(

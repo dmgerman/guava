@@ -19,6 +19,20 @@ package|;
 end_package
 
 begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -173,10 +187,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for implementing services that can handle {@link #doStart} and  * {@link #doStop} requests, responding to them with {@link #notifyStarted()}  * and {@link #notifyStopped()} callbacks. Its subclasses must manage threads  * manually; consider {@link AbstractExecutionThreadService} if you need only a  * single execution thread.  *  * @author Jesse Wilson  * @since 2009.09.15<b>tentative</b>  */
+comment|/**  * Base class for implementing services that can handle {@link #doStart} and  * {@link #doStop} requests, responding to them with {@link #notifyStarted()}  * and {@link #notifyStopped()} callbacks. Its subclasses must manage threads  * manually; consider {@link AbstractExecutionThreadService} if you need only a  * single execution thread.  *  * @author Jesse Wilson  * @since 1  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|AbstractService
 specifier|public
 specifier|abstract
@@ -852,10 +868,32 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|" ["
+operator|+
+name|state
+argument_list|()
+operator|+
+literal|"]"
+return|;
+block|}
 comment|/**    * A change from one service state to another, plus the result of the change.    *    * TODO: could this be renamed to DefaultFuture, with methods    *     like setResult(T) and setFailure(T) ?    */
 DECL|class|Transition
 specifier|private
-specifier|static
 class|class
 name|Transition
 implements|implements
@@ -1048,7 +1086,14 @@ block|}
 throw|throw
 operator|new
 name|TimeoutException
+argument_list|(
+name|AbstractService
+operator|.
+name|this
+operator|.
+name|toString
 argument_list|()
+argument_list|)
 throw|;
 block|}
 DECL|method|getImmediately ()
