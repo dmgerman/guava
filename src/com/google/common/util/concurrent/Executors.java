@@ -105,13 +105,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Old location of {@link MoreExecutors}.  */
+comment|/**  * Old location of {@link MoreExecutors}.  *  * @deprecated use {@link MoreExecutors}  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
 comment|// TODO: delete after Guava release 3
+annotation|@
+name|Deprecated
 DECL|class|Executors
 specifier|public
 specifier|final
@@ -123,8 +125,10 @@ specifier|private
 name|Executors
 parameter_list|()
 block|{}
-comment|/**    * Old location of {@link MoreExecutors#getExitingExecutorService(    * ThreadPoolExecutor, long, TimeUnit)}.    */
+comment|/**    * Old location of {@link MoreExecutors#getExitingExecutorService(    * ThreadPoolExecutor, long, TimeUnit)}.    *    * @deprecated use {@link MoreExecutors#getExitingExecutorService(    * ThreadPoolExecutor, long, TimeUnit)}.    */
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|ExecutorService
@@ -153,7 +157,9 @@ name|timeUnit
 argument_list|)
 return|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#getExitingScheduledExecutorService(    * ScheduledThreadPoolExecutor, long, TimeUnit)}.    */
+comment|/**    * Old location of {@link MoreExecutors#getExitingScheduledExecutorService(    * ScheduledThreadPoolExecutor, long, TimeUnit)}.    *    * @deprecated use {@link MoreExecutors#getExitingScheduledExecutorService(    * ScheduledThreadPoolExecutor, long, TimeUnit)}.    */
+annotation|@
+name|Deprecated
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -183,8 +189,10 @@ name|timeUnit
 argument_list|)
 return|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#addDelayedShutdownHook(    * ExecutorService, long, TimeUnit)}.    */
+comment|/**    * Old location of {@link MoreExecutors#addDelayedShutdownHook(    * ExecutorService, long, TimeUnit)}.    *    * @deprecated use {@link MoreExecutors#addDelayedShutdownHook(    * ExecutorService, long, TimeUnit)}.    */
 DECL|method|addDelayedShutdownHook ( final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit)
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|void
@@ -215,8 +223,10 @@ name|timeUnit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#getExitingExecutorService(    * ThreadPoolExecutor)}.    */
+comment|/**    * Old location of {@link MoreExecutors#getExitingExecutorService(    * ThreadPoolExecutor)}.    *    * @deprecated use {@link MoreExecutors#getExitingExecutorService(    * ThreadPoolExecutor)}.    */
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor)
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|ExecutorService
@@ -235,7 +245,9 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#getExitingScheduledExecutorService(    * ScheduledThreadPoolExecutor)}.    */
+comment|/**    * Old location of {@link MoreExecutors#getExitingScheduledExecutorService(    * ScheduledThreadPoolExecutor)}.    *    * @deprecated use {@link MoreExecutors#getExitingScheduledExecutorService(    * ScheduledThreadPoolExecutor)}.    */
+annotation|@
+name|Deprecated
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -255,8 +267,10 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#daemonThreadFactory()}.    */
+comment|/**    * Old location of {@link MoreExecutors#daemonThreadFactory()}.    *    * @deprecated use {@link MoreExecutors#daemonThreadFactory()}.    */
 DECL|method|daemonThreadFactory ()
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|ThreadFactory
@@ -270,7 +284,9 @@ name|daemonThreadFactory
 argument_list|()
 return|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#daemonThreadFactory(ThreadFactory)}.    */
+comment|/**    * Old location of {@link MoreExecutors#daemonThreadFactory(ThreadFactory)}.    *    * @deprecated use {@link MoreExecutors#daemonThreadFactory(ThreadFactory)}.    */
+annotation|@
+name|Deprecated
 DECL|method|daemonThreadFactory (ThreadFactory factory)
 specifier|public
 specifier|static
@@ -290,8 +306,10 @@ name|factory
 argument_list|)
 return|;
 block|}
-comment|/**    * Old location of {@link MoreExecutors#sameThreadExecutor()}.    */
+comment|/**    * Old location of {@link MoreExecutors#sameThreadExecutor()}.    *    * @deprecated use {@link MoreExecutors#sameThreadExecutor()}.    */
 DECL|method|sameThreadExecutor ()
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|ExecutorService
