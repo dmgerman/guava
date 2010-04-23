@@ -109,6 +109,12 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingMultimap ()
+specifier|protected
+name|ForwardingMultimap
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override

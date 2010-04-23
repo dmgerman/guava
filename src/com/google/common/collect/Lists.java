@@ -285,7 +285,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given    * elements.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use {@link ImmutableList#of(Object[])} instead.    *    * @param elements the elements that the list should contain, in order    * @return a new {@code ArrayList} containing those elements    */
+comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given    * elements.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use an overload of {@link ImmutableList#of()} (for varargs) or    * {@link ImmutableList#copyOf(Object[])} (for an array) instead.    *    * @param elements the elements that the list should contain, in order    * @return a new {@code ArrayList} containing those elements    */
 annotation|@
 name|GwtCompatible
 argument_list|(

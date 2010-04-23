@@ -63,6 +63,12 @@ argument_list|<
 name|T
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingIterator ()
+specifier|protected
+name|ForwardingIterator
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override

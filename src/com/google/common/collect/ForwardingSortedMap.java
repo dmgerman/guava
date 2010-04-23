@@ -82,6 +82,12 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingSortedMap ()
+specifier|protected
+name|ForwardingSortedMap
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override

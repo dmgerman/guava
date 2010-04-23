@@ -18,27 +18,11 @@ name|concurrent
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
 begin_comment
 comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException}.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|UncheckedTimeoutException
 specifier|public
 class|class

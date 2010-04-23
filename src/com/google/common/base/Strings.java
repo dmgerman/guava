@@ -17,36 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -80,13 +50,27 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code String} or {@code CharSequence}  * instances.  *  * @author Kevin Bourrillion  * @since 3  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 DECL|class|Strings

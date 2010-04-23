@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The presence of this annotation on a method indicates that the method may  *<em>not</em> be used with the  *<a href="http://code.google.com/webtoolkit/">Google Web Toolkit</a> (GWT),  * even though its type is annotated as {@link GwtCompatible} and accessible in  * GWT.  They can cause GWT compilation errors or simply unexpected exceptions  * when used in GWT.  *  *<p>Note that this annotation should only be applied to methods of types which  * are annotated as {@link GwtCompatible}.  *  * @author Charles Fry  */
+comment|/**  * The presence of this annotation on a method indicates that the method may  *<em>not</em> be used with the  *<a href="http://code.google.com/webtoolkit/">Google Web Toolkit</a> (GWT),  * even though its type is annotated as {@link GwtCompatible} and accessible in  * GWT.  They can cause GWT compilation errors or simply unexpected exceptions  * when used in GWT.  *  *<p>Note that this annotation should only be applied to methods or inner  * classes of types which are annotated as {@link GwtCompatible}.  *  * @author Charles Fry  */
 end_comment
 
 begin_annotation_defn
@@ -79,9 +79,15 @@ argument_list|)
 annotation|@
 name|Target
 argument_list|(
+block|{
+name|ElementType
+operator|.
+name|TYPE
+block|,
 name|ElementType
 operator|.
 name|METHOD
+block|}
 argument_list|)
 annotation|@
 name|GwtCompatible

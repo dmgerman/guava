@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -175,8 +161,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}. For    * example, in an object that contains two member variables, {@code x},    * and {@code y}, one could write:<pre><tt>    *   public class ClassName {    *     public String toString() {    *       return Objects.toStringHelper(this)    *           .add("x", x)    *           .add("y", y)    *           .toString();    *     }    *   }</tt>    *</pre>    *    * Assuming the values of {@code x} and {@code y} are 1 and 2,    * this code snippet returns the string<tt>"ClassName{x=1, y=2}"</tt>.    *    * @since 2    */
-annotation|@
-name|Beta
 DECL|method|toStringHelper (Object object)
 specifier|public
 specifier|static
@@ -196,8 +180,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since 3    */
-annotation|@
-name|Beta
 DECL|method|firstNonNull (@ullable T first, @Nullable T second)
 specifier|public
 specifier|static
@@ -234,8 +216,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Support class for {@link Objects#toStringHelper}.    *    * @author Jason Lee    * @since 2    */
-annotation|@
-name|Beta
 DECL|class|ToStringHelper
 specifier|public
 specifier|static

@@ -26,20 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|ForwardingObject
@@ -99,8 +85,6 @@ comment|/**  * A {@link Future} which forwards all its method calls to another f
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|ForwardingFuture
 specifier|public
 specifier|abstract
@@ -117,6 +101,12 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingFuture ()
+specifier|protected
+name|ForwardingFuture
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override

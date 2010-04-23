@@ -89,6 +89,12 @@ name|ForwardingObject
 implements|implements
 name|Service
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingService ()
+specifier|protected
+name|ForwardingService
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override

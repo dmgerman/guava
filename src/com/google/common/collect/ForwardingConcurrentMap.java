@@ -74,6 +74,12 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingConcurrentMap ()
+specifier|protected
+name|ForwardingConcurrentMap
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override

@@ -31,22 +31,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -106,13 +90,27 @@ name|Nullable
 import|;
 end_import
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|Throwables
 specifier|public
 specifier|final
@@ -364,6 +362,8 @@ name|throwable
 return|;
 block|}
 comment|/**    * Gets a {@code Throwable} cause chain as a list.  The first entry in the    * list will be {@code throwable} followed by its cause hierarchy.  Note    * that this is a snapshot of the cause chain and will not reflect    * any subsequent changes to the cause chain.    *    *<p>Here's an example of how it can be used to find specific types    * of exceptions in the cause chain:    *    *<pre>    * Iterables.filter(Throwables.getCausalChain(e), IOException.class));    *</pre>    *    * @param throwable the non-null {@code Throwable} to extract causes from    * @return an unmodifiable list containing the cause chain starting with    *     {@code throwable}    */
+annotation|@
+name|Beta
 DECL|method|getCausalChain (Throwable throwable)
 specifier|public
 specifier|static
@@ -465,6 +465,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Rethrows the cause exception of a given throwable, discarding the original    * throwable. Optionally, the stack frames of the cause and the outer    * exception are combined and the stack trace of the cause is set to this    * combined trace. If there is no cause the original exception is rethrown    * unchanged in all cases.    *    * @param exception the exception from which to extract the cause    * @param combineStackTraces if true the stack trace of the cause will be    *     replaced by the concatenation of the trace from the exception and the    *     trace from the cause.    */
+annotation|@
+name|Beta
 DECL|method|throwCause (Exception exception, boolean combineStackTraces)
 specifier|public
 specifier|static

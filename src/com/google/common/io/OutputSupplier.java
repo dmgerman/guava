@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -45,8 +31,6 @@ comment|/**  * An factory for writable streams of bytes or characters.  *  * @au
 end_comment
 
 begin_interface
-annotation|@
-name|Beta
 DECL|interface|OutputSupplier
 specifier|public
 interface|interface

@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|nio
@@ -46,17 +32,7 @@ begin_comment
 comment|/**  * Contains constant definitions for the six standard {@link Charset}  * instances, which are guaranteed to be supported by all Java platform  * implementations.  *  * @author Mike Bostock  * @since 1  */
 end_comment
 
-begin_comment
-comment|// TODO: Should we change to methods, e.g. Charsets.utf8(), which would give us
-end_comment
-
-begin_comment
-comment|// the option of lazy init, besides being more standard across the library?
-end_comment
-
 begin_class
-annotation|@
-name|Beta
 DECL|class|Charsets
 specifier|public
 specifier|final

@@ -53,7 +53,7 @@ specifier|abstract
 class|class
 name|ForwardingObject
 block|{
-comment|/** Sole constructor. */
+comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingObject ()
 specifier|protected
 name|ForwardingObject

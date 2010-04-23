@@ -1439,7 +1439,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|wrapList ( K key, List<V> list, @Nullable WrappedCollection ancestor)
+DECL|method|wrapList ( @ullable K key, List<V> list, @Nullable WrappedCollection ancestor)
 specifier|private
 name|List
 argument_list|<
@@ -1447,6 +1447,8 @@ name|V
 argument_list|>
 name|wrapList
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2464,9 +2466,11 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|WrappedSet (K key, Set<V> delegate)
+DECL|method|WrappedSet (@ullable K key, Set<V> delegate)
 name|WrappedSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -2754,9 +2758,11 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|WrappedList (K key, List<V> delegate, @Nullable WrappedCollection ancestor)
+DECL|method|WrappedList (@ullable K key, List<V> delegate, @Nullable WrappedCollection ancestor)
 name|WrappedList
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -3329,9 +3335,11 @@ name|WrappedList
 implements|implements
 name|RandomAccess
 block|{
-DECL|method|RandomAccessWrappedList (K key, List<V> delegate, @Nullable WrappedCollection ancestor)
+DECL|method|RandomAccessWrappedList (@ullable K key, List<V> delegate, @Nullable WrappedCollection ancestor)
 name|RandomAccessWrappedList
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,

@@ -1326,6 +1326,55 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * Creates any necessary but nonexistent parent directories of the specified    * file. Note that if this operation fails it may have succeeded in creating    * some (but not all) of the necessary parent directories.    *    * @throws IOException if an I/O error occurs, or if any necessary but    *     nonexistent parent directories of the specified file could not be    *     created.    * @since 4    */
+DECL|method|createParentDirs (File file)
+specifier|public
+specifier|static
+name|void
+name|createParentDirs
+parameter_list|(
+name|File
+name|file
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|File
+name|parent
+init|=
+name|file
+operator|.
+name|getCanonicalFile
+argument_list|()
+operator|.
+name|getParentFile
+argument_list|()
+decl_stmt|;
+name|parent
+operator|.
+name|mkdirs
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|parent
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Unable to create parent directories of "
+operator|+
+name|file
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/**    * Moves the file from one path to another. This method can rename a file or    * move it to a different directory, like the Unix {@code mv} command.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    */
 DECL|method|move (File from, File to)
 specifier|public

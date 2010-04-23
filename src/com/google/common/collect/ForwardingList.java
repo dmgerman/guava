@@ -96,6 +96,12 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|ForwardingList ()
+specifier|protected
+name|ForwardingList
+parameter_list|()
+block|{}
 DECL|method|delegate ()
 annotation|@
 name|Override
