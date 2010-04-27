@@ -1915,9 +1915,6 @@ return|return
 name|this
 return|;
 block|}
-comment|// TODO: should this be promoted to ImmutableCollection.Builder?
-comment|// TODO: get rid of it or replace it with
-comment|// .addAll(elements.subList(fromIndex, toIndex)?
 comment|/**      * Returns a newly-created {@code ImmutableList} based on the contents of      * the {@code Builder}.      */
 DECL|method|build ()
 annotation|@

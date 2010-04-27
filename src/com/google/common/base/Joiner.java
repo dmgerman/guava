@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which joins pieces of text (specified as an array, {@link  * Iterable}, varargs or even a {@link Map}) with a separator. It either  * appends the results to an {@link Appendable} or returns them as a {@link  * String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input  * elements are converted to strings using {@link Object#toString()} before  * being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is  * specified, the joining methods will throw {@link NullPointerException} if any  * given element is null.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * An object which joins pieces of text (specified as an array, {@link  * Iterable}, varargs or even a {@link Map}) with a separator. It either  * appends the results to an {@link Appendable} or returns them as a {@link  * String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input  * elements are converted to strings using {@link Object#toString()} before  * being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is  * specified, the joining methods will throw {@link NullPointerException} if any  * given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration  * method such as {@code useForNull} has no effect on the instance it is invoked  * on! You must store and use the new joiner instance returned by the method.  * This makes joiners thread-safe, and safe to store as {@code static final}  * constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -469,7 +469,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Appends to {@code builder} the string representation of each of the    * remaining arguments. Identical to {@link #appendTo(Appendable, Object,    * Object, Object[])}, except that it does not throw {@link IOException}.    */
+comment|/**    * Appends to {@code builder} the string representation of each of the    * remaining arguments. Identical to {@link #appendTo(Appendable, Object,    * Object, Object...)}, except that it does not throw {@link IOException}.    */
 DECL|method|appendTo (StringBuilder builder, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
@@ -918,7 +918,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins    * iterables and arrays.    */
+comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins    * iterables and arrays. Like {@code Joiner}, it is thread-safe and immutable.    */
 DECL|class|MapJoiner
 specifier|public
 specifier|static
@@ -927,11 +927,13 @@ name|MapJoiner
 block|{
 DECL|field|joiner
 specifier|private
+specifier|final
 name|Joiner
 name|joiner
 decl_stmt|;
 DECL|field|keyValueSeparator
 specifier|private
+specifier|final
 name|String
 name|keyValueSeparator
 decl_stmt|;

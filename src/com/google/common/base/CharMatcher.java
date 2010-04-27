@@ -179,6 +179,9 @@ argument_list|,
 literal|'\u200a'
 argument_list|)
 argument_list|)
+operator|.
+name|precomputed
+argument_list|()
 decl_stmt|;
 comment|/**    * Determines whether a character is a breaking whitespace (that is,    * a whitespace which can be interpreted as a break between words    * for formatting purposes).  See {@link #WHITESPACE} for a discussion    * of that term.    *    * @since 2    */
 DECL|field|BREAKING_WHITESPACE
@@ -212,6 +215,9 @@ argument_list|,
 literal|'\u200a'
 argument_list|)
 argument_list|)
+operator|.
+name|precomputed
+argument_list|()
 decl_stmt|;
 comment|/**    * Determines whether a character is ASCII, meaning that its code point is    * less than 128.    */
 DECL|field|ASCII
@@ -293,6 +299,9 @@ block|}
 name|DIGIT
 operator|=
 name|digit
+operator|.
+name|precomputed
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Determines whether a character is whitespace according to {@link    * Character#isWhitespace(char) Java's definition}; it is usually preferable    * to use {@link #WHITESPACE}.  (See a<a href=    * "http://spreadsheets.google.com/pub?key=pd8dAQyHbdewRsnE5x5GzKQ">comparison    * of several definitions of "whitespace"</a>.)    */
@@ -385,6 +394,9 @@ argument_list|(
 literal|'\u3000'
 argument_list|)
 argument_list|)
+operator|.
+name|precomputed
+argument_list|()
 decl_stmt|;
 comment|/**    * Determines whether a character is a digit according to {@link    * Character#isDigit(char) Java's definition}. If you only care to match    * ASCII digits, you can use {@code inRange('0', '9')}.    */
 DECL|field|JAVA_DIGIT
@@ -692,6 +704,9 @@ argument_list|(
 literal|"\ufeff\ufff9\ufffa\ufffb"
 argument_list|)
 argument_list|)
+operator|.
+name|precomputed
+argument_list|()
 decl_stmt|;
 comment|/**    * Determines whether a character is single-width (not double-width).  When    * in doubt, this matcher errs on the side of returning {@code false} (that    * is, it tends to assume a character is double-width).    *    *<b>Note:</b> as the reference file evolves, we will modify this constant    * to keep it up to date.    */
 DECL|field|SINGLE_WIDTH
@@ -821,6 +836,9 @@ argument_list|,
 literal|'\uffdc'
 argument_list|)
 argument_list|)
+operator|.
+name|precomputed
+argument_list|()
 decl_stmt|;
 comment|/** Matches any character. */
 DECL|field|ANY
