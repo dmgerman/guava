@@ -5852,6 +5852,99 @@ name|hash
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns true if the given entry has expired.    */
+DECL|method|isExpired (ReferenceEntry<K, V> entry)
+name|boolean
+name|isExpired
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+return|return
+name|isExpired
+argument_list|(
+operator|(
+name|Expirable
+operator|)
+name|entry
+argument_list|,
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns true if the given entry has expired.    */
+DECL|method|isExpired (Expirable expirable, long now)
+name|boolean
+name|isExpired
+parameter_list|(
+name|Expirable
+name|expirable
+parameter_list|,
+name|long
+name|now
+parameter_list|)
+block|{
+comment|// Avoid overflow.
+return|return
+name|now
+operator|-
+name|expirable
+operator|.
+name|getWriteTime
+argument_list|()
+operator|>
+name|expirationNanos
+return|;
+block|}
+comment|/**    * Gets the value from an entry. Returns null if the value is null (i.e.    * reclaimed or not computed yet) or if the entry is expired. If    * you already called expireEntries() you can just check the value for    * null and skip the expiration check.    */
+DECL|method|getUnexpiredValue (ReferenceEntry<K, V> e)
+name|V
+name|getUnexpiredValue
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|e
+parameter_list|)
+block|{
+name|V
+name|value
+init|=
+name|e
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+return|return
+operator|(
+name|expires
+operator|&&
+name|isExpired
+argument_list|(
+name|e
+argument_list|)
+operator|)
+condition|?
+literal|null
+else|:
+name|value
+return|;
+block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -6144,59 +6237,6 @@ name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**      * Returns true if the given entry has expired.      */
-DECL|method|isExpired (Expirable expirable, long now)
-name|boolean
-name|isExpired
-parameter_list|(
-name|Expirable
-name|expirable
-parameter_list|,
-name|long
-name|now
-parameter_list|)
-block|{
-comment|// Handle overflow.
-return|return
-name|now
-operator|-
-name|expirable
-operator|.
-name|getWriteTime
-argument_list|()
-operator|>
-name|expirationNanos
-return|;
-block|}
-comment|/**      * Returns true if the given entry has expired.      */
-DECL|method|isExpired (ReferenceEntry<K, V> entry)
-name|boolean
-name|isExpired
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-return|return
-name|isExpired
-argument_list|(
-operator|(
-name|Expirable
-operator|)
-name|entry
-argument_list|,
-name|System
-operator|.
-name|nanoTime
-argument_list|()
-argument_list|)
-return|;
 block|}
 annotation|@
 name|GuardedBy
@@ -6786,46 +6826,6 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**      * Gets the value from an entry. Returns null if the value is null (i.e.      * reclaimed or not computed yet) or if the entry is expired. If      * you already called expireEntries() you can just check the value for      * null and skip the expiration check.      */
-DECL|method|validValue (ReferenceEntry<K, V> e)
-name|V
-name|validValue
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|e
-parameter_list|)
-block|{
-name|V
-name|value
-init|=
-name|e
-operator|.
-name|getValueReference
-argument_list|()
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
-return|return
-operator|(
-name|expires
-operator|&&
-name|isExpired
-argument_list|(
-name|e
-argument_list|)
-operator|)
-condition|?
-literal|null
-else|:
-name|value
-return|;
-block|}
 DECL|method|containsKey (Object key, int hash)
 name|boolean
 name|containsKey
@@ -6914,7 +6914,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|validValue
+name|getUnexpiredValue
 argument_list|(
 name|e
 argument_list|)
@@ -7014,7 +7014,7 @@ block|{
 name|V
 name|entryValue
 init|=
-name|validValue
+name|getUnexpiredValue
 argument_list|(
 name|e
 argument_list|)
@@ -8393,7 +8393,7 @@ name|int
 name|hash
 parameter_list|)
 block|{
-comment|/*        * Used for reference cleanup. We probably don't want to expire entries        * here as it can be called over and over. TODO: Pass in value reference        * instead of the value.        */
+comment|/*        * Used for reference cleanup. We probably don't want to expire entries        * here as it can be called over and over.        */
 name|lock
 argument_list|()
 expr_stmt|;
@@ -10349,15 +10349,11 @@ decl_stmt|;
 name|V
 name|value
 init|=
+name|getUnexpiredValue
+argument_list|(
 name|entry
-operator|.
-name|getValueReference
-argument_list|()
-operator|.
-name|get
-argument_list|()
+argument_list|)
 decl_stmt|;
-comment|// TODO: Ensure value hasn't expired.
 if|if
 condition|(
 name|key

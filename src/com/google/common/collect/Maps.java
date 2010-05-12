@@ -17,6 +17,38 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -316,38 +348,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
 comment|/**  * Static utility methods pertaining to {@link Map} instances. Also see this  * class's counterparts {@link Lists} and {@link Sets}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @since 2 (imported from Google Collections Library)  */
 end_comment
@@ -395,7 +395,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code HashMap} instance with enough capacity to hold the    * specified number of elements without rehashing.    *    * @param expectedSize the expected size    * @return a new, empty {@code HashMap} with enough    *     capacity to hold {@code expectedSize} elements without rehashing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code HashMap} instance with enough capacity to hold the    * specified number of elements without rehashing.    *    * @param expectedSize the expected size    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} elements without rehashing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|newHashMapWithExpectedSize ( int expectedSize)
 specifier|public
 specifier|static
@@ -416,7 +416,7 @@ name|int
 name|expectedSize
 parameter_list|)
 block|{
-comment|/*      * The HashMap is constructed with an initialCapacity that's greater than      * expectedSize. The larger value is necessary because HashMap resizes      * its internal array if the map size exceeds loadFactor * initialCapacity.      */
+comment|/*      * The HashMap is constructed with an initialCapacity that's greater than      * expectedSize. The larger value is necessary because HashMap resizes its      * internal array if the map size exceeds loadFactor * initialCapacity.      */
 return|return
 operator|new
 name|HashMap
@@ -433,7 +433,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an appropriate value for the "capacity" (in reality, "minimum    * table size") parameter of a {@link HashMap} constructor, such that the    * resulting table will be between 25% and 50% full when it contains    * {@code expectedSize} entries.    *    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Returns an appropriate value for the "capacity" (in reality, "minimum table    * size") parameter of a {@link HashMap} constructor, such that the resulting    * table will be between 25% and 50% full when it contains {@code    * expectedSize} entries.    *    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|capacity (int expectedSize)
 specifier|static
 name|int
@@ -463,7 +463,7 @@ literal|16
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from    *     {@code map}    */
+comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code    *         map}    */
 DECL|method|newHashMap ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -535,7 +535,8 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the    *     mappings from {@code map}    */
+comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from    *         {@code map}    */
+DECL|method|newLinkedHashMap ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -549,7 +550,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|newLinkedHashMap (Map<? extends K, ? extends V> map)
 name|newLinkedHashMap
 parameter_list|(
 name|Map
@@ -578,7 +578,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a general-purpose instance of {@code ConcurrentMap}, which    * supports all optional operations of the ConcurrentMap interface. It does    * not permit null keys or values. It is serializable.    *    *<p>This is currently accomplished by calling {@link MapMaker#makeMap()}.    *    *<p>It is preferable to use {@code MapMaker} directly (rather than through    * this method), as it presents numerous useful configuration options,    * such as the concurrency level, load factor, key/value reference types,    * and value computation.    *    * @return a new, empty {@code ConcurrentMap}    * @since 3    */
+comment|/**    * Returns a general-purpose instance of {@code ConcurrentMap}, which supports    * all optional operations of the ConcurrentMap interface. It does not permit    * null keys or values. It is serializable.    *    *<p>This is currently accomplished by calling {@link MapMaker#makeMap()}.    *    *<p>It is preferable to use {@code MapMaker} directly (rather than through    * this method), as it presents numerous useful configuration options,    * such as the concurrency level, load factor, key/value reference types,    * and value computation.    *    * @return a new, empty {@code ConcurrentMap}    * @since 3    */
 DECL|method|newConcurrentMap ()
 specifier|public
 specifier|static
@@ -647,7 +647,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as    * the specified map and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    * @param map the sorted map whose mappings are to be placed in the new map    *     and whose comparator is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code    *     map} and using the comparator of {@code map}    */
+comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as    * the specified map and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    * @param map the sorted map whose mappings are to be placed in the new map    *        and whose comparator is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code    *         map} and using the comparator of {@code map}    */
 DECL|method|newTreeMap (SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -781,7 +781,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code    *     map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap}    *     instance and contains no mappings    */
+comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code    *         map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap}    *         instance and contains no mappings    */
 DECL|method|newEnumMap ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1797,7 +1797,7 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *     keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *     key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *     if {@code keyFunction} produces {@code null} for any value    */
+comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    */
 comment|// TODO: consider returning a bimap, whose inverse view does lookups by
 comment|// invoking the function.
 DECL|method|uniqueIndex ( Iterable<V> values, Function<? super V, K> keyFunction)
@@ -1883,7 +1883,8 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code ImmutableMap<String, String>} from a {@code Properties}    * instance. Properties normally derive from {@code Map<Object, Object>}, but    * they typically contain strings, which is awkward. This method lets you get    * a plain-old-{@code Map} out of a {@code Properties}.    *    * @param properties a {@code Properties} object to be converted    * @return an immutable map containing all the entries in    *     {@code properties}    * @throws ClassCastException if any key in {@code Properties} is not a    *     {@code String}    * @throws NullPointerException if any key or value in {@code Properties} is    *     null.    */
+comment|/**    * Creates an {@code ImmutableMap<String, String>} from a {@code Properties}    * instance. Properties normally derive from {@code Map<Object, Object>}, but    * they typically contain strings, which is awkward. This method lets you get    * a plain-old-{@code Map} out of a {@code Properties}.    *    * @param properties a {@code Properties} object to be converted    * @return an immutable map containing all the entries in {@code properties}    * @throws ClassCastException if any key in {@code Properties} is not a {@code    *         String}    * @throws NullPointerException if any key or value in {@code Properties} is    *         null    */
+DECL|method|fromProperties ( Properties properties)
 specifier|public
 specifier|static
 name|ImmutableMap
@@ -1892,7 +1893,6 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-DECL|method|fromProperties (Properties properties)
 name|fromProperties
 parameter_list|(
 name|Properties
@@ -1968,7 +1968,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable map entry with the specified key and value. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
-DECL|method|immutableEntry ( @ullable final K key, @Nullable final V value)
+DECL|method|immutableEntry ( @ullable K key, @Nullable V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1986,13 +1986,11 @@ name|immutableEntry
 parameter_list|(
 annotation|@
 name|Nullable
-specifier|final
 name|K
 name|key
 parameter_list|,
 annotation|@
 name|Nullable
-specifier|final
 name|V
 name|value
 parameter_list|)
@@ -2013,7 +2011,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable view of the specified set of entries. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException},    * as do any operations that would modify the returned set.    *    * @param entrySet the entries for which to return an unmodifiable view    * @return an unmodifiable view of the entries    */
-DECL|method|unmodifiableEntrySet ( final Set<Entry<K, V>> entrySet)
+DECL|method|unmodifiableEntrySet ( Set<Entry<K, V>> entrySet)
 specifier|static
 parameter_list|<
 name|K
@@ -2031,7 +2029,6 @@ argument_list|>
 argument_list|>
 name|unmodifiableEntrySet
 parameter_list|(
-specifier|final
 name|Set
 argument_list|<
 name|Entry
@@ -2062,7 +2059,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an unmodifiable view of the specified map entry. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    * This also has the side-effect of redefining {@code equals} to comply with    * the Entry contract, to avoid a possible nefarious implementation of    * equals.    *    * @param entry the entry for which to return an unmodifiable view    * @return an unmodifiable view of the entry    */
+comment|/**    * Returns an unmodifiable view of the specified map entry. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    * This also has the side-effect of redefining {@code equals} to comply with    * the Entry contract, to avoid a possible nefarious implementation of equals.    *    * @param entry the entry for which to return an unmodifiable view    * @return an unmodifiable view of the entry    */
 DECL|method|unmodifiableEntry (final Entry<K, V> entry)
 specifier|private
 specifier|static
@@ -2632,11 +2629,6 @@ name|unmodifiableMap
 operator|=
 name|Collections
 operator|.
-expr|<
-name|K
-operator|,
-name|V
-operator|>
 name|unmodifiableMap
 argument_list|(
 name|delegate
@@ -2769,9 +2761,6 @@ name|values
 operator|=
 name|Collections
 operator|.
-expr|<
-name|V
-operator|>
 name|unmodifiableSet
 argument_list|(
 name|delegate
@@ -2913,7 +2902,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a map where each value is transformed by a function. All    * other properties of the map, such as iteration order, are left intact. For    * example, the code:    *<pre>   {@code    *    *   Map<String, Integer> map = ImmutableMap.of("a", 4, "b", 9);    *   Function<Integer, Double> sqrt = new Function<Integer, Double>() {    *     public Double apply(Integer in) {    *       return Math.sqrt((int) in);    *     }    *   };    *   Map<String, Double> transformed = Maps.transformValues(sqrt, map);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even    * null values provided that the function is capable of accepting null input.    * The transformed map might contain null values, if the function sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned map to be a view, but it means that the function will be    * applied many times for bulk operations like {@link Map#containsValue} and    * {@code Map.toString()}. For this to perform well, {@code function} should    * be fast. To avoid lazy evaluation when the returned map doesn't need to be    * a view, copy the returned map into a new map of your choosing.    */
+comment|/**    * Returns a view of a map where each value is transformed by a function. All    * other properties of the map, such as iteration order, are left intact. For    * example, the code:<pre>   {@code    *    *   Map<String, Integer> map = ImmutableMap.of("a", 4, "b", 9);    *   Function<Integer, Double> sqrt =    *       new Function<Integer, Double>() {    *         public Double apply(Integer in) {    *           return Math.sqrt((int) in);    *         }    *       };    *   Map<String, Double> transformed = Maps.transformValues(sqrt, map);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {a=2.0, b=3.0}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys, and even    * null values provided that the function is capable of accepting null input.    * The transformed map might contain null values, if the function sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned map to be a view, but it means that the function will be    * applied many times for bulk operations like {@link Map#containsValue} and    * {@code Map.toString()}. For this to perform well, {@code function} should    * be fast. To avoid lazy evaluation when the returned map doesn't need to be    * a view, copy the returned map into a new map of your choosing.    */
 DECL|method|transformValues ( Map<K, V1> fromMap, Function<? super V1, V2> function)
 specifier|public
 specifier|static
@@ -3010,7 +2999,7 @@ name|V2
 argument_list|>
 name|function
 decl_stmt|;
-DECL|method|TransformedValuesMap (Map<K, V1> fromMap, Function<? super V1, V2> function)
+DECL|method|TransformedValuesMap ( Map<K, V1> fromMap, Function<? super V1, V2> function)
 name|TransformedValuesMap
 parameter_list|(
 name|Map
@@ -3888,7 +3877,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when    * filtering a filtered map.    */
-DECL|method|filterFiltered ( AbstractFilteredMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
+DECL|method|filterFiltered (AbstractFilteredMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
 parameter_list|<
@@ -3967,8 +3956,8 @@ return|;
 block|}
 DECL|class|AbstractFilteredMap
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractFilteredMap
 parameter_list|<
@@ -4009,7 +3998,7 @@ argument_list|>
 argument_list|>
 name|predicate
 decl_stmt|;
-DECL|method|AbstractFilteredMap (Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
+DECL|method|AbstractFilteredMap ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|AbstractFilteredMap
 parameter_list|(
 name|Map
@@ -5003,13 +4992,13 @@ block|}
 comment|// The cast is called only when the key is in the unfiltered map, implying
 comment|// that key is a K.
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 DECL|method|containsKey (Object key)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsKey
@@ -5070,7 +5059,7 @@ argument_list|>
 argument_list|>
 name|filteredEntrySet
 decl_stmt|;
-DECL|method|FilteredEntryMap (Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
+DECL|method|FilteredEntryMap ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredEntryMap
 parameter_list|(
 name|Map
@@ -5778,7 +5767,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**      * Creates the entry set to be returned by {@link #entrySet()}. This method      * is invoked at most once on a given map, at the time when {@code      * entrySet} is first called.      */
+comment|/**      * Creates the entry set to be returned by {@link #entrySet()}. This method      * is invoked at most once on a given map, at the time when {@code entrySet}      * is first called.      */
 DECL|method|createEntrySet ()
 specifier|protected
 specifier|abstract
@@ -5796,7 +5785,6 @@ parameter_list|()
 function_decl|;
 DECL|field|entrySet
 specifier|private
-specifier|transient
 name|Set
 argument_list|<
 name|Entry
@@ -5858,7 +5846,6 @@ return|;
 block|}
 DECL|field|keySet
 specifier|private
-specifier|transient
 name|Set
 argument_list|<
 name|K
@@ -5953,7 +5940,6 @@ return|;
 block|}
 DECL|field|values
 specifier|private
-specifier|transient
 name|Collection
 argument_list|<
 name|V
@@ -6079,7 +6065,7 @@ argument_list|(
 literal|"="
 argument_list|)
 decl_stmt|;
-comment|/**    * Delegates to {@link Map#get}.  Returns {@code null} on {@code    * ClassCastException}.    */
+comment|/**    * Delegates to {@link Map#get}. Returns {@code null} on {@code    * ClassCastException}.    */
 DECL|method|safeGet (Map<?, V> map, Object key)
 specifier|static
 parameter_list|<
@@ -6122,7 +6108,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Delegates to {@link Map#containsKey}.  Returns {@code false} on {@code    * ClassCastException}    */
+comment|/**    * Delegates to {@link Map#containsKey}. Returns {@code false} on {@code    * ClassCastException}    */
 DECL|method|safeContainsKey (Map<?, ?> map, Object key)
 specifier|static
 name|boolean

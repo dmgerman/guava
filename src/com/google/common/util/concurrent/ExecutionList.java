@@ -66,7 +66,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Queue
 import|;
 end_import
 
@@ -140,12 +140,11 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// The list of runnable,executor pairs to execute.  Only modified within
-comment|// a synchronized block.
+comment|// The runnable,executor pairs to execute.
 DECL|field|runnables
 specifier|private
 specifier|final
-name|List
+name|Queue
 argument_list|<
 name|RunnableExecutorPair
 argument_list|>
@@ -153,7 +152,7 @@ name|runnables
 init|=
 name|Lists
 operator|.
-name|newArrayList
+name|newLinkedList
 argument_list|()
 decl_stmt|;
 comment|// Boolean we use mark when execution has started.  Only accessed from within
@@ -277,17 +276,21 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// At this point the runnable list will never be modified again, so we are
-comment|// safe running it outside of the synchronized block.
-for|for
-control|(
-name|RunnableExecutorPair
-name|runnableAndExecutor
-range|:
+comment|// At this point the runnables will never be modified by another
+comment|// thread, so we are safe using it outside of the synchronized block.
+while|while
+condition|(
+operator|!
 name|runnables
-control|)
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
 block|{
-name|runnableAndExecutor
+name|runnables
+operator|.
+name|poll
+argument_list|()
 operator|.
 name|execute
 argument_list|()

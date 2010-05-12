@@ -1307,7 +1307,6 @@ implements|implements
 name|Runnable
 block|{
 specifier|private
-specifier|final
 name|Function
 argument_list|<
 name|?
@@ -1328,7 +1327,6 @@ name|function
 decl_stmt|;
 DECL|field|inputFuture
 specifier|private
-specifier|final
 name|UninterruptibleFuture
 argument_list|<
 name|?
@@ -1554,6 +1552,18 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
+block|}
+finally|finally
+block|{
+comment|// Don't pin inputs beyond completion
+name|function
+operator|=
+literal|null
+expr_stmt|;
+name|inputFuture
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 block|}
