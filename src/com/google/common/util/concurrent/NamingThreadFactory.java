@@ -66,6 +66,7 @@ name|Beta
 comment|// TODO: Deprecate this class.
 DECL|class|NamingThreadFactory
 specifier|public
+specifier|final
 class|class
 name|NamingThreadFactory
 implements|implements
@@ -76,18 +77,6 @@ specifier|private
 specifier|final
 name|ThreadFactory
 name|delegate
-decl_stmt|;
-DECL|field|DEFAULT_FACTORY
-specifier|public
-specifier|static
-specifier|final
-name|ThreadFactory
-name|DEFAULT_FACTORY
-init|=
-name|Executors
-operator|.
-name|defaultThreadFactory
-argument_list|()
 decl_stmt|;
 comment|/**    * Creates a new factory that delegates to the default thread factory for    * thread creation, then uses {@code format} to construct a name for the new    * thread.    *    * @param format a {@link String#format(String, Object...)}-compatible format    *     String, to which a unique integer (0, 1, etc.) will be supplied as the    *     single parameter. This integer will be unique to this instance of    *     NamingThreadFactory and will be assigned sequentially.    */
 DECL|method|NamingThreadFactory (String format)
@@ -102,7 +91,10 @@ name|this
 argument_list|(
 name|format
 argument_list|,
-name|DEFAULT_FACTORY
+name|Executors
+operator|.
+name|defaultThreadFactory
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

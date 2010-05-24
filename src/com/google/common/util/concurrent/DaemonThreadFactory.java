@@ -54,6 +54,7 @@ name|Beta
 comment|// TODO: Deprecate this class.
 DECL|class|DaemonThreadFactory
 specifier|public
+specifier|final
 class|class
 name|DaemonThreadFactory
 implements|implements

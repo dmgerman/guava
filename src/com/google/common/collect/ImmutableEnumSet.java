@@ -60,16 +60,6 @@ name|EnumSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_comment
 comment|/**  * Implementation of {@link ImmutableSet} backed by a non-empty {@link  * java.util.EnumSet}.  *  * @author Jared Levy  */
 end_comment
@@ -98,7 +88,11 @@ class|class
 name|ImmutableEnumSet
 parameter_list|<
 name|E
-comment|/*extends Enum<E>*/
+extends|extends
+name|Enum
+parameter_list|<
+name|E
+parameter_list|>
 parameter_list|>
 extends|extends
 name|ImmutableSet
@@ -106,21 +100,21 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/*    * Notes on EnumSet and<E extends Enum<E>>:    *    * This class isn't an arbitrary ForwardingImmutableSet because we need to    * know that calling {@code clone()} during deserialization will return an    * object that no one else has a reference to, allowing us to guarantee    * immutability. Hence, we support only {@link EnumSet}.    *    * GWT complicates matters. If we declare the class's type parameter as    *<E extends Enum<E>> (as is necessary to declare a field of type    * EnumSet<E>), GWT generates serializers for every available enum. This    * increases the size of some applications' JavaScript by over 10%. To avoid    * this, we declare the type parameter as just<E> and the field as just    * Set<E>. writeReplace() must then use an unchecked cast to return to    * EnumSet, guaranteeing immutability as described above.    *    * TODO: Revert back to<E extends Enum<E>> and EnumSet now that this class    * is GWT emulated.    */
+comment|/*    * Notes on EnumSet and<E extends Enum<E>>:    *    * This class isn't an arbitrary ForwardingImmutableSet because we need to    * know that calling {@code clone()} during deserialization will return an    * object that no one else has a reference to, allowing us to guarantee    * immutability. Hence, we support only {@link EnumSet}.    */
 DECL|field|delegate
 specifier|private
 specifier|final
 specifier|transient
-name|Set
+name|EnumSet
 argument_list|<
 name|E
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|ImmutableEnumSet (Set<E> delegate)
+DECL|method|ImmutableEnumSet (EnumSet<E> delegate)
 name|ImmutableEnumSet
 parameter_list|(
-name|Set
+name|EnumSet
 argument_list|<
 name|E
 argument_list|>
@@ -345,11 +339,6 @@ argument_list|()
 return|;
 block|}
 comment|// All callers of the constructor are restricted to<E extends Enum<E>>.
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|writeReplace ()
 annotation|@
 name|Override
@@ -360,10 +349,10 @@ block|{
 return|return
 operator|new
 name|EnumSerializedForm
+argument_list|<
+name|E
+argument_list|>
 argument_list|(
-operator|(
-name|EnumSet
-operator|)
 name|delegate
 argument_list|)
 return|;
