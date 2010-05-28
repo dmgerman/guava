@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2006 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2006 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -148,7 +148,6 @@ name|String
 name|wordSeparator
 decl_stmt|;
 DECL|method|CaseFormat (CharMatcher wordBoundary, String wordSeparator)
-specifier|private
 name|CaseFormat
 parameter_list|(
 name|CharMatcher
@@ -171,7 +170,7 @@ operator|=
 name|wordSeparator
 expr_stmt|;
 block|}
-comment|/**    * Converts the specified {@code String s} from this format to the specified    * {@code format}. A "best effort" approach is taken; if {@code s} does not    * conform to the assumed format, then the behavior of this method is    * undefined but we make a reasonable effort at converting anyway.    */
+comment|/**    * Converts the specified {@code String s} from this format to the specified {@code format}. A    * "best effort" approach is taken; if {@code s} does not conform to the assumed format, then the    * behavior of this method is undefined but we make a reasonable effort at converting anyway.    */
 DECL|method|to (CaseFormat format, String s)
 specifier|public
 name|String
@@ -334,7 +333,7 @@ return|;
 block|}
 break|break;
 block|}
-comment|/* otherwise, deal with camel conversion */
+comment|// otherwise, deal with camel conversion
 name|StringBuilder
 name|out
 init|=
@@ -378,7 +377,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|/* include some extra space for separators */
+comment|// include some extra space for separators
 name|out
 operator|=
 operator|new
@@ -618,15 +617,18 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-return|return
-operator|(
+if|if
+condition|(
 name|length
 operator|==
 literal|0
-operator|)
-condition|?
+condition|)
+block|{
+return|return
 name|word
-else|:
+return|;
+block|}
+return|return
 operator|new
 name|StringBuilder
 argument_list|(

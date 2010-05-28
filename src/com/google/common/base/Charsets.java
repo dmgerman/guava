@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains constant definitions for the six standard {@link Charset}  * instances, which are guaranteed to be supported by all Java platform  * implementations.  *  * @author Mike Bostock  * @since 1  */
+comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *  * @author Mike Bostock  * @since 1  */
 end_comment
 
 begin_class
@@ -44,7 +44,7 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * US-ASCII: seven-bit ASCII, a.k.a. ISO646-US, a.k.a the Basic Latin block of    * the Unicode character set.    */
+comment|/**    * US-ASCII: seven-bit ASCII, a.k.a. ISO646-US, a.k.a the Basic Latin block of the Unicode    * character set.    */
 DECL|field|US_ASCII
 specifier|public
 specifier|static
@@ -119,7 +119,7 @@ argument_list|(
 literal|"UTF-16LE"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an    * optional byte-order mark.    */
+comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    */
 DECL|field|UTF_16
 specifier|public
 specifier|static
@@ -134,7 +134,7 @@ argument_list|(
 literal|"UTF-16"
 argument_list|)
 decl_stmt|;
-comment|/*    * Please do not add new Charset references to this class, unless those    * character encodings are part of the set required to be supported by all    * Java platform implementations! Any Charsets initialized here may cause    * unexpected delays when this class is loaded. See the Charset Javadocs for    * the list of built-in character encodings.    */
+comment|/*    * Please do not add new Charset references to this class, unless those character encodings are    * part of the set required to be supported by all Java platform implementations! Any Charsets    * initialized here may cause unexpected delays when this class is loaded. See the Charset    * Javadocs for the list of built-in character encodings.    */
 block|}
 end_class
 

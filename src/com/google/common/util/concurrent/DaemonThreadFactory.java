@@ -45,13 +45,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps another {@link ThreadFactory}, making all new threads daemon threads.  *  * @author Charles Fry  * @author Harendra Verma  * @since 1  */
+comment|/**  * Wraps another {@link ThreadFactory}, making all new threads daemon threads.  *  * @author Charles Fry  * @author Harendra Verma  * @since 1  * @deprecated Create a {@link ThreadFactoryBuilder} and then use its  *     {@link ThreadFactoryBuilder#setDaemon} and  *     {@link ThreadFactoryBuilder#setThreadFactory} methods.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-comment|// TODO: Deprecate this class.
+annotation|@
+name|Deprecated
 DECL|class|DaemonThreadFactory
 specifier|public
 specifier|final

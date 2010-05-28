@@ -593,6 +593,9 @@ return|return
 literal|null
 return|;
 block|}
+comment|// No leading zeroes are allowed.  See
+comment|// http://tools.ietf.org/html/draft-main-ipaddr-text-rep-00
+comment|// section 2.1 for discussion.
 if|if
 condition|(
 name|address
@@ -605,9 +608,15 @@ argument_list|(
 literal|"0"
 argument_list|)
 operator|&&
-name|piece
+name|address
+index|[
+name|i
+index|]
+operator|.
+name|length
+argument_list|()
 operator|!=
-literal|0
+literal|1
 condition|)
 block|{
 return|return

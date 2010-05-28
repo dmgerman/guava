@@ -57,13 +57,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ThreadFactory which decorates another ThreadFactory to set a name on  * each thread created.  *  * @author Kevin Bourrillion  * @since 1  */
+comment|/**  * A ThreadFactory which decorates another ThreadFactory to set a name on  * each thread created.  *  * @author Kevin Bourrillion  * @since 1  * @deprecated Create a {@link ThreadFactoryBuilder} and then use its  *     {@link ThreadFactoryBuilder#setNameFormat} and  *     {@link ThreadFactoryBuilder#setThreadFactory} methods.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-comment|// TODO: Deprecate this class.
+annotation|@
+name|Deprecated
 DECL|class|NamingThreadFactory
 specifier|public
 specifier|final
@@ -88,14 +89,28 @@ name|format
 parameter_list|)
 block|{
 name|this
+operator|.
+name|delegate
+operator|=
+operator|new
+name|ThreadFactoryBuilder
+argument_list|()
+operator|.
+name|setNameFormat
 argument_list|(
 name|format
-argument_list|,
+argument_list|)
+operator|.
+name|setThreadFactory
+argument_list|(
 name|Executors
 operator|.
 name|defaultThreadFactory
 argument_list|()
 argument_list|)
+operator|.
+name|build
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Creates a new factory that delegates to {@code backingFactory} for thread    * creation, then uses {@code format} to construct a name for the new thread.    *    * @param format a {@link String#format(String, Object...)}-compatible format    *     String, to which a unique integer (0, 1, etc.) will be supplied as the    *     single parameter    * @param backingFactory the factory that will actually create the threads    * @throws java.util.IllegalFormatException if {@code format} is invalid    */

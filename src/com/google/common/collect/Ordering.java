@@ -1002,6 +1002,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|// Regular instance methods
 comment|/**    * {@link Collections#binarySearch(List, Object, Comparator) Searches}    * {@code sortedList} for {@code key} using the binary search algorithm. The    * list must be sorted using this ordering.    *    * @param sortedList the list to be searched    * @param key the key to be searched for    */
 DECL|method|binarySearch (List<? extends T> sortedList, T key)
 specifier|public

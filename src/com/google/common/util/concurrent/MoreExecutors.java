@@ -234,7 +234,7 @@ specifier|private
 name|MoreExecutors
 parameter_list|()
 block|{}
-comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link java.util.concurrent.Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
+comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -255,13 +255,25 @@ name|executor
 operator|.
 name|setThreadFactory
 argument_list|(
-name|daemonThreadFactory
+operator|new
+name|ThreadFactoryBuilder
+argument_list|()
+operator|.
+name|setDaemon
+argument_list|(
+literal|true
+argument_list|)
+operator|.
+name|setThreadFactory
 argument_list|(
 name|executor
 operator|.
 name|getThreadFactory
 argument_list|()
 argument_list|)
+operator|.
+name|build
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ExecutorService
@@ -287,7 +299,7 @@ return|return
 name|service
 return|;
 block|}
-comment|/**    * Converts the given ScheduledThreadPoolExecutor into a    * ScheduledExecutorService that exits when the application is complete.  It    * does so by using daemon threads and adding a shutdown hook to wait for    * their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link java.util.concurrent.Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
+comment|/**    * Converts the given ScheduledThreadPoolExecutor into a    * ScheduledExecutorService that exits when the application is complete.  It    * does so by using daemon threads and adding a shutdown hook to wait for    * their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -308,13 +320,25 @@ name|executor
 operator|.
 name|setThreadFactory
 argument_list|(
-name|daemonThreadFactory
+operator|new
+name|ThreadFactoryBuilder
+argument_list|()
+operator|.
+name|setDaemon
+argument_list|(
+literal|true
+argument_list|)
+operator|.
+name|setThreadFactory
 argument_list|(
 name|executor
 operator|.
 name|getThreadFactory
 argument_list|()
 argument_list|)
+operator|.
+name|build
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ScheduledExecutorService
@@ -415,7 +439,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link java.util.concurrent.Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -439,7 +463,7 @@ name|SECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Converts the given ThreadPoolExecutor into a ScheduledExecutorService that    * exits when the application is complete.  It does so by using daemon threads    * and adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link java.util.concurrent.Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+comment|/**    * Converts the given ThreadPoolExecutor into a ScheduledExecutorService that    * exits when the application is complete.  It does so by using daemon threads    * and adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -463,8 +487,9 @@ name|SECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link ThreadFactory} which creates daemon threads. This is    * implemented by wrapping {@link    * java.util.concurrent.Executors#defaultThreadFactory()}, marking all new    * threads as daemon threads.    *    * @return a {@link ThreadFactory} which creates daemon threads    */
-comment|// TODO: Deprecate this method.
+comment|/**    * Returns a {@link ThreadFactory} which creates daemon threads. This is    * implemented by wrapping {@link Executors#defaultThreadFactory()}, marking    * all new threads as daemon threads.    *    * @return a {@link ThreadFactory} which creates daemon threads    * @deprecated Create a {@link ThreadFactoryBuilder} and then use its    *     {@link ThreadFactoryBuilder#setDaemon} method.    */
+annotation|@
+name|Deprecated
 DECL|method|daemonThreadFactory ()
 specifier|public
 specifier|static
@@ -473,17 +498,30 @@ name|daemonThreadFactory
 parameter_list|()
 block|{
 return|return
-name|daemonThreadFactory
+operator|new
+name|ThreadFactoryBuilder
+argument_list|()
+operator|.
+name|setThreadFactory
 argument_list|(
 name|Executors
 operator|.
 name|defaultThreadFactory
 argument_list|()
 argument_list|)
+operator|.
+name|setDaemon
+argument_list|(
+literal|true
+argument_list|)
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
-comment|/**    * Wraps another {@link ThreadFactory}, making all new threads daemon threads.    *    * @param factory the {@link ThreadFactory} used to generate new threads    * @return a new {@link ThreadFactory} backed by {@code factory} whose created    *         threads are all daemon threads    */
-comment|// TODO: Deprecate this method.
+comment|/**    * Wraps another {@link ThreadFactory}, making all new threads daemon threads.    *    * @param factory the {@link ThreadFactory} used to generate new threads    * @return a new {@link ThreadFactory} backed by {@code factory} whose created    *         threads are all daemon threads    * @deprecated Create a {@link ThreadFactoryBuilder} and then use its    *     {@link ThreadFactoryBuilder#setDaemon} and    *     {@link ThreadFactoryBuilder#setThreadFactory} methods.    *    */
+annotation|@
+name|Deprecated
 DECL|method|daemonThreadFactory (ThreadFactory factory)
 specifier|public
 specifier|static
