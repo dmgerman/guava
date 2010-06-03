@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -15,20 +15,6 @@ operator|.
 name|base
 package|;
 end_package
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
 
 begin_import
 import|import static
@@ -64,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given  * serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -110,7 +110,7 @@ specifier|private
 name|Functions
 parameter_list|()
 block|{}
-comment|/**    * Returns a function that calls {@code toString()} on its argument. The    * function does not accept nulls; it will throw a    * {@link NullPointerException} when applied to {@code null}.    */
+comment|/**    * Returns a function that calls {@code toString()} on its argument. The function does not accept    * nulls; it will throw a {@link NullPointerException} when applied to {@code null}.    */
 DECL|method|toStringFunction ()
 specifier|public
 specifier|static
@@ -251,7 +251,7 @@ literal|"identity"
 return|;
 block|}
 block|}
-comment|/**    * Returns a function which performs a map lookup. The returned function    * throws an {@link IllegalArgumentException} if given a key that does not    * exist in the map.    */
+comment|/**    * Returns a function which performs a map lookup. The returned function throws an {@link    * IllegalArgumentException} if given a key that does not exist in the map.    */
 DECL|method|forMap (Map<K, V> map)
 specifier|public
 specifier|static
@@ -477,8 +477,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function which performs a map lookup with a default value. The    * function created by this method returns {@code defaultValue} for all    * inputs that do not belong to the map's key set.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key,    *     or {@code defaultValue} otherwise    */
-DECL|method|forMap ( Map<K, ? extends V> map, @Nullable V defaultValue)
+comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *         defaultValue} otherwise    */
+DECL|method|forMap (Map<K, ? extends V> map, @Nullable V defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -735,8 +735,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns the composition of two functions. For {@code f: A->B} and    * {@code g: B->C}, composition is defined as the function h such that    * {@code h(a) == g(f(a))} for each {@code a}.    *    * @see<a href="//en.wikipedia.org/wiki/Function_composition">    * function composition</a>    *    * @param g the second function to apply    * @param f the first function to apply    * @return the composition of {@code f} and {@code g}    */
-DECL|method|compose ( Function<B, C> g, Function<A, ? extends B> f)
+comment|/**    * Returns the composition of two functions. For {@code f: A->B} and {@code g: B->C}, composition    * is defined as the function h such that {@code h(a) == g(f(a))} for each {@code a}.    *    * @param g the second function to apply    * @param f the first function to apply    * @return the composition of {@code f} and {@code g}    * @see<a href="//en.wikipedia.org/wiki/Function_composition">function composition</a>    */
+DECL|method|compose (Function<B, C> g, Function<A, ? extends B> f)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1021,7 +1021,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Creates a function that returns the same boolean output as the given    * predicate for all inputs.    */
+comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    */
 DECL|method|forPredicate (Predicate<T> predicate)
 specifier|public
 specifier|static

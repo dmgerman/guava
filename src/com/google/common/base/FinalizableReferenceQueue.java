@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A reference queue with an associated background thread that dequeues  * references and invokes {@link FinalizableReference#finalizeReferent()} on  * them.  *  *<p>Keep a strong reference to this object until all of the associated  * referents have been finalized. If this object is garbage collected earlier,  * the backing thread will not invoke {@code finalizeReferent()} on the  * remaining references.  *  * @author Bob Lee  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A reference queue with an associated background thread that dequeues references and invokes  * {@link FinalizableReference#finalizeReferent()} on them.  *  *<p>Keep a strong reference to this object until all of the associated referents have been  * finalized. If this object is garbage collected earlier, the backing thread will not invoke {@code  * finalizeReferent()} on the remaining references.  *  * @author Bob Lee  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -126,7 +126,7 @@ specifier|public
 class|class
 name|FinalizableReferenceQueue
 block|{
-comment|/*    * The Finalizer thread keeps a phantom reference to this object. When the    * client (ReferenceMap, for example) no longer has a strong reference to    * this object, the garbage collector will reclaim it and enqueue the    * phantom reference. The enqueued reference will trigger the Finalizer to    * stop.    *    * If this library is loaded in the system class loader,    * FinalizableReferenceQueue can load Finalizer directly with no problems.    *    * If this library is loaded in an application class loader, it's important    * that Finalizer not have a strong reference back to the class loader.    * Otherwise, you could have a graph like this:    *    * Finalizer Thread    *   runs instance of -> Finalizer.class    *     loaded by -> Application class loader    *       which loaded -> ReferenceMap.class    *         which has a static -> FinalizableReferenceQueue instance    *    * Even if no other references to classes from the application class loader    * remain, the Finalizer thread keeps an indirect strong reference to the    * queue in ReferenceMap, which keeps the Finalizer running, and as a result,    * the application class loader can never be reclaimed.    *    * This means that dynamically loaded web applications and OSGi bundles can't    * be unloaded.    *    * If the library is loaded in an application class loader, we try to break    * the cycle by loading Finalizer in its own independent class loader:    *    * System class loader    *   -> Application class loader    *     -> ReferenceMap    *     -> FinalizableReferenceQueue    *     -> etc.    *   -> Decoupled class loader    *     -> Finalizer    *    * Now, Finalizer no longer keeps an indirect strong reference to the    * static FinalizableReferenceQueue field in ReferenceMap. The application    * class loader can be reclaimed at which point the Finalizer thread will    * stop and its decoupled class loader can also be reclaimed.    *    * If any of this fails along the way, we fall back to loading Finalizer    * directly in the application class loader.    */
+comment|/*    * The Finalizer thread keeps a phantom reference to this object. When the client (for example, a    * map built by MapMaker) no longer has a strong reference to this object, the garbage collector    * will reclaim it and enqueue the phantom reference. The enqueued reference will trigger the    * Finalizer to stop.    *    * If this library is loaded in the system class loader, FinalizableReferenceQueue can load    * Finalizer directly with no problems.    *    * If this library is loaded in an application class loader, it's important that Finalizer not    * have a strong reference back to the class loader. Otherwise, you could have a graph like this:    *    * Finalizer Thread runs instance of -> Finalizer.class loaded by -> Application class loader    * which loaded -> ReferenceMap.class which has a static -> FinalizableReferenceQueue instance    *    * Even if no other references to classes from the application class loader remain, the Finalizer    * thread keeps an indirect strong reference to the queue in ReferenceMap, which keeps the    * Finalizer running, and as a result, the application class loader can never be reclaimed.    *    * This means that dynamically loaded web applications and OSGi bundles can't be unloaded.    *    * If the library is loaded in an application class loader, we try to break the cycle by loading    * Finalizer in its own independent class loader:    *    * System class loader -> Application class loader -> ReferenceMap -> FinalizableReferenceQueue    * -> etc. -> Decoupled class loader -> Finalizer    *    * Now, Finalizer no longer keeps an indirect strong reference to the static    * FinalizableReferenceQueue field in ReferenceMap. The application class loader can be reclaimed    * at which point the Finalizer thread will stop and its decoupled class loader can also be    * reclaimed.    *    * If any of this fails along the way, we fall back to loading Finalizer directly in the    * application class loader.    */
 DECL|field|logger
 specifier|private
 specifier|static
@@ -263,17 +263,17 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalAccessException
-name|e
+name|impossible
 parameter_list|)
 block|{
-comment|// Finalizer.startFinalizer() is public.
 throw|throw
 operator|new
 name|AssertionError
 argument_list|(
-name|e
+name|impossible
 argument_list|)
 throw|;
+comment|// startFinalizer() is public
 block|}
 catch|catch
 parameter_list|(
@@ -291,9 +291,7 @@ name|INFO
 argument_list|,
 literal|"Failed to start reference finalizer thread."
 operator|+
-literal|" Reference cleanup will only occur when new references are"
-operator|+
-literal|" created."
+literal|" Reference cleanup will only occur when new references are created."
 argument_list|,
 name|t
 argument_list|)
@@ -321,7 +319,7 @@ operator|=
 name|threadStarted
 expr_stmt|;
 block|}
-comment|/**    * Repeatedly dequeues references from the queue and invokes    * {@link FinalizableReference#finalizeReferent()} on them until the queue    * is empty. This method is a no-op if the background thread was created    * successfully.    */
+comment|/**    * Repeatedly dequeues references from the queue and invokes {@link    * FinalizableReference#finalizeReferent()} on them until the queue is empty. This method is a    * no-op if the background thread was created successfully.    */
 DECL|method|cleanUp ()
 name|void
 name|cleanUp
@@ -354,7 +352,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|/*        * This is for the benefit of phantom references. Weak and soft        * references will have already been cleared by this point.        */
+comment|/*        * This is for the benefit of phantom references. Weak and soft references will have already        * been cleared by this point.        */
 name|reference
 operator|.
 name|clear
@@ -395,7 +393,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Iterates through the given loaders until it finds one that can load    * Finalizer.    *    * @return Finalizer.class    */
+comment|/**    * Iterates through the given loaders until it finds one that can load Finalizer.    *    * @return Finalizer.class    */
 DECL|method|loadFinalizer (FinalizerLoader... loaders)
 specifier|private
 specifier|static
@@ -452,7 +450,7 @@ DECL|interface|FinalizerLoader
 interface|interface
 name|FinalizerLoader
 block|{
-comment|/**      * Returns Finalizer.class or null if this loader shouldn't or can't load      * it.      *      * @throws SecurityException if we don't have the appropriate privileges      */
+comment|/**      * Returns Finalizer.class or null if this loader shouldn't or can't load it.      *      * @throws SecurityException if we don't have the appropriate privileges      */
 DECL|method|loadFinalizer ()
 name|Class
 argument_list|<
@@ -462,7 +460,7 @@ name|loadFinalizer
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Tries to load Finalizer from the system class loader. If Finalizer is    * in the system class path, we needn't create a separate loader.    */
+comment|/**    * Tries to load Finalizer from the system class loader. If Finalizer is in the system class path,    * we needn't create a separate loader.    */
 DECL|class|SystemLoader
 specifier|static
 class|class
@@ -547,7 +545,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Try to load Finalizer in its own class loader. If Finalizer's thread    * had a direct reference to our class loader (which could be that of    * a dynamically loaded web application or OSGi bundle), it would prevent    * our class loader from getting garbage collected.    */
+comment|/**    * Try to load Finalizer in its own class loader. If Finalizer's thread had a direct reference to    * our class loader (which could be that of a dynamically loaded web application or OSGi bundle),    * it would prevent our class loader from getting garbage collected.    */
 DECL|class|DecoupledLoader
 specifier|static
 class|class
@@ -562,17 +560,13 @@ specifier|final
 name|String
 name|LOADING_ERROR
 init|=
-literal|"Could not load Finalizer in"
+literal|"Could not load Finalizer in its own class loader."
 operator|+
-literal|" its own class loader. Loading Finalizer in the current class loader"
+literal|"Loading Finalizer in the current class loader instead. As a result, you will not be able"
 operator|+
-literal|" instead. As a result, you will not be able to garbage collect this"
+literal|"to garbage collect this class loader. To support reclaiming this class loader, either"
 operator|+
-literal|" class loader. To support reclaiming this class loader, either"
-operator|+
-literal|" resolve the underlying issue, or move Google Collections to your"
-operator|+
-literal|" system class path."
+literal|"resolve the underlying issue, or move Google Collections to your system class path."
 decl_stmt|;
 DECL|method|loadFinalizer ()
 specifier|public
@@ -585,7 +579,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|/*          * We use URLClassLoader because it's the only concrete class loader          * implementation in the JDK. If we used our own ClassLoader subclass,          * Finalizer would indirectly reference this class loader:          *          * Finalizer.class ->          *   CustomClassLoader ->          *     CustomClassLoader.class ->          *       This class loader          *          * System class loader will (and must) be the parent.          */
+comment|/*          * We use URLClassLoader because it's the only concrete class loader implementation in the          * JDK. If we used our own ClassLoader subclass, Finalizer would indirectly reference this          * class loader:          *          * Finalizer.class -> CustomClassLoader -> CustomClassLoader.class -> This class loader          *          * System class loader will (and must) be the parent.          */
 name|ClassLoader
 name|finalizerLoader
 init|=
@@ -762,7 +756,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Loads Finalizer directly using the current class loader. We won't be    * able to garbage collect this class loader, but at least the world    * doesn't end.    */
+comment|/**    * Loads Finalizer directly using the current class loader. We won't be able to garbage collect    * this class loader, but at least the world doesn't end.    */
 DECL|class|DirectLoader
 specifier|static
 class|class

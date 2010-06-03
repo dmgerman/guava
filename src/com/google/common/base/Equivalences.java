@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  * Copyright (C) 2010 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2010 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -48,7 +48,7 @@ specifier|private
 name|Equivalences
 parameter_list|()
 block|{}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and    * {@link Object#hashCode}. Does not support null values.    */
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * Does not support null values.    */
 DECL|method|equals ()
 specifier|public
 specifier|static
@@ -65,7 +65,7 @@ operator|.
 name|EQUALS
 return|;
 block|}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and    * {@link Object#hashCode}. {@link Equivalence#equivalent} returns {@code    * true} if both values are null, or if neither value is null and    * {@link Object#equals} returns {@code true}. {@link Equivalence#hash}    * throws a {@link NullPointerException} if passed a null value.    */
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} throws a    * {@link NullPointerException} if passed a null value.    */
 DECL|method|nullAwareEquals ()
 specifier|public
 specifier|static
@@ -82,7 +82,7 @@ operator|.
 name|NULL_AWARE_EQUALS
 return|;
 block|}
-comment|/**    * Returns an equivalence that uses {@code ==} to compare values and    * {@link System#identityHashCode(Object)} to compute the hash code.    * {@link Equivalence#equivalent} returns {@code    * true} if both values are null, or if neither value is null and {@code ==}    * returns {@code true}. {@link Equivalence#hash} throws a {@link    * NullPointerException} if    * passed a null value.    */
+comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code.  {@link Equivalence#equivalent}    * returns {@code true} if both values are null, or if neither value is null and {@code ==}    * returns {@code true}. {@link Equivalence#hash} throws a {@link NullPointerException} if passed    * a null value.    */
 DECL|method|identity ()
 specifier|public
 specifier|static
@@ -99,7 +99,6 @@ operator|.
 name|IDENTITY
 return|;
 block|}
-comment|/** We use an enum because we get serializability for free. */
 DECL|enum|Impl
 specifier|private
 enum|enum
