@@ -24,6 +24,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ImmutableSet
@@ -169,6 +197,13 @@ comment|/**  * Unit test for {@link Predicates}.  *  * @author Kevin Bourrillion
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|PredicatesTest
 specifier|public
 class|class
@@ -398,6 +433,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testAlwaysTrue_serialization ()
 specifier|public
 name|void
@@ -471,6 +511,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testAlwaysFalse_serialization ()
 specifier|public
 name|void
@@ -736,6 +781,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testNot_serialization ()
 specifier|public
 name|void
@@ -825,6 +875,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -945,6 +1000,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1087,6 +1147,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testAnd_serializationBinary ()
 specifier|public
 name|void
@@ -1264,6 +1329,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1464,6 +1534,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1789,6 +1864,11 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -1916,6 +1996,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2080,6 +2165,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testOr_serializationBinary ()
 specifier|public
 name|void
@@ -2253,6 +2343,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2454,6 +2549,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2842,6 +2942,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testIsEqualTo_serialization ()
 specifier|public
 name|void
@@ -2950,6 +3055,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testIsEqualToNull_serialization ()
 specifier|public
 name|void
@@ -2967,7 +3077,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    * Tests for Predicates.instanceOf(x).    */
+comment|/**    * Tests for Predicates.instanceOf(x).    * TODO: Fix the comment style after fixing annotation stripper to remove    * comments properly.  Currently, all tests before the comments are removed    * as well.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.instanceOf"
+argument_list|)
 DECL|method|testIsInstanceOf_apply ()
 specifier|public
 name|void
@@ -3030,6 +3145,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.instanceOf"
+argument_list|)
 DECL|method|testIsInstanceOf_subclass ()
 specifier|public
 name|void
@@ -3092,6 +3212,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.instanceOf"
+argument_list|)
 DECL|method|testIsInstanceOf_interface ()
 specifier|public
 name|void
@@ -3154,6 +3279,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.instanceOf"
+argument_list|)
 DECL|method|testIsInstanceOf_equality ()
 specifier|public
 name|void
@@ -3213,6 +3343,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.instanceOf, SerializableTester"
+argument_list|)
 DECL|method|testIsInstanceOf_serialization ()
 specifier|public
 name|void
@@ -3306,6 +3441,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testIsNull_serialization ()
 specifier|public
 name|void
@@ -3444,6 +3584,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testNotNull_serialization ()
 specifier|public
 name|void
@@ -3657,6 +3802,11 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testIn_serialization ()
 specifier|public
 name|void
@@ -3913,6 +4063,11 @@ comment|// The next two lines are not expected to compile.
 comment|// Predicate<Integer> p3 = Predicates.in(nums);
 comment|// Predicate<Integer> p4 = Predicates.<Integer>in(nums);
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -3944,6 +4099,11 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// varargs
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializbleTester"
+argument_list|)
 DECL|method|testCascadingSerialization ()
 specifier|public
 name|void
@@ -4241,6 +4401,58 @@ operator|.
 name|testEquals
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
+DECL|method|testComposeSerialization ()
+specifier|public
+name|void
+name|testComposeSerialization
+parameter_list|()
+block|{
+name|Function
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|trim
+init|=
+name|TrimStringFunction
+operator|.
+name|INSTANCE
+decl_stmt|;
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|equalsFoo
+init|=
+name|Predicates
+operator|.
+name|equalTo
+argument_list|(
+literal|"Foo"
+argument_list|)
+decl_stmt|;
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|trimEqualsFoo
+init|=
+name|Predicates
+operator|.
+name|compose
+argument_list|(
+name|equalsFoo
+argument_list|,
+name|trim
+argument_list|)
+decl_stmt|;
 name|SerializableTester
 operator|.
 name|reserializeAndAssert
@@ -4249,7 +4461,12 @@ name|trimEqualsFoo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    * Tests for Predicates.contains(Pattern) and .containsPattern(String).    * We assume the regex level works, so there are only trivial tests of that    * aspect.    */
+comment|/**    * Tests for Predicates.contains(Pattern) and .containsPattern(String).    * We assume the regex level works, so there are only trivial tests of that    * aspect.    * TODO: Fix comment style once annotation stripper is fixed.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.containsPattern"
+argument_list|)
 DECL|method|testContainsPattern_apply ()
 specifier|public
 name|void
@@ -4290,6 +4507,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Predicates.containsPattern"
+argument_list|)
 DECL|method|testContains_apply ()
 specifier|public
 name|void
@@ -4335,6 +4557,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testContainsPattern_nulls ()
 specifier|public
 name|void
@@ -4371,6 +4598,11 @@ name|isWooString
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testContains_nulls ()
 specifier|public
 name|void
@@ -4412,6 +4644,11 @@ name|isWooPattern
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testContainsPattern_serialization ()
 specifier|public
 name|void
@@ -4462,6 +4699,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testContains_equals ()
 specifier|public
 name|void
@@ -5276,6 +5518,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|checkSerialization (Predicate<? super Integer> predicate)
 specifier|private
 specifier|static

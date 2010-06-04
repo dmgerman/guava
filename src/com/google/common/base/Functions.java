@@ -154,6 +154,12 @@ name|Object
 name|o
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|o
+argument_list|)
+expr_stmt|;
+comment|// eager for GWT.
 return|return
 name|o
 operator|.

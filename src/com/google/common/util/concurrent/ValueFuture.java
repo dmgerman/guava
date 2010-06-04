@@ -32,6 +32,16 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A simple ListenableFuture that holds a value or an exception.  *  * @author Sven Mawson  * @since 1  */
 end_comment
@@ -84,11 +94,13 @@ block|{}
 comment|/**    * Sets the value of this future.  This method will return {@code true} if    * the value was successfully set, or {@code false} if the future has already    * been set or cancelled.    *    * @param newValue the value the future should hold.    * @return true if the value was successfully set.    */
 annotation|@
 name|Override
-DECL|method|set (V newValue)
+DECL|method|set (@ullable V newValue)
 specifier|public
 name|boolean
 name|set
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|newValue
 parameter_list|)

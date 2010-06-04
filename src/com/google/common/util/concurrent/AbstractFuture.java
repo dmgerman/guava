@@ -106,6 +106,16 @@ name|AbstractQueuedSynchronizer
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>An abstract implementation of the {@link Future} interface.  This class  * is an abstraction of {@link java.util.concurrent.FutureTask} to support use  * for tasks other than {@link Runnable}s.  It uses an  * {@link AbstractQueuedSynchronizer} to deal with concurrency issues and  * guarantee thread safety.  It could be used as a base class to  * {@code FutureTask}, or any other implementor of the {@code Future} interface.  *  *<p>This class implements all methods in {@code Future}.  Subclasses should  * provide a way to set the result of the computation through the protected  * methods {@link #set(Object)}, {@link #setException(Throwable)}, or  * {@link #cancel()}.  If subclasses want to implement cancellation they can  * override the {@link #cancel(boolean)} method with a real implementation, the  * default implementation doesn't support cancellation.  *  *<p>The state changing methods all return a boolean indicating success or  * failure in changing the future's state.  Valid states are running,  * completed, failed, or cancelled.  Because this class does not implement  * cancellation it is left to the subclass to distinguish between created  * and running tasks.  *  * @author Sven Mawson  * @since 1  */
 end_comment
@@ -238,11 +248,13 @@ literal|false
 return|;
 block|}
 comment|/**    * Subclasses should invoke this method to set the result of the computation    * to {@code value}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and call {@link #done()} if the    * state was successfully changed.    *    * @param value the value that was the result of the task.    * @return true if the state was successfully changed.    */
-DECL|method|set (V value)
+DECL|method|set (@ullable V value)
 specifier|protected
 name|boolean
 name|set
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)

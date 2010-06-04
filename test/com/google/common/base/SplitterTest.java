@@ -24,6 +24,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Lists
@@ -91,6 +119,13 @@ comment|/**  * @author Julien Silland  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|SplitterTest
 specifier|public
 class|class
@@ -106,12 +141,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Iterable
-argument_list|<
-name|String
-argument_list|>
-name|letters
-init|=
 name|Splitter
 operator|.
 name|on
@@ -123,7 +152,7 @@ name|split
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1597,6 +1626,11 @@ literal|"(Tito)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSimpleSplit ()
 specifier|public
 name|void
@@ -1638,6 +1672,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSimpleSplitWithNoDelimiter ()
 specifier|public
 name|void
@@ -1675,6 +1714,11 @@ literal|"a,b,c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSplitWithDoubleDelimiter ()
 specifier|public
 name|void
@@ -1718,6 +1762,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSplitWithDoubleDelimiterAndSpace ()
 specifier|public
 name|void
@@ -1761,6 +1810,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSplitWithTrailingDelimiter ()
 specifier|public
 name|void
@@ -1804,6 +1858,11 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSplitWithLeadingDelimiter ()
 specifier|public
 name|void
@@ -1847,6 +1906,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Splitter.onPattern"
+argument_list|)
 DECL|method|testPatternSplitWithMultipleLetters ()
 specifier|public
 name|void
@@ -1885,20 +1949,32 @@ literal|"sucks"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|LITERAL_DOT_PATTERN
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
+DECL|method|literalDotPattern ()
 specifier|private
 specifier|static
-specifier|final
 name|Pattern
-name|LITERAL_DOT_PATTERN
-init|=
+name|literalDotPattern
+parameter_list|()
+block|{
+return|return
 name|Pattern
 operator|.
 name|compile
 argument_list|(
 literal|"\\."
 argument_list|)
-decl_stmt|;
+return|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitWithDoubleDelimiterOmitEmptyStrings ()
 specifier|public
 name|void
@@ -1920,7 +1996,8 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-name|LITERAL_DOT_PATTERN
+name|literalDotPattern
+argument_list|()
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -1943,6 +2020,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitEmptyToken ()
 specifier|public
 name|void
@@ -1964,7 +2046,8 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-name|LITERAL_DOT_PATTERN
+name|literalDotPattern
+argument_list|()
 argument_list|)
 operator|.
 name|trimResults
@@ -1987,6 +2070,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitEmptyTokenOmitEmptyStrings ()
 specifier|public
 name|void
@@ -2008,7 +2096,8 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-name|LITERAL_DOT_PATTERN
+name|literalDotPattern
+argument_list|()
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -2032,6 +2121,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitOnOnlyDelimiter ()
 specifier|public
 name|void
@@ -2048,7 +2142,8 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-name|LITERAL_DOT_PATTERN
+name|literalDotPattern
+argument_list|()
 argument_list|)
 operator|.
 name|split
@@ -2066,6 +2161,11 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitOnOnlyDelimitersOmitEmptyStrings ()
 specifier|public
 name|void
@@ -2082,7 +2182,8 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-name|LITERAL_DOT_PATTERN
+name|literalDotPattern
+argument_list|()
 argument_list|)
 operator|.
 name|omitEmptyStrings
@@ -2099,6 +2200,11 @@ name|empty
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitMatchingIsGreedy ()
 specifier|public
 name|void
@@ -2145,6 +2251,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitWithLongLeadingDelimiter ()
 specifier|public
 name|void
@@ -2193,6 +2304,11 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitWithLongTrailingDelimiter ()
 specifier|public
 name|void
@@ -2241,6 +2357,11 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitInvalidPattern ()
 specifier|public
 name|void
@@ -2272,6 +2393,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
 DECL|method|testPatternSplitWithTrim ()
 specifier|public
 name|void
@@ -2383,6 +2509,18 @@ name|iterator
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
+DECL|method|testSplitterIterableIsUnmodifiable_pattern ()
+specifier|public
+name|void
+name|testSplitterIterableIsUnmodifiable_pattern
+parameter_list|()
+block|{
 name|assertIteratorIsUnmodifiable
 argument_list|(
 name|Splitter
@@ -2468,6 +2606,18 @@ literal|","
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.regex.Pattern"
+argument_list|)
+DECL|method|testSplitterIterableIsLazy_pattern ()
+specifier|public
+name|void
+name|testSplitterIterableIsLazy_pattern
+parameter_list|()
+block|{
 name|assertSplitterIterableIsLazy
 argument_list|(
 name|Splitter
@@ -2897,6 +3047,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void

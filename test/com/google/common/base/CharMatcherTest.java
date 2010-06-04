@@ -17,40 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|testing
-operator|.
-name|util
-operator|.
-name|NullPointerTester
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|AssertionFailedError
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -146,11 +112,80 @@ name|noneOf
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|testing
+operator|.
+name|util
+operator|.
+name|NullPointerTester
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|AssertionFailedError
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit test for {@link CharMatcher}.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|CharMatcherTest
 specifier|public
 class|class
@@ -158,6 +193,11 @@ name|CharMatcherTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testStaticNullPointers ()
 specifier|public
 name|void
@@ -343,6 +383,11 @@ comment|// For GWT-compatibility reasons, CharMatcher.JAVA_WHITESPACE doesn't ac
 comment|// use Character.isWhitespace. This test ensures that its custom
 comment|// implementation stays in sync with the implementation of
 comment|// Character.isWhitespace.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Character.isWhitespace"
+argument_list|)
 DECL|method|testJavaWhitespace ()
 specifier|public
 name|void
@@ -394,6 +439,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Character.isISOControl"
+argument_list|)
 DECL|method|testJavaIsoControl ()
 specifier|public
 name|void
@@ -453,29 +503,29 @@ comment|// below by testing their text-processing methods.
 comment|// The organization of this test class is unusual, as it's not done by
 comment|// method, but by overall "scenario". Also, the variety of actual tests we
 comment|// do borders on absurd overkill. Better safe than sorry, though?
-DECL|method|testEmptyAndNull ()
+DECL|method|testEmpty ()
 specifier|public
 name|void
-name|testEmptyAndNull
+name|testEmpty
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|CharMatcher
 operator|.
 name|ANY
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|CharMatcher
 operator|.
 name|NONE
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|is
 argument_list|(
@@ -483,7 +533,7 @@ literal|'a'
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|isNot
 argument_list|(
@@ -491,7 +541,7 @@ literal|'a'
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|anyOf
 argument_list|(
@@ -499,7 +549,7 @@ literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|anyOf
 argument_list|(
@@ -507,7 +557,7 @@ literal|"x"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|anyOf
 argument_list|(
@@ -515,7 +565,7 @@ literal|"xy"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|anyOf
 argument_list|(
@@ -523,7 +573,7 @@ literal|"CharMatcher"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|noneOf
 argument_list|(
@@ -531,7 +581,7 @@ literal|"CharMatcher"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|inRange
 argument_list|(
@@ -541,7 +591,7 @@ literal|'q'
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|doTestEmptyAndNull
+name|doTestEmpty
 argument_list|(
 name|forPredicate
 argument_list|(
@@ -555,10 +605,117 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doTestEmptyAndNull (CharMatcher matcher)
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
+DECL|method|testNull ()
+specifier|public
+name|void
+name|testNull
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTestNull
+argument_list|(
+name|CharMatcher
+operator|.
+name|ANY
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|CharMatcher
+operator|.
+name|NONE
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|is
+argument_list|(
+literal|'a'
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|isNot
+argument_list|(
+literal|'a'
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|anyOf
+argument_list|(
+literal|""
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|anyOf
+argument_list|(
+literal|"x"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|anyOf
+argument_list|(
+literal|"xy"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|anyOf
+argument_list|(
+literal|"CharMatcher"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|noneOf
+argument_list|(
+literal|"CharMatcher"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|inRange
+argument_list|(
+literal|'n'
+argument_list|,
+literal|'q'
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|doTestNull
+argument_list|(
+name|forPredicate
+argument_list|(
+name|Predicates
+operator|.
+name|equalTo
+argument_list|(
+literal|'c'
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|doTestEmpty (CharMatcher matcher)
 specifier|private
 name|void
-name|doTestEmptyAndNull
+name|doTestEmpty
 parameter_list|(
 name|CharMatcher
 name|matcher
@@ -566,12 +723,12 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|reallyTestEmptyAndNull
+name|reallyTestEmpty
 argument_list|(
 name|matcher
 argument_list|)
 expr_stmt|;
-name|reallyTestEmptyAndNull
+name|reallyTestEmpty
 argument_list|(
 name|matcher
 operator|.
@@ -579,7 +736,7 @@ name|negate
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|reallyTestEmptyAndNull
+name|reallyTestEmpty
 argument_list|(
 name|matcher
 operator|.
@@ -588,10 +745,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|reallyTestEmptyAndNull (CharMatcher matcher)
+DECL|method|reallyTestEmpty (CharMatcher matcher)
 specifier|private
 name|void
-name|reallyTestEmptyAndNull
+name|reallyTestEmpty
 parameter_list|(
 name|CharMatcher
 name|matcher
@@ -767,6 +924,23 @@ literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
+DECL|method|doTestNull (CharMatcher matcher)
+specifier|private
+name|void
+name|doTestNull
+parameter_list|(
+name|CharMatcher
+name|matcher
+parameter_list|)
+throws|throws
+name|Exception
+block|{
 name|NullPointerTester
 name|tester
 init|=
@@ -2450,8 +2624,10 @@ name|s
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Note: only 'assertEquals' is promised by the API.
-name|assertSame
+comment|// Note: only 'assertEquals' is promised by the API.  Although they could
+comment|// have been assertSame() on the server side, they have to be assertEquals
+comment|// in GWT, because of GWT issue 4491.
+name|assertEquals
 argument_list|(
 name|s
 argument_list|,
@@ -2463,7 +2639,7 @@ name|s
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|s
 argument_list|,
@@ -2477,7 +2653,7 @@ literal|'z'
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|s
 argument_list|,
@@ -2491,7 +2667,7 @@ literal|"ZZ"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|s
 argument_list|,
