@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -31,18 +47,16 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
+name|GwtIncompatible
 import|;
 end_import
 
@@ -145,6 +159,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)
@@ -1431,6 +1449,11 @@ name|result
 return|;
 block|}
 comment|/**    * @serialData number of distinct keys, and then for each distinct key: the    *     key, the number of values for that key, and the key's values    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1457,6 +1480,11 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -1725,6 +1753,11 @@ name|tmpSize
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

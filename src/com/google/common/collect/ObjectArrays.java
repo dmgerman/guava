@@ -48,6 +48,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Array
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -71,6 +83,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ObjectArrays
 specifier|public
 specifier|final
@@ -83,11 +100,6 @@ name|ObjectArrays
 parameter_list|()
 block|{}
 comment|/**    * Returns a new array of the given length with the specified component type.    *    * @param type the component type    * @param length the length of the new array    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Array.newInstance(Class, int)"
-argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(

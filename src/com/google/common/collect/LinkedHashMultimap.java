@@ -40,6 +40,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -167,6 +181,10 @@ annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
 operator|=
 literal|true
 argument_list|)
@@ -1315,6 +1333,11 @@ block|}
 comment|// Unfortunately, the entries() ordering does not determine the key ordering;
 comment|// see the example in the LinkedListMultimap class Javadoc.
 comment|/**    * @serialData the number of distinct keys, and then for each distinct key:    *     the first key, the number of values for that key, and the key's values,    *     followed by successive keys and values from the entries() ordering    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1384,6 +1407,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -1544,6 +1572,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java serialization not supported"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

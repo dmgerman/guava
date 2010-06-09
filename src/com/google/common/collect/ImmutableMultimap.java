@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -31,18 +47,16 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
+name|GwtIncompatible
 import|;
 end_import
 
@@ -123,6 +137,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ImmutableMultimap
 specifier|public
 specifier|abstract
@@ -903,6 +922,11 @@ decl_stmt|;
 comment|// These constants allow the deserialization code to set final fields. This
 comment|// holder class makes sure they are not initialized unless an instance is
 comment|// deserialized.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java serialization is not supported"
+argument_list|)
 DECL|class|FieldSettersHolder
 specifier|static
 class|class

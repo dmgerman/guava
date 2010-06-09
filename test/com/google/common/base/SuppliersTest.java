@@ -24,6 +24,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Lists
@@ -117,6 +145,13 @@ comment|/**  * Tests com.google.common.base.Suppliers.  *  * @author Laurence Go
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|SuppliersTest
 specifier|public
 class|class
@@ -397,7 +432,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|CountingSupplier
-specifier|private
 specifier|static
 class|class
 name|CountingSupplier
@@ -466,6 +500,11 @@ name|memoizedSupplier
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testMemoizeSerialized ()
 specifier|public
 name|void
@@ -706,6 +745,11 @@ comment|// this is what should happen
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Thread.sleep"
+argument_list|)
 DECL|method|testMemoizeWithExpiration ()
 specifier|public
 name|void
@@ -748,6 +792,11 @@ name|memoizedSupplier
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Thread.sleep, SerializationTester"
+argument_list|)
 DECL|method|testMemoizeWithExpirationSerialized ()
 specifier|public
 name|void
@@ -832,6 +881,11 @@ name|copy
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Thread.sleep"
+argument_list|)
 DECL|method|checkExpiration ( CountingSupplier countingSupplier, Supplier<Integer> memoizedSupplier)
 specifier|private
 name|void
@@ -1035,6 +1089,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Thread"
+argument_list|)
 DECL|method|testThreadSafe ()
 specifier|public
 name|void
@@ -1219,6 +1278,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SerializationTester"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -1372,6 +1436,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTest"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void

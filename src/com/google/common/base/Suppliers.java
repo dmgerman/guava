@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -67,6 +81,8 @@ comment|/**  * Useful suppliers.  *  *<p>All methods return serializable supplie
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|Suppliers
 specifier|public
 specifier|final
@@ -511,9 +527,9 @@ condition|(
 operator|!
 name|initialized
 operator|||
-name|System
+name|Platform
 operator|.
-name|nanoTime
+name|systemNanoTime
 argument_list|()
 operator|-
 name|expirationNanos
@@ -534,9 +550,9 @@ literal|true
 expr_stmt|;
 name|expirationNanos
 operator|=
-name|System
+name|Platform
 operator|.
-name|nanoTime
+name|systemNanoTime
 argument_list|()
 operator|+
 name|durationNanos

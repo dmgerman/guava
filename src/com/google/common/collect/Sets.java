@@ -17,6 +17,38 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -41,6 +73,20 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
 import|;
 end_import
 
@@ -322,38 +368,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
 comment|/**  * Static utility methods pertaining to {@link Set} instances. Also see this  * class's counterparts {@link Lists} and {@link Maps}.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Chris Povirk  * @since 2 (imported from Google Collections Library)  */
 end_comment
@@ -361,6 +375,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Sets
 specifier|public
 specifier|final
@@ -1735,6 +1754,11 @@ argument_list|)
 return|;
 block|}
 comment|// addAll is the only inherited implementation
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1744,6 +1768,11 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void

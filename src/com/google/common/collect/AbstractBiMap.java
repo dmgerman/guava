@@ -17,34 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Objects
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -73,6 +45,48 @@ operator|.
 name|Preconditions
 operator|.
 name|checkState
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Objects
 import|;
 end_import
 
@@ -173,6 +187,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|AbstractBiMap
 specifier|abstract
 class|class
@@ -1937,6 +1956,11 @@ expr_stmt|;
 block|}
 comment|/*      * Serialization stores the forward bimap, the inverse of this inverse.      * Deserialization calls inverse() on the forward bimap and returns that      * inverse.      *      * If a bimap and its inverse are serialized together, the deserialized      * instances have inverse() methods that return the other.      */
 comment|/**      * @serialData the forward bimap      */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectOuputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1962,6 +1986,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2003,6 +2032,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Not needed in the emulated source."
+argument_list|)
 DECL|method|readResolve ()
 name|Object
 name|readResolve
@@ -2016,6 +2050,11 @@ name|inverse
 argument_list|()
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Not needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2026,6 +2065,11 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Not needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

@@ -17,20 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -91,6 +77,34 @@ operator|.
 name|Multisets
 operator|.
 name|checkNonnegative
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
 import|;
 end_import
 
@@ -215,6 +229,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|AbstractMapBasedMultiset
 specifier|abstract
 class|class
@@ -1869,6 +1888,11 @@ block|}
 block|}
 comment|// Don't allow default serialization.
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectStreamException"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unused"
@@ -1890,6 +1914,11 @@ literal|"Stream data required"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

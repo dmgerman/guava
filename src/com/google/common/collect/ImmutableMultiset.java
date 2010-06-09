@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -31,18 +47,16 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
+name|GwtIncompatible
 import|;
 end_import
 
@@ -544,6 +558,11 @@ decl_stmt|;
 comment|// These constants allow the deserialization code to set final fields. This
 comment|// holder class makes sure they are not initialized unless an instance is
 comment|// deserialized.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java serialization is not supported."
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1478,9 +1497,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|// TODO: Revert the comment-out once this class is emulated in GWT.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not needed in emulated source."
+argument_list|)
 DECL|method|writeReplace ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|Object
 name|writeReplace
 parameter_list|()
@@ -1500,6 +1524,11 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * @serialData the number of distinct elements, the first element, its count,    *     the second element, its count, and so on    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1526,6 +1555,11 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -1681,9 +1715,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: Revert the comment-out once this class is emulated in GWT.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java serialization not supported."
+argument_list|)
 DECL|method|writeReplace ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|Object
 name|writeReplace
 parameter_list|()

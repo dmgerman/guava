@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -31,18 +47,16 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
-operator|.
-name|checkArgument
+name|GwtIncompatible
 import|;
 end_import
 
@@ -117,6 +131,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|EnumMultiset
 specifier|public
 specifier|final
@@ -294,6 +313,11 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -328,6 +352,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @serialData the {@code Class<E>} for the enum type, the number of distinct    *     elements, the first element, its count, the second element, its count,    *     and so on    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -397,6 +426,11 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

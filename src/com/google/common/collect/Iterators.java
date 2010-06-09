@@ -17,6 +17,54 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -208,54 +256,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
@@ -263,6 +263,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Iterators
 specifier|public
 specifier|final
@@ -1138,11 +1143,6 @@ name|defaultValue
 return|;
 block|}
 comment|/**    * Copies an iterator's elements into an array. The iterator will be left    * exhausted: its {@code hasNext()} method will return {@code false}.    *    * @param iterator the iterator to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterator    *         have been copied    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Array.newArray"
-argument_list|)
 DECL|method|toArray ( Iterator<? extends T> iterator, Class<T> type)
 specifier|public
 specifier|static

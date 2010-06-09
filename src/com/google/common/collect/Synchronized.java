@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -27,6 +43,20 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
 import|;
 end_import
 
@@ -174,22 +204,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
 comment|/**  * Synchronized collection views. The returned synchronized collection views are  * serializable if the backing collection and the mutex are serializable.  *  *<p>If a {@code null} is passed as the {@code mutex} parameter to any of this  * class's top-level methods or inner class constructors, the created object  * uses itself as the synchronization mutex.  *  *<p>This class should be used by other collection classes only.  *  * @author Mike Bostock  * @author Jared Levy  */
 end_comment
@@ -197,6 +211,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Synchronized
 specifier|final
 class|class
@@ -296,6 +315,11 @@ comment|// Serialization invokes writeObject only when it's private.
 comment|// The SynchronizedObject subclasses don't need a writeObject method since
 comment|// they don't contain any non-transient member variables, while the
 comment|// following writeObject() handles the SynchronizedObject members.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -319,6 +343,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

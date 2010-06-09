@@ -17,6 +17,38 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -234,38 +266,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
@@ -273,6 +273,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Iterables
 specifier|public
 specifier|final
@@ -913,11 +918,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterable    *     have been copied    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Array.newInstance(Class, int)"
-argument_list|)
 DECL|method|toArray (Iterable<? extends T> iterable, Class<T> type)
 specifier|public
 specifier|static

@@ -103,36 +103,6 @@ name|getCanonicalName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Calls {@link Class#isInstance(Object)}.  Factored out so that it can be    * emulated in GWT.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Class.isInstance"
-argument_list|)
-DECL|method|isInstance (Class<?> clazz, Object obj)
-specifier|static
-name|boolean
-name|isInstance
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|,
-name|Object
-name|obj
-parameter_list|)
-block|{
-return|return
-name|clazz
-operator|.
-name|isInstance
-argument_list|(
-name|obj
-argument_list|)
-return|;
-block|}
 comment|/**    * Clone the given array using {@link Object#clone()}.  It is factored out so    * that it can be emulated in GWT.    */
 DECL|method|clone (T[] array)
 specifier|static
