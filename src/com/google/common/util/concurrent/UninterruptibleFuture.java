@@ -101,7 +101,8 @@ name|V
 argument_list|>
 block|{
 DECL|method|get ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|V
 name|get
 parameter_list|()
@@ -109,7 +110,8 @@ throws|throws
 name|ExecutionException
 function_decl|;
 DECL|method|get (long timeout, TimeUnit unit)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|V
 name|get
 parameter_list|(

@@ -268,7 +268,8 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -364,7 +365,8 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -551,7 +553,8 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -692,7 +695,8 @@ operator|new
 name|Strategy
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|SplittingIterator
 name|iterator
@@ -858,7 +862,8 @@ name|String
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1315,7 +1320,8 @@ name|next
 return|;
 block|}
 DECL|method|remove ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

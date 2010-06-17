@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -17,20 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -43,6 +29,20 @@ operator|.
 name|Preconditions
 operator|.
 name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
 import|;
 end_import
 
@@ -119,18 +119,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which joins pieces of text (specified as an array, {@link  * Iterable}, varargs or even a {@link Map}) with a separator. It either  * appends the results to an {@link Appendable} or returns them as a {@link  * String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input  * elements are converted to strings using {@link Object#toString()} before  * being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is  * specified, the joining methods will throw {@link NullPointerException} if any  * given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration  * method such as {@code useForNull} has no effect on the instance it is invoked  * on! You must store and use the new joiner instance returned by the method.  * This makes joiners thread-safe, and safe to store as {@code static final}  * constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a  * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns  * them as a {@link String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input elements are  * converted to strings using {@link Object#toString()} before being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is specified, the joining  * methods will throw {@link NullPointerException} if any given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration method such as {@code  * useForNull} has no effect on the instance it is invoked on! You must store and use the new joiner  * instance returned by the method. This makes joiners thread-safe, and safe to store as {@code  * static final} constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
-DECL|class|Joiner
 annotation|@
 name|GwtCompatible
+DECL|class|Joiner
 specifier|public
 class|class
 name|Joiner
 block|{
-comment|/**    * Returns a joiner which automatically places {@code separator} between    * consecutive elements.    */
+comment|/**    * Returns a joiner which automatically places {@code separator} between consecutive elements.    */
 DECL|method|on (String separator)
 specifier|public
 specifier|static
@@ -149,7 +149,7 @@ name|separator
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a joiner which automatically places {@code separator} between    * consecutive elements.    */
+comment|/**    * Returns a joiner which automatically places {@code separator} between consecutive elements.    */
 DECL|method|on (char separator)
 specifier|public
 specifier|static
@@ -214,7 +214,7 @@ operator|.
 name|separator
 expr_stmt|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the    * previously configured separator between each, to {@code appendable}.    */
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
 DECL|method|appendTo (A appendable, Iterable<?> parts)
 specifier|public
 parameter_list|<
@@ -308,8 +308,8 @@ return|return
 name|appendable
 return|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the    * previously configured separator between each, to {@code appendable}.    */
-DECL|method|appendTo ( A appendable, Object[] parts)
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
+DECL|method|appendTo (A appendable, Object[] parts)
 specifier|public
 specifier|final
 parameter_list|<
@@ -344,8 +344,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Appends to {@code appendable} the string representation of each of the    * remaining arguments.    */
-DECL|method|appendTo (A appendable, @Nullable Object first, @Nullable Object second, Object... rest)
+comment|/**    * Appends to {@code appendable} the string representation of each of the remaining arguments.    */
+DECL|method|appendTo ( A appendable, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
 parameter_list|<
@@ -392,8 +392,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the    * previously configured separator between each, to {@code builder}. Identical    * to {@link #appendTo(Appendable, Iterable)}, except that it does not throw    * {@link IOException}.    */
-DECL|method|appendTo ( StringBuilder builder, Iterable<?> parts)
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+DECL|method|appendTo (StringBuilder builder, Iterable<?> parts)
 specifier|public
 specifier|final
 name|StringBuilder
@@ -440,7 +440,7 @@ return|return
 name|builder
 return|;
 block|}
-comment|/**    * Appends the string representation of each of {@code parts}, using the    * previously configured separator between each, to {@code builder}. Identical    * to {@link #appendTo(Appendable, Iterable)}, except that it does not throw    * {@link IOException}.    */
+comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
 DECL|method|appendTo (StringBuilder builder, Object[] parts)
 specifier|public
 specifier|final
@@ -469,8 +469,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Appends to {@code builder} the string representation of each of the    * remaining arguments. Identical to {@link #appendTo(Appendable, Object,    * Object, Object...)}, except that it does not throw {@link IOException}.    */
-DECL|method|appendTo (StringBuilder builder, @Nullable Object first, @Nullable Object second, Object... rest)
+comment|/**    * Appends to {@code builder} the string representation of each of the remaining arguments.    * Identical to {@link #appendTo(Appendable, Object, Object, Object...)}, except that it does not    * throw {@link IOException}.    */
+DECL|method|appendTo ( StringBuilder builder, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
 name|StringBuilder
@@ -510,7 +510,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string containing the string representation of each of {@code    * parts}, using the previously configured separator between each.    */
+comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
 DECL|method|join (Iterable<?> parts)
 specifier|public
 specifier|final
@@ -538,7 +538,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string containing the string representation of each of {@code    * parts}, using the previously configured separator between each.    */
+comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
 DECL|method|join (Object[] parts)
 specifier|public
 specifier|final
@@ -562,8 +562,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string containing the string representation of each argument,    * using the previously configured separator between each.    */
-DECL|method|join ( @ullable Object first, @Nullable Object second, Object... rest)
+comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
+DECL|method|join (@ullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
 name|String
@@ -598,7 +598,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a joiner with the same behavior as this one, except automatically    * substituting {@code nullText} for any provided null elements.    */
+comment|/**    * Returns a joiner with the same behavior as this one, except automatically substituting {@code    * nullText} for any provided null elements.    */
 DECL|method|useForNull (final String nullText)
 specifier|public
 name|Joiner
@@ -664,8 +664,7 @@ argument_list|(
 name|nullText
 argument_list|)
 expr_stmt|;
-comment|// weird, just to satisfy NullPointerTester!
-comment|// TODO: fix that?
+comment|// weird: just to satisfy NullPointerTester.
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -692,7 +691,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a joiner with the same behavior as this joiner, except    * automatically skipping over any provided null elements.    */
+comment|/**    * Returns a joiner with the same behavior as this joiner, except automatically skipping over any    * provided null elements.    */
 DECL|method|skipNulls ()
 specifier|public
 name|Joiner
@@ -859,7 +858,7 @@ argument_list|(
 name|nullText
 argument_list|)
 expr_stmt|;
-comment|// weird, just to satisfy NullPointerTester!
+comment|// weird: just to satisfy NullPointerTester.
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -883,7 +882,7 @@ argument_list|(
 name|kvs
 argument_list|)
 expr_stmt|;
-comment|// weird, just to satisfy NullPointerTester!
+comment|// weird: just to satisfy NullPointerTester.
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -895,7 +894,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the    * same configuration as this {@code Joiner} otherwise.    */
+comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    */
 DECL|method|withKeyValueSeparator (String keyValueSeparator)
 specifier|public
 name|MapJoiner
@@ -918,7 +917,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins    * iterables and arrays. Like {@code Joiner}, it is thread-safe and immutable.    */
+comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    */
 DECL|class|MapJoiner
 specifier|public
 specifier|static
@@ -961,7 +960,7 @@ operator|=
 name|keyValueSeparator
 expr_stmt|;
 block|}
-comment|/**      * Appends the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator, to {@code      * appendable}.      */
+comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code appendable}.      */
 DECL|method|appendTo (A appendable, Map<?, ?> map)
 specifier|public
 parameter_list|<
@@ -1145,7 +1144,7 @@ return|return
 name|appendable
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator, to {@code      * builder}. Identical to {@link #appendTo(Appendable, Map)}, except that it      * does not throw {@link IOException}.      */
+comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.      */
 DECL|method|appendTo (StringBuilder builder, Map<?, ?> map)
 specifier|public
 name|StringBuilder
@@ -1194,7 +1193,7 @@ return|return
 name|builder
 return|;
 block|}
-comment|/**      * Returns a string containing the string representation of each entry of      * {@code map}, using the previously configured separator and key-value      * separator.      */
+comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
 DECL|method|join (Map<?, ?> map)
 specifier|public
 name|String
@@ -1223,7 +1222,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns a map joiner with the same behavior as this one, except      * automatically substituting {@code nullText} for any provided null keys or      * values.      */
+comment|/**      * Returns a map joiner with the same behavior as this one, except automatically substituting      * {@code nullText} for any provided null keys or values.      */
 DECL|method|useForNull (String nullText)
 specifier|public
 name|MapJoiner

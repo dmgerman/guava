@@ -1854,7 +1854,8 @@ return|;
 block|}
 comment|/** In GWT, List and AbstractList do not have the subList method. */
 DECL|method|subList (int fromIndex, int toIndex)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|List
 argument_list|<

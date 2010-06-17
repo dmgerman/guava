@@ -45,6 +45,20 @@ import|;
 end_import
 
 begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -235,18 +249,11 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|(
-name|int
-operator|)
-name|Math
+name|Ints
 operator|.
-name|min
+name|saturatedCast
 argument_list|(
 name|sum
-argument_list|,
-name|Integer
-operator|.
-name|MAX_VALUE
 argument_list|)
 return|;
 block|}

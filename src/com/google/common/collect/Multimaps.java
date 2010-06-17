@@ -1349,7 +1349,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|valueComparator ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Comparator
 argument_list|<

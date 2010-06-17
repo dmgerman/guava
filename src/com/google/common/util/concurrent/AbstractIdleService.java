@@ -131,7 +131,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -192,7 +193,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -320,7 +322,8 @@ return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
 DECL|method|start ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|Future
@@ -338,7 +341,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|startAndWait ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|State
@@ -353,7 +357,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|isRunning ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|boolean
@@ -368,7 +373,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|state ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|State
@@ -383,7 +389,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|stop ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|Future
@@ -401,7 +408,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|stopAndWait ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|State

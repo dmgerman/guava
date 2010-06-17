@@ -548,7 +548,8 @@ name|shutdown
 init|=
 literal|false
 decl_stmt|;
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|execute (Runnable command)
 specifier|public
 name|void
@@ -576,7 +577,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|isShutdown ()
 specifier|public
 name|boolean
@@ -603,7 +605,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|shutdown ()
 specifier|public
 name|void
@@ -632,7 +635,8 @@ expr_stmt|;
 block|}
 block|}
 comment|// See sameThreadExecutor javadoc for unusual behavior of this method.
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|shutdownNow ()
 specifier|public
 name|List
@@ -652,7 +656,8 @@ name|emptyList
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|isTerminated ()
 specifier|public
 name|boolean
@@ -683,7 +688,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|awaitTermination (long timeout, TimeUnit unit)
 specifier|public
 name|boolean

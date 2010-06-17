@@ -49,7 +49,8 @@ extends|extends
 name|DataOutput
 block|{
 DECL|method|write (int b)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|write
 parameter_list|(
@@ -58,7 +59,8 @@ name|b
 parameter_list|)
 function_decl|;
 DECL|method|write (byte b[])
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|write
 parameter_list|(
@@ -68,7 +70,8 @@ index|[]
 parameter_list|)
 function_decl|;
 DECL|method|write (byte b[], int off, int len)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|write
 parameter_list|(
@@ -84,7 +87,8 @@ name|len
 parameter_list|)
 function_decl|;
 DECL|method|writeBoolean (boolean v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeBoolean
 parameter_list|(
@@ -93,7 +97,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeByte (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeByte
 parameter_list|(
@@ -102,7 +107,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeShort (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeShort
 parameter_list|(
@@ -111,7 +117,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeChar (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeChar
 parameter_list|(
@@ -120,7 +127,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeInt (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeInt
 parameter_list|(
@@ -129,7 +137,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeLong (long v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeLong
 parameter_list|(
@@ -138,7 +147,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeFloat (float v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeFloat
 parameter_list|(
@@ -147,7 +157,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeDouble (double v)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeDouble
 parameter_list|(
@@ -156,7 +167,8 @@ name|v
 parameter_list|)
 function_decl|;
 DECL|method|writeChars (String s)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeChars
 parameter_list|(
@@ -165,7 +177,8 @@ name|s
 parameter_list|)
 function_decl|;
 DECL|method|writeUTF (String s)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeUTF
 parameter_list|(
@@ -177,7 +190,8 @@ comment|/**    * @deprecated This method is dangerous as it discards the high by
 DECL|method|writeBytes (String s)
 annotation|@
 name|Deprecated
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|writeBytes
 parameter_list|(

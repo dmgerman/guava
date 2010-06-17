@@ -1593,7 +1593,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * A simple data class to encapsulate the information to be found in a    * Teredo address.    *    *<p>All of the fields in this class are encoded in various portions    * of the IPv6 address as part of the protocol.  More protocols details    * can be found at:    *<a target="_parent" href="http://en.wikipedia.org/wiki/Teredo_tunneling"    *>http://en.wikipedia.org/wiki/Teredo_tunneling</a>.    *    *<p>The RFC can be found here:    *<a target="_parent" href="http://tools.ietf.org/html/rfc4380"    *>http://tools.ietf.org/html/rfc4380</a>.    */
+comment|/**    * A simple data class to encapsulate the information to be found in a    * Teredo address.    *    *<p>All of the fields in this class are encoded in various portions    * of the IPv6 address as part of the protocol.  More protocols details    * can be found at:    *<a target="_parent" href="http://en.wikipedia.org/wiki/Teredo_tunneling"    *>http://en.wikipedia.org/wiki/Teredo_tunneling</a>.    *    *<p>The RFC can be found here:    *<a target="_parent" href="http://tools.ietf.org/html/rfc4380"    *>http://tools.ietf.org/html/rfc4380</a>.    *    * @since 5    */
 DECL|class|TeredoInfo
 specifier|public
 specifier|static

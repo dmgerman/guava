@@ -1150,7 +1150,8 @@ name|value
 init|=
 literal|null
 decl_stmt|;
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|O
 name|get
@@ -1170,7 +1171,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|O
 name|get
@@ -1240,7 +1242,8 @@ name|value
 return|;
 block|}
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|cancel
@@ -1258,7 +1261,8 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCancelled
@@ -1271,7 +1275,8 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDone
@@ -1383,6 +1388,45 @@ argument_list|(
 name|inputFuture
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|cancel (boolean mayInterruptIfRunning)
+specifier|public
+name|boolean
+name|cancel
+parameter_list|(
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
+name|Future
+argument_list|<
+name|?
+extends|extends
+name|I
+argument_list|>
+name|future
+init|=
+name|inputFuture
+decl_stmt|;
+if|if
+condition|(
+name|future
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|future
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
 block|}
 DECL|method|run ()
 specifier|public
@@ -1761,7 +1805,8 @@ return|return
 name|delegate
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|addListener (Runnable listener, Executor exec)
 specifier|public
 name|void
@@ -1802,7 +1847,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run

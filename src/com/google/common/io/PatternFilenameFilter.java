@@ -151,7 +151,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|accept (File dir, String fileName)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept

@@ -68,20 +68,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Equivalences
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Function
 import|;
 end_import
@@ -384,8 +370,6 @@ specifier|public
 name|MapMaker
 parameter_list|()
 block|{}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalences#identity()} to determine    * key equality when {@link #weakKeys()} or {@link #softKeys()} is    * specified, and {@link Equivalences#equals()} otherwise.    */
-comment|// TODO: if these become public, update the text of the file Javadoc.
 comment|// TODO: undo this indirection if keyEquiv gets released
 DECL|method|privateKeyEquivalence (Equivalence<Object> equivalence)
 name|MapMaker

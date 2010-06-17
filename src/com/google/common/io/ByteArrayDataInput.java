@@ -49,7 +49,8 @@ extends|extends
 name|DataInput
 block|{
 DECL|method|readFully (byte b[])
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|readFully
 parameter_list|(
@@ -59,7 +60,8 @@ index|[]
 parameter_list|)
 function_decl|;
 DECL|method|readFully (byte b[], int off, int len)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|void
 name|readFully
 parameter_list|(
@@ -75,7 +77,8 @@ name|len
 parameter_list|)
 function_decl|;
 DECL|method|skipBytes (int n)
-comment|/*@Override*/
+annotation|@
+name|Override
 name|int
 name|skipBytes
 parameter_list|(
@@ -84,73 +87,85 @@ name|n
 parameter_list|)
 function_decl|;
 DECL|method|readBoolean ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|boolean
 name|readBoolean
 parameter_list|()
 function_decl|;
 DECL|method|readByte ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|byte
 name|readByte
 parameter_list|()
 function_decl|;
 DECL|method|readUnsignedByte ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|int
 name|readUnsignedByte
 parameter_list|()
 function_decl|;
 DECL|method|readShort ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|short
 name|readShort
 parameter_list|()
 function_decl|;
 DECL|method|readUnsignedShort ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|int
 name|readUnsignedShort
 parameter_list|()
 function_decl|;
 DECL|method|readChar ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|char
 name|readChar
 parameter_list|()
 function_decl|;
 DECL|method|readInt ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|int
 name|readInt
 parameter_list|()
 function_decl|;
 DECL|method|readLong ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|long
 name|readLong
 parameter_list|()
 function_decl|;
 DECL|method|readFloat ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|float
 name|readFloat
 parameter_list|()
 function_decl|;
 DECL|method|readDouble ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|double
 name|readDouble
 parameter_list|()
 function_decl|;
 DECL|method|readLine ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|String
 name|readLine
 parameter_list|()
 function_decl|;
 DECL|method|readUTF ()
-comment|/*@Override*/
+annotation|@
+name|Override
 name|String
 name|readUTF
 parameter_list|()

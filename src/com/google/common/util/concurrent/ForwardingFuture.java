@@ -119,7 +119,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
@@ -139,7 +140,8 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
@@ -154,7 +156,8 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|isDone ()
 specifier|public
 name|boolean
@@ -169,7 +172,8 @@ name|isDone
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -188,7 +192,8 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V

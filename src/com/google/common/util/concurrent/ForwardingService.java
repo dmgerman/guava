@@ -105,7 +105,8 @@ name|delegate
 parameter_list|()
 function_decl|;
 DECL|method|start ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Future
 argument_list|<
@@ -123,7 +124,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|state ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|State
 name|state
@@ -138,7 +140,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|stop ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Future
 argument_list|<
@@ -156,7 +159,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|startAndWait ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|State
 name|startAndWait
@@ -171,7 +175,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|stopAndWait ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|State
 name|stopAndWait
@@ -186,7 +191,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|isRunning ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRunning

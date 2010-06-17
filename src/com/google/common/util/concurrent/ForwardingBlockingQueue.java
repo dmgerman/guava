@@ -109,7 +109,8 @@ name|delegate
 parameter_list|()
 function_decl|;
 DECL|method|drainTo ( Collection<? super E> c, int maxElements)
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|drainTo
@@ -139,7 +140,8 @@ argument_list|)
 return|;
 block|}
 DECL|method|drainTo (Collection<? super E> c)
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|drainTo
@@ -164,7 +166,8 @@ argument_list|)
 return|;
 block|}
 DECL|method|offer (E e, long timeout, TimeUnit unit)
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|offer
@@ -196,7 +199,8 @@ argument_list|)
 return|;
 block|}
 DECL|method|poll (long timeout, TimeUnit unit)
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|E
 name|poll
@@ -223,7 +227,8 @@ argument_list|)
 return|;
 block|}
 DECL|method|put (E e)
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|put
@@ -244,7 +249,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|remainingCapacity ()
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|remainingCapacity
@@ -259,7 +265,8 @@ argument_list|()
 return|;
 block|}
 DECL|method|take ()
-comment|/* @Override */
+annotation|@
+name|Override
 specifier|public
 name|E
 name|take

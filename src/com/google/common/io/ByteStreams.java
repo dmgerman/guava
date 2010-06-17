@@ -928,7 +928,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|readFully (byte b[])
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|readFully
@@ -964,7 +965,8 @@ throw|;
 block|}
 block|}
 DECL|method|readFully (byte b[], int off, int len)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|readFully
@@ -1010,7 +1012,8 @@ throw|;
 block|}
 block|}
 DECL|method|skipBytes (int n)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|int
 name|skipBytes
@@ -1046,7 +1049,8 @@ throw|;
 block|}
 block|}
 DECL|method|readBoolean ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|readBoolean
@@ -1077,7 +1081,8 @@ throw|;
 block|}
 block|}
 DECL|method|readByte ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|byte
 name|readByte
@@ -1122,7 +1127,8 @@ throw|;
 block|}
 block|}
 DECL|method|readUnsignedByte ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|int
 name|readUnsignedByte
@@ -1153,7 +1159,8 @@ throw|;
 block|}
 block|}
 DECL|method|readShort ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|short
 name|readShort
@@ -1184,7 +1191,8 @@ throw|;
 block|}
 block|}
 DECL|method|readUnsignedShort ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|int
 name|readUnsignedShort
@@ -1215,7 +1223,8 @@ throw|;
 block|}
 block|}
 DECL|method|readChar ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|char
 name|readChar
@@ -1246,7 +1255,8 @@ throw|;
 block|}
 block|}
 DECL|method|readInt ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|int
 name|readInt
@@ -1277,7 +1287,8 @@ throw|;
 block|}
 block|}
 DECL|method|readLong ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|long
 name|readLong
@@ -1308,7 +1319,8 @@ throw|;
 block|}
 block|}
 DECL|method|readFloat ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|float
 name|readFloat
@@ -1339,7 +1351,8 @@ throw|;
 block|}
 block|}
 DECL|method|readDouble ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|double
 name|readDouble
@@ -1370,7 +1383,8 @@ throw|;
 block|}
 block|}
 DECL|method|readLine ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|String
 name|readLine
@@ -1401,7 +1415,8 @@ throw|;
 block|}
 block|}
 DECL|method|readUTF ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|String
 name|readUTF
@@ -1554,7 +1569,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|write (int b)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -1589,7 +1605,8 @@ throw|;
 block|}
 block|}
 DECL|method|write (byte[] b)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -1625,7 +1642,8 @@ throw|;
 block|}
 block|}
 DECL|method|write (byte[] b, int off, int len)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -1671,7 +1689,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeBoolean (boolean v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeBoolean
@@ -1706,7 +1725,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeByte (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeByte
@@ -1741,7 +1761,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeBytes (String s)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeBytes
@@ -1776,7 +1797,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeChar (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeChar
@@ -1811,7 +1833,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeChars (String s)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeChars
@@ -1846,7 +1869,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeDouble (double v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeDouble
@@ -1881,7 +1905,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeFloat (float v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeFloat
@@ -1916,7 +1941,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeInt (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeInt
@@ -1951,7 +1977,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeLong (long v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeLong
@@ -1986,7 +2013,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeShort (int v)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeShort
@@ -2021,7 +2049,8 @@ throw|;
 block|}
 block|}
 DECL|method|writeUTF (String s)
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|writeUTF
@@ -2056,7 +2085,8 @@ throw|;
 block|}
 block|}
 DECL|method|toByteArray ()
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -2941,7 +2971,8 @@ name|InputStream
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getInput
@@ -3038,7 +3069,8 @@ name|InputStream
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getInput

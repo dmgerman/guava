@@ -1203,7 +1203,8 @@ block|{
 name|V
 name|valueToRemove
 decl_stmt|;
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1216,7 +1217,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|V
 name|next
@@ -1231,7 +1233,8 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -1557,7 +1560,8 @@ name|V
 argument_list|>
 name|entry
 decl_stmt|;
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1570,7 +1574,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1724,7 +1729,8 @@ block|}
 block|}
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

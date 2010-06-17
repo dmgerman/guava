@@ -364,7 +364,8 @@ name|Object
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -374,7 +375,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|next
@@ -386,7 +388,8 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

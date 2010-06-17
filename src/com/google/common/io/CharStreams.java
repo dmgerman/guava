@@ -1246,7 +1246,8 @@ name|Reader
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|Reader
 name|getInput

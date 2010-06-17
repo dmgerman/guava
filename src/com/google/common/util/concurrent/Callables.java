@@ -100,7 +100,8 @@ name|T
 argument_list|>
 argument_list|()
 block|{
-comment|/*@Override*/
+annotation|@
+name|Override
 specifier|public
 name|T
 name|call
