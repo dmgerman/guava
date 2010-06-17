@@ -160,22 +160,22 @@ name|objects
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}. For    * example, in an object that contains two member variables, {@code x},    * and {@code y}, one could write:<pre><tt>    *   public class ClassName {    *     public String toString() {    *       return Objects.toStringHelper(this)    *           .add("x", x)    *           .add("y", y)    *           .toString();    *     }    *   }</tt>    *</pre>    *    * Assuming the values of {@code x} and {@code y} are 1 and 2,    * this code snippet returns the string<tt>"ClassName{x=1, y=2}"</tt>.    *    * @since 2    */
-DECL|method|toStringHelper (Object object)
+comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}. For    * example, in an object that contains two member variables, {@code x},    * and {@code y}, one could write:<pre><tt>    *   public class ClassName {    *     public String toString() {    *       return Objects.toStringHelper(this)    *           .add("x", x)    *           .add("y", y)    *           .toString();    *     }    *   }</tt>    *</pre>    *    * Assuming the values of {@code x} and {@code y} are 1 and 2,    * this code snippet returns the string<tt>"ClassName{x=1, y=2}"</tt>.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since 2    */
+DECL|method|toStringHelper (Object self)
 specifier|public
 specifier|static
 name|ToStringHelper
 name|toStringHelper
 parameter_list|(
 name|Object
-name|object
+name|self
 parameter_list|)
 block|{
 return|return
 operator|new
 name|ToStringHelper
 argument_list|(
-name|object
+name|self
 argument_list|)
 return|;
 block|}
