@@ -17,20 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -43,6 +29,20 @@ operator|.
 name|Preconditions
 operator|.
 name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
 import|;
 end_import
 
@@ -127,7 +127,7 @@ literal|1
 operator|<<
 literal|29
 decl_stmt|;
-comment|// Size the table to be at most 50% full, if possible
+comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses linear probing in its implementation.  The returned size is the    * smallest power of two that can hold setSize elements while being at most    * 50% full, if possible.    */
 DECL|method|chooseTableSize (int setSize)
 specifier|static
 name|int

@@ -72,7 +72,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Executors
+name|ExecutorService
 import|;
 end_import
 
@@ -84,7 +84,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ExecutorService
+name|Executors
 import|;
 end_import
 

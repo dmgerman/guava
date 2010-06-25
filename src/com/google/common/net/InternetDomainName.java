@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>, with the  * exception that names ending in {@code "."} are not supported (as they are not  * generally used in browsers, email, and other end-user applications. Examples  * include {@code com} and {@code foo.co.uk}. Only syntactic analysis is  * performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>It is often the case that domains of interest are those under a  * {@linkplain #isPublicSuffix() public suffix} but not themselves a public  * suffix; {@link #hasPublicSuffix()} and {@link #isTopPrivateDomain()} test for  * this. Similarly, one often needs to obtain the domain consisting of the  * public suffix plus one subdomain level, typically to obtain the highest-level  * domain for which cookies may be set. Use {@link #topPrivateDomain()} for this  * purpose.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names (IDN)</a> such as {@code ç½ç».cn} are  * supported.  *  * @author Craig Berry  * @since 5  */
+comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>, with the  * exception that names ending in {@code "."} are not supported (as they are not  * generally used in browsers, email, and other end-user applications. Examples  * include {@code com} and {@code foo.co.uk}. Only syntactic analysis is  * performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>It is often the case that domains of interest are those under a  * {@linkplain #isPublicSuffix() public suffix} but not themselves a public  * suffix; {@link #hasPublicSuffix()} and {@link #isTopPrivateDomain()} test for  * this. Similarly, one often needs to obtain the domain consisting of the  * public suffix plus one subdomain level, typically to obtain the highest-level  * domain for which cookies may be set. Use {@link #topPrivateDomain()} for this  * purpose.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names (IDN)</a> such as {@code ??.cn} are  * supported.  *  * @author Craig Berry  * @since 5  */
 end_comment
 
 begin_class
@@ -933,7 +933,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as    * defined by the Mozilla Foundation's    *<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public    * suffix is one under which Internet users can directly register names, such    * as {@code com}, {@code co.uk} or {@code pvt.k12.wy.us}. Examples of domain    * names that are<i>not</i> public suffixes include {@code google}, {@code    * google.com} and {@code foo.co.uk}.    *    * @return {@code true} if this domain name appears exactly on the public    *     suffix list    */
+comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as    * defined by the Mozilla Foundation's    *<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public    * suffix is one under which Internet users can directly register names, such    * as {@code com}, {@code co.uk} or {@code pvt.k12.wy.us}. Examples of domain    * names that are<i>not</i> public suffixes include {@code google}, {@code    * google.com} and {@code foo.co.uk}.    *    * @return {@code true} if this domain name appears exactly on the public    *     suffix list    * @since 6    */
 DECL|method|isPublicSuffix ()
 specifier|public
 name|boolean
@@ -946,7 +946,7 @@ operator|==
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, including if it is a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code com}, but not for {@code google} or {@code google.foo}.    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, including if it is a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code com}, but not for {@code google} or {@code google.foo}.    *    * @since 6    */
 DECL|method|hasPublicSuffix ()
 specifier|public
 name|boolean
@@ -959,7 +959,7 @@ operator|!=
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the    * domain name, or {@code null} if no public suffix is present.    */
+comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the    * domain name, or {@code null} if no public suffix is present.    *    * @since 6    */
 DECL|method|publicSuffix ()
 specifier|public
 name|InternetDomainName
@@ -978,7 +978,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, while not being a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code bar.ca.us}, but not for {@code google}, {@code com}, or {@code    * google.foo}.    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, while not being a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code bar.ca.us}, but not for {@code google}, {@code com}, or {@code    * google.foo}.    *    * @since 6    */
 DECL|method|isUnderPublicSuffix ()
 specifier|public
 name|boolean
@@ -991,7 +991,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name is composed of exactly one subdomain    * component followed by a {@linkplain #isPublicSuffix() public suffix}. For    * example, returns {@code true} for {@code google.com} and {@code foo.co.uk},    * but not for {@code www.google.com} or {@code co.uk}.    */
+comment|/**    * Indicates whether this domain name is composed of exactly one subdomain    * component followed by a {@linkplain #isPublicSuffix() public suffix}. For    * example, returns {@code true} for {@code google.com} and {@code foo.co.uk},    * but not for {@code www.google.com} or {@code co.uk}.    *    * @since 6    */
 DECL|method|isTopPrivateDomain ()
 specifier|public
 name|boolean
@@ -1004,7 +1004,7 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/**    * Returns the portion of this domain name that is one level beneath the    * public suffix. For example, for {@code x.adwords.google.co.uk} it returns    * {@code google.co.uk}, since {@code co.uk} is a public suffix. This is the    * highest-level parent of this domain for which cookies may be set, as    * cookies cannot be set on a public suffix itself.    *    *<p>If {@link #isTopPrivateDomain()} is true, the current domain name    * instance is returned.    *    * @throws IllegalStateException if this domain does not end with a    *     public suffix    */
+comment|/**    * Returns the portion of this domain name that is one level beneath the    * public suffix. For example, for {@code x.adwords.google.co.uk} it returns    * {@code google.co.uk}, since {@code co.uk} is a public suffix. This is the    * highest-level parent of this domain for which cookies may be set, as    * cookies cannot be set on a public suffix itself.    *    *<p>If {@link #isTopPrivateDomain()} is true, the current domain name    * instance is returned.    *    * @throws IllegalStateException if this domain does not end with a    *     public suffix    * @since 6    */
 DECL|method|topPrivateDomain ()
 specifier|public
 name|InternetDomainName

@@ -17,16 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
 import|import static
 name|com
 operator|.
@@ -58,6 +48,16 @@ name|checkNotNull
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret  * values as<i>unsigned</i> (that is, any negative value {@code b} is treated  * as the positive value {@code 256 + b}). The corresponding methods that treat  * the values as signed are found in {@link SignedBytes}, and the methods for  * which signedness is not an issue are in {@link Bytes}.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
@@ -74,6 +74,23 @@ specifier|private
 name|UnsignedBytes
 parameter_list|()
 block|{}
+comment|/**    * Returns the value of the given byte as an integer, when treated as    * unsigned. That is, returns {@code value + 256} if {@code value} is    * negative; {@code value} itself otherwise.    *    * @since 6    */
+DECL|method|toInt (byte value)
+specifier|public
+specifier|static
+name|int
+name|toInt
+parameter_list|(
+name|byte
+name|value
+parameter_list|)
+block|{
+return|return
+name|value
+operator|&
+literal|0xFF
+return|;
+block|}
 comment|/**    * Returns the {@code byte} value that, when treated as unsigned, is equal to    * {@code value}, if possible.    *    * @param value a value between 0 and 255 inclusive    * @return the {@code byte} value that, when treated as unsigned, equals    *     {@code value}    * @throws IllegalArgumentException if {@code value} is negative or greater    *     than 255    */
 DECL|method|checkedCast (long value)
 specifier|public
@@ -167,17 +184,15 @@ name|b
 parameter_list|)
 block|{
 return|return
-operator|(
+name|toInt
+argument_list|(
 name|a
-operator|&
-literal|0xFF
-operator|)
+argument_list|)
 operator|-
-operator|(
+name|toInt
+argument_list|(
 name|b
-operator|&
-literal|0xFF
-operator|)
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the least value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is less than or equal to    *     every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
@@ -204,12 +219,13 @@ expr_stmt|;
 name|int
 name|min
 init|=
+name|toInt
+argument_list|(
 name|array
 index|[
 literal|0
 index|]
-operator|&
-literal|0xFF
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -231,12 +247,13 @@ block|{
 name|int
 name|next
 init|=
+name|toInt
+argument_list|(
 name|array
 index|[
 name|i
 index|]
-operator|&
-literal|0xFF
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -282,12 +299,13 @@ expr_stmt|;
 name|int
 name|max
 init|=
+name|toInt
+argument_list|(
 name|array
 index|[
 literal|0
 index|]
-operator|&
-literal|0xFF
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -309,12 +327,13 @@ block|{
 name|int
 name|next
 init|=
+name|toInt
+argument_list|(
 name|array
 index|[
 name|i
 index|]
-operator|&
-literal|0xFF
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -387,12 +406,13 @@ name|builder
 operator|.
 name|append
 argument_list|(
+name|toInt
+argument_list|(
 name|array
 index|[
 literal|0
 index|]
-operator|&
-literal|0xFF
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for
@@ -421,12 +441,13 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
+name|toInt
+argument_list|(
 name|array
 index|[
 name|i
 index|]
-operator|&
-literal|0xFF
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

@@ -17,6 +17,70 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkElementIndex
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkPositionIndexes
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -121,70 +185,6 @@ operator|.
 name|util
 operator|.
 name|RandomAccess
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkElementIndex
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkPositionIndexes
 import|;
 end_import
 
@@ -892,7 +892,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a big-endian representation of {@code value} in a ?-element byte    * array; equivalent to {@code    * ByteBuffer.allocate(?).putShort(value).array()}.  For example, the input    * value {@code ?} would yield the byte array {@code {?}}.    *    *<p>If you need to convert and concatenate several values (possibly even of    * different types), use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable    * buffer.    */
+comment|/**    * Returns a big-endian representation of {@code value} in a 2-element byte    * array; equivalent to {@code    * ByteBuffer.allocate(2).putShort(value).array()}.  For example, the input    * value {@code (short) 0x1234} would yield the byte array {@code {0x12,    * 0x34}}.    *    *<p>If you need to convert and concatenate several values (possibly even of    * different types), use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable    * buffer.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -930,7 +930,7 @@ name|value
 block|}
 return|;
 block|}
-comment|/**    * Returns the {@code short} value whose big-endian representation is    * stored in the first ? bytes of {@code bytes}; equivalent to {@code    * ByteBuffer.wrap(bytes).getShort()}. For example, the input byte array    * {@code {?}} would yield the {@code short} value {@code ?}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that    * library exposes much more flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than ?    *     elements    */
+comment|/**    * Returns the {@code short} value whose big-endian representation is stored    * in the first 2 bytes of {@code bytes}; equivalent to {@code    * ByteBuffer.wrap(bytes).getShort()}. For example, the input byte array    * {@code {0x12, 0x34}} would yield the {@code short} value {@code 0x1234}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that    * library exposes much more flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 2    *     elements    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1105,7 +1105,7 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied {@code short} values separated    * by {@code separator}. For example, {@code join("-", 1?, 2?, 3?)} returns    * the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code short} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied {@code short} values separated    * by {@code separator}. For example, {@code join("-", (short) 1, (short) 2,    * (short) 3)} returns the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code short} values, possibly empty    */
 DECL|method|join (String separator, short... array)
 specifier|public
 specifier|static
