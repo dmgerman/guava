@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A set which forwards all its method calls to another set. Subclasses should  * override one or more methods to modify the behavior of the backing set as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A set which forwards all its method calls to another set. Subclasses should  * override one or more methods to modify the behavior of the backing set as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

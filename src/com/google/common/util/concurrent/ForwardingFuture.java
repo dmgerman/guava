@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @see ForwardingObject  * @author Sven Mawson  * @since 1  */
+comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
