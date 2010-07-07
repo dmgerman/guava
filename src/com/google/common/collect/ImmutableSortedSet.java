@@ -634,7 +634,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any element is null    * @since 3 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -762,7 +762,7 @@ return|;
 block|}
 comment|// TODO: Consider adding factory methods that throw an exception when given
 comment|// duplicate elements.
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Comparable[])}.    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Comparable[])}.    * @since 2 (changed from varargs in release 3)    */
 annotation|@
 name|Deprecated
 DECL|method|of ( E[] elements)
@@ -796,7 +796,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3    */
 DECL|method|copyOf ( E[] elements)
 specifier|public
 specifier|static

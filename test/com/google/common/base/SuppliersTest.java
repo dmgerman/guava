@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|testing
+operator|.
+name|util
+operator|.
+name|SerializableTester
+operator|.
+name|reserialize
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -121,22 +137,6 @@ operator|.
 name|concurrent
 operator|.
 name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|testing
-operator|.
-name|util
-operator|.
-name|SerializableTester
-operator|.
-name|reserialize
 import|;
 end_import
 

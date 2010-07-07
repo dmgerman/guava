@@ -836,7 +836,7 @@ return|;
 block|}
 comment|// These go up to eleven. After that, you just get the varargs form, and
 comment|// whatever warnings might come along with it. :(
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 3 (source-compatible since release 2)    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10, E e11, E e12, E... others)
 specifier|public
 specifier|static
@@ -961,7 +961,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (changed from varargs in release 3)    */
 annotation|@
 name|Deprecated
 DECL|method|of (E[] elements)

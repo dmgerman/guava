@@ -272,7 +272,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    */
+comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    * @since 6 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -302,7 +302,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -337,7 +337,7 @@ name|e2
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -377,7 +377,7 @@ name|e3
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -422,7 +422,7 @@ name|e4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -472,7 +472,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -573,7 +573,7 @@ name|all
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.of(2, 3, 1, 3)} yields a multiset with    * elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Object[])}.    */
+comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.of(2, 3, 1, 3)} yields a multiset with    * elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Object[])}.    * @since 2 (changed from varargs in release 6)    */
 annotation|@
 name|Deprecated
 DECL|method|of (E[] elements)

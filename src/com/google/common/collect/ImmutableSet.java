@@ -419,7 +419,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    * @since 3 (source-compatible since release 2)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -521,7 +521,7 @@ name|size
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (changed from varargs in release 3)    */
 comment|// TODO: when this is removed, remember to remove from ISS and ISSFS too
 annotation|@
 name|Deprecated
@@ -549,7 +549,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**   * Returns an immutable set containing the given elements, in order. Repeated   * occurrences of an element (according to {@link Object#equals}) after the   * first are ignored.   *   * @throws NullPointerException if any of {@code elements} is null   */
+comment|/**   * Returns an immutable set containing the given elements, in order. Repeated   * occurrences of an element (according to {@link Object#equals}) after the   * first are ignored.   *   * @throws NullPointerException if any of {@code elements} is null   * @since 3   */
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
