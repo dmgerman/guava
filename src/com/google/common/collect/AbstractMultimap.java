@@ -3721,6 +3721,35 @@ operator|>
 literal|0
 return|;
 block|}
+DECL|method|removeAll (Collection<?> c)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|removeAll
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+name|c
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|c
+argument_list|)
+expr_stmt|;
+comment|// eager for GWT
+return|return
+name|super
+operator|.
+name|removeAll
+argument_list|(
+name|c
+argument_list|)
+return|;
+block|}
 DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override

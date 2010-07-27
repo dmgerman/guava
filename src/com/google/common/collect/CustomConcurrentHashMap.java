@@ -200,6 +200,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|AbstractQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|AbstractSet
 import|;
 end_import
@@ -250,7 +260,29 @@ name|java
 operator|.
 name|util
 operator|.
+name|Queue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentLinkedQueue
 import|;
 end_import
 
@@ -329,7 +361,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  * This implementation is heavily derived from revision 1.96 of  *<a href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *   * @author Bob Lee  * @author Doug Lea ({@code ConcurrentHashMap})  */
+comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  * This implementation is heavily derived from revision 1.96 of  *<a href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Bob Lee  * @author Doug Lea ({@code ConcurrentHashMap})  */
 end_comment
 
 begin_class
@@ -470,6 +502,31 @@ specifier|final
 name|boolean
 name|evicts
 decl_stmt|;
+comment|/** Entries waiting to be consumed by the eviction listener. */
+DECL|field|pendingEvictionNotifications
+specifier|final
+name|Queue
+argument_list|<
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+name|pendingEvictionNotifications
+decl_stmt|;
+comment|/**    * A listener that is invoked when an entry is removed due to expiration or    * garbage collection of soft/weak entries.    */
+DECL|field|evictionListener
+specifier|final
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|evictionListener
+decl_stmt|;
 comment|/** The concurrency level. */
 DECL|field|concurrencyLevel
 specifier|final
@@ -484,11 +541,19 @@ name|EntryFactory
 name|entryFactory
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity    * and concurrency level.    */
-DECL|method|CustomConcurrentHashMap (MapMaker builder)
+DECL|method|CustomConcurrentHashMap (MapMaker builder, MapEvictionListener<K, V> evictionListener)
 name|CustomConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
+parameter_list|,
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|evictionListener
 parameter_list|)
 block|{
 name|keyStrength
@@ -559,6 +624,102 @@ argument_list|,
 name|evicts
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|evictionListener
+operator|==
+literal|null
+operator|||
+name|evictionListener
+operator|.
+name|equals
+argument_list|(
+name|NullListener
+operator|.
+name|INSTANCE
+argument_list|)
+condition|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|Queue
+argument_list|<
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+name|defaultQueue
+init|=
+operator|(
+name|Queue
+operator|)
+name|discardingQueue
+decl_stmt|;
+name|pendingEvictionNotifications
+operator|=
+name|defaultQueue
+expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|defaultListener
+init|=
+operator|(
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|NullListener
+operator|.
+name|INSTANCE
+decl_stmt|;
+name|this
+operator|.
+name|evictionListener
+operator|=
+name|defaultListener
+expr_stmt|;
+block|}
+else|else
+block|{
+name|pendingEvictionNotifications
+operator|=
+operator|new
+name|ConcurrentLinkedQueue
+argument_list|<
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|evictionListener
+operator|=
+name|evictionListener
+expr_stmt|;
+block|}
 name|concurrencyLevel
 operator|=
 name|filterConcurrencyLevel
@@ -2827,6 +2988,12 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 function_decl|;
+comment|/**      * Clears this reference object. This intentionally mimics {@link      * java.lang.ref.Reference#clear()}, and indeed is implemented by      * {@code Reference} subclasses for weak and soft values.      */
+DECL|method|clear ()
+name|void
+name|clear
+parameter_list|()
+function_decl|;
 block|}
 comment|/**    * Placeholder. Indicates that the value hasn't been set yet.    */
 DECL|field|UNSET
@@ -2893,6 +3060,11 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{}
 block|}
 decl_stmt|;
 comment|/**    * Singleton placeholder that indicates a value is being computed.    */
@@ -3166,6 +3338,102 @@ name|getLastUsage
 parameter_list|()
 function_decl|;
 block|}
+DECL|enum|NullListener
+enum|enum
+name|NullListener
+implements|implements
+name|MapEvictionListener
+block|{
+DECL|enumConstant|INSTANCE
+name|INSTANCE
+block|;
+DECL|method|onEviction (Object key, Object value)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|onEviction
+parameter_list|(
+name|Object
+name|key
+parameter_list|,
+name|Object
+name|value
+parameter_list|)
+block|{}
+block|}
+DECL|field|discardingQueue
+specifier|static
+specifier|final
+name|Queue
+argument_list|<
+name|Object
+argument_list|>
+name|discardingQueue
+init|=
+operator|new
+name|AbstractQueue
+argument_list|<
+name|Object
+argument_list|>
+argument_list|()
+block|{
+specifier|public
+name|boolean
+name|offer
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|Object
+name|peek
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+specifier|public
+name|Object
+name|poll
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+specifier|public
+name|Iterator
+argument_list|<
+name|Object
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|Iterators
+operator|.
+name|emptyIterator
+argument_list|()
+return|;
+block|}
+block|}
+decl_stmt|;
 comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory.    * If only Java had mixins! To maintain this code, make a change for    * the strong reference type. Then, cut and paste, and replace "Strong"    * with "Soft" or "Weak" within the pasted text. The primary difference    * is that strong entries store the key reference directly while soft    * and weak entries delegate to their respective superclasses.    *    * TODO: Generate this code.    */
 comment|/**    * Used for strongly-referenced keys.    */
 DECL|class|StrongEntry
@@ -3322,6 +3590,23 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|valueReference
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|valueReference
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|valueReference
@@ -3935,13 +4220,27 @@ name|void
 name|finalizeReferent
 parameter_list|()
 block|{
+if|if
+condition|(
 name|map
 operator|.
 name|removeEntry
 argument_list|(
 name|this
 argument_list|)
+condition|)
+block|{
+comment|// send removal notification if the entry is in the map
+name|map
+operator|.
+name|pendingEvictionNotifications
+operator|.
+name|offer
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// The code below is exactly the same for each entry type.
 DECL|field|map
@@ -4011,6 +4310,23 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|valueReference
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|valueReference
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|valueReference
@@ -4624,13 +4940,27 @@ name|void
 name|finalizeReferent
 parameter_list|()
 block|{
+if|if
+condition|(
 name|map
 operator|.
 name|removeEntry
 argument_list|(
 name|this
 argument_list|)
+condition|)
+block|{
+comment|// send removal notification if the entry is in the map
+name|map
+operator|.
+name|pendingEvictionNotifications
+operator|.
+name|offer
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// The code below is exactly the same for each entry type.
 DECL|field|map
@@ -4700,6 +5030,23 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|valueReference
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|valueReference
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|valueReference
@@ -5294,6 +5641,7 @@ operator|.
 name|valueReclaimed
 argument_list|()
 expr_stmt|;
+comment|// valueReclaimed will add to pendingEvictionNotifications
 block|}
 DECL|method|copyFor ( ReferenceEntry<K, V> entry)
 specifier|public
@@ -5418,6 +5766,7 @@ operator|.
 name|valueReclaimed
 argument_list|()
 expr_stmt|;
+comment|// valueReclaimed will add to pendingEvictionNotifications
 block|}
 DECL|method|copyFor ( ReferenceEntry<K, V> entry)
 specifier|public
@@ -5548,6 +5897,12 @@ name|get
 argument_list|()
 return|;
 block|}
+DECL|method|clear ()
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{}
 block|}
 comment|/**    * Applies a supplemental hash function to a given hash code, which defends    * against poor quality hash functions. This is critical when the    * concurrent hash map uses power-of-two length hash tables, that otherwise    * encounter collisions for hash codes that do not differ in lower or upper    * bits.    *    * @param h hash code    */
 DECL|method|rehash (int h)
@@ -5761,7 +6116,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|reclaimValue (ReferenceEntry<K, V> entry)
-name|boolean
+name|void
 name|reclaimValue
 parameter_list|(
 name|ReferenceEntry
@@ -5781,7 +6136,8 @@ operator|.
 name|getHash
 argument_list|()
 decl_stmt|;
-return|return
+if|if
+condition|(
 name|segmentFor
 argument_list|(
 name|hash
@@ -5793,7 +6149,43 @@ name|entry
 argument_list|,
 name|hash
 argument_list|)
-return|;
+condition|)
+block|{
+comment|// send removal notification if the entry is in the map and has not been
+comment|// reused; copy the entry in case it is reused before the notification
+comment|// is processed
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newEntry
+init|=
+name|entryFactory
+operator|.
+name|newEntry
+argument_list|(
+name|this
+argument_list|,
+name|entry
+operator|.
+name|getKey
+argument_list|()
+argument_list|,
+name|hash
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|pendingEvictionNotifications
+operator|.
+name|offer
+argument_list|(
+name|newEntry
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|removeEntry (ReferenceEntry<K, V> entry)
 name|boolean
@@ -5987,6 +6379,54 @@ literal|null
 else|:
 name|value
 return|;
+block|}
+comment|/**    * Notifies listeners that an entry has been automatically removed due to    * expiration or eligability for garbage collection. This should be called    * every time expireEntries is called (once the lock is released). It must    * only be called from user threads (e.g. not from garbage collection    * callbacks).    */
+DECL|method|processPendingNotifications ()
+name|void
+name|processPendingNotifications
+parameter_list|()
+block|{
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|entry
+operator|=
+name|pendingEvictionNotifications
+operator|.
+name|poll
+argument_list|()
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|evictionListener
+operator|.
+name|onEviction
+argument_list|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+argument_list|,
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|SuppressWarnings
@@ -6448,6 +6888,8 @@ argument_list|>
 operator|)
 name|expirable
 decl_stmt|;
+if|if
+condition|(
 name|removeEntry
 argument_list|(
 name|entry
@@ -6457,7 +6899,17 @@ operator|.
 name|getHash
 argument_list|()
 argument_list|)
+condition|)
+block|{
+comment|// send removal notification if the entry is in the map
+name|pendingEvictionNotifications
+operator|.
+name|offer
+argument_list|(
+name|entry
+argument_list|)
 expr_stmt|;
+block|}
 comment|// removeEntry should have called removeExpirable, but let's be sure
 name|removeExpirable
 argument_list|(
@@ -7061,6 +7513,11 @@ parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
+name|oldValue
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
 name|newValue
 argument_list|)
 expr_stmt|;
@@ -7194,6 +7651,9 @@ block|}
 finally|finally
 block|{
 name|unlock
+argument_list|()
+expr_stmt|;
+name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}
@@ -7334,6 +7794,9 @@ block|}
 finally|finally
 block|{
 name|unlock
+argument_list|()
+expr_stmt|;
+name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}
@@ -7604,6 +8067,9 @@ block|}
 finally|finally
 block|{
 name|unlock
+argument_list|()
+expr_stmt|;
+name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}
@@ -8135,6 +8601,9 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
+name|processPendingNotifications
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|remove (Object key, int hash, Object value)
@@ -8363,6 +8832,9 @@ block|}
 finally|finally
 block|{
 name|unlock
+argument_list|()
+expr_stmt|;
+name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}
@@ -11239,6 +11711,8 @@ name|maximumSize
 argument_list|,
 name|concurrencyLevel
 argument_list|,
+name|evictionListener
+argument_list|,
 name|this
 argument_list|)
 return|;
@@ -11314,6 +11788,16 @@ specifier|final
 name|int
 name|concurrencyLevel
 decl_stmt|;
+DECL|field|evictionListener
+specifier|final
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|evictionListener
+decl_stmt|;
 DECL|field|delegate
 specifier|transient
 name|ConcurrentMap
@@ -11324,7 +11808,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, ConcurrentMap<K, V> delegate)
+DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<K, V> evictionListener, ConcurrentMap<K, V> delegate)
 name|AbstractSerializationProxy
 parameter_list|(
 name|Strength
@@ -11353,6 +11837,14 @@ name|maximumSize
 parameter_list|,
 name|int
 name|concurrencyLevel
+parameter_list|,
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|evictionListener
 parameter_list|,
 name|ConcurrentMap
 argument_list|<
@@ -11404,6 +11896,12 @@ operator|.
 name|concurrencyLevel
 operator|=
 name|concurrencyLevel
+expr_stmt|;
+name|this
+operator|.
+name|evictionListener
+operator|=
+name|evictionListener
 expr_stmt|;
 name|this
 operator|.
@@ -11690,7 +12188,7 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, ConcurrentMap<K, V> delegate)
+DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<K, V> evictionListener, ConcurrentMap<K, V> delegate)
 name|SerializationProxy
 parameter_list|(
 name|Strength
@@ -11720,6 +12218,14 @@ parameter_list|,
 name|int
 name|concurrencyLevel
 parameter_list|,
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|evictionListener
+parameter_list|,
 name|ConcurrentMap
 argument_list|<
 name|K
@@ -11744,6 +12250,8 @@ argument_list|,
 name|maximumSize
 argument_list|,
 name|concurrencyLevel
+argument_list|,
+name|evictionListener
 argument_list|,
 name|delegate
 argument_list|)
@@ -11811,7 +12319,9 @@ operator|=
 name|mapMaker
 operator|.
 name|makeMap
-argument_list|()
+argument_list|(
+name|evictionListener
+argument_list|)
 expr_stmt|;
 name|readEntries
 argument_list|(

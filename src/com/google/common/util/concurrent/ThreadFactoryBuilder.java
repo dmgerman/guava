@@ -84,6 +84,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Executors
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ThreadFactory
 import|;
 end_import
@@ -103,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li> whether threads should be marked as {@linkplain Thread#setDaemon daemon}  * threads  *<li> a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li> a {@linkplain Thread#setPriority thread priority}  *<li> an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception  * handler}  *<li> a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  * If no backing thread factory is provided, new threads are created using  * {@link Thread#Thread(Runnable)}.  *  * @author Kurt Alfred Kluever  * @since 4  */
+comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li> whether threads should be marked as {@linkplain Thread#setDaemon daemon}  * threads  *<li> a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li> a {@linkplain Thread#setPriority thread priority}  *<li> an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception  * handler}  *<li> a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  * If no backing thread factory is provided, a default backing thread factory is  * used as if by calling {@code setThreadFactory(}{@link  * Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4  */
 end_comment
 
 begin_class
@@ -368,9 +380,22 @@ specifier|final
 name|ThreadFactory
 name|backingThreadFactory
 init|=
+operator|(
 name|builder
 operator|.
 name|backingThreadFactory
+operator|!=
+literal|null
+operator|)
+condition|?
+name|builder
+operator|.
+name|backingThreadFactory
+else|:
+name|Executors
+operator|.
+name|defaultThreadFactory
+argument_list|()
 decl_stmt|;
 specifier|final
 name|AtomicLong
@@ -408,21 +433,9 @@ block|{
 name|Thread
 name|thread
 init|=
-operator|(
-name|backingThreadFactory
-operator|!=
-literal|null
-operator|)
-condition|?
 name|backingThreadFactory
 operator|.
 name|newThread
-argument_list|(
-name|runnable
-argument_list|)
-else|:
-operator|new
-name|Thread
 argument_list|(
 name|runnable
 argument_list|)

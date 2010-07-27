@@ -74,6 +74,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -959,7 +973,7 @@ else|:
 name|expirationNanos
 return|;
 block|}
-comment|/**    * Builds a map, without on-demand computation of values. This method    * does not alter the state of this {@code MapMaker} instance, so it can be    * invoked again to create multiple independent maps.    *    * @param<K> the type of keys to be stored in the returned map    * @param<V> the type of values to be stored in the returned map    * @return a serializable concurrent map having the requested features    */
+comment|/**    * Builds a map, without on-demand computation of values. This method    * does not alter the state of this {@code MapMaker} instance, so it can be    * invoked again to create multiple independent maps.    *    * @return a serializable concurrent map having the requested features    */
 DECL|method|makeMap ()
 specifier|public
 parameter_list|<
@@ -988,6 +1002,8 @@ name|V
 argument_list|>
 argument_list|(
 name|this
+argument_list|,
+literal|null
 argument_list|)
 else|:
 operator|new
@@ -1008,8 +1024,50 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a caching function, which either returns an already-computed value    * for a given key or atomically computes it using the supplied function.    * If another thread is currently computing the value for this key, simply    * waits for that thread to finish and returns its computed value. Note that    * the function may be executed concurrently by multiple threads, but only for    * distinct keys.    *    *<p>The {@code Map} view of the {@code Cache}'s cache is only    * updated when function computation completes. In other words, an entry isn't    * visible until the value's computation completes. No methods on the {@code    * Map} will ever trigger computation.    *    *<p>{@link Cache#apply} in the returned function implementation may    * throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the    *     computing function returns null    *<li>{@link ComputationException} if an exception was thrown by the    *     computing function. If that exception is already of type {@link    *     ComputationException} it is propagated directly; otherwise it is    *     wrapped.    *</ul>    *    *<p>If {@link Map#put} is called on the underlying map before a computation    * completes, other threads waiting on the computation will wake up and return    * the stored value. When the computation completes, its new result will    * overwrite the value that was put in the map manually.    *    *<p>This method does not alter the state of this {@code MapMaker} instance,    * so it can be invoked again to create multiple independent maps.    *    * @param<K> the type of keys to be stored in the returned cache    * @param<V> the type of values to be stored in the returned cache    * @return a serializable cache having the requested features    */
-comment|// TODO: figure out the Cache interface first
+comment|/**    * Builds a map, without on-demand computation of values. This method    * does not alter the state of this {@code MapMaker} instance, so it can be    * invoked again to create multiple independent maps.    *    *<p>The returned map will invoke the supplied listener each time it evicts    * an entry, whether it does so due to timed expiration, exceeding the    * maximum size, or discovering that the key or value has been reclaimed by    * the garbage collector. The returned map will invoke this listener    * synchronously, during invocations of any of that map's public methods    * (even read-only methods). The listener will<i>not</i> be invoked on manual    * removal.    *    * As the listener will be invoked on a caller's thread,    * operations that are expensive or may throw exceptions should be performed    * asynchronously.    *    * @param listener the listener to be notified of eviction events    * @return a serializable concurrent map having the requested features    */
+comment|// TODO: do generics magic to set the eviction listener outside of make
+annotation|@
+name|Beta
+DECL|method|makeMap ( MapEvictionListener<K, V> listener)
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|ConcurrentMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|makeMap
+parameter_list|(
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|listener
+parameter_list|)
+block|{
+return|return
+operator|new
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|,
+name|listener
+argument_list|)
+return|;
+block|}
+comment|/**    * Builds a caching function, which either returns an already-computed value    * for a given key or atomically computes it using the supplied function.    * If another thread is currently computing the value for this key, simply    * waits for that thread to finish and returns its computed value. Note that    * the function may be executed concurrently by multiple threads, but only for    * distinct keys.    *    *<p>The {@code Map} view of the {@code Cache}'s cache is only    * updated when function computation completes. In other words, an entry isn't    * visible until the value's computation completes. No methods on the {@code    * Map} will ever trigger computation.    *    *<p>{@link Cache#apply} in the returned function implementation may    * throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the    *     computing function returns null    *<li>{@link ComputationException} if an exception was thrown by the    *     computing function. If that exception is already of type {@link    *     ComputationException} it is propagated directly; otherwise it is    *     wrapped.    *</ul>    *    *<p>If {@link Map#put} is called on the underlying map before a computation    * completes, other threads waiting on the computation will wake up and return    * the stored value. When the computation completes, its new result will    * overwrite the value that was put in the map manually.    *    *<p>This method does not alter the state of this {@code MapMaker} instance,    * so it can be invoked again to create multiple independent maps.    *    * @param computingFunction the function used to compute new values    * @return a serializable cache having the requested features    */
+comment|// TODO: figure out the Cache interface before making this public
 DECL|method|makeCache ( Function<? super K, ? extends V> computingFunction)
 parameter_list|<
 name|K
@@ -1048,11 +1106,69 @@ argument_list|>
 argument_list|(
 name|this
 argument_list|,
+literal|null
+argument_list|,
 name|computingFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a map that supports atomic, on-demand computation of values. {@link    * Map#get} either returns an already-computed value for the given key,    * atomically computes it using the supplied function, or, if another thread    * is currently computing the value for this key, simply waits for that thread    * to finish and returns its computed value. Note that the function may be    * executed concurrently by multiple threads, but only for distinct keys.    *    *<p>If an entry's value has not finished computing yet, query methods    * besides {@code get} return immediately as if an entry doesn't exist. In    * other words, an entry isn't externally visible until the value's    * computation completes.    *    *<p>{@link Map#get} on the returned map will never return {@code null}. It    * may throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the computing    *     function returns null    *<li>{@link ComputationException} if an exception was thrown by the    *     computing function. If that exception is already of type {@link    *     ComputationException} it is propagated directly; otherwise it is    *     wrapped.    *</ul>    *    *<p><b>Note:</b> Callers of {@code get}<i>must</i> ensure that the key    * argument is of type {@code K}. The {@code get} method accepts {@code    * Object}, so the key type is not checked at compile time. Passing an object    * of a type other than {@code K} can result in that object being unsafely    * passed to the computing function as type {@code K}, and unsafely stored in    * the map.    *    *<p>If {@link Map#put} is called before a computation completes, other    * threads waiting on the computation will wake up and return the stored    * value. When the computation completes, its new result will overwrite the    * value that was put in the map manually.    *    *<p>This method does not alter the state of this {@code MapMaker} instance,    * so it can be invoked again to create multiple independent maps.    */
+comment|/**    * Builds a caching function, which either returns an already-computed value    * for a given key or atomically computes it using the supplied function.    * If another thread is currently computing the value for this key, simply    * waits for that thread to finish and returns its computed value. Note that    * the function may be executed concurrently by multiple threads, but only for    * distinct keys.    *    *<p>The {@code Map} view of the {@code Cache}'s cache is only    * updated when function computation completes. In other words, an entry isn't    * visible until the value's computation completes. No methods on the {@code    * Map} will ever trigger computation.    *    *<p>{@link Cache#apply} in the returned function implementation may    * throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the    *     computing function returns null    *<li>{@link ComputationException} if an exception was thrown by the    *     computing function. If that exception is already of type {@link    *     ComputationException} it is propagated directly; otherwise it is    *     wrapped.    *</ul>    *    *<p>If {@link Map#put} is called on the underlying map before a computation    * completes, other threads waiting on the computation will wake up and return    * the stored value. When the computation completes, its new result will    * overwrite the value that was put in the map manually.    *    *<p>The returned map will invoke the supplied listener each time it evicts    * an entry, whether it does so due to timed expiration, exceeding the    * maximum size, or discovering that the key or value has been reclaimed by    * the garbage collector. The returned map will invoke this listener    * synchronously, during invocations of any of that map's public methods    * (even read-only methods). The listener will<i>not</i> be invoked on manual    * removal.    *    *<p>This method does not alter the state of this {@code MapMaker} instance,    * so it can be invoked again to create multiple independent maps.    *    * @param computingFunction the function used to compute new values    * @param listener the listener to be notified of eviction events    * @return a serializable cache having the requested features    */
+comment|// TODO: figure out the Cache interface before making this public
+annotation|@
+name|Beta
+DECL|method|makeCache ( Function<? super K, ? extends V> computingFunction, MapEvictionListener<K, V> listener)
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|Cache
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|makeCache
+parameter_list|(
+name|Function
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|computingFunction
+parameter_list|,
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|listener
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|,
+name|listener
+argument_list|,
+name|computingFunction
+argument_list|)
+return|;
+block|}
+comment|/**    * Builds a map that supports atomic, on-demand computation of values. {@link    * Map#get} either returns an already-computed value for the given key,    * atomically computes it using the supplied function, or, if another thread    * is currently computing the value for this key, simply waits for that thread    * to finish and returns its computed value. Note that the function may be    * executed concurrently by multiple threads, but only for distinct keys.    *    *<p>If an entry's value has not finished computing yet, query methods    * besides {@code get} return immediately as if an entry doesn't exist. In    * other words, an entry isn't externally visible until the value's    * computation completes.    *    *<p>{@link Map#get} on the returned map will never return {@code null}. It    * may throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the computing    *     function returns null    *<li>{@link ComputationException} if an exception was thrown by the    *     computing function. If that exception is already of type {@link    *     ComputationException} it is propagated directly; otherwise it is    *     wrapped.    *</ul>    *    *<p><b>Note:</b> Callers of {@code get}<i>must</i> ensure that the key    * argument is of type {@code K}. The {@code get} method accepts {@code    * Object}, so the key type is not checked at compile time. Passing an object    * of a type other than {@code K} can result in that object being unsafely    * passed to the computing function as type {@code K}, and unsafely stored in    * the map.    *    *<p>If {@link Map#put} is called before a computation completes, other    * threads waiting on the computation will wake up and return the stored    * value. When the computation completes, its new result will overwrite the    * value that was put in the map manually.    *    *<p>This method does not alter the state of this {@code MapMaker} instance,    * so it can be invoked again to create multiple independent maps.    *    * @param computingFunction the function used to compute new values    * @return a serializable concurrent map having the requested features    */
 DECL|method|makeComputingMap ( Function<? super K, ? extends V> computingFunction)
 specifier|public
 parameter_list|<
@@ -1092,6 +1208,8 @@ init|=
 name|makeCache
 argument_list|(
 name|computingFunction
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 return|return

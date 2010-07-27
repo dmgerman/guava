@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>, with the  * exception that names ending in {@code "."} are not supported (as they are not  * generally used in browsers, email, and other end-user applications. Examples  * include {@code com} and {@code foo.co.uk}. Only syntactic analysis is  * performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>It is often the case that domains of interest are those under a  * {@linkplain #isPublicSuffix() public suffix} but not themselves a public  * suffix; {@link #hasPublicSuffix()} and {@link #isTopPrivateDomain()} test for  * this. Similarly, one often needs to obtain the domain consisting of the  * public suffix plus one subdomain level, typically to obtain the highest-level  * domain for which cookies may be set. Use {@link #topPrivateDomain()} for this  * purpose.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names (IDN)</a> such as {@code ç½ç».cn} are  * supported.  *  * @author Craig Berry  * @since 5  */
+comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>.  * Examples include {@code com} and {@code foo.co.uk}. Only syntactic analysis  * is performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>It is often the case that domains of interest are those under a  * {@linkplain #isPublicSuffix() public suffix} but not themselves a public  * suffix; {@link #hasPublicSuffix()} and {@link #isTopPrivateDomain()} test for  * this. Similarly, one often needs to obtain the domain consisting of the  * public suffix plus one subdomain level, typically to obtain the highest-level  * domain for which cookies may be set. Use {@link #topPrivateDomain()} for this  * purpose.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names (IDN)</a> such as {@code ç½ç».cn} are  * supported, but with much weaker syntactic validation (resulting in false  * positive reports of validity).  *  * @author Craig Berry  * @since 5  */
 end_comment
 
 begin_class
@@ -197,6 +197,20 @@ specifier|final
 class|class
 name|InternetDomainName
 block|{
+DECL|field|DOTS_MATCHER
+specifier|private
+specifier|static
+specifier|final
+name|CharMatcher
+name|DOTS_MATCHER
+init|=
+name|CharMatcher
+operator|.
+name|anyOf
+argument_list|(
+literal|".\u3002\uFF0E\uFF61"
+argument_list|)
+decl_stmt|;
 DECL|field|DOT_SPLITTER
 specifier|private
 specifier|static
@@ -278,6 +292,45 @@ name|String
 name|name
 parameter_list|)
 block|{
+comment|// Normalize all dot-like characters to '.', and strip trailing '.'.
+name|name
+operator|=
+name|DOTS_MATCHER
+operator|.
+name|replaceFrom
+argument_list|(
+name|name
+argument_list|,
+literal|'.'
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|name
+operator|.
+name|endsWith
+argument_list|(
+literal|"."
+argument_list|)
+condition|)
+block|{
+name|name
+operator|=
+name|name
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|name
+operator|.
+name|length
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|name
@@ -759,116 +812,6 @@ parameter_list|()
 block|{
 return|return
 name|parts
-return|;
-block|}
-comment|/**    * Old location of {@link #isPublicSuffix()}.    *    * @deprecated use {@link #isPublicSuffix()}    */
-DECL|method|isRecognizedTld ()
-annotation|@
-name|Deprecated
-specifier|public
-name|boolean
-name|isRecognizedTld
-parameter_list|()
-block|{
-return|return
-name|isPublicSuffix
-argument_list|()
-return|;
-block|}
-comment|/**    * Old location of {@link #isUnderPublicSuffix()}.    *    * @deprecated use {@link #isUnderPublicSuffix()}    */
-DECL|method|isUnderRecognizedTld ()
-annotation|@
-name|Deprecated
-specifier|public
-name|boolean
-name|isUnderRecognizedTld
-parameter_list|()
-block|{
-return|return
-name|isUnderPublicSuffix
-argument_list|()
-return|;
-block|}
-comment|/**    * Old location of {@link #hasPublicSuffix()}.    *    * @deprecated use {@link #hasPublicSuffix()}    */
-DECL|method|hasRecognizedTld ()
-annotation|@
-name|Deprecated
-specifier|public
-name|boolean
-name|hasRecognizedTld
-parameter_list|()
-block|{
-return|return
-name|hasPublicSuffix
-argument_list|()
-return|;
-block|}
-comment|/**    * Old location of {@link #publicSuffix()}.    *    * @deprecated use {@link #publicSuffix()}    */
-DECL|method|recognizedTld ()
-annotation|@
-name|Deprecated
-specifier|public
-name|InternetDomainName
-name|recognizedTld
-parameter_list|()
-block|{
-return|return
-name|publicSuffix
-argument_list|()
-return|;
-block|}
-comment|/**    * Old location of {@link #isTopPrivateDomain()}.    *    * @deprecated use {@link #isTopPrivateDomain()}    */
-DECL|method|isImmediatelyUnderTld ()
-annotation|@
-name|Deprecated
-specifier|public
-name|boolean
-name|isImmediatelyUnderTld
-parameter_list|()
-block|{
-return|return
-name|isTopPrivateDomain
-argument_list|()
-return|;
-block|}
-comment|/**    * Old location of {@link #topPrivateDomain()}.    *    * @deprecated use {@link #topPrivateDomain()}    */
-DECL|method|topCookieDomain ()
-annotation|@
-name|Deprecated
-specifier|public
-name|InternetDomainName
-name|topCookieDomain
-parameter_list|()
-block|{
-return|return
-name|topPrivateDomain
-argument_list|()
-return|;
-block|}
-comment|/**    * Returns the rightmost non-{@linkplain #isRecognizedTld() TLD} domain name    * part.  For example    * {@code new InternetDomainName("www.google.com").rightmostNonTldPart()}    * returns {@code "google"}.  Returns null if either no    * {@linkplain #isRecognizedTld() TLD} is found, or the whole domain name is    * itself a {@linkplain #isRecognizedTld() TLD}.    *    * @deprecated use the first {@linkplain #parts part} of the {@link    *     #topPrivateDomain()}    */
-DECL|method|rightmostNonTldPart ()
-annotation|@
-name|Deprecated
-specifier|public
-name|String
-name|rightmostNonTldPart
-parameter_list|()
-block|{
-return|return
-name|publicSuffixIndex
-operator|>=
-literal|1
-condition|?
-name|parts
-operator|.
-name|get
-argument_list|(
-name|publicSuffixIndex
-operator|-
-literal|1
-argument_list|)
-else|:
-literal|null
 return|;
 block|}
 comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as    * defined by the Mozilla Foundation's    *<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public    * suffix is one under which Internet users can directly register names, such    * as {@code com}, {@code co.uk} or {@code pvt.k12.wy.us}. Examples of domain    * names that are<i>not</i> public suffixes include {@code google}, {@code    * google.com} and {@code foo.co.uk}.    *    * @return {@code true} if this domain name appears exactly on the public    *     suffix list    * @since 6    */

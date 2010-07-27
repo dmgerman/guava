@@ -1003,6 +1003,214 @@ argument_list|)
 return|;
 block|}
 comment|// Regular instance methods
+DECL|method|quicksortLeastK ( E[] values, int left, int right, int k)
+specifier|private
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|void
+name|quicksortLeastK
+parameter_list|(
+name|E
+index|[]
+name|values
+parameter_list|,
+name|int
+name|left
+parameter_list|,
+name|int
+name|right
+parameter_list|,
+name|int
+name|k
+parameter_list|)
+block|{
+if|if
+condition|(
+name|right
+operator|>
+name|left
+condition|)
+block|{
+name|int
+name|pivotIndex
+init|=
+operator|(
+name|left
+operator|+
+name|right
+operator|)
+operator|>>>
+literal|1
+decl_stmt|;
+comment|// left + ((right - left) / 2)
+name|int
+name|pivotNewIndex
+init|=
+name|partition
+argument_list|(
+name|values
+argument_list|,
+name|left
+argument_list|,
+name|right
+argument_list|,
+name|pivotIndex
+argument_list|)
+decl_stmt|;
+name|quicksortLeastK
+argument_list|(
+name|values
+argument_list|,
+name|left
+argument_list|,
+name|pivotNewIndex
+operator|-
+literal|1
+argument_list|,
+name|k
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|pivotNewIndex
+operator|<
+name|k
+condition|)
+block|{
+name|quicksortLeastK
+argument_list|(
+name|values
+argument_list|,
+name|pivotNewIndex
+operator|+
+literal|1
+argument_list|,
+name|right
+argument_list|,
+name|k
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+DECL|method|partition ( E[] values, int left, int right, int pivotIndex)
+specifier|private
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|int
+name|partition
+parameter_list|(
+name|E
+index|[]
+name|values
+parameter_list|,
+name|int
+name|left
+parameter_list|,
+name|int
+name|right
+parameter_list|,
+name|int
+name|pivotIndex
+parameter_list|)
+block|{
+name|E
+name|pivotValue
+init|=
+name|values
+index|[
+name|pivotIndex
+index|]
+decl_stmt|;
+name|values
+index|[
+name|pivotIndex
+index|]
+operator|=
+name|values
+index|[
+name|right
+index|]
+expr_stmt|;
+name|values
+index|[
+name|right
+index|]
+operator|=
+name|pivotValue
+expr_stmt|;
+name|int
+name|storeIndex
+init|=
+name|left
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+name|left
+init|;
+name|i
+operator|<
+name|right
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|compare
+argument_list|(
+name|values
+index|[
+name|i
+index|]
+argument_list|,
+name|pivotValue
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+name|ObjectArrays
+operator|.
+name|swap
+argument_list|(
+name|values
+argument_list|,
+name|storeIndex
+argument_list|,
+name|i
+argument_list|)
+expr_stmt|;
+name|storeIndex
+operator|++
+expr_stmt|;
+block|}
+block|}
+name|ObjectArrays
+operator|.
+name|swap
+argument_list|(
+name|values
+argument_list|,
+name|right
+argument_list|,
+name|storeIndex
+argument_list|)
+expr_stmt|;
+return|return
+name|storeIndex
+return|;
+block|}
 comment|/**    * {@link Collections#binarySearch(List, Object, Comparator) Searches}    * {@code sortedList} for {@code key} using the binary search algorithm. The    * list must be sorted using this ordering.    *    * @param sortedList the list to be searched    * @param key the key to be searched for    */
 DECL|method|binarySearch (List<? extends T> sortedList, T key)
 specifier|public
@@ -1286,7 +1494,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the largest of the specified values according to this ordering. If    * there are multiple largest values, the first of those is returned.    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
 DECL|method|max (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1349,7 +1557,7 @@ return|return
 name|maxSoFar
 return|;
 block|}
-comment|/**    * Returns the largest of the specified values according to this ordering. If    * there are multiple largest values, the first of those is returned.    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
 DECL|method|max (E a, E b, E c, E... rest)
 specifier|public
 parameter_list|<
@@ -1411,7 +1619,7 @@ return|return
 name|maxSoFar
 return|;
 block|}
-comment|/**    * Returns the larger of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code max} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the greater of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code max} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
 DECL|method|max (E a, E b)
 specifier|public
 parameter_list|<
@@ -1444,7 +1652,7 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the smallest of the specified values according to this ordering. If    * there are multiple smallest values, the first of those is returned.    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
 DECL|method|min (Iterable<E> iterable)
 specifier|public
 parameter_list|<
@@ -1507,7 +1715,7 @@ return|return
 name|minSoFar
 return|;
 block|}
-comment|/**    * Returns the smallest of the specified values according to this ordering. If    * there are multiple smallest values, the first of those is returned.    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
 DECL|method|min (E a, E b, E c, E... rest)
 specifier|public
 parameter_list|<
@@ -1569,7 +1777,7 @@ return|return
 name|minSoFar
 return|;
 block|}
-comment|/**    * Returns the smaller of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code min} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+comment|/**    * Returns the lesser of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code min} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
 DECL|method|min (E a, E b)
 specifier|public
 parameter_list|<
@@ -1619,6 +1827,20 @@ name|RIGHT_IS_GREATER
 init|=
 operator|-
 literal|1
+decl_stmt|;
+DECL|field|EMPTY_ARRAY
+specifier|private
+specifier|static
+specifier|final
+name|Object
+index|[]
+name|EMPTY_ARRAY
+init|=
+operator|new
+name|Object
+index|[
+literal|0
+index|]
 decl_stmt|;
 block|}
 end_class

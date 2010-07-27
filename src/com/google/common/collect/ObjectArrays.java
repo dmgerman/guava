@@ -48,18 +48,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Array
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collection
@@ -105,6 +93,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// @GwtIncompatible("Array.newInstance(Class, int)")
 DECL|method|newArray (Class<T> type, int length)
 specifier|public
 specifier|static
@@ -574,6 +563,49 @@ block|}
 return|return
 name|array
 return|;
+block|}
+comment|/**    * Swaps {@code array[i]} with {@code array[j]}.    */
+DECL|method|swap (Object[] array, int i, int j)
+specifier|static
+name|void
+name|swap
+parameter_list|(
+name|Object
+index|[]
+name|array
+parameter_list|,
+name|int
+name|i
+parameter_list|,
+name|int
+name|j
+parameter_list|)
+block|{
+name|Object
+name|temp
+init|=
+name|array
+index|[
+name|i
+index|]
+decl_stmt|;
+name|array
+index|[
+name|i
+index|]
+operator|=
+name|array
+index|[
+name|j
+index|]
+expr_stmt|;
+name|array
+index|[
+name|j
+index|]
+operator|=
+name|temp
+expr_stmt|;
 block|}
 block|}
 end_class

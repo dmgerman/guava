@@ -1146,6 +1146,7 @@ name|defaultValue
 return|;
 block|}
 comment|/**    * Copies an iterator's elements into an array. The iterator will be left    * exhausted: its {@code hasNext()} method will return {@code false}.    *    * @param iterator the iterator to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterator    *         have been copied    */
+comment|// @GwtIncompatible("Array.newInstance(Class, int)")
 DECL|method|toArray ( Iterator<? extends T> iterator, Class<T> type)
 specifier|public
 specifier|static
@@ -1846,13 +1847,21 @@ comment|// current.hasNext() might be relatively expensive, worth minimizing.
 name|boolean
 name|currentHasNext
 decl_stmt|;
+comment|// checkNotNull eager for GWT
+comment|// note: it must be here& not where 'current' is assigned,
+comment|// because otherwise we'll have called inputs.next() before throwing
+comment|// the first NPE, and the next time around we'll call inputs.next()
+comment|// again, incorrectly moving beyond the error.
 while|while
 condition|(
 operator|!
 operator|(
 name|currentHasNext
 operator|=
+name|checkNotNull
+argument_list|(
 name|current
+argument_list|)
 operator|.
 name|hasNext
 argument_list|()

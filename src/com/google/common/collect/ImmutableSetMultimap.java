@@ -1061,6 +1061,12 @@ argument_list|>
 name|multimap
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|multimap
+argument_list|)
+expr_stmt|;
+comment|// eager for GWT
 if|if
 condition|(
 name|multimap

@@ -166,11 +166,19 @@ argument_list|>
 name|computingFunction
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity,    * load factor and concurrency level.    */
-DECL|method|ComputingConcurrentHashMap (MapMaker builder, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingConcurrentHashMap (MapMaker builder, MapEvictionListener<K, V> listener, Function<? super K, ? extends V> computingFunction)
 name|ComputingConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
+parameter_list|,
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|listener
 parameter_list|,
 name|Function
 argument_list|<
@@ -188,6 +196,8 @@ block|{
 name|super
 argument_list|(
 name|builder
+argument_list|,
+name|listener
 argument_list|)
 expr_stmt|;
 name|this
@@ -794,6 +804,12 @@ name|message
 argument_list|)
 throw|;
 block|}
+DECL|method|clear ()
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{}
 block|}
 comment|/** Used to provide computation exceptions to other threads. */
 DECL|class|ComputationExceptionReference
@@ -880,6 +896,12 @@ name|t
 argument_list|)
 throw|;
 block|}
+DECL|method|clear ()
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{}
 block|}
 DECL|method|compute (Segment segment, K key, ReferenceEntry<K, V> entry)
 specifier|public
@@ -1367,6 +1389,21 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|clear ()
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|original
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**      * Removes the entry in the event of an exception. Ideally,      * we'd clean up as soon as the computation completes, but we      * can't do that without keeping a reference to this entry from      * the original.      */
 DECL|method|removeEntry ()
 name|void
@@ -1424,6 +1461,8 @@ name|maximumSize
 argument_list|,
 name|concurrencyLevel
 argument_list|,
+name|evictionListener
+argument_list|,
 name|this
 argument_list|,
 name|computingFunction
@@ -1471,7 +1510,7 @@ name|V
 argument_list|>
 name|cache
 decl_stmt|;
-DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<K, V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1500,6 +1539,14 @@ name|maximumSize
 parameter_list|,
 name|int
 name|concurrencyLevel
+parameter_list|,
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|evictionListener
 parameter_list|,
 name|ConcurrentMap
 argument_list|<
@@ -1537,6 +1584,8 @@ argument_list|,
 name|maximumSize
 argument_list|,
 name|concurrencyLevel
+argument_list|,
+name|evictionListener
 argument_list|,
 name|delegate
 argument_list|)
@@ -1616,6 +1665,8 @@ operator|.
 name|makeCache
 argument_list|(
 name|computingFunction
+argument_list|,
+name|evictionListener
 argument_list|)
 expr_stmt|;
 name|delegate

@@ -918,6 +918,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterable    *     have been copied    */
+comment|// @GwtIncompatible("Array.newInstance(Class, int)")
 DECL|method|toArray (Iterable<? extends T> iterable, Class<T> type)
 specifier|public
 specifier|static
