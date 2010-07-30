@@ -166,19 +166,11 @@ argument_list|>
 name|computingFunction
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity,    * load factor and concurrency level.    */
-DECL|method|ComputingConcurrentHashMap (MapMaker builder, MapEvictionListener<K, V> listener, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingConcurrentHashMap (MapMaker builder, Function<? super K, ? extends V> computingFunction)
 name|ComputingConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
-parameter_list|,
-name|MapEvictionListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|listener
 parameter_list|,
 name|Function
 argument_list|<
@@ -196,8 +188,6 @@ block|{
 name|super
 argument_list|(
 name|builder
-argument_list|,
-name|listener
 argument_list|)
 expr_stmt|;
 name|this
@@ -1429,7 +1419,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|0
+literal|1
 decl_stmt|;
 DECL|method|writeReplace ()
 annotation|@
@@ -1510,7 +1500,7 @@ name|V
 argument_list|>
 name|cache
 decl_stmt|;
-DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<K, V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1542,8 +1532,12 @@ name|concurrencyLevel
 parameter_list|,
 name|MapEvictionListener
 argument_list|<
+name|?
+super|super
 name|K
 argument_list|,
+name|?
+super|super
 name|V
 argument_list|>
 name|evictionListener
@@ -1665,8 +1659,6 @@ operator|.
 name|makeCache
 argument_list|(
 name|computingFunction
-argument_list|,
-name|evictionListener
 argument_list|)
 expr_stmt|;
 name|delegate
@@ -1733,7 +1725,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|0
+literal|1
 decl_stmt|;
 block|}
 block|}

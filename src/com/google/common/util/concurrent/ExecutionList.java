@@ -121,12 +121,12 @@ implements|implements
 name|Runnable
 block|{
 comment|// Logger to log exceptions caught when running runnables.
-DECL|field|LOG
+DECL|field|log
 specifier|private
 specifier|static
 specifier|final
 name|Logger
-name|LOG
+name|log
 init|=
 name|Logger
 operator|.
@@ -360,7 +360,7 @@ block|{
 comment|// Log it and keep going, bad runnable and/or executor.  Don't
 comment|// punish the other runnables if we're given a bad one.  We only
 comment|// catch RuntimeException because we want Errors to propagate up.
-name|LOG
+name|log
 operator|.
 name|log
 argument_list|(

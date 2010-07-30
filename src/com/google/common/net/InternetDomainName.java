@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>.  * Examples include {@code com} and {@code foo.co.uk}. Only syntactic analysis  * is performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>It is often the case that domains of interest are those under a  * {@linkplain #isPublicSuffix() public suffix} but not themselves a public  * suffix; {@link #hasPublicSuffix()} and {@link #isTopPrivateDomain()} test for  * this. Similarly, one often needs to obtain the domain consisting of the  * public suffix plus one subdomain level, typically to obtain the highest-level  * domain for which cookies may be set. Use {@link #topPrivateDomain()} for this  * purpose.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names (IDN)</a> such as {@code ç½ç».cn} are  * supported, but with much weaker syntactic validation (resulting in false  * positive reports of validity).  *  * @author Craig Berry  * @since 5  */
+comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>.  * Examples include {@code com} and {@code foo.co.uk}. Only syntactic analysis  * is performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>It is often the case that domains of interest are those under a  * {@linkplain #isPublicSuffix() public suffix} but not themselves a public  * suffix; {@link #hasPublicSuffix()} and {@link #isTopPrivateDomain()} test for  * this. Similarly, one often needs to obtain the domain consisting of the  * public suffix plus one subdomain level, typically to obtain the highest-level  * domain for which cookies may be set. Use {@link #topPrivateDomain()} for this  * purpose.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names</a> such as {@code ç½ç».cn} are  * supported, but with much weaker syntactic validation (resulting in false  * positive reports of validity).  *  * @author Craig Berry  * @since 5  */
 end_comment
 
 begin_class
@@ -191,6 +191,11 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|InternetDomainName
 specifier|public
 specifier|final
@@ -513,14 +518,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// TODO: For the moment, we validate that all parts of a domain
-comment|// * Start and end with an alphanumeric character
-comment|// * Have alphanumeric, dash, or underscore characters internally
-comment|// An additional constraint is that the first character of the last part
-comment|// may not be numeric.
-comment|// All of this is a compromise to allow relatively accurate and efficient
-comment|// checking. We may soon move to using java.net.IDN for this purpose in
-comment|// non-GWT code.
 comment|/**    * Validation method used by {@from} to ensure that the domain name is    * syntactically valid according to RFC 1035.    *    * @return Is the domain name syntactically valid?    */
 DECL|method|validateSyntax (List<String> parts)
 specifier|private

@@ -521,8 +521,12 @@ DECL|field|evictionListener
 specifier|final
 name|MapEvictionListener
 argument_list|<
+name|?
+super|super
 name|K
 argument_list|,
+name|?
+super|super
 name|V
 argument_list|>
 name|evictionListener
@@ -541,19 +545,11 @@ name|EntryFactory
 name|entryFactory
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity    * and concurrency level.    */
-DECL|method|CustomConcurrentHashMap (MapMaker builder, MapEvictionListener<K, V> evictionListener)
+DECL|method|CustomConcurrentHashMap (MapMaker builder)
 name|CustomConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
-parameter_list|,
-name|MapEvictionListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|evictionListener
 parameter_list|)
 block|{
 name|keyStrength
@@ -624,6 +620,22 @@ argument_list|,
 name|evicts
 argument_list|)
 expr_stmt|;
+name|MapEvictionListener
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|?
+super|super
+name|V
+argument_list|>
+name|evictionListener
+init|=
+name|builder
+operator|.
+name|evictionListener
+decl_stmt|;
 if|if
 condition|(
 name|evictionListener
@@ -11681,7 +11693,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|2
+literal|3
 decl_stmt|;
 DECL|method|writeReplace ()
 name|Object
@@ -11745,7 +11757,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|0
+literal|1
 decl_stmt|;
 DECL|field|keyStrength
 specifier|final
@@ -11792,8 +11804,12 @@ DECL|field|evictionListener
 specifier|final
 name|MapEvictionListener
 argument_list|<
+name|?
+super|super
 name|K
 argument_list|,
+name|?
+super|super
 name|V
 argument_list|>
 name|evictionListener
@@ -11808,7 +11824,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<K, V> evictionListener, ConcurrentMap<K, V> delegate)
+DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
 name|AbstractSerializationProxy
 parameter_list|(
 name|Strength
@@ -11840,8 +11856,12 @@ name|concurrencyLevel
 parameter_list|,
 name|MapEvictionListener
 argument_list|<
+name|?
+super|super
 name|K
 argument_list|,
+name|?
+super|super
 name|V
 argument_list|>
 name|evictionListener
@@ -12053,6 +12073,13 @@ argument_list|(
 name|concurrencyLevel
 argument_list|)
 decl_stmt|;
+name|mapMaker
+operator|.
+name|evictionListener
+argument_list|(
+name|evictionListener
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|expirationNanos
@@ -12186,9 +12213,9 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|0
+literal|1
 decl_stmt|;
-DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<K, V> evictionListener, ConcurrentMap<K, V> delegate)
+DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
 name|SerializationProxy
 parameter_list|(
 name|Strength
@@ -12220,8 +12247,12 @@ name|concurrencyLevel
 parameter_list|,
 name|MapEvictionListener
 argument_list|<
+name|?
+super|super
 name|K
 argument_list|,
+name|?
+super|super
 name|V
 argument_list|>
 name|evictionListener
@@ -12319,9 +12350,7 @@ operator|=
 name|mapMaker
 operator|.
 name|makeMap
-argument_list|(
-name|evictionListener
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|readEntries
 argument_list|(
