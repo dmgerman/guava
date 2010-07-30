@@ -93,7 +93,11 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// @GwtIncompatible("Array.newInstance(Class, int)")
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Array.newInstance(Class, int)"
+argument_list|)
 DECL|method|newArray (Class<T> type, int length)
 specifier|public
 specifier|static

@@ -1146,7 +1146,11 @@ name|defaultValue
 return|;
 block|}
 comment|/**    * Copies an iterator's elements into an array. The iterator will be left    * exhausted: its {@code hasNext()} method will return {@code false}.    *    * @param iterator the iterator to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterator    *         have been copied    */
-comment|// @GwtIncompatible("Array.newInstance(Class, int)")
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Array.newInstance(Class, int)"
+argument_list|)
 DECL|method|toArray ( Iterator<? extends T> iterator, Class<T> type)
 specifier|public
 specifier|static
