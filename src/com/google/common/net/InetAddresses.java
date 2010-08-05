@@ -1610,9 +1610,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A simple data class to encapsulate the information to be found in a    * Teredo address.    *    *<p>All of the fields in this class are encoded in various portions    * of the IPv6 address as part of the protocol.  More protocols details    * can be found at:    *<a target="_parent" href="http://en.wikipedia.org/wiki/Teredo_tunneling"    *>http://en.wikipedia.org/wiki/Teredo_tunneling</a>.    *    *<p>The RFC can be found here:    *<a target="_parent" href="http://tools.ietf.org/html/rfc4380"    *>http://tools.ietf.org/html/rfc4380</a>.    *    * @since 5    */
+annotation|@
+name|Beta
 DECL|class|TeredoInfo
 specifier|public
 specifier|static
+specifier|final
 class|class
 name|TeredoInfo
 block|{
@@ -1641,6 +1644,7 @@ name|int
 name|flags
 decl_stmt|;
 comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the      * value {@code "0.0.0.0"} will be assumed.      *      * @throws IllegalArgumentException if either of the {@code port}      *         or the {@code flags} arguments are out of range of an      *         unsigned short      */
+comment|// TODO: why is this public?
 DECL|method|TeredoInfo (@ullable Inet4Address server, @Nullable Inet4Address client, int port, int flags)
 specifier|public
 name|TeredoInfo

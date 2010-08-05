@@ -1800,7 +1800,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * An unmodifiable view of a set which may be backed by other sets; this view    * will change as the backing sets do. Contains methods to copy the data into    * a new set which will then remain stable. There is usually no reason to    * retain a reference of type {@code SetView}; typically, you either use it    * as a plain {@link Set}, or immediately invoke {@link #immutableCopy} or    * {@link #copyInto} and forget the {@code SetView} itself.    */
+comment|/**    * An unmodifiable view of a set which may be backed by other sets; this view    * will change as the backing sets do. Contains methods to copy the data into    * a new set which will then remain stable. There is usually no reason to    * retain a reference of type {@code SetView}; typically, you either use it    * as a plain {@link Set}, or immediately invoke {@link #immutableCopy} or    * {@link #copyInto} and forget the {@code SetView} itself.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|class|SetView
 specifier|public
 specifier|abstract

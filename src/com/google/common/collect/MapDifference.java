@@ -137,7 +137,7 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * A difference between the mappings from two maps with the same key. The    * {@code leftValue()} and {@code rightValue} are not equal, and one but not    * both of them may be null.    */
+comment|/**    * A difference between the mappings from two maps with the same key. The    * {@code leftValue()} and {@code rightValue} are not equal, and one but not    * both of them may be null.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|interface|ValueDifference
 interface|interface
 name|ValueDifference

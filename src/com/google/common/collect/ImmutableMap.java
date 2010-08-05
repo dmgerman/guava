@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable, hash-based {@link Map} with reliable user-specified iteration  * order. Does not permit null keys or values.  *  *<p>Unlike {@link Collections#unmodifiableMap}, which is a<i>view</i> of a  * separate map which can still change, an instance of {@code ImmutableMap}  * contains its own data and will<i>never</i> change. {@code ImmutableMap} is  * convenient for {@code public static final} maps ("constant maps") and also  * lets you easily make a "defensive copy" of a map provided to your class by a  * caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class are  * guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableSet  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * An immutable, hash-based {@link Map} with reliable user-specified iteration  * order. Does not permit null keys or values.  *  *<p>Unlike {@link Collections#unmodifiableMap}, which is a<i>view</i> of a  * separate map which can still change, an instance of {@code ImmutableMap}  * contains its own data and will<i>never</i> change. {@code ImmutableMap} is  * convenient for {@code public static final} maps ("constant maps") and also  * lets you easily make a "defensive copy" of a map provided to your class by a  * caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class are  * guaranteed to be immutable.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -605,7 +605,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable map instances, especially {@code public    * static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableMap<String, Integer> WORD_TO_INT =    *       new ImmutableMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    * For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are    * even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    */
+comment|/**    * A builder for creating immutable map instances, especially {@code public    * static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableMap<String, Integer> WORD_TO_INT =    *       new ImmutableMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    * For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are    * even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

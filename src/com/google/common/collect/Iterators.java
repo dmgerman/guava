@@ -2546,8 +2546,6 @@ argument_list|>
 name|predicate
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|predicate

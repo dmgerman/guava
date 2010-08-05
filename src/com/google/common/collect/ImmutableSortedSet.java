@@ -1969,7 +1969,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable sorted set instances, especially    * {@code public static final} sets ("constant sets"), with a given    * comparator.    *    *<p>Example:    *<pre>{@code    *   public static final ImmutableSortedSet<Number> LUCKY_NUMBERS    *       = new ImmutableSortedSet.Builder<Number>(ODDS_FIRST_COMPARATOR)    *           .addAll(SINGLE_DIGIT_PRIMES)    *           .add(42)    *           .build();}</pre>    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple sets in series. Each set    * is a superset of the set created before it.    */
+comment|/**    * A builder for creating immutable sorted set instances, especially    * {@code public static final} sets ("constant sets"), with a given    * comparator.    *    *<p>Example:    *<pre>{@code    *   public static final ImmutableSortedSet<Number> LUCKY_NUMBERS    *       = new ImmutableSortedSet.Builder<Number>(ODDS_FIRST_COMPARATOR)    *           .addAll(SINGLE_DIGIT_PRIMES)    *           .add(42)    *           .build();}</pre>    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple sets in series. Each set    * is a superset of the set created before it.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

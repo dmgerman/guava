@@ -917,7 +917,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    */
+comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|class|MapJoiner
 specifier|public
 specifier|static

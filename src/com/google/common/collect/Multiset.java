@@ -200,7 +200,7 @@ argument_list|>
 name|entrySet
 parameter_list|()
 function_decl|;
-comment|/**    * An unmodifiable element-count pair for a multiset. The {@link    * Multiset#entrySet} method returns a view of the multiset whose elements    * are of this class. A multiset implementation may return Entry instances    * that are either live "read-through" views to the Multiset, or immutable    * snapshots. Note that this type is unrelated to the similarly-named type    * {@code Map.Entry}.    */
+comment|/**    * An unmodifiable element-count pair for a multiset. The {@link    * Multiset#entrySet} method returns a view of the multiset whose elements    * are of this class. A multiset implementation may return Entry instances    * that are either live "read-through" views to the Multiset, or immutable    * snapshots. Note that this type is unrelated to the similarly-named type    * {@code Map.Entry}.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|interface|Entry
 interface|interface
 name|Entry

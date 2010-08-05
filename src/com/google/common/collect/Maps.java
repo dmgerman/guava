@@ -84,6 +84,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
@@ -369,6 +383,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Maps
 specifier|public
 specifier|final
@@ -1898,6 +1917,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates an {@code ImmutableMap<String, String>} from a {@code Properties}    * instance. Properties normally derive from {@code Map<Object, Object>}, but    * they typically contain strings, which is awkward. This method lets you get    * a plain-old-{@code Map} out of a {@code Properties}.    *    * @param properties a {@code Properties} object to be converted    * @return an immutable map containing all the entries in {@code properties}    * @throws ClassCastException if any key in {@code Properties} is not a {@code    *         String}    * @throws NullPointerException if any key or value in {@code Properties} is    *         null    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.Properties"
+argument_list|)
 DECL|method|fromProperties ( Properties properties)
 specifier|public
 specifier|static
@@ -3088,13 +3112,17 @@ parameter_list|,
 name|V2
 parameter_list|>
 block|{
-DECL|method|transformEntry (K key, V1 value)
+DECL|method|transformEntry (@ullable K key, @Nullable V1 value)
 name|V2
 name|transformEntry
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V1
 name|value
 parameter_list|)

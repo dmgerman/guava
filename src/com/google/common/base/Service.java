@@ -109,9 +109,11 @@ name|State
 name|stopAndWait
 parameter_list|()
 function_decl|;
-comment|/**    * The lifecycle states of a service.    */
+comment|/**    * The lifecycle states of a service.    *    * @since 1    */
+annotation|@
+name|Beta
+comment|// should come out of Beta when Service does
 DECL|enum|State
-specifier|public
 enum|enum
 name|State
 block|{

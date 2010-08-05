@@ -1249,6 +1249,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1311,6 +1313,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1443,6 +1447,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1575,6 +1581,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1714,6 +1722,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1776,6 +1786,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1908,6 +1920,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2040,6 +2054,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2179,6 +2195,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2241,6 +2259,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2373,6 +2393,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2505,6 +2527,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -2718,7 +2742,7 @@ index|]
 return|;
 block|}
 comment|/**      * Creates a new entry.      *      * @param map to create the entry for      * @param key of the entry      * @param hash of the key      * @param next entry in the same bucket      */
-DECL|method|newEntry ( CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|newEntry ( CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 specifier|abstract
 parameter_list|<
 name|K
@@ -2747,6 +2771,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3471,7 +3497,7 @@ specifier|final
 name|K
 name|key
 decl_stmt|;
-DECL|method|StrongEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|StrongEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -3488,6 +3514,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3686,7 +3714,7 @@ argument_list|>
 implements|implements
 name|Expirable
 block|{
-DECL|method|StrongExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|StrongExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongExpirableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -3703,6 +3731,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3859,7 +3889,7 @@ argument_list|>
 implements|implements
 name|Evictable
 block|{
-DECL|method|StrongEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|StrongEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongEvictableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -3876,6 +3906,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3952,7 +3984,7 @@ name|Expirable
 implements|,
 name|Evictable
 block|{
-DECL|method|StrongExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|StrongExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongExpirableEvictableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -3969,6 +4001,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4161,7 +4195,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SoftEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|SoftEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -4178,6 +4212,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4406,7 +4442,7 @@ argument_list|>
 implements|implements
 name|Expirable
 block|{
-DECL|method|SoftExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|SoftExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftExpirableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -4423,6 +4459,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4579,7 +4617,7 @@ argument_list|>
 implements|implements
 name|Evictable
 block|{
-DECL|method|SoftEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|SoftEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftEvictableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -4596,6 +4634,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4672,7 +4712,7 @@ name|Expirable
 implements|,
 name|Evictable
 block|{
-DECL|method|SoftExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|SoftExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftExpirableEvictableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -4689,6 +4729,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -4881,7 +4923,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|WeakEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -4898,6 +4940,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5126,7 +5170,7 @@ argument_list|>
 implements|implements
 name|Expirable
 block|{
-DECL|method|WeakExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|WeakExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakExpirableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -5143,6 +5187,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5299,7 +5345,7 @@ argument_list|>
 implements|implements
 name|Evictable
 block|{
-DECL|method|WeakEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|WeakEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakEvictableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -5316,6 +5362,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -5392,7 +5440,7 @@ name|Expirable
 implements|,
 name|Evictable
 block|{
-DECL|method|WeakExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|WeakExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakExpirableEvictableEntry
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -5409,6 +5457,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
