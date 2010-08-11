@@ -580,8 +580,9 @@ else|:
 name|initialCapacity
 return|;
 block|}
-comment|/**    * Specifies the maximum number of entries the map may contain. While the    * number of entries in the map is not guaranteed to grow to the maximum,    * the map will attempt to make the best use of memory without exceeding the    * maximum number of entries. As the map size grows close to the maximum,    * the map will evict entries that are less likely to be used again. For    * example, the map may evict an entry because it hasn't been used recently    * or very often.    *    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
-comment|// TODO: Implement and make public.
+comment|/**    * Specifies the maximum number of entries the map may contain. While the    * number of entries in the map is not guaranteed to grow to the maximum,    * the map will attempt to make the best use of memory without exceeding the    * maximum number of entries. As the map size grows close to the maximum,    * the map will evict entries that are less likely to be used again. For    * example, the map may evict an entry because it hasn't been used recently    * or very often.    *    * @throws IllegalArgumentException if {@code size} is not greater than zero    * @throws IllegalStateException if a maximum size was already set    */
+comment|// TODO: make public after: a) writing unit tests, b) resolving behavior when
+comment|// maximumSize< concurrencyLevel
 DECL|method|maximumSize (int size)
 name|MapMaker
 name|maximumSize
@@ -590,9 +591,6 @@ name|int
 name|size
 parameter_list|)
 block|{
-comment|// TODO: Should we disallow maximumSize< concurrencyLevel? If we allow it,
-comment|// should we return a dummy map that doesn't actually retain any
-comment|// entries?
 name|checkState
 argument_list|(
 name|this
@@ -608,11 +606,14 @@ operator|.
 name|maximumSize
 argument_list|)
 expr_stmt|;
+comment|// TODO: eventually support size 0 to disable caching
 name|checkArgument
 argument_list|(
-name|initialCapacity
-operator|>=
+name|size
+operator|>
 literal|0
+argument_list|,
+literal|"maximum size must be positive"
 argument_list|)
 expr_stmt|;
 name|this
