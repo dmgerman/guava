@@ -1832,7 +1832,6 @@ return|return
 name|oldValue
 return|;
 block|}
-comment|/** In GWT, List and AbstractList do not have the subList method. */
 DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
