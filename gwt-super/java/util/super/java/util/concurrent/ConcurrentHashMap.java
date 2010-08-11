@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Minimal emulation of {@link java.util.concurrent.ConcurrentHashMap}.  * Note that javascript intepreter is<a  * href="http://code.google.com/docreader/#p=google-web-toolkit-doc-1-5&t=DevGuideJavaCompatibility">  * single-threaded</a>, it is essentially a {@link java.util.HashMap},  * implementing the new methods introduced by {@link ConcurrentMap}.  *  * @author hhchan@google.com (Hayward Chan)  */
+comment|/**  * Minimal emulation of {@link java.util.concurrent.ConcurrentHashMap}.  * Note that javascript intepreter is<a  * href="http://code.google.com/docreader/#p=google-web-toolkit-doc-1-5&t=DevGuideJavaCompatibility">  * single-threaded</a>, it is essentially a {@link java.util.HashMap},  * implementing the new methods introduced by {@link ConcurrentMap}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

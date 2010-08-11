@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * OpenJDK TimeUnit minus the unsupported operations  *  * @author fry@google.com (Charles Fry)  */
+comment|/**  * OpenJDK TimeUnit minus the unsupported operations  *  * @author Charles Fry  */
 end_comment
 
 begin_enum

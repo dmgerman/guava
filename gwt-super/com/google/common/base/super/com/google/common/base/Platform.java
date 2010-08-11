@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author jessewilson@google.com (Jesse Wilson)  */
+comment|/**  * @author Jesse Wilson  */
 end_comment
 
 begin_class

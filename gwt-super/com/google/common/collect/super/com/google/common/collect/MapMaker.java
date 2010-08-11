@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * MapMaker emulation. Since Javascript is single-threaded and have no  * references, this reduces to the creation of expiring and computing maps.  *  * @author fry@google.com (Charles Fry)  */
+comment|/**  * MapMaker emulation. Since Javascript is single-threaded and have no  * references, this reduces to the creation of expiring and computing maps.  *  * @author Charles Fry  */
 end_comment
 
 begin_class

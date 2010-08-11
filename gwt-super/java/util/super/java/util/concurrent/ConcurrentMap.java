@@ -25,7 +25,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Minimal GWT emulation of a map providing atomic operations.  *  * @author jessewilson@google.com (Jesse Wilson)  */
+comment|/**  * Minimal GWT emulation of a map providing atomic operations.  *  * @author Jesse Wilson  */
 end_comment
 
 begin_interface

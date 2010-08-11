@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Minimal GWT emulation of {@code com.google.common.collect.Platform}.  *  *<p><strong>This .java file should never be consumed by javac.</strong>  *  * @author hhchan@google.com (Hayward Chan)  */
+comment|/**  * Minimal GWT emulation of {@code com.google.common.collect.Platform}.  *  *<p><strong>This .java file should never be consumed by javac.</strong>  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

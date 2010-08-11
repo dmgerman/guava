@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulated version of {@link AtomicInteger}.  It's a thin wrapper  * around the primitive {@code int}.  *  * @author hhchan@google.com (Hayward Chan)  */
+comment|/**  * GWT emulated version of {@link AtomicInteger}.  It's a thin wrapper  * around the primitive {@code int}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
