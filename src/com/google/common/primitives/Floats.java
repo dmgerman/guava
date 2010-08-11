@@ -203,7 +203,7 @@ name|float
 name|value
 parameter_list|)
 block|{
-comment|// TODO: is there a better way, that's still gwt-safe?
+comment|// TODO(kevinb): is there a better way, that's still gwt-safe?
 return|return
 operator|(
 operator|(
@@ -310,7 +310,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider making this public
+comment|// TODO(kevinb): consider making this public
 DECL|method|indexOf ( float[] array, float target, int start, int end)
 specifier|private
 specifier|static
@@ -510,7 +510,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider making this public
+comment|// TODO(kevinb): consider making this public
 DECL|method|lastIndexOf ( float[] array, float target, int start, int end)
 specifier|private
 specifier|static

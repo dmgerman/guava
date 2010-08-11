@@ -179,8 +179,8 @@ specifier|private
 name|Predicates
 parameter_list|()
 block|{}
-comment|// TODO: considering having these implement a VisitablePredicate interface
-comment|// which specifies an accept(PredicateVisitor) method.
+comment|// TODO(kevinb): considering having these implement a VisitablePredicate
+comment|// interface which specifies an accept(PredicateVisitor) method.
 comment|/**    * Returns a predicate that always evaluates to {@code true}.    */
 annotation|@
 name|GwtCompatible
@@ -2199,7 +2199,6 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|/*        * TODO:  To leave the door open for future enhancement, this        * calculation should be coordinated with the hashCode() method of the        * corresponding composition method in Functions.  To construct the        * composition:        *    predicate(function2(function1(x)))        *        * There are two different ways of composing it:        *    compose(predicate, compose(function2, function1))        *    compose(compose(predicate, function2), function1)        *        * It would be nice if these could be equal.        */
 return|return
 name|f
 operator|.

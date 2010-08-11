@@ -191,7 +191,7 @@ comment|/**  * An immutable {@code SortedSet} that stores its elements in a sort
 end_comment
 
 begin_comment
-comment|// TODO: benchmark and optimize all creation paths, which are a mess right now
+comment|// TODO(benyu): benchmark and optimize all creation paths, which are a mess now
 end_comment
 
 begin_class
@@ -231,7 +231,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|// TODO: Can we find a way to remove this @SuppressWarnings even for eclipse?
+comment|// TODO(cpovirk): find a way to remove this @SuppressWarnings even for eclipse?
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -760,8 +760,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// TODO: Consider adding factory methods that throw an exception when given
-comment|// duplicate elements.
+comment|// TODO(kevinb): Consider factory methods that reject duplicates
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Comparable[])}.    * @since 2 (changed from varargs in release 3)    */
 annotation|@
 name|Deprecated
@@ -1083,7 +1082,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-comment|// TODO: Move to ObjectArrays?
+comment|// TODO(kevinb): Move to ObjectArrays?
 if|if
 condition|(
 name|size

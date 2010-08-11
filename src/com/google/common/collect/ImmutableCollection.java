@@ -507,8 +507,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|// TODO: Restructure code so ImmutableList doesn't contain this variable,
-comment|// which it doesn't use.
+comment|/*    * TODO(kevinb): Restructure code so ImmutableList doesn't contain this    * variable, which it doesn't use.    */
 DECL|field|asList
 specifier|private
 specifier|transient

@@ -375,7 +375,7 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: Priority?
+comment|// TODO(user): Priority?
 block|}
 comment|/**    * Loops continuously, pulling references off the queue and cleaning them up.    */
 annotation|@

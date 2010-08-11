@@ -1369,7 +1369,7 @@ block|}
 block|}
 return|;
 block|}
-comment|// TODO: faster contains, remove
+comment|// TODO(kevinb): faster contains, remove
 block|}
 DECL|field|serialVersionUID
 specifier|private

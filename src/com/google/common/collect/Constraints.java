@@ -184,8 +184,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a constraint that verifies that the element is not null. If the    * element is null, a {@link NullPointerException} is thrown.    */
-comment|// javac doesn't need this suppressed. eclipse does. and idea thinks it's an
-comment|// error! TODO: justify safety
+comment|// safe to narrow the type since checkElement returns its argument directly
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -194,7 +193,6 @@ argument_list|)
 DECL|method|notNull ()
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|E
 parameter_list|>
@@ -208,9 +206,6 @@ block|{
 return|return
 operator|(
 name|Constraint
-argument_list|<
-name|E
-argument_list|>
 operator|)
 name|NotNullConstraint
 operator|.
@@ -1291,7 +1286,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a constrained view of the specified list iterator, using the    * specified constraint. Any operations that would add new elements to the    * underlying list will be verified by the constraint.    *    * @param listIterator the iterator for which to return a constrained view    * @param constraint the constraint for elements in the list    * @return a constrained view of the specified iterator    */
-comment|// TODO: Make public?
 DECL|method|constrainedListIterator ( ListIterator<E> listIterator, Constraint<? super E> constraint)
 specifier|private
 specifier|static
@@ -1856,8 +1850,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// TODO: For better performance, avoid making a copy of the elements by having
-comment|// addAll() call add() repeatedly instead.
+comment|/*    * TODO(kevinb): For better performance, avoid making a copy of the elements    * by having addAll() call add() repeatedly instead.    */
 DECL|method|checkElements ( Collection<E> elements, Constraint<? super E> constraint)
 specifier|private
 specifier|static

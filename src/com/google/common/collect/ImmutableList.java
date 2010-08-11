@@ -1120,7 +1120,7 @@ operator|instanceof
 name|ImmutableCollection
 condition|)
 block|{
-comment|/*        * TODO: When given an ImmutableList that's a sublist, copy the referenced        * portion of the array into a new array to save space?        */
+comment|/*        * TODO(kevinb): When given an ImmutableList that's a sublist, copy the        * referenced portion of the array into a new array to save space?        */
 annotation|@
 name|SuppressWarnings
 argument_list|(

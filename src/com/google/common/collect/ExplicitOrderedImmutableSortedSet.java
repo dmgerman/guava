@@ -95,7 +95,7 @@ comment|/**  * An immutable sorted set consisting of, and ordered by, a list of 
 end_comment
 
 begin_comment
-comment|// TODO: Create superclass with code shared by this class and
+comment|// TODO(jlevy): Create superclass with code shared by this class and
 end_comment
 
 begin_comment
@@ -475,7 +475,7 @@ return|return
 name|array
 return|;
 block|}
-comment|// TODO: Move to ObjectArrays (same code in ImmutableList).
+comment|// TODO(jlevy): Move to ObjectArrays (same code in ImmutableList).
 DECL|method|toArray (T[] array)
 annotation|@
 name|Override
@@ -564,7 +564,7 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|// TODO: Cache hash code?
+comment|// TODO(jlevy): Cache hash code?
 name|int
 name|hash
 init|=
@@ -671,7 +671,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// TODO: Override subSet to avoid redundant map lookups.
+comment|// TODO(jlevy): Override subSet to avoid redundant map lookups.
 DECL|method|subSetImpl (E fromElement, E toElement)
 annotation|@
 name|Override
@@ -755,7 +755,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// TODO: Make Ordering.IncomparableValueException public and use it here.
+comment|// TODO(kevinb): Make Ordering.IncomparableValueException public, use it
 throw|throw
 operator|new
 name|ClassCastException
@@ -908,9 +908,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|// TODO: Modify ImmutableSortedAsList.subList() so it creates a list based on
-comment|// an ExplicitOrderedImmutableSortedSet when the original list was constructed
-comment|// from one, for faster contains(), indexOf(), and lastIndexOf().
+comment|/*    * TODO(jlevy): Modify ImmutableSortedAsList.subList() so it creates a list    * based on an ExplicitOrderedImmutableSortedSet when the original list was    * constructed from one, for faster contains(), indexOf(), and lastIndexOf().    */
 DECL|method|createAsList ()
 annotation|@
 name|Override

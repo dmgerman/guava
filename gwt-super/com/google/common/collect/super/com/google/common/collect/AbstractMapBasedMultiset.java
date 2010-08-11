@@ -229,8 +229,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|// TODO: Replace AtomicInteger with a to-be-written IntegerHolder class for
-comment|// better performance.
+comment|// TODO(kevinb): test whether a custom IntegerHolder would be faster
 DECL|field|backingMap
 specifier|private
 specifier|transient
@@ -1590,7 +1589,6 @@ return|return
 name|delegate
 return|;
 block|}
-comment|// TODO: a way to not have to write this much code?
 DECL|method|iterator ()
 annotation|@
 name|Override

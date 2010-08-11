@@ -3073,7 +3073,7 @@ modifier|...
 name|array
 parameter_list|)
 block|{
-comment|// TODO: compare performance with Arrays.asList(array).iterator().
+comment|// TODO(kevinb): compare performance with Arrays.asList(array).iterator().
 name|checkNotNull
 argument_list|(
 name|array

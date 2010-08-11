@@ -213,7 +213,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// TODO: the right way to explain this??
+comment|// TODO(kevinb): the right way to explain this??
 DECL|method|natural ()
 specifier|public
 specifier|static
@@ -407,8 +407,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Exception thrown by a {@link Ordering#explicit(List)} or {@link    * Ordering#explicit(Object, Object[])} comparator when comparing a value    * outside the set of values it can compare. Extending {@link    * ClassCastException} may seem odd, but it is required.    */
-comment|// TODO: consider making this exception type public. or consider getting rid
-comment|// of it.
+comment|// TODO(kevinb): make this public, document it right
 annotation|@
 name|VisibleForTesting
 DECL|class|IncomparableValueException

@@ -1797,8 +1797,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    */
-comment|// TODO: consider returning a bimap, whose inverse view does lookups by
-comment|// invoking the function.
 DECL|method|uniqueIndex ( Iterable<V> values, Function<? super V, K> keyFunction)
 specifier|public
 specifier|static

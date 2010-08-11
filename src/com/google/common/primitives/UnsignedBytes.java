@@ -767,7 +767,7 @@ throw|;
 block|}
 block|}
 comment|/**        * Returns true if x1 is less than x2, when both values are treated as        * unsigned.        */
-comment|// TODO: Should be a common utility method in primitives.UnsignedLongs.
+comment|// TODO(kevinb): Should be a common method in primitives.UnsignedLongs.
 DECL|method|lessThanUnsigned (long x1, long x2)
 specifier|static
 name|boolean

@@ -813,7 +813,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * removes all leading or trailing characters matching the given {@code    * CharMatcher} from each returned substring. For example, {@code    * Splitter.on(',').trimResults(CharMatcher.is('_')).split("_a ,_b_ ,c__")}    * returns an iterable containing {@code ["a ", "b_ ", "c"]}.    *    * @param trimmer a {@link CharMatcher} that determines whether a character    *     should be removed from the beginning/end of a subsequence    * @return a splitter with the desired configuration    */
-comment|// TODO: throw if a trimmer was already specified!
+comment|// TODO(kevinb): throw if a trimmer was already specified!
 DECL|method|trimResults (CharMatcher trimmer)
 specifier|public
 name|Splitter
@@ -1146,11 +1146,11 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/*    * Copied from common.collect.AbstractIterator. TODO: un-fork once these    * packages have been combined into a single library.    */
+comment|/*    * Copied from common.collect.AbstractIterator. TODO(kevinb): un-fork if these    * packages are ever combined into a single library.    */
 DECL|class|AbstractIterator
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractIterator
 parameter_list|<

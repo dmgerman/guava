@@ -1350,7 +1350,7 @@ operator|.
 name|getParentFile
 argument_list|()
 decl_stmt|;
-comment|// TODO: return if parent is null
+comment|// TODO(kevinb): return if parent is null
 name|parent
 operator|.
 name|mkdirs
@@ -1365,7 +1365,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
-comment|// TODO: change to isDirectory
+comment|// TODO(kevinb): change to isDirectory
 throw|throw
 operator|new
 name|IOException

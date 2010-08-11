@@ -391,7 +391,7 @@ specifier|public
 name|MapMaker
 parameter_list|()
 block|{}
-comment|// TODO: undo this indirection if keyEquiv gets released
+comment|// TODO(kevinb): undo this indirection if keyEquiv gets released
 DECL|method|privateKeyEquivalence (Equivalence<Object> equivalence)
 name|MapMaker
 name|privateKeyEquivalence
@@ -454,7 +454,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|// TODO: undo this indirection if valueEquiv gets released
+comment|// TODO(kevinb): undo this indirection if valueEquiv gets released
 DECL|method|privateValueEquivalence (Equivalence<Object> equivalence)
 name|MapMaker
 name|privateValueEquivalence
@@ -581,8 +581,8 @@ name|initialCapacity
 return|;
 block|}
 comment|/**    * Specifies the maximum number of entries the map may contain. While the    * number of entries in the map is not guaranteed to grow to the maximum,    * the map will attempt to make the best use of memory without exceeding the    * maximum number of entries. As the map size grows close to the maximum,    * the map will evict entries that are less likely to be used again. For    * example, the map may evict an entry because it hasn't been used recently    * or very often.    *    * @throws IllegalArgumentException if {@code size} is not greater than zero    * @throws IllegalStateException if a maximum size was already set    */
-comment|// TODO: make public after: a) writing unit tests, b) resolving behavior when
-comment|// maximumSize< concurrencyLevel
+comment|// TODO(user): make public after: a) writing unit tests, b) resolving behavior
+comment|// when maximumSize< concurrencyLevel
 DECL|method|maximumSize (int size)
 name|MapMaker
 name|maximumSize
@@ -1124,7 +1124,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Builds a caching function, which either returns an already-computed value    * for a given key or atomically computes it using the supplied function.    * If another thread is currently computing the value for this key, simply    * waits for that thread to finish and returns its computed value. Note that    * the function may be executed concurrently by multiple threads, but only for    * distinct keys.    *    *<p>The {@code Map} view of the {@code Cache}'s cache is only    * updated when function computation completes. In other words, an entry isn't    * visible until the value's computation completes. No methods on the {@code    * Map} will ever trigger computation.    *    *<p>{@link Cache#apply} in the returned function implementation may    * throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the    *     computing function returns null    *<li>{@link ComputationException} if an exception was thrown by the    *     computing function. If that exception is already of type {@link    *     ComputationException} it is propagated directly; otherwise it is    *     wrapped.    *</ul>    *    *<p>If {@link Map#put} is called on the underlying map before a computation    * completes, other threads waiting on the computation will wake up and return    * the stored value. When the computation completes, its new result will    * overwrite the value that was put in the map manually.    *    *<p>This method does not alter the state of this {@code MapMaker} instance,    * so it can be invoked again to create multiple independent maps.    *    * @param computingFunction the function used to compute new values    * @return a serializable cache having the requested features    */
-comment|// TODO: figure out the Cache interface before making this public
+comment|// TODO(kevinb): figure out the Cache interface before making this public
 DECL|method|makeCache ( Function<? super K, ? extends V> computingFunction)
 parameter_list|<
 name|K

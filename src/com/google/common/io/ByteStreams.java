@@ -2101,7 +2101,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// TODO: Not all streams support skipping.
+comment|// TODO(chrisn): Not all streams support skipping.
 comment|/** Returns the length of a supplied input stream, in bytes. */
 DECL|method|length (InputSupplier<? extends InputStream> supplier)
 specifier|public

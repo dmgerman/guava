@@ -150,7 +150,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/*    * TODO: Select a permanent name for this class. The name matters because    * we expose it in the serialized state and will be stuck w/ it forever.    */
 DECL|field|computingFunction
 specifier|final
 name|Function
@@ -936,7 +935,7 @@ parameter_list|)
 block|{
 comment|// if computingFunction has thrown a computation exception,
 comment|// propagate rather than wrap
-comment|// TODO: If we remove the entry before setting the value reference,
+comment|// TODO(user): If we remove the entry before setting the value reference,
 comment|// if the caller retries, they'll get the result of a different
 comment|// rather than the same result.
 name|setValueReference
@@ -1010,7 +1009,7 @@ name|key
 operator|+
 literal|"."
 decl_stmt|;
-comment|// TODO: If we remove the entry before setting the value reference,
+comment|// TODO(user): If we remove the entry before setting the value reference,
 comment|// if the caller retries, they'll get the result of a different
 comment|// rather than the same result.
 name|setValueReference

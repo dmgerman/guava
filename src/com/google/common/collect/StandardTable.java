@@ -1787,7 +1787,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/*      * TODO: To avoid making repeated calls to backingMap.get(), this class      * could store a delegate the way AbstractMultimap.WrappedCollection does.      * For that to work, all calls to backingMap.remove() and backing.clear()      * must call clear() on each non-empty removed map.      */
+comment|/*      * TODO(jlevy): To avoid making repeated calls to backingMap.get(), this      * class could store a delegate the way AbstractMultimap.WrappedCollection      * does. For that to work, all calls to backingMap.remove() and      * backing.clear() must call clear() on each non-empty removed map.      */
 DECL|field|rowKey
 specifier|final
 name|R
@@ -6109,7 +6109,7 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-comment|// TODO: Move keyIteratorImpl and valueIteratorImpl to Maps
+comment|// TODO(kevinb): Move keyIteratorImpl and valueIteratorImpl to Maps, reuse
 comment|/**    * Generates the iterator of a map's key set from the map's entry set    * iterator.    */
 DECL|method|keyIteratorImpl (Map<K, V> map)
 specifier|static

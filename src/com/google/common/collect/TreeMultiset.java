@@ -676,7 +676,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/*    * TODO: Decide whether entrySet() should return entries with an equals()    * method that calls the comparator to compare the two keys. If that change    * is made, AbstractMultiset.equals() can simply check whether two multisets    * have equal entry sets.    */
+comment|/*    * TODO(jlevy): Decide whether entrySet() should return entries with an    * equals() method that calls the comparator to compare the two keys. If that    * change is made, AbstractMultiset.equals() can simply check whether two    * multisets have equal entry sets.    */
 comment|/**    * @serialData the comparator, the number of distinct elements, the first    *     element, its count, the second element, its count, and so on    */
 annotation|@
 name|GwtIncompatible

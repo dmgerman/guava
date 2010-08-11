@@ -93,7 +93,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// TODO: the right way to explain this??
+comment|// TODO(kevinb): the right way to explain this??
 DECL|class|NaturalOrdering
 specifier|final
 class|class
@@ -170,7 +170,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// TODO: the right way to explain this??
+comment|// TODO(kevinb): the right way to explain this??
 DECL|method|reverse ()
 annotation|@
 name|Override
@@ -202,7 +202,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// TODO: the right way to explain this??
+comment|// TODO(kevinb): the right way to explain this??
 DECL|method|binarySearch ( List<? extends Comparable> sortedList, Comparable key)
 annotation|@
 name|Override

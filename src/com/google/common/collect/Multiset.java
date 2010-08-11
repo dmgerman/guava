@@ -221,7 +221,7 @@ name|getCount
 parameter_list|()
 function_decl|;
 comment|/**      * {@inheritDoc}      *      *<p>Returns {@code true} if the given object is also a multiset entry and      * the two entries represent the same element and count. More formally, two      * entries {@code a} and {@code b} are equal if:      *      *<pre>  ((a.getElement() == null)      *      ? (b.getElement() == null) : a.getElement().equals(b.getElement()))      *&& (a.getCount() == b.getCount())</pre>      */
-comment|// TODO: check this wrt TreeMultiset?
+comment|// TODO(kevinb): check this wrt TreeMultiset?
 DECL|method|equals (Object o)
 name|boolean
 name|equals
@@ -245,7 +245,7 @@ function_decl|;
 block|}
 comment|// Comparison and hashing
 comment|/**    * Compares the specified object with this multiset for equality. Returns    * {@code true} if the given object is also a multiset and contains equal    * elements with equal counts, regardless of order.    */
-comment|// TODO: caveats about equivalence-relation?
+comment|// TODO(kevinb): caveats about equivalence-relation?
 DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals

@@ -187,7 +187,7 @@ name|Collections2
 parameter_list|()
 block|{}
 comment|/**    * Returns {@code true} if the collection {@code self} contains all of the    * elements in the collection {@code c}.    *    *<p>This method iterates over the specified collection {@code c}, checking    * each element returned by the iterator in turn to see if it is contained in    * the specified collection {@code self}. If all elements are so contained,    * {@code true} is returned, otherwise {@code false}.    *    * @param self a collection which might contain all elements in {@code c}    * @param c a collection whose elements might be contained by {@code self}    */
-comment|// TODO: Make public?
+comment|// TODO(kevinb): Make public?
 DECL|method|containsAll (Collection<?> self, Collection<?> c)
 specifier|static
 name|boolean

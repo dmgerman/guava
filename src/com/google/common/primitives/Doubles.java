@@ -214,7 +214,7 @@ operator|.
 name|hashCode
 argument_list|()
 return|;
-comment|// TODO: do it this way when we can (GWT problem):
+comment|// TODO(kevinb): do it this way when we can (GWT problem):
 comment|// long bits = Double.doubleToLongBits(value);
 comment|// return (int)(bits ^ (bits>>> 32));
 block|}
@@ -312,7 +312,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider making this public
+comment|// TODO(kevinb): consider making this public
 DECL|method|indexOf ( double[] array, double target, int start, int end)
 specifier|private
 specifier|static
@@ -512,7 +512,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider making this public
+comment|// TODO(kevinb): consider making this public
 DECL|method|lastIndexOf ( double[] array, double target, int start, int end)
 specifier|private
 specifier|static

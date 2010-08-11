@@ -1441,10 +1441,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// TODO: Serialization of the element set should serialize the multiset, and
-comment|// deserialization should call multiset.elementSet(). Then
-comment|// reserialized(multiset).elementSet() == reserialized(multiset.elementSet())
-comment|// Currently, those object references differ.
 DECL|method|elementSet ()
 specifier|public
 name|Set
@@ -1753,7 +1749,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO: Revert once this class is emulated in GWT.
+comment|// TODO(hhchan): Revert once this class is emulated in GWT.
 DECL|method|toArray ()
 annotation|@
 name|Override
@@ -1781,7 +1777,7 @@ name|newArray
 argument_list|)
 return|;
 block|}
-comment|// TODO: Revert once this class is emulated in GWT.
+comment|// TODO(hhchan): Revert once this class is emulated in GWT.
 DECL|method|toArray (T[] other)
 annotation|@
 name|Override

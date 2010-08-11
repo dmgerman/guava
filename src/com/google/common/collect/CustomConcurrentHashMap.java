@@ -404,7 +404,6 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
-comment|/*    * TODO: Select a permanent name for this class. The name matters because    * we expose it in the serialized state and will be stuck w/ it forever.    */
 comment|/*    * The basic strategy is to subdivide the table among Segments, each of which    * itself is a concurrently readable hash table. The map supports    * non-blocking reads and concurrent writes across different segments.    *    * If a maximum size is specified, a best-effort bounding is performed per    * segment, using a page-replacement algorithm to determine which entries to    * evict when the capacity has been exceeded.    *    * The page replacement algorithm's data structures are kept casually    * consistent with the map. The ordering of writes to a segment is    * sequentially consistent. An update to the map and recording of reads may    * not be immediately reflected on the algorithm's data structures. These    * structures are guarded by a lock and operations are applied in batches to    * avoid lock contention. The penalty of applying the batches is spread across    * threads so that the amortized cost is slightly higher than performing just    * the operation without enforcing the capacity constraint.    *    * This implementation uses a per-segment queue to record a memento of the    * additions, removals, and accesses that were performed on the map. The queue    * is drained on writes and when it exceeds its capacity threshold.    *    * The Least Recently Used page replacement algorithm was chosen due to its    * simplicity, high hit rate, and ability to be implemented with O(1) time    * complexity. The initial LRU implementation operates per-segment rather    * than globally for increased implementation simplicity. We expect the cache    * hit rate to be similar to that of a global LRU algorithm.    */
 comment|/* ---------------- Constants -------------- */
 comment|/**    * The maximum capacity, used if a higher value is implicitly specified by    * either of the constructors with arguments.  MUST be a power of two<=    * 1<<30 to ensure that entries are indexable using ints.    */
@@ -430,7 +429,7 @@ operator|<<
 literal|16
 decl_stmt|;
 comment|// slightly conservative
-comment|/**    * Number of unsynchronized retries in size and containsValue methods before    * resorting to locking. This is used to avoid unbounded retries if tables    * undergo continuous modification which would make it impossible to obtain    * an accurate result.    *    * TODO: Talk to Doug about the possiblity of defining size() and    * containsValue() in terms of weakly consistent iteration.    */
+comment|/**    * Number of unsynchronized retries in size and containsValue methods before    * resorting to locking. This is used to avoid unbounded retries if tables    * undergo continuous modification which would make it impossible to obtain    * an accurate result.    *    * TODO(kevinb): Talk to Doug about the possiblity of defining size() and    * containsValue() in terms of weakly consistent iteration.    */
 DECL|field|RETRIES_BEFORE_LOCK
 specifier|static
 specifier|final
@@ -765,7 +764,7 @@ name|getConcurrencyLevel
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: Handle initialCapacity> maximumSize.
+comment|// TODO(kevinb): Handle initialCapacity> maximumSize.
 name|int
 name|initialCapacity
 init|=
@@ -1007,7 +1006,7 @@ DECL|enum|Strength
 enum|enum
 name|Strength
 block|{
-comment|/*      * TODO: If we strongly reference the value and aren't computing, we      * needn't wrap the value. This could save ~8 bytes per entry.      */
+comment|/*      * TODO(kevinb): If we strongly reference the value and aren't computing, we      * needn't wrap the value. This could save ~8 bytes per entry.      */
 DECL|enumConstant|STRONG
 name|STRONG
 block|{
@@ -1239,7 +1238,6 @@ DECL|enum|EntryFactory
 enum|enum
 name|EntryFactory
 block|{
-comment|// TODO: Generate all of these combos at build time.
 DECL|enumConstant|STRONG
 name|STRONG
 block|{
@@ -3530,7 +3528,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory.    * If only Java had mixins! To maintain this code, make a change for    * the strong reference type. Then, cut and paste, and replace "Strong"    * with "Soft" or "Weak" within the pasted text. The primary difference    * is that strong entries store the key reference directly while soft    * and weak entries delegate to their respective superclasses.    *    * TODO: Generate this code.    */
+comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory.    * If only Java had mixins! To maintain this code, make a change for    * the strong reference type. Then, cut and paste, and replace "Strong"    * with "Soft" or "Weak" within the pasted text. The primary difference    * is that strong entries store the key reference directly while soft    * and weak entries delegate to their respective superclasses.    */
 comment|/**    * Used for strongly-referenced keys.    */
 DECL|class|StrongEntry
 specifier|private
@@ -6271,7 +6269,7 @@ parameter_list|)
 block|{
 comment|// Spread bits to regularize both segment and index locations,
 comment|// using variant of single-word Wang/Jenkins hash.
-comment|// TODO: use Hashing/move this to Hashing?
+comment|// TODO(kevinb): use Hashing/move this to Hashing?
 name|h
 operator|+=
 operator|(
@@ -6447,8 +6445,7 @@ name|Object
 name|key
 parameter_list|)
 block|{
-comment|// TODO: can we just trust keyEquivalence to throw NPE as it promises?
-comment|// (That is, if some user's Equivalence doesn't, let them get a broken map?)
+comment|/*      * TODO(kevinb): can we just trust keyEquivalence to throw NPE as it      * promises? (That is, if some user's Equivalence doesn't, let them get a      * broken map?)      */
 name|int
 name|h
 init|=
@@ -6894,7 +6891,7 @@ name|int
 name|hash
 parameter_list|)
 block|{
-comment|// TODO: Lazily create segments.
+comment|// TODO(user): Lazily create segments?
 return|return
 name|segments
 index|[
@@ -6923,7 +6920,7 @@ name|Segment
 extends|extends
 name|ReentrantLock
 block|{
-comment|/*      * TODO: Consider copying variables (like evicts) from outer class into      * this class. It will require more memory but will reduce indirection.      */
+comment|/*      * TODO(user): Consider copying variables (like evicts) from outer class into      * this class. It will require more memory but will reduce indirection.      */
 comment|/*      * Segments maintain a table of entry lists that are ALWAYS      * kept in a consistent state, so can be read without locking.      * Next fields of nodes are immutable (final).  All list      * additions are performed at the front of each bin. This      * makes it easy to check changes, and also fast to traverse.      * When nodes would otherwise be changed, new nodes are      * created to replace them. This works well for hash tables      * since the bin lists tend to be short. (The average length      * is less than two.)      *      * Read operations can thus proceed without locking, but rely      * on selected uses of volatiles to ensure that completed      * write operations performed by other threads are      * noticed. For most purposes, the "count" field, tracking the      * number of elements, serves as that volatile variable      * ensuring visibility.  This is convenient because this field      * needs to be read in many read operations anyway:      *      *   - All (unsynchronized) read operations must first read the      *     "count" field, and should not look at table entries if      *     it is 0.      *      *   - All (synchronized) write operations should write to      *     the "count" field after structurally changing any bin.      *     The operations must not take any action that could even      *     momentarily cause a concurrent read operation to see      *     inconsistent data. This is made easier by the nature of      *     the read operations in Map. For example, no operation      *     can reveal that the table has grown but the threshold      *     has not yet been updated, so there are no atomicity      *     requirements for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the      * count field are marked in code comments.      */
 comment|/**      * The number of elements in this segment's region.      */
 DECL|field|count
@@ -10869,7 +10866,7 @@ name|Object
 name|value
 parameter_list|)
 block|{
-comment|// TODO: document why we choose to throw over returning false?
+comment|// TODO(kevinb): document why we choose to throw over returning false?
 name|checkNotNull
 argument_list|(
 name|value
@@ -10936,7 +10933,7 @@ operator|++
 name|i
 control|)
 block|{
-comment|// TODO: verify the importance of this crazy trick with Doug
+comment|// TODO(kevinb): verify the importance of this crazy trick with Doug
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -11015,7 +11012,7 @@ operator|++
 name|i
 control|)
 block|{
-comment|// TODO: verify the importance of this crazy trick with Doug
+comment|// TODO(kevinb): verify the importance of this crazy trick with Doug
 annotation|@
 name|SuppressWarnings
 argument_list|(

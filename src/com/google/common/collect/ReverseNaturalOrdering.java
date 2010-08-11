@@ -73,7 +73,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// TODO: the right way to explain this??
+comment|// TODO(kevinb): the right way to explain this??
 DECL|class|ReverseNaturalOrdering
 specifier|final
 class|class

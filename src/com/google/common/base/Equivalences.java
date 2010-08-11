@@ -227,7 +227,7 @@ operator|.
 name|hashCode
 argument_list|()
 return|;
-comment|// TODO: why NPE? counter-intuitive.
+comment|// TODO(kevinb): why NPE? counter-intuitive.
 block|}
 block|}
 block|,   }

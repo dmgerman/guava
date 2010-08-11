@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable sorted set with one or more elements.  * TODO: Consider creating a separate class for a single-element sorted set.  *  * @author Jared Levy  */
+comment|/**  * An immutable sorted set with one or more elements.  * TODO(jlevy): Consider separate class for a single-element sorted set.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -352,7 +352,7 @@ argument_list|>
 name|targets
 parameter_list|)
 block|{
-comment|// TODO: For optimal performance, use a binary search when
+comment|// TODO(jlevy): For optimal performance, use a binary search when
 comment|// targets.size()< size() / log(size())
 if|if
 condition|(
@@ -632,7 +632,7 @@ return|return
 name|array
 return|;
 block|}
-comment|// TODO: Move to ObjectArrays (same code in ImmutableList).
+comment|// TODO(kevinb): Move to ObjectArrays (same code in ImmutableList).
 DECL|method|toArray (T[] array)
 annotation|@
 name|Override

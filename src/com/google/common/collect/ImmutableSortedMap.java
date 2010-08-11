@@ -202,10 +202,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|// TODO: Confirm that ImmutableSortedMap is faster to construct and uses less
-comment|// memory than TreeMap; then say so in the class Javadoc.
-comment|// TODO: Create separate subclasses for empty, single-entry, and
-comment|// multiple-entry instances.
+comment|/*    * TODO(kevinb): Confirm that ImmutableSortedMap is faster to construct and    * uses less memory than TreeMap; then say so in the class Javadoc.    *    * TODO(kevinb): Create separate subclasses for empty, single-entry, and    * multiple-entry instances, if it's deemed beneficial.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1083,7 +1080,7 @@ name|ImmutableSortedMap
 operator|)
 condition|)
 block|{
-comment|// TODO: Prove that this cast is safe, even though
+comment|// TODO(kevinb): Prove that this cast is safe, even though
 comment|// Collections.unmodifiableSortedMap requires the same key type.
 annotation|@
 name|SuppressWarnings
@@ -2605,7 +2602,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|// TODO: For better performance, don't create a separate array.
+comment|// TODO(jlevy): For better performance, don't create a separate array.
 name|Object
 index|[]
 name|array

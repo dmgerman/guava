@@ -61,7 +61,7 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
-comment|// TODO: make it an abstract class and move to common.util.concurrent
+comment|// TODO(kevinb): make abstract class? move to common.util.concurrent?
 DECL|interface|Service
 specifier|public
 interface|interface

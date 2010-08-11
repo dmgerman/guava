@@ -737,8 +737,7 @@ return|return
 name|this
 return|;
 block|}
-comment|// TODO: Should build() and the ImmutableBiMap& ImmutableSortedMap versions
-comment|// throw an IllegalStateException instead?
+comment|/*      * TODO(kevinb): Should build() and the ImmutableBiMap& ImmutableSortedMap      * versions throw an IllegalStateException instead?      */
 comment|/**      * Returns a newly-created immutable map.      *      * @throws IllegalArgumentException if duplicate keys were added      */
 DECL|method|build ()
 specifier|public

@@ -539,7 +539,7 @@ operator|=
 name|columnComparator
 expr_stmt|;
 block|}
-comment|// TODO: Move to StandardRowSortedTable?
+comment|// TODO(jlevy): Move to StandardRowSortedTable?
 comment|/**    * Returns the comparator that orders the rows. With natural ordering,    * {@link Ordering#natural()} is returned.    */
 DECL|method|rowComparator ()
 specifier|public

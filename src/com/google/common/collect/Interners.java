@@ -254,8 +254,7 @@ operator|.
 name|hashCode
 argument_list|()
 decl_stmt|;
-comment|// TODO: once MapMaker supports arbitrary Equivalence, we won't need the
-comment|// dummy instance anymore
+comment|// TODO(kevinb): stop using the dummy instance; use custom Equivalence?
 name|Object
 name|fakeReference
 init|=
@@ -542,8 +541,6 @@ name|Object
 name|object
 parameter_list|)
 block|{
-comment|// TODO: should we try to do something to make equals() somewhat more
-comment|// normal?
 if|if
 condition|(
 name|object

@@ -387,7 +387,7 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// TODO: Figure out the right behavior, and document it
+comment|// TODO(kevinb): Figure out the right behavior, and document it
 return|return
 name|Ints
 operator|.

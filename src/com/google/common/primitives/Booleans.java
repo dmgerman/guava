@@ -323,7 +323,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider making this public
+comment|// TODO(kevinb): consider making this public
 DECL|method|indexOf ( boolean[] array, boolean target, int start, int end)
 specifier|private
 specifier|static
@@ -523,7 +523,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider making this public
+comment|// TODO(kevinb): consider making this public
 DECL|method|lastIndexOf ( boolean[] array, boolean target, int start, int end)
 specifier|private
 specifier|static

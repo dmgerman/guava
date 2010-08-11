@@ -176,7 +176,7 @@ specifier|transient
 name|int
 name|keySetHashCode
 decl_stmt|;
-comment|// TODO: investigate avoiding the creation of ImmutableEntries since we
+comment|// TODO(gak): investigate avoiding the creation of ImmutableEntries since we
 comment|// re-copy them anyway.
 DECL|method|RegularImmutableMap (Entry<?, ?>.... immutableEntries)
 name|RegularImmutableMap
@@ -205,7 +205,7 @@ argument_list|(
 name|size
 argument_list|)
 expr_stmt|;
-comment|// TODO: try smaller table sizes
+comment|// TODO(gak): try smaller table sizes
 name|int
 name|tableSize
 init|=
@@ -681,10 +681,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|// TODO: Serialization of the map views should serialize the map, and
-comment|// deserialization should call entrySet(), keySet(), or values() on the
-comment|// deserialized map. The views are serializable since the Immutable* classes
-comment|// are.
 DECL|field|entrySet
 specifier|private
 specifier|transient

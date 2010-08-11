@@ -1342,7 +1342,7 @@ argument_list|>
 name|entries
 decl_stmt|;
 comment|/**    * Returns an immutable collection of all key-value pairs in the multimap.    * Its iterator traverses the values for the first key, the values for the    * second key, and so on.    */
-comment|// TODO: Fix this so that two copies of the entries are not created.
+comment|// TODO(kevinb): Fix this so that two copies of the entries are not created.
 DECL|method|entries ()
 annotation|@
 name|Override

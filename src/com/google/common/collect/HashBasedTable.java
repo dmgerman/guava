@@ -203,6 +203,8 @@ name|get
 parameter_list|()
 block|{
 return|return
+name|Maps
+operator|.
 name|newHashMapWithExpectedSize
 argument_list|(
 name|expectedSize
@@ -218,57 +220,6 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-comment|/**    * Copied from {@link Maps#newHashMapWithExpectedSize}.    * TODO: Revert back once {@code Maps} is GWT-compliant.    */
-DECL|method|newHashMapWithExpectedSize (int expectedSize)
-specifier|private
-specifier|static
-parameter_list|<
-name|C
-parameter_list|,
-name|V
-parameter_list|>
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|newHashMapWithExpectedSize
-parameter_list|(
-name|int
-name|expectedSize
-parameter_list|)
-block|{
-comment|/*      * The HashMap is constructed with an initialCapacity that's greater than      * expectedSize. The larger value is necessary because HashMap resizes      * its internal array if the map size exceeds loadFactor * initialCapacity.      */
-name|checkArgument
-argument_list|(
-name|expectedSize
-operator|>=
-literal|0
-argument_list|)
-expr_stmt|;
-return|return
-operator|new
-name|HashMap
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|Math
-operator|.
-name|max
-argument_list|(
-name|expectedSize
-operator|*
-literal|2
-argument_list|,
-literal|16
-argument_list|)
-argument_list|)
-return|;
 block|}
 comment|/**    * Creates an empty {@code HashBasedTable}.    */
 DECL|method|create ()
@@ -378,6 +329,8 @@ argument_list|>
 argument_list|>
 name|backingMap
 init|=
+name|Maps
+operator|.
 name|newHashMapWithExpectedSize
 argument_list|(
 name|expectedRows

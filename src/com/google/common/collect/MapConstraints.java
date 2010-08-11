@@ -1301,9 +1301,8 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/*      * We could switch to racy single-check lazy init and remove volatile, but      * there's a downside. That's because this field is also written in the      * constructor. Without volatile, the constructor's write of the existing      * inverse BiMap could occur after inverse()'s read of the field's initial      * null value, leading inverse() to overwrite the existing inverse with a      * doubly indirect version. This wouldn't be catastrophic, but it's      * something to keep in mind if we make the change.      *      * Note that UnmodifiableBiMap *does* use racy single-check lazy init.      * TODO: pick one and standardize      */
+comment|/*      * We could switch to racy single-check lazy init and remove volatile, but      * there's a downside. That's because this field is also written in the      * constructor. Without volatile, the constructor's write of the existing      * inverse BiMap could occur after inverse()'s read of the field's initial      * null value, leading inverse() to overwrite the existing inverse with a      * doubly indirect version. This wouldn't be catastrophic, but it's      * something to keep in mind if we make the change.      *      * Note that UnmodifiableBiMap *does* use racy single-check lazy init.      * TODO(cpovirk): pick one and standardize      */
 DECL|field|inverse
-specifier|transient
 specifier|volatile
 name|BiMap
 argument_list|<

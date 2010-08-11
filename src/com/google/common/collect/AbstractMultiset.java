@@ -859,7 +859,6 @@ argument_list|(
 name|collection
 argument_list|)
 return|;
-comment|// TODO: implement retainAll similarly?
 block|}
 DECL|method|retainAll (Collection<?> elementsToRetain)
 annotation|@
@@ -875,6 +874,7 @@ argument_list|>
 name|elementsToRetain
 parameter_list|)
 block|{
+comment|// TODO(kevinb): implement similarly to removeAll?
 name|checkNotNull
 argument_list|(
 name|elementsToRetain

@@ -558,7 +558,7 @@ argument_list|>
 name|elementType
 parameter_list|)
 block|{
-comment|/*      * TODO: noneOf() and addAll() will both throw NullPointerExceptions when      * appropriate. However, NullPointerTester will fail on this method because      * it passes in Class.class instead of an enum type. This means that, when      * iterable is null but elementType is not, noneOf() will throw a      * ClassCastException before addAll() has a chance to throw a      * NullPointerException. NullPointerTester considers this a failure.      * Ideally the test would be fixed, but it would require a special case for      * Class<E> where E extends Enum. Until that happens (if ever), leave      * checkNotNull() here. For now, contemplate the irony that checking      * elementType, the problem argument, is harmful, while checking iterable,      * the innocent bystander, is effective.      */
+comment|/*      * TODO(cpovirk): noneOf() and addAll() will both throw      * NullPointerExceptions when appropriate. However, NullPointerTester will      * fail on this method because it passes in Class.class instead of an enum      * type. This means that, when iterable is null but elementType is not,      * noneOf() will throw a ClassCastException before addAll() has a chance to      * throw a NullPointerException. NullPointerTester considers this a failure.      * Ideally the test would be fixed, but it would require a special case for      * Class<E> where E extends Enum. Until that happens (if ever), leave      * checkNotNull() here. For now, contemplate the irony that checking      * elementType, the problem argument, is harmful, while checking iterable,      * the innocent bystander, is effective.      */
 name|checkNotNull
 argument_list|(
 name|iterable
@@ -1810,8 +1810,6 @@ argument_list|,
 literal|"set2"
 argument_list|)
 expr_stmt|;
-comment|// TODO: once we have OrderedIterators, check if these are compatible
-comment|// sorted sets and use that instead if so
 specifier|final
 name|Set
 argument_list|<
@@ -2047,8 +2045,6 @@ argument_list|,
 literal|"set2"
 argument_list|)
 expr_stmt|;
-comment|// TODO: once we have OrderedIterators, check if these are compatible
-comment|// sorted sets and use that instead if so
 specifier|final
 name|Predicate
 argument_list|<
@@ -2228,8 +2224,6 @@ argument_list|,
 literal|"set2"
 argument_list|)
 expr_stmt|;
-comment|// TODO: once we have OrderedIterators, check if these are compatible
-comment|// sorted sets and use that instead if so
 specifier|final
 name|Predicate
 argument_list|<
@@ -2390,7 +2384,7 @@ argument_list|,
 literal|"set2"
 argument_list|)
 expr_stmt|;
-comment|// TODO: Replace this with a more efficient implementation
+comment|// TODO(kevinb): Replace this with a more efficient implementation
 return|return
 name|difference
 argument_list|(

@@ -60,7 +60,6 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|// TODO: Make public? If public, constructor should verify that size>= 0.
 DECL|field|size
 specifier|private
 specifier|final
@@ -83,7 +82,6 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-comment|// TODO: Add constructor taking an offset.
 DECL|method|AbstractIndexedIterator (int size)
 specifier|protected
 name|AbstractIndexedIterator

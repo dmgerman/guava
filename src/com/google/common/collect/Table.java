@@ -119,7 +119,7 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
-comment|// TODO: Consider adding methods similar to ConcurrentMap methods.
+comment|// TODO(jlevy): Consider adding methods similar to ConcurrentMap methods.
 comment|// Accessors
 comment|/**    * Returns {@code true} if the table contains a mapping with the specified    * row and column keys.    *    * @param rowKey key of row to search for    * @param columnKey key of column to search for    */
 DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)

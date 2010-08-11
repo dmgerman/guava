@@ -1444,7 +1444,7 @@ argument_list|>
 name|inputs
 parameter_list|)
 block|{
-comment|/*      * Hint: if you let A represent Iterable<? extends T> and B represent      * Iterator<? extends T>, then this Function would look simply like:      *      *   Function<A, B> function = new Function<A, B> {      *     public B apply(A from) {      *       return from.iterator();      *     }      *   }      *      * TODO: there may be a better way to do this.      */
+comment|/*      * Hint: if you let A represent Iterable<? extends T> and B represent      * Iterator<? extends T>, then this Function would look simply like:      *      *   Function<A, B> function = new Function<A, B> {      *     public B apply(A from) {      *       return from.iterator();      *     }      *   }      *      * TODO(kevinb): it would probably be better to do this directly instead of      * via transform().  The transform() impl isn't all that hard.      */
 name|Function
 argument_list|<
 name|Iterable
@@ -2236,6 +2236,7 @@ argument_list|>
 name|iterable
 parameter_list|)
 block|{
+comment|// TODO(kevinb): Support a concurrently modified collection?
 if|if
 condition|(
 name|iterable
@@ -2257,8 +2258,6 @@ argument_list|>
 operator|)
 name|iterable
 decl_stmt|;
-comment|// TODO: Support a concurrent list whose size changes while this method
-comment|// is running.
 if|if
 condition|(
 name|list
@@ -2280,9 +2279,7 @@ name|list
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider whether this "optimization" is worthwhile. Users with
-comment|// SortedSets tend to know they are SortedSets and probably would not
-comment|// call this method.
+comment|/*      * TODO(kevinb): consider whether this "optimization" is worthwhile. Users      * with SortedSets tend to know they are SortedSets and probably would not      * call this method.      */
 if|if
 condition|(
 name|iterable
@@ -2407,9 +2404,7 @@ name|list
 argument_list|)
 return|;
 block|}
-comment|// TODO: consider whether this "optimization" is worthwhile. Users with
-comment|// SortedSets tend to know they are SortedSets and probably would not
-comment|// call this method.
+comment|/*      * TODO(kevinb): consider whether this "optimization" is worthwhile. Users      * with SortedSets tend to know they are SortedSets and probably would not      * call this method.      */
 if|if
 condition|(
 name|iterable
@@ -2562,8 +2557,7 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-comment|// TODO: Support a concurrent list whose size changes while this
-comment|// method is running.
+comment|// TODO(kevinb): Support a concurrently modified collection?
 return|return
 operator|(
 name|numberToSkip

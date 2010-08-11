@@ -3149,7 +3149,7 @@ argument_list|>
 name|entrySet
 parameter_list|()
 block|{
-comment|// TODO: lazy init?
+comment|// TODO(jlevy): lazy init?
 return|return
 operator|new
 name|AbstractSet
@@ -3753,7 +3753,6 @@ argument_list|>
 argument_list|>
 argument_list|>
 block|{
-comment|// TODO: Override contains() and remove() for better performance.
 DECL|method|size ()
 annotation|@
 name|Override
@@ -3914,6 +3913,7 @@ block|}
 block|}
 return|;
 block|}
+comment|// TODO(jlevy): Override contains() and remove() for better performance.
 block|}
 DECL|field|map
 specifier|private

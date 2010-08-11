@@ -110,17 +110,10 @@ begin_comment
 comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any character {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not understand  * supplementary Unicode code points in the range {@code 0x10000} to {@code 0x10FFFF}. Such logical  * characters are encoded into a {@code String} using surrogate pairs, and a {@code CharMatcher}  * treats these just as two separate characters.  *  * @author Kevin Bourrillion  * @since 1  */
 end_comment
 
-begin_comment
-comment|// TODO: release as "stable" after changing from chars to code points, and
-end_comment
-
-begin_comment
-comment|// deciding whether constants should change to methods
-end_comment
-
 begin_class
 annotation|@
 name|Beta
+comment|// Possibly change from chars to code points; decide constants vs. methods
 annotation|@
 name|GwtCompatible
 DECL|class|CharMatcher
@@ -2744,7 +2737,7 @@ name|c
 argument_list|)
 return|;
 block|}
-comment|// TODO: make methods like negate() smart
+comment|// TODO(kevinb): make methods like negate() smart?
 annotation|@
 name|Override
 specifier|public
@@ -2810,7 +2803,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**    * A bit array with one bit per {@code char} value, used by {@link CharMatcher#precomputed}.    *    *<p>TODO: possibly share a common BitArray class with BloomFilter and others... a simpler    * java.util.BitSet.    */
+comment|/**    * A bit array with one bit per {@code char} value, used by {@link CharMatcher#precomputed}.    *    *<p>TODO(kevinb): possibly share a common BitArray class with BloomFilter and others... a    * simpler java.util.BitSet.    */
 DECL|class|LookupTable
 specifier|private
 specifier|static
@@ -2953,7 +2946,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|// TODO: perhaps add matchesAnyOf()
+comment|// TODO(kevinb): add matchesAnyOf()
 comment|/**    * Returns the index of the first matching character in a character sequence, or {@code -1} if no    * matching character is present.    *    *<p>The default implementation iterates over the sequence in forward order calling {@link    * #matches} for each character.    *    * @param sequence the character sequence to examine from the beginning    * @return an index, or {@code -1} if no character matches    */
 DECL|method|indexIn (CharSequence sequence)
 specifier|public
@@ -3890,7 +3883,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// TODO: this implementation can probably be made faster.
+comment|// TODO(kevinb): see if this implementation can be made faster
 name|StringBuilder
 name|builder
 init|=
