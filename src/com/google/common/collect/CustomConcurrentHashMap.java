@@ -8007,6 +8007,22 @@ operator|/
 literal|4
 expr_stmt|;
 comment|// 0.75
+if|if
+condition|(
+name|this
+operator|.
+name|threshold
+operator|==
+name|maxSegmentSize
+condition|)
+block|{
+comment|// prevent spurious expansion before eviction
+name|this
+operator|.
+name|threshold
+operator|++
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|table
@@ -8837,20 +8853,6 @@ literal|1
 decl_stmt|;
 if|if
 condition|(
-name|evicts
-operator|&&
-name|newCount
-operator|>
-name|maxSegmentSize
-condition|)
-block|{
-name|evictEntry
-argument_list|()
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
 name|newCount
 operator|>
 name|this
@@ -9024,6 +9026,19 @@ return|return
 name|entryValue
 return|;
 block|}
+block|}
+if|if
+condition|(
+name|evicts
+operator|&&
+name|newCount
+operator|>
+name|maxSegmentSize
+condition|)
+block|{
+name|evictEntry
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Create a new entry.
 operator|++
