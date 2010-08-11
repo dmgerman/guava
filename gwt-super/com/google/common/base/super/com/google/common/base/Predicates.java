@@ -686,6 +686,7 @@ name|function
 argument_list|)
 return|;
 block|}
+comment|// End public API, begin private implementation classes.
 comment|// Package private for GWT serialization.
 DECL|enum|ObjectPredicate
 enum|enum
