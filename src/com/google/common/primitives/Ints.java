@@ -913,7 +913,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a big-endian representation of {@code value} in a 4-element byte    * array; equivalent to {@code ByteBuffer.allocate(4).putInt(value).array()}.    * For example, the input value {@code 0x12131415} would yield the byte array    * {@code {0x12, 0x13, 0x14, 0x15}}.    *    *<p>If you need to convert and concatenate several values (possibly even of    * different types), use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable    * buffer.    *    *<p><b>Warning:</b> do not use this method in GWT. It returns wrong answers.    */
+comment|/**    * Returns a big-endian representation of {@code value} in a 4-element byte    * array; equivalent to {@code ByteBuffer.allocate(4).putInt(value).array()}.    * For example, the input value {@code 0x12131415} would yield the byte array    * {@code {0x12, 0x13, 0x14, 0x15}}.    *    *<p>If you need to convert and concatenate several values (possibly even of    * different types), use a shared {@link java.nio.ByteBuffer} instance, or use    * {@link com.google.common.io.ByteStreams#newDataOutput()} to get a growable    * buffer.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -969,7 +969,7 @@ name|value
 block|}
 return|;
 block|}
-comment|/**    * Returns the {@code int} value whose big-endian representation is stored in    * the first 4 bytes of {@code bytes}; equivalent to {@code    * ByteBuffer.wrap(bytes).getInt()}. For example, the input byte array {@code    * {0x12, 0x13, 0x14, 0x15, 0x33}} would yield the {@code int} value {@code    * 0x12131415}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that    * library exposes much more flexibility at little cost in readability.    *    *<p><b>Warning:</b> do not use this method in GWT. It returns wrong answers.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 4 elements    */
+comment|/**    * Returns the {@code int} value whose big-endian representation is stored in    * the first 4 bytes of {@code bytes}; equivalent to {@code    * ByteBuffer.wrap(bytes).getInt()}. For example, the input byte array {@code    * {0x12, 0x13, 0x14, 0x15, 0x33}} would yield the {@code int} value {@code    * 0x12131415}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that    * library exposes much more flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 4 elements    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1004,18 +1004,62 @@ name|BYTES
 argument_list|)
 expr_stmt|;
 return|return
+name|fromBytes
+argument_list|(
 name|bytes
 index|[
 literal|0
 index|]
-operator|<<
-literal|24
-operator||
-operator|(
+argument_list|,
 name|bytes
 index|[
 literal|1
 index|]
+argument_list|,
+name|bytes
+index|[
+literal|2
+index|]
+argument_list|,
+name|bytes
+index|[
+literal|3
+index|]
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the {@code int} value whose byte representation is the given 4    * bytes, in big-endian order; equivalent to {@code Ints.fromByteArray(new    * byte[] {b1, b2, b3, b4})}.    *    * @since 7    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"doesn't work"
+argument_list|)
+DECL|method|fromBytes (byte b1, byte b2, byte b3, byte b4)
+specifier|public
+specifier|static
+name|int
+name|fromBytes
+parameter_list|(
+name|byte
+name|b1
+parameter_list|,
+name|byte
+name|b2
+parameter_list|,
+name|byte
+name|b3
+parameter_list|,
+name|byte
+name|b4
+parameter_list|)
+block|{
+return|return
+name|b1
+operator|<<
+literal|24
+operator||
+operator|(
+name|b2
 operator|&
 literal|0xFF
 operator|)
@@ -1023,10 +1067,7 @@ operator|<<
 literal|16
 operator||
 operator|(
-name|bytes
-index|[
-literal|2
-index|]
+name|b3
 operator|&
 literal|0xFF
 operator|)
@@ -1034,10 +1075,7 @@ operator|<<
 literal|8
 operator||
 operator|(
-name|bytes
-index|[
-literal|3
-index|]
+name|b4
 operator|&
 literal|0xFF
 operator|)

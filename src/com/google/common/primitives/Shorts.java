@@ -935,7 +935,7 @@ name|value
 block|}
 return|;
 block|}
-comment|/**    * Returns the {@code short} value whose big-endian representation is stored    * in the first 2 bytes of {@code bytes}; equivalent to {@code    * ByteBuffer.wrap(bytes).getShort()}. For example, the input byte array    * {@code {0x12, 0x34}} would yield the {@code short} value {@code 0x1234}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that    * library exposes much more flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 2    *     elements    */
+comment|/**    * Returns the {@code short} value whose big-endian representation is    * stored in the first 2 bytes of {@code bytes}; equivalent to {@code    * ByteBuffer.wrap(bytes).getShort()}. For example, the input byte array    * {@code {0x54, 0x32}} would yield the {@code short} value {@code 0x5432}.    *    *<p>Arguably, it's preferable to use {@link java.nio.ByteBuffer}; that    * library exposes much more flexibility at little cost in readability.    *    * @throws IllegalArgumentException if {@code bytes} has fewer than 2    *     elements    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -970,24 +970,52 @@ name|BYTES
 argument_list|)
 expr_stmt|;
 return|return
+name|fromBytes
+argument_list|(
+name|bytes
+index|[
+literal|0
+index|]
+argument_list|,
+name|bytes
+index|[
+literal|1
+index|]
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the {@code short} value whose byte representation is the given 2    * bytes, in big-endian order; equivalent to {@code Shorts.fromByteArray(new    * byte[] {b1, b2})}.    *    * @since 7    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"doesn't work"
+argument_list|)
+DECL|method|fromBytes (byte b1, byte b2)
+specifier|public
+specifier|static
+name|short
+name|fromBytes
+parameter_list|(
+name|byte
+name|b1
+parameter_list|,
+name|byte
+name|b2
+parameter_list|)
+block|{
+return|return
 call|(
 name|short
 call|)
 argument_list|(
 operator|(
-name|bytes
-index|[
-literal|0
-index|]
+name|b1
 operator|<<
 literal|8
 operator|)
 operator||
 operator|(
-name|bytes
-index|[
-literal|1
-index|]
+name|b2
 operator|&
 literal|0xFF
 operator|)
