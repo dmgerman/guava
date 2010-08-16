@@ -96,6 +96,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|BlockingQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|CancellationException
 import|;
 end_import
@@ -145,6 +157,18 @@ operator|.
 name|concurrent
 operator|.
 name|Future
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|LinkedBlockingQueue
 import|;
 end_import
 
@@ -800,7 +824,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>TODO: Add a version that accepts a normal {@code Future}    *    *<p>The typical use for this method would be when a RPC call is dependent on    * the results of another RPC.  One would call the first RPC (input), create a    * function that calls another RPC based on input's result, and then call    * chain on input and that function to get a {@code ListenableFuture} of    * the result.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the chain.    */
+comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>TODO: Add a version that accepts a normal {@code Future}    *    *<p>The typical use for this method would be when a RPC call is dependent on    * the results of another RPC.  One would call the first RPC (input), create a    * function that calls another RPC based on input's result, and then call    * chain on input and that function to get a {@code ListenableFuture} of    * the result.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function)
 specifier|public
 specifier|static
@@ -853,7 +877,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
+comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function, Executor exec)
 specifier|public
 specifier|static
@@ -929,7 +953,7 @@ return|return
 name|chain
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the composition.    */
+comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of the input future will cause the returned    * future to be cancelled.  Cancelling the returned future will succeed if it    * is currently running.  In this case, an attempt will be made to cancel the    * input future, however there is no guarantee of success.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the composition.    */
 DECL|method|compose (ListenableFuture<I> future, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -978,7 +1002,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    * The resulting future doesn't interrupt when aborted.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the composition.    * @since 2    */
+comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of the input future will cause the returned    * future to be cancelled.  Cancelling the returned future will succeed if it    * is currently running.  In this case, an attempt will be made to cancel the    * input future, however there is no guarantee of success.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the composition.    * @since 2    */
 DECL|method|compose (ListenableFuture<I> future, final Function<? super I, ? extends O> function, Executor exec)
 specifier|public
 specifier|static
@@ -1305,7 +1329,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * An implementation of {@code ListenableFuture} that also implements    * {@code Runnable} so that it can be used to nest ListenableFutures.    * Once the passed-in {@code ListenableFuture} is complete, it calls the    * passed-in {@code Function} to generate the result.    * The resulting future doesn't interrupt when aborted.    *    *<p>If the function throws any checked exceptions, they should be wrapped    * in a {@code UndeclaredThrowableException} so that this class can get    * access to the cause.    */
+comment|/**    * An implementation of {@code ListenableFuture} that also implements    * {@code Runnable} so that it can be used to nest ListenableFutures.    * Once the passed-in {@code ListenableFuture} is complete, it calls the    * passed-in {@code Function} to generate the result.    *    *<p>If the function throws any checked exceptions, they should be wrapped    * in a {@code UndeclaredThrowableException} so that this class can get    * access to the cause.    */
 DECL|class|ChainingListenableFuture
 specifier|private
 specifier|static
@@ -1352,6 +1376,35 @@ extends|extends
 name|I
 argument_list|>
 name|inputFuture
+decl_stmt|;
+DECL|field|outputFuture
+specifier|private
+specifier|volatile
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|O
+argument_list|>
+name|outputFuture
+decl_stmt|;
+DECL|field|mayInterruptIfRunningChannel
+specifier|private
+specifier|final
+name|BlockingQueue
+argument_list|<
+name|Boolean
+argument_list|>
+name|mayInterruptIfRunningChannel
+init|=
+operator|new
+name|LinkedBlockingQueue
+argument_list|<
+name|Boolean
+argument_list|>
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
 DECL|method|ChainingListenableFuture ( Function<? super I, ? extends ListenableFuture<? extends O>> function, ListenableFuture<? extends I> inputFuture)
 specifier|private
@@ -1411,16 +1464,78 @@ name|boolean
 name|mayInterruptIfRunning
 parameter_list|)
 block|{
+if|if
+condition|(
+name|cancel
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+comment|// This should never block since only one thread is allowed to cancel
+comment|// this Future.
+name|mayInterruptIfRunningChannel
+operator|.
+name|put
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ignored
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+name|cancel
+argument_list|(
+name|inputFuture
+argument_list|,
+name|mayInterruptIfRunning
+argument_list|)
+expr_stmt|;
+name|cancel
+argument_list|(
+name|outputFuture
+argument_list|,
+name|mayInterruptIfRunning
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|cancel (@ullable Future<?> future, boolean mayInterruptIfRunning)
+specifier|private
+name|void
+name|cancel
+parameter_list|(
+annotation|@
+name|Nullable
 name|Future
 argument_list|<
 name|?
-extends|extends
-name|I
 argument_list|>
 name|future
-init|=
-name|inputFuture
-decl_stmt|;
+parameter_list|,
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
 if|if
 condition|(
 name|future
@@ -1428,18 +1543,14 @@ operator|!=
 literal|null
 condition|)
 block|{
-return|return
 name|future
 operator|.
 name|cancel
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|)
-return|;
+expr_stmt|;
 block|}
-return|return
-literal|false
-return|;
 block|}
 DECL|method|run ()
 specifier|public
@@ -1500,6 +1611,10 @@ name|O
 argument_list|>
 name|outputFuture
 init|=
+name|this
+operator|.
+name|outputFuture
+operator|=
 name|function
 operator|.
 name|apply
@@ -1507,6 +1622,53 @@ argument_list|(
 name|sourceResult
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|isCancelled
+argument_list|()
+condition|)
+block|{
+comment|// Handles the case where cancel was called while the function was
+comment|// being applied.
+try|try
+block|{
+comment|// There is a gap in cancel(boolean) between calling cancel() and
+comment|// storing the value of mayInterruptIfRunning, so this thread needs
+comment|// to block, waiting for that value.
+name|outputFuture
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunningChannel
+operator|.
+name|take
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ignored
+parameter_list|)
+block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+name|this
+operator|.
+name|outputFuture
+operator|=
+literal|null
+expr_stmt|;
+return|return;
+block|}
 name|outputFuture
 operator|.
 name|addListener
@@ -1539,6 +1701,18 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|CancellationException
+name|e
+parameter_list|)
+block|{
+comment|// Cancel this future and return.
+name|cancel
+argument_list|()
+expr_stmt|;
+return|return;
+block|}
+catch|catch
+parameter_list|(
 name|ExecutionException
 name|e
 parameter_list|)
@@ -1551,6 +1725,18 @@ operator|.
 name|getCause
 argument_list|()
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// Don't pin inputs beyond completion
+name|ChainingListenableFuture
+operator|.
+name|this
+operator|.
+name|outputFuture
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
