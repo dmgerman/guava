@@ -3127,7 +3127,6 @@ parameter_list|)
 function_decl|;
 block|}
 DECL|class|TransformedEntriesMap
-specifier|private
 specifier|static
 class|class
 name|TransformedEntriesMap
