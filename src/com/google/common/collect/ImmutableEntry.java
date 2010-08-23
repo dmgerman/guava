@@ -138,6 +138,24 @@ return|return
 name|value
 return|;
 block|}
+DECL|method|setValue (V value)
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|V
+name|setValue
+parameter_list|(
+name|V
+name|value
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
