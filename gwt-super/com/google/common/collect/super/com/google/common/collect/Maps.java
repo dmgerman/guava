@@ -1974,7 +1974,6 @@ return|;
 block|}
 comment|/**    * Returns an unmodifiable view of the specified map entry. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    * This also has the side-effect of redefining {@code equals} to comply with    * the Entry contract, to avoid a possible nefarious implementation of equals.    *    * @param entry the entry for which to return an unmodifiable view    * @return an unmodifiable view of the entry    */
 DECL|method|unmodifiableEntry (final Entry<K, V> entry)
-specifier|private
 specifier|static
 parameter_list|<
 name|K

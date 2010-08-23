@@ -5900,6 +5900,8 @@ literal|"sopot.pl"
 argument_list|,
 literal|"gliwice.pl"
 argument_list|,
+literal|"krakow.pl"
+argument_list|,
 literal|"poznan.pl"
 argument_list|,
 literal|"wroc.pl"
