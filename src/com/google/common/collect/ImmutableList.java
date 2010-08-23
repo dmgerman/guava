@@ -970,12 +970,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable list containing the given elements, in order. If    * {@code elements} is a {@link Collection}, this method behaves exactly as    * {@link #copyOf(Collection)}; otherwise, it behaves exactly as {@code    * copyOf(elements.iterator()}.    *    * @throws NullPointerException if any of {@code elements} is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// bugs.sun.com/view_bug.do?bug_id=6558557
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1002,6 +996,7 @@ argument_list|(
 name|elements
 argument_list|)
 expr_stmt|;
+comment|// TODO(kevinb): is this here only for GWT?
 return|return
 operator|(
 name|elements
@@ -1011,15 +1006,12 @@ operator|)
 condition|?
 name|copyOf
 argument_list|(
-operator|(
-name|Collection
-argument_list|<
-name|?
-extends|extends
-name|E
-argument_list|>
-operator|)
+name|Collections2
+operator|.
+name|cast
+argument_list|(
 name|elements
+argument_list|)
 argument_list|)
 else|:
 name|copyOf

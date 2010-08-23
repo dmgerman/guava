@@ -1280,6 +1280,35 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
+DECL|method|cast (Iterable<T> iterable)
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Collection
+argument_list|<
+name|T
+argument_list|>
+name|cast
+parameter_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+operator|(
+name|Collection
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|iterable
+return|;
+block|}
 DECL|field|standardJoiner
 specifier|static
 specifier|final
