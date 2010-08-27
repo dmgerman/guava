@@ -58,6 +58,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -237,7 +251,7 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/*    * The ConcurrentHashMultiset's atomic operations are implemented in terms of    * ConcurrentMap's atomic operations. Many of them, such as add(E, int), are    * read-modify-write sequences, and so are implemented as loops that wrap    * ConcurrentMap's compare-and-set operations (like putIfAbsent).    */
+comment|/*    * The ConcurrentHashMultiset's atomic operations are implemented in terms of    * ConcurrentMap's atomic operations. Many of them, such as add(E, int), are    * read-modify-write sequences, and so are implemented as loops that wrap    * ConcurrentMap's compare-and-set operations (like putIfAbsent).    *    * Invariant: all entries have a positive value. In particular, there are no    * entries with zero value. Some operations would fail if this was not the    * case.    */
 comment|/** The number of occurrences of each element. */
 DECL|field|countMap
 specifier|private
@@ -363,6 +377,53 @@ argument_list|)
 expr_stmt|;
 return|return
 name|multiset
+return|;
+block|}
+comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker}    * to construct the internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any    * kind, this eviction applies to all occurrences of a given element as a    * single unit.    *    *<p>The returned multiset is serializable but any serialization caveats    * given in {@code MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful.    * Soft/weak keys on the other hand can be useful in some scenarios.    *     * @since 7    */
+annotation|@
+name|Beta
+DECL|method|create ( GenericMapMaker<? super E, ? super Number> mapMaker)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ConcurrentHashMultiset
+argument_list|<
+name|E
+argument_list|>
+name|create
+parameter_list|(
+name|GenericMapMaker
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|,
+name|?
+super|super
+name|Number
+argument_list|>
+name|mapMaker
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ConcurrentHashMultiset
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|mapMaker
+operator|.
+expr|<
+name|E
+argument_list|,
+name|Integer
+operator|>
+name|makeMap
+argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/**    * Creates an instance using {@code countMap} to store elements and their    * counts.    *    *<p>This instance will assume ownership of {@code countMap}, and other code    * should not maintain references to the map or modify it in any way.    *    * @param countMap backing map for storing the elements in the multiset and    *     their counts. It must be empty.    * @throws IllegalArgumentException if {@code countMap} is not empty    */
@@ -1762,12 +1823,14 @@ return|;
 block|}
 block|}
 comment|/**    * We use a special form of unboxing that treats null as zero.    */
-DECL|method|unbox (Integer i)
+DECL|method|unbox (@ullable Integer i)
 specifier|private
 specifier|static
 name|int
 name|unbox
 parameter_list|(
+annotation|@
+name|Nullable
 name|Integer
 name|i
 parameter_list|)
@@ -1784,7 +1847,7 @@ else|:
 name|i
 return|;
 block|}
-comment|/**    * @serialData the number of distinct elements, the first element, its count,    *     the second element, its count, and so on    */
+comment|/**    * @serialData the ConcurrentMap of elements and their counts.    */
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1801,19 +1864,11 @@ operator|.
 name|defaultWriteObject
 argument_list|()
 expr_stmt|;
-comment|// creating HashMultiset to handle concurrent changes
-name|Serialization
-operator|.
-name|writeMultiset
-argument_list|(
-name|HashMultiset
-operator|.
-name|create
-argument_list|(
-name|this
-argument_list|)
-argument_list|,
 name|stream
+operator|.
+name|writeObject
+argument_list|(
+name|countMap
 argument_list|)
 expr_stmt|;
 block|}
@@ -1835,6 +1890,33 @@ operator|.
 name|defaultReadObject
 argument_list|()
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// reading data stored by writeObject
+name|ConcurrentMap
+argument_list|<
+name|E
+argument_list|,
+name|Integer
+argument_list|>
+name|deserializedCountMap
+init|=
+operator|(
+name|ConcurrentMap
+argument_list|<
+name|E
+argument_list|,
+name|Integer
+argument_list|>
+operator|)
+name|stream
+operator|.
+name|readObject
+argument_list|()
+decl_stmt|;
 name|FieldSettersHolder
 operator|.
 name|COUNT_MAP_FIELD_SETTER
@@ -1843,23 +1925,7 @@ name|set
 argument_list|(
 name|this
 argument_list|,
-operator|new
-name|ConcurrentHashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|Serialization
-operator|.
-name|populateMultiset
-argument_list|(
-name|this
-argument_list|,
-name|stream
+name|deserializedCountMap
 argument_list|)
 expr_stmt|;
 block|}
@@ -1870,7 +1936,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|0L
+literal|1
 decl_stmt|;
 block|}
 end_class

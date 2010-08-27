@@ -220,7 +220,7 @@ name|int
 name|getCount
 parameter_list|()
 function_decl|;
-comment|/**      * {@inheritDoc}      *      *<p>Returns {@code true} if the given object is also a multiset entry and      * the two entries represent the same element and count. More formally, two      * entries {@code a} and {@code b} are equal if:      *      *<pre>  ((a.getElement() == null)      *      ? (b.getElement() == null) : a.getElement().equals(b.getElement()))      *&& (a.getCount() == b.getCount())</pre>      */
+comment|/**      * {@inheritDoc}      *      *<p>Returns {@code true} if the given object is also a multiset entry and      * the two entries represent the same element and count. That is, two      * entries {@code a} and {@code b} are equal if:<pre>   {@code      *      *   Objects.equal(a.getElement(), b.getElement())      *&& a.getCount() == b.getCount()}</pre>      */
 comment|// TODO(kevinb): check this wrt TreeMultiset?
 DECL|method|equals (Object o)
 name|boolean
@@ -230,7 +230,7 @@ name|Object
 name|o
 parameter_list|)
 function_decl|;
-comment|/**      * {@inheritDoc}      *      *<p>The hash code of a multiset entry for element {@code element} and      * count {@code count} is defined as:      *      *<pre>  (element == null ? 0 : element.hashCode()) ^ count</pre>      */
+comment|/**      * {@inheritDoc}      *      *<p>The hash code of a multiset entry for element {@code element} and      * count {@code count} is defined as:<pre>   {@code      *      *   ((element == null) ? 0 : element.hashCode()) ^ count}</pre>      */
 DECL|method|hashCode ()
 name|int
 name|hashCode
@@ -256,13 +256,13 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this multiset. This is defined as the sum of    *    *<pre>  (element == null ? 0 : element.hashCode()) ^ count(element)</pre>    *    * over all distinct elements in the multiset. It follows that a multiset and    * its entry set always have the same hash code.    */
+comment|/**    * Returns the hash code for this multiset. This is defined as the sum of    *<pre>   {@code    *    *   ((element == null) ? 0 : element.hashCode()) ^ count(element)}</pre>    *    * over all distinct elements in the multiset. It follows that a multiset and    * its entry set always have the same hash code.    */
 DECL|method|hashCode ()
 name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>It is recommended, though not mandatory, that this method return the    * result of invoking {@link #toString} on the {@link #entrySet}, yielding a    * result such as    *<pre>    *     [a x 3, c, d x 2, e]    *</pre>    */
+comment|/**    * {@inheritDoc}    *    *<p>It is recommended, though not mandatory, that this method return the    * result of invoking {@link #toString} on the {@link #entrySet}, yielding a    * result such as {@code [a x 3, c, d x 2, e]}.    */
 DECL|method|toString ()
 name|String
 name|toString

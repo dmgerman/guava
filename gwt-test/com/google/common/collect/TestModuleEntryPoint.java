@@ -367,6 +367,14 @@ name|ArrayListMultimap
 operator|.
 name|class
 argument_list|,
+name|EnumBiMap
+operator|.
+name|class
+argument_list|,
+name|EnumHashBiMap
+operator|.
+name|class
+argument_list|,
 name|EnumMultiset
 operator|.
 name|class

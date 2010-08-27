@@ -239,51 +239,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Converts an iterable into a collection. If the iterable is already a    * collection, it is returned. Otherwise, an {@link java.util.ArrayList} is    * created with the contents of the iterable in the same iteration order.    */
-DECL|method|toCollection (Iterable<E> iterable)
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|Collection
-argument_list|<
-name|E
-argument_list|>
-name|toCollection
-parameter_list|(
-name|Iterable
-argument_list|<
-name|E
-argument_list|>
-name|iterable
-parameter_list|)
-block|{
-return|return
-operator|(
-name|iterable
-operator|instanceof
-name|Collection
-operator|)
-condition|?
-operator|(
-name|Collection
-argument_list|<
-name|E
-argument_list|>
-operator|)
-name|iterable
-else|:
-name|Lists
-operator|.
-name|newArrayList
-argument_list|(
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned collection is a live view of {@code unfiltered}; changes to one    * affect the other.    *    *<p>The resulting collection's iterator does not support {@code remove()},    * but all other collection methods are supported. The collection's    * {@code add()} and {@code addAll()} methods throw an    * {@link IllegalArgumentException} if an element that doesn't satisfy the    * predicate is provided. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered collection, only elements that    * satisfy the filter will be removed from the underlying collection.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered collection's methods, such as {@code size()},    * iterate across every element in the underlying collection and determine    * which elements satisfy the filter. When a live view is<i>not</i> needed,    * it may be faster to copy {@code Iterables.filter(unfiltered, predicate)}    * and use the copy.    */
 DECL|method|filter ( Collection<E> unfiltered, Predicate<? super E> predicate)
 specifier|public

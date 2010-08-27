@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  *<p>The {@link #from(Comparator)} method returns the equivalent {@code  * Ordering} instance for a pre-existing comparator. You can also skip the  * comparator step and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  * The {@link #from(Comparator)} method returns the equivalent {@code Ordering}  * instance for a pre-existing comparator. You can also skip the comparator step  * and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1826,20 +1826,6 @@ name|RIGHT_IS_GREATER
 init|=
 operator|-
 literal|1
-decl_stmt|;
-DECL|field|EMPTY_ARRAY
-specifier|private
-specifier|static
-specifier|final
-name|Object
-index|[]
-name|EMPTY_ARRAY
-init|=
-operator|new
-name|Object
-index|[
-literal|0
-index|]
 decl_stmt|;
 block|}
 end_class

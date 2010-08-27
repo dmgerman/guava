@@ -956,8 +956,6 @@ name|T
 argument_list|>
 name|collection
 init|=
-name|Collections2
-operator|.
 name|toCollection
 argument_list|(
 name|iterable
@@ -985,6 +983,76 @@ operator|.
 name|toArray
 argument_list|(
 name|array
+argument_list|)
+return|;
+block|}
+comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @return a newly-allocated array into which all the elements of the iterable    *     have been copied    */
+DECL|method|toArray (Iterable<?> iterable)
+specifier|static
+name|Object
+index|[]
+name|toArray
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+name|toCollection
+argument_list|(
+name|iterable
+argument_list|)
+operator|.
+name|toArray
+argument_list|()
+return|;
+block|}
+comment|/**    * Converts an iterable into a collection. If the iterable is already a    * collection, it is returned. Otherwise, an {@link java.util.ArrayList} is    * created with the contents of the iterable in the same iteration order.    */
+DECL|method|toCollection (Iterable<E> iterable)
+specifier|private
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Collection
+argument_list|<
+name|E
+argument_list|>
+name|toCollection
+parameter_list|(
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+operator|(
+name|iterable
+operator|instanceof
+name|Collection
+operator|)
+condition|?
+operator|(
+name|Collection
+argument_list|<
+name|E
+argument_list|>
+operator|)
+name|iterable
+else|:
+name|Lists
+operator|.
+name|newArrayList
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -3019,7 +3087,7 @@ block|}
 return|;
 block|}
 comment|// Methods only in Iterables, not in Iterators
-comment|/**    * Adapts a list to an iterable with reversed iteration order. It is    * especially useful in foreach-style loops:<pre class="code">   {@code    *    *   List<String> mylist = ...    *   for (String str : Iterables.reverse(mylist)) {    *     ...    *   }}</pre>    *    * There is no corresponding method in {@link Iterators}, since {@link    * Iterable#iterator} can simply be invoked on the result of calling this    * method.    *    * @return an iterable with the same elements as the list, in reverse    */
+comment|/**    * Adapts a list to an iterable with reversed iteration order. It is    * especially useful in foreach-style loops:<pre>   {@code    *    *   List<String> mylist = ...    *   for (String str : Iterables.reverse(mylist)) {    *     ...    *   }}</pre>    *    * There is no corresponding method in {@link Iterators}, since {@link    * Iterable#iterator} can simply be invoked on the result of calling this    * method.    *    * @return an iterable with the same elements as the list, in reverse    */
 DECL|method|reverse (final List<T> list)
 specifier|public
 specifier|static

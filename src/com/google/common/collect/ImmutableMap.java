@@ -596,11 +596,15 @@ argument_list|(
 name|checkNotNull
 argument_list|(
 name|key
+argument_list|,
+literal|"null key"
 argument_list|)
 argument_list|,
 name|checkNotNull
 argument_list|(
 name|value
+argument_list|,
+literal|"null value"
 argument_list|)
 argument_list|)
 return|;

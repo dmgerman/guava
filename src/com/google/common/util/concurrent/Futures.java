@@ -1455,6 +1455,8 @@ name|inputFuture
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
