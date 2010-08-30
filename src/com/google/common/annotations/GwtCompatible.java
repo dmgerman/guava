@@ -24,6 +24,18 @@ name|lang
 operator|.
 name|annotation
 operator|.
+name|Documented
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|annotation
+operator|.
 name|ElementType
 import|;
 end_import
@@ -90,13 +102,15 @@ name|METHOD
 block|}
 argument_list|)
 annotation|@
+name|Documented
+annotation|@
 name|GwtCompatible
 DECL|annotation|GwtCompatible
 specifier|public
 annotation_defn|@interface
 name|GwtCompatible
 block|{
-comment|/**    * When {@code true}, the annotated type or the type of the method return    * value is GWT serializable.    *    * @see<a href="http://code.google.com/docreader/#p=google-web-toolkit-doc-1-5&t=DevGuideSerializableTypes">    *     Documentation about GWT serialization</a>    */
+comment|/**    * When {@code true}, the annotated type or the type of the method return    * value is GWT serializable.    *    * @see<a href="http://code.google.com/webtoolkit/doc/latest/DevGuideServerCommunication.html#DevGuideSerializableTypes">    *     Documentation about GWT serialization</a>    */
 DECL|method|serializable ()
 DECL|field|false
 name|boolean
@@ -105,7 +119,7 @@ parameter_list|()
 default|default
 literal|false
 function_decl|;
-comment|/**    * When {@code true}, the annotated type is emulated in GWT. The emulated    * source (also known as super-source) is different from the implementation    * used by the JVM.    *    * @see<a href="http://code.google.com/docreader/#p=google-web-toolkit-doc-1-5&t=DevGuideModuleXml">    *     Documentation about GWT emulated source</a>    */
+comment|/**    * When {@code true}, the annotated type is emulated in GWT. The emulated    * source (also known as super-source) is different from the implementation    * used by the JVM.    *    * @see<a href="http://code.google.com/webtoolkit/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">    *     Documentation about GWT emulated source</a>    */
 DECL|method|emulated ()
 DECL|field|false
 name|boolean
