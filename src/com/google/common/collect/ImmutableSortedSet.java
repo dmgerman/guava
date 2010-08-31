@@ -1175,13 +1175,66 @@ name|natural
 argument_list|()
 decl_stmt|;
 return|return
-name|copyOfInternal
+name|copyOf
 argument_list|(
 name|naturalOrder
 argument_list|,
 name|elements
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@code compareTo()}, only the first one specified is included. To create a    * copy of a {@code SortedSet} that preserves the comparator, call    * {@link #copyOfSorted} instead. This method iterates over {@code elements}    * at most once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then    * {@code ImmutableSortedSet.copyOf(s)} returns an    * {@code ImmutableSortedSet<String>} containing each of the strings in    * {@code s}, while {@code ImmutableSortedSet.of(s)} returns an    * {@code ImmutableSortedSet<Set<String>>} containing one element (the given    * set itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    *<p>This method is not type-safe, as it may be called on elements that are    * not mutually comparable.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
+DECL|method|copyOf ( Collection<? extends E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+comment|// Hack around K not being a subtype of Comparable.
+comment|// Unsafe, see ImmutableSortedSetFauxverideShim.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|Ordering
+argument_list|<
+name|E
+argument_list|>
+name|naturalOrder
+init|=
+operator|(
+name|Ordering
+operator|)
+name|Ordering
+operator|.
+expr|<
+name|Comparable
+operator|>
+name|natural
+argument_list|()
+decl_stmt|;
+return|return
+name|copyOf
+argument_list|(
+name|naturalOrder
 argument_list|,
-literal|false
+name|elements
 argument_list|)
 return|;
 block|}
@@ -1240,6 +1293,50 @@ name|elements
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
+DECL|method|copyOf ( Comparator<? super E> comparator, Iterator<? extends E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|,
+name|Iterator
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|comparator
+argument_list|)
+expr_stmt|;
+return|return
+name|copyOfInternal
+argument_list|(
+name|comparator
+argument_list|,
+name|elements
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compare()}, only the first one specified is    * included. This method iterates over {@code elements} at most once.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
 DECL|method|copyOf ( Comparator<? super E> comparator, Iterable<? extends E> elements)
 specifier|public
@@ -1286,8 +1383,8 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
-DECL|method|copyOf ( Comparator<? super E> comparator, Iterator<? extends E> elements)
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
+DECL|method|copyOf ( Comparator<? super E> comparator, Collection<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1307,7 +1404,7 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
-name|Iterator
+name|Collection
 argument_list|<
 name|?
 extends|extends
@@ -1327,10 +1424,12 @@ argument_list|(
 name|comparator
 argument_list|,
 name|elements
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from    * {@link #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code sortedSet}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
+comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from    * {@link #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code sortedSet}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

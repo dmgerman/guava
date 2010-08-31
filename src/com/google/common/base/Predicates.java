@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static factory methods for creating {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -646,7 +646,7 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object being    * tested is an instance of the given class. If the object being tested    * is {@code null} this predicate evaluates to {@code false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider    * using {@link com.google.common.collect.Iterables#filter(Iterable, Class)}    * in preference.    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object being    * tested is an instance of the given class. If the object being tested    * is {@code null} this predicate evaluates to {@code false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider    * using {@link com.google.common.collect.Iterables#filter(Iterable, Class)}    * in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as    * documented at {@link Predicate#apply}), the returned predicate may not be    *<i>consistent with equals</i>. For example, {@code    * instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(

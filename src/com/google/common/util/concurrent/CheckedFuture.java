@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code CheckedFuture} is an extension of {@link Future} that includes  * versions of the {@code get} methods that can throw a checked exception and  * allows listeners to be attached to the future.  This makes it easier to  * create a future that executes logic which can throw an exception.  *   *<p>Implementations of this interface must adapt the exceptions thrown by  * {@code Future#get()}: {@link CancellationException},  * {@link ExecutionException} and {@link InterruptedException} into the type  * specified by the {@code E} type parameter.  *   *<p>This interface also extends the ListenableFuture interface to allow  * listeners to be added. This allows the future to be used as a normal  * {@link Future} or as an asynchronous callback mechanism as needed. This  * allows multiple callbacks to be registered for a particular task, and the  * future will guarantee execution of all listeners when the task completes.  *   * @author Sven Mawson  * @since 1  */
+comment|/**  * A {@code CheckedFuture} is an extension of {@link Future} that includes  * versions of the {@code get} methods that can throw a checked exception and  * allows listeners to be attached to the future.  This makes it easier to  * create a future that executes logic which can throw an exception.  *  *<p>Implementations of this interface must adapt the exceptions thrown by  * {@code Future#get()}: {@link CancellationException},  * {@link ExecutionException} and {@link InterruptedException} into the type  * specified by the {@code E} type parameter.  *  *<p>This interface also extends the ListenableFuture interface to allow  * listeners to be added. This allows the future to be used as a normal  * {@link Future} or as an asynchronous callback mechanism as needed. This  * allows multiple callbacks to be registered for a particular task, and the  * future will guarantee execution of all listeners when the task completes.  *  * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_interface
@@ -106,7 +106,7 @@ name|CheckedFuture
 parameter_list|<
 name|V
 parameter_list|,
-name|E
+name|X
 extends|extends
 name|Exception
 parameter_list|>
@@ -116,15 +116,15 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/**    * Exception checking version of {@link Future#get()} that will translate    * {@link InterruptedException}, {@link CancellationException} and    * {@link ExecutionException} into application-specific exceptions.    *     * @return the result of executing the future.    * @throws E on interruption, cancellation or execution exceptions.    */
+comment|/**    * Exception checking version of {@link Future#get()} that will translate    * {@link InterruptedException}, {@link CancellationException} and    * {@link ExecutionException} into application-specific exceptions.    *    * @return the result of executing the future.    * @throws X on interruption, cancellation or execution exceptions.    */
 DECL|method|checkedGet ()
 name|V
 name|checkedGet
 parameter_list|()
 throws|throws
-name|E
+name|X
 function_decl|;
-comment|/**    * Exception checking version of {@link Future#get(long, TimeUnit)} that will    * translate {@link InterruptedException}, {@link CancellationException} and    * {@link ExecutionException} into application-specific exceptions.  On    * timeout this method throws a normal {@link TimeoutException}.    *     * @return the result of executing the future.    * @throws TimeoutException if retrieving the result timed out.    * @throws E on interruption, cancellation or execution exceptions.    */
+comment|/**    * Exception checking version of {@link Future#get(long, TimeUnit)} that will    * translate {@link InterruptedException}, {@link CancellationException} and    * {@link ExecutionException} into application-specific exceptions.  On    * timeout this method throws a normal {@link TimeoutException}.    *    * @return the result of executing the future.    * @throws TimeoutException if retrieving the result timed out.    * @throws X on interruption, cancellation or execution exceptions.    */
 DECL|method|checkedGet (long timeout, TimeUnit unit)
 name|V
 name|checkedGet
@@ -138,7 +138,7 @@ parameter_list|)
 throws|throws
 name|TimeoutException
 throws|,
-name|E
+name|X
 function_decl|;
 block|}
 end_interface

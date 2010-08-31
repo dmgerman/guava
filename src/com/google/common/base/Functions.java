@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful functions.  *  *<p>All methods returns serializable functions as long as they're given serializable parameters.  *  * @author Mike Bostock  * @author Vlad Patryshev  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Function} instances.  *  *<p>All methods returns serializable functions as long as they're given serializable parameters.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -110,7 +110,7 @@ specifier|private
 name|Functions
 parameter_list|()
 block|{}
-comment|/**    * Returns a function that calls {@code toString()} on its argument. The function does not accept    * nulls; it will throw a {@link NullPointerException} when applied to {@code null}.    */
+comment|/**    * Returns a function that calls {@code toString()} on its argument. The function does not accept    * nulls; it will throw a {@link NullPointerException} when applied to {@code null}.    *    *<p><b>Warning:</b> The returned function may not be<i>consistent with equals</i> (as    * documented at {@link Function#apply}). For example, this function yields different results for    * the two equal instances {@code ImmutableSet.of(1, 2)} and {@code ImmutableSet.of(2, 1)}.    */
 DECL|method|toStringFunction ()
 specifier|public
 specifier|static
@@ -568,7 +568,7 @@ specifier|final
 name|V
 name|defaultValue
 decl_stmt|;
-DECL|method|ForMapWithDefault (Map<K, ? extends V> map, V defaultValue)
+DECL|method|ForMapWithDefault (Map<K, ? extends V> map, @Nullable V defaultValue)
 name|ForMapWithDefault
 parameter_list|(
 name|Map
@@ -581,6 +581,8 @@ name|V
 argument_list|>
 name|map
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|defaultValue
 parameter_list|)
@@ -1027,7 +1029,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    */
+comment|/**    * Creates a function that returns the same boolean output as the given predicate for all inputs.    *    *<p>The returned function is<i>consistent with equals</i> (as documented at {@link    * Function#apply}) if and only if {@code predicate} is itself consistent with equals.    */
 DECL|method|forPredicate (Predicate<T> predicate)
 specifier|public
 specifier|static

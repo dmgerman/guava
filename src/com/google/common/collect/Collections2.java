@@ -239,7 +239,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned collection is a live view of {@code unfiltered}; changes to one    * affect the other.    *    *<p>The resulting collection's iterator does not support {@code remove()},    * but all other collection methods are supported. The collection's    * {@code add()} and {@code addAll()} methods throw an    * {@link IllegalArgumentException} if an element that doesn't satisfy the    * predicate is provided. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered collection, only elements that    * satisfy the filter will be removed from the underlying collection.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered collection's methods, such as {@code size()},    * iterate across every element in the underlying collection and determine    * which elements satisfy the filter. When a live view is<i>not</i> needed,    * it may be faster to copy {@code Iterables.filter(unfiltered, predicate)}    * and use the copy.    */
+comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned collection is a live view of {@code unfiltered}; changes to one    * affect the other.    *    *<p>The resulting collection's iterator does not support {@code remove()},    * but all other collection methods are supported. The collection's    * {@code add()} and {@code addAll()} methods throw an    * {@link IllegalArgumentException} if an element that doesn't satisfy the    * predicate is provided. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered collection, only elements that    * satisfy the filter will be removed from the underlying collection.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered collection's methods, such as {@code size()},    * iterate across every element in the underlying collection and determine    * which elements satisfy the filter. When a live view is<i>not</i> needed,    * it may be faster to copy {@code Iterables.filter(unfiltered, predicate)}    * and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    */
 DECL|method|filter ( Collection<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
@@ -564,6 +564,7 @@ name|E
 operator|)
 name|element
 decl_stmt|;
+comment|/*          * We check whether e satisfies the predicate, when we really mean to          * check whether the element contained in the set does. This is ok as          * long as the predicate is consistent with equals, as required.          */
 return|return
 name|predicate
 operator|.
@@ -709,6 +710,7 @@ name|E
 operator|)
 name|element
 decl_stmt|;
+comment|// See comment in contains() concerning predicate.apply(e)
 return|return
 name|predicate
 operator|.
@@ -853,6 +855,7 @@ name|E
 name|input
 parameter_list|)
 block|{
+comment|// See comment in contains() concerning predicate.apply(e)
 return|return
 name|predicate
 operator|.

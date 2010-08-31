@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty immutable list.  *   * @author Kevin Bourrillion  */
+comment|/**  * An empty immutable list.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

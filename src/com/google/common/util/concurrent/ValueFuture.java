@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple ListenableFuture that holds a value or an exception.  *  * @author Sven Mawson  * @since 1  */
+comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call.  *  * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
@@ -67,11 +67,11 @@ DECL|method|create ()
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|>
 name|ValueFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|create
 parameter_list|()
@@ -80,7 +80,7 @@ return|return
 operator|new
 name|ValueFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 argument_list|()
 return|;

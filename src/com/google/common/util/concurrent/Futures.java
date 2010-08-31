@@ -494,21 +494,21 @@ block|}
 return|;
 block|}
 comment|/**    * Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p>Callers who have a future that subclasses    * {@link java.util.concurrent.FutureTask} may want to instead subclass    * {@link ListenableFutureTask}, which adds the {@link ListenableFuture}    * functionality to the standard {@code FutureTask} implementation.    */
-DECL|method|makeListenable (Future<T> future)
+DECL|method|makeListenable (Future<V> future)
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|>
 name|ListenableFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|makeListenable
 parameter_list|(
 name|Future
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|future
 parameter_list|)
@@ -524,7 +524,7 @@ return|return
 operator|(
 name|ListenableFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 operator|)
 name|future
@@ -534,7 +534,7 @@ return|return
 operator|new
 name|ListenableFutureAdapter
 argument_list|<
-name|T
+name|V
 argument_list|>
 argument_list|(
 name|future
@@ -542,27 +542,27 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    */
-DECL|method|makeChecked ( Future<T> future, Function<Exception, E> mapper)
+DECL|method|makeChecked ( Future<V> future, Function<Exception, X> mapper)
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|,
-name|E
+name|X
 extends|extends
 name|Exception
 parameter_list|>
 name|CheckedFuture
 argument_list|<
-name|T
+name|V
 argument_list|,
-name|E
+name|X
 argument_list|>
 name|makeChecked
 parameter_list|(
 name|Future
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|future
 parameter_list|,
@@ -570,7 +570,7 @@ name|Function
 argument_list|<
 name|Exception
 argument_list|,
-name|E
+name|X
 argument_list|>
 name|mapper
 parameter_list|)
@@ -579,9 +579,9 @@ return|return
 operator|new
 name|MappingCheckedFuture
 argument_list|<
-name|T
+name|V
 argument_list|,
-name|E
+name|X
 argument_list|>
 argument_list|(
 name|makeListenable
@@ -594,27 +594,27 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}. It's useful for returning something that implements the    * {@code ListenableFuture} interface but already has the result.    */
-DECL|method|immediateFuture (@ullable T value)
+DECL|method|immediateFuture (@ullable V value)
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|>
 name|ListenableFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|immediateFuture
 parameter_list|(
 annotation|@
 name|Nullable
-name|T
+name|V
 name|value
 parameter_list|)
 block|{
 name|ValueFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|future
 init|=
@@ -634,34 +634,34 @@ return|return
 name|future
 return|;
 block|}
-comment|/**    * Creates a {@code CheckedFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}. It's useful for returning something that implements the    * {@code CheckedFuture} interface but already has the result.    */
+comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} or {@code    * checkedGet()} will immediately return the provided value.    */
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|,
-name|E
+name|X
 extends|extends
 name|Exception
 parameter_list|>
 name|CheckedFuture
 argument_list|<
-name|T
+name|V
 argument_list|,
-name|E
+name|X
 argument_list|>
-DECL|method|immediateCheckedFuture (@ullable T value)
+DECL|method|immediateCheckedFuture (@ullable V value)
 name|immediateCheckedFuture
 parameter_list|(
 annotation|@
 name|Nullable
-name|T
+name|V
 name|value
 parameter_list|)
 block|{
 name|ValueFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|future
 init|=
@@ -689,12 +689,12 @@ name|Function
 argument_list|<
 name|Exception
 argument_list|,
-name|E
+name|X
 argument_list|>
 argument_list|()
 block|{
 specifier|public
-name|E
+name|X
 name|apply
 parameter_list|(
 name|Exception
@@ -713,16 +713,16 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFuture} which has an exception set immediately    * upon construction. The getters just return the value. This {@code Future}    * can't be canceled or timed out and its {@code isDone()} method always    * returns {@code true}. It's useful for returning something that implements    * the {@code ListenableFuture} interface but already has a failed    * result. Calling {@code get()} will throw the provided {@code Throwable}    * (wrapped in an {@code ExecutionException}).    *    * @throws Error if the throwable was an {@link Error}.    */
+comment|/**    * Returns a {@code ListenableFuture} which has an exception set immediately    * upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Throwable} wrapped in an {@code    * ExecutionException}.    *    * @throws Error if the throwable is an {@link Error}.    */
 DECL|method|immediateFailedFuture ( Throwable throwable)
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|>
 name|ListenableFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|immediateFailedFuture
 parameter_list|(
@@ -737,7 +737,7 @@ argument_list|)
 expr_stmt|;
 name|ValueFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|future
 init|=
@@ -757,27 +757,27 @@ return|return
 name|future
 return|;
 block|}
-comment|/**    * Creates a {@code CheckedFuture} which has an exception set immediately    * upon construction. The getters just return the value. This {@code Future}    * can't be canceled or timed out and its {@code isDone()} method always    * returns {@code true}. It's useful for returning something that implements    * the {@code CheckedFuture} interface but already has a failed result.    * Calling {@code get()} will throw the provided {@code Throwable} (wrapped in    * an {@code ExecutionException}) and calling {@code checkedGet()} will throw    * the provided exception itself.    *    * @throws Error if the throwable was an {@link Error}.    */
+comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Throwable} wrapped in an {@code    * ExecutionException}, and calling {@code checkedGet()} will throw the    * provided exception itself.    *    * @throws Error if the throwable is an {@link Error}.    */
 specifier|public
 specifier|static
 parameter_list|<
-name|T
+name|V
 parameter_list|,
-name|E
+name|X
 extends|extends
 name|Exception
 parameter_list|>
 name|CheckedFuture
 argument_list|<
-name|T
+name|V
 argument_list|,
-name|E
+name|X
 argument_list|>
-DECL|method|immediateFailedCheckedFuture (final E exception)
+DECL|method|immediateFailedCheckedFuture (final X exception)
 name|immediateFailedCheckedFuture
 parameter_list|(
 specifier|final
-name|E
+name|X
 name|exception
 parameter_list|)
 block|{
@@ -792,7 +792,7 @@ argument_list|(
 name|Futures
 operator|.
 expr|<
-name|T
+name|V
 operator|>
 name|immediateFailedFuture
 argument_list|(
@@ -804,12 +804,12 @@ name|Function
 argument_list|<
 name|Exception
 argument_list|,
-name|E
+name|X
 argument_list|>
 argument_list|()
 block|{
 specifier|public
-name|E
+name|X
 name|apply
 parameter_list|(
 name|Exception
@@ -824,7 +824,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>TODO: Add a version that accepts a normal {@code Future}    *    *<p>The typical use for this method would be when a RPC call is dependent on    * the results of another RPC.  One would call the first RPC (input), create a    * function that calls another RPC based on input's result, and then call    * chain on input and that function to get a {@code ListenableFuture} of    * the result.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the chain.    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}.    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>TODO: Add a version that accepts a normal {@code Future}    *    *<p>The typical use for this method would be when a RPC call is dependent on    * the results of another RPC.  One would call the first RPC (input), create a    * function that calls another RPC based on input's result, and then call    * chain on input and that function to get a {@code ListenableFuture} of    * the result.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function)
 specifier|public
 specifier|static
@@ -877,7 +877,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}.    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function, Executor exec)
 specifier|public
 specifier|static
@@ -953,7 +953,7 @@ return|return
 name|chain
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of the input future will cause the returned    * future to be cancelled.  Cancelling the returned future will succeed if it    * is currently running.  In this case, an attempt will be made to cancel the    * input future, however there is no guarantee of success.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the composition.    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}.    *    *<p>Successful cancellation of the input future will cause the returned    * future to be cancelled.  Cancelling the returned future will succeed if it    * is currently running.  In this case, an attempt will be made to cancel the    * input future, however there is no guarantee of success.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the composition.    */
 DECL|method|compose (ListenableFuture<I> future, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1002,7 +1002,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} that wraps another    * {@code ListenableFuture}.  The result of the new future is the result of    * the provided function called on the result of the provided future.    *    *<p>Successful cancellation of the input future will cause the returned    * future to be cancelled.  Cancelling the returned future will succeed if it    * is currently running.  In this case, an attempt will be made to cancel the    * input future, however there is no guarantee of success.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the composition.    * @since 2    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}.    *    *<p>Successful cancellation of the input future will cause the returned    * future to be cancelled.  Cancelling the returned future will succeed if it    * is currently running.  In this case, an attempt will be made to cancel the    * input future, however there is no guarantee of success.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the composition.    * @since 2    */
 DECL|method|compose (ListenableFuture<I> future, final Function<? super I, ? extends O> function, Executor exec)
 specifier|public
 specifier|static
@@ -1111,7 +1111,7 @@ name|exec
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code Future} that wraps another {@code Future}.    * The result of the new future is the result of the provided function called    * on the result of the provided future.    *    *<p>An example use of this method is to convert a Future that produces a    * handle to an object to a future that produces the object itself.    *    *<p>Each call to {@code Future<O>.get(*)} results in a call to    * {@code Future<I>.get(*)}, but {@code function} is only applied once, so it    * is assumed that {@code Future<I>.get(*)} is idempotent.    *    *<p>When calling {@link Future#get(long, TimeUnit)} on the returned    * future, the timeout only applies to the future passed in to this method.    * Any additional time taken by applying {@code function} is not considered.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that calls one of the varieties of {@code get()}.    * @return A future that computes result of the composition.    */
+comment|/**    * Returns a new {@code Future} whose result is the product of applying the    * given {@code Function} to the result of the given {@code Future}.    *    *<p>An example use of this method is to convert a Future that produces a    * handle to an object to a future that produces the object itself.    *    *<p>Each call to {@code Future<O>.get(*)} results in a call to    * {@code Future<I>.get(*)}, but {@code function} is only applied once, so it    * is assumed that {@code Future<I>.get(*)} is idempotent.    *    *<p>When calling {@link Future#get(long, TimeUnit)} on the returned    * future, the timeout only applies to the future passed in to this method.    * Any additional time taken by applying {@code function} is not considered.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that calls one of the varieties of {@code get()}.    * @return A future that computes result of the composition.    */
 DECL|method|compose (final Future<I> future, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1819,18 +1819,18 @@ specifier|static
 class|class
 name|MappingCheckedFuture
 parameter_list|<
-name|T
+name|V
 parameter_list|,
-name|E
+name|X
 extends|extends
 name|Exception
 parameter_list|>
 extends|extends
 name|AbstractCheckedFuture
 argument_list|<
-name|T
+name|V
 argument_list|,
-name|E
+name|X
 argument_list|>
 block|{
 DECL|field|mapper
@@ -1839,16 +1839,16 @@ name|Function
 argument_list|<
 name|Exception
 argument_list|,
-name|E
+name|X
 argument_list|>
 name|mapper
 decl_stmt|;
-DECL|method|MappingCheckedFuture (ListenableFuture<T> delegate, Function<Exception, E> mapper)
+DECL|method|MappingCheckedFuture (ListenableFuture<V> delegate, Function<Exception, X> mapper)
 name|MappingCheckedFuture
 parameter_list|(
 name|ListenableFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|delegate
 parameter_list|,
@@ -1856,7 +1856,7 @@ name|Function
 argument_list|<
 name|Exception
 argument_list|,
-name|E
+name|X
 argument_list|>
 name|mapper
 parameter_list|)
@@ -1880,7 +1880,7 @@ annotation|@
 name|Override
 DECL|method|mapException (Exception e)
 specifier|protected
-name|E
+name|X
 name|mapException
 parameter_list|(
 name|Exception
@@ -1904,17 +1904,17 @@ specifier|static
 class|class
 name|ListenableFutureAdapter
 parameter_list|<
-name|T
+name|V
 parameter_list|>
 extends|extends
 name|ForwardingFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 implements|implements
 name|ListenableFuture
 argument_list|<
-name|T
+name|V
 argument_list|>
 block|{
 DECL|field|adapterExecutor
@@ -1960,17 +1960,17 @@ specifier|private
 specifier|final
 name|Future
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|ListenableFutureAdapter (final Future<T> delegate)
+DECL|method|ListenableFutureAdapter (final Future<V> delegate)
 name|ListenableFutureAdapter
 parameter_list|(
 specifier|final
 name|Future
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|delegate
 parameter_list|)
@@ -1991,7 +1991,7 @@ DECL|method|delegate ()
 specifier|protected
 name|Future
 argument_list|<
-name|T
+name|V
 argument_list|>
 name|delegate
 parameter_list|()

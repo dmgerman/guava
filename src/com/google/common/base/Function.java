@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A transformation from one object to another. For example, a string-to-integer function would  * implement {@code Function<String, Integer>} to convert integer values in text form into {@code  * Integer} form.  *  *<p>Implementations which may cause side effects upon evaluation are strongly encouraged to state  * this fact clearly in their API documentation.  *  * @param<F> the type of the function input  * @param<T> the type of the function output  * @author Kevin Bourrillion  * @author Scott Bonneau  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Determines an output value based on an input value.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface
@@ -57,26 +57,26 @@ parameter_list|,
 name|T
 parameter_list|>
 block|{
-comment|/**    * Applies the function to an object of type {@code F}, resulting in an object of type {@code T}.    * Note that types {@code F} and {@code T} may or may not be the same.    *    * @param from the source object    * @return the resulting object    */
-DECL|method|apply (@ullable F from)
+comment|/**    * Returns the result of applying this function to {@code input}. This method is<i>generally    * expected</i>, but not absolutely required, to have the following properties:    *    *<ul>    *<li>Its execution does not cause any observable side effects.    *<li>The computation is<i>consistent with equals</i>; that is, {@link Objects#equal    *     Objects.equal}{@code (a, b)} implies that {@code Objects.equal(function.apply(a),    *     function.apply(b))}.    *</ul>    *    * @throws NullPointerException if {@code input} is null and this function does not accept null    *     arguments    */
+DECL|method|apply (@ullable F input)
 name|T
 name|apply
 parameter_list|(
 annotation|@
 name|Nullable
 name|F
-name|from
+name|input
 parameter_list|)
 function_decl|;
-comment|/**    * Indicates whether some other object is equal to this {@code Function}. This method can return    * {@code true}<i>only</i> if the specified object is also a {@code Function} and, for every    * input object {@code o}, it returns exactly the same value. Thus, {@code    * function1.equals(function2)} implies that either {@code function1.apply(o)} and {@code    * function2.apply(o)} are both null, or {@code function1.apply(o).equals(function2.apply(o))}.    *    *<p>Note that it is always safe<i>not</i> to override {@link Object#equals}.    */
-DECL|method|equals (@ullable Object obj)
+comment|/**    * Indicates whether another object is equal to this function.    *    *<p>Most implementations will have no reason to override the behavior of {@link Object#equals}.    * However, an implementation may also choose to return {@code true} whenever {@code object} is a    * {@link Function} that it considers<i>interchangeable</i> with this one. "Interchangeable"    *<i>typically</i> means that {@code Objects.equal(this.apply(f), that.apply(f))} is true for all    * {@code f} of type {@code F}). Note that a {@code false} result from this method does not imply    * that the functions are known<i>not</i> to be interchangeable.    */
+DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals
 parameter_list|(
 annotation|@
 name|Nullable
 name|Object
-name|obj
+name|object
 parameter_list|)
 function_decl|;
 block|}

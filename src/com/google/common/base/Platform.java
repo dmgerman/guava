@@ -30,6 +30,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Jesse Wilson  */
 end_comment
@@ -53,7 +63,7 @@ name|Platform
 parameter_list|()
 block|{}
 comment|/**    * Calls {@link Class#isInstance(Object)}.    *    *<p>This method is not supported in GWT yet.    */
-DECL|method|isInstance (Class<?> clazz, Object obj)
+DECL|method|isInstance (Class<?> clazz, @Nullable Object obj)
 specifier|static
 name|boolean
 name|isInstance
@@ -64,6 +74,8 @@ name|?
 argument_list|>
 name|clazz
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

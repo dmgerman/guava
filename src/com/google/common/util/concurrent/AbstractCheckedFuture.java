@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *   * @author Sven Mawson  * @since 1  */
+comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *  * @author Sven Mawson  * @since 1  */
 end_comment
 
 begin_class
@@ -107,7 +107,7 @@ name|AbstractCheckedFuture
 parameter_list|<
 name|V
 parameter_list|,
-name|E
+name|X
 extends|extends
 name|Exception
 parameter_list|>
@@ -116,7 +116,7 @@ name|CheckedFuture
 argument_list|<
 name|V
 argument_list|,
-name|E
+name|X
 argument_list|>
 block|{
 comment|/** The delegate, used to pass along all our methods. */
@@ -148,11 +148,11 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-comment|/**    * Translate from an {@link InterruptedException},    * {@link CancellationException} or {@link ExecutionException} to an exception    * of type {@code E}.  Subclasses must implement the mapping themselves.    *     * The {@code e} parameter can be an instance of {@link InterruptedException},    * {@link CancellationException}, or {@link ExecutionException}.    */
+comment|/**    * Translate from an {@link InterruptedException},    * {@link CancellationException} or {@link ExecutionException} to an exception    * of type {@code E}.  Subclasses must implement the mapping themselves.    *    * The {@code e} parameter can be an instance of {@link InterruptedException},    * {@link CancellationException}, or {@link ExecutionException}.    */
 DECL|method|mapException (Exception e)
 specifier|protected
 specifier|abstract
-name|E
+name|X
 name|mapException
 parameter_list|(
 name|Exception
@@ -166,7 +166,7 @@ name|V
 name|checkedGet
 parameter_list|()
 throws|throws
-name|E
+name|X
 block|{
 try|try
 block|{
@@ -235,7 +235,7 @@ parameter_list|)
 throws|throws
 name|TimeoutException
 throws|,
-name|E
+name|X
 block|{
 try|try
 block|{
