@@ -2158,6 +2158,52 @@ name|predicate
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found.    *    * @since 7    */
+DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|find
+parameter_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+parameter_list|,
+annotation|@
+name|Nullable
+name|T
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|Iterators
+operator|.
+name|find
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
+argument_list|,
+name|defaultValue
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} is {@code true} or    * {@code -1} if there is no such index.    *    * @since 2    */
 DECL|method|indexOf ( Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public

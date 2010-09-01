@@ -2345,7 +2345,7 @@ literal|true
 return|;
 block|}
 comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate.  If no such element is found, the iterator will be left    * exhausted: its {@code hasNext()} method will return {@code false}.    *    * @throws NoSuchElementException if no element in {@code iterator} matches    *     the given predicate    */
-DECL|method|find (Iterator<T> iterator, Predicate<? super T> predicate)
+DECL|method|find ( Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2379,6 +2379,63 @@ argument_list|)
 operator|.
 name|next
 argument_list|()
+return|;
+block|}
+comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate.  If no such element is found, {@code defaultValue} will be    * returned from this method and the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @since 7    */
+DECL|method|find (Iterator<T> iterator, Predicate<? super T> predicate, @Nullable T defaultValue)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|find
+parameter_list|(
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+parameter_list|,
+annotation|@
+name|Nullable
+name|T
+name|defaultValue
+parameter_list|)
+block|{
+name|UnmodifiableIterator
+argument_list|<
+name|T
+argument_list|>
+name|filteredIterator
+init|=
+name|filter
+argument_list|(
+name|iterator
+argument_list|,
+name|predicate
+argument_list|)
+decl_stmt|;
+return|return
+name|filteredIterator
+operator|.
+name|hasNext
+argument_list|()
+condition|?
+name|filteredIterator
+operator|.
+name|next
+argument_list|()
+else|:
+name|defaultValue
 return|;
 block|}
 comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} is {@code true}, or    * {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since 2    */
