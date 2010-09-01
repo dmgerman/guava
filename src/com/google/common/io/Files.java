@@ -1350,7 +1350,16 @@ operator|.
 name|getParentFile
 argument_list|()
 decl_stmt|;
-comment|// TODO(kevinb): return if parent is null
+if|if
+condition|(
+name|parent
+operator|==
+literal|null
+condition|)
+block|{
+comment|/*        * The given directory is a filesystem root. All zero of its ancestors        * exist. This doesn't mean that the root itself exists -- consider x:\ on        * a Windows machine without such a drive -- or even that the caller can        * create it, but this method makes no such guarantees even for non-root        * files.        */
+return|return;
+block|}
 name|parent
 operator|.
 name|mkdirs
@@ -1361,11 +1370,10 @@ condition|(
 operator|!
 name|parent
 operator|.
-name|exists
+name|isDirectory
 argument_list|()
 condition|)
 block|{
-comment|// TODO(kevinb): change to isDirectory
 throw|throw
 operator|new
 name|IOException
