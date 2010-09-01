@@ -252,6 +252,28 @@ return|return
 name|inverse
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|isPartialView
+argument_list|()
+operator|||
+name|inverse
+operator|.
+name|delegate
+argument_list|()
+operator|.
+name|isPartialView
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

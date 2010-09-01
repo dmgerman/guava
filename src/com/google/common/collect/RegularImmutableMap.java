@@ -681,6 +681,17 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|field|entrySet
 specifier|private
 specifier|transient
@@ -1047,6 +1058,17 @@ name|target
 argument_list|)
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 DECL|field|values
 specifier|private
@@ -1240,6 +1262,17 @@ name|containsValue
 argument_list|(
 name|target
 argument_list|)
+return|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 block|}

@@ -790,7 +790,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the same entries as {@code map}, sorted    * by the natural ordering of the keys.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code map} is an    * {@code ImmutableSortedMap}, it may be returned instead of a copy.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws ClassCastException if the keys in {@code map} are not mutually    *     comparable    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to    *     their natural ordering    */
+comment|/**    * Returns an immutable map containing the same entries as {@code map}, sorted    * by the natural ordering of the keys.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws ClassCastException if the keys in {@code map} are not mutually    *         comparable    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to    *         their natural ordering    */
 DECL|method|copyOf ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -853,7 +853,7 @@ name|naturalOrder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the same entries as {@code map}, with    * keys sorted by the provided comparator.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code map} is an    * {@code ImmutableSortedMap}, it may be returned instead of a copy.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to    *     the comparator    */
+comment|/**    * Returns an immutable map containing the same entries as {@code map}, with    * keys sorted by the provided comparator.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    */
 DECL|method|copyOf ( Map<? extends K, ? extends V> map, Comparator<? super K> comparator)
 specifier|public
 specifier|static
@@ -903,7 +903,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the same entries as the provided sorted    * map, with the same ordering.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code map} is an    * {@code ImmutableSortedMap}, it may be returned instead of a copy.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
+comment|/**    * Returns an immutable map containing the same entries as the provided sorted    * map, with the same ordering.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
 DECL|method|copyOfSorted ( SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1105,9 +1105,19 @@ argument_list|>
 operator|)
 name|map
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|kvMap
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|kvMap
 return|;
+block|}
 block|}
 comment|// Using List to support concurrent map whose size changes
 name|List
@@ -2170,6 +2180,25 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|fromIndex
+operator|!=
+literal|0
+operator|||
+name|toIndex
+operator|!=
+name|entries
+operator|.
+name|length
+return|;
+block|}
 DECL|field|entrySet
 specifier|private
 specifier|transient
@@ -2330,6 +2359,20 @@ name|map
 operator|=
 name|map
 expr_stmt|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|map
+operator|.
+name|isPartialView
+argument_list|()
+return|;
 block|}
 DECL|method|size ()
 specifier|public
@@ -2851,6 +2894,17 @@ name|containsValue
 argument_list|(
 name|target
 argument_list|)
+return|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 DECL|method|writeReplace ()

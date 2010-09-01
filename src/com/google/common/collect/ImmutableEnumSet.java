@@ -128,6 +128,17 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|iterator ()
 annotation|@
 name|Override

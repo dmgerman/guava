@@ -1222,6 +1222,15 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|method|isPartialView ()
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|put (K k, V v)
 specifier|public
 specifier|final

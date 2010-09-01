@@ -806,7 +806,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable multimap containing the same mappings as    * {@code multimap}. The generated multimap's key and value orderings    * correspond to the iteration ordering of the {@code multimap.asMap()} view.    *    *<p><b>Note:</b> Despite what the method name suggests, if    * {@code multimap} is an {@code ImmutableMultimap}, no copy will actually be    * performed, and the given multimap itself will be returned.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *     null    */
+comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}. The generated multimap's key and value orderings correspond to    * the iteration ordering of the {@code multimap.asMap()} view.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
 DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
@@ -867,12 +867,20 @@ argument_list|>
 operator|)
 name|multimap
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|kvMultimap
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|kvMultimap
 return|;
 block|}
-else|else
-block|{
+block|}
 return|return
 name|ImmutableListMultimap
 operator|.
@@ -881,7 +889,6 @@ argument_list|(
 name|multimap
 argument_list|)
 return|;
-block|}
 block|}
 DECL|field|map
 specifier|final
@@ -1101,6 +1108,18 @@ operator|new
 name|UnsupportedOperationException
 argument_list|()
 throw|;
+block|}
+DECL|method|isPartialView ()
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|map
+operator|.
+name|isPartialView
+argument_list|()
+return|;
 block|}
 comment|// accessors
 DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
@@ -1666,6 +1685,20 @@ block|}
 block|}
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|multimap
+operator|.
+name|isPartialView
+argument_list|()
+return|;
+block|}
 DECL|method|size ()
 specifier|public
 name|int
@@ -1933,7 +1966,7 @@ argument_list|>
 block|{
 DECL|field|multimap
 specifier|final
-name|Multimap
+name|ImmutableMultimap
 argument_list|<
 name|?
 argument_list|,
@@ -1941,10 +1974,10 @@ name|V
 argument_list|>
 name|multimap
 decl_stmt|;
-DECL|method|Values (Multimap<?, V> multimap)
+DECL|method|Values (ImmutableMultimap<?, V> multimap)
 name|Values
 parameter_list|(
-name|Multimap
+name|ImmutableMultimap
 argument_list|<
 name|?
 argument_list|,
@@ -2044,6 +2077,17 @@ name|multimap
 operator|.
 name|size
 argument_list|()
+return|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 DECL|field|serialVersionUID

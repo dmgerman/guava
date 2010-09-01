@@ -926,7 +926,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSet} (but not an {@code ImmutableSortedSet}), no copy    * will actually be performed, and the given set itself will be returned.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1010,7 +1010,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSet} (but not an {@code ImmutableSortedSet}), no copy    * will actually be performed, and the given set itself will be returned.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7 (source-compatible since release 2)    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, {@code copyOf} will    * return constant-space views, rather than linear-space copies, of some    * inputs known to be immutable. For some other immutable inputs, such as key    * sets of an {@code ImmutableMap}, it still performs a copy in order to avoid    * holding references to the values of the map. The heuristics used in this    * decision are undocumented and subject to change except that:    *<ul>    *<li>A full copy will be done of any {@code ImmutableSortedSet}.</li>    *<li>{@code ImmutableSet.copyOf()} is idempotent with respect to pointer    * equality.</li>    *</ul>    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7 (source-compatible since release 2)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1066,9 +1066,19 @@ argument_list|>
 operator|)
 name|elements
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|set
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|set
 return|;
+block|}
 block|}
 return|return
 name|copyFromCollection
@@ -1595,6 +1605,17 @@ block|}
 block|}
 return|return
 literal|true
+return|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 DECL|method|createAsList ()

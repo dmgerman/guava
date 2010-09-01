@@ -647,7 +647,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable {@code ListMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableListMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *     * @since 2 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable {@code ListMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableListMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -847,7 +847,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable multimap containing the same mappings as    * {@code multimap}. The generated multimap's key and value orderings    * correspond to the iteration ordering of the {@code multimap.asMap()} view.    *    *<p><b>Note:</b> Despite what the method name suggests, if    * {@code multimap} is an {@code ImmutableListMultimap}, no copy will actually    * be performed, and the given multimap itself will be returned.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *     null    */
+comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}. The generated multimap's key and value orderings correspond to    * the iteration ordering of the {@code multimap.asMap()} view.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
 DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
@@ -890,6 +890,7 @@ name|of
 argument_list|()
 return|;
 block|}
+comment|// TODO(user): copy ImmutableSetMultimap by using asList() on the sets
 if|if
 condition|(
 name|multimap
@@ -921,9 +922,19 @@ argument_list|>
 operator|)
 name|multimap
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|kvMultimap
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|kvMultimap
 return|;
+block|}
 block|}
 name|ImmutableMap
 operator|.

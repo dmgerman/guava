@@ -195,6 +195,25 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|offset
+operator|!=
+literal|0
+operator|||
+name|size
+operator|!=
+name|array
+operator|.
+name|length
+return|;
+block|}
 DECL|method|contains (Object target)
 annotation|@
 name|Override

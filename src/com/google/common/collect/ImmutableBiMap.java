@@ -645,7 +645,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable bimap containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p><b>Note:</b> If {@code map} is an {@code ImmutableBiMap}, the given map    * itself will be returned.    *    * @throws IllegalArgumentException if two keys have the same value    * @throws NullPointerException if any key or value in {@code map} is null    */
+comment|/**    * Returns an immutable bimap containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws IllegalArgumentException if two keys have the same value    * @throws NullPointerException if any key or value in {@code map} is null    */
 DECL|method|copyOf ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -706,9 +706,21 @@ argument_list|>
 operator|)
 name|map
 decl_stmt|;
+comment|// TODO(user): if we need to make a copy of a BiMap because the
+comment|// forward map is a view, don't make a copy of the non-view delegate map
+if|if
+condition|(
+operator|!
+name|bimap
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|bimap
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -1072,6 +1084,17 @@ parameter_list|()
 block|{
 return|return
 name|this
+return|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 DECL|method|readResolve ()

@@ -435,6 +435,25 @@ name|toIndex
 operator|)
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|fromIndex
+operator|!=
+literal|0
+operator|||
+name|toIndex
+operator|!=
+name|elements
+operator|.
+name|length
+return|;
+block|}
 DECL|method|toArray ()
 annotation|@
 name|Override
@@ -840,29 +859,6 @@ name|comparator
 argument_list|)
 return|;
 block|}
-block|}
-DECL|method|hasPartialArray ()
-annotation|@
-name|Override
-name|boolean
-name|hasPartialArray
-parameter_list|()
-block|{
-return|return
-operator|(
-name|fromIndex
-operator|!=
-literal|0
-operator|)
-operator|||
-operator|(
-name|toIndex
-operator|!=
-name|elements
-operator|.
-name|length
-operator|)
-return|;
 block|}
 DECL|method|indexOf (Object target)
 annotation|@

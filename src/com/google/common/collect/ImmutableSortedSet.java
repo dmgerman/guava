@@ -1128,7 +1128,7 @@ name|copy
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@code compareTo()}, only the first one specified is included. To create a    * copy of a {@code SortedSet} that preserves the comparator, call    * {@link #copyOfSorted} instead. This method iterates over {@code elements}    * at most once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then    * {@code ImmutableSortedSet.copyOf(s)} returns an    * {@code ImmutableSortedSet<String>} containing each of the strings in    * {@code s}, while {@code ImmutableSortedSet.of(s)} returns an    * {@code ImmutableSortedSet<Set<String>>} containing one element (the given    * set itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    *<p>This method is not type-safe, as it may be called on elements that are    * not mutually comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@code compareTo()}, only the first one specified is included. To create a    * copy of a {@code SortedSet} that preserves the comparator, call {@link    * #copyOfSorted} instead. This method iterates over {@code elements} at most    * once.     *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSortedSet.copyOf(s)} returns an {@code ImmutableSortedSet<String>}    * containing each of the strings in {@code s}, while {@code    * ImmutableSortedSet.of(s)} returns an {@code    * ImmutableSortedSet<Set<String>>} containing one element (the given set    * itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on elements that are    * not mutually comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1337,7 +1337,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compare()}, only the first one specified is    * included. This method iterates over {@code elements} at most once.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compare()}, only the first one specified is    * included. This method iterates over {@code elements} at most once.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if {@code comparator} or any of {@code    *         elements} is null    */
 DECL|method|copyOf ( Comparator<? super E> comparator, Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1383,7 +1383,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *     *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
 DECL|method|copyOf ( Comparator<? super E> comparator, Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1429,7 +1429,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from    * {@link #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code sortedSet}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
+comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from {@link    * #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1569,7 +1569,7 @@ condition|(
 operator|!
 name|result
 operator|.
-name|hasPartialArray
+name|isPartialView
 argument_list|()
 condition|)
 block|{
@@ -2462,13 +2462,6 @@ parameter_list|(
 name|E
 name|fromElement
 parameter_list|)
-function_decl|;
-comment|/** Returns whether the elements are stored in a subset of a larger array. */
-DECL|method|hasPartialArray ()
-specifier|abstract
-name|boolean
-name|hasPartialArray
-parameter_list|()
 function_decl|;
 comment|/**    * Returns the position of an element within the set, or -1 if not present.    */
 DECL|method|indexOf (Object target)

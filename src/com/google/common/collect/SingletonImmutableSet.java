@@ -217,6 +217,17 @@ name|element
 argument_list|)
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|toArray ()
 annotation|@
 name|Override

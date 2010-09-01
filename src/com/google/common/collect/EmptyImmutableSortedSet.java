@@ -187,6 +187,17 @@ name|emptyIterator
 argument_list|()
 return|;
 block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|field|EMPTY_ARRAY
 specifier|private
 specifier|static
@@ -417,17 +428,6 @@ parameter_list|)
 block|{
 return|return
 name|this
-return|;
-block|}
-DECL|method|hasPartialArray ()
-annotation|@
-name|Override
-name|boolean
-name|hasPartialArray
-parameter_list|()
-block|{
-return|return
-literal|false
 return|;
 block|}
 DECL|method|indexOf (Object target)

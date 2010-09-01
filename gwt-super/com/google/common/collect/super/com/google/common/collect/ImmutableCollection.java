@@ -619,6 +619,15 @@ name|delegate
 argument_list|)
 return|;
 block|}
+DECL|method|isPartialView ()
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|class|Builder
 specifier|abstract
 specifier|static

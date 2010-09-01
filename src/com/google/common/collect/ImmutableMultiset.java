@@ -226,6 +226,7 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+comment|// TODO(user): write an efficient asList() implementation
 DECL|class|ImmutableMultiset
 specifier|public
 class|class
@@ -639,7 +640,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.copyOf(Arrays.asList(2, 3, 1, 3))} yields    * a multiset with elements in the order {@code 2, 3, 3, 1}.    *    *<p>Note that if {@code c} is a {@code Collection<String>}, then {@code    * ImmutableMultiset.copyOf(c)} returns an {@code ImmutableMultiset<String>}    * containing each of the strings in {@code c}, while    * {@code ImmutableMultiset.of(c)} returns an    * {@code ImmutableMultiset<Collection<String>>} containing one element (the    * given collection itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableMultiset}, no copy will actually be performed, and    * the given multiset itself will be returned.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.copyOf(Arrays.asList(2, 3, 1, 3))} yields    * a multiset with elements in the order {@code 2, 3, 3, 1}.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableMultiset}, no copy will actually be performed, and    * the given multiset itself will be returned.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -688,9 +689,19 @@ argument_list|>
 operator|)
 name|elements
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|result
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|result
 return|;
+block|}
 block|}
 name|Multiset
 argument_list|<
@@ -1037,6 +1048,20 @@ name|size
 operator|=
 name|size
 expr_stmt|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|map
+operator|.
+name|isPartialView
+argument_list|()
+return|;
 block|}
 DECL|method|count (@ullable Object element)
 specifier|public
@@ -1669,6 +1694,20 @@ operator|.
 name|map
 operator|.
 name|size
+argument_list|()
+return|;
+block|}
+DECL|method|isPartialView ()
+annotation|@
+name|Override
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|multiset
+operator|.
+name|isPartialView
 argument_list|()
 return|;
 block|}

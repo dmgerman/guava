@@ -1037,7 +1037,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableList}, no copy will actually be performed, and the    * given list itself will be returned.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code    * ImmutableList.copyOf(list)} returns an {@code ImmutableList<String>}    * containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>}    * containing one element (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (Iterable overload existed previously)    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>Note that if {@code list} is a {@code List<String>}, then {@code    * ImmutableList.copyOf(list)} returns an {@code ImmutableList<String>}    * containing each of the strings in {@code list}, while    * ImmutableList.of(list)} returns an {@code ImmutableList<List<String>>}    * containing one element (the given list itself).    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (Iterable overload existed previously)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1066,19 +1066,19 @@ operator|instanceof
 name|ImmutableCollection
 condition|)
 block|{
-comment|/*        * TODO(kevinb): When given an ImmutableList that's a sublist, copy the        * referenced portion of the array into a new array to save space?        */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// all supported methods are covariant
-name|ImmutableCollection
+name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
 name|list
 init|=
+operator|(
 operator|(
 name|ImmutableCollection
 argument_list|<
@@ -1086,12 +1086,23 @@ name|E
 argument_list|>
 operator|)
 name|elements
+operator|)
+operator|.
+name|asList
+argument_list|()
 decl_stmt|;
 return|return
 name|list
 operator|.
-name|asList
+name|isPartialView
 argument_list|()
+condition|?
+name|copyFromCollection
+argument_list|(
+name|list
+argument_list|)
+else|:
+name|list
 return|;
 block|}
 return|return

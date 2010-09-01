@@ -871,7 +871,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns an immutable map containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code map} is an    * {@code ImmutableMap}, no copy will actually be performed, and the given map    * itself will be returned.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
+comment|/**    * Returns an immutable map containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
 DECL|method|copyOf ( Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -917,6 +917,8 @@ name|ImmutableSortedMap
 operator|)
 condition|)
 block|{
+comment|// TODO(user): Make ImmutableMap.copyOf(immutableBiMap) call copyOf()
+comment|// on the ImmutableMap delegate(), rather than the bimap itself
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -941,9 +943,19 @@ argument_list|>
 operator|)
 name|map
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|kvMap
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 name|kvMap
 return|;
+block|}
 block|}
 annotation|@
 name|SuppressWarnings
@@ -1333,6 +1345,12 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|isPartialView ()
+specifier|abstract
+name|boolean
+name|isPartialView
+parameter_list|()
+function_decl|;
 DECL|method|hashCode ()
 annotation|@
 name|Override
