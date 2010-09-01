@@ -1388,13 +1388,50 @@ DECL|method|iterator ()
 annotation|@
 name|Override
 specifier|public
-specifier|abstract
 name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>
 name|iterator
 parameter_list|()
+block|{
+return|return
+name|listIterator
+argument_list|()
+return|;
+block|}
+DECL|method|listIterator ()
+annotation|@
+name|Override
+specifier|public
+name|UnmodifiableListIterator
+argument_list|<
+name|E
+argument_list|>
+name|listIterator
+parameter_list|()
+block|{
+return|return
+name|listIterator
+argument_list|(
+literal|0
+argument_list|)
+return|;
+block|}
+DECL|method|listIterator (int index)
+annotation|@
+name|Override
+specifier|public
+specifier|abstract
+name|UnmodifiableListIterator
+argument_list|<
+name|E
+argument_list|>
+name|listIterator
+parameter_list|(
+name|int
+name|index
+parameter_list|)
 function_decl|;
 comment|// Mark these two methods with @Nullable
 DECL|method|indexOf (@ullable Object object)

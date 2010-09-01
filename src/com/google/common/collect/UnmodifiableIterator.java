@@ -61,6 +61,12 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|UnmodifiableIterator ()
+specifier|protected
+name|UnmodifiableIterator
+parameter_list|()
+block|{}
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    */
 DECL|method|remove ()
 specifier|public
