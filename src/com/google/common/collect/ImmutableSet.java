@@ -1011,8 +1011,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSet} (but not an {@code ImmutableSortedSet}), no copy    * will actually be performed, and the given set itself will be returned.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|// TODO(benyu): Consider changing this to public when we have the same
+comment|// overload in ImmutableSortedSet
 DECL|method|copyOf (Collection<? extends E> elements)
-specifier|public
+specifier|private
 specifier|static
 parameter_list|<
 name|E
