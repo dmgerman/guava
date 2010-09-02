@@ -263,7 +263,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static methods acting on or generating a {@code Multimap}.  *  * @author Jared Levy  * @author Robert Konigsberg  * @author Mike Bostock  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Provides static methods acting on or generating a {@code Multimap}.  *  * @author Jared Levy  * @author Robert Konigsberg  * @author Mike Bostock  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
