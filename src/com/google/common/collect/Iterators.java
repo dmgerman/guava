@@ -2915,7 +2915,45 @@ name|defaultValue
 return|;
 block|}
 block|}
-comment|/**    * Advances {@code iterator} to the end, returning the last element.    *    * @return the last element of {@code iterator}    * @throws NoSuchElementException if the iterator has no remaining elements    */
+comment|/**    * Returns the next element in {@code iterator} or {@code defaultValue} if    * the iterator is empty.  The {@link Iterables} analog to this method is    * {@link Iterables#getFirst}.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the next element of {@code iterator} or the default value    * @since 7    */
+annotation|@
+name|Beta
+DECL|method|getNext (Iterator<T> iterator, @Nullable T defaultValue)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|getNext
+parameter_list|(
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|,
+annotation|@
+name|Nullable
+name|T
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|?
+name|iterator
+operator|.
+name|next
+argument_list|()
+else|:
+name|defaultValue
+return|;
+block|}
+comment|/**    * Advances {@code iterator} to the end, returning the last element.    *    * @return the last element of {@code iterator}    * @throws NoSuchElementException if the iterator is empty    */
 DECL|method|getLast (Iterator<T> iterator)
 specifier|public
 specifier|static
