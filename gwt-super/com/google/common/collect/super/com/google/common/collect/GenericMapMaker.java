@@ -52,20 +52,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Function
@@ -122,20 +108,6 @@ name|V0
 parameter_list|>
 block|{
 comment|// Set by MapMaker, but sits in this class to preserve the type relationship
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
-DECL|field|evictionListener
-name|MapEvictionListener
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|evictionListener
-decl_stmt|;
 comment|// No subclasses but our own
 DECL|method|GenericMapMaker ()
 name|GenericMapMaker
@@ -156,99 +128,6 @@ parameter_list|(
 name|int
 name|initialCapacity
 parameter_list|)
-function_decl|;
-comment|/**    * See {@link MapMaker#concurrencyLevel}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.util.concurrent.ConcurrentHashMap concurrencyLevel"
-argument_list|)
-DECL|method|concurrencyLevel ( int concurrencyLevel)
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|concurrencyLevel
-parameter_list|(
-name|int
-name|concurrencyLevel
-parameter_list|)
-function_decl|;
-comment|/**    * See {@link MapMaker#weakKeys}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
-DECL|method|weakKeys ()
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|weakKeys
-parameter_list|()
-function_decl|;
-comment|/**    * See {@link MapMaker#softKeys}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.SoftReference"
-argument_list|)
-DECL|method|softKeys ()
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|softKeys
-parameter_list|()
-function_decl|;
-comment|/**    * See {@link MapMaker#weakValues}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
-DECL|method|weakValues ()
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|weakValues
-parameter_list|()
-function_decl|;
-comment|/**    * See {@link MapMaker#softValues}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.SoftReference"
-argument_list|)
-DECL|method|softValues ()
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|softValues
-parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
 DECL|method|expiration ( long duration, TimeUnit unit)

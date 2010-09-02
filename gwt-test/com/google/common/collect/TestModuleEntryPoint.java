@@ -254,6 +254,10 @@ name|ForwardingSortedSetMultimap
 operator|.
 name|class
 argument_list|,
+name|GenericMapMaker
+operator|.
+name|class
+argument_list|,
 name|Hashing
 operator|.
 name|class

@@ -91,6 +91,13 @@ DECL|class|MapMaker
 specifier|public
 class|class
 name|MapMaker
+extends|extends
+name|GenericMapMaker
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
 block|{
 DECL|class|ExpiringComputingMap
 specifier|private
@@ -247,6 +254,8 @@ operator|new
 name|Timer
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -440,6 +449,8 @@ specifier|public
 name|MapMaker
 parameter_list|()
 block|{   }
+annotation|@
+name|Override
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public
 name|MapMaker
@@ -504,6 +515,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|expiration (long duration, TimeUnit unit)
 specifier|public
 name|MapMaker
@@ -571,6 +584,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|makeMap ()
 specifier|public
 parameter_list|<
@@ -615,6 +630,8 @@ name|loadFactor
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|makeComputingMap ( Function<? super K, ? extends V> computer)
 specifier|public
 parameter_list|<
