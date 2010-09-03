@@ -7115,6 +7115,10 @@ argument_list|,
 literal|"\u0440\u0444"
 argument_list|,
 literal|"\u0645\u0635\u0631"
+argument_list|,
+literal|"ar"
+argument_list|,
+literal|"uk"
 argument_list|)
 decl_stmt|;
 comment|/**    * If a hostname is not in the EXCLUDE set, and if removing its    * leftmost component results in a name which is contained in this    * set, it is a TLD.    */
