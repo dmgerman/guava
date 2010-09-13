@@ -30,6 +30,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods returns serializable instances.  *  * @author Bob Lee  * @since 4  */
 end_comment
@@ -37,6 +51,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|class|Equivalences
 specifier|public
 specifier|final

@@ -30,6 +30,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @since 4  */
 end_comment
@@ -37,6 +51,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|interface|Equivalence
 specifier|public
 interface|interface

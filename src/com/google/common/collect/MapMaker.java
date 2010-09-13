@@ -580,9 +580,12 @@ else|:
 name|initialCapacity
 return|;
 block|}
-comment|/**    * Specifies the maximum number of entries the map may contain. While the    * number of entries in the map is not guaranteed to grow to the maximum,    * the map will attempt to make the best use of memory without exceeding the    * maximum number of entries. As the map size grows close to the maximum,    * the map will evict entries that are less likely to be used again. For    * example, the map may evict an entry because it hasn't been used recently    * or very often.    *    * @throws IllegalArgumentException if {@code size} is not greater than zero    * @throws IllegalStateException if a maximum size was already set    */
-comment|// TODO(user): make public after: a) writing unit tests, b) resolving behavior
-comment|// when maximumSize< concurrencyLevel
+comment|/**    * Specifies the maximum number of entries the map may contain. While the    * number of entries in the map is not guaranteed to grow to the maximum,    * the map will attempt to make the best use of memory without exceeding the    * maximum number of entries. As the map size grows close to the maximum,    * the map will evict entries that are less likely to be used again. For    * example, the map may evict an entry because it hasn't been used recently    * or very often.    *    * @param size the maximum size of the map    *    * @throws IllegalArgumentException if {@code size} is not greater than zero    * @throws IllegalStateException if a maximum size was already set    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|maximumSize (int size)
 name|MapMaker
 name|maximumSize
@@ -606,7 +609,6 @@ operator|.
 name|maximumSize
 argument_list|)
 expr_stmt|;
-comment|// TODO: eventually support size 0 to disable caching
 name|checkArgument
 argument_list|(
 name|size

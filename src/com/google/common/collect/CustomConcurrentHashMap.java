@@ -785,7 +785,9 @@ operator|=
 name|MAXIMUM_CAPACITY
 expr_stmt|;
 block|}
-comment|// Find power-of-two sizes best matching arguments
+comment|// Find power-of-two sizes best matching arguments. Constraints:
+comment|// (segmentCount<= maximumSize)
+comment|//&& (concurrencyLevel> maximumSize || segmentCount> concurrencyLevel)
 name|int
 name|segmentShift
 init|=
@@ -801,6 +803,17 @@ condition|(
 name|segmentCount
 operator|<
 name|concurrencyLevel
+operator|&&
+operator|(
+operator|!
+name|evicts
+operator|||
+name|segmentCount
+operator|*
+literal|2
+operator|<=
+name|maximumSize
+operator|)
 condition|)
 block|{
 operator|++
@@ -3432,6 +3445,62 @@ name|previous
 parameter_list|)
 function_decl|;
 block|}
+DECL|enum|NullEvictable
+enum|enum
+name|NullEvictable
+implements|implements
+name|Evictable
+block|{
+DECL|enumConstant|INSTANCE
+name|INSTANCE
+block|;
+annotation|@
+name|Override
+DECL|method|getNextEvictable ()
+specifier|public
+name|Evictable
+name|getNextEvictable
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setNextEvictable (Evictable next)
+specifier|public
+name|void
+name|setNextEvictable
+parameter_list|(
+name|Evictable
+name|next
+parameter_list|)
+block|{}
+annotation|@
+name|Override
+DECL|method|getPreviousEvictable ()
+specifier|public
+name|Evictable
+name|getPreviousEvictable
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setPreviousEvictable (Evictable previous)
+specifier|public
+name|void
+name|setPreviousEvictable
+parameter_list|(
+name|Evictable
+name|previous
+parameter_list|)
+block|{}
+block|}
 DECL|enum|NullListener
 enum|enum
 name|NullListener
@@ -3994,6 +4063,10 @@ argument_list|)
 DECL|field|nextEvictable
 name|Evictable
 name|nextEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getNextEvictable ()
 specifier|public
@@ -4029,6 +4102,10 @@ argument_list|)
 DECL|field|previousEvictable
 name|Evictable
 name|previousEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getPreviousEvictable ()
 specifier|public
@@ -4242,6 +4319,10 @@ argument_list|)
 DECL|field|nextEvictable
 name|Evictable
 name|nextEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getNextEvictable ()
 specifier|public
@@ -4277,6 +4358,10 @@ argument_list|)
 DECL|field|previousEvictable
 name|Evictable
 name|previousEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getPreviousEvictable ()
 specifier|public
@@ -4800,6 +4885,10 @@ argument_list|)
 DECL|field|nextEvictable
 name|Evictable
 name|nextEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getNextEvictable ()
 specifier|public
@@ -4835,6 +4924,10 @@ argument_list|)
 DECL|field|previousEvictable
 name|Evictable
 name|previousEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getPreviousEvictable ()
 specifier|public
@@ -5048,6 +5141,10 @@ argument_list|)
 DECL|field|nextEvictable
 name|Evictable
 name|nextEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getNextEvictable ()
 specifier|public
@@ -5083,6 +5180,10 @@ argument_list|)
 DECL|field|previousEvictable
 name|Evictable
 name|previousEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getPreviousEvictable ()
 specifier|public
@@ -5606,6 +5707,10 @@ argument_list|)
 DECL|field|nextEvictable
 name|Evictable
 name|nextEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getNextEvictable ()
 specifier|public
@@ -5641,6 +5746,10 @@ argument_list|)
 DECL|field|previousEvictable
 name|Evictable
 name|previousEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getPreviousEvictable ()
 specifier|public
@@ -5854,6 +5963,10 @@ argument_list|)
 DECL|field|nextEvictable
 name|Evictable
 name|nextEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getNextEvictable ()
 specifier|public
@@ -5889,6 +6002,10 @@ argument_list|)
 DECL|field|previousEvictable
 name|Evictable
 name|previousEvictable
+init|=
+name|NullEvictable
+operator|.
+name|INSTANCE
 decl_stmt|;
 DECL|method|getPreviousEvictable ()
 specifier|public
@@ -6328,7 +6445,7 @@ literal|16
 operator|)
 return|;
 block|}
-comment|/**    * Sets the value reference on an entry and notifies waiting threads.    */
+comment|/**    * Sets the value reference on an entry and notifies waiting threads. The    * simple default implementation is overridden in ComputingConcurrentHashMap.    */
 DECL|method|setValueReference (ReferenceEntry<K, V> entry, ValueReference<K, V> valueReference)
 name|void
 name|setValueReference
@@ -6828,19 +6945,22 @@ name|Evictable
 name|nulled
 parameter_list|)
 block|{
-comment|// TODO: use null instance instead?
 name|nulled
 operator|.
 name|setNextEvictable
 argument_list|(
-literal|null
+name|NullEvictable
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 name|nulled
 operator|.
 name|setPreviousEvictable
 argument_list|(
-literal|null
+name|NullEvictable
+operator|.
+name|INSTANCE
 argument_list|)
 expr_stmt|;
 block|}
@@ -7608,6 +7728,13 @@ operator|.
 name|getNextEvictable
 argument_list|()
 decl_stmt|;
+name|checkState
+argument_list|(
+name|evictable
+operator|!=
+name|evictionHead
+argument_list|)
+expr_stmt|;
 comment|// then remove a single entry
 annotation|@
 name|SuppressWarnings
@@ -7654,11 +7781,14 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-name|removeEvictable
-argument_list|(
-name|evictable
-argument_list|)
-expr_stmt|;
+else|else
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 block|}
 annotation|@
 name|GuardedBy
@@ -7740,9 +7870,9 @@ name|void
 name|drainRecencyQueue
 parameter_list|()
 block|{
-comment|// While the queue is being drained it may be concurrently appended to.
-comment|// The number of elements removed are tracked so that the length can be
-comment|// decremented by the delta rather than set to zero.
+comment|// While the recency queue is being drained it may be concurrently
+comment|// appended to. The number of elements removed are tracked so that the
+comment|// length can be decremented by the delta rather than set to zero.
 name|int
 name|drained
 init|=
@@ -7909,7 +8039,9 @@ operator|.
 name|getNextEvictable
 argument_list|()
 operator|!=
-literal|null
+name|NullEvictable
+operator|.
+name|INSTANCE
 operator|)
 return|;
 block|}
@@ -8983,9 +9115,11 @@ decl_stmt|;
 name|boolean
 name|absent
 init|=
+operator|(
 name|entryValue
 operator|==
 literal|null
+operator|)
 decl_stmt|;
 if|if
 condition|(
@@ -9038,6 +9172,23 @@ condition|)
 block|{
 name|evictEntry
 argument_list|()
+expr_stmt|;
+name|newCount
+operator|=
+name|this
+operator|.
+name|count
+operator|+
+literal|1
+expr_stmt|;
+name|first
+operator|=
+name|table
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Create a new entry.
@@ -9652,6 +9803,11 @@ name|Object
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 name|lock
 argument_list|()
 expr_stmt|;

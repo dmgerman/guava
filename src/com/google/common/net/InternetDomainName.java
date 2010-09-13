@@ -429,7 +429,7 @@ name|findPublicSuffix
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Returns the index of the leftmost part of the public suffix, or -1 if not    * found.    */
+comment|/**    * Returns the index of the leftmost part of the public suffix, or -1 if not    * found. Note that the value defined as the "public suffix" may not be a    * public suffix according to {@link #isPublicSuffix()} if the domain ends    * with an excluded domain pattern such as "nhs.uk".    */
 DECL|method|findPublicSuffix ()
 specifier|private
 name|int
@@ -479,7 +479,43 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|isPublicSuffixInternal
+name|TldPatterns
+operator|.
+name|EXACT
+operator|.
+name|contains
+argument_list|(
+name|ancestorName
+argument_list|)
+condition|)
+block|{
+return|return
+name|i
+return|;
+block|}
+comment|// Excluded domains (e.g. !nhs.uk) use the next highest
+comment|// domain as the effective public suffix (e.g. uk).
+if|if
+condition|(
+name|TldPatterns
+operator|.
+name|EXCLUDED
+operator|.
+name|contains
+argument_list|(
+name|ancestorName
+argument_list|)
+condition|)
+block|{
+return|return
+name|i
+operator|+
+literal|1
+return|;
+block|}
+if|if
+condition|(
+name|matchesWildcardPublicSuffix
 argument_list|(
 name|ancestorName
 argument_list|)
@@ -1044,45 +1080,6 @@ return|return
 literal|false
 return|;
 block|}
-block|}
-comment|/**    * Does the domain name satisfy the Mozilla criteria for a {@linkplain    * #isPublicSuffix() public suffix}?    */
-DECL|method|isPublicSuffixInternal (String domain)
-specifier|private
-specifier|static
-name|boolean
-name|isPublicSuffixInternal
-parameter_list|(
-name|String
-name|domain
-parameter_list|)
-block|{
-return|return
-name|TldPatterns
-operator|.
-name|EXACT
-operator|.
-name|contains
-argument_list|(
-name|domain
-argument_list|)
-operator|||
-operator|(
-operator|!
-name|TldPatterns
-operator|.
-name|EXCLUDED
-operator|.
-name|contains
-argument_list|(
-name|domain
-argument_list|)
-operator|&&
-name|matchesWildcardPublicSuffix
-argument_list|(
-name|domain
-argument_list|)
-operator|)
-return|;
 block|}
 comment|/**    * Does the domain name match one of the "wildcard" patterns (e.g. "*.ar")?    */
 DECL|method|matchesWildcardPublicSuffix (String domain)

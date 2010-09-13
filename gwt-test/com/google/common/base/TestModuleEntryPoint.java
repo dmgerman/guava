@@ -101,6 +101,14 @@ name|CharMatcher
 operator|.
 name|class
 argument_list|,
+name|Equivalence
+operator|.
+name|class
+argument_list|,
+name|Equivalences
+operator|.
+name|class
+argument_list|,
 name|Function
 operator|.
 name|class
