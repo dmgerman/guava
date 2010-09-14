@@ -44,6 +44,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @since 4  */
 end_comment
@@ -62,22 +72,28 @@ name|T
 parameter_list|>
 block|{
 comment|/**    * Returns {@code true} if the given objects are considered equivalent.    *    *<p>The<code>equivalent</code> method implements an equivalence relation on non-null object    * references:    *    *<ul>    *<li>It is<i>reflexive</i>: for any non-null reference value {@code x}, {@code x.equals(x)}    *     should return {@code true}.    *<li>It is<i>symmetric</i>: for any non-null reference values {@code x} and {@code y}, {@code    *     x.equals(y)} should return {@code true} if and only if {@code y.equals(x)} returns {@code    *     true}.    *<li>It is<i>transitive</i>: for any non-null reference values {@code x}, {@code y}, and {@code    *     z}, if {@code x.equals(y)} returns {@code true} and {@code y.equals(z)} returns {@code    *     true}, then {@code x.equals(z)} should return {@code true}.    *<li>It is<i>consistent</i>: for any non-null reference values {@code x} and {@code y},    *     multiple invocations of {@code x.equals(y)} consistently return {@code true} or    *     consistently return {@code false}, provided no information used in {@code equals}    *     comparisons on the objects is modified.    *<li>For any non-null reference value {@code x}, {@code x.equals(null)} should return {@code    *     false}.    *</ul>    */
-DECL|method|equivalent (T a, T b)
+DECL|method|equivalent (@ullable T a, @Nullable T b)
 name|boolean
 name|equivalent
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|T
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a hash code for {@code object}. This function<b>must</b> return the same value for    * any two instances which are {@link #equivalent}, and should as often as possible return a    * distinct value for instances which are not equivalent.    *    * @see Object#hashCode the same contractual obligations apply here    * @throws NullPointerException if t is null    */
-DECL|method|hash (T t)
+comment|/**    * Returns a hash code for {@code object}. This function<b>must</b> return the same value for    * any two instances which are {@link #equivalent}, and should as often as possible return a    * distinct value for instances which are not equivalent.    *    * @see Object#hashCode the same contractual obligations apply here    */
+DECL|method|hash (@ullable T t)
 name|int
 name|hash
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|t
 parameter_list|)

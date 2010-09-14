@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -41,6 +57,16 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -81,7 +107,7 @@ operator|.
 name|EQUALS
 return|;
 block|}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} throws a    * {@link NullPointerException} if passed a null value.    */
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    */
 DECL|method|nullAwareEquals ()
 specifier|public
 specifier|static
@@ -135,6 +161,8 @@ parameter_list|(
 name|Object
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|b
 parameter_list|)
@@ -175,12 +203,17 @@ parameter_list|(
 name|Object
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|b
 parameter_list|)
 block|{
 return|return
+name|checkNotNull
+argument_list|(
 name|a
+argument_list|)
 operator|==
 name|b
 return|;
@@ -189,6 +222,8 @@ specifier|public
 name|int
 name|hash
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -211,9 +246,13 @@ specifier|public
 name|boolean
 name|equivalent
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|b
 parameter_list|)
@@ -233,17 +272,26 @@ specifier|public
 name|int
 name|hash
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
 block|{
 return|return
+operator|(
+name|o
+operator|==
+literal|null
+operator|)
+condition|?
+literal|0
+else|:
 name|o
 operator|.
 name|hashCode
 argument_list|()
 return|;
-comment|// TODO(kevinb): why NPE? counter-intuitive.
 block|}
 block|}
 block|,   }

@@ -171,7 +171,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    * @param clazz the {@link Class} of the instance    * @since 7 (source compatible since 2)    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    * @param clazz the {@link Class} of the instance    * @since 7 (source-compatible since 2)    */
 DECL|method|toStringHelper (Class<?> clazz)
 specifier|public
 specifier|static
@@ -196,7 +196,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using {@code className} instead    * of using an instance's {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since 7 (source compatible since 2)    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using {@code className} instead    * of using an instance's {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since 7 (source-compatible since 2)    */
 DECL|method|toStringHelper (String className)
 specifier|public
 specifier|static
@@ -322,6 +322,7 @@ specifier|static
 class|class
 name|ToStringHelper
 block|{
+comment|// TODO(kevinb): why are we not just appending directly to a StringBuilder?
 DECL|field|fieldString
 specifier|private
 specifier|final
