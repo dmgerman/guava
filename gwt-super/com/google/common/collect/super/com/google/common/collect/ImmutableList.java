@@ -1634,7 +1634,6 @@ return|;
 block|}
 DECL|method|indexOf (@ullable Object object)
 specifier|public
-specifier|final
 name|int
 name|indexOf
 parameter_list|(
@@ -1655,7 +1654,6 @@ return|;
 block|}
 DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
-specifier|final
 name|int
 name|lastIndexOf
 parameter_list|(

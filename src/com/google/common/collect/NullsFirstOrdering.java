@@ -106,14 +106,18 @@ operator|=
 name|ordering
 expr_stmt|;
 block|}
-DECL|method|compare (T left, T right)
+DECL|method|compare (@ullable T left, @Nullable T right)
 specifier|public
 name|int
 name|compare
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|left
 parameter_list|,
+annotation|@
+name|Nullable
 name|T
 name|right
 parameter_list|)

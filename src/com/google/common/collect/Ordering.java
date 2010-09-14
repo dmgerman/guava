@@ -178,6 +178,16 @@ name|AtomicInteger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  * The {@link #from(Comparator)} method returns the equivalent {@code Ordering}  * instance for a pre-existing comparator. You can also skip the comparator step  * and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
@@ -1002,6 +1012,26 @@ argument_list|)
 return|;
 block|}
 comment|// Regular instance methods
+comment|// Override to add @Nullable
+DECL|method|compare (@ullable T left, @Nullable T right)
+annotation|@
+name|Override
+specifier|public
+specifier|abstract
+name|int
+name|compare
+parameter_list|(
+annotation|@
+name|Nullable
+name|T
+name|left
+parameter_list|,
+annotation|@
+name|Nullable
+name|T
+name|right
+parameter_list|)
+function_decl|;
 DECL|method|quicksortLeastK ( E[] values, int left, int right, int k)
 specifier|private
 parameter_list|<
@@ -1211,7 +1241,7 @@ name|storeIndex
 return|;
 block|}
 comment|/**    * {@link Collections#binarySearch(List, Object, Comparator) Searches}    * {@code sortedList} for {@code key} using the binary search algorithm. The    * list must be sorted using this ordering.    *    * @param sortedList the list to be searched    * @param key the key to be searched for    */
-DECL|method|binarySearch (List<? extends T> sortedList, T key)
+DECL|method|binarySearch (List<? extends T> sortedList, @Nullable T key)
 specifier|public
 name|int
 name|binarySearch
@@ -1224,6 +1254,8 @@ name|T
 argument_list|>
 name|sortedList
 parameter_list|,
+annotation|@
+name|Nullable
 name|T
 name|key
 parameter_list|)
@@ -1557,7 +1589,7 @@ name|maxSoFar
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|max (E a, E b, E c, E... rest)
+DECL|method|max ( @ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -1567,12 +1599,18 @@ parameter_list|>
 name|E
 name|max
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|b
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|c
 parameter_list|,
@@ -1619,7 +1657,7 @@ name|maxSoFar
 return|;
 block|}
 comment|/**    * Returns the greater of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code max} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if greater than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|max (E a, E b)
+DECL|method|max (@ullable E a, @Nullable E b)
 specifier|public
 parameter_list|<
 name|E
@@ -1629,9 +1667,13 @@ parameter_list|>
 name|E
 name|max
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|b
 parameter_list|)
@@ -1715,7 +1757,7 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|min (E a, E b, E c, E... rest)
+DECL|method|min ( @ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -1725,12 +1767,18 @@ parameter_list|>
 name|E
 name|min
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|b
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|c
 parameter_list|,
@@ -1777,7 +1825,7 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the lesser of the two values according to this ordering. If the    * values compare as 0, the first is returned.    *    *<p><b>Implementation note:</b> this method is invoked by the default    * implementations of the other {@code min} overloads, so overriding it will    * affect their behavior.    *    * @param a value to compare, returned if less than or equal to b.    * @param b value to compare.    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|min (E a, E b)
+DECL|method|min (@ullable E a, @Nullable E b)
 specifier|public
 parameter_list|<
 name|E
@@ -1787,9 +1835,13 @@ parameter_list|>
 name|E
 name|min
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|a
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|b
 parameter_list|)

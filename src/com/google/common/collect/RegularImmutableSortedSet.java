@@ -339,7 +339,7 @@ name|Iterator
 argument_list|<
 name|E
 argument_list|>
-name|myIterator
+name|thisIterator
 init|=
 name|iterator
 argument_list|()
@@ -348,7 +348,7 @@ name|Iterator
 argument_list|<
 name|?
 argument_list|>
-name|iterator
+name|thatIterator
 init|=
 name|targets
 operator|.
@@ -358,7 +358,7 @@ decl_stmt|;
 name|Object
 name|target
 init|=
-name|iterator
+name|thatIterator
 operator|.
 name|next
 argument_list|()
@@ -367,7 +367,7 @@ try|try
 block|{
 while|while
 condition|(
-name|myIterator
+name|thisIterator
 operator|.
 name|hasNext
 argument_list|()
@@ -378,7 +378,7 @@ name|cmp
 init|=
 name|unsafeCompare
 argument_list|(
-name|myIterator
+name|thisIterator
 operator|.
 name|next
 argument_list|()
@@ -396,7 +396,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|iterator
+name|thatIterator
 operator|.
 name|hasNext
 argument_list|()
@@ -408,7 +408,7 @@ return|;
 block|}
 name|target
 operator|=
-name|iterator
+name|thatIterator
 operator|.
 name|next
 argument_list|()
