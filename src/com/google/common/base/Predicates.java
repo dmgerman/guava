@@ -1101,12 +1101,12 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|field|commaJoiner
+DECL|field|COMMA_JOINER
 specifier|private
 specifier|static
 specifier|final
 name|Joiner
-name|commaJoiner
+name|COMMA_JOINER
 init|=
 name|Joiner
 operator|.
@@ -1315,7 +1315,7 @@ block|{
 return|return
 literal|"And("
 operator|+
-name|commaJoiner
+name|COMMA_JOINER
 operator|.
 name|join
 argument_list|(
@@ -1533,7 +1533,7 @@ block|{
 return|return
 literal|"Or("
 operator|+
-name|commaJoiner
+name|COMMA_JOINER
 operator|.
 name|join
 argument_list|(

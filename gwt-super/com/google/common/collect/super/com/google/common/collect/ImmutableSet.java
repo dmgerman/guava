@@ -973,9 +973,9 @@ name|obj
 parameter_list|)
 block|{
 return|return
-name|Collections2
+name|Sets
 operator|.
-name|setEquals
+name|equalsImpl
 argument_list|(
 name|this
 argument_list|,

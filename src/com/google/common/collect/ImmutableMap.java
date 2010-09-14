@@ -1396,7 +1396,7 @@ argument_list|)
 decl_stmt|;
 name|Maps
 operator|.
-name|standardJoiner
+name|STANDARD_JOINER
 operator|.
 name|appendTo
 argument_list|(

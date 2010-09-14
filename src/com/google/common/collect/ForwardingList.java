@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -37,6 +51,16 @@ operator|.
 name|util
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -71,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A list which forwards all its method calls to another list. Subclasses should  * override one or more methods to modify the behavior of the backing list as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the  * delegate supports random access, the {@code ForwardingList} subclass should  * implement the {@code RandomAccess} interface.  *  * @author Mike Bostock  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A list which forwards all its method calls to another list. Subclasses should  * override one or more methods to modify the behavior of the backing list as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>This class does not implement {@link java.util.RandomAccess}. If the  * delegate supports random access, the {@code ForwardingList} subclass should  * implement the {@code RandomAccess} interface.  *  *<p><b>Warning:</b> The methods of {@code ForwardingList} forward  *<b>indiscriminately</b> to the methods of the delegate. For example,  * overriding {@link #add} alone<b>will not</b> change the behavior of {@link  * #addAll}, which can lead to unexpected behavior. In this case, you should  * override {@code addAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardAddAll} method.  *  *<p>The {@code standard} methods and any collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -96,6 +120,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// TODO(user): identify places where thread safety is actually lost
 comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingList ()
 specifier|protected
@@ -373,6 +398,249 @@ argument_list|()
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #add(Object)}, in terms of    * {@link #add(int, Object)}. If you override {@link #add(int, Object)}, you    * may wish to override {@link #add(Object)} to forward to this    * implementation.    *    * @since 7    */
+DECL|method|standardAdd (E element)
+annotation|@
+name|Beta
+specifier|protected
+name|boolean
+name|standardAdd
+parameter_list|(
+name|E
+name|element
+parameter_list|)
+block|{
+name|add
+argument_list|(
+name|size
+argument_list|()
+argument_list|,
+name|element
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #addAll(int, Collection)}, in    * terms of the {@code add} method of {@link #listIterator(int)}. If you    * override {@link #listIterator(int)}, you may wish to override {@link    * #addAll(int, Collection)} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardAddAll ( int index, Iterable<? extends E> elements)
+annotation|@
+name|Beta
+specifier|protected
+name|boolean
+name|standardAddAll
+parameter_list|(
+name|int
+name|index
+parameter_list|,
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+return|return
+name|Lists
+operator|.
+name|addAllImpl
+argument_list|(
+name|this
+argument_list|,
+name|index
+argument_list|,
+name|elements
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #indexOf}, in terms of {@link    * #listIterator()}. If you override {@link #listIterator()}, you may wish to    * override {@link #indexOf} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardIndexOf (@ullable Object element)
+annotation|@
+name|Beta
+specifier|protected
+name|int
+name|standardIndexOf
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|element
+parameter_list|)
+block|{
+return|return
+name|Lists
+operator|.
+name|indexOfImpl
+argument_list|(
+name|this
+argument_list|,
+name|element
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #lastIndexOf}, in terms of    * {@link #listIterator(int)}. If you override {@link #listIterator(int)}, you    * may wish to override {@link #lastIndexOf} to forward to this    * implementation.    *    * @since 7    */
+DECL|method|standardLastIndexOf (@ullable Object element)
+annotation|@
+name|Beta
+specifier|protected
+name|int
+name|standardLastIndexOf
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|element
+parameter_list|)
+block|{
+return|return
+name|Lists
+operator|.
+name|lastIndexOfImpl
+argument_list|(
+name|this
+argument_list|,
+name|element
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #iterator}, in terms of    * {@link #listIterator()}. If you override {@link #listIterator()}, you may    * wish to override {@link #iterator} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardIterator ()
+annotation|@
+name|Beta
+specifier|protected
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|standardIterator
+parameter_list|()
+block|{
+return|return
+name|listIterator
+argument_list|()
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #listIterator()}, in terms of    * {@link #listIterator(int)}. If you override {@link #listIterator(int)}, you    * may wish to override {@link #listIterator()} to forward to this    * implementation.    *    * @since 7    */
+DECL|method|standardListIterator ()
+annotation|@
+name|Beta
+specifier|protected
+name|ListIterator
+argument_list|<
+name|E
+argument_list|>
+name|standardListIterator
+parameter_list|()
+block|{
+return|return
+name|listIterator
+argument_list|(
+literal|0
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #listIterator(int)}, in terms    * of {@link #size} and {@link #get(int)}. If you override either of these    * methods you may wish to override {@link #listIterator(int)} to forward to    * this implementation.    *    * @since 7    */
+DECL|method|standardListIterator (int start)
+annotation|@
+name|Beta
+specifier|protected
+name|ListIterator
+argument_list|<
+name|E
+argument_list|>
+name|standardListIterator
+parameter_list|(
+name|int
+name|start
+parameter_list|)
+block|{
+return|return
+name|Lists
+operator|.
+name|listIteratorImpl
+argument_list|(
+name|this
+argument_list|,
+name|start
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible default implementation of {@link #subList(int, int)}. If you    * override any other methods, you may wish to override {@link #subList(int,    * int)} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardSubList (int fromIndex, int toIndex)
+annotation|@
+name|Beta
+specifier|protected
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|standardSubList
+parameter_list|(
+name|int
+name|fromIndex
+parameter_list|,
+name|int
+name|toIndex
+parameter_list|)
+block|{
+return|return
+name|Lists
+operator|.
+name|subListImpl
+argument_list|(
+name|this
+argument_list|,
+name|fromIndex
+argument_list|,
+name|toIndex
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link #size}    * and {@link #iterator}. If you override either of those methods, you may    * wish to override {@link #equals(Object)} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardEquals (@ullable Object object)
+annotation|@
+name|Beta
+specifier|protected
+name|boolean
+name|standardEquals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|Lists
+operator|.
+name|equalsImpl
+argument_list|(
+name|this
+argument_list|,
+name|object
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible definition of {@link #hashCode} in terms of {@link #iterator}.    * If you override {@link #iterator}, you may wish to override {@link    * #hashCode} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardHashCode ()
+annotation|@
+name|Beta
+specifier|protected
+name|int
+name|standardHashCode
+parameter_list|()
+block|{
+return|return
+name|Lists
+operator|.
+name|hashCodeImpl
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 block|}

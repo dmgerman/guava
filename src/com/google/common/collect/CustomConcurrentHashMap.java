@@ -158,6 +158,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|ObjectOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Serializable
 import|;
 end_import
@@ -2688,13 +2698,13 @@ init|=
 literal|2
 decl_stmt|;
 comment|/**      * Look-up table for factories. First dimension is the reference type.      * The second dimension is the result of OR-ing the feature masks.      */
-DECL|field|FACTORIES
+DECL|field|factories
 specifier|static
 specifier|final
 name|EntryFactory
 index|[]
 index|[]
-name|FACTORIES
+name|factories
 init|=
 block|{
 block|{
@@ -2763,7 +2773,7 @@ literal|0
 operator|)
 decl_stmt|;
 return|return
-name|FACTORIES
+name|factories
 index|[
 name|keyStrength
 operator|.
@@ -13138,14 +13148,10 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|writeMapTo (java.io.ObjectOutputStream out)
+DECL|method|writeMapTo (ObjectOutputStream out)
 name|void
 name|writeMapTo
 parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
 name|ObjectOutputStream
 name|out
 parameter_list|)
@@ -13480,15 +13486,11 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|writeObject (java.io.ObjectOutputStream out)
+DECL|method|writeObject (ObjectOutputStream out)
 specifier|private
 name|void
 name|writeObject
 parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
 name|ObjectOutputStream
 name|out
 parameter_list|)

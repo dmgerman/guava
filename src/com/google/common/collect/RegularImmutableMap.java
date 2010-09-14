@@ -1303,7 +1303,7 @@ argument_list|)
 decl_stmt|;
 name|Collections2
 operator|.
-name|standardJoiner
+name|STANDARD_JOINER
 operator|.
 name|appendTo
 argument_list|(

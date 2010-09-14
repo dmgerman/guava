@@ -199,38 +199,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|RegularImmutableSortedSet ( Object[] elements, Comparator<? super E> comparator)
-name|RegularImmutableSortedSet
-parameter_list|(
-name|Object
-index|[]
-name|elements
-parameter_list|,
-name|Comparator
-argument_list|<
-name|?
-super|super
-name|E
-argument_list|>
-name|comparator
-parameter_list|)
-block|{
-comment|// TODO(user): eliminate callers of this version.
-name|this
-argument_list|(
-operator|new
-name|RegularImmutableList
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-name|elements
-argument_list|)
-argument_list|,
-name|comparator
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|iterator ()
 annotation|@
 name|Override
@@ -395,6 +363,8 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 while|while
 condition|(
 name|myIterator
@@ -456,6 +426,27 @@ return|return
 literal|false
 return|;
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
 block|}
 return|return
 literal|false
@@ -740,41 +731,6 @@ name|containsAll
 argument_list|(
 name|that
 argument_list|)
-return|;
-block|}
-DECL|method|hashCode ()
-annotation|@
-name|Override
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-comment|// not caching hash code since it could change if the elements are mutable
-comment|// in a way that modifies their hash codes
-name|int
-name|hash
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|E
-name|e
-range|:
-name|this
-control|)
-block|{
-name|hash
-operator|+=
-name|e
-operator|.
-name|hashCode
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|hash
 return|;
 block|}
 DECL|method|first ()

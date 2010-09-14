@@ -90,6 +90,26 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|ObjectInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ObjectOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -1590,15 +1610,11 @@ operator|=
 name|computingFunction
 expr_stmt|;
 block|}
-DECL|method|writeObject (java.io.ObjectOutputStream out)
+DECL|method|writeObject (ObjectOutputStream out)
 specifier|private
 name|void
 name|writeObject
 parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
 name|ObjectOutputStream
 name|out
 parameter_list|)
@@ -1621,15 +1637,11 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|readObject (java.io.ObjectInputStream in)
+DECL|method|readObject (ObjectInputStream in)
 specifier|private
 name|void
 name|readObject
 parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
 name|ObjectInputStream
 name|in
 parameter_list|)

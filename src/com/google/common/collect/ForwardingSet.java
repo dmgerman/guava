@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -51,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A set which forwards all its method calls to another set. Subclasses should  * override one or more methods to modify the behavior of the backing set as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A set which forwards all its method calls to another set. Subclasses should  * override one or more methods to modify the behavior of the backing set as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingSet} forward  *<b>indiscriminately</b> to the methods of the delegate. For example,  * overriding {@link #add} alone<b>will not</b> change the behavior of {@link  * #addAll}, which can lead to unexpected behavior. In this case, you should  * override {@code addAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardAddAll} method.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even  * when all of the methods that they depend on are thread-safe.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -76,6 +90,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// TODO(user): identify places where thread safety is actually lost
 comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingSet ()
 specifier|protected
@@ -135,6 +150,49 @@ argument_list|()
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+comment|/**    * A sensible definition of {@link #equals} in terms of {@link #size} and    * {@link #containsAll}. If you override either of those methods, you may wish    * to override {@link #equals} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardEquals (@ullable Object object)
+annotation|@
+name|Beta
+specifier|protected
+name|boolean
+name|standardEquals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|Sets
+operator|.
+name|equalsImpl
+argument_list|(
+name|this
+argument_list|,
+name|object
+argument_list|)
+return|;
+block|}
+comment|/**    * A sensible definition of {@link #hashCode} in terms of {@link #iterator}.    * If you override {@link #iterator}, you may wish to override {@link #equals}    * to forward to this implementation.    *    * @since 7    */
+DECL|method|standardHashCode ()
+annotation|@
+name|Beta
+specifier|protected
+name|int
+name|standardHashCode
+parameter_list|()
+block|{
+return|return
+name|Sets
+operator|.
+name|hashCodeImpl
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 block|}
