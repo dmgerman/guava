@@ -102,6 +102,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Ascii
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|CharMatcher
 import|;
 end_import
@@ -183,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>.  * Examples include {@code com} and {@code foo.co.uk}. Only syntactic analysis  * is performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>One common use of this class is to determine whether a given string is  * likely to represent an addressable domain on the web -- that is, for a  * candidate string "xxx", might browsing to "http://xxx/" result in a webpage  * being displayed? In the past, this test was frequently done by determining  * whether the domain ended with a {@linkplain #isPublicSuffix() public suffix}  * but was not itself a public suffix. However, this test is no longer accurate;  * there are many domains which are both public suffixes and addressable as  * hosts. "uk.com" is one example. As a result, the only useful test to  * determine if a domain is a plausible web host is {@link #hasPublicSuffix()}.  * This will return {@code true} for many domains which (currently) are not  * hosts, such as "com"), but given that any public suffix may become  * a host without warning, it is better to err on the side of permissiveness  * and thus avoid spurious rejection of valid sites.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive,  * so for convenience, the {@link #name()} and {@link #parts()} methods return  * the lowercase form of the name.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names</a> such as {@code ç½ç».cn} are  * supported, but with much weaker syntactic validation (resulting in false  * positive reports of validity).  *  * @author Craig Berry  * @since 5  */
+comment|/**  * An immutable well-formed internet domain name, as defined by  *<a href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a>.  * Examples include {@code com} and {@code foo.co.uk}. Only syntactic analysis  * is performed; no DNS lookups or other network interactions take place. Thus  * there is no guarantee that the domain actually exists on the internet.  * Invalid domain names throw {@link IllegalArgumentException} on construction.  *  *<p>One common use of this class is to determine whether a given string is  * likely to represent an addressable domain on the web -- that is, for a  * candidate string "xxx", might browsing to "http://xxx/" result in a webpage  * being displayed? In the past, this test was frequently done by determining  * whether the domain ended with a {@linkplain #isPublicSuffix() public suffix}  * but was not itself a public suffix. However, this test is no longer accurate;  * there are many domains which are both public suffixes and addressable as  * hosts. "uk.com" is one example. As a result, the only useful test to  * determine if a domain is a plausible web host is {@link #hasPublicSuffix()}.  * This will return {@code true} for many domains which (currently) are not  * hosts, such as "com"), but given that any public suffix may become  * a host without warning, it is better to err on the side of permissiveness  * and thus avoid spurious rejection of valid sites.  *  *<p>{@linkplain #equals(Object) Equality} of domain names is case-insensitive  * with respect to ASCII characters, so for convenience, the {@link #name()} and  * {@link #parts()} methods return string with all ASCII characters converted to  * lowercase.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names</a> such as {@code ç½ç».cn} are  * supported, but with much weaker syntactic validation (resulting in false  * positive reports of validity).  *  * @author Craig Berry  * @since 5  */
 end_comment
 
 begin_class
@@ -541,16 +555,20 @@ name|String
 name|domain
 parameter_list|)
 block|{
-comment|// RFC 1035 defines domain names to be case-insensitive; normalizing
-comment|// to lower case allows us to simplify matching.
+comment|/*      * RFC 1035 defines ASCII components of domain names to be case-insensitive;      * normalizing ASCII characters to lower case allows us to simplify matching      * and support more robust equality testing.      */
 return|return
 operator|new
 name|InternetDomainName
 argument_list|(
-name|domain
+name|Ascii
 operator|.
 name|toLowerCase
-argument_list|()
+argument_list|(
+name|checkNotNull
+argument_list|(
+name|domain
+argument_list|)
+argument_list|)
 argument_list|)
 return|;
 block|}
