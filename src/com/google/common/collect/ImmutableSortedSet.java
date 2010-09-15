@@ -1092,7 +1092,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *     *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    */
+comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * the given {@code Comparator}. When multiple elements are equivalent    * according to {@code compareTo()}, only the first one specified is    * included.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code comparator} or any of    *     {@code elements} is null    * @since 7 (source-compatible since release 2)    */
 DECL|method|copyOf ( Comparator<? super E> comparator, Collection<? extends E> elements)
 specifier|public
 specifier|static

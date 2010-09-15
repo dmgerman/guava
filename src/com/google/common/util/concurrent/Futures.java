@@ -1111,7 +1111,7 @@ name|exec
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code Future} whose result is the product of applying the    * given {@code Function} to the result of the given {@code Future}.    *    *<p>An example use of this method is to convert a Future that produces a    * handle to an object to a future that produces the object itself.    *    *<p>Each call to {@code Future<O>.get(*)} results in a call to    * {@code Future<I>.get(*)}, but {@code function} is only applied once, so it    * is assumed that {@code Future<I>.get(*)} is idempotent.    *    *<p>When calling {@link Future#get(long, TimeUnit)} on the returned    * future, the timeout only applies to the future passed in to this method.    * Any additional time taken by applying {@code function} is not considered.    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that calls one of the varieties of {@code get()}.    * @return A future that computes result of the composition.    */
+comment|/**    * Returns a new {@code Future} whose result is the product of applying the    * given {@code Function} to the result of the given {@code Future}.    *    *<p>An example use of this method is to convert a Future that produces a    * handle to an object to a future that produces the object itself.    *    *<p>Each call to {@code Future<O>.get(*)} results in a call to    * {@code Future<I>.get(*)}, but {@code function} is only applied once, so it    * is assumed that {@code Future<I>.get(*)} is idempotent.    *    *<p>When calling {@link Future#get(long, TimeUnit)} on the returned    * future, the timeout only applies to the future passed in to this method.    * Any additional time taken by applying {@code function} is not considered.    * (Exception: If the input future is a {@link ListenableFuture}, timeouts    * will be strictly enforced.)    *    * @param future The future to compose    * @param function A Function to compose the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that calls one of the varieties of {@code get()}.    * @return A future that computes result of the composition.    */
 DECL|method|compose (final Future<I> future, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1147,6 +1147,28 @@ argument_list|>
 name|function
 parameter_list|)
 block|{
+if|if
+condition|(
+name|future
+operator|instanceof
+name|ListenableFuture
+condition|)
+block|{
+return|return
+name|compose
+argument_list|(
+operator|(
+name|ListenableFuture
+argument_list|<
+name|I
+argument_list|>
+operator|)
+name|future
+argument_list|,
+name|function
+argument_list|)
+return|;
+block|}
 name|checkNotNull
 argument_list|(
 name|future
@@ -1157,7 +1179,6 @@ argument_list|(
 name|function
 argument_list|)
 expr_stmt|;
-comment|/*      * TODO(cpovirk): if (future instanceof ListenableFuture), delegate to      * ListenableFuture variant      */
 return|return
 operator|new
 name|Future

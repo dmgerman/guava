@@ -167,6 +167,12 @@ name|Object
 name|b
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|a
+argument_list|)
+expr_stmt|;
+comment|// for GWT.
 return|return
 name|a
 operator|.
@@ -184,6 +190,12 @@ name|Object
 name|o
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|o
+argument_list|)
+expr_stmt|;
+comment|// for GWT.
 return|return
 name|o
 operator|.

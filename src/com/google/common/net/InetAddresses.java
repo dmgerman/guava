@@ -2195,7 +2195,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Examines the Inet6Address to determine if it is an IPv6 address of one    * of the specified address types that contain an embedded IPv4 address.    *    *<p>NOTE: ISATAP addresses are explicitly excluded from this method    * due to their trivial spoofability.  With other transition addresses    * spoofing involves (at least) infection of one's BGP routing table.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           client address.    * @return {@code true} if there is an embedded IPv4 client address.    */
+comment|/**    * Examines the Inet6Address to determine if it is an IPv6 address of one    * of the specified address types that contain an embedded IPv4 address.    *    *<p>NOTE: ISATAP addresses are explicitly excluded from this method    * due to their trivial spoofability.  With other transition addresses    * spoofing involves (at least) infection of one's BGP routing table.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           client address.    * @return {@code true} if there is an embedded IPv4 client address.    * @since 7    */
 DECL|method|hasEmbeddedIPv4ClientAddress (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2300,7 +2300,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Coerces an IPv6 address into an IPv4 address.    *    *<p>HACK: As long as applications continue to use IPv4 addresses for    * indexing into tables, accounting, et cetera, it may be necessary to    *<b>coerce</b> IPv6 addresses into IPv4 addresses. This function does    * so by hashing the upper 64 bits into {@code 224.0.0.0/3}    * (64 bits into 29 bits).    *    *<p>A "coerced" IPv4 address is equivalent to itself.    *    *<p>NOTE: This function is failsafe for security purposes: ALL IPv6    * addresses (except localhost (::1)) are hashed to avoid the security    * risk associated with extracting an embedded IPv4 address that might    * permit elevated privileges.    *    * @param ip {@link InetAddress} to "coerce"    * @return {@link Inet4Address} represented "coerced" address    */
+comment|/**    * Coerces an IPv6 address into an IPv4 address.    *    *<p>HACK: As long as applications continue to use IPv4 addresses for    * indexing into tables, accounting, et cetera, it may be necessary to    *<b>coerce</b> IPv6 addresses into IPv4 addresses. This function does    * so by hashing the upper 64 bits into {@code 224.0.0.0/3}    * (64 bits into 29 bits).    *    *<p>A "coerced" IPv4 address is equivalent to itself.    *    *<p>NOTE: This function is failsafe for security purposes: ALL IPv6    * addresses (except localhost (::1)) are hashed to avoid the security    * risk associated with extracting an embedded IPv4 address that might    * permit elevated privileges.    *    * @param ip {@link InetAddress} to "coerce"    * @return {@link Inet4Address} represented "coerced" address    * @since 7    */
 DECL|method|getCoercedIPv4Address (InetAddress ip)
 specifier|public
 specifier|static
@@ -2511,7 +2511,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an integer representing an IPv4 address regardless of    * whether the supplied argument is an IPv4 address or not.    *    *<p>IPv6 addresses are<b>coerced</b> to IPv4 addresses before being    * converted to integers.    *    *<p>As long as there are applications that assume that all IP addresses    * are IPv4 addresses and can therefore be converted safely to integers    * (for whatever purpose) this function can be used to handle IPv6    * addresses as well until the application is suitably fixed.    *    *<p>NOTE: an IPv6 address coerced to an IPv4 address can only be used    * for such purposes as rudimentary identification or indexing into a    * collection of real {@link InetAddress}es.  They cannot be used as    * real addresses for the purposes of network communication.    *    * @param ip {@link InetAddress} to convert    * @return {@code int}, "coerced" if ip is not an IPv4 address    */
+comment|/**    * Returns an integer representing an IPv4 address regardless of    * whether the supplied argument is an IPv4 address or not.    *    *<p>IPv6 addresses are<b>coerced</b> to IPv4 addresses before being    * converted to integers.    *    *<p>As long as there are applications that assume that all IP addresses    * are IPv4 addresses and can therefore be converted safely to integers    * (for whatever purpose) this function can be used to handle IPv6    * addresses as well until the application is suitably fixed.    *    *<p>NOTE: an IPv6 address coerced to an IPv4 address can only be used    * for such purposes as rudimentary identification or indexing into a    * collection of real {@link InetAddress}es.  They cannot be used as    * real addresses for the purposes of network communication.    *    * @param ip {@link InetAddress} to convert    * @return {@code int}, "coerced" if ip is not an IPv4 address    * @since 7    */
 DECL|method|coerceToInteger (InetAddress ip)
 specifier|public
 specifier|static
