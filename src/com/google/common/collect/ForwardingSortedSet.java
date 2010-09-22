@@ -523,8 +523,10 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * A sensible default implementation of {@link #subSet(Object, Object)} in    * terms of {@link #headSet(Object)} and {@link #tailSet(Object)}. In some    * situations, you may wish to override {@link #subSet(Object, Object)} to    * forward to this implementation.    */
+comment|/**    * A sensible default implementation of {@link #subSet(Object, Object)} in    * terms of {@link #headSet(Object)} and {@link #tailSet(Object)}. In some    * situations, you may wish to override {@link #subSet(Object, Object)} to    * forward to this implementation.    *    * @since 7    */
 DECL|method|standardSubSet (E fromElement, E toElement)
+annotation|@
+name|Beta
 specifier|protected
 name|SortedSet
 argument_list|<
