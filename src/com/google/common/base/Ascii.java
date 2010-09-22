@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods pertaining ASCII characters (those in the range of values {@code 0x00} through  * {@code 0x7F}, and to strings containing such characters.  *  * @author Craig Berry  * @author Gregory Kick  * @since 7  */
+comment|/**  * Static methods pertaining ASCII characters (those in the range of values {@code 0x00} through  * {@code 0x7F}), and to strings containing such characters.  *  * @author Craig Berry  * @author Gregory Kick  * @since 7  */
 end_comment
 
 begin_class

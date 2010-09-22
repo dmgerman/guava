@@ -345,9 +345,9 @@ block|}
 comment|/**    * A sensible definition of {@link #contains} in terms of {@link #count}. If    * you override {@link #count}, you may wish to override {@link #contains} to    * forward to this implementation.    *     * @since 7    */
 DECL|method|standardContains (@ullable Object object)
 annotation|@
-name|Beta
-annotation|@
 name|Override
+annotation|@
+name|Beta
 specifier|protected
 name|boolean
 name|standardContains
@@ -366,6 +366,52 @@ argument_list|)
 operator|>
 literal|0
 return|;
+block|}
+comment|/**    * A sensible definition of {@link #clear} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #contains} to forward to this implementation.    *    * @since 7    */
+DECL|method|standardClear ()
+annotation|@
+name|Override
+annotation|@
+name|Beta
+specifier|protected
+name|void
+name|standardClear
+parameter_list|()
+block|{
+name|Iterator
+argument_list|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|entryIterator
+init|=
+name|entrySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|entryIterator
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|entryIterator
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|entryIterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #count} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #count} to forward to this implementation.    *     * @since 7    */
 DECL|method|standardCount (@ullable Object object)
@@ -500,7 +546,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #removeAll} in terms of {@link    * #elementSet()}. If you override {@link #elementSet()}, you may wish to    * override {@link #removeAll} to forward to this implementation.    *     * @since 7    */
+comment|/**    * A sensible definition of {@link #removeAll} in terms of the {@code    * removeAll} method of {@link #elementSet}. If you override {@link    * #elementSet}, you may wish to override {@link #removeAll} to forward to    * this implementation.    *    * @since 7    */
 DECL|method|standardRemoveAll ( Collection<?> elementsToRemove)
 annotation|@
 name|Beta
@@ -528,7 +574,7 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #retainAll} in terms of {@link #elementSet}    * . If you override {@link #elementSet}, you may wish to override {@link    * #retainAll} to forward to this implementation.    *     * @since 7    */
+comment|/**    * A sensible definition of {@link #retainAll} in terms of the {@code    * retainAll} method of {@link #elementSet}. If you override {@link    * #elementSet}, you may wish to override {@link #retainAll} to forward to    * this implementation.    *    * @since 7    */
 DECL|method|standardRetainAll ( Collection<?> elementsToRetain)
 annotation|@
 name|Beta
@@ -702,7 +748,7 @@ name|object
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #hashCode} in terms of {@link #entrySet}.    * If you override {@link #entrySet}, you may wish to override {@link    * #hashCode} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #hashCode} as {@code entrySet().hashCode()}    * . If you override {@link #entrySet}, you may wish to override {@link    * #hashCode} to forward to this implementation.    *    * @since 7    */
 DECL|method|standardHashCode ()
 annotation|@
 name|Beta
@@ -712,15 +758,14 @@ name|standardHashCode
 parameter_list|()
 block|{
 return|return
-name|Multisets
+name|entrySet
+argument_list|()
 operator|.
-name|hashCodeImpl
-argument_list|(
-name|this
-argument_list|)
+name|hashCode
+argument_list|()
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #toString} in terms of {@link #entrySet}.    * If you override {@link #entrySet}, you may wish to override {@link    * #toString} to forward to this implementation.    *     * @since 7    */
+comment|/**    * A sensible definition of {@link #toString} as {@code entrySet().toString()}    * . If you override {@link #entrySet}, you may wish to override {@link    * #toString} to forward to this implementation.    *    * @since 7    */
 DECL|method|standardToString ()
 annotation|@
 name|Beta

@@ -120,6 +120,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|CountDownLatch
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ExecutionException
 import|;
 end_import
@@ -269,6 +281,9 @@ condition|(
 name|future
 operator|instanceof
 name|UninterruptibleFuture
+argument_list|<
+name|?
+argument_list|>
 condition|)
 block|{
 return|return
@@ -518,6 +533,9 @@ condition|(
 name|future
 operator|instanceof
 name|ListenableFuture
+argument_list|<
+name|?
+argument_list|>
 condition|)
 block|{
 return|return
@@ -1443,7 +1461,7 @@ name|function
 decl_stmt|;
 DECL|field|inputFuture
 specifier|private
-name|UninterruptibleFuture
+name|ListenableFuture
 argument_list|<
 name|?
 extends|extends
@@ -1476,6 +1494,18 @@ name|LinkedBlockingQueue
 argument_list|<
 name|Boolean
 argument_list|>
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+DECL|field|outputCreated
+specifier|private
+specifier|final
+name|CountDownLatch
+name|outputCreated
+init|=
+operator|new
+name|CountDownLatch
 argument_list|(
 literal|1
 argument_list|)
@@ -1523,11 +1553,304 @@ name|this
 operator|.
 name|inputFuture
 operator|=
-name|makeUninterruptible
+name|checkNotNull
 argument_list|(
 name|inputFuture
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * Delegate the get() to the input and output futures, in case      * their implementations defer starting computation until their      * own get() is invoked.      */
+DECL|method|get ()
+specifier|public
+name|O
+name|get
+parameter_list|()
+throws|throws
+name|InterruptedException
+throws|,
+name|ExecutionException
+block|{
+if|if
+condition|(
+operator|!
+name|isDone
+argument_list|()
+condition|)
+block|{
+comment|// Invoking get on the inputFuture will ensure our own run()
+comment|// method below is invoked as a listener when inputFuture sets
+comment|// its value.  Therefore when get() returns we should then see
+comment|// the outputFuture be created.
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|I
+argument_list|>
+name|inputFuture
+init|=
+name|this
+operator|.
+name|inputFuture
+decl_stmt|;
+if|if
+condition|(
+name|inputFuture
+operator|!=
+literal|null
+condition|)
+block|{
+name|inputFuture
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+block|}
+comment|// If our listener was scheduled to run on an executor we may
+comment|// need to wait for our listener to finish running before the
+comment|// outputFuture has been constructed by the function.
+name|outputCreated
+operator|.
+name|await
+argument_list|()
+expr_stmt|;
+comment|// Like above with the inputFuture, we have a listener on
+comment|// the outputFuture that will set our own value when its
+comment|// value is set.  Invoking get will ensure the output can
+comment|// complete and invoke our listener, so that we can later
+comment|// get the result.
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|O
+argument_list|>
+name|outputFuture
+init|=
+name|this
+operator|.
+name|outputFuture
+decl_stmt|;
+if|if
+condition|(
+name|outputFuture
+operator|!=
+literal|null
+condition|)
+block|{
+name|outputFuture
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+return|return
+name|super
+operator|.
+name|get
+argument_list|()
+return|;
+block|}
+comment|/**      * Delegate the get() to the input and output futures, in case      * their implementations defer starting computation until their      * own get() is invoked.      */
+DECL|method|get (long timeout, TimeUnit unit)
+specifier|public
+name|O
+name|get
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+throws|,
+name|ExecutionException
+throws|,
+name|InterruptedException
+block|{
+if|if
+condition|(
+operator|!
+name|isDone
+argument_list|()
+condition|)
+block|{
+comment|// Use a single time unit so we can decrease remaining timeout
+comment|// as we wait for various phases to complete.
+if|if
+condition|(
+name|unit
+operator|!=
+name|NANOSECONDS
+condition|)
+block|{
+name|timeout
+operator|=
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+name|unit
+operator|=
+name|NANOSECONDS
+expr_stmt|;
+block|}
+comment|// Invoking get on the inputFuture will ensure our own run()
+comment|// method below is invoked as a listener when inputFuture sets
+comment|// its value.  Therefore when get() returns we should then see
+comment|// the outputFuture be created.
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|I
+argument_list|>
+name|inputFuture
+init|=
+name|this
+operator|.
+name|inputFuture
+decl_stmt|;
+if|if
+condition|(
+name|inputFuture
+operator|!=
+literal|null
+condition|)
+block|{
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+name|inputFuture
+operator|.
+name|get
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+name|timeout
+operator|-=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|start
+argument_list|)
+expr_stmt|;
+block|}
+comment|// If our listener was scheduled to run on an executor we may
+comment|// need to wait for our listener to finish running before the
+comment|// outputFuture has been constructed by the function.
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|outputCreated
+operator|.
+name|await
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|TimeoutException
+argument_list|()
+throw|;
+block|}
+name|timeout
+operator|-=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|start
+argument_list|)
+expr_stmt|;
+comment|// Like above with the inputFuture, we have a listener on
+comment|// the outputFuture that will set our own value when its
+comment|// value is set.  Invoking get will ensure the output can
+comment|// complete and invoke our listener, so that we can later
+comment|// get the result.
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|O
+argument_list|>
+name|outputFuture
+init|=
+name|this
+operator|.
+name|outputFuture
+decl_stmt|;
+if|if
+condition|(
+name|outputFuture
+operator|!=
+literal|null
+condition|)
+block|{
+name|outputFuture
+operator|.
+name|get
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|super
+operator|.
+name|get
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override
@@ -1643,7 +1966,10 @@ try|try
 block|{
 name|sourceResult
 operator|=
+name|makeUninterruptible
+argument_list|(
 name|inputFuture
+argument_list|)
 operator|.
 name|get
 argument_list|()
@@ -1861,16 +2187,12 @@ name|Error
 name|e
 parameter_list|)
 block|{
-comment|// This seems evil, but the client needs to know an error occured and
-comment|// the error needs to be propagated ASAP.
+comment|// Propagate errors up ASAP - our superclass will rethrow the error
 name|setException
 argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-throw|throw
-name|e
-throw|;
 block|}
 finally|finally
 block|{
@@ -1882,6 +2204,12 @@ expr_stmt|;
 name|inputFuture
 operator|=
 literal|null
+expr_stmt|;
+comment|// Allow our get routines to examine outputFuture now.
+name|outputCreated
+operator|.
+name|countDown
+argument_list|()
 expr_stmt|;
 block|}
 block|}

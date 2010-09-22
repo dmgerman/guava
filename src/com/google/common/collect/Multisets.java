@@ -2155,52 +2155,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * An implementation of {@link Multiset#hashCode}.    */
-DECL|method|hashCodeImpl (Multiset<?> multiset)
-specifier|static
-name|int
-name|hashCodeImpl
-parameter_list|(
-name|Multiset
-argument_list|<
-name|?
-argument_list|>
-name|multiset
-parameter_list|)
-block|{
-return|return
-name|multiset
-operator|.
-name|entrySet
-argument_list|()
-operator|.
-name|hashCode
-argument_list|()
-return|;
-block|}
-comment|/**    * An implementation of {@link Multiset#toString}.    */
-DECL|method|toStringImpl (Multiset<?> multiset)
-specifier|static
-name|String
-name|toStringImpl
-parameter_list|(
-name|Multiset
-argument_list|<
-name|?
-argument_list|>
-name|multiset
-parameter_list|)
-block|{
-return|return
-name|multiset
-operator|.
-name|entrySet
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
 comment|/**    * An implementation of {@link Multiset#addAll}.    */
 DECL|method|addAllImpl ( Multiset<E> self, Collection<? extends E> elements)
 specifier|static

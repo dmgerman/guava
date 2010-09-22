@@ -615,12 +615,11 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|Multisets
+name|entrySet
+argument_list|()
 operator|.
-name|hashCodeImpl
-argument_list|(
-name|this
-argument_list|)
+name|hashCode
+argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the result of invoking {@code toString} on    * {@link Multiset#entrySet()}.    */
@@ -633,12 +632,11 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|Multisets
+name|entrySet
+argument_list|()
 operator|.
-name|toStringImpl
-argument_list|(
-name|this
-argument_list|)
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
