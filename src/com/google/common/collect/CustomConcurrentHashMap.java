@@ -6572,7 +6572,6 @@ name|Object
 name|key
 parameter_list|)
 block|{
-comment|/*      * TODO(kevinb): can we just trust keyEquivalence to throw NPE as it      * promises? (That is, if some user's Equivalence doesn't, let them get a      * broken map?)      */
 name|int
 name|h
 init|=
@@ -8308,9 +8307,9 @@ name|keyEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryKey
-argument_list|,
 name|key
+argument_list|,
+name|entryKey
 argument_list|)
 condition|)
 block|{
@@ -8478,9 +8477,9 @@ name|keyEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryKey
-argument_list|,
 name|key
+argument_list|,
+name|entryKey
 argument_list|)
 condition|)
 block|{
@@ -8605,9 +8604,9 @@ name|valueEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryValue
-argument_list|,
 name|value
+argument_list|,
+name|entryValue
 argument_list|)
 condition|)
 block|{
@@ -8751,9 +8750,9 @@ name|valueEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryValue
-argument_list|,
 name|oldValue
+argument_list|,
+name|entryValue
 argument_list|)
 condition|)
 block|{
@@ -9183,6 +9182,7 @@ block|{
 name|evictEntry
 argument_list|()
 expr_stmt|;
+comment|// this.count just changed; read it again
 name|newCount
 operator|=
 name|this
@@ -9729,9 +9729,9 @@ name|keyEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryKey
-argument_list|,
 name|key
+argument_list|,
+name|entryKey
 argument_list|)
 condition|)
 block|{
@@ -9934,9 +9934,9 @@ name|keyEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryKey
-argument_list|,
 name|key
+argument_list|,
+name|entryKey
 argument_list|)
 condition|)
 block|{
@@ -9970,9 +9970,9 @@ name|valueEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|entryValue
-argument_list|,
 name|value
+argument_list|,
+name|entryValue
 argument_list|)
 operator|)
 condition|)
@@ -12757,12 +12757,12 @@ name|valueEquivalence
 operator|.
 name|equivalent
 argument_list|(
-name|v
-argument_list|,
 name|e
 operator|.
 name|getValue
 argument_list|()
+argument_list|,
+name|v
 argument_list|)
 return|;
 block|}

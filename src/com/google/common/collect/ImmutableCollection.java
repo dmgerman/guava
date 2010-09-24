@@ -374,13 +374,6 @@ argument_list|>
 name|asList
 decl_stmt|;
 comment|/**    * Returns a list view of the collection.    *    * @since 2    */
-annotation|@
-name|GwtCompatible
-argument_list|(
-name|serializable
-operator|=
-literal|false
-argument_list|)
 DECL|method|asList ()
 specifier|public
 name|ImmutableList

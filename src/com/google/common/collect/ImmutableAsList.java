@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -51,6 +65,17 @@ comment|/**  * List returned by {@link ImmutableCollection#asList} when the coll
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|serializable
+operator|=
+literal|true
+argument_list|,
+name|emulated
+operator|=
+literal|true
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(

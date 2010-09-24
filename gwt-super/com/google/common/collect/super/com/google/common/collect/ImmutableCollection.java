@@ -575,7 +575,7 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|RegularImmutableList
+name|ImmutableAsList
 argument_list|<
 name|E
 argument_list|>

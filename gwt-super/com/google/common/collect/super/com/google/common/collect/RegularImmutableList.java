@@ -32,7 +32,6 @@ end_comment
 
 begin_class
 DECL|class|RegularImmutableList
-specifier|final
 class|class
 name|RegularImmutableList
 parameter_list|<
