@@ -114,6 +114,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -146,19 +156,9 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
 name|testing
-operator|.
-name|util
-operator|.
-name|NullPointerTester
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
 operator|.
 name|AssertionFailedError
 import|;
@@ -166,11 +166,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|com
 operator|.
-name|framework
+name|google
 operator|.
-name|TestCase
+name|common
+operator|.
+name|testing
+operator|.
+name|NullPointerTester
 import|;
 end_import
 
