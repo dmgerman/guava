@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple collection of assertions used in testing - re-written to  * avoid junit or testNG dependencies.  *  * @author cgruber@google.com (Christian Edward Gruber)  * @since r08  */
+comment|/**  * A simple collection of assertions used in testing - rewritten to  * avoid test framework dependencies.  *  * @author Christian Edward Gruber  * @since 8  */
 end_comment
 
 begin_class
@@ -54,7 +54,7 @@ specifier|public
 class|class
 name|Assert
 block|{
-comment|/**    * Fail with an AssertionFailedError();    * @throws AssertionFailedError    */
+comment|/**    * Fail with an RuntimeException.    *    * @throws RuntimeException always    */
 DECL|method|fail ()
 specifier|public
 specifier|static
@@ -64,11 +64,11 @@ parameter_list|()
 block|{
 throw|throw
 operator|new
-name|AssertionFailedError
+name|RuntimeException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Fail with an AssertionFailedError and a message which may use String.format if any    * subsequent parameters are provided.    *     * @throws AssertionFailedError    */
+comment|/**    * Fail with an RuntimeException and a message.    *    * @throws RuntimeException always    */
 DECL|method|fail (String message)
 specifier|public
 specifier|static
@@ -81,13 +81,13 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|AssertionFailedError
+name|RuntimeException
 argument_list|(
 name|message
 argument_list|)
 throw|;
 block|}
-comment|/**    * Test the condition and throw a failure exception if false with     * a stock message.    * @throws AssertionFailedError    */
+comment|/**    * Test the condition and throw a failure exception if false with     * a stock message.    *    * @throws RuntimeException    */
 DECL|method|assertTrue (boolean condition)
 specifier|public
 specifier|static
@@ -105,11 +105,11 @@ name|condition
 condition|)
 name|fail
 argument_list|(
-literal|"Condition exepected to be true but was false."
+literal|"Condition expected to be true but was false."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test the condition and throw a failure exception with a     * provided message.    * @throws AssertionFailedError    */
+comment|/**    * Test the condition and throw a failure exception if false with     * a stock message.    *    * @throws RuntimeException    */
 DECL|method|assertTrue (String message, boolean condition)
 specifier|public
 specifier|static
@@ -134,77 +134,34 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test the negation of the condition and throw a failure exception with a     * canned message.    * @throws AssertionFailedError    */
-DECL|method|assertFalse (boolean condition)
-specifier|public
-specifier|static
-name|void
-name|assertFalse
-parameter_list|(
-name|boolean
-name|condition
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-literal|"Condition expected to be false but was true."
-argument_list|,
-operator|!
-name|condition
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Test the negation of the condition and throw a failure exception with a     * provided message.    * @throws AssertionFailedError    */
-DECL|method|assertFalse (String message, boolean condition)
-specifier|public
-specifier|static
-name|void
-name|assertFalse
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|boolean
-name|condition
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-name|message
-argument_list|,
-operator|!
-name|condition
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Assert the equality of two objects    */
-DECL|method|assertEquals (Object o1, Object o2)
+DECL|method|assertEquals (Object expected, Object actual)
 specifier|public
 specifier|static
 name|void
 name|assertEquals
 parameter_list|(
 name|Object
-name|o1
+name|expected
 parameter_list|,
 name|Object
-name|o2
+name|actual
 parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
 name|format
 argument_list|(
-literal|"Objects '%s' and '%s' are not equal"
+literal|"Expected '%s' but got '%s'"
 argument_list|,
-name|o1
+name|expected
 argument_list|,
-name|o2
+name|actual
 argument_list|)
 argument_list|,
-name|o1
+name|expected
 argument_list|,
-name|o2
+name|actual
 argument_list|)
 expr_stmt|;
 block|}
@@ -246,316 +203,6 @@ name|equals
 argument_list|(
 name|o2
 argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Assert the equality of two objects    */
-DECL|method|assertNotEquals (Object o1, Object o2)
-specifier|public
-specifier|static
-name|void
-name|assertNotEquals
-parameter_list|(
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
-name|assertNotEquals
-argument_list|(
-name|format
-argument_list|(
-literal|"Objects '%s' and '%s' are equal but should not be"
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Assert the equality of two objects    */
-DECL|method|assertNotEquals (String message, Object o1, Object o2)
-specifier|public
-specifier|static
-name|void
-name|assertNotEquals
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
-if|if
-condition|(
-name|o1
-operator|==
-name|o2
-condition|)
-block|{
-name|fail
-argument_list|(
-name|format
-argument_list|(
-literal|"Objects '%s' and '%s' should not be equal but are identical"
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|assertFalse
-argument_list|(
-name|message
-argument_list|,
-name|o1
-operator|.
-name|equals
-argument_list|(
-name|o2
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Assert the identity of the provided objects, else fail with a     * canned message.    */
-DECL|method|assertSame (Object o1, Object o2)
-specifier|public
-specifier|static
-name|void
-name|assertSame
-parameter_list|(
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
-name|assertSame
-argument_list|(
-name|format
-argument_list|(
-literal|"Objects '%s' and '%s' are not the same."
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Assert the identity of the provided objects, else fail with the     * provided message.    */
-DECL|method|assertSame (String message, Object o1, Object o2)
-specifier|public
-specifier|static
-name|void
-name|assertSame
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
-if|if
-condition|(
-name|o1
-operator|!=
-name|o2
-condition|)
-block|{
-name|fail
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Assert the identity of the provided objects, else fail with a     * canned message.    */
-DECL|method|assertNotSame (Object o1, Object o2)
-specifier|public
-specifier|static
-name|void
-name|assertNotSame
-parameter_list|(
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
-name|assertNotSame
-argument_list|(
-name|format
-argument_list|(
-literal|"Objects '%s' and '%s' are not the same."
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-argument_list|,
-name|o1
-argument_list|,
-name|o2
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Assert the identity of the provided objects, else fail with the     * provided message.    */
-DECL|method|assertNotSame (String message, Object o1, Object o2)
-specifier|public
-specifier|static
-name|void
-name|assertNotSame
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|Object
-name|o1
-parameter_list|,
-name|Object
-name|o2
-parameter_list|)
-block|{
-if|if
-condition|(
-name|o1
-operator|==
-name|o2
-condition|)
-block|{
-name|fail
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Assert that the provided reference is null else throw an AssertionFailedError    * with a canned error message.    */
-DECL|method|assertNull (Object object)
-specifier|public
-specifier|static
-name|void
-name|assertNull
-parameter_list|(
-name|Object
-name|object
-parameter_list|)
-block|{
-name|assertNull
-argument_list|(
-name|format
-argument_list|(
-literal|"Expected null but found '%s'."
-argument_list|,
-name|object
-argument_list|)
-argument_list|,
-name|object
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Assert that the provided reference is null else throw an AssertionFailedError    * with a canned error message.    */
-DECL|method|assertNull (String message, Object object)
-specifier|public
-specifier|static
-name|void
-name|assertNull
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|Object
-name|object
-parameter_list|)
-block|{
-if|if
-condition|(
-name|object
-operator|!=
-literal|null
-condition|)
-block|{
-name|fail
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Assert that the provided reference is null else throw an AssertionFailedError    * with a canned error message.    */
-DECL|method|assertNotNull (Object object)
-specifier|public
-specifier|static
-name|void
-name|assertNotNull
-parameter_list|(
-name|Object
-name|object
-parameter_list|)
-block|{
-name|assertNotNull
-argument_list|(
-name|format
-argument_list|(
-literal|"Null returned where expected non null result."
-argument_list|)
-argument_list|,
-name|object
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Assert that the provided reference is null else throw an AssertionFailedError    * with a canned error message.    */
-DECL|method|assertNotNull (String message, Object object)
-specifier|public
-specifier|static
-name|void
-name|assertNotNull
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|Object
-name|object
-parameter_list|)
-block|{
-if|if
-condition|(
-name|object
-operator|==
-literal|null
-condition|)
-block|{
-name|fail
-argument_list|(
-name|message
 argument_list|)
 expr_stmt|;
 block|}

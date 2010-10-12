@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2010 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -114,7 +114,7 @@ specifier|private
 name|SerializableTester
 parameter_list|()
 block|{}
-comment|/**    * Serializes and deserializes the specified object.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    * @throws SerializationException if the specified object was not successfully    *     serialized or deserialized    */
+comment|/**    * Serializes and deserializes the specified object.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -191,27 +191,13 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SerializationException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|SerializationException
+name|RuntimeException
 argument_list|(
 name|e
 argument_list|)
@@ -225,14 +211,14 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|SerializationException
+name|RuntimeException
 argument_list|(
 name|e
 argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Serializes and deserializes the specified object and verifies that the    * re-serialized object is equal to the provided object, and that the    * hashcodes are identical.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    * @throws SerializationException if the specified object was not successfully    *     serialized or deserialized    * @throws junit.framework.AssertionFailedError if the re-serialized    *     object is not equal to the original object, or if the hashcodes    *     are different.    */
+comment|/**    * Serializes and deserializes the specified object and verifies that the    * re-serialized object is equal to the provided object, and that the    * hashcodes are identical.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    * @throws SerializationException if the specified object was not successfully    *     serialized or deserialized    * @throws RuntimeException if the re-serialized object is not equal to the    *     original object, or if the hashcodes are different.    */
 DECL|method|reserializeAndAssert (T object)
 specifier|public
 specifier|static
@@ -254,7 +240,7 @@ argument_list|(
 name|object
 argument_list|)
 decl_stmt|;
-name|MoreAsserts
+name|GuavaAsserts
 operator|.
 name|checkEqualsAndHashCodeMethods
 argument_list|(

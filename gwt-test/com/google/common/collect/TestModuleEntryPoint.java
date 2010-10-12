@@ -98,7 +98,7 @@ argument_list|>
 operator|>
 name|asList
 argument_list|(
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 operator|.
 name|class
 argument_list|,

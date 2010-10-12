@@ -67,15 +67,15 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-DECL|class|MoreAsserts
+DECL|class|GuavaAsserts
 specifier|public
 specifier|final
 class|class
-name|MoreAsserts
+name|GuavaAsserts
 block|{
-DECL|method|MoreAsserts ()
+DECL|method|GuavaAsserts ()
 specifier|private
-name|MoreAsserts
+name|GuavaAsserts
 parameter_list|()
 block|{ }
 comment|/**    * Utility for testing equals() and hashCode() results at once.    * Tests that lhs.equals(rhs) matches expectedResult, as well as    * rhs.equals(lhs).  Also tests that hashCode() return values are    * equal if expectedResult is true.  (hashCode() is not tested if    * expectedResult is false, as unequal objects can have equal hashCodes.)    *    * @param lhs An Object for which equals() and hashCode() are to be tested.    * @param rhs As lhs.    * @param expectedResult True if the objects should compare equal,    *   false if not.    */
@@ -141,12 +141,13 @@ condition|)
 block|{
 name|Assert
 operator|.
-name|assertFalse
+name|assertTrue
 argument_list|(
 literal|"Your check is dubious...why would you expect an object "
 operator|+
 literal|"to be equal to null?"
 argument_list|,
+operator|!
 name|expectedResult
 argument_list|)
 expr_stmt|;

@@ -274,6 +274,7 @@ name|softValues
 parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
+comment|// TODO(user): deprecate
 DECL|method|expiration ( long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
@@ -284,6 +285,25 @@ argument_list|,
 name|V0
 argument_list|>
 name|expiration
+parameter_list|(
+name|long
+name|duration
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+function_decl|;
+comment|/**    * See {@link MapMaker#timeToLive}.    */
+DECL|method|timeToLive ( long duration, TimeUnit unit)
+specifier|public
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|timeToLive
 parameter_list|(
 name|long
 name|duration

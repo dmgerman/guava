@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkPositionIndex
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -36,21 +52,31 @@ name|java
 operator|.
 name|util
 operator|.
+name|ListIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|NoSuchElementException
 import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of an iterator across a fixed  * number of elements that may be retrieved by position.  *  * @author Jared Levy  */
+comment|/**  * This class provides a skeletal implementation of the {@link ListIterator}  * interface across a fixed number of elements that may be retrieved by  * position. It does not support {@link #remove}, {@link #set}, or {@link #add}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|AbstractIndexedIterator
+DECL|class|AbstractIndexedListIterator
 specifier|abstract
 class|class
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 parameter_list|<
 name|E
 parameter_list|>
@@ -82,38 +108,42 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-DECL|method|AbstractIndexedIterator (int size)
+comment|/**    * Constructs an iterator across a sequence of the given size whose initial    * position is 0. That is, the first call to {@link #next()} will return the    * first element (or throw {@link NoSuchElementException} if {@code size} is    * zero).    *    * @throws IllegalArgumentException if {@code size} is negative    */
+DECL|method|AbstractIndexedListIterator (int size)
 specifier|protected
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 parameter_list|(
 name|int
 name|size
 parameter_list|)
 block|{
 name|this
-operator|.
+argument_list|(
 name|size
-operator|=
-name|size
-expr_stmt|;
-name|this
-operator|.
-name|position
-operator|=
+argument_list|,
 literal|0
+argument_list|)
 expr_stmt|;
 block|}
-DECL|method|AbstractIndexedIterator (int position, int size)
+comment|/**    * Constructs an iterator across a sequence of the given size with the given    * initial position. That is, the first call to {@link #nextIndex()} will    * return {@code position}, and the first call to {@link #next()} will return    * the element at that index, if available. Calls to {@link #previous()} can    * retrieve the preceding {@code position} elements.    *    * @throws IndexOutOfBoundsException if {@code index} is negative or is    *         greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
+DECL|method|AbstractIndexedListIterator (int size, int position)
 specifier|protected
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 parameter_list|(
 name|int
-name|position
+name|size
 parameter_list|,
 name|int
-name|size
+name|position
 parameter_list|)
 block|{
+name|checkPositionIndex
+argument_list|(
+name|position
+argument_list|,
+name|size
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|size
@@ -170,6 +200,7 @@ return|;
 block|}
 DECL|method|nextIndex ()
 specifier|public
+specifier|final
 name|int
 name|nextIndex
 parameter_list|()
@@ -180,6 +211,7 @@ return|;
 block|}
 DECL|method|hasPrevious ()
 specifier|public
+specifier|final
 name|boolean
 name|hasPrevious
 parameter_list|()
@@ -192,6 +224,7 @@ return|;
 block|}
 DECL|method|previous ()
 specifier|public
+specifier|final
 name|E
 name|previous
 parameter_list|()
@@ -219,6 +252,7 @@ return|;
 block|}
 DECL|method|previousIndex ()
 specifier|public
+specifier|final
 name|int
 name|previousIndex
 parameter_list|()

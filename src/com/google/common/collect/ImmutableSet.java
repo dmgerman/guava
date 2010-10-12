@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkNotNull
 import|;
 end_import
@@ -531,8 +547,6 @@ block|{
 name|int
 name|tableSize
 init|=
-name|Hashing
-operator|.
 name|chooseTableSize
 argument_list|(
 name|elements
@@ -801,8 +815,6 @@ name|tableSize
 operator|>
 literal|2
 operator|*
-name|Hashing
-operator|.
 name|chooseTableSize
 argument_list|(
 name|uniqueElements
@@ -839,6 +851,70 @@ name|mask
 argument_list|)
 return|;
 block|}
+block|}
+comment|// We use power-of-2 tables, and this is the highest int that's a power of 2
+DECL|field|MAX_TABLE_SIZE
+specifier|static
+specifier|final
+name|int
+name|MAX_TABLE_SIZE
+init|=
+literal|1
+operator|<<
+literal|30
+decl_stmt|;
+comment|// If the set has this many elements, it will "max out" the table size
+DECL|field|CUTOFF
+specifier|static
+specifier|final
+name|int
+name|CUTOFF
+init|=
+literal|1
+operator|<<
+literal|29
+decl_stmt|;
+comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses linear probing in its implementation.  The returned size is the    * smallest power of two that can hold setSize elements while being at most    * 50% full, if possible.    */
+DECL|method|chooseTableSize (int setSize)
+specifier|static
+name|int
+name|chooseTableSize
+parameter_list|(
+name|int
+name|setSize
+parameter_list|)
+block|{
+if|if
+condition|(
+name|setSize
+operator|<
+name|CUTOFF
+condition|)
+block|{
+return|return
+name|Integer
+operator|.
+name|highestOneBit
+argument_list|(
+name|setSize
+argument_list|)
+operator|<<
+literal|2
+return|;
+block|}
+comment|// The table can't be completely full or we'll get infinite reprobes
+name|checkArgument
+argument_list|(
+name|setSize
+operator|<
+name|MAX_TABLE_SIZE
+argument_list|,
+literal|"collection too large"
+argument_list|)
+expr_stmt|;
+return|return
+name|MAX_TABLE_SIZE
+return|;
 block|}
 comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (changed from varargs in release 3)    */
 comment|// TODO(kevinb): when this is removed, remember to remove from ISS and ISSFS
@@ -1724,7 +1800,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 argument_list|<
 name|E
 argument_list|>

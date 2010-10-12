@@ -3177,7 +3177,7 @@ expr_stmt|;
 comment|// eager for GWT.
 return|return
 operator|new
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 argument_list|<
 name|T
 argument_list|>
@@ -3260,11 +3260,10 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-comment|// If length == 0 is a common enough case, we could return emptyIterator().
 comment|/*      * We can't use call the two-arg constructor with arguments (offset, end)      * because the returned Iterator is a ListIterator that may be moved back      * past the beginning of the iteration.      */
 return|return
 operator|new
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 argument_list|<
 name|T
 argument_list|>

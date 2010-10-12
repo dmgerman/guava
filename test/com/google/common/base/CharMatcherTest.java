@@ -160,7 +160,7 @@ name|common
 operator|.
 name|testing
 operator|.
-name|AssertionFailedError
+name|Assert
 import|;
 end_import
 
@@ -269,13 +269,17 @@ name|char
 name|c
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|AssertionFailedError
+name|Assert
+operator|.
+name|fail
 argument_list|(
 literal|"You weren't supposed to actually invoke me!"
 argument_list|)
-throw|;
+expr_stmt|;
+return|return
+literal|false
+return|;
+comment|// never actually reached
 block|}
 block|}
 decl_stmt|;

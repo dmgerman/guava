@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Wraps an exception that occured during a computation in a different thread.  *  * @author Bob Lee  */
+comment|/**  * Wraps an exception that occurred during a computation in a different thread.  *  * @author Bob Lee  */
 end_comment
 
 begin_class

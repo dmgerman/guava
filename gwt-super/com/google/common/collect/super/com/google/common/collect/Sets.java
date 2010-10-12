@@ -2362,7 +2362,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned set is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. The set's {@code add()} and    * {@code addAll()} methods throw an {@link IllegalArgumentException} if an    * element that doesn't satisfy the predicate is provided. When methods such    * as {@code removeAll()} and {@code clear()} are called on the filtered set,    * only elements that satisfy the filter will be removed from the underlying    * collection.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate    * across every element in the underlying set and determine which elements    * satisfy the filter. When a live view is<i>not</i> needed, it may be faster    * to copy {@code Iterables.filter(unfiltered, predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    */
+comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned set is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. When given an element that doesn't satisfy    * the predicate, the set's {@code add()} and {@code addAll()} methods throw    * an {@link IllegalArgumentException}. When methods such as {@code    * removeAll()} and {@code clear()} are called on the filtered set, only    * elements that satisfy the filter will be removed from the underlying set.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate    * across every element in the underlying set and determine which elements    * satisfy the filter. When a live view is<i>not</i> needed, it may be faster    * to copy {@code Iterables.filter(unfiltered, predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    */
 DECL|method|filter ( Set<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
@@ -3547,7 +3547,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 argument_list|<
 name|Set
 argument_list|<

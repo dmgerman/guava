@@ -510,29 +510,23 @@ specifier|final
 name|Strength
 name|valueStrength
 decl_stmt|;
-comment|/** How long the map retains values in ns. */
-DECL|field|expirationNanos
+comment|/**    * How long after the last access to an entry the map will retain that    * entry.    */
+DECL|field|expireAfterReadNanos
 specifier|final
 name|long
-name|expirationNanos
+name|expireAfterReadNanos
 decl_stmt|;
-comment|/** True if expiration is enabled. */
-DECL|field|expires
+comment|/**    * How long after the last write to an entry the map will retain that    * entry.    */
+DECL|field|expireAfterWriteNanos
 specifier|final
-name|boolean
-name|expires
+name|long
+name|expireAfterWriteNanos
 decl_stmt|;
-comment|/**    * The maximum size of this map. MapMaker.UNSET_MAXIMUM_SIZE if there is no    * maximum.    */
+comment|/**    * The maximum size of this map. MapMaker.UNSET_INT if there is no    * maximum.    */
 DECL|field|maximumSize
 specifier|final
 name|int
 name|maximumSize
-decl_stmt|;
-comment|/** True if size-based eviction is enabled. */
-DECL|field|evicts
-specifier|final
-name|boolean
-name|evicts
 decl_stmt|;
 comment|/** Entries waiting to be consumed by the eviction listener. */
 DECL|field|pendingEvictionNotifications
@@ -612,33 +606,47 @@ operator|.
 name|getValueEquivalence
 argument_list|()
 expr_stmt|;
-name|expirationNanos
+comment|// MapMaker ensures that timeToLive and timeToIdle are mutually exclusive
+name|expireAfterReadNanos
 operator|=
 name|builder
 operator|.
-name|getExpirationNanos
+name|getTimeToIdleNanos
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|expiresAfterRead
+argument_list|()
+condition|)
+block|{
+name|expireAfterWriteNanos
+operator|=
+name|expireAfterReadNanos
+expr_stmt|;
+block|}
+else|else
+block|{
+name|expireAfterWriteNanos
+operator|=
+name|builder
+operator|.
+name|getTimeToLiveNanos
+argument_list|()
+expr_stmt|;
+block|}
 name|maximumSize
 operator|=
 name|builder
 operator|.
 name|maximumSize
 expr_stmt|;
-name|evicts
-operator|=
-name|maximumSize
-operator|!=
-name|MapMaker
-operator|.
-name|UNSET_MAXIMUM_SIZE
-expr_stmt|;
-name|expires
-operator|=
-name|expirationNanos
-operator|>
-literal|0
-expr_stmt|;
+name|boolean
+name|evictsBySize
+init|=
+name|evictsBySize
+argument_list|()
+decl_stmt|;
 name|entryFactory
 operator|=
 name|EntryFactory
@@ -647,9 +655,10 @@ name|getFactory
 argument_list|(
 name|keyStrength
 argument_list|,
-name|expires
+name|expiresAfterWrite
+argument_list|()
 argument_list|,
-name|evicts
+name|evictsBySize
 argument_list|)
 expr_stmt|;
 name|MapEvictionListener
@@ -816,7 +825,7 @@ name|concurrencyLevel
 operator|&&
 operator|(
 operator|!
-name|evicts
+name|evictsBySize
 operator|||
 name|segmentCount
 operator|*
@@ -896,7 +905,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|evicts
+name|evictsBySize
 condition|)
 block|{
 comment|// Ensure sum of segment max sizes = overall max size
@@ -953,8 +962,7 @@ index|[
 name|i
 index|]
 operator|=
-operator|new
-name|Segment
+name|createSegment
 argument_list|(
 name|segmentSize
 argument_list|,
@@ -991,18 +999,52 @@ index|[
 name|i
 index|]
 operator|=
-operator|new
-name|Segment
+name|createSegment
 argument_list|(
 name|segmentSize
 argument_list|,
 name|MapMaker
 operator|.
-name|UNSET_MAXIMUM_SIZE
+name|UNSET_INT
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|evictsBySize ()
+name|boolean
+name|evictsBySize
+parameter_list|()
+block|{
+return|return
+name|maximumSize
+operator|!=
+name|MapMaker
+operator|.
+name|UNSET_INT
+return|;
+block|}
+DECL|method|expiresAfterWrite ()
+name|boolean
+name|expiresAfterWrite
+parameter_list|()
+block|{
+return|return
+name|expireAfterWriteNanos
+operator|>
+literal|0
+return|;
+block|}
+DECL|method|expiresAfterRead ()
+name|boolean
+name|expiresAfterRead
+parameter_list|()
+block|{
+return|return
+name|expireAfterReadNanos
+operator|>
+literal|0
+return|;
 block|}
 comment|/**    * Returns the given concurrency level or MAX_SEGMENTS if the given level    * is> MAX_SEGMENTS.    */
 DECL|method|filterConcurrencyLevel (int concurrenyLevel)
@@ -2738,7 +2780,7 @@ name|WEAK_EXPIRABLE_EVICTABLE
 block|}
 block|}
 decl_stmt|;
-DECL|method|getFactory (Strength keyStrength, boolean expires, boolean evicts)
+DECL|method|getFactory (Strength keyStrength, boolean expireAfterWrite, boolean evictsBySize)
 specifier|static
 name|EntryFactory
 name|getFactory
@@ -2747,17 +2789,17 @@ name|Strength
 name|keyStrength
 parameter_list|,
 name|boolean
-name|expires
+name|expireAfterWrite
 parameter_list|,
 name|boolean
-name|evicts
+name|evictsBySize
 parameter_list|)
 block|{
 name|int
 name|flags
 init|=
 operator|(
-name|expires
+name|expireAfterWrite
 condition|?
 name|EXPIRABLE_MASK
 else|:
@@ -2765,7 +2807,7 @@ literal|0
 operator|)
 operator||
 operator|(
-name|evicts
+name|evictsBySize
 condition|?
 name|EVICTABLE_MASK
 else|:
@@ -2939,11 +2981,11 @@ name|newEntry
 decl_stmt|;
 name|newExpirable
 operator|.
-name|setWriteTime
+name|setExpirationTime
 argument_list|(
 name|originalExpirable
 operator|.
-name|getWriteTime
+name|getExpirationTime
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3288,24 +3330,26 @@ name|getKey
 parameter_list|()
 function_decl|;
 block|}
+comment|// TODO(kevinb): push Expirable and Evictable methods into ReferenceEntry to
+comment|// avoid casting
 comment|/**    * Implemented by entries that are expirable. Expirable entries are    * maintained in a doubly-linked list. New entries are added at the tail    * of the list at write time; stale entries are expired from the head    * of the list.    */
 DECL|interface|Expirable
 interface|interface
 name|Expirable
 block|{
-comment|/** Gets the entry write time in ns. */
-DECL|method|getWriteTime ()
+comment|/** Gets the entry expiration time in ns. */
+DECL|method|getExpirationTime ()
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 function_decl|;
-comment|/** Sets the entry write time in ns. */
-DECL|method|setWriteTime (long writeTime)
+comment|/** Sets the entry expiration time in ns. */
+DECL|method|setExpirationTime (long time)
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 function_decl|;
 comment|/** Gets the next entry in the recency list. */
@@ -3351,10 +3395,10 @@ name|INSTANCE
 block|;
 annotation|@
 name|Override
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
@@ -3363,13 +3407,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{}
 annotation|@
@@ -3890,39 +3934,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each expirable entry type.
-DECL|field|writeTime
+DECL|field|time
 specifier|volatile
 name|long
-name|writeTime
+name|time
 init|=
 name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
-name|writeTime
+name|time
 return|;
 block|}
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{
 name|this
 operator|.
-name|writeTime
+name|time
 operator|=
-name|writeTime
+name|time
 expr_stmt|;
 block|}
 annotation|@
@@ -4207,39 +4251,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each expirable entry type.
-DECL|field|writeTime
+DECL|field|time
 specifier|volatile
 name|long
-name|writeTime
+name|time
 init|=
 name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
-name|writeTime
+name|time
 return|;
 block|}
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{
 name|this
 operator|.
-name|writeTime
+name|time
 operator|=
-name|writeTime
+name|time
 expr_stmt|;
 block|}
 annotation|@
@@ -4712,39 +4756,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each expirable entry type.
-DECL|field|writeTime
+DECL|field|time
 specifier|volatile
 name|long
-name|writeTime
+name|time
 init|=
 name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
-name|writeTime
+name|time
 return|;
 block|}
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{
 name|this
 operator|.
-name|writeTime
+name|time
 operator|=
-name|writeTime
+name|time
 expr_stmt|;
 block|}
 annotation|@
@@ -5029,39 +5073,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each expirable entry type.
-DECL|field|writeTime
+DECL|field|time
 specifier|volatile
 name|long
-name|writeTime
+name|time
 init|=
 name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
-name|writeTime
+name|time
 return|;
 block|}
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{
 name|this
 operator|.
-name|writeTime
+name|time
 operator|=
-name|writeTime
+name|time
 expr_stmt|;
 block|}
 annotation|@
@@ -5534,39 +5578,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each expirable entry type.
-DECL|field|writeTime
+DECL|field|time
 specifier|volatile
 name|long
-name|writeTime
+name|time
 init|=
 name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
-name|writeTime
+name|time
 return|;
 block|}
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{
 name|this
 operator|.
-name|writeTime
+name|time
 operator|=
-name|writeTime
+name|time
 expr_stmt|;
 block|}
 annotation|@
@@ -5851,39 +5895,39 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each expirable entry type.
-DECL|field|writeTime
+DECL|field|time
 specifier|volatile
 name|long
-name|writeTime
+name|time
 init|=
 name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-DECL|method|getWriteTime ()
+DECL|method|getExpirationTime ()
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
-name|writeTime
+name|time
 return|;
 block|}
-DECL|method|setWriteTime (long writeTime)
+DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{
 name|this
 operator|.
-name|writeTime
+name|time
 operator|=
-name|writeTime
+name|time
 expr_stmt|;
 block|}
 annotation|@
@@ -6806,16 +6850,16 @@ name|long
 name|now
 parameter_list|)
 block|{
-comment|// Avoid overflow.
+comment|// if the expiration time had overflowed, this "undoes" the overflow
 return|return
 name|now
 operator|-
 name|expirable
 operator|.
-name|getWriteTime
+name|getExpirationTime
 argument_list|()
 operator|>
-name|expirationNanos
+literal|0
 return|;
 block|}
 comment|/**    * Gets the value from an entry. Returns null if the value is null (i.e.    * reclaimed or not computed yet) or if the entry is expired. If    * you already called expireEntries() you can just check the value for    * null and skip the expiration check.    */
@@ -6845,7 +6889,8 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 operator|&&
 name|isExpired
 argument_list|(
@@ -7034,6 +7079,27 @@ name|segmentMask
 index|]
 return|;
 block|}
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
+name|Segment
+name|createSegment
+parameter_list|(
+name|int
+name|initialCapacity
+parameter_list|,
+name|int
+name|maxSegmentSize
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Segment
+argument_list|(
+name|initialCapacity
+argument_list|,
+name|maxSegmentSize
+argument_list|)
+return|;
+block|}
 comment|/* ---------------- Inner Classes -------------- */
 comment|/**    * Segments are specialized versions of hash tables.  This subclass inherits    * from ReentrantLock opportunistically, just to simplify some locking and    * avoid separate construction.    */
 annotation|@
@@ -7043,13 +7109,12 @@ literal|"serial"
 argument_list|)
 comment|// This class is never serialized.
 DECL|class|Segment
-specifier|final
 class|class
 name|Segment
 extends|extends
 name|ReentrantLock
 block|{
-comment|/*      * TODO(user): Consider copying variables (like evicts) from outer class into      * this class. It will require more memory but will reduce indirection.      */
+comment|/*      * TODO(user): Consider copying variables (like evictsBySize) from outer      * class into this class. It will require more memory but will reduce      * indirection.      */
 comment|/*      * Segments maintain a table of entry lists that are ALWAYS      * kept in a consistent state, so can be read without locking.      * Next fields of nodes are immutable (final).  All list      * additions are performed at the front of each bin. This      * makes it easy to check changes, and also fast to traverse.      * When nodes would otherwise be changed, new nodes are      * created to replace them. This works well for hash tables      * since the bin lists tend to be short. (The average length      * is less than two.)      *      * Read operations can thus proceed without locking, but rely      * on selected uses of volatiles to ensure that completed      * write operations performed by other threads are      * noticed. For most purposes, the "count" field, tracking the      * number of elements, serves as that volatile variable      * ensuring visibility.  This is convenient because this field      * needs to be read in many read operations anyway:      *      *   - All (unsynchronized) read operations must first read the      *     "count" field, and should not look at table entries if      *     it is 0.      *      *   - All (synchronized) write operations should write to      *     the "count" field after structurally changing any bin.      *     The operations must not take any action that could even      *     momentarily cause a concurrent read operation to see      *     inconsistent data. This is made easier by the nature of      *     the read operations in Map. For example, no operation      *     can reveal that the table has grown but the threshold      *     has not yet been updated, so there are no atomicity      *     requirements for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the      * count field are marked in code comments.      */
 comment|/**      * The number of elements in this segment's region.      */
 DECL|field|count
@@ -7081,18 +7146,23 @@ argument_list|>
 argument_list|>
 name|table
 decl_stmt|;
-comment|/**      * The maximum size of this map. MapMaker.UNSET_MAXIMUM_SIZE if there is no      * maximum.      */
+comment|/**      * The maximum size of this map. MapMaker.UNSET_INT if there is no      * maximum.      */
 DECL|field|maxSegmentSize
 specifier|final
 name|int
 name|maxSegmentSize
 decl_stmt|;
-comment|/**      * The recency queue is used to record which entries were accessed      * for updating the eviction list's ordering. It is drained as a batch      * operation when either the RECENCY_THRESHOLD is crossed or a write      * occurs on the segment.      */
+comment|/**      * The recency queue is used to record which entries were accessed      * for updating the eviction list's ordering. It is drained      * as a batch operation when either the RECENCY_THRESHOLD is crossed or      * a write occurs on the segment.      */
 DECL|field|recencyQueue
 specifier|final
 name|Queue
 argument_list|<
-name|Evictable
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|>
 name|recencyQueue
 decl_stmt|;
@@ -7199,7 +7269,7 @@ argument_list|()
 block|{
 specifier|public
 name|long
-name|getWriteTime
+name|getExpirationTime
 parameter_list|()
 block|{
 return|return
@@ -7210,10 +7280,10 @@ return|;
 block|}
 specifier|public
 name|void
-name|setWriteTime
+name|setExpirationTime
 parameter_list|(
 name|long
-name|writeTime
+name|time
 parameter_list|)
 block|{}
 annotation|@
@@ -7312,7 +7382,11 @@ name|maxSegmentSize
 expr_stmt|;
 if|if
 condition|(
-name|evicts
+name|evictsBySize
+argument_list|()
+operator|||
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
 name|recencyQueue
@@ -7320,7 +7394,12 @@ operator|=
 operator|new
 name|ConcurrentLinkedQueue
 argument_list|<
-name|Evictable
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|>
 argument_list|()
 expr_stmt|;
@@ -7381,8 +7460,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-comment|// if expires
-DECL|method|setValue (ReferenceEntry<K, V> entry, V value, boolean inserted)
+DECL|method|setValue (ReferenceEntry<K, V> entry, V value)
 name|void
 name|setValue
 parameter_list|(
@@ -7396,46 +7474,27 @@ name|entry
 parameter_list|,
 name|V
 name|value
-parameter_list|,
-name|boolean
-name|inserted
 parameter_list|)
 block|{
+comment|// Note: this if is mirrored in ComputingConcurrentHashMap.
 if|if
 condition|(
-name|expires
+name|evictsBySize
+argument_list|()
+operator|||
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
-name|Expirable
-name|expirable
-init|=
-operator|(
-name|Expirable
-operator|)
-name|entry
-decl_stmt|;
-name|addExpirable
+name|checkState
 argument_list|(
-name|expirable
+name|isLocked
+argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|evicts
-condition|)
-block|{
-name|Evictable
-name|evictable
-init|=
-operator|(
-name|Evictable
-operator|)
-name|entry
-decl_stmt|;
-name|addEvictableOnWrite
+name|recordWrite
 argument_list|(
-name|evictable
+name|entry
 argument_list|)
 expr_stmt|;
 block|}
@@ -7454,18 +7513,254 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// recency queue, shared by expiration and eviction
+comment|/**      * Records the relative order in which this read was performed by adding      * {@code entry} to the recency queue. At write-time, or when the queue is      * full past the threshold, the queue will be drained and the entries      * therein processed.      */
+DECL|method|recordRead (ReferenceEntry<K, V> entry)
+name|void
+name|recordRead
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+comment|// TODO(user): update timestamp without reordering eviction lists?
+name|recencyQueue
+operator|.
+name|add
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+comment|// we are not under lock, so only drain the recency queue if full
+if|if
+condition|(
+name|recencyQueueLength
+operator|.
+name|incrementAndGet
+argument_list|()
+operator|>
+name|RECENCY_THRESHOLD
+condition|)
+block|{
+if|if
+condition|(
+name|tryLock
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|drainRecencyQueue
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
+comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant expiration lists.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|recordWrite (ReferenceEntry<K, V> entry)
+name|void
+name|recordWrite
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+comment|// we are already under lock, so drain the recency queue immediately
+name|drainRecencyQueue
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|entry
+operator|instanceof
+name|Evictable
+condition|)
+block|{
+name|addEvictable
+argument_list|(
+operator|(
+name|Evictable
+operator|)
+name|entry
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|entry
+operator|instanceof
+name|Expirable
+condition|)
+block|{
+name|addExpirable
+argument_list|(
+operator|(
+name|Expirable
+operator|)
+name|entry
+argument_list|,
+name|expireAfterWriteNanos
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * Drains the recency queue, updating eviction metadata that the entries      * therein were read in the specified relative order. This currently amounts      * to adding them to relevant expiration lists (accounting for the fact that      * they could have been removed from the map since being added to the      * recency queue).      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|drainRecencyQueue ()
+name|void
+name|drainRecencyQueue
+parameter_list|()
+block|{
+comment|// While the recency queue is being drained it may be concurrently
+comment|// appended to. The number of elements removed are tracked so that the
+comment|// length can be decremented by the delta rather than set to zero.
+name|int
+name|drained
+init|=
+literal|0
+decl_stmt|;
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|entry
+operator|=
+name|recencyQueue
+operator|.
+name|poll
+argument_list|()
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// An entry may be in the recency queue despite it being removed from
+comment|// the map . This can occur when the entry was concurrently read while a
+comment|// writer is removing it from the segment or after a clear has removed
+comment|// all of the segment's entries.
+if|if
+condition|(
+name|entry
+operator|instanceof
+name|Evictable
+condition|)
+block|{
+name|Evictable
+name|evictable
+init|=
+operator|(
+name|Evictable
+operator|)
+name|entry
+decl_stmt|;
+if|if
+condition|(
+name|inEvictionList
+argument_list|(
+name|evictable
+argument_list|)
+condition|)
+block|{
+name|addEvictable
+argument_list|(
+name|evictable
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|entry
+operator|instanceof
+name|Expirable
+condition|)
+block|{
+name|Expirable
+name|expirable
+init|=
+operator|(
+name|Expirable
+operator|)
+name|entry
+decl_stmt|;
+if|if
+condition|(
+name|inExpirationList
+argument_list|(
+name|expirable
+argument_list|)
+condition|)
+block|{
+name|addExpirable
+argument_list|(
+name|expirable
+argument_list|,
+name|expireAfterReadNanos
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|drained
+operator|++
+expr_stmt|;
+block|}
+name|recencyQueueLength
+operator|.
+name|addAndGet
+argument_list|(
+operator|-
+name|drained
+argument_list|)
+expr_stmt|;
+block|}
 comment|// expiration
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|addExpirable (Expirable expirable)
+DECL|method|addExpirable (Expirable expirable, long expirationNanos)
 name|void
 name|addExpirable
 parameter_list|(
 name|Expirable
 name|expirable
+parameter_list|,
+name|long
+name|expirationNanos
 parameter_list|)
 block|{
 comment|// unlink
@@ -7482,14 +7777,17 @@ name|getNextExpirable
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// might overflow, but that's okay (see isExpired())
 name|expirable
 operator|.
-name|setWriteTime
+name|setExpirationTime
 argument_list|(
 name|System
 operator|.
 name|nanoTime
 argument_list|()
+operator|+
+name|expirationNanos
 argument_list|)
 expr_stmt|;
 comment|// add to tail
@@ -7543,7 +7841,30 @@ name|expirable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Removes expired entries.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|inExpirationList (Expirable expirable)
+name|boolean
+name|inExpirationList
+parameter_list|(
+name|Expirable
+name|expirable
+parameter_list|)
+block|{
+return|return
+name|expirable
+operator|.
+name|getNextExpirable
+argument_list|()
+operator|!=
+name|NullExpirable
+operator|.
+name|INSTANCE
+return|;
+block|}
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -7554,6 +7875,9 @@ name|void
 name|expireEntries
 parameter_list|()
 block|{
+name|drainRecencyQueue
+argument_list|()
+expr_stmt|;
 name|Expirable
 name|expirable
 init|=
@@ -7725,7 +8049,6 @@ name|void
 name|evictEntry
 parameter_list|()
 block|{
-comment|// drain recency queue to have maximal information
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
@@ -7799,145 +8122,6 @@ argument_list|()
 throw|;
 block|}
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
-DECL|method|addEvictableOnWrite (Evictable added)
-name|void
-name|addEvictableOnWrite
-parameter_list|(
-name|Evictable
-name|added
-parameter_list|)
-block|{
-comment|// we are already under lock, so drain the recency queue immediately
-name|drainRecencyQueue
-argument_list|()
-expr_stmt|;
-name|addEvictable
-argument_list|(
-name|added
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|addEvictableOnRead (Evictable added)
-name|void
-name|addEvictableOnRead
-parameter_list|(
-name|Evictable
-name|added
-parameter_list|)
-block|{
-name|recencyQueue
-operator|.
-name|add
-argument_list|(
-name|added
-argument_list|)
-expr_stmt|;
-comment|// we are not under lock, so only drian the recency queue if full
-if|if
-condition|(
-name|recencyQueueLength
-operator|.
-name|incrementAndGet
-argument_list|()
-operator|>
-name|RECENCY_THRESHOLD
-condition|)
-block|{
-if|if
-condition|(
-name|tryLock
-argument_list|()
-condition|)
-block|{
-try|try
-block|{
-name|drainRecencyQueue
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|unlock
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
-DECL|method|drainRecencyQueue ()
-name|void
-name|drainRecencyQueue
-parameter_list|()
-block|{
-comment|// While the recency queue is being drained it may be concurrently
-comment|// appended to. The number of elements removed are tracked so that the
-comment|// length can be decremented by the delta rather than set to zero.
-name|int
-name|drained
-init|=
-literal|0
-decl_stmt|;
-name|Evictable
-name|evictable
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|evictable
-operator|=
-name|recencyQueue
-operator|.
-name|poll
-argument_list|()
-operator|)
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// An entry may be in the recency queue despite it being
-comment|// removed from the map and eviciton list. This can occur when the
-comment|// entry was concurrently read while a writer is removing it from the
-comment|// segment or after a clear has removed all of the segment's entries.
-comment|// If the entry is no longer in the recency dequeue then it does not
-comment|// need to be processed.
-if|if
-condition|(
-name|inEvictionList
-argument_list|(
-name|evictable
-argument_list|)
-condition|)
-block|{
-name|addEvictable
-argument_list|(
-name|evictable
-argument_list|)
-expr_stmt|;
-block|}
-name|drained
-operator|++
-expr_stmt|;
-block|}
-name|recencyQueueLength
-operator|.
-name|addAndGet
-argument_list|(
-operator|-
-name|drained
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Moves the entry to the tail of the eviction list. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -8027,7 +8211,6 @@ name|evictable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Whether the entry is linked on the eviction list. */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -8315,7 +8498,8 @@ condition|)
 block|{
 if|if
 condition|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 operator|&&
 name|isExpired
 argument_list|(
@@ -8327,14 +8511,15 @@ continue|continue;
 block|}
 if|if
 condition|(
-name|evicts
+name|evictsBySize
+argument_list|()
+operator|||
+name|expiresAfterRead
+argument_list|()
 condition|)
 block|{
-name|addEvictableOnRead
+name|recordRead
 argument_list|(
-operator|(
-name|Evictable
-operator|)
 name|e
 argument_list|)
 expr_stmt|;
@@ -8655,7 +8840,8 @@ try|try
 block|{
 if|if
 condition|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
 name|expireEntries
@@ -8761,8 +8947,6 @@ argument_list|(
 name|e
 argument_list|,
 name|newValue
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 return|return
@@ -8775,14 +8959,15 @@ comment|// Mimic
 comment|// "if (map.containsKey(key)&& map.get(key).equals(oldValue))..."
 if|if
 condition|(
-name|evicts
+name|evictsBySize
+argument_list|()
+operator|||
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
-name|addEvictableOnWrite
+name|recordWrite
 argument_list|(
-operator|(
-name|Evictable
-operator|)
 name|e
 argument_list|)
 expr_stmt|;
@@ -8830,7 +9015,8 @@ try|try
 block|{
 if|if
 condition|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
 name|expireEntries
@@ -8924,8 +9110,6 @@ argument_list|(
 name|e
 argument_list|,
 name|newValue
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 return|return
@@ -8976,7 +9160,8 @@ try|try
 block|{
 if|if
 condition|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
 name|expireEntries
@@ -9140,14 +9325,15 @@ condition|)
 block|{
 if|if
 condition|(
-name|evicts
+name|evictsBySize
+argument_list|()
+operator|||
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
-name|addEvictableOnWrite
+name|recordWrite
 argument_list|(
-operator|(
-name|Evictable
-operator|)
 name|e
 argument_list|)
 expr_stmt|;
@@ -9161,8 +9347,6 @@ argument_list|(
 name|e
 argument_list|,
 name|value
-argument_list|,
-name|absent
 argument_list|)
 expr_stmt|;
 return|return
@@ -9172,7 +9356,8 @@ block|}
 block|}
 if|if
 condition|(
-name|evicts
+name|evictsBySize
+argument_list|()
 operator|&&
 name|newCount
 operator|>
@@ -9233,8 +9418,6 @@ argument_list|(
 name|newEntry
 argument_list|,
 name|value
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|table
@@ -9825,7 +10008,8 @@ try|try
 block|{
 if|if
 condition|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
 name|expireEntries
@@ -10406,7 +10590,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|expires
+name|expiresAfterWrite
+argument_list|()
 condition|)
 block|{
 name|removeExpirable
@@ -10420,7 +10605,8 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|evicts
+name|evictsBySize
+argument_list|()
 condition|)
 block|{
 name|removeEvictable
@@ -11468,7 +11654,8 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|expires
+name|expiresAfterWrite
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -12920,7 +13107,7 @@ name|keyEquivalence
 argument_list|,
 name|valueEquivalence
 argument_list|,
-name|expirationNanos
+name|expireAfterWriteNanos
 argument_list|,
 name|maximumSize
 argument_list|,
@@ -12988,10 +13175,10 @@ name|Object
 argument_list|>
 name|valueEquivalence
 decl_stmt|;
-DECL|field|expirationNanos
+DECL|field|expireAfterWriteNanos
 specifier|final
 name|long
-name|expirationNanos
+name|expireAfterWriteNanos
 decl_stmt|;
 DECL|field|maximumSize
 specifier|final
@@ -13027,7 +13214,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
+DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
 name|AbstractSerializationProxy
 parameter_list|(
 name|Strength
@@ -13049,7 +13236,7 @@ argument_list|>
 name|valueEquivalence
 parameter_list|,
 name|long
-name|expirationNanos
+name|expireAfterWriteNanos
 parameter_list|,
 name|int
 name|maximumSize
@@ -13104,9 +13291,9 @@ name|valueEquivalence
 expr_stmt|;
 name|this
 operator|.
-name|expirationNanos
+name|expireAfterWriteNanos
 operator|=
-name|expirationNanos
+name|expireAfterWriteNanos
 expr_stmt|;
 name|this
 operator|.
@@ -13278,19 +13465,20 @@ argument_list|(
 name|evictionListener
 argument_list|)
 expr_stmt|;
+comment|// TODO(user): read/write expireAfterReadNanos, and increment
+comment|// serialVersionUIDs
 if|if
 condition|(
-name|expirationNanos
-operator|!=
+name|expireAfterWriteNanos
+operator|>
 literal|0
 condition|)
 block|{
-comment|// expiration() throws an exception if you pass 0.
 name|mapMaker
 operator|.
-name|expiration
+name|timeToLive
 argument_list|(
-name|expirationNanos
+name|expireAfterWriteNanos
 argument_list|,
 name|TimeUnit
 operator|.
@@ -13304,7 +13492,7 @@ name|maximumSize
 operator|!=
 name|MapMaker
 operator|.
-name|UNSET_MAXIMUM_SIZE
+name|UNSET_INT
 condition|)
 block|{
 name|mapMaker
@@ -13413,7 +13601,7 @@ name|serialVersionUID
 init|=
 literal|1
 decl_stmt|;
-DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expirationNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
+DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
 name|SerializationProxy
 parameter_list|(
 name|Strength
@@ -13435,7 +13623,7 @@ argument_list|>
 name|valueEquivalence
 parameter_list|,
 name|long
-name|expirationNanos
+name|expireAfterWriteNanos
 parameter_list|,
 name|int
 name|maximumSize
@@ -13474,7 +13662,7 @@ name|keyEquivalence
 argument_list|,
 name|valueEquivalence
 argument_list|,
-name|expirationNanos
+name|expireAfterWriteNanos
 argument_list|,
 name|maximumSize
 argument_list|,

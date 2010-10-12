@@ -666,10 +666,12 @@ name|CANCELLED
 return|;
 block|}
 comment|/**      * Transition to the COMPLETED state and set the value.      */
-DECL|method|set (V v)
+DECL|method|set (@ullable V v)
 name|boolean
 name|set
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|v
 parameter_list|)
@@ -723,11 +725,13 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Implementation of completing a task.  Either {@code v} or {@code t} will      * be set but not both.  The {@code finalState} is the state to change to      * from {@link #RUNNING}.  If the state is not in the RUNNING state we      * return {@code false}.      *      * @param v the value to set as the result of the computation.      * @param t the exception to set as the result of the computation.      * @param finalState the state to transition to.      */
-DECL|method|complete (V v, Throwable t, int finalState)
+DECL|method|complete (@ullable V v, Throwable t, int finalState)
 specifier|private
 name|boolean
 name|complete
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|v
 parameter_list|,

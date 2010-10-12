@@ -205,12 +205,9 @@ argument_list|(
 name|size
 argument_list|)
 expr_stmt|;
-comment|// TODO(gak): try smaller table sizes
 name|int
 name|tableSize
 init|=
-name|Hashing
-operator|.
 name|chooseTableSize
 argument_list|(
 name|size
@@ -402,6 +399,44 @@ operator|=
 name|keySetHashCodeMutable
 expr_stmt|;
 block|}
+DECL|method|chooseTableSize (int size)
+specifier|private
+specifier|static
+name|int
+name|chooseTableSize
+parameter_list|(
+name|int
+name|size
+parameter_list|)
+block|{
+comment|// least power of 2 greater than size
+name|int
+name|tableSize
+init|=
+name|Integer
+operator|.
+name|highestOneBit
+argument_list|(
+name|size
+argument_list|)
+operator|<<
+literal|1
+decl_stmt|;
+name|checkArgument
+argument_list|(
+name|tableSize
+operator|>
+literal|0
+argument_list|,
+literal|"table too large: %s"
+argument_list|,
+name|size
+argument_list|)
+expr_stmt|;
+return|return
+name|tableSize
+return|;
+block|}
 comment|/**    * Creates a {@link LinkedEntry} array to hold parameterized entries. The    * result must never be upcast back to LinkedEntry[] (or Object[], etc.), or    * allowed to escape the class.    */
 annotation|@
 name|SuppressWarnings
@@ -577,7 +612,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|// assume that equals uses the == optimization when appropriate
+comment|/*        * Assume that equals uses the == optimization when appropriate, and that        * it would check hash codes as an optimization when appropriate. If we        * did these things, it would just make things worse for the most        * performance-conscious users.        */
 if|if
 condition|(
 name|key
@@ -1197,7 +1232,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractIndexedIterator
+name|AbstractIndexedListIterator
 argument_list|<
 name|V
 argument_list|>
