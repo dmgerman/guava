@@ -245,7 +245,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A {@link ConcurrentMap} builder, providing any combination of these  * features: {@linkplain SoftReference soft} or {@linkplain WeakReference  * weak} keys, soft or weak values, size-based evicition, timed expiration, and  * on-demand computation of values. Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .softKeys()  *       .weakValues()  *       .maximumSize(10000)  *       .timeToLive(10, TimeUnit.MINUTES)  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  * These features are all optional; {@code new MapMaker().makeMap()}  * returns a valid concurrent map that behaves exactly like a  * {@link ConcurrentHashMap}.  *  * The returned map is implemented as a hash table with similar performance  * characteristics to {@link ConcurrentHashMap}. It supports all optional  * operations of the {@code ConcurrentMap} interface. It does not permit  * null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons  * (the {@link Object#equals(Object) equals} method) to determine equality  * for keys or values. However, if {@link #weakKeys()} or {@link  * #softKeys()} was specified, the map uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues()} or  * {@link #softValues()} was specified, the map uses identity comparisons  * for values.  *  *<p>The returned map has<i>weakly consistent iteration</i>: an iterator  * over one of the map's view collections may reflect some, all or none of  * the changes made to the map after the iterator was created.  *  *<p>An entry whose key or value is reclaimed by the garbage collector  * immediately disappears from the map. (If the default settings of strong  * keys and strong values are used, this will never happen.) The client can  * never observe a partially-reclaimed entry. Any {@link java.util.Map.Entry}  * instance retrieved from the map's {@linkplain Map#entrySet() entry set}  * is a snapshot of that entry's state at the time of retrieval; such entries  * do, however, support {@link java.util.Map.Entry#setValue}.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the  * deserialized maps retain all the configuration properties of the original  * map. If the map uses soft or weak references, the entries will be  * reconstructed as they were, but there is no guarantee that the entries won't  * be immediately reclaimed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} can almost always be  * used as a drop-in replacement for {@link java.util.WeakHashMap}, adding  * concurrency, asynchronous cleanup, identity-based equality for keys, and  * great flexibility.  *  * @author Bob Lee  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  *<p>A {@link ConcurrentMap} builder, providing any combination of these  * features: {@linkplain SoftReference soft} or {@linkplain WeakReference  * weak} keys, soft or weak values, size-based evicition, timed expiration, and  * on-demand computation of values. Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .softKeys()  *       .weakValues()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  * These features are all optional; {@code new MapMaker().makeMap()}  * returns a valid concurrent map that behaves exactly like a  * {@link ConcurrentHashMap}.  *  * The returned map is implemented as a hash table with similar performance  * characteristics to {@link ConcurrentHashMap}. It supports all optional  * operations of the {@code ConcurrentMap} interface. It does not permit  * null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons  * (the {@link Object#equals(Object) equals} method) to determine equality  * for keys or values. However, if {@link #weakKeys()} or {@link  * #softKeys()} was specified, the map uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues()} or  * {@link #softValues()} was specified, the map uses identity comparisons  * for values.  *  *<p>The returned map has<i>weakly consistent iteration</i>: an iterator  * over one of the map's view collections may reflect some, all or none of  * the changes made to the map after the iterator was created.  *  *<p>An entry whose key or value is reclaimed by the garbage collector  * immediately disappears from the map. (If the default settings of strong  * keys and strong values are used, this will never happen.) The client can  * never observe a partially-reclaimed entry. Any {@link java.util.Map.Entry}  * instance retrieved from the map's {@linkplain Map#entrySet() entry set}  * is a snapshot of that entry's state at the time of retrieval; such entries  * do, however, support {@link java.util.Map.Entry#setValue}.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the  * deserialized maps retain all the configuration properties of the original  * map. If the map uses soft or weak references, the entries will be  * reconstructed as they were, but there is no guarantee that the entries won't  * be immediately reclaimed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} can almost always be  * used as a drop-in replacement for {@link java.util.WeakHashMap}, adding  * concurrency, asynchronous cleanup, identity-based equality for keys, and  * great flexibility.  *  * @author Bob Lee  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -331,15 +331,15 @@ DECL|field|valueStrength
 name|Strength
 name|valueStrength
 decl_stmt|;
-DECL|field|timeToLiveNanos
+DECL|field|expireAfterWriteNanos
 name|long
-name|timeToLiveNanos
+name|expireAfterWriteNanos
 init|=
 name|UNSET_INT
 decl_stmt|;
-DECL|field|timeToIdleNanos
+DECL|field|expireAfterAccessNanos
 name|long
-name|timeToIdleNanos
+name|expireAfterAccessNanos
 init|=
 name|UNSET_INT
 decl_stmt|;
@@ -900,7 +900,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation.    * Note that changing the value of an entry will reset its expiration    * time.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to live or time to idle was    *     already set    */
+comment|/**    * Old name of {@link #expireAfterWrite}.    */
 comment|// TODO(user): deprecate
 annotation|@
 name|Override
@@ -917,7 +917,7 @@ name|unit
 parameter_list|)
 block|{
 return|return
-name|timeToLive
+name|expireAfterWrite
 argument_list|(
 name|duration
 argument_list|,
@@ -925,13 +925,15 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation.    * Note that changing the value of an entry will reset its expiration    * time.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to live or time to idle was    *     already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation.    * Note that changing the value of an entry will reset its expiration    * time.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to live or time to idle was    *     already set    * @since 8    */
+annotation|@
+name|Beta
 annotation|@
 name|Override
-DECL|method|timeToLive (long duration, TimeUnit unit)
+DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|MapMaker
-name|timeToLive
+name|expireAfterWrite
 parameter_list|(
 name|long
 name|duration
@@ -949,7 +951,7 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|timeToLiveNanos
+name|expireAfterWriteNanos
 operator|=
 name|unit
 operator|.
@@ -980,24 +982,24 @@ parameter_list|)
 block|{
 name|checkState
 argument_list|(
-name|timeToLiveNanos
+name|expireAfterWriteNanos
 operator|==
 name|UNSET_INT
 argument_list|,
 literal|"time to live of %s ns was already set"
 argument_list|,
-name|timeToLiveNanos
+name|expireAfterWriteNanos
 argument_list|)
 expr_stmt|;
 name|checkState
 argument_list|(
-name|timeToIdleNanos
+name|expireAfterAccessNanos
 operator|==
 name|UNSET_INT
 argument_list|,
 literal|"time to idle of ns was already set"
 argument_list|,
-name|timeToIdleNanos
+name|expireAfterAccessNanos
 argument_list|)
 expr_stmt|;
 name|checkArgument
@@ -1014,34 +1016,37 @@ name|unit
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getTimeToLiveNanos ()
+DECL|method|getExpireAfterWriteNanos ()
 name|long
-name|getTimeToLiveNanos
+name|getExpireAfterWriteNanos
 parameter_list|()
 block|{
 return|return
 operator|(
-name|timeToLiveNanos
+name|expireAfterWriteNanos
 operator|==
 name|UNSET_INT
 operator|)
 condition|?
 name|DEFAULT_EXPIRATION_NANOS
 else|:
-name|timeToLiveNanos
+name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's last access.    *    * @param duration the length of time after an entry is last accessed    *     that it should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to idle or time to live was    *     already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's last access.    *    * @param duration the length of time after an entry is last accessed    *     that it should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to idle or time to live was    *     already set    * @since 8    */
+annotation|@
+name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
-comment|// TODO(user): make public and add @Override after: 1) completing unit tests,
-comment|// and 2) implementing serialization.
-DECL|method|timeToIdle (long duration, TimeUnit unit)
+annotation|@
+name|Override
+DECL|method|expireAfterAccess (long duration, TimeUnit unit)
+specifier|public
 name|MapMaker
-name|timeToIdle
+name|expireAfterAccess
 parameter_list|(
 name|long
 name|duration
@@ -1059,7 +1064,7 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|timeToIdleNanos
+name|expireAfterAccessNanos
 operator|=
 name|unit
 operator|.
@@ -1076,21 +1081,21 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|getTimeToIdleNanos ()
+DECL|method|getExpireAfterAccessNanos ()
 name|long
-name|getTimeToIdleNanos
+name|getExpireAfterAccessNanos
 parameter_list|()
 block|{
 return|return
 operator|(
-name|timeToIdleNanos
+name|expireAfterAccessNanos
 operator|==
 name|UNSET_INT
 operator|)
 condition|?
 name|DEFAULT_EXPIRATION_NANOS
 else|:
-name|timeToIdleNanos
+name|expireAfterAccessNanos
 return|;
 block|}
 comment|/**    * Specifies a listener instance, which all maps built using this {@code    * MapMaker} will notify each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it    * evicts an entry, whether it does so due to timed expiration, exceeding the    * maximum size, or discovering that the key or value has been reclaimed by    * the garbage collector. It will invoke the listener synchronously, during    * invocations of any of that map's public methods (even read-only methods).    * The listener will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code    * MapMaker} instance, this method returns {@code GenericMapMaker<K, V>}.    * From this point on, either the original reference or the returned    * reference may be used to complete configuration and build the map, but only    * the "generic" one is type-safe. That is, it will properly prevent you from    * building maps whose key or value types are incompatible with the types    * accepted by the listener already provided; the {@code MapMaker} type cannot    * do this. For best results, simply use the standard method-chaining idiom,    * as illustrated in the documentation at top, configuring a {@code MapMaker}    * and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code    * MapMaker} to build maps whose key or value types are incompatible with the    * listener, you will likely experience a {@link ClassCastException} at an    * undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @since 7    */

@@ -530,7 +530,7 @@ name|unit
 parameter_list|)
 block|{
 return|return
-name|timeToLive
+name|expireAfterWrite
 argument_list|(
 name|duration
 argument_list|,
@@ -540,10 +540,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|timeToLive (long duration, TimeUnit unit)
+DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|MapMaker
-name|timeToLive
+name|expireAfterWrite
 parameter_list|(
 name|long
 name|duration

@@ -293,8 +293,10 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#timeToLive}.    */
-DECL|method|timeToLive ( long duration, TimeUnit unit)
+comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since 8    */
+annotation|@
+name|Beta
+DECL|method|expireAfterWrite ( long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
 name|GenericMapMaker
@@ -303,7 +305,33 @@ name|K0
 argument_list|,
 name|V0
 argument_list|>
-name|timeToLive
+name|expireAfterWrite
+parameter_list|(
+name|long
+name|duration
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+function_decl|;
+comment|/**    * See {@link MapMaker#expireAfterAccess}.    *    * @since 8    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|expireAfterAccess ( long duration, TimeUnit unit)
+specifier|public
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|expireAfterAccess
 parameter_list|(
 name|long
 name|duration

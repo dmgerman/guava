@@ -149,8 +149,10 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#timeToLive}.    */
-DECL|method|timeToLive ( long duration, TimeUnit unit)
+comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since 8    */
+annotation|@
+name|Beta
+DECL|method|expireAfterWrite ( long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
 name|GenericMapMaker
@@ -159,7 +161,7 @@ name|K0
 argument_list|,
 name|V0
 argument_list|>
-name|timeToLive
+name|expireAfterWrite
 parameter_list|(
 name|long
 name|duration

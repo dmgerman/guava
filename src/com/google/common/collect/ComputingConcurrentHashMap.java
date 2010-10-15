@@ -398,7 +398,7 @@ try|try
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -842,7 +842,7 @@ condition|(
 name|evictsBySize
 argument_list|()
 operator|||
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -1527,7 +1527,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|1
+literal|2
 decl_stmt|;
 DECL|method|writeReplace ()
 annotation|@
@@ -1554,6 +1554,8 @@ argument_list|,
 name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
+argument_list|,
+name|expireAfterAccessNanos
 argument_list|,
 name|maximumSize
 argument_list|,
@@ -1608,7 +1610,7 @@ name|V
 argument_list|>
 name|cache
 decl_stmt|;
-DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1631,6 +1633,9 @@ name|valueEquivalence
 parameter_list|,
 name|long
 name|expireAfterWriteNanos
+parameter_list|,
+name|long
+name|expireAfterAccessNanos
 parameter_list|,
 name|int
 name|maximumSize
@@ -1682,6 +1687,8 @@ argument_list|,
 name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
+argument_list|,
+name|expireAfterAccessNanos
 argument_list|,
 name|maximumSize
 argument_list|,
@@ -1825,7 +1832,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|1
+literal|2
 decl_stmt|;
 block|}
 block|}

@@ -561,7 +561,6 @@ return|;
 block|}
 comment|/**    * Creates a {@link ListenableFuture} out of a normal {@link Future} and uses    * the given {@link Executor} to get the value of the Future. The    * returned future will create a thread using the given executor to wait for    * the source future to complete before executing the listeners.    *    *<p>Callers who have a future that subclasses    * {@link java.util.concurrent.FutureTask} may want to instead subclass    * {@link ListenableFutureTask}, which adds the {@link ListenableFuture}    * functionality to the standard {@code FutureTask} implementation.    */
 DECL|method|makeListenable ( Future<V> future, Executor executor)
-specifier|public
 specifier|static
 parameter_list|<
 name|V

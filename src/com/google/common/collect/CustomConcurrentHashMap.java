@@ -511,10 +511,10 @@ name|Strength
 name|valueStrength
 decl_stmt|;
 comment|/**    * How long after the last access to an entry the map will retain that    * entry.    */
-DECL|field|expireAfterReadNanos
+DECL|field|expireAfterAccessNanos
 specifier|final
 name|long
-name|expireAfterReadNanos
+name|expireAfterAccessNanos
 decl_stmt|;
 comment|/**    * How long after the last write to an entry the map will retain that    * entry.    */
 DECL|field|expireAfterWriteNanos
@@ -606,35 +606,20 @@ operator|.
 name|getValueEquivalence
 argument_list|()
 expr_stmt|;
-comment|// MapMaker ensures that timeToLive and timeToIdle are mutually exclusive
-name|expireAfterReadNanos
+name|expireAfterAccessNanos
 operator|=
 name|builder
 operator|.
-name|getTimeToIdleNanos
+name|getExpireAfterAccessNanos
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|expiresAfterRead
-argument_list|()
-condition|)
-block|{
-name|expireAfterWriteNanos
-operator|=
-name|expireAfterReadNanos
-expr_stmt|;
-block|}
-else|else
-block|{
 name|expireAfterWriteNanos
 operator|=
 name|builder
 operator|.
-name|getTimeToLiveNanos
+name|getExpireAfterWriteNanos
 argument_list|()
 expr_stmt|;
-block|}
 name|maximumSize
 operator|=
 name|builder
@@ -655,7 +640,7 @@ name|getFactory
 argument_list|(
 name|keyStrength
 argument_list|,
-name|expiresAfterWrite
+name|expires
 argument_list|()
 argument_list|,
 name|evictsBySize
@@ -1024,6 +1009,19 @@ operator|.
 name|UNSET_INT
 return|;
 block|}
+DECL|method|expires ()
+name|boolean
+name|expires
+parameter_list|()
+block|{
+return|return
+name|expiresAfterWrite
+argument_list|()
+operator|||
+name|expiresAfterAccess
+argument_list|()
+return|;
+block|}
 DECL|method|expiresAfterWrite ()
 name|boolean
 name|expiresAfterWrite
@@ -1035,13 +1033,13 @@ operator|>
 literal|0
 return|;
 block|}
-DECL|method|expiresAfterRead ()
+DECL|method|expiresAfterAccess ()
 name|boolean
-name|expiresAfterRead
+name|expiresAfterAccess
 parameter_list|()
 block|{
 return|return
-name|expireAfterReadNanos
+name|expireAfterAccessNanos
 operator|>
 literal|0
 return|;
@@ -6889,7 +6887,7 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 operator|&&
 name|isExpired
@@ -7385,7 +7383,7 @@ condition|(
 name|evictsBySize
 argument_list|()
 operator|||
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -7482,7 +7480,7 @@ condition|(
 name|evictsBySize
 argument_list|()
 operator|||
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -7528,7 +7526,23 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
-comment|// TODO(user): update timestamp without reordering eviction lists?
+if|if
+condition|(
+name|expiresAfterAccess
+argument_list|()
+condition|)
+block|{
+name|recordExpirationTime
+argument_list|(
+operator|(
+name|Expirable
+operator|)
+name|entry
+argument_list|,
+name|expireAfterAccessNanos
+argument_list|)
+expr_stmt|;
+block|}
 name|recencyQueue
 operator|.
 name|add
@@ -7614,14 +7628,36 @@ operator|instanceof
 name|Expirable
 condition|)
 block|{
-name|addExpirable
-argument_list|(
+comment|// currently MapMaker ensures that expireAfterWrite and
+comment|// expireAfterAccess are mutually exclusive
+name|long
+name|expiration
+init|=
+name|expiresAfterAccess
+argument_list|()
+condition|?
+name|expireAfterAccessNanos
+else|:
+name|expireAfterWriteNanos
+decl_stmt|;
+name|Expirable
+name|expirable
+init|=
 operator|(
 name|Expirable
 operator|)
 name|entry
+decl_stmt|;
+name|recordExpirationTime
+argument_list|(
+name|expirable
 argument_list|,
-name|expireAfterWriteNanos
+name|expiration
+argument_list|)
+expr_stmt|;
+name|addExpirable
+argument_list|(
+name|expirable
 argument_list|)
 expr_stmt|;
 block|}
@@ -7727,8 +7763,6 @@ block|{
 name|addExpirable
 argument_list|(
 name|expirable
-argument_list|,
-name|expireAfterReadNanos
 argument_list|)
 expr_stmt|;
 block|}
@@ -7752,15 +7786,12 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|addExpirable (Expirable expirable, long expirationNanos)
+DECL|method|addExpirable (Expirable expirable)
 name|void
 name|addExpirable
 parameter_list|(
 name|Expirable
 name|expirable
-parameter_list|,
-name|long
-name|expirationNanos
 parameter_list|)
 block|{
 comment|// unlink
@@ -7775,19 +7806,6 @@ name|expirable
 operator|.
 name|getNextExpirable
 argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// might overflow, but that's okay (see isExpired())
-name|expirable
-operator|.
-name|setExpirationTime
-argument_list|(
-name|System
-operator|.
-name|nanoTime
-argument_list|()
-operator|+
-name|expirationNanos
 argument_list|)
 expr_stmt|;
 comment|// add to tail
@@ -7806,6 +7824,31 @@ argument_list|(
 name|expirable
 argument_list|,
 name|expirationHead
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|recordExpirationTime (Expirable expirable, long expirationNanos)
+name|void
+name|recordExpirationTime
+parameter_list|(
+name|Expirable
+name|expirable
+parameter_list|,
+name|long
+name|expirationNanos
+parameter_list|)
+block|{
+comment|// might overflow, but that's okay (see isExpired())
+name|expirable
+operator|.
+name|setExpirationTime
+argument_list|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|+
+name|expirationNanos
 argument_list|)
 expr_stmt|;
 block|}
@@ -8498,7 +8541,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 operator|&&
 name|isExpired
@@ -8514,7 +8557,7 @@ condition|(
 name|evictsBySize
 argument_list|()
 operator|||
-name|expiresAfterRead
+name|expiresAfterAccess
 argument_list|()
 condition|)
 block|{
@@ -8840,7 +8883,7 @@ try|try
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -8962,7 +9005,7 @@ condition|(
 name|evictsBySize
 argument_list|()
 operator|||
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -9015,7 +9058,7 @@ try|try
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -9160,7 +9203,7 @@ try|try
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -9328,7 +9371,7 @@ condition|(
 name|evictsBySize
 argument_list|()
 operator|||
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -10008,7 +10051,7 @@ try|try
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -10590,7 +10633,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -11654,7 +11697,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|expiresAfterWrite
+name|expires
 argument_list|()
 argument_list|)
 return|;
@@ -13083,7 +13126,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|3
+literal|4
 decl_stmt|;
 DECL|method|writeReplace ()
 name|Object
@@ -13108,6 +13151,8 @@ argument_list|,
 name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
+argument_list|,
+name|expireAfterAccessNanos
 argument_list|,
 name|maximumSize
 argument_list|,
@@ -13147,7 +13192,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|1
+literal|2
 decl_stmt|;
 DECL|field|keyStrength
 specifier|final
@@ -13179,6 +13224,11 @@ DECL|field|expireAfterWriteNanos
 specifier|final
 name|long
 name|expireAfterWriteNanos
+decl_stmt|;
+DECL|field|expireAfterAccessNanos
+specifier|final
+name|long
+name|expireAfterAccessNanos
 decl_stmt|;
 DECL|field|maximumSize
 specifier|final
@@ -13214,7 +13264,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
+DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
 name|AbstractSerializationProxy
 parameter_list|(
 name|Strength
@@ -13237,6 +13287,9 @@ name|valueEquivalence
 parameter_list|,
 name|long
 name|expireAfterWriteNanos
+parameter_list|,
+name|long
+name|expireAfterAccessNanos
 parameter_list|,
 name|int
 name|maximumSize
@@ -13294,6 +13347,12 @@ operator|.
 name|expireAfterWriteNanos
 operator|=
 name|expireAfterWriteNanos
+expr_stmt|;
+name|this
+operator|.
+name|expireAfterAccessNanos
+operator|=
+name|expireAfterAccessNanos
 expr_stmt|;
 name|this
 operator|.
@@ -13465,8 +13524,6 @@ argument_list|(
 name|evictionListener
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): read/write expireAfterReadNanos, and increment
-comment|// serialVersionUIDs
 if|if
 condition|(
 name|expireAfterWriteNanos
@@ -13476,9 +13533,28 @@ condition|)
 block|{
 name|mapMaker
 operator|.
-name|timeToLive
+name|expireAfterWrite
 argument_list|(
 name|expireAfterWriteNanos
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|expireAfterAccessNanos
+operator|>
+literal|0
+condition|)
+block|{
+name|mapMaker
+operator|.
+name|expireAfterAccess
+argument_list|(
+name|expireAfterAccessNanos
 argument_list|,
 name|TimeUnit
 operator|.
@@ -13599,9 +13675,9 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|1
+literal|2
 decl_stmt|;
-DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
+DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate)
 name|SerializationProxy
 parameter_list|(
 name|Strength
@@ -13624,6 +13700,9 @@ name|valueEquivalence
 parameter_list|,
 name|long
 name|expireAfterWriteNanos
+parameter_list|,
+name|long
+name|expireAfterAccessNanos
 parameter_list|,
 name|int
 name|maximumSize
@@ -13663,6 +13742,8 @@ argument_list|,
 name|valueEquivalence
 argument_list|,
 name|expireAfterWriteNanos
+argument_list|,
+name|expireAfterAccessNanos
 argument_list|,
 name|maximumSize
 argument_list|,
