@@ -192,6 +192,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ThreadFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|TimeUnit
 import|;
 end_import
@@ -2379,6 +2391,25 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+DECL|field|threadFactory
+specifier|private
+specifier|static
+specifier|final
+name|ThreadFactory
+name|threadFactory
+init|=
+operator|new
+name|ThreadFactoryBuilder
+argument_list|()
+operator|.
+name|setNameFormat
+argument_list|(
+literal|"ListenableFutureAdapter-thread-%d"
+argument_list|)
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
 DECL|field|defaultAdapterExecutor
 specifier|private
 specifier|static
@@ -2389,7 +2420,9 @@ init|=
 name|Executors
 operator|.
 name|newCachedThreadPool
-argument_list|()
+argument_list|(
+name|threadFactory
+argument_list|)
 decl_stmt|;
 DECL|field|adapterExecutor
 specifier|private
@@ -2511,6 +2544,15 @@ name|Executor
 name|exec
 parameter_list|)
 block|{
+name|executionList
+operator|.
+name|add
+argument_list|(
+name|listener
+argument_list|,
+name|exec
+argument_list|)
+expr_stmt|;
 comment|// When a listener is first added, we run a task that will wait for
 comment|// the delegate to finish, and when it is done will run the listeners.
 if|if
@@ -2531,6 +2573,23 @@ literal|true
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|delegate
+operator|.
+name|isDone
+argument_list|()
+condition|)
+block|{
+comment|// If the delegate is already done, run the execution list
+comment|// immediately on the current thread.
+name|executionList
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+return|return;
+block|}
 name|adapterExecutor
 operator|.
 name|execute
@@ -2570,6 +2629,14 @@ parameter_list|)
 block|{
 comment|// This thread was interrupted.  This should never happen, so we
 comment|// throw an IllegalStateException.
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|IllegalStateException
@@ -2586,7 +2653,8 @@ name|ExecutionException
 name|e
 parameter_list|)
 block|{
-comment|// The task caused an exception, so it is done, run the listeners.
+comment|// The task caused an exception, so it is done, run the
+comment|// listeners.
 block|}
 name|executionList
 operator|.
@@ -2598,15 +2666,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-name|executionList
-operator|.
-name|add
-argument_list|(
-name|listener
-argument_list|,
-name|exec
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}

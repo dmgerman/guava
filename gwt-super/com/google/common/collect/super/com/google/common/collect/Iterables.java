@@ -2280,8 +2280,6 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns the element at the specified position in an iterable or a default    * value otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is    *     greater than or equal to the size of the iterable    * @return the element at the specified position in {@code iterable} or    *     {@code defaultValue} if {@code iterable} contains fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4    */
-annotation|@
-name|Beta
 DECL|method|get (Iterable<T> iterable, int position, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2339,8 +2337,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the first element in {@code iterable} or {@code defaultValue} if    * the iterable is empty.  The {@link Iterators} analog to this method is    * {@link Iterators#getNext}.    *    * @param defaultValue the default value to return if the iterable is empty    * @return the first element of {@code iterable} or the default value    * @since 7    */
-annotation|@
-name|Beta
 DECL|method|getFirst (Iterable<T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static

@@ -194,6 +194,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -496,7 +510,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an appropriate value for the "capacity" (in reality, "minimum table    * size") parameter of a {@link HashMap} constructor, such that the resulting    * table will be between 25% and 50% full when it contains {@code    * expectedSize} entries.    *    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Returns an appropriate value for the "capacity" (in reality, "minimum table    * size") parameter of a {@link HashMap} constructor, such that the resulting    * table will be between 25% and 50% full when it contains {@code    * expectedSize} entries, unless {@code expectedSize} is greater than    * {@link Integer#MAX_VALUE} / 2.    *    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|capacity (int expectedSize)
 specifier|static
 name|int
@@ -513,16 +527,22 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
+comment|// Avoid the int overflow if expectedSize> (Integer.MAX_VALUE / 2)
 return|return
+name|Ints
+operator|.
+name|saturatedCast
+argument_list|(
 name|Math
 operator|.
 name|max
 argument_list|(
 name|expectedSize
 operator|*
-literal|2
+literal|2L
 argument_list|,
-literal|16
+literal|16L
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -2103,6 +2123,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable map entry with the specified key and value. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|serializable
+operator|=
+literal|true
+argument_list|)
 DECL|method|immutableEntry ( @ullable K key, @Nullable V value)
 specifier|public
 specifier|static
@@ -7056,15 +7083,14 @@ block|{
 name|StringBuilder
 name|sb
 init|=
-operator|new
-name|StringBuilder
+name|Collections2
+operator|.
+name|newStringBuilderForCollection
 argument_list|(
 name|map
 operator|.
 name|size
 argument_list|()
-operator|*
-literal|16
 argument_list|)
 operator|.
 name|append

@@ -449,6 +449,21 @@ else|:
 name|this
 return|;
 block|}
+DECL|method|reverse ()
+annotation|@
+name|Override
+specifier|public
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|reverse
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
@@ -556,6 +571,22 @@ name|element
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"["
+operator|+
+name|element
+operator|+
+literal|"]"
 return|;
 block|}
 DECL|method|isEmpty ()

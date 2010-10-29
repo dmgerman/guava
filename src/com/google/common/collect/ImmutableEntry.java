@@ -57,6 +57,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|serializable
+operator|=
+literal|true
+argument_list|)
 DECL|class|ImmutableEntry
 class|class
 name|ImmutableEntry

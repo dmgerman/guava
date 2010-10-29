@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty immutable list.  *  * @author Kevin Bourrillion  */
+comment|/**  * An empty immutable list.  *   * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -461,6 +461,21 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+DECL|method|reverse ()
+annotation|@
+name|Override
+specifier|public
+name|ImmutableList
+argument_list|<
+name|Object
+argument_list|>
+name|reverse
+parameter_list|()
+block|{
 return|return
 name|this
 return|;

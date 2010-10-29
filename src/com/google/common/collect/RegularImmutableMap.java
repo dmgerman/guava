@@ -1312,13 +1312,12 @@ block|{
 name|StringBuilder
 name|result
 init|=
-operator|new
-name|StringBuilder
+name|Collections2
+operator|.
+name|newStringBuilderForCollection
 argument_list|(
 name|size
 argument_list|()
-operator|*
-literal|16
 argument_list|)
 operator|.
 name|append

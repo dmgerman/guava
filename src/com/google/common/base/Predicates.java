@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -757,8 +743,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since 3    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
