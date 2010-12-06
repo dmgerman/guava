@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -36,27 +52,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
 import|;
 end_import
 
@@ -146,7 +142,7 @@ name|objects
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}. For    * example, in an object that contains two member variables, {@code x},    * and {@code y}, one could write:<pre><tt>    *   public class ClassName {    *     public String toString() {    *       return Objects.toStringHelper(this)    *           .add("x", x)    *           .add("y", y)    *           .toString();    *     }    *   }</tt>    *</pre>    *    * Assuming the values of {@code x} and {@code y} are 1 and 2,    * this code snippet returns the string<tt>"ClassName{x=1, y=2}"</tt>.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since 2    */
+comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *   }}</pre>    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since 2    */
 DECL|method|toStringHelper (Object self)
 specifier|public
 specifier|static
@@ -307,8 +303,6 @@ literal|null
 condition|?
 name|first
 else|:
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|second
@@ -319,31 +313,22 @@ comment|/**    * Support class for {@link Objects#toStringHelper}.    *    * @au
 DECL|class|ToStringHelper
 specifier|public
 specifier|static
+specifier|final
 class|class
 name|ToStringHelper
 block|{
-comment|// TODO(kevinb): why are we not just appending directly to a StringBuilder?
-DECL|field|fieldString
+DECL|field|builder
 specifier|private
 specifier|final
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|fieldString
-init|=
-operator|new
-name|ArrayList
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
+name|StringBuilder
+name|builder
 decl_stmt|;
-DECL|field|className
+DECL|field|separator
 specifier|private
-specifier|final
 name|String
-name|className
+name|separator
+init|=
+literal|""
 decl_stmt|;
 comment|/**      * Use {@link Objects#toStringHelper(Object)} to create an instance.      */
 DECL|method|ToStringHelper (String className)
@@ -356,13 +341,25 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|className
+name|builder
 operator|=
-name|Preconditions
+operator|new
+name|StringBuilder
+argument_list|(
+literal|32
+argument_list|)
 operator|.
+name|append
+argument_list|(
 name|checkNotNull
 argument_list|(
 name|className
+argument_list|)
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|'{'
 argument_list|)
 expr_stmt|;
 block|}
@@ -381,23 +378,40 @@ name|Object
 name|value
 parameter_list|)
 block|{
-return|return
-name|addValue
-argument_list|(
-name|Preconditions
+name|builder
 operator|.
+name|append
+argument_list|(
+name|separator
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|checkNotNull
 argument_list|(
 name|name
 argument_list|)
-operator|+
-literal|"="
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|'='
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|value
 argument_list|)
+expr_stmt|;
+name|separator
+operator|=
+literal|", "
+expr_stmt|;
+return|return
+name|this
 return|;
 block|}
-comment|/**      * Adds a value to the formatted output in {@code value} format.<p/>      *      * It is strongly encouraged to use {@link #add(String, Object)} instead and      * give value a readable name.      */
+comment|/**      * Adds a value to the formatted output in {@code value} format.      *      *<p>It is strongly encouraged to use {@link #add(String, Object)} instead      * and give value a readable name.      */
 DECL|method|addValue (@ullable Object value)
 specifier|public
 name|ToStringHelper
@@ -409,37 +423,27 @@ name|Object
 name|value
 parameter_list|)
 block|{
-name|fieldString
+name|builder
 operator|.
-name|add
+name|append
 argument_list|(
-name|String
+name|separator
+argument_list|)
 operator|.
-name|valueOf
+name|append
 argument_list|(
 name|value
 argument_list|)
-argument_list|)
+expr_stmt|;
+name|separator
+operator|=
+literal|", "
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
-DECL|field|JOINER
-specifier|private
-specifier|static
-specifier|final
-name|Joiner
-name|JOINER
-init|=
-name|Joiner
-operator|.
-name|on
-argument_list|(
-literal|", "
-argument_list|)
-decl_stmt|;
-comment|/**      * Returns the formatted string.      */
+comment|/**      * Returns a string in the format specified by {@link      * Objects#toStringHelper(Object)}.      */
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -448,34 +452,8 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuilder
-name|builder
-init|=
-operator|new
-name|StringBuilder
-argument_list|(
-literal|100
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|className
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|'{'
-argument_list|)
-decl_stmt|;
 return|return
-name|JOINER
-operator|.
-name|appendTo
-argument_list|(
 name|builder
-argument_list|,
-name|fieldString
-argument_list|)
 operator|.
 name|append
 argument_list|(

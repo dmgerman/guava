@@ -791,7 +791,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each value (not key) stored in the map should be    * wrapped in a {@link WeakReference} (by default, strong references    * are used).    *    *<p>Weak values will be garbage collected once they are weakly    * reachable. This makes them a poor candidate for caching; consider    * {@link #softValues()} instead.    *    *<p><b>Note:</b> the map will use identity ({@code ==}) comparison    * to determine equality of weak values. This will notably impact    * the behavior of {@link Map#containsValue(Object) containsValue},    * {@link ConcurrentMap#remove(Object, Object) remove(Object, Object)},    * and {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V, V)}.    *    * @throws IllegalStateException if the key strength was already set    * @see WeakReference    */
+comment|/**    * Specifies that each value (not key) stored in the map should be    * wrapped in a {@link WeakReference} (by default, strong references    * are used).    *    *<p>Weak values will be garbage collected once they are weakly    * reachable. This makes them a poor candidate for caching; consider    * {@link #softValues()} instead.    *    *<p><b>Note:</b> the map will use identity ({@code ==}) comparison    * to determine equality of weak values. This will notably impact    * the behavior of {@link Map#containsValue(Object) containsValue},    * {@link ConcurrentMap#remove(Object, Object) remove(Object, Object)},    * and {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V, V)}.    *    * @throws IllegalStateException if the value strength was already set    * @see WeakReference    */
 annotation|@
 name|GwtIncompatible
 argument_list|(

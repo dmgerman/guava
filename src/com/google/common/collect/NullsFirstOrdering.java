@@ -107,6 +107,8 @@ name|ordering
 expr_stmt|;
 block|}
 DECL|method|compare (@ullable T left, @Nullable T right)
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

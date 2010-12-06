@@ -956,7 +956,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (changed from varargs in release 3)    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since 2 (changed from varargs in release 3)    */
 annotation|@
 name|Deprecated
 DECL|method|of (E[] elements)

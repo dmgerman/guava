@@ -1100,6 +1100,39 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Creates an empty {@code Set} that uses identity to determine equality. It    * compares object references, instead of calling {@code equals}, to    * determine whether a provided object matches an element in the set. For    * example, {@code contains} returns {@code false} when passed an object that    * equals a set member, but isn't the same instance. This behavior is similar    * to the way {@link IdentityHashMap} handles key lookups.    *    * @since 8    */
+annotation|@
+name|Beta
+DECL|method|newIdentityHashSet ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|newIdentityHashSet
+parameter_list|()
+block|{
+return|return
+name|Sets
+operator|.
+name|newSetFromMap
+argument_list|(
+name|Maps
+operator|.
+expr|<
+name|E
+argument_list|,
+name|Boolean
+operator|>
+name|newIdentityHashMap
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/**    * Creates an {@code EnumSet} consisting of all enum values that are not in    * the specified collection. If the collection is an {@link EnumSet}, this    * method has the same behavior as {@link EnumSet#complementOf}. Otherwise,    * the specified collection must contain at least one element, in order to    * determine the element type. If the collection could be empty, use    * {@link #complementOf(Collection, Class)} instead of this method.    *    * @param collection the collection whose complement should be stored in the    *     enum set    * @return a new, modifiable {@code EnumSet} containing all values of the enum    *     that aren't present in the given collection    * @throws IllegalArgumentException if {@code collection} is not an    *     {@code EnumSet} instance and contains no elements    */
 DECL|method|complementOf ( Collection<E> collection)
 specifier|public

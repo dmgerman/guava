@@ -136,6 +136,8 @@ name|rankMap
 expr_stmt|;
 block|}
 DECL|method|compare (T left, T right)
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

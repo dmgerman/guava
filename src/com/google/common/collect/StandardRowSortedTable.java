@@ -136,6 +136,15 @@ name|C
 argument_list|,
 name|V
 argument_list|>
+implements|implements
+name|RowSortedTable
+argument_list|<
+name|R
+argument_list|,
+name|C
+argument_list|,
+name|V
+argument_list|>
 block|{
 comment|/*    * TODO(jlevy): Consider adding headTable, tailTable, and subTable methods,    * which return a Table view with rows keys in a given range. Create a    * RowSortedTable subinterface with the revised methods?    */
 DECL|method|StandardRowSortedTable (SortedMap<R, Map<C, V>> backingMap, Supplier<? extends Map<C, V>> factory)

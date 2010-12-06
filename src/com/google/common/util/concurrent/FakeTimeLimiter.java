@@ -65,6 +65,7 @@ annotation|@
 name|Beta
 DECL|class|FakeTimeLimiter
 specifier|public
+specifier|final
 class|class
 name|FakeTimeLimiter
 implements|implements

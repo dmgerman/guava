@@ -1135,15 +1135,6 @@ argument_list|,
 literal|"\tAz()"
 argument_list|)
 expr_stmt|;
-name|doTestNoMatches
-argument_list|(
-name|CharMatcher
-operator|.
-name|SINGLE_WIDTH
-argument_list|,
-literal|"\u05bf\u3000"
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|doTestNoMatches (CharMatcher matcher, String s)
 specifier|private
@@ -1366,15 +1357,6 @@ name|ASCII
 argument_list|)
 argument_list|,
 literal|"0123456789"
-argument_list|)
-expr_stmt|;
-name|doTestAllMatches
-argument_list|(
-name|CharMatcher
-operator|.
-name|SINGLE_WIDTH
-argument_list|,
-literal|"\t0123ABCdef~\u00A0\u2111"
 argument_list|)
 expr_stmt|;
 block|}

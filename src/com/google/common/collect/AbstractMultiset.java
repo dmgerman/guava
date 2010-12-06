@@ -62,22 +62,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Multiset
-operator|.
-name|Entry
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -127,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@link Multiset}  * interface. A new multiset implementation can be created easily by extending  * this class and implementing the {@link Multiset#entrySet()} method, plus  * optionally overriding {@link #add(Object, int)} and  * {@link #remove(Object, int)} to enable modifications to the multiset.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across   * the set returned by {@link Multiset#entrySet()}, as do many methods acting on  * the set returned by {@link #elementSet()}. Override those methods for better  * performance.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
+comment|/**  * This class provides a skeletal implementation of the {@link Multiset}  * interface. A new multiset implementation can be created easily by extending  * this class and implementing the {@link Multiset#entrySet()} method, plus  * optionally overriding {@link #add(Object, int)} and  * {@link #remove(Object, int)} to enable modifications to the multiset.  *  *<p>The {@link #count} and {@link #size} implementations all iterate across  * the set returned by {@link Multiset#entrySet()}, as do many methods acting on  * the set returned by {@link #elementSet()}. Override those methods for better  * performance.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
 end_comment
 
 begin_class

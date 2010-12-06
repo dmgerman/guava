@@ -343,7 +343,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A test utility that verifies that your methods throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever any  * of their parameters are null. To use it, you must first provide valid default  * values for the parameter types used by the class.  *  * @author Kevin Bourrillion  */
+comment|/**  * A test utility that verifies that your methods throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever any  * of their parameters are null. To use it, you must first provide valid default  * values for the parameter types used by the class.  *  * @author Kevin Bourrillion  * @since 8  */
 end_comment
 
 begin_class

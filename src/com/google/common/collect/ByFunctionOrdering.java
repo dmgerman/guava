@@ -183,6 +183,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|compare (F left, F right)
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

@@ -75,6 +75,8 @@ name|UsingToStringOrdering
 argument_list|()
 decl_stmt|;
 DECL|method|compare (Object left, Object right)
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

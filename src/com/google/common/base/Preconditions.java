@@ -1012,7 +1012,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|"]"
+literal|']'
 argument_list|)
 expr_stmt|;
 block|}

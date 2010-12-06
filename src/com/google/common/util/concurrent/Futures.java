@@ -1632,6 +1632,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Delegate the get() to the input and output futures, in case      * their implementations defer starting computation until their      * own get() is invoked.      */
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|O
@@ -1725,6 +1727,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Delegate the get() to the input and output futures, in case      * their implementations defer starting computation until their      * own get() is invoked.      */
+annotation|@
+name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|O

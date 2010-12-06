@@ -117,6 +117,8 @@ name|NaturalOrdering
 argument_list|()
 decl_stmt|;
 DECL|method|compare (Comparable left, Comparable right)
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

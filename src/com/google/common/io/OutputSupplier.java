@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An factory for writable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * A factory for writable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 1  */
 end_comment
 
 begin_interface
@@ -39,6 +39,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
+comment|/**    * Returns an object that encapsulates a writable resource.    *<p>    * Like {@link Iterable#iterator}, this method may be called repeatedly to    * get independent channels to the same underlying resource.    *<p>    * Where the channel maintains a position within the resource, moving that    * cursor within one channel should not affect the starting position of    * channels returned by other calls.    */
 DECL|method|getOutput ()
 name|T
 name|getOutput

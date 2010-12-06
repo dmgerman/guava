@@ -1294,7 +1294,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code int} arrays    * lexicographically. That is, it compares, using {@link    * #compare(int, int)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [1]< [1, 2]< [2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(int[], int[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order</a> article at Wikipedia    * @since 2    */
+comment|/**    * Returns a comparator that compares two {@code int} arrays    * lexicographically. That is, it compares, using {@link    * #compare(int, int)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [1]< [1, 2]< [2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(int[], int[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

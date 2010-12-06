@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains additional assertion methods not found in JUnit.  *  * @author kevinb@google.com (Kevin Bourillion)  */
+comment|/**  * Contains additional assertion methods not found in JUnit.  *  * @author kevinb@google.com (Kevin Bourillion)  * @since 8  */
 end_comment
 
 begin_class

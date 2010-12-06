@@ -119,7 +119,9 @@ operator|=
 name|elementOrder
 expr_stmt|;
 block|}
-DECL|method|compare (Iterable<T> leftIterable, Iterable<T> rightIterable)
+DECL|method|compare ( Iterable<T> leftIterable, Iterable<T> rightIterable)
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare

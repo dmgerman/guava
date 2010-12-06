@@ -716,14 +716,6 @@ name|V
 argument_list|>
 name|defaultListener
 init|=
-operator|(
-name|MapEvictionListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-operator|)
 name|NullListener
 operator|.
 name|INSTANCE
@@ -3623,6 +3615,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|size
@@ -3632,6 +3626,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -7364,7 +7360,7 @@ name|int
 name|maxSegmentSize
 parameter_list|)
 block|{
-name|setTable
+name|initTable
 argument_list|(
 name|newEntryArray
 argument_list|(
@@ -7452,12 +7448,66 @@ name|size
 argument_list|)
 return|;
 block|}
+DECL|method|initTable (AtomicReferenceArray<ReferenceEntry<K, V>> newTable)
+name|void
+name|initTable
+parameter_list|(
+name|AtomicReferenceArray
+argument_list|<
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+name|newTable
+parameter_list|)
+block|{
+name|this
+operator|.
+name|threshold
+operator|=
+name|newTable
+operator|.
+name|length
+argument_list|()
+operator|*
+literal|3
+operator|/
+literal|4
+expr_stmt|;
+comment|// 0.75
+if|if
+condition|(
+name|this
+operator|.
+name|threshold
+operator|==
+name|maxSegmentSize
+condition|)
+block|{
+comment|// prevent spurious expansion before eviction
+name|this
+operator|.
+name|threshold
+operator|++
+expr_stmt|;
+block|}
+name|this
+operator|.
+name|table
+operator|=
+name|newTable
+expr_stmt|;
+block|}
 comment|/**      * Sets a new value of an entry. Adds newly created entries at the end      * of the expiration queue.      */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
+comment|// if evictsBySize || expires
 DECL|method|setValue (ReferenceEntry<K, V> entry, V value)
 name|void
 name|setValue
@@ -7474,7 +7524,6 @@ name|V
 name|value
 parameter_list|)
 block|{
-comment|// Note: this if is mirrored in ComputingConcurrentHashMap.
 if|if
 condition|(
 name|evictsBySize
@@ -7495,6 +7544,110 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
+block|}
+name|setValueReference
+argument_list|(
+name|entry
+argument_list|,
+name|valueStrength
+operator|.
+name|referenceValue
+argument_list|(
+name|entry
+argument_list|,
+name|value
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Sets the value of a newly computed entry. Adds newly created entries at      * the end of the expiration queue.      */
+DECL|method|setComputedValue (ReferenceEntry<K, V> entry, V value)
+name|void
+name|setComputedValue
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|,
+name|V
+name|value
+parameter_list|)
+block|{
+if|if
+condition|(
+name|evictsBySize
+argument_list|()
+operator|||
+name|expires
+argument_list|()
+condition|)
+block|{
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+if|if
+condition|(
+name|evictsBySize
+argument_list|()
+operator|||
+name|expires
+argument_list|()
+condition|)
+block|{
+comment|// "entry" currently points to the original entry created when
+comment|// computation began, but by now that entry may have been replaced.
+comment|// Find the current entry, and pass it to recordWrite to ensure that
+comment|// the eviction lists are consistent with the current map entries.
+name|K
+name|key
+init|=
+name|entry
+operator|.
+name|getKey
+argument_list|()
+decl_stmt|;
+name|int
+name|hash
+init|=
+name|entry
+operator|.
+name|getHash
+argument_list|()
+decl_stmt|;
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newEntry
+init|=
+name|getEntry
+argument_list|(
+name|key
+argument_list|,
+name|hash
+argument_list|)
+decl_stmt|;
+name|recordWrite
+argument_list|(
+name|newEntry
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|setValueReference
 argument_list|(
@@ -7582,7 +7735,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant expiration lists.      */
+comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant eviction lists.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -7601,6 +7754,12 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// we are already under lock, so drain the recency queue immediately
 name|drainRecencyQueue
 argument_list|()
@@ -7662,7 +7821,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Drains the recency queue, updating eviction metadata that the entries      * therein were read in the specified relative order. This currently amounts      * to adding them to relevant expiration lists (accounting for the fact that      * they could have been removed from the map since being added to the      * recency queue).      */
+comment|/**      * Drains the recency queue, updating eviction metadata that the entries      * therein were read in the specified relative order. This currently amounts      * to adding them to relevant eviction lists (accounting for the fact that      * they could have been removed from the map since being added to the      * recency queue).      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -7673,6 +7832,12 @@ name|void
 name|drainRecencyQueue
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// While the recency queue is being drained it may be concurrently
 comment|// appended to. The number of elements removed are tracked so that the
 comment|// length can be decremented by the delta rather than set to zero.
@@ -7794,6 +7959,12 @@ name|Expirable
 name|expirable
 parameter_list|)
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// unlink
 name|connectExpirables
 argument_list|(
@@ -7865,6 +8036,12 @@ name|Expirable
 name|expirable
 parameter_list|)
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|connectExpirables
 argument_list|(
 name|expirable
@@ -7918,6 +8095,12 @@ name|void
 name|expireEntries
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
@@ -8032,6 +8215,12 @@ name|void
 name|clearExpirationQueue
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Expirable
 name|expirable
 init|=
@@ -8092,6 +8281,12 @@ name|void
 name|evictEntry
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
@@ -8178,6 +8373,12 @@ name|Evictable
 name|evictable
 parameter_list|)
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|evictable
@@ -8235,6 +8436,12 @@ name|Evictable
 name|evictable
 parameter_list|)
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|connectEvictables
 argument_list|(
 name|evictable
@@ -8268,7 +8475,6 @@ name|evictable
 parameter_list|)
 block|{
 return|return
-operator|(
 name|evictable
 operator|.
 name|getNextEvictable
@@ -8277,7 +8483,6 @@ operator|!=
 name|NullEvictable
 operator|.
 name|INSTANCE
-operator|)
 return|;
 block|}
 annotation|@
@@ -8290,6 +8495,12 @@ name|void
 name|clearEvictionQueue
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Evictable
 name|evictable
 init|=
@@ -8336,65 +8547,6 @@ name|setPreviousEvictable
 argument_list|(
 name|evictionHead
 argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Sets table to new HashEntry array.      */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
-DECL|method|setTable (AtomicReferenceArray<ReferenceEntry<K, V>> newTable)
-name|void
-name|setTable
-parameter_list|(
-name|AtomicReferenceArray
-argument_list|<
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|newTable
-parameter_list|)
-block|{
-name|this
-operator|.
-name|threshold
-operator|=
-name|newTable
-operator|.
-name|length
-argument_list|()
-operator|*
-literal|3
-operator|/
-literal|4
-expr_stmt|;
-comment|// 0.75
-if|if
-condition|(
-name|this
-operator|.
-name|threshold
-operator|==
-name|maxSegmentSize
-condition|)
-block|{
-comment|// prevent spurious expansion before eviction
-name|this
-operator|.
-name|threshold
-operator|++
-expr_stmt|;
-block|}
-name|this
-operator|.
-name|table
-operator|=
-name|newTable
 expr_stmt|;
 block|}
 comment|/**      * Returns first entry of bin for given hash.      */
@@ -9504,6 +9656,12 @@ name|void
 name|expand
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -10631,6 +10789,12 @@ argument_list|>
 name|removed
 parameter_list|)
 block|{
+name|checkState
+argument_list|(
+name|isLocked
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|expires
@@ -11347,7 +11511,11 @@ comment|// TODO(kevinb): verify the importance of this crazy trick with Doug
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"UnusedDeclaration"
+block|,
+literal|"unused"
+block|}
 argument_list|)
 name|int
 name|c
@@ -11426,7 +11594,11 @@ comment|// TODO(kevinb): verify the importance of this crazy trick with Doug
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"UnusedDeclaration"
+block|,
+literal|"unused"
+block|}
 argument_list|)
 name|int
 name|c
@@ -13379,6 +13551,8 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|delegate ()
 specifier|protected
 name|ConcurrentMap
@@ -13469,8 +13643,6 @@ name|in
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|ClassNotFoundException
 block|{
 name|int
 name|size

@@ -51,6 +51,7 @@ annotation|@
 name|Beta
 DECL|class|ValueFuture
 specifier|public
+specifier|final
 class|class
 name|ValueFuture
 parameter_list|<

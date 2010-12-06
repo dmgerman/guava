@@ -87,7 +87,7 @@ name|message
 argument_list|)
 throw|;
 block|}
-comment|/**    * Test the condition and throw a failure exception if false with     * a stock message.    *    * @throws RuntimeException    */
+comment|/**    * Test the condition and throw a failure exception if false with    * a stock message.    *    * @throws RuntimeException    */
 DECL|method|assertTrue (boolean condition)
 specifier|public
 specifier|static
@@ -109,7 +109,7 @@ literal|"Condition expected to be true but was false."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test the condition and throw a failure exception if false with     * a stock message.    *    * @throws RuntimeException    */
+comment|/**    * Test the condition and throw a failure exception if false with    * a stock message.    *    * @throws RuntimeException    */
 DECL|method|assertTrue (String message, boolean condition)
 specifier|public
 specifier|static
