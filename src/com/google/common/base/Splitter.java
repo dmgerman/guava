@@ -840,7 +840,7 @@ name|trimmer
 argument_list|)
 return|;
 block|}
-comment|/**    * Splits the {@link CharSequence} passed in parameter.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter.    */
+comment|/**    * Splits {@code sequence} into string components and makes them available    * through an {@link Iterator}, which may be lazily evaluated.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter.    */
 DECL|method|split (final CharSequence sequence)
 specifier|public
 name|Iterable

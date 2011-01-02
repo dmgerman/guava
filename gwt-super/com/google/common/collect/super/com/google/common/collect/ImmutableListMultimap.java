@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -37,6 +51,16 @@ operator|.
 name|util
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
 import|;
 end_import
 
@@ -621,7 +645,6 @@ specifier|public
 name|Builder
 parameter_list|()
 block|{}
-comment|/**      * Adds a key-value mapping to the built multimap.      */
 DECL|method|put (K key, V value)
 annotation|@
 name|Override
@@ -654,7 +677,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Stores a collection of values with the same key in the built multimap.      *      * @throws NullPointerException if {@code key}, {@code values}, or any      *     element in {@code values} is null. The builder is left in an invalid      *     state.      */
 DECL|method|putAll (K key, Iterable<? extends V> values)
 annotation|@
 name|Override
@@ -692,7 +714,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Stores an array of values with the same key in the built multimap.      *      * @throws NullPointerException if the key or any value is null. The builder      *     is left in an invalid state.      */
 DECL|method|putAll (K key, V... values)
 annotation|@
 name|Override
@@ -726,7 +747,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Stores another multimap's entries in the built multimap. The generated      * multimap's key and value orderings correspond to the iteration ordering      * of the {@code multimap.asMap()} view, with new keys and values following      * any existing keys and values.      *      * @throws NullPointerException if any key or value in {@code multimap} is      *     null. The builder is left in an invalid state.      */
 DECL|method|putAll ( Multimap<? extends K, ? extends V> multimap)
 annotation|@
 name|Override
@@ -763,7 +783,75 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Returns a newly-created immutable multimap.      */
+annotation|@
+name|Beta
+annotation|@
+name|Override
+DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|orderKeysBy
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|>
+name|keyComparator
+parameter_list|)
+block|{
+name|super
+operator|.
+name|orderKeysBy
+argument_list|(
+name|keyComparator
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Beta
+annotation|@
+name|Override
+DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|orderValuesBy
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|V
+argument_list|>
+name|valueComparator
+parameter_list|)
+block|{
+name|super
+operator|.
+name|orderValuesBy
+argument_list|(
+name|valueComparator
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**      * Returns a newly-created immutable list multimap.      */
 DECL|method|build ()
 annotation|@
 name|Override

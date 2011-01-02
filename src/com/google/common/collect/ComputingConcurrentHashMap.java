@@ -818,7 +818,7 @@ argument_list|(
 name|entry
 argument_list|,
 operator|new
-name|NullOutputExceptionReference
+name|NullPointerExceptionReference
 argument_list|<
 name|K
 argument_list|,
@@ -831,7 +831,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|NullOutputException
+name|NullPointerException
 argument_list|(
 name|message
 argument_list|)
@@ -980,12 +980,12 @@ name|waitForValue
 argument_list|()
 return|;
 block|}
-comment|/** Used to provide null output exceptions to other threads. */
-DECL|class|NullOutputExceptionReference
+comment|/** Used to provide null pointer exceptions to other threads. */
+DECL|class|NullPointerExceptionReference
 specifier|private
 specifier|static
 class|class
-name|NullOutputExceptionReference
+name|NullPointerExceptionReference
 parameter_list|<
 name|K
 parameter_list|,
@@ -1004,8 +1004,8 @@ specifier|final
 name|String
 name|message
 decl_stmt|;
-DECL|method|NullOutputExceptionReference (String message)
-name|NullOutputExceptionReference
+DECL|method|NullPointerExceptionReference (String message)
+name|NullPointerExceptionReference
 parameter_list|(
 name|String
 name|message
@@ -1059,7 +1059,7 @@ parameter_list|()
 block|{
 throw|throw
 operator|new
-name|NullOutputException
+name|NullPointerException
 argument_list|(
 name|message
 argument_list|)

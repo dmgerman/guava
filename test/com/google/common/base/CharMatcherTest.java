@@ -114,16 +114,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|google
@@ -156,25 +146,31 @@ name|com
 operator|.
 name|google
 operator|.
-name|common
-operator|.
 name|testing
 operator|.
-name|Assert
+name|util
+operator|.
+name|NullPointerTester
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
+name|AssertionFailedError
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
 operator|.
-name|testing
+name|framework
 operator|.
-name|NullPointerTester
+name|TestCase
 import|;
 end_import
 
@@ -269,17 +265,13 @@ name|char
 name|c
 parameter_list|)
 block|{
-name|Assert
-operator|.
-name|fail
+throw|throw
+operator|new
+name|AssertionFailedError
 argument_list|(
 literal|"You weren't supposed to actually invoke me!"
 argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-comment|// never actually reached
+throw|;
 block|}
 block|}
 decl_stmt|;

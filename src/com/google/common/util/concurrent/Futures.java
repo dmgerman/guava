@@ -2561,12 +2561,6 @@ comment|// When a listener is first added, we run a task that will wait for
 comment|// the delegate to finish, and when it is done will run the listeners.
 if|if
 condition|(
-operator|!
-name|hasListeners
-operator|.
-name|get
-argument_list|()
-operator|&&
 name|hasListeners
 operator|.
 name|compareAndSet
@@ -2619,11 +2613,13 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|CancellationException
+name|Error
 name|e
 parameter_list|)
 block|{
-comment|// The task was cancelled, so it is done, run the listeners.
+throw|throw
+name|e
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -2653,12 +2649,12 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
-name|ExecutionException
+name|Throwable
 name|e
 parameter_list|)
 block|{
-comment|// The task caused an exception, so it is done, run the
-comment|// listeners.
+comment|// ExecutionException / CancellationException / RuntimeException
+comment|// The task is done, run the listeners.
 block|}
 name|executionList
 operator|.

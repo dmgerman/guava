@@ -18,21 +18,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|common
 operator|.
-name|util
+name|collect
 operator|.
-name|Map
+name|ImmutableMap
 import|;
 end_import
 
@@ -48,15 +42,21 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|collect
+name|util
 operator|.
-name|ImmutableMap
+name|Map
 import|;
 end_import
 
