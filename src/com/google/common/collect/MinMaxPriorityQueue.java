@@ -435,7 +435,7 @@ name|maximumSize
 argument_list|)
 return|;
 block|}
-comment|/**    * The builder class used in creation of min-max priority queues. Instead of    * constructing one directly, use {@link MinMaxPriorityQueue#orderedBy},    * {@link MinMaxPriorityQueue#expectedSize} or {@link    * MinMaxPriorityQueue#maximumSize}.    *    * @param<B> the upper bound on the eventual type that can be produced by    *     this builder (for example, a {@code Builder<Number>} can produce a    *     {@code Queue<Number>} or {@code Queue<Integer>} but not a {@code    *     Queue<Object>}).    * @since 8    */
+comment|/**    * The builder class used in creation of min-max priority queues. Instead of    * constructing one directly, use {@link    * MinMaxPriorityQueue#orderedBy(Comparator)}, {@link    * MinMaxPriorityQueue#expectedSize(int)} or {@link    * MinMaxPriorityQueue#maximumSize(int)}.    *    * @param<B> the upper bound on the eventual type that can be produced by    *     this builder (for example, a {@code Builder<Number>} can produce a    *     {@code Queue<Number>} or {@code Queue<Integer>} but not a {@code    *     Queue<Object>}).    * @since 8    */
 annotation|@
 name|Beta
 DECL|class|Builder
