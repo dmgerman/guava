@@ -3133,7 +3133,7 @@ block|}
 block|}
 block|}
 comment|// Methods only in Iterables, not in Iterators
-comment|/**    * Adapts a list to an iterable with reversed iteration order. It is    * especially useful in foreach-style loops:<pre>   {@code    *    *   List<String> mylist = ...    *   for (String str : Iterables.reverse(mylist)) {    *     ...    *   }}</pre>    *    * There is no corresponding method in {@link Iterators}, since {@link    * Iterable#iterator} can simply be invoked on the result of calling this    * method.    *    * @return an iterable with the same elements as the list, in reverse    *    * @deprecated Use {@link Lists#reverse(List)}.    */
+comment|/**    * Adapts a list to an iterable with reversed iteration order. It is    * especially useful in foreach-style loops:<pre>   {@code    *    *   List<String> mylist = ...    *   for (String str : Iterables.reverse(mylist)) {    *     ...    *   }}</pre>    *    * There is no corresponding method in {@link Iterators}, since {@link    * Iterable#iterator} can simply be invoked on the result of calling this    * method.    *    * @return an iterable with the same elements as the list, in reverse    *    * @deprecated use {@link Lists#reverse(List)} or {@link    *     ImmutableList#reverse()}.<b>This method is scheduled for deletion in    *     July 2012.</b>    */
 annotation|@
 name|Deprecated
 DECL|method|reverse (final List<T> list)

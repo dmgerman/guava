@@ -986,7 +986,7 @@ name|expireAfterWriteNanos
 operator|==
 name|UNSET_INT
 argument_list|,
-literal|"time to live of %s ns was already set"
+literal|"expireAfterWrite was already set to %s ns"
 argument_list|,
 name|expireAfterWriteNanos
 argument_list|)
@@ -997,7 +997,7 @@ name|expireAfterAccessNanos
 operator|==
 name|UNSET_INT
 argument_list|,
-literal|"time to idle of ns was already set"
+literal|"expireAfterAccess was already set to %s ns"
 argument_list|,
 name|expireAfterAccessNanos
 argument_list|)
@@ -1008,7 +1008,7 @@ name|duration
 operator|>
 literal|0
 argument_list|,
-literal|"invalid duration: %s %s"
+literal|"duration must be positive: %s %s"
 argument_list|,
 name|duration
 argument_list|,

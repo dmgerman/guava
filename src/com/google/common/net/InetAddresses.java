@@ -38,6 +38,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -2497,7 +2511,8 @@ return|;
 block|}
 comment|/**    * Returns an {@code int} hash of a 64-bit long.    *    * This comes from http://www.concentric.net/~ttwang/tech/inthash.htm    *     * This hash gives no guarantees on the cryptographic suitability nor the    * quality of randomness produced, and the mapping may change in the future.    *    * @param key A 64-bit number to hash    * @return {@code int} the input hashed into 32 bits    */
 DECL|method|hash64To32 (long key)
-specifier|protected
+annotation|@
+name|VisibleForTesting
 specifier|static
 name|int
 name|hash64To32

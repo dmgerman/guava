@@ -86,6 +86,12 @@ name|State
 operator|.
 name|NOT_READY
 decl_stmt|;
+comment|/** Constructor for use by subclasses. */
+DECL|method|AbstractIterator ()
+specifier|protected
+name|AbstractIterator
+parameter_list|()
+block|{}
 DECL|enum|State
 specifier|private
 enum|enum

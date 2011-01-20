@@ -2741,6 +2741,24 @@ return|;
 block|}
 block|}
 comment|// Text processing routines
+comment|/**    * Returns {@code true} if a character sequence contains at least one matching character.    * Equivalent to {@code !matchesNoneOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code true} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches at least one character in the sequence    */
+DECL|method|matchesAnyOf (CharSequence sequence)
+specifier|public
+name|boolean
+name|matchesAnyOf
+parameter_list|(
+name|CharSequence
+name|sequence
+parameter_list|)
+block|{
+return|return
+operator|!
+name|matchesNoneOf
+argument_list|(
+name|sequence
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns {@code true} if a character sequence contains only matching characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
 DECL|method|matchesAllOf (CharSequence sequence)
 specifier|public
@@ -2794,7 +2812,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains no matching characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains no matching characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
 DECL|method|matchesNoneOf (CharSequence sequence)
 specifier|public
 name|boolean

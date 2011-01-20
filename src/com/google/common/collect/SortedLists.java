@@ -89,7 +89,6 @@ parameter_list|()
 block|{}
 comment|/**    * A comparison relationship between a value and an element in a collection.    */
 DECL|enum|Relation
-specifier|public
 enum|enum
 name|Relation
 block|{
@@ -99,7 +98,6 @@ name|LOWER
 block|{
 annotation|@
 name|Override
-specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -216,7 +214,6 @@ name|FLOOR
 block|{
 annotation|@
 name|Override
-specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -391,7 +388,6 @@ name|EQUAL
 block|{
 annotation|@
 name|Override
-specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -488,7 +484,6 @@ name|CEILING
 block|{
 annotation|@
 name|Override
-specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -663,7 +658,6 @@ name|HIGHER
 block|{
 annotation|@
 name|Override
-specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -774,7 +768,6 @@ block|}
 block|;
 comment|/**      * The reverse order counterpart of the relation. Useful for descending      * views.      */
 DECL|method|reverse ()
-specifier|public
 specifier|abstract
 name|Relation
 name|reverse
@@ -860,7 +853,6 @@ function_decl|;
 block|}
 comment|/**    * Searches the specified list for the specified object using the binary    * search algorithm. The list must be sorted into ascending order according to    * the specified comparator (as by the {@link Collections#sort(List,    * Comparator) Collections.sort(List, Comparator)} method), prior to making    * this call. If it is not sorted, the results are undefined.    *    *<p>Returns the index of the element in the list which has the specified    * {@code Relation} to the specified object. So as to provide meaningful    * results in all cases, {@code -1} is considered to be the index of negative    * infinity, and {@code list.size()} is considered to be the index of positive    * infinity. The exception is {@link Relation#EQUAL EQUAL}. If {@code EQUAL}    * is specified and no equal element is found, {@code -1} is returned, but it    * should not be interpreted as "negative infinity."    *    *<p>If there are duplicate elements, see the documentation on the relation    * for more details.    *    *<p>This method runs in log(n) time for a random access list (which    * provides near-constant-time positional access).    *    * @param list the list to be searched.    * @param e the value to be searched for.    * @param comparator the comparator by which the list is ordered.    * @return the index of element with the specified relation to the search key,    *         if it is contained in the list. Otherwise, if negative infinity has    *         the specified relation (or if {@code relation} is {@code EQUAL} and    *         the search key was not in the list), returns {@code -1}, or if    *         positive infinity has the specified relation, returns {@code    *         list.size()}.    * @throws NullPointerException if {@code key} is null and the specified     *         comparator does not accept null values.    * @throws ClassCastException if the list contains elements that are not    *<i>mutually comparable</i> using the specified comparator, or the    *         search key is not mutually comparable with the elements of the list    *         using this comparator.    */
 DECL|method|binarySearch (List<? extends E> list, @Nullable E e, Comparator<? super E> comparator, Relation relation)
-specifier|public
 specifier|static
 parameter_list|<
 name|E

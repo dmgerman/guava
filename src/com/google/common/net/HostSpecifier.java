@@ -183,13 +183,14 @@ argument_list|)
 return|;
 block|}
 comment|// It is not any kind of IP address; must be a domain name or invalid.
+comment|// TODO(user): different lenient and strict versions of this?
 specifier|final
 name|InternetDomainName
 name|domain
 init|=
 name|InternetDomainName
 operator|.
-name|from
+name|fromLenient
 argument_list|(
 name|specifier
 argument_list|)
@@ -254,7 +255,9 @@ block|{
 comment|// Since the IAE can originate at several different points inside
 comment|// fromValid(), we implement this method in terms of that one rather
 comment|// than the reverse.
-throw|throw
+name|ParseException
+name|parseException
+init|=
 operator|new
 name|ParseException
 argument_list|(
@@ -264,6 +267,16 @@ name|specifier
 argument_list|,
 literal|0
 argument_list|)
+decl_stmt|;
+name|parseException
+operator|.
+name|initCause
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+name|parseException
 throw|;
 block|}
 block|}
