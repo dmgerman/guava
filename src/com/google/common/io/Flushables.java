@@ -141,6 +141,11 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|swallowIOException
+condition|)
+block|{
 name|logger
 operator|.
 name|log
@@ -154,11 +159,8 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|swallowIOException
-condition|)
+block|}
+else|else
 block|{
 throw|throw
 name|e
