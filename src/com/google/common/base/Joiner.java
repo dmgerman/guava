@@ -910,16 +910,14 @@ name|MapJoiner
 argument_list|(
 name|this
 argument_list|,
-name|checkNotNull
-argument_list|(
 name|keyValueSeparator
-argument_list|)
 argument_list|)
 return|;
 block|}
 comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    * @since 2 (imported from Google Collections Library)    */
 DECL|class|MapJoiner
 specifier|public
+specifier|final
 specifier|static
 class|class
 name|MapJoiner
@@ -953,11 +951,15 @@ name|joiner
 operator|=
 name|joiner
 expr_stmt|;
+comment|// only "this" is ever passed, so don't checkNotNull
 name|this
 operator|.
 name|keyValueSeparator
 operator|=
+name|checkNotNull
+argument_list|(
 name|keyValueSeparator
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code appendable}.      */
