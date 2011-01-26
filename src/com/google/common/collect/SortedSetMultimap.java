@@ -114,6 +114,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|// Following Javadoc copied from Multimap.
 comment|/**    * Returns a collection view of all values associated with a key. If no    * mappings in the multimap have the provided key, an empty collection is    * returned.    *    *<p>Changes to the returned collection will update the underlying multimap,    * and vice versa.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given    * key, this method returns a {@link SortedSet}, instead of the    * {@link java.util.Collection} specified in the {@link Multimap} interface.    */
 DECL|method|get (@ullable K key)
 name|SortedSet
@@ -162,7 +163,7 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a map view that associates each key with the corresponding values    * in the multimap. Changes to the returned map, such as element removal,    * will update the underlying multimap. The map never supports    * {@code setValue()} on the map entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code    * asMap().get(Object)} has the same behavior as {@link #get}, returning a    * live collection. When passed a key that is not present, however, {@code    * asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link SortedSet} values.    */
+comment|/**    * Returns a map view that associates each key with the corresponding values    * in the multimap. Changes to the returned map, such as element removal, will    * update the underlying multimap. The map does not support {@code setValue()}    * on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code    * asMap().get(Object)} has the same behavior as {@link #get}, returning a    * live collection. When passed a key that is not present, however, {@code    * asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link SortedSet} values.    */
 DECL|method|asMap ()
 name|Map
 argument_list|<

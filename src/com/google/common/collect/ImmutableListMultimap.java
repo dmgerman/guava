@@ -837,6 +837,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * {@inheritDoc}      *      * @since 8      */
 annotation|@
 name|Beta
 annotation|@
@@ -871,6 +872,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * {@inheritDoc}      *      * @since 8      */
 annotation|@
 name|Beta
 annotation|@

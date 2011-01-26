@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -71,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods returns serializable instances.  *  * @author Bob Lee  * @since 4  */
+comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods return serializable instances.  *  * @author Bob Lee  * @author Kurt Alfred Kluever  * @since 4  */
 end_comment
 
 begin_class
@@ -90,7 +74,7 @@ specifier|private
 name|Equivalences
 parameter_list|()
 block|{}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * Does not support null values.    */
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @since 8 (present null-friendly behavior)    * @since 4 (otherwise)    */
 DECL|method|equals ()
 specifier|public
 specifier|static
@@ -107,7 +91,9 @@ operator|.
 name|EQUALS
 return|;
 block|}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    */
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @deprecated use {@link Equivalences#equals}, which now has the null-aware behavior    */
+annotation|@
+name|Deprecated
 DECL|method|nullAwareEquals ()
 specifier|public
 specifier|static
@@ -121,10 +107,10 @@ block|{
 return|return
 name|Impl
 operator|.
-name|NULL_AWARE_EQUALS
+name|EQUALS
 return|;
 block|}
-comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code.  {@link Equivalence#equivalent}    * returns {@code true} if both values are null, or if neither value is null and {@code ==}    * returns {@code true}. {@link Equivalence#hash} throws a {@link NullPointerException} if passed    * a null value.    */
+comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code.  {@link Equivalence#equivalent}    * returns {@code true} if {@code a == b}, including in the case that a and b are both null.    */
 DECL|method|identity ()
 specifier|public
 specifier|static
@@ -158,6 +144,8 @@ specifier|public
 name|boolean
 name|equivalent
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|a
 parameter_list|,
@@ -167,115 +155,24 @@ name|Object
 name|b
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|a
-argument_list|)
-expr_stmt|;
-comment|// for GWT.
+comment|// TODO(kevinb): use Objects.equal() after testing issue is worked out.
 return|return
+operator|(
+name|a
+operator|==
+literal|null
+operator|)
+condition|?
+operator|(
+name|b
+operator|==
+literal|null
+operator|)
+else|:
 name|a
 operator|.
 name|equals
 argument_list|(
-name|b
-argument_list|)
-return|;
-block|}
-specifier|public
-name|int
-name|hash
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|o
-argument_list|)
-expr_stmt|;
-comment|// for GWT.
-return|return
-name|o
-operator|.
-name|hashCode
-argument_list|()
-return|;
-block|}
-block|}
-block|,
-DECL|enumConstant|IDENTITY
-name|IDENTITY
-block|{
-specifier|public
-name|boolean
-name|equivalent
-parameter_list|(
-name|Object
-name|a
-parameter_list|,
-annotation|@
-name|Nullable
-name|Object
-name|b
-parameter_list|)
-block|{
-return|return
-name|checkNotNull
-argument_list|(
-name|a
-argument_list|)
-operator|==
-name|b
-return|;
-block|}
-specifier|public
-name|int
-name|hash
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|o
-parameter_list|)
-block|{
-return|return
-name|System
-operator|.
-name|identityHashCode
-argument_list|(
-name|o
-argument_list|)
-return|;
-block|}
-block|}
-block|,
-DECL|enumConstant|NULL_AWARE_EQUALS
-name|NULL_AWARE_EQUALS
-block|{
-specifier|public
-name|boolean
-name|equivalent
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|a
-parameter_list|,
-annotation|@
-name|Nullable
-name|Object
-name|b
-parameter_list|)
-block|{
-return|return
-name|Objects
-operator|.
-name|equal
-argument_list|(
-name|a
-argument_list|,
 name|b
 argument_list|)
 return|;
@@ -303,6 +200,51 @@ name|o
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+block|}
+block|,
+DECL|enumConstant|IDENTITY
+name|IDENTITY
+block|{
+specifier|public
+name|boolean
+name|equivalent
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|a
+parameter_list|,
+annotation|@
+name|Nullable
+name|Object
+name|b
+parameter_list|)
+block|{
+return|return
+name|a
+operator|==
+name|b
+return|;
+block|}
+specifier|public
+name|int
+name|hash
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|o
+argument_list|)
 return|;
 block|}
 block|}

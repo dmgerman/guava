@@ -135,6 +135,8 @@ argument_list|>
 name|createCollection
 parameter_list|()
 function_decl|;
+comment|// Following Javadoc copied from ListMultimap.
+comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 DECL|method|get (@ullable K key)
 annotation|@
 name|Override
@@ -166,6 +168,7 @@ name|key
 argument_list|)
 return|;
 block|}
+comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 DECL|method|removeAll (@ullable Object key)
 annotation|@
 name|Override
@@ -197,6 +200,7 @@ name|key
 argument_list|)
 return|;
 block|}
+comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 DECL|method|replaceValues ( @ullable K key, Iterable<? extends V> values)
 annotation|@
 name|Override
@@ -266,6 +270,30 @@ name|key
 argument_list|,
 name|value
 argument_list|)
+return|;
+block|}
+comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link List} values.    */
+DECL|method|asMap ()
+annotation|@
+name|Override
+specifier|public
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|asMap
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|asMap
+argument_list|()
 return|;
 block|}
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code ListMultimap} instances are equal if, for each key, they    * contain the same values in the same order. If the value orderings disagree,    * the multimaps will not be considered equal.    */
