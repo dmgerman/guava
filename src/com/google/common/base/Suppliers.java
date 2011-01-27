@@ -339,9 +339,12 @@ name|delegate
 decl_stmt|;
 DECL|field|initialized
 specifier|transient
+specifier|volatile
 name|boolean
 name|initialized
 decl_stmt|;
+comment|// "value" does not need to be volatile; visibility piggy-backs
+comment|// on volatile read of "initialized".
 DECL|field|value
 specifier|transient
 name|T
@@ -366,10 +369,21 @@ expr_stmt|;
 block|}
 DECL|method|get ()
 specifier|public
-specifier|synchronized
 name|T
 name|get
 parameter_list|()
+block|{
+comment|// A 2-field variant of Double Checked Locking.
+if|if
+condition|(
+operator|!
+name|initialized
+condition|)
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
 block|{
 if|if
 condition|(
@@ -377,17 +391,27 @@ operator|!
 name|initialized
 condition|)
 block|{
-name|value
-operator|=
+name|T
+name|t
+init|=
 name|delegate
 operator|.
 name|get
 argument_list|()
+decl_stmt|;
+name|value
+operator|=
+name|t
 expr_stmt|;
 name|initialized
 operator|=
 literal|true
 expr_stmt|;
+return|return
+name|t
+return|;
+block|}
+block|}
 block|}
 return|return
 name|value
@@ -474,18 +498,16 @@ specifier|final
 name|long
 name|durationNanos
 decl_stmt|;
-DECL|field|initialized
-specifier|transient
-name|boolean
-name|initialized
-decl_stmt|;
 DECL|field|value
 specifier|transient
+specifier|volatile
 name|T
 name|value
 decl_stmt|;
+comment|// The special value 0 means "not yet initialized".
 DECL|field|expirationNanos
 specifier|transient
+specifier|volatile
 name|long
 name|expirationNanos
 decl_stmt|;
@@ -539,46 +561,92 @@ expr_stmt|;
 block|}
 DECL|method|get ()
 specifier|public
-specifier|synchronized
 name|T
 name|get
 parameter_list|()
 block|{
-if|if
-condition|(
-operator|!
-name|initialized
-operator|||
+comment|// Another variant of Double Checked Locking.
+comment|//
+comment|// We use two volatile reads.  We could reduce this to one by
+comment|// putting our fields into a holder class, but (at least on x86)
+comment|// the extra memory consumption and indirection are more
+comment|// expensive than the extra volatile reads.
+name|long
+name|nanos
+init|=
+name|expirationNanos
+decl_stmt|;
+name|long
+name|now
+init|=
 name|Platform
 operator|.
 name|systemNanoTime
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|nanos
+operator|==
+literal|0
+operator|||
+name|now
 operator|-
-name|expirationNanos
+name|nanos
 operator|>=
 literal|0
 condition|)
 block|{
-name|value
-operator|=
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+if|if
+condition|(
+name|nanos
+operator|==
+name|expirationNanos
+condition|)
+block|{
+comment|// recheck for lost race
+name|T
+name|t
+init|=
 name|delegate
 operator|.
 name|get
 argument_list|()
-expr_stmt|;
-name|initialized
+decl_stmt|;
+name|value
 operator|=
-literal|true
+name|t
 expr_stmt|;
-name|expirationNanos
+name|nanos
 operator|=
-name|Platform
-operator|.
-name|systemNanoTime
-argument_list|()
+name|now
 operator|+
 name|durationNanos
 expr_stmt|;
+comment|// In the very unlikely event that nanos is 0, set it to 1;
+comment|// no one will notice 1 ns of tardiness.
+name|expirationNanos
+operator|=
+operator|(
+name|nanos
+operator|==
+literal|0
+operator|)
+condition|?
+literal|1
+else|:
+name|nanos
+expr_stmt|;
+return|return
+name|t
+return|;
+block|}
+block|}
 block|}
 return|return
 name|value

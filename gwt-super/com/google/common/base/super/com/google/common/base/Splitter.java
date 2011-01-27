@@ -134,6 +134,12 @@ specifier|final
 name|Strategy
 name|strategy
 decl_stmt|;
+DECL|field|limit
+specifier|private
+specifier|final
+name|int
+name|limit
+decl_stmt|;
 DECL|method|Splitter (Strategy strategy)
 specifier|private
 name|Splitter
@@ -151,10 +157,14 @@ argument_list|,
 name|CharMatcher
 operator|.
 name|NONE
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|Splitter (Strategy strategy, boolean omitEmptyStrings, CharMatcher trimmer)
+DECL|method|Splitter (Strategy strategy, boolean omitEmptyStrings, CharMatcher trimmer, int limit)
 specifier|private
 name|Splitter
 parameter_list|(
@@ -166,6 +176,9 @@ name|omitEmptyStrings
 parameter_list|,
 name|CharMatcher
 name|trimmer
+parameter_list|,
+name|int
+name|limit
 parameter_list|)
 block|{
 name|this
@@ -185,6 +198,12 @@ operator|.
 name|trimmer
 operator|=
 name|trimmer
+expr_stmt|;
+name|this
+operator|.
+name|limit
+operator|=
+name|limit
 expr_stmt|;
 block|}
 comment|/**    * Returns a splitter that uses the given single-character separator. For    * example, {@code Splitter.on(',').split("foo,,bar")} returns an iterable    * containing {@code ["foo", "", "bar"]}.    *    * @param separator the character to recognize as a separator    * @return a splitter, with default settings, that recognizes that separator    */
@@ -594,6 +613,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|trimmer
+argument_list|,
+name|limit
 argument_list|)
 return|;
 block|}
@@ -638,6 +659,8 @@ argument_list|,
 name|omitEmptyStrings
 argument_list|,
 name|trimmer
+argument_list|,
+name|limit
 argument_list|)
 return|;
 block|}
@@ -767,6 +790,10 @@ name|offset
 init|=
 literal|0
 decl_stmt|;
+DECL|field|limit
+name|int
+name|limit
+decl_stmt|;
 DECL|method|SplittingIterator (Splitter splitter, CharSequence toSplit)
 specifier|protected
 name|SplittingIterator
@@ -793,6 +820,14 @@ operator|=
 name|splitter
 operator|.
 name|omitEmptyStrings
+expr_stmt|;
+name|this
+operator|.
+name|limit
+operator|=
+name|splitter
+operator|.
+name|limit
 expr_stmt|;
 name|this
 operator|.
@@ -926,6 +961,61 @@ name|end
 condition|)
 block|{
 continue|continue;
+block|}
+if|if
+condition|(
+name|limit
+operator|==
+literal|1
+condition|)
+block|{
+comment|// The limit has been reached, return the rest of the string as the
+comment|// final item.  This is tested after empty string removal so that
+comment|// empty strings do not count towards the limit.
+name|end
+operator|=
+name|toSplit
+operator|.
+name|length
+argument_list|()
+expr_stmt|;
+name|offset
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+comment|// Since we may have changed the end, we need to trim it again.
+while|while
+condition|(
+name|end
+operator|>
+name|start
+operator|&&
+name|trimmer
+operator|.
+name|matches
+argument_list|(
+name|toSplit
+operator|.
+name|charAt
+argument_list|(
+name|end
+operator|-
+literal|1
+argument_list|)
+argument_list|)
+condition|)
+block|{
+name|end
+operator|--
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|limit
+operator|--
+expr_stmt|;
 block|}
 return|return
 name|toSplit
