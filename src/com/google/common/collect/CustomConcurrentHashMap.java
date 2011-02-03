@@ -3177,7 +3177,6 @@ literal|"unchecked"
 argument_list|)
 comment|// Safe because impl never uses a parameter or returns any non-null value
 DECL|method|unset ()
-specifier|private
 specifier|static
 parameter_list|<
 name|K
@@ -4150,29 +4149,37 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
-if|if
-condition|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|previous
+init|=
 name|this
 operator|.
 name|valueReference
-operator|!=
-literal|null
-condition|)
-block|{
-name|this
-operator|.
-name|valueReference
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
 name|this
 operator|.
 name|valueReference
 operator|=
 name|valueReference
 expr_stmt|;
+if|if
+condition|(
+name|previous
+operator|!=
+literal|null
+condition|)
+block|{
+name|previous
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|valueReclaimed ()
 specifier|public
@@ -5294,29 +5301,37 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
-if|if
-condition|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|previous
+init|=
 name|this
 operator|.
 name|valueReference
-operator|!=
-literal|null
-condition|)
-block|{
-name|this
-operator|.
-name|valueReference
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
 name|this
 operator|.
 name|valueReference
 operator|=
 name|valueReference
 expr_stmt|;
+if|if
+condition|(
+name|previous
+operator|!=
+literal|null
+condition|)
+block|{
+name|previous
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|valueReclaimed ()
 specifier|public
@@ -6438,29 +6453,37 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
-if|if
-condition|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|previous
+init|=
 name|this
 operator|.
 name|valueReference
-operator|!=
-literal|null
-condition|)
-block|{
-name|this
-operator|.
-name|valueReference
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
 name|this
 operator|.
 name|valueReference
 operator|=
 name|valueReference
 expr_stmt|;
+if|if
+condition|(
+name|previous
+operator|!=
+literal|null
+condition|)
+block|{
+name|previous
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|valueReclaimed ()
 specifier|public
@@ -7276,7 +7299,7 @@ argument_list|()
 expr_stmt|;
 comment|// valueReclaimed will add to pendingEvictionNotifications
 block|}
-DECL|method|copyFor ( ReferenceEntry<K, V> entry)
+DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7401,7 +7424,7 @@ argument_list|()
 expr_stmt|;
 comment|// valueReclaimed will add to pendingEvictionNotifications
 block|}
-DECL|method|copyFor ( ReferenceEntry<K, V> entry)
+DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7496,7 +7519,7 @@ return|return
 name|referent
 return|;
 block|}
-DECL|method|copyFor ( ReferenceEntry<K, V> entry)
+DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7608,36 +7631,6 @@ operator|>>>
 literal|16
 operator|)
 return|;
-block|}
-comment|/**    * Sets the value reference on an entry and notifies waiting threads. The    * simple default implementation is overridden in ComputingConcurrentHashMap.    */
-DECL|method|setValueReference (ReferenceEntry<K, V> entry, ValueReference<K, V> valueReference)
-name|void
-name|setValueReference
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|,
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-parameter_list|)
-block|{
-name|entry
-operator|.
-name|setValueReference
-argument_list|(
-name|valueReference
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|GuardedBy
@@ -9160,10 +9153,10 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
+name|entry
+operator|.
 name|setValueReference
 argument_list|(
-name|entry
-argument_list|,
 name|valueStrength
 operator|.
 name|referenceValue
@@ -11494,7 +11487,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Else key was reclaimed. Skip entry.
+else|else
+block|{
+comment|// Key was reclaimed.
+name|pendingEvictionNotifications
+operator|.
+name|offer
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -12109,6 +12112,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// TODO(user): This method fails to take into entry-reuse into account. For
+comment|// example, a put during a computation will trigger a removeEntry call that
+comment|// will incorrectly remove the reused put. Other callers of this method
+comment|// should also be audited.
 DECL|method|removeEntry (ReferenceEntry<K, V> entry, int hash)
 name|boolean
 name|removeEntry
@@ -12386,7 +12393,17 @@ name|newFirst
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Else key was reclaimed. Skip entry.
+else|else
+block|{
+comment|// Key was reclaimed.
+name|pendingEvictionNotifications
+operator|.
+name|offer
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 name|newFirst
