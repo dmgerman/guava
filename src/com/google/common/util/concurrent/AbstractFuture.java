@@ -449,7 +449,7 @@ name|value
 decl_stmt|;
 DECL|field|exception
 specifier|private
-name|ExecutionException
+name|Throwable
 name|exception
 decl_stmt|;
 comment|/*      * Acquisition succeeds if the future is done, otherwise it fails.      */
@@ -600,7 +600,11 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|new
+name|ExecutionException
+argument_list|(
 name|exception
+argument_list|)
 throw|;
 block|}
 else|else
@@ -763,16 +767,6 @@ operator|.
 name|exception
 operator|=
 name|t
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
-operator|new
-name|ExecutionException
-argument_list|(
-name|t
-argument_list|)
 expr_stmt|;
 name|releaseShared
 argument_list|(

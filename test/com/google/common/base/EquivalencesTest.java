@@ -359,26 +359,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testEqualsAndNullAwareEqualsAreIdentical ()
-specifier|public
-name|void
-name|testEqualsAndNullAwareEqualsAreIdentical
-parameter_list|()
-block|{
-name|assertSame
-argument_list|(
-name|Equivalences
-operator|.
-name|equals
-argument_list|()
-argument_list|,
-name|Equivalences
-operator|.
-name|nullAwareEquals
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 

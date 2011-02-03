@@ -91,25 +91,6 @@ operator|.
 name|EQUALS
 return|;
 block|}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @deprecated use {@link Equivalences#equals}, which now has the null-aware behavior    */
-annotation|@
-name|Deprecated
-DECL|method|nullAwareEquals ()
-specifier|public
-specifier|static
-name|Equivalence
-argument_list|<
-name|Object
-argument_list|>
-name|nullAwareEquals
-parameter_list|()
-block|{
-return|return
-name|Impl
-operator|.
-name|EQUALS
-return|;
-block|}
 comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code.  {@link Equivalence#equivalent}    * returns {@code true} if {@code a == b}, including in the case that a and b are both null.    */
 DECL|method|identity ()
 specifier|public

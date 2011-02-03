@@ -285,7 +285,7 @@ specifier|final
 name|int
 name|DEFAULT_CONCURRENCY_LEVEL
 init|=
-literal|16
+literal|4
 decl_stmt|;
 DECL|field|DEFAULT_EXPIRATION_NANOS
 specifier|private
@@ -616,7 +616,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Guides the allowed concurrency among update operations. Used as a    * hint for internal sizing. The table is internally partitioned to try    * to permit the indicated number of concurrent updates without    * contention.  Because placement in hash tables is essentially random,    * the actual concurrency will vary. Ideally, you should choose a value    * to accommodate as many threads as will ever concurrently modify the    * table. Using a significantly higher value than you need can waste    * space and time, and a significantly lower value can lead to thread    * contention. But overestimates and underestimates within an order of    * magnitude do not usually have much noticeable impact. A value of one    * is appropriate when it is known that only one thread will modify and    * all others will only read. Defaults to 16.    *    * @throws IllegalArgumentException if {@code concurrencyLevel} is    *     nonpositive    * @throws IllegalStateException if a concurrency level was already set    */
+comment|/**    * Guides the allowed concurrency among update operations. Used as a    * hint for internal sizing. The table is internally partitioned to try    * to permit the indicated number of concurrent updates without    * contention.  Because placement in hash tables is essentially random,    * the actual concurrency will vary. Ideally, you should choose a value    * to accommodate as many threads as will ever concurrently modify the    * table. Using a significantly higher value than you need can waste    * space and time, and a significantly lower value can lead to thread    * contention. But overestimates and underestimates within an order of    * magnitude do not usually have much noticeable impact. A value of one    * is appropriate when it is known that only one thread will modify and    * all others will only read. Defaults to 4.    *    *<p><b>Note:</b> Prior to Guava release 09, the default was 16. It is    * possible the default will change again in the future. If you care about    * this value, you should always choose it explicitly.    *    * @throws IllegalArgumentException if {@code concurrencyLevel} is    *     nonpositive    * @throws IllegalStateException if a concurrency level was already set    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
