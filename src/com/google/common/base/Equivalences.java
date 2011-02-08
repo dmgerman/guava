@@ -230,6 +230,50 @@ return|;
 block|}
 block|}
 block|,   }
+comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code elementEquivalence}.  Null iterables are equivalent to one another.    *    * @since 9    */
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|serializable
+operator|=
+literal|true
+argument_list|)
+DECL|method|pairwise (Equivalence<? super T> elementEquivalence)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Equivalence
+argument_list|<
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+argument_list|>
+name|pairwise
+parameter_list|(
+name|Equivalence
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|elementEquivalence
+parameter_list|)
+block|{
+comment|/*      * Ideally, the returned equivalence would support {@code Iterable<? extends T>}.  However, the      * need for this is so rare that it's not worth making callers deal with the ugly wildcard.      */
+return|return
+operator|new
+name|PairwiseEquivalence
+argument_list|<
+name|T
+argument_list|>
+argument_list|(
+name|elementEquivalence
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

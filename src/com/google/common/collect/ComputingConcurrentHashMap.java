@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -396,6 +412,13 @@ condition|(
 name|entry
 operator|==
 literal|null
+operator|||
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+operator|==
+name|UNSET
 condition|)
 block|{
 name|boolean
@@ -413,16 +436,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
-name|expires
-argument_list|()
-condition|)
-block|{
 name|expireEntries
 argument_list|()
 expr_stmt|;
-block|}
+comment|// cleanup failed computes
+comment|// TODO(user): move cleanup to an executor, but then we need to
+comment|// account for invalidated entries below
+name|cleanup
+argument_list|()
+expr_stmt|;
 comment|// Try again--an entry could have materialized in the interim.
 name|entry
 operator|=
@@ -591,6 +613,9 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
+name|processPendingNotifications
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -608,6 +633,18 @@ block|{
 name|V
 name|value
 init|=
+literal|null
+decl_stmt|;
+comment|// Synchronizes on the entry to allow failing fast when a
+comment|// recursive computation is detected. This is not full-proof
+comment|// since the entry may be copied when the segment is written to.
+synchronized|synchronized
+init|(
+name|entry
+init|)
+block|{
+name|value
+operator|=
 name|computingValueReference
 operator|.
 name|compute
@@ -616,7 +653,8 @@ name|key
 argument_list|,
 name|hash
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|checkNotNull
 argument_list|(
 name|value
@@ -640,12 +678,13 @@ operator|!
 name|success
 condition|)
 block|{
-comment|// TODO(user): don't incorrectly clobber put entries
-name|removeEntry
+name|invalidateValue
 argument_list|(
 name|entry
 argument_list|,
 name|hash
+argument_list|,
+name|computingValueReference
 argument_list|)
 expr_stmt|;
 block|}
@@ -667,13 +706,36 @@ condition|)
 block|{
 try|try
 block|{
+name|checkState
+argument_list|(
+operator|!
+name|Thread
+operator|.
+name|holdsLock
+argument_list|(
+name|entry
+argument_list|)
+argument_list|,
+literal|"Recursive computation"
+argument_list|)
+expr_stmt|;
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
 name|V
-name|value
+argument_list|>
+name|valueReference
 init|=
 name|entry
 operator|.
 name|getValueReference
 argument_list|()
+decl_stmt|;
+name|V
+name|value
+init|=
+name|valueReference
 operator|.
 name|waitForValue
 argument_list|()
@@ -686,12 +748,13 @@ literal|null
 condition|)
 block|{
 comment|// Purge entry and try again.
-comment|// TODO(user): don't incorrectly clobber put entries
-name|removeEntry
+name|invalidateValue
 argument_list|(
 name|entry
 argument_list|,
 name|hash
+argument_list|,
+name|valueReference
 argument_list|)
 expr_stmt|;
 continue|continue
@@ -1343,6 +1406,9 @@ block|{
 name|segment
 operator|.
 name|unlock
+argument_list|()
+expr_stmt|;
+name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}

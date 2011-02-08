@@ -18,6 +18,48 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|testing
+operator|.
+name|util
+operator|.
+name|NullPointerTester
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -31,6 +73,13 @@ comment|/**  * Tests for {@link Objects}.  *  * @author Laurence Gonsalves  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ObjectsTest
 specifier|public
 class|class
@@ -418,11 +467,36 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|// TODO: enable this when we address the GWT issue
-comment|// public void testNullPointers() throws Exception {
-comment|//   NullPointerTester tester = new NullPointerTester();
-comment|//   tester.testAllPublicStaticMethods(Objects.class);
-comment|// }
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
+DECL|method|testNullPointers ()
+specifier|public
+name|void
+name|testNullPointers
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|NullPointerTester
+name|tester
+init|=
+operator|new
+name|NullPointerTester
+argument_list|()
+decl_stmt|;
+name|tester
+operator|.
+name|testAllPublicStaticMethods
+argument_list|(
+name|Objects
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

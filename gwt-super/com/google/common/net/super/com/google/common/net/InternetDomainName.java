@@ -544,7 +544,7 @@ return|return
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * A factory method for creating {@code InternetDomainName} objects. Only    * lenient validation of the domain is performed. Specifically,    * validation against    *<a href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is not performed.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException If name is not syntactically valid    * @since 8 (previously named {@code from})    */
+comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since 8 (previously named {@code from})    */
 DECL|method|fromLenient (String domain)
 specifier|public
 specifier|static
@@ -1066,7 +1066,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Indicates whether the argument is a syntactically valid domain name. Only    * lenient validation is done, as described in {@link #fromLenient(String)}.    *    *<p>This method is intended for the case where a {@link String} must be    * validated as a valid domain name, but no further work with that    * {@link String} as an {@link InternetDomainName} will be required. Code like    * the following will unnecessarily repeat the work of validation:    *<pre>   {@code    *    *   if (InternetDomainName.isValid(name)) {    *     domainName = InternetDomainName.from(name);    *   } else {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * Such code could instead be written as follows:<pre>   {@code    *    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since 8 (previously named {@code isValid})    */
+comment|/**    * Indicates whether the argument is a syntactically valid domain name after    * lenient validation. Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The follow two code snippets are equivalent:    *    *<pre>   {@code    *    *   if (InternetDomainName.isValidLenient(name)) {    *     domainName = InternetDomainName.fromLenient(name);    *   } else {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    *<pre>   {@code    *    *   try {    *     domainName = InternetDomainName.fromLenient(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since 8 (previously named {@code isValid})    */
 DECL|method|isValidLenient (String name)
 specifier|public
 specifier|static
