@@ -4031,8 +4031,7 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-operator|new
-name|ColumnKeyIterator
+name|createColumnKeyIterator
 argument_list|()
 return|;
 block|}
@@ -4424,6 +4423,21 @@ return|return
 literal|false
 return|;
 block|}
+block|}
+comment|/**    * Creates an iterator that returns each column value with duplicates    * omitted.    */
+DECL|method|createColumnKeyIterator ()
+name|Iterator
+argument_list|<
+name|C
+argument_list|>
+name|createColumnKeyIterator
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ColumnKeyIterator
+argument_list|()
+return|;
 block|}
 DECL|class|ColumnKeyIterator
 specifier|private
