@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -73,22 +89,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
 import|;
 end_import
 
@@ -785,11 +785,7 @@ argument_list|()
 condition|)
 do|;
 return|return
-operator|new
-name|RegularImmutableSet
-argument_list|<
-name|E
-argument_list|>
+name|unsafeDelegate
 argument_list|(
 name|delegate
 argument_list|)

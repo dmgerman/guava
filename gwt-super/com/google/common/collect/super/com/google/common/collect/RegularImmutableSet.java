@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -57,6 +73,18 @@ block|{
 name|super
 argument_list|(
 name|delegate
+argument_list|)
+expr_stmt|;
+comment|// Required for GWT deserialization because the server-side implementation
+comment|// requires this.
+name|checkArgument
+argument_list|(
+name|delegate
+operator|.
+name|size
+argument_list|()
+operator|>=
+literal|2
 argument_list|)
 expr_stmt|;
 block|}
