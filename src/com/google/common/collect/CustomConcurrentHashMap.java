@@ -292,6 +292,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Executor
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ConcurrentLinkedQueue
 import|;
 end_import
@@ -457,6 +469,15 @@ name|RECENCY_THRESHOLD
 init|=
 literal|64
 decl_stmt|;
+comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run.    * TODO(user): empirically optimize this    */
+DECL|field|CLEANUP_MAX
+specifier|static
+specifier|final
+name|int
+name|CLEANUP_MAX
+init|=
+literal|16
+decl_stmt|;
 comment|/* ---------------- Fields -------------- */
 comment|/**    * Mask value for indexing into segments. The upper bits of a key's hash    * code are used to choose the segment.    */
 DECL|field|segmentMask
@@ -570,6 +591,12 @@ specifier|transient
 name|EntryFactory
 name|entryFactory
 decl_stmt|;
+comment|/** Performs map housekeeping operations. */
+DECL|field|cleanupExecutor
+specifier|final
+name|Executor
+name|cleanupExecutor
+decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity    * and concurrency level.    */
 DECL|method|CustomConcurrentHashMap (MapMaker builder)
 name|CustomConcurrentHashMap
@@ -626,12 +653,6 @@ name|builder
 operator|.
 name|maximumSize
 expr_stmt|;
-name|boolean
-name|evictsBySize
-init|=
-name|evictsBySize
-argument_list|()
-decl_stmt|;
 name|entryFactory
 operator|=
 name|EntryFactory
@@ -644,7 +665,15 @@ name|expires
 argument_list|()
 argument_list|,
 name|evictsBySize
+argument_list|()
 argument_list|)
+expr_stmt|;
+name|cleanupExecutor
+operator|=
+name|builder
+operator|.
+name|getCleanupExecutor
+argument_list|()
 expr_stmt|;
 name|MapEvictionListener
 argument_list|<
@@ -803,6 +832,7 @@ operator|&&
 operator|(
 operator|!
 name|evictsBySize
+argument_list|()
 operator|||
 name|segmentCount
 operator|*
@@ -883,6 +913,7 @@ block|}
 if|if
 condition|(
 name|evictsBySize
+argument_list|()
 condition|)
 block|{
 comment|// Ensure sum of segment max sizes = overall max size
@@ -7845,28 +7876,11 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(user): move cleanup to an executor
 name|segment
 operator|.
-name|lock
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
-try|try
-block|{
-name|segment
-operator|.
-name|cleanup
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|segment
-operator|.
-name|unlock
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 DECL|method|removeEntry (ReferenceEntry<K, V> entry)
 name|boolean
@@ -9360,21 +9374,11 @@ name|V
 name|value
 parameter_list|)
 block|{
-if|if
-condition|(
-name|evictsBySize
-argument_list|()
-operator|||
-name|expires
-argument_list|()
-condition|)
-block|{
 name|recordWrite
 argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
-block|}
 name|entry
 operator|.
 name|setValueReference
@@ -9405,6 +9409,19 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|evictsBySize
+argument_list|()
+operator|&&
+operator|!
+name|expiresAfterAccess
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 if|if
 condition|(
 name|expiresAfterAccess
@@ -9477,6 +9494,19 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|evictsBySize
+argument_list|()
+operator|&&
+operator|!
+name|expires
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 comment|// we are already under lock, so drain the recency queue immediately
 name|drainRecencyQueue
 argument_list|()
@@ -9860,7 +9890,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// TODO(user): move cleanup to an executor
-name|cleanup
+name|processPendingCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -9933,6 +9963,38 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// eviction
+comment|/**      * Performs eviction if the segment is full. This should only be called      * prior to adding a new entry and increasing {@code count}.      *      * @return true if eviction occurred      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|evictEntries ()
+name|boolean
+name|evictEntries
+parameter_list|()
+block|{
+if|if
+condition|(
+name|evictsBySize
+argument_list|()
+operator|&&
+name|count
+operator|>=
+name|maxSegmentSize
+condition|)
+block|{
+name|evictEntry
+argument_list|()
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
 comment|/**      * Evicts the stalest entry.      */
 annotation|@
 name|GuardedBy
@@ -9989,7 +10051,7 @@ argument_list|()
 throw|;
 block|}
 comment|// TODO(user): move cleanup to an executor
-name|cleanup
+name|processPendingCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -10238,7 +10300,8 @@ argument_list|)
 return|;
 block|}
 comment|/* Specialized implementations of map methods */
-DECL|method|getEntry (Object key, int hash)
+comment|/**      * Returns the live entry corresponding to {@code key}, or {@code null} if      * the map entry for {@code key} has expired or is invalid.      */
+DECL|method|getLiveEntry (Object key, int hash)
 specifier|public
 name|ReferenceEntry
 argument_list|<
@@ -10246,7 +10309,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|getEntry
+name|getLiveEntry
 parameter_list|(
 name|Object
 name|key
@@ -10342,23 +10405,27 @@ name|e
 argument_list|)
 condition|)
 block|{
-continue|continue;
+return|return
+literal|null
+return|;
 block|}
 if|if
 condition|(
-name|evictsBySize
-argument_list|()
-operator|||
-name|expiresAfterAccess
-argument_list|()
+name|isInvalid
+argument_list|(
+name|e
+argument_list|)
 condition|)
 block|{
+return|return
+literal|null
+return|;
+block|}
 name|recordRead
 argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|e
 return|;
@@ -10388,7 +10455,7 @@ name|V
 argument_list|>
 name|entry
 init|=
-name|getEntry
+name|getLiveEntry
 argument_list|(
 name|key
 argument_list|,
@@ -10785,21 +10852,11 @@ else|else
 block|{
 comment|// Mimic
 comment|// "if (map.containsKey(key)&& map.get(key).equals(oldValue))..."
-if|if
-condition|(
-name|evictsBySize
-argument_list|()
-operator|||
-name|expires
-argument_list|()
-condition|)
-block|{
 name|recordWrite
 argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -10812,7 +10869,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|processPendingNotifications
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -10947,7 +11004,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|processPendingNotifications
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -11147,21 +11204,11 @@ operator|!
 name|absent
 condition|)
 block|{
-if|if
-condition|(
-name|evictsBySize
-argument_list|()
-operator|||
-name|expires
-argument_list|()
-condition|)
-block|{
 name|recordWrite
 argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|entryValue
 return|;
@@ -11175,11 +11222,27 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|isInvalid
+argument_list|(
 name|valueReference
-operator|==
-name|UNSET
+argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|evictEntries
+argument_list|()
+condition|)
+block|{
+name|newCount
+operator|=
+name|this
+operator|.
+name|count
+operator|+
+literal|1
+expr_stmt|;
+block|}
 operator|++
 name|modCount
 expr_stmt|;
@@ -11213,18 +11276,10 @@ block|}
 block|}
 if|if
 condition|(
-name|evictsBySize
+name|evictEntries
 argument_list|()
-operator|&&
-name|newCount
-operator|>
-name|maxSegmentSize
 condition|)
 block|{
-name|evictEntry
-argument_list|()
-expr_stmt|;
-comment|// this.count just changed; read it again
 name|newCount
 operator|=
 name|this
@@ -11302,7 +11357,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|processPendingNotifications
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -11835,7 +11890,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|processPendingNotifications
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -12067,7 +12122,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|processPendingNotifications
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -12402,9 +12457,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|isInvalid
+argument_list|(
 name|valueReference
-operator|==
-name|UNSET
+argument_list|)
 condition|)
 block|{
 comment|// short-circuit to ensure that notifications are only sent once
@@ -12714,9 +12770,9 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|cleanup ()
+DECL|method|processPendingCleanup ()
 name|void
-name|cleanup
+name|processPendingCleanup
 parameter_list|()
 block|{
 name|AtomicReferenceArray
@@ -12742,8 +12798,17 @@ name|V
 argument_list|>
 name|entry
 decl_stmt|;
+name|int
+name|cleanedUp
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
+name|cleanedUp
+operator|<
+name|CLEANUP_MAX
+operator|&&
 operator|(
 name|entry
 operator|=
@@ -12821,12 +12886,10 @@ condition|)
 block|{
 if|if
 condition|(
+name|isInvalid
+argument_list|(
 name|e
-operator|.
-name|getValueReference
-argument_list|()
-operator|==
-name|UNSET
+argument_list|)
 condition|)
 block|{
 name|ReferenceEntry
@@ -12853,8 +12916,132 @@ argument_list|,
 name|newFirst
 argument_list|)
 expr_stmt|;
+name|cleanedUp
+operator|++
+expr_stmt|;
 block|}
 break|break;
+block|}
+block|}
+block|}
+block|}
+DECL|method|isInvalid (ReferenceEntry<K, V> entry)
+name|boolean
+name|isInvalid
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+return|return
+name|isInvalid
+argument_list|(
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|method|isInvalid (ValueReference<K, V> valueReference)
+name|boolean
+name|isInvalid
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+parameter_list|)
+block|{
+return|return
+name|valueReference
+operator|==
+name|UNSET
+return|;
+block|}
+DECL|field|cleanupRunnable
+specifier|final
+name|Runnable
+name|cleanupRunnable
+init|=
+operator|new
+name|Runnable
+argument_list|()
+block|{
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|runCleanup
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+decl_stmt|;
+DECL|method|scheduleCleanup ()
+name|void
+name|scheduleCleanup
+parameter_list|()
+block|{
+name|checkState
+argument_list|(
+operator|!
+name|isHeldByCurrentThread
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|cleanupExecutor
+operator|.
+name|execute
+argument_list|(
+name|cleanupRunnable
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Performs periodic housekeeping tasks on this segment. Never called      * directly, but always by the cleanup executor.      */
+DECL|method|runCleanup ()
+name|void
+name|runCleanup
+parameter_list|()
+block|{
+name|processPendingNotifications
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|cleanupQueue
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|tryLock
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|processPendingCleanup
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|unlock
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}

@@ -240,6 +240,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Executor
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|TimeUnit
 import|;
 end_import
@@ -295,6 +307,33 @@ name|int
 name|DEFAULT_EXPIRATION_NANOS
 init|=
 literal|0
+decl_stmt|;
+DECL|field|DEFAULT_CLEANUP_EXECUTOR
+specifier|private
+specifier|static
+specifier|final
+name|Executor
+name|DEFAULT_CLEANUP_EXECUTOR
+init|=
+operator|new
+name|Executor
+argument_list|()
+block|{
+specifier|public
+name|void
+name|execute
+parameter_list|(
+name|Runnable
+name|r
+parameter_list|)
+block|{
+name|r
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 decl_stmt|;
 DECL|field|UNSET_INT
 specifier|static
@@ -361,6 +400,10 @@ argument_list|<
 name|Object
 argument_list|>
 name|valueEquivalence
+decl_stmt|;
+DECL|field|cleanupExecutor
+name|Executor
+name|cleanupExecutor
 decl_stmt|;
 comment|/**    * Constructs a new {@code MapMaker} instance with default settings,    * including strong keys, strong values, and no automatic expiration.    */
 DECL|method|MapMaker ()
@@ -1179,6 +1222,23 @@ literal|true
 expr_stmt|;
 return|return
 name|me
+return|;
+block|}
+DECL|method|getCleanupExecutor ()
+name|Executor
+name|getCleanupExecutor
+parameter_list|()
+block|{
+return|return
+operator|(
+name|cleanupExecutor
+operator|==
+literal|null
+operator|)
+condition|?
+name|DEFAULT_CLEANUP_EXECUTOR
+else|:
+name|cleanupExecutor
 return|;
 block|}
 comment|/**    * Builds a map, without on-demand computation of values. This method    * does not alter the state of this {@code MapMaker} instance, so it can be    * invoked again to create multiple independent maps.    *    * @return a serializable concurrent map having the requested features    */
