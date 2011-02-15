@@ -1142,6 +1142,23 @@ else|:
 name|expireAfterAccessNanos
 return|;
 block|}
+DECL|method|getCleanupExecutor ()
+name|Executor
+name|getCleanupExecutor
+parameter_list|()
+block|{
+return|return
+operator|(
+name|cleanupExecutor
+operator|==
+literal|null
+operator|)
+condition|?
+name|DEFAULT_CLEANUP_EXECUTOR
+else|:
+name|cleanupExecutor
+return|;
+block|}
 comment|/**    * Specifies a listener instance, which all maps built using this {@code    * MapMaker} will notify each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it    * evicts an entry, whether it does so due to timed expiration, exceeding the    * maximum size, or discovering that the key or value has been reclaimed by    * the garbage collector. It will invoke the listener synchronously, during    * invocations of any of that map's public methods (even read-only methods).    * The listener will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code    * MapMaker} instance, this method returns {@code GenericMapMaker<K, V>}.    * From this point on, either the original reference or the returned    * reference may be used to complete configuration and build the map, but only    * the "generic" one is type-safe. That is, it will properly prevent you from    * building maps whose key or value types are incompatible with the types    * accepted by the listener already provided; the {@code MapMaker} type cannot    * do this. For best results, simply use the standard method-chaining idiom,    * as illustrated in the documentation at top, configuring a {@code MapMaker}    * and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code    * MapMaker} to build maps whose key or value types are incompatible with the    * listener, you will likely experience a {@link ClassCastException} at an    * undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @since 7    */
 annotation|@
 name|Beta
@@ -1222,23 +1239,6 @@ literal|true
 expr_stmt|;
 return|return
 name|me
-return|;
-block|}
-DECL|method|getCleanupExecutor ()
-name|Executor
-name|getCleanupExecutor
-parameter_list|()
-block|{
-return|return
-operator|(
-name|cleanupExecutor
-operator|==
-literal|null
-operator|)
-condition|?
-name|DEFAULT_CLEANUP_EXECUTOR
-else|:
-name|cleanupExecutor
 return|;
 block|}
 comment|/**    * Builds a map, without on-demand computation of values. This method    * does not alter the state of this {@code MapMaker} instance, so it can be    * invoked again to create multiple independent maps.    *    * @return a serializable concurrent map having the requested features    */
