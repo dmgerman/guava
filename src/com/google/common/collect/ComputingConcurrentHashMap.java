@@ -454,6 +454,11 @@ comment|// Try again--an entry could have materialized in the interim.
 name|expireEntries
 argument_list|()
 expr_stmt|;
+comment|// TODO(user): remove this, and deal with partially-collected entries
+comment|// below
+name|processPendingCleanup
+argument_list|()
+expr_stmt|;
 comment|// getFirst, but remember the index
 name|AtomicReferenceArray
 argument_list|<
@@ -561,8 +566,6 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|// TODO(user): reuse partially collected entries; otherwise we
-comment|// risk blocking on cleanup
 if|if
 condition|(
 name|entry
