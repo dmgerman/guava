@@ -392,6 +392,7 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|// TODO(user): refactor getLiveEntry into getLiveValue
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -415,7 +416,9 @@ literal|null
 condition|)
 block|{
 comment|// current entry is live, and read was already recorded
-return|return
+name|V
+name|value
+init|=
 name|entry
 operator|.
 name|getValueReference
@@ -423,7 +426,18 @@ argument_list|()
 operator|.
 name|get
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|value
 return|;
+block|}
 block|}
 comment|// entry is absent, invalid, or computing
 name|ComputingValueReference
@@ -726,23 +740,13 @@ argument_list|,
 literal|"Recursive computation"
 argument_list|)
 expr_stmt|;
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
 name|V
-argument_list|>
-name|valueReference
+name|value
 init|=
 name|entry
 operator|.
 name|getValueReference
 argument_list|()
-decl_stmt|;
-name|V
-name|value
-init|=
-name|valueReference
 operator|.
 name|waitForValue
 argument_list|()
