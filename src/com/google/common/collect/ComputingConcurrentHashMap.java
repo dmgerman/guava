@@ -392,6 +392,7 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|// TODO(user): refactor getLiveEntry into getLiveValue
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -410,11 +411,35 @@ decl_stmt|;
 if|if
 condition|(
 name|entry
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-comment|// entry is absent or invalid
+comment|// current entry is live, and read was already recorded
+name|V
+name|value
+init|=
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|value
+return|;
+block|}
+block|}
+comment|// entry is absent, invalid, or computing
 name|ComputingValueReference
 name|computingValueReference
 init|=
@@ -429,29 +454,6 @@ comment|// Try again--an entry could have materialized in the interim.
 name|expireEntries
 argument_list|()
 expr_stmt|;
-name|int
-name|newCount
-init|=
-name|this
-operator|.
-name|count
-operator|+
-literal|1
-decl_stmt|;
-if|if
-condition|(
-name|newCount
-operator|>
-name|this
-operator|.
-name|threshold
-condition|)
-block|{
-comment|// ensure capacity
-name|expand
-argument_list|()
-expr_stmt|;
-block|}
 comment|// getFirst, but remember the index
 name|AtomicReferenceArray
 argument_list|<
@@ -559,6 +561,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+comment|// TODO(user): reuse partially-collected entries
 if|if
 condition|(
 name|entry
@@ -577,33 +580,6 @@ operator|=
 operator|new
 name|ComputingValueReference
 argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|evictEntries
-argument_list|()
-condition|)
-block|{
-name|newCount
-operator|=
-name|this
-operator|.
-name|count
-operator|+
-literal|1
-expr_stmt|;
-name|first
-operator|=
-name|table
-operator|.
-name|get
-argument_list|(
-name|index
-argument_list|)
-expr_stmt|;
-block|}
-operator|++
-name|modCount
 expr_stmt|;
 if|if
 condition|(
@@ -639,32 +615,11 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|// recordWrite at computation start because count is incremented
-name|recordWrite
-argument_list|(
-name|entry
-argument_list|)
-expr_stmt|;
 name|entry
 operator|.
 name|setValueReference
 argument_list|(
 name|computingValueReference
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|count
-operator|=
-name|newCount
-expr_stmt|;
-comment|// write-volatile
-block|}
-else|else
-block|{
-name|recordRead
-argument_list|(
-name|entry
 argument_list|)
 expr_stmt|;
 block|}
@@ -699,7 +654,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// Synchronizes on the entry to allow failing fast when a
-comment|// recursive computation is detected. This is not full-proof
+comment|// recursive computation is detected. This is not fool-proof
 comment|// since the entry may be copied when the segment is written to.
 synchronized|synchronized
 init|(
@@ -753,7 +708,6 @@ expr_stmt|;
 name|scheduleCleanup
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -813,7 +767,16 @@ operator|==
 literal|null
 condition|)
 block|{
-name|clearValue
+if|if
+condition|(
+operator|!
+name|valueReference
+operator|.
+name|isComputingReference
+argument_list|()
+condition|)
+block|{
+name|invalidateValue
 argument_list|(
 name|key
 argument_list|,
@@ -822,13 +785,17 @@ argument_list|,
 name|valueReference
 argument_list|)
 expr_stmt|;
-name|scheduleCleanup
-argument_list|()
-expr_stmt|;
+block|}
+comment|// else computing thread will clearValue
 continue|continue
 name|outer
 continue|;
 block|}
+name|recordRead
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
 return|return
 name|value
 return|;
@@ -937,6 +904,16 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|isComputingReference ()
+specifier|public
+name|boolean
+name|isComputingReference
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -951,6 +928,12 @@ name|message
 argument_list|)
 throw|;
 block|}
+DECL|method|notifyValueReclaimed ()
+specifier|public
+name|void
+name|notifyValueReclaimed
+parameter_list|()
+block|{}
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1029,6 +1012,16 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|isComputingReference ()
+specifier|public
+name|boolean
+name|isComputingReference
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -1043,6 +1036,12 @@ name|t
 argument_list|)
 throw|;
 block|}
+DECL|method|notifyValueReclaimed ()
+specifier|public
+name|void
+name|notifyValueReclaimed
+parameter_list|()
+block|{}
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1121,6 +1120,16 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|isComputingReference ()
+specifier|public
+name|boolean
+name|isComputingReference
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -1132,6 +1141,12 @@ name|get
 argument_list|()
 return|;
 block|}
+DECL|method|notifyValueReclaimed ()
+specifier|public
+name|void
+name|notifyValueReclaimed
+parameter_list|()
+block|{}
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1205,6 +1220,16 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|isComputingReference ()
+specifier|public
+name|boolean
+name|isComputingReference
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/**      * Waits for a computation to complete. Returns the result of the      * computation.      */
 DECL|method|waitForValue ()
 specifier|public
@@ -1265,6 +1290,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|notifyValueReclaimed ()
+specifier|public
+name|void
+name|notifyValueReclaimed
+parameter_list|()
+block|{}
 DECL|method|compute (K key, int hash)
 name|V
 name|compute
@@ -1388,6 +1419,8 @@ name|message
 argument_list|)
 throw|;
 block|}
+comment|// TODO(user): explore directly calling
+comment|// segmentFor(hash).put(key, hash, value, true);
 name|setComputedValue
 argument_list|(
 name|key
@@ -1445,6 +1478,36 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|segment
+operator|.
+name|expireEntries
+argument_list|()
+expr_stmt|;
+name|int
+name|newCount
+init|=
+name|segment
+operator|.
+name|count
+operator|+
+literal|1
+decl_stmt|;
+if|if
+condition|(
+name|newCount
+operator|>
+name|segment
+operator|.
+name|threshold
+condition|)
+block|{
+comment|// ensure capacity
+name|segment
+operator|.
+name|expand
+argument_list|()
+expr_stmt|;
+block|}
 for|for
 control|(
 name|ReferenceEntry
@@ -1525,6 +1588,29 @@ operator|==
 name|this
 condition|)
 block|{
+comment|// putIfAbsent
+operator|++
+name|segment
+operator|.
+name|modCount
+expr_stmt|;
+if|if
+condition|(
+name|segment
+operator|.
+name|evictEntries
+argument_list|()
+condition|)
+block|{
+name|newCount
+operator|=
+name|segment
+operator|.
+name|count
+operator|+
+literal|1
+expr_stmt|;
+block|}
 name|segment
 operator|.
 name|setValue
@@ -1534,6 +1620,13 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+name|segment
+operator|.
+name|count
+operator|=
+name|newCount
+expr_stmt|;
+comment|// write-volatile
 block|}
 return|return;
 block|}
