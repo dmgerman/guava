@@ -568,7 +568,7 @@ name|entry
 operator|==
 literal|null
 operator|||
-name|isInvalid
+name|isUnset
 argument_list|(
 name|entry
 argument_list|)
