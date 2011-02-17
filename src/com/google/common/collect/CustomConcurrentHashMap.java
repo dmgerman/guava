@@ -7975,11 +7975,11 @@ argument_list|)
 return|;
 block|}
 comment|// Entries in the map can be in the following states:
-comment|// - Live: valid value is set
-comment|// - Expired: time expired, but old value still set
+comment|// - Live: valid key/value are set
+comment|// - Expired: time expired (key/value may still be set)
 comment|// - Computing: computation is pending
-comment|// - Collected: value was collected but not yet cleaned up
-comment|// - Invalid: marked as invalid, awaiting cleanup or reuse
+comment|// - Collected: key/value was partially collected, but not yet cleaned up
+comment|// - Unset: marked as unset, awaiting cleanup or reuse
 DECL|method|isLive (ReferenceEntry<K, V> entry)
 name|boolean
 name|isLive
@@ -8057,9 +8057,9 @@ operator|>
 literal|0
 return|;
 block|}
-DECL|method|isInvalid (ReferenceEntry<K, V> entry)
+DECL|method|isUnset (ReferenceEntry<K, V> entry)
 name|boolean
-name|isInvalid
+name|isUnset
 parameter_list|(
 name|ReferenceEntry
 argument_list|<
@@ -8071,7 +8071,7 @@ name|entry
 parameter_list|)
 block|{
 return|return
-name|isInvalid
+name|isUnset
 argument_list|(
 name|entry
 operator|.
@@ -8080,9 +8080,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|isInvalid (ValueReference<K, V> valueReference)
+DECL|method|isUnset (ValueReference<K, V> valueReference)
 name|boolean
-name|isInvalid
+name|isUnset
 parameter_list|(
 name|ValueReference
 argument_list|<
@@ -9998,6 +9998,9 @@ name|now
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+operator|!
 name|invalidateEntry
 argument_list|(
 name|expirable
@@ -10007,7 +10010,14 @@ operator|.
 name|getHash
 argument_list|()
 argument_list|)
-expr_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 name|expirable
 operator|=
 name|expirationHead
@@ -11726,10 +11736,35 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|isUnset
+argument_list|(
+name|e
+argument_list|)
+condition|)
+block|{
+comment|// Entry was invalidated.
+block|}
+elseif|else
+if|if
+condition|(
 name|key
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+comment|// Key was reclaimed.
+name|invalidateLiveEntry
+argument_list|(
+name|e
+argument_list|,
+name|e
+operator|.
+name|getHash
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 name|int
 name|newIndex
@@ -11768,17 +11803,6 @@ name|e
 argument_list|,
 name|newNext
 argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// Key was reclaimed.
-name|evictionNotificationQueue
-operator|.
-name|offer
-argument_list|(
-name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -12472,6 +12496,17 @@ control|)
 block|{
 if|if
 condition|(
+name|isUnset
+argument_list|(
+name|e
+argument_list|)
+condition|)
+block|{
+comment|// Entry was invalidated.
+block|}
+elseif|else
+if|if
+condition|(
 name|e
 operator|.
 name|getKey
@@ -12480,25 +12515,20 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// TODO(user): do we need to modify count?
-name|evictionNotificationQueue
-operator|.
-name|offer
+comment|// Key was reclaimed.
+name|invalidateLiveEntry
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
+argument_list|,
 name|e
 operator|.
-name|getValueReference
+name|getHash
 argument_list|()
-operator|!=
-name|UNSET
-condition|)
+argument_list|)
+expr_stmt|;
+comment|// decrements count
+block|}
+else|else
 block|{
 name|newFirst
 operator|=
@@ -12510,7 +12540,6 @@ name|newFirst
 argument_list|)
 expr_stmt|;
 block|}
-comment|// else entry was invalidated
 block|}
 return|return
 name|newFirst
@@ -12537,41 +12566,19 @@ name|int
 name|hash
 parameter_list|)
 block|{
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-init|=
-name|entry
-operator|.
-name|getValueReference
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
-name|isInvalid
+name|isUnset
 argument_list|(
-name|valueReference
+name|entry
 argument_list|)
 condition|)
 block|{
-comment|// short-circuit to ensure that notifications are only sent once
+comment|// keep count consistent
 return|return
 literal|false
 return|;
 block|}
-name|int
-name|newCount
-init|=
-name|this
-operator|.
-name|count
-operator|-
-literal|1
-decl_stmt|;
 for|for
 control|(
 name|ReferenceEntry
@@ -12606,6 +12613,52 @@ operator|==
 name|entry
 condition|)
 block|{
+name|invalidateLiveEntry
+argument_list|(
+name|entry
+argument_list|,
+name|hash
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+block|}
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|invalidateLiveEntry (ReferenceEntry<K, V> entry, int hash)
+name|void
+name|invalidateLiveEntry
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|,
+name|int
+name|hash
+parameter_list|)
+block|{
+name|int
+name|newCount
+init|=
+name|this
+operator|.
+name|count
+operator|-
+literal|1
+decl_stmt|;
 operator|++
 name|modCount
 expr_stmt|;
@@ -12615,6 +12668,19 @@ init|=
 name|entry
 operator|.
 name|getKey
+argument_list|()
+decl_stmt|;
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+init|=
+name|entry
+operator|.
+name|getValueReference
 argument_list|()
 decl_stmt|;
 name|enqueueNotification
@@ -12638,14 +12704,6 @@ operator|=
 name|newCount
 expr_stmt|;
 comment|// write-volatile
-return|return
-literal|true
-return|;
-block|}
-block|}
-return|return
-literal|false
-return|;
 block|}
 DECL|method|invalidateValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
@@ -13117,7 +13175,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|isInvalid
+name|isUnset
 argument_list|(
 name|e
 argument_list|)
