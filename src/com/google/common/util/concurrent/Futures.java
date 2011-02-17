@@ -521,7 +521,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p>Callers who have a future that subclasses    * {@link java.util.concurrent.FutureTask} may want to instead subclass    * {@link ListenableFutureTask}, which adds the {@link ListenableFuture}    * functionality to the standard {@code FutureTask} implementation.    */
+comment|/**    * Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>Callers who have a future that subclasses    * {@link java.util.concurrent.FutureTask} may want to instead subclass    * {@link ListenableFutureTask}, which adds the {@link ListenableFuture}    * functionality to the standard {@code FutureTask} implementation.    */
 DECL|method|makeListenable (Future<V> future)
 specifier|public
 specifier|static
@@ -572,7 +572,6 @@ name|future
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link ListenableFuture} out of a normal {@link Future} and uses    * the given {@link Executor} to get the value of the Future. The    * returned future will create a thread using the given executor to wait for    * the source future to complete before executing the listeners.    *    *<p>Callers who have a future that subclasses    * {@link java.util.concurrent.FutureTask} may want to instead subclass    * {@link ListenableFutureTask}, which adds the {@link ListenableFuture}    * functionality to the standard {@code FutureTask} implementation.    */
 DECL|method|makeListenable ( Future<V> future, Executor executor)
 specifier|static
 parameter_list|<
@@ -632,7 +631,7 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    */
+comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p><b>Warning:</b> If the input future does not implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    */
 DECL|method|makeChecked ( Future<V> future, Function<Exception, X> mapper)
 specifier|public
 specifier|static
@@ -684,7 +683,7 @@ name|mapper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}. It's useful for returning something that implements the    * {@code ListenableFuture} interface but already has the result.    */
+comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}.    */
 DECL|method|immediateFuture (@ullable V value)
 specifier|public
 specifier|static
@@ -968,7 +967,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   Function<RowKey, ListenableFuture<QueryResult>> queryFunction =    *       new Function<RowKey, ListenableFuture<QueryResult>>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       chain(queryFuture, queryFunction);    * }</pre>    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   Function<RowKey, ListenableFuture<QueryResult>> queryFunction =    *       new Function<RowKey, ListenableFuture<QueryResult>>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       chain(queryFuture, queryFunction, executor);    * }</pre>    *    *<p>Successful cancellation of either the input future or the result of    * function application will cause the returned future to be cancelled.    * Cancelling the returned future will succeed if it is currently running.    * In this case, attempts will be made to cancel the input future and the    * result of the function, however there is no guarantee of success.    *    *<p>This version allows an arbitrary executor to be passed in for running    * the chained Function. When using {@link MoreExecutors#sameThreadExecutor},    * the thread chained Function executes in will be whichever thread set the    * result of the input Future, which may be the network thread in the case of    * RPC-based Futures.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function, Executor exec)
 specifier|public
 specifier|static
