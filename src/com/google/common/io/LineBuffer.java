@@ -53,11 +53,6 @@ name|boolean
 name|sawReturn
 decl_stmt|;
 comment|/**    * Process additional characters from the stream. When a line separator    * is found the contents of the line and the line separator itself    * are passed to the abstract {@link #handleLine} method.    *    * @param cbuf the character buffer to process    * @param off the offset into the buffer    * @param len the number of characters to process    * @throws IOException if an I/O error occurs    * @see #finish    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"fallthrough"
-argument_list|)
 DECL|method|add (char[] cbuf, int off, int len)
 specifier|protected
 name|void
