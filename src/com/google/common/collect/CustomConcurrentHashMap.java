@@ -474,14 +474,14 @@ name|RETRIES_BEFORE_LOCK
 init|=
 literal|2
 decl_stmt|;
-comment|/**    * Number of cache access operations that can be buffered per segment before    * the cache's recency ordering information is updated. This is used to avoid    * lock contention by recording a memento of reads and delaying a lock    * acquisition until the threshold is crossed or a mutation occurs.    *    *<p>This must be a power of two as it is used as a mask.    */
+comment|/**    * Number of cache access operations that can be buffered per segment before    * the cache's recency ordering information is updated. This is used to avoid    * lock contention by recording a memento of reads and delaying a lock    * acquisition until the threshold is crossed or a mutation occurs.    *    *<p>This must be a (2^n)-1 as it is used as a mask.    */
 DECL|field|DRAIN_THRESHOLD
 specifier|static
 specifier|final
 name|int
 name|DRAIN_THRESHOLD
 init|=
-literal|64
+literal|0x3F
 decl_stmt|;
 comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run.    * TODO(user): empirically optimize this    */
 DECL|field|CLEANUP_MAX
@@ -1043,6 +1043,19 @@ return|return
 name|expireAfterAccessNanos
 operator|>
 literal|0
+return|;
+block|}
+DECL|method|isInlineCleanup ()
+name|boolean
+name|isInlineCleanup
+parameter_list|()
+block|{
+return|return
+name|cleanupExecutor
+operator|==
+name|MapMaker
+operator|.
+name|DEFAULT_CLEANUP_EXECUTOR
 return|;
 block|}
 comment|/**    * Returns the given concurrency level or MAX_SEGMENTS if the given level    * is> MAX_SEGMENTS.    */
@@ -7967,21 +7980,11 @@ argument_list|,
 name|valueReference
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|segment
-operator|.
-name|isHeldByCurrentThread
-argument_list|()
-condition|)
-block|{
 name|segment
 operator|.
 name|scheduleCleanup
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 DECL|method|removeEntry (ReferenceEntry<K, V> entry)
 name|boolean
@@ -8145,7 +8148,7 @@ operator|==
 name|UNSET
 return|;
 block|}
-comment|/**    * Gets the value from an entry. Returns null if the entry is invalid,    * partially-collected, computing, or expired. This method is unnecessary in    * blocks that call expireEntries() directly, which can simply assume that    * remaining entries are not expired, and only need compare the value to    * null.    */
+comment|/**    * Gets the value from an entry. Returns null if the entry is invalid,    * partially-collected, computing, or expired. This method is unnecessary in    * blocks that call preWriteCleanup() directly, which can simply assume that    * remaining entries are not expired, and only need compare the value to    * null.    */
 DECL|method|getLiveValue (ReferenceEntry<K, V> e)
 name|V
 name|getLiveValue
@@ -9562,6 +9565,25 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Performs routine cleanup prior to executing a write. This should be      * called every time a write thread acquires the segment lock, immediately      * after acquiring the lock.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|preWriteCleanup ()
+name|void
+name|preWriteCleanup
+parameter_list|()
+block|{
+name|expireEntries
+argument_list|()
+expr_stmt|;
+comment|// perform inline cleanup while under lock
+name|scheduleCleanup
+argument_list|()
+expr_stmt|;
+block|}
 comment|// recency queue, shared by expiration and eviction
 comment|/**      * Records the relative order in which this read was performed by adding      * {@code entry} to the recency queue. At write-time, or when the queue is      * full past the threshold, the queue will be drained and the entries      * therein processed.      */
 DECL|method|recordRead (ReferenceEntry<K, V> entry)
@@ -10906,7 +10928,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 for|for
@@ -11064,7 +11086,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 for|for
@@ -11202,7 +11224,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 name|int
@@ -11892,7 +11914,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 name|int
@@ -12108,7 +12130,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 name|int
@@ -13303,6 +13325,51 @@ block|}
 block|}
 block|}
 block|}
+DECL|method|scheduleCleanup ()
+name|void
+name|scheduleCleanup
+parameter_list|()
+block|{
+if|if
+condition|(
+name|isInlineCleanup
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|isHeldByCurrentThread
+argument_list|()
+condition|)
+block|{
+name|runUnlockedCleanup
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|runLockedCleanup
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+operator|!
+name|isHeldByCurrentThread
+argument_list|()
+condition|)
+block|{
+name|cleanupExecutor
+operator|.
+name|execute
+argument_list|(
+name|cleanupRunnable
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|field|cleanupRunnable
 specifier|final
 name|Runnable
@@ -13317,47 +13384,34 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|runCleanup
+name|runUnlockedCleanup
+argument_list|()
+expr_stmt|;
+name|runLockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|scheduleCleanup ()
+comment|/**      * Performs housekeeping tasks on this segment that don't require the      * segment lock.      */
+DECL|method|runUnlockedCleanup ()
 name|void
-name|scheduleCleanup
-parameter_list|()
-block|{
-name|checkState
-argument_list|(
-operator|!
-name|isHeldByCurrentThread
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|cleanupExecutor
-operator|.
-name|execute
-argument_list|(
-name|cleanupRunnable
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Performs periodic housekeeping tasks on this segment. Never called      * directly, but always by the cleanup executor.      */
-DECL|method|runCleanup ()
-name|void
-name|runCleanup
+name|runUnlockedCleanup
 parameter_list|()
 block|{
 name|processPendingNotifications
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|tryLock
-argument_list|()
-condition|)
+block|}
+comment|/**      * Performs housekeeping tasks on this segment that require the segment      * lock.      */
+DECL|method|runLockedCleanup ()
+name|void
+name|runLockedCleanup
+parameter_list|()
 block|{
+name|lock
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|processPendingCleanup
@@ -13379,7 +13433,6 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 DECL|method|clear ()

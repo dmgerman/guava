@@ -309,7 +309,6 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|DEFAULT_CLEANUP_EXECUTOR
-specifier|private
 specifier|static
 specifier|final
 name|Executor

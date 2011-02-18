@@ -434,7 +434,7 @@ expr_stmt|;
 try|try
 block|{
 comment|// Try again--an entry could have materialized in the interim.
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 comment|// getFirst, but remember the index
@@ -727,9 +727,6 @@ name|hash
 argument_list|,
 name|computingValueReference
 argument_list|)
-expr_stmt|;
-name|scheduleCleanup
-argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1473,7 +1470,7 @@ try|try
 block|{
 name|segment
 operator|.
-name|expireEntries
+name|preWriteCleanup
 argument_list|()
 expr_stmt|;
 name|int
