@@ -7980,11 +7980,22 @@ argument_list|,
 name|valueReference
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|segment
+operator|.
+name|isHeldByCurrentThread
+argument_list|()
+condition|)
+block|{
+comment|// don't cleanup inside of put
 name|segment
 operator|.
 name|scheduleCleanup
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 DECL|method|removeEntry (ReferenceEntry<K, V> entry)
 name|boolean
@@ -9601,19 +9612,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-operator|!
-name|evictsBySize
-argument_list|()
-operator|&&
-operator|!
-name|expiresAfterAccess
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
-if|if
-condition|(
 name|expiresAfterAccess
 argument_list|()
 condition|)
@@ -9648,9 +9646,24 @@ operator|==
 literal|0
 condition|)
 block|{
+if|if
+condition|(
+name|isInlineCleanup
+argument_list|()
+condition|)
+block|{
+comment|// inline cleanup normally avoids taking the lock, but since no writes
+comment|// are happening we need to force some locked cleanup
+name|runCleanup
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
 name|scheduleCleanup
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant eviction lists.      */
@@ -13336,19 +13349,22 @@ name|isInlineCleanup
 argument_list|()
 condition|)
 block|{
+comment|// this cleanup pattern is optimized for writes, where cleanup requiring
+comment|// the lock is performed when the lock is acquired, and cleanup not
+comment|// requiring the lock is performed when the lock is released
 if|if
 condition|(
 name|isHeldByCurrentThread
 argument_list|()
 condition|)
 block|{
-name|runUnlockedCleanup
+name|runLockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
 else|else
 block|{
-name|runLockedCleanup
+name|runUnlockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -13361,6 +13377,9 @@ name|isHeldByCurrentThread
 argument_list|()
 condition|)
 block|{
+comment|// non-default cleanup executors can ignore cleanup optimizations when
+comment|// the lock is held, as cleanup will always be called when the lock is
+comment|// released
 name|cleanupExecutor
 operator|.
 name|execute
@@ -13384,6 +13403,17 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|runCleanup
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+decl_stmt|;
+DECL|method|runCleanup ()
+name|void
+name|runCleanup
+parameter_list|()
+block|{
 name|runUnlockedCleanup
 argument_list|()
 expr_stmt|;
@@ -13391,8 +13421,6 @@ name|runLockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-decl_stmt|;
 comment|/**      * Performs housekeeping tasks on this segment that don't require the      * segment lock.      */
 DECL|method|runUnlockedCleanup ()
 name|void
