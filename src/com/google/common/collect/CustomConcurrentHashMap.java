@@ -56,6 +56,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Equivalence
@@ -460,12 +474,12 @@ name|RETRIES_BEFORE_LOCK
 init|=
 literal|2
 decl_stmt|;
-comment|/**    * Number of cache access operations that can be buffered per segment before    * the cache's recency ordering information is updated. This is used to avoid    * lock contention by recording a memento of reads and delaying a lock    * acquisition until the threshold is crossed or a mutation occurs.    */
-DECL|field|RECENCY_THRESHOLD
+comment|/**    * Number of cache access operations that can be buffered per segment before    * the cache's recency ordering information is updated. This is used to avoid    * lock contention by recording a memento of reads and delaying a lock    * acquisition until the threshold is crossed or a mutation occurs.    *    *<p>This must be a power of two as it is used as a mask.    */
+DECL|field|DRAIN_THRESHOLD
 specifier|static
 specifier|final
 name|int
-name|RECENCY_THRESHOLD
+name|DRAIN_THRESHOLD
 init|=
 literal|64
 decl_stmt|;
@@ -707,53 +721,17 @@ name|INSTANCE
 argument_list|)
 condition|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-name|Queue
-argument_list|<
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|defaultQueue
-init|=
-operator|(
-name|Queue
-operator|)
-name|discardingQueue
-decl_stmt|;
 name|evictionNotificationQueue
 operator|=
-name|defaultQueue
+name|discardingQueue
+argument_list|()
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-name|MapEvictionListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|defaultListener
-init|=
-name|NullListener
-operator|.
-name|INSTANCE
-decl_stmt|;
 name|this
 operator|.
 name|evictionListener
 operator|=
-name|defaultListener
+name|nullListener
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -3787,14 +3765,51 @@ name|value
 parameter_list|)
 block|{}
 block|}
-DECL|field|discardingQueue
+comment|/**    * Queue that discards all elements.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// Safe because impl never uses a parameter or returns any non-null value
+DECL|method|nullListener ()
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|nullListener
+parameter_list|()
+block|{
+return|return
+operator|(
+name|MapEvictionListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|NullListener
+operator|.
+name|INSTANCE
+return|;
+block|}
+DECL|field|DISCARDING_QUEUE
 specifier|static
 specifier|final
 name|Queue
 argument_list|<
 name|Object
 argument_list|>
-name|discardingQueue
+name|DISCARDING_QUEUE
 init|=
 operator|new
 name|AbstractQueue
@@ -3863,6 +3878,35 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|/**    * Queue that discards all elements.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// Safe because impl never uses a parameter or returns any non-null value
+DECL|method|discardingQueue ()
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Queue
+argument_list|<
+name|E
+argument_list|>
+name|discardingQueue
+parameter_list|()
+block|{
+return|return
+operator|(
+name|Queue
+argument_list|<
+name|E
+argument_list|>
+operator|)
+name|DISCARDING_QUEUE
+return|;
+block|}
 comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory.    * If only Java had mixins! To maintain this code, make a change for    * the strong reference type. Then, cut and paste, and replace "Strong"    * with "Soft" or "Weak" within the pasted text. The primary difference    * is that strong entries store the key reference directly while soft    * and weak entries delegate to their respective superclasses.    */
 comment|/**    * Used for strongly-referenced keys.    */
 DECL|class|StrongEntry
@@ -7911,7 +7955,7 @@ argument_list|)
 decl_stmt|;
 name|segment
 operator|.
-name|invalidateValue
+name|unsetValue
 argument_list|(
 name|entry
 operator|.
@@ -7975,9 +8019,11 @@ argument_list|)
 return|;
 block|}
 comment|// Entries in the map can be in the following states:
+comment|// Valid:
 comment|// - Live: valid key/value are set
-comment|// - Expired: time expired (key/value may still be set)
 comment|// - Computing: computation is pending
+comment|// Invalid:
+comment|// - Expired: time expired (key/value may still be set)
 comment|// - Collected: key/value was partially collected, but not yet cleaned up
 comment|// - Unset: marked as unset, awaiting cleanup or reuse
 DECL|method|isLive (ReferenceEntry<K, V> entry)
@@ -8587,7 +8633,7 @@ name|ReentrantLock
 block|{
 comment|/*      * TODO(user): Consider copying variables (like evictsBySize) from outer      * class into this class. It will require more memory but will reduce      * indirection.      */
 comment|/*      * Segments maintain a table of entry lists that are ALWAYS      * kept in a consistent state, so can be read without locking.      * Next fields of nodes are immutable (final).  All list      * additions are performed at the front of each bin. This      * makes it easy to check changes, and also fast to traverse.      * When nodes would otherwise be changed, new nodes are      * created to replace them. This works well for hash tables      * since the bin lists tend to be short. (The average length      * is less than two.)      *      * Read operations can thus proceed without locking, but rely      * on selected uses of volatiles to ensure that completed      * write operations performed by other threads are      * noticed. For most purposes, the "count" field, tracking the      * number of elements, serves as that volatile variable      * ensuring visibility.  This is convenient because this field      * needs to be read in many read operations anyway:      *      *   - All (unsynchronized) read operations must first read the      *     "count" field, and should not look at table entries if      *     it is 0.      *      *   - All (synchronized) write operations should write to      *     the "count" field after structurally changing any bin.      *     The operations must not take any action that could even      *     momentarily cause a concurrent read operation to see      *     inconsistent data. This is made easier by the nature of      *     the read operations in Map. For example, no operation      *     can reveal that the table has grown but the threshold      *     has not yet been updated, so there are no atomicity      *     requirements for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the      * count field are marked in code comments.      */
-comment|/**      * The number of live elements in this segment's region. This does not      * include invalidated elements which are awaiting cleanup.      */
+comment|/**      * The number of live elements in this segment's region. This does not      * include unset elements which are awaiting cleanup.      */
 DECL|field|count
 specifier|volatile
 name|int
@@ -8623,7 +8669,7 @@ specifier|final
 name|int
 name|maxSegmentSize
 decl_stmt|;
-comment|/**      * The cleanup queue is used to record entries which have been invalidated      * and need to be removed from the map. It is drained by the cleanup      * executor.      */
+comment|/**      * The cleanup queue is used to record entries which have been unset      * and need to be removed from the map. It is drained by the cleanup      * executor.      */
 DECL|field|cleanupQueue
 specifier|final
 name|Queue
@@ -8649,7 +8695,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * The recency queue is used to record which entries were accessed      * for updating the eviction list's ordering. It is drained      * as a batch operation when either the RECENCY_THRESHOLD is crossed or      * a write occurs on the segment.      */
+comment|/**      * The recency queue is used to record which entries were accessed      * for updating the eviction list's ordering. It is drained      * as a batch operation when either the DRAIN_THRESHOLD is crossed or      * a write occurs on the segment.      */
 DECL|field|recencyQueue
 specifier|final
 name|Queue
@@ -8663,11 +8709,15 @@ argument_list|>
 argument_list|>
 name|recencyQueue
 decl_stmt|;
-comment|/** The size of {@code recencyQueue}. */
-DECL|field|recencyQueueLength
+comment|/**      * A counter of the number of reads since the last write, used to drain      * queues on a small fraction of read operations.      */
+DECL|field|readCount
 specifier|final
 name|AtomicInteger
-name|recencyQueueLength
+name|readCount
+init|=
+operator|new
+name|AtomicInteger
+argument_list|()
 decl_stmt|;
 comment|/** The head of the eviction list. */
 annotation|@
@@ -9375,22 +9425,13 @@ argument_list|>
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|recencyQueueLength
-operator|=
-operator|new
-name|AtomicInteger
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
 name|recencyQueue
 operator|=
-literal|null
-expr_stmt|;
-name|recencyQueueLength
-operator|=
-literal|null
+name|discardingQueue
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -9570,36 +9611,24 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
-comment|// we are not under lock, so only drain the recency queue if full
+comment|// we are not under lock, so only drain a small fraction of the time
 if|if
 condition|(
-name|recencyQueueLength
+operator|(
+name|readCount
 operator|.
 name|incrementAndGet
 argument_list|()
-operator|>
-name|RECENCY_THRESHOLD
+operator|&
+name|DRAIN_THRESHOLD
+operator|)
+operator|==
+literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|tryLock
-argument_list|()
-condition|)
-block|{
-try|try
-block|{
-name|drainRecencyQueue
+name|scheduleCleanup
 argument_list|()
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|unlock
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant eviction lists.      */
@@ -9621,19 +9650,6 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|evictsBySize
-argument_list|()
-operator|&&
-operator|!
-name|expires
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
 comment|// we are already under lock, so drain the recency queue immediately
 name|drainRecencyQueue
 argument_list|()
@@ -9693,14 +9709,6 @@ name|void
 name|drainRecencyQueue
 parameter_list|()
 block|{
-comment|// While the recency queue is being drained it may be concurrently
-comment|// appended to. The number of elements removed are tracked so that the
-comment|// length can be decremented by the delta rather than set to zero.
-name|int
-name|drained
-init|=
-literal|0
-decl_stmt|;
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -9769,18 +9777,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|drained
-operator|++
-expr_stmt|;
 block|}
-name|recencyQueueLength
-operator|.
-name|addAndGet
-argument_list|(
-operator|-
-name|drained
-argument_list|)
-expr_stmt|;
 block|}
 comment|// expiration
 annotation|@
@@ -10001,7 +9998,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|invalidateEntry
+name|unsetEntry
 argument_list|(
 name|expirable
 argument_list|,
@@ -10166,7 +10163,7 @@ comment|// then remove a single entry
 if|if
 condition|(
 operator|!
-name|invalidateEntry
+name|unsetEntry
 argument_list|(
 name|evictable
 argument_list|,
@@ -10429,16 +10426,17 @@ argument_list|)
 return|;
 block|}
 comment|/* Specialized implementations of map methods */
-comment|/**      * Returns the live entry corresponding to {@code key}, or {@code null} if      * the map entry for {@code key} has expired or is invalid.      */
-DECL|method|getLiveEntry (Object key, int hash)
-specifier|public
+comment|/**      * Returns the entry for a given key. Note that the entry may not be live.      * This is only used for testing.      */
+DECL|method|getEntry (Object key, int hash)
+annotation|@
+name|VisibleForTesting
 name|ReferenceEntry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|getLiveEntry
+name|getEntry
 parameter_list|(
 name|Object
 name|key
@@ -10523,25 +10521,8 @@ name|entryKey
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|isLive
-argument_list|(
-name|e
-argument_list|)
-condition|)
-block|{
-name|recordRead
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 return|return
 name|e
-return|;
-block|}
-return|return
-literal|null
 return|;
 block|}
 block|}
@@ -10561,40 +10542,111 @@ name|int
 name|hash
 parameter_list|)
 block|{
+if|if
+condition|(
+name|count
+operator|!=
+literal|0
+condition|)
+block|{
+comment|// read-volatile
+for|for
+control|(
 name|ReferenceEntry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|entry
+name|e
 init|=
-name|getLiveEntry
+name|getFirst
 argument_list|(
-name|key
-argument_list|,
 name|hash
 argument_list|)
+init|;
+name|e
+operator|!=
+literal|null
+condition|;
+name|e
+operator|=
+name|e
+operator|.
+name|getNext
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getHash
+argument_list|()
+operator|!=
+name|hash
+condition|)
+block|{
+continue|continue;
+block|}
+name|K
+name|entryKey
+init|=
+name|e
+operator|.
+name|getKey
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|entry
+name|entryKey
 operator|==
 literal|null
 condition|)
 block|{
-return|return
+continue|continue;
+block|}
+if|if
+condition|(
+name|keyEquivalence
+operator|.
+name|equivalent
+argument_list|(
+name|key
+argument_list|,
+name|entryKey
+argument_list|)
+condition|)
+block|{
+name|V
+name|value
+init|=
+name|getLiveValue
+argument_list|(
+name|e
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|!=
 literal|null
-return|;
+condition|)
+block|{
+name|recordRead
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 return|return
-name|entry
-operator|.
-name|getValueReference
-argument_list|()
-operator|.
-name|get
-argument_list|()
+name|value
+return|;
+block|}
+block|}
+block|}
+return|return
+literal|null
 return|;
 block|}
 DECL|method|containsKey (Object key, int hash)
@@ -11175,6 +11227,14 @@ comment|// ensure capacity
 name|expand
 argument_list|()
 expr_stmt|;
+name|newCount
+operator|=
+name|this
+operator|.
+name|count
+operator|+
+literal|1
+expr_stmt|;
 block|}
 comment|// getFirst, but remember the index
 name|AtomicReferenceArray
@@ -11316,7 +11376,7 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
-comment|// Value could be partially-collected, invalidated, or computing.
+comment|// Value could be partially-collected, unset, or computing.
 comment|// In the first case, the value must be reclaimed. In the latter
 comment|// two cases en entry must be evicted.
 name|valueReference
@@ -11753,7 +11813,7 @@ literal|null
 condition|)
 block|{
 comment|// Key was reclaimed.
-name|invalidateLiveEntry
+name|unsetLiveEntry
 argument_list|(
 name|e
 argument_list|,
@@ -11763,6 +11823,7 @@ name|getHash
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// decrements count
 block|}
 else|else
 block|{
@@ -11978,6 +12039,15 @@ argument_list|,
 name|e
 argument_list|)
 decl_stmt|;
+comment|// could decrement count
+name|newCount
+operator|=
+name|this
+operator|.
+name|count
+operator|-
+literal|1
+expr_stmt|;
 name|table
 operator|.
 name|set
@@ -12204,6 +12274,15 @@ argument_list|,
 name|e
 argument_list|)
 decl_stmt|;
+comment|// could decrement count
+name|newCount
+operator|=
+name|this
+operator|.
+name|count
+operator|-
+literal|1
+expr_stmt|;
 name|table
 operator|.
 name|set
@@ -12370,6 +12449,15 @@ argument_list|,
 name|e
 argument_list|)
 decl_stmt|;
+comment|// could decrement count
+name|newCount
+operator|=
+name|this
+operator|.
+name|count
+operator|-
+literal|1
+expr_stmt|;
 name|table
 operator|.
 name|set
@@ -12516,7 +12604,7 @@ literal|null
 condition|)
 block|{
 comment|// Key was reclaimed.
-name|invalidateLiveEntry
+name|unsetLiveEntry
 argument_list|(
 name|e
 argument_list|,
@@ -12550,9 +12638,9 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|invalidateEntry (ReferenceEntry<K, V> entry, int hash)
+DECL|method|unsetEntry (ReferenceEntry<K, V> entry, int hash)
 name|boolean
-name|invalidateEntry
+name|unsetEntry
 parameter_list|(
 name|ReferenceEntry
 argument_list|<
@@ -12566,19 +12654,6 @@ name|int
 name|hash
 parameter_list|)
 block|{
-if|if
-condition|(
-name|isUnset
-argument_list|(
-name|entry
-argument_list|)
-condition|)
-block|{
-comment|// keep count consistent
-return|return
-literal|false
-return|;
-block|}
 for|for
 control|(
 name|ReferenceEntry
@@ -12613,15 +12688,13 @@ operator|==
 name|entry
 condition|)
 block|{
-name|invalidateLiveEntry
+return|return
+name|unsetLiveEntry
 argument_list|(
 name|entry
 argument_list|,
 name|hash
 argument_list|)
-expr_stmt|;
-return|return
-literal|true
 return|;
 block|}
 block|}
@@ -12634,9 +12707,9 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|invalidateLiveEntry (ReferenceEntry<K, V> entry, int hash)
-name|void
-name|invalidateLiveEntry
+DECL|method|unsetLiveEntry (ReferenceEntry<K, V> entry, int hash)
+name|boolean
+name|unsetLiveEntry
 parameter_list|(
 name|ReferenceEntry
 argument_list|<
@@ -12650,6 +12723,19 @@ name|int
 name|hash
 parameter_list|)
 block|{
+if|if
+condition|(
+name|isUnset
+argument_list|(
+name|entry
+argument_list|)
+condition|)
+block|{
+comment|// keep count consistent
+return|return
+literal|false
+return|;
+block|}
 name|int
 name|newCount
 init|=
@@ -12704,10 +12790,13 @@ operator|=
 name|newCount
 expr_stmt|;
 comment|// write-volatile
+return|return
+literal|true
+return|;
 block|}
-DECL|method|invalidateValue (K key, int hash, ValueReference<K, V> valueReference)
+DECL|method|unsetValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
-name|invalidateValue
+name|unsetValue
 parameter_list|(
 name|K
 name|key
@@ -13265,15 +13354,6 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-operator|!
-name|cleanupQueue
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
 name|tryLock
 argument_list|()
 condition|)
@@ -13283,13 +13363,22 @@ block|{
 name|processPendingCleanup
 argument_list|()
 expr_stmt|;
+name|drainRecencyQueue
+argument_list|()
+expr_stmt|;
+name|readCount
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -13358,6 +13447,13 @@ argument_list|()
 expr_stmt|;
 name|clearEvictionQueue
 argument_list|()
+expr_stmt|;
+name|readCount
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
 expr_stmt|;
 operator|++
 name|modCount
