@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -45,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ForwardingFuture} that also implements {@link ListenableFuture}.  * Subclasses will have to provide a delegate {@link ListenableFuture} through  * the {@link #delegate()} method.  *  * @param<V> The result type returned by this Future's<tt>get</tt> method  *  * @author Shardul Deo  * @since 4  */
+comment|/**  * A {@link ListenableFuture} which forwards all its method calls to another  * future. Subclasses should override one or more methods to modify the behavior  * of the backing future as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingListenableFuture}.  *  * @param<V> The result type returned by this Future's {@code get} method  *   * @author Shardul Deo  * @since 4  */
 end_comment
 
 begin_class
@@ -112,6 +126,74 @@ argument_list|,
 name|exec
 argument_list|)
 expr_stmt|;
+block|}
+comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
+comment|/**    * A simplified version of {@link ForwardingListenableFuture} where subclasses    * can pass in an already constructed {@link ListenableFuture}     * as the delegate.    *     * @since 9    */
+annotation|@
+name|Beta
+DECL|class|SimpleForwardingListenableFuture
+specifier|public
+specifier|abstract
+specifier|static
+class|class
+name|SimpleForwardingListenableFuture
+parameter_list|<
+name|V
+parameter_list|>
+extends|extends
+name|ForwardingListenableFuture
+argument_list|<
+name|V
+argument_list|>
+block|{
+DECL|field|delegate
+specifier|private
+specifier|final
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+decl_stmt|;
+DECL|method|SimpleForwardingListenableFuture (ListenableFuture<V> delegate)
+specifier|protected
+name|SimpleForwardingListenableFuture
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delegate
+operator|=
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|delegate
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|delegate ()
+specifier|protected
+specifier|final
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
+block|}
 block|}
 block|}
 end_class
