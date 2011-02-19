@@ -7992,7 +7992,7 @@ block|{
 comment|// don't cleanup inside of put
 name|segment
 operator|.
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -9576,25 +9576,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Performs routine cleanup prior to executing a write. This should be      * called every time a write thread acquires the segment lock, immediately      * after acquiring the lock.      */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
-DECL|method|preWriteCleanup ()
-name|void
-name|preWriteCleanup
-parameter_list|()
-block|{
-name|expireEntries
-argument_list|()
-expr_stmt|;
-comment|// perform inline cleanup while under lock
-name|scheduleCleanup
-argument_list|()
-expr_stmt|;
-block|}
 comment|// recency queue, shared by expiration and eviction
 comment|/**      * Records the relative order in which this read was performed by adding      * {@code entry} to the recency queue. At write-time, or when the queue is      * full past the threshold, the queue will be drained and the entries      * therein processed.      */
 DECL|method|recordRead (ReferenceEntry<K, V> entry)
@@ -9631,40 +9612,6 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
-comment|// we are not under lock, so only drain a small fraction of the time
-if|if
-condition|(
-operator|(
-name|readCount
-operator|.
-name|incrementAndGet
-argument_list|()
-operator|&
-name|DRAIN_THRESHOLD
-operator|)
-operator|==
-literal|0
-condition|)
-block|{
-if|if
-condition|(
-name|isInlineCleanup
-argument_list|()
-condition|)
-block|{
-comment|// inline cleanup normally avoids taking the lock, but since no writes
-comment|// are happening we need to force some locked cleanup
-name|runCleanup
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|scheduleCleanup
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 block|}
 comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant eviction lists.      */
 annotation|@
@@ -9972,15 +9919,6 @@ name|void
 name|expireEntries
 parameter_list|()
 block|{
-if|if
-condition|(
-operator|!
-name|expires
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
@@ -10577,6 +10515,8 @@ name|int
 name|hash
 parameter_list|)
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|count
@@ -10683,6 +10623,13 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+finally|finally
+block|{
+name|postReadCleanup
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|containsKey (Object key, int hash)
 name|boolean
@@ -11070,7 +11017,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -11205,7 +11152,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -11549,7 +11496,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -12114,7 +12061,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -12355,7 +12302,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -13338,9 +13285,87 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|scheduleCleanup ()
+DECL|method|postReadCleanup ()
 name|void
-name|scheduleCleanup
+name|postReadCleanup
+parameter_list|()
+block|{
+comment|// we are not under lock, so only drain a small fraction of the time
+if|if
+condition|(
+operator|(
+name|readCount
+operator|.
+name|incrementAndGet
+argument_list|()
+operator|&
+name|DRAIN_THRESHOLD
+operator|)
+operator|==
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|isInlineCleanup
+argument_list|()
+condition|)
+block|{
+comment|// inline cleanup normally avoids taking the lock, but since no
+comment|// writes are happening we need to force some locked cleanup
+name|runCleanup
+argument_list|()
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+operator|!
+name|isHeldByCurrentThread
+argument_list|()
+condition|)
+block|{
+name|cleanupExecutor
+operator|.
+name|execute
+argument_list|(
+name|cleanupRunnable
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|/**      * Performs routine cleanup prior to executing a write. This should be      * called every time a write thread acquires the segment lock, immediately      * after acquiring the lock.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|preWriteCleanup ()
+name|void
+name|preWriteCleanup
+parameter_list|()
+block|{
+if|if
+condition|(
+name|isInlineCleanup
+argument_list|()
+condition|)
+block|{
+name|runLockedCleanup
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|expireEntries
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+DECL|method|postWriteCleanup ()
+name|void
+name|postWriteCleanup
 parameter_list|()
 block|{
 if|if
@@ -13414,10 +13439,11 @@ name|void
 name|runCleanup
 parameter_list|()
 block|{
-name|runUnlockedCleanup
+name|runLockedCleanup
 argument_list|()
 expr_stmt|;
-name|runLockedCleanup
+comment|// locked cleanup may generate notifications we can send unlocked
+name|runUnlockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -13442,10 +13468,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|processPendingCleanup
+name|expireEntries
 argument_list|()
 expr_stmt|;
-name|drainRecencyQueue
+comment|// calls drainRecencyQueue
+name|processPendingCleanup
 argument_list|()
 expr_stmt|;
 name|readCount

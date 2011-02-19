@@ -660,7 +660,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
@@ -1631,7 +1631,7 @@ argument_list|()
 expr_stmt|;
 name|segment
 operator|.
-name|scheduleCleanup
+name|postWriteCleanup
 argument_list|()
 expr_stmt|;
 block|}
