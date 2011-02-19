@@ -43,17 +43,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call.  *  * @author Sven Mawson  * @since 1  */
+comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call.  *  * @author Sven Mawson  * @since 9 (in version 1 as {@code ValueFuture})  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|ValueFuture
+DECL|class|SettableFuture
 specifier|public
 specifier|final
 class|class
-name|ValueFuture
+name|SettableFuture
 parameter_list|<
 name|V
 parameter_list|>
@@ -63,14 +63,14 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/**    * Creates a new {@code ValueFuture} in the default state.    */
+comment|/**    * Creates a new {@code SettableFuture} in the default state.    */
 DECL|method|create ()
 specifier|public
 specifier|static
 parameter_list|<
 name|V
 parameter_list|>
-name|ValueFuture
+name|SettableFuture
 argument_list|<
 name|V
 argument_list|>
@@ -79,17 +79,17 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|ValueFuture
+name|SettableFuture
 argument_list|<
 name|V
 argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Explicit private constructor, use the {@link #create} factory method to    * create instances of {@code ValueFuture}.    */
-DECL|method|ValueFuture ()
+comment|/**    * Explicit private constructor, use the {@link #create} factory method to    * create instances of {@code SettableFuture}.    */
+DECL|method|SettableFuture ()
 specifier|private
-name|ValueFuture
+name|SettableFuture
 parameter_list|()
 block|{}
 comment|/**    * Sets the value of this future.  This method will return {@code true} if    * the value was successfully set, or {@code false} if the future has already    * been set or cancelled.    *    * @param newValue the value the future should hold.    * @return true if the value was successfully set.    */
@@ -136,7 +136,7 @@ name|t
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>A ValueFuture is never considered in the running state, so the    * {@code mayInterruptIfRunning} argument is ignored.    */
+comment|/**    * {@inheritDoc}    *    *<p>A SettableFuture is never considered in the running state, so the    * {@code mayInterruptIfRunning} argument is ignored.    */
 annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
