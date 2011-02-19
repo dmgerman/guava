@@ -1269,16 +1269,21 @@ parameter_list|()
 block|{
 comment|// The pending computation was clobbered by a manual write. Unblock all
 comment|// pending gets, and have them return the new value.
-comment|// TODO(user): could also cancel computation if we had a thread handle
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|notifyAll
-argument_list|()
+name|setValueReference
+argument_list|(
+operator|new
+name|ComputedReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+literal|null
+argument_list|)
+argument_list|)
 expr_stmt|;
-block|}
+comment|// TODO(user): could also cancel computation if we had a thread handle
 block|}
 DECL|method|notifyValueReclaimed ()
 specifier|public
@@ -1654,6 +1659,13 @@ init|(
 name|this
 init|)
 block|{
+if|if
+condition|(
+name|computedReference
+operator|==
+name|UNSET
+condition|)
+block|{
 name|computedReference
 operator|=
 name|valueReference
@@ -1661,6 +1673,7 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
