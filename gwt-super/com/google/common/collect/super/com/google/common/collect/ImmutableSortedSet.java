@@ -688,8 +688,8 @@ block|}
 comment|/** @Deprecated */
 annotation|@
 name|Deprecated
-DECL|method|of ( E[] elements)
 specifier|public
+DECL|method|of ( E[] elements)
 specifier|static
 parameter_list|<
 name|E

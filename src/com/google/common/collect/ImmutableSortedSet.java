@@ -764,8 +764,8 @@ comment|// TODO(kevinb): Consider factory methods that reject duplicates
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Comparable[])}.<b>This method is scheduled    *     for deletion in October 2011.</b>    * @since 2 (changed from varargs in release 3)    */
 annotation|@
 name|Deprecated
-DECL|method|of ( E[] elements)
 specifier|public
+DECL|method|of ( E[] elements)
 specifier|static
 parameter_list|<
 name|E
