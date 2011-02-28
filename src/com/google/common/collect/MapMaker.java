@@ -968,7 +968,7 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation.    * Note that changing the value of an entry will reset its expiration    * time.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to live or time to idle was    *     already set    * @since 8    */
+comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation.    * Note that changing the value of an entry will reset its expiration    * time.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @throws IllegalStateException if the time to live or time to idle was    *     already set    * @since 8    */
 annotation|@
 name|Beta
 annotation|@
@@ -1076,7 +1076,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's last access.    *    * @param duration the length of time after an entry is last accessed    *     that it should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive, or is    *     larger than one hundred years    * @throws IllegalStateException if the time to idle or time to live was    *     already set    * @since 8    */
+comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's last access.    *    * @param duration the length of time after an entry is last accessed    *     that it should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @throws IllegalStateException if the time to idle or time to live was    *     already set    * @since 8    */
 annotation|@
 name|Beta
 annotation|@
