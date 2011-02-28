@@ -321,6 +321,9 @@ comment|// This is safe because all non-covariant methods are overriden
 return|return
 operator|(
 name|Multiset
+argument_list|<
+name|E
+argument_list|>
 operator|)
 name|delegate
 return|;
@@ -471,6 +474,9 @@ comment|// Safe because the returned Iterator is made unmodifiable
 return|return
 operator|(
 name|Iterator
+argument_list|<
+name|E
+argument_list|>
 operator|)
 name|Iterators
 operator|.

@@ -295,6 +295,9 @@ condition|?
 operator|(
 operator|(
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|o1
 operator|)
@@ -307,6 +310,9 @@ else|:
 operator|(
 operator|(
 name|Comparator
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|comparator
 operator|)
@@ -351,6 +357,9 @@ name|self
 init|=
 operator|(
 name|SortedSet
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|this
 decl_stmt|;
@@ -441,6 +450,9 @@ name|self
 init|=
 operator|(
 name|SortedSet
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|this
 decl_stmt|;

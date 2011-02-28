@@ -243,6 +243,9 @@ block|{
 return|return
 operator|(
 name|Ordering
+argument_list|<
+name|S
+argument_list|>
 operator|)
 name|this
 return|;

@@ -282,6 +282,9 @@ block|{
 return|return
 operator|(
 name|Ordering
+argument_list|<
+name|C
+argument_list|>
 operator|)
 name|NaturalOrdering
 operator|.

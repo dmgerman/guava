@@ -332,6 +332,11 @@ block|{
 return|return
 operator|(
 name|ImmutableSortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|NATURAL_EMPTY_MAP
 return|;
@@ -879,6 +884,9 @@ name|naturalOrder
 init|=
 operator|(
 name|Ordering
+argument_list|<
+name|K
+argument_list|>
 operator|)
 name|Ordering
 operator|.

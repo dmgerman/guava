@@ -373,15 +373,12 @@ name|ImmutableClassToInstanceMap
 condition|)
 block|{
 return|return
-call|(
+operator|(
 name|ImmutableClassToInstanceMap
 argument_list|<
 name|B
 argument_list|>
-call|)
-argument_list|(
-name|Map
-argument_list|)
+operator|)
 name|map
 return|;
 block|}

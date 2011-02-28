@@ -10418,14 +10418,6 @@ name|int
 name|hash
 parameter_list|)
 block|{
-if|if
-condition|(
-name|count
-operator|!=
-literal|0
-condition|)
-block|{
-comment|// read-volatile
 for|for
 control|(
 name|ReferenceEntry
@@ -10497,7 +10489,6 @@ block|{
 return|return
 name|e
 return|;
-block|}
 block|}
 block|}
 return|return
@@ -11360,7 +11351,9 @@ name|modCount
 expr_stmt|;
 comment|// Value could be partially-collected, unset, or computing.
 comment|// In the first case, the value must be reclaimed. In the latter
-comment|// two cases en entry must be evicted.
+comment|// two cases en entry must be evicted. This entry could be both
+comment|// partially-collected and next on the eviction list, which is why
+comment|// notifyValueReclaimed must be called prior to evictEntries.
 name|valueReference
 operator|.
 name|notifyValueReclaimed

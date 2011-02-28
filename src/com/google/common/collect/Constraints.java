@@ -206,6 +206,9 @@ block|{
 return|return
 operator|(
 name|Constraint
+argument_list|<
+name|E
+argument_list|>
 operator|)
 name|NotNullConstraint
 operator|.

@@ -311,6 +311,9 @@ return|return
 operator|(
 operator|(
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|k1
 operator|)
@@ -327,6 +330,9 @@ return|return
 operator|(
 operator|(
 name|Comparator
+argument_list|<
+name|Object
+argument_list|>
 operator|)
 name|comparator
 operator|)
@@ -374,6 +380,11 @@ name|self
 init|=
 operator|(
 name|SortedMap
+argument_list|<
+name|Object
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|this
 decl_stmt|;
@@ -466,6 +477,11 @@ name|self
 init|=
 operator|(
 name|SortedMap
+argument_list|<
+name|Object
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|this
 decl_stmt|;
