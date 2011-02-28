@@ -325,12 +325,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an immutable map containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code map} is    * an {@code ImmutableClassToInstanceMap}, no copy will actually be performed.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws ClassCastException if any value is not an instance of the type    *     specified by its key    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// covariant casts safe (unmodifiable)
 DECL|method|copyOf ( Map<? extends Class<? extends S>, ? extends S> map)
 specifier|public
 specifier|static
@@ -372,14 +366,26 @@ operator|instanceof
 name|ImmutableClassToInstanceMap
 condition|)
 block|{
-return|return
-operator|(
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// covariant casts safe (unmodifiable)
+comment|// Eclipse won't compile if we cast to the parameterized type.
 name|ImmutableClassToInstanceMap
 argument_list|<
 name|B
 argument_list|>
+name|cast
+init|=
+operator|(
+name|ImmutableClassToInstanceMap
 operator|)
 name|map
+decl_stmt|;
+return|return
+name|cast
 return|;
 block|}
 return|return
