@@ -570,18 +570,11 @@ operator|.
 name|get
 argument_list|()
 expr_stmt|;
-name|boolean
-name|absent
-init|=
-operator|(
+if|if
+condition|(
 name|value
 operator|==
 literal|null
-operator|)
-decl_stmt|;
-if|if
-condition|(
-name|absent
 condition|)
 block|{
 comment|// clobber invalid entries
@@ -636,14 +629,8 @@ condition|)
 block|{
 name|entry
 operator|=
-name|entryFactory
-operator|.
 name|newEntry
 argument_list|(
-name|ComputingConcurrentHashMap
-operator|.
-name|this
-argument_list|,
 name|key
 argument_list|,
 name|hash
