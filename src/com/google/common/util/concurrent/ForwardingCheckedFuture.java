@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A future which forwards all its method calls to another future. Subclasses  * should override one or more methods to modify the behavior of the backing   * future as desired per the<a href=  * "http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can simply extend {@link SimpleForwadingCheckedFuture}.  *   * @param<V> The result type returned by this Future's {@code get} method  * @param<X> The type of the Exception thrown by the Future's   *            {@code checkedGet} method  *  * @author azana@google.com (Anthony Zana)  * @since 9  */
+comment|/**  * A future which forwards all its method calls to another future. Subclasses  * should override one or more methods to modify the behavior of the backing   * future as desired per the<a href=  * "http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can simply extend {@link SimpleForwardingCheckedFuture}.  *   * @param<V> The result type returned by this Future's {@code get} method  * @param<X> The type of the Exception thrown by the Future's   *            {@code checkedGet} method  *  * @author azana@google.com (Anthony Zana)  * @since 9  */
 end_comment
 
 begin_class
@@ -168,12 +168,12 @@ comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
 comment|/**    * A simplified version of {@link ForwardingCheckedFuture} where subclasses    * can pass in an already constructed {@link CheckedFuture} as the delegate.    *     * @since 9    */
 annotation|@
 name|Beta
-DECL|class|SimpleForwadingCheckedFuture
+DECL|class|SimpleForwardingCheckedFuture
 specifier|public
 specifier|abstract
 specifier|static
 class|class
-name|SimpleForwadingCheckedFuture
+name|SimpleForwardingCheckedFuture
 parameter_list|<
 name|V
 parameter_list|,
@@ -200,9 +200,9 @@ name|X
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|SimpleForwadingCheckedFuture (CheckedFuture<V, X> delegate)
+DECL|method|SimpleForwardingCheckedFuture (CheckedFuture<V, X> delegate)
 specifier|protected
-name|SimpleForwadingCheckedFuture
+name|SimpleForwardingCheckedFuture
 parameter_list|(
 name|CheckedFuture
 argument_list|<
