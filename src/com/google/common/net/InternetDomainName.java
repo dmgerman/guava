@@ -1040,7 +1040,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the    * argument and a dot to the current name. For example, {@code    * InternetDomainName.from("foo.com").child("www.bar")} returns a new {@code    * InternetDomainName} with the value {@code www.bar.foo.com}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
+comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the    * argument and a dot to the current name. For example, {@code    * InternetDomainName.fromLenient("foo.com").child("www.bar")} returns a new    * {@code InternetDomainName} with the value {@code www.bar.foo.com}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
 DECL|method|child (String leftParts)
 specifier|public
 name|InternetDomainName
