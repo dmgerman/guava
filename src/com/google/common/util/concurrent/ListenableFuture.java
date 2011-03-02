@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>This interface defines a future that has listeners attached to it, which  * is useful for asynchronous workflows.  Each listener has an associated  * executor, and is invoked using this executor once the {@code Future}'s  * computation is {@linkplain Future#isDone() complete}.  The listener will be  * executed even if it is added after the computation is complete.  *  *<p>Usage:  *<pre>   {@code  *   final ListenableFuture<?> future = myService.async(myRequest);  *   future.addListener(new Runnable() {  *     public void run() {  *       System.out.println("Operation Complete.");  *       try {  *         System.out.println("Result: " + future.get());  *       } catch (Exception e) {  *         System.out.println("Error: " + e.message());  *       }  *     }  *   }, exec);}</pre>  *  * @author Sven Mawson  * @author Nishant Thakkar  * @since 1  */
+comment|/**  * A {@link Future} that accepts completion listeners.  Each listener has an  * associated executor, and is invoked using this executor once the future's  * computation is {@linkplain Future#isDone() complete}.  If the computation has  * already completed when the listener is added, the listener will execute  * immediately.  *  *<p>Common {@code ListenableFuture} implementations include {@link  * ValueFuture} and the futures returned by a {@link ListeningExecutorService}  * (typically {@link ListenableFutureTask} instances).  *  *<p>Usage:  *<pre>   {@code  *   final ListenableFuture<?> future = myService.async(myRequest);  *   future.addListener(new Runnable() {  *     public void run() {  *       System.out.println("Operation Complete.");  *       try {  *         System.out.println("Result: " + future.get());  *       } catch (Exception e) {  *         System.out.println("Error: " + e.message());  *       }  *     }  *   }, executor);}</pre>  *  * @author Sven Mawson  * @author Nishant Thakkar  * @since 1  */
 end_comment
 
 begin_interface
@@ -88,8 +88,8 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/**    *<p>Adds a listener and executor to the ListenableFuture.    * The listener will be {@linkplain Executor#execute(Runnable) passed    * to the executor} for execution when the {@code Future}'s computation is    * {@linkplain Future#isDone() complete}.    *    *<p>There is no guaranteed ordering of execution of listeners, they may get    * called in the order they were added and they may get called out of order,    * but any listener added through this method is guaranteed to be called once    * the computation is complete.    *    * @param listener the listener to run when the computation is complete.    * @param exec the executor to run the listener in.    * @throws NullPointerException if the executor or listener was null.    * @throws RejectedExecutionException if we tried to execute the listener    * immediately but the executor rejected it.    */
-DECL|method|addListener (Runnable listener, Executor exec)
+comment|/**    * Registers a listener to be {@linkplain Executor#execute(Runnable) run} on    * the given executor.  The listener will run when the {@code Future}'s    * computation is {@linkplain Future#isDone() complete} or, if the computation    * is already complete, immediately.    *    *<p>There is no guaranteed ordering of execution of listeners, but any    * listener added through this method is guaranteed to be called once the    * computation is complete.    *    *<p>Listeners cannot throw checked exceptions and should not throw {@code    * RuntimeException} unless their executors are prepared to handle it.    * Listeners that will execute in {@link MoreExecutors#sameThreadExecutor}    * should take special care, since they may run during the call to {@code    * addListener} or during the call that sets the future's value.    *    * @param listener the listener to run when the computation is complete    * @param executor the executor to run the listener in    * @throws NullPointerException if the executor or listener was null    * @throws RejectedExecutionException if we tried to execute the listener    *         immediately but the executor rejected it.    */
+DECL|method|addListener (Runnable listener, Executor executor)
 name|void
 name|addListener
 parameter_list|(
@@ -97,7 +97,7 @@ name|Runnable
 name|listener
 parameter_list|,
 name|Executor
-name|exec
+name|executor
 parameter_list|)
 function_decl|;
 block|}
