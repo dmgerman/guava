@@ -13946,6 +13946,8 @@ name|lock
 argument_list|()
 expr_stmt|;
 block|}
+try|try
+block|{
 for|for
 control|(
 name|Segment
@@ -13961,6 +13963,9 @@ operator|.
 name|count
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 for|for
 control|(
 name|Segment
@@ -13974,6 +13979,7 @@ operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
