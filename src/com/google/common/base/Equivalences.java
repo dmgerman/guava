@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods return serializable instances.  *  * @author Bob Lee  * @author Kurt Alfred Kluever  * @since 4  */
+comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods return serializable instances.  *  * @author Bob Lee  * @author Kurt Alfred Kluever  * @author Gregory Kick  * @since 4  */
 end_comment
 
 begin_class
