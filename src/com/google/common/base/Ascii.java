@@ -45,12 +45,10 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods pertaining to ASCII characters (those in the range of values {@code 0x00} through  * {@code 0x7F}), and to strings containing such characters.  *  * @author Craig Berry  * @author Gregory Kick  * @since 7  */
+comment|/**  * Static methods pertaining to ASCII characters (those in the range of values  * {@code 0x00} through {@code 0x7F}), and to strings containing such  * characters.  *  *<p>ASCII utilities also exist in other classes of this package:  *<ul>  *<li>{@link Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.  *<li>{@link CharMatcher#ASCII} matches ASCII characters and provides text processing methods  *     which operate only on the ASCII characters of a string.  *</ul>  *  * @author Craig Berry  * @author Gregory Kick  * @since 7  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 DECL|class|Ascii
@@ -446,6 +444,30 @@ specifier|static
 specifier|final
 name|byte
 name|DEL
+init|=
+literal|127
+decl_stmt|;
+comment|/**    * The minimum value of an ASCII character.    *    * @since 9    */
+annotation|@
+name|Beta
+DECL|field|MIN
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MIN
+init|=
+literal|0
+decl_stmt|;
+comment|/**    * The maximum value of an ASCII character.    *    * @since 9    */
+annotation|@
+name|Beta
+DECL|field|MAX
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX
 init|=
 literal|127
 decl_stmt|;

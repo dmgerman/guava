@@ -26,6 +26,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|Objects
+operator|.
+name|firstNonNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 operator|.
 name|checkArgument
@@ -159,6 +175,20 @@ operator|.
 name|base
 operator|.
 name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Ticker
 import|;
 end_import
 
@@ -362,6 +392,8 @@ operator|new
 name|Executor
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -375,6 +407,32 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
+block|}
+block|}
+decl_stmt|;
+DECL|field|DEFAULT_TICKER
+specifier|static
+specifier|final
+name|Ticker
+name|DEFAULT_TICKER
+init|=
+operator|new
+name|Ticker
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|long
+name|read
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+return|;
 block|}
 block|}
 decl_stmt|;
@@ -481,6 +539,10 @@ DECL|field|cleanupExecutor
 name|Executor
 name|cleanupExecutor
 decl_stmt|;
+DECL|field|ticker
+name|Ticker
+name|ticker
+decl_stmt|;
 comment|/**    * Constructs a new {@code MapMaker} instance with default settings,    * including strong keys, strong values, and no automatic expiration.    */
 DECL|method|MapMaker ()
 specifier|public
@@ -536,8 +598,6 @@ name|getKeyEquivalence
 parameter_list|()
 block|{
 return|return
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 name|keyEquivalence
@@ -601,8 +661,6 @@ name|getValueEquivalence
 parameter_list|()
 block|{
 return|return
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 name|valueEquivalence
@@ -908,8 +966,6 @@ name|getKeyStrength
 parameter_list|()
 block|{
 return|return
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 name|keyStrength
@@ -1017,8 +1073,6 @@ name|getValueStrength
 parameter_list|()
 block|{
 return|return
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 name|valueStrength
@@ -1250,15 +1304,26 @@ name|getCleanupExecutor
 parameter_list|()
 block|{
 return|return
-operator|(
+name|firstNonNull
+argument_list|(
 name|cleanupExecutor
-operator|==
-literal|null
-operator|)
-condition|?
+argument_list|,
 name|DEFAULT_CLEANUP_EXECUTOR
-else|:
-name|cleanupExecutor
+argument_list|)
+return|;
+block|}
+DECL|method|getTicker ()
+name|Ticker
+name|getTicker
+parameter_list|()
+block|{
+return|return
+name|firstNonNull
+argument_list|(
+name|ticker
+argument_list|,
+name|DEFAULT_TICKER
+argument_list|)
 return|;
 block|}
 comment|/**    * Specifies a listener instance, which all maps built using this {@code    * MapMaker} will notify each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it    * evicts an entry, whether it does so due to timed expiration, exceeding the    * maximum size, or discovering that the key or value has been reclaimed by    * the garbage collector. It will invoke the listener synchronously, during    * invocations of any of that map's public methods (even read-only methods).    * The listener will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code    * MapMaker} instance, this method returns {@code GenericMapMaker<K, V>}.    * From this point on, either the original reference or the returned    * reference may be used to complete configuration and build the map, but only    * the "generic" one is type-safe. That is, it will properly prevent you from    * building maps whose key or value types are incompatible with the types    * accepted by the listener already provided; the {@code MapMaker} type cannot    * do this. For best results, simply use the standard method-chaining idiom,    * as illustrated in the documentation at top, configuring a {@code MapMaker}    * and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code    * MapMaker} to build maps whose key or value types are incompatible with the    * listener, you will likely experience a {@link ClassCastException} at an    * undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @since 7    */

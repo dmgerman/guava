@@ -140,6 +140,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Ticker
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|MapMaker
@@ -531,6 +545,12 @@ name|Segment
 index|[]
 name|segments
 decl_stmt|;
+comment|/** The concurrency level. */
+DECL|field|concurrencyLevel
+specifier|final
+name|int
+name|concurrencyLevel
+decl_stmt|;
 comment|/** Strategy for comparing keys. */
 DECL|field|keyEquivalence
 specifier|final
@@ -561,6 +581,12 @@ specifier|final
 name|Strength
 name|valueStrength
 decl_stmt|;
+comment|/**    * The maximum size of this map. MapMaker.UNSET_INT if there is no    * maximum.    */
+DECL|field|maximumSize
+specifier|final
+name|int
+name|maximumSize
+decl_stmt|;
 comment|/**    * How long after the last access to an entry the map will retain that    * entry.    */
 DECL|field|expireAfterAccessNanos
 specifier|final
@@ -572,12 +598,6 @@ DECL|field|expireAfterWriteNanos
 specifier|final
 name|long
 name|expireAfterWriteNanos
-decl_stmt|;
-comment|/**    * The maximum size of this map. MapMaker.UNSET_INT if there is no    * maximum.    */
-DECL|field|maximumSize
-specifier|final
-name|int
-name|maximumSize
 decl_stmt|;
 comment|/** Entries waiting to be consumed by the eviction listener. */
 DECL|field|evictionNotificationQueue
@@ -608,12 +628,6 @@ name|V
 argument_list|>
 name|evictionListener
 decl_stmt|;
-comment|/** The concurrency level. */
-DECL|field|concurrencyLevel
-specifier|final
-name|int
-name|concurrencyLevel
-decl_stmt|;
 comment|/** Factory used to create new entries. */
 DECL|field|entryFactory
 specifier|final
@@ -627,6 +641,12 @@ specifier|final
 name|Executor
 name|cleanupExecutor
 decl_stmt|;
+comment|/** Measures time in a testable way. */
+DECL|field|ticker
+specifier|final
+name|Ticker
+name|ticker
+decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity    * and concurrency level.    */
 DECL|method|CustomConcurrentHashMap (MapMaker builder)
 name|CustomConcurrentHashMap
@@ -635,6 +655,20 @@ name|MapMaker
 name|builder
 parameter_list|)
 block|{
+name|concurrencyLevel
+operator|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|builder
+operator|.
+name|getConcurrencyLevel
+argument_list|()
+argument_list|,
+name|MAX_SEGMENTS
+argument_list|)
+expr_stmt|;
 name|keyStrength
 operator|=
 name|builder
@@ -663,6 +697,12 @@ operator|.
 name|getValueEquivalence
 argument_list|()
 expr_stmt|;
+name|maximumSize
+operator|=
+name|builder
+operator|.
+name|maximumSize
+expr_stmt|;
 name|expireAfterAccessNanos
 operator|=
 name|builder
@@ -676,12 +716,6 @@ name|builder
 operator|.
 name|getExpireAfterWriteNanos
 argument_list|()
-expr_stmt|;
-name|maximumSize
-operator|=
-name|builder
-operator|.
-name|maximumSize
 expr_stmt|;
 name|entryFactory
 operator|=
@@ -703,6 +737,13 @@ operator|=
 name|builder
 operator|.
 name|getCleanupExecutor
+argument_list|()
+expr_stmt|;
+name|ticker
+operator|=
+name|builder
+operator|.
+name|getTicker
 argument_list|()
 expr_stmt|;
 name|evictionListener
@@ -746,20 +787,6 @@ name|V
 argument_list|>
 argument_list|>
 argument_list|()
-expr_stmt|;
-name|concurrencyLevel
-operator|=
-name|Math
-operator|.
-name|min
-argument_list|(
-name|builder
-operator|.
-name|getConcurrencyLevel
-argument_list|()
-argument_list|,
-name|MAX_SEGMENTS
-argument_list|)
 expr_stmt|;
 name|int
 name|initialCapacity
@@ -8104,9 +8131,9 @@ name|isExpired
 argument_list|(
 name|entry
 argument_list|,
-name|System
+name|ticker
 operator|.
-name|nanoTime
+name|read
 argument_list|()
 argument_list|)
 return|;
@@ -9284,9 +9311,9 @@ name|entry
 operator|.
 name|setExpirationTime
 argument_list|(
-name|System
+name|ticker
 operator|.
-name|nanoTime
+name|read
 argument_list|()
 operator|+
 name|expirationNanos
@@ -9321,9 +9348,9 @@ block|}
 name|long
 name|now
 init|=
-name|System
+name|ticker
 operator|.
-name|nanoTime
+name|read
 argument_list|()
 decl_stmt|;
 name|ReferenceEntry

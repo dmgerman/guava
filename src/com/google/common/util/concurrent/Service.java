@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2009 Google Inc.  *  * Licensed under the Apache Lic
 end_comment
 
 begin_package
-DECL|package|com.google.common.base
+DECL|package|com.google.common.util.concurrent
 package|package
 name|com
 operator|.
@@ -12,7 +12,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|util
+operator|.
+name|concurrent
 package|;
 end_package
 
@@ -55,16 +57,26 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>To be deleted. Use the copy in com.google.common.util.concurrent  * instead.</b>  *   * An object with an operational state, plus asynchronous {@link #start()} and  * {@link #stop()} lifecycle methods to transfer into and out of this state.  * Example services include webservers, RPC servers and timers. The normal  * lifecycle of a service is:  *<ul>  *<li>{@link State#NEW} -&gt;</li>  *<li>{@link State#STARTING} -&gt;</li>  *<li>{@link State#RUNNING} -&gt;</li>  *<li>{@link State#STOPPING} -&gt;</li>  *<li>{@link State#TERMINATED}</li>  *</ul>  *  * If the service fails while starting, running or stopping, its state will be  * {@link State#FAILED}, and its behavior is undefined. Such a service cannot be  * started nor stopped.  *  *<p>Implementors of this interface are strongly encouraged to extend {@link  * com.google.common.util.concurrent.AbstractService} or {@link  * com.google.common.util.concurrent.AbstractExecutionThreadService}, which make  * the threading and state management easier.  *  * @author Jesse Wilson  * @since 1  */
+comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and  * {@link #stop()} lifecycle methods to transfer into and out of this state.  * Example services include webservers, RPC servers and timers. The normal  * lifecycle of a service is:  *<ul>  *<li>{@link State#NEW} -&gt;</li>  *<li>{@link State#STARTING} -&gt;</li>  *<li>{@link State#RUNNING} -&gt;</li>  *<li>{@link State#STOPPING} -&gt;</li>  *<li>{@link State#TERMINATED}</li>  *</ul>  *  * If the service fails while starting, running or stopping, its state will be  * {@link State#FAILED}, and its behavior is undefined. Such a service cannot be  * started nor stopped.  *  *<p>Implementors of this interface are strongly encouraged to extend {@link  * AbstractService}, {@link AbstractExecutionThreadService}, or {@link  * AbstractIdleService}, which make the threading and state management easier.  *  * @author Jesse Wilson  * @since 9 (in version 1 as {@code com.google.common.base.Service})  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
-comment|// TODO(kevinb): make abstract class? move to common.util.concurrent?
+comment|// TODO(kevinb): make abstract class?
 DECL|interface|Service
 specifier|public
 interface|interface
+name|Service
+extends|extends
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Service
 block|{
 comment|/**    * If the service state is {@link State#NEW}, this initiates service startup    * and returns immediately. If the service has already been started, this    * method returns immediately without taking action. A stopped service may not    * be restarted.    *    * @return a future for the startup result, regardless of whether this call    *     initiated startup. Calling {@link Future#get} will block until the    *     service has finished starting, and returns one of {@link    *     State#RUNNING}, {@link State#STOPPING} or {@link State#TERMINATED}. If    *     the service fails to start, {@link Future#get} will throw an {@link    *     ExecutionException}, and the service's state will be {@link    *     State#FAILED}. If it has already finished starting, {@link Future#get}    *     returns immediately. Cancelling the returned future is unsupported and    *     always returns {@code false}.    */
@@ -109,38 +121,47 @@ name|State
 name|stopAndWait
 parameter_list|()
 function_decl|;
-comment|/**    * The lifecycle states of a service.    *    * @since 1    */
-annotation|@
-name|Beta
-comment|// should come out of Beta when Service does
-DECL|enum|State
-enum|enum
-name|State
-block|{
-comment|/**      * A service in this state is inactive. It does minimal work and consumes      * minimal resources.      */
-DECL|enumConstant|NEW
-name|NEW
-block|,
-comment|/**      * A service in this state is transitioning to {@link #RUNNING}.      */
-DECL|enumConstant|STARTING
-name|STARTING
-block|,
-comment|/**      * A service in this state is operational.      */
-DECL|enumConstant|RUNNING
-name|RUNNING
-block|,
-comment|/**      * A service in this state is transitioning to {@link #TERMINATED}.      */
-DECL|enumConstant|STOPPING
-name|STOPPING
-block|,
-comment|/**      * A service in this state has completed execution normally. It does minimal      * work and consumes minimal resources.      */
-DECL|enumConstant|TERMINATED
-name|TERMINATED
-block|,
-comment|/**      * A service in this state has encountered a problem and may not be      * operational. It cannot be started nor stopped.      */
-DECL|enumConstant|FAILED
-name|FAILED
-block|}
+comment|// TODO(cpovirk): uncomment when removing base.Service
+comment|//  /**
+comment|//   * The lifecycle states of a service.
+comment|//   *
+comment|//   * @since 9 (in version 1 as {@code com.google.common.base.Service.State})
+comment|//   */
+comment|//  @Beta // should come out of Beta when Service does
+comment|//  enum State {
+comment|//    /**
+comment|//     * A service in this state is inactive. It does minimal work and consumes
+comment|//     * minimal resources.
+comment|//     */
+comment|//    NEW,
+comment|//
+comment|//    /**
+comment|//     * A service in this state is transitioning to {@link #RUNNING}.
+comment|//     */
+comment|//    STARTING,
+comment|//
+comment|//    /**
+comment|//     * A service in this state is operational.
+comment|//     */
+comment|//    RUNNING,
+comment|//
+comment|//    /**
+comment|//     * A service in this state is transitioning to {@link #TERMINATED}.
+comment|//     */
+comment|//    STOPPING,
+comment|//
+comment|//    /**
+comment|//     * A service in this state has completed execution normally. It does minimal
+comment|//     * work and consumes minimal resources.
+comment|//     */
+comment|//    TERMINATED,
+comment|//
+comment|//    /**
+comment|//     * A service in this state has encountered a problem and may not be
+comment|//     * operational. It cannot be started nor stopped.
+comment|//     */
+comment|//    FAILED
+comment|//  }
 block|}
 end_interface
 
