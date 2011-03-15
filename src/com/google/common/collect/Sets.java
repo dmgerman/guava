@@ -2968,6 +2968,8 @@ block|{
 name|int
 name|index
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -2979,6 +2981,8 @@ operator|<
 name|size
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|List
 argument_list|<

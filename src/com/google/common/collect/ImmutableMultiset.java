@@ -1063,6 +1063,8 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|count (@ullable Object element)
 specifier|public
 name|int
@@ -1143,6 +1145,8 @@ decl_stmt|;
 name|E
 name|element
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1161,6 +1165,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|E
 name|next
@@ -1213,6 +1219,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -1246,6 +1254,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|add (E element, int occurrences)
 specifier|public
 name|int
@@ -1265,6 +1275,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|remove (Object element, int occurrences)
 specifier|public
 name|int
@@ -1284,6 +1296,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|setCount (E element, int count)
 specifier|public
 name|int
@@ -1303,6 +1317,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 name|boolean
@@ -1461,6 +1477,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|elementSet ()
 specifier|public
 name|Set
@@ -1489,6 +1507,8 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -1627,6 +1647,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1639,6 +1661,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1682,6 +1706,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

@@ -258,6 +258,8 @@ name|Integer
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|apply
@@ -299,6 +301,8 @@ name|serialVersionUID
 init|=
 literal|0x150ddL
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|apply (Integer i)
 specifier|public
 name|boolean
@@ -1731,6 +1735,8 @@ name|Predicate
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -2779,6 +2785,8 @@ name|Predicate
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -4227,6 +4235,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|apply (String string)
 specifier|public
 name|String

@@ -68,6 +68,8 @@ name|UnmodifiableIterator
 parameter_list|()
 block|{}
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 specifier|final

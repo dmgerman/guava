@@ -394,6 +394,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -630,6 +632,8 @@ return|;
 block|}
 comment|// The factory methods ensure that every element is an E.
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -651,6 +655,8 @@ index|]
 return|;
 block|}
 comment|// The factory methods ensure that every element is an E.
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(

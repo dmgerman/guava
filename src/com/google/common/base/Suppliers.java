@@ -240,6 +240,8 @@ operator|=
 name|supplier
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|T
@@ -367,6 +369,8 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|T
@@ -559,6 +563,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|T
@@ -729,6 +735,8 @@ operator|=
 name|instance
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|T
@@ -826,6 +834,8 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|T

@@ -69,6 +69,8 @@ name|input
 parameter_list|)
 function_decl|;
 comment|/**    * Indicates whether another object is equal to this function.    *    *<p>Most implementations will have no reason to override the behavior of {@link Object#equals}.    * However, an implementation may also choose to return {@code true} whenever {@code object} is a    * {@link Function} that it considers<i>interchangeable</i> with this one. "Interchangeable"    *<i>typically</i> means that {@code Objects.equal(this.apply(f), that.apply(f))} is true for all    * {@code f} of type {@code F}). Note that a {@code false} result from this method does not imply    * that the functions are known<i>not</i> to be interchangeable.    */
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals

@@ -135,6 +135,8 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 specifier|abstract
@@ -224,6 +226,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|count (Object element)
 specifier|public
 name|int
@@ -297,6 +301,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (E element, int occurrences)
 specifier|public
 name|int
@@ -337,6 +343,8 @@ operator|>
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object element, int occurrences)
 specifier|public
 name|int
@@ -355,6 +363,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int count)
 specifier|public
 name|int
@@ -378,6 +388,8 @@ name|count
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 name|boolean
@@ -509,6 +521,8 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|elementSet ()
 specifier|public
 name|Set

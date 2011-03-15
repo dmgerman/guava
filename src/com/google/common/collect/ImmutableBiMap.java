@@ -779,6 +779,8 @@ name|delegate
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>The inverse of an {@code ImmutableBiMap} is another    * {@code ImmutableBiMap}.    */
+annotation|@
+name|Override
 DECL|method|inverse ()
 specifier|public
 specifier|abstract
@@ -924,6 +926,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the bimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|forcePut (K key, V value)
 specifier|public
 name|V
@@ -958,6 +962,8 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

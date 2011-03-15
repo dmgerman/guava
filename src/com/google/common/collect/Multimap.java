@@ -325,6 +325,8 @@ parameter_list|()
 function_decl|;
 comment|// Comparison and hashing
 comment|/**    * Compares the specified object with this multimap for equality. Two    * multimaps are equal when their map views, as returned by {@link #asMap},    * are also equal.    *    *<p>In general, two multimaps with identical key-value mappings may or may    * not be equal, depending on the implementation. For example, two    * {@link SetMultimap} instances with the same key-value mappings are equal,    * but equality of two {@link ListMultimap} instances depends on the ordering    * of the values for each key.    *    *<p>A non-empty {@link SetMultimap} cannot be equal to a non-empty    * {@link ListMultimap}, since their {@link #asMap} views contain unequal    * collections as values. However, any two empty multimaps are equal, because    * they both have empty {@link #asMap} views.    */
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object obj)
 name|boolean
 name|equals
@@ -336,6 +338,8 @@ name|obj
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the hash code for this multimap.    *    *<p>The hash code of a multimap is defined as the hash code of the map view,    * as returned by {@link Multimap#asMap}.    */
+annotation|@
+name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode

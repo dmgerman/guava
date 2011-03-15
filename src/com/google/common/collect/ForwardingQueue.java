@@ -108,6 +108,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|offer (E o)
 specifier|public
 name|boolean
@@ -127,6 +129,8 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|poll ()
 specifier|public
 name|E
@@ -141,6 +145,8 @@ name|poll
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|E
@@ -155,6 +161,8 @@ name|remove
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|peek ()
 specifier|public
 name|E
@@ -169,6 +177,8 @@ name|peek
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|element ()
 specifier|public
 name|E

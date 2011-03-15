@@ -913,6 +913,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|compare (boolean[] left, boolean[] right)
 specifier|public
 name|int

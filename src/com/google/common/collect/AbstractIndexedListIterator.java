@@ -157,6 +157,8 @@ operator|=
 name|position
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 specifier|final
@@ -170,6 +172,8 @@ operator|<
 name|size
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 specifier|final
@@ -198,6 +202,8 @@ operator|++
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextIndex ()
 specifier|public
 specifier|final
@@ -209,6 +215,8 @@ return|return
 name|position
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPrevious ()
 specifier|public
 specifier|final
@@ -222,6 +230,8 @@ operator|>
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previous ()
 specifier|public
 specifier|final
@@ -250,6 +260,8 @@ name|position
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previousIndex ()
 specifier|public
 specifier|final

@@ -90,6 +90,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a brief human readable description of this constraint, such as    * "Not null".    */
+annotation|@
+name|Override
 DECL|method|toString ()
 name|String
 name|toString

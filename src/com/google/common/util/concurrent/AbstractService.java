@@ -265,6 +265,8 @@ name|void
 name|doStop
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|start ()
 specifier|public
 specifier|final
@@ -327,6 +329,8 @@ return|return
 name|startup
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|stop ()
 specifier|public
 specifier|final
@@ -448,6 +452,8 @@ return|return
 name|shutdown
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|startAndWait ()
 specifier|public
 name|State
@@ -488,6 +494,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|stopAndWait ()
 specifier|public
 name|State
@@ -771,6 +779,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|isRunning ()
 specifier|public
 specifier|final
@@ -787,6 +797,8 @@ operator|.
 name|RUNNING
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|state ()
 specifier|public
 specifier|final
@@ -956,6 +968,8 @@ name|countDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
@@ -969,6 +983,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
@@ -979,6 +995,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDone ()
 specifier|public
 name|boolean
@@ -994,6 +1012,8 @@ operator|==
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|State
@@ -1014,6 +1034,8 @@ name|getImmediately
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|State

@@ -462,6 +462,8 @@ return|return
 name|keyComparator
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator

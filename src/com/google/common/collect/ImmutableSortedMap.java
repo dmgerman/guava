@@ -1920,6 +1920,8 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -2321,6 +2323,8 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -2808,6 +2812,8 @@ operator|=
 name|map
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -2952,6 +2958,8 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns the comparator that orders the keys, which is    * {@link Ordering#natural()} when the natural ordering of the keys is used.    * Note that its behavior is not consistent with {@link TreeMap#comparator()},    * which returns {@code null} to indicate natural ordering.    */
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -2967,6 +2975,8 @@ return|return
 name|comparator
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -2997,6 +3007,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -3031,6 +3043,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are less than {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code toKey}    * greater than an earlier {@code toKey}. However, this method doesn't throw    * an exception in that situation, but instead keeps the original {@code    * toKey}.    */
+annotation|@
+name|Override
 DECL|method|headMap (K toKey)
 specifier|public
 name|ImmutableSortedMap
@@ -3066,6 +3080,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys ranges from {@code fromKey}, inclusive, to {@code toKey},    * exclusive.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}. Similarly, this method keeps the original {@code toKey}, instead    * of throwing an exception, if passed a {@code toKey} greater than an earlier    * {@code toKey}.    */
+annotation|@
+name|Override
 DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|ImmutableSortedMap
@@ -3133,6 +3149,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are greater than or equals to {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}.    */
+annotation|@
+name|Override
 DECL|method|tailMap (K fromKey)
 specifier|public
 name|ImmutableSortedMap

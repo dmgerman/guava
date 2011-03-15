@@ -129,6 +129,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|asMap ()
 specifier|public
 name|Map
@@ -151,6 +153,8 @@ name|asMap
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -164,6 +168,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -192,6 +198,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
@@ -213,6 +221,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
@@ -234,6 +244,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entries ()
 specifier|public
 name|Collection
@@ -256,6 +268,8 @@ name|entries
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (@ullable K key)
 specifier|public
 name|Collection
@@ -280,6 +294,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -294,6 +310,8 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|keys ()
 specifier|public
 name|Multiset
@@ -311,6 +329,8 @@ name|keys
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -328,6 +348,8 @@ name|keySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|put (K key, V value)
 specifier|public
 name|boolean
@@ -352,6 +374,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
@@ -381,6 +405,8 @@ name|values
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
@@ -409,6 +435,8 @@ name|multimap
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -437,6 +465,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Collection
@@ -461,6 +491,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
@@ -493,6 +525,8 @@ name|values
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -507,6 +541,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection

@@ -825,6 +825,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -1395,6 +1397,8 @@ operator|=
 name|map
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

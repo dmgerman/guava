@@ -3168,6 +3168,8 @@ name|Object
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|get
@@ -3177,6 +3179,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|ValueReference
 argument_list|<
@@ -3199,6 +3203,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isComputingReference
@@ -3208,6 +3214,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|waitForValue
@@ -3217,11 +3225,15 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|notifyValueReclaimed
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -3958,6 +3970,8 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getKey ()
 specifier|public
 name|K
@@ -4206,6 +4220,8 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getValueReference ()
 specifier|public
 name|ValueReference
@@ -4221,6 +4237,8 @@ return|return
 name|valueReference
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setValueReference (ValueReference<K, V> valueReference)
 specifier|public
 name|void
@@ -4259,6 +4277,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|valueReclaimed (ValueReference<K, V> v)
 specifier|public
 name|void
@@ -4283,6 +4303,8 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getHash ()
 specifier|public
 name|int
@@ -4293,6 +4315,8 @@ return|return
 name|hash
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getNext ()
 specifier|public
 name|ReferenceEntry
@@ -4384,6 +4408,8 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getExpirationTime ()
 specifier|public
 name|long
@@ -4394,6 +4420,8 @@ return|return
 name|time
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
@@ -4427,6 +4455,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -4442,6 +4472,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -4480,6 +4512,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -4495,6 +4529,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -4600,6 +4636,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -4615,6 +4653,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -4653,6 +4693,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -4668,6 +4710,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -4765,6 +4809,8 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getExpirationTime ()
 specifier|public
 name|long
@@ -4775,6 +4821,8 @@ return|return
 name|time
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
@@ -4808,6 +4856,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -4823,6 +4873,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -4861,6 +4913,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -4876,6 +4930,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -4915,6 +4971,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -4930,6 +4988,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -4968,6 +5028,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -4983,6 +5045,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -5085,6 +5149,8 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getKey ()
 specifier|public
 name|K
@@ -5096,6 +5162,8 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|finalizeReferent ()
 specifier|public
 name|void
@@ -5360,6 +5428,8 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getValueReference ()
 specifier|public
 name|ValueReference
@@ -5375,6 +5445,8 @@ return|return
 name|valueReference
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setValueReference (ValueReference<K, V> valueReference)
 specifier|public
 name|void
@@ -5413,6 +5485,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|valueReclaimed (ValueReference<K, V> v)
 specifier|public
 name|void
@@ -5437,6 +5511,8 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getHash ()
 specifier|public
 name|int
@@ -5447,6 +5523,8 @@ return|return
 name|hash
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getNext ()
 specifier|public
 name|ReferenceEntry
@@ -5538,6 +5616,8 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getExpirationTime ()
 specifier|public
 name|long
@@ -5548,6 +5628,8 @@ return|return
 name|time
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
@@ -5581,6 +5663,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -5596,6 +5680,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -5634,6 +5720,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -5649,6 +5737,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -5754,6 +5844,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -5769,6 +5861,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -5807,6 +5901,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -5822,6 +5918,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -5919,6 +6017,8 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getExpirationTime ()
 specifier|public
 name|long
@@ -5929,6 +6029,8 @@ return|return
 name|time
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
@@ -5962,6 +6064,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -5977,6 +6081,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -6015,6 +6121,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -6030,6 +6138,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -6069,6 +6179,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -6084,6 +6196,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -6122,6 +6236,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -6137,6 +6253,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -6239,6 +6357,8 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getKey ()
 specifier|public
 name|K
@@ -6250,6 +6370,8 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|finalizeReferent ()
 specifier|public
 name|void
@@ -6514,6 +6636,8 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getValueReference ()
 specifier|public
 name|ValueReference
@@ -6529,6 +6653,8 @@ return|return
 name|valueReference
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setValueReference (ValueReference<K, V> valueReference)
 specifier|public
 name|void
@@ -6567,6 +6693,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|valueReclaimed (ValueReference<K, V> v)
 specifier|public
 name|void
@@ -6591,6 +6719,8 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getHash ()
 specifier|public
 name|int
@@ -6601,6 +6731,8 @@ return|return
 name|hash
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getNext ()
 specifier|public
 name|ReferenceEntry
@@ -6692,6 +6824,8 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getExpirationTime ()
 specifier|public
 name|long
@@ -6702,6 +6836,8 @@ return|return
 name|time
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
@@ -6735,6 +6871,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -6750,6 +6888,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -6788,6 +6928,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -6803,6 +6945,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -6908,6 +7052,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -6923,6 +7069,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -6961,6 +7109,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -6976,6 +7126,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -7073,6 +7225,8 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getExpirationTime ()
 specifier|public
 name|long
@@ -7083,6 +7237,8 @@ return|return
 name|time
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setExpirationTime (long time)
 specifier|public
 name|void
@@ -7116,6 +7272,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -7131,6 +7289,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -7169,6 +7329,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousExpirable ()
 specifier|public
 name|ReferenceEntry
@@ -7184,6 +7346,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -7223,6 +7387,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getNextEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -7238,6 +7404,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 specifier|public
 name|void
@@ -7276,6 +7444,8 @@ init|=
 name|nullEntry
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|getPreviousEvictable ()
 specifier|public
 name|ReferenceEntry
@@ -7291,6 +7461,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 specifier|public
 name|void
@@ -7378,6 +7550,8 @@ operator|=
 name|entry
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|notifyValueReclaimed ()
 specifier|public
 name|void
@@ -7388,6 +7562,8 @@ name|finalizeReferent
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|finalizeReferent ()
 specifier|public
 name|void
@@ -7402,6 +7578,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
@@ -12511,6 +12689,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -12722,6 +12902,8 @@ name|nextEvictable
 init|=
 name|this
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|ReferenceEntry
 argument_list|<
@@ -12736,6 +12918,8 @@ return|return
 name|nextEvictable
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextEvictable
@@ -12766,6 +12950,8 @@ name|previousEvictable
 init|=
 name|this
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|ReferenceEntry
 argument_list|<
@@ -12780,6 +12966,8 @@ return|return
 name|previousEvictable
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPreviousEvictable
@@ -13517,6 +13705,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getExpirationTime
@@ -13528,6 +13718,8 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setExpirationTime
@@ -13546,6 +13738,8 @@ name|nextExpirable
 init|=
 name|this
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|ReferenceEntry
 argument_list|<
@@ -13560,6 +13754,8 @@ return|return
 name|nextExpirable
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextExpirable
@@ -13590,6 +13786,8 @@ name|previousExpirable
 init|=
 name|this
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|ReferenceEntry
 argument_list|<
@@ -13604,6 +13802,8 @@ return|return
 name|previousExpirable
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPreviousExpirable

@@ -221,6 +221,8 @@ name|getCount
 parameter_list|()
 function_decl|;
 comment|/**      * {@inheritDoc}      *      *<p>Returns {@code true} if the given object is also a multiset entry and      * the two entries represent the same element and count. That is, two      * entries {@code a} and {@code b} are equal if:<pre>   {@code      *      *   Objects.equal(a.getElement(), b.getElement())      *&& a.getCount() == b.getCount()}</pre>      */
+annotation|@
+name|Override
 comment|// TODO(kevinb): check this wrt TreeMultiset?
 DECL|method|equals (Object o)
 name|boolean
@@ -231,12 +233,16 @@ name|o
 parameter_list|)
 function_decl|;
 comment|/**      * {@inheritDoc}      *      *<p>The hash code of a multiset entry for element {@code element} and      * count {@code count} is defined as:<pre>   {@code      *      *   ((element == null) ? 0 : element.hashCode()) ^ count}</pre>      */
+annotation|@
+name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the canonical string representation of this entry, defined as      * follows. If the count for this entry is one, this is simply the string      * representation of the corresponding element. Otherwise, it is the string      * representation of the element, followed by the three characters {@code      * " x "} (space, letter x, space), followed by the count.      */
+annotation|@
+name|Override
 DECL|method|toString ()
 name|String
 name|toString
@@ -245,6 +251,8 @@ function_decl|;
 block|}
 comment|// Comparison and hashing
 comment|/**    * Compares the specified object with this multiset for equality. Returns    * {@code true} if the given object is also a multiset and contains equal    * elements with equal counts, regardless of order.    */
+annotation|@
+name|Override
 comment|// TODO(kevinb): caveats about equivalence-relation?
 DECL|method|equals (@ullable Object object)
 name|boolean
@@ -257,12 +265,16 @@ name|object
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the hash code for this multiset. This is defined as the sum of    *<pre>   {@code    *    *   ((element == null) ? 0 : element.hashCode()) ^ count(element)}</pre>    *    * over all distinct elements in the multiset. It follows that a multiset and    * its entry set always have the same hash code.    */
+annotation|@
+name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>It is recommended, though not mandatory, that this method return the    * result of invoking {@link #toString} on the {@link #entrySet}, yielding a    * result such as {@code [a x 3, c, d x 2, e]}.    */
+annotation|@
+name|Override
 DECL|method|toString ()
 name|String
 name|toString
@@ -270,6 +282,8 @@ parameter_list|()
 function_decl|;
 comment|// Refined Collection Methods
 comment|/**    * {@inheritDoc}    *    *<p>Elements that occur multiple times in the multiset will appear    * multiple times in this iterator, though not necessarily sequentially.    */
+annotation|@
+name|Override
 DECL|method|iterator ()
 name|Iterator
 argument_list|<
@@ -279,6 +293,8 @@ name|iterator
 parameter_list|()
 function_decl|;
 comment|/**    * Determines whether this multiset contains the specified element.    *    *<p>This method refines {@link Collection#contains} to further specify that    * it<b>may not</b> throw an exception in response to {@code element} being    * null or of the wrong type.    *    * @param element the element to check for    * @return {@code true} if this multiset contains at least one occurrence of    *     the element    */
+annotation|@
+name|Override
 DECL|method|contains (@ullable Object element)
 name|boolean
 name|contains
@@ -290,6 +306,8 @@ name|element
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if this multiset contains at least one occurrence of    * each element in the specified collection.    *    *<p>This method refines {@link Collection#containsAll} to further specify    * that it<b>may not</b> throw an exception in response to any of {@code    * elements} being null or of the wrong type.    *    *<p><b>Note:</b> this method does not take into account the occurrence    * count of an element in the two collections; it may still return {@code    * true} even if {@code elements} contains several occurrences of an element    * and this multiset contains only one. This is no different than any other    * collection type like {@link List}, but it may be unexpected to the user of    * a multiset.    *    * @param elements the collection of elements to be checked for containment in    *     this multiset    * @return {@code true} if this multiset contains at least one occurrence of    *     each element contained in {@code elements}    * @throws NullPointerException if {@code elements} is null    */
+annotation|@
+name|Override
 DECL|method|containsAll (Collection<?> elements)
 name|boolean
 name|containsAll
@@ -302,6 +320,8 @@ name|elements
 parameter_list|)
 function_decl|;
 comment|/**    * Adds a single occurrence of the specified element to this multiset.    *    *<p>This method refines {@link Collection#add}, which only<i>ensures</i>    * the presence of the element, to further specify that a successful call must    * always increment the count of the element, and the overall size of the    * collection, by one.    *    * @param element the element to add one occurrence of; may be null only if    *     explicitly allowed by the implementation    * @return {@code true} always, since this call is required to modify the    *     multiset, unlike other {@link Collection} types    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements    * @throws IllegalArgumentException if {@link Integer#MAX_VALUE} occurrences    *     of {@code element} are already contained in this multiset    */
+annotation|@
+name|Override
 DECL|method|add (E element)
 name|boolean
 name|add
@@ -311,6 +331,8 @@ name|element
 parameter_list|)
 function_decl|;
 comment|/**    * Removes a<i>single</i> occurrence of the specified element from this    * multiset, if present.    *    *<p>This method refines {@link Collection#remove} to further specify that it    *<b>may not</b> throw an exception in response to {@code element} being null    * or of the wrong type.    *    * @param element the element to remove one occurrence of    * @return {@code true} if an occurrence was found and removed    */
+annotation|@
+name|Override
 DECL|method|remove (@ullable Object element)
 name|boolean
 name|remove
@@ -322,6 +344,8 @@ name|element
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>This method refines {@link Collection#removeAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.    */
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> c)
 name|boolean
 name|removeAll
@@ -334,6 +358,8 @@ name|c
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>This method refines {@link Collection#retainAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.    */
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> c)
 name|boolean
 name|retainAll

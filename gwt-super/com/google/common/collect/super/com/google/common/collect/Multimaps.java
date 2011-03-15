@@ -1978,6 +1978,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1990,6 +1992,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Collection
 argument_list|<
@@ -2008,6 +2012,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -2610,6 +2616,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator
@@ -3592,6 +3600,8 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -3605,6 +3615,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -3618,6 +3630,8 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
@@ -3636,6 +3650,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
@@ -3654,6 +3670,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsEntry (Object key, Object value)
 specifier|public
 name|boolean
@@ -3685,6 +3703,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (final K key)
 specifier|public
 name|Set
@@ -3727,6 +3747,8 @@ block|{
 name|int
 name|i
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3747,6 +3769,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|next
@@ -3777,6 +3801,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3828,6 +3854,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|put (K key, V value)
 specifier|public
 name|boolean
@@ -3846,6 +3874,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
@@ -3869,6 +3899,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
@@ -3893,6 +3925,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|Set
@@ -3919,6 +3953,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object key, Object value)
 specifier|public
 name|boolean
@@ -3950,6 +3986,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Object key)
 specifier|public
 name|Set
@@ -4008,6 +4046,8 @@ return|return
 name|values
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -4020,6 +4060,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -4036,6 +4078,8 @@ name|keySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|keys ()
 specifier|public
 name|Multiset
@@ -4057,6 +4101,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
@@ -4073,6 +4119,8 @@ name|values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entries ()
 specifier|public
 name|Set
@@ -4094,6 +4142,8 @@ name|entrySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|asMap ()
 specifier|public
 name|Map
@@ -4398,6 +4448,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -4410,6 +4462,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -4476,6 +4530,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

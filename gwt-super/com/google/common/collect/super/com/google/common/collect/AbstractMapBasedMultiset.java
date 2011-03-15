@@ -441,6 +441,8 @@ name|AtomicInteger
 argument_list|>
 name|toRemove
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -453,6 +455,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Multiset
 operator|.
@@ -493,6 +497,8 @@ name|E
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|E
 name|getElement
@@ -505,6 +511,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCount
@@ -562,6 +570,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -884,6 +894,8 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -901,6 +913,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|E
@@ -946,6 +960,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -1676,6 +1692,8 @@ name|AtomicInteger
 argument_list|>
 name|toRemove
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1688,6 +1706,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|E
 name|next
@@ -1707,6 +1727,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

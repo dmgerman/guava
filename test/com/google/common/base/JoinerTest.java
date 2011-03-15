@@ -852,6 +852,8 @@ operator|new
 name|Appendable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Appendable
 name|append
@@ -868,6 +870,8 @@ name|IOException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Appendable
 name|append
@@ -890,6 +894,8 @@ name|IOException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Appendable
 name|append
@@ -1483,6 +1489,8 @@ name|DontStringMeBro
 implements|implements
 name|CharSequence
 block|{
+annotation|@
+name|Override
 DECL|method|length ()
 specifier|public
 name|int
@@ -1493,6 +1501,8 @@ return|return
 literal|3
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|charAt (int index)
 specifier|public
 name|char
@@ -1511,6 +1521,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSequence (int start, int end)
 specifier|public
 name|CharSequence

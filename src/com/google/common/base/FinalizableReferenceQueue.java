@@ -468,6 +468,8 @@ name|SystemLoader
 implements|implements
 name|FinalizerLoader
 block|{
+annotation|@
+name|Override
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class
@@ -568,6 +570,8 @@ literal|"to garbage collect this class loader. To support reclaiming this class 
 operator|+
 literal|"resolve the underlying issue, or move Google Collections to your system class path."
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class
@@ -764,6 +768,8 @@ name|DirectLoader
 implements|implements
 name|FinalizerLoader
 block|{
+annotation|@
+name|Override
 DECL|method|loadFinalizer ()
 specifier|public
 name|Class

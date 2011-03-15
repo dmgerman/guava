@@ -130,6 +130,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|iterator ()
 specifier|public
 name|Iterator
@@ -147,6 +149,8 @@ name|iterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -161,6 +165,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> collection)
 specifier|public
 name|boolean
@@ -183,6 +189,8 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -197,6 +205,8 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|contains (Object object)
 specifier|public
 name|boolean
@@ -216,6 +226,8 @@ name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (E element)
 specifier|public
 name|boolean
@@ -235,6 +247,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object object)
 specifier|public
 name|boolean
@@ -254,6 +268,8 @@ name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsAll (Collection<?> collection)
 specifier|public
 name|boolean
@@ -276,6 +292,8 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addAll (Collection<? extends E> collection)
 specifier|public
 name|boolean
@@ -300,6 +318,8 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> collection)
 specifier|public
 name|boolean
@@ -322,6 +342,8 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -335,6 +357,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|toArray ()
 specifier|public
 name|Object
@@ -350,6 +374,8 @@ name|toArray
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<

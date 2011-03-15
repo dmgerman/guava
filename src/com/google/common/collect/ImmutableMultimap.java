@@ -1309,6 +1309,8 @@ expr_stmt|;
 block|}
 comment|// mutators (not supported)
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|removeAll (Object key)
 specifier|public
 name|ImmutableCollection
@@ -1328,6 +1330,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|ImmutableCollection
@@ -1355,6 +1359,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1368,6 +1374,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Returns an immutable collection of the values for the given key.  If no    * mappings in the multimap have the provided key, an empty immutable    * collection is returned. The values are in the same order as the parameters    * used to build this multimap.    */
+annotation|@
+name|Override
 DECL|method|get (K key)
 specifier|public
 specifier|abstract
@@ -1382,6 +1390,8 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|put (K key, V value)
 specifier|public
 name|boolean
@@ -1401,6 +1411,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
@@ -1425,6 +1437,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
@@ -1450,6 +1464,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|remove (Object key, Object value)
 specifier|public
 name|boolean
@@ -1481,6 +1497,8 @@ argument_list|()
 return|;
 block|}
 comment|// accessors
+annotation|@
+name|Override
 DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -1523,6 +1541,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
@@ -1543,6 +1563,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
@@ -1587,6 +1609,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1599,6 +1623,8 @@ operator|==
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -1697,6 +1723,8 @@ return|;
 block|}
 comment|// views
 comment|/**    * Returns an immutable set of the distinct keys in this multimap. These keys    * are ordered according to when they first appeared during the construction    * of this multimap.    */
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|ImmutableSet
@@ -1714,6 +1742,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable map that associates each key with its corresponding    * values in the multimap.    */
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1758,6 +1788,8 @@ argument_list|>
 name|entries
 decl_stmt|;
 comment|/**    * Returns an immutable collection of all key-value pairs in the multimap. Its    * iterator traverses the values for the first key, the values for the second    * key, and so on.    */
+annotation|@
+name|Override
 DECL|method|entries ()
 specifier|public
 name|ImmutableCollection
@@ -1941,6 +1973,8 @@ name|V
 argument_list|>
 name|valueIterator
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1964,6 +1998,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Map
 operator|.
@@ -2058,6 +2094,8 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -2154,6 +2192,8 @@ argument_list|>
 name|keys
 decl_stmt|;
 comment|/**    * Returns a collection, which may contain duplicates, of all keys. The number    * of times a key appears in the returned multiset equals the number of    * mappings the key has in the multimap. Duplicate keys appear consecutively    * in the multiset's iteration order.    */
+annotation|@
+name|Override
 DECL|method|keys ()
 specifier|public
 name|ImmutableMultiset
@@ -2269,6 +2309,8 @@ argument_list|>
 name|values
 decl_stmt|;
 comment|/**    * Returns an immutable collection of the values in this multimap. Its    * iterator traverses the values for the first key, the values for the second    * key, and so on.    */
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|ImmutableCollection
@@ -2395,6 +2437,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -2407,6 +2451,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|next
@@ -2425,6 +2471,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

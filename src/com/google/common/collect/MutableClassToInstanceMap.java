@@ -225,6 +225,8 @@ name|Object
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkKeyValue
@@ -249,6 +251,8 @@ expr_stmt|;
 block|}
 block|}
 empty_stmt|;
+annotation|@
+name|Override
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -283,6 +287,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<

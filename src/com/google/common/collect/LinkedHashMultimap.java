@@ -917,6 +917,8 @@ block|{
 name|V
 name|value
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -929,6 +931,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|next
@@ -945,6 +949,8 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -1207,6 +1213,8 @@ name|V
 argument_list|>
 name|entry
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1219,6 +1227,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Map
 operator|.
@@ -1242,6 +1252,8 @@ return|return
 name|entry
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

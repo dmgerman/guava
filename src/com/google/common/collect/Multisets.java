@@ -733,6 +733,8 @@ name|E
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|E
 name|getElement
@@ -742,6 +744,8 @@ return|return
 name|e
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCount
@@ -847,6 +851,8 @@ return|return
 name|delegate
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|count (Object element)
 specifier|public
 name|int
@@ -869,6 +875,8 @@ else|:
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (E element, int occurrences)
 specifier|public
 name|int
@@ -887,6 +895,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object element, int occurrences)
 specifier|public
 name|int
@@ -941,6 +951,8 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|elementSet ()
 specifier|public
 name|Set
@@ -985,6 +997,8 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -1063,6 +1077,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int count)
 specifier|public
 name|int
@@ -1122,6 +1138,8 @@ argument_list|()
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 name|boolean
@@ -1385,6 +1403,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1397,6 +1417,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -1417,6 +1439,8 @@ literal|1
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3013,6 +3037,8 @@ operator|=
 name|entryIterator
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -3030,6 +3056,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|E
@@ -3087,6 +3115,8 @@ name|getElement
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void

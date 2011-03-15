@@ -142,6 +142,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|getKey ()
 specifier|public
 name|K
@@ -156,6 +158,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getValue ()
 specifier|public
 name|V
@@ -170,6 +174,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setValue (V value)
 specifier|public
 name|V

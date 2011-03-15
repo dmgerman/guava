@@ -502,6 +502,8 @@ name|getMap
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -521,6 +523,8 @@ name|comparator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|E
@@ -535,6 +539,8 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|E
@@ -549,6 +555,8 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
@@ -575,6 +583,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
@@ -606,6 +616,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet

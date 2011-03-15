@@ -199,6 +199,8 @@ name|size
 parameter_list|()
 function_decl|;
 comment|/**    * Compares the specified object with this table for equality. Two tables are    * equal when their cell views, as returned by {@link #cellSet}, are equal.    */
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object obj)
 name|boolean
 name|equals
@@ -210,6 +212,8 @@ name|obj
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the hash code for this table. The hash code of a table is defined    * as the hash code of its cell view, as returned by {@link #cellSet}.    */
+annotation|@
+name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode
@@ -412,6 +416,8 @@ name|getValue
 parameter_list|()
 function_decl|;
 comment|/**      * Compares the specified object with this cell for equality. Two cells are      * equal when they have equal row keys, column keys, and values.      */
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object obj)
 name|boolean
 name|equals
@@ -423,6 +429,8 @@ name|obj
 parameter_list|)
 function_decl|;
 comment|/**      * Returns the hash code of this cell.      *      *<p>The hash code of a table cell is equal to {@link      * Objects#hashCode}{@code (e.getRowKey(), e.getColumnKey(), e.getValue())}.      */
+annotation|@
+name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode

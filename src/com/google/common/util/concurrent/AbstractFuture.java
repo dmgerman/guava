@@ -171,6 +171,8 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/*    * Blocks until either the task completes or the timeout expires.  Uses the    * sync blocking-with-timeout support provided by AQS.    */
+annotation|@
+name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -204,6 +206,8 @@ argument_list|)
 return|;
 block|}
 comment|/*    * Blocks until the task completes or we get interrupted. Uses the    * interruptible blocking support provided by AQS.    */
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -222,6 +226,8 @@ argument_list|()
 return|;
 block|}
 comment|/*    * Checks if the sync is not in the running state.    */
+annotation|@
+name|Override
 DECL|method|isDone ()
 specifier|public
 name|boolean
@@ -236,6 +242,8 @@ argument_list|()
 return|;
 block|}
 comment|/*    * Checks if the sync is in the cancelled state.    */
+annotation|@
+name|Override
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
@@ -250,6 +258,8 @@ argument_list|()
 return|;
 block|}
 comment|/*    * Default implementation of cancel that never cancels the future.    * Subclasses should override this to implement cancellation if desired.    */
+annotation|@
+name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean

@@ -229,6 +229,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -733,6 +735,8 @@ name|that
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|E
@@ -748,6 +752,8 @@ literal|0
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|E

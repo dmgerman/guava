@@ -160,6 +160,8 @@ name|e
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>This implementation calls {@link #get()} and maps that method's standard    * exceptions to instances of type {@code X} using {@link #mapException}.    *    *<p>In addition, if {@code get} throws an {@link InterruptedException}, this    * implementation will set the current thread's interrupt status before    * calling {@code mapException}.    *    * @throws X if {@link #get()} throws an {@link InterruptedException},    *         {@link CancellationException}, or {@link ExecutionException}    */
+annotation|@
+name|Override
 DECL|method|checkedGet ()
 specifier|public
 name|V
@@ -224,6 +226,8 @@ throw|;
 block|}
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation calls {@link #get(long, TimeUnit)} and maps that    * method's standard exceptions (excluding {@link TimeoutException}, which is    * propagated) to instances of type {@code X} using {@link #mapException}.    *    *<p>In addition, if {@code get} throws an {@link InterruptedException}, this    * implementation will set the current thread's interrupt status before    * calling {@code mapException}.    *    * @throws X if {@link #get()} throws an {@link InterruptedException},    *         {@link CancellationException}, or {@link ExecutionException}    * @throws TimeoutException {@inheritDoc}    */
+annotation|@
+name|Override
 DECL|method|checkedGet (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -300,6 +304,8 @@ throw|;
 block|}
 block|}
 comment|// Delegate methods for methods defined in the ListenableFuture interface.
+annotation|@
+name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 name|boolean
@@ -318,6 +324,8 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCancelled ()
 specifier|public
 name|boolean
@@ -331,6 +339,8 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDone ()
 specifier|public
 name|boolean
@@ -344,6 +354,8 @@ name|isDone
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -361,6 +373,8 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 name|V
@@ -390,6 +404,8 @@ name|unit
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addListener (Runnable listener, Executor exec)
 specifier|public
 name|void

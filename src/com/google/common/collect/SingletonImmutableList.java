@@ -148,6 +148,8 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
 specifier|public
 name|E
@@ -393,6 +395,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

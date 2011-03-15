@@ -218,6 +218,8 @@ name|Integer
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|get
@@ -246,6 +248,8 @@ name|Integer
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|apply
@@ -319,6 +323,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ArrayList
 argument_list|<
@@ -367,6 +373,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|List
 argument_list|<
@@ -499,6 +507,8 @@ name|calls
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|Integer
@@ -767,6 +777,8 @@ name|Integer
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|get
@@ -1499,6 +1511,8 @@ return|return
 name|waitingThreads
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Boolean
 name|get
@@ -1719,6 +1733,8 @@ name|counter
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|get

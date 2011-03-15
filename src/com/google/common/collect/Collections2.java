@@ -399,6 +399,8 @@ argument_list|)
 return|;
 comment|// .<E> above needed to compile in JDK 5
 block|}
+annotation|@
+name|Override
 DECL|method|add (E element)
 specifier|public
 name|boolean
@@ -427,6 +429,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addAll (Collection<? extends E> collection)
 specifier|public
 name|boolean
@@ -469,6 +473,8 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -485,6 +491,8 @@ name|predicate
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|contains (Object element)
 specifier|public
 name|boolean
@@ -549,6 +557,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsAll (Collection<?> collection)
 specifier|public
 name|boolean
@@ -587,6 +597,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -608,6 +620,8 @@ name|predicate
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|iterator ()
 specifier|public
 name|Iterator
@@ -631,6 +645,8 @@ name|predicate
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object element)
 specifier|public
 name|boolean
@@ -695,6 +711,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (final Collection<?> collection)
 specifier|public
 name|boolean
@@ -726,6 +744,8 @@ name|E
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|apply
@@ -763,6 +783,8 @@ name|combinedPredicate
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|retainAll (final Collection<?> collection)
 specifier|public
 name|boolean
@@ -794,6 +816,8 @@ name|E
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|apply
@@ -833,6 +857,8 @@ name|combinedPredicate
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -849,6 +875,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toArray ()
 specifier|public
 name|Object
@@ -870,6 +898,8 @@ name|toArray
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<

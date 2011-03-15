@@ -434,6 +434,8 @@ name|map
 return|;
 block|}
 comment|// Query Operations
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -444,6 +446,8 @@ return|return
 name|totalSize
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -456,6 +460,8 @@ operator|==
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
@@ -476,6 +482,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
@@ -520,6 +528,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -563,6 +573,8 @@ argument_list|)
 return|;
 block|}
 comment|// Modification Operations
+annotation|@
+name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
@@ -669,6 +681,8 @@ return|return
 name|collection
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -749,6 +763,8 @@ name|changed
 return|;
 block|}
 comment|// Bulk Operations
+annotation|@
+name|Override
 DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
@@ -876,6 +892,8 @@ return|return
 name|changed
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
@@ -942,6 +960,8 @@ name|changed
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The returned collection is immutable.    */
+annotation|@
+name|Override
 DECL|method|replaceValues ( @ullable K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
@@ -1066,6 +1086,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The returned collection is immutable.    */
+annotation|@
+name|Override
 DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Collection
@@ -1231,6 +1253,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1270,6 +1294,8 @@ expr_stmt|;
 block|}
 comment|// Views
 comment|/**    * {@inheritDoc}    *    *<p>The returned collection is not serializable.    */
+annotation|@
+name|Override
 DECL|method|get (@ullable K key)
 specifier|public
 name|Collection
@@ -1927,6 +1953,8 @@ argument_list|()
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -1943,6 +1971,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|V
@@ -1959,6 +1989,8 @@ name|next
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -2546,6 +2578,8 @@ name|getDelegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -2565,6 +2599,8 @@ name|comparator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|V
@@ -2582,6 +2618,8 @@ name|first
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|V
@@ -2599,6 +2637,8 @@ name|last
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (V toElement)
 specifier|public
 name|SortedSet
@@ -2643,6 +2683,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSet (V fromElement, V toElement)
 specifier|public
 name|SortedSet
@@ -2692,6 +2734,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailSet (V fromElement)
 specifier|public
 name|SortedSet
@@ -2799,6 +2843,8 @@ name|getDelegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addAll (int index, Collection<? extends V> c)
 specifier|public
 name|boolean
@@ -2886,6 +2932,8 @@ return|return
 name|changed
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
 specifier|public
 name|V
@@ -2908,6 +2956,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set (int index, V element)
 specifier|public
 name|V
@@ -2935,6 +2985,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (int index, V element)
 specifier|public
 name|void
@@ -2982,6 +3034,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|remove (int index)
 specifier|public
 name|V
@@ -3015,6 +3069,8 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (Object o)
 specifier|public
 name|int
@@ -3037,6 +3093,8 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (Object o)
 specifier|public
 name|int
@@ -3059,6 +3117,8 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|listIterator ()
 specifier|public
 name|ListIterator
@@ -3077,6 +3137,8 @@ name|WrappedListIterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|listIterator (int index)
 specifier|public
 name|ListIterator
@@ -3100,6 +3162,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
@@ -3205,6 +3269,8 @@ name|getDelegateIterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPrevious ()
 specifier|public
 name|boolean
@@ -3219,6 +3285,8 @@ name|hasPrevious
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previous ()
 specifier|public
 name|V
@@ -3233,6 +3301,8 @@ name|previous
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextIndex ()
 specifier|public
 name|int
@@ -3247,6 +3317,8 @@ name|nextIndex
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previousIndex ()
 specifier|public
 name|int
@@ -3261,6 +3333,8 @@ name|previousIndex
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set (V value)
 specifier|public
 name|void
@@ -3279,6 +3353,8 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (V value)
 specifier|public
 name|void
@@ -3367,6 +3443,8 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -3558,6 +3636,8 @@ argument_list|>
 argument_list|>
 name|entry
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3570,6 +3650,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|K
 name|next
@@ -3589,6 +3671,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3879,6 +3963,8 @@ operator|)
 name|subMap
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -3898,6 +3984,8 @@ name|comparator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|K
@@ -3912,6 +4000,8 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (K toElement)
 specifier|public
 name|SortedSet
@@ -3938,6 +4028,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|K
@@ -3952,6 +4044,8 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSet (K fromElement, K toElement)
 specifier|public
 name|SortedSet
@@ -3983,6 +4077,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailSet (K fromElement)
 specifier|public
 name|SortedSet
@@ -4019,6 +4115,8 @@ name|K
 argument_list|>
 name|multiset
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|keys ()
 specifier|public
 name|Multiset
@@ -4716,6 +4814,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -4729,6 +4829,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|Multiset
@@ -4751,6 +4853,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -4816,6 +4920,8 @@ operator|=
 name|entry
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getElement ()
 specifier|public
 name|K
@@ -4829,6 +4935,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getCount ()
 specifier|public
 name|int
@@ -4878,6 +4986,8 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -4891,6 +5001,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|K
@@ -4907,6 +5019,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -4930,6 +5044,8 @@ argument_list|>
 name|valuesCollection
 decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values    * for one key, followed by the values of a second key, and so on.    */
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
@@ -5067,6 +5183,8 @@ init|=
 name|createEntryIterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -5080,6 +5198,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|V
@@ -5096,6 +5216,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -5127,6 +5249,8 @@ name|entries
 decl_stmt|;
 comment|/*    * TODO(kevinb): should we copy this javadoc to each concrete class, so that    * classes like LinkedHashMultimap that need to say something different are    * still able to {@inheritDoc} all the way from Multimap?    */
 comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values    * for one key, followed by the values of a second key, and so on.    *    *<p>Each entry is an immutable snapshot of a key-value mapping in the    * multimap, taken at the time the entry is returned by a method call to the    * collection or its iterator.    */
+annotation|@
+name|Override
 DECL|method|entries ()
 specifier|public
 name|Collection
@@ -5567,6 +5691,8 @@ name|iterator
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -5585,6 +5711,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|Map
@@ -5625,6 +5753,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -5731,6 +5861,8 @@ argument_list|>
 argument_list|>
 name|asMap
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|asMap ()
 specifier|public
 name|Map
@@ -6373,6 +6505,8 @@ name|V
 argument_list|>
 name|collection
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -6386,6 +6520,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|Map
@@ -6451,6 +6587,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -6543,6 +6681,8 @@ operator|)
 name|submap
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -6562,6 +6702,8 @@ name|comparator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -6576,6 +6718,8 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -6590,6 +6734,8 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
@@ -6621,6 +6767,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
@@ -6657,6 +6805,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap

@@ -298,6 +298,8 @@ name|ByteArrayInputStream
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|ByteArrayInputStream
 name|getInput
@@ -2680,6 +2682,8 @@ name|Long
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|processBytes
@@ -2710,6 +2714,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Long
 name|getResult
@@ -2772,6 +2778,8 @@ index|[]
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|processBytes
@@ -2802,6 +2810,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]

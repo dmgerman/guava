@@ -469,6 +469,8 @@ name|delegate
 return|;
 block|}
 annotation|@
+name|Override
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -504,6 +506,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|putInstance (Class<T> type, T value)
 specifier|public
 parameter_list|<

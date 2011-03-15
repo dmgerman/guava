@@ -71,6 +71,8 @@ name|FakeTimeLimiter
 implements|implements
 name|TimeLimiter
 block|{
+annotation|@
+name|Override
 DECL|method|newProxy (T target, Class<T> interfaceType, long timeoutDuration, TimeUnit timeoutUnit)
 specifier|public
 parameter_list|<
@@ -100,6 +102,8 @@ name|target
 return|;
 comment|// ha ha
 block|}
+annotation|@
+name|Override
 DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
 specifier|public
 parameter_list|<

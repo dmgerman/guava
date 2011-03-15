@@ -962,6 +962,8 @@ name|predicate
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (T t)
 specifier|public
 name|boolean
@@ -1147,6 +1149,8 @@ operator|=
 name|components
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (T t)
 specifier|public
 name|boolean
@@ -1345,6 +1349,8 @@ operator|=
 name|components
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (T t)
 specifier|public
 name|boolean
@@ -1522,6 +1528,8 @@ operator|=
 name|target
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (T t)
 specifier|public
 name|boolean
@@ -1674,6 +1682,8 @@ name|clazz
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (@ullable Object o)
 specifier|public
 name|boolean
@@ -1827,6 +1837,8 @@ name|target
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (T t)
 specifier|public
 name|boolean
@@ -2037,6 +2049,8 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (A a)
 specifier|public
 name|boolean
@@ -2235,6 +2249,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (CharSequence t)
 specifier|public
 name|boolean

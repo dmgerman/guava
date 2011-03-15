@@ -1361,6 +1361,8 @@ name|T
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -1375,6 +1377,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1387,6 +1391,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasPrevious
@@ -1399,6 +1405,8 @@ name|hasPrevious
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|T
 name|next
@@ -1416,6 +1424,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|nextIndex
@@ -1428,6 +1438,8 @@ name|nextIndex
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|T
 name|previous
@@ -1445,6 +1457,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|previousIndex
@@ -1457,6 +1471,8 @@ name|previousIndex
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -1468,6 +1484,8 @@ name|remove
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|set

@@ -419,6 +419,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|forcePut (K key, V value)
 specifier|public
 name|V
@@ -738,6 +740,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Views
+annotation|@
+name|Override
 DECL|method|inverse ()
 specifier|public
 name|BiMap
@@ -963,6 +967,8 @@ name|V
 argument_list|>
 name|entry
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -975,6 +981,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|K
 name|next
@@ -994,6 +1002,8 @@ name|getKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

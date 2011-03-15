@@ -170,6 +170,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -184,6 +186,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -198,6 +202,8 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object object)
 specifier|public
 name|V
@@ -217,6 +223,8 @@ name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -230,6 +238,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
@@ -249,6 +259,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
@@ -268,6 +280,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (Object key)
 specifier|public
 name|V
@@ -287,6 +301,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|put (K key, V value)
 specifier|public
 name|V
@@ -311,6 +327,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
@@ -338,6 +356,8 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -355,6 +375,8 @@ name|keySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
@@ -372,6 +394,8 @@ name|values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set

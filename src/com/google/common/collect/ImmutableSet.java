@@ -1396,6 +1396,8 @@ operator|=
 name|elements
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -1763,6 +1765,8 @@ name|D
 name|element
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

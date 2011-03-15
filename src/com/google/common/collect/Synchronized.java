@@ -473,6 +473,8 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (E e)
 specifier|public
 name|boolean
@@ -498,6 +500,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|addAll (Collection<? extends E> c)
 specifier|public
 name|boolean
@@ -528,6 +532,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -547,6 +553,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|contains (Object o)
 specifier|public
 name|boolean
@@ -572,6 +580,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
@@ -600,6 +610,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -620,6 +632,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|iterator ()
 specifier|public
 name|Iterator
@@ -638,6 +652,8 @@ argument_list|()
 return|;
 comment|// manually synchronized
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object o)
 specifier|public
 name|boolean
@@ -663,6 +679,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
@@ -691,6 +709,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
@@ -719,6 +739,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -739,6 +761,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|toArray ()
 specifier|public
 name|Object
@@ -760,6 +784,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|toArray (T[] a)
 specifier|public
 parameter_list|<
@@ -1073,6 +1099,8 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -1098,6 +1126,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
@@ -1136,6 +1166,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
@@ -1169,6 +1201,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet
@@ -1202,6 +1236,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|E
@@ -1222,6 +1258,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|E
@@ -1371,6 +1409,8 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (int index, E element)
 specifier|public
 name|void
@@ -1400,6 +1440,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|addAll (int index, Collection<? extends E> c)
 specifier|public
 name|boolean
@@ -1435,6 +1477,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
 specifier|public
 name|E
@@ -1460,6 +1504,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (Object o)
 specifier|public
 name|int
@@ -1485,6 +1531,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (Object o)
 specifier|public
 name|int
@@ -1510,6 +1558,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|listIterator ()
 specifier|public
 name|ListIterator
@@ -1528,6 +1578,8 @@ argument_list|()
 return|;
 comment|// manually synchronized
 block|}
+annotation|@
+name|Override
 DECL|method|listIterator (int index)
 specifier|public
 name|ListIterator
@@ -1551,6 +1603,8 @@ argument_list|)
 return|;
 comment|// manually synchronized
 block|}
+annotation|@
+name|Override
 DECL|method|remove (int index)
 specifier|public
 name|E
@@ -1576,6 +1630,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|set (int index, E element)
 specifier|public
 name|E
@@ -1606,6 +1662,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
@@ -1883,6 +1941,8 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|count (Object o)
 specifier|public
 name|int
@@ -1908,6 +1968,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|add (E e, int n)
 specifier|public
 name|int
@@ -1938,6 +2000,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object o, int n)
 specifier|public
 name|int
@@ -1968,6 +2032,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int count)
 specifier|public
 name|int
@@ -1998,6 +2064,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 name|boolean
@@ -2033,6 +2101,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|elementSet ()
 specifier|public
 name|Set
@@ -2073,6 +2143,8 @@ name|elementSet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -2359,6 +2431,8 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -2379,6 +2453,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -2399,6 +2475,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
@@ -2424,6 +2502,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
@@ -2449,6 +2529,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsEntry (Object key, Object value)
 specifier|public
 name|boolean
@@ -2479,6 +2561,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|get (K key)
 specifier|public
 name|Collection
@@ -2512,6 +2596,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|put (K key, V value)
 specifier|public
 name|boolean
@@ -2542,6 +2628,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
@@ -2577,6 +2665,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
@@ -2611,6 +2701,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
@@ -2650,6 +2742,8 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object key, Object value)
 specifier|public
 name|boolean
@@ -2680,6 +2774,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Object key)
 specifier|public
 name|Collection
@@ -2709,6 +2805,8 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -2728,6 +2826,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -2768,6 +2868,8 @@ name|keySet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
@@ -2808,6 +2910,8 @@ name|valuesCollection
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|entries ()
 specifier|public
 name|Collection
@@ -2855,6 +2959,8 @@ name|entries
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|asMap ()
 specifier|public
 name|Map
@@ -2906,6 +3012,8 @@ name|asMap
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|keys ()
 specifier|public
 name|Multiset
@@ -3784,6 +3892,8 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator
@@ -4643,6 +4753,8 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -4662,6 +4774,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
@@ -4687,6 +4801,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
@@ -4712,6 +4828,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -4759,6 +4877,8 @@ name|entrySet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|get (Object key)
 specifier|public
 name|V
@@ -4784,6 +4904,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -4804,6 +4926,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -4844,6 +4968,8 @@ name|keySet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|put (K key, V value)
 specifier|public
 name|V
@@ -4874,6 +5000,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
@@ -4907,6 +5035,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object key)
 specifier|public
 name|V
@@ -4932,6 +5062,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -4952,6 +5084,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
@@ -5584,6 +5718,8 @@ name|valueSet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|forcePut (K key, V value)
 specifier|public
 name|V
@@ -5614,6 +5750,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|inverse ()
 specifier|public
 name|BiMap

@@ -101,6 +101,8 @@ specifier|private
 name|EmptyImmutableSet
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

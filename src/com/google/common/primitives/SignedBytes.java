@@ -460,6 +460,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|compare (byte[] left, byte[] right)
 specifier|public
 name|int

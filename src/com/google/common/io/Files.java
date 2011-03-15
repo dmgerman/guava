@@ -380,6 +380,8 @@ name|FileInputStream
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|FileInputStream
 name|getInput
@@ -455,6 +457,8 @@ name|FileOutputStream
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|FileOutputStream
 name|getOutput

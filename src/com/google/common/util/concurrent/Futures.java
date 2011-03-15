@@ -326,6 +326,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|cancel
@@ -343,6 +345,8 @@ name|mayInterruptIfRunning
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCancelled
@@ -355,6 +359,8 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDone
@@ -367,6 +373,8 @@ name|isDone
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|get
@@ -459,6 +467,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|get
@@ -834,6 +844,8 @@ name|X
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|X
 name|apply
@@ -949,6 +961,8 @@ name|X
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|X
 name|apply
@@ -2078,6 +2092,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|run ()
 specifier|public
 name|void
@@ -2206,6 +2222,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run

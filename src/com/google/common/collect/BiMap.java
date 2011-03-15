@@ -86,6 +86,8 @@ argument_list|>
 block|{
 comment|// Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the given value is already bound to a    *     different key in this bimap. The bimap will remain unmodified in this    *     event. To avoid this exception, call {@link #forcePut} instead.    */
+annotation|@
+name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 name|V
 name|put
@@ -119,6 +121,8 @@ parameter_list|)
 function_decl|;
 comment|// Bulk Operations
 comment|/**    * {@inheritDoc}    *    *<p><b>Warning:</b> the results of calling this method may vary depending on    * the iteration order of {@code map}.    *    * @throws IllegalArgumentException if an attempt to {@code put} any    *     entry fails. Note that some map entries may have been added to the    *     bimap before the exception was thrown.    */
+annotation|@
+name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 name|void
 name|putAll
@@ -138,6 +142,8 @@ parameter_list|)
 function_decl|;
 comment|// Views
 comment|/**    * {@inheritDoc}    *    *<p>Because a bimap has unique values, this method returns a {@link Set},    * instead of the {@link java.util.Collection} specified in the {@link Map}    * interface.    */
+annotation|@
+name|Override
 DECL|method|values ()
 name|Set
 argument_list|<

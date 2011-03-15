@@ -80,6 +80,8 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|entriesOnlyOnLeft ()
 name|SortedMap
 argument_list|<
@@ -90,6 +92,8 @@ argument_list|>
 name|entriesOnlyOnLeft
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|entriesOnlyOnRight ()
 name|SortedMap
 argument_list|<
@@ -100,6 +104,8 @@ argument_list|>
 name|entriesOnlyOnRight
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|entriesInCommon ()
 name|SortedMap
 argument_list|<
@@ -110,6 +116,8 @@ argument_list|>
 name|entriesInCommon
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|entriesDiffering ()
 name|SortedMap
 argument_list|<

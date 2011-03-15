@@ -217,6 +217,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|checkKeyValue (Object key, Object value)
 specifier|public
 name|void
@@ -741,6 +743,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|V
 name|checkElement
@@ -1388,6 +1392,8 @@ name|delegate
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|forcePut (K key, V value)
 specifier|public
 name|V
@@ -1421,6 +1427,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|inverse ()
 specifier|public
 name|BiMap
@@ -1554,6 +1562,8 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|checkKeyValue (K key, V value)
 specifier|public
 name|void
@@ -2113,6 +2123,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|V
 name|checkElement
@@ -2466,6 +2478,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -2478,6 +2492,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Collection
 argument_list|<
@@ -2496,6 +2512,8 @@ name|getValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -4014,6 +4032,8 @@ name|values
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|valueComparator ()
 specifier|public
 name|Comparator

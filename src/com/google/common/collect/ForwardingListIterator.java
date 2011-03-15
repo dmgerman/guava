@@ -84,6 +84,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|add (E element)
 specifier|public
 name|void
@@ -102,6 +104,8 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPrevious ()
 specifier|public
 name|boolean
@@ -116,6 +120,8 @@ name|hasPrevious
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextIndex ()
 specifier|public
 name|int
@@ -130,6 +136,8 @@ name|nextIndex
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previous ()
 specifier|public
 name|E
@@ -144,6 +152,8 @@ name|previous
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previousIndex ()
 specifier|public
 name|int
@@ -158,6 +168,8 @@ name|previousIndex
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set (E element)
 specifier|public
 name|void

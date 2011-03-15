@@ -1267,6 +1267,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|compare (short[] left, short[] right)
 specifier|public
 name|int

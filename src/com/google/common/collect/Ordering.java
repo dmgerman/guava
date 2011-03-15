@@ -595,6 +595,8 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|apply

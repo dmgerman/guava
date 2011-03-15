@@ -1289,6 +1289,8 @@ name|V
 argument_list|>
 name|current
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -1301,6 +1303,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|Node
@@ -1331,6 +1335,8 @@ return|return
 name|current
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -1412,6 +1418,8 @@ name|V
 argument_list|>
 name|current
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -1424,6 +1432,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|K
@@ -1483,6 +1493,8 @@ operator|.
 name|key
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -1687,6 +1699,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -1699,6 +1713,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|V
@@ -1731,6 +1747,8 @@ operator|.
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasPrevious ()
 specifier|public
 name|boolean
@@ -1743,6 +1761,8 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previous ()
 specifier|public
 name|V
@@ -1775,6 +1795,8 @@ operator|.
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|nextIndex ()
 specifier|public
 name|int
@@ -1785,6 +1807,8 @@ return|return
 name|nextIndex
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|previousIndex ()
 specifier|public
 name|int
@@ -1797,6 +1821,8 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -1847,6 +1873,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|set (V value)
 specifier|public
 name|void
@@ -1870,6 +1898,8 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1908,6 +1938,8 @@ expr_stmt|;
 block|}
 block|}
 comment|// Query Operations
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -1921,6 +1953,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1933,6 +1967,8 @@ operator|==
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
@@ -1953,6 +1989,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
@@ -2014,6 +2052,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -2077,6 +2117,8 @@ return|;
 block|}
 comment|// Modification Operations
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} always    */
+annotation|@
+name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
@@ -2106,6 +2148,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
@@ -2172,6 +2216,8 @@ literal|false
 return|;
 block|}
 comment|// Bulk Operations
+annotation|@
+name|Override
 DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
@@ -2218,6 +2264,8 @@ return|return
 name|changed
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
@@ -2282,6 +2330,8 @@ name|changed
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>If any entries for the specified {@code key} already exist in the    * multimap, their values are changed in-place without affecting the iteration    * order.    *    *<p>The returned list is immutable and implements    * {@link java.util.RandomAccess}.    */
+annotation|@
+name|Override
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|List
@@ -2445,6 +2495,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The returned list is immutable and implements    * {@link java.util.RandomAccess}.    */
+annotation|@
+name|Override
 DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|List
@@ -2479,6 +2531,8 @@ return|return
 name|oldValues
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -2511,6 +2565,8 @@ expr_stmt|;
 block|}
 comment|// Views
 comment|/**    * {@inheritDoc}    *    *<p>If the multimap is modified while an iteration over the list is in    * progress (except through the iterator's own {@code add}, {@code set} or    * {@code remove} operations) the results of the iteration are undefined.    *    *<p>The returned list is not serializable and does not have random access.    */
+annotation|@
+name|Override
 DECL|method|get (final @Nullable K key)
 specifier|public
 name|List
@@ -2635,6 +2691,8 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|Set
@@ -2767,6 +2825,8 @@ name|K
 argument_list|>
 name|keys
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|keys ()
 specifier|public
 name|Multiset
@@ -2869,6 +2929,8 @@ name|K
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -2881,6 +2943,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|K
 name|next
@@ -2895,6 +2959,8 @@ operator|.
 name|key
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -2909,6 +2975,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|count (@ullable Object key)
 specifier|public
 name|int
@@ -2929,6 +2997,8 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (@ullable K key, int occurrences)
 specifier|public
 name|int
@@ -2949,6 +3019,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (@ullable Object key, int occurrences)
 specifier|public
 name|int
@@ -3020,6 +3092,8 @@ return|return
 name|oldCount
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (K element, int count)
 specifier|public
 name|int
@@ -3043,6 +3117,8 @@ name|count
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (K element, int oldCount, int newCount)
 specifier|public
 name|boolean
@@ -3123,6 +3199,8 @@ name|c
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|elementSet ()
 specifier|public
 name|Set
@@ -3137,6 +3215,8 @@ name|keySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -3213,6 +3293,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3225,6 +3307,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -3252,6 +3336,8 @@ name|K
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|K
 name|getElement
@@ -3261,6 +3347,8 @@ return|return
 name|key
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCount
@@ -3278,6 +3366,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3359,6 +3449,8 @@ argument_list|>
 name|valuesCollection
 decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values    * in the order they were added to the multimap.    */
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 name|Collection
@@ -3442,6 +3534,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3454,6 +3548,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|next
@@ -3468,6 +3564,8 @@ operator|.
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3504,6 +3602,8 @@ argument_list|>
 name|entries
 decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the entries    * in the order they were added to the multimap.    *    *<p>An entry's {@link Entry#getKey} method always returns the same key,    * regardless of what happens subsequently. As long as the corresponding    * key-value mapping is not removed from the multimap, {@link Entry#getValue}    * returns the value from the multimap, which may change over time, and {@link    * Entry#setValue} modifies that value. Removing the mapping from the    * multimap does not alter the value returned by {@code getValue()}, though a    * subsequent {@code setValue()} call won't update the multimap but will lead    * to a revised value being returned by {@code getValue()}.    */
+annotation|@
+name|Override
 DECL|method|entries ()
 specifier|public
 name|Collection
@@ -3612,6 +3712,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3624,6 +3726,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -3714,6 +3818,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3817,6 +3923,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3829,6 +3937,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -3899,6 +4009,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3929,6 +4041,8 @@ argument_list|>
 argument_list|>
 name|map
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|asMap ()
 specifier|public
 name|Map

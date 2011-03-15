@@ -1773,6 +1773,8 @@ argument_list|,
 name|Integer
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|apply (Object o)
 specifier|public
 name|Integer

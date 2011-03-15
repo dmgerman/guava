@@ -289,6 +289,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|newProxy (final T target, Class<T> interfaceType, final long timeoutDuration, final TimeUnit timeoutUnit)
 specifier|public
 parameter_list|<
@@ -371,6 +373,8 @@ operator|new
 name|InvocationHandler
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|invoke
@@ -403,6 +407,8 @@ name|Object
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|call
@@ -479,6 +485,8 @@ argument_list|)
 return|;
 block|}
 comment|// TODO: should this actually throw only ExecutionException?
+annotation|@
+name|Override
 DECL|method|callWithTimeout (Callable<T> callable, long timeoutDuration, TimeUnit timeoutUnit, boolean amInterruptible)
 specifier|public
 parameter_list|<

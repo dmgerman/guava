@@ -254,6 +254,8 @@ name|StringReader
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|StringReader
 name|getInput
@@ -316,6 +318,8 @@ name|InputStreamReader
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|InputStreamReader
 name|getInput
@@ -385,6 +389,8 @@ name|OutputStreamWriter
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|OutputStreamWriter
 name|getOutput

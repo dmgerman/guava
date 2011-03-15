@@ -2151,6 +2151,8 @@ name|comparator
 expr_stmt|;
 block|}
 comment|/**    * Returns the comparator that orders the elements, which is    * {@link Ordering#natural()} when the natural ordering of the    * elements is used. Note that its behavior is not consistent with    * {@link SortedSet#comparator()}, which returns {@code null} to indicate    * natural ordering.    */
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -2167,6 +2169,8 @@ name|comparator
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a serializable {@code ImmutableSortedSet}.    *    *<p>The {@link SortedSet#headSet} documentation states that a subset of a    * subset throws an {@link IllegalArgumentException} if passed a    * {@code toElement} greater than an earlier {@code toElement}. However, this    * method doesn't throw an exception in that situation, but instead keeps the    * original {@code toElement}.    */
+annotation|@
+name|Override
 DECL|method|headSet (E toElement)
 specifier|public
 name|ImmutableSortedSet
@@ -2190,6 +2194,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a serializable {@code ImmutableSortedSet}.    *    *<p>The {@link SortedSet#subSet} documentation states that a subset of a    * subset throws an {@link IllegalArgumentException} if passed a    * {@code fromElement} smaller than an earlier {@code fromElement}. However,    * this method doesn't throw an exception in that situation, but instead keeps    * the original {@code fromElement}. Similarly, this method keeps the    * original {@code toElement}, instead of throwing an exception, if passed a    * {@code toElement} greater than an earlier {@code toElement}.    */
+annotation|@
+name|Override
 DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|ImmutableSortedSet
@@ -2239,6 +2245,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a serializable {@code ImmutableSortedSet}.    *    *<p>The {@link SortedSet#tailSet} documentation states that a subset of a    * subset throws an {@link IllegalArgumentException} if passed a    * {@code fromElement} smaller than an earlier {@code fromElement}. However,    * this method doesn't throw an exception in that situation, but instead keeps    * the original {@code fromElement}.    */
+annotation|@
+name|Override
 DECL|method|tailSet (E fromElement)
 specifier|public
 name|ImmutableSortedSet

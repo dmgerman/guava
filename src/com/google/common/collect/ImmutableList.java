@@ -1445,6 +1445,8 @@ name|index
 parameter_list|)
 function_decl|;
 comment|// Mark these two methods with @Nullable
+annotation|@
+name|Override
 DECL|method|indexOf (@ullable Object object)
 specifier|public
 specifier|abstract
@@ -1457,6 +1459,8 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
 specifier|abstract
@@ -1471,6 +1475,8 @@ parameter_list|)
 function_decl|;
 comment|// constrain the return type to ImmutableList<E>
 comment|/**    * Returns an immutable list of the elements between the specified {@code    * fromIndex}, inclusive, and {@code toIndex}, exclusive. (If {@code    * fromIndex} and {@code toIndex} are equal, the empty immutable list is    * returned.)    */
+annotation|@
+name|Override
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 specifier|abstract
@@ -1488,6 +1494,8 @@ name|toIndex
 parameter_list|)
 function_decl|;
 comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|addAll (int index, Collection<? extends E> newElements)
 specifier|public
 specifier|final
@@ -1513,6 +1521,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|set (int index, E element)
 specifier|public
 specifier|final
@@ -1533,6 +1543,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|add (int index, E element)
 specifier|public
 specifier|final
@@ -1553,6 +1565,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|remove (int index)
 specifier|public
 specifier|final

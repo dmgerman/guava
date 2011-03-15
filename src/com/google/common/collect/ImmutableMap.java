@@ -1139,6 +1139,8 @@ name|ImmutableMap
 parameter_list|()
 block|{}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|put (K k, V v)
 specifier|public
 specifier|final
@@ -1159,6 +1161,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|remove (Object o)
 specifier|public
 specifier|final
@@ -1176,6 +1180,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|final
@@ -1202,6 +1208,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 specifier|final
@@ -1215,6 +1223,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1228,6 +1238,8 @@ operator|==
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
@@ -1249,6 +1261,8 @@ literal|null
 return|;
 block|}
 comment|// Overriding to mark it Nullable
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
 specifier|public
 specifier|abstract
@@ -1262,6 +1276,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|// Overriding to mark it Nullable
+annotation|@
+name|Override
 DECL|method|get (@ullable Object key)
 specifier|public
 specifier|abstract
@@ -1275,6 +1291,8 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Returns an immutable set of the mappings in this map. The entries are in    * the same order as the parameters used to build this map.    */
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 specifier|abstract
@@ -1291,6 +1309,8 @@ name|entrySet
 parameter_list|()
 function_decl|;
 comment|/**    * Returns an immutable set of the keys in this map. These keys are in    * the same order as the parameters used to build this map.    */
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 specifier|abstract
@@ -1302,6 +1322,8 @@ name|keySet
 parameter_list|()
 function_decl|;
 comment|/**    * Returns an immutable collection of the values in this map. The values are    * in the same order as the parameters used to build this map.    */
+annotation|@
+name|Override
 DECL|method|values ()
 specifier|public
 specifier|abstract

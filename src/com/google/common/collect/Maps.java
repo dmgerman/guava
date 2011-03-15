@@ -1461,6 +1461,8 @@ operator|=
 name|differences
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|areEqual ()
 specifier|public
 name|boolean
@@ -1471,6 +1473,8 @@ return|return
 name|areEqual
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesOnlyOnLeft ()
 specifier|public
 name|Map
@@ -1486,6 +1490,8 @@ return|return
 name|onlyOnLeft
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesOnlyOnRight ()
 specifier|public
 name|Map
@@ -1501,6 +1507,8 @@ return|return
 name|onlyOnRight
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesInCommon ()
 specifier|public
 name|Map
@@ -1516,6 +1524,8 @@ return|return
 name|onBoth
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesDiffering ()
 specifier|public
 name|Map
@@ -1812,6 +1822,8 @@ operator|=
 name|right
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|leftValue ()
 specifier|public
 name|V
@@ -1822,6 +1834,8 @@ return|return
 name|left
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|rightValue ()
 specifier|public
 name|V
@@ -2904,6 +2918,8 @@ return|return
 name|unmodifiableMap
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|forcePut (K key, V value)
 specifier|public
 name|V
@@ -2922,6 +2938,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|inverse ()
 specifier|public
 name|BiMap
@@ -3087,6 +3105,8 @@ name|V2
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|V2
 name|transformEntry
@@ -3576,6 +3596,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -3588,6 +3610,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -3663,6 +3687,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -3914,6 +3940,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|apply
@@ -4045,6 +4073,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|apply
@@ -4671,6 +4701,8 @@ name|V
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -4683,6 +4715,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|V
 name|next
@@ -5531,6 +5565,8 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -5543,6 +5579,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -5720,6 +5758,8 @@ name|K
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -5732,6 +5772,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|K
 name|next

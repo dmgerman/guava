@@ -1032,6 +1032,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|compare (double[] left, double[] right)
 specifier|public
 name|int

@@ -247,6 +247,8 @@ name|computingFunction
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|asMap ()
 specifier|public
 name|ConcurrentMap
@@ -313,6 +315,8 @@ name|hash
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (K key)
 specifier|public
 name|V
@@ -858,6 +862,8 @@ operator|=
 name|message
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -868,6 +874,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
@@ -891,6 +899,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isComputingReference ()
 specifier|public
 name|boolean
@@ -901,6 +911,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -915,12 +927,16 @@ name|message
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|notifyValueReclaimed ()
 specifier|public
 name|void
 name|notifyValueReclaimed
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -966,6 +982,8 @@ operator|=
 name|t
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -976,6 +994,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
@@ -999,6 +1019,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isComputingReference ()
 specifier|public
 name|boolean
@@ -1009,6 +1031,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -1023,12 +1047,16 @@ name|t
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|notifyValueReclaimed ()
 specifier|public
 name|void
 name|notifyValueReclaimed
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1074,6 +1102,8 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -1084,6 +1114,8 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
@@ -1107,6 +1139,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isComputingReference ()
 specifier|public
 name|boolean
@@ -1117,6 +1151,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -1128,12 +1164,16 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|notifyValueReclaimed ()
 specifier|public
 name|void
 name|notifyValueReclaimed
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1171,6 +1211,8 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|get ()
 specifier|public
 name|V
@@ -1183,6 +1225,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|copyFor (ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
@@ -1206,6 +1250,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isComputingReference ()
 specifier|public
 name|boolean
@@ -1217,6 +1263,8 @@ literal|true
 return|;
 block|}
 comment|/**      * Waits for a computation to complete. Returns the result of the      * computation.      */
+annotation|@
+name|Override
 DECL|method|waitForValue ()
 specifier|public
 name|V
@@ -1257,6 +1305,8 @@ name|waitForValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
@@ -1281,6 +1331,8 @@ argument_list|)
 expr_stmt|;
 comment|// TODO(user): could also cancel computation if we had a thread handle
 block|}
+annotation|@
+name|Override
 DECL|method|notifyValueReclaimed ()
 specifier|public
 name|void

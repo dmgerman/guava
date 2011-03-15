@@ -222,6 +222,8 @@ name|frq
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|finalizeReferent ()
 specifier|public
 name|void
@@ -364,6 +366,8 @@ argument_list|,
 name|frq
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|finalizeReferent

@@ -1030,6 +1030,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|compare (float[] left, float[] right)
 specifier|public
 name|int

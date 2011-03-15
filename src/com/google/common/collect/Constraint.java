@@ -71,6 +71,8 @@ name|element
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a brief human readable description of this constraint, such as    * "Not null" or "Positive number".    */
+annotation|@
+name|Override
 DECL|method|toString ()
 name|String
 name|toString

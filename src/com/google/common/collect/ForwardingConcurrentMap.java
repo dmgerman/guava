@@ -94,6 +94,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|putIfAbsent (K key, V value)
 specifier|public
 name|V
@@ -118,6 +120,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object key, Object value)
 specifier|public
 name|boolean
@@ -142,6 +146,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|replace (K key, V value)
 specifier|public
 name|V
@@ -166,6 +172,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|replace (K key, V oldValue, V newValue)
 specifier|public
 name|boolean

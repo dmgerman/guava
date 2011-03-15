@@ -77,12 +77,16 @@ name|peek
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>The objects returned by consecutive calls to {@link #peek()} then {@link    * #next()} are guaranteed to be equal to each other.    */
+annotation|@
+name|Override
 DECL|method|next ()
 name|E
 name|next
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>Implementations may or may not support removal when a call to {@link    * #peek()} has occurred since the most recent call to {@link #next()}.    *    * @throws IllegalStateException if there has been a call to {@link #peek()}    *     since the most recent call to {@link #next()} and this implementation    *     does not support this sequence of calls (optional)    */
+annotation|@
+name|Override
 DECL|method|remove ()
 name|void
 name|remove

@@ -95,6 +95,8 @@ name|V
 argument_list|>
 block|{
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link java.util.Collection} specified in the {@link Multimap} interface.    */
+annotation|@
+name|Override
 DECL|method|get (@ullable K key)
 name|List
 argument_list|<
@@ -109,6 +111,8 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link java.util.Collection} specified in the {@link Multimap} interface.    */
+annotation|@
+name|Override
 DECL|method|removeAll (@ullable Object key)
 name|List
 argument_list|<
@@ -123,6 +127,8 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link java.util.Collection} specified in the {@link Multimap} interface.    */
+annotation|@
+name|Override
 DECL|method|replaceValues (K key, Iterable<? extends V> values)
 name|List
 argument_list|<
@@ -143,6 +149,8 @@ name|values
 parameter_list|)
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link List} values.    */
+annotation|@
+name|Override
 DECL|method|asMap ()
 name|Map
 argument_list|<
@@ -157,6 +165,8 @@ name|asMap
 parameter_list|()
 function_decl|;
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code ListMultimap} instances are equal if, for each key, they    * contain the same values in the same order. If the value orderings disagree,    * the multimaps will not be considered equal.    */
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object obj)
 name|boolean
 name|equals

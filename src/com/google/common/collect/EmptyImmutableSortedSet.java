@@ -132,6 +132,8 @@ name|comparator
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -352,6 +354,8 @@ return|return
 literal|"[]"
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|E
@@ -364,6 +368,8 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|E

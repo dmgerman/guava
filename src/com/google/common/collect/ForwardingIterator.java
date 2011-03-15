@@ -81,6 +81,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -95,6 +97,8 @@ name|hasNext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|T
@@ -109,6 +113,8 @@ name|next
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void

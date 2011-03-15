@@ -173,6 +173,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -385,6 +387,8 @@ name|other
 return|;
 block|}
 comment|// The fake cast to E is safe because the creation methods only allow E's
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(

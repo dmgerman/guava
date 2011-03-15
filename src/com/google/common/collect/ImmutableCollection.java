@@ -122,6 +122,8 @@ name|ImmutableCollection
 parameter_list|()
 block|{}
 comment|/**    * Returns an unmodifiable iterator across the elements in this collection.    */
+annotation|@
+name|Override
 DECL|method|iterator ()
 specifier|public
 specifier|abstract
@@ -132,6 +134,8 @@ argument_list|>
 name|iterator
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|toArray ()
 specifier|public
 name|Object
@@ -148,6 +152,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|toArray (T[] other)
 specifier|public
 parameter_list|<
@@ -173,6 +179,8 @@ name|other
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
@@ -200,6 +208,8 @@ name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
@@ -223,6 +233,8 @@ name|targets
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -254,6 +266,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|add (E e)
 specifier|public
 specifier|final
@@ -271,6 +285,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|remove (Object object)
 specifier|public
 specifier|final
@@ -288,6 +304,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|addAll (Collection<? extends E> newElements)
 specifier|public
 specifier|final
@@ -310,6 +328,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> oldElements)
 specifier|public
 specifier|final
@@ -330,6 +350,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> elementsToKeep)
 specifier|public
 specifier|final
@@ -350,6 +372,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    */
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 specifier|final
@@ -479,6 +503,8 @@ argument_list|<
 name|Object
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -665,6 +691,8 @@ operator|=
 name|elements
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

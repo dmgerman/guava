@@ -145,6 +145,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|apply (Object o)
 specifier|public
 name|String
@@ -231,6 +233,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|apply (Object o)
 specifier|public
 name|Object
@@ -348,6 +352,8 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (K key)
 specifier|public
 name|V
@@ -603,6 +609,8 @@ operator|=
 name|defaultValue
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (K key)
 specifier|public
 name|V
@@ -897,6 +905,8 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (A a)
 specifier|public
 name|C
@@ -1122,6 +1132,8 @@ name|predicate
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (T t)
 specifier|public
 name|Boolean
@@ -1303,6 +1315,8 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|apply (@ullable Object from)
 specifier|public
 name|E

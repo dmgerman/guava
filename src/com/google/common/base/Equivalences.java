@@ -121,6 +121,8 @@ block|{
 DECL|enumConstant|EQUALS
 name|EQUALS
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equivalent
@@ -158,6 +160,8 @@ name|b
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hash
@@ -188,6 +192,8 @@ block|,
 DECL|enumConstant|IDENTITY
 name|IDENTITY
 block|{
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equivalent
@@ -209,6 +215,8 @@ operator|==
 name|b
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hash

@@ -248,6 +248,8 @@ specifier|private
 name|EmptyImmutableList
 parameter_list|()
 block|{}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -378,6 +380,8 @@ return|return
 name|a
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
 specifier|public
 name|Object

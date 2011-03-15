@@ -156,6 +156,8 @@ name|E
 argument_list|>
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|E
 name|intern
@@ -249,6 +251,8 @@ operator|.
 name|makeMap
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 DECL|method|intern (final E sample)
 specifier|public
 name|E
@@ -487,6 +491,8 @@ operator|=
 name|hash
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|finalizeReferent ()
 specifier|public
 name|void

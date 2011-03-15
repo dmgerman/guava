@@ -142,6 +142,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|count (Object element)
 specifier|public
 name|int
@@ -161,6 +163,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|add (E element, int occurrences)
 specifier|public
 name|int
@@ -185,6 +189,8 @@ name|occurrences
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (Object element, int occurrences)
 specifier|public
 name|int
@@ -209,6 +215,8 @@ name|occurrences
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|elementSet ()
 specifier|public
 name|Set
@@ -226,6 +234,8 @@ name|elementSet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -289,6 +299,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int count)
 specifier|public
 name|int
@@ -313,6 +325,8 @@ name|count
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 name|boolean

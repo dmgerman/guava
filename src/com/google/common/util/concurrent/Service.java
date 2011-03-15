@@ -80,6 +80,8 @@ operator|.
 name|Service
 block|{
 comment|/**    * If the service state is {@link State#NEW}, this initiates service startup    * and returns immediately. If the service has already been started, this    * method returns immediately without taking action. A stopped service may not    * be restarted.    *    * @return a future for the startup result, regardless of whether this call    *     initiated startup. Calling {@link Future#get} will block until the    *     service has finished starting, and returns one of {@link    *     State#RUNNING}, {@link State#STOPPING} or {@link State#TERMINATED}. If    *     the service fails to start, {@link Future#get} will throw an {@link    *     ExecutionException}, and the service's state will be {@link    *     State#FAILED}. If it has already finished starting, {@link Future#get}    *     returns immediately. Cancelling the returned future is unsupported and    *     always returns {@code false}.    */
+annotation|@
+name|Override
 DECL|method|start ()
 name|Future
 argument_list|<
@@ -89,24 +91,32 @@ name|start
 parameter_list|()
 function_decl|;
 comment|/**    * Initiates service startup (if necessary), returning once the service has    * finished starting. Unlike calling {@code start().get()}, this method throws    * no checked exceptions, and it cannot be {@linkplain Thread#interrupt    * interrupted}.    *    * @throws RuntimeException if startup failed    * @return the state of the service when startup finished.    */
+annotation|@
+name|Override
 DECL|method|startAndWait ()
 name|State
 name|startAndWait
 parameter_list|()
 function_decl|;
 comment|/**    * Returns {@code true} if this service is {@linkplain State#RUNNING running}.    */
+annotation|@
+name|Override
 DECL|method|isRunning ()
 name|boolean
 name|isRunning
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the lifecycle state of the service.    */
+annotation|@
+name|Override
 DECL|method|state ()
 name|State
 name|state
 parameter_list|()
 function_decl|;
 comment|/**    * If the service is {@linkplain State#STARTING starting} or {@linkplain    * State#RUNNING running}, this initiates service shutdown and returns    * immediately. If the service is {@linkplain State#NEW new}, it is    * {@linkplain State#TERMINATED terminated} without having been started nor    * stopped.  If the service has already been stopped, this method returns    * immediately without taking action.    *    * @return a future for the shutdown result, regardless of whether this call    *     initiated shutdown. Calling {@link Future#get} will block until the    *     service has finished shutting down, and either returns {@link    *     State#TERMINATED} or throws an {@link ExecutionException}. If it has    *     already finished stopping, {@link Future#get} returns immediately.    *     Cancelling this future is unsupported and always returns {@code    *     false}.    */
+annotation|@
+name|Override
 DECL|method|stop ()
 name|Future
 argument_list|<
@@ -116,6 +126,8 @@ name|stop
 parameter_list|()
 function_decl|;
 comment|/**    * Initiates service shutdown (if necessary), returning once the service has    * finished stopping. If this is {@link State#STARTING}, startup will be    * cancelled. If this is {@link State#NEW}, it is {@link State#TERMINATED    * terminated} without having been started nor stopped. Unlike calling {@code    * stop().get()}, this method throws no checked exceptions.    *    * @throws InterruptedRuntimeException if the thread was interrupted while    *      waiting for the service to finish shutting down.    * @throws RuntimeException if shutdown failed    * @return the state of the service when shutdown finished.    */
+annotation|@
+name|Override
 DECL|method|stopAndWait ()
 name|State
 name|stopAndWait

@@ -90,6 +90,8 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|getKey ()
 specifier|public
 specifier|abstract
@@ -97,6 +99,8 @@ name|K
 name|getKey
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|getValue ()
 specifier|public
 specifier|abstract
@@ -104,6 +108,8 @@ name|V
 name|getValue
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|setValue (V value)
 specifier|public
 name|V

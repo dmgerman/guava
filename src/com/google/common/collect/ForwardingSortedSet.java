@@ -138,6 +138,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -157,6 +159,8 @@ name|comparator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|first ()
 specifier|public
 name|E
@@ -171,6 +175,8 @@ name|first
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
@@ -193,6 +199,8 @@ name|toElement
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|last ()
 specifier|public
 name|E
@@ -207,6 +215,8 @@ name|last
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
@@ -234,6 +244,8 @@ name|toElement
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet

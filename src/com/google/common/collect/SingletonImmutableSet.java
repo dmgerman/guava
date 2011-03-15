@@ -155,6 +155,8 @@ operator|=
 name|hashCode
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int

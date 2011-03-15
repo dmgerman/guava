@@ -121,6 +121,8 @@ name|entriesDiffering
 parameter_list|()
 function_decl|;
 comment|/**    * Compares the specified object with this instance for equality. Returns    * {@code true} if the given object is also a {@code MapDifference} and the    * values returned by the {@link #entriesOnlyOnLeft()}, {@link    * #entriesOnlyOnRight()}, {@link #entriesInCommon()} and {@link    * #entriesDiffering()} of the two instances are equal.    */
+annotation|@
+name|Override
 DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals
@@ -132,6 +134,8 @@ name|object
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the hash code for this instance. This is defined as the hash code    * of<pre>   {@code    *    *   Arrays.asList(entriesOnlyOnLeft(), entriesOnlyOnRight(),    *       entriesInCommon(), entriesDiffering())}</pre>    */
+annotation|@
+name|Override
 DECL|method|hashCode ()
 name|int
 name|hashCode

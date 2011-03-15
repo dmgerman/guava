@@ -147,6 +147,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|comparator ()
 specifier|public
 name|Comparator
@@ -166,6 +168,8 @@ name|comparator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|firstKey ()
 specifier|public
 name|K
@@ -180,6 +184,8 @@ name|firstKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
@@ -204,6 +210,8 @@ name|toKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastKey ()
 specifier|public
 name|K
@@ -218,6 +226,8 @@ name|lastKey
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
@@ -247,6 +257,8 @@ name|toKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap

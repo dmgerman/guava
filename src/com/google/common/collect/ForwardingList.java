@@ -139,6 +139,8 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 DECL|method|add (int index, E element)
 specifier|public
 name|void
@@ -162,6 +164,8 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|addAll (int index, Collection<? extends E> elements)
 specifier|public
 name|boolean
@@ -191,6 +195,8 @@ name|elements
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
 specifier|public
 name|E
@@ -210,6 +216,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (Object element)
 specifier|public
 name|int
@@ -229,6 +237,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (Object element)
 specifier|public
 name|int
@@ -248,6 +258,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|listIterator ()
 specifier|public
 name|ListIterator
@@ -265,6 +277,8 @@ name|listIterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|listIterator (int index)
 specifier|public
 name|ListIterator
@@ -287,6 +301,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (int index)
 specifier|public
 name|E
@@ -306,6 +322,8 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|set (int index, E element)
 specifier|public
 name|E
@@ -330,6 +348,8 @@ name|element
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List

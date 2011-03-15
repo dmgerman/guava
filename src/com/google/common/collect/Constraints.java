@@ -154,6 +154,8 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+annotation|@
+name|Override
 DECL|method|checkElement (Object element)
 specifier|public
 name|Object

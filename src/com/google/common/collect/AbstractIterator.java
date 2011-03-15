@@ -144,6 +144,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 specifier|final
@@ -225,6 +227,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 specifier|final
