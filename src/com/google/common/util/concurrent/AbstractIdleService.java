@@ -42,20 +42,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Service
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Throwables
 import|;
 end_import
@@ -256,7 +242,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    *    * @param state {@link com.google.common.base.Service.State#STARTING} or    *     {@link com.google.common.base.Service.State#STOPPING}, used by the    *     default implementation for naming the thread    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    *    * @param state {@link Service.State#STARTING} or    *     {@link Service.State#STOPPING}, used by the default implementation for    *     naming the thread    */
 DECL|method|executor (final State state)
 specifier|protected
 name|Executor
