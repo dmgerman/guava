@@ -738,11 +738,6 @@ comment|/**    * Specifies the maximum number of entries the map may contain. Wh
 annotation|@
 name|Beta
 annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
-annotation|@
 name|Override
 DECL|method|maximumSize (int size)
 specifier|public

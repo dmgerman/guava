@@ -129,6 +129,24 @@ name|int
 name|initialCapacity
 parameter_list|)
 function_decl|;
+comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since 8    */
+annotation|@
+name|Beta
+DECL|method|maximumSize (int maximumSize)
+specifier|public
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|maximumSize
+parameter_list|(
+name|int
+name|maximumSize
+parameter_list|)
+function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
 comment|// TODO(user): deprecate
 DECL|method|expiration ( long duration, TimeUnit unit)

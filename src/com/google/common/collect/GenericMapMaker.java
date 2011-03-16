@@ -160,11 +160,6 @@ function_decl|;
 comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since 8    */
 annotation|@
 name|Beta
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
 DECL|method|maximumSize (int maximumSize)
 specifier|public
 specifier|abstract
