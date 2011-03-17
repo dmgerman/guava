@@ -119,6 +119,9 @@ argument_list|,
 name|Object
 argument_list|>
 block|{
+comment|// TODO(user,user): ConcurrentHashMap never throws a CME when mutating the map
+comment|// during iteration, but this implementation (based on a LHM) does.
+comment|// This will all be replaced soon anyways, so leaving it as is for now.
 DECL|class|ExpiringComputingMap
 specifier|private
 specifier|static
