@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2010 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -541,10 +541,6 @@ name|entryKey
 argument_list|)
 condition|)
 block|{
-name|entry
-operator|=
-name|e
-expr_stmt|;
 name|ValueReference
 argument_list|<
 name|K
@@ -553,7 +549,7 @@ name|V
 argument_list|>
 name|valueReference
 init|=
-name|entry
+name|e
 operator|.
 name|getValueReference
 argument_list|()
@@ -567,6 +563,7 @@ name|isComputingReference
 argument_list|()
 condition|)
 block|{
+comment|// assume not expired, as we just called expireEntries
 name|value
 operator|=
 name|valueReference
@@ -577,31 +574,32 @@ expr_stmt|;
 if|if
 condition|(
 name|value
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-comment|// clobber invalid entries
-name|unsetLiveEntry
-argument_list|(
-name|entry
-argument_list|,
-name|hash
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|recordRead
 argument_list|(
-name|entry
+name|e
 argument_list|)
 expr_stmt|;
 return|return
 name|value
 return|;
 block|}
+comment|// clobber invalid entries
+name|unsetLiveEntry
+argument_list|(
+name|e
+argument_list|,
+name|hash
+argument_list|)
+expr_stmt|;
 block|}
+name|entry
+operator|=
+name|e
+expr_stmt|;
 break|break;
 block|}
 block|}
@@ -770,18 +768,14 @@ operator|.
 name|waitForValue
 argument_list|()
 expr_stmt|;
+comment|// assume not expired, as we just called expireEntries
 if|if
 condition|(
 name|value
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-comment|// else computing thread will clearValue
-continue|continue
-name|outer
-continue|;
-block|}
 name|recordRead
 argument_list|(
 name|entry
@@ -790,6 +784,11 @@ expr_stmt|;
 return|return
 name|value
 return|;
+block|}
+comment|// else computing thread will clearValue
+continue|continue
+name|outer
+continue|;
 block|}
 catch|catch
 parameter_list|(
@@ -1088,9 +1087,11 @@ specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ComputedReference (V value)
+DECL|method|ComputedReference (@ullable V value)
 name|ComputedReference
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)

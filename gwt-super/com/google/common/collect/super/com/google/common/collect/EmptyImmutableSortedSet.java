@@ -57,12 +57,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|Sets
-operator|.
-name|newTreeSet
-argument_list|(
 name|comparator
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

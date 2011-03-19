@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -7956,7 +7956,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|newEntry (K key, int hash, ReferenceEntry<K, V> next)
+DECL|method|newEntry ( K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -7971,6 +7971,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8266,13 +8268,6 @@ name|entry
 parameter_list|)
 block|{
 return|return
-name|entry
-operator|.
-name|getKey
-argument_list|()
-operator|!=
-literal|null
-operator|&&
 name|getLiveValue
 argument_list|(
 name|entry
@@ -8454,6 +8449,20 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
+if|if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|V
 name|value
 init|=
@@ -8628,42 +8637,6 @@ name|notifyEntry
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|evictionNotificationQueue
-operator|.
-name|offer
-argument_list|(
-name|notifyEntry
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|enqueueNotification (K key, int hash)
-name|void
-name|enqueueNotification
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|int
-name|hash
-parameter_list|)
-block|{
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|notifyEntry
-init|=
-name|newEntry
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|,
-literal|null
-argument_list|)
-decl_stmt|;
 name|evictionNotificationQueue
 operator|.
 name|offer
@@ -11294,7 +11267,7 @@ name|V
 argument_list|>
 name|newFirst
 init|=
-name|removeFromTable
+name|removeFromChain
 argument_list|(
 name|first
 argument_list|,
@@ -11531,7 +11504,7 @@ name|V
 argument_list|>
 name|newFirst
 init|=
-name|removeFromTable
+name|removeFromChain
 argument_list|(
 name|first
 argument_list|,
@@ -11703,7 +11676,7 @@ name|V
 argument_list|>
 name|newFirst
 init|=
-name|removeFromTable
+name|removeFromChain
 argument_list|(
 name|first
 argument_list|,
@@ -11755,15 +11728,14 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|removeFromTable (ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry)
-specifier|private
+DECL|method|removeFromChain (ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry)
 name|ReferenceEntry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|removeFromTable
+name|removeFromChain
 parameter_list|(
 name|ReferenceEntry
 argument_list|<
@@ -12177,6 +12149,7 @@ name|count
 operator|=
 name|newCount
 expr_stmt|;
+comment|// write-volatile
 return|return
 literal|true
 return|;
@@ -12517,7 +12490,7 @@ name|V
 argument_list|>
 name|newFirst
 init|=
-name|removeFromTable
+name|removeFromChain
 argument_list|(
 name|first
 argument_list|,

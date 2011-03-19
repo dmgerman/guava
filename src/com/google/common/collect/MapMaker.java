@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -1104,7 +1104,7 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation.    * Note that changing the value of an entry will reset its expiration    * time.    *    *<p>When {@code duration} is zero, elements can be successfully added to the    * map, but are evicted immediately.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was    *     already set    * @since 8    */
+comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's creation or    * replacement. Note that changing the value of an entry will reset its    * expiration time.    *    *<p>When {@code duration} is zero, elements can be successfully added to the    * map, but are evicted immediately.    *    * @param duration the length of time after an entry is created that it    *     should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was    *     already set    * @since 8    */
 annotation|@
 name|Beta
 annotation|@
@@ -1220,7 +1220,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's last access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the    * map, but are evicted immediately.    *    * @param duration the length of time after an entry is last accessed    *     that it should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was    *     already set    * @since 8    */
+comment|/**    * Specifies that each entry should be automatically removed from the    * map once a fixed duration has passed since the entry's last read or    * write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the    * map, but are evicted immediately.    *    * @param duration the length of time after an entry is last accessed    *     that it should be automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was    *     already set    * @since 8    */
 annotation|@
 name|Beta
 annotation|@

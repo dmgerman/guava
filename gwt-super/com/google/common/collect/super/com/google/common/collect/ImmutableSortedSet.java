@@ -1607,6 +1607,29 @@ name|E
 argument_list|>
 name|sortedDelegate
 decl_stmt|;
+DECL|method|ImmutableSortedSet (Comparator<? super E> comparator)
+name|ImmutableSortedSet
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|Sets
+operator|.
+name|newTreeSet
+argument_list|(
+name|comparator
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|ImmutableSortedSet (SortedSet<E> sortedDelegate)
 name|ImmutableSortedSet
 parameter_list|(

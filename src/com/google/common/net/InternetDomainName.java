@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -212,7 +212,6 @@ literal|true
 argument_list|)
 DECL|class|InternetDomainName
 specifier|public
-specifier|final
 class|class
 name|InternetDomainName
 block|{
@@ -311,9 +310,16 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|// Normalize all dot-like characters to '.', and strip trailing '.'.
+comment|// Normalize:
+comment|// * ASCII characters to lowercase
+comment|// * All dot-like characters to '.'
+comment|// * Strip trailing '.'
 name|name
 operator|=
+name|Ascii
+operator|.
+name|toLowerCase
+argument_list|(
 name|DOTS_MATCHER
 operator|.
 name|replaceFrom
@@ -321,6 +327,7 @@ argument_list|(
 name|name
 argument_list|,
 literal|'.'
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -382,57 +389,6 @@ argument_list|,
 literal|"Not a valid domain name: '%s'"
 argument_list|,
 name|name
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|publicSuffixIndex
-operator|=
-name|findPublicSuffix
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Private constructor used to implement {@link #ancestor(int)}. Argument    * parts are assumed to be valid, as they always come from an existing domain.    */
-DECL|method|InternetDomainName (List<String> parts)
-specifier|private
-name|InternetDomainName
-parameter_list|(
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|parts
-parameter_list|)
-block|{
-name|checkArgument
-argument_list|(
-operator|!
-name|parts
-operator|.
-name|isEmpty
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|parts
-operator|=
-name|ImmutableList
-operator|.
-name|copyOf
-argument_list|(
-name|parts
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|name
-operator|=
-name|DOT_JOINER
-operator|.
-name|join
-argument_list|(
-name|parts
 argument_list|)
 expr_stmt|;
 name|this
@@ -555,19 +511,13 @@ name|String
 name|domain
 parameter_list|)
 block|{
-comment|/*      * RFC 1035 defines ASCII components of domain names to be case-insensitive;      * normalizing ASCII characters to lower case allows us to simplify matching      * and support more robust equality testing.      */
 return|return
 operator|new
 name|InternetDomainName
 argument_list|(
-name|Ascii
-operator|.
-name|toLowerCase
-argument_list|(
 name|checkNotNull
 argument_list|(
 name|domain
-argument_list|)
 argument_list|)
 argument_list|)
 return|;
@@ -740,28 +690,19 @@ return|return
 literal|false
 return|;
 block|}
-comment|// GWT claims to support java.lang.Character's char-classification
-comment|// methods, but it actually only works for ASCII. So for now,
-comment|// assume anything with non-ASCII characters is valid.
-comment|// The only place this seems to be documented is here:
-comment|// http://osdir.com/ml/GoogleWebToolkitContributors/2010-03/msg00178.html
-if|if
-condition|(
-operator|!
+comment|/*      * GWT claims to support java.lang.Character's char-classification methods,      * but it actually only works for ASCII. So for now, assume any non-ASCII      * characters are valid. The only place this seems to be documented is here:      * http://osdir.com/ml/GoogleWebToolkitContributors/2010-03/msg00178.html      *      *<p>ASCII characters in the part are expected to be valid per RFC 1035,      * with underscore also being allowed due to widespread practice.      */
+name|String
+name|asciiChars
+init|=
 name|CharMatcher
 operator|.
 name|ASCII
 operator|.
-name|matchesAllOf
+name|retainFrom
 argument_list|(
 name|part
 argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -769,7 +710,7 @@ name|PART_CHAR_MATCHER
 operator|.
 name|matchesAllOf
 argument_list|(
-name|part
+name|asciiChars
 argument_list|)
 condition|)
 block|{
@@ -777,6 +718,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|// No initial or final dashes or underscores.
 if|if
 condition|(
 name|DASH_MATCHER
@@ -813,6 +755,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/*      * Note that we allow (in contravention of a strict interpretation of the      * relevant RFCs) domain parts other than the last may begin with a digit      * (for example, "3com.com"). It's important to disallow an initial digit in      * the last part; it's the only thing that stops an IPv4 numeric address      * like 127.0.0.1 from looking like a valid domain name.      */
 if|if
 condition|(
 name|isFinalPart
@@ -1023,8 +966,11 @@ name|levels
 parameter_list|)
 block|{
 return|return
-operator|new
-name|InternetDomainName
+name|fromInternal
+argument_list|(
+name|DOT_JOINER
+operator|.
+name|join
 argument_list|(
 name|parts
 operator|.
@@ -1036,6 +982,7 @@ name|parts
 operator|.
 name|size
 argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 return|;
@@ -1051,9 +998,7 @@ name|leftParts
 parameter_list|)
 block|{
 return|return
-name|InternetDomainName
-operator|.
-name|fromLenient
+name|fromInternal
 argument_list|(
 name|checkNotNull
 argument_list|(
@@ -1062,6 +1007,23 @@ argument_list|)
 operator|+
 literal|"."
 operator|+
+name|name
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a new {@link InternetDomainName} instance with the given {@code    * name}, using the same validation as the instance on which it is called.    */
+DECL|method|fromInternal (String name)
+specifier|protected
+name|InternetDomainName
+name|fromInternal
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|fromLenient
+argument_list|(
 name|name
 argument_list|)
 return|;
