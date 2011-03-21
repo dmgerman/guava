@@ -541,35 +541,25 @@ name|entryKey
 argument_list|)
 condition|)
 block|{
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-init|=
+if|if
+condition|(
+operator|!
 name|e
 operator|.
 name|getValueReference
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|valueReference
 operator|.
 name|isComputingReference
 argument_list|()
 condition|)
 block|{
-comment|// assume not expired, as we just called expireEntries
+comment|// never return expired entries
 name|value
 operator|=
-name|valueReference
-operator|.
-name|get
-argument_list|()
+name|getLiveValue
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -578,7 +568,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|recordRead
+name|recordLockedRead
 argument_list|(
 name|e
 argument_list|)
@@ -768,7 +758,7 @@ operator|.
 name|waitForValue
 argument_list|()
 expr_stmt|;
-comment|// assume not expired, as we just called expireEntries
+comment|// don't consider expiration as we're concurrent with computation
 if|if
 condition|(
 name|value

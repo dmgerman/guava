@@ -9253,7 +9253,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// recency queue, shared by expiration and eviction
-comment|/**      * Records the relative order in which this read was performed by adding      * {@code entry} to the recency queue. At write-time, or when the queue is      * full past the threshold, the queue will be drained and the entries      * therein processed.      */
+comment|/**      * Records the relative order in which this read was performed by adding      * {@code entry} to the recency queue. At write-time, or when the queue is      * full past the threshold, the queue will be drained and the entries      * therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
 DECL|method|recordRead (ReferenceEntry<K, V> entry)
 name|void
 name|recordRead
@@ -9288,6 +9288,54 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * Updates the eviction metadata that {@code entry} was just read. This      * currently amounts to adding {@code entry} to relevant eviction lists.      *      *<p>Note: this method should only be called under lock, as it directly      * manipulates the eviction queues. Unlocked reads should use {@link      * #recordRead}.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|recordLockedRead (ReferenceEntry<K, V> entry)
+name|void
+name|recordLockedRead
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+name|evictionQueue
+operator|.
+name|add
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|expiresAfterAccess
+argument_list|()
+condition|)
+block|{
+name|recordExpirationTime
+argument_list|(
+name|entry
+argument_list|,
+name|expireAfterAccessNanos
+argument_list|)
+expr_stmt|;
+name|expirationQueue
+operator|.
+name|add
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant eviction lists.      */
 annotation|@
@@ -10260,7 +10308,7 @@ else|else
 block|{
 comment|// Mimic
 comment|// "if (map.containsKey(key)&& map.get(key).equals(oldValue))..."
-name|recordRead
+name|recordLockedRead
 argument_list|(
 name|e
 argument_list|)
@@ -10659,7 +10707,7 @@ block|{
 comment|// Mimic
 comment|// "if (!map.containsKey(key)) ...
 comment|//  else return map.get(key);
-name|recordRead
+name|recordLockedRead
 argument_list|(
 name|e
 argument_list|)
@@ -12564,8 +12612,30 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+elseif|else
+if|if
+condition|(
+name|tryLock
+argument_list|()
+condition|)
+block|{
+comment|// TODO(user): only do this when a read encounters an expired entry
+try|try
+block|{
+comment|// inexpensive read cleanup when the lock is available
+name|expireEntries
+argument_list|()
+expr_stmt|;
 block|}
-comment|/**      * Performs routine cleanup prior to executing a write. This should be      * called every time a write thread acquires the segment lock, immediately      * after acquiring the lock.      */
+finally|finally
+block|{
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|/**      * Performs routine cleanup prior to executing a write. This should be      * called every time a write thread acquires the segment lock, immediately      * after acquiring the lock.      *      *<p>Post-condition: expireEntries has been run.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -12582,6 +12652,7 @@ name|isInlineCleanup
 argument_list|()
 condition|)
 block|{
+comment|// this is the only time we have the lock, so do everything we can
 name|runLockedCleanup
 argument_list|()
 expr_stmt|;
