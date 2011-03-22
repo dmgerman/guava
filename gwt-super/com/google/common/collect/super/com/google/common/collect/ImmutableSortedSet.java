@@ -1479,6 +1479,8 @@ name|isSubset
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|withExplicitOrder (List<E> elements)
 specifier|public
 specifier|static
@@ -1538,6 +1540,8 @@ name|ordering
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|withExplicitOrder ( E firstElement, E... remainingElementsInOrder)
 specifier|public
 specifier|static

@@ -1686,9 +1686,11 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the elements in the given list    * in the same order. It is useful when the elements already have the desired    * order but constructing the appropriate comparator is difficult.    *    * @throws NullPointerException if any of the elements is null    * @throws IllegalArgumentException if {@code elements} contains any    *     duplicate values (according to {@link Object#equals})    * @since 3    */
+comment|/**    * Returns an immutable sorted set containing the elements in the given list    * in the same order. It is useful when the elements already have the desired    * order but constructing the appropriate comparator is difficult.    *    * @throws NullPointerException if any of the elements is null    * @throws IllegalArgumentException if {@code elements} contains any    *     duplicate values (according to {@link Object#equals})    * @since 3    * @deprecated If the provided elements are already in their natural order,    *     {@link #of()} (or {@link #copyOf()}, depending on the overload) will    *     produce a set with the same elements in the same order.  If the    *     elements are arranged according to another {@code Comparator}, use    *     {@link #orderedBy()}.  Otherwise, use {@link ImmutableSet}, which    *     maintains insertion order, for inputs that are ordered but not sorted.    *     This method is scheduled for deletion in Guava release 10.    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|withExplicitOrder (List<E> elements)
 specifier|public
 specifier|static
@@ -1717,9 +1719,11 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the provided elements in the    * same order. It is useful when the elements already have the desired order    * but constructing the appropriate comparator is difficult.    *    * @param firstElement the value which should appear first in the generated    *     set    * @param remainingElementsInOrder the rest of the values in the generated    *     set, in the order they should appear    * @throws NullPointerException if any of the elements is null    * @throws IllegalArgumentException if any duplicate values (according to    *     {@link Object#equals(Object)}) are present among the method arguments    * @since 3    */
+comment|/**    * Returns an immutable sorted set containing the provided elements in the    * same order. It is useful when the elements already have the desired order    * but constructing the appropriate comparator is difficult.    *    * @param firstElement the value which should appear first in the generated    *     set    * @param remainingElementsInOrder the rest of the values in the generated    *     set, in the order they should appear    * @throws NullPointerException if any of the elements is null    * @throws IllegalArgumentException if any duplicate values (according to    *     {@link Object#equals(Object)}) are present among the method arguments    * @since 3    * @deprecated If the provided elements are already in their natural order,    *     {@link #of()} (or {@link #copyOf()}, depending on the overload) will    *     produce a set with the same elements in the same order.  If the    *     elements are arranged according to another {@code Comparator}, use    *     {@link #orderedBy()}.  Otherwise, use {@link ImmutableSet}, which    *     maintains insertion order, for inputs that are ordered but not sorted.    *     This method is scheduled for deletion in Guava release 10.    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|withExplicitOrder ( E firstElement, E... remainingElementsInOrder)
 specifier|public
 specifier|static
