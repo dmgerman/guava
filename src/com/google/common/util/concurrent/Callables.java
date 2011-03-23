@@ -20,20 +20,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -59,8 +45,6 @@ comment|/**  * Static utility methods pertaining to the {@link Callable} interfa
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|Callables
 specifier|public
 specifier|final

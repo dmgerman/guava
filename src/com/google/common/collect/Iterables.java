@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -2830,9 +2816,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a view of {@code iterable} that skips its first    * {@code numberToSkip} elements. If {@code iterable} contains fewer than    * {@code numberToSkip} elements, the returned iterable skips all of its    * elements.    *    *<p>Modifications to the underlying {@link Iterable} before a call to    * {@code iterator()} are reflected in the returned iterator. That is, the    * iterator skips the first {@code numberToSkip} elements that exist when the    * {@code Iterator} is created, not when {@code skip()} is called.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * iterator of the underlying iterable supports it. Note that it is    *<i>not</i> possible to delete the last skipped element by immediately    * calling {@code remove()} on that iterator, as the {@code Iterator}    * contract states that a call to {@code remove()} before a call to    * {@code next()} will throw an {@link IllegalStateException}.    *    * @since 3    */
-annotation|@
-name|Beta
-comment|// naming issue
 DECL|method|skip (final Iterable<T> iterable, final int numberToSkip)
 specifier|public
 specifier|static
@@ -3084,9 +3067,6 @@ block|}
 return|;
 block|}
 comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterator will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3    */
-annotation|@
-name|Beta
-comment|// naming issue
 DECL|method|limit ( final Iterable<T> iterable, final int limitSize)
 specifier|public
 specifier|static
@@ -3161,8 +3141,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a view of the supplied iterable that wraps each generated    * {@link Iterator} through {@link Iterators#consumingIterator(Iterator)}.    *    *<p>Note: If {@code iterable} is a {@link Queue}, the returned iterable will    * get entries from {@link Queue#remove()} since {@link Queue}'s iteration    * order is undefined.  Calling {@link Iterator#hasNext()} on a generated    * iterator from the returned iterable may cause an item to be immediately    * dequeued for return on a subsequent call to {@link Iterator#next()}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator    *     through {@link Iterators#consumingIterator(Iterator)}; for queues,    *     an iterable that generates iterators that return and consume the    *     queue's elements in queue order    *    * @see Iterators#consumingIterator(Iterator)    * @since 2    */
-annotation|@
-name|Beta
 DECL|method|consumingIterable (final Iterable<T> iterable)
 specifier|public
 specifier|static

@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1143,8 +1129,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an empty {@code Set} that uses identity to determine equality. It    * compares object references, instead of calling {@code equals}, to    * determine whether a provided object matches an element in the set. For    * example, {@code contains} returns {@code false} when passed an object that    * equals a set member, but isn't the same instance. This behavior is similar    * to the way {@link IdentityHashMap} handles key lookups.    *    * @since 8    */
-annotation|@
-name|Beta
 DECL|method|newIdentityHashSet ()
 specifier|public
 specifier|static
@@ -2481,8 +2465,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an unmodifiable<b>view</b> of the symmetric difference of two    * sets. The returned set contains all elements that are contained in either    * {@code set1} or {@code set2} but not in both. The iteration order of the    * returned set is undefined.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based    * on different equivalence relations (as {@code HashSet}, {@code TreeSet},    * and the keySet of an {@code IdentityHashMap} all are).    *    * @since 3    */
-annotation|@
-name|Beta
 DECL|method|symmetricDifference ( Set<? extends E> set1, Set<? extends E> set2)
 specifier|public
 specifier|static

@@ -3063,7 +3063,6 @@ block|}
 comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3    */
 annotation|@
 name|Beta
-comment|// naming issue, unclear user demand
 DECL|method|skip (Iterator<T> iterator, int numberToSkip)
 specifier|public
 specifier|static
@@ -3130,9 +3129,6 @@ name|i
 return|;
 block|}
 comment|/**    * Creates an iterator returning the first {@code limitSize} elements of the    * given iterator. If the original iterator does not contain that many    * elements, the returned iterator will have the same behavior as the original    * iterator. The returned iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3    */
-annotation|@
-name|Beta
-comment|// naming issue
 DECL|method|limit ( final Iterator<T> iterator, final int limitSize)
 specifier|public
 specifier|static
@@ -3248,8 +3244,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a view of the supplied {@code iterator} that removes each element    * from the supplied {@code iterator} as it is returned.    *    *<p>The provided iterator must support {@link Iterator#remove()} or    * else the returned iterator will fail on the first call to {@code    * next}.    *    * @param iterator the iterator to remove and return elements from    * @return an iterator that removes and returns elements from the    *     supplied iterator    * @since 2    */
-annotation|@
-name|Beta
 DECL|method|consumingIterator (final Iterator<T> iterator)
 specifier|public
 specifier|static
