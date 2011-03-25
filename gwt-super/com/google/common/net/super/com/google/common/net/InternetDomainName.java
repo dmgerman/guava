@@ -1061,7 +1061,6 @@ return|;
 block|}
 comment|/**    * Returns a new {@link InternetDomainName} instance with the given {@code    * name}, using the same validation as the instance on which it is called.    */
 DECL|method|fromInternal (String name)
-specifier|protected
 name|InternetDomainName
 name|fromInternal
 parameter_list|(
