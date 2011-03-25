@@ -11670,7 +11670,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Removes an entry from within a table. All entries following the removed      * node can stay, but all preceding ones need to be cloned.      *      * @param first the first entry of the table      * @param removed the entry being removed from the table      * @return the new first entry for the table      */
+comment|/**      * Removes an entry from within a table. All entries following the removed      * node can stay, but all preceding ones need to be cloned.      *      * @param first the first entry of the table      * @param entry the entry being removed from the table      * @return the new first entry for the table      */
 annotation|@
 name|GuardedBy
 argument_list|(

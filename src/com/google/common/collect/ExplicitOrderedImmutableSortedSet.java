@@ -992,8 +992,9 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"unchecked"
+literal|"deprecation"
 argument_list|)
+comment|// serialization for deprecated method
 DECL|method|readResolve ()
 name|Object
 name|readResolve

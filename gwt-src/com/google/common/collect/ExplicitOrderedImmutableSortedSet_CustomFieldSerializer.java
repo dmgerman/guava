@@ -140,6 +140,12 @@ argument_list|>
 name|instance
 parameter_list|)
 block|{   }
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// serialization for deprecated method
 DECL|method|instantiate ( SerializationStreamReader reader)
 specifier|public
 specifier|static

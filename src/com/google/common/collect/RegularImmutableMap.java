@@ -562,7 +562,7 @@ name|next
 parameter_list|()
 function_decl|;
 block|}
-comment|/** {@link LinkedEntry} implementation that has a next value. */
+comment|/** {@code LinkedEntry} implementation that has a next value. */
 annotation|@
 name|Immutable
 annotation|@
@@ -657,7 +657,7 @@ name|next
 return|;
 block|}
 block|}
-comment|/**    * {@link LinkedEntry} implementation that serves as the last entry in the    * list.  I.e. no next entry    */
+comment|/**    * {@code LinkedEntry} implementation that serves as the last entry in the    * list.  I.e. no next entry    */
 annotation|@
 name|Immutable
 annotation|@
