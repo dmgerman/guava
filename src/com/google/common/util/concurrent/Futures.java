@@ -692,7 +692,7 @@ name|mapper
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture}    * and a {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @since 9    */
+comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture}    * and a {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @since 9 (source-compatible since release 1)    */
 DECL|method|makeChecked ( ListenableFuture<V> future, Function<Exception, X> mapper)
 specifier|public
 specifier|static
