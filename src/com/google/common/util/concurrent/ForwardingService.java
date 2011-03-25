@@ -206,7 +206,7 @@ name|isRunning
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible default implementation of {@link #startAndWait()}, in terms of    * {@link #start}. If you override {@link #start}, you may wish to override    * {@link #startAndWait()} to forward to this implementation.    */
+comment|/**    * A sensible default implementation of {@link #startAndWait()}, in terms of    * {@link #start}. If you override {@link #start}, you may wish to override    * {@link #startAndWait()} to forward to this implementation.    * @since 9    */
 DECL|method|standardStartAndWait ()
 specifier|protected
 name|State
@@ -247,7 +247,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * A sensible default implementation of {@link #stopAndWait()}, in terms of    * {@link #stop}. If you override {@link #stop}, you may wish to override    * {@link #stopAndWait()} to forward to this implementation.    */
+comment|/**    * A sensible default implementation of {@link #stopAndWait()}, in terms of    * {@link #stop}. If you override {@link #stop}, you may wish to override    * {@link #stopAndWait()} to forward to this implementation.    * @since 9    */
 DECL|method|standardStopAndWait ()
 specifier|protected
 name|State
