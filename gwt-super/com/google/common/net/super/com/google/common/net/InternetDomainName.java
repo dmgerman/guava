@@ -277,6 +277,36 @@ name|DOT_REGEX
 init|=
 literal|"\\."
 decl_stmt|;
+comment|/**    * Maximum parts (labels) in a domain name.    *    *<p>TODO: Need RFC reference.    */
+DECL|field|MAX_PARTS
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_PARTS
+init|=
+literal|127
+decl_stmt|;
+comment|/**    * Maximum length of a full domain name, including separators, and    * leaving room for the root label. See    *<a href="http://www.ietf.org/rfc/rfc2181.txt">RFC 2181</a> part 11.    */
+DECL|field|MAX_LENGTH
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_LENGTH
+init|=
+literal|253
+decl_stmt|;
+comment|/**    * Maximum size of a single part of a domain name. See    *<a href="http://www.ietf.org/rfc/rfc2181.txt">RFC 2181</a> part 11.    */
+DECL|field|MAX_DOMAIN_PART_LENGTH
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_DOMAIN_PART_LENGTH
+init|=
+literal|63
+decl_stmt|;
 comment|/**    * The full domain name, converted to lower case.    */
 DECL|field|name
 specifier|private
@@ -357,6 +387,20 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+name|checkArgument
+argument_list|(
+name|name
+operator|.
+name|length
+argument_list|()
+operator|<=
+name|MAX_LENGTH
+argument_list|,
+literal|"Domain name too long: '%s':"
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|name
@@ -377,6 +421,20 @@ name|split
 argument_list|(
 name|name
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|parts
+operator|.
+name|size
+argument_list|()
+operator|<=
+name|MAX_PARTS
+argument_list|,
+literal|"Domain has too many parts: '%s'"
+argument_list|,
+name|name
 argument_list|)
 expr_stmt|;
 name|checkArgument
@@ -613,16 +671,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * The maximum size of a single part of a domain name.    */
-DECL|field|MAX_DOMAIN_PART_LENGTH
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|MAX_DOMAIN_PART_LENGTH
-init|=
-literal|63
-decl_stmt|;
 DECL|field|DASH_MATCHER
 specifier|private
 specifier|static
