@@ -596,7 +596,7 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference    * being tested is a member of the given collection. It does not defensively    * copy the collection passed in, so future changes to it will alter the    * behavior of the predicate.    *    * This method can technically accept any Collection<?>, but using a typed    * collection helps prevent bugs. This approach doesn't block any potential    * users since it is always possible to use {@code Predicates.<Object>in()}.    *    * @param target the collection that may contain the function input    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the object reference    * being tested is a member of the given collection. It does not defensively    * copy the collection passed in, so future changes to it will alter the    * behavior of the predicate.    *    *<p>This method can technically accept any {@code Collection<?>}, but using    * a typed collection helps prevent bugs. This approach doesn't block any    * potential users since it is always possible to use {@code    * Predicates.<Object>in()}.    *    * @param target the collection that may contain the function input    */
 DECL|method|in (Collection<? extends T> target)
 specifier|public
 specifier|static
