@@ -147,6 +147,22 @@ name|int
 name|maximumSize
 parameter_list|)
 function_decl|;
+comment|/**    * See {@link MapMaker#concurrencyLevel}.    */
+DECL|method|concurrencyLevel ( int concurrencyLevel)
+specifier|public
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|concurrencyLevel
+parameter_list|(
+name|int
+name|concurrencyLevel
+parameter_list|)
+function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
 comment|// TODO(user): deprecate
 DECL|method|expiration ( long duration, TimeUnit unit)

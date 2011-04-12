@@ -176,11 +176,6 @@ name|maximumSize
 parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#concurrencyLevel}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.util.concurrent.ConcurrentHashMap concurrencyLevel"
-argument_list|)
 DECL|method|concurrencyLevel ( int concurrencyLevel)
 specifier|public
 specifier|abstract

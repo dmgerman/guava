@@ -961,6 +961,38 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|concurrencyLevel (int concurrencyLevel)
+specifier|public
+name|MapMaker
+name|concurrencyLevel
+parameter_list|(
+name|int
+name|concurrencyLevel
+parameter_list|)
+block|{
+if|if
+condition|(
+name|concurrencyLevel
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"GWT only supports a concurrency level of 1"
+argument_list|)
+throw|;
+block|}
+comment|// GWT technically only supports concurrencyLevel == 1, but we silently
+comment|// ignore other positive values.
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|makeMap ()
 specifier|public
 parameter_list|<
