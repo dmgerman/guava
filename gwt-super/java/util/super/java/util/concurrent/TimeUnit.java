@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 Google Inc.  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Written by Doug Lea with assistance from members of JCP JSR-166  * Expert Group and released to the public domain, as explained at  * http://creativecommons.org/publicdomain/zero/1.0/  */
 end_comment
 
 begin_package
@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * OpenJDK TimeUnit minus the unsupported operations  *  * @author Charles Fry  */
+comment|/**  * GWT emulation of TimeUnit, created by removing unsupported operations from  * Doug Lea's public domain version.  */
 end_comment
 
 begin_enum
@@ -1431,7 +1431,6 @@ name|Long
 operator|.
 name|MAX_VALUE
 decl_stmt|;
-comment|/**    * Scale d by m, checking for overflow.    * This has a short name to make above code more readable.    */
 DECL|method|x (long d, long m, long over)
 specifier|static
 name|long
@@ -1476,9 +1475,9 @@ operator|*
 name|m
 return|;
 block|}
+comment|// exceptions below changed from AbstractMethodError for GWT
 DECL|method|convert (long sourceDuration, TimeUnit sourceUnit)
 specifier|public
-specifier|abstract
 name|long
 name|convert
 parameter_list|(
@@ -1488,77 +1487,118 @@ parameter_list|,
 name|TimeUnit
 name|sourceUnit
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toNanos (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toNanos
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toMicros (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toMicros
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toMillis (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toMillis
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toSeconds (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toSeconds
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toMinutes (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toMinutes
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toHours (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toHours
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|toDays (long duration)
 specifier|public
-specifier|abstract
 name|long
 name|toDays
 parameter_list|(
 name|long
 name|duration
 parameter_list|)
-function_decl|;
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|excessNanos (long d, long m)
 specifier|abstract
 name|int
