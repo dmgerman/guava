@@ -212,7 +212,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-comment|/**    * Creates a new, empty map with the specified strategy, initial capacity,    * load factor and concurrency level.    */
+comment|/**    * Creates a new, empty map with the specified strategy, initial capacity, load factor and    * concurrency level.    */
 DECL|method|ComputingConcurrentHashMap (MapMaker builder, Function<? super K, ? extends V> computingFunction)
 name|ComputingConcurrentHashMap
 parameter_list|(
@@ -264,9 +264,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
 annotation|@
 name|Override
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
 name|Segment
 name|createSegment
 parameter_list|(
@@ -293,9 +293,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// explain
-DECL|method|segmentFor (int hash)
 annotation|@
 name|Override
+DECL|method|segmentFor (int hash)
 name|ComputingSegment
 name|segmentFor
 parameter_list|(
@@ -1287,7 +1287,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Waits for a computation to complete. Returns the result of the      * computation.      */
+comment|/**      * Waits for a computation to complete. Returns the result of the computation.      */
 annotation|@
 name|Override
 DECL|method|waitForValue ()
@@ -1569,9 +1569,9 @@ name|serialVersionUID
 init|=
 literal|2
 decl_stmt|;
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

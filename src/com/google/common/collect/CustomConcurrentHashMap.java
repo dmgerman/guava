@@ -441,7 +441,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  * This implementation is heavily derived from revision 1.96 of  *<a href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Bob Lee  * @author Doug Lea ({@code ConcurrentHashMap})  */
+comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Bob Lee  * @author Doug Lea ({@code ConcurrentHashMap})  */
 end_comment
 
 begin_class
@@ -470,9 +470,9 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
-comment|/*    * The basic strategy is to subdivide the table among Segments, each of which    * itself is a concurrently readable hash table. The map supports    * non-blocking reads and concurrent writes across different segments.    *    * If a maximum size is specified, a best-effort bounding is performed per    * segment, using a page-replacement algorithm to determine which entries to    * evict when the capacity has been exceeded.    *    * The page replacement algorithm's data structures are kept casually    * consistent with the map. The ordering of writes to a segment is    * sequentially consistent. An update to the map and recording of reads may    * not be immediately reflected on the algorithm's data structures. These    * structures are guarded by a lock and operations are applied in batches to    * avoid lock contention. The penalty of applying the batches is spread across    * threads so that the amortized cost is slightly higher than performing just    * the operation without enforcing the capacity constraint.    *    * This implementation uses a per-segment queue to record a memento of the    * additions, removals, and accesses that were performed on the map. The queue    * is drained on writes and when it exceeds its capacity threshold.    *    * The Least Recently Used page replacement algorithm was chosen due to its    * simplicity, high hit rate, and ability to be implemented with O(1) time    * complexity. The initial LRU implementation operates per-segment rather    * than globally for increased implementation simplicity. We expect the cache    * hit rate to be similar to that of a global LRU algorithm.    */
+comment|/*    * The basic strategy is to subdivide the table among Segments, each of which itself is a    * concurrently readable hash table. The map supports non-blocking reads and concurrent writes    * across different segments.    *    * If a maximum size is specified, a best-effort bounding is performed per segment, using a    * page-replacement algorithm to determine which entries to evict when the capacity has been    * exceeded.    *    * The page replacement algorithm's data structures are kept casually consistent with the map. The    * ordering of writes to a segment is sequentially consistent. An update to the map and recording    * of reads may not be immediately reflected on the algorithm's data structures. These structures    * are guarded by a lock and operations are applied in batches to avoid lock contention. The    * penalty of applying the batches is spread across threads so that the amortized cost is slightly    * higher than performing just the operation without enforcing the capacity constraint.    *    * This implementation uses a per-segment queue to record a memento of the additions, removals,    * and accesses that were performed on the map. The queue is drained on writes and when it exceeds    * its capacity threshold.    *    * The Least Recently Used page replacement algorithm was chosen due to its simplicity, high hit    * rate, and ability to be implemented with O(1) time complexity. The initial LRU implementation    * operates per-segment rather than globally for increased implementation simplicity. We expect    * the cache hit rate to be similar to that of a global LRU algorithm.    */
 comment|/* ---------------- Constants -------------- */
-comment|/**    * The maximum capacity, used if a higher value is implicitly specified by    * either of the constructors with arguments.  MUST be a power of two<=    * 1<<30 to ensure that entries are indexable using ints.    */
+comment|/**    * The maximum capacity, used if a higher value is implicitly specified by either of the    * constructors with arguments. MUST be a power of two<= 1<<30 to ensure that entries are    * indexable using ints.    */
 DECL|field|MAXIMUM_CAPACITY
 specifier|static
 specifier|final
@@ -483,7 +483,7 @@ literal|1
 operator|<<
 literal|30
 decl_stmt|;
-comment|/**    * The maximum number of segments to allow; used to bound constructor    * arguments.    */
+comment|/** The maximum number of segments to allow; used to bound constructor arguments. */
 DECL|field|MAX_SEGMENTS
 specifier|static
 specifier|final
@@ -495,7 +495,7 @@ operator|<<
 literal|16
 decl_stmt|;
 comment|// slightly conservative
-comment|/**    * Number of cache access operations that can be buffered per segment before    * the cache's recency ordering information is updated. This is used to avoid    * lock contention by recording a memento of reads and delaying a lock    * acquisition until the threshold is crossed or a mutation occurs.    *    *<p>This must be a (2^n)-1 as it is used as a mask.    */
+comment|/**    * Number of cache access operations that can be buffered per segment before the cache's recency    * ordering information is updated. This is used to avoid lock contention by recording a memento    * of reads and delaying a lock acquisition until the threshold is crossed or a mutation occurs.    *    *<p>This must be a (2^n)-1 as it is used as a mask.    */
 DECL|field|DRAIN_THRESHOLD
 specifier|static
 specifier|final
@@ -504,7 +504,7 @@ name|DRAIN_THRESHOLD
 init|=
 literal|0x3F
 decl_stmt|;
-comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run.    * TODO(user): empirically optimize this    */
+comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run. TODO(user): empirically    * optimize this    */
 DECL|field|CLEANUP_MAX
 specifier|static
 specifier|final
@@ -514,14 +514,14 @@ init|=
 literal|16
 decl_stmt|;
 comment|/* ---------------- Fields -------------- */
-comment|/**    * Mask value for indexing into segments. The upper bits of a key's hash    * code are used to choose the segment.    */
+comment|/**    * Mask value for indexing into segments. The upper bits of a key's hash code are used to choose    * the segment.    */
 DECL|field|segmentMask
 specifier|final
 specifier|transient
 name|int
 name|segmentMask
 decl_stmt|;
-comment|/**    * Shift value for indexing within segments. Helps prevent entries that    * end up in the same segment from also ending up in the same bucket.    */
+comment|/**    * Shift value for indexing within segments. Helps prevent entries that end up in the same segment    * from also ending up in the same bucket.    */
 DECL|field|segmentShift
 specifier|final
 specifier|transient
@@ -572,19 +572,19 @@ specifier|final
 name|Strength
 name|valueStrength
 decl_stmt|;
-comment|/**    * The maximum size of this map. MapMaker.UNSET_INT if there is no    * maximum.    */
+comment|/** The maximum size of this map. MapMaker.UNSET_INT if there is no maximum. */
 DECL|field|maximumSize
 specifier|final
 name|int
 name|maximumSize
 decl_stmt|;
-comment|/**    * How long after the last access to an entry the map will retain that    * entry.    */
+comment|/** How long after the last access to an entry the map will retain that entry. */
 DECL|field|expireAfterAccessNanos
 specifier|final
 name|long
 name|expireAfterAccessNanos
 decl_stmt|;
-comment|/**    * How long after the last write to an entry the map will retain that    * entry.    */
+comment|/** How long after the last write to an entry the map will retain that entry. */
 DECL|field|expireAfterWriteNanos
 specifier|final
 name|long
@@ -604,7 +604,7 @@ argument_list|>
 argument_list|>
 name|evictionNotificationQueue
 decl_stmt|;
-comment|/**    * A listener that is invoked when an entry is removed due to expiration or    * garbage collection of soft/weak entries.    */
+comment|/**    * A listener that is invoked when an entry is removed due to expiration or garbage collection of    * soft/weak entries.    */
 DECL|field|evictionListener
 specifier|final
 name|MapEvictionListener
@@ -638,7 +638,7 @@ specifier|final
 name|Ticker
 name|ticker
 decl_stmt|;
-comment|/**    * Creates a new, empty map with the specified strategy, initial capacity    * and concurrency level.    */
+comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
 DECL|method|CustomConcurrentHashMap (MapMaker builder)
 name|CustomConcurrentHashMap
 parameter_list|(
@@ -1086,7 +1086,7 @@ DECL|enum|Strength
 enum|enum
 name|Strength
 block|{
-comment|/*      * TODO(kevinb): If we strongly reference the value and aren't computing, we      * needn't wrap the value. This could save ~8 bytes per entry.      */
+comment|/*      * TODO(kevinb): If we strongly reference the value and aren't computing, we needn't wrap the      * value. This could save ~8 bytes per entry.      */
 DECL|enumConstant|STRONG
 name|STRONG
 block|{
@@ -1274,8 +1274,8 @@ return|;
 block|}
 block|}
 block|;
-comment|/**      * Creates a reference for the given value according to this value      * strength.      */
-DECL|method|referenceValue ( ReferenceEntry<K, V> entry, V value)
+comment|/**      * Creates a reference for the given value according to this value strength.      */
+DECL|method|referenceValue (ReferenceEntry<K, V> entry, V value)
 specifier|abstract
 parameter_list|<
 name|K
@@ -1302,7 +1302,7 @@ name|V
 name|value
 parameter_list|)
 function_decl|;
-comment|/**      * Returns the default equivalence strategy used to compare and hash      * keys or values referenced at this strength. This strategy will be used      * unless the user explicitly specifies an alternate strategy.      */
+comment|/**      * Returns the default equivalence strategy used to compare and hash keys or values referenced      * at this strength. This strategy will be used unless the user explicitly specifies an      * alternate strategy.      */
 DECL|method|defaultEquivalence ()
 specifier|abstract
 name|Equivalence
@@ -2754,7 +2754,7 @@ name|EVICTABLE_MASK
 init|=
 literal|2
 decl_stmt|;
-comment|/**      * Look-up table for factories. First dimension is the reference type.      * The second dimension is the result of OR-ing the feature masks.      */
+comment|/**      * Look-up table for factories. First dimension is the reference type. The second dimension is      * the result of OR-ing the feature masks.      */
 DECL|field|factories
 specifier|static
 specifier|final
@@ -2843,7 +2843,7 @@ index|]
 return|;
 block|}
 comment|/**      * Creates a new entry.      *      * @param map to create the entry for      * @param key of the entry      * @param hash of the key      * @param next entry in the same bucket      */
-DECL|method|newEntry ( CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|newEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 specifier|abstract
 parameter_list|<
 name|K
@@ -2889,7 +2889,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|copyEntry ( CustomConcurrentHashMap<K, V> map, ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
+DECL|method|copyEntry (CustomConcurrentHashMap<K, V> map, ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 parameter_list|<
 name|K
 parameter_list|,
@@ -2952,7 +2952,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|copyExpirableEntry ( ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
+DECL|method|copyExpirableEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
 parameter_list|<
 name|K
 parameter_list|,
@@ -3021,7 +3021,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|copyEvictableEntry ( ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
+DECL|method|copyEvictableEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
 parameter_list|<
 name|K
 parameter_list|,
@@ -3111,7 +3111,7 @@ argument_list|>
 name|entry
 parameter_list|)
 function_decl|;
-comment|/**      * Waits for a value that may still be computing. Unlike get(),      * this method can block (in the case of FutureValueReference) or      * throw an exception.      */
+comment|/**      * Waits for a value that may still be computing. Unlike get(), this method can block (in the      * case of FutureValueReference) or throw an exception.      */
 DECL|method|waitForValue ()
 name|V
 name|waitForValue
@@ -3119,13 +3119,13 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 function_decl|;
-comment|/**      * Clears this reference object. This intentionally mimics {@link      * java.lang.ref.Reference#clear()}, and indeed is implemented by      * {@code Reference} subclasses for weak and soft values.      */
+comment|/**      * Clears this reference object. This intentionally mimics      * {@link java.lang.ref.Reference#clear()}, and indeed is implemented by {@code Reference}      * subclasses for weak and soft values.      */
 DECL|method|clear ()
 name|void
 name|clear
 parameter_list|()
 function_decl|;
-comment|/**      * Returns true if the value type is a computing reference (regardless of      * whether or not computation has completed). This is necessary to      * distiguish between partially-collected entries and computing entries,      * which need to be cleaned up differently.      */
+comment|/**      * Returns true if the value type is a computing reference (regardless of whether or not      * computation has completed). This is necessary to distiguish between partially-collected      * entries and computing entries, which need to be cleaned up differently.      */
 DECL|method|isComputingReference ()
 name|boolean
 name|isComputingReference
@@ -3238,7 +3238,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// Safe because impl never uses a parameter or returns any non-null value
+comment|// impl never uses a parameter or returns any non-null value
 DECL|method|unset ()
 specifier|static
 parameter_list|<
@@ -3326,7 +3326,7 @@ name|void
 name|notifyKeyReclaimed
 parameter_list|()
 function_decl|;
-comment|/**      * Removes this entry from the map if its value reference hasn't      * changed.  Used to clean up after values. The value reference can      * just call this method on the entry so it doesn't have to keep      * its own reference to the map.      */
+comment|/**      * Removes this entry from the map if its value reference hasn't changed. Used to clean up after      * values. The value reference can just call this method on the entry so it doesn't have to keep      * its own reference to the map.      */
 DECL|method|notifyValueReclaimed (ValueReference<K, V> valueReference)
 name|void
 name|notifyValueReclaimed
@@ -3363,7 +3363,7 @@ name|K
 name|getKey
 parameter_list|()
 function_decl|;
-comment|/*      * Used by entries that are expirable. Expirable entries are      * maintained in a doubly-linked list. New entries are added at the tail      * of the list at write time; stale entries are expired from the head      * of the list.      */
+comment|/*      * Used by entries that are expirable. Expirable entries are maintained in a doubly-linked list.      * New entries are added at the tail of the list at write time; stale entries are expired from      * the head of the list.      */
 comment|/** Gets the entry expiration time in ns. */
 DECL|method|getExpirationTime ()
 name|long
@@ -3429,7 +3429,7 @@ argument_list|>
 name|previous
 parameter_list|)
 function_decl|;
-comment|/*      * Implemented by entries that are evictable. Evictable entries are      * maintained in a doubly-linked list. New entries are added at the tail of      * the list at write time and stale entries are expired from the head of the      * list.      */
+comment|/*      * Implemented by entries that are evictable. Evictable entries are maintained in a      * doubly-linked list. New entries are added at the tail of the list at write time and stale      * entries are expired from the head of the list.      */
 comment|/** Gets the next entry in the recency list. */
 DECL|method|getNextEvictable ()
 name|ReferenceEntry
@@ -3515,7 +3515,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setValueReference ( ValueReference<Object, Object> valueReference)
+DECL|method|setValueReference (ValueReference<Object, Object> valueReference)
 specifier|public
 name|void
 name|setValueReference
@@ -3755,7 +3755,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// Safe because impl never uses a parameter or returns any non-null value
+comment|// impl never uses a parameter or returns any non-null value
 DECL|method|nullEntry ()
 specifier|static
 parameter_list|<
@@ -3906,7 +3906,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// Safe because impl never uses a parameter or returns any non-null value
+comment|// impl never uses a parameter or returns any non-null value
 DECL|method|discardingQueue ()
 specifier|static
 parameter_list|<
@@ -3929,8 +3929,8 @@ operator|)
 name|DISCARDING_QUEUE
 return|;
 block|}
-comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory.    * If only Java had mixins! To maintain this code, make a change for    * the strong reference type. Then, cut and paste, and replace "Strong"    * with "Soft" or "Weak" within the pasted text. The primary difference    * is that strong entries store the key reference directly while soft    * and weak entries delegate to their respective superclasses.    */
-comment|/**    * Used for strongly-referenced keys.    */
+comment|/*     * Note: All of this duplicate code sucks, but it saves a lot of memory. If only Java had mixins!     * To maintain this code, make a change for the strong reference type. Then, cut and paste, and     * replace "Strong" with "Soft" or "Weak" within the pasted text. The primary difference is that     * strong entries store the key reference directly while soft and weak entries delegate to their     * respective superclasses.     */
+comment|/**     * Used for strongly-referenced keys.     */
 DECL|class|StrongEntry
 specifier|private
 specifier|static
@@ -5114,7 +5114,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Used for softly-referenced keys.    */
+comment|/**     * Used for softly-referenced keys.     */
 DECL|class|SoftEntry
 specifier|private
 specifier|static
@@ -6320,7 +6320,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Used for weakly-referenced keys.    */
+comment|/**     * Used for weakly-referenced keys.     */
 DECL|class|WeakEntry
 specifier|private
 specifier|static
@@ -7955,7 +7955,7 @@ name|clear
 parameter_list|()
 block|{}
 block|}
-comment|/**    * Applies a supplemental hash function to a given hash code, which defends    * against poor quality hash functions. This is critical when the    * concurrent hash map uses power-of-two length hash tables, that otherwise    * encounter collisions for hash codes that do not differ in lower or upper    * bits.    *    * @param h hash code    */
+comment|/**     * Applies a supplemental hash function to a given hash code, which defends against poor quality     * hash functions. This is critical when the concurrent hash map uses power-of-two length hash     * tables, that otherwise encounter collisions for hash codes that do not differ in lower or     * upper bits.     *     * @param h hash code     */
 DECL|method|rehash (int h)
 specifier|private
 specifier|static
@@ -8032,7 +8032,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|newEntry ( K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|newEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8078,7 +8078,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|copyEntry ( ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
+DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8327,9 +8327,9 @@ comment|// Invalid:
 comment|// - Expired: time expired (key/value may still be set)
 comment|// - Collected: key/value was partially collected, but not yet cleaned up
 comment|// - Unset: marked as unset, awaiting cleanup or reuse
-DECL|method|isLive (ReferenceEntry<K, V> entry)
 annotation|@
 name|VisibleForTesting
+DECL|method|isLive (ReferenceEntry<K, V> entry)
 name|boolean
 name|isLive
 parameter_list|(
@@ -8359,7 +8359,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * Returns true if the entry has expired.    */
+comment|/**     * Returns true if the entry has expired.     */
 DECL|method|isExpired (ReferenceEntry<K, V> entry)
 name|boolean
 name|isExpired
@@ -8385,7 +8385,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if the entry has expired.    */
+comment|/**     * Returns true if the entry has expired.     */
 DECL|method|isExpired (ReferenceEntry<K, V> entry, long now)
 name|boolean
 name|isExpired
@@ -8414,7 +8414,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Returns true if the entry has been partially collected, meaning that either    * the key is null, or the value is null and it is not computing.    */
+comment|/**     * Returns true if the entry has been partially collected, meaning that either the key is null,     * or the value is null and it is not computing.     */
 DECL|method|isCollected (ReferenceEntry<K, V> entry)
 name|boolean
 name|isCollected
@@ -8682,7 +8682,7 @@ name|notifyEntry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Notifies listeners that an entry has been automatically removed due to    * expiration, eviction, or eligibility for garbage collection. This should    * be called every time expireEntries or evictEntry is called (once the lock    * is released). It must only be called from user threads (e.g. not from    * garbage collection callbacks).    */
+comment|/**     * Notifies listeners that an entry has been automatically removed due to expiration, eviction,     * or eligibility for garbage collection. This should be called every time expireEntries or     * evictEntry is called (once the lock is released). It must only be called from user threads     * (e.g. not from garbage collection callbacks).     */
 DECL|method|processPendingNotifications ()
 name|void
 name|processPendingNotifications
@@ -8866,7 +8866,7 @@ argument_list|)
 return|;
 block|}
 comment|/* ---------------- Small Utilities -------------- */
-comment|/**    * Returns the segment that should be used for a key with the given hash.    *    * @param hash the hash code for the key    * @return the segment    */
+comment|/**     * Returns the segment that should be used for a key with the given hash.     *     * @param hash the hash code for the key     * @return the segment     */
 DECL|method|segmentFor (int hash)
 name|Segment
 name|segmentFor
@@ -8911,7 +8911,7 @@ argument_list|)
 return|;
 block|}
 comment|/* ---------------- Inner Classes -------------- */
-comment|/**    * Segments are specialized versions of hash tables.  This subclass inherits    * from ReentrantLock opportunistically, just to simplify some locking and    * avoid separate construction.    */
+comment|/**     * Segments are specialized versions of hash tables. This subclass inherits from ReentrantLock     * opportunistically, just to simplify some locking and avoid separate construction.     */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -8924,25 +8924,25 @@ name|Segment
 extends|extends
 name|ReentrantLock
 block|{
-comment|/*      * TODO(user): Consider copying variables (like evictsBySize) from outer      * class into this class. It will require more memory but will reduce      * indirection.      */
-comment|/*      * Segments maintain a table of entry lists that are ALWAYS      * kept in a consistent state, so can be read without locking.      * Next fields of nodes are immutable (final).  All list      * additions are performed at the front of each bin. This      * makes it easy to check changes, and also fast to traverse.      * When nodes would otherwise be changed, new nodes are      * created to replace them. This works well for hash tables      * since the bin lists tend to be short. (The average length      * is less than two.)      *      * Read operations can thus proceed without locking, but rely      * on selected uses of volatiles to ensure that completed      * write operations performed by other threads are      * noticed. For most purposes, the "count" field, tracking the      * number of elements, serves as that volatile variable      * ensuring visibility.  This is convenient because this field      * needs to be read in many read operations anyway:      *      *   - All (unsynchronized) read operations must first read the      *     "count" field, and should not look at table entries if      *     it is 0.      *      *   - All (synchronized) write operations should write to      *     the "count" field after structurally changing any bin.      *     The operations must not take any action that could even      *     momentarily cause a concurrent read operation to see      *     inconsistent data. This is made easier by the nature of      *     the read operations in Map. For example, no operation      *     can reveal that the table has grown but the threshold      *     has not yet been updated, so there are no atomicity      *     requirements for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the      * count field are marked in code comments.      */
-comment|/**      * The number of live elements in this segment's region. This does not      * include unset elements which are awaiting cleanup.      */
+comment|/*       * TODO(user): Consider copying variables (like evictsBySize) from outer class into this class.       * It will require more memory but will reduce indirection.       */
+comment|/*       * Segments maintain a table of entry lists that are ALWAYS kept in a consistent state, so can       * be read without locking. Next fields of nodes are immutable (final). All list additions are       * performed at the front of each bin. This makes it easy to check changes, and also fast to       * traverse. When nodes would otherwise be changed, new nodes are created to replace them. This       * works well for hash tables since the bin lists tend to be short. (The average length is less       * than two.)       *       * Read operations can thus proceed without locking, but rely on selected uses of volatiles to       * ensure that completed write operations performed by other threads are noticed. For most       * purposes, the "count" field, tracking the number of elements, serves as that volatile       * variable ensuring visibility. This is convenient because this field needs to be read in many       * read operations anyway:       *       * - All (unsynchronized) read operations must first read the "count" field, and should not       * look at table entries if it is 0.       *       * - All (synchronized) write operations should write to the "count" field after structurally       * changing any bin. The operations must not take any action that could even momentarily       * cause a concurrent read operation to see inconsistent data. This is made easier by the       * nature of the read operations in Map. For example, no operation can reveal that the table       * has grown but the threshold has not yet been updated, so there are no atomicity requirements       * for this with respect to reads.       *       * As a guide, all critical volatile reads and writes to the count field are marked in code       * comments.       */
+comment|/**       * The number of live elements in this segment's region. This does not include unset elements       * which are awaiting cleanup.       */
 DECL|field|count
 specifier|volatile
 name|int
 name|count
 decl_stmt|;
-comment|/**      * Number of updates that alter the size of the table. This is used      * during bulk-read methods to make sure they see a consistent snapshot:      * If modCounts change during a traversal of segments computing size or      * checking containsValue, then we might have an inconsistent view of      * state so (usually) must retry.      */
+comment|/**       * Number of updates that alter the size of the table. This is used during bulk-read methods to       * make sure they see a consistent snapshot: If modCounts change during a traversal of segments       * computing size or checking containsValue, then we might have an inconsistent view of state       * so (usually) must retry.       */
 DECL|field|modCount
 name|int
 name|modCount
 decl_stmt|;
-comment|/**      * The table is expanded when its size exceeds this threshold. (The      * value of this field is always {@code (int)(capacity * 0.75)}.)      */
+comment|/**       * The table is expanded when its size exceeds this threshold. (The value of this field is       * always {@code (int)(capacity * 0.75)}.)       */
 DECL|field|threshold
 name|int
 name|threshold
 decl_stmt|;
-comment|/**      * The per-segment table.      */
+comment|/**       * The per-segment table.       */
 DECL|field|table
 specifier|volatile
 name|AtomicReferenceArray
@@ -8956,13 +8956,13 @@ argument_list|>
 argument_list|>
 name|table
 decl_stmt|;
-comment|/**      * The maximum size of this map. MapMaker.UNSET_INT if there is no      * maximum.      */
+comment|/**       * The maximum size of this map. MapMaker.UNSET_INT if there is no maximum.       */
 DECL|field|maxSegmentSize
 specifier|final
 name|int
 name|maxSegmentSize
 decl_stmt|;
-comment|/**      * The cleanup queue is used to record entries which have been unset      * and need to be removed from the map. It is drained by the cleanup      * executor.      */
+comment|/**       * The cleanup queue is used to record entries which have been unset and need to be removed       * from the map. It is drained by the cleanup executor.       */
 DECL|field|cleanupQueue
 specifier|final
 name|Queue
@@ -8988,7 +8988,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      * The recency queue is used to record which entries were accessed      * for updating the eviction list's ordering. It is drained      * as a batch operation when either the DRAIN_THRESHOLD is crossed or      * a write occurs on the segment.      */
+comment|/**       * The recency queue is used to record which entries were accessed for updating the eviction       * list's ordering. It is drained as a batch operation when either the DRAIN_THRESHOLD is       * crossed or a write occurs on the segment.       */
 DECL|field|recencyQueue
 specifier|final
 name|Queue
@@ -9002,7 +9002,7 @@ argument_list|>
 argument_list|>
 name|recencyQueue
 decl_stmt|;
-comment|/**      * A counter of the number of reads since the last write, used to drain      * queues on a small fraction of read operations.      */
+comment|/**       * A counter of the number of reads since the last write, used to drain queues on a small       * fraction of read operations.       */
 DECL|field|readCount
 specifier|final
 name|AtomicInteger
@@ -9012,7 +9012,7 @@ operator|new
 name|AtomicInteger
 argument_list|()
 decl_stmt|;
-comment|/**      * A queue of elements currently in the map, ordered by access time.      * Elements are added to the tail of the queue on access/write.      */
+comment|/**       * A queue of elements currently in the map, ordered by access time. Elements are added to the       * tail of the queue on access/write.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9031,7 +9031,7 @@ argument_list|>
 argument_list|>
 name|evictionQueue
 decl_stmt|;
-comment|/**      * A queue of elements currently in the map, ordered by expiration time      * (either access or write time). Elements are added to the tail of the      * queue on access/write.      */
+comment|/**       * A queue of elements currently in the map, ordered by expiration time (either access or write       * time). Elements are added to the tail of the queue on access/write.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9239,7 +9239,7 @@ operator|=
 name|newTable
 expr_stmt|;
 block|}
-comment|/**      * Sets a new value of an entry. Adds newly created entries at the end      * of the expiration queue.      */
+comment|/**       * Sets a new value of an entry. Adds newly created entries at the end of the expiration queue.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9290,7 +9290,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// recency queue, shared by expiration and eviction
-comment|/**      * Records the relative order in which this read was performed by adding      * {@code entry} to the recency queue. At write-time, or when the queue is      * full past the threshold, the queue will be drained and the entries      * therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
+comment|/**       * Records the relative order in which this read was performed by adding {@code entry} to the       * recency queue. At write-time, or when the queue is full past the threshold, the queue will       * be drained and the entries therein processed.       *       *<p>Note: locked reads should use {@link #recordLockedRead}.       */
 DECL|method|recordRead (ReferenceEntry<K, V> entry)
 name|void
 name|recordRead
@@ -9326,7 +9326,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Updates the eviction metadata that {@code entry} was just read. This      * currently amounts to adding {@code entry} to relevant eviction lists.      *      *<p>Note: this method should only be called under lock, as it directly      * manipulates the eviction queues. Unlocked reads should use {@link      * #recordRead}.      */
+comment|/**       * Updates the eviction metadata that {@code entry} was just read. This currently amounts to       * adding {@code entry} to relevant eviction lists.       *       *<p>Note: this method should only be called under lock, as it directly manipulates the       * eviction queues. Unlocked reads should use {@link #recordRead}.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9374,7 +9374,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Updates eviction metadata that {@code entry} was just written. This      * currently amounts to adding {@code entry} to relevant eviction lists.      */
+comment|/**       * Updates eviction metadata that {@code entry} was just written. This currently amounts to       * adding {@code entry} to relevant eviction lists.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9438,7 +9438,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Drains the recency queue, updating eviction metadata that the entries      * therein were read in the specified relative order. This currently amounts      * to adding them to relevant eviction lists (accounting for the fact that      * they could have been removed from the map since being added to the      * recency queue).      */
+comment|/**       * Drains the recency queue, updating eviction metadata that the entries therein were read in       * the specified relative order. This currently amounts to adding them to relevant eviction       * lists (accounting for the fact that they could have been removed from the map since being       * added to the recency queue).       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9547,7 +9547,7 @@ name|expirationNanos
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Cleanup expired entries when the lock is available.      */
+comment|/**       * Cleanup expired entries when the lock is available.       */
 DECL|method|tryExpireEntries ()
 name|void
 name|tryExpireEntries
@@ -9658,7 +9658,7 @@ block|}
 block|}
 block|}
 comment|// eviction
-comment|/**      * Performs eviction if the segment is full. This should only be called      * prior to adding a new entry and increasing {@code count}.      *      * @return true if eviction occurred      */
+comment|/**       * Performs eviction if the segment is full. This should only be called prior to adding a new       * entry and increasing {@code count}.       *       * @return true if eviction occurred       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9723,7 +9723,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Returns first entry of bin for given hash.      */
+comment|/**       * Returns first entry of bin for given hash.       */
 DECL|method|getFirst (int hash)
 name|ReferenceEntry
 argument_list|<
@@ -9772,7 +9772,7 @@ argument_list|)
 return|;
 block|}
 comment|/* Specialized implementations of map methods */
-comment|/**      * Returns the entry for a given key. Note that the entry may not be live.      */
+comment|/**       * Returns the entry for a given key. Note that the entry may not be live.       */
 DECL|method|getEntry (Object key, int hash)
 name|ReferenceEntry
 argument_list|<
@@ -10720,7 +10720,7 @@ condition|)
 block|{
 comment|// Mimic
 comment|// "if (!map.containsKey(key)) ...
-comment|//  else return map.get(key);
+comment|// else return map.get(key);
 name|recordLockedRead
 argument_list|(
 name|e
@@ -10825,7 +10825,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Expands the table if possible.      */
+comment|/**       * Expands the table if possible.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -10866,7 +10866,7 @@ condition|)
 block|{
 return|return;
 block|}
-comment|/*        * Reclassify nodes in each list to new Map.  Because we are        * using power-of-two expansion, the elements from each bin        * must either stay at same index, or move with a power of two        * offset. We eliminate unnecessary node creation by catching        * cases where old nodes can be reused because their next        * fields won't change. Statistically, at the default        * threshold, only about one-sixth of them need cloning when        * a table doubles. The nodes they replace will be garbage        * collectable as soon as they are no longer referenced by any        * reader thread that may be in the midst of traversing table        * right now.        */
+comment|/*         * Reclassify nodes in each list to new Map. Because we are using power-of-two expansion, the         * elements from each bin must either stay at same index, or move with a power of two offset.         * We eliminate unnecessary node creation by catching cases where old nodes can be reused         * because their next fields won't change. Statistically, at the default threshold, only         * about one-sixth of them need cloning when a table doubles. The nodes they replace will be         * garbage collectable as soon as they are no longer referenced by any reader thread that may         * be in the midst of traversing table right now.         */
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -11621,7 +11621,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Removes an entry from within a table. All entries following the removed      * node can stay, but all preceding ones need to be cloned.      *      * @param first the first entry of the table      * @param entry the entry being removed from the table      * @return the new first entry for the table      */
+comment|/**       * Removes an entry from within a table. All entries following the removed node can stay, but       * all preceding ones need to be cloned.       *       * @param first the first entry of the table       * @param entry the entry being removed from the table       * @return the new first entry for the table       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -11741,7 +11741,7 @@ return|return
 name|newFirst
 return|;
 block|}
-comment|/**      * Half-removes an entry from the map by moving it into the unset state,      * sending the removal notification, and enqueueing subsequent cleanup. This      * should be called when an entry's key has been garbage collected, and that      * entry is now invalid.      */
+comment|/**       * Half-removes an entry from the map by moving it into the unset state, sending the removal       * notification, and enqueueing subsequent cleanup. This should be called when an entry's key       * has been garbage collected, and that entry is now invalid.       */
 DECL|method|unsetKey (ReferenceEntry<K, V> entry, int hash)
 name|boolean
 name|unsetKey
@@ -11889,7 +11889,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Half-removes an entry from the map by moving it into the unset state,      * sending the removal notification, and enqueueing subsequent cleanup. This      * should be called when an entry's value has been garbage collected, and that      * entry is now invalid.      */
+comment|/**       * Half-removes an entry from the map by moving it into the unset state, sending the removal       * notification, and enqueueing subsequent cleanup. This should be called when an entry's value       * has been garbage collected, and that entry is now invalid.       */
 DECL|method|unsetValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
 name|unsetValue
@@ -12403,7 +12403,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Gets the value from an entry. Returns null if the entry is invalid,      * partially-collected, computing, or expired.      */
+comment|/**       * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,       * computing, or expired.       */
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
 name|V
 name|getLiveValue
@@ -12685,7 +12685,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Performs routine cleanup prior to executing a write. This should be      * called every time a write thread acquires the segment lock, immediately      * after acquiring the lock.      *      *<p>Post-condition: expireEntries has been run.      */
+comment|/**       * Performs routine cleanup prior to executing a write. This should be called every time a       * write thread acquires the segment lock, immediately after acquiring the lock.       *       *<p>Post-condition: expireEntries has been run.       */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -12800,7 +12800,7 @@ name|runUnlockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Performs housekeeping tasks on this segment that don't require the      * segment lock.      */
+comment|/**       * Performs housekeeping tasks on this segment that don't require the segment lock.       */
 DECL|method|runUnlockedCleanup ()
 name|void
 name|runUnlockedCleanup
@@ -12810,7 +12810,7 @@ name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Performs housekeeping tasks on this segment that require the segment      * lock.      */
+comment|/**       * Performs housekeeping tasks on this segment that require the segment lock.       */
 DECL|method|runLockedCleanup ()
 name|void
 name|runLockedCleanup
@@ -12938,10 +12938,10 @@ block|}
 block|}
 block|}
 comment|// Queues
-comment|/**      * A custom queue for managing eviction order. Note that this is tightly      * integrated with {@code ReferenceEntry}, upon which it relies to perform      * its linking.      *      *<p>Note that this entire implementation makes the assumption that all      * elements which are in the map are also in this queue, and that all      * elements not in the queue are not in the map.      *      *<p>The benefits of creating our own queue are that (1) we can      * replace elements in the middle of the queue as part of      * copyEvictableEntry, and (2) the contains method is highly optimized for      * the current model.      */
-DECL|class|EvictionQueue
+comment|/**       * A custom queue for managing eviction order. Note that this is tightly integrated with {@code       * ReferenceEntry}, upon which it relies to perform its linking.       *       *<p>Note that this entire implementation makes the assumption that all elements which are in       * the map are also in this queue, and that all elements not in the queue are not in the map.       *       *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle       * of the queue as part of copyEvictableEntry, and (2) the contains method is highly optimized       * for the current model.       */
 annotation|@
 name|VisibleForTesting
+DECL|class|EvictionQueue
 class|class
 name|EvictionQueue
 extends|extends
@@ -12956,9 +12956,9 @@ argument_list|>
 argument_list|>
 block|{
 comment|// TODO(user): create UnsupportedOperationException throwing base class
-DECL|field|head
 annotation|@
 name|VisibleForTesting
+DECL|field|head
 specifier|final
 name|ReferenceEntry
 argument_list|<
@@ -13758,10 +13758,10 @@ block|}
 return|;
 block|}
 block|}
-comment|/**      * A custom queue for managing expiration order. Note that this is tightly      * integrated with {@code ReferenceEntry}, upon which it reliese to perform      * its linking.      *      *<p>Note that this entire implementation makes the assumption that all      * elements which are in the map are also in this queue, and that all      * elements not in the queue are not in the map.      *      *<p>The benefits of creating our own queue are that (1) we can      * replace elements in the middle of the queue as part of      * copyEvictableEntry, and (2) the contains method is highly optimized for      * the current model.      */
-DECL|class|ExpirationQueue
+comment|/**       * A custom queue for managing expiration order. Note that this is tightly integrated with       * {@code ReferenceEntry}, upon which it reliese to perform its linking.       *       *<p>Note that this entire implementation makes the assumption that all elements which are in       * the map are also in this queue, and that all elements not in the queue are not in the map.       *       *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle       * of the queue as part of copyEvictableEntry, and (2) the contains method is highly optimized       * for the current model.       */
 annotation|@
 name|VisibleForTesting
+DECL|class|ExpirationQueue
 class|class
 name|ExpirationQueue
 extends|extends
@@ -13776,9 +13776,9 @@ argument_list|>
 argument_list|>
 block|{
 comment|// TODO(user): create UnsupportedOperationException throwing base class
-DECL|field|head
 annotation|@
 name|VisibleForTesting
+DECL|field|head
 specifier|final
 name|ReferenceEntry
 argument_list|<
@@ -14574,9 +14574,9 @@ block|}
 block|}
 block|}
 comment|/* ---------------- Public operations -------------- */
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -14590,7 +14590,7 @@ name|this
 operator|.
 name|segments
 decl_stmt|;
-comment|/*      * We keep track of per-segment modCounts to avoid ABA      * problems in which an element in one segment was added and      * in another removed during traversal, in which case the      * table was never actually empty at any point. Note the      * similar use of modCounts in the size() and containsValue()      * methods, which are the only other methods also susceptible      * to ABA problems.      */
+comment|/*       * We keep track of per-segment modCounts to avoid ABA problems in which an element in one       * segment was added and in another removed during traversal, in which case the table was never       * actually empty at any point. Note the similar use of modCounts in the size() and       * containsValue() methods, which are the only other methods also susceptible to ABA problems.       */
 name|int
 index|[]
 name|mc
@@ -14657,7 +14657,7 @@ name|modCount
 expr_stmt|;
 block|}
 comment|// If mcsum happens to be zero, then we know we got a snapshot
-comment|// before any modifications at all were made.  This is
+comment|// before any modifications at all were made. This is
 comment|// probably common enough to bother tracking.
 if|if
 condition|(
@@ -14717,9 +14717,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -14774,9 +14774,9 @@ name|sum
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|V
 name|get
@@ -14807,10 +14807,10 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the entry for a given key. Note that the entry may not be live.    * This is only used for testing.    */
-DECL|method|getEntry (Object key)
+comment|/**     * Returns the entry for a given key. Note that the entry may not be live. This is only used for     * testing.     */
 annotation|@
 name|VisibleForTesting
+DECL|method|getEntry (Object key)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -14845,9 +14845,9 @@ name|hash
 argument_list|)
 return|;
 block|}
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -14878,9 +14878,9 @@ name|hash
 argument_list|)
 return|;
 block|}
-DECL|method|containsValue (Object value)
 annotation|@
 name|Override
+DECL|method|containsValue (Object value)
 specifier|public
 name|boolean
 name|containsValue
@@ -14963,9 +14963,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|V
 name|put
@@ -15041,9 +15041,9 @@ literal|true
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> m)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> m)
 specifier|public
 name|void
 name|putAll
@@ -15096,9 +15096,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|V
 name|remove
@@ -15129,7 +15129,7 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if the specified key is null    */
+comment|/**     * {@inheritDoc}     *     * @throws NullPointerException if the specified key is null     */
 DECL|method|remove (Object key, Object value)
 specifier|public
 name|boolean
@@ -15166,7 +15166,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if any of the arguments are null    */
+comment|/**     * {@inheritDoc}     *     * @throws NullPointerException if any of the arguments are null     */
 DECL|method|replace (K key, V oldValue, V newValue)
 specifier|public
 name|boolean
@@ -15208,7 +15208,7 @@ name|newValue
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @return the previous value associated with the specified key, or    *         {@code null} if there was no mapping for the key    * @throws NullPointerException if the specified key or value is null    */
+comment|/**     * {@inheritDoc}     *     * @return the previous value associated with the specified key, or {@code null} if there was no     *         mapping for the key     * @throws NullPointerException if the specified key or value is null     */
 DECL|method|replace (K key, V value)
 specifier|public
 name|V
@@ -15245,9 +15245,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -15275,9 +15275,9 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -15319,9 +15319,9 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -15368,9 +15368,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -15556,7 +15556,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Finds the next entry in the current chain. Returns true if an entry      * was found.      */
+comment|/**       * Finds the next entry in the current chain. Returns true if an entry was found.       */
 DECL|method|nextInChain ()
 name|boolean
 name|nextInChain
@@ -15608,7 +15608,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Finds the next entry in the current table. Returns true if an entry      * was found.      */
+comment|/**       * Finds the next entry in the current table. Returns true if an entry was found.       */
 DECL|method|nextInTable ()
 name|boolean
 name|nextInTable
@@ -15659,7 +15659,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Advances to the given entry. Returns true if the entry was valid,      * false if it should be skipped.      */
+comment|/**       * Advances to the given entry. Returns true if the entry was valid, false if it should be       * skipped.       */
 DECL|method|advanceTo (ReferenceEntry<K, V> entry)
 name|boolean
 name|advanceTo
@@ -15863,7 +15863,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Custom Entry class used by EntryIterator.next(), that relays setValue    * changes to the underlying map.    */
+comment|/**     * Custom Entry class used by EntryIterator.next(), that relays setValue changes to the     * underlying map.     */
 DECL|class|WriteThroughEntry
 specifier|final
 class|class
@@ -15910,9 +15910,9 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|getKey ()
 annotation|@
 name|Override
+DECL|method|getKey ()
 specifier|public
 name|K
 name|getKey
@@ -15922,9 +15922,9 @@ return|return
 name|key
 return|;
 block|}
-DECL|method|getValue ()
 annotation|@
 name|Override
+DECL|method|getValue ()
 specifier|public
 name|V
 name|getValue
@@ -15934,9 +15934,9 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -15999,9 +15999,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -16020,9 +16020,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|setValue (V newValue)
 annotation|@
 name|Override
+DECL|method|setValue (V newValue)
 specifier|public
 name|V
 name|setValue
@@ -16095,9 +16095,9 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -16112,9 +16112,9 @@ name|KeyIterator
 argument_list|()
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -16129,9 +16129,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -16146,9 +16146,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -16168,9 +16168,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -16192,9 +16192,9 @@ operator|!=
 literal|null
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -16219,9 +16219,9 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -16236,9 +16236,9 @@ name|ValueIterator
 argument_list|()
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -16253,9 +16253,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -16270,9 +16270,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -16292,9 +16292,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -16324,9 +16324,9 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -16346,9 +16346,9 @@ name|EntryIterator
 argument_list|()
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -16438,9 +16438,9 @@ name|v
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -16509,9 +16509,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -16526,9 +16526,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -16543,9 +16543,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -16606,7 +16606,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * The actual object that gets serialized. Unfortunately, readResolve()    * doesn't get called when a circular dependency is present, so the proxy    * must be able to behave as the map itself.    */
+comment|/**     * The actual object that gets serialized. Unfortunately, readResolve() doesn't get called when a     * circular dependency is present, so the proxy must be able to behave as the map itself.     */
 DECL|class|AbstractSerializationProxy
 specifier|abstract
 specifier|static
@@ -17091,7 +17091,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * The actual object that gets serialized. Unfortunately, readResolve()    * doesn't get called when a circular dependency is present, so the proxy    * must be able to behave as the map itself.    */
+comment|/**     * The actual object that gets serialized. Unfortunately, readResolve() doesn't get called when a     * circular dependency is present, so the proxy must be able to behave as the map itself.     */
 DECL|class|SerializationProxy
 specifier|private
 specifier|static

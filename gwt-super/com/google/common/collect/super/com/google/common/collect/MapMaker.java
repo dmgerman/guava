@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * MapMaker emulation. Since Javascript is single-threaded and have no  * references, this reduces to the creation of expiring and computing maps.  *  * @author Charles Fry  */
+comment|/**  * MapMaker emulation. Since Javascript is single-threaded and have no references, this reduces to  * the creation of expiring and computing maps.  *  * @author Charles Fry  */
 end_comment
 
 begin_class
@@ -119,9 +119,9 @@ argument_list|,
 name|Object
 argument_list|>
 block|{
-comment|// TODO(user,user): ConcurrentHashMap never throws a CME when mutating the map
-comment|// during iteration, but this implementation (based on a LHM) does.
-comment|// This will all be replaced soon anyways, so leaving it as is for now.
+comment|// TODO(user,user): ConcurrentHashMap never throws a CME when mutating the map during iteration, but
+comment|// this implementation (based on a LHM) does. This will all be replaced soon anyways, so leaving
+comment|// it as is for now.
 DECL|class|ExpiringComputingMap
 specifier|private
 specifier|static
@@ -526,7 +526,7 @@ name|value
 parameter_list|)
 block|{
 comment|// from MapMaker
-comment|/*        * TODO: Keep weak reference to map, too. Build a priority        * queue out of the entries themselves instead of creating a        * task per entry. Then, we could have one recurring task per        * map (which would clean the entire map and then reschedule        * itself depending upon when the next expiration comes). We        * also want to avoid removing an entry prematurely if the        * entry was set to the same value again.        */
+comment|/*        * TODO: Keep weak reference to map, too. Build a priority queue out of the entries themselves        * instead of creating a task per entry. Then, we could have one recurring task per map (which        * would clean the entire map and then reschedule itself depending upon when the next        * expiration comes). We also want to avoid removing an entry prematurely if the entry was set        * to the same value again.        */
 name|Timer
 name|timer
 init|=
@@ -595,7 +595,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|/*          * This cast isn't safe, but we can rely on the fact that K is almost          * always passed to Map.get(), and tools like IDEs and Findbugs can          * catch situations where this isn't the case.          *          * The alternative is to add an overloaded method, but the chances of          * a user calling get() instead of the new API and the risks inherent          * in adding a new API outweigh this little hole.          */
+comment|/*          * This cast isn't safe, but we can rely on the fact that K is almost always passed to          * Map.get(), and tools like IDEs and Findbugs can catch situations where this isn't the          * case.          *          * The alternative is to add an overloaded method, but the chances of a user calling get()          * instead of the new API and the risks inherent in adding a new API outweigh this little          * hole.          */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1047,7 +1047,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|makeComputingMap ( Function<? super K, ? extends V> computer)
+DECL|method|makeComputingMap (Function<? super K, ? extends V> computer)
 specifier|public
 parameter_list|<
 name|K

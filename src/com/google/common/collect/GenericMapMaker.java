@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps  * it can build. This type is returned by {@link MapMaker#evictionListener} to  * prevent the user from trying to build a map that's incompatible with the key  * and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since 7  */
+comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#evictionListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since 7  */
 end_comment
 
 begin_class
@@ -176,7 +176,7 @@ name|maximumSize
 parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#concurrencyLevel}.    */
-DECL|method|concurrencyLevel ( int concurrencyLevel)
+DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
 specifier|abstract
 name|GenericMapMaker
@@ -265,7 +265,7 @@ parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
 comment|// TODO(user): deprecate
-DECL|method|expiration ( long duration, TimeUnit unit)
+DECL|method|expiration (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
 name|GenericMapMaker
@@ -286,7 +286,7 @@ function_decl|;
 comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since 8    */
 annotation|@
 name|Beta
-DECL|method|expireAfterWrite ( long duration, TimeUnit unit)
+DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
 name|GenericMapMaker
@@ -312,7 +312,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
-DECL|method|expireAfterAccess ( long duration, TimeUnit unit)
+DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
 name|GenericMapMaker
@@ -330,7 +330,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/*    * Note that MapMaker's evictionListener() is not here, because once you're    * interacting with a GenericMapMaker you've already called that, and    * shouldn't be calling it again.    */
+comment|/*    * Note that MapMaker's evictionListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
 comment|/**    * See {@link MapMaker#makeMap}.    */
 DECL|method|makeMap ()
 specifier|public
@@ -354,6 +354,7 @@ name|makeMap
 parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#makeComputingMap}.    */
+DECL|method|makeComputingMap ( Function<? super K, ? extends V> computingFunction)
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -371,7 +372,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|makeComputingMap (Function<? super K, ? extends V> computingFunction)
 name|makeComputingMap
 parameter_list|(
 name|Function
