@@ -664,6 +664,8 @@ argument_list|>
 name|predicate
 parameter_list|)
 block|{
+comment|// Note: Not all random access lists support set() so we need to deal with
+comment|// those that don't and attempt the slower remove() based solution.
 name|int
 name|from
 init|=
@@ -716,6 +718,8 @@ operator|>
 name|to
 condition|)
 block|{
+try|try
+block|{
 name|list
 operator|.
 name|set
@@ -725,6 +729,28 @@ argument_list|,
 name|element
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+name|slowRemoveIfForRemainingElements
+argument_list|(
+name|list
+argument_list|,
+name|predicate
+argument_list|,
+name|to
+argument_list|,
+name|from
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 block|}
 name|to
 operator|++
@@ -752,6 +778,116 @@ name|from
 operator|!=
 name|to
 return|;
+block|}
+DECL|method|slowRemoveIfForRemainingElements (List<T> list, Predicate<? super T> predicate, int to, int from)
+specifier|private
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|void
+name|slowRemoveIfForRemainingElements
+parameter_list|(
+name|List
+argument_list|<
+name|T
+argument_list|>
+name|list
+parameter_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+parameter_list|,
+name|int
+name|to
+parameter_list|,
+name|int
+name|from
+parameter_list|)
+block|{
+comment|// Here we know that:
+comment|// * (to< from) and that both are valid indices.
+comment|// * Everything with (index< to) should be kept.
+comment|// * Everything with (to<= index< from) should be removed.
+comment|// * The element with (index == from) should be kept.
+comment|// * Everything with (index> from) has not been checked yet.
+comment|// Check from the end of the list backwards (minimize expected cost of
+comment|// moving elements when remove() is called). Stop before 'from' because
+comment|// we already know that should be kept.
+for|for
+control|(
+name|int
+name|n
+init|=
+name|list
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+init|;
+name|n
+operator|>
+name|from
+condition|;
+name|n
+operator|--
+control|)
+block|{
+if|if
+condition|(
+name|predicate
+operator|.
+name|apply
+argument_list|(
+name|list
+operator|.
+name|get
+argument_list|(
+name|n
+argument_list|)
+argument_list|)
+condition|)
+block|{
+name|list
+operator|.
+name|remove
+argument_list|(
+name|n
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// And now remove everything in the range [to, from) (going backwards).
+for|for
+control|(
+name|int
+name|n
+init|=
+name|from
+operator|-
+literal|1
+init|;
+name|n
+operator|>=
+name|to
+condition|;
+name|n
+operator|--
+control|)
+block|{
+name|list
+operator|.
+name|remove
+argument_list|(
+name|n
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Determines whether two iterables contain equal elements in the same order.    * More specifically, this method returns {@code true} if {@code iterable1}    * and {@code iterable2} contain the same number of elements and every element    * of {@code iterable1} is equal to the corresponding element of    * {@code iterable2}.    */
 DECL|method|elementsEqual ( Iterable<?> iterable1, Iterable<?> iterable2)
