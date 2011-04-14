@@ -268,6 +268,11 @@ annotation|@
 name|Override
 DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|createSegment
 parameter_list|(
 name|int
@@ -280,7 +285,14 @@ block|{
 return|return
 operator|new
 name|ComputingSegment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|(
+name|this
+argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
@@ -288,15 +300,14 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// explain
-annotation|@
 name|Override
 DECL|method|segmentFor (int hash)
 name|ComputingSegment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|segmentFor
 parameter_list|(
 name|int
@@ -306,6 +317,11 @@ block|{
 return|return
 operator|(
 name|ComputingSegment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 operator|)
 name|super
 operator|.
@@ -355,14 +371,33 @@ literal|"serial"
 argument_list|)
 comment|// This class is never serialized.
 DECL|class|ComputingSegment
+specifier|static
 class|class
 name|ComputingSegment
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 extends|extends
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 block|{
-DECL|method|ComputingSegment (int initialCapacity, int maxSegmentSize)
+DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
 name|ComputingSegment
 parameter_list|(
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+parameter_list|,
 name|int
 name|initialCapacity
 parameter_list|,
@@ -372,6 +407,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|map
+argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
@@ -462,6 +499,11 @@ argument_list|()
 condition|)
 block|{
 name|ComputingValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|computingValueReference
 init|=
 literal|null
@@ -558,6 +600,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -630,11 +674,36 @@ argument_list|)
 condition|)
 block|{
 comment|// Create a new entry.
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|computingMap
+init|=
+operator|(
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|map
+decl_stmt|;
 name|computingValueReference
 operator|=
 operator|new
 name|ComputingValueReference
-argument_list|()
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|computingMap
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -645,6 +714,8 @@ condition|)
 block|{
 name|e
 operator|=
+name|computingMap
+operator|.
 name|newEntry
 argument_list|(
 name|key
@@ -1208,8 +1279,14 @@ block|{}
 block|}
 DECL|class|ComputingValueReference
 specifier|private
+specifier|static
 class|class
 name|ComputingValueReference
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 implements|implements
 name|ValueReference
 argument_list|<
@@ -1218,6 +1295,16 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|map
+specifier|final
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -1236,6 +1323,26 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
+DECL|method|ComputingValueReference (ComputingConcurrentHashMap<K, V> map)
+specifier|public
+name|ComputingValueReference
+parameter_list|(
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+parameter_list|)
+block|{
+name|this
+operator|.
+name|map
+operator|=
+name|map
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|get ()
@@ -1382,6 +1489,8 @@ try|try
 block|{
 name|value
 operator|=
+name|map
+operator|.
 name|computingFunction
 operator|.
 name|apply
@@ -1457,6 +1566,8 @@ block|{
 name|String
 name|message
 init|=
+name|map
+operator|.
 name|computingFunction
 operator|+
 literal|" returned null for key "
@@ -1503,6 +1614,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// putIfAbsent
+name|map
+operator|.
 name|segmentFor
 argument_list|(
 name|hash

@@ -220,18 +220,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Array
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|AbstractCollection
@@ -533,6 +521,11 @@ DECL|field|segments
 specifier|final
 specifier|transient
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 index|[]
 name|segments
 decl_stmt|;
@@ -3285,7 +3278,7 @@ name|FinalizableReferenceQueue
 argument_list|()
 decl_stmt|;
 block|}
-comment|/**    * An entry in a reference map.    */
+comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    * - Live: valid key/value are set    * - Computing: computation is pending    *    * Invalid:    * - Expired: time expired (key/value may still be set)    * - Collected: key/value was partially collected, but not yet cleaned up    * - Unset: marked as unset, awaiting cleanup or reuse    */
 DECL|interface|ReferenceEntry
 interface|interface
 name|ReferenceEntry
@@ -8247,6 +8240,11 @@ name|getHash
 argument_list|()
 decl_stmt|;
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|segment
 init|=
 name|segmentFor
@@ -8319,14 +8317,6 @@ name|hash
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Entries in the map can be in the following states:
-comment|// Valid:
-comment|// - Live: valid key/value are set
-comment|// - Computing: computation is pending
-comment|// Invalid:
-comment|// - Expired: time expired (key/value may still be set)
-comment|// - Collected: key/value was partially collected, but not yet cleaned up
-comment|// - Unset: marked as unset, awaiting cleanup or reuse
 annotation|@
 name|VisibleForTesting
 DECL|method|isLive (ReferenceEntry<K, V> entry)
@@ -8359,6 +8349,7 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|// expiration
 comment|/**    * Returns true if the entry has expired.    */
 DECL|method|isExpired (ReferenceEntry<K, V> entry)
 name|boolean
@@ -8414,111 +8405,6 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Returns true if the entry has been partially collected, meaning that either the key is null,    * or the value is null and it is not computing.    */
-DECL|method|isCollected (ReferenceEntry<K, V> entry)
-name|boolean
-name|isCollected
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-if|if
-condition|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-init|=
-name|entry
-operator|.
-name|getValueReference
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|valueReference
-operator|.
-name|isComputingReference
-argument_list|()
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
-name|valueReference
-operator|.
-name|get
-argument_list|()
-operator|==
-literal|null
-return|;
-block|}
-DECL|method|isUnset (ReferenceEntry<K, V> entry)
-name|boolean
-name|isUnset
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-return|return
-name|isUnset
-argument_list|(
-name|entry
-operator|.
-name|getValueReference
-argument_list|()
-argument_list|)
-return|;
-block|}
-DECL|method|isUnset (ValueReference<K, V> valueReference)
-name|boolean
-name|isUnset
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-parameter_list|)
-block|{
-return|return
-name|valueReference
-operator|==
-name|UNSET
-return|;
-block|}
-comment|// expiration
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -8836,6 +8722,11 @@ argument_list|)
 DECL|method|newSegmentArray (int ssize)
 specifier|final
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 index|[]
 name|newSegmentArray
 parameter_list|(
@@ -8843,32 +8734,23 @@ name|int
 name|ssize
 parameter_list|)
 block|{
-comment|// Note: This is the only way I could figure out how to create
-comment|// a segment array (the compiler has a tough time with arrays of
-comment|// inner classes of generic types apparently). Safe because we're
-comment|// restricting what can go in the array and no one has an
-comment|// unrestricted reference.
 return|return
-operator|(
+operator|new
 name|Segment
-index|[]
-operator|)
-name|Array
-operator|.
-name|newInstance
-argument_list|(
-name|Segment
-operator|.
-name|class
-argument_list|,
+index|[
 name|ssize
-argument_list|)
+index|]
 return|;
 block|}
 comment|/* ---------------- Small Utilities -------------- */
 comment|/**    * Returns the segment that should be used for a key with the given hash.    *    * @param hash the hash code for the key    * @return the segment    */
 DECL|method|segmentFor (int hash)
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|segmentFor
 parameter_list|(
 name|int
@@ -8891,6 +8773,11 @@ return|;
 block|}
 DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|createSegment
 parameter_list|(
 name|int
@@ -8903,7 +8790,14 @@ block|{
 return|return
 operator|new
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|(
+name|this
+argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
@@ -8919,13 +8813,29 @@ literal|"serial"
 argument_list|)
 comment|// This class is never serialized.
 DECL|class|Segment
+specifier|static
 class|class
 name|Segment
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 extends|extends
 name|ReentrantLock
 block|{
 comment|/*      * TODO(user): Consider copying variables (like evictsBySize) from outer class into this class.      * It will require more memory but will reduce indirection.      */
 comment|/*      * Segments maintain a table of entry lists that are ALWAYS kept in a consistent state, so can      * be read without locking. Next fields of nodes are immutable (final). All list additions are      * performed at the front of each bin. This makes it easy to check changes, and also fast to      * traverse. When nodes would otherwise be changed, new nodes are created to replace them. This      * works well for hash tables since the bin lists tend to be short. (The average length is less      * than two.)      *      * Read operations can thus proceed without locking, but rely on selected uses of volatiles to      * ensure that completed write operations performed by other threads are noticed. For most      * purposes, the "count" field, tracking the number of elements, serves as that volatile      * variable ensuring visibility. This is convenient because this field needs to be read in many      * read operations anyway:      *      * - All (unsynchronized) read operations must first read the "count" field, and should not      * look at table entries if it is 0.      *      * - All (synchronized) write operations should write to the "count" field after structurally      * changing any bin. The operations must not take any action that could even momentarily      * cause a concurrent read operation to see inconsistent data. This is made easier by the      * nature of the read operations in Map. For example, no operation can reveal that the table      * has grown but the threshold has not yet been updated, so there are no atomicity requirements      * for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the count field are marked in code      * comments.      */
+DECL|field|map
+specifier|final
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+decl_stmt|;
 comment|/**      * The number of live elements in this segment's region. This does not include unset elements      * which are awaiting cleanup.      */
 DECL|field|count
 specifier|volatile
@@ -9050,9 +8960,17 @@ argument_list|>
 argument_list|>
 name|expirationQueue
 decl_stmt|;
-DECL|method|Segment (int initialCapacity, int maxSegmentSize)
+DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
 name|Segment
 parameter_list|(
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+parameter_list|,
 name|int
 name|initialCapacity
 parameter_list|,
@@ -9060,6 +8978,12 @@ name|int
 name|maxSegmentSize
 parameter_list|)
 block|{
+name|this
+operator|.
+name|map
+operator|=
+name|map
+expr_stmt|;
 name|this
 operator|.
 name|maxSegmentSize
@@ -9077,9 +9001,13 @@ expr_stmt|;
 name|recencyQueue
 operator|=
 operator|(
+name|map
+operator|.
 name|evictsBySize
 argument_list|()
 operator|||
+name|map
+operator|.
 name|expiresAfterAccess
 argument_list|()
 operator|)
@@ -9111,6 +9039,8 @@ argument_list|()
 expr_stmt|;
 name|evictionQueue
 operator|=
+name|map
+operator|.
 name|evictsBySize
 argument_list|()
 condition|?
@@ -9133,6 +9063,8 @@ argument_list|()
 expr_stmt|;
 name|expirationQueue
 operator|=
+name|map
+operator|.
 name|expires
 argument_list|()
 condition|?
@@ -9274,6 +9206,8 @@ name|V
 argument_list|>
 name|valueReference
 init|=
+name|map
+operator|.
 name|newValueReference
 argument_list|(
 name|entry
@@ -9306,6 +9240,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|map
+operator|.
 name|expiresAfterAccess
 argument_list|()
 condition|)
@@ -9314,6 +9250,8 @@ name|recordExpirationTime
 argument_list|(
 name|entry
 argument_list|,
+name|map
+operator|.
 name|expireAfterAccessNanos
 argument_list|)
 expr_stmt|;
@@ -9354,6 +9292,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|map
+operator|.
 name|expiresAfterAccess
 argument_list|()
 condition|)
@@ -9362,6 +9302,8 @@ name|recordExpirationTime
 argument_list|(
 name|entry
 argument_list|,
+name|map
+operator|.
 name|expireAfterAccessNanos
 argument_list|)
 expr_stmt|;
@@ -9406,6 +9348,8 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|map
+operator|.
 name|expires
 argument_list|()
 condition|)
@@ -9415,11 +9359,17 @@ comment|// expireAfterAccess are mutually exclusive
 name|long
 name|expiration
 init|=
+name|map
+operator|.
 name|expiresAfterAccess
 argument_list|()
 condition|?
+name|map
+operator|.
 name|expireAfterAccessNanos
 else|:
+name|map
+operator|.
 name|expireAfterWriteNanos
 decl_stmt|;
 name|recordExpirationTime
@@ -9495,6 +9445,8 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|map
+operator|.
 name|expiresAfterAccess
 argument_list|()
 operator|&&
@@ -9538,6 +9490,8 @@ name|entry
 operator|.
 name|setExpirationTime
 argument_list|(
+name|map
+operator|.
 name|ticker
 operator|.
 name|read
@@ -9601,6 +9555,8 @@ block|}
 name|long
 name|now
 init|=
+name|map
+operator|.
 name|ticker
 operator|.
 name|read
@@ -9627,6 +9583,8 @@ operator|)
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|isExpired
 argument_list|(
 name|e
@@ -9671,6 +9629,8 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|map
+operator|.
 name|evictsBySize
 argument_list|()
 operator|&&
@@ -9855,6 +9815,8 @@ continue|continue;
 block|}
 if|if
 condition|(
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -10023,6 +9985,8 @@ continue|continue;
 block|}
 if|if
 condition|(
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -10150,6 +10114,8 @@ continue|continue;
 block|}
 if|if
 condition|(
+name|map
+operator|.
 name|valueEquivalence
 operator|.
 name|equivalent
@@ -10254,6 +10220,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -10297,6 +10265,8 @@ return|;
 block|}
 if|if
 condition|(
+name|map
+operator|.
 name|valueEquivalence
 operator|.
 name|equivalent
@@ -10422,6 +10392,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -10641,6 +10613,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -10779,6 +10753,8 @@ name|V
 argument_list|>
 name|newEntry
 init|=
+name|map
+operator|.
 name|newEntry
 argument_list|(
 name|key
@@ -11145,6 +11121,8 @@ name|set
 argument_list|(
 name|newIndex
 argument_list|,
+name|map
+operator|.
 name|copyEntry
 argument_list|(
 name|e
@@ -11280,6 +11258,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -11506,6 +11486,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -11545,6 +11527,8 @@ block|}
 elseif|else
 if|if
 condition|(
+name|map
+operator|.
 name|valueEquivalence
 operator|.
 name|equivalent
@@ -11728,6 +11712,8 @@ else|else
 block|{
 name|newFirst
 operator|=
+name|map
+operator|.
 name|copyEntry
 argument_list|(
 name|e
@@ -11848,6 +11834,8 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
+name|map
+operator|.
 name|enqueueNotification
 argument_list|(
 name|e
@@ -11971,6 +11959,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -12004,6 +11994,8 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
+name|map
+operator|.
 name|enqueueNotification
 argument_list|(
 name|key
@@ -12117,6 +12109,8 @@ name|entryKey
 operator|!=
 literal|null
 operator|&&
+name|map
+operator|.
 name|keyEquivalence
 operator|.
 name|equivalent
@@ -12320,6 +12314,8 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+name|map
+operator|.
 name|enqueueNotification
 argument_list|(
 name|key
@@ -12403,6 +12399,110 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Returns true if the entry has been partially collected, meaning that either the key is null,      * or the value is null and it is not computing.      */
+DECL|method|isCollected (ReferenceEntry<K, V> entry)
+name|boolean
+name|isCollected
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+if|if
+condition|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+init|=
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|valueReference
+operator|.
+name|isComputingReference
+argument_list|()
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+return|return
+name|valueReference
+operator|.
+name|get
+argument_list|()
+operator|==
+literal|null
+return|;
+block|}
+DECL|method|isUnset (ReferenceEntry<K, V> entry)
+name|boolean
+name|isUnset
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+return|return
+name|isUnset
+argument_list|(
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|method|isUnset (ValueReference<K, V> valueReference)
+name|boolean
+name|isUnset
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+parameter_list|)
+block|{
+return|return
+name|valueReference
+operator|==
+name|UNSET
+return|;
+block|}
 comment|/**      * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,      * computing, or expired.      */
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
 name|V
@@ -12455,9 +12555,13 @@ return|;
 block|}
 if|if
 condition|(
+name|map
+operator|.
 name|expires
 argument_list|()
 operator|&&
+name|map
+operator|.
 name|isExpired
 argument_list|(
 name|entry
@@ -12657,6 +12761,8 @@ condition|)
 block|{
 if|if
 condition|(
+name|map
+operator|.
 name|isInlineCleanup
 argument_list|()
 condition|)
@@ -12675,6 +12781,8 @@ name|isHeldByCurrentThread
 argument_list|()
 condition|)
 block|{
+name|map
+operator|.
 name|cleanupExecutor
 operator|.
 name|execute
@@ -12698,6 +12806,8 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|map
+operator|.
 name|isInlineCleanup
 argument_list|()
 condition|)
@@ -12721,6 +12831,8 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|map
+operator|.
 name|isInlineCleanup
 argument_list|()
 condition|)
@@ -12756,6 +12868,8 @@ block|{
 comment|// non-default cleanup executors can ignore cleanup optimizations when
 comment|// the lock is held, as cleanup will always be called when the lock is
 comment|// released
+name|map
+operator|.
 name|cleanupExecutor
 operator|.
 name|execute
@@ -12806,6 +12920,8 @@ name|void
 name|runUnlockedCleanup
 parameter_list|()
 block|{
+name|map
+operator|.
 name|processPendingNotifications
 argument_list|()
 expr_stmt|;
@@ -14583,6 +14699,11 @@ name|isEmpty
 parameter_list|()
 block|{
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 index|[]
 name|segments
 init|=
@@ -14726,6 +14847,11 @@ name|size
 parameter_list|()
 block|{
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 index|[]
 name|segments
 init|=
@@ -14896,6 +15022,11 @@ name|value
 argument_list|)
 expr_stmt|;
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 index|[]
 name|segments
 init|=
@@ -15256,6 +15387,11 @@ block|{
 for|for
 control|(
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|segment
 range|:
 name|segments
@@ -15513,6 +15649,11 @@ literal|0
 condition|)
 block|{
 name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|seg
 init|=
 name|segments
