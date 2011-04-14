@@ -51,29 +51,6 @@ index|[
 literal|1024
 index|]
 decl_stmt|;
-DECL|method|isInstance (Class<?> clazz, Object obj)
-specifier|static
-name|boolean
-name|isInstance
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|,
-name|Object
-name|obj
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Class.isInstance is not supported in GWT yet."
-argument_list|)
-throw|;
-block|}
 DECL|method|charBufferFromThreadLocal ()
 specifier|static
 name|char

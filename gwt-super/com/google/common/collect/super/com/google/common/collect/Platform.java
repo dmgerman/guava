@@ -16,22 +16,6 @@ name|collect
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|gwt
-operator|.
-name|core
-operator|.
-name|client
-operator|.
-name|GWT
-import|;
-end_import
-
 begin_comment
 comment|/**  * Minimal GWT emulation of {@code com.google.common.collect.Platform}.  *  *<p><strong>This .java file should never be consumed by javac.</strong>  *  * @author Hayward Chan  */
 end_comment
@@ -186,30 +170,6 @@ block|{
 return|return
 name|mapMaker
 return|;
-block|}
-DECL|method|logWarning (String message, Throwable exception)
-specifier|static
-name|void
-name|logWarning
-parameter_list|(
-name|String
-name|message
-parameter_list|,
-name|Throwable
-name|exception
-parameter_list|)
-block|{
-name|GWT
-operator|.
-name|log
-argument_list|(
-literal|"WARNING: "
-operator|+
-name|message
-argument_list|,
-name|exception
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

@@ -1688,6 +1688,11 @@ literal|0
 decl_stmt|;
 block|}
 comment|/** @see Predicates#instanceOf(Class) */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Class.isInstance"
+argument_list|)
 DECL|class|InstanceOfPredicate
 specifier|private
 specifier|static
@@ -1745,12 +1750,10 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|Platform
+name|clazz
 operator|.
 name|isInstance
 argument_list|(
-name|clazz
-argument_list|,
 name|o
 argument_list|)
 return|;
