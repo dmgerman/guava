@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Multimap} that cannot hold duplicate key-value pairs. Adding a  * key-value pair that's already in the multimap has no effect.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link Set} of values, while {@link #entries} returns a {@code  * Set} of map entries. Though the method signature doesn't say so explicitly,  * the map returned by {@link #asMap} has {@code Set} values.  *  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A {@code Multimap} that cannot hold duplicate key-value pairs. Adding a  * key-value pair that's already in the multimap has no effect.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link Set} of values, while {@link #entries} returns a {@code  * Set} of map entries. Though the method signature doesn't say so explicitly,  * the map returned by {@link #asMap} has {@code Set} values.  *  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

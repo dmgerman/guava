@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factories and utilities pertaining to the {@link Constraint} interface.  *  * @see MapConstraints  * @author Mike Bostock  * @author Jared Levy  * @since 3  */
+comment|/**  * Factories and utilities pertaining to the {@link Constraint} interface.  *  * @see MapConstraints  * @author Mike Bostock  * @author Jared Levy  * @since Guava release 03  */
 end_comment
 
 begin_class

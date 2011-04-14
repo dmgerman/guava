@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -431,7 +431,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier that caches the instance supplied by the delegate and    * removes the cached value after the specified time has passed. Subsequent    * calls to {@code get()} return the cached value if the expiration time has    * not passed. After the expiration time, a new value is retrieved, cached,    * and returned. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form    * does not contain the cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    * @param duration the length of time after a value is created that it    *     should stop being returned by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since 2    */
+comment|/**    * Returns a supplier that caches the instance supplied by the delegate and    * removes the cached value after the specified time has passed. Subsequent    * calls to {@code get()} return the cached value if the expiration time has    * not passed. After the expiration time, a new value is retrieved, cached,    * and returned. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form    * does not contain the cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    * @param duration the length of time after a value is created that it    *     should stop being returned by subsequent {@code get()} calls    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is not positive    * @since Guava release 02    */
 DECL|method|memoizeWithExpiration ( Supplier<T> delegate, long duration, TimeUnit unit)
 specifier|public
 specifier|static
@@ -865,7 +865,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function that accepts a supplier and returns the result of    * invoking {@link Supplier#get} on that supplier.    *    * @since 8    */
+comment|/**    * Returns a function that accepts a supplier and returns the result of    * invoking {@link Supplier#get} on that supplier.    *    * @since Guava release 08    */
 annotation|@
 name|Beta
 annotation|@

@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li> whether threads should be marked as {@linkplain Thread#setDaemon daemon}  * threads  *<li> a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li> a {@linkplain Thread#setPriority thread priority}  *<li> an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception  * handler}  *<li> a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  * If no backing thread factory is provided, a default backing thread factory is  * used as if by calling {@code setThreadFactory(}{@link  * Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since 4  */
+comment|/**  * A ThreadFactory builder, providing any combination of these features:  *<ul>  *<li> whether threads should be marked as {@linkplain Thread#setDaemon daemon}  * threads  *<li> a {@linkplain ThreadFactoryBuilder#setNameFormat naming format}  *<li> a {@linkplain Thread#setPriority thread priority}  *<li> an {@linkplain Thread#setUncaughtExceptionHandler uncaught exception  * handler}  *<li> a {@linkplain ThreadFactory#newThread backing thread factory}  *</ul>  * If no backing thread factory is provided, a default backing thread factory is  * used as if by calling {@code setThreadFactory(}{@link  * Executors#defaultThreadFactory()}{@code )}.  *  * @author Kurt Alfred Kluever  * @since Guava release 04  */
 end_comment
 
 begin_class

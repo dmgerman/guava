@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListenableFuture} which forwards all its method calls to another  * future. Subclasses should override one or more methods to modify the behavior  * of the backing future as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingListenableFuture}.  *  * @param<V> The result type returned by this Future's {@code get} method  *   * @author Shardul Deo  * @since 4  */
+comment|/**  * A {@link ListenableFuture} which forwards all its method calls to another  * future. Subclasses should override one or more methods to modify the behavior  * of the backing future as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingListenableFuture}.  *  * @param<V> The result type returned by this Future's {@code get} method  *   * @author Shardul Deo  * @since Guava release 04  */
 end_comment
 
 begin_class
@@ -128,7 +128,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
-comment|/**    * A simplified version of {@link ForwardingListenableFuture} where subclasses    * can pass in an already constructed {@link ListenableFuture}     * as the delegate.    *     * @since 9    */
+comment|/**    * A simplified version of {@link ForwardingListenableFuture} where subclasses    * can pass in an already constructed {@link ListenableFuture}     * as the delegate.    *     * @since Guava release 09    */
 annotation|@
 name|Beta
 DECL|class|SimpleForwardingListenableFuture

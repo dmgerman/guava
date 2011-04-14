@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object representing the differences between two sorted maps.  *  * @author Louis Wasserman  * @since 8  */
+comment|/**  * An object representing the differences between two sorted maps.  *  * @author Louis Wasserman  * @since Guava release 08  */
 end_comment
 
 begin_interface

@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static methods that involve a {@code Table}.  *  * @author Jared Levy  * @since 7  */
+comment|/**  * Provides static methods that involve a {@code Table}.  *  * @author Jared Levy  * @since Guava release 07  */
 end_comment
 
 begin_class

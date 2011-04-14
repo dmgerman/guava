@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A table which forwards all its method calls to another table. Subclasses  * should override one or more methods to modify the behavior of the backing  * map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Gregory Kick  * @since 7  */
+comment|/**  * A table which forwards all its method calls to another table. Subclasses  * should override one or more methods to modify the behavior of the backing  * map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Gregory Kick  * @since Guava release 07  */
 end_comment
 
 begin_class

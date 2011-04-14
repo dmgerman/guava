@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

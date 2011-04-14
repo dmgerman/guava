@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link  * ExecutorService}, and {@link ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since 3  */
+comment|/**  * Factory and utility methods for {@link java.util.concurrent.Executor}, {@link  * ExecutorService}, and {@link ThreadFactory}.  *  * @author Eric Fellheimer  * @author Kyle Littlefield  * @author Justin Mahoney  * @since Guava release 03  */
 end_comment
 
 begin_class

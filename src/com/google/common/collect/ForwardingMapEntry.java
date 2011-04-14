@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map entry which forwards all its method calls to another map entry.  * Subclasses should override one or more methods to modify the behavior of the  * backing map entry as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><em>Warning</em>: The methods of {@code ForwardingMapEntry} forward  *<em>indiscriminately</em> to the methods of the delegate. For example,  * overriding {@link #getValue} alone<em>will not</em> change the behavior of  * {@link #equals}, which can lead to unexpected behavior. In this case, you  * should override {@code equals} as well, either providing your own  * implementation, or delegating to the provided {@code standardEquals} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link  * Objects#equal} to test equality for both keys and values. This may not be  * the desired behavior for map implementations that use non-standard notions of  * key equality, such as the entry of a {@code SortedMap} whose comparator is  * not consistent with {@code equals}.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even  * when all of the methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A map entry which forwards all its method calls to another map entry.  * Subclasses should override one or more methods to modify the behavior of the  * backing map entry as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><em>Warning</em>: The methods of {@code ForwardingMapEntry} forward  *<em>indiscriminately</em> to the methods of the delegate. For example,  * overriding {@link #getValue} alone<em>will not</em> change the behavior of  * {@link #equals}, which can lead to unexpected behavior. In this case, you  * should override {@code equals} as well, either providing your own  * implementation, or delegating to the provided {@code standardEquals} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link  * Objects#equal} to test equality for both keys and values. This may not be  * the desired behavior for map implementations that use non-standard notions of  * key equality, such as the entry of a {@code SortedMap} whose comparator is  * not consistent with {@code equals}.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even  * when all of the methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -234,7 +234,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link    * #getKey()} and {@link #getValue()}. If you override either of these    * methods, you may wish to override {@link #equals(Object)} to forward to    * this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link    * #getKey()} and {@link #getValue()}. If you override either of these    * methods, you may wish to override {@link #equals(Object)} to forward to    * this implementation.    *    * @since Guava release 07    */
 DECL|method|standardEquals (@ullable Object object)
 annotation|@
 name|Beta
@@ -309,7 +309,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #hashCode()} in terms of {@link #getKey()}    * and {@link #getValue()}. If you override either of these methods, you may    * wish to override {@link #hashCode()} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #hashCode()} in terms of {@link #getKey()}    * and {@link #getValue()}. If you override either of these methods, you may    * wish to override {@link #hashCode()} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardHashCode ()
 annotation|@
 name|Beta
@@ -362,7 +362,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #toString} in terms of {@link    * #getKey} and {@link #getValue}. If you override either of these    * methods, you may wish to override {@link #equals} to forward to this    * implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #toString} in terms of {@link    * #getKey} and {@link #getValue}. If you override either of these    * methods, you may wish to override {@link #equals} to forward to this    * implementation.    *    * @since Guava release 07    */
 DECL|method|standardToString ()
 annotation|@
 name|Beta

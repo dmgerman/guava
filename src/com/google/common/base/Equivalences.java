@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods return serializable instances.  *  * @author Bob Lee  * @author Kurt Alfred Kluever  * @author Gregory Kick  * @since 4  */
+comment|/**  * Contains static factory methods for creating {@code Equivalence} instances.  *  *<p>All methods return serializable instances.  *  * @author Bob Lee  * @author Kurt Alfred Kluever  * @author Gregory Kick  * @since Guava release 04  */
 end_comment
 
 begin_class
@@ -74,7 +74,7 @@ specifier|private
 name|Equivalences
 parameter_list|()
 block|{}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @since 8 (present null-friendly behavior)    * @since 4 (otherwise)    */
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @since Guava release 08 (present null-friendly behavior)    * @since Guava release 04 (otherwise)    */
 DECL|method|equals ()
 specifier|public
 specifier|static
@@ -238,7 +238,7 @@ return|;
 block|}
 block|}
 block|,   }
-comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code elementEquivalence}.  Null iterables are equivalent to one another.    *    * @since 9    */
+comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code elementEquivalence}.  Null iterables are equivalent to one another.    *    * @since Guava release 09    */
 annotation|@
 name|GwtCompatible
 argument_list|(

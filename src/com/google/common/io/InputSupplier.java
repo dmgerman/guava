@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A factory for readable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * A factory for readable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since Guava release 01  */
 end_comment
 
 begin_interface

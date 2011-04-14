@@ -203,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1510,7 +1510,7 @@ literal|11
 return|;
 comment|// initial capacity will be rounded up to 16
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two multisets.    * An element's count in the multiset is the smaller of its counts in the two    * backing multisets. The iteration order of the returned multiset matches the    * element set of {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 2    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two multisets.    * An element's count in the multiset is the smaller of its counts in the two    * backing multisets. The iteration order of the returned multiset matches the    * element set of {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since Guava release 02    */
 DECL|method|intersection ( final Multiset<E> multiset1, final Multiset<?> multiset2)
 specifier|public
 specifier|static

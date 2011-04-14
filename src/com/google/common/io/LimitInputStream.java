@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 1  */
+comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since Guava release 01  */
 end_comment
 
 begin_class

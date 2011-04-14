@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A set multimap which forwards all its method calls to another set multimap.  * Subclasses should override one or more methods to modify the behavior of  * the backing multimap as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kurt Alfred Kluever  * @since 3  */
+comment|/**  * A set multimap which forwards all its method calls to another set multimap.  * Subclasses should override one or more methods to modify the behavior of  * the backing multimap as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kurt Alfred Kluever  * @since Guava release 03  */
 end_comment
 
 begin_class

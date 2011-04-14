@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time  * at all.  This may be desirable to use in some unit tests.  More importantly,  * attempting to debug a call which is time-limited would be extremely annoying,  * so this gives you a time-limiter you can easily swap in for your real  * time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since 1  */
+comment|/**  * A TimeLimiter implementation which actually does not attempt to limit time  * at all.  This may be desirable to use in some unit tests.  More importantly,  * attempting to debug a call which is time-limited would be extremely annoying,  * so this gives you a time-limiter you can easily swap in for your real  * time-limiter while you're debugging.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
 begin_class

@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator which forwards all its method calls to another iterator.  * Subclasses should override one or more methods to modify the behavior of the  * backing iterator as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * An iterator which forwards all its method calls to another iterator.  * Subclasses should override one or more methods to modify the behavior of the  * backing iterator as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

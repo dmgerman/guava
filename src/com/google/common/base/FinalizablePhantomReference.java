@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Phantom reference with a {@code finalizeReferent()} method which a background thread invokes  * after the garbage collector reclaims the referent. This is a simpler alternative to using a  * {@link ReferenceQueue}.  *  *<p>Unlike a normal phantom reference, this reference will be cleared automatically.  *  * @author Bob Lee  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Phantom reference with a {@code finalizeReferent()} method which a background thread invokes  * after the garbage collector reclaims the referent. This is a simpler alternative to using a  * {@link ReferenceQueue}.  *  *<p>Unlike a normal phantom reference, this reference will be cleared automatically.  *  * @author Bob Lee  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

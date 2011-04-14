@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link InputStream} that counts the number of bytes read.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * An {@link InputStream} that counts the number of bytes read.  *  * @author Chris Nokleberg  * @since Guava release 01  */
 end_comment
 
 begin_class

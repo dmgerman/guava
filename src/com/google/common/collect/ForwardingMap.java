@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map which forwards all its method calls to another map. Subclasses should  * override one or more methods to modify the behavior of the backing map as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><em>Warning</em>: The methods of {@code ForwardingMap} forward  *<em>indiscriminately</em> to the methods of the delegate. For example,  * overriding {@link #put} alone<em>will not</em> change the behavior of {@link  * #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardPutAll} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link  * Objects#equal} to test equality for both keys and values. This may not be  * the desired behavior for map implementations that use non-standard notions of  * key equality, such as a {@code SortedMap} whose comparator is not consistent  * with {@code equals}.  *  *<p>The {@code standard} methods and the collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A map which forwards all its method calls to another map. Subclasses should  * override one or more methods to modify the behavior of the backing map as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><em>Warning</em>: The methods of {@code ForwardingMap} forward  *<em>indiscriminately</em> to the methods of the delegate. For example,  * overriding {@link #put} alone<em>will not</em> change the behavior of {@link  * #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardPutAll} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link  * Objects#equal} to test equality for both keys and values. This may not be  * the desired behavior for map implementations that use non-standard notions of  * key equality, such as a {@code SortedMap} whose comparator is not consistent  * with {@code equals}.  *  *<p>The {@code standard} methods and the collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -461,7 +461,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #putAll(Map)} in terms of {@link    * #put(Object, Object)}. If you override {@link #put(Object, Object)}, you    * may wish to override {@link #putAll(Map)} to forward to this    * implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #putAll(Map)} in terms of {@link    * #put(Object, Object)}. If you override {@link #put(Object, Object)}, you    * may wish to override {@link #putAll(Map)} to forward to this    * implementation.    *    * @since Guava release 07    */
 DECL|method|standardPutAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Beta
@@ -492,7 +492,7 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A sensible, albeit inefficient, definition of {@link #remove} in terms of    * the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #remove} to forward to this    * implementation.    *    *<p>Alternately, you may wish to override {@link #remove} with {@code    * keySet().remove}, assuming that approach would not lead to an infinite    * loop.    *    * @since 7    */
+comment|/**    * A sensible, albeit inefficient, definition of {@link #remove} in terms of    * the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #remove} to forward to this    * implementation.    *    *<p>Alternately, you may wish to override {@link #remove} with {@code    * keySet().remove}, assuming that approach would not lead to an infinite    * loop.    *    * @since Guava release 07    */
 DECL|method|standardRemove (@ullable Object key)
 annotation|@
 name|Beta
@@ -581,7 +581,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #clear} in terms of the {@code iterator}    * method of {@link #entrySet}. In many cases, you may wish to override    * {@link #clear} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #clear} in terms of the {@code iterator}    * method of {@link #entrySet}. In many cases, you may wish to override    * {@link #clear} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardClear ()
 annotation|@
 name|Beta
@@ -627,7 +627,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since Guava release 07    */
 DECL|method|standardKeySet ()
 annotation|@
 name|Beta
@@ -648,7 +648,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms    * of the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #containsKey} to forward to    * this implementation.    *    * @since 7    */
+comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms    * of the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #containsKey} to forward to    * this implementation.    *    * @since Guava release 07    */
 DECL|method|standardContainsKey (@ullable Object key)
 annotation|@
 name|Beta
@@ -673,7 +673,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardValues ()
 annotation|@
 name|Beta
@@ -694,7 +694,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet},    * you may wish to override {@link #containsValue} to forward to this    * implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet},    * you may wish to override {@link #containsValue} to forward to this    * implementation.    *    * @since Guava release 07    */
 DECL|method|standardContainsValue (@ullable Object value)
 annotation|@
 name|Beta
@@ -719,7 +719,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since Guava release 07    */
 DECL|method|standardEntrySet ( Supplier<Iterator<Entry<K, V>>> entryIteratorSupplier)
 annotation|@
 name|Beta
@@ -761,7 +761,7 @@ name|entryIteratorSupplier
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #isEmpty} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #isEmpty} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #isEmpty} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #isEmpty} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardIsEmpty ()
 annotation|@
 name|Beta
@@ -782,7 +782,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #equals} in terms of the {@code equals}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #equals} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #equals} in terms of the {@code equals}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #equals} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardEquals (@ullable Object object)
 annotation|@
 name|Beta
@@ -807,7 +807,7 @@ name|object
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #hashCode} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #hashCode} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #hashCode} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #hashCode} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardHashCode ()
 annotation|@
 name|Beta
@@ -826,7 +826,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #toString} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #toString} to forward to this implementation.    *    * @since 7    */
+comment|/**    * A sensible definition of {@link #toString} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #toString} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardToString ()
 annotation|@
 name|Beta

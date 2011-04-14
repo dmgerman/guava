@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since 1  */
+comment|/**  * A TimeLimiter that runs method calls in the background using an  * {@link ExecutorService}.  If the time limit expires for a given method call,  * the thread running the call will be interrupted.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
 begin_class

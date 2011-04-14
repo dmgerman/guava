@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link InputStream} that concatenates multiple substreams. At most  * one stream will be open at a time.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * An {@link InputStream} that concatenates multiple substreams. At most  * one stream will be open at a time.  *  * @author Chris Nokleberg  * @since Guava release 01  */
 end_comment
 
 begin_class

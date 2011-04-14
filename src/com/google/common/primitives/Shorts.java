@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not  * already found in either {@link Short} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since 1  */
+comment|/**  * Static utility methods pertaining to {@code short} primitives, that are not  * already found in either {@link Short} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -984,7 +984,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code short} value whose byte representation is the given 2    * bytes, in big-endian order; equivalent to {@code Shorts.fromByteArray(new    * byte[] {b1, b2})}.    *    * @since 7    */
+comment|/**    * Returns the {@code short} value whose byte representation is the given 2    * bytes, in big-endian order; equivalent to {@code Shorts.fromByteArray(new    * byte[] {b1, b2})}.    *    * @since Guava release 07    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1235,7 +1235,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code short} arrays    * lexicographically. That is, it compares, using {@link    * #compare(short, short)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [(short) 1]<    * [(short) 1, (short) 2]< [(short) 2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(short[], short[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2    */
+comment|/**    * Returns a comparator that compares two {@code short} arrays    * lexicographically. That is, it compares, using {@link    * #compare(short, short)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [(short) 1]<    * [(short) 1, (short) 2]< [(short) 2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(short[], short[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since Guava release 02    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

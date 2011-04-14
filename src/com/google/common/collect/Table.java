@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection that associates an ordered pair of keys, called a row key and a  * column key, with a single value. A table may be sparse, with only a small  * fraction of row key / column key pairs possessing a corresponding value.  *  *<p>The mappings corresponding to a given row key may be viewed as a {@link  * Map} whose keys are the columns. The reverse is also available, associating a  * column with a row key / value map. Note that, in some implementations, data  * access by column key may have fewer supported operations or worse performance  * than data access by row key.  *  *<p>The methods returning collections or maps always return views of the  * underlying table. Updating the table can change the contents of those  * collections, and updating the collections will change the table.  *  *<p>All methods that modify the table are optional, and the views returned by  * the table may or may not be modifiable. When modification isn't supported,  * those methods will throw an {@link UnsupportedOperationException}.  *  * @author Jared Levy  * @param<R> the type of the table row keys  * @param<C> the type of the table column keys  * @param<V> the type of the mapped values  * @since 7  */
+comment|/**  * A collection that associates an ordered pair of keys, called a row key and a  * column key, with a single value. A table may be sparse, with only a small  * fraction of row key / column key pairs possessing a corresponding value.  *  *<p>The mappings corresponding to a given row key may be viewed as a {@link  * Map} whose keys are the columns. The reverse is also available, associating a  * column with a row key / value map. Note that, in some implementations, data  * access by column key may have fewer supported operations or worse performance  * than data access by row key.  *  *<p>The methods returning collections or maps always return views of the  * underlying table. Updating the table can change the contents of those  * collections, and updating the collections will change the table.  *  *<p>All methods that modify the table are optional, and the views returned by  * the table may or may not be modifiable. When modification isn't supported,  * those methods will throw an {@link UnsupportedOperationException}.  *  * @author Jared Levy  * @param<R> the type of the table row keys  * @param<C> the type of the table column keys  * @param<V> the type of the mapped values  * @since Guava release 07  */
 end_comment
 
 begin_interface
@@ -383,7 +383,7 @@ argument_list|>
 name|columnMap
 parameter_list|()
 function_decl|;
-comment|/**    * Row key / column key / value triplet corresponding to a mapping in a table.    *    * @since 7    */
+comment|/**    * Row key / column key / value triplet corresponding to a mapping in a table.    *    * @since Guava release 07    */
 annotation|@
 name|Beta
 DECL|interface|Cell

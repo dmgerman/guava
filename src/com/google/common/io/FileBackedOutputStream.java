@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * An {@link OutputStream} that starts buffering to a byte array, but  * switches to file buffering once the data reaches a configurable size.  *  *<p>This class is thread-safe.  *  * @author Chris Nokleberg  * @since Guava release 01  */
 end_comment
 
 begin_class

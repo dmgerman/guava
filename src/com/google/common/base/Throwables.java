@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1  */
+comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since Guava release 01  */
 end_comment
 
 begin_class

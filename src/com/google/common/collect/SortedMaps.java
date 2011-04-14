@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link SortedMap} instances.  *  * @author Louis Wasserman  * @since 8  */
+comment|/**  * Static utility methods pertaining to {@link SortedMap} instances.  *  * @author Louis Wasserman  * @since Guava release 08  */
 end_comment
 
 begin_class

@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call.  *  * @author Sven Mawson  * @since 9 (in version 1 as {@code ValueFuture})  */
+comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call.  *  * @author Sven Mawson  * @since Guava release 09 (in release 01 as {@code ValueFuture})  */
 end_comment
 
 begin_class

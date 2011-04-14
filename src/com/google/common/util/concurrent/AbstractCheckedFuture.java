@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *  * @author Sven Mawson  * @since 1  */
+comment|/**  * A delegating wrapper around a {@link ListenableFuture} that adds support for  * the {@link #checkedGet()} and {@link #checkedGet(long, TimeUnit)} methods.  *  * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class

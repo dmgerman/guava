@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#evictionListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since 7  */
+comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#evictionListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since Guava release 07  */
 end_comment
 
 begin_class
@@ -129,7 +129,7 @@ name|int
 name|initialCapacity
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since 8    */
+comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since Guava release 08    */
 annotation|@
 name|Beta
 DECL|method|maximumSize (int maximumSize)
@@ -183,7 +183,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since 8    */
+comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since Guava release 08    */
 annotation|@
 name|Beta
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)

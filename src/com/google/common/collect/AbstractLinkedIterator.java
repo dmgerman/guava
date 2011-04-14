@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  * @author Chris Povirk  * @since 8  */
+comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  * @author Chris Povirk  * @since Guava release 08  */
 end_comment
 
 begin_class

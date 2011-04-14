@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BiMap} backed by two {@link HashMap} instances. This implementation  * allows null keys and values. A {@code HashBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A {@link BiMap} backed by two {@link HashMap} instances. This implementation  * allows null keys and values. A {@code HashBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

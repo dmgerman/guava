@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @since 4  */
+comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @since Guava release 04  */
 end_comment
 
 begin_interface

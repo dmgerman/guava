@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for implementing services that can handle {@link #doStart} and  * {@link #doStop} requests, responding to them with {@link #notifyStarted()}  * and {@link #notifyStopped()} callbacks. Its subclasses must manage threads  * manually; consider {@link AbstractExecutionThreadService} if you need only a  * single execution thread.  *  * @author Jesse Wilson  * @since 1  */
+comment|/**  * Base class for implementing services that can handle {@link #doStart} and  * {@link #doStop} requests, responding to them with {@link #notifyStarted()}  * and {@link #notifyStopped()} callbacks. Its subclasses must manage threads  * manually; consider {@link AbstractExecutionThreadService} if you need only a  * single execution thread.  *  * @author Jesse Wilson  * @since Guava release 01  */
 end_comment
 
 begin_class

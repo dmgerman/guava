@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

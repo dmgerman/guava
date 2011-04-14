@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link ListMultimap} with reliable user-specified key and value  * iteration order. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableListMultimap(ListMultimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableListMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableListMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * An immutable {@link ListMultimap} with reliable user-specified key and value  * iteration order. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableListMultimap(ListMultimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableListMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableListMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -617,7 +617,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable {@code ListMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableListMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable {@code ListMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableListMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since Guava release 02 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -783,7 +783,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * {@inheritDoc}      *      * @since 8      */
+comment|/**      * {@inheritDoc}      *      * @since Guava release 08      */
 annotation|@
 name|Beta
 annotation|@
@@ -818,7 +818,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * {@inheritDoc}      *      * @since 8      */
+comment|/**      * {@inheritDoc}      *      * @since Guava release 08      */
 annotation|@
 name|Beta
 annotation|@

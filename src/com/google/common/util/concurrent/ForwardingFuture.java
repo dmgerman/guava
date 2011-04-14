@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing future as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingFuture}.  *   * @author Sven Mawson  * @since 1  */
+comment|/**  * A {@link Future} which forwards all its method calls to another future.  * Subclasses should override one or more methods to modify the behavior of  * the backing future as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can just use {@link SimpleForwardingFuture}.  *   * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -253,7 +253,7 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
-comment|/**    * A simplified version of {@link ForwardingFuture} where subclasses    * can pass in an already constructed {@link Future} as the delegate.    *     * @since 9    */
+comment|/**    * A simplified version of {@link ForwardingFuture} where subclasses    * can pass in an already constructed {@link Future} as the delegate.    *     * @since Guava release 09    */
 annotation|@
 name|Beta
 DECL|class|SimpleForwardingFuture

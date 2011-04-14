@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An extension of {@code DataInput} for reading from in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  * If any method encounters the end of the array prematurely, it throws {@link  * IllegalStateException}.  *  * @author Kevin Bourrillion  * @since 1  */
+comment|/**  * An extension of {@code DataInput} for reading from in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  * If any method encounters the end of the array prematurely, it throws {@link  * IllegalStateException}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
 begin_interface

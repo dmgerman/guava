@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *   * @author Sven Mawson  * @since 1  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *   * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class

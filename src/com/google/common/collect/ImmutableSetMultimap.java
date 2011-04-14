@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link SetMultimap} with reliable user-specified key and value  * iteration order. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableSetMultimap(SetMultimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableSetMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableSetMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Mike Ward  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * An immutable {@link SetMultimap} with reliable user-specified key and value  * iteration order. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableSetMultimap(SetMultimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableSetMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableSetMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Mike Ward  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -872,7 +872,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * A builder for creating immutable {@code SetMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableSetMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable {@code SetMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableSetMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since Guava release 02 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1121,7 +1121,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * {@inheritDoc}      *      * @since 8      */
+comment|/**      * {@inheritDoc}      *      * @since Guava release 08      */
 annotation|@
 name|Beta
 annotation|@
@@ -1167,7 +1167,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *       *<p>If this method is called, the sets returned by the {@code get()}       * method of the generated multimap and its {@link Multimap#asMap()} view      * are {@link ImmutableSortedSet} instances. However, serialization does not      * preserve that property, though it does maintain the key and value      * ordering.      *       * @since 8      */
+comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *       *<p>If this method is called, the sets returned by the {@code get()}       * method of the generated multimap and its {@link Multimap#asMap()} view      * are {@link ImmutableSortedSet} instances. However, serialization does not      * preserve that property, though it does maintain the key and value      * ordering.      *       * @since Guava release 08      */
 comment|// TODO: Make serialization behavior consistent.
 annotation|@
 name|Beta

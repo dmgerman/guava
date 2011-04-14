@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of common eviction listeners.  *  * @author Charles Fry  * @since 7  */
+comment|/**  * A collection of common eviction listeners.  *  * @author Charles Fry  * @since Guava release 07  */
 end_comment
 
 begin_class

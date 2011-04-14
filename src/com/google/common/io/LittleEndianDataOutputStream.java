@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link DataOutput} that uses little-endian byte ordering  * for writing {@code char}, {@code short}, {@code int}, {@code float}, {@code  * double}, and {@code long} values.  *<p>  *<b>Note:</b> This class intentionally violates the specification of its  * supertype {@code DataOutput}, which explicitly requires big-endian byte  * order.  *  * @author chrisn@google.com (Chris Nokleberg)  * @author kbottner@google.com (Keith Bottner)  * @since 8  */
+comment|/**  * An implementation of {@link DataOutput} that uses little-endian byte ordering  * for writing {@code char}, {@code short}, {@code int}, {@code float}, {@code  * double}, and {@code long} values.  *<p>  *<b>Note:</b> This class intentionally violates the specification of its  * supertype {@code DataOutput}, which explicitly requires big-endian byte  * order.  *  * @author chrisn@google.com (Chris Nokleberg)  * @author kbottner@google.com (Keith Bottner)  * @since Guava release 08  */
 end_comment
 
 begin_class

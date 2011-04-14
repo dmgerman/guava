@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even though these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since 1  */
+comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even though these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since Guava release 01  */
 end_comment
 
 begin_class

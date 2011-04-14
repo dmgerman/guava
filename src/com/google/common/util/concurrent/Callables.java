@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to the {@link Callable} interface.  *  * @author Isaac Shum  * @since 1  */
+comment|/**  * Static utility methods pertaining to the {@link Callable} interface.  *  * @author Isaac Shum  * @since Guava release 01  */
 end_comment
 
 begin_class

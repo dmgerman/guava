@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since 9  */
+comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since Guava release 09  */
 end_comment
 
 begin_interface

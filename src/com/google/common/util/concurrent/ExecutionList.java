@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A list of ({@code Runnable}, {@code Executor}) pairs that guarantees  * that every {@code Runnable} that is added using the add method will be  * executed in its associated {@code Executor} after {@link #run()} is called.  * {@code Runnable}s added after {@code run} is called are still guaranteed to  * execute.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1  */
+comment|/**  *<p>A list of ({@code Runnable}, {@code Executor}) pairs that guarantees  * that every {@code Runnable} that is added using the add method will be  * executed in its associated {@code Executor} after {@link #run()} is called.  * {@code Runnable}s added after {@code run} is called are still guaranteed to  * execute.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class

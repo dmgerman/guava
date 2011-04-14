@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A queue which forwards all its method calls to another queue. Subclasses  * should override one or more methods to modify the behavior of the backing  * queue as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingQueue} forward  *<b>indiscriminately</b> to the methods of the delegate. For example,  * overriding {@link #add} alone<b>will not</b> change the behavior of {@link  * #offer} which can lead to unexpected behavior. In this case, you should  * override {@code offer} as well, either providing your own implementation, or  * delegating to the provided {@code standardOffer} method.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even  * when all of the methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A queue which forwards all its method calls to another queue. Subclasses  * should override one or more methods to modify the behavior of the backing  * queue as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><b>Warning:</b> The methods of {@code ForwardingQueue} forward  *<b>indiscriminately</b> to the methods of the delegate. For example,  * overriding {@link #add} alone<b>will not</b> change the behavior of {@link  * #offer} which can lead to unexpected behavior. In this case, you should  * override {@code offer} as well, either providing your own implementation, or  * delegating to the provided {@code standardOffer} method.  *  *<p>The {@code standard} methods are not guaranteed to be thread-safe, even  * when all of the methods that they depend on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -193,7 +193,7 @@ name|element
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #offer} in terms of {@link #add}. If you    * override {@link #add}, you may wish to override {@link #offer} to forward    * to this implementation.    *     * @since 7    */
+comment|/**    * A sensible definition of {@link #offer} in terms of {@link #add}. If you    * override {@link #add}, you may wish to override {@link #offer} to forward    * to this implementation.    *     * @since Guava release 07    */
 DECL|method|standardOffer (E e)
 annotation|@
 name|Beta
@@ -225,7 +225,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #peek} in terms of {@link #element}. If you    * override {@link #element}, you may wish to override {@link #peek} to    * forward to this implementation.    *     * @since 7    */
+comment|/**    * A sensible definition of {@link #peek} in terms of {@link #element}. If you    * override {@link #element}, you may wish to override {@link #peek} to    * forward to this implementation.    *     * @since Guava release 07    */
 DECL|method|standardPeek ()
 annotation|@
 name|Beta
@@ -252,7 +252,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #poll} in terms of {@link #remove}. If you    * override {@link #remove}, you may wish to override {@link #poll} to forward    * to this implementation.    *     * @since 7    */
+comment|/**    * A sensible definition of {@link #poll} in terms of {@link #remove}. If you    * override {@link #remove}, you may wish to override {@link #poll} to forward    * to this implementation.    *     * @since Guava release 07    */
 DECL|method|standardPoll ()
 annotation|@
 name|Beta

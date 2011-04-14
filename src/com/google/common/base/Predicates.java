@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -732,7 +732,7 @@ name|function
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since 3    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code Pattern.compile(pattern).matcher(arg).find()}    *    * @throws java.util.regex.PatternSyntaxException if the pattern is invalid    * @since Guava release 03    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -761,7 +761,7 @@ name|pattern
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code regex.matcher(arg).find()}    *    * @since 3    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the    * {@code CharSequence} being tested contains any match for the given    * regular expression pattern. The test used is equivalent to    * {@code regex.matcher(arg).find()}    *    * @since Guava release 03    */
 annotation|@
 name|GwtIncompatible
 argument_list|(

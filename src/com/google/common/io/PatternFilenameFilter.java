@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * File name filter that only accepts files matching a regular expression.  *  * @author Apple Chow  * @since 1  */
+comment|/**  * File name filter that only accepts files matching a regular expression.  *  * @author Apple Chow  * @since Guava release 01  */
 end_comment
 
 begin_class

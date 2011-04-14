@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 1  */
+comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since Guava release 01  */
 end_comment
 
 begin_class

@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException}.  *  * @author Kevin Bourrillion  * @since 1  */
+comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
 begin_class

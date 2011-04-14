@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @author Chris Nokleberg  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -206,7 +206,7 @@ name|isRunning
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible default implementation of {@link #startAndWait()}, in terms of    * {@link #start}. If you override {@link #start}, you may wish to override    * {@link #startAndWait()} to forward to this implementation.    * @since 9    */
+comment|/**    * A sensible default implementation of {@link #startAndWait()}, in terms of    * {@link #start}. If you override {@link #start}, you may wish to override    * {@link #startAndWait()} to forward to this implementation.    * @since Guava release 09    */
 DECL|method|standardStartAndWait ()
 specifier|protected
 name|State
@@ -247,7 +247,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * A sensible default implementation of {@link #stopAndWait()}, in terms of    * {@link #stop}. If you override {@link #stop}, you may wish to override    * {@link #stopAndWait()} to forward to this implementation.    * @since 9    */
+comment|/**    * A sensible default implementation of {@link #stopAndWait()}, in terms of    * {@link #stop}. If you override {@link #stop}, you may wish to override    * {@link #stopAndWait()} to forward to this implementation.    * @since Guava release 09    */
 DECL|method|standardStopAndWait ()
 specifier|protected
 name|State

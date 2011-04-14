@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A future which forwards all its method calls to another future. Subclasses  * should override one or more methods to modify the behavior of the backing   * future as desired per the<a href=  * "http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can simply extend {@link SimpleForwardingCheckedFuture}.  *   * @param<V> The result type returned by this Future's {@code get} method  * @param<X> The type of the Exception thrown by the Future's   *            {@code checkedGet} method  *  * @author azana@google.com (Anthony Zana)  * @since 9  */
+comment|/**  * A future which forwards all its method calls to another future. Subclasses  * should override one or more methods to modify the behavior of the backing   * future as desired per the<a href=  * "http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can simply extend {@link SimpleForwardingCheckedFuture}.  *   * @param<V> The result type returned by this Future's {@code get} method  * @param<X> The type of the Exception thrown by the Future's   *            {@code checkedGet} method  *  * @author azana@google.com (Anthony Zana)  * @since Guava release 09  */
 end_comment
 
 begin_class
@@ -165,7 +165,7 @@ name|delegate
 parameter_list|()
 function_decl|;
 comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
-comment|/**    * A simplified version of {@link ForwardingCheckedFuture} where subclasses    * can pass in an already constructed {@link CheckedFuture} as the delegate.    *     * @since 9    */
+comment|/**    * A simplified version of {@link ForwardingCheckedFuture} where subclasses    * can pass in an already constructed {@link CheckedFuture} as the delegate.    *     * @since Guava release 09    */
 annotation|@
 name|Beta
 DECL|class|SimpleForwardingCheckedFuture

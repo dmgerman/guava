@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map.  * See also {@link ImmutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map.  * See also {@link ImmutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

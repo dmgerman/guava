@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterables  * produced in this class are<i>lazy</i>, which means that their iterators  * only advance the backing iteration when absolutely necessary.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2 (imported from Google Collections Library)  */
+comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterables  * produced in this class are<i>lazy</i>, which means that their iterators  * only advance the backing iteration when absolutely necessary.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -596,7 +596,7 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2    */
+comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since Guava release 02    */
 DECL|method|removeIf ( Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2163,7 +2163,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found.    *    * @since 7    */
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found.    *    * @since Guava release 07    */
 DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2209,7 +2209,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} is {@code true} or    * {@code -1} if there is no such index.    *    * @since 2    */
+comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} is {@code true} or    * {@code -1} if there is no such index.    *    * @since Guava release 02    */
 DECL|method|indexOf ( Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2464,7 +2464,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns the element at the specified position in an iterable or a default    * value otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is    *     greater than or equal to the size of the iterable    * @return the element at the specified position in {@code iterable} or    *     {@code defaultValue} if {@code iterable} contains fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4    */
+comment|/**    * Returns the element at the specified position in an iterable or a default    * value otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is    *     greater than or equal to the size of the iterable    * @return the element at the specified position in {@code iterable} or    *     {@code defaultValue} if {@code iterable} contains fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since Guava release 04    */
 DECL|method|get (Iterable<T> iterable, int position, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2521,7 +2521,7 @@ name|defaultValue
 return|;
 block|}
 block|}
-comment|/**    * Returns the first element in {@code iterable} or {@code defaultValue} if    * the iterable is empty.  The {@link Iterators} analog to this method is    * {@link Iterators#getNext}.    *    * @param defaultValue the default value to return if the iterable is empty    * @return the first element of {@code iterable} or the default value    * @since 7    */
+comment|/**    * Returns the first element in {@code iterable} or {@code defaultValue} if    * the iterable is empty.  The {@link Iterators} analog to this method is    * {@link Iterators#getNext}.    *    * @param defaultValue the default value to return if the iterable is empty    * @return the first element of {@code iterable} or the default value    * @since Guava release 07    */
 DECL|method|getFirst (Iterable<T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2658,7 +2658,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if    * the iterable is empty.    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3    */
+comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if    * the iterable is empty.    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since Guava release 03    */
 DECL|method|getLast (Iterable<T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2815,7 +2815,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of {@code iterable} that skips its first    * {@code numberToSkip} elements. If {@code iterable} contains fewer than    * {@code numberToSkip} elements, the returned iterable skips all of its    * elements.    *    *<p>Modifications to the underlying {@link Iterable} before a call to    * {@code iterator()} are reflected in the returned iterator. That is, the    * iterator skips the first {@code numberToSkip} elements that exist when the    * {@code Iterator} is created, not when {@code skip()} is called.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * iterator of the underlying iterable supports it. Note that it is    *<i>not</i> possible to delete the last skipped element by immediately    * calling {@code remove()} on that iterator, as the {@code Iterator}    * contract states that a call to {@code remove()} before a call to    * {@code next()} will throw an {@link IllegalStateException}.    *    * @since 3    */
+comment|/**    * Returns a view of {@code iterable} that skips its first    * {@code numberToSkip} elements. If {@code iterable} contains fewer than    * {@code numberToSkip} elements, the returned iterable skips all of its    * elements.    *    *<p>Modifications to the underlying {@link Iterable} before a call to    * {@code iterator()} are reflected in the returned iterator. That is, the    * iterator skips the first {@code numberToSkip} elements that exist when the    * {@code Iterator} is created, not when {@code skip()} is called.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * iterator of the underlying iterable supports it. Note that it is    *<i>not</i> possible to delete the last skipped element by immediately    * calling {@code remove()} on that iterator, as the {@code Iterator}    * contract states that a call to {@code remove()} before a call to    * {@code next()} will throw an {@link IllegalStateException}.    *    * @since Guava release 03    */
 DECL|method|skip (final Iterable<T> iterable, final int numberToSkip)
 specifier|public
 specifier|static
@@ -3066,7 +3066,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterator will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3    */
+comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterator will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since Guava release 03    */
 DECL|method|limit ( final Iterable<T> iterable, final int limitSize)
 specifier|public
 specifier|static
@@ -3140,7 +3140,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of the supplied iterable that wraps each generated    * {@link Iterator} through {@link Iterators#consumingIterator(Iterator)}.    *    *<p>Note: If {@code iterable} is a {@link Queue}, the returned iterable will    * get entries from {@link Queue#remove()} since {@link Queue}'s iteration    * order is undefined.  Calling {@link Iterator#hasNext()} on a generated    * iterator from the returned iterable may cause an item to be immediately    * dequeued for return on a subsequent call to {@link Iterator#next()}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator    *     through {@link Iterators#consumingIterator(Iterator)}; for queues,    *     an iterable that generates iterators that return and consume the    *     queue's elements in queue order    *    * @see Iterators#consumingIterator(Iterator)    * @since 2    */
+comment|/**    * Returns a view of the supplied iterable that wraps each generated    * {@link Iterator} through {@link Iterators#consumingIterator(Iterator)}.    *    *<p>Note: If {@code iterable} is a {@link Queue}, the returned iterable will    * get entries from {@link Queue#remove()} since {@link Queue}'s iteration    * order is undefined.  Calling {@link Iterator#hasNext()} on a generated    * iterator from the returned iterable may cause an item to be immediately    * dequeued for return on a subsequent call to {@link Iterator#next()}.    *    * @param iterable the iterable to wrap    * @return a view of the supplied iterable that wraps each generated iterator    *     through {@link Iterators#consumingIterator(Iterator)}; for queues,    *     an iterable that generates iterators that return and consume the    *     queue's elements in queue order    *    * @see Iterators#consumingIterator(Iterator)    * @since Guava release 02    */
 DECL|method|consumingIterable (final Iterable<T> iterable)
 specifier|public
 specifier|static

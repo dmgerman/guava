@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static methods pertaining to instances of {@link Interner}.  *  * @author Kevin Bourrillion  * @since 3  */
+comment|/**  * Contains static methods pertaining to instances of {@link Interner}.  *  * @author Kevin Bourrillion  * @since Guava release 03  */
 end_comment
 
 begin_class
@@ -647,7 +647,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a function that delegates to the {@link Interner#intern} method of    * the given interner.    *    * @since 8    */
+comment|/**    * Returns a function that delegates to the {@link Interner#intern} method of    * the given interner.    *    * @since Guava release 08    */
 DECL|method|asFunction (Interner<E> interner)
 specifier|public
 specifier|static

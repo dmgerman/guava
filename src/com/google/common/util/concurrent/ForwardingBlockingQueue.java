@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BlockingQueue} which forwards all its method calls to another  * {@link BlockingQueue}. Subclasses should override one or more methods to  * modify the behavior of the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Raimundo Mirisola  *  * @param<E> the type of elements held in this collection  * @since 4  */
+comment|/**  * A {@link BlockingQueue} which forwards all its method calls to another  * {@link BlockingQueue}. Subclasses should override one or more methods to  * modify the behavior of the backing collection as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Raimundo Mirisola  *  * @param<E> the type of elements held in this collection  * @since Guava release 04  */
 end_comment
 
 begin_class

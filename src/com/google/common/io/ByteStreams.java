@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 1  */
+comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since Guava release 01  */
 end_comment
 
 begin_class

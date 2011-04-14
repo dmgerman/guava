@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and  * should return {@code false} when you want to stop processing.  *  * @author Miles Barr  * @since 1  */
+comment|/**  * A callback to be used with the streaming {@code readLines} methods.  *  *<p>{@link #processLine} will be called for each line that is read, and  * should return {@code false} when you want to stop processing.  *  * @author Miles Barr  * @since Guava release 01  */
 end_comment
 
 begin_interface

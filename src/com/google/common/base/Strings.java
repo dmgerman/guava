@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code String} or {@code CharSequence}  * instances.  *  * @author Kevin Bourrillion  * @since 3  */
+comment|/**  * Static utility methods pertaining to {@code String} or {@code CharSequence}  * instances.  *  * @author Kevin Bourrillion  * @since Guava release 03  */
 end_comment
 
 begin_class
