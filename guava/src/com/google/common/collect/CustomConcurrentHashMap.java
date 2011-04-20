@@ -483,6 +483,15 @@ operator|<<
 literal|16
 decl_stmt|;
 comment|// slightly conservative
+comment|/**    * Number of (unsynchronized) retries in the containsValue method.    */
+DECL|field|CONTAINS_VALUE_RETRIES
+specifier|static
+specifier|final
+name|int
+name|CONTAINS_VALUE_RETRIES
+init|=
+literal|3
+decl_stmt|;
 comment|/**    * Number of cache access operations that can be buffered per segment before the cache's recency    * ordering information is updated. This is used to avoid lock contention by recording a memento    * of reads and delaying a lock acquisition until the threshold is crossed or a mutation occurs.    *    *<p>This must be a (2^n)-1 as it is used as a mask.    */
 DECL|field|DRAIN_THRESHOLD
 specifier|static
@@ -10012,6 +10021,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|VisibleForTesting
 DECL|method|containsValue (Object value)
 name|boolean
 name|containsValue
@@ -10277,6 +10288,9 @@ name|entryValue
 argument_list|)
 condition|)
 block|{
+operator|++
+name|modCount
+expr_stmt|;
 name|setValue
 argument_list|(
 name|e
@@ -10435,6 +10449,9 @@ return|return
 literal|null
 return|;
 block|}
+operator|++
+name|modCount
+expr_stmt|;
 name|setValue
 argument_list|(
 name|e
@@ -10705,6 +10722,9 @@ name|entryValue
 return|;
 block|}
 comment|// else clobber, don't adjust count
+operator|++
+name|modCount
+expr_stmt|;
 name|setValue
 argument_list|(
 name|e
@@ -14711,7 +14731,7 @@ name|this
 operator|.
 name|segments
 decl_stmt|;
-comment|/*      * We keep track of per-segment modCounts to avoid ABA problems in which an element in one      * segment was added and in another removed during traversal, in which case the table was never      * actually empty at any point. Note the similar use of modCounts in the size() and      * containsValue() methods, which are the only other methods also susceptible to ABA problems.      */
+comment|/*      * We keep track of per-segment modCounts to avoid ABA problems in which an element in one      * segment was added and in another removed during traversal, in which case the table was never      * actually empty at any point.      */
 name|int
 index|[]
 name|mc
@@ -15015,12 +15035,18 @@ name|Object
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): document why we choose to throw over returning false?
 name|checkNotNull
 argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+comment|// as does ConcurrentHashMap
+comment|// This implementation is patterned after ConcurrentHashMap, but without the locking. The only
+comment|// way for it to return a false negative would be for the target value to jump around in the map
+comment|// such that none of the subsequent iterations observed it, despite the fact that at every point
+comment|// in time it was present somewhere int the map. This becomes increasingly unlikely as
+comment|// CONTAINS_VALUE_RETRIES increases, though without locking it is theoretically possible.
+specifier|final
 name|Segment
 argument_list|<
 name|K
@@ -15034,6 +15060,12 @@ name|this
 operator|.
 name|segments
 decl_stmt|;
+name|int
+name|last
+init|=
+operator|-
+literal|1
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -15043,12 +15075,28 @@ literal|0
 init|;
 name|i
 operator|<
-name|segments
-operator|.
-name|length
+name|CONTAINS_VALUE_RETRIES
 condition|;
-operator|++
 name|i
+operator|++
+control|)
+block|{
+name|int
+name|sum
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|segment
+range|:
+name|segments
 control|)
 block|{
 comment|// ensure visibility of most recent completed write
@@ -15064,24 +15112,96 @@ argument_list|)
 name|int
 name|c
 init|=
-name|segments
-index|[
-name|i
-index|]
+name|segment
 operator|.
 name|count
 decl_stmt|;
 comment|// read-volatile
+name|AtomicReferenceArray
+argument_list|<
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+name|table
+init|=
+name|segment
+operator|.
+name|table
+decl_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|0
+init|;
+name|j
+operator|<
+name|table
+operator|.
+name|length
+argument_list|()
+condition|;
+name|j
+operator|++
+control|)
+block|{
+for|for
+control|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|e
+init|=
+name|table
+operator|.
+name|get
+argument_list|(
+name|j
+argument_list|)
+init|;
+name|e
+operator|!=
+literal|null
+condition|;
+name|e
+operator|=
+name|e
+operator|.
+name|getNext
+argument_list|()
+control|)
+block|{
+name|V
+name|v
+init|=
+name|segment
+operator|.
+name|getLiveValue
+argument_list|(
+name|e
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
-name|segments
-index|[
-name|i
-index|]
+name|v
+operator|!=
+literal|null
+operator|&&
+name|valueEquivalence
 operator|.
-name|containsValue
+name|equivalent
 argument_list|(
 name|value
+argument_list|,
+name|v
 argument_list|)
 condition|)
 block|{
@@ -15089,6 +15209,28 @@ return|return
 literal|true
 return|;
 block|}
+block|}
+block|}
+name|sum
+operator|+=
+name|segment
+operator|.
+name|modCount
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|sum
+operator|==
+name|last
+condition|)
+block|{
+break|break;
+block|}
+name|last
+operator|=
+name|sum
+expr_stmt|;
 block|}
 return|return
 literal|false
