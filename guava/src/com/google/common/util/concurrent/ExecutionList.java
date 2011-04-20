@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A list of ({@code Runnable}, {@code Executor}) pairs that guarantees  * that every {@code Runnable} that is added using the add method will be  * executed in its associated {@code Executor} after {@link #run()} is called.  * {@code Runnable}s added after {@code run} is called are still guaranteed to  * execute.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since Guava release 01  */
+comment|/**  *<p>A list of ({@code Runnable}, {@code Executor}) pairs that guarantees that  * every {@code Runnable} that is added using the {@link #add} method will be  * executed in its associated {@code Executor} after {@link #run()} is called.  * Any {@code Runnable} added after the call to {@code run} is still guaranteed  * to execute. There is no guarantee that listeners will be executed in the  * order that they are added.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -118,8 +118,6 @@ specifier|public
 specifier|final
 class|class
 name|ExecutionList
-implements|implements
-name|Runnable
 block|{
 comment|// Logger to log exceptions caught when running runnables.
 DECL|field|log
@@ -165,6 +163,12 @@ name|executed
 init|=
 literal|false
 decl_stmt|;
+comment|/** Creates a new, empty {@link ExecutionList}. */
+DECL|method|ExecutionList ()
+specifier|public
+name|ExecutionList
+parameter_list|()
+block|{   }
 comment|/**    * Add the runnable/executor pair to the list of pairs to execute.  Executes    * the pair immediately if we've already started execution.    */
 DECL|method|add (Runnable runnable, Executor executor)
 specifier|public
@@ -259,8 +263,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Runs this execution list, executing all pairs in the order they were    * added.  Pairs added after this method has started executing the list will    * be executed immediately.    */
-annotation|@
-name|Override
 DECL|method|run ()
 specifier|public
 name|void
