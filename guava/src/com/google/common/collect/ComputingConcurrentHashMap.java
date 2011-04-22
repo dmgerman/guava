@@ -426,6 +426,8 @@ name|int
 name|hash
 parameter_list|)
 block|{
+try|try
+block|{
 name|outer
 label|:
 while|while
@@ -873,9 +875,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|postReadCleanup
-argument_list|()
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -915,6 +914,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+block|}
+finally|finally
+block|{
+name|postReadCleanup
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
