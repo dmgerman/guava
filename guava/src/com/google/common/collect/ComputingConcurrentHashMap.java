@@ -78,22 +78,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMaker
-operator|.
-name|Cache
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -171,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adds computing functionality to {@link CustomConcurrentHashMap}.  *  * @author Bob Lee  */
+comment|/**  * Adds computing functionality to {@link CustomConcurrentHashMap}.  *  * @author Bob Lee  * @author Charles Fry  */
 end_comment
 
 begin_class
@@ -185,13 +169,6 @@ name|V
 parameter_list|>
 extends|extends
 name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-implements|implements
-name|Cache
 argument_list|<
 name|K
 argument_list|,
@@ -246,23 +223,6 @@ argument_list|(
 name|computingFunction
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|asMap ()
-specifier|public
-name|ConcurrentMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|asMap
-parameter_list|()
-block|{
-return|return
-name|this
-return|;
 block|}
 annotation|@
 name|Override
@@ -331,12 +291,9 @@ name|hash
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|apply (K key)
-specifier|public
+DECL|method|compute (K key)
 name|V
-name|apply
+name|compute
 parameter_list|(
 name|K
 name|key
@@ -472,6 +429,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// TODO(user): recordHit
 name|recordRead
 argument_list|(
 name|e
@@ -647,6 +605,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|// TODO(user): recordHit
 return|return
 name|value
 return|;
@@ -790,13 +749,6 @@ name|hash
 argument_list|)
 expr_stmt|;
 block|}
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|,
-literal|"compute() returned null unexpectedly"
-argument_list|)
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -844,6 +796,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|// TODO(user): recordMiss
 return|return
 name|value
 return|;
@@ -945,127 +898,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Used to provide null pointer exceptions to other threads. */
-DECL|class|NullPointerExceptionReference
-specifier|private
-specifier|static
-class|class
-name|NullPointerExceptionReference
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-implements|implements
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-block|{
-DECL|field|message
-specifier|final
-name|String
-name|message
-decl_stmt|;
-DECL|method|NullPointerExceptionReference (String message)
-name|NullPointerExceptionReference
-parameter_list|(
-name|String
-name|message
-parameter_list|)
-block|{
-name|this
-operator|.
-name|message
-operator|=
-name|message
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|get ()
-specifier|public
-name|V
-name|get
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
-specifier|public
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|copyFor
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-return|return
-name|this
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|isComputingReference ()
-specifier|public
-name|boolean
-name|isComputingReference
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|waitForValue ()
-specifier|public
-name|V
-name|waitForValue
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-name|message
-argument_list|)
-throw|;
-block|}
-annotation|@
-name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|clear ()
-specifier|public
-name|void
-name|clear
-parameter_list|()
-block|{}
-block|}
-comment|/** Used to provide computation exceptions to other threads. */
+comment|/**    * Used to provide computation exceptions to other threads.    */
 DECL|class|ComputationExceptionReference
 specifier|private
 specifier|static
@@ -1178,14 +1011,22 @@ parameter_list|()
 block|{}
 annotation|@
 name|Override
-DECL|method|clear ()
+DECL|method|clear (ValueReference<K, V> newValue)
 specifier|public
 name|void
 name|clear
-parameter_list|()
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newValue
+parameter_list|)
 block|{}
 block|}
-comment|/** Used to provide computation result to other threads. */
+comment|/**    * Used to provide computation result to other threads.    */
 DECL|class|ComputedReference
 specifier|private
 specifier|static
@@ -1297,11 +1138,19 @@ parameter_list|()
 block|{}
 annotation|@
 name|Override
-DECL|method|clear ()
+DECL|method|clear (ValueReference<K, V> newValue)
 specifier|public
 name|void
 name|clear
-parameter_list|()
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newValue
+parameter_list|)
 block|{}
 block|}
 DECL|class|ComputingValueReference
@@ -1466,26 +1315,25 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|clear ()
+DECL|method|clear (ValueReference<K, V> newValue)
 specifier|public
 name|void
 name|clear
-parameter_list|()
-block|{
-comment|// The pending computation was clobbered by a manual write. Unblock all
-comment|// pending gets, and have them return the new value.
-name|setValueReference
-argument_list|(
-operator|new
-name|ComputedReference
+parameter_list|(
+name|ValueReference
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
+name|newValue
+parameter_list|)
+block|{
+comment|// The pending computation was clobbered by a manual write. Unblock all
+comment|// pending gets, and have them return the new value.
+name|setValueReference
 argument_list|(
-literal|null
-argument_list|)
+name|newValue
 argument_list|)
 expr_stmt|;
 comment|// TODO(user): could also cancel computation if we had a thread handle
@@ -1583,49 +1431,6 @@ name|t
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|value
-operator|==
-literal|null
-condition|)
-block|{
-name|String
-name|message
-init|=
-name|map
-operator|.
-name|computingFunction
-operator|+
-literal|" returned null for key "
-operator|+
-name|key
-operator|+
-literal|"."
-decl_stmt|;
-name|setValueReference
-argument_list|(
-operator|new
-name|NullPointerExceptionReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|message
-argument_list|)
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|(
-name|message
-argument_list|)
-throw|;
-block|}
-comment|// Call setValueReference first to avoid put clearing us.
 name|setValueReference
 argument_list|(
 operator|new
@@ -1640,6 +1445,16 @@ name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Call setValueReference first to avoid put clearing us.
+comment|// TODO(user): recordMiss
+comment|// TODO(user): recordCompute
 comment|// putIfAbsent
 name|map
 operator|.
@@ -1659,6 +1474,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|value
 return|;
@@ -1699,7 +1515,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/* ---------------- Serialization Support -------------- */
+comment|// Serialization Support
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1779,16 +1595,6 @@ extends|extends
 name|V
 argument_list|>
 name|computingFunction
-decl_stmt|;
-DECL|field|cache
-specifier|transient
-name|Cache
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|cache
 decl_stmt|;
 DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
@@ -1939,21 +1745,14 @@ argument_list|(
 name|in
 argument_list|)
 decl_stmt|;
-name|cache
+name|delegate
 operator|=
 name|mapMaker
 operator|.
-name|makeCache
+name|makeComputingMap
 argument_list|(
 name|computingFunction
 argument_list|)
-expr_stmt|;
-name|delegate
-operator|=
-name|cache
-operator|.
-name|asMap
-argument_list|()
 expr_stmt|;
 name|readEntries
 argument_list|(
@@ -1967,42 +1766,7 @@ name|readResolve
 parameter_list|()
 block|{
 return|return
-name|cache
-return|;
-block|}
-DECL|method|asMap ()
-specifier|public
-name|ConcurrentMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|asMap
-parameter_list|()
-block|{
-return|return
 name|delegate
-return|;
-block|}
-DECL|method|apply (@ullable K from)
-specifier|public
-name|V
-name|apply
-parameter_list|(
-annotation|@
-name|Nullable
-name|K
-name|from
-parameter_list|)
-block|{
-return|return
-name|cache
-operator|.
-name|apply
-argument_list|(
-name|from
-argument_list|)
 return|;
 block|}
 DECL|field|serialVersionUID

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Wraps an exception that occurred during a computation in a different thread.  *  * @author Bob Lee  */
+comment|/**  * Wraps an exception that occurred during a computation in a different thread.  *  * @author Bob Lee  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

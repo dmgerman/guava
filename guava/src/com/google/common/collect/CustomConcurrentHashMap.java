@@ -439,7 +439,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Bob Lee  * @author Doug Lea ({@code ConcurrentHashMap})  */
+comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Bob Lee  * @author Charles Fry  * @author Doug Lea ({@code ConcurrentHashMap})  */
 end_comment
 
 begin_class
@@ -469,7 +469,7 @@ implements|,
 name|Serializable
 block|{
 comment|/*    * The basic strategy is to subdivide the table among Segments, each of which itself is a    * concurrently readable hash table. The map supports non-blocking reads and concurrent writes    * across different segments.    *    * If a maximum size is specified, a best-effort bounding is performed per segment, using a    * page-replacement algorithm to determine which entries to evict when the capacity has been    * exceeded.    *    * The page replacement algorithm's data structures are kept casually consistent with the map. The    * ordering of writes to a segment is sequentially consistent. An update to the map and recording    * of reads may not be immediately reflected on the algorithm's data structures. These structures    * are guarded by a lock and operations are applied in batches to avoid lock contention. The    * penalty of applying the batches is spread across threads so that the amortized cost is slightly    * higher than performing just the operation without enforcing the capacity constraint.    *    * This implementation uses a per-segment queue to record a memento of the additions, removals,    * and accesses that were performed on the map. The queue is drained on writes and when it exceeds    * its capacity threshold.    *    * The Least Recently Used page replacement algorithm was chosen due to its simplicity, high hit    * rate, and ability to be implemented with O(1) time complexity. The initial LRU implementation    * operates per-segment rather than globally for increased implementation simplicity. We expect    * the cache hit rate to be similar to that of a global LRU algorithm.    */
-comment|/* ---------------- Constants -------------- */
+comment|// Constants
 comment|/**    * The maximum capacity, used if a higher value is implicitly specified by either of the    * constructors with arguments. MUST be a power of two<= 1<<30 to ensure that entries are    * indexable using ints.    */
 DECL|field|MAXIMUM_CAPACITY
 specifier|static
@@ -493,7 +493,7 @@ operator|<<
 literal|16
 decl_stmt|;
 comment|// slightly conservative
-comment|/**    * Number of (unsynchronized) retries in the containsValue method.    */
+comment|/** Number of (unsynchronized) retries in the containsValue method. */
 DECL|field|CONTAINS_VALUE_RETRIES
 specifier|static
 specifier|final
@@ -520,7 +520,7 @@ name|CLEANUP_MAX
 init|=
 literal|16
 decl_stmt|;
-comment|/* ---------------- Fields -------------- */
+comment|// Fields
 comment|/**    * Mask value for indexing into segments. The upper bits of a key's hash code are used to choose    * the segment.    */
 DECL|field|segmentMask
 specifier|final
@@ -3088,7 +3088,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** A reference to a value. */
+comment|/**    * A reference to a value.    */
 DECL|interface|ValueReference
 interface|interface
 name|ValueReference
@@ -3104,7 +3104,7 @@ name|V
 name|get
 parameter_list|()
 function_decl|;
-comment|/** Creates a copy of this reference for the given entry. */
+comment|/**      * Creates a copy of this reference for the given entry.      */
 DECL|method|copyFor (ReferenceEntry<K, V> entry)
 name|ValueReference
 argument_list|<
@@ -3131,11 +3131,21 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 function_decl|;
-comment|/**      * Clears this reference object. This intentionally mimics      * {@link java.lang.ref.Reference#clear()}, and indeed is implemented by {@code Reference}      * subclasses for weak and soft values.      */
-DECL|method|clear ()
+comment|/**      * Clears this reference object.      *      * @param newValue the new value reference which will replace this one; this is only used during      *     computation to immediately notify blocked threads of the new value      */
+DECL|method|clear (@ullable ValueReference<K, V> newValue)
 name|void
 name|clear
-parameter_list|()
+parameter_list|(
+annotation|@
+name|Nullable
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newValue
+parameter_list|)
 function_decl|;
 comment|/**      * Returns true if the value type is a computing reference (regardless of whether or not      * computation has completed). This is necessary to distiguish between partially-collected      * entries and computing entries, which need to be cleaned up differently.      */
 DECL|method|isComputingReference ()
@@ -3240,7 +3250,15 @@ name|Override
 specifier|public
 name|void
 name|clear
-parameter_list|()
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|newValue
+parameter_list|)
 block|{}
 block|}
 decl_stmt|;
@@ -3352,7 +3370,7 @@ argument_list|>
 name|valueReference
 parameter_list|)
 function_decl|;
-comment|/** Gets the next entry in the chain. */
+comment|/**      * Gets the next entry in the chain.      */
 DECL|method|getNext ()
 name|ReferenceEntry
 argument_list|<
@@ -3363,26 +3381,26 @@ argument_list|>
 name|getNext
 parameter_list|()
 function_decl|;
-comment|/** Gets the entry's hash. */
+comment|/**      * Gets the entry's hash.      */
 DECL|method|getHash ()
 name|int
 name|getHash
 parameter_list|()
 function_decl|;
-comment|/** Gets the key for this entry. */
+comment|/**      * Gets the key for this entry.      */
 DECL|method|getKey ()
 name|K
 name|getKey
 parameter_list|()
 function_decl|;
 comment|/*      * Used by entries that are expirable. Expirable entries are maintained in a doubly-linked list.      * New entries are added at the tail of the list at write time; stale entries are expired from      * the head of the list.      */
-comment|/** Gets the entry expiration time in ns. */
+comment|/**      * Gets the entry expiration time in ns.      */
 DECL|method|getExpirationTime ()
 name|long
 name|getExpirationTime
 parameter_list|()
 function_decl|;
-comment|/** Sets the entry expiration time in ns. */
+comment|/**      * Sets the entry expiration time in ns.      */
 DECL|method|setExpirationTime (long time)
 name|void
 name|setExpirationTime
@@ -3391,7 +3409,7 @@ name|long
 name|time
 parameter_list|)
 function_decl|;
-comment|/** Gets the next entry in the recency list. */
+comment|/**      * Gets the next entry in the recency list.      */
 DECL|method|getNextExpirable ()
 name|ReferenceEntry
 argument_list|<
@@ -3402,7 +3420,7 @@ argument_list|>
 name|getNextExpirable
 parameter_list|()
 function_decl|;
-comment|/** Sets the next entry in the recency list. */
+comment|/**      * Sets the next entry in the recency list.      */
 DECL|method|setNextExpirable (ReferenceEntry<K, V> next)
 name|void
 name|setNextExpirable
@@ -3416,7 +3434,7 @@ argument_list|>
 name|next
 parameter_list|)
 function_decl|;
-comment|/** Gets the previous entry in the recency list. */
+comment|/**      * Gets the previous entry in the recency list.      */
 DECL|method|getPreviousExpirable ()
 name|ReferenceEntry
 argument_list|<
@@ -3427,7 +3445,7 @@ argument_list|>
 name|getPreviousExpirable
 parameter_list|()
 function_decl|;
-comment|/** Sets the previous entry in the recency list. */
+comment|/**      * Sets the previous entry in the recency list.      */
 DECL|method|setPreviousExpirable (ReferenceEntry<K, V> previous)
 name|void
 name|setPreviousExpirable
@@ -3442,7 +3460,7 @@ name|previous
 parameter_list|)
 function_decl|;
 comment|/*      * Implemented by entries that are evictable. Evictable entries are maintained in a      * doubly-linked list. New entries are added at the tail of the list at write time and stale      * entries are expired from the head of the list.      */
-comment|/** Gets the next entry in the recency list. */
+comment|/**      * Gets the next entry in the recency list.      */
 DECL|method|getNextEvictable ()
 name|ReferenceEntry
 argument_list|<
@@ -3453,7 +3471,7 @@ argument_list|>
 name|getNextEvictable
 parameter_list|()
 function_decl|;
-comment|/** Sets the next entry in the recency list. */
+comment|/**      * Sets the next entry in the recency list.      */
 DECL|method|setNextEvictable (ReferenceEntry<K, V> next)
 name|void
 name|setNextEvictable
@@ -3467,7 +3485,7 @@ argument_list|>
 name|next
 parameter_list|)
 function_decl|;
-comment|/** Gets the previous entry in the recency list. */
+comment|/**      * Gets the previous entry in the recency list.      */
 DECL|method|getPreviousEvictable ()
 name|ReferenceEntry
 argument_list|<
@@ -3478,7 +3496,7 @@ argument_list|>
 name|getPreviousEvictable
 parameter_list|()
 function_decl|;
-comment|/** Sets the previous entry in the recency list. */
+comment|/**      * Sets the previous entry in the recency list.      */
 DECL|method|setPreviousEvictable (ReferenceEntry<K, V> previous)
 name|void
 name|setPreviousEvictable
@@ -4670,7 +4688,9 @@ expr_stmt|;
 name|previous
 operator|.
 name|clear
-argument_list|()
+argument_list|(
+name|valueReference
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -5876,7 +5896,9 @@ expr_stmt|;
 name|previous
 operator|.
 name|clear
-argument_list|()
+argument_list|(
+name|valueReference
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -7082,7 +7104,9 @@ expr_stmt|;
 name|previous
 operator|.
 name|clear
-argument_list|()
+argument_list|(
+name|valueReference
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -7877,7 +7901,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/** References a weak value. */
+comment|/**    * References a weak value.    */
 DECL|class|WeakValueReference
 specifier|private
 specifier|static
@@ -7944,6 +7968,26 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|clear (ValueReference<K, V> newValue)
+specifier|public
+name|void
+name|clear
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newValue
+parameter_list|)
+block|{
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|notifyValueReclaimed ()
 specifier|public
 name|void
@@ -8033,7 +8077,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** References a soft value. */
+comment|/**    * References a soft value.    */
 DECL|class|SoftValueReference
 specifier|private
 specifier|static
@@ -8096,6 +8140,26 @@ operator|.
 name|entry
 operator|=
 name|entry
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|clear (ValueReference<K, V> newValue)
+specifier|public
+name|void
+name|clear
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newValue
+parameter_list|)
+block|{
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -8189,7 +8253,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** References a strong value. */
+comment|/**    * References a strong value.    */
 DECL|class|StrongValueReference
 specifier|private
 specifier|static
@@ -8299,11 +8363,19 @@ parameter_list|()
 block|{}
 annotation|@
 name|Override
-DECL|method|clear ()
+DECL|method|clear (ValueReference<K, V> newValue)
 specifier|public
 name|void
 name|clear
-parameter_list|()
+parameter_list|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newValue
+parameter_list|)
 block|{}
 block|}
 comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or    * upper bits.    *    * @param h hash code    */
@@ -8707,6 +8779,67 @@ operator|!=
 literal|null
 return|;
 block|}
+comment|/**    * Returns the segment that should be used for a key with the given hash.    *    * @param hash the hash code for the key    * @return the segment    */
+DECL|method|segmentFor (int hash)
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|segmentFor
+parameter_list|(
+name|int
+name|hash
+parameter_list|)
+block|{
+comment|// TODO(user): Lazily create segments?
+return|return
+name|segments
+index|[
+operator|(
+name|hash
+operator|>>>
+name|segmentShift
+operator|)
+operator|&
+name|segmentMask
+index|]
+return|;
+block|}
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|createSegment
+parameter_list|(
+name|int
+name|initialCapacity
+parameter_list|,
+name|int
+name|maxSegmentSize
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|,
+name|initialCapacity
+argument_list|,
+name|maxSegmentSize
+argument_list|)
+return|;
+block|}
 comment|// expiration
 comment|/**    * Returns true if the entry has expired.    */
 DECL|method|isExpired (ReferenceEntry<K, V> entry)
@@ -8918,6 +9051,7 @@ name|notifyEntry
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// TODO(user): recordEviction
 name|evictionNotificationQueue
 operator|.
 name|offer
@@ -9100,69 +9234,7 @@ name|ssize
 index|]
 return|;
 block|}
-comment|/* ---------------- Small Utilities -------------- */
-comment|/**    * Returns the segment that should be used for a key with the given hash.    *    * @param hash the hash code for the key    * @return the segment    */
-DECL|method|segmentFor (int hash)
-name|Segment
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|segmentFor
-parameter_list|(
-name|int
-name|hash
-parameter_list|)
-block|{
-comment|// TODO(user): Lazily create segments?
-return|return
-name|segments
-index|[
-operator|(
-name|hash
-operator|>>>
-name|segmentShift
-operator|)
-operator|&
-name|segmentMask
-index|]
-return|;
-block|}
-DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
-name|Segment
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|createSegment
-parameter_list|(
-name|int
-name|initialCapacity
-parameter_list|,
-name|int
-name|maxSegmentSize
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Segment
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|this
-argument_list|,
-name|initialCapacity
-argument_list|,
-name|maxSegmentSize
-argument_list|)
-return|;
-block|}
-comment|/* ---------------- Inner Classes -------------- */
+comment|// Inner Classes
 comment|/**    * Segments are specialized versions of hash tables. This subclass inherits from ReentrantLock    * opportunistically, just to simplify some locking and avoid separate construction.    */
 annotation|@
 name|SuppressWarnings
@@ -10095,7 +10167,7 @@ operator|)
 argument_list|)
 return|;
 block|}
-comment|/* Specialized implementations of map methods */
+comment|// Specialized implementations of map methods
 comment|/**      * Returns the entry for a given key. Note that the entry may not be live.      */
 DECL|method|getEntry (Object key, int hash)
 name|ReferenceEntry
@@ -14689,7 +14761,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/* ---------------- Public operations -------------- */
+comment|// ConcurrentMap methods
 annotation|@
 name|Override
 DECL|method|isEmpty ()
@@ -15662,7 +15734,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|/* ---------------- Iterator Support -------------- */
+comment|// Iterator Support
 DECL|class|HashIterator
 specifier|abstract
 class|class
@@ -16826,7 +16898,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* ---------------- Serialization Support -------------- */
+comment|// Serialization Support
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

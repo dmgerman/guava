@@ -341,7 +341,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ConcurrentMap} builder, providing any combination of these features: {@linkplain  * SoftReference soft} or {@linkplain WeakReference weak} keys, soft or weak values, size-based  * eviction, timed expiration, and on-demand computation of values. Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .softKeys()  *       .weakValues()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  * These features are all optional; {@code new MapMaker().makeMap()} returns a valid concurrent map  * that behaves exactly like a {@link ConcurrentHashMap}.  *  *<p>The returned map is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It supports all optional operations of the {@code ConcurrentMap}  * interface. It does not permit null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons (the {@link  * Object#equals(Object) equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys()} or {@link #softKeys()} was specified, the map uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues()} or {@link #softValues()} was  * specified, the map uses identity comparisons for values.  *  *<p>The returned map has<i>weakly consistent iterators</i> which may reflect some, all or none of  * the changes made to the map after the iterator was created. They do not throw {@link  * ConcurrentModificationException}, and may proceed concurrently with other operations.  *  *<p>An entry whose key or value is reclaimed by the garbage collector immediately disappears from  * the map. (If the default settings of strong keys and strong values are used, this will never  * happen.) The client can never observe a partially-reclaimed entry. Any {@link  * java.util.Map.Entry} instance retrieved from the map's {@linkplain Map#entrySet() entry set} is a  * snapshot of that entry's state at the time of retrieval; such entries do, however, support {@link  * java.util.Map.Entry#setValue}, which simply calls {@link java.util.Map#put} on the entry's key.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the deserialized maps retain all  * the configuration properties of the original map. If the map uses soft or weak references, the  * entries will be reconstructed as they were, but there is no guarantee that the entries won't be  * immediately reclaimed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} can almost always be used as a drop-in replacement  * for {@link java.util.WeakHashMap}, adding concurrency, asynchronous cleanup, identity-based  * equality for keys, and great flexibility.  *  * @author Bob Lee  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A {@link ConcurrentMap} builder, providing any combination of these features: {@linkplain  * SoftReference soft} or {@linkplain WeakReference weak} keys, soft or weak values, size-based  * eviction, timed expiration, and on-demand computation of values. Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .softKeys()  *       .weakValues()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  * These features are all optional; {@code new MapMaker().makeMap()} returns a valid concurrent map  * that behaves exactly like a {@link ConcurrentHashMap}.  *  *<p>The returned map is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It supports all optional operations of the {@code ConcurrentMap}  * interface. It does not permit null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons (the {@link  * Object#equals(Object) equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys()} or {@link #softKeys()} was specified, the map uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues()} or {@link #softValues()} was  * specified, the map uses identity comparisons for values.  *  *<p>The returned map has<i>weakly consistent iterators</i> which may reflect some, all or none of  * the changes made to the map after the iterator was created. They do not throw {@link  * ConcurrentModificationException}, and may proceed concurrently with other operations.  *  *<p>An entry whose key or value is reclaimed by the garbage collector immediately disappears from  * the map. (If the default settings of strong keys and strong values are used, this will never  * happen.) The client can never observe a partially-reclaimed entry. Any {@link  * java.util.Map.Entry} instance retrieved from the map's {@linkplain Map#entrySet() entry set} is a  * snapshot of that entry's state at the time of retrieval; such entries do, however, support {@link  * java.util.Map.Entry#setValue}, which simply calls {@link java.util.Map#put} on the entry's key.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the deserialized maps retain all  * the configuration properties of the original map. If the map uses soft or weak references, the  * entries will be reconstructed as they were, but there is no guarantee that the entries won't be  * immediately reclaimed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} can almost always be used as a drop-in replacement  * for {@link java.util.WeakHashMap}, adding concurrency, asynchronous cleanup, identity-based  * equality for keys, and great flexibility.  *  * @author Bob Lee  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1527,65 +1527,6 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a caching function, which either returns an already-computed value for a given key or    * atomically computes it using the supplied function. If another thread is currently computing    * the value for this key, simply waits for that thread to finish and returns its computed value.    * Note that the function may be executed concurrently by multiple threads, but only for distinct    * keys.    *    *<p>The {@code Map} view of the {@code Cache}'s cache is only updated when function computation    * completes. In other words, an entry isn't visible until the value's computation completes. No    * methods on the {@code Map} will ever trigger computation.    *    *<p>{@link Cache#apply} in the returned function implementation may throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the computing function returns null    *<li>{@link ComputationException} if an exception was thrown by the computing function. If that    * exception is already of type {@link ComputationException} it is propagated directly; otherwise    * it is wrapped.    *</ul>    *    *<p>If {@link Map#put} is called before a computation completes, other threads waiting on the    * computation will wake up and return the stored value. When the computation completes, its    * result will be ignored.    *    *<p>This method does not alter the state of this {@code MapMaker} instance, so it can be invoked    * again to create multiple independent maps.    *    * @param computingFunction the function used to compute new values    * @return a serializable cache having the requested features    */
-comment|// TODO(kevinb): figure out the Cache interface before making this public
-DECL|method|makeCache (Function<? super K, ? extends V> computingFunction)
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|Cache
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|makeCache
-parameter_list|(
-name|Function
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|?
-extends|extends
-name|V
-argument_list|>
-name|computingFunction
-parameter_list|)
-block|{
-return|return
-name|useNullMap
-condition|?
-operator|new
-name|NullComputingConcurrentMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|this
-argument_list|,
-name|computingFunction
-argument_list|)
-else|:
-operator|new
-name|ComputingConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|this
-argument_list|,
-name|computingFunction
-argument_list|)
-return|;
-block|}
 comment|/**    * Builds a map that supports atomic, on-demand computation of values. {@link Map#get} either    * returns an already-computed value for the given key, atomically computes it using the supplied    * function, or, if another thread is currently computing the value for this key, simply waits for    * that thread to finish and returns its computed value. Note that the function may be executed    * concurrently by multiple threads, but only for distinct keys.    *    *<p>If an entry's value has not finished computing yet, query methods besides {@code get} return    * immediately as if an entry doesn't exist. In other words, an entry isn't externally visible    * until the value's computation completes.    *    *<p>{@link Map#get} on the returned map will never return {@code null}. It may throw:    *    *<ul>    *<li>{@link NullPointerException} if the key is null or the computing function returns null    *<li>{@link ComputationException} if an exception was thrown by the computing function. If that    * exception is already of type {@link ComputationException} it is propagated directly; otherwise    * it is wrapped.    *</ul>    *    *<p><b>Note:</b> Callers of {@code get}<i>must</i> ensure that the key argument is of type    * {@code K}. The {@code get} method accepts {@code Object}, so the key type is not checked at    * compile time. Passing an object of a type other than {@code K} can result in that object being    * unsafely passed to the computing function as type {@code K}, and unsafely stored in the map.    *    *<p>If {@link Map#put} is called before a computation completes, other threads waiting on the    * computation will wake up and return the stored value.    *    *<p>This method does not alter the state of this {@code MapMaker} instance, so it can be invoked    * again to create multiple independent maps.    *    *<p>Insertion, removal, update, and access operations on the returned map safely execute    * concurrently by multiple threads. Iterators on the returned map are weakly consistent,    * returning elements reflecting the state of the map at some point at or since the creation of    * the iterator. They do not throw {@link ConcurrentModificationException}, and may proceed    * concurrently with other operations.    *    *<p>The bulk operations {@code putAll}, {@code equals}, and {@code clear} are not guaranteed to    * be performed atomically on the returned map. Additionally, {@code size} and {@code    * containsValue} are implemented as bulk read operations, and thus may fail to observe concurrent    * writes.    *    * @param computingFunction the function used to compute new values    * @return a serializable concurrent map having the requested features    */
 annotation|@
 name|Override
@@ -1617,20 +1558,22 @@ argument_list|>
 name|computingFunction
 parameter_list|)
 block|{
-name|Cache
+return|return
+name|useNullMap
+condition|?
+operator|new
+name|NullComputingConcurrentMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|cache
-init|=
-name|makeCache
 argument_list|(
+name|this
+argument_list|,
 name|computingFunction
 argument_list|)
-decl_stmt|;
-return|return
+else|:
 operator|new
 name|ComputingMapAdapter
 argument_list|<
@@ -1639,7 +1582,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|cache
+name|this
+argument_list|,
+name|computingFunction
 argument_list|)
 return|;
 block|}
@@ -1870,35 +1815,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * A function which caches the result of each application (computation). This interface does not    * specify the caching semantics, but does expose a {@code ConcurrentMap} view of cached entries.    */
-DECL|interface|Cache
-interface|interface
-name|Cache
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-extends|extends
-name|Function
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-block|{
-comment|/**      * Returns a map view of the cached entries.      */
-DECL|method|asMap ()
-name|ConcurrentMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|asMap
-parameter_list|()
-function_decl|;
-block|}
 comment|/** A map that is always empty and evicts on insertion. */
 DECL|class|NullConcurrentMap
 specifier|static
@@ -1960,6 +1876,7 @@ name|getEvictionListener
 argument_list|()
 expr_stmt|;
 block|}
+comment|// implements ConcurrentMap
 annotation|@
 name|Override
 DECL|method|containsKey (Object key)
@@ -2234,13 +2151,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-implements|implements
-name|Cache
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
 block|{
 DECL|field|serialVersionUID
 specifier|private
@@ -2300,16 +2210,30 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// unsafe, which is why Cache is preferred
+annotation|@
 name|Override
-DECL|method|apply (K key)
+DECL|method|get (Object k)
 specifier|public
 name|V
-name|apply
+name|get
 parameter_list|(
-name|K
-name|key
+name|Object
+name|k
 parameter_list|)
 block|{
+name|K
+name|key
+init|=
+operator|(
+name|K
+operator|)
+name|k
+decl_stmt|;
 name|V
 name|value
 init|=
@@ -2394,25 +2318,8 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|asMap ()
-specifier|public
-name|ConcurrentMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|asMap
-parameter_list|()
-block|{
-return|return
-name|this
-return|;
 block|}
-block|}
-comment|/**    * Overrides get() to compute on demand.    */
+comment|/**    * Overrides get() to compute on demand. Also throws an exception when null is returned from a    * computation.    */
 DECL|class|ComputingMapAdapter
 specifier|static
 class|class
@@ -2423,7 +2330,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ForwardingConcurrentMap
+name|ComputingConcurrentHashMap
 argument_list|<
 name|K
 argument_list|,
@@ -2441,54 +2348,32 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-DECL|field|cache
-specifier|final
-name|Cache
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|cache
-decl_stmt|;
-DECL|method|ComputingMapAdapter (Cache<K, V> cache)
+DECL|method|ComputingMapAdapter (MapMaker mapMaker, Function<? super K, ? extends V> computingFunction)
 name|ComputingMapAdapter
 parameter_list|(
-name|Cache
+name|MapMaker
+name|mapMaker
+parameter_list|,
+name|Function
 argument_list|<
+name|?
+super|super
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
-name|cache
+name|computingFunction
 parameter_list|)
 block|{
-name|this
-operator|.
-name|cache
-operator|=
-name|cache
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|delegate ()
-specifier|protected
-name|ConcurrentMap
-argument_list|<
-name|K
+name|super
+argument_list|(
+name|mapMaker
 argument_list|,
-name|V
-argument_list|>
-name|delegate
-parameter_list|()
-block|{
-return|return
-name|cache
-operator|.
-name|asMap
-argument_list|()
-return|;
+name|computingFunction
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|SuppressWarnings
@@ -2507,16 +2392,40 @@ name|Object
 name|key
 parameter_list|)
 block|{
-return|return
-name|cache
-operator|.
-name|apply
+name|V
+name|value
+init|=
+name|compute
 argument_list|(
 operator|(
 name|K
 operator|)
 name|key
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+name|computingFunction
+operator|+
+literal|" returned null for key "
+operator|+
+name|key
+operator|+
+literal|"."
+argument_list|)
+throw|;
+block|}
+return|return
+name|value
 return|;
 block|}
 block|}
