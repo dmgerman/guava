@@ -262,6 +262,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|LinkedList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -9221,6 +9231,12 @@ name|int
 name|maxSegmentSize
 decl_stmt|;
 comment|/**      * The cleanup queue is used to record entries which have been unset and need to be removed      * from the map. It is drained by the cleanup executor.      */
+comment|// TODO(user): switch to ArrayDeque if we ever require JDK 1.6
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
 DECL|field|cleanupQueue
 specifier|final
 name|Queue
@@ -9235,7 +9251,7 @@ argument_list|>
 name|cleanupQueue
 init|=
 operator|new
-name|ConcurrentLinkedQueue
+name|LinkedList
 argument_list|<
 name|ReferenceEntry
 argument_list|<
@@ -10267,6 +10283,8 @@ name|int
 name|hash
 parameter_list|)
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|count
@@ -10360,6 +10378,13 @@ return|return
 literal|false
 return|;
 block|}
+finally|finally
+block|{
+name|postReadCleanup
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|VisibleForTesting
 DECL|method|containsValue (Object value)
@@ -10369,6 +10394,8 @@ parameter_list|(
 name|Object
 name|value
 parameter_list|)
+block|{
+try|try
 block|{
 if|if
 condition|(
@@ -10486,6 +10513,13 @@ block|}
 return|return
 literal|false
 return|;
+block|}
+finally|finally
+block|{
+name|postReadCleanup
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|replace (K key, int hash, V oldValue, V newValue)
 name|boolean
@@ -12736,13 +12770,6 @@ argument_list|(
 name|unset
 argument_list|)
 expr_stmt|;
-name|cleanupQueue
-operator|.
-name|offer
-argument_list|(
-name|entry
-argument_list|)
-expr_stmt|;
 name|evictionQueue
 operator|.
 name|remove
@@ -12753,6 +12780,13 @@ expr_stmt|;
 name|expirationQueue
 operator|.
 name|remove
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+name|cleanupQueue
+operator|.
+name|offer
 argument_list|(
 name|entry
 argument_list|)
@@ -13291,9 +13325,12 @@ name|void
 name|runLockedCleanup
 parameter_list|()
 block|{
-name|lock
+if|if
+condition|(
+name|tryLock
 argument_list|()
-expr_stmt|;
+condition|)
+block|{
 try|try
 block|{
 name|expireEntries
@@ -13316,6 +13353,7 @@ block|{
 name|unlock
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|clear ()
@@ -15638,6 +15676,15 @@ DECL|field|nextTableIndex
 name|int
 name|nextTableIndex
 decl_stmt|;
+DECL|field|currentSegment
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|currentSegment
+decl_stmt|;
 DECL|field|currentTable
 name|AtomicReferenceArray
 argument_list|<
@@ -15721,23 +15768,17 @@ operator|>=
 literal|0
 condition|)
 block|{
-name|Segment
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|seg
-init|=
+name|currentSegment
+operator|=
 name|segments
 index|[
 name|nextSegmentIndex
 operator|--
 index|]
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|seg
+name|currentSegment
 operator|.
 name|count
 operator|!=
@@ -15746,7 +15787,7 @@ condition|)
 block|{
 name|currentTable
 operator|=
-name|seg
+name|currentSegment
 operator|.
 name|table
 expr_stmt|;
@@ -15887,6 +15928,8 @@ argument_list|>
 name|entry
 parameter_list|)
 block|{
+try|try
+block|{
 name|K
 name|key
 init|=
@@ -15949,6 +15992,15 @@ comment|// Skip partially reclaimed entry.
 return|return
 literal|false
 return|;
+block|}
+block|}
+finally|finally
+block|{
+name|currentSegment
+operator|.
+name|postReadCleanup
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|hasNext ()
