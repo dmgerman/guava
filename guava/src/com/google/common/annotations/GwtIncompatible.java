@@ -102,6 +102,10 @@ name|METHOD
 block|,
 name|ElementType
 operator|.
+name|CONSTRUCTOR
+block|,
+name|ElementType
+operator|.
 name|FIELD
 block|}
 argument_list|)
