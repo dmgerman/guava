@@ -598,9 +598,8 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    *    *<p>Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>Callers who have a future that subclasses    * {@link java.util.concurrent.FutureTask} may want to instead subclass    * {@link ListenableFutureTask}, which adds the {@link ListenableFuture}    * functionality to the standard {@code FutureTask} implementation.    */
+comment|/**    *<b>No longer accessible outside the package.</b> Prefer to create {@code    * ListenableFuture} instances with {@link SettableFuture}, {@link    * MoreExecutors#listeningDecorator(java.util.concurrent.ExecutorService)},    * {@link ListenableFutureTask}, {@link AbstractListenableFuture}, and other    * utilities over creating plain {@code Future} instances to be upgraded to    * {@code ListenableFuture} after the fact.    *    *<p>Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    */
 DECL|method|makeListenable ( Future<V> future)
-specifier|public
 specifier|static
 parameter_list|<
 name|V
