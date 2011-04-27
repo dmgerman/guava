@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|net
@@ -105,7 +119,40 @@ name|String
 name|specifier
 parameter_list|)
 block|{
-comment|// First, try to interpret the specifier as an IP address.  Note we build
+comment|// Verify that no port was specified, and strip optional brackets from
+comment|// IPv6 literals.
+specifier|final
+name|HostAndPort
+name|parsedHost
+init|=
+name|HostAndPort
+operator|.
+name|fromString
+argument_list|(
+name|specifier
+argument_list|)
+decl_stmt|;
+name|Preconditions
+operator|.
+name|checkArgument
+argument_list|(
+operator|!
+name|parsedHost
+operator|.
+name|hasPort
+argument_list|()
+argument_list|)
+expr_stmt|;
+specifier|final
+name|String
+name|host
+init|=
+name|parsedHost
+operator|.
+name|getHostText
+argument_list|()
+decl_stmt|;
+comment|// Try to interpret the specifier as an IP address.  Note we build
 comment|// the address rather than using the .is* methods because we want to
 comment|// use InetAddresses.toUriString to convert the result to a string in
 comment|// canonical form.
@@ -122,7 +169,7 @@ name|InetAddresses
 operator|.
 name|forString
 argument_list|(
-name|specifier
+name|host
 argument_list|)
 expr_stmt|;
 block|}
@@ -132,35 +179,7 @@ name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
-comment|// It is not an IPv4 or bracketless IPv6 specifier
-block|}
-if|if
-condition|(
-name|addr
-operator|==
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|addr
-operator|=
-name|InetAddresses
-operator|.
-name|forUriString
-argument_list|(
-name|specifier
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// It is not a bracketed IPv6 specifier
-block|}
+comment|// It is not an IPv4 or IPv6 literal
 block|}
 if|if
 condition|(
@@ -192,7 +211,7 @@ name|InternetDomainName
 operator|.
 name|fromLenient
 argument_list|(
-name|specifier
+name|host
 argument_list|)
 decl_stmt|;
 if|if
@@ -220,7 +239,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"Domain name does not have a recognized public suffix: "
 operator|+
-name|specifier
+name|host
 argument_list|)
 throw|;
 block|}
