@@ -32,28 +32,8 @@ name|EntryPoint
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
-comment|/**  * @author Hayward Chan  */
+comment|/**  * An empty entry point for testing GWT compatibility.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
@@ -64,72 +44,14 @@ name|TestModuleEntryPoint
 implements|implements
 name|EntryPoint
 block|{
+DECL|method|onModuleLoad ()
 annotation|@
 name|Override
-DECL|method|onModuleLoad ()
 specifier|public
 name|void
 name|onModuleLoad
 parameter_list|()
-block|{
-comment|// TODO: Auto generate this list.
-name|List
-argument_list|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-name|allClasses
-init|=
-name|Arrays
-operator|.
-expr|<
-name|Class
-argument_list|<
-name|?
-argument_list|>
-operator|>
-name|asList
-argument_list|(
-name|Booleans
-operator|.
-name|class
-argument_list|,
-name|Ints
-operator|.
-name|class
-argument_list|,
-name|Shorts
-operator|.
-name|class
-argument_list|,
-name|Chars
-operator|.
-name|class
-argument_list|,
-name|Longs
-operator|.
-name|class
-argument_list|,
-name|Floats
-operator|.
-name|class
-argument_list|,
-name|Doubles
-operator|.
-name|class
-argument_list|,
-name|Bytes
-operator|.
-name|class
-argument_list|,
-name|SignedBytes
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-block|}
+block|{   }
 block|}
 end_class
 
