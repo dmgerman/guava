@@ -110,7 +110,6 @@ comment|/*    * Override the done method to execute the execution list.    */
 annotation|@
 name|Override
 DECL|method|done ()
-specifier|protected
 name|void
 name|done
 parameter_list|()

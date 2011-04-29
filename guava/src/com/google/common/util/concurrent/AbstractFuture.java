@@ -391,7 +391,6 @@ return|;
 block|}
 comment|/*    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.  Subclasses can    * use this method to deal with any actions that should be undertaken when    * the task has completed.    */
 DECL|method|done ()
-specifier|protected
 name|void
 name|done
 parameter_list|()
