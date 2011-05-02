@@ -328,8 +328,6 @@ argument_list|(
 name|key
 argument_list|,
 name|hash
-argument_list|,
-name|computingFunction
 argument_list|)
 return|;
 block|}
@@ -494,7 +492,7 @@ name|maxSegmentSize
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|compute (K key, int hash, Function<? super K, ? extends V> computingFunction)
+DECL|method|compute (K key, int hash)
 name|V
 name|compute
 parameter_list|(
@@ -503,18 +501,6 @@ name|key
 parameter_list|,
 name|int
 name|hash
-parameter_list|,
-name|Function
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|?
-extends|extends
-name|V
-argument_list|>
-name|computingFunction
 parameter_list|)
 block|{
 try|try
@@ -655,11 +641,6 @@ argument_list|(
 name|index
 argument_list|)
 decl_stmt|;
-name|boolean
-name|createNewEntry
-init|=
-literal|true
-decl_stmt|;
 for|for
 control|(
 name|e
@@ -711,33 +692,17 @@ name|entryKey
 argument_list|)
 condition|)
 block|{
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-init|=
+if|if
+condition|(
+operator|!
 name|e
 operator|.
 name|getValueReference
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|valueReference
 operator|.
 name|isComputingReference
 argument_list|()
 condition|)
-block|{
-name|createNewEntry
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
 block|{
 comment|// never return expired entries
 name|V
@@ -765,8 +730,8 @@ return|return
 name|value
 return|;
 block|}
-comment|// immediately reuse invalid entries
-name|removeLiveEntry
+comment|// clobber invalid entries
+name|unsetLiveEntry
 argument_list|(
 name|e
 argument_list|,
@@ -779,9 +744,35 @@ block|}
 block|}
 if|if
 condition|(
-name|createNewEntry
+name|e
+operator|==
+literal|null
+operator|||
+name|isUnset
+argument_list|(
+name|e
+argument_list|)
 condition|)
 block|{
+comment|// Create a new entry.
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|computingMap
+init|=
+operator|(
+name|ComputingConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|map
+decl_stmt|;
 name|computingValueReference
 operator|=
 operator|new
@@ -792,7 +783,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|computingFunction
+name|computingMap
 argument_list|)
 expr_stmt|;
 if|if
@@ -804,7 +795,7 @@ condition|)
 block|{
 name|e
 operator|=
-name|map
+name|computingMap
 operator|.
 name|newEntry
 argument_list|(
@@ -858,9 +849,9 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// Synchronizes on the entry to allow failing fast when a recursive computation is
-comment|// detected. This is not fool-proof since the entry may be copied when the segment
-comment|// is written to.
+comment|// Synchronizes on the entry to allow failing fast when a
+comment|// recursive computation is detected. This is not fool-proof
+comment|// since the entry may be copied when the segment is written to.
 synchronized|synchronized
 init|(
 name|e
@@ -875,28 +866,6 @@ argument_list|(
 name|key
 argument_list|,
 name|hash
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|value
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// TODO(user): recordMiss
-comment|// TODO(user): recordCompute
-comment|// putIfAbsent
-name|put
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|,
-name|value
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1256,19 +1225,15 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|computingFunction
+DECL|field|map
 specifier|final
-name|Function
+name|ComputingConcurrentHashMap
 argument_list|<
-name|?
-super|super
 name|K
 argument_list|,
-name|?
-extends|extends
 name|V
 argument_list|>
-name|computingFunction
+name|map
 decl_stmt|;
 annotation|@
 name|GuardedBy
@@ -1289,28 +1254,24 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
-DECL|method|ComputingValueReference (Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingValueReference (ComputingConcurrentHashMap<K, V> map)
 specifier|public
 name|ComputingValueReference
 parameter_list|(
-name|Function
+name|ComputingConcurrentHashMap
 argument_list|<
-name|?
-super|super
 name|K
 argument_list|,
-name|?
-extends|extends
 name|V
 argument_list|>
-name|computingFunction
+name|map
 parameter_list|)
 block|{
 name|this
 operator|.
-name|computingFunction
+name|map
 operator|=
-name|computingFunction
+name|map
 expr_stmt|;
 block|}
 annotation|@
@@ -1495,6 +1456,8 @@ try|try
 block|{
 name|value
 operator|=
+name|map
+operator|.
 name|computingFunction
 operator|.
 name|apply
@@ -1574,6 +1537,36 @@ name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Call setValueReference first to avoid put clearing us.
+comment|// TODO(user): recordMiss
+comment|// TODO(user): recordCompute
+comment|// putIfAbsent
+name|map
+operator|.
+name|segmentFor
+argument_list|(
+name|hash
+argument_list|)
+operator|.
+name|put
+argument_list|(
+name|key
+argument_list|,
+name|hash
+argument_list|,
+name|value
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|value
 return|;
