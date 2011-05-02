@@ -598,7 +598,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    *<b>No longer accessible outside the package.</b> Prefer to create {@code    * ListenableFuture} instances with {@link SettableFuture}, {@link    * MoreExecutors#listeningDecorator(java.util.concurrent.ExecutorService)},    * {@link ListenableFutureTask}, {@link AbstractListenableFuture}, and other    * utilities over creating plain {@code Future} instances to be upgraded to    * {@code ListenableFuture} after the fact.    *    *<p>Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    */
+comment|/**    *<b>No longer accessible outside the package.</b> Prefer to create {@code    * ListenableFuture} instances with {@link SettableFuture}, {@link    * MoreExecutors#listeningDecorator(java.util.concurrent.ExecutorService)},    * {@link ListenableFutureTask}, {@link AbstractFuture}, and other utilities    * over creating plain {@code Future} instances to be upgraded to {@code    * ListenableFuture} after the fact.    *    *<p>Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    */
 DECL|method|makeListenable ( Future<V> future)
 specifier|static
 parameter_list|<
@@ -1637,7 +1637,7 @@ parameter_list|,
 name|O
 parameter_list|>
 extends|extends
-name|AbstractListenableFuture
+name|AbstractFuture
 argument_list|<
 name|O
 argument_list|>
@@ -2648,7 +2648,7 @@ parameter_list|<
 name|T
 parameter_list|>
 extends|extends
-name|AbstractListenableFuture
+name|AbstractFuture
 argument_list|<
 name|List
 argument_list|<

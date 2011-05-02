@@ -33,12 +33,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Legacy location of {@link AbstractFuture}. Prefer {@code AbstractFuture} in  * new code.  *  * @author Sven Mawson  * @since Guava release 01  */
+comment|/**  * Legacy location of {@link AbstractFuture}.  *  * @author Sven Mawson  * @since Guava release 01  * @deprecated Use {@link AbstractFuture}.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|class|AbstractListenableFuture
 specifier|public
 specifier|abstract

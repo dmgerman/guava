@@ -58,7 +58,7 @@ parameter_list|<
 name|V
 parameter_list|>
 extends|extends
-name|AbstractListenableFuture
+name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>

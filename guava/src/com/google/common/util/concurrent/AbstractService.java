@@ -823,7 +823,7 @@ specifier|private
 class|class
 name|Transition
 extends|extends
-name|AbstractListenableFuture
+name|AbstractFuture
 argument_list|<
 name|State
 argument_list|>
