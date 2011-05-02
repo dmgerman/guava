@@ -32,20 +32,8 @@ name|Beta
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Executor
-import|;
-end_import
-
 begin_comment
-comment|/**  *<p>An abstract base implementation of the listener support provided by  * {@link ListenableFuture}. This class uses an {@link ExecutionList} to  * guarantee that all registered listeners will be executed. Listener/Executor  * pairs are stored in the execution list and executed in the order in which  * they were added, but because of thread scheduling issues there is no  * guarantee that the JVM will execute them in order. In addition, listeners  * added after the task is complete will be executed immediately, even if some  * previously added listeners have not yet been executed.  *   *<p>This class uses the {@link AbstractFuture} class to implement the  * {@code ListenableFuture} interface and simply delegates the  * {@link #addListener(Runnable, Executor)} and {@link #done()} methods to it.  *   * @author Sven Mawson  * @since Guava release 01  */
+comment|/**  * Legacy location of {@link AbstractFuture}. Prefer {@code AbstractFuture} in  * new code.  *  * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -64,63 +52,7 @@ name|AbstractFuture
 argument_list|<
 name|V
 argument_list|>
-implements|implements
-name|ListenableFuture
-argument_list|<
-name|V
-argument_list|>
-block|{
-comment|// The execution list to hold our executors.
-DECL|field|executionList
-specifier|private
-specifier|final
-name|ExecutionList
-name|executionList
-init|=
-operator|new
-name|ExecutionList
-argument_list|()
-decl_stmt|;
-comment|/*    * Adds a listener/executor pair to execution list to execute when this task    * is completed.    */
-annotation|@
-name|Override
-DECL|method|addListener (Runnable listener, Executor exec)
-specifier|public
-name|void
-name|addListener
-parameter_list|(
-name|Runnable
-name|listener
-parameter_list|,
-name|Executor
-name|exec
-parameter_list|)
-block|{
-name|executionList
-operator|.
-name|add
-argument_list|(
-name|listener
-argument_list|,
-name|exec
-argument_list|)
-expr_stmt|;
-block|}
-comment|/*    * Override the done method to execute the execution list.    */
-annotation|@
-name|Override
-DECL|method|done ()
-name|void
-name|done
-parameter_list|()
-block|{
-name|executionList
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+block|{ }
 end_class
 
 end_unit
