@@ -3348,6 +3348,24 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|keySet ()
+annotation|@
+name|Override
+specifier|public
+name|Set
+argument_list|<
+name|K
+argument_list|>
+name|keySet
+parameter_list|()
+block|{
+return|return
+name|fromMap
+operator|.
+name|keySet
+argument_list|()
+return|;
+block|}
 DECL|field|entrySet
 name|EntrySet
 name|entrySet
