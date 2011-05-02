@@ -903,7 +903,7 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied {@code double} values, converted    * to strings as specified by {@link Double#toString(double)}, and separated    * by {@code separator}. For example, {@code join("-", 1.0, 2.0, 3.0)} returns    * the string {@code "1.0-2.0-3.0"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code double} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied {@code double} values, converted    * to strings as specified by {@link Double#toString(double)}, and separated    * by {@code separator}. For example, {@code join("-", 1.0, 2.0, 3.0)} returns    * the string {@code "1.0-2.0-3.0"}.    *    *<p>Note that {@link Double#toString(double)} formats {@code double}    * differently in GWT sometimes.  In the previous example, it returns the string    * {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code double} values, possibly empty    */
 DECL|method|join (String separator, double... array)
 specifier|public
 specifier|static
@@ -1195,6 +1195,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// checkNotNull for GWT (do not optimize).
 name|array
 index|[
 name|i
@@ -1203,10 +1204,13 @@ operator|=
 operator|(
 name|Double
 operator|)
+name|checkNotNull
+argument_list|(
 name|boxedArray
 index|[
 name|i
 index|]
+argument_list|)
 expr_stmt|;
 block|}
 return|return

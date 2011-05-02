@@ -1281,6 +1281,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// checkNotNull for GWT (do not optimize)
 name|array
 index|[
 name|i
@@ -1289,10 +1290,13 @@ operator|=
 operator|(
 name|Short
 operator|)
+name|checkNotNull
+argument_list|(
 name|boxedArray
 index|[
 name|i
 index|]
+argument_list|)
 expr_stmt|;
 block|}
 return|return

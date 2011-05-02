@@ -203,7 +203,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Long) value).hashCode()}.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Long) value).hashCode()}.    *    *<p>This method always return the value specified by {@link    * Long#hashCode()} in java, which might be different from    * {@code ((Long) value).hashCode()} in GWT because {@link Long#hashCode()}    * in GWT does not obey the JRE contract.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
 DECL|method|hashCode (long value)
 specifier|public
 specifier|static
@@ -1226,6 +1226,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// checkNotNull for GWT (do not optimize)
 name|array
 index|[
 name|i
@@ -1234,10 +1235,13 @@ operator|=
 operator|(
 name|Long
 operator|)
+name|checkNotNull
+argument_list|(
 name|boxedArray
 index|[
 name|i
 index|]
+argument_list|)
 expr_stmt|;
 block|}
 return|return
