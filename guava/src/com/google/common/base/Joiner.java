@@ -1258,6 +1258,12 @@ name|Object
 name|part
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|part
+argument_list|)
+expr_stmt|;
+comment|// checkNotNull for GWT (do not optimize).
 return|return
 operator|(
 name|part

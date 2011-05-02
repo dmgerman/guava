@@ -144,7 +144,7 @@ name|objects
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *   }}</pre>    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since Guava release 02    */
+comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *   }}</pre>    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since Guava release 02    */
 DECL|method|toStringHelper (Object self)
 specifier|public
 specifier|static
@@ -169,7 +169,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    * @param clazz the {@link Class} of the instance    * @since Guava release 07 (source-compatible since release 02)    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since Guava release 07 (source-compatible since release 02)    */
 DECL|method|toStringHelper (Class<?> clazz)
 specifier|public
 specifier|static
