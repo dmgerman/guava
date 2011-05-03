@@ -1674,8 +1674,12 @@ operator|+
 name|index
 index|]
 operator|=
+name|checkNotNull
+argument_list|(
 name|element
+argument_list|)
 expr_stmt|;
+comment|// checkNotNull for GWT (do not optimize).
 return|return
 name|oldValue
 return|;
