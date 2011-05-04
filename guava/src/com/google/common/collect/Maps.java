@@ -4422,6 +4422,35 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|method|clear ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+try|try
+block|{
+name|super
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+name|fromMap
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a key that    * doesn't satisfy the predicate, the map's {@code put()} and {@code putAll()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    */
