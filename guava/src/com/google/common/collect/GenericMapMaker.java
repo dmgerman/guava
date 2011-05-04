@@ -74,6 +74,54 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMaker
+operator|.
+name|RemovalListener
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMaker
+operator|.
+name|RemovalListener
+operator|.
+name|RemovalCause
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -97,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#evictionListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since Guava release 07  */
+comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#removalListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since Guava release 07  */
 end_comment
 
 begin_class
@@ -121,20 +169,57 @@ parameter_list|,
 name|V0
 parameter_list|>
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|enum|NullListener
+enum|enum
+name|NullListener
+implements|implements
+name|RemovalListener
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+block|{
+DECL|enumConstant|INSTANCE
+name|INSTANCE
+block|;
+annotation|@
+name|Override
+DECL|method|onRemoval (Object key, Object value, RemovalCause cause)
+specifier|public
+name|void
+name|onRemoval
+parameter_list|(
+name|Object
+name|key
+parameter_list|,
+name|Object
+name|value
+parameter_list|,
+name|RemovalCause
+name|cause
+parameter_list|)
+block|{}
+block|}
 comment|// Set by MapMaker, but sits in this class to preserve the type relationship
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
-DECL|field|evictionListener
-name|MapEvictionListener
+DECL|field|removalListener
+name|RemovalListener
 argument_list|<
 name|K0
 argument_list|,
 name|V0
 argument_list|>
-name|evictionListener
+name|removalListener
 decl_stmt|;
 comment|// No subclasses but our own
 DECL|method|GenericMapMaker ()
@@ -330,7 +415,48 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/*    * Note that MapMaker's evictionListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
+comment|/*    * Note that MapMaker's removalListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|getRemovalListener ()
+name|RemovalListener
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|getRemovalListener
+parameter_list|()
+block|{
+return|return
+name|Objects
+operator|.
+name|firstNonNull
+argument_list|(
+name|removalListener
+argument_list|,
+operator|(
+name|RemovalListener
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+operator|)
+name|NullListener
+operator|.
+name|INSTANCE
+argument_list|)
+return|;
+block|}
 comment|/**    * See {@link MapMaker#makeMap}.    */
 DECL|method|makeMap ()
 specifier|public

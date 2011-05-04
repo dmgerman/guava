@@ -78,6 +78,40 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMaker
+operator|.
+name|RemovalListener
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMaker
+operator|.
+name|RemovalListener
+operator|.
+name|RemovalCause
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -771,6 +805,10 @@ argument_list|(
 name|e
 argument_list|,
 name|hash
+argument_list|,
+name|RemovalCause
+operator|.
+name|COLLECTED
 argument_list|)
 expr_stmt|;
 block|}
@@ -1622,7 +1660,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|2
+literal|3
 decl_stmt|;
 annotation|@
 name|Override
@@ -1656,7 +1694,7 @@ name|maximumSize
 argument_list|,
 name|concurrencyLevel
 argument_list|,
-name|evictionListener
+name|removalListener
 argument_list|,
 name|this
 argument_list|,
@@ -1695,7 +1733,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, MapEvictionListener<? super K, ? super V> evictionListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -1728,7 +1766,7 @@ parameter_list|,
 name|int
 name|concurrencyLevel
 parameter_list|,
-name|MapEvictionListener
+name|RemovalListener
 argument_list|<
 name|?
 super|super
@@ -1738,7 +1776,7 @@ name|?
 super|super
 name|V
 argument_list|>
-name|evictionListener
+name|removalListener
 parameter_list|,
 name|ConcurrentMap
 argument_list|<
@@ -1779,7 +1817,7 @@ name|maximumSize
 argument_list|,
 name|concurrencyLevel
 argument_list|,
-name|evictionListener
+name|removalListener
 argument_list|,
 name|delegate
 argument_list|)
@@ -1875,7 +1913,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|2
+literal|3
 decl_stmt|;
 block|}
 block|}

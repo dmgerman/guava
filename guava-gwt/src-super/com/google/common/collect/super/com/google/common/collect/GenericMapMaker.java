@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#evictionListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since Guava release 07  */
+comment|/**  * A class exactly like {@link MapMaker}, except restricted in the types of maps it can build. This  * type is returned by {@link MapMaker#removalListener} to prevent the user from trying to build a  * map that's incompatible with the key and value types of the listener.  *  * @param<K0> the base type for all key types of maps built by this map maker  * @param<V0> the base type for all value types of maps built by this map maker  * @author Kevin Bourrillion  * @since Guava release 07  */
 end_comment
 
 begin_class
@@ -204,7 +204,7 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/*    * Note that MapMaker's evictionListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
+comment|/*    * Note that MapMaker's removalListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
 comment|/**    * See {@link MapMaker#makeMap}.    */
 DECL|method|makeMap ()
 specifier|public
