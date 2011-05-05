@@ -13749,6 +13749,9 @@ name|expireEntries
 argument_list|()
 expr_stmt|;
 comment|// calls drainRecencyQueue
+name|processPendingCleanup
+argument_list|()
+expr_stmt|;
 name|readCount
 operator|.
 name|set
