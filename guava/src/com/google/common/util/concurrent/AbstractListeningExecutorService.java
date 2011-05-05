@@ -815,9 +815,7 @@ name|TimeoutException
 name|cannotHappen
 parameter_list|)
 block|{
-assert|assert
-literal|false
-assert|;
+comment|// assert false;
 return|return
 literal|null
 return|;
