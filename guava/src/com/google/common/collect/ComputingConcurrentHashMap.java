@@ -84,6 +84,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Supplier
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|MapMaker
@@ -234,11 +248,19 @@ argument_list|>
 name|computingFunction
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity, load factor and    * concurrency level.    */
-DECL|method|ComputingConcurrentHashMap (MapMaker builder, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingConcurrentHashMap (MapMaker builder, Supplier<? extends CacheStatsCounter> statsCounterSupplier, Function<? super K, ? extends V> computingFunction)
 name|ComputingConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
+parameter_list|,
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|CacheStatsCounter
+argument_list|>
+name|statsCounterSupplier
 parameter_list|,
 name|Function
 argument_list|<
@@ -256,6 +278,8 @@ block|{
 name|super
 argument_list|(
 name|builder
+argument_list|,
+name|statsCounterSupplier
 argument_list|)
 expr_stmt|;
 name|this
@@ -270,7 +294,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize, CacheStatsCounter statsCounter)
 name|Segment
 argument_list|<
 name|K
@@ -284,6 +308,9 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
+parameter_list|,
+name|CacheStatsCounter
+name|statsCounter
 parameter_list|)
 block|{
 return|return
@@ -300,6 +327,8 @@ argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
+argument_list|,
+name|statsCounter
 argument_list|)
 return|;
 block|}
@@ -396,11 +425,19 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-DECL|method|ComputingMapAdapter (MapMaker mapMaker, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingMapAdapter (MapMaker mapMaker, Supplier<? extends CacheStatsCounter> statsCounterSupplier, Function<? super K, ? extends V> computingFunction)
 name|ComputingMapAdapter
 parameter_list|(
 name|MapMaker
 name|mapMaker
+parameter_list|,
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|CacheStatsCounter
+argument_list|>
+name|statsCounterSupplier
 parameter_list|,
 name|Function
 argument_list|<
@@ -418,6 +455,8 @@ block|{
 name|super
 argument_list|(
 name|mapMaker
+argument_list|,
+name|statsCounterSupplier
 argument_list|,
 name|computingFunction
 argument_list|)
@@ -500,7 +539,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
+DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, CacheStatsCounter statsCounter)
 name|ComputingSegment
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -516,6 +555,9 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
+parameter_list|,
+name|CacheStatsCounter
+name|statsCounter
 parameter_list|)
 block|{
 name|super
@@ -525,6 +567,8 @@ argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
+argument_list|,
+name|statsCounter
 argument_list|)
 expr_stmt|;
 block|}
@@ -597,11 +641,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// TODO(user): recordHit
 name|recordRead
 argument_list|(
 name|e
 argument_list|)
+expr_stmt|;
+name|statsCounter
+operator|.
+name|recordHit
+argument_list|()
 expr_stmt|;
 return|return
 name|value
@@ -794,7 +842,11 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): recordHit
+name|statsCounter
+operator|.
+name|recordHit
+argument_list|()
+expr_stmt|;
 return|return
 name|value
 return|;
@@ -896,6 +948,12 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|long
+name|start
+decl_stmt|;
+name|long
+name|end
+decl_stmt|;
 comment|// Synchronizes on the entry to allow failing fast when a recursive computation is
 comment|// detected. This is not fool-proof since the entry may be copied when the segment
 comment|// is written to.
@@ -904,6 +962,15 @@ init|(
 name|e
 init|)
 block|{
+name|start
+operator|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
 name|value
 operator|=
 name|computingValueReference
@@ -915,6 +982,15 @@ argument_list|,
 name|hash
 argument_list|)
 expr_stmt|;
+name|end
+operator|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -923,8 +999,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// TODO(user): recordMiss
-comment|// TODO(user): recordCompute
 comment|// putIfAbsent
 name|put
 argument_list|(
@@ -938,6 +1012,20 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+name|statsCounter
+operator|.
+name|recordMiss
+argument_list|()
+expr_stmt|;
+name|statsCounter
+operator|.
+name|recordCreate
+argument_list|(
+name|end
+operator|-
+name|start
+argument_list|)
+expr_stmt|;
 return|return
 name|value
 return|;
@@ -1002,7 +1090,11 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): recordMiss
+name|statsCounter
+operator|.
+name|recordMiss
+argument_list|()
+expr_stmt|;
 return|return
 name|value
 return|;

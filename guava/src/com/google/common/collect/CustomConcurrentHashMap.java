@@ -142,6 +142,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Supplier
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Ticker
 import|;
 end_import
@@ -545,7 +559,8 @@ name|DRAIN_THRESHOLD
 init|=
 literal|0x3F
 decl_stmt|;
-comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run. TODO(user): empirically    * optimize this    */
+comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run.    */
+comment|// TODO(user): empirically optimize this
 DECL|field|CLEANUP_MAX
 specifier|static
 specifier|final
@@ -686,11 +701,19 @@ name|Ticker
 name|ticker
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
-DECL|method|CustomConcurrentHashMap (MapMaker builder)
+DECL|method|CustomConcurrentHashMap (MapMaker builder, Supplier<? extends CacheStatsCounter> statsCounterSupplier)
 name|CustomConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
+parameter_list|,
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|CacheStatsCounter
+argument_list|>
+name|statsCounterSupplier
 parameter_list|)
 block|{
 name|concurrencyLevel
@@ -1024,6 +1047,11 @@ argument_list|(
 name|segmentSize
 argument_list|,
 name|maximumSegmentSize
+argument_list|,
+name|statsCounterSupplier
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1063,6 +1091,11 @@ argument_list|,
 name|MapMaker
 operator|.
 name|UNSET_INT
+argument_list|,
+name|statsCounterSupplier
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -8950,7 +8983,7 @@ name|segmentMask
 index|]
 return|;
 block|}
-DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
+DECL|method|createSegment ( int initialCapacity, int maxSegmentSize, CacheStatsCounter statsCounter)
 name|Segment
 argument_list|<
 name|K
@@ -8964,6 +8997,9 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
+parameter_list|,
+name|CacheStatsCounter
+name|statsCounter
 parameter_list|)
 block|{
 return|return
@@ -8980,6 +9016,8 @@ argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
+argument_list|,
+name|statsCounter
 argument_list|)
 return|;
 block|}
@@ -9137,72 +9175,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// eviction
-DECL|method|enqueueNotification (K key, int hash, ValueReference<K, V> valueReference, RemovalCause cause)
-name|void
-name|enqueueNotification
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|int
-name|hash
-parameter_list|,
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-parameter_list|,
-name|RemovalCause
-name|cause
-parameter_list|)
-block|{
-if|if
-condition|(
-name|removalNotificationQueue
-operator|==
-name|DISCARDING_QUEUE
-condition|)
-block|{
-return|return;
-block|}
-name|RemovalNotification
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|notification
-init|=
-operator|new
-name|RemovalNotification
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|key
-argument_list|,
-name|valueReference
-operator|.
-name|get
-argument_list|()
-argument_list|,
-name|cause
-argument_list|)
-decl_stmt|;
-comment|// TODO(user): recordEviction
-name|removalNotificationQueue
-operator|.
-name|offer
-argument_list|(
-name|notification
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Notifies listeners that an entry has been automatically removed due to expiration, eviction,    * or eligibility for garbage collection. This should be called every time expireEntries or    * evictEntry is called (once the lock is released). It must only be called from user threads    * (e.g. not from garbage collection callbacks).    */
 DECL|method|processPendingNotifications ()
 name|void
@@ -9528,7 +9500,13 @@ argument_list|>
 argument_list|>
 name|expirationQueue
 decl_stmt|;
-DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
+comment|/** Accumulates cache statistics. */
+DECL|field|statsCounter
+specifier|final
+name|CacheStatsCounter
+name|statsCounter
+decl_stmt|;
+DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, CacheStatsCounter statsCounter)
 name|Segment
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -9544,6 +9522,9 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
+parameter_list|,
+name|CacheStatsCounter
+name|statsCounter
 parameter_list|)
 block|{
 name|this
@@ -9557,6 +9538,12 @@ operator|.
 name|maxSegmentSize
 operator|=
 name|maxSegmentSize
+expr_stmt|;
+name|this
+operator|.
+name|statsCounter
+operator|=
+name|statsCounter
 expr_stmt|;
 name|initTable
 argument_list|(
@@ -10189,6 +10176,88 @@ block|}
 block|}
 block|}
 comment|// eviction
+DECL|method|enqueueNotification ( K key, int hash, ValueReference<K, V> valueReference, RemovalCause cause)
+name|void
+name|enqueueNotification
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|int
+name|hash
+parameter_list|,
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+parameter_list|,
+name|RemovalCause
+name|cause
+parameter_list|)
+block|{
+if|if
+condition|(
+name|cause
+operator|.
+name|wasEvicted
+argument_list|()
+condition|)
+block|{
+name|statsCounter
+operator|.
+name|recordEviction
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|map
+operator|.
+name|removalNotificationQueue
+operator|!=
+name|DISCARDING_QUEUE
+condition|)
+block|{
+name|RemovalNotification
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|notification
+init|=
+operator|new
+name|RemovalNotification
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|key
+argument_list|,
+name|valueReference
+operator|.
+name|get
+argument_list|()
+argument_list|,
+name|cause
+argument_list|)
+decl_stmt|;
+name|map
+operator|.
+name|removalNotificationQueue
+operator|.
+name|offer
+argument_list|(
+name|notification
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**      * Performs eviction if the segment is full. This should only be called prior to adding a new      * entry and increasing {@code count}.      *      * @return true if eviction occurred      */
 annotation|@
 name|GuardedBy
@@ -10993,8 +11062,6 @@ comment|// clobber existing entry, count remains unchanged
 operator|++
 name|modCount
 expr_stmt|;
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|key
@@ -12003,8 +12070,6 @@ operator|.
 name|getValueReference
 argument_list|()
 decl_stmt|;
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|entryKey
@@ -12279,8 +12344,6 @@ operator|.
 name|getValueReference
 argument_list|()
 decl_stmt|;
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|entryKey
@@ -12405,8 +12468,6 @@ name|getNext
 argument_list|()
 control|)
 block|{
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|e
@@ -12729,8 +12790,6 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|e
@@ -12896,8 +12955,6 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|key
@@ -13243,8 +13300,6 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-name|map
-operator|.
 name|enqueueNotification
 argument_list|(
 name|key
