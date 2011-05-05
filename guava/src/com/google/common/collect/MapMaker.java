@@ -1291,8 +1291,6 @@ return|;
 block|}
 comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has passed since the entry's creation or replacement. Note that changing the value of an entry    * will reset its expiration time.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @since Guava release 08    */
 annotation|@
-name|Beta
-annotation|@
 name|Override
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
@@ -1421,8 +1419,6 @@ name|expireAfterWriteNanos
 return|;
 block|}
 comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has passed since the entry's last read or write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    * @since Guava release 08    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(

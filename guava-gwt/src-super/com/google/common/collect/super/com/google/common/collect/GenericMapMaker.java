@@ -184,8 +184,6 @@ name|unit
 parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since Guava release 08    */
-annotation|@
-name|Beta
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
