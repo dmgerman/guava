@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an  * {@link Equivalence}.  *  *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv} that  * tests equivalence using their lengths:  *  *<pre>   {@code  *   equiv.wrap("a").equals(equiv.wrap("b")) // true  *   equiv.wrap("a").equals(equiv.wrap("hello")) // false  * }</pre>  *  *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.  *  *<pre>   {@code  *   equiv.wrap(obj).equals(obj) // always false  * }</pre>  *  * @author Gregory Kick  * @since Guava release 10  */
+comment|/**  * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an  * {@link Equivalence}.  *  *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv} that  * tests equivalence using their lengths:  *  *<pre>   {@code  *   Equivalences.wrap(equiv, "a").equals(Equivalences.wrap(equiv, "b")) // true  *   Equivalences.wrap(equiv, "a").equals(Equivalences.wrap(equiv, "hello")) // false  * }</pre>  *  *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.  *  *<pre>   {@code  *   Equivalences.wrap(equiv, obj).equals(obj) // always false  * }</pre>  *  * @author Gregory Kick  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -151,6 +151,24 @@ parameter_list|()
 block|{
 return|return
 name|reference
+return|;
+block|}
+comment|/**    * Returns the result of {@link Equivalence#hash(Object)} applied to the the wrapped reference.    */
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|equivalence
+operator|.
+name|hash
+argument_list|(
+name|reference
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@link Equivalence#equivalent(Object, Object)} applied to the wrapped    * references is {@code true} and both wrappers use the {@link Object#equals(Object) same}    * equivalence.    */
@@ -253,24 +271,6 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Returns the result of {@link Equivalence#hash(Object)} applied to the the wrapped reference.    */
-DECL|method|hashCode ()
-annotation|@
-name|Override
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-name|equivalence
-operator|.
-name|hash
-argument_list|(
-name|reference
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a string representation for this equivalence wrapper. The form of this string    * representation is not specified.    */
 DECL|method|toString ()
 annotation|@
@@ -281,13 +281,29 @@ name|toString
 parameter_list|()
 block|{
 return|return
+name|Objects
+operator|.
+name|toStringHelper
+argument_list|(
+name|this
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"equivalence"
+argument_list|,
 name|equivalence
-operator|+
-literal|".wrap("
-operator|+
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"value"
+argument_list|,
 name|reference
-operator|+
-literal|")"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
