@@ -114,9 +114,7 @@ name|collect
 operator|.
 name|MapMaker
 operator|.
-name|RemovalListener
-operator|.
-name|RemovalCause
+name|RemovalNotification
 import|;
 end_import
 
@@ -190,19 +188,18 @@ name|INSTANCE
 block|;
 annotation|@
 name|Override
-DECL|method|onRemoval (Object key, Object value, RemovalCause cause)
+DECL|method|onRemoval (RemovalNotification<Object, Object> notification)
 specifier|public
 name|void
 name|onRemoval
 parameter_list|(
+name|RemovalNotification
+argument_list|<
 name|Object
-name|key
-parameter_list|,
+argument_list|,
 name|Object
-name|value
-parameter_list|,
-name|RemovalCause
-name|cause
+argument_list|>
+name|notification
 parameter_list|)
 block|{}
 block|}
@@ -417,36 +414,46 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// safe covariant cast
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
 DECL|method|getRemovalListener ()
+parameter_list|<
+name|K
+extends|extends
+name|K0
+parameter_list|,
+name|V
+extends|extends
+name|V0
+parameter_list|>
 name|RemovalListener
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|getRemovalListener
 parameter_list|()
 block|{
 return|return
+operator|(
+name|RemovalListener
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
 name|Objects
 operator|.
 name|firstNonNull
 argument_list|(
 name|removalListener
 argument_list|,
-operator|(
-name|RemovalListener
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-operator|)
 name|NullListener
 operator|.
 name|INSTANCE

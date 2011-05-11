@@ -102,7 +102,7 @@ name|collect
 operator|.
 name|MapMaker
 operator|.
-name|RemovalListener
+name|RemovalCause
 import|;
 end_import
 
@@ -119,8 +119,6 @@ operator|.
 name|MapMaker
 operator|.
 name|RemovalListener
-operator|.
-name|RemovalCause
 import|;
 end_import
 
@@ -524,6 +522,7 @@ argument_list|)
 comment|// This class is never serialized.
 DECL|class|ComputingSegment
 specifier|static
+specifier|final
 class|class
 name|ComputingSegment
 parameter_list|<
@@ -1117,6 +1116,7 @@ comment|/**    * Used to provide computation exceptions to other threads.    */
 DECL|class|ComputationExceptionReference
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|ComputationExceptionReference
 parameter_list|<
@@ -1245,6 +1245,7 @@ comment|/**    * Used to provide computation result to other threads.    */
 DECL|class|ComputedReference
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|ComputedReference
 parameter_list|<
@@ -1371,6 +1372,7 @@ block|}
 DECL|class|ComputingValueReference
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|ComputingValueReference
 parameter_list|<
@@ -1796,6 +1798,7 @@ return|;
 block|}
 DECL|class|ComputingSerializationProxy
 specifier|static
+specifier|final
 class|class
 name|ComputingSerializationProxy
 parameter_list|<

@@ -282,24 +282,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMaker
-operator|.
-name|RemovalListener
-operator|.
-name|RemovalCause
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -427,16 +409,6 @@ operator|.
 name|concurrent
 operator|.
 name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
 import|;
 end_import
 
@@ -2062,7 +2034,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * An object that can receive a notification when an entry is removed from a map. The removal    * resulting in notification could have occured to an entry being manually removed or replaced, or    * due to eviction resulting from timed expiration, exceeding a maximum size, or garbage    * collection.    *    *<p>An instance may be called concurrently by multiple threads to process different entries.    * Implementations of this interface should avoid performing blocking calls or synchronizing on    * shared resources.    *    * @param<K> the type of keys being evicted    * @param<V> the type of values being evicted    */
+comment|/**    * An object that can receive a notification when an entry is removed from a map. The removal    * resulting in notification could have occured to an entry being manually removed or replaced, or    * due to eviction resulting from timed expiration, exceeding a maximum size, or garbage    * collection.    *    *<p>An instance may be called concurrently by multiple threads to process different entries.    * Implementations of this interface should avoid performing blocking calls or synchronizing on    * shared resources.    *    * @param<K> the most general type of keys this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @param<V> the most general type of values this listener can listen for; for    *     example {@code Object} if any key is acceptable    */
 comment|// TODO(user): make public when fully tested
 DECL|interface|RemovalListener
 interface|interface
@@ -2073,12 +2045,115 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
-DECL|enum|RemovalCause
+comment|/**      * Notifies the listener that a removal occurred at some point in the past.      */
+DECL|method|onRemoval (RemovalNotification<K, V> notification)
+name|void
+name|onRemoval
+parameter_list|(
+name|RemovalNotification
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|notification
+parameter_list|)
+function_decl|;
+block|}
+comment|/**    * A notification of the removal of a single entry. The key and/or value may be {@code null} if    * they were already garbage collected.    *    *<p>Like other {Map.Entry} instances associated with MapMaker this class holds strong references    * to the key and value, regardless of the type of references the map may be using.    */
+comment|// TODO(user): make public when fully tested
+DECL|class|RemovalNotification
+specifier|static
+specifier|final
+class|class
+name|RemovalNotification
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+extends|extends
+name|ImmutableEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+DECL|field|cause
+specifier|private
+specifier|final
+name|RemovalCause
+name|cause
+decl_stmt|;
+DECL|method|RemovalNotification (K key, V value, RemovalCause cause)
+name|RemovalNotification
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|V
+name|value
+parameter_list|,
+name|RemovalCause
+name|cause
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|cause
+operator|=
+name|cause
+expr_stmt|;
+block|}
+comment|/**      * Returns the cause for which the entry was removed.      */
+DECL|method|getCause ()
 specifier|public
+name|RemovalCause
+name|getCause
+parameter_list|()
+block|{
+return|return
+name|cause
+return|;
+block|}
+comment|/**      * Returns {@code true} if there was an auotmatic removal due to eviction (the cause is neither      * {@link #EXPLICIT} nor {@link #REPLACED}).      */
+DECL|method|wasEvicted ()
+specifier|public
+name|boolean
+name|wasEvicted
+parameter_list|()
+block|{
+return|return
+name|cause
+operator|.
+name|wasEvicted
+argument_list|()
+return|;
+block|}
+block|}
+comment|// TODO(user): make public when fully tested
+DECL|enum|RemovalCause
 enum|enum
 name|RemovalCause
 block|{
-comment|/**        * The entry was manully removed from the map. This could result from a call to        * {@code Map.remove}, {@code ConcurrentMap.remove}, or {@code Iterator.remove}.        */
+comment|/**      * The entry was manually removed by the user. This can result from the user invoking {@link      * Cache#invalidate}, {@link Map#remove}, {@link ConcurrentMap#remove}, or {@link      * Iterator#remove}.      */
 DECL|enumConstant|EXPLICIT
 name|EXPLICIT
 block|{
@@ -2094,7 +2169,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**        * The entry's value was replaced due to a manual operation on the map. This could result from        * a call to {@code Map.put}, {@code Map.putAll}, or {@code ConcurrentMap.replace}.        */
+comment|/**      * The entry itself was not actually removed, but its value was replaced by the user. This can      * result from the user invoking {@link Map#put}, {@link Map#putAll}, {@link      * ConcurrentMap#replace(K, V)}, or {@link ConcurrentMap#replace(K, V, V)}.      */
 DECL|enumConstant|REPLACED
 name|REPLACED
 block|{
@@ -2110,7 +2185,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**        * The entry was removed automatically because its key or value was garbage-collected. This        * could occur on maps created with {@code softKeys}, {@code softValues}, {@code weakKeys}, or        * {@code weakValues}.        */
+comment|/**      * The entry was removed automatically because its key or value was garbage-collected. This      * can occur when using {@link #softKeys}, {@link #softValues}, {@link #weakKeys}, or {@link      * #weakValues}.      */
 DECL|enumConstant|COLLECTED
 name|COLLECTED
 block|{
@@ -2126,7 +2201,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**        * The entry expired. This could occur on maps created with {@code expireAfterWrite} or        * {@code expireAfterAccess}.        */
+comment|/**      * The entry's expiration timestamp has passed. This can occur when using {@link      * #expireAfterWrite} or {@link #expireAfterAccess}.      */
 DECL|enumConstant|EXPIRED
 name|EXPIRED
 block|{
@@ -2142,7 +2217,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**        * The entry was evicted from the map due to its size. This could occur on maps created with        * {@code maximumSize}.        */
+comment|/**      * The entry was evicted due to size constraints. This can occur when using {@link      * #maximumSize}.      */
 DECL|enumConstant|SIZE
 name|SIZE
 block|{
@@ -2158,7 +2233,7 @@ return|;
 block|}
 block|}
 block|;
-comment|/**        * Returns true if the removal was due to eviction, false if the removal was caused by a user        * operation.        */
+comment|/**      * Returns {@code true} if there was an auotmatic removal due to eviction (the cause is neither      * {@link #EXPLICIT} nor {@link #REPLACED}).      */
 DECL|method|wasEvicted ()
 specifier|abstract
 name|boolean
@@ -2166,31 +2241,10 @@ name|wasEvicted
 parameter_list|()
 function_decl|;
 block|}
-comment|/**      * Notifies the listener that a removal has occurred.      *      * @param key the key of the entry that has already been evicted, or {@code      *     null} if its reference was collected      * @param value the value of the entry that has already been evicted, or      *     {@code null} if its reference was collected      * @param cause the cause of the removal      */
-comment|// TODO(user): pass in a RemovalNotification or something, containing the key, value, cause, a
-comment|// wasEvicted method, possibly a timestamp, and leaving room for adding weights
-DECL|method|onRemoval (@ullable K key, @Nullable V value, RemovalCause cause)
-name|void
-name|onRemoval
-parameter_list|(
-annotation|@
-name|Nullable
-name|K
-name|key
-parameter_list|,
-annotation|@
-name|Nullable
-name|V
-name|value
-parameter_list|,
-name|RemovalCause
-name|cause
-parameter_list|)
-function_decl|;
-block|}
 DECL|class|EvictionToRemovalListener
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|EvictionToRemovalListener
 parameter_list|<
@@ -2253,24 +2307,23 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|onRemoval (K key, V value, RemovalCause cause)
+DECL|method|onRemoval (RemovalNotification<K, V> notification)
 specifier|public
 name|void
 name|onRemoval
 parameter_list|(
+name|RemovalNotification
+argument_list|<
 name|K
-name|key
-parameter_list|,
+argument_list|,
 name|V
-name|value
-parameter_list|,
-name|RemovalCause
-name|cause
+argument_list|>
+name|notification
 parameter_list|)
 block|{
 if|if
 condition|(
-name|cause
+name|notification
 operator|.
 name|wasEvicted
 argument_list|()
@@ -2280,9 +2333,15 @@ name|evictionListener
 operator|.
 name|onEviction
 argument_list|(
-name|key
+name|notification
+operator|.
+name|getKey
+argument_list|()
 argument_list|,
-name|value
+name|notification
+operator|.
+name|getValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2325,6 +2384,7 @@ init|=
 literal|0
 decl_stmt|;
 DECL|field|removalListener
+specifier|private
 specifier|final
 name|RemovalListener
 argument_list|<
@@ -2335,15 +2395,11 @@ argument_list|>
 name|removalListener
 decl_stmt|;
 DECL|field|removalCause
+specifier|private
 specifier|final
 name|RemovalCause
 name|removalCause
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|NullConcurrentMap (MapMaker mapMaker)
 name|NullConcurrentMap
 parameter_list|(
@@ -2353,14 +2409,6 @@ parameter_list|)
 block|{
 name|removalListener
 operator|=
-operator|(
-name|RemovalListener
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-operator|)
 name|mapMaker
 operator|.
 name|getRemovalListener
@@ -2434,6 +2482,48 @@ return|return
 literal|null
 return|;
 block|}
+DECL|method|notifyRemoval (K key, V value)
+name|void
+name|notifyRemoval
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|V
+name|value
+parameter_list|)
+block|{
+name|RemovalNotification
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|notification
+init|=
+operator|new
+name|RemovalNotification
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|,
+name|removalCause
+argument_list|)
+decl_stmt|;
+name|removalListener
+operator|.
+name|onRemoval
+argument_list|(
+name|notification
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|put (K key, V value)
@@ -2458,15 +2548,11 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-name|removalListener
-operator|.
-name|onRemoval
+name|notifyRemoval
 argument_list|(
 name|key
 argument_list|,
 name|value
-argument_list|,
-name|removalCause
 argument_list|)
 expr_stmt|;
 return|return
@@ -2754,15 +2840,11 @@ operator|+
 literal|"."
 argument_list|)
 expr_stmt|;
-name|removalListener
-operator|.
-name|onRemoval
+name|notifyRemoval
 argument_list|(
 name|key
 argument_list|,
 name|value
-argument_list|,
-name|removalCause
 argument_list|)
 expr_stmt|;
 return|return
