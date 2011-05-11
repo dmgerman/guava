@@ -262,7 +262,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Runs this execution list, executing all pairs in the order they were    * added.  Pairs added after this method has started executing the list will    * be executed immediately.    */
+comment|/**    * Runs this execution list, executing all pairs in the order they were    * added.  Pairs added after this method has started executing the list will    * be executed immediately.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    */
 DECL|method|run ()
 specifier|public
 name|void
@@ -276,6 +276,13 @@ init|(
 name|runnables
 init|)
 block|{
+if|if
+condition|(
+name|executed
+condition|)
+block|{
+return|return;
+block|}
 name|executed
 operator|=
 literal|true
