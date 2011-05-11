@@ -2071,10 +2071,15 @@ name|boolean
 name|mayInterruptIfRunning
 parameter_list|)
 block|{
+comment|/*        * Our additional cancellation work needs to occur even if        * !mayInterruptIfRunning, so we can't move it into interruptTask().        */
 if|if
 condition|(
+name|super
+operator|.
 name|cancel
-argument_list|()
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
 condition|)
 block|{
 try|try

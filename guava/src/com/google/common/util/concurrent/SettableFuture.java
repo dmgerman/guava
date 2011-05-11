@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call.  *  * @author Sven Mawson  * @since Guava release 09 (in release 01 as {@code ValueFuture})  */
+comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call. It may also be cancelled.  *  * @author Sven Mawson  * @since Guava release 09 (in release 01 as {@code ValueFuture})  */
 end_comment
 
 begin_class
@@ -115,7 +115,7 @@ name|newValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets the future to having failed with the given exception.  This exception    * will be wrapped in an ExecutionException and thrown from the get methods.    * This method will return {@code true} if the exception was successfully set,    * or {@code false} if the future has already been set or cancelled.    *    * @param t the exception the future should hold.    * @return true if the exception was successfully set.    */
+comment|/**    * Sets the future to having failed with the given exception. This exception    * will be wrapped in an {@code ExecutionException} and thrown from the {@code    * get} methods. This method will return {@code true} if the exception was    * successfully set, or {@code false} if the future has already been set or    * cancelled.    *    * @param t the exception the future should hold.    * @return true if the exception was successfully set.    */
 annotation|@
 name|Override
 DECL|method|setException (Throwable t)
@@ -134,25 +134,6 @@ name|setException
 argument_list|(
 name|t
 argument_list|)
-return|;
-block|}
-comment|/**    * {@inheritDoc}    *    *<p>A SettableFuture is never considered in the running state, so the    * {@code mayInterruptIfRunning} argument is ignored.    */
-annotation|@
-name|Override
-DECL|method|cancel (boolean mayInterruptIfRunning)
-specifier|public
-name|boolean
-name|cancel
-parameter_list|(
-name|boolean
-name|mayInterruptIfRunning
-parameter_list|)
-block|{
-return|return
-name|super
-operator|.
-name|cancel
-argument_list|()
 return|;
 block|}
 block|}

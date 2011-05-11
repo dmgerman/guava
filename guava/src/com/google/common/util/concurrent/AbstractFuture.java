@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract implementation of the {@link ListenableFuture} interface. This  * class is preferable to {@link java.util.concurrent.FutureTask} for two  * reasons: It implements {@code ListenableFuture}, and it does not implement  * {@code Runnable}. (If you want a {@code Runnable} implementation of {@code  * ListenableFuture}, create a {@link ListenableFutureTask}, or submit your  * tasks to a {@link ListeningExecutorService}.)  *  *<p>This class implements all methods in {@code ListenableFuture}.  * Subclasses should provide a way to set the result of the computation through  * the protected methods {@link #set(Object)}, {@link #setException(Throwable)},  * or {@link #cancel()}.  If subclasses want to implement cancellation, they can  * override the {@link #cancel(boolean)} method with a real implementation; the  * default implementation doesn't support cancellation.  *  *<p>{@code AbstractFuture} uses an {@link AbstractQueuedSynchronizer} to deal  * with concurrency issues and guarantee thread safety.  *  *<p>The state changing methods all return a boolean indicating success or  * failure in changing the future's state.  Valid states are running,  * completed, failed, or cancelled.  Because this class does not implement  * cancellation it is left to the subclass to distinguish between created  * and running tasks.  *  *<p>This class uses an {@link ExecutionList} to guarantee that all registered  * listeners will be executed, either when the future finishes or, for listeners  * that are added after the future completes, immediately.  * {@code Runnable}-{@code Executor} pairs are stored in the execution list but  * are not necessarily executed in the order in which they were added.  (If a  * listener is added after the Future is complete, it will be executed  * immediately, even if earlier listeners have not been executed. Additionally,  * executors need not guarantee FIFO execution, or different listeners may run  * in different executors.)  *  * @author Sven Mawson  * @since Guava release 01  */
+comment|/**  * An abstract implementation of the {@link ListenableFuture} interface. This  * class is preferable to {@link java.util.concurrent.FutureTask} for two  * reasons: It implements {@code ListenableFuture}, and it does not implement  * {@code Runnable}. (If you want a {@code Runnable} implementation of {@code  * ListenableFuture}, create a {@link ListenableFutureTask}, or submit your  * tasks to a {@link ListeningExecutorService}.)  *  *<p>This class implements all methods in {@code ListenableFuture}.  * Subclasses should provide a way to set the result of the computation through  * the protected methods {@link #set(Object)} and  * {@link #setException(Throwable)}. Subclasses may also override {@link  * #interruptTask()}, which will be invoked automatically if a call to {@link  * #cancel(boolean) cancel(true)} succeeds in canceling the future.  *  *<p>{@code AbstractFuture} uses an {@link AbstractQueuedSynchronizer} to deal  * with concurrency issues and guarantee thread safety.  *  *<p>The state changing methods all return a boolean indicating success or  * failure in changing the future's state.  Valid states are running,  * completed, failed, or cancelled.  *  *<p>This class uses an {@link ExecutionList} to guarantee that all registered  * listeners will be executed, either when the future finishes or, for listeners  * that are added after the future completes, immediately.  * {@code Runnable}-{@code Executor} pairs are stored in the execution list but  * are not necessarily executed in the order in which they were added.  (If a  * listener is added after the Future is complete, it will be executed  * immediately, even if earlier listeners have not been executed. Additionally,  * executors need not guarantee FIFO execution, or different listeners may run  * in different executors.)  *  * @author Sven Mawson  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -268,7 +268,6 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
-comment|/*    * Default implementation of cancel that never cancels the future.    * Subclasses should override this to implement cancellation if desired.    */
 annotation|@
 name|Override
 DECL|method|cancel (boolean mayInterruptIfRunning)
@@ -280,10 +279,42 @@ name|boolean
 name|mayInterruptIfRunning
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|sync
+operator|.
+name|cancel
+argument_list|()
+condition|)
+block|{
 return|return
 literal|false
 return|;
 block|}
+name|done
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|mayInterruptIfRunning
+condition|)
+block|{
+name|interruptTask
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+literal|true
+return|;
+block|}
+comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    */
+DECL|method|interruptTask ()
+specifier|protected
+name|void
+name|interruptTask
+parameter_list|()
+block|{   }
 comment|/*    * Adds a listener/executor pair to execution list to execute when this task    * is completed.    */
 annotation|@
 name|Override
@@ -396,7 +427,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Subclasses should invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    */
+comment|/**    *<b>Soon to be deprecated.</b> Most implementations will be satisfied with    * the default implementation of {@link #cancel(boolean)}. Those that are not    * can delegate to {@code super.cancel(mayInterruptIfRunning)} to get the    * behavior of this method.    *    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    */
 DECL|method|cancel ()
 specifier|protected
 specifier|final
