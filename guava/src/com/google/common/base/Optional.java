@@ -33,22 +33,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -97,14 +81,13 @@ annotation|@
 name|GwtCompatible
 DECL|class|Optional
 specifier|public
-specifier|final
+specifier|abstract
 class|class
 name|Optional
 parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|// Static factories
 comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
 annotation|@
 name|SuppressWarnings
@@ -145,13 +128,8 @@ argument_list|>
 name|ABSENT
 init|=
 operator|new
-name|Optional
-argument_list|<
-name|Object
-argument_list|>
-argument_list|(
-literal|null
-argument_list|)
+name|Absent
+argument_list|()
 decl_stmt|;
 comment|/**    * Returns an {@code Optional} instance containing the given non-null reference.    */
 DECL|method|of (T reference)
@@ -172,7 +150,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Optional
+name|Present
 argument_list|<
 name|T
 argument_list|>
@@ -219,7 +197,7 @@ name|absent
 argument_list|()
 else|:
 operator|new
-name|Optional
+name|Present
 argument_list|<
 name|T
 argument_list|>
@@ -228,21 +206,146 @@ name|nullableReference
 argument_list|)
 return|;
 block|}
-comment|// Constructors
-DECL|field|reference
+DECL|method|Optional ()
+specifier|private
+name|Optional
+parameter_list|()
+block|{}
+comment|/**    * Returns {@code true} if this instance contains a reference.    */
+DECL|method|isPresent ()
+specifier|public
+specifier|abstract
+name|boolean
+name|isPresent
+parameter_list|()
+function_decl|;
+comment|// TODO(kevinb): isAbsent too?
+comment|/**    * Returns the contained non-null reference, which must be present.    *    * @throws IllegalStateException if the reference is absent ({@link #isPresent} returns {@code    *     false})    */
+DECL|method|get ()
+specifier|public
+specifier|abstract
+name|T
+name|get
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    *    * @deprecated use {@link #orNull} for {@code get(null)}; {@link #or(Object)} otherwise    */
+comment|// TODO(kevinb): remove
+DECL|method|get (@ullable T defaultValue)
+annotation|@
+name|Deprecated
 annotation|@
 name|Nullable
+specifier|public
+specifier|abstract
+name|T
+name|get
+parameter_list|(
+annotation|@
+name|Nullable
+name|T
+name|defaultValue
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    */
+DECL|method|or (T defaultValue)
+specifier|public
+specifier|abstract
+name|T
+name|or
+parameter_list|(
+name|T
+name|defaultValue
+parameter_list|)
+function_decl|;
+comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice} otherwise.    */
+comment|// ? extends T is the best we can do; if it doesn't fit you'll have to do some creative casting
+DECL|method|or (Optional<? extends T> secondChoice)
+specifier|public
+specifier|abstract
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|or
+parameter_list|(
+name|Optional
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|secondChoice
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the contained non-null reference if it is present; {@code null} otherwise.    */
+DECL|method|orNull ()
+annotation|@
+name|Nullable
+specifier|public
+specifier|abstract
+name|T
+name|orNull
+parameter_list|()
+function_decl|;
+comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    */
+DECL|method|equals (@ullable Object object)
+annotation|@
+name|Override
+specifier|public
+specifier|abstract
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+function_decl|;
+comment|/**    * Returns a hash code for this instance.    */
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+specifier|abstract
+name|int
+name|hashCode
+parameter_list|()
+function_decl|;
+comment|/**    * Returns a string representation for this instance. The form of this string representation is    * unspecified.    */
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+specifier|abstract
+name|String
+name|toString
+parameter_list|()
+function_decl|;
+DECL|class|Present
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|Present
+parameter_list|<
+name|T
+parameter_list|>
+extends|extends
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+block|{
+DECL|field|reference
 specifier|private
 specifier|final
 name|T
 name|reference
 decl_stmt|;
-DECL|method|Optional (@ullable T reference)
-specifier|private
-name|Optional
+DECL|method|Present (T reference)
+name|Present
 parameter_list|(
-annotation|@
-name|Nullable
 name|T
 name|reference
 parameter_list|)
@@ -254,41 +357,33 @@ operator|=
 name|reference
 expr_stmt|;
 block|}
-comment|// Accessors
-comment|/**    * Returns {@code true} if this instance contains a reference.    */
 DECL|method|isPresent ()
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPresent
 parameter_list|()
 block|{
 return|return
-name|reference
-operator|!=
-literal|null
+literal|true
 return|;
 block|}
-comment|// TODO(kevinb): isAbsent too?
-comment|/**    * Returns the contained non-null reference, which must be present.    *    * @throws IllegalStateException if the reference is absent ({@link #isPresent} returns {@code    *     false})    */
 DECL|method|get ()
+annotation|@
+name|Override
 specifier|public
 name|T
 name|get
 parameter_list|()
 block|{
-name|checkState
-argument_list|(
-name|isPresent
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|reference
 return|;
 block|}
-comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    */
-comment|// TODO(kevinb): consider renaming this method
 DECL|method|get (@ullable T defaultValue)
+annotation|@
+name|Override
 annotation|@
 name|Nullable
 specifier|public
@@ -302,16 +397,69 @@ name|defaultValue
 parameter_list|)
 block|{
 return|return
-name|isPresent
-argument_list|()
-condition|?
 name|reference
-else|:
-name|defaultValue
 return|;
 block|}
-comment|// Object overrides
-comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    */
+DECL|method|or (T defaultValue)
+annotation|@
+name|Override
+specifier|public
+name|T
+name|or
+parameter_list|(
+name|T
+name|defaultValue
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|defaultValue
+argument_list|)
+expr_stmt|;
+return|return
+name|reference
+return|;
+block|}
+DECL|method|or (Optional<? extends T> secondChoice)
+annotation|@
+name|Override
+specifier|public
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|or
+parameter_list|(
+name|Optional
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|secondChoice
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|secondChoice
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+DECL|method|orNull ()
+annotation|@
+name|Override
+specifier|public
+name|T
+name|orNull
+parameter_list|()
+block|{
+return|return
+name|reference
+return|;
+block|}
 DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
@@ -329,17 +477,17 @@ if|if
 condition|(
 name|object
 operator|instanceof
-name|Optional
+name|Present
 condition|)
 block|{
-name|Optional
+name|Present
 argument_list|<
 name|?
 argument_list|>
 name|other
 init|=
 operator|(
-name|Optional
+name|Present
 argument_list|<
 name|?
 argument_list|>
@@ -347,12 +495,10 @@ operator|)
 name|object
 decl_stmt|;
 return|return
-name|Objects
-operator|.
-name|equal
-argument_list|(
 name|reference
-argument_list|,
+operator|.
+name|equals
+argument_list|(
 name|other
 operator|.
 name|reference
@@ -363,7 +509,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns a hash code for this instance.    */
 DECL|method|hashCode ()
 annotation|@
 name|Override
@@ -375,20 +520,12 @@ block|{
 return|return
 literal|0x598df91c
 operator|+
-operator|(
-name|isPresent
-argument_list|()
-condition|?
 name|reference
 operator|.
 name|hashCode
 argument_list|()
-else|:
-literal|0
-operator|)
 return|;
 block|}
-comment|/**    * Returns a string representation for this instance. The form of this string representation is    * unspecified.    */
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -398,17 +535,181 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|isPresent
-argument_list|()
-condition|?
 literal|"Optional.of("
 operator|+
 name|reference
 operator|+
 literal|")"
-else|:
+return|;
+block|}
+block|}
+DECL|class|Absent
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|Absent
+extends|extends
+name|Optional
+argument_list|<
+name|Object
+argument_list|>
+block|{
+DECL|method|isPresent ()
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isPresent
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+DECL|method|get ()
+annotation|@
+name|Override
+specifier|public
+name|Object
+name|get
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"value is absent"
+argument_list|)
+throw|;
+block|}
+DECL|method|get (@ullable Object defaultValue)
+annotation|@
+name|Override
+annotation|@
+name|Nullable
+specifier|public
+name|Object
+name|get
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|defaultValue
+return|;
+block|}
+DECL|method|or (Object defaultValue)
+annotation|@
+name|Override
+specifier|public
+name|Object
+name|or
+parameter_list|(
+name|Object
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|checkNotNull
+argument_list|(
+name|defaultValue
+argument_list|)
+return|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe covariant cast
+DECL|method|or (Optional<?> secondChoice)
+annotation|@
+name|Override
+specifier|public
+name|Optional
+argument_list|<
+name|Object
+argument_list|>
+name|or
+parameter_list|(
+name|Optional
+argument_list|<
+name|?
+argument_list|>
+name|secondChoice
+parameter_list|)
+block|{
+return|return
+operator|(
+name|Optional
+operator|)
+name|checkNotNull
+argument_list|(
+name|secondChoice
+argument_list|)
+return|;
+block|}
+DECL|method|orNull ()
+annotation|@
+name|Override
+annotation|@
+name|Nullable
+specifier|public
+name|Object
+name|orNull
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+DECL|method|equals (@ullable Object object)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|object
+operator|==
+name|this
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+literal|0x598df91c
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
 literal|"Optional.absent()"
 return|;
+block|}
 block|}
 block|}
 end_class
