@@ -68,6 +68,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Equivalence
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Function
 import|;
 end_import
@@ -223,6 +237,29 @@ DECL|method|GenericMapMaker ()
 name|GenericMapMaker
 parameter_list|()
 block|{}
+comment|// TODO(kevinb): undo this indirection once keyEquiv is made package-private
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be removed when #keyEquivalence is supported"
+argument_list|)
+DECL|method|privateKeyEquivalence ( Equivalence<Object> equivalence)
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|privateKeyEquivalence
+parameter_list|(
+name|Equivalence
+argument_list|<
+name|Object
+argument_list|>
+name|equivalence
+parameter_list|)
+function_decl|;
 comment|/**    * See {@link MapMaker#initialCapacity}.    */
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public
@@ -257,6 +294,18 @@ name|int
 name|maximumSize
 parameter_list|)
 function_decl|;
+comment|/**    * See {@link MapMaker#strongKeys}.    */
+DECL|method|strongKeys ()
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|strongKeys
+parameter_list|()
+function_decl|;
 comment|/**    * See {@link MapMaker#concurrencyLevel}.    */
 DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
@@ -289,6 +338,18 @@ argument_list|,
 name|V0
 argument_list|>
 name|weakKeys
+parameter_list|()
+function_decl|;
+comment|/**    * See {@link MapMaker#strongValues}.    */
+DECL|method|strongValues ()
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|strongValues
 parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#softKeys}.    */
@@ -480,6 +541,28 @@ argument_list|,
 name|V
 argument_list|>
 name|makeMap
+parameter_list|()
+function_decl|;
+comment|/**    * See {@link MapMaker#makeCustomMap}.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CustomConcurrentHashMap"
+argument_list|)
+DECL|method|makeCustomMap ()
+specifier|abstract
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|makeCustomMap
 parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#makeComputingMap}.    */

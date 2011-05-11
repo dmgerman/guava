@@ -10310,7 +10310,7 @@ argument_list|)
 return|;
 block|}
 comment|// Specialized implementations of map methods
-comment|/**      * Returns the entry for a given key. Note that the entry may not be live.      */
+comment|/**      * Returns the entry for a given key. Note that the entry may not be live. This is used in      * Interners and for testing.      */
 DECL|method|getEntry (Object key, int hash)
 name|ReferenceEntry
 argument_list|<

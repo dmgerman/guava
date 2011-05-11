@@ -679,6 +679,8 @@ operator|)
 return|;
 block|}
 comment|// TODO(kevinb): undo this indirection if keyEquiv gets released
+annotation|@
+name|Override
 DECL|method|privateKeyEquivalence (Equivalence<Object> equivalence)
 name|MapMaker
 name|privateKeyEquivalence
@@ -995,6 +997,23 @@ else|:
 name|concurrencyLevel
 return|;
 block|}
+comment|/**    * Specifies that each key (not value) stored in the map should be strongly referenced.    *    * @throws IllegalStateException if the key strength was already set    */
+annotation|@
+name|Override
+DECL|method|strongKeys ()
+name|MapMaker
+name|strongKeys
+parameter_list|()
+block|{
+return|return
+name|setKeyStrength
+argument_list|(
+name|Strength
+operator|.
+name|STRONG
+argument_list|)
+return|;
+block|}
 comment|/**    * Specifies that each key (not value) stored in the map should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p><b>Note:</b> the map will use identity ({@code ==}) comparison to determine equality of weak    * keys, which may not behave as you expect. For example, storing a key in the map and then    * attempting a lookup using a different but {@link Object#equals(Object) equals}-equivalent key    * will always fail.    *    * @throws IllegalStateException if the key strength was already set    * @see WeakReference    */
 annotation|@
 name|GwtIncompatible
@@ -1096,6 +1115,23 @@ name|firstNonNull
 argument_list|(
 name|keyStrength
 argument_list|,
+name|Strength
+operator|.
+name|STRONG
+argument_list|)
+return|;
+block|}
+comment|/**    * Specifies that each key (not value) stored in the map should be strongly referenced.    *    * @throws IllegalStateException if the key strength was already set    */
+annotation|@
+name|Override
+DECL|method|strongValues ()
+name|MapMaker
+name|strongValues
+parameter_list|()
+block|{
+return|return
+name|setValueStrength
+argument_list|(
 name|Strength
 operator|.
 name|STRONG
@@ -1717,6 +1753,44 @@ name|V
 argument_list|>
 argument_list|(
 name|this
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a CustomConcurrentHashMap for the benefit of internal callers that use features of    * that class not exposed through ConcurrentMap.    */
+annotation|@
+name|Override
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CustomConcurrentHashMap"
+argument_list|)
+DECL|method|makeCustomMap ()
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|makeCustomMap
+parameter_list|()
+block|{
+return|return
+operator|new
+name|CustomConcurrentHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|,
+name|DEFAULT_STATS_COUNTER
 argument_list|)
 return|;
 block|}

@@ -993,6 +993,28 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|strongKeys ()
+name|MapMaker
+name|strongKeys
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|strongValues ()
+name|MapMaker
+name|strongValues
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|makeMap ()
 specifier|public
 parameter_list|<

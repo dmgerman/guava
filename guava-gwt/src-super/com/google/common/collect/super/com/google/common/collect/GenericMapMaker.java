@@ -113,6 +113,7 @@ DECL|method|GenericMapMaker ()
 name|GenericMapMaker
 parameter_list|()
 block|{}
+comment|// TODO(kevinb): undo this indirection once keyEquiv is made package-private
 comment|/**    * See {@link MapMaker#initialCapacity}.    */
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public
@@ -147,6 +148,18 @@ name|int
 name|maximumSize
 parameter_list|)
 function_decl|;
+comment|/**    * See {@link MapMaker#strongKeys}.    */
+DECL|method|strongKeys ()
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|strongKeys
+parameter_list|()
+function_decl|;
 comment|/**    * See {@link MapMaker#concurrencyLevel}.    */
 DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
@@ -162,6 +175,18 @@ parameter_list|(
 name|int
 name|concurrencyLevel
 parameter_list|)
+function_decl|;
+comment|/**    * See {@link MapMaker#strongValues}.    */
+DECL|method|strongValues ()
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|strongValues
+parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
 comment|// TODO(user): deprecate

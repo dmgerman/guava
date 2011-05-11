@@ -54,6 +54,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Equivalences
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|FinalizableReferenceQueue
@@ -90,6 +118,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CustomConcurrentHashMap
+operator|.
+name|ReferenceEntry
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -118,7 +162,7 @@ specifier|private
 name|Interners
 parameter_list|()
 block|{}
-comment|/**    * Returns a new thread-safe interner which retains a strong reference to each    * instance it has interned, thus preventing these instances from being    * garbage-collected. If this retention is acceptable, this implementation may    * perform better than {@link #newWeakInterner}. Note that unlike {@link    * String#intern}, using this interner does not consume memory in the    * permanent generation.    */
+comment|/**    * Returns a new thread-safe interner which retains a strong reference to each instance it has    * interned, thus preventing these instances from being garbage-collected. If this retention is    * acceptable, this implementation may perform better than {@link #newWeakInterner}. Note that    * unlike {@link String#intern}, using this interner does not consume memory in the permanent    * generation.    */
 DECL|method|newStrongInterner ()
 specifier|public
 specifier|static
@@ -196,7 +240,174 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a new thread-safe interner which retains a weak reference to each    * instance it has interned, and so does not prevent these instances from    * being garbage-collected. This most likely does not perform as well as    * {@link #newStrongInterner}, but is the best alternative when the memory    * usage of that implementation is unacceptable. Note that unlike {@link    * String#intern}, using this interner does not consume memory in the    * permanent generation.    */
+DECL|class|CustomInterner
+specifier|private
+specifier|static
+class|class
+name|CustomInterner
+parameter_list|<
+name|E
+parameter_list|>
+implements|implements
+name|Interner
+argument_list|<
+name|E
+argument_list|>
+block|{
+comment|// MapMaker is our friend, we know about this type
+DECL|field|map
+specifier|private
+specifier|final
+name|CustomConcurrentHashMap
+argument_list|<
+name|E
+argument_list|,
+name|Dummy
+argument_list|>
+name|map
+decl_stmt|;
+DECL|method|CustomInterner (GenericMapMaker<? super E, Object> mm)
+name|CustomInterner
+parameter_list|(
+name|GenericMapMaker
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|,
+name|Object
+argument_list|>
+name|mm
+parameter_list|)
+block|{
+name|this
+operator|.
+name|map
+operator|=
+name|mm
+operator|.
+name|strongValues
+argument_list|()
+operator|.
+name|privateKeyEquivalence
+argument_list|(
+name|Equivalences
+operator|.
+name|equals
+argument_list|()
+argument_list|)
+operator|.
+name|makeCustomMap
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|intern (E sample)
+annotation|@
+name|Override
+specifier|public
+name|E
+name|intern
+parameter_list|(
+name|E
+name|sample
+parameter_list|)
+block|{
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+comment|// trying to read the canonical...
+name|ReferenceEntry
+argument_list|<
+name|E
+argument_list|,
+name|Dummy
+argument_list|>
+name|entry
+init|=
+name|map
+operator|.
+name|getEntry
+argument_list|(
+name|sample
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|entry
+operator|!=
+literal|null
+condition|)
+block|{
+name|E
+name|canonical
+init|=
+name|entry
+operator|.
+name|getKey
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|canonical
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// only matters if weak/soft keys are used
+return|return
+name|canonical
+return|;
+block|}
+block|}
+comment|// didn't see it, trying to put it instead...
+name|Dummy
+name|sneaky
+init|=
+name|map
+operator|.
+name|putIfAbsent
+argument_list|(
+name|sample
+argument_list|,
+name|Dummy
+operator|.
+name|VALUE
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|sneaky
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|sample
+return|;
+block|}
+else|else
+block|{
+comment|/* Someone beat us to it! Trying again...            *            * Technically this loop not guaranteed to terminate, so theoretically (extremely            * unlikely) this thread might starve, but even then, there is always going to be another            * thread doing progress here.            */
+block|}
+block|}
+block|}
+DECL|enum|Dummy
+DECL|enumConstant|VALUE
+specifier|private
+enum|enum
+name|Dummy
+block|{
+name|VALUE
+block|}
+block|}
+comment|/**    * Returns a new thread-safe interner which retains a weak reference to each instance it has    * interned, and so does not prevent these instances from being garbage-collected. This most    * likely does not perform as well as {@link #newStrongInterner}, but is the best alternative    * when the memory usage of that implementation is unacceptable. Note that unlike {@link    * String#intern}, using this interner does not consume memory in the permanent generation.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|newWeakInterner ()
 specifier|public
 specifier|static
@@ -210,6 +421,8 @@ argument_list|>
 name|newWeakInterner
 parameter_list|()
 block|{
+comment|// note: we don't currently replace this with the above generic implementation, which appears
+comment|// to perform slightly worse than this
 return|return
 operator|new
 name|WeakInterner
@@ -251,9 +464,9 @@ operator|.
 name|makeMap
 argument_list|()
 decl_stmt|;
+DECL|method|intern (final E sample)
 annotation|@
 name|Override
-DECL|method|intern (final E sample)
 specifier|public
 name|E
 name|intern
@@ -315,7 +528,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*            * Implicitly an unchecked cast to WeakInterner<?>.InternReference,            * though until OpenJDK 7, the compiler doesn't recognize this. If we            * could explicitly cast to the wildcard type            * WeakInterner<?>.InternReference, that would be sufficient for our            * purposes. The compiler, however, rejects such casts (or rather, it            * does until OpenJDK 7).            *            * See Sun bug 6665356.            */
+comment|/*            * Implicitly an unchecked cast to WeakInterner<?>.InternReference, though until            * OpenJDK 7, the compiler doesn't recognize this. If we could explicitly cast to the            * wildcard type WeakInterner<?>.InternReference, that would be sufficient for our            * purposes. The compiler, however, rejects such casts (or rather, it does until            * OpenJDK 7).            *            * See Sun bug 6665356.            */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -491,9 +704,9 @@ operator|=
 name|hash
 expr_stmt|;
 block|}
+DECL|method|finalizeReferent ()
 annotation|@
 name|Override
-DECL|method|finalizeReferent ()
 specifier|public
 name|void
 name|finalizeReferent
@@ -581,7 +794,7 @@ operator|.
 name|InternReference
 condition|)
 block|{
-comment|/*            * On the following line, Eclipse wants a type parameter, producing            * WeakInterner<?>.InternReference. The problem is that javac rejects            * that form. Omitting WeakInterner satisfies both, though this seems            * odd, since we are inside a WeakInterner<E> and thus the            * WeakInterner<E> is implied, yet there is no reason to believe that            * the other object's WeakInterner has type E. That's right -- we've            * found a way to perform an unchecked cast without receiving a            * warning from either Eclipse or javac. Taking advantage of that            * seems questionable, even though we don't depend upon the type of            * that.get(), so we'll just suppress the warning.            */
+comment|/*            * On the following line, Eclipse wants a type parameter, producing            * WeakInterner<?>.InternReference. The problem is that javac rejects that form. Omitting            * WeakInterner satisfies both, though this seems odd, since we are inside a            * WeakInterner<E> and thus the WeakInterner<E> is implied, yet there is no reason to            * believe that the other object's WeakInterner has type E. That's right -- we've found a            * way to perform an unchecked cast without receiving a warning from either Eclipse or            * javac. Taking advantage of that seems questionable, even though we don't depend upon            * the type of that.get(), so we'll just suppress the warning.            */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -647,7 +860,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a function that delegates to the {@link Interner#intern} method of    * the given interner.    *    * @since Guava release 08    */
+comment|/**    * Returns a function that delegates to the {@link Interner#intern} method of the given interner.    *    * @since Guava release 08    */
 DECL|method|asFunction (Interner<E> interner)
 specifier|public
 specifier|static
