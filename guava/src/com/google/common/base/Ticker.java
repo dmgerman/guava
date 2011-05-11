@@ -34,22 +34,64 @@ begin_comment
 comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since Guava release 09  */
 end_comment
 
-begin_interface
+begin_class
 annotation|@
 name|Beta
-DECL|interface|Ticker
+DECL|class|Ticker
 specifier|public
-interface|interface
+specifier|abstract
+class|class
 name|Ticker
 block|{
 comment|/**    * Returns the number of nanoseconds elapsed since this ticker's fixed    * point of reference.    */
 DECL|method|read ()
+specifier|public
+specifier|abstract
 name|long
 name|read
 parameter_list|()
 function_decl|;
+comment|/**    * A ticker that reads the current time using {@link System#nanoTime}.    */
+DECL|method|systemTicker ()
+specifier|public
+specifier|static
+name|Ticker
+name|systemTicker
+parameter_list|()
+block|{
+return|return
+name|SYSTEM_TICKER
+return|;
 block|}
-end_interface
+DECL|field|SYSTEM_TICKER
+specifier|private
+specifier|static
+specifier|final
+name|Ticker
+name|SYSTEM_TICKER
+init|=
+operator|new
+name|Ticker
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|long
+name|read
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+return|;
+block|}
+block|}
+decl_stmt|;
+block|}
+end_class
 
 end_unit
 
