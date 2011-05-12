@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable object that may or may not contain a non-null reference to another object. Note that  * an instance of this type never "contains {@code null}"; it either contains a non-null reference  * or it contains nothing (the reference is "absent"). The method {@link #isPresent} distinguishes  * between these cases.  *  *<p>Java's type system does not account for nullability; that is, an intentionally-nullable  * reference has the same type as one that is expected never to be null. One reason to use a  * non-null {@code Optional<Foo>} reference in place of a nullable {@code Foo} reference is to  * surface this distinction to the type system; the two types are no longer interchangeable. Also,  * the need to invoke {@link #get} serves as a reminder to either check {@link #isPresent} or  * provide a default value, while with a nullable reference, it's easy to accidentally dereference  * it without checking.  *  *<p>(Note that if you can find or create a suitable  *<a href="http://en.wikipedia.org/wiki/Null_Object_pattern">null object</a>, you may not need  *<i>either</i> strategy for coping with nullability.)  *  *<p>Other uses of this class include  *  *<ul>  *<li>To distinguish between "unknown" (for example, not present in a map) and "known to have no  *     value" (present in the map, with value {@code Optional.absent()})  *<li>To wrap nullable references for storage in a collection that does not support {@code null}  *     (though there are  *<a href="http://code.google.com/p/guava-libraries/wiki/LivingWithNullHostileCollections">  *     several other approaches to this</a> that should be considered first)  *</ul>  *  *<p>This class is not intended as a direct analogue of any existing "option" or "maybe" construct  * from other programming environments, though it may bear some similarities.  *  *<p>If you are looking for a<i>mutable</i> holder class, see {@link Holder}.  *  * @param<T> the type of instance that can be contained. {@code Optional} is naturally covariant on  *     this type, so it is safe to cast an {@code Optional<T>} to {@code Optional<S>} for any  *     supertype {@code S} of {@code T}.    * @author Kurt Alfred Kluever  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  * An immutable object that may contain a non-null reference to another object. Each  * instance of this type either contains a non-null reference, or contains nothing (in  * which case we say that the reference is "absent"); it is never said to "contain {@code  * null}".  *  *<p>A non-null {@code Optional<T>} reference can be used as a replacement for a nullable  * {@code T} reference. It allows you to represent "a {@code T} that must be present" and  * a "a {@code T} that might be absent" as two distinct types in your program, which can  * aid clarity.  *  *<p>Some uses of this class include  *  *<ul>  *<li>As a method return type, as an alternative to returning {@code null} to indicate  *     that no value was available  *<li>To distinguish between "unknown" (for example, not present in a map) and "known to  *     have no value" (present in the map, with value {@code Optional.absent()})  *<li>To wrap nullable references for storage in a collection that does not support  *     {@code null} (though there are  *<a href="http://code.google.com/p/guava-libraries/wiki/LivingWithNullHostileCollections">  *     several other approaches to this</a> that should be considered first)  *</ul>  *  *<p>A common alternative to using this class is to find or create a suitable  *<a href="http://en.wikipedia.org/wiki/Null_Object_pattern">null object</a> for the  * type in question.  *  *<p>This class is not intended as a direct analogue of any existing "option" or "maybe"  * construct from other programming environments, though it may bear some similarities.  *  *<p>For a<i>mutable</i> holder class, see {@link Holder}.  *  * @param<T> the type of instance that can be contained. {@code Optional} is naturally  *     covariant on this type, so it is safe to cast an {@code Optional<T>} to {@code  *     Optional<S>} for any supertype {@code S} of {@code T}.  * @author Kurt Alfred Kluever  * @author Kevin Bourrillion  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -87,6 +87,11 @@ name|Optional
 parameter_list|<
 name|T
 parameter_list|>
+implements|implements
+name|BaseHolder
+argument_list|<
+name|T
+argument_list|>
 block|{
 comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
 annotation|@
@@ -211,23 +216,6 @@ specifier|private
 name|Optional
 parameter_list|()
 block|{}
-comment|/**    * Returns {@code true} if this instance contains a reference.    */
-DECL|method|isPresent ()
-specifier|public
-specifier|abstract
-name|boolean
-name|isPresent
-parameter_list|()
-function_decl|;
-comment|// TODO(kevinb): isAbsent too?
-comment|/**    * Returns the contained non-null reference, which must be present.    *    * @throws IllegalStateException if the reference is absent ({@link #isPresent} returns {@code    *     false})    */
-DECL|method|get ()
-specifier|public
-specifier|abstract
-name|T
-name|get
-parameter_list|()
-function_decl|;
 comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    *    * @deprecated use {@link #orNull} for {@code get(null)}; {@link #or(Object)} otherwise    */
 comment|// TODO(kevinb): remove
 DECL|method|get (@ullable T defaultValue)
@@ -246,19 +234,7 @@ name|T
 name|defaultValue
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    */
-DECL|method|or (T defaultValue)
-specifier|public
-specifier|abstract
-name|T
-name|or
-parameter_list|(
-name|T
-name|defaultValue
-parameter_list|)
-function_decl|;
-comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice} otherwise.    */
-comment|// ? extends T is the best we can do; if it doesn't fit you'll have to do some creative casting
+comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 specifier|abstract
@@ -277,17 +253,7 @@ argument_list|>
 name|secondChoice
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contained non-null reference if it is present; {@code null} otherwise.    */
-DECL|method|orNull ()
-annotation|@
-name|Nullable
-specifier|public
-specifier|abstract
-name|T
-name|orNull
-parameter_list|()
-function_decl|;
-comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either the    * contained references are {@linkplain Object#equals equal} to each other or both are absent.    * Note that {@code Optional} instances of differing parameterized types can be equal.    */
+comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
 DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
@@ -312,7 +278,7 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a string representation for this instance. The form of this string representation is    * unspecified.    */
+comment|/**    * Returns a string representation for this instance. The form of this string    * representation is unspecified.    */
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -414,6 +380,8 @@ block|{
 name|checkNotNull
 argument_list|(
 name|defaultValue
+argument_list|,
+literal|"use orNull() instead of or(null)"
 argument_list|)
 expr_stmt|;
 return|return
@@ -617,6 +585,8 @@ return|return
 name|checkNotNull
 argument_list|(
 name|defaultValue
+argument_list|,
+literal|"use orNull() instead of or(null)"
 argument_list|)
 return|;
 block|}
