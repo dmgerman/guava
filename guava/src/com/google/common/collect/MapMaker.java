@@ -1511,14 +1511,16 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is removed from the map by any means.    *    *<p>A map built by this map maker will invoke the supplied listener after removing an element    * for any reason (see removal causes in {@link RemovalListener.RemovalCause}). It will invoke    * the listener during invocations of any of that map's public methods (even read-only methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build maps    * whose key or value types are incompatible with the listener, you will likely experience a    * {@link ClassCastException} at an undefined point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
+comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is removed from the map by any means.    *    *<p>A map built by this map maker will invoke the supplied listener after removing an element    * for any reason (see removal causes in {@link RemovalCause}). It will invoke the listener during    * invocations of any of that map's public methods (even read-only methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build maps    * whose key or value types are incompatible with the listener, you will likely experience a    * {@link ClassCastException} at an undefined point in the future.    *    * @throws IllegalStateException if a removal listener was already set    * @since Guava release 10    */
+annotation|@
+name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
-comment|// TODO(user): make public when fully tested
 DECL|method|removalListener (RemovalListener<K, V> listener)
+specifier|public
 parameter_list|<
 name|K
 parameter_list|,
@@ -1591,9 +1593,11 @@ return|return
 name|me
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it evicts an entry,    * whether it does so due to timed expiration, exceeding the maximum size, or discovering that the    * key or value has been reclaimed by the garbage collector. It will invoke the listener    * during invocations of any of that map's public methods (even read-only methods). The listener    * will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build maps    * whose key or value types are incompatible with the listener, you will likely experience a    * {@link ClassCastException} at an undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @since Guava release 07    */
+comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it evicts an entry,    * whether it does so due to timed expiration, exceeding the maximum size, or discovering that the    * key or value has been reclaimed by the garbage collector. It will invoke the listener    * during invocations of any of that map's public methods (even read-only methods). The listener    * will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build maps    * whose key or value types are incompatible with the listener, you will likely experience a    * {@link ClassCastException} at an undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @deprecated use {@link #removalListener}, which provides additional information about the    *     entry being evicted; note that {@link #evictionListener} only notifies on removals due to    *     eviction, while {@link #removalListener} also notifies on explicit removal (providing the    *     {@link RemovalCause} to indicate the specific cause of removal.    * @since Guava release 07    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -2137,9 +2141,11 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * An object that can receive a notification when an entry is removed from a map. The removal    * resulting in notification could have occured to an entry being manually removed or replaced, or    * due to eviction resulting from timed expiration, exceeding a maximum size, or garbage    * collection.    *    *<p>An instance may be called concurrently by multiple threads to process different entries.    * Implementations of this interface should avoid performing blocking calls or synchronizing on    * shared resources.    *    * @param<K> the most general type of keys this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @param<V> the most general type of values this listener can listen for; for    *     example {@code Object} if any key is acceptable    */
-comment|// TODO(user): make public when fully tested
+comment|/**    * An object that can receive a notification when an entry is removed from a map. The removal    * resulting in notification could have occured to an entry being manually removed or replaced, or    * due to eviction resulting from timed expiration, exceeding a maximum size, or garbage    * collection.    *    *<p>An instance may be called concurrently by multiple threads to process different entries.    * Implementations of this interface should avoid performing blocking calls or synchronizing on    * shared resources.    *    * @param<K> the most general type of keys this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @param<V> the most general type of values this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @since Guava release 10    */
+annotation|@
+name|Beta
 DECL|interface|RemovalListener
+specifier|public
 interface|interface
 name|RemovalListener
 parameter_list|<
@@ -2163,9 +2169,11 @@ name|notification
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * A notification of the removal of a single entry. The key and/or value may be {@code null} if    * they were already garbage collected.    *    *<p>Like other {Map.Entry} instances associated with MapMaker this class holds strong references    * to the key and value, regardless of the type of references the map may be using.    */
-comment|// TODO(user): make public when fully tested
+comment|/**    * A notification of the removal of a single entry. The key and/or value may be {@code null} if    * they were already garbage collected.    *    *<p>Like other {Map.Entry} instances associated with MapMaker this class holds strong references    * to the key and value, regardless of the type of references the map may be using.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
 DECL|class|RemovalNotification
+specifier|public
 specifier|static
 specifier|final
 class|class
@@ -2236,7 +2244,7 @@ return|return
 name|cause
 return|;
 block|}
-comment|/**      * Returns {@code true} if there was an auotmatic removal due to eviction (the cause is neither      * {@link #EXPLICIT} nor {@link #REPLACED}).      */
+comment|/**      * Returns {@code true} if there was an automatic removal due to eviction (the cause is neither      * {@link RemovalCause#EXPLICIT} nor {@link RemovalCause#REPLACED}).      */
 DECL|method|wasEvicted ()
 specifier|public
 name|boolean
@@ -2251,12 +2259,15 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// TODO(user): make public when fully tested
+comment|/**    * The reason why an entry was removed.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
 DECL|enum|RemovalCause
+specifier|public
 enum|enum
 name|RemovalCause
 block|{
-comment|/**      * The entry was manually removed by the user. This can result from the user invoking {@link      * Cache#invalidate}, {@link Map#remove}, {@link ConcurrentMap#remove}, or {@link      * Iterator#remove}.      */
+comment|/**      * The entry was manually removed by the user. This can result from the user invoking {@link      * Cache#invalidate}, {@link Map#remove}, {@link ConcurrentMap#remove}, or {@link      * java.util.Iterator#remove}.      */
 DECL|enumConstant|EXPLICIT
 name|EXPLICIT
 block|{
@@ -2272,7 +2283,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * The entry itself was not actually removed, but its value was replaced by the user. This can      * result from the user invoking {@link Map#put}, {@link Map#putAll}, {@link      * ConcurrentMap#replace(K, V)}, or {@link ConcurrentMap#replace(K, V, V)}.      */
+comment|/**      * The entry itself was not actually removed, but its value was replaced by the user. This can      * result from the user invoking {@link Map#put}, {@link Map#putAll},      * {@link ConcurrentMap#replace(Object, Object)}, or      * {@link ConcurrentMap#replace(Object, Object, Object)}.      */
 DECL|enumConstant|REPLACED
 name|REPLACED
 block|{
@@ -2336,7 +2347,7 @@ return|;
 block|}
 block|}
 block|;
-comment|/**      * Returns {@code true} if there was an auotmatic removal due to eviction (the cause is neither      * {@link #EXPLICIT} nor {@link #REPLACED}).      */
+comment|/**      * Returns {@code true} if there was an automatic removal due to eviction (the cause is neither      * {@link #EXPLICIT} nor {@link #REPLACED}).      */
 DECL|method|wasEvicted ()
 specifier|abstract
 name|boolean

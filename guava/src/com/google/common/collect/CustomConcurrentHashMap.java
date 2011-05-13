@@ -10122,7 +10122,7 @@ block|}
 block|}
 block|}
 comment|// eviction
-DECL|method|enqueueNotification ( K key, int hash, ValueReference<K, V> valueReference, RemovalCause cause)
+DECL|method|enqueueNotification (K key, int hash, V value, RemovalCause cause)
 name|void
 name|enqueueNotification
 parameter_list|(
@@ -10132,13 +10132,8 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
 name|V
-argument_list|>
-name|valueReference
+name|value
 parameter_list|,
 name|RemovalCause
 name|cause
@@ -10185,10 +10180,7 @@ argument_list|>
 argument_list|(
 name|key
 argument_list|,
-name|valueReference
-operator|.
-name|get
-argument_list|()
+name|value
 argument_list|,
 name|cause
 argument_list|)
@@ -11014,7 +11006,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|valueReference
+name|entryValue
 argument_list|,
 name|RemovalCause
 operator|.
@@ -11608,6 +11600,19 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
+name|enqueueNotification
+argument_list|(
+name|key
+argument_list|,
+name|hash
+argument_list|,
+name|entryValue
+argument_list|,
+name|RemovalCause
+operator|.
+name|REPLACED
+argument_list|)
+expr_stmt|;
 name|setValue
 argument_list|(
 name|e
@@ -11772,6 +11777,19 @@ return|;
 block|}
 operator|++
 name|modCount
+expr_stmt|;
+name|enqueueNotification
+argument_list|(
+name|key
+argument_list|,
+name|hash
+argument_list|,
+name|entryValue
+argument_list|,
+name|RemovalCause
+operator|.
+name|REPLACED
+argument_list|)
 expr_stmt|;
 name|setValue
 argument_list|(
@@ -12022,7 +12040,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|valueReference
+name|entryValue
 argument_list|,
 name|RemovalCause
 operator|.
@@ -12296,7 +12314,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|valueReference
+name|entryValue
 argument_list|,
 name|RemovalCause
 operator|.
@@ -12429,6 +12447,9 @@ argument_list|,
 name|e
 operator|.
 name|getValueReference
+argument_list|()
+operator|.
+name|get
 argument_list|()
 argument_list|,
 name|RemovalCause
@@ -12749,6 +12770,9 @@ name|e
 operator|.
 name|getValueReference
 argument_list|()
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|RemovalCause
 operator|.
@@ -12908,6 +12932,9 @@ argument_list|,
 name|hash
 argument_list|,
 name|valueReference
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|RemovalCause
 operator|.
@@ -13253,6 +13280,9 @@ argument_list|,
 name|hash
 argument_list|,
 name|valueReference
+operator|.
+name|get
+argument_list|()
 argument_list|,
 name|cause
 argument_list|)
@@ -15590,6 +15620,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|putIfAbsent (K key, V value)
 specifier|public
 name|V
@@ -15717,6 +15749,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if the specified key is null    */
+annotation|@
+name|Override
 DECL|method|remove (Object key, Object value)
 specifier|public
 name|boolean
@@ -15754,6 +15788,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if any of the arguments are null    */
+annotation|@
+name|Override
 DECL|method|replace (K key, V oldValue, V newValue)
 specifier|public
 name|boolean
@@ -15796,6 +15832,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    * @return the previous value associated with the specified key, or {@code null} if there was no    *         mapping for the key    * @throws NullPointerException if the specified key or value is null    */
+annotation|@
+name|Override
 DECL|method|replace (K key, V value)
 specifier|public
 name|V
@@ -16432,6 +16470,8 @@ argument_list|<
 name|K
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|K
@@ -16459,6 +16499,8 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|V
@@ -16679,6 +16721,8 @@ name|V
 argument_list|>
 argument_list|>
 block|{
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 name|Entry
