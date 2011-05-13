@@ -230,7 +230,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CacheStatsCounter
+name|AbstractCache
+operator|.
+name|StatsCounter
 import|;
 end_import
 
@@ -244,7 +246,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CacheStatsCounterImpl
+name|AbstractCache
+operator|.
+name|SimpleStatsCounter
 import|;
 end_import
 
@@ -471,7 +475,7 @@ name|Supplier
 argument_list|<
 name|?
 extends|extends
-name|CacheStatsCounter
+name|StatsCounter
 argument_list|>
 name|DEFAULT_STATS_COUNTER
 init|=
@@ -480,7 +484,7 @@ operator|.
 name|ofInstance
 argument_list|(
 operator|new
-name|CacheStatsCounter
+name|StatsCounter
 argument_list|()
 block|{
 annotation|@
@@ -553,27 +557,27 @@ specifier|static
 specifier|final
 name|Supplier
 argument_list|<
-name|CacheStatsCounterImpl
+name|SimpleStatsCounter
 argument_list|>
 name|CACHE_STATS_COUNTER
 init|=
 operator|new
 name|Supplier
 argument_list|<
-name|CacheStatsCounterImpl
+name|SimpleStatsCounter
 argument_list|>
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|CacheStatsCounterImpl
+name|SimpleStatsCounter
 name|get
 parameter_list|()
 block|{
 return|return
 operator|new
-name|CacheStatsCounterImpl
+name|SimpleStatsCounter
 argument_list|()
 return|;
 block|}

@@ -100,6 +100,22 @@ name|common
 operator|.
 name|collect
 operator|.
+name|AbstractCache
+operator|.
+name|StatsCounter
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|MapMaker
 operator|.
 name|RemovalCause
@@ -258,7 +274,7 @@ argument_list|>
 name|loader
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity, load factor and    * concurrency level.    */
-DECL|method|ComputingConcurrentHashMap (MapMaker builder, Supplier<? extends CacheStatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
+DECL|method|ComputingConcurrentHashMap (MapMaker builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
 name|ComputingConcurrentHashMap
 parameter_list|(
 name|MapMaker
@@ -268,7 +284,7 @@ name|Supplier
 argument_list|<
 name|?
 extends|extends
-name|CacheStatsCounter
+name|StatsCounter
 argument_list|>
 name|statsCounterSupplier
 parameter_list|,
@@ -304,7 +320,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createSegment (int initialCapacity, int maxSegmentSize, CacheStatsCounter statsCounter)
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
 name|Segment
 argument_list|<
 name|K
@@ -319,7 +335,7 @@ parameter_list|,
 name|int
 name|maxSegmentSize
 parameter_list|,
-name|CacheStatsCounter
+name|StatsCounter
 name|statsCounter
 parameter_list|)
 block|{
@@ -432,7 +448,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, CacheStatsCounter statsCounter)
+DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
 name|ComputingSegment
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -449,7 +465,7 @@ parameter_list|,
 name|int
 name|maxSegmentSize
 parameter_list|,
-name|CacheStatsCounter
+name|StatsCounter
 name|statsCounter
 parameter_list|)
 block|{
@@ -1672,7 +1688,7 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-DECL|method|ComputingMapAdapter (MapMaker mapMaker, Supplier<? extends CacheStatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
+DECL|method|ComputingMapAdapter (MapMaker mapMaker, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
 name|ComputingMapAdapter
 parameter_list|(
 name|MapMaker
@@ -1682,7 +1698,7 @@ name|Supplier
 argument_list|<
 name|?
 extends|extends
-name|CacheStatsCounter
+name|StatsCounter
 argument_list|>
 name|statsCounterSupplier
 parameter_list|,
