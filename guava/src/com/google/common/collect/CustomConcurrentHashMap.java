@@ -420,6 +420,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Executor
 import|;
 end_import
@@ -3269,11 +3281,13 @@ argument_list|>
 name|entry
 parameter_list|)
 function_decl|;
-comment|/**      * Waits for a value that may still be computing. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws AsynchronousComputationException if the computing thread throws an exception      */
+comment|/**      * Waits for a value that may still be computing. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws ExecutionException if the computing thread throws an exception      */
 DECL|method|waitForValue ()
 name|V
 name|waitForValue
 parameter_list|()
+throws|throws
+name|ExecutionException
 function_decl|;
 comment|/**      * Clears this reference object.      *      * @param newValue the new value reference which will replace this one; this is only used during      *     computation to immediately notify blocked threads of the new value      */
 DECL|method|clear (@ullable ValueReference<K, V> newValue)

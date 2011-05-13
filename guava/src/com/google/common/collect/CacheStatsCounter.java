@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Accumulates statistics during the operation of a {@link Cache} for presentation by {@link  * Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
+comment|/**  * Accumulates statistics during the operation of a {@link Cache} for presentation by {@link  * Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_interface

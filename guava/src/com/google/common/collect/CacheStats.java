@@ -113,6 +113,7 @@ specifier|final
 name|long
 name|evictionCount
 decl_stmt|;
+comment|// TODO(user): add createExceptionCount?
 comment|/**    * Constructs a new {@code CacheStats} instance.    *    *<p>Five parameters of the same type in a row is a bad thing, but this class is not constructed    * by end users and is too fine-grained for a builder.    */
 DECL|method|CacheStats (long hitCount, long missCount, long createCount, long totalCreateTime, long evictionCount)
 specifier|public

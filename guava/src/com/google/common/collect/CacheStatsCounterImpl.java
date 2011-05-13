@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A thread-safe {@link Counter} implementation for use by {@link Cache} implementors.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
+comment|/**  * A thread-safe {@link Counter} implementation for use by {@link Cache} implementors.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_class
