@@ -603,7 +603,15 @@ block|{
 name|preWriteCleanup
 argument_list|()
 expr_stmt|;
-comment|// getFirst, but remember the index
+name|int
+name|newCount
+init|=
+name|this
+operator|.
+name|count
+operator|-
+literal|1
+decl_stmt|;
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -762,18 +770,41 @@ return|return
 name|value
 return|;
 block|}
-comment|// immediately reuse invalid entries
-name|removeLiveEntry
+comment|// immediately reuse partially collected entries
+name|enqueueNotification
 argument_list|(
-name|e
+name|entryKey
 argument_list|,
 name|hash
+argument_list|,
+name|value
 argument_list|,
 name|RemovalCause
 operator|.
 name|COLLECTED
 argument_list|)
 expr_stmt|;
+name|evictionQueue
+operator|.
+name|remove
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+name|expirationQueue
+operator|.
+name|remove
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|count
+operator|=
+name|newCount
+expr_stmt|;
+comment|// write-volatile
 block|}
 break|break;
 block|}
