@@ -11005,7 +11005,7 @@ name|newCount
 expr_stmt|;
 comment|// write-volatile
 return|return
-name|entryValue
+literal|null
 return|;
 block|}
 elseif|else

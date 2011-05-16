@@ -938,6 +938,9 @@ literal|null
 condition|)
 block|{
 comment|// putIfAbsent
+name|V
+name|oldValue
+init|=
 name|put
 argument_list|(
 name|key
@@ -948,7 +951,29 @@ name|value
 argument_list|,
 literal|true
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|oldValue
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// the computed value was already clobbered
+name|enqueueNotification
+argument_list|(
+name|key
+argument_list|,
+name|hash
+argument_list|,
+name|value
+argument_list|,
+name|RemovalCause
+operator|.
+name|REPLACED
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|statsCounter
 operator|.
