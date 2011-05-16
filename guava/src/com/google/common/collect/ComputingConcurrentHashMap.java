@@ -1693,6 +1693,7 @@ block|}
 comment|/**    * Overrides get() to compute on demand. Also throws an exception when null is returned from a    * computation.    */
 DECL|class|ComputingMapAdapter
 specifier|static
+specifier|final
 class|class
 name|ComputingMapAdapter
 parameter_list|<
