@@ -189,9 +189,10 @@ name|strongValues
 parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#expiration}.    */
-comment|// TODO(user): deprecate
-DECL|method|expiration (long duration, TimeUnit unit)
+annotation|@
+name|Deprecated
 specifier|public
+DECL|method|expiration (long duration, TimeUnit unit)
 specifier|abstract
 name|GenericMapMaker
 argument_list|<

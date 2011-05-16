@@ -805,8 +805,8 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|expiration (long duration, TimeUnit unit)
 specifier|public
+DECL|method|expiration (long duration, TimeUnit unit)
 name|MapMaker
 name|expiration
 parameter_list|(
