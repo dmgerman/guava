@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Values are automatically created by the cache as  * a function of the keys, and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #get} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as  * invoking {@link #get}.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * A semi-persistent mapping from keys to values. Values are automatically created by the cache as  * a function of the keys, and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #get} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking {@link #get}.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_interface
@@ -112,7 +112,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. The implementation may support null as a valid cached value, or may return null    * without caching it, or may not permit null results at all.    *    *<p>This method is identical to {@link #getChecked} except that exceptions which occur during    * cache loading are unchecked.    *    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    * @throws ComputationException wraps errors which occur while loading the response    */
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    *<p>This method is identical to {@link #getChecked} except that exceptions which occur during    * cache loading are unchecked.    *    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    * @throws ComputationException wraps errors which occur while loading the response    */
 DECL|method|get (@ullable K key)
 annotation|@
 name|Nullable
@@ -125,7 +125,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. The implementation may support null as a valid cached value, or may return null    * without caching it, or may not permit null results at all.    *    *<p>This method is identical to {@link #get} except that exceptions which occur during cache    * loading are checked.    *    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    * @throws ExecutionException wraps errors which occur while loading the response    */
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    *<p>This method is identical to {@link #get} except that exceptions which occur during cache    * loading are checked.    *    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    * @throws ExecutionException wraps errors which occur while loading the response    */
 DECL|method|getChecked (@ullable K key)
 annotation|@
 name|Nullable
@@ -200,7 +200,7 @@ name|int
 name|limit
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Assume that none of    * the returned map's optional operations will be implemented, unless specified otherwise.    *    *<p>Note that the view's {@code get} method will return {@code null} if an entry is not found    * in the cache for a given key. Unlike {@link Cache#get} it will never attempt to create a    * missing value.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
+comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Assume that none of    * the returned map's optional operations will be implemented, unless specified otherwise.    *    *<p>Operations on the returned map will never trigger a computation. So, unlike {@link    * Cache#get}, this map's {@link Map#get get} method will just return {@code null} immediately for    * a key that is not already cached.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|asMap ()
 name|ConcurrentMap
 argument_list|<

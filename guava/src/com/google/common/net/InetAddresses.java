@@ -1098,29 +1098,41 @@ argument_list|(
 name|ipPart
 argument_list|)
 decl_stmt|;
-comment|// Disallow negatives (including -0), and values that don't fit in 8 bits.
+comment|// Disallow +/-, and values that don't fit in 8 bits.
 comment|// Also disallow leading zeroes, because no clear standard exists on
 comment|// whether these should be interpreted as decimal or octal.
-if|if
-condition|(
+name|int
+name|firstDigit
+init|=
+name|Character
+operator|.
+name|digit
+argument_list|(
 name|ipPart
 operator|.
-name|startsWith
+name|charAt
 argument_list|(
-literal|"-"
+literal|0
 argument_list|)
+argument_list|,
+literal|10
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|firstDigit
+operator|==
+operator|-
+literal|1
 operator|||
 name|octet
 operator|>
 literal|255
 operator|||
 operator|(
-name|ipPart
-operator|.
-name|startsWith
-argument_list|(
-literal|"0"
-argument_list|)
+name|firstDigit
+operator|==
+literal|0
 operator|&&
 name|ipPart
 operator|.
@@ -1166,15 +1178,25 @@ argument_list|,
 literal|16
 argument_list|)
 decl_stmt|;
-comment|// Disallow negatives (including -0), and values that don't fit in 16 bits.
+comment|// Disallow +/-, and values that don't fit in 16 bits.
 if|if
 condition|(
+name|Character
+operator|.
+name|digit
+argument_list|(
 name|ipPart
 operator|.
-name|startsWith
+name|charAt
 argument_list|(
-literal|"-"
+literal|0
 argument_list|)
+argument_list|,
+literal|16
+argument_list|)
+operator|==
+operator|-
+literal|1
 operator|||
 name|hextet
 operator|>
