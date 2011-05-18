@@ -1248,6 +1248,8 @@ return|;
 block|}
 comment|/**    * Old name of {@link #expireAfterWrite}.    *    * @deprecated use {@link #expireAfterWrite}, which behaves exactly the same.<b>This method is    *     scheduled for deletion in July 2012.</b>    */
 annotation|@
+name|Deprecated
+annotation|@
 name|Override
 specifier|public
 DECL|method|expiration (long duration, TimeUnit unit)
