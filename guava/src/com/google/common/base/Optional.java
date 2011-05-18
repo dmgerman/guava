@@ -216,7 +216,7 @@ specifier|private
 name|Optional
 parameter_list|()
 block|{}
-comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    *    * @deprecated use {@link #orNull} for {@code get(null)}; {@link #or(Object)} otherwise    */
+comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    *    * @deprecated use {@code orNull()} for {@code get(null)}; {@code or(T)} otherwise    */
 comment|// TODO(kevinb): remove
 DECL|method|get (@ullable T defaultValue)
 annotation|@
