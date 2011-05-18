@@ -2729,7 +2729,7 @@ name|reversed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new InetAddress that is one more than the passed in address.    * This method works for both IPv4 and IPv6 addresses.    *    * @param address the InetAddress to increment    * @return a new InetAddress that is one more than the passed in address.    * @throws IllegalArgumentException if InetAddress is at the end of its    *         range.    */
+comment|/**    * Returns a new InetAddress that is one more than the passed in address.    * This method works for both IPv4 and IPv6 addresses.    *    * @param address the InetAddress to increment    * @return a new InetAddress that is one more than the passed in address.    * @throws IllegalArgumentException if InetAddress is at the end of its    *         range.    * @since Guava release 10    */
 DECL|method|increment (InetAddress address)
 specifier|public
 specifier|static
@@ -2833,7 +2833,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns true if the InetAddress is either 255.255.255.255 for IPv4 or    * ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    *    * @returns true if the InetAddress is either 255.255.255.255 for IPv4 or    *          ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    */
+comment|/**    * Returns true if the InetAddress is either 255.255.255.255 for IPv4 or    * ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    *    * @returns true if the InetAddress is either 255.255.255.255 for IPv4 or    *          ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    * @since Guava release 10    */
 DECL|method|isMaximum (InetAddress address)
 specifier|public
 specifier|static

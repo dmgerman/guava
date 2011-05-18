@@ -308,14 +308,13 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    */
+comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since Guava release 10    */
 DECL|method|interruptTask ()
 specifier|protected
 name|void
 name|interruptTask
 parameter_list|()
 block|{   }
-comment|/*    * Adds a listener/executor pair to execution list to execute when this task    * is completed.    */
 annotation|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor exec)
