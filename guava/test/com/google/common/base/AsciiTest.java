@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link Ascii}.  *  * @author cberry@google.com (Craig Berry)  */
+comment|/**  * Unit test for {@link Ascii}.  *  * @author Craig Berry  */
 end_comment
 
 begin_class
