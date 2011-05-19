@@ -64,9 +64,9 @@ name|com
 operator|.
 name|google
 operator|.
-name|testing
+name|common
 operator|.
-name|util
+name|testing
 operator|.
 name|EqualsTester
 import|;
@@ -78,9 +78,9 @@ name|com
 operator|.
 name|google
 operator|.
-name|testing
+name|common
 operator|.
-name|util
+name|testing
 operator|.
 name|NullPointerTester
 import|;
@@ -92,9 +92,9 @@ name|com
 operator|.
 name|google
 operator|.
-name|testing
+name|common
 operator|.
-name|util
+name|testing
 operator|.
 name|SerializableTester
 import|;
@@ -4343,6 +4343,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * Tests that compilation will work when applying explicit types.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 DECL|method|testIn_compilesWithExplicitSupertype ()
 specifier|public
 name|void
