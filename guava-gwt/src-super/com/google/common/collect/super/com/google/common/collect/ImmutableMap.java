@@ -1375,6 +1375,14 @@ name|key
 parameter_list|)
 block|{
 return|return
+operator|(
+name|key
+operator|==
+literal|null
+operator|)
+condition|?
+literal|null
+else|:
 name|Maps
 operator|.
 name|safeGet
