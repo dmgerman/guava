@@ -108,6 +108,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Ticker
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|MapMaker
@@ -470,6 +484,29 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
+comment|/**    * See {@link MapMaker#ticker}.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|ticker (Ticker ticker)
+specifier|public
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|ticker
+parameter_list|(
+name|Ticker
+name|ticker
+parameter_list|)
+function_decl|;
 comment|/*    * Note that MapMaker's removalListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
 annotation|@
 name|SuppressWarnings
@@ -565,6 +602,45 @@ name|V
 argument_list|>
 name|makeCustomMap
 parameter_list|()
+function_decl|;
+comment|/**    * See {@link MapMaker#makeCache}.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|makeCache ( CacheLoader<? super K, V> loader)
+specifier|public
+specifier|abstract
+parameter_list|<
+name|K
+extends|extends
+name|K0
+parameter_list|,
+name|V
+extends|extends
+name|V0
+parameter_list|>
+name|Cache
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|makeCache
+parameter_list|(
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loader
+parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#makeComputingMap}.    */
 DECL|method|makeComputingMap ( Function<? super K, ? extends V> computingFunction)
