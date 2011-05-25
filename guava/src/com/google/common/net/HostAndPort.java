@@ -116,6 +116,7 @@ decl_stmt|;
 comment|/** Validated port number in the range [0..65535], or NO_PORT */
 DECL|field|port
 specifier|private
+specifier|final
 name|int
 name|port
 decl_stmt|;

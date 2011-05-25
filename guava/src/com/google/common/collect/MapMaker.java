@@ -1164,7 +1164,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each key (not value) stored in the map should be strongly referenced.    *    * @throws IllegalStateException if the key strength was already set    */
+comment|/**    * Specifies that each value (not key) stored in the map should be strongly referenced.    *    * @throws IllegalStateException if the value strength was already set    */
 annotation|@
 name|Override
 DECL|method|strongValues ()
