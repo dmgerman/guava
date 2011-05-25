@@ -1195,7 +1195,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// checkNotNull for GWT (do not optimize).
+comment|// checkNotNull for GWT (do not optimize)
 name|array
 index|[
 name|i
@@ -1593,7 +1593,7 @@ argument_list|(
 name|element
 argument_list|)
 expr_stmt|;
-comment|// checkNotNull for GWT (do not optimize).
+comment|// checkNotNull for GWT (do not optimize)
 return|return
 name|oldValue
 return|;
