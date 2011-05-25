@@ -70,22 +70,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ComputingConcurrentHashMap
-operator|.
-name|AsynchronousExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|CustomConcurrentHashMap
 operator|.
 name|Segment
@@ -205,67 +189,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Cache methods
-annotation|@
-name|Override
-DECL|method|get (K key)
-specifier|public
-name|V
-name|get
-parameter_list|(
-name|K
-name|key
-parameter_list|)
-block|{
-try|try
-block|{
-return|return
-name|map
-operator|.
-name|compute
-argument_list|(
-name|key
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|AsynchronousExecutionException
-name|e
-parameter_list|)
-block|{
-comment|// Wasting the existing exception instance may be costly, but we should not need to optimize
-comment|// for the exception case, and this makes the code a lot cleaner. The other obvious
-comment|// alternative would be to introduce computeChecked which mimicked the compute codepath
-comment|// but threw different exceptions.
-throw|throw
-operator|new
-name|AsynchronousComputationException
-argument_list|(
-name|e
-operator|.
-name|getCause
-argument_list|()
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|ExecutionException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ComputationException
-argument_list|(
-name|e
-operator|.
-name|getCause
-argument_list|()
-argument_list|)
-throw|;
-block|}
-block|}
 annotation|@
 name|Override
 DECL|method|getChecked (K key)

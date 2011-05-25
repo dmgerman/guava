@@ -60,6 +60,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|atomic
 operator|.
 name|AtomicLong
@@ -67,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code getChecked} method.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -98,6 +110,44 @@ name|AbstractCache
 parameter_list|()
 block|{}
 annotation|@
+name|Override
+DECL|method|getUnchecked (K key)
+specifier|public
+name|V
+name|getUnchecked
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|getChecked
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|ExecutionException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ComputationException
+argument_list|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
+annotation|@
 name|Deprecated
 annotation|@
 name|Override
@@ -112,7 +162,7 @@ name|key
 parameter_list|)
 block|{
 return|return
-name|get
+name|getUnchecked
 argument_list|(
 name|key
 argument_list|)
