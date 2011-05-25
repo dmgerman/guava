@@ -497,12 +497,6 @@ operator|==
 literal|0
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// this method may throw CCE
 DECL|method|compareOrThrow (Comparable left, Comparable right)
 specifier|private
 specifier|static

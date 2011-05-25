@@ -216,12 +216,6 @@ argument_list|>
 name|valueComparator
 decl_stmt|;
 comment|/**    * Creates an empty {@code TreeMultimap} ordered by the natural ordering of    * its keys and values.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw Comparable
 specifier|public
 specifier|static
 parameter_list|<
@@ -320,12 +314,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs a {@code TreeMultimap}, ordered by the natural ordering of its    * keys and values, with the same mappings as the specified multimap.    *    * @param multimap the multimap whose contents are copied to this multimap    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw Comparable
 specifier|public
 specifier|static
 parameter_list|<

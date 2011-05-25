@@ -248,13 +248,6 @@ name|element
 block|}
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"unchecked"
-block|}
-argument_list|)
 DECL|method|toArray (T[] array)
 annotation|@
 name|Override

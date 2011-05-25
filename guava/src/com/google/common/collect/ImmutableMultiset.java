@@ -968,12 +968,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"java serialization is not supported."
 argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw types here, but they're harmless
 DECL|class|FieldSettersHolder
 specifier|private
 specifier|static

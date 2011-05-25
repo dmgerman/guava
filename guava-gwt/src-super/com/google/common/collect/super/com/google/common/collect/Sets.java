@@ -939,12 +939,6 @@ return|;
 block|}
 comment|// TreeSet
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance sorted by the    * natural sort ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedSet#of()} instead.    *    * @return a new, empty {@code TreeSet}    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// allow ungenerified Comparable types
 DECL|method|newTreeSet ()
 specifier|public
 specifier|static
@@ -970,12 +964,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code TreeSet} instance containing the given    * elements sorted by their natural ordering.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedSet#copyOf(Iterable)} instead.    *    *<p><b>Note:</b> If {@code elements} is a {@code SortedSet} with an explicit    * comparator, this method has different behavior than    * {@link TreeSet#TreeSet(SortedSet)}, which returns a {@code TreeSet} with    * that comparator.    *    * @param elements the elements that the set should contain    * @return a new {@code TreeSet} containing those elements (minus duplicates)    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// allow ungenerified Comparable types
 DECL|method|newTreeSet ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -3338,12 +3326,6 @@ name|target
 argument_list|)
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// javac rejects "CartesianSet<?>.Axis"
 DECL|method|equals (Object obj)
 annotation|@
 name|Override

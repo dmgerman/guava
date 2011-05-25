@@ -48,16 +48,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|math
-operator|.
-name|BigInteger
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|NoSuchElementException
@@ -69,12 +59,6 @@ comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such 
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// allow ungenerified Comparable types
 annotation|@
 name|GwtCompatible
 annotation|@

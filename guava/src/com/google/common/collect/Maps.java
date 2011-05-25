@@ -694,12 +694,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural    * ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#of()} instead.    *    * @return a new, empty {@code TreeMap}    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw Comparable
 DECL|method|newTreeMap ()
 specifier|public
 specifier|static

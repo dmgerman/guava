@@ -56,18 +56,6 @@ name|Array
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Logger
-import|;
-end_import
-
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -84,25 +72,6 @@ DECL|class|Platform
 class|class
 name|Platform
 block|{
-DECL|field|logger
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|Platform
-operator|.
-name|class
-operator|.
-name|getCanonicalName
-argument_list|()
-argument_list|)
-decl_stmt|;
 comment|/**    * Clone the given array using {@link Object#clone()}.  It is factored out so    * that it can be emulated in GWT.    */
 DECL|method|clone (T[] array)
 specifier|static

@@ -312,11 +312,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 DECL|field|keyComparator
 name|Comparator
 argument_list|<
@@ -326,11 +321,6 @@ name|K
 argument_list|>
 name|keyComparator
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 DECL|field|valueComparator
 name|Comparator
 argument_list|<

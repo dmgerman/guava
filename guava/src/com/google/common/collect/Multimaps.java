@@ -2311,7 +2311,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|putAll (K key, @SuppressWarnings(R) Iterable<? extends V> values)
+DECL|method|putAll (K key, Iterable<? extends V> values)
 annotation|@
 name|Override
 specifier|public
@@ -2321,11 +2321,6 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 name|Iterable
 argument_list|<
 name|?
@@ -2407,7 +2402,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|replaceValues (K key, @SuppressWarnings(R) Iterable<? extends V> values)
+DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
 specifier|public
@@ -2420,11 +2415,6 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 name|Iterable
 argument_list|<
 name|?
@@ -2853,7 +2843,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|replaceValues ( K key, @SuppressWarnings(R) Iterable<? extends V> values)
+DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
 specifier|public
@@ -2866,11 +2856,6 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 name|Iterable
 argument_list|<
 name|?
@@ -3048,7 +3033,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|replaceValues ( K key, @SuppressWarnings(R) Iterable<? extends V> values)
+DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
 specifier|public
@@ -3061,11 +3046,6 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 name|Iterable
 argument_list|<
 name|?
@@ -3211,7 +3191,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|replaceValues ( K key, @SuppressWarnings(R) Iterable<? extends V> values)
+DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
 specifier|public
@@ -3224,11 +3204,6 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 name|Iterable
 argument_list|<
 name|?
@@ -6307,11 +6282,6 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|contains (Object o)
 annotation|@
 name|Override

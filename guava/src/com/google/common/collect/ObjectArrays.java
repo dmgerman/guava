@@ -89,11 +89,6 @@ parameter_list|()
 block|{}
 comment|/**    * Returns a new array of the given length with the specified component type.    *    * @param type the component type    * @param length the length of the new array    */
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"Array.newInstance(Class, int)"

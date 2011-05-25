@@ -137,12 +137,6 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Creates a new, empty multiset, sorted according to the elements' natural    * order. All elements inserted into the multiset must implement the    * {@code Comparable} interface. Furthermore, all such elements must be    *<i>mutually comparable</i>: {@code e1.compareTo(e2)} must not throw a    * {@code ClassCastException} for any elements {@code e1} and {@code e2} in    * the multiset. If the user attempts to add an element to the multiset that    * violates this constraint (for example, the user attempts to add a string    * element to a set whose elements are integers), the {@code add(Object)}    * call will throw a {@code ClassCastException}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw Comparable
 DECL|method|create ()
 specifier|public
 specifier|static
@@ -201,12 +195,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an empty multiset containing the given initial elements, sorted    * according to the elements' natural order.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw Comparable
 DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
 specifier|static

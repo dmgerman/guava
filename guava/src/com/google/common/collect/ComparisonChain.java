@@ -433,11 +433,6 @@ operator|=
 name|result
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|compare ( @ullable Comparable left, @Nullable Comparable right)
 annotation|@
 name|Override

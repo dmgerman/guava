@@ -79,6 +79,11 @@ parameter_list|()
 block|{
 comment|// TODO: Auto generate this list.
 comment|// Files covered by GWT_SRCS
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|List
 argument_list|<
 name|Class

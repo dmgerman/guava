@@ -217,12 +217,6 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/*    * TODO(cpovirk): find a way to remove this @SuppressWarnings even for    * eclipse?    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|field|NATURAL_ORDER
 specifier|private
 specifier|static
@@ -238,11 +232,6 @@ operator|.
 name|natural
 argument_list|()
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|field|NATURAL_EMPTY_SET
 specifier|private
 specifier|static

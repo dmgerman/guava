@@ -127,24 +127,13 @@ return|return
 literal|0
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// we're permitted to throw CCE
-name|int
-name|result
-init|=
+return|return
 name|right
 operator|.
 name|compareTo
 argument_list|(
 name|left
 argument_list|)
-decl_stmt|;
-return|return
-name|result
 return|;
 block|}
 DECL|method|reverse ()

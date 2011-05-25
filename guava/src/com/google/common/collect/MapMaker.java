@@ -1882,9 +1882,11 @@ name|DEFAULT_STATS_COUNTER
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a cache, which either returns an already-loaded value for a given key or atomically    * computes or retrieves it using the supplied {@code CacheLoader}. If another thread is currently    * loading the value for this key, simply waits for that thread to finish and returns its    * loaded value. Note that multiple threads can concurrently load values for distinct keys.    *    *<p>{@link Cache#get} in the returned cache implementation will throw {@link    * NullPointerException} if the key is null.    *    *<p>The {@code asMap()} view of the returned cache supports removal operations, but no other    * modifications.    *    *<p>This method does not alter the state of this {@code MapMaker} instance, so it can be invoked    * again to create multiple independent caches.    * @param loader the cache loader used to obtain new values    * @return a cache having the requested features    * @since Guava release 10    */
+comment|/**    * Builds a cache, which either returns an already-loaded value for a given key or atomically    * computes or retrieves it using the supplied {@code CacheLoader}. If another thread is currently    * loading the value for this key, simply waits for that thread to finish and returns its    * loaded value. Note that multiple threads can concurrently load values for distinct keys.    *    *<p>{@link Cache} lookup methods in the returned cache implementation will throw {@link    * NullPointerException} if the key is null.    *    *<p>The {@code asMap()} view of the returned cache supports removal operations, but no other    * modifications.    *    *<p>This method does not alter the state of this {@code MapMaker} instance, so it can be invoked    * again to create multiple independent caches.    * @param loader the cache loader used to obtain new values    * @return a cache having the requested features    * @since Guava release 10    */
 annotation|@
 name|Beta
+annotation|@
+name|Override
 DECL|method|makeCache (CacheLoader<? super K, V> loader)
 specifier|public
 parameter_list|<

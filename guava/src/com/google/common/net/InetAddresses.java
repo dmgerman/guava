@@ -2455,9 +2455,6 @@ condition|)
 block|{
 name|addressAsLong
 operator|=
-operator|(
-name|long
-operator|)
 name|getEmbeddedIPv4ClientAddress
 argument_list|(
 name|ip6

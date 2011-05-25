@@ -1198,11 +1198,6 @@ name|next
 argument_list|)
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 name|Cut
 argument_list|<
 name|C

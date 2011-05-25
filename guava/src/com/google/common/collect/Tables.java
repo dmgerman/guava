@@ -1188,12 +1188,6 @@ argument_list|()
 return|;
 block|}
 comment|// Will cast TRANSPOSE_CELL to a type that always succeeds
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw type
 DECL|field|TRANSPOSE_CELL
 specifier|private
 specifier|static

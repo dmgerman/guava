@@ -206,6 +206,8 @@ name|computingFunction
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|load (K key)
 specifier|public
 name|V
@@ -316,6 +318,8 @@ name|computingSupplier
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|load (Object key)
 specifier|public
 name|V

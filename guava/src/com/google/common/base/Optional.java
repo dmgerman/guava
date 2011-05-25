@@ -347,11 +347,13 @@ return|return
 name|reference
 return|;
 block|}
-DECL|method|get (@ullable T defaultValue)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 annotation|@
 name|Nullable
+DECL|method|get (@ullable T defaultValue)
 specifier|public
 name|T
 name|get
@@ -551,11 +553,13 @@ literal|"value is absent"
 argument_list|)
 throw|;
 block|}
-DECL|method|get (@ullable Object defaultValue)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 annotation|@
 name|Nullable
+DECL|method|get (@ullable Object defaultValue)
 specifier|public
 name|Object
 name|get

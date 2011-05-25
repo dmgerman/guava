@@ -150,12 +150,6 @@ end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// allow ungenerified Comparable types
-annotation|@
 name|GwtCompatible
 annotation|@
 name|Beta
@@ -454,12 +448,6 @@ operator|instanceof
 name|SortedSet
 condition|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// bugs.sun.com/view_bug.do?bug_id=6558557
 name|SortedSet
 argument_list|<
 name|?
@@ -468,15 +456,10 @@ name|C
 argument_list|>
 name|set
 init|=
-operator|(
-name|SortedSet
-argument_list|<
-name|?
-extends|extends
-name|C
-argument_list|>
-operator|)
+name|cast
+argument_list|(
 name|values
+argument_list|)
 decl_stmt|;
 name|Comparator
 argument_list|<
@@ -1062,6 +1045,36 @@ name|sb
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
+DECL|method|cast (Iterable<T> iterable)
+specifier|private
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|SortedSet
+argument_list|<
+name|T
+argument_list|>
+name|cast
+parameter_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+operator|(
+name|SortedSet
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|iterable
 return|;
 block|}
 block|}

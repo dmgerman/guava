@@ -333,12 +333,6 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Creates an empty {@code TreeBasedTable} that uses the natural orderings    * of both row and column keys.    *    *<p>The method signature specifies {@code R extends Comparable} with a raw    * {@link Comparable}, instead of {@code R extends Comparable<? super R>},    * and the same for {@code C}. That's necessary to support classes defined    * without generics.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw Comparable
 specifier|public
 specifier|static
 parameter_list|<

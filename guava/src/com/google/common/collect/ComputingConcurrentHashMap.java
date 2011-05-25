@@ -2046,11 +2046,6 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|readObject (ObjectInputStream in)
 specifier|private
 name|void

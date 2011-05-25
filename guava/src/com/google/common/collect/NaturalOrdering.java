@@ -147,32 +147,15 @@ return|return
 literal|0
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// we're permitted to throw CCE
-name|int
-name|result
-init|=
+return|return
 name|left
 operator|.
 name|compareTo
 argument_list|(
 name|right
 argument_list|)
-decl_stmt|;
-return|return
-name|result
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// TODO(kevinb): the right way to explain this??
 DECL|method|reverse ()
 annotation|@
 name|Override
@@ -202,12 +185,6 @@ name|INSTANCE
 return|;
 block|}
 comment|// Override to remove a level of indirection from inner loop
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// TODO(kevinb): the right way to explain this??
 DECL|method|binarySearch ( List<? extends Comparable> sortedList, Comparable key)
 annotation|@
 name|Override

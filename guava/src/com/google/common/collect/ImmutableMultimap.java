@@ -1217,12 +1217,6 @@ specifier|static
 class|class
 name|FieldSettersHolder
 block|{
-comment|// Eclipse doesn't like the raw ImmutableMultimap
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|static
 specifier|final
 name|Serialization
@@ -1245,12 +1239,6 @@ argument_list|,
 literal|"map"
 argument_list|)
 decl_stmt|;
-comment|// Eclipse doesn't like the raw ImmutableMultimap
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|static
 specifier|final
 name|Serialization

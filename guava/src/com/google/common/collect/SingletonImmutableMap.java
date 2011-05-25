@@ -216,13 +216,15 @@ else|:
 name|e
 return|;
 block|}
-DECL|method|get (Object key)
+DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -264,13 +266,15 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@ullable Object key)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -284,13 +288,15 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@ullable Object value)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)

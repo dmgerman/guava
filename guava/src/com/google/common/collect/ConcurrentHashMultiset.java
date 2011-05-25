@@ -274,12 +274,6 @@ specifier|static
 class|class
 name|FieldSettersHolder
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// eclipse doesn't like the raw type here, but it's harmless
 DECL|field|COUNT_MAP_FIELD_SETTER
 specifier|static
 specifier|final

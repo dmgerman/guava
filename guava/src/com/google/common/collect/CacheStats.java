@@ -201,7 +201,7 @@ operator|=
 name|evictionCount
 expr_stmt|;
 block|}
-comment|/**    * Returns the number of times {@link Cache#get} has returned either a cached or uncached value.    * This is defined as {@code hitCount() + missCount()}.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have returned either a cached or    * uncached value. This is defined as {@code hitCount() + missCount()}.    */
 DECL|method|requestCount ()
 specifier|public
 name|long
@@ -214,7 +214,7 @@ operator|+
 name|missCount
 return|;
 block|}
-comment|/**    * Returns the number of times {@link Cache#get} has returned a cached value.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have returned a cached value.    */
 DECL|method|hitCount ()
 specifier|public
 name|long
@@ -255,7 +255,7 @@ operator|/
 name|requestCount
 return|;
 block|}
-comment|/**    * Returns the number of times {@link Cache#get} has returned an uncached (newly created) value,    * or null. Multiple concurrent calls to {@link Cache#get} on an absent value can result in    * multiple misses, all returning the results of a single creation.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have returned an uncached (newly    * created) value, or null. Multiple concurrent calls to {@link Cache} lookup methods on an absent    * value can result in multiple misses, all returning the results of a single creation.    */
 DECL|method|missCount ()
 specifier|public
 name|long
@@ -296,7 +296,7 @@ operator|/
 name|requestCount
 return|;
 block|}
-comment|/**    * Returns the number of times {@link Cache#get} has successfully created a new value. This    * differs from {@link #missCount} only in the case of concurrent calls to {@link Cache#get} on an    * absent value, in which case multiple simultaneous misses will result in a single creation.    * Thus, the returned value can never exceed the value of {@code missCount()}.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have successfully created a new value.    * This differs from {@link #missCount} only in the case of concurrent calls to {@link Cache}    * lookup methods on an absent value, in which case multiple simultaneous misses will result in a    * single creation. Thus, the returned value can never exceed the value of {@code missCount()}.    */
 DECL|method|createCount ()
 specifier|public
 name|long
