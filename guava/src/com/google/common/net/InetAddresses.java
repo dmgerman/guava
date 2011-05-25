@@ -2830,7 +2830,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns true if the InetAddress is either 255.255.255.255 for IPv4 or    * ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    *    * @returns true if the InetAddress is either 255.255.255.255 for IPv4 or    *          ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    * @since Guava release 10    */
+comment|/**    * Returns true if the InetAddress is either 255.255.255.255 for IPv4 or    * ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    *    * @return true if the InetAddress is either 255.255.255.255 for IPv4 or    *          ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    * @since Guava release 10    */
 DECL|method|isMaximum (InetAddress address)
 specifier|public
 specifier|static

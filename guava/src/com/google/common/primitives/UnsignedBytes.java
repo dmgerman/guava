@@ -599,11 +599,7 @@ name|getBestComparator
 argument_list|()
 decl_stmt|;
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-comment|// only access this class via reflection!
+name|VisibleForTesting
 DECL|enum|UnsafeComparator
 enum|enum
 name|UnsafeComparator
