@@ -121,6 +121,8 @@ expr_stmt|;
 block|}
 DECL|method|getKey ()
 annotation|@
+name|Nullable
+annotation|@
 name|Override
 specifier|public
 name|K
@@ -132,6 +134,8 @@ name|key
 return|;
 block|}
 DECL|method|getValue ()
+annotation|@
+name|Nullable
 annotation|@
 name|Override
 specifier|public
