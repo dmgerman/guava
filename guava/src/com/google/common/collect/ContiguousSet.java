@@ -222,6 +222,7 @@ argument_list|)
 return|;
 block|}
 comment|// Abstract method doesn't exist in GWT emulation
+comment|// TODO: ImmutableSortedSet.indexOf and contains allow null; shouldn't we?
 DECL|method|indexOf (Object target)
 comment|/* @Override */
 name|int

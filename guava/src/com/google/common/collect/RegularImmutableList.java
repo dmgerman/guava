@@ -216,13 +216,15 @@ operator|.
 name|length
 return|;
 block|}
-DECL|method|contains (Object target)
+DECL|method|contains (@ullable Object target)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -424,13 +426,15 @@ name|offset
 index|]
 return|;
 block|}
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@ullable Object target)
 annotation|@
 name|Override
 specifier|public
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
@@ -485,13 +489,15 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|lastIndexOf (Object target)
+DECL|method|lastIndexOf (@ullable Object target)
 annotation|@
 name|Override
 specifier|public
 name|int
 name|lastIndexOf
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)

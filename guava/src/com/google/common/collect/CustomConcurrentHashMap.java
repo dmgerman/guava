@@ -10136,16 +10136,20 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|enqueueNotification (K key, int hash, V value, RemovalCause cause)
+DECL|method|enqueueNotification (@ullable K key, int hash, @Nullable V value, RemovalCause cause)
 name|void
 name|enqueueNotification
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
 name|int
 name|hash
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|,

@@ -434,13 +434,15 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

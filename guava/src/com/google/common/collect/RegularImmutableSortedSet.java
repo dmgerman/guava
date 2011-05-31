@@ -940,12 +940,14 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|indexOf (Object target)
+DECL|method|indexOf (@ullable Object target)
 annotation|@
 name|Override
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
