@@ -298,6 +298,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|ref
+operator|.
+name|WeakReference
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|AbstractCollection
@@ -402,6 +414,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|CancellationException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ConcurrentLinkedQueue
 import|;
 end_import
@@ -438,7 +462,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Executor
+name|ScheduledExecutorService
 import|;
 end_import
 
@@ -601,6 +625,14 @@ name|CLEANUP_MAX
 init|=
 literal|16
 decl_stmt|;
+DECL|field|CLEANUP_EXECUTOR_DELAY_SECS
+specifier|static
+specifier|final
+name|long
+name|CLEANUP_EXECUTOR_DELAY_SECS
+init|=
+literal|60
+decl_stmt|;
 comment|// Fields
 comment|/**    * Mask value for indexing into segments. The upper bits of a key's hash code are used to choose    * the segment.    */
 DECL|field|segmentMask
@@ -716,10 +748,10 @@ specifier|transient
 name|EntryFactory
 name|entryFactory
 decl_stmt|;
-comment|/** Performs map housekeeping operations. */
+comment|/** Performs routine cleanup. */
 DECL|field|cleanupExecutor
 specifier|final
-name|Executor
+name|ScheduledExecutorService
 name|cleanupExecutor
 decl_stmt|;
 comment|/** Measures time in a testable way. */
@@ -728,7 +760,7 @@ specifier|final
 name|Ticker
 name|ticker
 decl_stmt|;
-comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
+comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    *    * @throws RejectedExecutionException if a cleanupExecutor was specified but rejects the cleanup    *     task    */
 DECL|method|CustomConcurrentHashMap (MapMaker builder, Supplier<? extends StatsCounter> statsCounterSupplier)
 name|CustomConcurrentHashMap
 parameter_list|(
@@ -1138,67 +1170,25 @@ condition|)
 block|{
 name|cleanupExecutor
 operator|.
-name|execute
+name|scheduleWithFixedDelay
 argument_list|(
-name|cleanupTask
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-DECL|field|cleanupTask
-specifier|final
-name|Runnable
-name|cleanupTask
-init|=
 operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-comment|// TODO(user): should we sleep between runs? use a scheduled executor? have a dirty
-comment|// flag to indicate when cleanup is required? enqueue one cleanup task per queue so they
-comment|// can wait on the queues?
-try|try
-block|{
-for|for
-control|(
-name|Segment
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|segment
-range|:
-name|segments
-control|)
-block|{
-name|segment
-operator|.
-name|runCleanup
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|cleanupExecutor
-operator|.
-name|execute
+name|CleanupMapTask
 argument_list|(
-name|cleanupTask
+name|this
+argument_list|)
+argument_list|,
+name|CLEANUP_EXECUTOR_DELAY_SECS
+argument_list|,
+name|CLEANUP_EXECUTOR_DELAY_SECS
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-decl_stmt|;
 DECL|method|evictsBySize ()
 name|boolean
 name|evictsBySize
@@ -14037,8 +14027,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 comment|// Queues
-comment|/**      * A custom queue for managing eviction order. Note that this is tightly integrated with {@code      * ReferenceEntry}, upon which it relies to perform its linking.      *      *<p>Note that this entire implementation makes the assumption that all elements which are in      * the map are also in this queue, and that all elements not in the queue are not in the map.      *      *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle      * of the queue as part of copyEvictableEntry, and (2) the contains method is highly optimized      * for the current model.      */
+comment|/**    * A custom queue for managing eviction order. Note that this is tightly integrated with {@code    * ReferenceEntry}, upon which it relies to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in    * the map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle    * of the queue as part of copyEvictableEntry, and (2) the contains method is highly optimized    * for the current model.    */
 DECL|class|EvictionQueue
 specifier|static
 specifier|final
@@ -14648,7 +14639,7 @@ block|}
 return|;
 block|}
 block|}
-comment|/**      * A custom queue for managing expiration order. Note that this is tightly integrated with      * {@code ReferenceEntry}, upon which it reliese to perform its linking.      *      *<p>Note that this entire implementation makes the assumption that all elements which are in      * the map are also in this queue, and that all elements not in the queue are not in the map.      *      *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle      * of the queue as part of copyEvictableEntry, and (2) the contains method is highly optimized      * for the current model.      */
+comment|/**    * A custom queue for managing expiration order. Note that this is tightly integrated with    * {@code ReferenceEntry}, upon which it reliese to perform its linking.    *    *<p>Note that this entire implementation makes the assumption that all elements which are in    * the map are also in this queue, and that all elements not in the queue are not in the map.    *    *<p>The benefits of creating our own queue are that (1) we can replace elements in the middle    * of the queue as part of copyEvictableEntry, and (2) the contains method is highly optimized    * for the current model.    */
 DECL|class|ExpirationQueue
 specifier|static
 specifier|final
@@ -15279,6 +15270,115 @@ return|;
 block|}
 block|}
 return|;
+block|}
+block|}
+DECL|class|CleanupMapTask
+specifier|static
+specifier|final
+class|class
+name|CleanupMapTask
+implements|implements
+name|Runnable
+block|{
+DECL|field|mapReference
+specifier|final
+name|WeakReference
+argument_list|<
+name|CustomConcurrentHashMap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+argument_list|>
+name|mapReference
+decl_stmt|;
+DECL|method|CleanupMapTask (CustomConcurrentHashMap<?, ?> map)
+specifier|public
+name|CleanupMapTask
+parameter_list|(
+name|CustomConcurrentHashMap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+parameter_list|)
+block|{
+name|this
+operator|.
+name|mapReference
+operator|=
+operator|new
+name|WeakReference
+argument_list|<
+name|CustomConcurrentHashMap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+argument_list|>
+argument_list|(
+name|map
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|run ()
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|CustomConcurrentHashMap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+init|=
+name|mapReference
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|map
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|CancellationException
+argument_list|()
+throw|;
+block|}
+for|for
+control|(
+name|Segment
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|segment
+range|:
+name|map
+operator|.
+name|segments
+control|)
+block|{
+name|segment
+operator|.
+name|runCleanup
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}

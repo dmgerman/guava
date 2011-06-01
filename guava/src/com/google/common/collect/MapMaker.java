@@ -428,7 +428,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Executor
+name|ScheduledExecutorService
 import|;
 end_import
 
@@ -696,7 +696,7 @@ argument_list|>
 name|valueEquivalence
 decl_stmt|;
 DECL|field|cleanupExecutor
-name|Executor
+name|ScheduledExecutorService
 name|cleanupExecutor
 decl_stmt|;
 DECL|field|ticker
@@ -1530,7 +1530,7 @@ name|expireAfterAccessNanos
 return|;
 block|}
 DECL|method|getCleanupExecutor ()
-name|Executor
+name|ScheduledExecutorService
 name|getCleanupExecutor
 parameter_list|()
 block|{
