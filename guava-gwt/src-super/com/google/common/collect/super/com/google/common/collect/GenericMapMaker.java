@@ -88,8 +88,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated

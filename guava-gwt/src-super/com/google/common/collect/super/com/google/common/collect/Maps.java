@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -3010,8 +2996,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a view of a map whose values are derived from the original map's    * entries. In contrast to {@link #transformValues}, this method's    * entry-transformation logic may depend on the key as well as the value.    *    *<p>All other properties of the transformed map, such as iteration order,    * are left intact. For example, the code:<pre>   {@code    *    *   Map<String, Boolean> options =    *       ImmutableMap.of("verbose", true, "sort", false);    *   EntryTransformer<String, Boolean, String> flagPrefixer =    *       new EntryTransformer<String, Boolean, String>() {    *         public String transformEntry(String key, Boolean value) {    *           return value ? key : "no" + key;    *         }    *       };    *   Map<String, String> transformed =    *       Maps.transformEntries(options, flagPrefixer);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {verbose=verbose, sort=nosort}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null    * values provided that the transformer is capable of accepting null inputs.    * The transformed map might contain null values if the transformer sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is    * necessary for the returned map to be a view, but it means that the    * transformer will be applied many times for bulk operations like {@link    * Map#containsValue} and {@link Object#toString}. For this to perform well,    * {@code transformer} should be fast. To avoid lazy evaluation when the    * returned map doesn't need to be a view, copy the returned map into a new    * map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * {@code EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies    * that {@code k2} is also of type {@code K}. Using an {@code    * EntryTransformer} key type for which this may not hold, such as {@code    * ArrayList}, may risk a {@code ClassCastException} when calling methods on    * the transformed map.    *    * @since Guava release 07    */
-annotation|@
-name|Beta
 DECL|method|transformEntries ( Map<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 specifier|public
 specifier|static
@@ -3071,8 +3055,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A transformation of the value of a key-value pair, using both key and value    * as inputs. To apply the transformation to a map, use    * {@link Maps#transformEntries(Map, EntryTransformer)}.    *    * @param<K> the key type of the input and output entries    * @param<V1> the value type of the input entry    * @param<V2> the value type of the output entry    * @since Guava release 07    */
-annotation|@
-name|Beta
 DECL|interface|EntryTransformer
 specifier|public
 interface|interface
