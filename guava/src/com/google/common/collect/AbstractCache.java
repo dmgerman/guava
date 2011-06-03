@@ -274,22 +274,32 @@ name|void
 name|recordHit
 parameter_list|()
 function_decl|;
-comment|/**      * Records a single miss. This should be called when a cache request returns an uncached (newly      * created) value or null. Multiple concurrent calls to {@link Cache} lookup methods on an      * absent value should result in multiple calls to this method, despite all being served by the      * results of a single creation.      */
-DECL|method|recordMiss ()
+comment|/**      * Records the successful creation of a new value. This should be called when a cache request      * triggers the creation of a new value, and that creation completes succesfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the creating thread.      *      * @param createTime the number of nanoseconds the cache spent creating the new value      */
+DECL|method|recordCreateSuccess (long createTime)
 specifier|public
 name|void
-name|recordMiss
-parameter_list|()
-function_decl|;
-comment|/**      * Records the creation of a new value. This should be called when a cache request triggers the      * creation of a new value. This differs from {@link #recordMiss} in the case of concurrent      * calls to {@link Cache} lookup methods on an absent value, in which case only a single call to      * this method should occur. Note that the creating thread should call both {@link      * #recordCreate} and {@link #recordMiss}.      *      * @param createTime the number of nanoseconds the cache spent creating the new value      */
-DECL|method|recordCreate (long createTime)
-specifier|public
-name|void
-name|recordCreate
+name|recordCreateSuccess
 parameter_list|(
 name|long
 name|createTime
 parameter_list|)
+function_decl|;
+comment|/**      * Records the failed creation of a new value. This should be called when a cache request      * triggers the creation of a new value, but that creation throws an exception. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the creating thread.      *      * @param createTime the number of nanoseconds the cache spent creating the new value prior to      *     an exception being thrown      */
+DECL|method|recordCreateException (long createTime)
+specifier|public
+name|void
+name|recordCreateException
+parameter_list|(
+name|long
+name|createTime
+parameter_list|)
+function_decl|;
+comment|/**      * Records a single concurrent miss. This should be called when a cache request returns a      * value which was created by a different thread. In contrast to {@link #recordCreateSuccess}      * and {@link #recordCreateException}, this method should never be called by the creating      * thread. Multiple concurrent calls to {@link Cache} lookup methods with the same key on an      * absent value should result in a single call to either {@code recordCreateSuccess} or      * {@code recordCreateException} and multiple calls to this method, despite all being served by      * the results of a single creation.      */
+DECL|method|recordConcurrentMiss ()
+specifier|public
+name|void
+name|recordConcurrentMiss
+parameter_list|()
 function_decl|;
 comment|/**      * Records the eviction of an entry from the cache. This should only been called when an entry      * is evicted due to the cache's eviction strategy, and not as a result of manual {@linkplain      * Cache#invalidate invalidations}.      */
 DECL|method|recordEviction ()
@@ -337,11 +347,21 @@ operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
-DECL|field|createCount
+DECL|field|createSuccessCount
 specifier|private
 specifier|final
 name|AtomicLong
-name|createCount
+name|createSuccessCount
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
+DECL|field|createExceptionCount
+specifier|private
+specifier|final
+name|AtomicLong
+name|createExceptionCount
 init|=
 operator|new
 name|AtomicLong
@@ -383,30 +403,21 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|recordMiss ()
+DECL|method|recordCreateSuccess (long createTime)
 specifier|public
 name|void
-name|recordMiss
-parameter_list|()
+name|recordCreateSuccess
+parameter_list|(
+name|long
+name|createTime
+parameter_list|)
 block|{
 name|missCount
 operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|recordCreate (long createTime)
-specifier|public
-name|void
-name|recordCreate
-parameter_list|(
-name|long
-name|createTime
-parameter_list|)
-block|{
-name|createCount
+name|createSuccessCount
 operator|.
 name|incrementAndGet
 argument_list|()
@@ -417,6 +428,49 @@ name|addAndGet
 argument_list|(
 name|createTime
 argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|recordCreateException (long createTime)
+specifier|public
+name|void
+name|recordCreateException
+parameter_list|(
+name|long
+name|createTime
+parameter_list|)
+block|{
+name|missCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+name|createExceptionCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+name|totalCreateTime
+operator|.
+name|addAndGet
+argument_list|(
+name|createTime
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|recordConcurrentMiss ()
+specifier|public
+name|void
+name|recordConcurrentMiss
+parameter_list|()
+block|{
+name|missCount
+operator|.
+name|incrementAndGet
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -455,7 +509,12 @@ operator|.
 name|get
 argument_list|()
 argument_list|,
-name|createCount
+name|createSuccessCount
+operator|.
+name|get
+argument_list|()
+argument_list|,
+name|createExceptionCount
 operator|.
 name|get
 argument_list|()
@@ -510,13 +569,23 @@ name|missCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|createCount
+name|createSuccessCount
 operator|.
 name|addAndGet
 argument_list|(
 name|otherStats
 operator|.
-name|createCount
+name|createSuccessCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|createExceptionCount
+operator|.
+name|addAndGet
+argument_list|(
+name|otherStats
+operator|.
+name|createExceptionCount
 argument_list|()
 argument_list|)
 expr_stmt|;

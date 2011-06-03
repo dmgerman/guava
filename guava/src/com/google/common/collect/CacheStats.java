@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Statistics about the performance of a {@link Cache}. Instances of this class are immutable.  *  *<p>Cache statistics are incremented according to the following rules:  *  *<ul>  *<li>A cache lookup that encounters an existing cache entry will increment {@code hitCount}.  *<li>The first cache lookup that encounters a missing cache entry will create a new entry. After  *     successful creation it will increment {@code missCount} and {@code createCount}, and add the  *     total creation time, in nanoseconds, to {@code totalCreateTime}.  *<li>Cache lookups that encounter a missing cache entry that is pending creation will await  *     successful creation and then increment {@code missCount}.  *<li>No stats are modified when entry creation throws an exception, neither for the creating  *     thread nor for waiting threads.  *<li>When an entry is evicted from the cache, {@code evictionCount} is incremented.  *<li>No stats are modified when a cache entry is invalidated or manually removed.  *<li>No stats are modified by operations invoked on the {@linkplain Cache#asMap asMap} view of  *     the cache.  *</ul>  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * Statistics about the performance of a {@link Cache}. Instances of this class are immutable.  *  *<p>Cache statistics are incremented according to the following rules:  *  *<ul>  *<li>When a cache lookup encounters an existing cache entry {@code hitCount} is incremented.  *<li>When a cache lookup first encounters a missing cache entry, a new entry is created.  *<ul>  *<li>After successful creation {@code missCount} and {@code createSuccessCount} are  *     incremented, and the total creation time, in nanoseconds, is added to  *     {@code totalCreateTime}.  *<li>When an exception is thrown during creation {@code missCount} and {@code  *     createExceptionCount} are incremented, and the total creation time, in nanoseconds, is  *     added to {@code totalCreateTime}.  *<li>Cache lookups that encounter a missing cache entry that is pending creation will await  *     creation (whether successful or not) and then increment {@code missCount}.  *</ul>  *<li>When an entry is evicted from the cache, {@code evictionCount} is incremented.  *<li>No stats are modified when a cache entry is invalidated or manually removed.  *<li>No stats are modified by operations invoked on the {@linkplain Cache#asMap asMap} view of  *     the cache.  *</ul>  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -95,11 +95,17 @@ specifier|final
 name|long
 name|missCount
 decl_stmt|;
-DECL|field|createCount
+DECL|field|createSuccessCount
 specifier|private
 specifier|final
 name|long
-name|createCount
+name|createSuccessCount
+decl_stmt|;
+DECL|field|createExceptionCount
+specifier|private
+specifier|final
+name|long
+name|createExceptionCount
 decl_stmt|;
 DECL|field|totalCreateTime
 specifier|private
@@ -113,9 +119,8 @@ specifier|final
 name|long
 name|evictionCount
 decl_stmt|;
-comment|// TODO(user): add createExceptionCount?
 comment|/**    * Constructs a new {@code CacheStats} instance.    *    *<p>Five parameters of the same type in a row is a bad thing, but this class is not constructed    * by end users and is too fine-grained for a builder.    */
-DECL|method|CacheStats (long hitCount, long missCount, long createCount, long totalCreateTime, long evictionCount)
+DECL|method|CacheStats (long hitCount, long missCount, long createSuccessCount, long createExceptionCount, long totalCreateTime, long evictionCount)
 specifier|public
 name|CacheStats
 parameter_list|(
@@ -126,7 +131,10 @@ name|long
 name|missCount
 parameter_list|,
 name|long
-name|createCount
+name|createSuccessCount
+parameter_list|,
+name|long
+name|createExceptionCount
 parameter_list|,
 name|long
 name|totalCreateTime
@@ -151,7 +159,14 @@ argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-name|createCount
+name|createSuccessCount
+operator|>=
+literal|0
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|createExceptionCount
 operator|>=
 literal|0
 argument_list|)
@@ -184,9 +199,15 @@ name|missCount
 expr_stmt|;
 name|this
 operator|.
-name|createCount
+name|createSuccessCount
 operator|=
-name|createCount
+name|createSuccessCount
+expr_stmt|;
+name|this
+operator|.
+name|createExceptionCount
+operator|=
+name|createExceptionCount
 expr_stmt|;
 name|this
 operator|.
@@ -201,7 +222,7 @@ operator|=
 name|evictionCount
 expr_stmt|;
 block|}
-comment|/**    * Returns the number of times {@link Cache} lookup methods have returned either a cached or    * uncached value. This is defined as {@code hitCount() + missCount()}.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have returned either a cached or    * uncached value. This is defined as {@code hitCount + missCount}.    */
 DECL|method|requestCount ()
 specifier|public
 name|long
@@ -225,7 +246,7 @@ return|return
 name|hitCount
 return|;
 block|}
-comment|/**    * Returns the ratio of cache requests which were hits. This is defined as    * {@code hitCount() / requestCount()}, or {@code 1.0} when {@code requestCount() == 0}.    * Note that {@code hitRate() + missRate() =~ 1.0}.    */
+comment|/**    * Returns the ratio of cache requests which were hits. This is defined as    * {@code hitCount / requestCount}, or {@code 1.0} when {@code requestCount == 0}.    * Note that {@code hitRate + missRate =~ 1.0}.    */
 DECL|method|hitRate ()
 specifier|public
 name|double
@@ -266,7 +287,7 @@ return|return
 name|missCount
 return|;
 block|}
-comment|/**    * Returns the ratio of cache requests which were misses. This is defined as    * {@code missCount() / requestCount()}, or {@code 0.0} when {@code requestCount() == 0}.    * Note that {@code hitRate() + missRate() =~ 1.0}.    */
+comment|/**    * Returns the ratio of cache requests which were misses. This is defined as    * {@code missCount / requestCount}, or {@code 0.0} when {@code requestCount == 0}.    * Note that {@code hitRate + missRate =~ 1.0}. Cache misses include all requests which    * weren't cache hits, including requests which resulted in either successful or failed creation    * attempts, and requests which waited for other threads to finish creation. It is thus the case    * that {@code missCount&gt;= createSuccessCount + createExceptionCount}. Multiple    * concurrent misses for the same key will result in a single creation.    */
 DECL|method|missRate ()
 specifier|public
 name|double
@@ -296,7 +317,7 @@ operator|/
 name|requestCount
 return|;
 block|}
-comment|/**    * Returns the number of times {@link Cache} lookup methods have successfully created a new value.    * This differs from {@link #missCount} only in the case of concurrent calls to {@link Cache}    * lookup methods on an absent value, in which case multiple simultaneous misses will result in a    * single creation. Thus, the returned value can never exceed the value of {@code missCount()}.    */
+comment|/**    * Returns the total number of times that {@link Cache} lookup methods attempted to create new    * values. This includes both successful creations, as well as those that threw exceptions. This    * is defined as {@code createSuccessCount + createExceptionCount}.    */
 DECL|method|createCount ()
 specifier|public
 name|long
@@ -304,10 +325,62 @@ name|createCount
 parameter_list|()
 block|{
 return|return
-name|createCount
+name|createSuccessCount
+operator|+
+name|createExceptionCount
 return|;
 block|}
-comment|/**    * Returns the total number of nanoseconds the cache has spent creating new values. This can be    * used to calculate the miss penalty. This value is increased every time {@code createCount()}    * is incremented.    */
+comment|/**    * Returns the number of times {@link Cache} lookup methods have successfully created a new value.    * This is always incremented in conjunction with {@link #missCount}, though {@code missCount}    * is also incremented when an exception is encountered during creation (see    * {@link #createExceptionCount}). Multiple concurrent misses for the same key will result in a    * single creation.    */
+DECL|method|createSuccessCount ()
+specifier|public
+name|long
+name|createSuccessCount
+parameter_list|()
+block|{
+return|return
+name|createSuccessCount
+return|;
+block|}
+comment|/**    * Returns the number of times {@link Cache} lookup methods threw an exception while creating a    * new value. This is always incremented in conjunction with {@code missCount}, though    * {@code missCount} is also incremented when creation completes successfully (see    * {@link #createSuccessCount}). Multiple concurrent misses for the same key will result in a    * single creation.    */
+DECL|method|createExceptionCount ()
+specifier|public
+name|long
+name|createExceptionCount
+parameter_list|()
+block|{
+return|return
+name|createExceptionCount
+return|;
+block|}
+comment|/**    * Returns the ratio of cache creates which threw exceptions. This is defined as    * {@code createExceptionCount / (createSuccessCount + createExceptionCount)}, or    * {@code 0.0} when {@code createSuccessCount + createExceptionCount == 0}.    */
+DECL|method|createExceptionRate ()
+specifier|public
+name|double
+name|createExceptionRate
+parameter_list|()
+block|{
+name|long
+name|totalCreateCount
+init|=
+name|createSuccessCount
+operator|+
+name|createExceptionCount
+decl_stmt|;
+return|return
+operator|(
+name|totalCreateCount
+operator|==
+literal|0
+operator|)
+condition|?
+literal|0.0
+else|:
+name|createExceptionCount
+operator|/
+name|totalCreateCount
+return|;
+block|}
+comment|/**    * Returns the total number of nanoseconds the cache has spent creating new values. This can be    * used to calculate the miss penalty. This value is increased every time    * {@code createSuccessCount} or {@code createExceptionCount} is incremented.    */
 DECL|method|totalCreateTime ()
 specifier|public
 name|long
@@ -318,16 +391,23 @@ return|return
 name|totalCreateTime
 return|;
 block|}
-comment|/**    * Returns the average time spent creating new values. This is defined as    * {@code totalCreateTime() / createCount()}.    */
+comment|/**    * Returns the average time spent creating new values. This is defined as    * {@code totalCreateTime / (createSuccessCount + createExceptionCount)}.    */
 DECL|method|averageCreatePenalty ()
 specifier|public
 name|double
 name|averageCreatePenalty
 parameter_list|()
 block|{
+name|long
+name|totalCreateCount
+init|=
+name|createSuccessCount
+operator|+
+name|createExceptionCount
+decl_stmt|;
 return|return
 operator|(
-name|createCount
+name|totalCreateCount
 operator|==
 literal|0
 operator|)
@@ -339,7 +419,7 @@ name|double
 operator|)
 name|totalCreateTime
 operator|/
-name|createCount
+name|totalCreateCount
 return|;
 block|}
 comment|/**    * Returns the number of times an entry has been evicted. This count does not include manual    * {@linkplain Cache#invalidate invalidations}.    */
@@ -353,7 +433,7 @@ return|return
 name|evictionCount
 return|;
 block|}
-comment|/**    * Returns a new {@code CacheStats} representing the difference between this {@code CacheStats}    * and {@code other}.    *    * @throws IllegalArgumentException if any value in {@code other} is greater than the    *     corresponding value in this instance (this will not happen if {@code other} was retrieved    *     from the same cache at an earlier time)    */
+comment|/**    * Returns a new {@code CacheStats} representing the difference between this {@code CacheStats}    * and {@code other}. Negative values, which aren't supported by {@code CacheStats} will be    * rounded up to zero.    */
 DECL|method|minus (CacheStats other)
 specifier|public
 name|CacheStats
@@ -367,35 +447,83 @@ return|return
 operator|new
 name|CacheStats
 argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
 name|hitCount
 operator|-
 name|other
 operator|.
 name|hitCount
+argument_list|)
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
 argument_list|,
 name|missCount
 operator|-
 name|other
 operator|.
 name|missCount
+argument_list|)
 argument_list|,
-name|createCount
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|createSuccessCount
 operator|-
 name|other
 operator|.
-name|createCount
+name|createSuccessCount
+argument_list|)
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
+name|createExceptionCount
+operator|-
+name|other
+operator|.
+name|createExceptionCount
+argument_list|)
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
 argument_list|,
 name|totalCreateTime
 operator|-
 name|other
 operator|.
 name|totalCreateTime
+argument_list|)
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
 argument_list|,
 name|evictionCount
 operator|-
 name|other
 operator|.
 name|evictionCount
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -416,7 +544,9 @@ name|hitCount
 argument_list|,
 name|missCount
 argument_list|,
-name|createCount
+name|createSuccessCount
+argument_list|,
+name|createExceptionCount
 argument_list|,
 name|totalCreateTime
 argument_list|,
@@ -465,11 +595,17 @@ name|other
 operator|.
 name|missCount
 operator|&&
-name|createCount
+name|createSuccessCount
 operator|==
 name|other
 operator|.
-name|createCount
+name|createSuccessCount
+operator|&&
+name|createExceptionCount
+operator|==
+name|other
+operator|.
+name|createExceptionCount
 operator|&&
 name|totalCreateTime
 operator|==
@@ -520,9 +656,16 @@ argument_list|)
 operator|.
 name|add
 argument_list|(
-literal|"createCount"
+literal|"createSuccessCount"
 argument_list|,
-name|createCount
+name|createSuccessCount
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"createExceptionCount"
+argument_list|,
+name|createExceptionCount
 argument_list|)
 operator|.
 name|add
