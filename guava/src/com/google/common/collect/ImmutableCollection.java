@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -886,8 +872,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Abstract base class for builders of {@link ImmutableCollection} types.    *    * @since Guava release 10    */
-annotation|@
-name|Beta
 DECL|class|Builder
 specifier|public
 specifier|abstract
