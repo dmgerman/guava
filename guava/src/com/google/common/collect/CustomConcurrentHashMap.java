@@ -18218,12 +18218,12 @@ argument_list|(
 name|valueStrength
 argument_list|)
 operator|.
-name|privateKeyEquivalence
+name|keyEquivalence
 argument_list|(
 name|keyEquivalence
 argument_list|)
 operator|.
-name|privateValueEquivalence
+name|valueEquivalence
 argument_list|(
 name|valueEquivalence
 argument_list|)

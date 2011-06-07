@@ -160,6 +160,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Equivalences
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Function
 import|;
 end_import
@@ -731,11 +745,17 @@ literal|null
 operator|)
 return|;
 block|}
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalences#equals()}    * otherwise.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 annotation|@
 name|Override
-DECL|method|privateKeyEquivalence (Equivalence<Object> equivalence)
+DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|MapMaker
-name|privateKeyEquivalence
+name|keyEquivalence
 parameter_list|(
 name|Equivalence
 argument_list|<
@@ -793,9 +813,17 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|privateValueEquivalence (Equivalence<Object> equivalence)
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the map uses {@link Equivalences#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalences#equals()}    * otherwise.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+annotation|@
+name|Override
+DECL|method|valueEquivalence (Equivalence<Object> equivalence)
 name|MapMaker
-name|privateValueEquivalence
+name|valueEquivalence
 parameter_list|(
 name|Equivalence
 argument_list|<

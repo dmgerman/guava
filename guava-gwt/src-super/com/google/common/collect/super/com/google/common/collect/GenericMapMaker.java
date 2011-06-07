@@ -111,7 +111,6 @@ DECL|method|GenericMapMaker ()
 name|GenericMapMaker
 parameter_list|()
 block|{}
-comment|// TODO(kevinb): undo this indirection once keyEquiv is made package-private
 comment|/**    * See {@link MapMaker#initialCapacity}.    */
 DECL|method|initialCapacity (int initialCapacity)
 specifier|public

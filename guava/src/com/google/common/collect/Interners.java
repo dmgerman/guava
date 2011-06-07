@@ -289,7 +289,7 @@ operator|.
 name|strongValues
 argument_list|()
 operator|.
-name|privateKeyEquivalence
+name|keyEquivalence
 argument_list|(
 name|Equivalences
 operator|.

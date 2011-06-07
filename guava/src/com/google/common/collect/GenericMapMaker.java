@@ -249,13 +249,13 @@ DECL|method|GenericMapMaker ()
 name|GenericMapMaker
 parameter_list|()
 block|{}
-comment|// TODO(kevinb): undo this indirection once keyEquiv is made package-private
+comment|/**    * See {@link MapMaker#keyEquivalence}.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"To be removed when #keyEquivalence is supported"
+literal|"To be supported"
 argument_list|)
-DECL|method|privateKeyEquivalence ( Equivalence<Object> equivalence)
+DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 specifier|abstract
 name|GenericMapMaker
 argument_list|<
@@ -263,7 +263,30 @@ name|K0
 argument_list|,
 name|V0
 argument_list|>
-name|privateKeyEquivalence
+name|keyEquivalence
+parameter_list|(
+name|Equivalence
+argument_list|<
+name|Object
+argument_list|>
+name|equivalence
+parameter_list|)
+function_decl|;
+comment|/**    * See {@link MapMaker#valueEquivalence}.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|valueEquivalence (Equivalence<Object> equivalence)
+specifier|abstract
+name|GenericMapMaker
+argument_list|<
+name|K0
+argument_list|,
+name|V0
+argument_list|>
+name|valueEquivalence
 parameter_list|(
 name|Equivalence
 argument_list|<
