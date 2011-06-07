@@ -375,6 +375,9 @@ operator|)
 condition|?
 literal|0.0
 else|:
+operator|(
+name|double
+operator|)
 name|createExceptionCount
 operator|/
 name|totalCreateCount
