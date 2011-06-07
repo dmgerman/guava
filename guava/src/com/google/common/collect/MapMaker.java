@@ -444,6 +444,16 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>A builder of {@link ConcurrentMap} or {@link Cache} instances having any combination of the  * following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>notification of evicted (or otherwise removed) entries  *<li>on-demand computation of values for keys not already present  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional; {@code new MapMaker().makeMap()} returns a valid concurrent map  * that behaves similarly to a {@link ConcurrentHashMap}.  *  *<p>The returned map is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It supports all optional operations of the {@code ConcurrentMap}  * interface. It does not permit null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons (the {@link Object#equals  * equals} method) to determine equality for keys or values. However, if {@link #weakKeys} or {@link  * #softKeys} was specified, the map uses identity ({@code ==}) comparisons instead for keys.  * Likewise, if {@link #weakValues} or {@link #softValues} was specified, the map uses identity  * comparisons for values.  *  *<p>The view collections of the returned map have<i>weakly consistent iterators</i>. This means  * that they are safe for concurrent use, but if other threads modify the map after the iterator is  * created, it is undefined which of these changes, if any, are reflected in that iterator. These  * iterators never throw {@link ConcurrentModificationException}.  *  *<p>If strong or weak references were requested, it is possible for a key or value present in the  * the map to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the map. A partially-reclaimed entry is never exposed to the user. Any {@link  * java.util.Map.Entry} instance retrieved from the map's {@linkplain Map#entrySet entry set} is a  * snapshot of that entry's state at the time of retrieval; such entries do, however, support {@link  * java.util.Map.Entry#setValue}, which simply calls {@link Map#put} on the entry's key.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the deserialized maps retain all  * the configuration properties of the original map. During deserialization, if the original map had  * used soft or weak references, the entries are reconstructed as they were, but it's not unlikely  * they'll be quickly garbage-collected before they are ever accessed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} is a recommended replacement for {@link  * java.util.WeakHashMap}, but note that it compares keys using object identity whereas {@code  * WeakHashMap} uses {@link Object#equals}.  *  * @author Bob Lee  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
@@ -2622,60 +2632,51 @@ block|}
 comment|// implements ConcurrentMap
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|key
-argument_list|)
-expr_stmt|;
 return|return
 literal|false
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
 return|return
 literal|false
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|key
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
@@ -2782,48 +2783,39 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+DECL|method|remove (@ullable Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|key
-argument_list|)
-expr_stmt|;
 return|return
 literal|null
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|key
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
 return|return
 literal|false
 return|;
@@ -2858,7 +2850,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|replace (K key, V oldValue, V newValue)
+DECL|method|replace (K key, @Nullable V oldValue, V newValue)
 specifier|public
 name|boolean
 name|replace
@@ -2866,6 +2858,8 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|oldValue
 parameter_list|,
@@ -2876,11 +2870,6 @@ block|{
 name|checkNotNull
 argument_list|(
 name|key
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|oldValue
 argument_list|)
 expr_stmt|;
 name|checkNotNull

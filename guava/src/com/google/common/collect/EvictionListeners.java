@@ -72,7 +72,9 @@ specifier|private
 name|EvictionListeners
 parameter_list|()
 block|{}
-comment|/**    * Returns an asynchronous {@code MapEvictionListener} which processes all    * eviction notifications asynchronously, using {@code executor}.    *    * @param listener the backing listener    * @param executor the executor with which eviciton notifications are    *     asynchronously executed    */
+comment|/**    * Returns an asynchronous {@code MapEvictionListener} which processes all    * eviction notifications asynchronously, using {@code executor}.    *    * @param listener the backing listener    * @param executor the executor with which eviciton notifications are    *     asynchronously executed    * @deprecated<b>This method is scheduled for deletion in Guava release 11.</b>    */
+annotation|@
+name|Deprecated
 DECL|method|asynchronous ( final MapEvictionListener<K, V> listener, final Executor executor)
 specifier|public
 specifier|static

@@ -8505,10 +8505,7 @@ name|keyEquivalence
 operator|.
 name|hash
 argument_list|(
-name|checkNotNull
-argument_list|(
 name|key
-argument_list|)
 argument_list|)
 decl_stmt|;
 return|return
@@ -10988,11 +10985,6 @@ name|boolean
 name|onlyIfAbsent
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
 name|lock
 argument_list|()
 expr_stmt|;
@@ -11727,16 +11719,6 @@ name|V
 name|newValue
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|oldValue
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|newValue
-argument_list|)
-expr_stmt|;
 name|lock
 argument_list|()
 expr_stmt|;
@@ -12037,11 +12019,6 @@ name|V
 name|newValue
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|newValue
-argument_list|)
-expr_stmt|;
 name|lock
 argument_list|()
 expr_stmt|;
@@ -12575,11 +12552,6 @@ name|Object
 name|value
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
 name|lock
 argument_list|()
 expr_stmt|;
@@ -15798,15 +15770,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+name|key
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|int
 name|hash
 init|=
@@ -15869,15 +15854,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+name|key
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|int
 name|hash
 init|=
@@ -15902,21 +15900,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
+if|if
+condition|(
 name|value
-argument_list|)
-expr_stmt|;
-comment|// as does ConcurrentHashMap
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|// This implementation is patterned after ConcurrentHashMap, but without the locking. The only
 comment|// way for it to return a false negative would be for the target value to jump around in the map
 comment|// such that none of the subsequent iterations observed it, despite the fact that at every point
@@ -16126,6 +16131,16 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 name|int
 name|hash
 init|=
@@ -16166,6 +16181,16 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 name|int
 name|hash
 init|=
@@ -16249,15 +16274,28 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object key)
+DECL|method|remove (@ullable Object key)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
 block|{
+if|if
+condition|(
+name|key
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|int
 name|hash
 init|=
@@ -16280,21 +16318,39 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if the specified key is null    */
 annotation|@
 name|Override
-DECL|method|remove (Object key, Object value)
+DECL|method|remove (@ullable Object key, @Nullable Object value)
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)
 block|{
+if|if
+condition|(
+name|key
+operator|==
+literal|null
+operator|||
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|int
 name|hash
 init|=
@@ -16319,10 +16375,9 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if any of the arguments are null    */
 annotation|@
 name|Override
-DECL|method|replace (K key, V oldValue, V newValue)
+DECL|method|replace (K key, @Nullable V oldValue, V newValue)
 specifier|public
 name|boolean
 name|replace
@@ -16330,6 +16385,8 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|oldValue
 parameter_list|,
@@ -16337,6 +16394,27 @@ name|V
 name|newValue
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|newValue
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|oldValue
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|int
 name|hash
 init|=
@@ -16363,7 +16441,6 @@ name|newValue
 argument_list|)
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    * @return the previous value associated with the specified key, or {@code null} if there was no    *         mapping for the key    * @throws NullPointerException if the specified key or value is null    */
 annotation|@
 name|Override
 DECL|method|replace (K key, V value)
@@ -16378,6 +16455,16 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 name|int
 name|hash
 init|=

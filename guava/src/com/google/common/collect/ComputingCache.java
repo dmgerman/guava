@@ -80,6 +80,16 @@ name|ExecutionException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Exposes a {@link ComputingConcurrentHashMap} as a {@code Cache}.  *  * @author Charles Fry  */
 end_comment
@@ -181,11 +191,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|invalidate (Object key)
+DECL|method|invalidate (@ullable Object key)
 specifier|public
 name|void
 name|invalidate
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)

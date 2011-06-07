@@ -417,7 +417,10 @@ name|hash
 init|=
 name|hash
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|key
+argument_list|)
 argument_list|)
 decl_stmt|;
 return|return
