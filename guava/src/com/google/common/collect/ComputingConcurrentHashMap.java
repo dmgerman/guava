@@ -182,6 +182,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|ref
+operator|.
+name|ReferenceQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -836,8 +848,6 @@ condition|)
 block|{
 name|e
 operator|=
-name|map
-operator|.
 name|newEntry
 argument_list|(
 name|key
@@ -1148,7 +1158,24 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|getEntry ()
+specifier|public
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -1158,6 +1185,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1201,14 +1234,6 @@ name|t
 argument_list|)
 throw|;
 block|}
-annotation|@
-name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{}
 annotation|@
 name|Override
 DECL|method|clear (ValueReference<K, V> newValue)
@@ -1281,7 +1306,24 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|getEntry ()
+specifier|public
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -1291,6 +1333,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1329,14 +1377,6 @@ name|get
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{}
 annotation|@
 name|Override
 DECL|method|clear (ValueReference<K, V> newValue)
@@ -1446,7 +1486,24 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|getEntry ()
+specifier|public
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -1456,6 +1513,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1588,14 +1651,6 @@ argument_list|)
 expr_stmt|;
 comment|// TODO(user): could also cancel computation if we had a thread handle
 block|}
-annotation|@
-name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{}
 DECL|method|compute (K key, int hash)
 name|V
 name|compute

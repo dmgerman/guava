@@ -100,48 +100,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|FinalizableReferenceQueue
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|FinalizableSoftReference
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|FinalizableWeakReference
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Supplier
 import|;
 end_import
@@ -291,6 +249,42 @@ operator|.
 name|io
 operator|.
 name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|ref
+operator|.
+name|Reference
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|ref
+operator|.
+name|ReferenceQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|ref
+operator|.
+name|SoftReference
 import|;
 end_import
 
@@ -615,13 +609,13 @@ name|DRAIN_THRESHOLD
 init|=
 literal|0x3F
 decl_stmt|;
-comment|/**    * Maximum number of entries to be cleaned up in a single cleanup run.    */
+comment|/**    * Maximum number of entries to be drained in a single cleanup run. This applies independently to    * the cleanup queue and both reference queues.    */
 comment|// TODO(user): empirically optimize this
-DECL|field|CLEANUP_MAX
+DECL|field|DRAIN_MAX
 specifier|static
 specifier|final
 name|int
-name|CLEANUP_MAX
+name|DRAIN_MAX
 init|=
 literal|16
 decl_stmt|;
@@ -1237,6 +1231,32 @@ operator|>
 literal|0
 return|;
 block|}
+DECL|method|usesKeyReferences ()
+name|boolean
+name|usesKeyReferences
+parameter_list|()
+block|{
+return|return
+name|keyStrength
+operator|!=
+name|Strength
+operator|.
+name|STRONG
+return|;
+block|}
+DECL|method|usesValueReferences ()
+name|boolean
+name|usesValueReferences
+parameter_list|()
+block|{
+return|return
+name|valueStrength
+operator|!=
+name|Strength
+operator|.
+name|STRONG
+return|;
+block|}
 DECL|method|isInlineCleanup ()
 name|boolean
 name|isInlineCleanup
@@ -1271,6 +1291,14 @@ name|V
 argument_list|>
 name|referenceValue
 parameter_list|(
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|segment
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1332,6 +1360,14 @@ name|V
 argument_list|>
 name|referenceValue
 parameter_list|(
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|segment
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1353,6 +1389,10 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
+name|segment
+operator|.
+name|valueReferenceQueue
+argument_list|,
 name|value
 argument_list|,
 name|entry
@@ -1395,6 +1435,14 @@ name|V
 argument_list|>
 name|referenceValue
 parameter_list|(
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|segment
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1416,6 +1464,10 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
+name|segment
+operator|.
+name|valueReferenceQueue
+argument_list|,
 name|value
 argument_list|,
 name|entry
@@ -1441,7 +1493,7 @@ block|}
 block|}
 block|;
 comment|/**      * Creates a reference for the given value according to this value strength.      */
-DECL|method|referenceValue (ReferenceEntry<K, V> entry, V value)
+DECL|method|referenceValue ( Segment<K, V> segment, ReferenceEntry<K, V> entry, V value)
 specifier|abstract
 parameter_list|<
 name|K
@@ -1456,6 +1508,14 @@ name|V
 argument_list|>
 name|referenceValue
 parameter_list|(
+name|Segment
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|segment
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -1502,13 +1562,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -1536,8 +1596,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -1566,13 +1624,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -1600,8 +1658,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -1625,13 +1681,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -1662,7 +1718,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -1700,13 +1756,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -1734,8 +1790,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -1759,13 +1813,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -1796,7 +1850,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -1834,13 +1888,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -1868,8 +1922,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -1893,13 +1945,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -1930,7 +1982,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -1975,13 +2027,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2009,7 +2061,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2039,13 +2093,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2073,7 +2127,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2098,13 +2154,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -2135,7 +2191,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -2173,13 +2229,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2207,7 +2263,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2232,13 +2290,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -2269,7 +2327,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -2307,13 +2365,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2341,7 +2399,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2366,13 +2426,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -2403,7 +2463,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -2448,13 +2508,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2482,7 +2542,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2512,13 +2574,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2546,7 +2608,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2571,13 +2635,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -2608,7 +2672,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -2646,13 +2710,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2680,7 +2744,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2705,13 +2771,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -2742,7 +2808,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -2780,13 +2846,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -2814,7 +2880,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|map
+name|segment
+operator|.
+name|keyReferenceQueue
 argument_list|,
 name|key
 argument_list|,
@@ -2839,13 +2907,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -2876,7 +2944,7 @@ name|super
 operator|.
 name|copyEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 argument_list|,
@@ -3008,8 +3076,8 @@ name|flags
 index|]
 return|;
 block|}
-comment|/**      * Creates a new entry.      *      * @param map to create the entry for      * @param key of the entry      * @param hash of the key      * @param next entry in the same bucket      */
-DECL|method|newEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+comment|/**      * Creates a new entry.      *      * @param segment to create the entry for      * @param key of the entry      * @param hash of the key      * @param next entry in the same bucket      */
+DECL|method|newEntry ( Segment<K, V> segment, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 specifier|abstract
 parameter_list|<
 name|K
@@ -3024,13 +3092,13 @@ name|V
 argument_list|>
 name|newEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|K
 name|key
@@ -3055,7 +3123,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|copyEntry (CustomConcurrentHashMap<K, V> map, ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
+DECL|method|copyEntry ( Segment<K, V> segment, ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 parameter_list|<
 name|K
 parameter_list|,
@@ -3069,13 +3137,13 @@ name|V
 argument_list|>
 name|copyEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|Segment
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|map
+name|segment
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -3097,7 +3165,7 @@ block|{
 return|return
 name|newEntry
 argument_list|(
-name|map
+name|segment
 argument_list|,
 name|original
 operator|.
@@ -3258,8 +3326,27 @@ name|V
 name|get
 parameter_list|()
 function_decl|;
+comment|/**      * Waits for a value that may still be computing. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws ExecutionException if the computing thread throws an exception      */
+DECL|method|waitForValue ()
+name|V
+name|waitForValue
+parameter_list|()
+throws|throws
+name|ExecutionException
+function_decl|;
+comment|/**      * Returns the entry associated with this value reference, or {@code null} if this value      * reference is independent of any entry.      */
+DECL|method|getEntry ()
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+function_decl|;
 comment|/**      * Creates a copy of this reference for the given entry.      */
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 name|ValueReference
 argument_list|<
 name|K
@@ -3268,6 +3355,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -3276,14 +3369,6 @@ name|V
 argument_list|>
 name|entry
 parameter_list|)
-function_decl|;
-comment|/**      * Waits for a value that may still be computing. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws ExecutionException if the computing thread throws an exception      */
-DECL|method|waitForValue ()
-name|V
-name|waitForValue
-parameter_list|()
-throws|throws
-name|ExecutionException
 function_decl|;
 comment|/**      * Clears this reference object.      *      * @param newValue the new value reference which will replace this one; this is only used during      *     computation to immediately notify blocked threads of the new value      */
 DECL|method|clear (@ullable ValueReference<K, V> newValue)
@@ -3305,12 +3390,6 @@ comment|/**      * Returns true if the value type is a computing reference (rega
 DECL|method|isComputingReference ()
 name|boolean
 name|isComputingReference
-parameter_list|()
-function_decl|;
-comment|/**      * Invoked after the value has been garbage collected.      */
-DECL|method|notifyValueReclaimed ()
-name|void
-name|notifyValueReclaimed
 parameter_list|()
 function_decl|;
 block|}
@@ -3349,6 +3428,22 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|ReferenceEntry
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|ValueReference
 argument_list|<
 name|Object
@@ -3357,6 +3452,12 @@ name|Object
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|Object
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|Object
@@ -3392,13 +3493,6 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{}
 annotation|@
 name|Override
 specifier|public
@@ -3451,25 +3545,6 @@ operator|)
 name|UNSET
 return|;
 block|}
-comment|/** Wrapper class ensures that queue isn't created until it's used. */
-DECL|class|QueueHolder
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|QueueHolder
-block|{
-DECL|field|queue
-specifier|static
-specifier|final
-name|FinalizableReferenceQueue
-name|queue
-init|=
-operator|new
-name|FinalizableReferenceQueue
-argument_list|()
-decl_stmt|;
-block|}
 comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    * - Live: valid key/value are set    * - Computing: computation is pending    *    * Invalid:    * - Expired: time expired (key/value may still be set)    * - Collected: key/value was partially collected, but not yet cleaned up    * - Unset: marked as unset, awaiting cleanup or reuse    */
 DECL|interface|ReferenceEntry
 interface|interface
@@ -3495,26 +3570,6 @@ comment|/**      * Sets the value reference for this entry.      */
 DECL|method|setValueReference (ValueReference<K, V> valueReference)
 name|void
 name|setValueReference
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-parameter_list|)
-function_decl|;
-comment|/**      * Invoked after the key has been garbage collected.      */
-DECL|method|notifyKeyReclaimed ()
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-function_decl|;
-comment|/**      * Removes this entry from the map if its value reference hasn't changed. Used to clean up after      * values. The value reference can just call this method on the entry so it doesn't have to keep      * its own reference to the map.      */
-DECL|method|notifyValueReclaimed (ValueReference<K, V> valueReference)
-name|void
-name|notifyValueReclaimed
 parameter_list|(
 name|ValueReference
 argument_list|<
@@ -3716,30 +3771,6 @@ parameter_list|)
 block|{}
 annotation|@
 name|Override
-DECL|method|notifyKeyReclaimed ()
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|notifyValueReclaimed (ValueReference<Object, Object> v)
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|v
-parameter_list|)
-block|{}
-annotation|@
-name|Override
 DECL|method|getNext ()
 specifier|public
 name|ReferenceEntry
@@ -3936,7 +3967,6 @@ parameter_list|)
 block|{}
 block|}
 DECL|class|AbstractReferenceEntry
-specifier|private
 specifier|static
 specifier|abstract
 class|class
@@ -3987,42 +4017,6 @@ argument_list|,
 name|V
 argument_list|>
 name|valueReference
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Override
-DECL|method|notifyKeyReclaimed ()
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Override
-DECL|method|notifyValueReclaimed (ValueReference<K, V> v)
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|v
 parameter_list|)
 block|{
 throw|throw
@@ -4423,7 +4417,6 @@ block|}
 comment|/*    * Note: All of this duplicate code sucks, but it saves a lot of memory. If only Java had mixins!    * To maintain this code, make a change for the strong reference type. Then, cut and paste, and    * replace "Strong" with "Soft" or "Weak" within the pasted text. The primary difference is that    * strong entries store the key reference directly while soft and weak entries delegate to their    * respective superclasses.    */
 comment|/**    * Used for strongly-referenced keys.    */
 DECL|class|StrongEntry
-specifier|private
 specifier|static
 class|class
 name|StrongEntry
@@ -4445,17 +4438,9 @@ specifier|final
 name|K
 name|key
 decl_stmt|;
-DECL|method|StrongEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|StrongEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongEntry
 parameter_list|(
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|,
 name|K
 name|key
 parameter_list|,
@@ -4473,12 +4458,6 @@ argument_list|>
 name|next
 parameter_list|)
 block|{
-name|this
-operator|.
-name|map
-operator|=
-name|map
-expr_stmt|;
 name|this
 operator|.
 name|key
@@ -4512,14 +4491,6 @@ operator|.
 name|key
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|notifyKeyReclaimed ()
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{}
 comment|// null expiration
 annotation|@
 name|Override
@@ -4718,16 +4689,6 @@ argument_list|()
 throw|;
 block|}
 comment|// The code below is exactly the same for each entry type.
-DECL|field|map
-specifier|final
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-decl_stmt|;
 DECL|field|hash
 specifier|final
 name|int
@@ -4817,32 +4778,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyValueReclaimed (ValueReference<K, V> v)
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|v
-parameter_list|)
-block|{
-name|map
-operator|.
-name|reclaimValue
-argument_list|(
-name|this
-argument_list|,
-name|v
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|getHash ()
 specifier|public
 name|int
@@ -4872,7 +4807,6 @@ return|;
 block|}
 block|}
 DECL|class|StrongExpirableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -4897,17 +4831,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|StrongExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|StrongExpirableEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongExpirableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|,
 name|K
 name|key
 parameter_list|,
@@ -4927,8 +4853,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -5093,7 +5017,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|StrongEvictableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -5118,17 +5041,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|StrongEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|StrongEvictableEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongEvictableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|,
 name|K
 name|key
 parameter_list|,
@@ -5148,8 +5063,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -5275,7 +5188,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|StrongExpirableEvictableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -5300,17 +5212,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|StrongExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|StrongExpirableEvictableEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|StrongExpirableEvictableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|,
 name|K
 name|key
 parameter_list|,
@@ -5330,8 +5234,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -5612,7 +5514,6 @@ block|}
 block|}
 comment|/**    * Used for softly-referenced keys.    */
 DECL|class|SoftEntry
-specifier|private
 specifier|static
 class|class
 name|SoftEntry
@@ -5622,7 +5523,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|FinalizableSoftReference
+name|SoftReference
 argument_list|<
 name|K
 argument_list|>
@@ -5634,16 +5535,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SoftEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|SoftEntry (ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -5666,16 +5565,8 @@ name|super
 argument_list|(
 name|key
 argument_list|,
-name|QueueHolder
-operator|.
 name|queue
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|map
-operator|=
-name|map
 expr_stmt|;
 name|this
 operator|.
@@ -5702,34 +5593,6 @@ return|return
 name|get
 argument_list|()
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|finalizeReferent ()
-specifier|public
-name|void
-name|finalizeReferent
-parameter_list|()
-block|{
-name|notifyKeyReclaimed
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|notifyKeyReclaimed ()
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{
-name|map
-operator|.
-name|reclaimKey
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 block|}
 comment|// null expiration
 annotation|@
@@ -5929,16 +5792,6 @@ argument_list|()
 throw|;
 block|}
 comment|// The code below is exactly the same for each entry type.
-DECL|field|map
-specifier|final
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-decl_stmt|;
 DECL|field|hash
 specifier|final
 name|int
@@ -6028,32 +5881,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyValueReclaimed (ValueReference<K, V> v)
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|v
-parameter_list|)
-block|{
-name|map
-operator|.
-name|reclaimValue
-argument_list|(
-name|this
-argument_list|,
-name|v
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|getHash ()
 specifier|public
 name|int
@@ -6083,7 +5910,6 @@ return|;
 block|}
 block|}
 DECL|class|SoftExpirableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -6108,16 +5934,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SoftExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|SoftExpirableEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftExpirableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -6138,7 +5962,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
+name|queue
 argument_list|,
 name|key
 argument_list|,
@@ -6304,7 +6128,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|SoftEvictableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -6329,16 +6152,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SoftEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|SoftEvictableEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftEvictableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -6359,7 +6180,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
+name|queue
 argument_list|,
 name|key
 argument_list|,
@@ -6486,7 +6307,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|SoftExpirableEvictableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -6511,16 +6331,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SoftExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|SoftExpirableEvictableEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|SoftExpirableEvictableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -6541,7 +6359,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
+name|queue
 argument_list|,
 name|key
 argument_list|,
@@ -6823,7 +6641,6 @@ block|}
 block|}
 comment|/**    * Used for weakly-referenced keys.    */
 DECL|class|WeakEntry
-specifier|private
 specifier|static
 class|class
 name|WeakEntry
@@ -6833,7 +6650,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|FinalizableWeakReference
+name|WeakReference
 argument_list|<
 name|K
 argument_list|>
@@ -6845,16 +6662,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|WeakEntry (ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -6877,16 +6692,8 @@ name|super
 argument_list|(
 name|key
 argument_list|,
-name|QueueHolder
-operator|.
 name|queue
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|map
-operator|=
-name|map
 expr_stmt|;
 name|this
 operator|.
@@ -6913,34 +6720,6 @@ return|return
 name|get
 argument_list|()
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|finalizeReferent ()
-specifier|public
-name|void
-name|finalizeReferent
-parameter_list|()
-block|{
-name|notifyKeyReclaimed
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|notifyKeyReclaimed ()
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{
-name|map
-operator|.
-name|reclaimKey
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 block|}
 comment|// null expiration
 annotation|@
@@ -7140,16 +6919,6 @@ argument_list|()
 throw|;
 block|}
 comment|// The code below is exactly the same for each entry type.
-DECL|field|map
-specifier|final
-name|CustomConcurrentHashMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-decl_stmt|;
 DECL|field|hash
 specifier|final
 name|int
@@ -7239,32 +7008,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyValueReclaimed (ValueReference<K, V> v)
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|(
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|v
-parameter_list|)
-block|{
-name|map
-operator|.
-name|reclaimValue
-argument_list|(
-name|this
-argument_list|,
-name|v
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|getHash ()
 specifier|public
 name|int
@@ -7294,7 +7037,6 @@ return|;
 block|}
 block|}
 DECL|class|WeakExpirableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -7319,16 +7061,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakExpirableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|WeakExpirableEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakExpirableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -7349,7 +7089,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
+name|queue
 argument_list|,
 name|key
 argument_list|,
@@ -7515,7 +7255,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|WeakEvictableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -7540,16 +7279,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|WeakEvictableEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakEvictableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -7570,7 +7307,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
+name|queue
 argument_list|,
 name|key
 argument_list|,
@@ -7697,7 +7434,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|WeakExpirableEvictableEntry
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -7722,16 +7458,14 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|WeakExpirableEvictableEntry (CustomConcurrentHashMap<K, V> map, K key, int hash, @Nullable ReferenceEntry<K, V> next)
+DECL|method|WeakExpirableEvictableEntry ( ReferenceQueue<K> queue, K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|WeakExpirableEvictableEntry
 parameter_list|(
-name|CustomConcurrentHashMap
+name|ReferenceQueue
 argument_list|<
 name|K
-argument_list|,
-name|V
 argument_list|>
-name|map
+name|queue
 parameter_list|,
 name|K
 name|key
@@ -7752,7 +7486,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|map
+name|queue
 argument_list|,
 name|key
 argument_list|,
@@ -8034,7 +7768,6 @@ block|}
 block|}
 comment|/**    * References a weak value.    */
 DECL|class|WeakValueReference
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -8045,7 +7778,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|FinalizableWeakReference
+name|WeakReference
 argument_list|<
 name|V
 argument_list|>
@@ -8067,9 +7800,15 @@ name|V
 argument_list|>
 name|entry
 decl_stmt|;
-DECL|method|WeakValueReference (V referent, ReferenceEntry<K, V> entry)
+DECL|method|WeakValueReference (ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry)
 name|WeakValueReference
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|V
 name|referent
 parameter_list|,
@@ -8086,8 +7825,6 @@ name|super
 argument_list|(
 name|referent
 argument_list|,
-name|QueueHolder
-operator|.
 name|queue
 argument_list|)
 expr_stmt|;
@@ -8097,6 +7834,23 @@ name|entry
 operator|=
 name|entry
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getEntry ()
+specifier|public
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+name|entry
+return|;
 block|}
 annotation|@
 name|Override
@@ -8120,35 +7874,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{
-name|finalizeReferent
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|finalizeReferent ()
-specifier|public
-name|void
-name|finalizeReferent
-parameter_list|()
-block|{
-name|entry
-operator|.
-name|notifyValueReclaimed
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -8158,6 +7884,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8176,6 +7908,8 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
+name|queue
+argument_list|,
 name|get
 argument_list|()
 argument_list|,
@@ -8211,7 +7945,6 @@ block|}
 block|}
 comment|/**    * References a soft value.    */
 DECL|class|SoftValueReference
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -8222,7 +7955,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|FinalizableSoftReference
+name|SoftReference
 argument_list|<
 name|V
 argument_list|>
@@ -8244,9 +7977,15 @@ name|V
 argument_list|>
 name|entry
 decl_stmt|;
-DECL|method|SoftValueReference (V referent, ReferenceEntry<K, V> entry)
+DECL|method|SoftValueReference (ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry)
 name|SoftValueReference
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|V
 name|referent
 parameter_list|,
@@ -8263,8 +8002,6 @@ name|super
 argument_list|(
 name|referent
 argument_list|,
-name|QueueHolder
-operator|.
 name|queue
 argument_list|)
 expr_stmt|;
@@ -8274,6 +8011,23 @@ name|entry
 operator|=
 name|entry
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getEntry ()
+specifier|public
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+name|entry
+return|;
 block|}
 annotation|@
 name|Override
@@ -8297,35 +8051,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{
-name|finalizeReferent
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|finalizeReferent ()
-specifier|public
-name|void
-name|finalizeReferent
-parameter_list|()
-block|{
-name|entry
-operator|.
-name|notifyValueReclaimed
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -8335,6 +8061,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8353,6 +8085,8 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
+name|queue
+argument_list|,
 name|get
 argument_list|()
 argument_list|,
@@ -8388,7 +8122,6 @@ block|}
 block|}
 comment|/**    * References a strong value.    */
 DECL|class|StrongValueReference
-specifier|private
 specifier|static
 specifier|final
 class|class
@@ -8439,7 +8172,24 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceEntry<K, V> entry)
+DECL|method|getEntry ()
+specifier|public
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -8449,6 +8199,12 @@ name|V
 argument_list|>
 name|copyFor
 parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -8489,14 +8245,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|notifyValueReclaimed ()
-specifier|public
-name|void
-name|notifyValueReclaimed
-parameter_list|()
-block|{}
-annotation|@
-name|Override
 DECL|method|clear (ValueReference<K, V> newValue)
 specifier|public
 name|void
@@ -8514,7 +8262,6 @@ block|{}
 block|}
 comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or    * upper bits.    *    * @param h hash code    */
 DECL|method|rehash (int h)
-specifier|private
 specifier|static
 name|int
 name|rehash
@@ -8584,11 +8331,14 @@ literal|16
 operator|)
 return|;
 block|}
+comment|/**    * This method is a convenience for testing. Code should call {@link Segment#newEntry} directly.    */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
+annotation|@
+name|VisibleForTesting
 DECL|method|newEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|ReferenceEntry
 argument_list|<
@@ -8616,12 +8366,13 @@ name|next
 parameter_list|)
 block|{
 return|return
-name|entryFactory
+name|segmentFor
+argument_list|(
+name|hash
+argument_list|)
 operator|.
 name|newEntry
 argument_list|(
-name|this
-argument_list|,
 name|key
 argument_list|,
 name|hash
@@ -8630,11 +8381,14 @@ name|next
 argument_list|)
 return|;
 block|}
+comment|/**    * This method is a convenience for testing. Code should call {@link Segment#copyEntry} directly.    */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
+annotation|@
+name|VisibleForTesting
 DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 name|ReferenceEntry
 argument_list|<
@@ -8661,59 +8415,36 @@ argument_list|>
 name|newNext
 parameter_list|)
 block|{
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
+name|int
+name|hash
 init|=
 name|original
 operator|.
-name|getValueReference
+name|getHash
 argument_list|()
 decl_stmt|;
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|newEntry
-init|=
-name|entryFactory
+return|return
+name|segmentFor
+argument_list|(
+name|hash
+argument_list|)
 operator|.
 name|copyEntry
 argument_list|(
-name|this
-argument_list|,
 name|original
 argument_list|,
 name|newNext
 argument_list|)
-decl_stmt|;
-name|newEntry
-operator|.
-name|setValueReference
-argument_list|(
-name|valueReference
-operator|.
-name|copyFor
-argument_list|(
-name|newEntry
-argument_list|)
-argument_list|)
-expr_stmt|;
-return|return
-name|newEntry
 return|;
 block|}
+comment|/**    * This method is a convenience for testing. Code should call {@link Segment#setValue} instead.    */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
+annotation|@
+name|VisibleForTesting
 DECL|method|newValueReference (ReferenceEntry<K, V> entry, V value)
 name|ValueReference
 argument_list|<
@@ -8735,11 +8466,24 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|int
+name|hash
+init|=
+name|entry
+operator|.
+name|getHash
+argument_list|()
+decl_stmt|;
 return|return
 name|valueStrength
 operator|.
 name|referenceValue
 argument_list|(
+name|segmentFor
+argument_list|(
+name|hash
+argument_list|)
+argument_list|,
 name|entry
 argument_list|,
 name|value
@@ -8774,18 +8518,10 @@ name|h
 argument_list|)
 return|;
 block|}
-DECL|method|reclaimValue (ReferenceEntry<K, V> entry, ValueReference<K, V> valueReference)
+DECL|method|reclaimValue (ValueReference<K, V> valueReference)
 name|void
 name|reclaimValue
 parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|,
 name|ValueReference
 argument_list|<
 name|K
@@ -8795,6 +8531,19 @@ argument_list|>
 name|valueReference
 parameter_list|)
 block|{
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+init|=
+name|valueReference
+operator|.
+name|getEntry
+argument_list|()
+decl_stmt|;
 name|int
 name|hash
 init|=
@@ -8855,6 +8604,7 @@ name|hash
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * This method is a convenience for testing. Code should call {@link Segment#getLiveValue}    * instead.    */
 annotation|@
 name|VisibleForTesting
 DECL|method|isLive (ReferenceEntry<K, V> entry)
@@ -9338,6 +9088,24 @@ specifier|final
 name|int
 name|maxSegmentSize
 decl_stmt|;
+comment|/**      * The key reference queue contains entries whose keys have been garbage collected, and which      * need to be cleaned up internally.      */
+DECL|field|keyReferenceQueue
+specifier|final
+name|ReferenceQueue
+argument_list|<
+name|K
+argument_list|>
+name|keyReferenceQueue
+decl_stmt|;
+comment|/**      * The value reference queue contains value references whose values have been garbage collected,      * and which need to be cleaned up internally.      */
+DECL|field|valueReferenceQueue
+specifier|final
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|valueReferenceQueue
+decl_stmt|;
 comment|/**      * The recency queue is used to record which entries were accessed for updating the eviction      * list's ordering. It is drained as a batch operation when either the DRAIN_THRESHOLD is      * crossed or a write occurs on the segment.      */
 DECL|field|recencyQueue
 specifier|final
@@ -9452,6 +9220,38 @@ argument_list|(
 name|initialCapacity
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|keyReferenceQueue
+operator|=
+name|map
+operator|.
+name|usesKeyReferences
+argument_list|()
+condition|?
+operator|new
+name|ReferenceQueue
+argument_list|<
+name|K
+argument_list|>
+argument_list|()
+else|:
+literal|null
+expr_stmt|;
+name|valueReferenceQueue
+operator|=
+name|map
+operator|.
+name|usesValueReferences
+argument_list|()
+condition|?
+operator|new
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+argument_list|()
+else|:
+literal|null
 expr_stmt|;
 name|recencyQueue
 operator|=
@@ -9636,6 +9436,139 @@ operator|=
 name|newTable
 expr_stmt|;
 block|}
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|newEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newEntry
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|int
+name|hash
+parameter_list|,
+annotation|@
+name|Nullable
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|next
+parameter_list|)
+block|{
+return|return
+name|map
+operator|.
+name|entryFactory
+operator|.
+name|newEntry
+argument_list|(
+name|this
+argument_list|,
+name|key
+argument_list|,
+name|hash
+argument_list|,
+name|next
+argument_list|)
+return|;
+block|}
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|copyEntry
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|original
+parameter_list|,
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newNext
+parameter_list|)
+block|{
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+init|=
+name|original
+operator|.
+name|getValueReference
+argument_list|()
+decl_stmt|;
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newEntry
+init|=
+name|map
+operator|.
+name|entryFactory
+operator|.
+name|copyEntry
+argument_list|(
+name|this
+argument_list|,
+name|original
+argument_list|,
+name|newNext
+argument_list|)
+decl_stmt|;
+name|newEntry
+operator|.
+name|setValueReference
+argument_list|(
+name|valueReference
+operator|.
+name|copyFor
+argument_list|(
+name|this
+operator|.
+name|valueReferenceQueue
+argument_list|,
+name|newEntry
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|newEntry
+return|;
+block|}
 comment|/**      * Sets a new value of an entry. Adds newly created entries at the end of the expiration queue.      */
 annotation|@
 name|GuardedBy
@@ -9673,8 +9606,12 @@ name|valueReference
 init|=
 name|map
 operator|.
-name|newValueReference
+name|valueStrength
+operator|.
+name|referenceValue
 argument_list|(
+name|this
+argument_list|,
 name|entry
 argument_list|,
 name|value
@@ -9687,6 +9624,290 @@ argument_list|(
 name|valueReference
 argument_list|)
 expr_stmt|;
+block|}
+comment|// reference queues, for garbage collection cleanup
+comment|/**      * Cleanup collected entries when the lock is available.      */
+DECL|method|tryDrainReferenceQueues ()
+name|void
+name|tryDrainReferenceQueues
+parameter_list|()
+block|{
+if|if
+condition|(
+name|tryLock
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|drainReferenceQueues
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|/**      * Drain the key and value reference queues, cleaning up internal entries      * containing garbage collected keys or values. This is done under lock      * as an optimization, as unsetting entries requires the lock.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|drainReferenceQueues ()
+name|void
+name|drainReferenceQueues
+parameter_list|()
+block|{
+if|if
+condition|(
+name|map
+operator|.
+name|usesKeyReferences
+argument_list|()
+condition|)
+block|{
+name|drainKeyReferenceQueue
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|map
+operator|.
+name|usesValueReferences
+argument_list|()
+condition|)
+block|{
+name|drainValueReferenceQueue
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|drainKeyReferenceQueue ()
+name|void
+name|drainKeyReferenceQueue
+parameter_list|()
+block|{
+name|Reference
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|>
+name|ref
+decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|ref
+operator|=
+name|keyReferenceQueue
+operator|.
+name|poll
+argument_list|()
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+init|=
+operator|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|ref
+decl_stmt|;
+name|map
+operator|.
+name|reclaimKey
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|++
+name|i
+operator|==
+name|DRAIN_MAX
+condition|)
+block|{
+break|break;
+block|}
+block|}
+block|}
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|drainValueReferenceQueue ()
+name|void
+name|drainValueReferenceQueue
+parameter_list|()
+block|{
+name|Reference
+argument_list|<
+name|?
+extends|extends
+name|V
+argument_list|>
+name|ref
+decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
+while|while
+condition|(
+operator|(
+name|ref
+operator|=
+name|valueReferenceQueue
+operator|.
+name|poll
+argument_list|()
+operator|)
+operator|!=
+literal|null
+condition|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+init|=
+operator|(
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|)
+name|ref
+decl_stmt|;
+name|map
+operator|.
+name|reclaimValue
+argument_list|(
+name|valueReference
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|++
+name|i
+operator|==
+name|DRAIN_MAX
+condition|)
+block|{
+break|break;
+block|}
+block|}
+block|}
+comment|/**      * Clears all entries from the key and value reference queues.      */
+DECL|method|clearReferenceQueues ()
+name|void
+name|clearReferenceQueues
+parameter_list|()
+block|{
+if|if
+condition|(
+name|map
+operator|.
+name|usesKeyReferences
+argument_list|()
+condition|)
+block|{
+name|clearKeyReferenceQueue
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|map
+operator|.
+name|usesValueReferences
+argument_list|()
+condition|)
+block|{
+name|clearValueReferenceQueue
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+DECL|method|clearKeyReferenceQueue ()
+name|void
+name|clearKeyReferenceQueue
+parameter_list|()
+block|{
+while|while
+condition|(
+name|keyReferenceQueue
+operator|.
+name|poll
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{}
+block|}
+DECL|method|clearValueReferenceQueue ()
+name|void
+name|clearValueReferenceQueue
+parameter_list|()
+block|{
+while|while
+condition|(
+name|valueReferenceQueue
+operator|.
+name|poll
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{}
 block|}
 comment|// recency queue, shared by expiration and eviction
 comment|/**      * Records the relative order in which this read was performed by adding {@code entry} to the      * recency queue. At write-time, or when the queue is full past the threshold, the queue will      * be drained and the entries therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
@@ -10613,6 +10834,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * This method is a convenience for testing. Code should call {@link      * CustomConcurrentHashMap#containsValue} directly.      */
 annotation|@
 name|VisibleForTesting
 DECL|method|containsValue (Object value)
@@ -11070,8 +11292,6 @@ name|V
 argument_list|>
 name|newEntry
 init|=
-name|map
-operator|.
 name|newEntry
 argument_list|(
 name|key
@@ -11458,8 +11678,6 @@ name|V
 argument_list|>
 name|newFirst
 init|=
-name|map
-operator|.
 name|copyEntry
 argument_list|(
 name|e
@@ -12753,6 +12971,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+name|clearReferenceQueues
+argument_list|()
+expr_stmt|;
 name|evictionQueue
 operator|.
 name|clear
@@ -12899,8 +13120,6 @@ else|else
 block|{
 name|newFirst
 operator|=
-name|map
-operator|.
 name|copyEntry
 argument_list|(
 name|e
@@ -13860,6 +14079,9 @@ operator|==
 literal|null
 condition|)
 block|{
+name|tryDrainReferenceQueues
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -13882,6 +14104,9 @@ operator|==
 literal|null
 condition|)
 block|{
+name|tryDrainReferenceQueues
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -13987,6 +14212,9 @@ condition|)
 block|{
 try|try
 block|{
+name|drainReferenceQueues
+argument_list|()
+expr_stmt|;
 name|expireEntries
 argument_list|()
 expr_stmt|;
@@ -14166,13 +14394,6 @@ operator|=
 name|previous
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{}
 block|}
 decl_stmt|;
 comment|// implements Queue
@@ -14799,13 +15020,6 @@ operator|=
 name|previous
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|notifyKeyReclaimed
-parameter_list|()
-block|{}
 block|}
 decl_stmt|;
 comment|// implements Queue
@@ -15615,7 +15829,7 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the entry for a given key. Note that the entry may not be live. This is only used for    * testing.    */
+comment|/**    * This method is a convenience for testing. Code should call {@link Segment#getEntry} directly.    */
 annotation|@
 name|VisibleForTesting
 DECL|method|getEntry (Object key)
