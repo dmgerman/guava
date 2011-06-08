@@ -598,7 +598,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    *    *<p>Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    * @deprecated Prefer to create {@code ListenableFuture} instances with {@link SettableFuture},    *     {@link MoreExecutors#listeningDecorator(java.util.concurrent.ExecutorService)}, {@link    *     ListenableFutureTask}, {@link AbstractFuture}, and other utilities over creating plain    *     {@code Future} instances to be upgraded to {@code ListenableFuture} after the fact.<b>This    *     method is scheduled for deletion in Guava release 11.</b>    */
+comment|/**    *    *<p>Creates a {@link ListenableFuture} out of a normal {@link Future}. The    * returned future will create a thread to wait for the source future to    * complete before executing the listeners.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    * @deprecated Prefer to create {@code ListenableFuture} instances with {@link    *     SettableFuture}, {@link MoreExecutors#listeningDecorator(    *     java.util.concurrent.ExecutorService)}, {@link ListenableFutureTask},    *     {@link AbstractFuture}, and other utilities over creating plain {@code    *     Future} instances to be upgraded to {@code ListenableFuture} after the    *     fact.<b>This method is scheduled for deletion in Guava release 11.</b>    */
 annotation|@
 name|Deprecated
 specifier|public
@@ -710,15 +710,11 @@ name|executor
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p><b>Warning:</b> If the input future does not implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    */
+comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p><b>Warning:</b> If the input future does not implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @deprecated Use {@link #makeChecked(ListenableFuture, Function)} by    *     ensuring that your input implements {@code ListenableFuture} by    *     creating it with {@link SettableFuture}, {@link    *     MoreExecutors#listeningDecorator(    *     java.util.concurrent.ExecutorService)}, {@link ListenableFutureTask},    *     {@link AbstractFuture}, and other utilities instead of creating plain    *     {@code Future} instances to be upgraded to {@code ListenableFuture}    *     after the fact.<b>This method is scheduled for deletion in Guava    *     release 11.</b>    */
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-comment|// makeListenable will soon be non-public
-DECL|method|makeChecked ( Future<V> future, Function<Exception, X> mapper)
+name|Deprecated
 specifier|public
+DECL|method|makeChecked ( Future<V> future, Function<Exception, X> mapper)
 specifier|static
 parameter_list|<
 name|V
