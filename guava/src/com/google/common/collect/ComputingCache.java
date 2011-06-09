@@ -183,7 +183,7 @@ block|{
 return|return
 name|map
 operator|.
-name|compute
+name|getOrCompute
 argument_list|(
 name|key
 argument_list|)
