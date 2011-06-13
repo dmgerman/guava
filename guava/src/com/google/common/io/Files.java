@@ -2269,6 +2269,10 @@ literal|0
 index|]
 operator|||
 operator|(
+name|q
+operator|!=
+literal|0
+operator|&&
 name|name
 operator|.
 name|length
