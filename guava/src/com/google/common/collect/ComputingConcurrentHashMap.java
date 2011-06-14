@@ -530,6 +530,7 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|// don't call getLiveEntry, which would ignore computing values
 name|ReferenceEntry
 argument_list|<
 name|K
