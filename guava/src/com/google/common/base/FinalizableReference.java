@@ -21,12 +21,14 @@ comment|/**  * Implemented by references that have code to run after garbage col
 end_comment
 
 begin_interface
-DECL|interface|FinalizableReference
 specifier|public
+DECL|interface|FinalizableReference
 interface|interface
 name|FinalizableReference
 block|{
-comment|/**    * Invoked on a background thread after the referent has been garbage collected unless security    * restrictions prevented starting a background thread, in which case this method is invoked when    * new references are created.    */
+comment|/**    * Invoked on a background thread after the referent has been garbage collected unless security    * restrictions prevented starting a background thread, in which case this method is invoked when    * new references are created.    * @deprecated FinalizableReferenceQueue is an unsound mechanism for cleaning up references,    *     because (1) it's single thread can be easily overloaded, and (2) it's insistance on running    *     a background thread is problematic in certain environments.<b>This class is scheduled for    *     deletion in December 2012.</b>    */
+annotation|@
+name|Deprecated
 DECL|method|finalizeReferent ()
 name|void
 name|finalizeReferent

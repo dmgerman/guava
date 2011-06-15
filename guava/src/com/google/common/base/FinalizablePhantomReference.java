@@ -45,8 +45,8 @@ comment|/**  * Phantom reference with a {@code finalizeReferent()} method which 
 end_comment
 
 begin_class
-DECL|class|FinalizablePhantomReference
 specifier|public
+DECL|class|FinalizablePhantomReference
 specifier|abstract
 class|class
 name|FinalizablePhantomReference
@@ -61,7 +61,9 @@ argument_list|>
 implements|implements
 name|FinalizableReference
 block|{
-comment|/**    * Constructs a new finalizable phantom reference.    *    * @param referent to phantom reference    * @param queue that should finalize the referent    */
+comment|/**    * Constructs a new finalizable phantom reference.    *    * @param referent to phantom reference    * @param queue that should finalize the referent    * @deprecated FinalizableReferenceQueue is an unsound mechanism for cleaning up references,    *     because (1) it's single thread can be easily overloaded, and (2) it's insistance on running    *     a background thread is problematic in certain environments.<b>This class is scheduled for    *     deletion in December 2012.</b>    */
+annotation|@
+name|Deprecated
 DECL|method|FinalizablePhantomReference (T referent, FinalizableReferenceQueue queue)
 specifier|protected
 name|FinalizablePhantomReference
