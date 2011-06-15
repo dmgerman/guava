@@ -21,8 +21,8 @@ comment|/**  * Implemented by references that have code to run after garbage col
 end_comment
 
 begin_interface
-specifier|public
 DECL|interface|FinalizableReference
+specifier|public
 interface|interface
 name|FinalizableReference
 block|{

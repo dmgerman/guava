@@ -121,8 +121,8 @@ comment|/**  * A reference queue with an associated background thread that deque
 end_comment
 
 begin_class
-specifier|public
 DECL|class|FinalizableReferenceQueue
+specifier|public
 class|class
 name|FinalizableReferenceQueue
 block|{
