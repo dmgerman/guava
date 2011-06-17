@@ -185,10 +185,10 @@ block|}
 comment|// Cache methods
 annotation|@
 name|Override
-DECL|method|getChecked (K key)
+DECL|method|get (K key)
 specifier|public
 name|V
-name|getChecked
+name|get
 parameter_list|(
 name|K
 name|key
@@ -196,13 +196,41 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
-return|return
+name|V
+name|value
+init|=
 name|map
 operator|.
 name|getOrCompute
 argument_list|(
 name|key
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+name|map
+operator|.
+name|loader
+operator|+
+literal|" returned null for key "
+operator|+
+name|key
+operator|+
+literal|"."
+argument_list|)
+throw|;
+block|}
+return|return
+name|value
 return|;
 block|}
 annotation|@
@@ -224,6 +252,20 @@ name|remove
 argument_list|(
 name|key
 argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|invalidateAll ()
+specifier|public
+name|void
+name|invalidateAll
+parameter_list|()
+block|{
+name|map
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@

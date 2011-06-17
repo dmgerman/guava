@@ -84,16 +84,6 @@ name|Serializable
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Computes or retrieves values, based on a key, for use in populating a {@code Cache}.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
@@ -346,17 +336,13 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Computes or retrieves the value corresponding to {@code key}.    *    * @return the value associated with {@code key}, or {code null} if the value can't be loaded    * @throws NullPointerException if {@code key} is {@code null} and this loader does not accept    *     {@code null} keys; note that some cache implementations, including those produced by    *     {@link MapMaker}, will guarantee never to pass {@code null} into this method    */
-annotation|@
-name|Nullable
-DECL|method|load (@ullable K key)
+comment|/**    * Computes or retrieves the value corresponding to {@code key}.    *    * @param key the key whose value should be loaded; will never be null    * @return the value associated with {@code key};<b>may not be null</b>    */
+DECL|method|load (K key)
 specifier|public
 specifier|abstract
 name|V
 name|load
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)

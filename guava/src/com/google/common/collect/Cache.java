@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Values are automatically created by the cache as  * a function of the keys, and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #getChecked} and {@link #getUnchecked} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking {@link  * #getUnchecked}.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * A semi-persistent mapping from keys to values. Values are automatically created by the cache as  * a function of the keys, and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #get} and {@link #getUnchecked} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking {@link  * #getUnchecked}.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_interface
@@ -112,53 +112,45 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    *<p>This method is identical to {@link #getUnchecked} except that it throws a checked exception    * when an error occurs during cache loading.    *    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    * @throws ExecutionException wraps errors which occur while loading the response    */
-DECL|method|getChecked (@ullable K key)
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary, and throwing an execution exception on failure. No state associated with this cache    * is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws ExecutionException wraps errors which occur while loading the response    */
+DECL|method|get (K key)
 annotation|@
 name|Nullable
 name|V
-name|getChecked
+name|get
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    *<p>This method is identical to {@link #getChecked} except that it throws an unchecked exception    * when an error occurs during cache loading.    *    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    * @throws ComputationException wraps errors which occur while loading the response    */
-DECL|method|getUnchecked (@ullable K key)
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes. Unlike    * {@link #get}, this method does not throw a checked exception, and thus should only be used in    * situations where exceptions are not thrown by the cache loader.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws UncheckedExecutionException wraps errors which occur while loading the response    */
+DECL|method|getUnchecked (K key)
 annotation|@
 name|Nullable
 name|V
 name|getUnchecked
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Provided to satisfy the {@code Function} interface; use {@link #getChecked} or    * {@link #getUnchecked} instead.    *    * @deprecated Use {@link #getChecked} or {@link #getUnchecked} instead.    */
-annotation|@
-name|Deprecated
+comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException wraps errors which occur while loading the response    */
 annotation|@
 name|Override
-DECL|method|apply (@ullable K key)
+DECL|method|apply (K key)
 annotation|@
 name|Nullable
 name|V
 name|apply
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
 function_decl|;
 comment|// TODO(user): add bulk operations
-comment|/**    * Discards the cached value for key {@code key}, if it exists, so that the next invocation of    * {@code get(key)} will result in a cache miss and re-creation.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    * @throws NullPointerException if the specified key is null and this cache does not permit null    *     keys (optional)    */
+comment|/**    * Discards any cached value for key {@code key}, possibly asynchronously, so that a future    * invocation of {@code get(key)} will result in a cache miss and reload.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|invalidate (@ullable Object key)
 name|void
 name|invalidate
@@ -168,6 +160,12 @@ name|Nullable
 name|Object
 name|key
 parameter_list|)
+function_decl|;
+comment|/**    * Discards all entries in the cache, possibly asynchronously.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
+DECL|method|invalidateAll ()
+name|void
+name|invalidateAll
+parameter_list|()
 function_decl|;
 comment|/**    * Returns the approximate number of entries in this cache. If the cache contains more than {@code    * Integer.MAX_VALUE} elements, returns {@code Integer.MAX_VALUE}.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|size ()
@@ -200,7 +198,7 @@ name|int
 name|limit
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Assume that none of    * the returned map's optional operations will be implemented, unless specified otherwise.    *    *<p>Operations on the returned map will never trigger a computation. So, unlike    * {@link #getChecked} and {@link #getUnchecked}, this map's {@link Map#get get} method    * will just return {@code null} immediately for a key that is not already cached.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
+comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Assume that none of    * the returned map's optional operations will be implemented, unless specified otherwise.    *    *<p>Operations on the returned map will never trigger a computation. So, unlike    * {@link #get} and {@link #getUnchecked}, this map's {@link Map#get get} method    * will just return {@code null} immediately for a key that is not already cached.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|asMap ()
 name|ConcurrentMap
 argument_list|<

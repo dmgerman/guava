@@ -1046,6 +1046,15 @@ operator|.
 name|nanoTime
 argument_list|()
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// a null return value is an Error, so don't count it in the stats
 name|statsCounter
 operator|.
 name|recordCreateSuccess
@@ -1055,14 +1064,6 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|value
-operator|!=
-literal|null
-condition|)
-block|{
 comment|// putIfAbsent
 name|V
 name|oldValue

@@ -78,8 +78,18 @@ name|AtomicLong
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code getChecked} method.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -111,6 +121,8 @@ parameter_list|()
 block|{}
 annotation|@
 name|Override
+annotation|@
+name|Nullable
 DECL|method|getUnchecked (K key)
 specifier|public
 name|V
@@ -123,7 +135,7 @@ block|{
 try|try
 block|{
 return|return
-name|getChecked
+name|get
 argument_list|(
 name|key
 argument_list|)
@@ -137,7 +149,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|ComputationException
+name|UncheckedExecutionException
 argument_list|(
 name|e
 operator|.
@@ -148,9 +160,9 @@ throw|;
 block|}
 block|}
 annotation|@
-name|Deprecated
-annotation|@
 name|Override
+annotation|@
+name|Nullable
 DECL|method|apply (K key)
 specifier|public
 specifier|final
@@ -184,14 +196,30 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|invalidate (Object key)
+DECL|method|invalidate (@ullable Object key)
 specifier|public
 name|void
 name|invalidate
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|invalidateAll ()
+specifier|public
+name|void
+name|invalidateAll
+parameter_list|()
 block|{
 throw|throw
 operator|new
