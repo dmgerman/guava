@@ -186,11 +186,9 @@ name|value
 parameter_list|)
 block|{
 return|return
-operator|new
 name|ListenableFutureTask
-argument_list|<
-name|T
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|runnable
 argument_list|,
@@ -218,11 +216,9 @@ name|callable
 parameter_list|)
 block|{
 return|return
-operator|new
 name|ListenableFutureTask
-argument_list|<
-name|T
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|callable
 argument_list|)
