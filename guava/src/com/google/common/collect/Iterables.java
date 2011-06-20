@@ -1250,7 +1250,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of elements in the specified iterable that equal the    * specified object.    *    * @see Collections#frequency    */
+comment|/**    * Returns the number of elements in the specified iterable that equal the    * specified object. This implementation avoids a full iteration when the    * iterable is a {@link Multiset} or {@link Set}.    *    * @see Collections#frequency    */
 DECL|method|frequency (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
