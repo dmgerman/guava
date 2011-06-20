@@ -2500,8 +2500,12 @@ name|e
 parameter_list|)
 block|{
 comment|// Cancel this future and return.
+comment|// At this point, inputFuture is cancelled and outputFuture doesn't
+comment|// exist, so the value of mayInterruptIfRunning is irrelevant.
 name|cancel
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 return|return;
 block|}
@@ -2552,9 +2556,9 @@ comment|// Handles the case where cancel was called while the function was
 comment|// being applied.
 try|try
 block|{
-comment|// There is a gap in cancel(boolean) between calling cancel() and
-comment|// storing the value of mayInterruptIfRunning, so this thread needs
-comment|// to block, waiting for that value.
+comment|// There is a gap in cancel(boolean) between calling sync.cancel()
+comment|// and storing the value of mayInterruptIfRunning, so this thread
+comment|// needs to block, waiting for that value.
 name|outputFuture
 operator|.
 name|cancel
@@ -2628,8 +2632,12 @@ name|e
 parameter_list|)
 block|{
 comment|// Cancel this future and return.
+comment|// At this point, inputFuture and outputFuture are done, so the
+comment|// value of mayInterruptIfRunning is irrelevant.
 name|cancel
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 return|return;
 block|}
@@ -4127,8 +4135,12 @@ condition|)
 block|{
 comment|// Set ourselves as cancelled. Let the input futures keep running
 comment|// as some of them may be used elsewhere.
+comment|// (Currently we don't override interruptTask, so
+comment|// mayInterruptIfRunning==false isn't technically necessary.)
 name|cancel
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 block|}
