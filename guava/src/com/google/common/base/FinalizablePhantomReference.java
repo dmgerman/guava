@@ -45,8 +45,8 @@ comment|/**  * Phantom reference with a {@code finalizeReferent()} method which 
 end_comment
 
 begin_class
-DECL|class|FinalizablePhantomReference
 specifier|public
+DECL|class|FinalizablePhantomReference
 specifier|abstract
 class|class
 name|FinalizablePhantomReference

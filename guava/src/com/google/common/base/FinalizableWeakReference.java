@@ -45,8 +45,8 @@ comment|/**  * Weak reference with a {@code finalizeReferent()} method which a b
 end_comment
 
 begin_class
-DECL|class|FinalizableWeakReference
 specifier|public
+DECL|class|FinalizableWeakReference
 specifier|abstract
 class|class
 name|FinalizableWeakReference

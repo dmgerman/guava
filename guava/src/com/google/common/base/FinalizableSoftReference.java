@@ -45,8 +45,8 @@ comment|/**  * Soft reference with a {@code finalizeReferent()} method which a b
 end_comment
 
 begin_class
-DECL|class|FinalizableSoftReference
 specifier|public
+DECL|class|FinalizableSoftReference
 specifier|abstract
 class|class
 name|FinalizableSoftReference
