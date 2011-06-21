@@ -106,12 +106,6 @@ name|ExecutionList
 argument_list|()
 decl_stmt|;
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param  callable the callable task    * @throws NullPointerException if callable is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-comment|// will be un-deprecated when private
 DECL|method|create (Callable<V> callable)
 specifier|public
 specifier|static
@@ -143,12 +137,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param  runnable the runnable task    * @param result the result to return on successful completion. If    * you don't need a particular result, consider using    * constructions of the form:    * {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    * @throws NullPointerException if runnable is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-comment|// will be un-deprecated when private
 DECL|method|create (Runnable runnable, V result)
 specifier|public
 specifier|static
@@ -181,11 +169,9 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param  callable the callable task    * @throws NullPointerException if callable is null    * @deprecated Use {@link #create(Callable)} instead.    */
-annotation|@
-name|Deprecated
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param  callable the callable task    * @throws NullPointerException if callable is null    */
 DECL|method|ListenableFutureTask (Callable<V> callable)
-specifier|public
+specifier|private
 name|ListenableFutureTask
 parameter_list|(
 name|Callable
@@ -201,11 +187,9 @@ name|callable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param  runnable the runnable task    * @param result the result to return on successful completion. If    * you don't need a particular result, consider using    * constructions of the form:    * {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    * @throws NullPointerException if runnable is null    * @deprecated Use {@link #create(Runnable, Object)} instead.    */
-annotation|@
-name|Deprecated
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param  runnable the runnable task    * @param result the result to return on successful completion. If    * you don't need a particular result, consider using    * constructions of the form:    * {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    * @throws NullPointerException if runnable is null    */
 DECL|method|ListenableFutureTask (Runnable runnable, V result)
-specifier|public
+specifier|private
 name|ListenableFutureTask
 parameter_list|(
 name|Runnable
