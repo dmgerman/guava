@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -30,8 +30,28 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * An empty immutable multiset.  *   * @author Jared Levy  */
+comment|/**  * An empty immutable multiset.  *   * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -62,36 +82,114 @@ operator|new
 name|EmptyImmutableMultiset
 argument_list|()
 decl_stmt|;
-DECL|method|EmptyImmutableMultiset ()
-specifier|private
-name|EmptyImmutableMultiset
-parameter_list|()
+annotation|@
+name|Override
+DECL|method|count (@ullable Object element)
+specifier|public
+name|int
+name|count
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|element
+parameter_list|)
 block|{
-name|super
-argument_list|(
-name|ImmutableMap
-operator|.
-expr|<
-name|Object
-argument_list|,
-name|Integer
-operator|>
-name|of
-argument_list|()
-argument_list|,
+return|return
 literal|0
-argument_list|)
-expr_stmt|;
+return|;
 block|}
-DECL|method|readResolve ()
+annotation|@
+name|Override
+DECL|method|elementSet ()
+specifier|public
+name|Set
+argument_list|<
 name|Object
-name|readResolve
+argument_list|>
+name|elementSet
 parameter_list|()
 block|{
 return|return
-name|INSTANCE
+name|ImmutableSet
+operator|.
+name|of
+argument_list|()
 return|;
-comment|// preserve singleton property
+block|}
+annotation|@
+name|Override
+DECL|method|size ()
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|entryIterator ()
+name|UnmodifiableIterator
+argument_list|<
+name|Entry
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+name|entryIterator
+parameter_list|()
+block|{
+return|return
+name|Iterators
+operator|.
+name|emptyIterator
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|distinctElements ()
+name|int
+name|distinctElements
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isPartialView ()
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|createEntrySet ()
+name|ImmutableSet
+argument_list|<
+name|Entry
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+name|createEntrySet
+parameter_list|()
+block|{
+return|return
+name|ImmutableSet
+operator|.
+name|of
+argument_list|()
+return|;
 block|}
 DECL|field|serialVersionUID
 specifier|private
