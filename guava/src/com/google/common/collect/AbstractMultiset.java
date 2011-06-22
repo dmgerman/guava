@@ -419,6 +419,7 @@ argument_list|)
 return|;
 block|}
 comment|// Bulk Operations
+comment|/**    * {@inheritDoc}    *     *<p>This implementation is highly efficient when {@code elementsToAdd}    * is itself a {@link Multiset}.    */
 DECL|method|addAll (Collection<? extends E> elementsToAdd)
 annotation|@
 name|Override

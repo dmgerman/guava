@@ -327,7 +327,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ConcurrentHashMultiset} containing the specified    * elements, using the default initial capacity, load factor, and concurrency    * settings.    *    * @param elements the elements that the multiset should contain    */
+comment|/**    * Creates a new {@code ConcurrentHashMultiset} containing the specified    * elements, using the default initial capacity, load factor, and concurrency    * settings.    *     *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
 DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
 specifier|static

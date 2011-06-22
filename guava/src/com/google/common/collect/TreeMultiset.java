@@ -248,7 +248,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an empty multiset containing the given initial elements, sorted    * according to the elements' natural order.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
+comment|/**    * Creates an empty multiset containing the given initial elements, sorted    * according to the elements' natural order.    *    *<p>This implementation is highly efficient when {@code elements} is itself a    * {@link Multiset}.    *     *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
 DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
