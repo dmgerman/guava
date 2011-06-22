@@ -134,20 +134,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -382,94 +368,6 @@ name|MILLISECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the current elapsed time; equivalent to    * {@code toString(4)} (four significant figures).    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"String.format()"
-argument_list|)
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|toString
-argument_list|(
-literal|4
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns a string representation of the current elapsed time, choosing an    * appropriate unit and using the specified number of significant figures.    * For example, at the instant when {@code elapsedTime(NANOSECONDS)} would    * return {1234567}, {@code toString(4)} returns {@code "1.235 ms"}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"String.format()"
-argument_list|)
-DECL|method|toString (int significantDigits)
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|int
-name|significantDigits
-parameter_list|)
-block|{
-name|long
-name|nanos
-init|=
-name|elapsedNanos
-argument_list|()
-decl_stmt|;
-name|TimeUnit
-name|unit
-init|=
-name|chooseUnit
-argument_list|(
-name|nanos
-argument_list|)
-decl_stmt|;
-name|double
-name|value
-init|=
-operator|(
-name|double
-operator|)
-name|nanos
-operator|/
-name|NANOSECONDS
-operator|.
-name|convert
-argument_list|(
-literal|1
-argument_list|,
-name|unit
-argument_list|)
-decl_stmt|;
-comment|// Too bad this functionality is not exposed as a regular method call
-return|return
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"%."
-operator|+
-name|significantDigits
-operator|+
-literal|"g %s"
-argument_list|,
-name|value
-argument_list|,
-name|abbreviate
-argument_list|(
-name|unit
-argument_list|)
-argument_list|)
-return|;
-block|}
 DECL|method|chooseUnit (long nanos)
 specifier|private
 specifier|static
@@ -565,7 +463,7 @@ case|:
 return|return
 literal|"\u03bcs"
 return|;
-comment|// Î¼s
+comment|// ?s
 case|case
 name|MILLISECONDS
 case|:

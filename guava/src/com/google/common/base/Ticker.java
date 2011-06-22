@@ -30,6 +30,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since Guava release 09  */
 end_comment
@@ -37,6 +51,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|class|Ticker
 specifier|public
 specifier|abstract
@@ -88,9 +104,9 @@ name|read
 parameter_list|()
 block|{
 return|return
-name|System
+name|Platform
 operator|.
-name|nanoTime
+name|systemNanoTime
 argument_list|()
 return|;
 block|}
