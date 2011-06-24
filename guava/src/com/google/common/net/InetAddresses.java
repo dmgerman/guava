@@ -1812,7 +1812,7 @@ operator|<=
 literal|0xffff
 operator|)
 argument_list|,
-literal|"port '%d' is out of range (0<= port<= 0xffff)"
+literal|"port '%s' is out of range (0<= port<= 0xffff)"
 argument_list|,
 name|port
 argument_list|)
@@ -1833,7 +1833,7 @@ operator|<=
 literal|0xffff
 operator|)
 argument_list|,
-literal|"flags '%d' is out of range (0<= flags<= 0xffff)"
+literal|"flags '%s' is out of range (0<= flags<= 0xffff)"
 argument_list|,
 name|flags
 argument_list|)

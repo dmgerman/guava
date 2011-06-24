@@ -944,7 +944,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**   * Returns an immutable set containing the given elements, in order. Repeated   * occurrences of an element (according to {@link Object#equals}) after the   * first are ignored.   *   * @throws NullPointerException if any of {@code elements} is null   * @since Guava release 03   */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 03    */
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static

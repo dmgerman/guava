@@ -2053,7 +2053,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**   * Returns the lexically cleaned form of the path name:   *    *<ul>   *<li>empty string becomes .   *<li>fold out ../ when possible   *<li>fold out ./ when possible   *<li>collapse multiple slashes   *</li>delete trailing slashes (unless the path is just "/")   *</ul>   */
+comment|/**    * Returns the lexically cleaned form of the path name:    *     *<ul>    *<li>empty string becomes .    *<li>fold out ../ when possible    *<li>fold out ./ when possible    *<li>collapse multiple slashes    *</li>delete trailing slashes (unless the path is just "/")    *</ul>    */
 DECL|method|simplifyPath (String pathname)
 specifier|public
 specifier|static
@@ -2246,7 +2246,7 @@ index|]
 operator|!=
 literal|'/'
 condition|)
-block|{            }
+block|{           }
 block|}
 elseif|else
 if|if

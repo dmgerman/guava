@@ -221,7 +221,7 @@ else|:
 literal|1237
 return|;
 block|}
-comment|/**    * Compares the two specified {@code boolean} values in the standard way    * ({@code false} is considered less than {@code true}). The sign of the    * value returned is the same as that of {@code ((Boolean) a).compareTo(b)}.    *    * @param a the first {@code boolean} to compare    * @param b the second {@code boolean} to compare    * @return a positive number if only {@code a} is {@code true},  a negative    *     number if only {@code b} is true, or zero if {@code a == b}    */
+comment|/**    * Compares the two specified {@code boolean} values in the standard way    * ({@code false} is considered less than {@code true}). The sign of the    * value returned is the same as that of {@code ((Boolean) a).compareTo(b)}.    *    * @param a the first {@code boolean} to compare    * @param b the second {@code boolean} to compare    * @return a positive number if only {@code a} is {@code true}, a negative    *     number if only {@code b} is true, or zero if {@code a == b}    */
 DECL|method|compare (boolean a, boolean b)
 specifier|public
 specifier|static
