@@ -3179,6 +3179,44 @@ block|}
 return|;
 block|}
 comment|// Methods only in Iterators, not in Iterables
+comment|/**    * Clears the iterator using its remove method.    */
+DECL|method|clear (Iterator<?> iterator)
+specifier|static
+name|void
+name|clear
+parameter_list|(
+name|Iterator
+argument_list|<
+name|?
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|iterator
+argument_list|)
+expr_stmt|;
+while|while
+condition|(
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|iterator
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Returns an iterator containing the elements of {@code array} in order. The    * returned iterator is a view of the array; subsequent changes to the array    * will be reflected in the iterator.    *    *<p><b>Note:</b> It is often preferable to represent your data using a    * collection type, for example using {@link Arrays#asList(Object[])}, making    * this method unnecessary.    *    *<p>The {@code Iterable} equivalent of this method is either {@link    * Arrays#asList(Object[])}, {@link ImmutableList#copyOf(Object[])}},    * or {@link ImmutableList#of}.    */
 DECL|method|forArray (final T... array)
 specifier|public
