@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Any object which can accept registrations of {@link TearDown} instances.  *  * @author Kevin Bourrillion  */
+comment|/**  * Any object which can accept registrations of {@link TearDown} instances.  *  * @author Kevin Bourrillion  * @since Guava release 10  */
 end_comment
 
 begin_interface

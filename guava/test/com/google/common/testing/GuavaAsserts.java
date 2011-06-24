@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains additional assertion methods not found in JUnit.  *  * @author Kevin Bourillion  */
+comment|/**  * Contains additional assertion methods not found in JUnit.  *  * @author Kevin Bourillion  * @since Guava release 10  */
 end_comment
 
 begin_class

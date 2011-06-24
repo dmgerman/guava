@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests may use this to intercept messages that are logged by the code under  * test.  Example:  *<pre>  *   TestLogHandler handler;  *  *   protected void setUp() throws Exception {  *     super.setUp();  *     handler = new TestLogHandler();  *     SomeClass.logger.addHandler(handler);  *     addTearDown(new TearDown() {  *       public void tearDown() throws Exception {  *         SomeClass.logger.removeHandler(handler);  *       }  *     });  *   }  *  *   public void test() {  *     SomeClass.foo();  *     LogRecord firstRecord = handler.getStoredLogRecords().get(0);  *     assertEquals("some message", firstRecord.getMessage());  *   }  *</pre>  *  * @author Kevin Bourrillion  */
+comment|/**  * Tests may use this to intercept messages that are logged by the code under  * test.  Example:  *<pre>  *   TestLogHandler handler;  *  *   protected void setUp() throws Exception {  *     super.setUp();  *     handler = new TestLogHandler();  *     SomeClass.logger.addHandler(handler);  *     addTearDown(new TearDown() {  *       public void tearDown() throws Exception {  *         SomeClass.logger.removeHandler(handler);  *       }  *     });  *   }  *  *   public void test() {  *     SomeClass.foo();  *     LogRecord firstRecord = handler.getStoredLogRecords().get(0);  *     assertEquals("some message", firstRecord.getMessage());  *   }  *</pre>  *  * @author Kevin Bourrillion  * @since Guava release 10  */
 end_comment
 
 begin_class
