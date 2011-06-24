@@ -6792,6 +6792,33 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|removeAll (Collection<?> c)
+specifier|public
+name|boolean
+name|removeAll
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+name|c
+parameter_list|)
+block|{
+comment|// TODO(user): find out why this is necessary to make GWT tests pass.  I mean, really.
+return|return
+name|super
+operator|.
+name|removeAll
+argument_list|(
+name|checkNotNull
+argument_list|(
+name|c
+argument_list|)
+argument_list|)
+return|;
+block|}
 DECL|method|clear ()
 annotation|@
 name|Override
@@ -7002,7 +7029,10 @@ name|super
 operator|.
 name|removeAll
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|c
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -7100,7 +7130,10 @@ name|super
 operator|.
 name|retainAll
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|c
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -7491,7 +7524,10 @@ name|super
 operator|.
 name|removeAll
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|c
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -7549,7 +7585,10 @@ name|super
 operator|.
 name|retainAll
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|c
+argument_list|)
 argument_list|)
 return|;
 block|}
