@@ -169,20 +169,6 @@ argument_list|<
 name|C
 argument_list|>
 block|{
-comment|/**    * Indicates whether an endpoint of a range is contained in the range itself    * ("closed") or not ("open"). Note that when a range is unbounded on a side,    * it is neither open nor closed, for the bound simply does not exist.    */
-DECL|enum|BoundType
-specifier|public
-enum|enum
-name|BoundType
-block|{
-comment|/**      * The range does not contain the endpoint.      */
-DECL|enumConstant|OPEN
-name|OPEN
-block|,
-comment|/**      * The range does contain the endpoint.      */
-DECL|enumConstant|CLOSED
-name|CLOSED
-block|}
 DECL|field|lowerBound
 specifier|final
 name|Cut
