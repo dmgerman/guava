@@ -72,7 +72,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Supplier
+name|Function
 import|;
 end_import
 
@@ -87,22 +87,6 @@ operator|.
 name|base
 operator|.
 name|Throwables
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|AbstractCache
-operator|.
-name|StatsCounter
 import|;
 end_import
 
@@ -271,9 +255,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|loader
+DECL|field|computingFunction
 specifier|final
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -283,24 +267,16 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity, load factor and    * concurrency level.    */
-DECL|method|ComputingConcurrentHashMap (MapMaker builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
+DECL|method|ComputingConcurrentHashMap (MapMaker builder, Function<? super K, ? extends V> computingFunction)
 name|ComputingConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
 parameter_list|,
-name|Supplier
-argument_list|<
-name|?
-extends|extends
-name|StatsCounter
-argument_list|>
-name|statsCounterSupplier
-parameter_list|,
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -310,29 +286,27 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|builder
-argument_list|,
-name|statsCounterSupplier
 argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|loader
+name|computingFunction
 operator|=
 name|checkNotNull
 argument_list|(
-name|loader
+name|computingFunction
 argument_list|)
 expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createSegment (int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
 name|Segment
 argument_list|<
 name|K
@@ -346,9 +320,6 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
-parameter_list|,
-name|StatsCounter
-name|statsCounter
 parameter_list|)
 block|{
 return|return
@@ -365,8 +336,6 @@ argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
-argument_list|,
-name|statsCounter
 argument_list|)
 return|;
 block|}
@@ -435,7 +404,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|loader
+name|computingFunction
 argument_list|)
 return|;
 block|}
@@ -463,7 +432,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
+DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
 name|ComputingSegment
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -479,9 +448,6 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
-parameter_list|,
-name|StatsCounter
-name|statsCounter
 parameter_list|)
 block|{
 name|super
@@ -491,12 +457,10 @@ argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
-argument_list|,
-name|statsCounter
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getOrCompute (K key, int hash, CacheLoader<? super K, ? extends V> loader)
+DECL|method|getOrCompute (K key, int hash, Function<? super K, ? extends V> computingFunction)
 name|V
 name|getOrCompute
 parameter_list|(
@@ -506,7 +470,7 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -516,7 +480,7 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 parameter_list|)
 throws|throws
 name|ExecutionException
@@ -572,11 +536,6 @@ name|recordRead
 argument_list|(
 name|e
 argument_list|)
-expr_stmt|;
-name|statsCounter
-operator|.
-name|recordHit
-argument_list|()
 expr_stmt|;
 return|return
 name|value
@@ -777,11 +736,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|statsCounter
-operator|.
-name|recordHit
-argument_list|()
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -840,7 +794,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|loader
+name|computingFunction
 argument_list|)
 expr_stmt|;
 if|if
@@ -949,11 +903,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|statsCounter
-operator|.
-name|recordConcurrentMiss
-argument_list|()
-expr_stmt|;
 return|return
 name|value
 return|;
@@ -1054,16 +1003,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// a null return value is an Error, so don't count it in the stats
-name|statsCounter
-operator|.
-name|recordCreateSuccess
-argument_list|(
-name|end
-operator|-
-name|start
-argument_list|)
-expr_stmt|;
 comment|// putIfAbsent
 name|V
 name|oldValue
@@ -1121,15 +1060,6 @@ name|System
 operator|.
 name|nanoTime
 argument_list|()
-expr_stmt|;
-name|statsCounter
-operator|.
-name|recordCreateException
-argument_list|(
-name|end
-operator|-
-name|start
-argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -1460,9 +1390,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|loader
+DECL|field|computingFunction
 specifier|final
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -1472,7 +1402,7 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 decl_stmt|;
 annotation|@
 name|GuardedBy
@@ -1493,11 +1423,11 @@ init|=
 name|unset
 argument_list|()
 decl_stmt|;
-DECL|method|ComputingValueReference (CacheLoader<? super K, ? extends V> loader)
+DECL|method|ComputingValueReference (Function<? super K, ? extends V> computingFunction)
 specifier|public
 name|ComputingValueReference
 parameter_list|(
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -1507,14 +1437,14 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 parameter_list|)
 block|{
 name|this
 operator|.
-name|loader
+name|computingFunction
 operator|=
-name|loader
+name|computingFunction
 expr_stmt|;
 block|}
 annotation|@
@@ -1718,9 +1648,9 @@ try|try
 block|{
 name|value
 operator|=
-name|loader
+name|computingFunction
 operator|.
-name|load
+name|apply
 argument_list|(
 name|key
 argument_list|)
@@ -1838,21 +1768,13 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-DECL|method|ComputingMapAdapter (MapMaker mapMaker, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
+DECL|method|ComputingMapAdapter (MapMaker mapMaker, Function<? super K, ? extends V> computingFunction)
 name|ComputingMapAdapter
 parameter_list|(
 name|MapMaker
 name|mapMaker
 parameter_list|,
-name|Supplier
-argument_list|<
-name|?
-extends|extends
-name|StatsCounter
-argument_list|>
-name|statsCounterSupplier
-parameter_list|,
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -1862,16 +1784,14 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|mapMaker
 argument_list|,
-name|statsCounterSupplier
-argument_list|,
-name|loader
+name|computingFunction
 argument_list|)
 expr_stmt|;
 block|}
@@ -1952,7 +1872,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-name|loader
+name|computingFunction
 operator|+
 literal|" returned null for key "
 operator|+
@@ -2013,7 +1933,7 @@ name|removalListener
 argument_list|,
 name|this
 argument_list|,
-name|loader
+name|computingFunction
 argument_list|)
 return|;
 block|}
@@ -2035,9 +1955,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|loader
+DECL|field|computingFunction
 specifier|final
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -2047,9 +1967,9 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate, CacheLoader<? super K, ? extends V> loader)
+DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength
@@ -2102,7 +2022,7 @@ name|V
 argument_list|>
 name|delegate
 parameter_list|,
-name|CacheLoader
+name|Function
 argument_list|<
 name|?
 super|super
@@ -2112,7 +2032,7 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|loader
+name|computingFunction
 parameter_list|)
 block|{
 name|super
@@ -2140,9 +2060,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|loader
+name|computingFunction
 operator|=
-name|loader
+name|computingFunction
 expr_stmt|;
 block|}
 DECL|method|writeObject (ObjectOutputStream out)
@@ -2199,7 +2119,7 @@ name|mapMaker
 operator|.
 name|makeComputingMap
 argument_list|(
-name|loader
+name|computingFunction
 argument_list|)
 expr_stmt|;
 name|readEntries

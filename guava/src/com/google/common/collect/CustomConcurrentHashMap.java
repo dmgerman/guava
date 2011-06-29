@@ -100,37 +100,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Supplier
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Ticker
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|AbstractCache
-operator|.
-name|StatsCounter
 import|;
 end_import
 
@@ -783,19 +753,11 @@ name|Ticker
 name|ticker
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    *    * @throws RejectedExecutionException if a cleanupExecutor was specified but rejects the cleanup    *     task    */
-DECL|method|CustomConcurrentHashMap (MapMaker builder, Supplier<? extends StatsCounter> statsCounterSupplier)
+DECL|method|CustomConcurrentHashMap (MapMaker builder)
 name|CustomConcurrentHashMap
 parameter_list|(
 name|MapMaker
 name|builder
-parameter_list|,
-name|Supplier
-argument_list|<
-name|?
-extends|extends
-name|StatsCounter
-argument_list|>
-name|statsCounterSupplier
 parameter_list|)
 block|{
 name|concurrencyLevel
@@ -1129,11 +1091,6 @@ argument_list|(
 name|segmentSize
 argument_list|,
 name|maximumSegmentSize
-argument_list|,
-name|statsCounterSupplier
-operator|.
-name|get
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1173,11 +1130,6 @@ argument_list|,
 name|MapMaker
 operator|.
 name|UNSET_INT
-argument_list|,
-name|statsCounterSupplier
-operator|.
-name|get
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -8690,7 +8642,7 @@ name|segmentMask
 index|]
 return|;
 block|}
-DECL|method|createSegment ( int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
+DECL|method|createSegment (int initialCapacity, int maxSegmentSize)
 name|Segment
 argument_list|<
 name|K
@@ -8704,9 +8656,6 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
-parameter_list|,
-name|StatsCounter
-name|statsCounter
 parameter_list|)
 block|{
 return|return
@@ -8723,8 +8672,6 @@ argument_list|,
 name|initialCapacity
 argument_list|,
 name|maxSegmentSize
-argument_list|,
-name|statsCounter
 argument_list|)
 return|;
 block|}
@@ -9262,13 +9209,7 @@ argument_list|>
 argument_list|>
 name|expirationQueue
 decl_stmt|;
-comment|/** Accumulates cache statistics. */
-DECL|field|statsCounter
-specifier|final
-name|StatsCounter
-name|statsCounter
-decl_stmt|;
-DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
+DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
 name|Segment
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -9284,9 +9225,6 @@ name|initialCapacity
 parameter_list|,
 name|int
 name|maxSegmentSize
-parameter_list|,
-name|StatsCounter
-name|statsCounter
 parameter_list|)
 block|{
 name|this
@@ -9300,12 +9238,6 @@ operator|.
 name|maxSegmentSize
 operator|=
 name|maxSegmentSize
-expr_stmt|;
-name|this
-operator|.
-name|statsCounter
-operator|=
-name|statsCounter
 expr_stmt|;
 name|initTable
 argument_list|(
@@ -10462,20 +10394,6 @@ name|RemovalCause
 name|cause
 parameter_list|)
 block|{
-if|if
-condition|(
-name|cause
-operator|.
-name|wasEvicted
-argument_list|()
-condition|)
-block|{
-name|statsCounter
-operator|.
-name|recordEviction
-argument_list|()
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|map

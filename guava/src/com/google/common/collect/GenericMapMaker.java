@@ -624,45 +624,6 @@ argument_list|>
 name|makeCustomMap
 parameter_list|()
 function_decl|;
-comment|/**    * See {@link MapMaker#makeCache}.    *    * @since Guava release 10    */
-annotation|@
-name|Beta
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
-DECL|method|makeCache ( CacheLoader<? super K, V> loader)
-specifier|public
-specifier|abstract
-parameter_list|<
-name|K
-extends|extends
-name|K0
-parameter_list|,
-name|V
-extends|extends
-name|V0
-parameter_list|>
-name|Cache
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|makeCache
-parameter_list|(
-name|CacheLoader
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|loader
-parameter_list|)
-function_decl|;
 comment|/**    * See {@link MapMaker#makeComputingMap}.    */
 DECL|method|makeComputingMap ( Function<? super K, ? extends V> computingFunction)
 specifier|public
