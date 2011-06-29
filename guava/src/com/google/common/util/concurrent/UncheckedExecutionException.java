@@ -18,27 +18,11 @@ name|concurrent
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
 begin_comment
 comment|/**  * Unchecked version of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended for users of {@code  * Future} and similar classes who know that their tasks will never throw a  * checked exception. They have the option of removing {@code throws  * ExecutionException} from their signatures, wrapping any exceptions that do  * occur in an {@code UncheckedExecutionException}.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
 end_comment
 
 begin_class
-annotation|@
-name|GwtCompatible
 DECL|class|UncheckedExecutionException
 specifier|public
 class|class
