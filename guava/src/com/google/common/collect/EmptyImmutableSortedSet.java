@@ -382,9 +382,9 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-DECL|method|headSetImpl (E toElement)
 annotation|@
 name|Override
+DECL|method|headSetImpl (E toElement, boolean inclusive)
 name|ImmutableSortedSet
 argument_list|<
 name|E
@@ -393,15 +393,18 @@ name|headSetImpl
 parameter_list|(
 name|E
 name|toElement
+parameter_list|,
+name|boolean
+name|inclusive
 parameter_list|)
 block|{
 return|return
 name|this
 return|;
 block|}
-DECL|method|subSetImpl (E fromElement, E toElement)
 annotation|@
 name|Override
+DECL|method|subSetImpl (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 name|ImmutableSortedSet
 argument_list|<
 name|E
@@ -411,17 +414,23 @@ parameter_list|(
 name|E
 name|fromElement
 parameter_list|,
+name|boolean
+name|fromInclusive
+parameter_list|,
 name|E
 name|toElement
+parameter_list|,
+name|boolean
+name|toInclusive
 parameter_list|)
 block|{
 return|return
 name|this
 return|;
 block|}
-DECL|method|tailSetImpl (E fromElement)
 annotation|@
 name|Override
+DECL|method|tailSetImpl (E fromElement, boolean inclusive)
 name|ImmutableSortedSet
 argument_list|<
 name|E
@@ -430,6 +439,9 @@ name|tailSetImpl
 parameter_list|(
 name|E
 name|fromElement
+parameter_list|,
+name|boolean
+name|inclusive
 parameter_list|)
 block|{
 return|return

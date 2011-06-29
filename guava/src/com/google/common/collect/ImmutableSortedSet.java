@@ -2101,12 +2101,37 @@ name|toElement
 parameter_list|)
 block|{
 return|return
+name|headSet
+argument_list|(
+name|toElement
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+DECL|method|headSet (E toElement, boolean inclusive)
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|headSet
+parameter_list|(
+name|E
+name|toElement
+parameter_list|,
+name|boolean
+name|inclusive
+parameter_list|)
+block|{
+return|return
 name|headSetImpl
 argument_list|(
 name|checkNotNull
 argument_list|(
 name|toElement
 argument_list|)
+argument_list|,
+name|inclusive
 argument_list|)
 return|;
 block|}
@@ -2126,6 +2151,39 @@ name|fromElement
 parameter_list|,
 name|E
 name|toElement
+parameter_list|)
+block|{
+return|return
+name|subSet
+argument_list|(
+name|fromElement
+argument_list|,
+literal|true
+argument_list|,
+name|toElement
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+DECL|method|subSet (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|subSet
+parameter_list|(
+name|E
+name|fromElement
+parameter_list|,
+name|boolean
+name|fromInclusive
+parameter_list|,
+name|E
+name|toElement
+parameter_list|,
+name|boolean
+name|toInclusive
 parameter_list|)
 block|{
 name|checkNotNull
@@ -2157,7 +2215,11 @@ name|subSetImpl
 argument_list|(
 name|fromElement
 argument_list|,
+name|fromInclusive
+argument_list|,
 name|toElement
+argument_list|,
+name|toInclusive
 argument_list|)
 return|;
 block|}
@@ -2177,17 +2239,42 @@ name|fromElement
 parameter_list|)
 block|{
 return|return
+name|tailSet
+argument_list|(
+name|fromElement
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+DECL|method|tailSet (E fromElement, boolean inclusive)
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|tailSet
+parameter_list|(
+name|E
+name|fromElement
+parameter_list|,
+name|boolean
+name|inclusive
+parameter_list|)
+block|{
+return|return
 name|tailSetImpl
 argument_list|(
 name|checkNotNull
 argument_list|(
 name|fromElement
 argument_list|)
+argument_list|,
+name|inclusive
 argument_list|)
 return|;
 block|}
 comment|/*    * These methods perform most headSet, subSet, and tailSet logic, besides    * parameter validation.    */
-DECL|method|headSetImpl (E toElement)
+DECL|method|headSetImpl (E toElement, boolean inclusive)
 specifier|abstract
 name|ImmutableSortedSet
 argument_list|<
@@ -2197,9 +2284,12 @@ name|headSetImpl
 parameter_list|(
 name|E
 name|toElement
+parameter_list|,
+name|boolean
+name|inclusive
 parameter_list|)
 function_decl|;
-DECL|method|subSetImpl (E fromElement, E toElement)
+DECL|method|subSetImpl (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 specifier|abstract
 name|ImmutableSortedSet
 argument_list|<
@@ -2210,11 +2300,17 @@ parameter_list|(
 name|E
 name|fromElement
 parameter_list|,
+name|boolean
+name|fromInclusive
+parameter_list|,
 name|E
 name|toElement
+parameter_list|,
+name|boolean
+name|toInclusive
 parameter_list|)
 function_decl|;
-DECL|method|tailSetImpl (E fromElement)
+DECL|method|tailSetImpl (E fromElement, boolean inclusive)
 specifier|abstract
 name|ImmutableSortedSet
 argument_list|<
@@ -2224,6 +2320,9 @@ name|tailSetImpl
 parameter_list|(
 name|E
 name|fromElement
+parameter_list|,
+name|boolean
+name|inclusive
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the position of an element within the set, or -1 if not present.    */
