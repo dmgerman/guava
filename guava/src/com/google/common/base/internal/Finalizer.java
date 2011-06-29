@@ -121,8 +121,8 @@ end_comment
 begin_class
 annotation|@
 name|Deprecated
-DECL|class|Finalizer
 specifier|public
+DECL|class|Finalizer
 class|class
 name|Finalizer
 extends|extends
