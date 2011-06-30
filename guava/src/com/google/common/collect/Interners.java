@@ -300,7 +300,7 @@ name|entry
 init|=
 name|map
 operator|.
-name|getLiveEntry
+name|getEntry
 argument_list|(
 name|sample
 argument_list|)
@@ -312,12 +312,26 @@ operator|!=
 literal|null
 condition|)
 block|{
-return|return
+name|E
+name|canonical
+init|=
 name|entry
 operator|.
 name|getKey
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|canonical
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// only matters if weak/soft keys are used
+return|return
+name|canonical
 return|;
+block|}
 block|}
 comment|// didn't see it, trying to put it instead...
 name|Dummy
