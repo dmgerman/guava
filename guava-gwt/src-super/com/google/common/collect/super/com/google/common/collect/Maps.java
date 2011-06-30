@@ -7484,7 +7484,11 @@ argument_list|>
 operator|)
 name|o
 decl_stmt|;
+return|return
 name|map
+argument_list|()
+operator|.
+name|keySet
 argument_list|()
 operator|.
 name|remove
@@ -7494,9 +7498,6 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|)
-expr_stmt|;
-return|return
-literal|true
 return|;
 block|}
 return|return
