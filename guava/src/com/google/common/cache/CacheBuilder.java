@@ -434,6 +434,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -1580,6 +1590,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener during invocations of any of that cache's public    * methods (even read-only methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K, V>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
+annotation|@
+name|CheckReturnValue
 DECL|method|removalListener ( RemovalListener<K, V> listener)
 specifier|public
 parameter_list|<

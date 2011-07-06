@@ -106,6 +106,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Determines a true or false value for any Java {@code char} value, just as {@link Predicate} does  * for any {@link Object}. Also offers basic text processing methods based on this function.  * Implementations are strongly encouraged to be side-effect-free and immutable.  *  *<p>Throughout the documentation of this class, the phrase "matching character" is used to mean  * "any character {@code c} for which {@code this.matches(c)} returns {@code true}".  *  *<p><b>Note:</b> This class deals only with {@code char} values; it does not understand  * supplementary Unicode code points in the range {@code 0x10000} to {@code 0x10FFFF}. Such logical  * characters are encoded into a {@code String} using surrogate pairs, and a {@code CharMatcher}  * treats these just as two separate characters.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
@@ -3198,6 +3208,8 @@ name|count
 return|;
 block|}
 comment|/**    * Returns a string containing all non-matching characters of a character sequence, in order. For    * example:<pre>   {@code    *    *   CharMatcher.is('a').removeFrom("bazaar")}</pre>    *    * ... returns {@code "bzr"}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|removeFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -3326,6 +3338,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing all matching characters of a character sequence, in order. For    * example:<pre>   {@code    *    *   CharMatcher.is('a').retainFrom("bazaar")}</pre>    *    * ... returns {@code "aaa"}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|retainFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -3346,6 +3360,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement character. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("radar", 'o')}</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
+annotation|@
+name|CheckReturnValue
 DECL|method|replaceFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String
@@ -3450,6 +3466,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement sequence. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
+annotation|@
+name|CheckReturnValue
 DECL|method|replaceFrom (CharSequence sequence, CharSequence replacement)
 specifier|public
 name|String
@@ -3626,6 +3644,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a substring of the input character sequence that omits all characters this matcher    * matches from the beginning and from the end of the string. For example:<pre>   {@code    *    *   CharMatcher.anyOf("ab").trimFrom("abacatbab")}</pre>    *    * ... returns {@code "cat"}.    *    *<p>Note that:<pre>   {@code    *    *   CharMatcher.inRange('\0', ' ').trimFrom(str)}</pre>    *    * ... is equivalent to {@link String#trim()}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|trimFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -3730,6 +3750,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a substring of the input character sequence that omits all characters this matcher    * matches from the beginning of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimLeadingFrom("abacatbab")}</pre>    *    * ... returns {@code "catbab"}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|trimLeadingFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -3796,6 +3818,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a substring of the input character sequence that omits all characters this matcher    * matches from the end of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimTrailingFrom("abacatbab")}</pre>    *    * ... returns {@code "abacat"}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|trimTrailingFrom (CharSequence sequence)
 specifier|public
 name|String
@@ -3866,6 +3890,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive    * characters that match this matcher replaced by a single replacement character. For example:    *<pre>   {@code    *    *   CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')}</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *        matching characters in {@code sequence}    * @return the new string    */
+annotation|@
+name|CheckReturnValue
 DECL|method|collapseFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String
@@ -4016,6 +4042,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Collapses groups of matching characters exactly as {@link #collapseFrom} does, except that    * groups of matching characters at the start or end of the sequence are removed without    * replacement.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|trimAndCollapseFrom (CharSequence sequence, char replacement)
 specifier|public
 name|String

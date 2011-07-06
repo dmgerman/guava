@@ -112,6 +112,16 @@ name|NoSuchElementException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * An object that divides strings (or other instances of {@code CharSequence})  * into substrings, by recognizing a<i>separator</i> (a.k.a. "delimiter")  * which can be expressed as a single character, literal string, regular  * expression, {@code CharMatcher}, or by using a fixed substring length. This  * class provides the complementary functionality to {@link Joiner}.  *  *<p>Here is the most basic example of {@code Splitter} usage:<pre>   {@code  *  *   Splitter.on(',').split("foo,bar")}</pre>  *  * This invocation returns an {@code Iterable<String>} containing {@code "foo"}  * and {@code "bar"}, in that order.  *  *<p>By default {@code Splitter}'s behavior is very simplistic:<pre>   {@code  *  *   Splitter.on(',').split("foo,,bar, quux")}</pre>  *  * This returns an iterable containing {@code ["foo", "", "bar", " quux"]}.  * Notice that the splitter does not assume that you want empty strings removed,  * or that you wish to trim whitespace. If you want features like these, simply  * ask for them:<pre> {@code  *  *   private static final Splitter MY_SPLITTER = Splitter.on(',')  *       .trimResults()  *       .omitEmptyStrings();}</pre>  *  * Now {@code MY_SPLITTER.split("foo, ,bar, quux,")} returns an iterable  * containing just {@code ["foo", "bar", "quux"]}. Note that the order in which  * the configuration methods are called is never significant; for instance,  * trimming is always applied first before checking for an empty result,  * regardless of the order in which the {@link #trimResults()} and  * {@link #omitEmptyStrings()} methods were invoked.  *  *<p><b>Warning: splitter instances are always immutable</b>; a configuration  * method such as {@code omitEmptyStrings} has no effect on the instance it  * is invoked on! You must store and use the new splitter instance returned by  * the method. This makes splitters thread-safe, and safe to store as {@code  * static final} constants (as illustrated above).<pre>   {@code  *  *   // Bad! Do not do this!  *   Splitter splitter = Splitter.on('/');  *   splitter.trimResults(); // does nothing!  *   return splitter.split("wrong / wrong / wrong");}</pre>  *  * The separator recognized by the splitter does not have to be a single  * literal character as in the examples above. See the methods {@link  * #on(String)}, {@link #on(Pattern)} and {@link #on(CharMatcher)} for examples  * of other ways to specify separators.  *  *<p><b>Note:</b> this class does not mimic any of the quirky behaviors of  * similar JDK methods; for instance, it does not silently discard trailing  * separators, as does {@link String#split(String)}, nor does it have a default  * behavior of using five particular whitespace characters as separators, like  * {@link java.util.StringTokenizer}.  *  * @author Julien Silland  * @author Jesse Wilson  * @author Kevin Bourrillion  * @author Louis Wasserman  * @since Guava release 01  */
 end_comment
@@ -612,6 +622,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * automatically omits empty strings from the results. For example, {@code    * Splitter.on(',').omitEmptyStrings().split(",a,,,b,c,,")} returns an    * iterable containing only {@code ["a", "b", "c"]}.    *    *<p>If either {@code trimResults} option is also specified when creating a    * splitter, that splitter always trims results first before checking for    * emptiness. So, for example, {@code    * Splitter.on(':').omitEmptyStrings().trimResults().split(": : : ")} returns    * an empty iterable.    *    *<p>Note that it is ordinarily not possible for {@link #split(CharSequence)}    * to return an empty iterable, but when using this option, it can (if the    * input sequence consists of nothing but separators).    *    * @return a splitter with the desired configuration    */
+annotation|@
+name|CheckReturnValue
 DECL|method|omitEmptyStrings ()
 specifier|public
 name|Splitter
@@ -635,6 +647,8 @@ block|}
 comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter but    * stops splitting after it reaches the limit.    * The limit defines the maximum number of items returned by the iterator.    *    *<p>For example,    * {@code Splitter.on(',').limit(3).split("a,b,c,d")} returns an iterable    * containing {@code ["a", "b", "c,d"]}.  When omitting empty strings, the    * omitted strings do no count.  Hence,    * {@code Splitter.on(',').limit(3).omitEmptyStrings().split("a,,,b,,,c,d")}    * returns an iterable containing {@code ["a", "b", "c,d"}.    * When trim is requested, all entries, including the last are trimmed.  Hence    * {@code Splitter.on(',').limit(3).trimResults().split(" a , b , c , d ")}    * results in @{code ["a", "b", "c , d"]}.    *    * @param limit the maximum number of items returns    * @return a splitter with the desired configuration    * @since Guava release 09    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|limit (int limit)
 specifier|public
 name|Splitter
@@ -670,6 +684,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * automatically removes leading and trailing {@linkplain    * CharMatcher#WHITESPACE whitespace} from each returned substring; equivalent    * to {@code trimResults(CharMatcher.WHITESPACE)}. For example, {@code    * Splitter.on(',').trimResults().split(" a, b ,c ")} returns an iterable    * containing {@code ["a", "b", "c"]}.    *    * @return a splitter with the desired configuration    */
+annotation|@
+name|CheckReturnValue
 DECL|method|trimResults ()
 specifier|public
 name|Splitter
@@ -687,6 +703,8 @@ return|;
 block|}
 comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * removes all leading or trailing characters matching the given {@code    * CharMatcher} from each returned substring. For example, {@code    * Splitter.on(',').trimResults(CharMatcher.is('_')).split("_a ,_b_ ,c__")}    * returns an iterable containing {@code ["a ", "b_ ", "c"]}.    *    * @param trimmer a {@link CharMatcher} that determines whether a character    *     should be removed from the beginning/end of a subsequence    * @return a splitter with the desired configuration    */
 comment|// TODO(kevinb): throw if a trimmer was already specified!
+annotation|@
+name|CheckReturnValue
 DECL|method|trimResults (CharMatcher trimmer)
 specifier|public
 name|Splitter

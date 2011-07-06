@@ -114,6 +114,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -599,6 +609,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a joiner with the same behavior as this one, except automatically substituting {@code    * nullText} for any provided null elements.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|useForNull (final String nullText)
 specifier|public
 name|Joiner
@@ -692,6 +704,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a joiner with the same behavior as this joiner, except automatically skipping over any    * provided null elements.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|skipNulls ()
 specifier|public
 name|Joiner
@@ -895,6 +909,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|withKeyValueSeparator (String keyValueSeparator)
 specifier|public
 name|MapJoiner
@@ -1225,6 +1241,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Returns a map joiner with the same behavior as this one, except automatically substituting      * {@code nullText} for any provided null keys or values.      */
+annotation|@
+name|CheckReturnValue
 DECL|method|useForNull (String nullText)
 specifier|public
 name|MapJoiner

@@ -154,6 +154,16 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides default implementations of {@link ListeningExecutorService} execution methods. This  * class implements the<tt>submit</tt>,<tt>invokeAny</tt> and<tt>invokeAll</tt> methods using a  * {@link ListenableFutureTask} returned by<tt>newTaskFor</tt>.  For example, the implementation of  *<tt>submit(Runnable)</tt> creates an associated<tt>ListenableFutureTask</tt> that is executed  * and returned.  *  * @author Doug Lea  */
 end_comment
@@ -167,7 +177,7 @@ implements|implements
 name|ListeningExecutorService
 block|{
 comment|/**    * Returns a<tt>ListenableFutureTask</tt> for the given runnable and default value.    *    * @param runnable the runnable task being wrapped    * @param value the default value for the returned future    * @return a<tt>ListenableFutureTask</tt> which when run will run the underlying runnable and    *         which, as a<tt>Future</tt>, will yield the given value as its result and provide for    *         cancellation of the underlying task.    */
-DECL|method|newTaskFor (Runnable runnable, T value)
+DECL|method|newTaskFor (Runnable runnable, @Nullable T value)
 specifier|private
 parameter_list|<
 name|T
@@ -181,6 +191,8 @@ parameter_list|(
 name|Runnable
 name|runnable
 parameter_list|,
+annotation|@
+name|Nullable
 name|T
 name|value
 parameter_list|)
