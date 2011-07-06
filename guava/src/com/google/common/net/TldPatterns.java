@@ -8212,8 +8212,6 @@ literal|"xn--mgb2ddes"
 argument_list|,
 literal|"xxx"
 argument_list|,
-literal|"blogspot.com"
-argument_list|,
 literal|"tp"
 argument_list|,
 literal|"yt"
