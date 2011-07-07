@@ -203,6 +203,24 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
+comment|/**    * The largest power of two that can be represented as a {@code short}.    */
+DECL|field|MAX_POWER_OF_TWO
+specifier|public
+specifier|static
+specifier|final
+name|short
+name|MAX_POWER_OF_TWO
+init|=
+literal|1
+operator|<<
+operator|(
+name|Short
+operator|.
+name|SIZE
+operator|-
+literal|2
+operator|)
+decl_stmt|;
 comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Short) value).hashCode()}.    *    * @param value a primitive {@code short} value    * @return a hash code for the value    */
 DECL|method|hashCode (short value)
 specifier|public

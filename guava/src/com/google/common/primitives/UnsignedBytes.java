@@ -140,6 +140,23 @@ specifier|private
 name|UnsignedBytes
 parameter_list|()
 block|{}
+comment|/**    * The largest power of two that can be represented as an unsigned {@code byte}.    */
+DECL|field|MAX_POWER_OF_TWO
+specifier|public
+specifier|static
+specifier|final
+name|byte
+name|MAX_POWER_OF_TWO
+init|=
+call|(
+name|byte
+call|)
+argument_list|(
+literal|1
+operator|<<
+literal|7
+argument_list|)
+decl_stmt|;
 comment|/**    * Returns the value of the given byte as an integer, when treated as    * unsigned. That is, returns {@code value + 256} if {@code value} is    * negative; {@code value} itself otherwise.    *    * @since Guava release 06    */
 DECL|method|toInt (byte value)
 specifier|public

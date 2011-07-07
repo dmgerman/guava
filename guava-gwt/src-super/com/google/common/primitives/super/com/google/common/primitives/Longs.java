@@ -203,6 +203,24 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
+comment|/**    * The largest power of two that can be represented as a {@code long}.    */
+DECL|field|MAX_POWER_OF_TWO
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|MAX_POWER_OF_TWO
+init|=
+literal|1L
+operator|<<
+operator|(
+name|Long
+operator|.
+name|SIZE
+operator|-
+literal|2
+operator|)
+decl_stmt|;
 comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Long) value).hashCode()}.    *    *<p>This method always return the value specified by {@link    * Long#hashCode()} in java, which might be different from    * {@code ((Long) value).hashCode()} in GWT because {@link Long#hashCode()}    * in GWT does not obey the JRE contract.    *    * @param value a primitive {@code long} value    * @return a hash code for the value    */
 DECL|method|hashCode (long value)
 specifier|public

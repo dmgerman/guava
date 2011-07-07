@@ -90,6 +90,18 @@ specifier|private
 name|SignedBytes
 parameter_list|()
 block|{}
+comment|/**    * The largest power of two that can be represented as a signed {@code byte}.     */
+DECL|field|MAX_POWER_OF_TWO
+specifier|public
+specifier|static
+specifier|final
+name|byte
+name|MAX_POWER_OF_TWO
+init|=
+literal|1
+operator|<<
+literal|6
+decl_stmt|;
 comment|/**    * Returns the {@code byte} value that is equal to {@code value}, if possible.    *    * @param value any value in the range of the {@code byte} type    * @return the {@code byte} value that equals {@code value}    * @throws IllegalArgumentException if {@code value} is greater than {@link    *     Byte#MAX_VALUE} or less than {@link Byte#MIN_VALUE}    */
 DECL|method|checkedCast (long value)
 specifier|public
