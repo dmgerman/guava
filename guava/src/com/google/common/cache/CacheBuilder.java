@@ -449,7 +449,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A builder of {@link Cache} instances having any combination of the following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>notification of evicted (or otherwise removed) entries  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   Cache<Key, Graph> graphs = CacheBuilder.newBuilder()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .build(  *           new CacheLoader<Key, Graph>() {  *             public Graph load(Key key) throws AnyException {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional.  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements the optional operations {@link Cache#invalidate},  * {@link Cache#invalidateAll}, {@link Cache#size}, {@link Cache#stats}, and {@link Cache#asMap},  * with the following qualifications:  *  *<ul>  *<li>The {@code invalidateAll} method will invalidate all cached entries prior to returning, and  *     removal notifications will be issued for all invalidated entries.  *<li>The {@code asMap} view supports removal operations, but no other modifications.  *<li>The {@code asMap} view (and its collection views) have<i>weakly consistent iterators</i>.  *     This means that they are safe for concurrent use, but if other threads modify the cache after  *     the iterator is created, it is undefined which of these changes, if any, are reflected in  *     that iterator. These iterators never throw {@link ConcurrentModificationException}.  *</ul>  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the  * {@link Object#equals equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys} or {@link #softKeys} was specified, the cache uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues} or {@link #softValues} was  * specified, the cache uses identity comparisons for values.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the cache to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the cache. A partially-reclaimed entry is never exposed to the user.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache.  *  * @param<K0> the base key type for all caches created by this builder  * @param<V0> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  *<p>A builder of {@link Cache} instances having any combination of the following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>notification of evicted (or otherwise removed) entries  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   Cache<Key, Graph> graphs = CacheBuilder.newBuilder()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .build(  *           new CacheLoader<Key, Graph>() {  *             public Graph load(Key key) throws AnyException {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional.  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements the optional operations {@link Cache#invalidate},  * {@link Cache#invalidateAll}, {@link Cache#size}, {@link Cache#stats}, and {@link Cache#asMap},  * with the following qualifications:  *  *<ul>  *<li>The {@code invalidateAll} method will invalidate all cached entries prior to returning, and  *     removal notifications will be issued for all invalidated entries.  *<li>The {@code asMap} view supports removal operations, but no other modifications.  *<li>The {@code asMap} view (and its collection views) have<i>weakly consistent iterators</i>.  *     This means that they are safe for concurrent use, but if other threads modify the cache after  *     the iterator is created, it is undefined which of these changes, if any, are reflected in  *     that iterator. These iterators never throw {@link ConcurrentModificationException}.  *</ul>  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the  * {@link Object#equals equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys} or {@link #softKeys} was specified, the cache uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues} or {@link #softValues} was  * specified, the cache uses identity comparisons for values.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the cache to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the cache. A partially-reclaimed entry is never exposed to the user.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache.  *  * @param<K> the base key type for all caches created by this builder  * @param<V> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -461,9 +461,9 @@ specifier|final
 class|class
 name|CacheBuilder
 parameter_list|<
-name|K0
+name|K
 parameter_list|,
-name|V0
+name|V
 parameter_list|>
 block|{
 DECL|field|DEFAULT_INITIAL_CAPACITY
@@ -719,9 +719,9 @@ decl_stmt|;
 DECL|field|removalListener
 name|RemovalListener
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|removalListener
 decl_stmt|;
@@ -780,9 +780,9 @@ comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys. 
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|keyEquivalence
 parameter_list|(
@@ -840,9 +840,9 @@ comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values
 DECL|method|valueEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|valueEquivalence
 parameter_list|(
@@ -903,9 +903,9 @@ DECL|method|initialCapacity (int initialCapacity)
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|initialCapacity
 parameter_list|(
@@ -967,9 +967,9 @@ DECL|method|concurrencyLevel (int concurrencyLevel)
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|concurrencyLevel
 parameter_list|(
@@ -1031,9 +1031,9 @@ DECL|method|maximumSize (int size)
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|maximumSize
 parameter_list|(
@@ -1096,9 +1096,9 @@ comment|/**    * Specifies that each key (not value) stored in the cache should 
 DECL|method|strongKeys ()
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|strongKeys
 parameter_list|()
@@ -1117,9 +1117,9 @@ DECL|method|weakKeys ()
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|weakKeys
 parameter_list|()
@@ -1138,9 +1138,9 @@ DECL|method|softKeys ()
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|softKeys
 parameter_list|()
@@ -1157,9 +1157,9 @@ block|}
 DECL|method|setKeyStrength (Strength strength)
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|setKeyStrength
 parameter_list|(
@@ -1209,9 +1209,9 @@ comment|/**    * Specifies that each value (not key) stored in the cache should 
 DECL|method|strongValues ()
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|strongValues
 parameter_list|()
@@ -1230,9 +1230,9 @@ DECL|method|weakValues ()
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|weakValues
 parameter_list|()
@@ -1251,9 +1251,9 @@ DECL|method|softValues ()
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|softValues
 parameter_list|()
@@ -1270,9 +1270,9 @@ block|}
 DECL|method|setValueStrength (Strength strength)
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|setValueStrength
 parameter_list|(
@@ -1323,9 +1323,9 @@ DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|expireAfterWrite
 parameter_list|(
@@ -1451,9 +1451,9 @@ DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|expireAfterAccess
 parameter_list|(
@@ -1540,9 +1540,9 @@ DECL|method|ticker (Ticker ticker)
 specifier|public
 name|CacheBuilder
 argument_list|<
-name|K0
+name|K
 argument_list|,
-name|V0
+name|V
 argument_list|>
 name|ticker
 parameter_list|(
@@ -1589,33 +1589,33 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener during invocations of any of that cache's public    * methods (even read-only methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K, V>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
+comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener during invocations of any of that cache's public    * methods (even read-only methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
 annotation|@
 name|CheckReturnValue
-DECL|method|removalListener ( RemovalListener<K, V> listener)
+DECL|method|removalListener ( RemovalListener<K1, V1> listener)
 specifier|public
 parameter_list|<
+name|K1
+extends|extends
 name|K
-extends|extends
-name|K0
 parameter_list|,
-name|V
+name|V1
 extends|extends
-name|V0
+name|V
 parameter_list|>
 name|CacheBuilder
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|removalListener
 parameter_list|(
 name|RemovalListener
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|listener
 parameter_list|)
@@ -1637,18 +1637,18 @@ literal|"unchecked"
 argument_list|)
 name|CacheBuilder
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|me
 init|=
 operator|(
 name|CacheBuilder
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 operator|)
 name|this
@@ -1674,19 +1674,19 @@ literal|"unchecked"
 argument_list|)
 DECL|method|getRemovalListener ()
 parameter_list|<
+name|K1
+extends|extends
 name|K
-extends|extends
-name|K0
 parameter_list|,
-name|V
+name|V1
 extends|extends
-name|V0
+name|V
 parameter_list|>
 name|RemovalListener
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|getRemovalListener
 parameter_list|()
@@ -1695,9 +1695,9 @@ return|return
 operator|(
 name|RemovalListener
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 operator|)
 name|Objects
@@ -1715,19 +1715,19 @@ block|}
 comment|/**    * Returns a CustomConcurrentHashMap for the benefit of internal callers that use features of    * that class not exposed through ConcurrentMap.    */
 DECL|method|makeCustomMap ()
 parameter_list|<
+name|K1
+extends|extends
 name|K
-extends|extends
-name|K0
 parameter_list|,
-name|V
+name|V1
 extends|extends
-name|V0
+name|V
 parameter_list|>
 name|CustomConcurrentHashMap
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|makeCustomMap
 parameter_list|()
@@ -1736,9 +1736,9 @@ return|return
 operator|new
 name|CustomConcurrentHashMap
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 argument_list|(
 name|this
@@ -1747,21 +1747,21 @@ name|DEFAULT_STATS_COUNTER
 argument_list|)
 return|;
 block|}
-DECL|method|makeComputingMap ( CacheLoader<? super K, ? extends V> loader)
+DECL|method|makeComputingMap ( CacheLoader<? super K1, ? extends V1> loader)
 parameter_list|<
+name|K1
+extends|extends
 name|K
-extends|extends
-name|K0
 parameter_list|,
-name|V
+name|V1
 extends|extends
-name|V0
+name|V
 parameter_list|>
 name|ConcurrentMap
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|makeComputingMap
 parameter_list|(
@@ -1769,11 +1769,11 @@ name|CacheLoader
 argument_list|<
 name|?
 super|super
-name|K
+name|K1
 argument_list|,
 name|?
 extends|extends
-name|V
+name|V1
 argument_list|>
 name|loader
 parameter_list|)
@@ -1785,9 +1785,9 @@ condition|?
 operator|new
 name|ComputingConcurrentHashMap
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 argument_list|(
 name|this
@@ -1800,9 +1800,9 @@ else|:
 operator|new
 name|NullComputingConcurrentMap
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 argument_list|(
 name|this
@@ -1812,22 +1812,22 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Builds a cache, which either returns an already-loaded value for a given key or atomically    * computes or retrieves it using the supplied {@code CacheLoader}. If another thread is currently    * loading the value for this key, simply waits for that thread to finish and returns its    * loaded value. Note that multiple threads can concurrently load values for distinct keys.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @param loader the cache loader used to obtain new values    * @return a cache having the requested features    */
-DECL|method|build (CacheLoader<? super K, V> loader)
+DECL|method|build (CacheLoader<? super K1, V1> loader)
 specifier|public
 parameter_list|<
+name|K1
+extends|extends
 name|K
-extends|extends
-name|K0
 parameter_list|,
-name|V
+name|V1
 extends|extends
-name|V0
+name|V
 parameter_list|>
 name|Cache
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|build
 parameter_list|(
@@ -1835,9 +1835,9 @@ name|CacheLoader
 argument_list|<
 name|?
 super|super
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 name|loader
 parameter_list|)
@@ -1849,9 +1849,9 @@ condition|?
 operator|new
 name|ComputingCache
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 argument_list|(
 name|this
@@ -1864,9 +1864,9 @@ else|:
 operator|new
 name|NullCache
 argument_list|<
-name|K
+name|K1
 argument_list|,
-name|V
+name|V1
 argument_list|>
 argument_list|(
 name|this
