@@ -573,9 +573,9 @@ specifier|final
 name|int
 name|MAXIMUM_CAPACITY
 init|=
-literal|1
-operator|<<
-literal|30
+name|Ints
+operator|.
+name|MAX_POWER_OF_TWO
 decl_stmt|;
 comment|/** The maximum number of segments to allow; used to bound constructor arguments. */
 DECL|field|MAX_SEGMENTS

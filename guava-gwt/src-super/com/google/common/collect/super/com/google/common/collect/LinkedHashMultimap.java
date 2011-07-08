@@ -60,6 +60,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -401,9 +415,9 @@ name|Math
 operator|.
 name|min
 argument_list|(
-literal|1
-operator|<<
-literal|30
+name|Ints
+operator|.
+name|MAX_POWER_OF_TWO
 argument_list|,
 operator|(
 operator|(

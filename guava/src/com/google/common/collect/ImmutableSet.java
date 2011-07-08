@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -859,9 +873,9 @@ specifier|final
 name|int
 name|MAX_TABLE_SIZE
 init|=
-literal|1
-operator|<<
-literal|30
+name|Ints
+operator|.
+name|MAX_POWER_OF_TWO
 decl_stmt|;
 comment|// If the set has this many elements, it will "max out" the table size
 DECL|field|CUTOFF

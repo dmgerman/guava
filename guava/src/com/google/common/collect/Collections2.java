@@ -120,6 +120,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -1316,9 +1330,9 @@ name|size
 operator|*
 literal|8L
 argument_list|,
-literal|1
-operator|<<
-literal|30
+name|Ints
+operator|.
+name|MAX_POWER_OF_TWO
 argument_list|)
 argument_list|)
 return|;
