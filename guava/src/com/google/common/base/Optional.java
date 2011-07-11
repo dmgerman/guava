@@ -216,24 +216,6 @@ specifier|private
 name|Optional
 parameter_list|()
 block|{}
-comment|/**    * Returns the contained non-null reference if it is present; {@code defaultValue} otherwise.    *    * @deprecated use {@code orNull()} for {@code get(null)}; {@code or(T)} otherwise    */
-comment|// TODO(kevinb): remove
-DECL|method|get (@ullable T defaultValue)
-annotation|@
-name|Deprecated
-annotation|@
-name|Nullable
-specifier|public
-specifier|abstract
-name|T
-name|get
-parameter_list|(
-annotation|@
-name|Nullable
-name|T
-name|defaultValue
-parameter_list|)
-function_decl|;
 comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
@@ -342,27 +324,6 @@ specifier|public
 name|T
 name|get
 parameter_list|()
-block|{
-return|return
-name|reference
-return|;
-block|}
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-annotation|@
-name|Nullable
-DECL|method|get (@ullable T defaultValue)
-specifier|public
-name|T
-name|get
-parameter_list|(
-annotation|@
-name|Nullable
-name|T
-name|defaultValue
-parameter_list|)
 block|{
 return|return
 name|reference
@@ -552,27 +513,6 @@ argument_list|(
 literal|"value is absent"
 argument_list|)
 throw|;
-block|}
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-annotation|@
-name|Nullable
-DECL|method|get (@ullable Object defaultValue)
-specifier|public
-name|Object
-name|get
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|defaultValue
-parameter_list|)
-block|{
-return|return
-name|defaultValue
-return|;
 block|}
 DECL|method|or (Object defaultValue)
 annotation|@
