@@ -68,6 +68,24 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Uninterruptibles
+operator|.
+name|getUninterruptibly
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -418,7 +436,7 @@ specifier|private
 name|Futures
 parameter_list|()
 block|{}
-comment|/**    * Returns an uninterruptible view of a {@code Future}. If a thread is    * interrupted during an attempt to {@code get()} from the returned future, it    * continues to wait on the result until it is available or the timeout    * elapses, and only then re-interrupts the thread.    */
+comment|/**    *    *<b> Soon to be removed, use    * {@link Uninterruptibles#getUninterruptibly(Future) getUninterruptibly}</b>    * Returns an uninterruptible view of a {@code Future}. If a thread is    * interrupted during an attempt to {@code get()} from the returned future, it    * continues to wait on the result until it is available or the timeout    * elapses, and only then re-interrupts the thread.    */
 DECL|method|makeUninterruptible ( final Future<V> future)
 specifier|public
 specifier|static
@@ -2470,13 +2488,10 @@ try|try
 block|{
 name|sourceResult
 operator|=
-name|makeUninterruptible
+name|getUninterruptibly
 argument_list|(
 name|inputFuture
 argument_list|)
-operator|.
-name|get
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -2601,13 +2616,10 @@ comment|// UninterruptibleListenableFuture, but we don't want to start a
 comment|// combinatorial explosion of interfaces, so we have to make do.
 name|set
 argument_list|(
-name|makeUninterruptible
+name|getUninterruptibly
 argument_list|(
 name|outputFuture
 argument_list|)
-operator|.
-name|get
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -3251,13 +3263,10 @@ expr_stmt|;
 try|try
 block|{
 return|return
-name|makeUninterruptible
+name|getUninterruptibly
 argument_list|(
 name|future
 argument_list|)
-operator|.
-name|get
-argument_list|()
 return|;
 block|}
 catch|catch
@@ -4092,13 +4101,10 @@ name|set
 argument_list|(
 name|index
 argument_list|,
-name|makeUninterruptible
+name|getUninterruptibly
 argument_list|(
 name|future
 argument_list|)
-operator|.
-name|get
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
