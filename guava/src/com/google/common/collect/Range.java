@@ -96,6 +96,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -141,11 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * NOTE: if the two dot ellipsis in the documentation looks strange (too high),  * it seems to be a weird issue with eclipse.  It is the correct character and  * looks right everywhere else.  */
-end_comment
-
-begin_comment
-comment|/**  * A range, sometimes known as an<i>interval</i>, is a<i>convex</i>  * (informally, "contiguous" or "unbroken") portion of a particular domain.  * Formally, convexity means that for any {@code a<= b<= c},  * {@code range.contains(a)&& range.contains(c)} implies that {@code  * range.contains(b)}.  *  *<p>A range is characterized by its lower and upper<i>bounds</i> (extremes),  * each of which can<i>open</i> (exclusive of its endpoint),<i>closed</i>  * (inclusive of its endpoint), or<i>unbounded</i>. This yields nine basic  * types of ranges:  *  *<ul>  *<li>{@code (aâ¥b) = {x | a< x< b}}  *<li>{@code [aâ¥b] = {x | a<= x<= b}}  *<li>{@code [aâ¥b) = {x | a<= x< b}}  *<li>{@code (aâ¥b] = {x | a< x<= b}}  *<li>{@code (aâ¥+â) = {x | x> a}}  *<li>{@code [aâ¥+â) = {x | x>= a}}  *<li>{@code (-ââ¥b) = {x | x< b}}  *<li>{@code (-ââ¥b] = {x | x<= b}}  *<li>{@code (-ââ¥+â) = all values}  *</ul>  *  * (The notation {@code {x | statement}} is read "the set of all<i>x</i> such  * that<i>statement</i>.")  *  *<p>Notice that we use a square bracket ({@code [ ]}) to denote that an range  * is closed on that end, and a parenthesis ({@code ( )}) when it is open or  * unbounded.  *  *<p>The values {@code a} and {@code b} used above are called<i>endpoints</i>.  * The upper endpoint may not be less than the lower endpoint. The endpoints may  * be equal only if at least one of the bounds is closed:  *  *<ul>  *<li>{@code [aâ¥a]} : singleton range  *<li>{@code [aâ¥a); (aâ¥a]} : {@linkplain #isEmpty empty}, but valid  *<li>{@code (aâ¥a)} : invalid  *</ul>  *  *<p>Instances of this type can be obtained using the static factory methods in  * the {@link Ranges} class.  *  *<p>Instances of {@code Range} are immutable. It is strongly encouraged to  * use this class only with immutable data types. When creating a range over a  * mutable type, take great care not to allow the value objects to mutate after  * the range is created.  *  *<p>In this and other range-related specifications, concepts like "equal",  * "same", "unique" and so on are based on {@link Comparable#compareTo}  * returning zero, not on {@link Object#equals} returning {@code true}. Of  * course, when these methods are kept<i>consistent</i> (as defined in {@link  * Comparable}), this is not an issue.  *  *<p>A range {@code a} is said to be the<i>maximal</i> range having property  *<i>P</i> if, for all ranges {@code b} also having property<i>P</i>, {@code  * a.encloses(b)}. Likewise, {@code a} is<i>minimal</i> when {@code  * b.encloses(a)} for all {@code b} having property<i>P</i>. See, for example,  * the definition of {@link #intersection}.  *  *<p>This class can be used with any type which implements {@code Comparable};  * it does not require {@code Comparable<? super C>} because this would be  * incompatible with pre-Java 5 types. If this class is used with a perverse  * {@code Comparable} type ({@code Foo implements Comparable<Bar>} where {@code  * Bar} is not a supertype of {@code Foo}), any of its methods may throw {@link  * ClassCastException}. (There is no good reason for such a type to exist.)  *  *<p>When evaluated as a {@link Predicate}, a range yields the same result as  * invoking {@link #contains}.  *  * @author Kevin Bourrillion  * @author Gregory Kick  * @since Guava release 10  */
+comment|/**  * A range, sometimes known as an<i>interval</i>, is a<i>convex</i>  * (informally, "contiguous" or "unbroken") portion of a particular domain.  * Formally, convexity means that for any {@code a<= b<= c},  * {@code range.contains(a)&& range.contains(c)} implies that {@code  * range.contains(b)}.  *  *<p>A range is characterized by its lower and upper<i>bounds</i> (extremes),  * each of which can<i>open</i> (exclusive of its endpoint),<i>closed</i>  * (inclusive of its endpoint), or<i>unbounded</i>. This yields nine basic  * types of ranges:  *  *<ul>  *<li>{@code (aâ¥b) = {x | a< x< b}}  *<li>{@code [aâ¥b] = {x | a<= x<= b}}  *<li>{@code [aâ¥b) = {x | a<= x< b}}  *<li>{@code (aâ¥b] = {x | a< x<= b}}  *<li>{@code (aâ¥+â) = {x | x> a}}  *<li>{@code [aâ¥+â) = {x | x>= a}}  *<li>{@code (-ââ¥b) = {x | x< b}}  *<li>{@code (-ââ¥b] = {x | x<= b}}  *<li>{@code (-ââ¥+â) = all values}  *</ul>  *  * (The notation {@code {x | statement}} is read "the set of all<i>x</i> such  * that<i>statement</i>.")  *  *<p>Notice that we use a square bracket ({@code [ ]}) to denote that an range  * is closed on that end, and a parenthesis ({@code ( )}) when it is open or  * unbounded.  *  *<p>The values {@code a} and {@code b} used above are called<i>endpoints</i>.  * The upper endpoint may not be less than the lower endpoint. The endpoints may  * be equal only if at least one of the bounds is closed:  *  *<ul>  *<li>{@code [aâ¥a]} : singleton range  *<li>{@code [aâ¥a); (aâ¥a]} : {@linkplain #isEmpty empty}, but valid  *<li>{@code (aâ¥a)} :<b>invalid</b>  *</ul>  *  *<p>Instances of this type can be obtained using the static factory methods in  * the {@link Ranges} class.  *  *<p>Instances of {@code Range} are immutable. It is strongly encouraged to  * use this class only with immutable data types. When creating a range over a  * mutable type, take great care not to allow the value objects to mutate after  * the range is created.  *  *<p>In this and other range-related specifications, concepts like "equal",  * "same", "unique" and so on are based on {@link Comparable#compareTo}  * returning zero, not on {@link Object#equals} returning {@code true}. Of  * course, when these methods are kept<i>consistent</i> (as defined in {@link  * Comparable}), this is not an issue.  *  *<p>A range {@code a} is said to be the<i>maximal</i> range having property  *<i>P</i> if, for all ranges {@code b} also having property<i>P</i>, {@code  * a.encloses(b)}. Likewise, {@code a} is<i>minimal</i> when {@code  * b.encloses(a)} for all {@code b} having property<i>P</i>. See, for example,  * the definition of {@link #intersection}.  *  *<p>This class can be used with any type which implements {@code Comparable};  * it does not require {@code Comparable<? super C>} because this would be  * incompatible with pre-Java 5 types. If this class is used with a perverse  * {@code Comparable} type ({@code Foo implements Comparable<Bar>} where {@code  * Bar} is not a supertype of {@code Foo}), any of its methods may throw {@link  * ClassCastException}. (There is no good reason for such a type to exist.)  *  *<p>When evaluated as a {@link Predicate}, a range yields the same result as  * invoking {@link #contains}.  *  * @author Kevin Bourrillion  * @author Gregory Kick  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -327,7 +333,7 @@ name|typeAsUpperBound
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if this range is of the form {@code [v, v)} or {@code    * (v, v]}. (This does not encompass ranges of the form {@code (v, v)},    * because such ranges are<i>invalid</i> and can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code    * (3â¥4)} are<b>not</b> considered empty, even though they contain no actual    * values.    */
+comment|/**    * Returns {@code true} if this range is of the form {@code [vâ¥v)} or {@code    * (vâ¥v]}. (This does not encompass ranges of the form {@code (vâ¥v)}, because    * such ranges are<i>invalid</i> and can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code    * (3â¥4)} are<b>not</b> considered empty, even though they contain no actual    * values.    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -343,7 +349,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code point} is within the bounds of this    * range. For example, on the range {@code [0â¥2)}, {@code contains(1)}    * is true, while {@code contains(2)} is false.    */
+comment|/**    * Returns {@code true} if {@code value} is within the bounds of this    * range. For example, on the range {@code [0â¥2)}, {@code contains(1)}    * is true, while {@code contains(2)} is false.    */
 DECL|method|contains (C value)
 specifier|public
 name|boolean
@@ -376,10 +382,8 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Provided to satisfy the {@code Predicate} interface; use {@link #contains} instead.    *    * @deprecated Use {@link #contains} instead.    */
+comment|/**    * Equivalent to {@link #contains}; provided only to satisfy the {@link    * Predicate} interface. When using a reference of type {@code Range}, always    * invoke {@link #contains} directly instead.    */
 DECL|method|apply (C input)
-annotation|@
-name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -687,7 +691,7 @@ name|newUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link ImmutableSortedSet} containing the same values in the    * given domain {@linkplain Range#contains contained} by this range.    *    *<p><b>Note</b>: {@code a.asSet().equals(b.asSet())} does not imply {@code    * a.equals(b)}! For example, {@code a} and {@code b} could be {@code [2, 4]}    * and {@code (1, 5)}, or the empty ranges {@code [3, 3)} and {@code [4,    * 4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet}    * view of a large range (such as {@code Ranges.greaterThan(0)}). Certain    * operations on such a set can be performed efficiently, but others (such as    * {@link Set#hashCode}!) will cause major performance problems.    *    *<p>The set's {@link Object#toString} method returns a short-hand form of    * set's contents such as {@code "[1â¥100]}"}.    *    *<p>Note that a range without an explicit upper bound cannot be viewed as a    * set over a domain without an maximum.  (Similarly for the lower    * bound and a domain without a minimum).  This method will throw an    * {@link IllegalArgumentException} in either case.    */
+comment|/**    * Returns an {@link ImmutableSortedSet} containing the same values in the    * given domain {@linkplain Range#contains contained} by this range.    *    *<p><b>Note</b>: {@code a.asSet().equals(b.asSet())} does not imply {@code    * a.equals(b)}! For example, {@code a} and {@code b} could be {@code [2â¥4]}    * and {@code (1â¥5)}, or the empty ranges {@code [3â¥3)} and {@code [4â¥4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet}    * view of a large range (such as {@code Ranges.greaterThan(0)}). Certain    * operations on such a set can be performed efficiently, but others (such as    * {@link Set#hashCode} or {@link Collections#frequency}) can cause major    * performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand    * form of set's contents such as {@code "[1â¥100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a    *     lower bound, or if neither has an upper bound    */
 comment|// TODO(kevinb): commit in spec to which methods are efficient?
 annotation|@
 name|GwtCompatible
@@ -791,22 +795,24 @@ name|e
 argument_list|)
 throw|;
 block|}
-return|return
+comment|// Per class spec, we are allowed to throw CCE if necessary
+name|boolean
+name|empty
+init|=
 name|effectiveRange
 operator|.
 name|isEmpty
 argument_list|()
 operator|||
-operator|(
+name|compareOrThrow
+argument_list|(
 name|lowerBound
 operator|.
 name|leastValueAbove
 argument_list|(
 name|domain
 argument_list|)
-operator|.
-name|compareTo
-argument_list|(
+argument_list|,
 name|upperBound
 operator|.
 name|greatestValueBelow
@@ -816,7 +822,9 @@ argument_list|)
 argument_list|)
 operator|>
 literal|0
-operator|)
+decl_stmt|;
+return|return
+name|empty
 condition|?
 operator|new
 name|EmptyContiguousSet
@@ -839,7 +847,7 @@ name|domain
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the canonical form of this range in the given domain. The canonical    * form has the following properties:    *    *<ul>    *<li>equivalence: {@code a.canonical().contains(v) == a.contains(v)} for    *     all {@code v} (in other words, {@code    *     a.canonical(domain).asSet(domain).equals(a.asSet(domain))}    *<li>uniqueness: unless {@code a.isEmpty()},    *     {@code a.asSet(domain).equals(b.asSet(domain))} implies    *     {@code a.canonical(domain).equals(b.canonical(domain))}    *<li>idempotence: {@code    *     a.canonical(domain).canonical(domain).equals(a.canonical(domain))}    *</ul>    *    * Furthermore, this method guarantees that the range returned will be one    * of the following canonical forms:    *    *<ul>    *<li>[start, end)    *<li>[start, +â)    *<li>(-â, end) (only if type {@code C} is unbounded below)    *<li>(-â, +â) (only if type {@code C} is unbounded below)    *</ul>    */
+comment|/**    * Returns the canonical form of this range in the given domain. The canonical    * form has the following properties:    *    *<ul>    *<li>equivalence: {@code a.canonical().contains(v) == a.contains(v)} for    *     all {@code v} (in other words, {@code    *     a.canonical(domain).asSet(domain).equals(a.asSet(domain))}    *<li>uniqueness: unless {@code a.isEmpty()},    *     {@code a.asSet(domain).equals(b.asSet(domain))} implies    *     {@code a.canonical(domain).equals(b.canonical(domain))}    *<li>idempotence: {@code    *     a.canonical(domain).canonical(domain).equals(a.canonical(domain))}    *</ul>    *    * Furthermore, this method guarantees that the range returned will be one    * of the following canonical forms:    *    *<ul>    *<li>[startâ¥end)    *<li>[startâ¥+â)    *<li>(-ââ¥end) (only if type {@code C} is unbounded below)    *<li>(-ââ¥+â) (only if type {@code C} is unbounded below)    *</ul>    */
 DECL|method|canonical (DiscreteDomain<C> domain)
 specifier|public
 name|Range
@@ -1031,7 +1039,9 @@ name|sb
 init|=
 operator|new
 name|StringBuilder
-argument_list|()
+argument_list|(
+literal|16
+argument_list|)
 decl_stmt|;
 name|lowerBound
 operator|.
@@ -1089,6 +1099,33 @@ name|T
 argument_list|>
 operator|)
 name|iterable
+return|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// this method may throw CCE
+DECL|method|compareOrThrow (Comparable left, Comparable right)
+specifier|static
+name|int
+name|compareOrThrow
+parameter_list|(
+name|Comparable
+name|left
+parameter_list|,
+name|Comparable
+name|right
+parameter_list|)
+block|{
+return|return
+name|left
+operator|.
+name|compareTo
+argument_list|(
+name|right
+argument_list|)
 return|;
 block|}
 block|}

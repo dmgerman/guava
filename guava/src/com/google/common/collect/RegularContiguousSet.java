@@ -444,6 +444,8 @@ name|right
 operator|!=
 literal|null
 operator|&&
+name|Range
+operator|.
 name|compareOrThrow
 argument_list|(
 name|left
@@ -452,34 +454,6 @@ name|right
 argument_list|)
 operator|==
 literal|0
-return|;
-block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// this method may throw CCE
-DECL|method|compareOrThrow (Comparable left, Comparable right)
-specifier|private
-specifier|static
-name|int
-name|compareOrThrow
-parameter_list|(
-name|Comparable
-name|left
-parameter_list|,
-name|Comparable
-name|right
-parameter_list|)
-block|{
-return|return
-name|left
-operator|.
-name|compareTo
-argument_list|(
-name|right
-argument_list|)
 return|;
 block|}
 DECL|method|isPartialView ()
