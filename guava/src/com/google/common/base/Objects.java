@@ -235,6 +235,19 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+comment|// the nth anonymous class has a class name ending in "Outer$n"
+comment|// and local inner classes have names ending in "Outer.$1Inner"
+name|name
+operator|=
+name|name
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\$[0-9]+"
+argument_list|,
+literal|"\\$"
+argument_list|)
+expr_stmt|;
 comment|// we want the name of the inner class all by its lonesome
 name|int
 name|start
