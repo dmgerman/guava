@@ -4688,7 +4688,7 @@ comment|// If the delegate is already done, run the execution list
 comment|// immediately on the current thread.
 name|executionList
 operator|.
-name|run
+name|execute
 argument_list|()
 expr_stmt|;
 return|return;
@@ -4760,7 +4760,7 @@ comment|// The task is done, run the listeners.
 block|}
 name|executionList
 operator|.
-name|run
+name|execute
 argument_list|()
 expr_stmt|;
 block|}
