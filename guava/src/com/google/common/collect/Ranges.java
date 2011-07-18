@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods pertaining to {@link Range} instances.  *  * @author Kevin Bourrillion  * @author Gregory Kick  * @since Guava release 10  */
+comment|/**  * Static methods pertaining to {@link Range} instances.  Each of the  * {@link Range nine types of ranges} can be constructed with a corresponding  * factory method:  *  *<dl>  *<dt>{@code (aâ¥b)}  *<dd>{@link #open}  *<dt>{@code [aâ¥b]}  *<dd>{@link #closed}  *<dt>{@code [aâ¥b)}  *<dd>{@link #closedOpen}  *<dt>{@code (aâ¥b]}  *<dd>{@link #openClosed}  *<dt>{@code (aâ¥+â)}  *<dd>{@link #greaterThan}  *<dt>{@code [aâ¥+â)}  *<dd>{@link #atLeast}  *<dt>{@code (-ââ¥b)}  *<dd>{@link #lessThan}  *<dt>{@code (-ââ¥b]}  *<dd>{@link #atMost}  *<dt>{@code (-ââ¥+â)}  *<dd>{@link #all}  *</dl>  *  *<p>Additionally, {@link Range} instances can be constructed by passing the  * {@link BoundType bound types} explicitly.  *  *<dl>  *<dt>Bounded on both ends  *<dd>{@link #range}  *<dt>Unbounded on top ({@code (aâ¥+â)} or {@code (aâ¥+â)})  *<dd>{@link #downTo}  *<dt>Unbounded on bottom ({@code (-ââ¥b)} or {@code (-ââ¥b]})  *<dd>{@link #upTo}  *</dl>  *  * @author Kevin Bourrillion  * @author Gregory Kick  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -466,6 +466,104 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a range that contains all values less than or equal to    * {@code endpoint}.    */
+DECL|method|atMost (C endpoint)
+specifier|public
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+parameter_list|>
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|atMost
+parameter_list|(
+name|C
+name|endpoint
+parameter_list|)
+block|{
+return|return
+name|create
+argument_list|(
+name|Cut
+operator|.
+expr|<
+name|C
+operator|>
+name|belowAll
+argument_list|()
+argument_list|,
+name|Cut
+operator|.
+name|aboveValue
+argument_list|(
+name|endpoint
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be    * either inclusive (closed) or exclusive (open).    */
+DECL|method|upTo (C endpoint, BoundType boundType)
+specifier|public
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+parameter_list|>
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|upTo
+parameter_list|(
+name|C
+name|endpoint
+parameter_list|,
+name|BoundType
+name|boundType
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|boundType
+condition|)
+block|{
+case|case
+name|OPEN
+case|:
+return|return
+name|lessThan
+argument_list|(
+name|endpoint
+argument_list|)
+return|;
+case|case
+name|CLOSED
+case|:
+return|return
+name|atMost
+argument_list|(
+name|endpoint
+argument_list|)
+return|;
+default|default:
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
+block|}
 comment|/**    * Returns a range that contains all values strictly greater than {@code    * endpoint}.    */
 DECL|method|greaterThan (C endpoint)
 specifier|public
@@ -550,8 +648,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values less than or equal to    * {@code endpoint}.    */
-DECL|method|atMost (C endpoint)
+comment|/**    * Returns a range from the given endpoint, which may be either inclusive    * (closed) or exclusive (open), with no upper bound.    */
+DECL|method|downTo (C endpoint, BoundType boundType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -566,31 +664,45 @@ name|Range
 argument_list|<
 name|C
 argument_list|>
-name|atMost
+name|downTo
 parameter_list|(
 name|C
 name|endpoint
+parameter_list|,
+name|BoundType
+name|boundType
 parameter_list|)
 block|{
+switch|switch
+condition|(
+name|boundType
+condition|)
+block|{
+case|case
+name|OPEN
+case|:
 return|return
-name|create
-argument_list|(
-name|Cut
-operator|.
-expr|<
-name|C
-operator|>
-name|belowAll
-argument_list|()
-argument_list|,
-name|Cut
-operator|.
-name|aboveValue
+name|greaterThan
 argument_list|(
 name|endpoint
 argument_list|)
+return|;
+case|case
+name|CLOSED
+case|:
+return|return
+name|atLeast
+argument_list|(
+name|endpoint
 argument_list|)
 return|;
+default|default:
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 block|}
 comment|/** Returns a range that contains every value of type {@code C}. */
 DECL|method|all ()

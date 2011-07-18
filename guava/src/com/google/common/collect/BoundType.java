@@ -65,6 +65,25 @@ block|,
 comment|/**    * The endpoint value<i>is</i> considered part of the set ("inclusive").    */
 DECL|enumConstant|CLOSED
 name|CLOSED
+block|;
+comment|/**    * Returns the bound type corresponding to a boolean value for inclusivity.    */
+DECL|method|forBoolean (boolean inclusive)
+specifier|static
+name|BoundType
+name|forBoolean
+parameter_list|(
+name|boolean
+name|inclusive
+parameter_list|)
+block|{
+return|return
+name|inclusive
+condition|?
+name|CLOSED
+else|:
+name|OPEN
+return|;
+block|}
 block|}
 end_enum
 
