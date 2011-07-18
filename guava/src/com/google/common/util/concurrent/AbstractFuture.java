@@ -426,9 +426,46 @@ return|return
 name|result
 return|;
 block|}
-comment|/*    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
+comment|/**    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    * @deprecated Most implementations will be satisfied with the default    * implementation of {@link #cancel(boolean)} and not need to call this method    * at all. Those that are not can delegate to {@code    * super.cancel(mayInterruptIfRunning)} or, to get behavior exactly equivalent    * to this method, {@code super.cancel(false)}. This method will be removed in    * Guava release 11.    */
+annotation|@
+name|Beta
+annotation|@
+name|Deprecated
+DECL|method|cancel ()
+specifier|protected
+specifier|final
+name|boolean
+name|cancel
+parameter_list|()
+block|{
+name|boolean
+name|result
+init|=
+name|sync
+operator|.
+name|cancel
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|result
+condition|)
+block|{
+name|done
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|result
+return|;
+block|}
+comment|/**    *<b>Deprecated.</b> {@linkplain #addListener Add listeners} (possible executed    * in {@link MoreExecutors#sameThreadExecutor}) to perform the work currently    * performed by your {@code done} implementation. This method will be removed    * in Guava release 11.    *    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
+annotation|@
+name|Beta
+annotation|@
+name|Deprecated
+specifier|protected
 DECL|method|done ()
-specifier|private
 name|void
 name|done
 parameter_list|()

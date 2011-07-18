@@ -982,25 +982,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|offset ()
-name|int
-name|offset
-parameter_list|()
-block|{
-return|return
-name|offset
-return|;
-block|}
-DECL|method|array ()
-name|Object
-index|[]
-name|array
-parameter_list|()
-block|{
-return|return
-name|array
-return|;
-block|}
 block|}
 end_class
 

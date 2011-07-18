@@ -181,9 +181,13 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    */
+comment|/**    *<b>Deprecated.</b> Use {@link #create(Callable)} instead. This method will be    * removed in Guava release 11.    *    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    */
+annotation|@
+name|Beta
+annotation|@
+name|Deprecated
+specifier|public
 DECL|method|ListenableFutureTask (Callable<V> callable)
-specifier|private
 name|ListenableFutureTask
 parameter_list|(
 name|Callable
@@ -199,9 +203,13 @@ name|callable
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If    * you don't need a particular result, consider using    * constructions of the form:    * {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    */
+comment|/**    *<b>Deprecated. Use {@link #create(Runnable, Object)} instead. This method    * will be removed in Guava release 11.</b>    *    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If    * you don't need a particular result, consider using    * constructions of the form:    * {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    */
+annotation|@
+name|Beta
+annotation|@
+name|Deprecated
+specifier|public
 DECL|method|ListenableFutureTask (Runnable runnable, @Nullable V result)
-specifier|private
 name|ListenableFutureTask
 parameter_list|(
 name|Runnable
