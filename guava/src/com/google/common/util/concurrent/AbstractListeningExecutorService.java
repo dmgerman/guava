@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -126,18 +142,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|RejectedExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -154,21 +158,17 @@ name|TimeoutException
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
+begin_comment
+comment|/**  * Provides default implementations of {@link ListeningExecutorService} execution methods. This  * class implements the {@code submit}, {@code invokeAny} and  {@code invokeAll} methods using a  * {@link ListenableFutureTask} returned by {@code newTaskFor}.  For example, the implementation of  * {@code submit(Runnable)} creates an associated {@code ListenableFutureTask} that is executed  * and returned.  *  * @author Doug Lea  */
+end_comment
 
 begin_comment
-comment|/**  * Provides default implementations of {@link ListeningExecutorService} execution methods. This  * class implements the<tt>submit</tt>,<tt>invokeAny</tt> and<tt>invokeAll</tt> methods using a  * {@link ListenableFutureTask} returned by<tt>newTaskFor</tt>.  For example, the implementation of  *<tt>submit(Runnable)</tt> creates an associated<tt>ListenableFutureTask</tt> that is executed  * and returned.  *  * @author Doug Lea  */
+comment|/* MOE: begin_strip */
 end_comment
 
 begin_class
+specifier|public
+comment|/* MOE: end_strip */
 DECL|class|AbstractListeningExecutorService
 specifier|abstract
 class|class
@@ -176,67 +176,6 @@ name|AbstractListeningExecutorService
 implements|implements
 name|ListeningExecutorService
 block|{
-comment|/**    * Returns a<tt>ListenableFutureTask</tt> for the given runnable and default value.    *    * @param runnable the runnable task being wrapped    * @param value the default value for the returned future    * @return a<tt>ListenableFutureTask</tt> which when run will run the underlying runnable and    *         which, as a<tt>Future</tt>, will yield the given value as its result and provide for    *         cancellation of the underlying task.    */
-DECL|method|newTaskFor (Runnable runnable, @Nullable T value)
-specifier|private
-parameter_list|<
-name|T
-parameter_list|>
-name|ListenableFutureTask
-argument_list|<
-name|T
-argument_list|>
-name|newTaskFor
-parameter_list|(
-name|Runnable
-name|runnable
-parameter_list|,
-annotation|@
-name|Nullable
-name|T
-name|value
-parameter_list|)
-block|{
-return|return
-name|ListenableFutureTask
-operator|.
-name|create
-argument_list|(
-name|runnable
-argument_list|,
-name|value
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns a<tt>ListenableFutureTask</tt> for the given callable task.    *    * @param callable the callable task being wrapped    * @return a<tt>ListenableFutureTask</tt> which when run will call the underlying callable and    *         which, as a<tt>Future</tt>, will yield the callable's result as its result and provide    *         for cancellation of the underlying task.    */
-DECL|method|newTaskFor (Callable<T> callable)
-specifier|private
-parameter_list|<
-name|T
-parameter_list|>
-name|ListenableFutureTask
-argument_list|<
-name|T
-argument_list|>
-name|newTaskFor
-parameter_list|(
-name|Callable
-argument_list|<
-name|T
-argument_list|>
-name|callable
-parameter_list|)
-block|{
-return|return
-name|ListenableFutureTask
-operator|.
-name|create
-argument_list|(
-name|callable
-argument_list|)
-return|;
-block|}
-comment|/**    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException {@inheritDoc}    */
 DECL|method|submit (Runnable task)
 annotation|@
 name|Override
@@ -251,26 +190,15 @@ name|Runnable
 name|task
 parameter_list|)
 block|{
-if|if
-condition|(
-name|task
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|()
-throw|;
-block|}
 name|ListenableFutureTask
 argument_list|<
 name|Void
 argument_list|>
 name|ftask
 init|=
-name|newTaskFor
+name|ListenableFutureTask
+operator|.
+name|create
 argument_list|(
 name|task
 argument_list|,
@@ -286,7 +214,6 @@ return|return
 name|ftask
 return|;
 block|}
-comment|/**    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException {@inheritDoc}    */
 DECL|method|submit (Runnable task, T result)
 annotation|@
 name|Override
@@ -307,26 +234,15 @@ name|T
 name|result
 parameter_list|)
 block|{
-if|if
-condition|(
-name|task
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|()
-throw|;
-block|}
 name|ListenableFutureTask
 argument_list|<
 name|T
 argument_list|>
 name|ftask
 init|=
-name|newTaskFor
+name|ListenableFutureTask
+operator|.
+name|create
 argument_list|(
 name|task
 argument_list|,
@@ -342,7 +258,6 @@ return|return
 name|ftask
 return|;
 block|}
-comment|/**    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException {@inheritDoc}    */
 DECL|method|submit (Callable<T> task)
 annotation|@
 name|Override
@@ -363,26 +278,15 @@ argument_list|>
 name|task
 parameter_list|)
 block|{
-if|if
-condition|(
-name|task
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|()
-throw|;
-block|}
 name|ListenableFutureTask
 argument_list|<
 name|T
 argument_list|>
 name|ftask
 init|=
-name|newTaskFor
+name|ListenableFutureTask
+operator|.
+name|create
 argument_list|(
 name|task
 argument_list|)
@@ -429,19 +333,6 @@ name|ExecutionException
 throws|,
 name|TimeoutException
 block|{
-if|if
-condition|(
-name|tasks
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|()
-throw|;
-block|}
 name|int
 name|ntasks
 init|=
@@ -450,19 +341,13 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
+name|checkArgument
+argument_list|(
 name|ntasks
-operator|==
+operator|>
 literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|()
-throw|;
-block|}
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|Future
@@ -769,6 +654,7 @@ name|f
 range|:
 name|futures
 control|)
+block|{
 name|f
 operator|.
 name|cancel
@@ -776,6 +662,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|invokeAny (Collection<? extends Callable<T>> tasks)
@@ -823,10 +710,11 @@ name|TimeoutException
 name|cannotHappen
 parameter_list|)
 block|{
-comment|// assert false;
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
 block|}
 block|}
 DECL|method|invokeAny ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
@@ -970,7 +858,9 @@ name|T
 argument_list|>
 name|f
 init|=
-name|newTaskFor
+name|ListenableFutureTask
+operator|.
+name|create
 argument_list|(
 name|t
 argument_list|)
@@ -1056,6 +946,7 @@ name|f
 range|:
 name|futures
 control|)
+block|{
 name|f
 operator|.
 name|cancel
@@ -1063,6 +954,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1170,16 +1062,20 @@ name|t
 range|:
 name|tasks
 control|)
+block|{
 name|futures
 operator|.
 name|add
 argument_list|(
-name|newTaskFor
+name|ListenableFutureTask
+operator|.
+name|create
 argument_list|(
 name|t
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|lastTime
 init|=
@@ -1368,6 +1264,7 @@ name|f
 range|:
 name|futures
 control|)
+block|{
 name|f
 operator|.
 name|cancel
@@ -1375,6 +1272,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
