@@ -83,8 +83,6 @@ comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFu
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|ListenableFutureTask
 specifier|public
 specifier|final

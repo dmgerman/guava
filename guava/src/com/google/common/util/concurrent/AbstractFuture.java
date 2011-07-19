@@ -137,8 +137,6 @@ comment|/**  * An abstract implementation of the {@link ListenableFuture} interf
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|AbstractFuture
 specifier|public
 specifier|abstract

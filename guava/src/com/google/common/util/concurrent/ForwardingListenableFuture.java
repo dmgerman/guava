@@ -26,20 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Preconditions
@@ -63,8 +49,6 @@ comment|/**  * A {@link ListenableFuture} which forwards all its method calls to
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|ForwardingListenableFuture
 specifier|public
 specifier|abstract
@@ -127,10 +111,8 @@ name|exec
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
+comment|/*    * TODO(cpovirk): Use standard Javadoc form for SimpleForwarding* class and    * constructor    */
 comment|/**    * A simplified version of {@link ForwardingListenableFuture} where subclasses    * can pass in an already constructed {@link ListenableFuture}     * as the delegate.    *     * @since Guava release 09    */
-annotation|@
-name|Beta
 DECL|class|SimpleForwardingListenableFuture
 specifier|public
 specifier|abstract

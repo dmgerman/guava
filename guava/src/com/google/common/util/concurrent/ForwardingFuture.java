@@ -26,20 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Preconditions
@@ -252,10 +238,8 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
+comment|/*    * TODO(cpovirk): Use standard Javadoc form for SimpleForwarding* class and    * constructor    */
 comment|/**    * A simplified version of {@link ForwardingFuture} where subclasses    * can pass in an already constructed {@link Future} as the delegate.    *     * @since Guava release 09    */
-annotation|@
-name|Beta
 DECL|class|SimpleForwardingFuture
 specifier|public
 specifier|abstract

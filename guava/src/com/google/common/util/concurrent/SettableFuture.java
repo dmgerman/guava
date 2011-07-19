@@ -20,20 +20,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -47,8 +33,6 @@ comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #s
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|SettableFuture
 specifier|public
 specifier|final

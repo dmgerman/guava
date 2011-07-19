@@ -111,8 +111,6 @@ comment|/**  *<p>A list of listeners, each with an associated {@code Executor}, 
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|ExecutionList
 specifier|public
 specifier|final
@@ -281,7 +279,7 @@ name|execute
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Runs this execution list, executing all existing pairs in the order they    * were added. However, note that listeners added after this point may be    * executed before those previously added, and note that the execution order    * of all listeners is ultimately chosen by the implementations of the    * supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    */
+comment|/**    * Runs this execution list, executing all existing pairs in the order they    * were added. However, note that listeners added after this point may be    * executed before those previously added, and note that the execution order    * of all listeners is ultimately chosen by the implementations of the    * supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    *    * @since Guava release 10 (present in release 01 as {@code run})    */
 DECL|method|execute ()
 specifier|public
 name|void
