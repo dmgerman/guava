@@ -266,11 +266,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Equivalent to {@link #execute}.    *    * @deprecated Use {@link #execute}.    */
+comment|/**    * Equivalent to {@link #execute}.    *    * @deprecated Use {@link #execute}. This method will be removed in Guava    * release 11.    */
+annotation|@
+name|Beta
 annotation|@
 name|Deprecated
-DECL|method|run ()
 specifier|public
+DECL|method|run ()
 name|void
 name|run
 parameter_list|()
