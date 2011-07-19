@@ -58,6 +58,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -73,10 +87,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}.  *  * @author gak@google.com (Gregory Kick)  * @since Guava release 10  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 annotation|@
 name|GwtCompatible
 annotation|@

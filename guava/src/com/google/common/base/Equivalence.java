@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @since Guava release 04  */
+comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @author Ben Yu  * @since Guava release 10 (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since Guava release 04)  */
 end_comment
 
 begin_class
@@ -98,6 +98,12 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|Equivalence ()
+specifier|protected
+name|Equivalence
+parameter_list|()
+block|{}
 comment|/**    * Returns {@code true} if the given objects are considered equivalent.    *    *<p>The {@code equivalent} method implements an equivalence relation on object references:    *    *<ul>    *<li>It is<i>reflexive</i>: for any reference {@code x}, including null, {@code    *     equivalent(x, x)} should return {@code true}.    *<li>It is<i>symmetric</i>: for any references {@code x} and {@code y}, {@code    *     equivalent(x, y) == equivalent(y, x)}.    *<li>It is<i>transitive</i>: for any references {@code x}, {@code y}, and {@code z}, if    *     {@code equivalent(x, y)} returns {@code true} and {@code equivalent(y, z)} returns {@code    *     true}, then {@code equivalent(x, z)} should return {@code true}.    *<li>It is<i>consistent</i>: for any references {@code x} and {@code y}, multiple invocations    *     of {@code equivalent(x, y)} consistently return {@code true} or consistently return {@code    *     false} (provided that neither {@code x} nor {@code y} is modified).    *</ul>    */
 DECL|method|equivalent (@ullable T a, @Nullable T b)
 specifier|public

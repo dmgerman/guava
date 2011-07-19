@@ -227,7 +227,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * The largest power of two that can be represented as an {@code int}.    */
+comment|/**    * The largest power of two that can be represented as an {@code int}.    *    * @since Guava release 10    */
 DECL|field|MAX_POWER_OF_TWO
 specifier|public
 specifier|static

@@ -643,7 +643,7 @@ name|columnComparator
 return|;
 block|}
 comment|// TODO(user): make column return a SortedMap
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code TreeBasedTable} has unique sorted values for a given    * row, this method returns a {@link SortedMap}, instead of the {@link Map}    * specified in the {@link Table} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code TreeBasedTable} has unique sorted values for a given    * row, this method returns a {@link SortedMap}, instead of the {@link Map}    * specified in the {@link Table} interface.    * @since Guava release 10    *     (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"    *>mostly source-compatible</a> since Guava release 07)    */
 annotation|@
 name|Override
 DECL|method|row (R rowKey)
@@ -1094,7 +1094,7 @@ name|V
 argument_list|>
 name|wholeRow
 decl_stmt|;
-comment|// If the row was previously empty, we check if there's a new row here every time we're queried.
+comment|/*      * If the row was previously empty, we check if there's a new row here every      * time we're queried.      */
 DECL|method|wholeRow ()
 name|SortedMap
 argument_list|<
@@ -1105,8 +1105,8 @@ argument_list|>
 name|wholeRow
 parameter_list|()
 block|{
-return|return
-operator|(
+if|if
+condition|(
 name|wholeRow
 operator|==
 literal|null
@@ -1124,8 +1124,8 @@ argument_list|(
 name|rowKey
 argument_list|)
 operator|)
-operator|)
-condition|?
+condition|)
+block|{
 name|wholeRow
 operator|=
 operator|(
@@ -1142,7 +1142,9 @@ name|get
 argument_list|(
 name|rowKey
 argument_list|)
-else|:
+expr_stmt|;
+block|}
+return|return
 name|wholeRow
 return|;
 block|}

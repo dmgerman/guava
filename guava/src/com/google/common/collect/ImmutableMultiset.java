@@ -874,6 +874,10 @@ name|multiset
 argument_list|)
 return|;
 block|}
+DECL|method|ImmutableMultiset ()
+name|ImmutableMultiset
+parameter_list|()
+block|{}
 DECL|method|iterator ()
 annotation|@
 name|Override

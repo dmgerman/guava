@@ -140,7 +140,7 @@ specifier|private
 name|UnsignedBytes
 parameter_list|()
 block|{}
-comment|/**    * The largest power of two that can be represented as an unsigned {@code byte}.    */
+comment|/**    * The largest power of two that can be represented as an unsigned {@code byte}.    *    * @since Guava release 10    */
 DECL|field|MAX_POWER_OF_TWO
 specifier|public
 specifier|static

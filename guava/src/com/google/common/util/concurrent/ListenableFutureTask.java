@@ -115,7 +115,7 @@ operator|new
 name|ExecutionList
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    */
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    * @since Guava release 10    */
 DECL|method|create (Callable<V> callable)
 specifier|public
 specifier|static
@@ -146,7 +146,7 @@ name|callable
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If    * you don't need a particular result, consider using    * constructions of the form:    * {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    */
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't    *     need a particular result, consider using constructions of the form:    *     {@code ListenableFuture<?> f = ListenableFutureTask.create(runnable,    *     null)}    * @since Guava release 10    */
 DECL|method|create ( Runnable runnable, @Nullable V result)
 specifier|public
 specifier|static
