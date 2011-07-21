@@ -3209,6 +3209,11 @@ operator|instanceof
 name|Entry
 condition|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"cast"
+argument_list|)
 name|Entry
 argument_list|<
 name|?
@@ -3264,6 +3269,11 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"cast"
+argument_list|)
 DECL|method|remove (Object o)
 annotation|@
 name|Override
