@@ -212,6 +212,7 @@ literal|true
 argument_list|)
 DECL|class|InternetDomainName
 specifier|public
+specifier|final
 class|class
 name|InternetDomainName
 block|{
@@ -331,9 +332,8 @@ specifier|final
 name|int
 name|publicSuffixIndex
 decl_stmt|;
-comment|/**    * Private constructor used to implement {@link #fromLenient(String)}.    */
+comment|/**    * Constructor used to implement {@link #from(String)}, and from subclasses.    */
 DECL|method|InternetDomainName (String name)
-specifier|private
 name|InternetDomainName
 parameter_list|(
 name|String
@@ -558,12 +558,32 @@ return|return
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since Guava release 08 (previously named {@code from})    */
+comment|/**    * A deprecated synonym for {@link #from(String)}.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since Guava release 08 (previously named {@code from})    * @deprecated Use {@link #from(String)}    */
+annotation|@
+name|Deprecated
 DECL|method|fromLenient (String domain)
 specifier|public
 specifier|static
 name|InternetDomainName
 name|fromLenient
+parameter_list|(
+name|String
+name|domain
+parameter_list|)
+block|{
+return|return
+name|from
+argument_list|(
+name|domain
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since Guava release 10 (previously named {@code fromLenient})    */
+DECL|method|from (String domain)
+specifier|public
+specifier|static
+name|InternetDomainName
+name|from
 parameter_list|(
 name|String
 name|domain
@@ -1014,7 +1034,7 @@ name|levels
 parameter_list|)
 block|{
 return|return
-name|fromInternal
+name|from
 argument_list|(
 name|DOT_JOINER
 operator|.
@@ -1035,7 +1055,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the    * argument and a dot to the current name. For example, {@code    * InternetDomainName.fromLenient("foo.com").child("www.bar")} returns a new    * {@code InternetDomainName} with the value {@code www.bar.foo.com}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
+comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the    * argument and a dot to the current name. For example, {@code    * InternetDomainName.fromLenient("foo.com").child("www.bar")} returns a new    * {@code InternetDomainName} with the value {@code www.bar.foo.com}. Only    * lenient validation is performed, as described {@link #from(String) here}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
 DECL|method|child (String leftParts)
 specifier|public
 name|InternetDomainName
@@ -1046,7 +1066,7 @@ name|leftParts
 parameter_list|)
 block|{
 return|return
-name|fromInternal
+name|from
 argument_list|(
 name|checkNotNull
 argument_list|(
@@ -1059,23 +1079,9 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link InternetDomainName} instance with the given {@code    * name}, using the same validation as the instance on which it is called.    */
-DECL|method|fromInternal (String name)
-name|InternetDomainName
-name|fromInternal
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-return|return
-name|fromLenient
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
-comment|/**    * Indicates whether the argument is a syntactically valid domain name using    * lenient validation. Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *    *   if (InternetDomainName.isValidLenient(name)) {    *     domainName = InternetDomainName.fromLenient(name);    *   } else {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    *<pre>   {@code    *    *   try {    *     domainName = InternetDomainName.fromLenient(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * The latter form is preferred as it avoids doing validation twice.    *    * @since Guava release 08 (previously named {@code isValid})    */
+comment|/**    * A deprecated synonym for {@link #isValid(String)}.    *    * @since Guava release 08 (previously named {@code isValid})    * @deprecated Use {@link #isValid(String)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|isValidLenient (String name)
 specifier|public
 specifier|static
@@ -1086,9 +1092,27 @@ name|String
 name|name
 parameter_list|)
 block|{
+return|return
+name|isValid
+argument_list|(
+name|name
+argument_list|)
+return|;
+block|}
+comment|/**    * Indicates whether the argument is a syntactically valid domain name using    * lenient validation. Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *    *   domainName = InternetDomainName.isValid(name)    *       ? InternetDomainName.from(name)    *       : DEFAULT_DOMAIN;    *   }</pre>    *    *<pre>   {@code    *    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since Guava release 08 (previously named {@code isValidLenient})    */
+DECL|method|isValid (String name)
+specifier|public
+specifier|static
+name|boolean
+name|isValid
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
 try|try
 block|{
-name|fromLenient
+name|from
 argument_list|(
 name|name
 argument_list|)
