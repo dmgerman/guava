@@ -66,7 +66,7 @@ argument_list|>
 name|start
 parameter_list|()
 function_decl|;
-comment|/**    * Initiates service startup (if necessary), returning once the service has    * finished starting. Unlike calling {@code start().get()}, this method throws    * no checked exceptions, and it cannot be {@linkplain Thread#interrupt    * interrupted}.    *    * @throws RuntimeException if startup failed    * @return the state of the service when startup finished.    */
+comment|/**    * Initiates service startup (if necessary), returning once the service has    * finished starting. Unlike calling {@code start().get()}, this method throws    * no checked exceptions, and it cannot be {@linkplain Thread#interrupt    * interrupted}.    *    * @throws UncheckedExecutionException if startup failed    * @return the state of the service when startup finished.    */
 DECL|method|startAndWait ()
 name|State
 name|startAndWait
@@ -93,7 +93,7 @@ argument_list|>
 name|stop
 parameter_list|()
 function_decl|;
-comment|/**    * Initiates service shutdown (if necessary), returning once the service has    * finished stopping. If this is {@link State#STARTING}, startup will be    * cancelled. If this is {@link State#NEW}, it is {@link State#TERMINATED    * terminated} without having been started nor stopped. Unlike calling {@code    * stop().get()}, this method throws no checked exceptions.    *    * @throws RuntimeException if shutdown failed    * @return the state of the service when shutdown finished.    */
+comment|/**    * Initiates service shutdown (if necessary), returning once the service has    * finished stopping. If this is {@link State#STARTING}, startup will be    * cancelled. If this is {@link State#NEW}, it is {@link State#TERMINATED    * terminated} without having been started nor stopped. Unlike calling {@code    * stop().get()}, this method throws no checked exceptions.    *    * @throws UncheckedExecutionException if shutdown failed    * @return the state of the service when shutdown finished.    */
 DECL|method|stopAndWait ()
 name|State
 name|stopAndWait
