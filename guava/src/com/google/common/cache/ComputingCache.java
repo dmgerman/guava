@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exposes a {@link ComputingConcurrentHashMap} as a {@code Cache}.  *  * @author Charles Fry  */
+comment|/**  * Exposes a {@link CustomConcurrentHashMap} as a {@code Cache}.  *  * @author Charles Fry  */
 end_comment
 
 begin_class
@@ -143,7 +143,7 @@ argument_list|>
 block|{
 DECL|field|map
 specifier|final
-name|ComputingConcurrentHashMap
+name|CustomConcurrentHashMap
 argument_list|<
 name|K
 argument_list|,
@@ -190,7 +190,7 @@ operator|.
 name|map
 operator|=
 operator|new
-name|ComputingConcurrentHashMap
+name|CustomConcurrentHashMap
 argument_list|<
 name|K
 argument_list|,
@@ -432,7 +432,7 @@ block|{
 DECL|field|delegate
 specifier|private
 specifier|final
-name|ComputingConcurrentHashMap
+name|CustomConcurrentHashMap
 argument_list|<
 name|K
 argument_list|,
@@ -440,10 +440,10 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|CacheAsMap (ComputingConcurrentHashMap<K, V> delegate)
+DECL|method|CacheAsMap (CustomConcurrentHashMap<K, V> delegate)
 name|CacheAsMap
 parameter_list|(
-name|ComputingConcurrentHashMap
+name|CustomConcurrentHashMap
 argument_list|<
 name|K
 argument_list|,
