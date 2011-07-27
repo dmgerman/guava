@@ -1126,6 +1126,8 @@ condition|)
 block|{
 name|es
 operator|=
+name|entrySet
+operator|=
 operator|new
 name|EntrySet
 argument_list|<
