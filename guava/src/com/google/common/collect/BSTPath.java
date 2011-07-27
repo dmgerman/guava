@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A path to a node in a binary search tree, originating at the root.  *  * @author Louis Wasserman  * @param<K> The key type of nodes in this binary search tree.  * @param<N> The type of nodes in this binary search tree.  * @param<P> This path type, and the path type of all suffix paths.  */
+comment|/**  * A path to a node in a binary search tree, originating at the root.  *  * @author Louis Wasserman  * @param<N> The type of nodes in this binary search tree.  * @param<P> This path type, and the path type of all suffix paths.  */
 end_comment
 
 begin_class
@@ -84,13 +84,11 @@ specifier|abstract
 class|class
 name|BSTPath
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 extends|extends
 name|BSTNode
 parameter_list|<
-name|K
+name|?
 parameter_list|,
 name|N
 parameter_list|>
@@ -99,8 +97,6 @@ name|P
 extends|extends
 name|BSTPath
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 parameter_list|,
 name|P

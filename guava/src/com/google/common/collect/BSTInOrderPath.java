@@ -124,13 +124,11 @@ specifier|final
 class|class
 name|BSTInOrderPath
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 extends|extends
 name|BSTNode
 parameter_list|<
-name|K
+name|?
 parameter_list|,
 name|N
 parameter_list|>
@@ -138,44 +136,34 @@ parameter_list|>
 extends|extends
 name|BSTPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|,
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
 block|{
 comment|/**    * The factory to use to construct {@code BSTInOrderPath} values.    */
+DECL|method|inOrderFactory ()
 specifier|public
 specifier|static
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 extends|extends
 name|BSTNode
 argument_list|<
-name|K
+name|?
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
 name|BSTPathFactory
 argument_list|<
-DECL|method|inOrderFactory ()
-name|K
-argument_list|,
 name|N
 argument_list|,
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -186,14 +174,10 @@ return|return
 operator|new
 name|BSTPathFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|,
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -204,16 +188,12 @@ name|Override
 specifier|public
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|extension
 parameter_list|(
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|path
@@ -238,8 +218,6 @@ name|Override
 specifier|public
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|initialPath
@@ -252,8 +230,6 @@ return|return
 operator|new
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|(
@@ -268,33 +244,27 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|extension ( BSTInOrderPath<K, N> path, BSTSide side)
+DECL|method|extension ( BSTInOrderPath<N> path, BSTSide side)
 specifier|private
 specifier|static
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 extends|extends
 name|BSTNode
 argument_list|<
-name|K
+name|?
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|extension
 parameter_list|(
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|path
@@ -320,8 +290,6 @@ return|return
 operator|new
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|(
@@ -351,8 +319,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -365,14 +331,12 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
 name|nextInOrder
 decl_stmt|;
-DECL|method|BSTInOrderPath (N tip, @Nullable BSTSide side, @Nullable BSTInOrderPath<K, N> tail)
+DECL|method|BSTInOrderPath (N tip, @Nullable BSTSide side, @Nullable BSTInOrderPath<N> tail)
 specifier|private
 name|BSTInOrderPath
 parameter_list|(
@@ -388,8 +352,6 @@ annotation|@
 name|Nullable
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|tail
@@ -428,8 +390,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -449,8 +409,6 @@ condition|)
 block|{
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|path
@@ -498,8 +456,6 @@ else|else
 block|{
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|current
@@ -565,8 +521,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -586,8 +540,6 @@ condition|)
 block|{
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|path
@@ -635,8 +587,6 @@ else|else
 block|{
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|current
@@ -702,8 +652,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -714,8 +662,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -744,8 +690,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -756,8 +700,6 @@ name|Optional
 argument_list|<
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 argument_list|>
@@ -815,8 +757,6 @@ DECL|method|next ()
 specifier|public
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|next
@@ -848,8 +788,6 @@ DECL|method|prev ()
 specifier|public
 name|BSTInOrderPath
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|prev

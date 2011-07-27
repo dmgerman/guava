@@ -71,7 +71,7 @@ parameter_list|>
 parameter_list|>
 block|{
 comment|/**    * Constructs a {@code BSTMutationRule} with the specified modifier, balance policy, and node    * factory.    */
-DECL|method|createRule ( BSTModifier<K, N> modifier, BSTBalancePolicy<K, N> balancePolicy, BSTNodeFactory<K, N> nodeFactory)
+DECL|method|createRule ( BSTModifier<K, N> modifier, BSTBalancePolicy<N> balancePolicy, BSTNodeFactory<N> nodeFactory)
 specifier|public
 specifier|static
 parameter_list|<
@@ -104,16 +104,12 @@ name|modifier
 parameter_list|,
 name|BSTBalancePolicy
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|balancePolicy
 parameter_list|,
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|nodeFactory
@@ -152,8 +148,6 @@ specifier|private
 specifier|final
 name|BSTBalancePolicy
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|balancePolicy
@@ -163,13 +157,11 @@ specifier|private
 specifier|final
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|nodeFactory
 decl_stmt|;
-DECL|method|BSTMutationRule (BSTModifier<K, N> modifier, BSTBalancePolicy<K, N> balancePolicy, BSTNodeFactory<K, N> nodeFactory)
+DECL|method|BSTMutationRule (BSTModifier<K, N> modifier, BSTBalancePolicy<N> balancePolicy, BSTNodeFactory<N> nodeFactory)
 specifier|private
 name|BSTMutationRule
 parameter_list|(
@@ -183,16 +175,12 @@ name|modifier
 parameter_list|,
 name|BSTBalancePolicy
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|balancePolicy
 parameter_list|,
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|nodeFactory
@@ -247,8 +235,6 @@ DECL|method|getBalancePolicy ()
 specifier|public
 name|BSTBalancePolicy
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|getBalancePolicy
@@ -263,8 +249,6 @@ DECL|method|getNodeFactory ()
 specifier|public
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|getNodeFactory

@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A local balancing policy for modified nodes in binary search trees.  *  * @author Louis Wasserman  * @param<K> The key type associated with the trees that this {@code BSTRebalancePolicy} can  *        rebalance.  * @param<N> The type of the nodes in the trees that this {@code BSTRebalancePolicy} can  *        rebalance.  */
+comment|/**  * A local balancing policy for modified nodes in binary search trees.  *  * @author Louis Wasserman  * @param<N> The type of the nodes in the trees that this {@code BSTRebalancePolicy} can  *        rebalance.  */
 end_comment
 
 begin_interface
@@ -51,27 +51,23 @@ DECL|interface|BSTBalancePolicy
 interface|interface
 name|BSTBalancePolicy
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 extends|extends
 name|BSTNode
 parameter_list|<
-name|K
+name|?
 parameter_list|,
 name|N
 parameter_list|>
 parameter_list|>
 block|{
 comment|/**    * Constructs a locally balanced tree around the key and value data in {@code source}, and the    * subtrees {@code left} and {@code right}. It is guaranteed that the resulting tree will have    * the same inorder traversal order as the subtree {@code left}, then the entry {@code source},    * then the subtree {@code right}.    */
-DECL|method|balance (BSTNodeFactory<K, N> nodeFactory, N source, @Nullable N left, @Nullable N right)
+DECL|method|balance (BSTNodeFactory<N> nodeFactory, N source, @Nullable N left, @Nullable N right)
 name|N
 name|balance
 parameter_list|(
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|nodeFactory
@@ -93,14 +89,12 @@ function_decl|;
 comment|/**    * Constructs a locally balanced tree around the subtrees {@code left} and {@code right}. It is    * guaranteed that the resulting tree will have the same inorder traversal order as the subtree    * {@code left}, then the subtree {@code right}.    */
 annotation|@
 name|Nullable
-DECL|method|combine (BSTNodeFactory<K, N> nodeFactory, @Nullable N left, @Nullable N right)
+DECL|method|combine (BSTNodeFactory<N> nodeFactory, @Nullable N left, @Nullable N right)
 name|N
 name|combine
 parameter_list|(
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|nodeFactory

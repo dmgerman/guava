@@ -448,7 +448,7 @@ name|changedTarget
 return|;
 block|}
 comment|/**    * If this mutation was to an immediate child subtree of the specified root on the specified    * side, returns the {@code BSTMutationResult} of applying the mutation to the appropriate child    * of the specified root and rebalancing using the specified mutation rule.    */
-DECL|method|lift (N liftOriginalRoot, BSTSide side, BSTNodeFactory<K, N> nodeFactory, BSTBalancePolicy<K, N> balancePolicy)
+DECL|method|lift (N liftOriginalRoot, BSTSide side, BSTNodeFactory<N> nodeFactory, BSTBalancePolicy<N> balancePolicy)
 specifier|public
 name|BSTMutationResult
 argument_list|<
@@ -466,16 +466,12 @@ name|side
 parameter_list|,
 name|BSTNodeFactory
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|nodeFactory
 parameter_list|,
 name|BSTBalancePolicy
 argument_list|<
-name|K
-argument_list|,
 name|N
 argument_list|>
 name|balancePolicy

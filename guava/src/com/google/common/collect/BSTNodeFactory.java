@@ -52,13 +52,11 @@ specifier|abstract
 class|class
 name|BSTNodeFactory
 parameter_list|<
-name|K
-parameter_list|,
 name|N
 extends|extends
 name|BSTNode
 parameter_list|<
-name|K
+name|?
 parameter_list|,
 name|N
 parameter_list|>
