@@ -119,6 +119,7 @@ comment|/**    * Returns the node with key {@code key} in {@code tree}, if any. 
 annotation|@
 name|Nullable
 DECL|method|seek ( Comparator<? super K> comparator, @Nullable N tree, K key)
+specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -228,6 +229,7 @@ block|}
 block|}
 comment|/**    * Returns the result of performing the mutation specified by {@code mutationRule} in {@code    * tree} at the location with key {@code key}.    */
 DECL|method|mutate ( Comparator<? super K> comparator, BstMutationRule<K, N> mutationRule, @Nullable N tree, K key)
+specifier|public
 specifier|static
 parameter_list|<
 name|K
