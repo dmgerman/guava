@@ -79,14 +79,14 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTPath
+DECL|class|BstPath
 specifier|abstract
 class|class
-name|BSTPath
+name|BstPath
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|?
 parameter_list|,
@@ -95,7 +95,7 @@ parameter_list|>
 parameter_list|,
 name|P
 extends|extends
-name|BSTPath
+name|BstPath
 parameter_list|<
 name|N
 parameter_list|,
@@ -117,8 +117,8 @@ specifier|final
 name|P
 name|prefix
 decl_stmt|;
-DECL|method|BSTPath (N tip, @Nullable P prefix)
-name|BSTPath
+DECL|method|BstPath (N tip, @Nullable P prefix)
+name|BstPath
 parameter_list|(
 name|N
 name|tip
@@ -145,7 +145,7 @@ operator|=
 name|prefix
 expr_stmt|;
 block|}
-comment|/**    * Return the end of this {@code BSTPath}, the deepest node in the path.    */
+comment|/**    * Return the end of this {@code BstPath}, the deepest node in the path.    */
 DECL|method|getTip ()
 specifier|public
 specifier|final

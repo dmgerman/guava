@@ -47,22 +47,22 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A rule for a local mutation to a binary search tree, that changes at most one entry. In addition  * to specifying how it modifies a particular entry via a {@code BSTModifier}, it specifies a  * {@link BSTBalancePolicy} for rebalancing the tree after the modification is performed and a  * {@link BSTNodeFactory} for constructing newly rebalanced nodes.  *  * @author Louis Wasserman  * @param<K> The key type of the nodes in binary search trees that this rule can modify.  * @param<N> The type of the nodes in binary search trees that this rule can modify.  */
+comment|/**  * A rule for a local mutation to a binary search tree, that changes at most one entry. In addition  * to specifying how it modifies a particular entry via a {@code BstModifier}, it specifies a  * {@link BstBalancePolicy} for rebalancing the tree after the modification is performed and a  * {@link BstNodeFactory} for constructing newly rebalanced nodes.  *  * @author Louis Wasserman  * @param<K> The key type of the nodes in binary search trees that this rule can modify.  * @param<N> The type of the nodes in binary search trees that this rule can modify.  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTMutationRule
+DECL|class|BstMutationRule
 specifier|final
 class|class
-name|BSTMutationRule
+name|BstMutationRule
 parameter_list|<
 name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|K
 parameter_list|,
@@ -70,8 +70,8 @@ name|N
 parameter_list|>
 parameter_list|>
 block|{
-comment|/**    * Constructs a {@code BSTMutationRule} with the specified modifier, balance policy, and node    * factory.    */
-DECL|method|createRule ( BSTModifier<K, N> modifier, BSTBalancePolicy<N> balancePolicy, BSTNodeFactory<N> nodeFactory)
+comment|/**    * Constructs a {@code BstMutationRule} with the specified modifier, balance policy, and node    * factory.    */
+DECL|method|createRule ( BstModifier<K, N> modifier, BstBalancePolicy<N> balancePolicy, BstNodeFactory<N> nodeFactory)
 specifier|public
 specifier|static
 parameter_list|<
@@ -79,14 +79,14 @@ name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|K
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|BSTMutationRule
+name|BstMutationRule
 argument_list|<
 name|K
 argument_list|,
@@ -94,7 +94,7 @@ name|N
 argument_list|>
 name|createRule
 parameter_list|(
-name|BSTModifier
+name|BstModifier
 argument_list|<
 name|K
 argument_list|,
@@ -102,13 +102,13 @@ name|N
 argument_list|>
 name|modifier
 parameter_list|,
-name|BSTBalancePolicy
+name|BstBalancePolicy
 argument_list|<
 name|N
 argument_list|>
 name|balancePolicy
 parameter_list|,
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>
@@ -117,7 +117,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|BSTMutationRule
+name|BstMutationRule
 argument_list|<
 name|K
 argument_list|,
@@ -135,7 +135,7 @@ block|}
 DECL|field|modifier
 specifier|private
 specifier|final
-name|BSTModifier
+name|BstModifier
 argument_list|<
 name|K
 argument_list|,
@@ -146,7 +146,7 @@ decl_stmt|;
 DECL|field|balancePolicy
 specifier|private
 specifier|final
-name|BSTBalancePolicy
+name|BstBalancePolicy
 argument_list|<
 name|N
 argument_list|>
@@ -155,17 +155,17 @@ decl_stmt|;
 DECL|field|nodeFactory
 specifier|private
 specifier|final
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>
 name|nodeFactory
 decl_stmt|;
-DECL|method|BSTMutationRule (BSTModifier<K, N> modifier, BSTBalancePolicy<N> balancePolicy, BSTNodeFactory<N> nodeFactory)
+DECL|method|BstMutationRule (BstModifier<K, N> modifier, BstBalancePolicy<N> balancePolicy, BstNodeFactory<N> nodeFactory)
 specifier|private
-name|BSTMutationRule
+name|BstMutationRule
 parameter_list|(
-name|BSTModifier
+name|BstModifier
 argument_list|<
 name|K
 argument_list|,
@@ -173,13 +173,13 @@ name|N
 argument_list|>
 name|modifier
 parameter_list|,
-name|BSTBalancePolicy
+name|BstBalancePolicy
 argument_list|<
 name|N
 argument_list|>
 name|balancePolicy
 parameter_list|,
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>
@@ -214,10 +214,10 @@ name|modifier
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link BSTModifier} that specifies the change to a targeted entry in a binary    * search tree.    */
+comment|/**    * Returns the {@link BstModifier} that specifies the change to a targeted entry in a binary    * search tree.    */
 DECL|method|getModifier ()
 specifier|public
-name|BSTModifier
+name|BstModifier
 argument_list|<
 name|K
 argument_list|,
@@ -233,7 +233,7 @@ block|}
 comment|/**    * Returns the policy used to rebalance nodes in the tree after this modification has been    * performed.    */
 DECL|method|getBalancePolicy ()
 specifier|public
-name|BSTBalancePolicy
+name|BstBalancePolicy
 argument_list|<
 name|N
 argument_list|>
@@ -247,7 +247,7 @@ block|}
 comment|/**    * Returns the node factory used to create new nodes in the tree after this modification has been    * performed.    */
 DECL|method|getNodeFactory ()
 specifier|public
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>

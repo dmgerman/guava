@@ -42,7 +42,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|LEFT
 import|;
@@ -58,7 +58,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|RIGHT
 import|;
@@ -105,14 +105,14 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTOperations
+DECL|class|BstOperations
 specifier|final
 class|class
-name|BSTOperations
+name|BstOperations
 block|{
-DECL|method|BSTOperations ()
+DECL|method|BstOperations ()
 specifier|private
-name|BSTOperations
+name|BstOperations
 parameter_list|()
 block|{}
 comment|/**    * Returns the node with key {@code key} in {@code tree}, if any.    */
@@ -125,7 +125,7 @@ name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|K
 argument_list|,
@@ -196,7 +196,7 @@ return|;
 block|}
 else|else
 block|{
-name|BSTSide
+name|BstSide
 name|side
 init|=
 operator|(
@@ -227,21 +227,21 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the result of performing the mutation specified by {@code mutationRule} in {@code    * tree} at the location with key {@code key}.    */
-DECL|method|mutate ( Comparator<? super K> comparator, BSTMutationRule<K, N> mutationRule, @Nullable N tree, K key)
+DECL|method|mutate ( Comparator<? super K> comparator, BstMutationRule<K, N> mutationRule, @Nullable N tree, K key)
 specifier|static
 parameter_list|<
 name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|K
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|BSTMutationResult
+name|BstMutationResult
 argument_list|<
 name|K
 argument_list|,
@@ -257,7 +257,7 @@ name|K
 argument_list|>
 name|comparator
 parameter_list|,
-name|BSTMutationRule
+name|BstMutationRule
 argument_list|<
 name|K
 argument_list|,
@@ -289,7 +289,7 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
-name|BSTBalancePolicy
+name|BstBalancePolicy
 argument_list|<
 name|N
 argument_list|>
@@ -300,7 +300,7 @@ operator|.
 name|getBalancePolicy
 argument_list|()
 decl_stmt|;
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>
@@ -311,7 +311,7 @@ operator|.
 name|getNodeFactory
 argument_list|()
 decl_stmt|;
-name|BSTModifier
+name|BstModifier
 argument_list|<
 name|K
 argument_list|,
@@ -353,7 +353,7 @@ operator|!=
 literal|0
 condition|)
 block|{
-name|BSTSide
+name|BstSide
 name|side
 init|=
 operator|(
@@ -366,7 +366,7 @@ name|LEFT
 else|:
 name|RIGHT
 decl_stmt|;
-name|BSTMutationResult
+name|BstMutationResult
 argument_list|<
 name|K
 argument_list|,
@@ -427,7 +427,7 @@ name|tree
 condition|)
 block|{
 return|return
-name|BSTMutationResult
+name|BstMutationResult
 operator|.
 name|identity
 argument_list|(
@@ -526,7 +526,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|BSTMutationResult
+name|BstMutationResult
 operator|.
 name|mutationResult
 argument_list|(

@@ -58,7 +58,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|LEFT
 import|;
@@ -74,7 +74,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|RIGHT
 import|;
@@ -115,21 +115,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A reusable abstraction for a node in a binary search tree. Null keys are disallowed.  *  *<p>The node is considered to be immutable. Any subclass with mutable fields must create a new  * {@code BSTNode} object upon any mutation, as the {@code BST} classes assume that two nodes  * {@code a} and {@code b} represent exactly the same tree if and only if {@code a == b}.  *  *<p>A {@code BSTNode} can be considered to be an<i>entry</i>, containing a key and possibly some  * value data, or it can be considered to be a<i>subtree</i>, representative of it and all its  * descendants.  *  * @author Louis Wasserman  * @param<K> The key type associated with this tree.  * @param<N> The type of the nodes in this tree.  */
+comment|/**  * A reusable abstraction for a node in a binary search tree. Null keys are disallowed.  *  *<p>The node is considered to be immutable. Any subclass with mutable fields must create a new  * {@code BstNode} object upon any mutation, as the {@code Bst} classes assume that two nodes  * {@code a} and {@code b} represent exactly the same tree if and only if {@code a == b}.  *  *<p>A {@code BstNode} can be considered to be an<i>entry</i>, containing a key and possibly some  * value data, or it can be considered to be a<i>subtree</i>, representative of it and all its  * descendants.  *  * @author Louis Wasserman  * @param<K> The key type associated with this tree.  * @param<N> The type of the nodes in this tree.  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTNode
+DECL|class|BstNode
 class|class
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|K
 parameter_list|,
@@ -142,7 +142,7 @@ specifier|static
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|?
 argument_list|,
@@ -205,8 +205,8 @@ specifier|final
 name|N
 name|right
 decl_stmt|;
-DECL|method|BSTNode (K key, @Nullable N left, @Nullable N right)
-name|BSTNode
+DECL|method|BstNode (K key, @Nullable N left, @Nullable N right)
+name|BstNode
 parameter_list|(
 name|K
 name|key
@@ -287,13 +287,13 @@ block|}
 comment|/**    * Returns the child on the specified side, or {@code null} if there is no such child.    */
 annotation|@
 name|Nullable
-DECL|method|childOrNull (BSTSide side)
+DECL|method|childOrNull (BstSide side)
 specifier|public
 specifier|final
 name|N
 name|childOrNull
 parameter_list|(
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|)
 block|{
@@ -323,13 +323,13 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns {@code true} if this node has a child on the specified side.    */
-DECL|method|hasChild (BSTSide side)
+DECL|method|hasChild (BstSide side)
 specifier|public
 specifier|final
 name|boolean
 name|hasChild
 parameter_list|(
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|)
 block|{
@@ -343,13 +343,13 @@ literal|null
 return|;
 block|}
 comment|/**    * Returns this node's child on the specified side.    *    * @throws IllegalStateException if this node has no such child    */
-DECL|method|getChild (BSTSide side)
+DECL|method|getChild (BstSide side)
 specifier|public
 specifier|final
 name|N
 name|getChild
 parameter_list|(
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|)
 block|{

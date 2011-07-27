@@ -42,7 +42,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|LEFT
 import|;
@@ -58,7 +58,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|RIGHT
 import|;
@@ -113,20 +113,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BSTPath} supporting inorder traversal operations.  *  * @author Louis Wasserman  */
+comment|/**  * A {@code BstPath} supporting inorder traversal operations.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTInOrderPath
+DECL|class|BstInOrderPath
 specifier|final
 class|class
-name|BSTInOrderPath
+name|BstInOrderPath
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|?
 parameter_list|,
@@ -134,35 +134,35 @@ name|N
 parameter_list|>
 parameter_list|>
 extends|extends
-name|BSTPath
+name|BstPath
 argument_list|<
 name|N
 argument_list|,
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
 argument_list|>
 block|{
-comment|/**    * The factory to use to construct {@code BSTInOrderPath} values.    */
+comment|/**    * The factory to use to construct {@code BstInOrderPath} values.    */
 DECL|method|inOrderFactory ()
 specifier|public
 specifier|static
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|?
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|BSTPathFactory
+name|BstPathFactory
 argument_list|<
 name|N
 argument_list|,
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -172,11 +172,11 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|BSTPathFactory
+name|BstPathFactory
 argument_list|<
 name|N
 argument_list|,
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -186,24 +186,24 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
 name|extension
 parameter_list|(
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
 name|path
 parameter_list|,
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|)
 block|{
 return|return
-name|BSTInOrderPath
+name|BstInOrderPath
 operator|.
 name|extension
 argument_list|(
@@ -216,7 +216,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -228,7 +228,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -244,32 +244,32 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|extension ( BSTInOrderPath<N> path, BSTSide side)
+DECL|method|extension ( BstInOrderPath<N> path, BstSide side)
 specifier|private
 specifier|static
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|?
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
 name|extension
 parameter_list|(
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
 name|path
 parameter_list|,
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|)
 block|{
@@ -288,7 +288,7 @@ argument_list|()
 decl_stmt|;
 return|return
 operator|new
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -309,7 +309,7 @@ block|}
 DECL|field|side
 specifier|private
 specifier|final
-name|BSTSide
+name|BstSide
 name|side
 decl_stmt|;
 DECL|field|prevInOrder
@@ -317,7 +317,7 @@ specifier|private
 specifier|transient
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -329,28 +329,28 @@ specifier|private
 specifier|transient
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
 argument_list|>
 name|nextInOrder
 decl_stmt|;
-DECL|method|BSTInOrderPath (N tip, @Nullable BSTSide side, @Nullable BSTInOrderPath<N> tail)
+DECL|method|BstInOrderPath (N tip, @Nullable BstSide side, @Nullable BstInOrderPath<N> tail)
 specifier|private
-name|BSTInOrderPath
+name|BstInOrderPath
 parameter_list|(
 name|N
 name|tip
 parameter_list|,
 annotation|@
 name|Nullable
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|,
 annotation|@
 name|Nullable
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -388,7 +388,7 @@ DECL|method|computeNextInOrder ()
 specifier|private
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -407,7 +407,7 @@ name|RIGHT
 argument_list|)
 condition|)
 block|{
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -454,7 +454,7 @@ return|;
 block|}
 else|else
 block|{
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -519,7 +519,7 @@ DECL|method|computePrevInOrder ()
 specifier|private
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -538,7 +538,7 @@ name|LEFT
 argument_list|)
 condition|)
 block|{
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -585,7 +585,7 @@ return|;
 block|}
 else|else
 block|{
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -650,7 +650,7 @@ DECL|method|nextInOrder ()
 specifier|private
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -660,7 +660,7 @@ parameter_list|()
 block|{
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -688,7 +688,7 @@ DECL|method|prevInOrder ()
 specifier|private
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -698,7 +698,7 @@ parameter_list|()
 block|{
 name|Optional
 argument_list|<
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -755,7 +755,7 @@ block|}
 comment|/**    * Returns the next path in an in-order traversal.    *    * @throws NoSuchElementException if this would be the last path in an in-order traversal    */
 DECL|method|next ()
 specifier|public
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -786,7 +786,7 @@ block|}
 comment|/**    * Returns the previous path in an in-order traversal.    *    * @throws NoSuchElementException if this would be the first path in an in-order traversal    */
 DECL|method|prev ()
 specifier|public
-name|BSTInOrderPath
+name|BstInOrderPath
 argument_list|<
 name|N
 argument_list|>
@@ -817,7 +817,7 @@ block|}
 comment|/**    * Returns the direction this path went in relative to its tail path, or {@code null} if this    * path has no tail.    */
 DECL|method|getSide ()
 specifier|public
-name|BSTSide
+name|BstSide
 name|getSide
 parameter_list|()
 block|{

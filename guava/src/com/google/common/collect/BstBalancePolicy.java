@@ -41,19 +41,19 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A local balancing policy for modified nodes in binary search trees.  *  * @author Louis Wasserman  * @param<N> The type of the nodes in the trees that this {@code BSTRebalancePolicy} can  *        rebalance.  */
+comment|/**  * A local balancing policy for modified nodes in binary search trees.  *  * @author Louis Wasserman  * @param<N> The type of the nodes in the trees that this {@code BstRebalancePolicy} can  *        rebalance.  */
 end_comment
 
 begin_interface
 annotation|@
 name|GwtCompatible
-DECL|interface|BSTBalancePolicy
+DECL|interface|BstBalancePolicy
 interface|interface
-name|BSTBalancePolicy
+name|BstBalancePolicy
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|?
 parameter_list|,
@@ -62,11 +62,11 @@ parameter_list|>
 parameter_list|>
 block|{
 comment|/**    * Constructs a locally balanced tree around the key and value data in {@code source}, and the    * subtrees {@code left} and {@code right}. It is guaranteed that the resulting tree will have    * the same inorder traversal order as the subtree {@code left}, then the entry {@code source},    * then the subtree {@code right}.    */
-DECL|method|balance (BSTNodeFactory<N> nodeFactory, N source, @Nullable N left, @Nullable N right)
+DECL|method|balance (BstNodeFactory<N> nodeFactory, N source, @Nullable N left, @Nullable N right)
 name|N
 name|balance
 parameter_list|(
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>
@@ -89,11 +89,11 @@ function_decl|;
 comment|/**    * Constructs a locally balanced tree around the subtrees {@code left} and {@code right}. It is    * guaranteed that the resulting tree will have the same inorder traversal order as the subtree    * {@code left}, then the subtree {@code right}.    */
 annotation|@
 name|Nullable
-DECL|method|combine (BSTNodeFactory<N> nodeFactory, @Nullable N left, @Nullable N right)
+DECL|method|combine (BstNodeFactory<N> nodeFactory, @Nullable N left, @Nullable N right)
 name|N
 name|combine
 parameter_list|(
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>

@@ -42,7 +42,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|LEFT
 import|;
@@ -58,7 +58,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|BSTSide
+name|BstSide
 operator|.
 name|RIGHT
 import|;
@@ -95,16 +95,16 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTMutationResult
+DECL|class|BstMutationResult
 specifier|final
 class|class
-name|BSTMutationResult
+name|BstMutationResult
 parameter_list|<
 name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|K
 parameter_list|,
@@ -112,7 +112,7 @@ name|N
 parameter_list|>
 parameter_list|>
 block|{
-comment|/**    * Creates a {@code BSTMutationResult}.    *    * @param targetKey The key targeted for modification. If {@code originalTarget} or {@code    *        changedTarget} are non-null, their keys must compare as equal to {@code targetKey}.    * @param originalRoot The root of the subtree that was modified.    * @param changedRoot The root of the subtree, after the modification and any rebalancing.    * @param originalTarget The node in the original subtree with key {@code targetKey}, if any.    * @param changedTarget The node with key {@code targetKey} after the modification.    */
+comment|/**    * Creates a {@code BstMutationResult}.    *    * @param targetKey The key targeted for modification. If {@code originalTarget} or {@code    *        changedTarget} are non-null, their keys must compare as equal to {@code targetKey}.    * @param originalRoot The root of the subtree that was modified.    * @param changedRoot The root of the subtree, after the modification and any rebalancing.    * @param originalTarget The node in the original subtree with key {@code targetKey}, if any.    * @param changedTarget The node with key {@code targetKey} after the modification.    */
 DECL|method|mutationResult (K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, @Nullable N originalTarget, @Nullable N changedTarget)
 specifier|public
 specifier|static
@@ -121,14 +121,14 @@ name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|K
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|BSTMutationResult
+name|BstMutationResult
 argument_list|<
 name|K
 argument_list|,
@@ -162,7 +162,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|BSTMutationResult
+name|BstMutationResult
 argument_list|<
 name|K
 argument_list|,
@@ -190,14 +190,14 @@ name|K
 parameter_list|,
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 argument_list|<
 name|K
 argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|BSTMutationResult
+name|BstMutationResult
 argument_list|<
 name|K
 argument_list|,
@@ -272,9 +272,9 @@ specifier|final
 name|N
 name|changedTarget
 decl_stmt|;
-DECL|method|BSTMutationResult (K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, @Nullable N originalTarget, @Nullable N changedTarget)
+DECL|method|BstMutationResult (K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, @Nullable N originalTarget, @Nullable N changedTarget)
 specifier|private
-name|BSTMutationResult
+name|BstMutationResult
 parameter_list|(
 name|K
 name|targetKey
@@ -447,10 +447,10 @@ operator|==
 name|changedTarget
 return|;
 block|}
-comment|/**    * If this mutation was to an immediate child subtree of the specified root on the specified    * side, returns the {@code BSTMutationResult} of applying the mutation to the appropriate child    * of the specified root and rebalancing using the specified mutation rule.    */
-DECL|method|lift (N liftOriginalRoot, BSTSide side, BSTNodeFactory<N> nodeFactory, BSTBalancePolicy<N> balancePolicy)
+comment|/**    * If this mutation was to an immediate child subtree of the specified root on the specified    * side, returns the {@code BstMutationResult} of applying the mutation to the appropriate child    * of the specified root and rebalancing using the specified mutation rule.    */
+DECL|method|lift (N liftOriginalRoot, BstSide side, BstNodeFactory<N> nodeFactory, BstBalancePolicy<N> balancePolicy)
 specifier|public
-name|BSTMutationResult
+name|BstMutationResult
 argument_list|<
 name|K
 argument_list|,
@@ -461,16 +461,16 @@ parameter_list|(
 name|N
 name|liftOriginalRoot
 parameter_list|,
-name|BSTSide
+name|BstSide
 name|side
 parameter_list|,
-name|BSTNodeFactory
+name|BstNodeFactory
 argument_list|<
 name|N
 argument_list|>
 name|nodeFactory
 parameter_list|,
-name|BSTBalancePolicy
+name|BstBalancePolicy
 argument_list|<
 name|N
 argument_list|>

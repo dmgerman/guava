@@ -41,20 +41,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A factory for copying nodes in binary search trees with different children.  *  *<p>Typically, nodes will carry more information than the fields in the {@link BSTNode} class,  * often some kind of value or some aggregate data for the subtree. This factory is responsible for  * copying this additional data between nodes.  *  * @author Louis Wasserman  * @param<N> The type of the tree nodes constructed with this {@code BSTNodeFactory}.  */
+comment|/**  * A factory for copying nodes in binary search trees with different children.  *  *<p>Typically, nodes will carry more information than the fields in the {@link BstNode} class,  * often some kind of value or some aggregate data for the subtree. This factory is responsible for  * copying this additional data between nodes.  *  * @author Louis Wasserman  * @param<N> The type of the tree nodes constructed with this {@code BstNodeFactory}.  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
-DECL|class|BSTNodeFactory
+DECL|class|BstNodeFactory
 specifier|abstract
 class|class
-name|BSTNodeFactory
+name|BstNodeFactory
 parameter_list|<
 name|N
 extends|extends
-name|BSTNode
+name|BstNode
 parameter_list|<
 name|?
 parameter_list|,
