@@ -136,8 +136,6 @@ name|t
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a new equivalence relation for {@code F} which evaluates equivalence by first applying    * {@code function} to the argument, then evaluating using {@code this}. That is, for any pair of    * non-null objects {@code x} and {@code y}, {@code    * equivalence.onResultOf(function).equivalent(a, b)} is true if and only if {@code    * equivalence.equivalent(function.apply(a), function.apply(b))} is true.    *    *<p>For example:<pre>   {@code    *    *    Equivalence<Person> SAME_AGE = Equivalences.equals().onResultOf(GET_PERSON_AGE);    * }</pre>    *     *<p>{@code function} will never be invoked with a null value.    *     *<p>Note that {@code function} must be consistent according to {@code this} equivalence    * relation. That is, invoking {@link Function#apply} multiple times for a given value must return    * equivalent results.    * For example, {@code Equivalences.identity().onResultOf(Functions.toStringFunction())} is broken    * because it's not guaranteed that {@link Object#toString}) always returns the same string    * instance.    *     * @since Guava release 10    */
-annotation|@
-name|Beta
 DECL|method|onResultOf (Function<F, ? extends T> function)
 specifier|public
 specifier|final
@@ -177,8 +175,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a wrapper of {@code reference} that implements    * {@link EquivalenceWrapper#equals(Object) Object.equals()} such that    * {@code wrap(this, a).equals(wrap(this, b))} if and only if {@code this.equivalent(a, b)}.    *     * @since Guava release 10    */
-annotation|@
-name|Beta
 DECL|method|wrap (@ullable S reference)
 specifier|public
 specifier|final
@@ -213,8 +209,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code this}.  Null iterables are equivalent to one another.    *     *<p>Note that this method performs a similar function for equivalences as {@link    * com.google.common.collect.Ordering#lexicographical} does for orderings.    *    * @since Guava release 10    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -254,8 +248,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to true if and only if the input is    * equivalent to {@code target} according to this equivalence relation.    *     * @since Guava release 10    */
-annotation|@
-name|Beta
 DECL|method|equivalentTo (@ullable T target)
 specifier|public
 specifier|final
