@@ -397,8 +397,9 @@ name|stopAndWait
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService} may include the name    * in debugging output.    *    *<p>Subclasses may override this method.    *    * @since Guava release 10    */
 DECL|method|getServiceName ()
-specifier|private
+specifier|protected
 name|String
 name|getServiceName
 parameter_list|()
