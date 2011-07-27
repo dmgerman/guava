@@ -88,8 +88,18 @@ name|PatternSyntaxException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * File name filter that only accepts files matching a regular expression.  *  * @author Apple Chow  * @since Guava release 01  */
+comment|/**  * File name filter that only accepts files matching a regular expression. This class is thread-safe  * and immutable.  *  * @author Apple Chow  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -150,13 +160,15 @@ name|pattern
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|accept (File dir, String fileName)
+DECL|method|accept (@ullable File dir, String fileName)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
+annotation|@
+name|Nullable
 name|File
 name|dir
 parameter_list|,
