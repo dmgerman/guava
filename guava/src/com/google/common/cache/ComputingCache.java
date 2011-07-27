@@ -489,6 +489,7 @@ name|Object
 name|key
 parameter_list|)
 block|{
+comment|// does not impact recency ordering
 name|ReferenceEntry
 argument_list|<
 name|K

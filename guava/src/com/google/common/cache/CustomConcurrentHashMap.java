@@ -17251,7 +17251,7 @@ name|loader
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the internal entry for the specified key. The entry may be computing, expired, or    * partially collected. Does not impact recency ordering.    */
+comment|/**    * Returns the internal entry for the specified key. The entry may be computing, expired, or    * partially collected.    */
 DECL|method|getEntry (@ullable Object key)
 name|ReferenceEntry
 argument_list|<
@@ -17267,6 +17267,7 @@ name|Object
 name|key
 parameter_list|)
 block|{
+comment|// does not impact recency ordering
 if|if
 condition|(
 name|key
@@ -17300,7 +17301,7 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the live internal entry for the specified key. Does not impact recency ordering.    */
+comment|/**    * Returns the live internal entry for the specified key.    */
 DECL|method|getLiveEntry (@ullable Object key)
 name|ReferenceEntry
 argument_list|<
@@ -17316,6 +17317,7 @@ name|Object
 name|key
 parameter_list|)
 block|{
+comment|// does not impact recency ordering
 if|if
 condition|(
 name|key
@@ -17362,6 +17364,7 @@ name|Object
 name|key
 parameter_list|)
 block|{
+comment|// does not impact recency ordering
 if|if
 condition|(
 name|key
@@ -17408,6 +17411,7 @@ name|Object
 name|value
 parameter_list|)
 block|{
+comment|// does not impact recency ordering
 if|if
 condition|(
 name|value
@@ -18032,6 +18036,7 @@ argument_list|>
 name|keySet
 parameter_list|()
 block|{
+comment|// does not impact recency ordering
 name|Set
 argument_list|<
 name|K
@@ -18076,6 +18081,7 @@ argument_list|>
 name|values
 parameter_list|()
 block|{
+comment|// does not impact recency ordering
 name|Collection
 argument_list|<
 name|V
@@ -18130,6 +18136,7 @@ argument_list|>
 name|entrySet
 parameter_list|()
 block|{
+comment|// does not impact recency ordering
 name|Set
 argument_list|<
 name|Entry
