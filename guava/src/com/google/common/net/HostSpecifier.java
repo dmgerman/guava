@@ -202,14 +202,14 @@ argument_list|)
 return|;
 block|}
 comment|// It is not any kind of IP address; must be a domain name or invalid.
-comment|// TODO(user): different lenient and strict versions of this?
+comment|// TODO(user): different versions of this for different factories?
 specifier|final
 name|InternetDomainName
 name|domain
 init|=
 name|InternetDomainName
 operator|.
-name|fromLenient
+name|from
 argument_list|(
 name|host
 argument_list|)
