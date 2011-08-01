@@ -391,6 +391,8 @@ parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#softKeys}.    */
 annotation|@
+name|Deprecated
+annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"java.lang.ref.SoftReference"

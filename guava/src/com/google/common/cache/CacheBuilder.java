@@ -449,7 +449,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A builder of {@link Cache} instances having any combination of the following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>notification of evicted (or otherwise removed) entries  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   Cache<Key, Graph> graphs = CacheBuilder.newBuilder()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .build(  *           new CacheLoader<Key, Graph>() {  *             public Graph load(Key key) throws AnyException {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional.  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements the optional operations {@link Cache#invalidate},  * {@link Cache#invalidateAll}, {@link Cache#size}, {@link Cache#stats}, and {@link Cache#asMap},  * with the following qualifications:  *  *<ul>  *<li>The {@code invalidateAll} method will invalidate all cached entries prior to returning, and  *     removal notifications will be issued for all invalidated entries.  *<li>The {@code asMap} view supports removal operations, but no other modifications.  *<li>The {@code asMap} view (and its collection views) have<i>weakly consistent iterators</i>.  *     This means that they are safe for concurrent use, but if other threads modify the cache after  *     the iterator is created, it is undefined which of these changes, if any, are reflected in  *     that iterator. These iterators never throw {@link ConcurrentModificationException}.  *</ul>  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the  * {@link Object#equals equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys} or {@link #softKeys} was specified, the cache uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues} or {@link #softValues} was  * specified, the cache uses identity comparisons for values.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the cache to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the cache. A partially-reclaimed entry is never exposed to the user.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache.  *  * @param<K> the base key type for all caches created by this builder  * @param<V> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  *<p>A builder of {@link Cache} instances having any combination of the following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>notification of evicted (or otherwise removed) entries  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   Cache<Key, Graph> graphs = CacheBuilder.newBuilder()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .build(  *           new CacheLoader<Key, Graph>() {  *             public Graph load(Key key) throws AnyException {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional.  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements the optional operations {@link Cache#invalidate},  * {@link Cache#invalidateAll}, {@link Cache#size}, {@link Cache#stats}, and {@link Cache#asMap},  * with the following qualifications:  *  *<ul>  *<li>The {@code invalidateAll} method will invalidate all cached entries prior to returning, and  *     removal notifications will be issued for all invalidated entries.  *<li>The {@code asMap} view supports removal operations, but no other modifications.  *<li>The {@code asMap} view (and its collection views) have<i>weakly consistent iterators</i>.  *     This means that they are safe for concurrent use, but if other threads modify the cache after  *     the iterator is created, it is undefined which of these changes, if any, are reflected in  *     that iterator. These iterators never throw {@link ConcurrentModificationException}.  *</ul>  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the  * {@link Object#equals equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys} was specified, the cache uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues} or {@link #softValues} was  * specified, the cache uses identity comparisons for values.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the cache to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the cache. A partially-reclaimed entry is never exposed to the user.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache.  *  * @param<K> the base key type for all caches created by this builder  * @param<V> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -776,7 +776,7 @@ literal|null
 operator|)
 return|;
 block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalences#equals()}    * otherwise.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalences#equals()} otherwise.    */
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
@@ -1130,27 +1130,6 @@ argument_list|(
 name|Strength
 operator|.
 name|WEAK
-argument_list|)
-return|;
-block|}
-comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache {@linkplain    * #maximumSize maximum size} instead of using soft references. You should only use this method if    * you are well familiar with the practical consequences of soft references.    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    * @throws IllegalStateException if the key strength was already set    */
-DECL|method|softKeys ()
-specifier|public
-name|CacheBuilder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|softKeys
-parameter_list|()
-block|{
-return|return
-name|setKeyStrength
-argument_list|(
-name|Strength
-operator|.
-name|SOFT
 argument_list|)
 return|;
 block|}

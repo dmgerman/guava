@@ -74,7 +74,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * The entry was removed automatically because its key or value was garbage-collected. This    * can occur when using {@link #softKeys}, {@link #softValues}, {@link #weakKeys}, or {@link    * #weakValues}.    */
+comment|/**    * The entry was removed automatically because its key or value was garbage-collected. This    * can occur when using {@link #weakKeys}, {@link #weakValues}, or {@link #softValues}.    */
 DECL|enumConstant|COLLECTED
 name|COLLECTED
 block|{
