@@ -235,6 +235,24 @@ argument_list|>
 name|secondChoice
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise.    */
+DECL|method|or (Supplier<? extends T> supplier)
+annotation|@
+name|Nullable
+specifier|public
+specifier|abstract
+name|T
+name|or
+parameter_list|(
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|supplier
+parameter_list|)
+function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
 DECL|method|equals (@ullable Object object)
 annotation|@
@@ -377,6 +395,31 @@ argument_list|)
 expr_stmt|;
 return|return
 name|this
+return|;
+block|}
+DECL|method|or (Supplier<? extends T> supplier)
+annotation|@
+name|Override
+specifier|public
+name|T
+name|or
+parameter_list|(
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|supplier
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|supplier
+argument_list|)
+expr_stmt|;
+return|return
+name|reference
 return|;
 block|}
 DECL|method|orNull ()
@@ -565,6 +608,29 @@ name|checkNotNull
 argument_list|(
 name|secondChoice
 argument_list|)
+return|;
+block|}
+DECL|method|or (Supplier<?> supplier)
+annotation|@
+name|Override
+annotation|@
+name|Nullable
+specifier|public
+name|Object
+name|or
+parameter_list|(
+name|Supplier
+argument_list|<
+name|?
+argument_list|>
+name|supplier
+parameter_list|)
+block|{
+return|return
+name|supplier
+operator|.
+name|get
+argument_list|()
 return|;
 block|}
 DECL|method|orNull ()
