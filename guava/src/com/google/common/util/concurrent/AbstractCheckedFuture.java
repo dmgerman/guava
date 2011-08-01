@@ -132,7 +132,7 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Translates from an {@link InterruptedException},    * {@link CancellationException} or {@link ExecutionException} thrown by    * {@code get} to an exception of type {@code X} to be thrown by    * {@code checkedGet}. Subclasses must implement this method.    *    *<p>If {@code e} is an {@code InterruptedException}, the calling    * {@code checkedGet} method has already restored the interrupt after catching    * the exception. If an implementation of {@link #mapException(Exception)}    * wishes to swallow the interrupt, it can do so by calling    * {@link Thread#interrupted()}.    */
+comment|/**    * Translates from an {@link InterruptedException},    * {@link CancellationException} or {@link ExecutionException} thrown by    * {@code get} to an exception of type {@code X} to be thrown by    * {@code checkedGet}. Subclasses must implement this method.    *    *<p>If {@code e} is an {@code InterruptedException}, the calling    * {@code checkedGet} method has already restored the interrupt after catching    * the exception. If an implementation of {@link #mapException(Exception)}    * wishes to swallow the interrupt, it can do so by calling    * {@link Thread#interrupted()}.    *    *<p>Subclasses may choose to throw, rather than return, a subclass of    * {@code RuntimeException} to allow creating a CheckedFuture that throws    * both checked and unchecked exceptions.    */
 DECL|method|mapException (Exception e)
 specifier|protected
 specifier|abstract
