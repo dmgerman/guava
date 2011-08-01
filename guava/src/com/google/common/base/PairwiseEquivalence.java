@@ -76,7 +76,7 @@ parameter_list|<
 name|T
 parameter_list|>
 extends|extends
-name|AbstractEquivalence
+name|Equivalence
 argument_list|<
 name|Iterable
 argument_list|<
@@ -122,10 +122,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|equivalentNonNull (Iterable<T> iterableA, Iterable<T> iterableB)
+DECL|method|doEquivalent (Iterable<T> iterableA, Iterable<T> iterableB)
 specifier|protected
 name|boolean
-name|equivalentNonNull
+name|doEquivalent
 parameter_list|(
 name|Iterable
 argument_list|<
@@ -215,10 +215,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|hashNonNull (Iterable<T> iterable)
+DECL|method|doHash (Iterable<T> iterable)
 specifier|protected
 name|int
-name|hashNonNull
+name|doHash
 parameter_list|(
 name|Iterable
 argument_list|<

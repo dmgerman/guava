@@ -161,7 +161,7 @@ specifier|final
 class|class
 name|Equals
 extends|extends
-name|AbstractEquivalence
+name|Equivalence
 argument_list|<
 name|Object
 argument_list|>
@@ -178,12 +178,12 @@ operator|new
 name|Equals
 argument_list|()
 decl_stmt|;
-DECL|method|equivalentNonNull (Object a, Object b)
+DECL|method|doEquivalent (Object a, Object b)
 annotation|@
 name|Override
 specifier|protected
 name|boolean
-name|equivalentNonNull
+name|doEquivalent
 parameter_list|(
 name|Object
 name|a
@@ -201,12 +201,12 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|hashNonNull (Object o)
+DECL|method|doHash (Object o)
 annotation|@
 name|Override
 specifier|public
 name|int
-name|hashNonNull
+name|doHash
 parameter_list|(
 name|Object
 name|o
@@ -246,7 +246,7 @@ specifier|final
 class|class
 name|Identity
 extends|extends
-name|AbstractEquivalence
+name|Equivalence
 argument_list|<
 name|Object
 argument_list|>
@@ -263,12 +263,12 @@ operator|new
 name|Identity
 argument_list|()
 decl_stmt|;
-DECL|method|equivalentNonNull (Object a, Object b)
+DECL|method|doEquivalent (Object a, Object b)
 annotation|@
 name|Override
 specifier|protected
 name|boolean
-name|equivalentNonNull
+name|doEquivalent
 parameter_list|(
 name|Object
 name|a
@@ -281,12 +281,12 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashNonNull (Object o)
+DECL|method|doHash (Object o)
 annotation|@
 name|Override
 specifier|protected
 name|int
-name|hashNonNull
+name|doHash
 parameter_list|(
 name|Object
 name|o

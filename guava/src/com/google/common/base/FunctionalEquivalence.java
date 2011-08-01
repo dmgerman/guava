@@ -99,7 +99,7 @@ parameter_list|,
 name|T
 parameter_list|>
 extends|extends
-name|AbstractEquivalence
+name|Equivalence
 argument_list|<
 name|F
 argument_list|>
@@ -176,12 +176,12 @@ name|resultEquivalence
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equivalentNonNull (F a, F b)
+DECL|method|doEquivalent (F a, F b)
 annotation|@
 name|Override
 specifier|protected
 name|boolean
-name|equivalentNonNull
+name|doEquivalent
 parameter_list|(
 name|F
 name|a
@@ -211,12 +211,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|hashNonNull (F a)
+DECL|method|doHash (F a)
 annotation|@
 name|Override
 specifier|protected
 name|int
-name|hashNonNull
+name|doHash
 parameter_list|(
 name|F
 name|a

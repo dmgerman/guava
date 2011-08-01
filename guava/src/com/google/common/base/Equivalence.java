@@ -104,10 +104,10 @@ specifier|protected
 name|Equivalence
 parameter_list|()
 block|{}
-comment|/**    * Returns {@code true} if the given objects are considered equivalent.    *    *<p>The {@code equivalent} method implements an equivalence relation on object references:    *    *<ul>    *<li>It is<i>reflexive</i>: for any reference {@code x}, including null, {@code    *     equivalent(x, x)} should return {@code true}.    *<li>It is<i>symmetric</i>: for any references {@code x} and {@code y}, {@code    *     equivalent(x, y) == equivalent(y, x)}.    *<li>It is<i>transitive</i>: for any references {@code x}, {@code y}, and {@code z}, if    *     {@code equivalent(x, y)} returns {@code true} and {@code equivalent(y, z)} returns {@code    *     true}, then {@code equivalent(x, z)} should return {@code true}.    *<li>It is<i>consistent</i>: for any references {@code x} and {@code y}, multiple invocations    *     of {@code equivalent(x, y)} consistently return {@code true} or consistently return {@code    *     false} (provided that neither {@code x} nor {@code y} is modified).    *</ul>    */
+comment|/**    * Returns {@code true} if the given objects are considered equivalent.Ã    *    *<p>The {@code equivalent} method implements an equivalence relation on object references:    *    *<ul>    *<li>It is<i>reflexive</i>: for any reference {@code x}, including null, {@code    *     equivalent(x, x)} returns {@code true}.    *<li>It is<i>symmetric</i>: for any references {@code x} and {@code y}, {@code    *     equivalent(x, y) == equivalent(y, x)}.    *<li>It is<i>transitive</i>: for any references {@code x}, {@code y}, and {@code z}, if    *     {@code equivalent(x, y)} returns {@code true} and {@code equivalent(y, z)} returns {@code    *     true}, then {@code equivalent(x, z)} returns {@code true}.    *<li>It is<i>consistent</i>: for any references {@code x} and {@code y}, multiple invocations    *     of {@code equivalent(x, y)} consistently return {@code true} or consistently return {@code    *     false} (provided that neither {@code x} nor {@code y} is modified).    *</ul>    */
 DECL|method|equivalent (@ullable T a, @Nullable T b)
 specifier|public
-specifier|abstract
+specifier|final
 name|boolean
 name|equivalent
 parameter_list|(
@@ -121,16 +121,94 @@ name|Nullable
 name|T
 name|b
 parameter_list|)
+block|{
+if|if
+condition|(
+name|a
+operator|==
+name|b
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+if|if
+condition|(
+name|a
+operator|==
+literal|null
+operator|||
+name|b
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+return|return
+name|doEquivalent
+argument_list|(
+name|a
+argument_list|,
+name|b
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns {@code true} if {@code a} and {@code b} are considered equivalent.    *    *<p>Called by {@link #equivalent}. {@code a} and {@code b} are not the same    * object and are not nulls.    */
+DECL|method|doEquivalent (T a, T b)
+specifier|protected
+specifier|abstract
+name|boolean
+name|doEquivalent
+parameter_list|(
+name|T
+name|a
+parameter_list|,
+name|T
+name|b
+parameter_list|)
 function_decl|;
-comment|/**    * Returns a hash code for {@code object}.    *    *<p>The {@code hash} must have the following properties:    *<ul>    *<li>It is<i>consistent</i>: for any reference {@code x}, multiple invocations of    *     {@code hash(x}} consistently return the same value provided {@code x} remains unchanged    *     according to the definition of the equivalence. The hash need not remain consistent from    *     one execution of an application to another execution of the same application.    *<li>It is<i>distributable accross equivalence</i>: for any references {@code x} and {@code y},    *     if {@code equivalent(x, y)}, then {@code hash(x) == hash(y)}. It is<i>not</i> necessary    *     that the hash be distributable accorss<i>inequivalence</i>. If {@code equivalence(x, y)}    *     is false, {@code hash(x) == hash(y)} may still be true.    *<li>{@code hash(null)} is {@code 0}.    *</ul>    */
+comment|/**    * Returns a hash code for {@code t}.    *    *<p>The {@code hash} has the following properties:    *<ul>    *<li>It is<i>consistent</i>: for any reference {@code x}, multiple invocations of    *     {@code hash(x}} consistently return the same value provided {@code x} remains unchanged    *     according to the definition of the equivalence. The hash need not remain consistent from    *     one execution of an application to another execution of the same application.    *<li>It is<i>distributable accross equivalence</i>: for any references {@code x} and {@code y},    *     if {@code equivalent(x, y)}, then {@code hash(x) == hash(y)}. It is<i>not</i> necessary    *     that the hash be distributable accorss<i>inequivalence</i>. If {@code equivalence(x, y)}    *     is false, {@code hash(x) == hash(y)} may still be true.    *<li>{@code hash(null)} is {@code 0}.    *</ul>    */
 DECL|method|hash (@ullable T t)
 specifier|public
-specifier|abstract
+specifier|final
 name|int
 name|hash
 parameter_list|(
 annotation|@
 name|Nullable
+name|T
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|t
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|0
+return|;
+block|}
+return|return
+name|doHash
+argument_list|(
+name|t
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a hash code for non-null object {@code t}.    *    *<p>Called by {@link #hash}.    */
+DECL|method|doHash (T t)
+specifier|protected
+specifier|abstract
+name|int
+name|doHash
+parameter_list|(
 name|T
 name|t
 parameter_list|)
