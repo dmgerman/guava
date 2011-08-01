@@ -74,7 +74,9 @@ extends|extends
 name|Comparable
 parameter_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
 DECL|method|DiscreteDomain ()
+specifier|protected
 name|DiscreteDomain
 parameter_list|()
 block|{}

@@ -298,6 +298,8 @@ name|Wrapper
 parameter_list|<
 name|T
 parameter_list|>
+implements|implements
+name|Serializable
 block|{
 DECL|field|equivalence
 specifier|private
@@ -502,6 +504,15 @@ operator|+
 literal|")"
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code this}.  Null iterables are equivalent to one another.    *     *<p>Note that this method performs a similar function for equivalences as {@link    * com.google.common.collect.Ordering#lexicographical} does for orderings.    *    * @since Guava release 10    */
 annotation|@

@@ -62,6 +62,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -92,6 +102,8 @@ name|BaseHolder
 argument_list|<
 name|T
 argument_list|>
+implements|,
+name|Serializable
 block|{
 comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
 annotation|@
@@ -119,23 +131,11 @@ argument_list|<
 name|T
 argument_list|>
 operator|)
-name|ABSENT
+name|Absent
+operator|.
+name|INSTANCE
 return|;
 block|}
-DECL|field|ABSENT
-specifier|private
-specifier|static
-specifier|final
-name|Optional
-argument_list|<
-name|Object
-argument_list|>
-name|ABSENT
-init|=
-operator|new
-name|Absent
-argument_list|()
-decl_stmt|;
 comment|/**    * Returns an {@code Optional} instance containing the given non-null reference.    */
 DECL|method|of (T reference)
 specifier|public
@@ -288,6 +288,15 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 DECL|class|Present
 specifier|private
 specifier|static
@@ -516,6 +525,15 @@ operator|+
 literal|")"
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 DECL|class|Absent
 specifier|private
@@ -529,6 +547,17 @@ argument_list|<
 name|Object
 argument_list|>
 block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|Absent
+name|INSTANCE
+init|=
+operator|new
+name|Absent
+argument_list|()
+decl_stmt|;
 DECL|method|isPresent ()
 annotation|@
 name|Override
@@ -690,6 +719,25 @@ return|return
 literal|"Optional.absent()"
 return|;
 block|}
+DECL|method|readResolve ()
+specifier|private
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
+block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 block|}
 end_class

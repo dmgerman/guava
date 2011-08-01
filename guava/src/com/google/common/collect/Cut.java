@@ -64,6 +64,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|NoSuchElementException
@@ -104,6 +114,8 @@ argument_list|<
 name|C
 argument_list|>
 argument_list|>
+implements|,
+name|Serializable
 block|{
 DECL|field|endpoint
 specifier|final
@@ -263,7 +275,8 @@ if|if
 condition|(
 name|that
 operator|==
-name|BELOW_ALL
+name|belowAll
+argument_list|()
 condition|)
 block|{
 return|return
@@ -274,7 +287,8 @@ if|if
 condition|(
 name|that
 operator|==
-name|ABOVE_ALL
+name|aboveAll
+argument_list|()
 condition|)
 block|{
 return|return
@@ -425,12 +439,27 @@ argument_list|<
 name|C
 argument_list|>
 operator|)
-name|BELOW_ALL
+name|BelowAll
+operator|.
+name|INSTANCE
 return|;
 block|}
-DECL|field|BELOW_ALL
+DECL|field|serialVersionUID
+specifier|private
 specifier|static
 specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+DECL|class|BelowAll
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|BelowAll
+extends|extends
 name|Cut
 argument_list|<
 name|Comparable
@@ -438,20 +467,30 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-name|BELOW_ALL
+block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|BelowAll
+name|INSTANCE
 init|=
 operator|new
-name|Cut
-argument_list|<
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+name|BelowAll
+argument_list|()
+decl_stmt|;
+DECL|method|BelowAll ()
+specifier|private
+name|BelowAll
+parameter_list|()
+block|{
+name|super
 argument_list|(
 literal|null
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|endpoint ()
 annotation|@
 name|Override
 name|Comparable
@@ -469,6 +508,7 @@ literal|"range unbounded on this side"
 argument_list|)
 throw|;
 block|}
+DECL|method|isLessThan (Comparable<?> value)
 annotation|@
 name|Override
 name|boolean
@@ -485,6 +525,7 @@ return|return
 literal|true
 return|;
 block|}
+DECL|method|typeAsLowerBound ()
 annotation|@
 name|Override
 name|BoundType
@@ -497,6 +538,7 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+DECL|method|typeAsUpperBound ()
 annotation|@
 name|Override
 name|BoundType
@@ -511,6 +553,7 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
+DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Cut
@@ -541,6 +584,7 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Cut
@@ -573,6 +617,7 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
+DECL|method|describeAsLowerBound (StringBuilder sb)
 annotation|@
 name|Override
 name|void
@@ -590,6 +635,7 @@ literal|"(-\u221e"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|describeAsUpperBound (StringBuilder sb)
 annotation|@
 name|Override
 name|void
@@ -605,6 +651,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+DECL|method|leastValueAbove ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Comparable
@@ -630,6 +677,7 @@ name|minValue
 argument_list|()
 return|;
 block|}
+DECL|method|greatestValueBelow ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Comparable
@@ -654,6 +702,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+DECL|method|canonical ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Cut
@@ -706,6 +755,7 @@ name|this
 return|;
 block|}
 block|}
+DECL|method|compareTo (Cut<Comparable<?>> o)
 annotation|@
 name|Override
 specifier|public
@@ -735,8 +785,26 @@ operator|-
 literal|1
 return|;
 block|}
+DECL|method|readResolve ()
+specifier|private
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
 block|}
-empty_stmt|;
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+block|}
 comment|/*    * The implementation neither produces nor consumes any non-null instance of    * type C, so casting the type parameter is safe.    */
 annotation|@
 name|SuppressWarnings
@@ -764,12 +832,18 @@ argument_list|<
 name|C
 argument_list|>
 operator|)
-name|ABOVE_ALL
+name|AboveAll
+operator|.
+name|INSTANCE
 return|;
 block|}
-DECL|field|ABOVE_ALL
+DECL|class|AboveAll
+specifier|private
 specifier|static
 specifier|final
+class|class
+name|AboveAll
+extends|extends
 name|Cut
 argument_list|<
 name|Comparable
@@ -777,20 +851,30 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-name|ABOVE_ALL
+block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|AboveAll
+name|INSTANCE
 init|=
 operator|new
-name|Cut
-argument_list|<
-name|Comparable
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
+name|AboveAll
+argument_list|()
+decl_stmt|;
+DECL|method|AboveAll ()
+specifier|private
+name|AboveAll
+parameter_list|()
+block|{
+name|super
 argument_list|(
 literal|null
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|endpoint ()
 annotation|@
 name|Override
 name|Comparable
@@ -808,6 +892,7 @@ literal|"range unbounded on this side"
 argument_list|)
 throw|;
 block|}
+DECL|method|isLessThan (Comparable<?> value)
 annotation|@
 name|Override
 name|boolean
@@ -824,6 +909,7 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|typeAsLowerBound ()
 annotation|@
 name|Override
 name|BoundType
@@ -838,6 +924,7 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
+DECL|method|typeAsUpperBound ()
 annotation|@
 name|Override
 name|BoundType
@@ -850,6 +937,7 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Cut
@@ -882,6 +970,7 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
+DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Cut
@@ -912,6 +1001,7 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+DECL|method|describeAsLowerBound (StringBuilder sb)
 annotation|@
 name|Override
 name|void
@@ -927,6 +1017,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+DECL|method|describeAsUpperBound (StringBuilder sb)
 annotation|@
 name|Override
 name|void
@@ -944,6 +1035,7 @@ literal|"+\u221e)"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|leastValueAbove ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Comparable
@@ -968,6 +1060,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+DECL|method|greatestValueBelow ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
 name|Comparable
@@ -993,6 +1086,7 @@ name|maxValue
 argument_list|()
 return|;
 block|}
+DECL|method|compareTo (Cut<Comparable<?>> o)
 annotation|@
 name|Override
 specifier|public
@@ -1021,8 +1115,26 @@ else|:
 literal|1
 return|;
 block|}
+DECL|method|readResolve ()
+specifier|private
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
 block|}
-empty_stmt|;
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+block|}
 DECL|method|belowValue (C endpoint)
 specifier|static
 parameter_list|<
@@ -1387,6 +1499,15 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 DECL|method|aboveValue (C endpoint)
 specifier|static
@@ -1790,6 +1911,15 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 block|}
 end_class

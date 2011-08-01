@@ -48,6 +48,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|math
 operator|.
 name|BigInteger
@@ -85,26 +95,37 @@ name|integers
 parameter_list|()
 block|{
 return|return
-name|INTEGERS
+name|Integers
+operator|.
+name|INSTANCE
 return|;
 block|}
-DECL|field|INTEGERS
+DECL|class|Integers
 specifier|private
 specifier|static
 specifier|final
+class|class
+name|Integers
+extends|extends
 name|DiscreteDomain
 argument_list|<
 name|Integer
 argument_list|>
-name|INTEGERS
+implements|implements
+name|Serializable
+block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|Integers
+name|INSTANCE
 init|=
 operator|new
-name|DiscreteDomain
-argument_list|<
-name|Integer
-argument_list|>
+name|Integers
 argument_list|()
-block|{
+decl_stmt|;
+DECL|method|next (Integer value)
 annotation|@
 name|Override
 specifier|public
@@ -136,6 +157,7 @@ operator|+
 literal|1
 return|;
 block|}
+DECL|method|previous (Integer value)
 annotation|@
 name|Override
 specifier|public
@@ -167,6 +189,7 @@ operator|-
 literal|1
 return|;
 block|}
+DECL|method|distance (Integer start, Integer end)
 annotation|@
 name|Override
 specifier|public
@@ -189,6 +212,7 @@ operator|-
 name|start
 return|;
 block|}
+DECL|method|minValue ()
 annotation|@
 name|Override
 specifier|public
@@ -202,6 +226,7 @@ operator|.
 name|MIN_VALUE
 return|;
 block|}
+DECL|method|maxValue ()
 annotation|@
 name|Override
 specifier|public
@@ -215,8 +240,26 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
+DECL|method|readResolve ()
+specifier|private
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
 decl_stmt|;
+block|}
 DECL|method|longs ()
 specifier|public
 specifier|static
@@ -228,25 +271,37 @@ name|longs
 parameter_list|()
 block|{
 return|return
-name|LONGS
+name|Longs
+operator|.
+name|INSTANCE
 return|;
 block|}
-DECL|field|LONGS
+DECL|class|Longs
 specifier|private
 specifier|static
+specifier|final
+class|class
+name|Longs
+extends|extends
 name|DiscreteDomain
 argument_list|<
 name|Long
 argument_list|>
-name|LONGS
+implements|implements
+name|Serializable
+block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|Longs
+name|INSTANCE
 init|=
 operator|new
-name|DiscreteDomain
-argument_list|<
-name|Long
-argument_list|>
+name|Longs
 argument_list|()
-block|{
+decl_stmt|;
+DECL|method|next (Long value)
 annotation|@
 name|Override
 specifier|public
@@ -278,6 +333,7 @@ operator|+
 literal|1
 return|;
 block|}
+DECL|method|previous (Long value)
 annotation|@
 name|Override
 specifier|public
@@ -309,6 +365,7 @@ operator|-
 literal|1
 return|;
 block|}
+DECL|method|distance (Long start, Long end)
 annotation|@
 name|Override
 specifier|public
@@ -369,6 +426,7 @@ return|return
 name|result
 return|;
 block|}
+DECL|method|minValue ()
 annotation|@
 name|Override
 specifier|public
@@ -382,6 +440,7 @@ operator|.
 name|MIN_VALUE
 return|;
 block|}
+DECL|method|maxValue ()
 annotation|@
 name|Override
 specifier|public
@@ -395,7 +454,65 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
+DECL|method|readResolve ()
+specifier|private
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
+block|}
+DECL|method|bigIntegers ()
+specifier|static
+name|DiscreteDomain
+argument_list|<
+name|BigInteger
+argument_list|>
+name|bigIntegers
+parameter_list|()
+block|{
+return|return
+name|BigIntegers
+operator|.
+name|INSTANCE
+return|;
+block|}
+DECL|class|BigIntegers
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|BigIntegers
+extends|extends
+name|DiscreteDomain
+argument_list|<
+name|BigInteger
+argument_list|>
+implements|implements
+name|Serializable
+block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|BigIntegers
+name|INSTANCE
+init|=
+operator|new
+name|BigIntegers
+argument_list|()
 decl_stmt|;
 DECL|field|MIN_LONG
 specifier|private
@@ -429,23 +546,7 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 decl_stmt|;
-DECL|field|BIG_INTEGERS
-specifier|private
-specifier|static
-specifier|final
-name|DiscreteDomain
-argument_list|<
-name|BigInteger
-argument_list|>
-name|BIG_INTEGERS
-init|=
-operator|new
-name|DiscreteDomain
-argument_list|<
-name|BigInteger
-argument_list|>
-argument_list|()
-block|{
+DECL|method|next (BigInteger value)
 annotation|@
 name|Override
 specifier|public
@@ -467,6 +568,7 @@ name|ONE
 argument_list|)
 return|;
 block|}
+DECL|method|previous (BigInteger value)
 annotation|@
 name|Override
 specifier|public
@@ -488,6 +590,7 @@ name|ONE
 argument_list|)
 return|;
 block|}
+DECL|method|distance (BigInteger start, BigInteger end)
 annotation|@
 name|Override
 specifier|public
@@ -523,8 +626,26 @@ name|longValue
 argument_list|()
 return|;
 block|}
+DECL|method|readResolve ()
+specifier|private
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
 decl_stmt|;
+block|}
 block|}
 end_class
 

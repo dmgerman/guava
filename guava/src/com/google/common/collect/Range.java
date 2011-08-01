@@ -94,6 +94,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collections
@@ -174,6 +184,8 @@ name|Predicate
 argument_list|<
 name|C
 argument_list|>
+implements|,
+name|Serializable
 block|{
 DECL|field|lowerBound
 specifier|final
@@ -259,7 +271,8 @@ name|lowerBound
 operator|!=
 name|Cut
 operator|.
-name|BELOW_ALL
+name|belowAll
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns the lower endpoint of this range.    *    * @throws IllegalStateException if this range is unbounded below (that is,    *     {@link #hasLowerBound()} is false)    */
@@ -302,7 +315,8 @@ name|upperBound
 operator|!=
 name|Cut
 operator|.
-name|ABOVE_ALL
+name|aboveAll
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns the upper endpoint of this range.    *    * @throws IllegalStateException if this range is unbounded above (that is,    *     {@link #hasUpperBound()} is false)    */
@@ -1128,6 +1142,15 @@ name|right
 argument_list|)
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 end_class
 
