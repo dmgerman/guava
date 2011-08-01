@@ -454,18 +454,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ScheduledExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -740,19 +728,13 @@ specifier|transient
 name|EntryFactory
 name|entryFactory
 decl_stmt|;
-comment|/** Performs routine cleanup. */
-DECL|field|cleanupExecutor
-specifier|final
-name|ScheduledExecutorService
-name|cleanupExecutor
-decl_stmt|;
 comment|/** Measures time in a testable way. */
 DECL|field|ticker
 specifier|final
 name|Ticker
 name|ticker
 decl_stmt|;
-comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    *    * @throws RejectedExecutionException if a cleanupExecutor was specified but rejects the cleanup    *     task    */
+comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
 DECL|method|CustomConcurrentHashMap (MapMaker builder)
 name|CustomConcurrentHashMap
 parameter_list|(
@@ -836,13 +818,6 @@ argument_list|,
 name|evictsBySize
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|cleanupExecutor
-operator|=
-name|builder
-operator|.
-name|getCleanupExecutor
-argument_list|()
 expr_stmt|;
 name|ticker
 operator|=
@@ -1134,34 +1109,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// schedule cleanup after construction is complete
-if|if
-condition|(
-name|cleanupExecutor
-operator|!=
-literal|null
-condition|)
-block|{
-name|cleanupExecutor
-operator|.
-name|scheduleWithFixedDelay
-argument_list|(
-operator|new
-name|CleanupMapTask
-argument_list|(
-name|this
-argument_list|)
-argument_list|,
-name|CLEANUP_EXECUTOR_DELAY_SECS
-argument_list|,
-name|CLEANUP_EXECUTOR_DELAY_SECS
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 DECL|method|evictsBySize ()
 name|boolean
@@ -1235,17 +1182,6 @@ operator|!=
 name|Strength
 operator|.
 name|STRONG
-return|;
-block|}
-DECL|method|isInlineCleanup ()
-name|boolean
-name|isInlineCleanup
-parameter_list|()
-block|{
-return|return
-name|cleanupExecutor
-operator|==
-literal|null
 return|;
 block|}
 DECL|enum|Strength

@@ -354,18 +354,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ScheduledExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -501,10 +489,6 @@ argument_list|<
 name|Object
 argument_list|>
 name|valueEquivalence
-decl_stmt|;
-DECL|field|cleanupExecutor
-name|ScheduledExecutorService
-name|cleanupExecutor
 decl_stmt|;
 DECL|field|ticker
 name|Ticker
@@ -734,6 +718,8 @@ annotation|@
 name|Beta
 annotation|@
 name|Override
+annotation|@
+name|Deprecated
 DECL|method|maximumSize (int size)
 specifier|public
 name|MapMaker
@@ -1111,7 +1097,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Old name of {@link #expireAfterWrite}.    *    * @deprecated use {@link #expireAfterWrite}, which behaves exactly the same.<b>This method is    *     scheduled for deletion in July 2012.</b>    */
+comment|/**    * Old name of {@link #expireAfterWrite}.    *    * @deprecated Caching functionality in {@code MapMaker} is being moved to    *     {@link com.google.common.cache.CacheBuilder}. Functionality equivalent to    *     {@link MapMaker#expiration} is provided by    *     {@link com.google.common.cache.CacheBuilder#expireAfterWrite}.    *<b>This method is scheduled for deletion in July 2012.</b>    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -1140,6 +1126,8 @@ block|}
 comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @since Guava release 08    */
 annotation|@
 name|Override
+annotation|@
+name|Deprecated
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|MapMaker
@@ -1274,6 +1262,8 @@ literal|"To be supported"
 argument_list|)
 annotation|@
 name|Override
+annotation|@
+name|Deprecated
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 name|MapMaker
@@ -1352,56 +1342,6 @@ else|:
 name|expireAfterAccessNanos
 return|;
 block|}
-DECL|method|getCleanupExecutor ()
-name|ScheduledExecutorService
-name|getCleanupExecutor
-parameter_list|()
-block|{
-return|return
-name|cleanupExecutor
-return|;
-block|}
-comment|/**    * Specifies a nanosecond-precision time source for use in determining when entries should be    * expired. By default, {@link System#nanoTime} is used.    *    *<p>The primary intent of this method is to facilitate testing of maps which have been    * configured with {@link #expireAfterWrite} or {@link #expireAfterAccess}.    *    * @throws IllegalStateException if a ticker was already set    * @since Guava release 10    */
-annotation|@
-name|Override
-annotation|@
-name|Beta
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
-DECL|method|ticker (Ticker ticker)
-specifier|public
-name|MapMaker
-name|ticker
-parameter_list|(
-name|Ticker
-name|ticker
-parameter_list|)
-block|{
-name|checkState
-argument_list|(
-name|this
-operator|.
-name|ticker
-operator|==
-literal|null
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|ticker
-operator|=
-name|checkNotNull
-argument_list|(
-name|ticker
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
 DECL|method|getTicker ()
 name|Ticker
 name|getTicker
@@ -1419,16 +1359,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is removed from the map by any means.    *    *<p>Each map built by this map maker after this method is called invokes the supplied listener    * after removing an element for any reason (see removal causes in {@link RemovalCause}). It will    * invoke the listener during invocations of any of that map's public methods (even read-only    * methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build a map    * or cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    * @since Guava release 10    */
-annotation|@
-name|Beta
+comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is removed from the map by any means.    *    *<p>Each map built by this map maker after this method is called invokes the supplied listener    * after removing an element for any reason (see removal causes in {@link RemovalCause}). It will    * invoke the listener during invocations of any of that map's public methods (even read-only    * methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build a map    * or cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
 DECL|method|removalListener (RemovalListener<K, V> listener)
-specifier|public
 parameter_list|<
 name|K
 parameter_list|,
@@ -1501,7 +1438,7 @@ return|return
 name|me
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it evicts an entry,    * whether it does so due to timed expiration, exceeding the maximum size, or discovering that the    * key or value has been reclaimed by the garbage collector. It will invoke the listener    * during invocations of any of that map's public methods (even read-only methods). The listener    * will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build maps    * whose key or value types are incompatible with the listener, you will likely experience a    * {@link ClassCastException} at an undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @deprecated use {@link #removalListener}, which provides additional information about the    *     entry being evicted; note that {@link #evictionListener} only notifies on removals due to    *     eviction, while {@link #removalListener} also notifies on explicit removal (providing the    *     {@link RemovalCause} to indicate the specific cause of removal.<b>This method is scheduled    *     for deletion in Guava release 11.</b>    * @since Guava release 07    */
+comment|/**    * Specifies a listener instance, which all maps built using this {@code MapMaker} will notify    * each time an entry is evicted.    *    *<p>A map built by this map maker will invoke the supplied listener after it evicts an entry,    * whether it does so due to timed expiration, exceeding the maximum size, or discovering that the    * key or value has been reclaimed by the garbage collector. It will invoke the listener    * during invocations of any of that map's public methods (even read-only methods). The listener    * will<i>not</i> be invoked on manual removal.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code MapMaker} instance,    * this method returns {@code GenericMapMaker<K, V>}. From this point on, either the original    * reference or the returned reference may be used to complete configuration and build the map,    * but only the "generic" one is type-safe. That is, it will properly prevent you from building    * maps whose key or value types are incompatible with the types accepted by the listener already    * provided; the {@code MapMaker} type cannot do this. For best results, simply use the standard    * method-chaining idiom, as illustrated in the documentation at top, configuring a {@code    * MapMaker} and building your {@link Map} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code MapMaker} to build maps    * whose key or value types are incompatible with the listener, you will likely experience a    * {@link ClassCastException} at an undefined point in the future.    *    * @throws IllegalStateException if an eviction listener was already set    * @deprecated Caching functionality in {@code MapMaker} is being moved to    *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to    *     {@link MapMaker#evictionListener} is provided by    *     {@link com.google.common.cache.CacheBuilder#removalListener} which also provides    *     additional information about the entry being evicted; note that {@code evictionListener}    *     only notifies on removals due to eviction, while {@code removalListener} also notifies on    *     explicit removal (providing the {@link @link com.google.common.cache.RemovalCause} to    *     indicate the specific cause of removal.<b>This method is scheduled for deletion in Guava    *     release 11.</b>    * @since Guava release 07    */
 annotation|@
 name|Beta
 annotation|@
@@ -2009,21 +1946,6 @@ literal|"removalListener"
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|cleanupExecutor
-operator|!=
-literal|null
-condition|)
-block|{
-name|s
-operator|.
-name|addValue
-argument_list|(
-literal|"cleanupExecutor"
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|s
 operator|.
@@ -2031,11 +1953,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * An object that can receive a notification when an entry is removed from a map. The removal    * resulting in notification could have occured to an entry being manually removed or replaced, or    * due to eviction resulting from timed expiration, exceeding a maximum size, or garbage    * collection.    *    *<p>An instance may be called concurrently by multiple threads to process different entries.    * Implementations of this interface should avoid performing blocking calls or synchronizing on    * shared resources.    *    * @param<K> the most general type of keys this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @param<V> the most general type of values this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @since Guava release 10    */
-annotation|@
-name|Beta
+comment|/**    * An object that can receive a notification when an entry is removed from a map. The removal    * resulting in notification could have occured to an entry being manually removed or replaced, or    * due to eviction resulting from timed expiration, exceeding a maximum size, or garbage    * collection.    *    *<p>An instance may be called concurrently by multiple threads to process different entries.    * Implementations of this interface should avoid performing blocking calls or synchronizing on    * shared resources.    *    * @param<K> the most general type of keys this listener can listen for; for    *     example {@code Object} if any key is acceptable    * @param<V> the most general type of values this listener can listen for; for    *     example {@code Object} if any key is acceptable    */
 DECL|interface|RemovalListener
-specifier|public
 interface|interface
 name|RemovalListener
 parameter_list|<
@@ -2059,11 +1978,8 @@ name|notification
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * A notification of the removal of a single entry. The key and/or value may be {@code null} if    * they were already garbage collected.    *    *<p>Like other {Map.Entry} instances associated with MapMaker this class holds strong references    * to the key and value, regardless of the type of references the map may be using.    *    * @since Guava release 10    */
-annotation|@
-name|Beta
+comment|/**    * A notification of the removal of a single entry. The key and/or value may be {@code null} if    * they were already garbage collected.    *    *<p>Like other {Map.Entry} instances associated with MapMaker this class holds strong references    * to the key and value, regardless of the type of references the map may be using.    */
 DECL|class|RemovalNotification
-specifier|public
 specifier|static
 specifier|final
 class|class
@@ -2149,11 +2065,8 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * The reason why an entry was removed.    *    * @since Guava release 10    */
-annotation|@
-name|Beta
+comment|/**    * The reason why an entry was removed.    */
 DECL|enum|RemovalCause
-specifier|public
 enum|enum
 name|RemovalCause
 block|{

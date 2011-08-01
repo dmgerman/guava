@@ -132,6 +132,8 @@ function_decl|;
 comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since Guava release 08    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|maximumSize (int maximumSize)
 specifier|public
 specifier|abstract
@@ -209,6 +211,8 @@ name|unit
 parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since Guava release 08    */
+annotation|@
+name|Deprecated
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract

@@ -108,20 +108,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Ticker
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|MapMaker
@@ -316,6 +302,8 @@ function_decl|;
 comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since Guava release 08    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|maximumSize (int maximumSize)
 specifier|public
 specifier|abstract
@@ -467,6 +455,8 @@ name|unit
 parameter_list|)
 function_decl|;
 comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since Guava release 08    */
+annotation|@
+name|Deprecated
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
@@ -491,6 +481,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
+annotation|@
+name|Deprecated
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 specifier|abstract
@@ -507,29 +499,6 @@ name|duration
 parameter_list|,
 name|TimeUnit
 name|unit
-parameter_list|)
-function_decl|;
-comment|/**    * See {@link MapMaker#ticker}.    *    * @since Guava release 10    */
-annotation|@
-name|Beta
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
-DECL|method|ticker (Ticker ticker)
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|ticker
-parameter_list|(
-name|Ticker
-name|ticker
 parameter_list|)
 function_decl|;
 comment|/*    * Note that MapMaker's removalListener() is not here, because once you're interacting with a    * GenericMapMaker you've already called that, and shouldn't be calling it again.    */
