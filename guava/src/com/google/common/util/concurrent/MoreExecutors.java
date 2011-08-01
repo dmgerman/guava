@@ -249,8 +249,6 @@ comment|/**  * Factory and utility methods for {@link java.util.concurrent.Execu
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|MoreExecutors
 specifier|public
 specifier|final
@@ -263,6 +261,8 @@ name|MoreExecutors
 parameter_list|()
 block|{}
 comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
+annotation|@
+name|Beta
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -328,6 +328,8 @@ name|service
 return|;
 block|}
 comment|/**    * Converts the given ScheduledThreadPoolExecutor into a    * ScheduledExecutorService that exits when the application is complete.  It    * does so by using daemon threads and adding a shutdown hook to wait for    * their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
+annotation|@
+name|Beta
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -393,6 +395,8 @@ name|service
 return|;
 block|}
 comment|/**    * Add a shutdown hook to wait for thread completion in the given    * {@link ExecutorService service}.  This is useful if the given service uses    * daemon threads, and we want to keep the JVM from exiting immediately on    * shutdown, instead giving these daemon threads a chance to terminate    * normally.    * @param service ExecutorService which uses daemon threads    * @param terminationTimeout how long to wait for the executor to finish    *        before terminating the JVM    * @param timeUnit unit of time for the time parameter    */
+annotation|@
+name|Beta
 DECL|method|addDelayedShutdownHook ( final ExecutorService service, final long terminationTimeout, final TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -470,6 +474,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+annotation|@
+name|Beta
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -494,6 +500,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Converts the given ThreadPoolExecutor into a ScheduledExecutorService that    * exits when the application is complete.  It does so by using daemon threads    * and adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
+annotation|@
+name|Beta
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
 specifier|public
 specifier|static
