@@ -724,31 +724,17 @@ modifier|...
 name|elements
 parameter_list|)
 block|{
-name|int
-name|capacity
-init|=
-name|Maps
-operator|.
-name|capacity
-argument_list|(
-name|elements
-operator|.
-name|length
-argument_list|)
-decl_stmt|;
 name|HashSet
 argument_list|<
 name|E
 argument_list|>
 name|set
 init|=
-operator|new
-name|HashSet
-argument_list|<
-name|E
-argument_list|>
+name|newHashSetWithExpectedSize
 argument_list|(
-name|capacity
+name|elements
+operator|.
+name|length
 argument_list|)
 decl_stmt|;
 name|Collections
@@ -764,7 +750,7 @@ return|return
 name|set
 return|;
 block|}
-comment|/**    * Creates an empty {@code HashSet} instance with enough capacity to hold the    * specified number of elements without rehashing.    *    * @param expectedSize the expected size    * @return a new, empty {@code HashSet} with enough capacity to hold {@code    *     expectedSize} elements without rehashing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code HashSet} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    * This behavior cannot be broadly guaranteed, but it is observed to be true    * for OpenJDK 1.6. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the    *        returned set    * @return a new, empty {@code HashSet} with enough capacity to hold {@code    *         expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|newHashSetWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static

@@ -410,7 +410,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code HashMap} instance with enough capacity to hold the    * specified number of elements without rehashing.    *    * @param expectedSize the expected size    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} elements without rehashing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    * This behavior cannot be broadly guaranteed, but it is observed to be true    * for OpenJDK 1.6. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of elements you expect to add to the    *        returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|newHashMapWithExpectedSize ( int expectedSize)
 specifier|public
 specifier|static
@@ -431,7 +431,6 @@ name|int
 name|expectedSize
 parameter_list|)
 block|{
-comment|/*      * The HashMap is constructed with an initialCapacity that's greater than      * expectedSize. The larger value is necessary because HashMap resizes its      * internal array if the map size exceeds loadFactor * initialCapacity.      */
 return|return
 operator|new
 name|HashMap
@@ -448,7 +447,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an appropriate value for the "capacity" (in reality, "minimum table    * size") parameter of a {@link HashMap} constructor, such that the resulting    * table will be between 25% and 50% full when it contains {@code    * expectedSize} entries, unless {@code expectedSize} is greater than    * {@link Integer#MAX_VALUE} / 2.    *    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Returns a capacity that is sufficient to keep the map from being resized as    * long as it grows no larger than expectedSize and the load factor is>= its    * default (0.75).    */
 DECL|method|capacity (int expectedSize)
 specifier|static
 name|int
@@ -458,6 +457,13 @@ name|int
 name|expectedSize
 parameter_list|)
 block|{
+if|if
+condition|(
+name|expectedSize
+operator|<
+literal|3
+condition|)
+block|{
 name|checkArgument
 argument_list|(
 name|expectedSize
@@ -465,24 +471,35 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// Avoid the int overflow if expectedSize> (Integer.MAX_VALUE / 2)
 return|return
+name|expectedSize
+operator|+
+literal|1
+return|;
+block|}
+if|if
+condition|(
+name|expectedSize
+operator|<
 name|Ints
 operator|.
-name|saturatedCast
-argument_list|(
-name|Math
-operator|.
-name|max
-argument_list|(
+name|MAX_POWER_OF_TWO
+condition|)
+block|{
+return|return
 name|expectedSize
-operator|*
-literal|2L
-argument_list|,
-literal|16L
-argument_list|)
-argument_list|)
+operator|+
+name|expectedSize
+operator|/
+literal|3
 return|;
+block|}
+return|return
+name|Integer
+operator|.
+name|MAX_VALUE
+return|;
+comment|// any large value
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code    *         map}    */
 DECL|method|newHashMap ( Map<? extends K, ? extends V> map)
