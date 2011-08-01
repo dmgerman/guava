@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -930,7 +944,7 @@ name|keyValueSeparator
 argument_list|)
 return|;
 block|}
-comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    * @since Guava release 02 (imported from Google Collections Library)    */
+comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    *     {@code MapJoiner} method that accepts entries as input, and receive output of the form    *     {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code MapJoiner}    *     method that accepts a map as input, and receive output of the form {@code    *     key1=[A, B]&key2=C}.    *</ul>    *    * @since Guava release 02 (imported from Google Collections Library)    */
 DECL|class|MapJoiner
 specifier|public
 specifier|final
@@ -1003,6 +1017,105 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
+name|appendTo
+argument_list|(
+name|appendable
+argument_list|,
+name|map
+operator|.
+name|entrySet
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.      */
+DECL|method|appendTo (StringBuilder builder, Map<?, ?> map)
+specifier|public
+name|StringBuilder
+name|appendTo
+parameter_list|(
+name|StringBuilder
+name|builder
+parameter_list|,
+name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+parameter_list|)
+block|{
+return|return
+name|appendTo
+argument_list|(
+name|builder
+argument_list|,
+name|map
+operator|.
+name|entrySet
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
+DECL|method|join (Map<?, ?> map)
+specifier|public
+name|String
+name|join
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+parameter_list|)
+block|{
+return|return
+name|join
+argument_list|(
+name|map
+operator|.
+name|entrySet
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code appendable}.      *      * @since Guava release 10      */
+annotation|@
+name|Beta
+DECL|method|appendTo (A appendable, Iterable<? extends Entry<?, ?>> entries)
+specifier|public
+parameter_list|<
+name|A
+extends|extends
+name|Appendable
+parameter_list|>
+name|A
+name|appendTo
+parameter_list|(
+name|A
+name|appendable
+parameter_list|,
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+argument_list|>
+name|entries
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 name|checkNotNull
 argument_list|(
 name|appendable
@@ -1023,10 +1136,7 @@ argument_list|>
 argument_list|>
 name|iterator
 init|=
-name|map
-operator|.
-name|entrySet
-argument_list|()
+name|entries
 operator|.
 name|iterator
 argument_list|()
@@ -1162,8 +1272,10 @@ return|return
 name|appendable
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.      */
-DECL|method|appendTo (StringBuilder builder, Map<?, ?> map)
+comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since Guava release 10      */
+annotation|@
+name|Beta
+DECL|method|appendTo (StringBuilder builder, Iterable<? extends Entry<?, ?>> entries)
 specifier|public
 name|StringBuilder
 name|appendTo
@@ -1171,13 +1283,18 @@ parameter_list|(
 name|StringBuilder
 name|builder
 parameter_list|,
-name|Map
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Entry
 argument_list|<
 name|?
 argument_list|,
 name|?
 argument_list|>
-name|map
+argument_list|>
+name|entries
 parameter_list|)
 block|{
 try|try
@@ -1189,7 +1306,7 @@ name|Appendable
 operator|)
 name|builder
 argument_list|,
-name|map
+name|entries
 argument_list|)
 expr_stmt|;
 block|}
@@ -1211,19 +1328,26 @@ return|return
 name|builder
 return|;
 block|}
-comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
-DECL|method|join (Map<?, ?> map)
+comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since Guava release 10      */
+annotation|@
+name|Beta
+DECL|method|join (Iterable<? extends Entry<?, ?>> entries)
 specifier|public
 name|String
 name|join
 parameter_list|(
-name|Map
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|Entry
 argument_list|<
 name|?
 argument_list|,
 name|?
 argument_list|>
-name|map
+argument_list|>
+name|entries
 parameter_list|)
 block|{
 return|return
@@ -1233,7 +1357,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 argument_list|,
-name|map
+name|entries
 argument_list|)
 operator|.
 name|toString
