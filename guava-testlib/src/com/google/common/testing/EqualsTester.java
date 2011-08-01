@@ -249,28 +249,6 @@ specifier|public
 name|EqualsTester
 parameter_list|()
 block|{}
-comment|/**    * Constructs a new EqualsTester for a given reference object    *    * @param reference reference object for comparison    */
-DECL|method|EqualsTester (Object reference)
-specifier|public
-name|EqualsTester
-parameter_list|(
-name|Object
-name|reference
-parameter_list|)
-block|{
-name|defaultEqualObjects
-operator|.
-name|add
-argument_list|(
-name|checkNotNull
-argument_list|(
-name|reference
-argument_list|,
-literal|"Reference object cannot be null"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Adds {@code equalityGroup} with objects that are supposed to be equal to    * each other and not equal to any other equality groups added to this tester.    */
 DECL|method|addEqualityGroup (Object... equalityGroup)
 specifier|public
@@ -296,70 +274,6 @@ operator|.
 name|copyOf
 argument_list|(
 name|equalityGroup
-argument_list|)
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/**    * Add one or more objects that should be equal to the reference object    */
-DECL|method|addEqualObject (Object... equalObjects)
-specifier|public
-name|EqualsTester
-name|addEqualObject
-parameter_list|(
-name|Object
-modifier|...
-name|equalObjects
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|equalObjects
-argument_list|)
-expr_stmt|;
-name|defaultEqualObjects
-operator|.
-name|addAll
-argument_list|(
-name|ImmutableList
-operator|.
-name|copyOf
-argument_list|(
-name|equalObjects
-argument_list|)
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-comment|/**    * Add one or more objects that should not be equal to the reference object.    */
-DECL|method|addNotEqualObject (Object... notEqualObjects)
-specifier|public
-name|EqualsTester
-name|addNotEqualObject
-parameter_list|(
-name|Object
-modifier|...
-name|notEqualObjects
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|notEqualObjects
-argument_list|)
-expr_stmt|;
-name|defaultNotEqualObjects
-operator|.
-name|addAll
-argument_list|(
-name|ImmutableList
-operator|.
-name|copyOf
-argument_list|(
-name|notEqualObjects
 argument_list|)
 argument_list|)
 expr_stmt|;
