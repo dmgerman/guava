@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * This file is a modified version of   * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/main/java/util/concurrent/AbstractExecutorService.java?revision=1.35  * which contained the following notice:  *  * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to the  * public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/  *  * Rationale for copying:  * Guava targets JDK5, whose AbstractExecutorService class lacks the newTaskFor protected  * customization methods needed by MoreExecutors.listeningDecorator. This class is a copy of  * AbstractExecutorService from the JSR166 CVS repository. It contains the desired methods.  */
+comment|/*  * This file is a modified version of  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/main/java/util/concurrent/AbstractExecutorService.java?revision=1.35  * which contained the following notice:  *  * Written by Doug Lea with assistance from members of JCP JSR-166 Expert Group and released to the  * public domain, as explained at http://creativecommons.org/publicdomain/zero/1.0/  *  * Rationale for copying:  * Guava targets JDK5, whose AbstractExecutorService class lacks the newTaskFor protected  * customization methods needed by MoreExecutors.listeningDecorator. This class is a copy of  * AbstractExecutorService from the JSR166 CVS repository. It contains the desired methods.  */
 end_comment
 
 begin_package
@@ -162,13 +162,7 @@ begin_comment
 comment|/**  * Provides default implementations of {@link ListeningExecutorService} execution methods. This  * class implements the {@code submit}, {@code invokeAny} and  {@code invokeAll} methods using a  * {@link ListenableFutureTask} returned by {@code newTaskFor}.  For example, the implementation of  * {@code submit(Runnable)} creates an associated {@code ListenableFutureTask} that is executed  * and returned.  *  * @author Doug Lea  */
 end_comment
 
-begin_comment
-comment|/* MOE: begin_strip */
-end_comment
-
 begin_class
-specifier|public
-comment|/* MOE: end_strip */
 DECL|class|AbstractListeningExecutorService
 specifier|abstract
 class|class
