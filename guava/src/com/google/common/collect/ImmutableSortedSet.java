@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@code SortedSet} that stores its elements in a sorted array.  * Some instances are ordered by an explicit comparator, while others follow the  * natural sort ordering of their elements. Either way, null elements are not  * supported.  *  *<p>Unlike {@link Collections#unmodifiableSortedSet}, which is a<i>view</i>  * of a separate collection that can still change, an instance of {@code  * ImmutableSortedSet} contains its own private data and will<i>never</i>  * change. This class is convenient for {@code public static final} sets  * ("constant sets") and also lets you easily make a "defensive copy" of a set  * provided to your class by a caller.  *  *<p>The sets returned by {@link #headSet}, {@link #tailSet}, and  * {@link #subSet} methods share the same array as the original set, preventing  * that array from being garbage collected. If this is a concern, the data may  * be copied into a correctly-sized array by calling {@link #copyOfSorted}.  *  *<p><b>Note on element equivalence:</b> The {@link #contains(Object)},  * {@link #containsAll(Collection)}, and {@link #equals(Object)}  * implementations must check whether a provided object is equivalent to an  * element in the collection. Unlike most collections, an  * {@code ImmutableSortedSet} doesn't use {@link Object#equals} to determine if  * two elements are equivalent. Instead, with an explicit comparator, the  * following relation determines whether elements {@code x} and {@code y} are  * equivalent:<pre>   {@code  *  *   {(x, y) | comparator.compare(x, y) == 0}}</pre>  *  * With natural ordering of elements, the following relation determines whether  * two elements are equivalent:<pre>   {@code  *  *   {(x, y) | x.compareTo(y) == 0}}</pre>  *  *<b>Warning:</b> Like most sets, an {@code ImmutableSortedSet} will not  * function correctly if an element is modified after being placed in the set.  * For this reason, and to avoid general confusion, it is strongly recommended  * to place only immutable objects into this collection.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableSet  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * An immutable {@code SortedSet} that stores its elements in a sorted array.  * Some instances are ordered by an explicit comparator, while others follow the  * natural sort ordering of their elements. Either way, null elements are not  * supported.  *  *<p>Unlike {@link Collections#unmodifiableSortedSet}, which is a<i>view</i>  * of a separate collection that can still change, an instance of {@code  * ImmutableSortedSet} contains its own private data and will<i>never</i>  * change. This class is convenient for {@code public static final} sets  * ("constant sets") and also lets you easily make a "defensive copy" of a set  * provided to your class by a caller.  *  *<p>The sets returned by the {@link #headSet}, {@link #tailSet}, and  * {@link #subSet} methods share the same array as the original set, preventing  * that array from being garbage collected. If this is a concern, the data may  * be copied into a correctly-sized array by calling {@link #copyOfSorted}.  *  *<p><b>Note on element equivalence:</b> The {@link #contains(Object)},  * {@link #containsAll(Collection)}, and {@link #equals(Object)}  * implementations must check whether a provided object is equivalent to an  * element in the collection. Unlike most collections, an  * {@code ImmutableSortedSet} doesn't use {@link Object#equals} to determine if  * two elements are equivalent. Instead, with an explicit comparator, the  * following relation determines whether elements {@code x} and {@code y} are  * equivalent:<pre>   {@code  *  *   {(x, y) | comparator.compare(x, y) == 0}}</pre>  *  * With natural ordering of elements, the following relation determines whether  * two elements are equivalent:<pre>   {@code  *  *   {(x, y) | x.compareTo(y) == 0}}</pre>  *  *<b>Warning:</b> Like most sets, an {@code ImmutableSortedSet} will not  * function correctly if an element is modified after being placed in the set.  * For this reason, and to avoid general confusion, it is strongly recommended  * to place only immutable objects into this collection.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableSet  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_comment
@@ -847,7 +847,7 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-comment|// Hack around K not being a subtype of Comparable.
+comment|// Hack around E not being a subtype of Comparable.
 comment|// Unsafe, see ImmutableSortedSetFauxverideShim.
 annotation|@
 name|SuppressWarnings
@@ -905,7 +905,7 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-comment|// Hack around K not being a subtype of Comparable.
+comment|// Hack around E not being a subtype of Comparable.
 comment|// Unsafe, see ImmutableSortedSetFauxverideShim.
 annotation|@
 name|SuppressWarnings
@@ -963,7 +963,7 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-comment|// Hack around K not being a subtype of Comparable.
+comment|// Hack around E not being a subtype of Comparable.
 comment|// Unsafe, see ImmutableSortedSetFauxverideShim.
 annotation|@
 name|SuppressWarnings
@@ -1135,7 +1135,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from {@link    * #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
+comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from {@link    * #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is safe to use even when {@code sortedSet} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1204,6 +1204,7 @@ literal|true
 argument_list|)
 return|;
 block|}
+comment|// TODO(user): replace with SortedCollections redirect
 DECL|method|copyOfInternal ( Comparator<? super E> comparator, Iterable<? extends E> elements, boolean fromSortedSet)
 specifier|private
 specifier|static
