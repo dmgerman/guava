@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factories for common {@link DiscreteDomain}s.  *  * @author gak@google.com (Gregory Kick)  * @since Guava release 10  */
+comment|/**  * Factories for common {@link DiscreteDomain} instances.  *  * @author gak@google.com (Gregory Kick)  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -84,6 +84,7 @@ specifier|private
 name|DiscreteDomains
 parameter_list|()
 block|{}
+comment|/**    * Returns the discrete domain for values of type {@code Integer}.    */
 DECL|method|integers ()
 specifier|public
 specifier|static
@@ -95,17 +96,17 @@ name|integers
 parameter_list|()
 block|{
 return|return
-name|Integers
+name|IntegerDomain
 operator|.
 name|INSTANCE
 return|;
 block|}
-DECL|class|Integers
+DECL|class|IntegerDomain
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|Integers
+name|IntegerDomain
 extends|extends
 name|DiscreteDomain
 argument_list|<
@@ -118,11 +119,11 @@ DECL|field|INSTANCE
 specifier|private
 specifier|static
 specifier|final
-name|Integers
+name|IntegerDomain
 name|INSTANCE
 init|=
 operator|new
-name|Integers
+name|IntegerDomain
 argument_list|()
 decl_stmt|;
 DECL|method|next (Integer value)
@@ -260,6 +261,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+comment|/**    * Returns the discrete domain for values of type {@code Long}.    */
 DECL|method|longs ()
 specifier|public
 specifier|static
@@ -271,17 +273,17 @@ name|longs
 parameter_list|()
 block|{
 return|return
-name|Longs
+name|LongDomain
 operator|.
 name|INSTANCE
 return|;
 block|}
-DECL|class|Longs
+DECL|class|LongDomain
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|Longs
+name|LongDomain
 extends|extends
 name|DiscreteDomain
 argument_list|<
@@ -294,11 +296,11 @@ DECL|field|INSTANCE
 specifier|private
 specifier|static
 specifier|final
-name|Longs
+name|LongDomain
 name|INSTANCE
 init|=
 operator|new
-name|Longs
+name|LongDomain
 argument_list|()
 decl_stmt|;
 DECL|method|next (Long value)
@@ -474,6 +476,8 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+comment|/**    * Returns the discrete domain for values of type {@code BigInteger}.    */
+comment|// TODO(kevinb): make sure it's tested, and make it public
 DECL|method|bigIntegers ()
 specifier|static
 name|DiscreteDomain
@@ -484,17 +488,17 @@ name|bigIntegers
 parameter_list|()
 block|{
 return|return
-name|BigIntegers
+name|BigIntegerDomain
 operator|.
 name|INSTANCE
 return|;
 block|}
-DECL|class|BigIntegers
+DECL|class|BigIntegerDomain
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|BigIntegers
+name|BigIntegerDomain
 extends|extends
 name|DiscreteDomain
 argument_list|<
@@ -507,11 +511,11 @@ DECL|field|INSTANCE
 specifier|private
 specifier|static
 specifier|final
-name|BigIntegers
+name|BigIntegerDomain
 name|INSTANCE
 init|=
 operator|new
-name|BigIntegers
+name|BigIntegerDomain
 argument_list|()
 decl_stmt|;
 DECL|field|MIN_LONG
