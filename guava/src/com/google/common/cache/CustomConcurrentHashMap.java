@@ -456,6 +456,30 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -566,6 +590,25 @@ init|=
 literal|60
 decl_stmt|;
 comment|// Fields
+DECL|field|logger
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|CustomConcurrentHashMap
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 comment|/**    * Mask value for indexing into segments. The upper bits of a key's hash code are used to choose    * the segment.    */
 DECL|field|segmentMask
 specifier|final
@@ -8905,7 +8948,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// eviction
-comment|/**    * Notifies listeners that an entry has been automatically removed due to expiration, eviction,    * or eligibility for garbage collection. This should be called every time expireEntries or    * evictEntry is called (once the lock is released). It must only be called from user threads    * (e.g. not from garbage collection callbacks).    */
+comment|/**    * Notifies listeners that an entry has been automatically removed due to expiration, eviction,    * or eligibility for garbage collection. This should be called every time expireEntries or    * evictEntry is called (once the lock is released).    */
 DECL|method|processPendingNotifications ()
 name|void
 name|processPendingNotifications
@@ -8933,6 +8976,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 name|removalListener
 operator|.
 name|onRemoval
@@ -8940,6 +8985,27 @@ argument_list|(
 name|notification
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|logger
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|WARNING
+argument_list|,
+literal|"Exception thrown by removal listener"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** Links the evitables together. */
@@ -9639,11 +9705,6 @@ name|V
 name|value
 parameter_list|)
 block|{
-name|recordWrite
-argument_list|(
-name|entry
-argument_list|)
-expr_stmt|;
 name|ValueReference
 argument_list|<
 name|K
@@ -9670,6 +9731,11 @@ operator|.
 name|setValueReference
 argument_list|(
 name|valueReference
+argument_list|)
+expr_stmt|;
+name|recordWrite
+argument_list|(
+name|entry
 argument_list|)
 expr_stmt|;
 block|}
@@ -10356,7 +10422,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Drain the key and value reference queues, cleaning up internal entries      * containing garbage collected keys or values. This is done under lock      * as an optimization, as unsetting entries requires the lock.      */
+comment|/**      * Drain the key and value reference queues, cleaning up internal entries containing garbage      * collected keys or values.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -13892,7 +13958,7 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Half-removes an entry from the map by moving it into the unset state, sending the removal      * notification, and enqueueing subsequent cleanup. This should be called when an entry's key      * has been garbage collected, and that entry is now invalid.      */
+comment|/**      * Removes an entry whose key has been garbage collected.      */
 DECL|method|reclaimKey (ReferenceEntry<K, V> entry, int hash)
 name|boolean
 name|reclaimKey
@@ -14079,7 +14145,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Half-removes an entry from the map by moving it into the unset state, sending the removal      * notification, and enqueueing subsequent cleanup. This should be called when an entry's value      * has been garbage collected, and that entry is now invalid.      */
+comment|/**      * Removes an entry whose value has been garbage collected.      */
 DECL|method|reclaimValue (K key, int hash, ValueReference<K, V> valueReference)
 name|boolean
 name|reclaimValue
