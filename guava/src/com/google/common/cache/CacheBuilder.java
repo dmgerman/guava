@@ -81,6 +81,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|cache
+operator|.
+name|AbstractCache
+operator|.
+name|wrapAndThrowUnchecked
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -2527,12 +2543,15 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|UncheckedExecutionException
+name|wrapAndThrowUnchecked
 argument_list|(
 name|t
 argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
 throw|;
 block|}
 block|}

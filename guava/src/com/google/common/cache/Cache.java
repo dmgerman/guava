@@ -70,6 +70,22 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ExecutionError
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|UncheckedExecutionException
 import|;
 end_import
@@ -142,7 +158,8 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary, and throwing an execution exception on failure. No state associated with this cache    * is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws ExecutionException wraps errors which occur while loading the response    */
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary, and throwing an execution exception on failure. No state associated with this cache    * is modified until computation completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws ExecutionException if an exception was thrown while loading the response    */
+comment|/*    * TODO(cpovirk): throw ExecutionError instead for an Error (and maybe UncheckedExecutionException    * for RuntimeException?)    */
 DECL|method|get (K key)
 annotation|@
 name|Nullable
@@ -155,7 +172,7 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes. Unlike    * {@link #get}, this method does not throw a checked exception, and thus should only be used in    * situations where exceptions are not thrown by the cache loader.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws UncheckedExecutionException wraps errors which occur while loading the response    */
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary. No state associated with this cache is modified until computation completes. Unlike    * {@link #get}, this method does not throw a checked exception, and thus should only be used in    * situations where exceptions are not thrown by the cache loader.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the response    * @throws ExecutionError if an error was thrown while loading the response    */
 DECL|method|getUnchecked (K key)
 annotation|@
 name|Nullable
@@ -166,7 +183,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException wraps errors which occur while loading the response    */
+comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the response    * @throws ExecutionError if an error was thrown while loading the response    */
 annotation|@
 name|Override
 DECL|method|apply (K key)

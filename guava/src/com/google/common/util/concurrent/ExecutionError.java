@@ -33,29 +33,29 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to  * {@code ExecutionException} when the exception thrown by a task is an  * unchecked exception. This allows the client code to continue to distinguish  * between checked and unchecked exceptions, even when they come from other  * threads.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link  * ExecutionError}.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
+comment|/**  * {@link Error} variant of {@link java.util.concurrent.ExecutionException}. As  * with {@code ExecutionException}, the error's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread. That cause should  * itself be an {@code Error}; if not, use {@code ExecutionException} or {@link  * UncheckedExecutionException}. This allows the client code to continue to  * distinguish between exceptions and errors, even when they come from other  * threads.  *  * @author cpovirk@google.com (Chris Povirk)  * @since Guava release 10  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
-DECL|class|UncheckedExecutionException
+DECL|class|ExecutionError
 specifier|public
 class|class
-name|UncheckedExecutionException
+name|ExecutionError
 extends|extends
-name|RuntimeException
+name|Error
 block|{
 comment|/**    * Creates a new instance with {@code null} as its detail message.    */
-DECL|method|UncheckedExecutionException ()
+DECL|method|ExecutionError ()
 specifier|protected
-name|UncheckedExecutionException
+name|ExecutionError
 parameter_list|()
 block|{}
 comment|/**    * Creates a new instance with the given detail message.    */
-DECL|method|UncheckedExecutionException (String message)
+DECL|method|ExecutionError (String message)
 specifier|protected
-name|UncheckedExecutionException
+name|ExecutionError
 parameter_list|(
 name|String
 name|message
@@ -68,14 +68,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with the given detail message and cause.    */
-DECL|method|UncheckedExecutionException (String message, Exception cause)
+DECL|method|ExecutionError (String message, Error cause)
 specifier|public
-name|UncheckedExecutionException
+name|ExecutionError
 parameter_list|(
 name|String
 name|message
 parameter_list|,
-name|Exception
+name|Error
 name|cause
 parameter_list|)
 block|{
@@ -88,11 +88,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with the given cause.    */
-DECL|method|UncheckedExecutionException (Exception cause)
+DECL|method|ExecutionError (Error cause)
 specifier|public
-name|UncheckedExecutionException
+name|ExecutionError
 parameter_list|(
-name|Exception
+name|Error
 name|cause
 parameter_list|)
 block|{
