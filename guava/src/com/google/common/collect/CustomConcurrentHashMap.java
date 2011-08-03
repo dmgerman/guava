@@ -12957,6 +12957,19 @@ name|getNext
 argument_list|()
 control|)
 block|{
+comment|// Computing references aren't actually in the map yet.
+if|if
+condition|(
+operator|!
+name|e
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|isComputingReference
+argument_list|()
+condition|)
+block|{
 name|enqueueNotification
 argument_list|(
 name|e
@@ -12966,6 +12979,7 @@ operator|.
 name|EXPLICIT
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
