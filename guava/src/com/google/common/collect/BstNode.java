@@ -137,55 +137,12 @@ name|N
 parameter_list|>
 parameter_list|>
 block|{
-DECL|method|countOrZero (@ullable N node)
-specifier|static
-parameter_list|<
-name|N
-extends|extends
-name|BstNode
-argument_list|<
-name|?
-argument_list|,
-name|N
-argument_list|>
-parameter_list|>
-name|int
-name|countOrZero
-parameter_list|(
-annotation|@
-name|Nullable
-name|N
-name|node
-parameter_list|)
-block|{
-return|return
-operator|(
-name|node
-operator|==
-literal|null
-operator|)
-condition|?
-literal|0
-else|:
-name|node
-operator|.
-name|count
-argument_list|()
-return|;
-block|}
 comment|/**    * The key on which this binary search tree is ordered. All descendants of the left subtree of    * this node must have keys strictly less than {@code this.key}.    */
 DECL|field|key
 specifier|private
 specifier|final
 name|K
 name|key
-decl_stmt|;
-comment|/**    * The total count of nodes in this subtree.    */
-DECL|field|count
-specifier|private
-specifier|final
-name|int
-name|count
 decl_stmt|;
 comment|/**    * The left child of this node. A {@code null} value indicates that this node has no left child.    */
 annotation|@
@@ -233,22 +190,6 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|count
-operator|=
-literal|1
-operator|+
-name|countOrZero
-argument_list|(
-name|left
-argument_list|)
-operator|+
-name|countOrZero
-argument_list|(
-name|right
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
 name|left
 operator|=
 name|left
@@ -270,18 +211,6 @@ parameter_list|()
 block|{
 return|return
 name|key
-return|;
-block|}
-comment|/**    * Returns the total count of nodes in this subtree.    */
-DECL|method|count ()
-specifier|public
-specifier|final
-name|int
-name|count
-parameter_list|()
-block|{
-return|return
-name|count
 return|;
 block|}
 comment|/**    * Returns the child on the specified side, or {@code null} if there is no such child.    */
