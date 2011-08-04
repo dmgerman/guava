@@ -9845,6 +9845,11 @@ name|isComputingReference
 argument_list|()
 condition|)
 block|{
+name|boolean
+name|createNewEntry
+init|=
+literal|true
+decl_stmt|;
 name|ComputingValueReference
 argument_list|<
 name|K
@@ -9915,11 +9920,6 @@ name|get
 argument_list|(
 name|index
 argument_list|)
-decl_stmt|;
-name|boolean
-name|createNewEntry
-init|=
-literal|true
 decl_stmt|;
 for|for
 control|(
@@ -10142,6 +10142,13 @@ argument_list|,
 name|first
 argument_list|)
 expr_stmt|;
+name|e
+operator|.
+name|setValueReference
+argument_list|(
+name|computingValueReference
+argument_list|)
+expr_stmt|;
 name|table
 operator|.
 name|set
@@ -10152,6 +10159,8 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
 name|e
 operator|.
 name|setValueReference
@@ -10159,6 +10168,7 @@ argument_list|(
 name|computingValueReference
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
@@ -10172,9 +10182,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|computingValueReference
-operator|!=
-literal|null
+name|createNewEntry
 condition|)
 block|{
 comment|// This thread solely created the entry.
@@ -12014,10 +12022,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|isCollected
-argument_list|(
+operator|!
 name|valueReference
-argument_list|)
+operator|.
+name|isComputingReference
+argument_list|()
 condition|)
 block|{
 name|enqueueNotification

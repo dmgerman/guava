@@ -11221,10 +11221,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|isCollected
-argument_list|(
+operator|!
 name|valueReference
-argument_list|)
+operator|.
+name|isComputingReference
+argument_list|()
 condition|)
 block|{
 name|enqueueNotification
