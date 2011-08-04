@@ -782,38 +782,6 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**        * Returns true if x1 is less than x2, when both values are treated as        * unsigned.        */
-comment|// TODO(kevinb): Should be a common method in primitives.UnsignedLongs.
-DECL|method|lessThanUnsigned (long x1, long x2)
-specifier|static
-name|boolean
-name|lessThanUnsigned
-parameter_list|(
-name|long
-name|x1
-parameter_list|,
-name|long
-name|x2
-parameter_list|)
-block|{
-return|return
-operator|(
-name|x1
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
-operator|)
-operator|<
-operator|(
-name|x2
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
-operator|)
-return|;
-block|}
 DECL|method|compare (byte[] left, byte[] right)
 annotation|@
 name|Override
@@ -933,17 +901,14 @@ name|littleEndian
 condition|)
 block|{
 return|return
-name|lessThanUnsigned
+name|UnsignedLongs
+operator|.
+name|compare
 argument_list|(
 name|lw
 argument_list|,
 name|rw
 argument_list|)
-condition|?
-operator|-
-literal|1
-else|:
-literal|1
 return|;
 block|}
 comment|// Use binary search
