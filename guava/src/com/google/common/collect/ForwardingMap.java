@@ -627,10 +627,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since Guava release 07    */
+comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since Guava release 07    * @deprecated Use the {@code StandardKeySet} constructor instead.  This    *             method will be removed in Guava release 11.    */
 DECL|method|standardKeySet ()
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 specifier|protected
 name|Set
 argument_list|<
@@ -641,6 +643,18 @@ parameter_list|()
 block|{
 return|return
 operator|new
+name|StandardKeySet
+argument_list|()
+return|;
+block|}
+comment|/**    * A sensible implementation of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation or a subclass thereof.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
+DECL|class|StandardKeySet
+specifier|protected
+class|class
+name|StandardKeySet
+extends|extends
 name|Maps
 operator|.
 name|KeySet
@@ -649,10 +663,10 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-argument_list|()
 block|{
 annotation|@
 name|Override
+DECL|method|map ()
 name|Map
 argument_list|<
 name|K
@@ -668,8 +682,6 @@ operator|.
 name|this
 return|;
 block|}
-block|}
-return|;
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms    * of the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #containsKey} to forward to    * this implementation.    *    * @since Guava release 07    */
 DECL|method|standardContainsKey (@ullable Object key)
@@ -696,10 +708,12 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since Guava release 07    */
+comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since Guava release 07    * @deprecated Use the {@code StandardValues} constructor instead.  This    *             method will be removed in Guava release 11.    */
 DECL|method|standardValues ()
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 specifier|protected
 name|Collection
 argument_list|<
@@ -710,6 +724,18 @@ parameter_list|()
 block|{
 return|return
 operator|new
+name|StandardValues
+argument_list|()
+return|;
+block|}
+comment|/**    * A sensible implementation of {@link #values} in terms of the following    * methods: {@link #clear}, {@link #containsValue}, {@link #isEmpty},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #values} to forward to this    * implementation or a subclass thereof.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
+DECL|class|StandardValues
+specifier|protected
+class|class
+name|StandardValues
+extends|extends
 name|Maps
 operator|.
 name|Values
@@ -718,10 +744,10 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-argument_list|()
 block|{
 annotation|@
 name|Override
+DECL|method|map ()
 name|Map
 argument_list|<
 name|K
@@ -737,8 +763,6 @@ operator|.
 name|this
 return|;
 block|}
-block|}
-return|;
 block|}
 comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet},    * you may wish to override {@link #containsValue} to forward to this    * implementation.    *    * @since Guava release 07    */
 DECL|method|standardContainsValue (@ullable Object value)
@@ -765,8 +789,10 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since Guava release 07    */
+comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since Guava release 07    * @deprecated Use {@code StandardEntrySet} instead.  This method will be    *             removed in Guava release 11.    */
 DECL|method|standardEntrySet ( final Supplier<Iterator<Entry<K, V>>> entryIteratorSupplier)
+annotation|@
+name|Deprecated
 annotation|@
 name|Beta
 specifier|protected
@@ -799,33 +825,9 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|Maps
-operator|.
-name|EntrySet
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|StandardEntrySet
 argument_list|()
 block|{
-annotation|@
-name|Override
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|()
-block|{
-return|return
-name|ForwardingMap
-operator|.
-name|this
-return|;
-block|}
 annotation|@
 name|Override
 specifier|public
@@ -852,6 +854,43 @@ return|;
 block|}
 block|}
 return|;
+block|}
+comment|/**    * A sensible implementation of {@link #entrySet} in terms of the following    * methods: {@link #clear}, {@link #containsKey}, {@link #get}, {@link    * #isEmpty}, {@link #remove}, and {@link #size}. In many cases, you may    * wish to override {@link #entrySet} to forward to this implementation    * or a subclass thereof.    *    * @since Guava release 10    */
+annotation|@
+name|Beta
+DECL|class|StandardEntrySet
+specifier|protected
+specifier|abstract
+class|class
+name|StandardEntrySet
+extends|extends
+name|Maps
+operator|.
+name|EntrySet
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+annotation|@
+name|Override
+DECL|method|map ()
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+parameter_list|()
+block|{
+return|return
+name|ForwardingMap
+operator|.
+name|this
+return|;
+block|}
 block|}
 comment|/**    * A sensible definition of {@link #isEmpty} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #isEmpty} to forward to this implementation.    *    * @since Guava release 07    */
 DECL|method|standardIsEmpty ()
