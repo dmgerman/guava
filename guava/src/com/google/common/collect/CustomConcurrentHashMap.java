@@ -18288,6 +18288,12 @@ argument_list|)
 expr_stmt|;
 comment|// terminate entries
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// serialization of deprecated feature
 DECL|method|readMapMaker (ObjectInputStream in)
 name|MapMaker
 name|readMapMaker
