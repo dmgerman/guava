@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|math
@@ -79,10 +93,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the long as an unsigned number.  *  * @author Brian Milch  * @author Peter Epstein  * @author Louis Wasserman  */
+comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the long as an unsigned number.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Peter Epstein  * @since Guava release 10  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|UnsignedLongs
 specifier|public
 specifier|final
@@ -105,7 +121,7 @@ init|=
 operator|-
 literal|1L
 decl_stmt|;
-comment|// Equivalent to 0xffffffffffffffffL
+comment|// Equivalent to 2^64 - 1
 DECL|method|toBigInteger (long unsigned)
 specifier|public
 specifier|static
@@ -671,7 +687,6 @@ block|}
 block|}
 comment|/**    * Returns dividend / divisor, where the dividend and divisor are treated as    * unsigned 64-bit quantities.    *    * @param dividend the dividend (numerator)    * @param divisor  the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 DECL|method|divide (long dividend, long divisor)
-specifier|public
 specifier|static
 name|long
 name|divide
@@ -782,7 +797,6 @@ return|;
 block|}
 comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as    * unsigned 64-bit quantities.    *    * @param dividend the dividend (numerator)    * @param divisor  the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 DECL|method|remainder (long dividend, long divisor)
-specifier|public
 specifier|static
 name|long
 name|remainder
@@ -894,20 +908,18 @@ operator|)
 return|;
 block|}
 comment|/**    * Returns the unsigned long value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid    * unsigned integer, or if the value represented is too large to fit in an    * unsigned long.    */
-DECL|method|parseLong (String s)
+DECL|method|parseUnsignedLong (String s)
 specifier|public
 specifier|static
 name|long
-name|parseLong
+name|parseUnsignedLong
 parameter_list|(
 name|String
 name|s
 parameter_list|)
-throws|throws
-name|NumberFormatException
 block|{
 return|return
-name|parseLong
+name|parseUnsignedLong
 argument_list|(
 name|s
 argument_list|,
@@ -916,11 +928,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the unsigned long value represented by a string with the given    * radix.    *    * @param s the string containing the unsigned long representation to be    * parsed.    * @param radix the radix to use while parsing {@code s}; must be between    * Character.MIN_RADIX and Character.MAX_RADIX.    * @throws NumberFormatException if the string does not contain a valid    * unsigned integer with the given radix, or if the value represented is    * too large to fit in an unsigned long.  Also thrown if supplied radix is    * invalid.    */
-DECL|method|parseLong (String s, int radix)
+DECL|method|parseUnsignedLong (String s, int radix)
 specifier|public
 specifier|static
 name|long
-name|parseLong
+name|parseUnsignedLong
 parameter_list|(
 name|String
 name|s
@@ -928,8 +940,6 @@ parameter_list|,
 name|int
 name|radix
 parameter_list|)
-throws|throws
-name|NumberFormatException
 block|{
 if|if
 condition|(
