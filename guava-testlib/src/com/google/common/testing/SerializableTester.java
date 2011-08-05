@@ -114,7 +114,7 @@ specifier|private
 name|SerializableTester
 parameter_list|()
 block|{}
-comment|/**    * Serializes and deserializes the specified object.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    */
+comment|/**    * Serializes and deserializes the specified object.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    * @throws RuntimeException if the specified object was not successfully    *     serialized or deserialized    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
