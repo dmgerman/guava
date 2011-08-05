@@ -285,7 +285,6 @@ argument_list|)
 return|;
 block|}
 DECL|class|UnmodifiableMultiset
-specifier|private
 specifier|static
 class|class
 name|UnmodifiableMultiset
@@ -364,9 +363,32 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
-DECL|method|elementSet ()
+DECL|method|createElementSet ()
+name|Set
+argument_list|<
+name|E
+argument_list|>
+name|createElementSet
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+expr|<
+name|E
+operator|>
+name|unmodifiableSet
+argument_list|(
+name|delegate
+operator|.
+name|elementSet
+argument_list|()
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
+DECL|method|elementSet ()
 specifier|public
 name|Set
 argument_list|<
@@ -392,18 +414,8 @@ operator|)
 condition|?
 name|elementSet
 operator|=
-name|Collections
-operator|.
-expr|<
-name|E
-operator|>
-name|unmodifiableSet
-argument_list|(
-name|delegate
-operator|.
-name|elementSet
+name|createElementSet
 argument_list|()
-argument_list|)
 else|:
 name|es
 return|;
