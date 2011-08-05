@@ -3184,16 +3184,6 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|CancellationException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
-catch|catch
-parameter_list|(
 name|ExecutionException
 name|e
 parameter_list|)
