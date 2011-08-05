@@ -154,8 +154,6 @@ name|ContiguousSet
 argument_list|<
 name|C
 argument_list|>
-implements|implements
-name|Serializable
 block|{
 DECL|field|range
 specifier|private

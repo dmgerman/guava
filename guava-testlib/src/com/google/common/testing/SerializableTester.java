@@ -218,7 +218,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Serializes and deserializes the specified object and verifies that the    * re-serialized object is equal to the provided object, and that the    * hashcodes are identical.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    * @return the re-serialized object    * @throws RuntimeException if the specified object was not successfully    *     serialized or deserialized    * @throws GuavaAsserts.TestAssertionFailure if the re-serialized object is     *     not equal to the original object, or if the hashcodes are different.    */
+comment|/**    * Serializes and deserializes the specified object and verifies that the    * re-serialized object is equal to the provided object, that the hashcodes    * are identical, and that the class of the re-serialized object is identical    * to that of the original.    *    *<p>Note that the specified object may not be known by the compiler to be a    * {@link java.io.Serializable} instance, and is thus declared an    * {@code Object}. For example, it might be declared as a {@code List}.    *    *<p>Note also that serialization is not in general required to return an    * object that is {@linkplain Object#equals equal} to the original, nor is it    * required to return even an object of the same class. For example, if    * sublists of {@code MyList} instances were serializable, those sublists    * might implement a private {@code MySubList} type but serialize as a plain    * {@code MyList} to save space. So long as {@code MyList} has all the public    * supertypes of {@code MySubList}, this is safe. For these cases, for which    * {@code reserializeAndAssert} is too strict, use {@link #reserialize}.    *    * @return the re-serialized object    * @throws RuntimeException if the specified object was not successfully    *     serialized or deserialized    * @throws GuavaAsserts.TestAssertionFailure if the re-serialized object is     *     not equal to the original object, or if the hashcodes are different.    */
 DECL|method|reserializeAndAssert (T object)
 specifier|public
 specifier|static
@@ -257,6 +257,21 @@ argument_list|,
 name|copy
 argument_list|,
 literal|true
+argument_list|)
+expr_stmt|;
+name|GuavaAsserts
+operator|.
+name|assertEquals
+argument_list|(
+name|object
+operator|.
+name|getClass
+argument_list|()
+argument_list|,
+name|copy
+operator|.
+name|getClass
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

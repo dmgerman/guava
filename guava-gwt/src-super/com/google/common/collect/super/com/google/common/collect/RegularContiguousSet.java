@@ -82,16 +82,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collection
@@ -140,8 +130,6 @@ name|ContiguousSet
 argument_list|<
 name|C
 argument_list|>
-implements|implements
-name|Serializable
 block|{
 DECL|field|range
 specifier|private
