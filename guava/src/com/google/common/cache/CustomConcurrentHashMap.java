@@ -10302,11 +10302,6 @@ operator|.
 name|nanoTime
 argument_list|()
 decl_stmt|;
-name|long
-name|end
-init|=
-literal|0
-decl_stmt|;
 try|try
 block|{
 comment|// Synchronizes on the entry to allow failing fast when a recursive computation is
@@ -10328,13 +10323,6 @@ argument_list|,
 name|hash
 argument_list|)
 expr_stmt|;
-name|end
-operator|=
-name|System
-operator|.
-name|nanoTime
-argument_list|()
-expr_stmt|;
 block|}
 if|if
 condition|(
@@ -10343,6 +10331,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|long
+name|end
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
 comment|// a null return value is an Error, so don't count it in the stats
 name|statsCounter
 operator|.
@@ -10399,18 +10395,20 @@ finally|finally
 block|{
 if|if
 condition|(
-name|end
+name|value
 operator|==
-literal|0
+literal|null
 condition|)
 block|{
+comment|// The compute call returned null or threw an exception; we treat them the same way.
+name|long
 name|end
-operator|=
+init|=
 name|System
 operator|.
 name|nanoTime
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|statsCounter
 operator|.
 name|recordCreateException
@@ -10420,14 +10418,6 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|value
-operator|==
-literal|null
-condition|)
-block|{
 name|clearValue
 argument_list|(
 name|key
