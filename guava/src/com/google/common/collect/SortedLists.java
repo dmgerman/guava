@@ -34,6 +34,48 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -64,6 +106,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|RandomAccess
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -73,11 +125,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods pertaining to sorted {@link List} instances.  *   * In this documentation, the terms<em>greatest</em>,<em>greater</em>,  *<em>least</em>, and<em>lest</em> are considered to refer to the comparator   * on the elements, and the terms<em>first</em> and<em>last</em> are   * considered to refer to the elements' ordering in a list.   *  * @author Louis Wasserman  * @see Lists  * @see Collections  */
+comment|/**  * Static methods pertaining to sorted {@link List} instances.  *  * In this documentation, the terms<em>greatest</em>,<em>greater</em>,  *<em>least</em>, and<em>lest</em> are considered to refer to the comparator  * on the elements, and the terms<em>first</em> and<em>last</em> are  * considered to refer to the elements' ordering in a list.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|SortedLists
+annotation|@
+name|Beta
 specifier|final
 class|class
 name|SortedLists
@@ -88,16 +144,20 @@ name|SortedLists
 parameter_list|()
 block|{}
 comment|/**    * A comparison relationship between a value and an element in a collection.    */
+annotation|@
+name|Beta
 DECL|enum|Relation
+specifier|public
 enum|enum
 name|Relation
 block|{
-comment|/**      * The relation that specifies the greatest element strictly less than the      * value.  In the case of duplicates, the last such element is       * chosen.      *      *<p>In the {@link SortedLists#binarySearch binarySearch} methods, {@code      * -1} is considered to be the index of negative infinity. That is, if there      * is no element in the list lower than a given value, {@code -1} is      * returned as the index of the lower element.  For example:<pre> {@code      *       * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), LOWER); // -1      * binarySearch(list, mid, Ordering.natural(), LOWER); // -1      * binarySearch(list, high, Ordering.natural(), LOWER); // 2      * }</pre>      */
+comment|/**      * The relation that specifies the greatest element strictly less than the      * value.  In the case of duplicates, the last such element is      * chosen.      *      *<p>In the {@link SortedLists#binarySearch binarySearch} methods, {@code      * -1} is considered to be the index of negative infinity. That is, if there      * is no element in the list lower than a given value, {@code -1} is      * returned as the index of the lower element.  For example:<pre> {@code      *      * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), LOWER); // -1      * binarySearch(list, mid, Ordering.natural(), LOWER); // -1      * binarySearch(list, high, Ordering.natural(), LOWER); // 2      * }</pre>      */
 DECL|enumConstant|LOWER
 name|LOWER
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -208,12 +268,13 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * The relation that specifies the greatest element less than or equal to      * the value. In the case of duplicates, the first element equal to the      * value is chosen, or if no such element exists, among the greatest      * elements less than or equal to the value, the last is chosen.      *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, {@code -1}      * is considered to be the index of negative infinity. That is, if there is      * no element in the list less than or equal to a given value, {@code -1} is      * returned as the index of the floor element.  For example:<pre> {@code      *       * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), FLOOR); // -1      * binarySearch(list, mid, Ordering.natural(), FLOOR); // 0      * binarySearch(list, high, Ordering.natural(), FLOOR); // 2      * }</pre>      */
+comment|/**      * The relation that specifies the greatest element less than or equal to      * the value. In the case of duplicates, the first element equal to the      * value is chosen, or if no such element exists, among the greatest      * elements less than or equal to the value, the last is chosen.      *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, {@code -1}      * is considered to be the index of negative infinity. That is, if there is      * no element in the list less than or equal to a given value, {@code -1} is      * returned as the index of the floor element.  For example:<pre> {@code      *      * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), FLOOR); // -1      * binarySearch(list, mid, Ordering.natural(), FLOOR); // 0      * binarySearch(list, high, Ordering.natural(), FLOOR); // 2      * }</pre>      */
 DECL|enumConstant|FLOOR
 name|FLOOR
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -289,15 +350,13 @@ block|{
 name|int
 name|middle
 init|=
+operator|(
 name|lower
 operator|+
-operator|(
 name|upper
-operator|-
-name|lower
 operator|)
-operator|/
-literal|2
+operator|>>>
+literal|1
 decl_stmt|;
 name|int
 name|c
@@ -382,12 +441,13 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * The relation that specifies an element equal to the value.  In the case      * of duplicates, no guarantee is made on which element is chosen.      *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, if there is      * no element that compares as equal to a given value, {@code -1} is      * returned to indicate failure. For example:<pre> {@code      *       * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), EQUAL); // -1      * binarySearch(list, mid, Ordering.natural(), EQUAL); // could be 0, 1, 2      * binarySearch(list, high, Ordering.natural(), EQUAL); // -1      * }</pre>      */
+comment|/**      * The relation that specifies an element equal to the value.  In the case      * of duplicates, no guarantee is made on which element is chosen.      *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, if there is      * no element that compares as equal to a given value, {@code -1} is      * returned to indicate failure. For example:<pre> {@code      *      * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), EQUAL); // -1      * binarySearch(list, mid, Ordering.natural(), EQUAL); // could be 0, 1, 2      * binarySearch(list, high, Ordering.natural(), EQUAL); // -1      * }</pre>      */
 DECL|enumConstant|EQUAL
 name|EQUAL
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -478,12 +538,13 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * The relation that specifies the least element greater than or equal to      * the value. In the case of duplicates, the last element equal to the      * value is chosen, or if no such element exists, among the least      * elements greater than or equal to the value, the first is chosen.            *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, {@code      * list.size()} is considered to be the index of positive infinity. That is,      * if there is no element in the list greater than or equal to a given      * value, {@code -1} is returned as the index of the ceiling element.      * For example:<pre> {@code      *       * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), CEILING); // 0      * binarySearch(list, mid, Ordering.natural(), CEILING); // 2      * binarySearch(list, high, Ordering.natural(), CEILING); // 3      * }</pre>      */
+comment|/**      * The relation that specifies the least element greater than or equal to      * the value. In the case of duplicates, the last element equal to the      * value is chosen, or if no such element exists, among the least      * elements greater than or equal to the value, the first is chosen.       *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, {@code      * list.size()} is considered to be the index of positive infinity. That is,      * if there is no element in the list greater than or equal to a given      * value, {@code -1} is returned as the index of the ceiling element.      * For example:<pre> {@code      *      * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), CEILING); // 0      * binarySearch(list, mid, Ordering.natural(), CEILING); // 2      * binarySearch(list, high, Ordering.natural(), CEILING); // 3      * }</pre>      */
 DECL|enumConstant|CEILING
 name|CEILING
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -559,17 +620,15 @@ block|{
 name|int
 name|middle
 init|=
+operator|(
 name|lower
 operator|+
-operator|(
 name|upper
-operator|-
-name|lower
 operator|+
 literal|1
 operator|)
-operator|/
-literal|2
+operator|>>>
+literal|1
 decl_stmt|;
 name|int
 name|c
@@ -652,12 +711,13 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * The relation that specifies the least element strictly greater than the      * value.  In the case of duplicates, the first such element is chosen.      *      *<p>      * In the {@link SortedLists#binarySearch binarySearch} methods, {@code      * list.size()} is considered to be the index of positive infinity. That is,      * if there is no element in the list greater than a given value, {@code -1}      * is returned as the index of the higher element. For example:<pre> {@code      *       * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), HIGHER); // 0      * binarySearch(list, mid, Ordering.natural(), HIGHER); // 3      * binarySearch(list, high, Ordering.natural(), HIGHER); // 3      * }</pre>      */
+comment|/**      * The relation that specifies the least element strictly greater than the      * value.  In the case of duplicates, the first such element is chosen.      *      *<p>In the {@link SortedLists#binarySearch binarySearch} methods, {@code      * list.size()} is considered to be the index of positive infinity. That is,      * if there is no element in the list greater than a given value, {@code      * list.size()} is returned as the index of the higher element. For example:      *<pre> {@code      *      * Integer low = 1;      * Integer mid = 2;      * Integer high = 3;      * List<Integer> list = Arrays.asList(2, 2, 2);      * binarySearch(list, low, Ordering.natural(), HIGHER); // 0      * binarySearch(list, mid, Ordering.natural(), HIGHER); // 3      * binarySearch(list, high, Ordering.natural(), HIGHER); // 3      * }</pre>      */
 DECL|enumConstant|HIGHER
 name|HIGHER
 block|{
 annotation|@
 name|Override
+specifier|public
 name|Relation
 name|reverse
 parameter_list|()
@@ -768,6 +828,7 @@ block|}
 block|;
 comment|/**      * The reverse order counterpart of the relation. Useful for descending      * views.      */
 DECL|method|reverse ()
+specifier|public
 specifier|abstract
 name|Relation
 name|reverse
@@ -851,8 +912,178 @@ name|comparator
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Searches the specified list for the specified object using the binary    * search algorithm. The list must be sorted into ascending order according to    * the specified comparator (as by the {@link Collections#sort(List,    * Comparator) Collections.sort(List, Comparator)} method), prior to making    * this call. If it is not sorted, the results are undefined.    *    *<p>Returns the index of the element in the list which has the specified    * {@code Relation} to the specified object. So as to provide meaningful    * results in all cases, {@code -1} is considered to be the index of negative    * infinity, and {@code list.size()} is considered to be the index of positive    * infinity. The exception is {@link Relation#EQUAL EQUAL}. If {@code EQUAL}    * is specified and no equal element is found, {@code -1} is returned, but it    * should not be interpreted as "negative infinity."    *    *<p>If there are duplicate elements, see the documentation on the relation    * for more details.    *    *<p>This method runs in log(n) time for a random access list (which    * provides near-constant-time positional access).    *    * @param list the list to be searched.    * @param e the value to be searched for.    * @param comparator the comparator by which the list is ordered.    * @return the index of element with the specified relation to the search key,    *         if it is contained in the list. Otherwise, if negative infinity has    *         the specified relation (or if {@code relation} is {@code EQUAL} and    *         the search key was not in the list), returns {@code -1}, or if    *         positive infinity has the specified relation, returns {@code    *         list.size()}.    * @throws NullPointerException if {@code key} is null and the specified     *         comparator does not accept null values.    * @throws ClassCastException if the list contains elements that are not    *<i>mutually comparable</i> using the specified comparator, or the    *         search key is not mutually comparable with the elements of the list    *         using this comparator.    */
-DECL|method|binarySearch (List<? extends E> list, @Nullable E e, Comparator<? super E> comparator, Relation relation)
+comment|/**    * Searches the specified naturally ordered list for the specified object using the binary    * search algorithm.    *    *<p>Equivalent to {@link #binarySearch(List, Object, Comparator, Relation) binarySearch}{@code    * (list, key, Ordering.natural(), relation)}.    */
+DECL|method|binarySearch ( List<? extends E> list, E e, Relation relation)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+extends|extends
+name|Comparable
+parameter_list|>
+name|int
+name|binarySearch
+parameter_list|(
+name|List
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|list
+parameter_list|,
+name|E
+name|e
+parameter_list|,
+name|Relation
+name|relation
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+name|binarySearch
+argument_list|(
+name|list
+argument_list|,
+name|checkNotNull
+argument_list|(
+name|e
+argument_list|)
+argument_list|,
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+argument_list|,
+name|relation
+argument_list|)
+return|;
+block|}
+comment|/**    * Binary searches the list for the specified key, using the specified key function.    *    *<p>Equivalent to {@link #binarySearch(List, Function, Object, Comparator, Relation)    * binarySearch} {@code (list, keyFunction, key, Ordering.natural(), relation)}.    */
+DECL|method|binarySearch (List<E> list, Function<? super E, K> keyFunction, K key, Relation relation)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|,
+name|K
+extends|extends
+name|Comparable
+parameter_list|>
+name|int
+name|binarySearch
+parameter_list|(
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|list
+parameter_list|,
+name|Function
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|,
+name|K
+argument_list|>
+name|keyFunction
+parameter_list|,
+name|K
+name|key
+parameter_list|,
+name|Relation
+name|relation
+parameter_list|)
+block|{
+return|return
+name|binarySearch
+argument_list|(
+name|list
+argument_list|,
+name|keyFunction
+argument_list|,
+name|key
+argument_list|,
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+argument_list|,
+name|relation
+argument_list|)
+return|;
+block|}
+comment|/**    * Binary searches the list for the specified key, using the specified key function.    *    *<p>Equivalent to {@link #binarySearch(List, Object, Comparator, Relation) binarySearch}    * {@code (Lists.transform(list, keyFunction), key, keyComparator, relation)}.    */
+DECL|method|binarySearch (List<E> list, Function<? super E, K> keyFunction, K key, Comparator<? super K> keyComparator, Relation relation)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|,
+name|K
+parameter_list|>
+name|int
+name|binarySearch
+parameter_list|(
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|list
+parameter_list|,
+name|Function
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|,
+name|K
+argument_list|>
+name|keyFunction
+parameter_list|,
+name|K
+name|key
+parameter_list|,
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|>
+name|keyComparator
+parameter_list|,
+name|Relation
+name|relation
+parameter_list|)
+block|{
+return|return
+name|binarySearch
+argument_list|(
+name|Lists
+operator|.
+name|transform
+argument_list|(
+name|list
+argument_list|,
+name|keyFunction
+argument_list|)
+argument_list|,
+name|key
+argument_list|,
+name|keyComparator
+argument_list|,
+name|relation
+argument_list|)
+return|;
+block|}
+comment|/**    * Searches the specified list for the specified object using the binary    * search algorithm. The list must be sorted into ascending order according to    * the specified comparator (as by the {@link Collections#sort(List,    * Comparator) Collections.sort(List, Comparator)} method), prior to making    * this call. If it is not sorted, the results are undefined.    *    *<p>Returns the index of the element in the list which has the specified    * {@code Relation} to the specified object. So as to provide meaningful    * results in all cases, {@code -1} is considered to be the index of negative    * infinity, and {@code list.size()} is considered to be the index of positive    * infinity. The exception is {@link Relation#EQUAL EQUAL}. If {@code EQUAL}    * is specified and no equal element is found, {@code -1} is returned, but it    * should not be interpreted as "negative infinity."    *    *<p>If there are duplicate elements, see the documentation on the relation    * for more details.    *    *<p>This method runs in log(n) time on random-access lists, which offer    * near-constant-time access to each list element.    *    * @param list the list to be searched.    * @param e the value to be searched for.    * @param comparator the comparator by which the list is ordered.    * @return the index of element with the specified relation to the search key,    *         if it is contained in the list. Otherwise, if negative infinity has    *         the specified relation (or if {@code relation} is {@code EQUAL} and    *         the search key was not in the list), returns {@code -1}, or if    *         positive infinity has the specified relation, returns {@code    *         list.size()}.    * @throws NullPointerException if {@code key} is null and the specified    *         comparator does not accept null values.    * @throws ClassCastException if the list contains elements that are not    *<i>mutually comparable</i> using the specified comparator, or the    *         search key is not mutually comparable with the elements of the list    *         using this comparator.    */
+DECL|method|binarySearch ( List<? extends E> list, @Nullable E e, Comparator<? super E> comparator, Relation relation)
+specifier|public
 specifier|static
 parameter_list|<
 name|E
@@ -946,6 +1177,32 @@ argument_list|(
 name|relation
 argument_list|)
 expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|list
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+operator|(
+name|list
+operator|instanceof
+name|RandomAccess
+operator|)
+condition|)
+block|{
+name|list
+operator|=
+name|Lists
+operator|.
+name|newArrayList
+argument_list|(
+name|list
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO(user): benchmark when it's best to do a linear search
 name|int
 name|lower
 init|=
@@ -971,15 +1228,13 @@ block|{
 name|int
 name|middle
 init|=
+operator|(
 name|lower
 operator|+
-operator|(
 name|upper
-operator|-
-name|lower
 operator|)
-operator|/
-literal|2
+operator|>>>
+literal|1
 decl_stmt|;
 name|int
 name|c
