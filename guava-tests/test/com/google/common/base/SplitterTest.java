@@ -64,11 +64,11 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
 name|testing
 operator|.
-name|util
-operator|.
-name|MoreAsserts
+name|NullPointerTester
 import|;
 end_import
 
@@ -82,7 +82,7 @@ name|testing
 operator|.
 name|util
 operator|.
-name|NullPointerTester
+name|MoreAsserts
 import|;
 end_import
 

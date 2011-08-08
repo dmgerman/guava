@@ -22,9 +22,9 @@ name|com
 operator|.
 name|google
 operator|.
-name|testing
+name|common
 operator|.
-name|util
+name|testing
 operator|.
 name|SerializableTester
 operator|.
@@ -80,9 +80,9 @@ name|com
 operator|.
 name|google
 operator|.
-name|testing
+name|common
 operator|.
-name|util
+name|testing
 operator|.
 name|NullPointerTester
 import|;
