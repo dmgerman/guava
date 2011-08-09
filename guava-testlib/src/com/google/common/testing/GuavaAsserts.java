@@ -450,11 +450,21 @@ block|{
 if|if
 condition|(
 name|o1
-operator|!=
-name|o2
+operator|==
+literal|null
 condition|)
 block|{
-comment|// TODO(kevinb): why?
+name|assertTrue
+argument_list|(
+name|message
+argument_list|,
+name|o2
+operator|==
+literal|null
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|assertTrue
 argument_list|(
 name|message
@@ -467,7 +477,6 @@ name|o2
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/**    * An error thrown when test assertions are shown to be invalid.    *     * @author cgruber@google.com (Christian Gruber)    */
 DECL|class|TestAssertionFailure
