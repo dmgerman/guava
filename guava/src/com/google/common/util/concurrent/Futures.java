@@ -3203,7 +3203,6 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|// This code also appears in common.cache.
 DECL|method|wrapAndThrowUnchecked (Throwable cause)
 specifier|private
 specifier|static
@@ -3232,63 +3231,14 @@ name|cause
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|cause
-operator|instanceof
-name|Exception
-condition|)
-block|{
-throw|throw
-operator|new
-name|UncheckedExecutionException
-argument_list|(
-operator|(
-name|Exception
-operator|)
-name|cause
-argument_list|)
-throw|;
-block|}
 comment|/*      * It's a non-Error, non-Exception Throwable. From my survey of such      * classes, I believe that most users intended to extend Exception, so we'll      * treat it like an Exception.      */
 throw|throw
 operator|new
-name|UncheckedExecutionExceptionForThrowable
+name|UncheckedExecutionException
 argument_list|(
 name|cause
 argument_list|)
 throw|;
-block|}
-DECL|class|UncheckedExecutionExceptionForThrowable
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|UncheckedExecutionExceptionForThrowable
-extends|extends
-name|UncheckedExecutionException
-block|{
-DECL|method|UncheckedExecutionExceptionForThrowable (Throwable cause)
-name|UncheckedExecutionExceptionForThrowable
-parameter_list|(
-name|Throwable
-name|cause
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|cause
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|initCause
-argument_list|(
-name|cause
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/*    * TODO(user): FutureChecker interface for these to be static methods on? If    * so, refer to it in the (static-method) Futures.get documentation    */
 comment|/*    * Arguably we don't need a timed getUnchecked because any operation slow    * enough to require a timeout is heavyweight enough to throw a checked    * exception and therefore be inappropriate to use with getUnchecked. Further,    * it's not clear that converting the checked TimeoutException to a    * RuntimeException -- especially to an UncheckedExecutionException, since it    * wasn't thrown by the computation -- makes sense, and if we don't convert    * it, the user still has to write a try-catch block.    *    * If you think you would use this method, let us know.    */

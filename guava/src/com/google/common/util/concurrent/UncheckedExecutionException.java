@@ -68,14 +68,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with the given detail message and cause.    */
-DECL|method|UncheckedExecutionException (String message, Exception cause)
+DECL|method|UncheckedExecutionException (String message, Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
 name|String
 name|message
 parameter_list|,
-name|Exception
+name|Throwable
 name|cause
 parameter_list|)
 block|{
@@ -88,11 +88,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with the given cause.    */
-DECL|method|UncheckedExecutionException (Exception cause)
+DECL|method|UncheckedExecutionException (Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
-name|Exception
+name|Throwable
 name|cause
 parameter_list|)
 block|{
