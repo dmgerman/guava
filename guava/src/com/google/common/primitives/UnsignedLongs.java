@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|math
@@ -99,13 +113,14 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|class|UnsignedLongs
 specifier|public
 specifier|final
 class|class
 name|UnsignedLongs
 block|{
-comment|// TODO(user): verify GWT compatibility
 DECL|method|UnsignedLongs ()
 specifier|private
 name|UnsignedLongs
@@ -907,7 +922,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns the unsigned long value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid    * unsigned integer, or if the value represented is too large to fit in an    * unsigned long.    */
+comment|/**    * Returns the unsigned long value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid    * unsigned integer, or if the value represented is too large to fit in an    * unsigned long.    * @throws NullPointerException if {@code s} is null    */
 DECL|method|parseUnsignedLong (String s)
 specifier|public
 specifier|static
@@ -927,7 +942,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned long value represented by a string with the given    * radix.    *    * @param s the string containing the unsigned long representation to be    * parsed.    * @param radix the radix to use while parsing {@code s}; must be between    * Character.MIN_RADIX and Character.MAX_RADIX.    * @throws NumberFormatException if the string does not contain a valid    * unsigned integer with the given radix, or if the value represented is    * too large to fit in an unsigned long.  Also thrown if supplied radix is    * invalid.    */
+comment|/**    * Returns the unsigned long value represented by a string with the given    * radix.    *    * @param s the string containing the unsigned long representation to be    * parsed.    * @param radix the radix to use while parsing {@code s}; must be between    * Character.MIN_RADIX and Character.MAX_RADIX.    * @throws NumberFormatException if the string does not contain a valid    * unsigned integer with the given radix, or if the value represented is    * too large to fit in an unsigned long.  Also thrown if supplied radix is    * invalid.    * @throws NullPointerException if {@code s} is null    */
 DECL|method|parseUnsignedLong (String s, int radix)
 specifier|public
 specifier|static
@@ -941,21 +956,11 @@ name|int
 name|radix
 parameter_list|)
 block|{
-if|if
-condition|(
-name|s
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NumberFormatException
+name|checkNotNull
 argument_list|(
-literal|"null string"
+name|s
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 if|if
 condition|(
 name|s
