@@ -1018,29 +1018,6 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**    * Returns a short-hand representation of the contents such as    * {@code "[1â¥100]}"}.    */
-end_comment
-
-begin_function
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|range
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
-end_function
-
 begin_class
 annotation|@
 name|GwtIncompatible
