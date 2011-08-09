@@ -120,16 +120,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -165,7 +155,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link java.util.Arrays},<i>and  * interpret bytes as neither signed nor unsigned</i>. The methods which  * specifically treat bytes as signed or unsigned are found in {@link  * SignedBytes} and {@link UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+end_comment
+
+begin_comment
+comment|// TODO(kevinb): how to prevent warning on UnsignedBytes when building GWT
+end_comment
+
+begin_comment
+comment|// javadoc?
 end_comment
 
 begin_class

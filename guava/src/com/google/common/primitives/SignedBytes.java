@@ -76,6 +76,14 @@ begin_comment
 comment|/**  * Static utility methods pertaining to {@code byte} primitives that  * interpret values as signed. The corresponding methods that treat the values  * as unsigned are found in {@link UnsignedBytes}, and the methods for which  * signedness is not an issue are in {@link Bytes}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
+begin_comment
+comment|// TODO(kevinb): how to prevent warning on UnsignedBytes when building GWT
+end_comment
+
+begin_comment
+comment|// javadoc?
+end_comment
+
 begin_class
 annotation|@
 name|GwtCompatible

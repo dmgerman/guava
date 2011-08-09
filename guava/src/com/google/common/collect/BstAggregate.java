@@ -48,7 +48,6 @@ begin_interface
 annotation|@
 name|GwtCompatible
 DECL|interface|BstAggregate
-specifier|public
 interface|interface
 name|BstAggregate
 parameter_list|<

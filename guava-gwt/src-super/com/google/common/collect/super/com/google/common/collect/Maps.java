@@ -1040,7 +1040,7 @@ block|}
 comment|/**    * Computes the difference between two maps. This difference is an immutable    * snapshot of the state of the maps at the time this method is called. It    * will never change, even if the maps change at a later time.    *    *<p>Values are compared using a provided equivalence, in the case of    * equality, the value on the 'left' is returned in the difference.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of    * the supplied maps must be well-behaved with respect to    * {@link Object#equals} and {@link Object#hashCode}.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @param valueEquivalence the equivalence relationship to use to compare    *    values    * @return the difference between the two maps    * @since Guava release 10    */
 annotation|@
 name|Beta
-DECL|method|difference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right, Equivalence<? super V> equivalence)
+DECL|method|difference ( Map<? extends K, ? extends V> left, Map<? extends K, ? extends V> right, Equivalence<? super V> valueEquivalence)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1086,14 +1086,14 @@ name|?
 super|super
 name|V
 argument_list|>
-name|equivalence
+name|valueEquivalence
 parameter_list|)
 block|{
 name|Preconditions
 operator|.
 name|checkNotNull
 argument_list|(
-name|equivalence
+name|valueEquivalence
 argument_list|)
 expr_stmt|;
 name|Map
@@ -1217,7 +1217,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|equivalence
+name|valueEquivalence
 operator|.
 name|equivalent
 argument_list|(
@@ -6757,8 +6757,8 @@ literal|false
 return|;
 block|}
 DECL|class|KeySet
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|KeySet
 parameter_list|<
@@ -6982,8 +6982,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|Values
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|Values
 parameter_list|<
@@ -7428,8 +7428,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|EntrySet
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|EntrySet
 parameter_list|<

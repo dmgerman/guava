@@ -157,7 +157,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code a} and {@code b} are considered equivalent.    *    *<p>Called by {@link #equivalent}. {@code a} and {@code b} are not the same    * object and are not nulls.    */
+comment|/**    * Returns {@code true} if {@code a} and {@code b} are considered equivalent.    *    *<p>Called by {@link #equivalent}. {@code a} and {@code b} are not the same    * object and are not nulls.    *    * @since Guava release 10 (previously, subclasses would override equivalent())    */
 DECL|method|doEquivalent (T a, T b)
 specifier|protected
 specifier|abstract
@@ -202,7 +202,7 @@ name|t
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash code for non-null object {@code t}.    *    *<p>Called by {@link #hash}.    */
+comment|/**    * Returns a hash code for non-null object {@code t}.    *    *<p>Called by {@link #hash}.    *    * @since Guava release 10 (previously, subclasses would override hash())    */
 DECL|method|doHash (T t)
 specifier|protected
 specifier|abstract

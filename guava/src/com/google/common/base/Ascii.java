@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods pertaining to ASCII characters (those in the range of values  * {@code 0x00} through {@code 0x7F}), and to strings containing such  * characters.  *  *<p>ASCII utilities also exist in other classes of this package:  *<ul>  *<li>{@link Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.  *<li>{@link CharMatcher#ASCII} matches ASCII characters and provides text processing methods  *     which operate only on the ASCII characters of a string.  *</ul>  *  * @author Craig Berry  * @author Gregory Kick  * @since Guava release 07  */
+comment|/**  * Static methods pertaining to ASCII characters (those in the range of values  * {@code 0x00} through {@code 0x7F}), and to strings containing such  * characters.  *  *<p>ASCII utilities also exist in other classes of this package:  *<ul>  *<!-- TODO(kevinb): how can we make this not produce a warning when building gwt javadoc? -->  *<li>{@link Charsets#US_ASCII} specifies the {@code Charset} of ASCII characters.  *<li>{@link CharMatcher#ASCII} matches ASCII characters and provides text processing methods  *     which operate only on the ASCII characters of a string.  *</ul>  *  * @author Craig Berry  * @author Gregory Kick  * @since Guava release 07  */
 end_comment
 
 begin_class

@@ -701,7 +701,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** @Deprecated */
 annotation|@
 name|Deprecated
 specifier|public

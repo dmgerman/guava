@@ -30,6 +30,38 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentMap
+import|;
+end_import
+
 begin_comment
 comment|/**  * The reason why a cached entry was removed.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
 end_comment
@@ -42,7 +74,7 @@ specifier|public
 enum|enum
 name|RemovalCause
 block|{
-comment|/**    * The entry was manually removed by the user. This can result from the user invoking {@link    * Cache#invalidate}, {@link Map#remove}, {@link ConcurrentMap#remove}, or {@link    * java.util.Iterator#remove}.    */
+comment|/**    * The entry was manually removed by the user. This can result from the user invoking {@link    * Cache#invalidate}, {@link Map#remove}, {@link ConcurrentMap#remove}, or {@link    * Iterator#remove}.    */
 DECL|enumConstant|EXPLICIT
 name|EXPLICIT
 block|{
@@ -74,7 +106,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * The entry was removed automatically because its key or value was garbage-collected. This    * can occur when using {@link #weakKeys}, {@link #weakValues}, or {@link #softValues}.    */
+comment|/**    * The entry was removed automatically because its key or value was garbage-collected. This    * can occur when using {@link CacheBuilder#weakKeys}, {@link CacheBuilder#weakValues}, or    * {@link CacheBuilder#softValues}.    */
 DECL|enumConstant|COLLECTED
 name|COLLECTED
 block|{
@@ -90,7 +122,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * The entry's expiration timestamp has passed. This can occur when using {@link    * #expireAfterWrite} or {@link #expireAfterAccess}.    */
+comment|/**    * The entry's expiration timestamp has passed. This can occur when using {@link    * CacheBuilder#expireAfterWrite} or {@link CacheBuilder#expireAfterAccess}.    */
 DECL|enumConstant|EXPIRED
 name|EXPIRED
 block|{
@@ -106,7 +138,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * The entry was evicted due to size constraints. This can occur when using {@link    * #maximumSize}.    */
+comment|/**    * The entry was evicted due to size constraints. This can occur when using {@link    * CacheBuilder#maximumSize}.    */
 DECL|enumConstant|SIZE
 name|SIZE
 block|{

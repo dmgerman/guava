@@ -467,7 +467,7 @@ return|return
 name|valueComparator
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>Because a {@code TreeMultimap} has unique sorted keys, this method    * returns a {@link SortedSet}, instead of the {@link Set} specified in the    * {@link Multimap} interface.    */
+comment|/**    * {@inheritDoc}    *    *<p>Because a {@code TreeMultimap} has unique sorted keys, this method    * returns a {@link SortedSet}, instead of the {@link java.util.Set} specified    * in the {@link Multimap} interface.    */
 DECL|method|keySet ()
 annotation|@
 name|Override
