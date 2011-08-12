@@ -294,7 +294,6 @@ literal|true
 argument_list|)
 DECL|class|LinkedListMultimap
 specifier|public
-specifier|final
 class|class
 name|LinkedListMultimap
 parameter_list|<
@@ -593,7 +592,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|LinkedListMultimap ()
-specifier|private
 name|LinkedListMultimap
 parameter_list|()
 block|{

@@ -598,6 +598,8 @@ name|makeCustomMap
 parameter_list|()
 function_decl|;
 comment|/**    * See {@link MapMaker#makeComputingMap}.    */
+annotation|@
+name|Deprecated
 DECL|method|makeComputingMap ( Function<? super K, ? extends V> computingFunction)
 specifier|public
 specifier|abstract

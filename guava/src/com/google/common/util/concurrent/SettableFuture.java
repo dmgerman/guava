@@ -76,10 +76,10 @@ specifier|private
 name|SettableFuture
 parameter_list|()
 block|{}
-comment|/**    * Sets the value of this future.  This method will return {@code true} if    * the value was successfully set, or {@code false} if the future has already    * been set or cancelled.    *    * @param newValue the value the future should hold.    * @return true if the value was successfully set.    */
+comment|/**    * Sets the value of this future.  This method will return {@code true} if    * the value was successfully set, or {@code false} if the future has already    * been set or cancelled.    *    * @param value the value the future should hold.    * @return true if the value was successfully set.    */
 annotation|@
 name|Override
-DECL|method|set (@ullable V newValue)
+DECL|method|set (@ullable V value)
 specifier|public
 name|boolean
 name|set
@@ -87,7 +87,7 @@ parameter_list|(
 annotation|@
 name|Nullable
 name|V
-name|newValue
+name|value
 parameter_list|)
 block|{
 return|return
@@ -95,20 +95,20 @@ name|super
 operator|.
 name|set
 argument_list|(
-name|newValue
+name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets the future to having failed with the given exception. This exception    * will be wrapped in an {@code ExecutionException} and thrown from the {@code    * get} methods. This method will return {@code true} if the exception was    * successfully set, or {@code false} if the future has already been set or    * cancelled.    *    * @param t the exception the future should hold.    * @return true if the exception was successfully set.    */
+comment|/**    * Sets the future to having failed with the given exception. This exception    * will be wrapped in an {@code ExecutionException} and thrown from the {@code    * get} methods. This method will return {@code true} if the exception was    * successfully set, or {@code false} if the future has already been set or    * cancelled.    *    * @param throwable the exception the future should hold.    * @return true if the exception was successfully set.    */
 annotation|@
 name|Override
-DECL|method|setException (Throwable t)
+DECL|method|setException (Throwable throwable)
 specifier|public
 name|boolean
 name|setException
 parameter_list|(
 name|Throwable
-name|t
+name|throwable
 parameter_list|)
 block|{
 return|return
@@ -116,7 +116,7 @@ name|super
 operator|.
 name|setException
 argument_list|(
-name|t
+name|throwable
 argument_list|)
 return|;
 block|}
