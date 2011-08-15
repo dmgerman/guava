@@ -1638,7 +1638,7 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Not Iterables.addAll(list, this), because that'll forward right back here.
+comment|// not Iterables.addAll(list, this), because that'll forward back here
 name|Iterators
 operator|.
 name|addAll

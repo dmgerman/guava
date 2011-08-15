@@ -335,7 +335,7 @@ name|factory
 expr_stmt|;
 block|}
 comment|// Accessors
-DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains ( @ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Override
 specifier|public
@@ -888,7 +888,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
+DECL|method|putAll ( Table<? extends R, ? extends C, ? extends V> table)
 annotation|@
 name|Override
 specifier|public
@@ -956,7 +956,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|remove ( @ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Override
 specifier|public
@@ -1972,16 +1972,14 @@ decl_stmt|;
 return|return
 operator|(
 name|key
-operator|==
+operator|!=
 literal|null
-operator|||
+operator|&&
 name|backingRowMap
-operator|==
+operator|!=
 literal|null
 operator|)
-condition|?
-literal|false
-else|:
+operator|&&
 name|Maps
 operator|.
 name|safeContainsKey
@@ -2017,16 +2015,14 @@ decl_stmt|;
 return|return
 operator|(
 name|key
-operator|==
+operator|!=
 literal|null
-operator|||
+operator|&&
 name|backingRowMap
-operator|==
+operator|!=
 literal|null
 operator|)
 condition|?
-literal|null
-else|:
 name|Maps
 operator|.
 name|safeGet
@@ -2035,6 +2031,8 @@ name|backingRowMap
 argument_list|,
 name|key
 argument_list|)
+else|:
+literal|null
 return|;
 block|}
 annotation|@
@@ -2569,7 +2567,7 @@ name|Object
 name|object
 parameter_list|)
 block|{
-comment|// TODO(user): identify why this changes the outcome of GWT tests
+comment|// TODO(user): identify why this affects GWT tests
 return|return
 name|standardEquals
 argument_list|(

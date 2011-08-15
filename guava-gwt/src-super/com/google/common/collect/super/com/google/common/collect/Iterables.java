@@ -456,7 +456,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that belongs to the provided    * collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a    * collection, and {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any elements are removed from {@code iterable}    */
+comment|/**    * Removes, from an iterable, every element that belongs to the provided    * collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a    * collection, and {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterable}    */
 DECL|method|removeAll ( Iterable<?> removeFrom, Collection<?> elementsToRemove)
 specifier|public
 specifier|static
@@ -514,7 +514,7 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that does not belong to the    * provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a    * collection, and {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any elements are removed from {@code iterable}    */
+comment|/**    * Removes, from an iterable, every element that does not belong to the    * provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a    * collection, and {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterable}    */
 DECL|method|retainAll ( Iterable<?> removeFrom, Collection<?> elementsToRetain)
 specifier|public
 specifier|static
@@ -1605,7 +1605,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines multiple iterables into a single iterable. The returned iterable    * has an iterator that traverses the elements of each iterable in    * {@code inputs}. The input iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it. The methods of the returned    * iterable may throw {@code NullPointerException} if any of the input    * iterators are null.    */
+comment|/**    * Combines multiple iterables into a single iterable. The returned iterable    * has an iterator that traverses the elements of each iterable in    * {@code inputs}. The input iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it. The methods of the returned    * iterable may throw {@code NullPointerException} if any of the input    * iterators is null.    */
 DECL|method|concat ( final Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
@@ -2174,7 +2174,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} is {@code true} or    * {@code -1} if there is no such index.    *    * @since Guava release 02    */
+comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    * @since Guava release 02    */
 DECL|method|indexOf ( Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -3342,7 +3342,7 @@ argument_list|()
 return|;
 block|}
 comment|// Non-public
-comment|/**    * Removes the specified element from the specified iterable.    *    *<p>This method iterates over the iterable, checking each element returned    * by the iterator in turn to see if it equals the object {@code o}. If they    * are equal, it is removed from the iterable with the iterator's    * {@code remove} method. At most one element is removed, even if the iterable    * contains multiple members that equal {@code o}.    *    *<p><b>Warning</b>: Do not use this method for a collection, such as a    * {@link HashSet}, that has a fast {@code remove} method.    *    * @param iterable the iterable from which to remove    * @param o an element to remove from the collection    * @return {@code true} if the iterable changed as a result    * @throws UnsupportedOperationException if the iterator does not support the    *     {@code remove} method and the iterable contains the object    */
+comment|/**    * Removes the specified element from the specified iterable.    *    *<p>This method iterates over the iterable, checking each element returned    * by the iterator in turn to see if it equals the object {@code o}. If they    * are equal, it is removed from the iterable with the iterator's    * {@code remove} method. At most one element is removed, even if the iterable    * contains multiple members that equal {@code o}.    *    *<p><b>Warning:</b> Do not use this method for a collection, such as a    * {@link HashSet}, that has a fast {@code remove} method.    *    * @param iterable the iterable from which to remove    * @param o an element to remove from the collection    * @return {@code true} if the iterable changed as a result    * @throws UnsupportedOperationException if the iterator does not support the    *     {@code remove} method and the iterable contains the object    */
 DECL|method|remove (Iterable<?> iterable, @Nullable Object o)
 specifier|static
 name|boolean

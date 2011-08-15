@@ -251,7 +251,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the form<code>{key}={value}</code>.    */
+comment|/**    * Returns a string representation of the form {@code {key}={value}}.    */
 DECL|method|toString ()
 annotation|@
 name|Override

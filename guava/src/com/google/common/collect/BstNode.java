@@ -144,7 +144,7 @@ specifier|final
 name|K
 name|key
 decl_stmt|;
-comment|/**    * The left child of this node. A {@code null} value indicates that this node has no left child.    */
+comment|/**    * The left child of this node. A null value indicates that this node has no left child.    */
 annotation|@
 name|Nullable
 DECL|field|left
@@ -153,7 +153,7 @@ specifier|final
 name|N
 name|left
 decl_stmt|;
-comment|/**    * The right child of this node. A {@code null} value indicates that this node has no right    * child.    */
+comment|/**    * The right child of this node. A null value indicates that this node has no right child.    */
 annotation|@
 name|Nullable
 DECL|field|right
@@ -301,7 +301,7 @@ return|return
 name|child
 return|;
 block|}
-comment|/**    * Returns true if the traditional binary search tree ordering invariant holds with respect to    * the specified {@code comparator}.    */
+comment|/**    * Returns {@code true} if the traditional binary search tree ordering invariant holds with    * respect to the specified {@code comparator}.    */
 DECL|method|orderingInvariantHolds (Comparator<? super K> comparator)
 specifier|protected
 specifier|final

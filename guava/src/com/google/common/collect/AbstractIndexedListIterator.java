@@ -125,7 +125,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs an iterator across a sequence of the given size with the given    * initial position. That is, the first call to {@link #nextIndex()} will    * return {@code position}, and the first call to {@link #next()} will return    * the element at that index, if available. Calls to {@link #previous()} can    * retrieve the preceding {@code position} elements.    *    * @throws IndexOutOfBoundsException if {@code index} is negative or is    *         greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
+comment|/**    * Constructs an iterator across a sequence of the given size with the given    * initial position. That is, the first call to {@link #nextIndex()} will    * return {@code position}, and the first call to {@link #next()} will return    * the element at that index, if available. Calls to {@link #previous()} can    * retrieve the preceding {@code position} elements.    *    * @throws IndexOutOfBoundsException if {@code position} is negative or is    *         greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|AbstractIndexedListIterator (int size, int position)
 specifier|protected
 name|AbstractIndexedListIterator

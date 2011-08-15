@@ -1272,7 +1272,7 @@ name|result
 return|;
 block|}
 comment|/*    * Regarding newSetForMap() and SetFromMap:    *    * Written by Doug Lea with assistance from members of JCP JSR-166    * Expert Group and released to the public domain, as explained at    * http://creativecommons.org/licenses/publicdomain    */
-comment|/**    * Returns a set backed by the specified map. The resulting set displays    * the same ordering, concurrency, and performance characteristics as the    * backing map. In essence, this factory method provides a {@link Set}    * implementation corresponding to any {@link Map} implementation. There is no    * need to use this method on a {@link Map} implementation that already has a    * corresponding {@link Set} implementation (such as {@link java.util.HashMap}    * or {@link java.util.TreeMap}).    *    *<p>Each method invocation on the set returned by this method results in    * exactly one method invocation on the backing map or its<tt>keySet</tt>    * view, with one exception. The<tt>addAll</tt> method is implemented as a    * sequence of<tt>put</tt> invocations on the backing map.    *    *<p>The specified map must be empty at the time this method is invoked,    * and should not be accessed directly after this method returns. These    * conditions are ensured if the map is created empty, passed directly    * to this method, and no reference to the map is retained, as illustrated    * in the following code fragment:<pre>  {@code    *    *   Set<Object> identityHashSet = Sets.newSetFromMap(    *       new IdentityHashMap<Object, Boolean>());}</pre>    *    * This method has the same behavior as the JDK 6 method    * {@code Collections.newSetFromMap()}. The returned set is serializable if    * the backing map is.    *    * @param map the backing map    * @return the set backed by the map    * @throws IllegalArgumentException if<tt>map</tt> is not empty    */
+comment|/**    * Returns a set backed by the specified map. The resulting set displays    * the same ordering, concurrency, and performance characteristics as the    * backing map. In essence, this factory method provides a {@link Set}    * implementation corresponding to any {@link Map} implementation. There is no    * need to use this method on a {@link Map} implementation that already has a    * corresponding {@link Set} implementation (such as {@link java.util.HashMap}    * or {@link java.util.TreeMap}).    *    *<p>Each method invocation on the set returned by this method results in    * exactly one method invocation on the backing map or its {@code keySet}    * view, with one exception. The {@code addAll} method is implemented as a    * sequence of {@code put} invocations on the backing map.    *    *<p>The specified map must be empty at the time this method is invoked,    * and should not be accessed directly after this method returns. These    * conditions are ensured if the map is created empty, passed directly    * to this method, and no reference to the map is retained, as illustrated    * in the following code fragment:<pre>  {@code    *    *   Set<Object> identityHashSet = Sets.newSetFromMap(    *       new IdentityHashMap<Object, Boolean>());}</pre>    *    * This method has the same behavior as the JDK 6 method    * {@code Collections.newSetFromMap()}. The returned set is serializable if    * the backing map is.    *    * @param map the backing map    * @return the set backed by the map    * @throws IllegalArgumentException if {@code map} is not empty    */
 DECL|method|newSetFromMap (Map<E, Boolean> map)
 specifier|public
 specifier|static
@@ -3390,7 +3390,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns the set of all possible subsets of {@code set}. For example,    * {@code powerSet(ImmutableSet.of(1, 2))} returns the set {@code {{},    * {1}, {2}, {1, 2}}}.    *    *<p>Elements appear in these subsets in the same iteration order as they    * appeared in the input set. The order in which these subsets appear in the    * outer set is undefined. Note that the power set of the empty set is not the    * empty set, but a one-element set containing the empty set.    *    *<p>The returned set and its constituent sets use {@code equals} to decide    * whether two elements are identical, even if the input set uses a different    * concept of equivalence.    *    *<p><i>Performance notes:</i> while the power set of a set with size {@code    * n} is of size {@code 2^n}, its memory usage is only {@code O(n)}. When the    * power set is constructed, the input set is merely copied. Only as the    * power set is iterated are the individual subsets created, and these subsets    * themselves occupy only a few bytes of memory regardless of their size.    *    * @param set the set of elements to construct a power set from    * @return the power set, as an immutable set of immutable sets    * @throws IllegalArgumentException if {@code set} has more than 30 unique    *     elements (causing the power set size to exceed the {@code int} range)    * @throws NullPointerException if {@code set} or any of its elements is    *     null    * @see<a href="http://en.wikipedia.org/wiki/Power_set">Power set article at    *      Wikipedia</a>    * @since Guava release 04    */
+comment|/**    * Returns the set of all possible subsets of {@code set}. For example,    * {@code powerSet(ImmutableSet.of(1, 2))} returns the set {@code {{},    * {1}, {2}, {1, 2}}}.    *    *<p>Elements appear in these subsets in the same iteration order as they    * appeared in the input set. The order in which these subsets appear in the    * outer set is undefined. Note that the power set of the empty set is not the    * empty set, but a one-element set containing the empty set.    *    *<p>The returned set and its constituent sets use {@code equals} to decide    * whether two elements are identical, even if the input set uses a different    * concept of equivalence.    *    *<p><i>Performance notes:</i> while the power set of a set with size {@code    * n} is of size {@code 2^n}, its memory usage is only {@code O(n)}. When the    * power set is constructed, the input set is merely copied. Only as the    * power set is iterated are the individual subsets created, and these subsets    * themselves occupy only a few bytes of memory regardless of their size.    *    * @param set the set of elements to construct a power set from    * @return the power set, as an immutable set of immutable sets    * @throws IllegalArgumentException if {@code set} has more than 30 unique    *     elements (causing the power set size to exceed the {@code int} range)    * @throws NullPointerException if {@code set} is or contains {@code null}    * @see<a href="http://en.wikipedia.org/wiki/Power_set">Power set article at    *      Wikipedia</a>    * @since Guava release 04    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -4059,7 +4059,7 @@ literal|false
 return|;
 block|}
 comment|/**    * Creates a view of Set<B> for a Set<A>, given a bijection between A and B.    * (Modelled for now as InvertibleFunction<A, B>, can't be Converter<A, B>    * because that's not in Guava, though both designs are less than optimal).    * Note that the bijection is treated as undefined for values not in the    * given Set<A> - it doesn't have to define a true bijection for those.    *    *<p>Note that the returned Set's contains method is unsafe -    * you *must* pass an instance of B to it, since the bijection    * can only invert B's (not any Object) back to A, so we can    * then delegate the call to the original Set<A>.    */
-DECL|method|transform (Set<A> set, InvertibleFunction<A, B> bijection)
+DECL|method|transform ( Set<A> set, InvertibleFunction<A, B> bijection)
 specifier|static
 parameter_list|<
 name|A
@@ -4440,7 +4440,7 @@ name|contains
 argument_list|(
 name|o
 argument_list|)
-condition|?
+operator|&&
 name|delegate
 operator|.
 name|remove
@@ -4455,8 +4455,6 @@ operator|)
 name|o
 argument_list|)
 argument_list|)
-else|:
-literal|false
 return|;
 block|}
 DECL|method|clear ()

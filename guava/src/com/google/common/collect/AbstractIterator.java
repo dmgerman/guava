@@ -126,7 +126,7 @@ name|T
 name|computeNext
 parameter_list|()
 function_decl|;
-comment|/**    * Implementations of {@code computeNext}<b>must</b> invoke this method when    * there are no elements left in the iteration.    *    * @return {@code null}; a convenience so your {@link #computeNext}    *     implementation can use the simple statement {@code return endOfData();}    */
+comment|/**    * Implementations of {@link #computeNext}<b>must</b> invoke this method when    * there are no elements left in the iteration.    *    * @return {@code null}; a convenience so your {@code computeNext}    *     implementation can use the simple statement {@code return endOfData();}    */
 DECL|method|endOfData ()
 specifier|protected
 specifier|final

@@ -364,7 +364,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code HashBasedTable} with the same mappings as the specified    * table.    *    * @param table the table to copy    * @throws NullPointerException if any of the row keys, column keys, or values    *     in {@code table} are null.    */
+comment|/**    * Creates a {@code HashBasedTable} with the same mappings as the specified    * table.    *    * @param table the table to copy    * @throws NullPointerException if any of the row keys, column keys, or values    *     in {@code table} is null    */
 DECL|method|create ( Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|static

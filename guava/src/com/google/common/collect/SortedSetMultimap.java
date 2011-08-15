@@ -185,7 +185,7 @@ argument_list|>
 name|asMap
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the comparator that orders the multimap values, with a {@code null}    * indicating that natural ordering is used.    */
+comment|/**    * Returns the comparator that orders the multimap values, with {@code null}    * indicating that natural ordering is used.    */
 DECL|method|valueComparator ()
 name|Comparator
 argument_list|<

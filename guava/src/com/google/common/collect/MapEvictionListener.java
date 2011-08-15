@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that can receive a notification when an entry is evicted from a  * map.  *  *<p>An instance may be called concurrently by multiple threads to process  * different entries. Implementations of this interface should avoid performing  * blocking calls or synchronizing on shared resources.  *  * @param<K> the type of keys being evicted  * @param<V> the type of values being evicted  * @author Ben Manes  * @since Guava release 07  * @deprecated use {@link MapMaker.RemovalListener}<b>This class is scheduled for deletion in  *     Guava release 11.</b>  */
+comment|/**  * An object that can receive a notification when an entry is evicted from a  * map.  *  *<p>An instance may be called concurrently by multiple threads to process  * different entries. Implementations of this interface should avoid performing  * blocking calls or synchronizing on shared resources.  *  * @param<K> the type of keys being evicted  * @param<V> the type of values being evicted  * @author Ben Manes  * @since Guava release 07  * @deprecated use {@link MapMaker.RemovalListener}<b>This class is scheduled  *     for deletion in Guava release 11.</b>  */
 end_comment
 
 begin_interface

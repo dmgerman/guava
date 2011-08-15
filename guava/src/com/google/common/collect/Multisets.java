@@ -1855,10 +1855,10 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<= superMultiset.count(o)} for all    * {@code o}.    *    * @since Guava release 10    */
+comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since Guava release 10    */
 annotation|@
 name|Beta
-DECL|method|containsOccurrences (Multiset<?> superMultiset, Multiset<?> subMultiset)
+DECL|method|containsOccurrences ( Multiset<?> superMultiset, Multiset<?> subMultiset)
 specifier|public
 specifier|static
 name|boolean

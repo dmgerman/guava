@@ -129,7 +129,7 @@ name|builder
 argument_list|()
 decl_stmt|;
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
-DECL|method|put (Class<T> type, T value)
+DECL|method|put (Class<T> key, T value)
 specifier|public
 parameter_list|<
 name|T
@@ -146,7 +146,7 @@ name|Class
 argument_list|<
 name|T
 argument_list|>
-name|type
+name|key
 parameter_list|,
 name|T
 name|value
@@ -156,7 +156,7 @@ name|mapBuilder
 operator|.
 name|put
 argument_list|(
-name|type
+name|key
 argument_list|,
 name|value
 argument_list|)

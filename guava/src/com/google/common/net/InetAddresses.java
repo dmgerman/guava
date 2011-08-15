@@ -791,11 +791,36 @@ name|i
 expr_stmt|;
 block|}
 block|}
-comment|// Now check the endpoints, and determine the number of parts to copy from
-comment|// above/before the "::" (partsHi), and below/after the "::" (partsLo).
 name|int
 name|partsHi
 decl_stmt|;
+comment|// Number of parts to copy from above/before the "::"
+name|int
+name|partsLo
+decl_stmt|;
+comment|// Number of parts to copy from below/after the "::"
+if|if
+condition|(
+name|skipIndex
+operator|>=
+literal|0
+condition|)
+block|{
+comment|// If we found a "::", then check if it also covers the endpoints.
+name|partsHi
+operator|=
+name|skipIndex
+expr_stmt|;
+name|partsLo
+operator|=
+name|parts
+operator|.
+name|length
+operator|-
+name|skipIndex
+operator|-
+literal|1
+expr_stmt|;
 if|if
 condition|(
 name|parts
@@ -807,17 +832,11 @@ name|length
 argument_list|()
 operator|==
 literal|0
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|ipString
-operator|.
-name|startsWith
-argument_list|(
-literal|"::"
-argument_list|)
+operator|&&
+operator|--
+name|partsHi
+operator|!=
+literal|0
 condition|)
 block|{
 return|return
@@ -825,30 +844,6 @@ literal|null
 return|;
 comment|// ^: requires ^::
 block|}
-name|partsHi
-operator|=
-literal|0
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// If a :: wasn't found, then partsHi includes everything.
-name|partsHi
-operator|=
-name|skipIndex
-operator|>=
-literal|0
-condition|?
-name|skipIndex
-else|:
-name|parts
-operator|.
-name|length
-expr_stmt|;
-block|}
-name|int
-name|partsLo
-decl_stmt|;
 if|if
 condition|(
 name|parts
@@ -864,17 +859,11 @@ name|length
 argument_list|()
 operator|==
 literal|0
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|ipString
-operator|.
-name|endsWith
-argument_list|(
-literal|"::"
-argument_list|)
+operator|&&
+operator|--
+name|partsLo
+operator|!=
+literal|0
 condition|)
 block|{
 return|return
@@ -882,28 +871,19 @@ literal|null
 return|;
 comment|// :$ requires ::$
 block|}
-name|partsLo
-operator|=
-literal|0
-expr_stmt|;
 block|}
 else|else
 block|{
-comment|// If a :: wasn't found, then partsLo includes nothing.
-name|partsLo
+comment|// Otherwise, allocate the entire address to partsHi.  The endpoints
+comment|// could still be empty, but parseHextet() will check for that.
+name|partsHi
 operator|=
-name|skipIndex
-operator|>=
-literal|0
-condition|?
 name|parts
 operator|.
 name|length
-operator|-
-name|skipIndex
-operator|-
-literal|1
-else|:
+expr_stmt|;
+name|partsLo
+operator|=
 literal|0
 expr_stmt|;
 block|}

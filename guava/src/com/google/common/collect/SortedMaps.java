@@ -911,11 +911,9 @@ name|put
 argument_list|(
 name|leftKey
 argument_list|,
-operator|new
 name|ValueDifferenceImpl
-argument_list|<
-name|V
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|leftValue
 argument_list|,

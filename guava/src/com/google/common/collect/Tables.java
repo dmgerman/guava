@@ -1842,7 +1842,7 @@ name|V2
 argument_list|>
 name|function
 decl_stmt|;
-DECL|method|TransformedTable (Table<R, C, V1> fromTable, Function<? super V1, V2> function)
+DECL|method|TransformedTable ( Table<R, C, V1> fromTable, Function<? super V1, V2> function)
 name|TransformedTable
 parameter_list|(
 name|Table
@@ -2079,7 +2079,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|putAll (Table<? extends R, ? extends C, ? extends V2> table)
+DECL|method|putAll ( Table<? extends R, ? extends C, ? extends V2> table)
 annotation|@
 name|Override
 specifier|public
@@ -2444,7 +2444,9 @@ argument_list|>
 operator|)
 name|obj
 decl_stmt|;
-return|return
+if|if
+condition|(
+operator|!
 name|Objects
 operator|.
 name|equal
@@ -2467,8 +2469,13 @@ name|getColumnKey
 argument_list|()
 argument_list|)
 argument_list|)
-operator|&&
-operator|(
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+return|return
 name|cell
 operator|.
 name|getValue
@@ -2490,7 +2497,6 @@ operator|.
 name|getColumnKey
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 return|return

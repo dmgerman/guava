@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map which forwards all its method calls to another map. Subclasses should  * override one or more methods to modify the behavior of the backing map as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><em>Warning</em>: The methods of {@code ForwardingMap} forward  *<em>indiscriminately</em> to the methods of the delegate. For example,  * overriding {@link #put} alone<em>will not</em> change the behavior of {@link  * #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardPutAll} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link  * Objects#equal} to test equality for both keys and values. This may not be  * the desired behavior for map implementations that use non-standard notions of  * key equality, such as a {@code SortedMap} whose comparator is not consistent  * with {@code equals}.  *  *<p>The {@code standard} methods and the collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A map which forwards all its method calls to another map. Subclasses should  * override one or more methods to modify the behavior of the backing map as  * desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><i>Warning:</i> The methods of {@code ForwardingMap} forward  *<i>indiscriminately</i> to the methods of the delegate. For example,  * overriding {@link #put} alone<i>will not</i> change the behavior of {@link  * #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardPutAll} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use {@link  * Objects#equal} to test equality for both keys and values. This may not be  * the desired behavior for map implementations that use non-standard notions of  * key equality, such as a {@code SortedMap} whose comparator is not consistent  * with {@code equals}.  *  *<p>The {@code standard} methods and the collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -790,11 +790,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since Guava release 07    * @deprecated Use {@code StandardEntrySet} instead.  This method will be    *             removed in Guava release 11.    */
-DECL|method|standardEntrySet ( final Supplier<Iterator<Entry<K, V>>> entryIteratorSupplier)
 annotation|@
 name|Deprecated
 annotation|@
 name|Beta
+DECL|method|standardEntrySet ( final Supplier<Iterator<Entry<K, V>>> entryIteratorSupplier)
 specifier|protected
 name|Set
 argument_list|<

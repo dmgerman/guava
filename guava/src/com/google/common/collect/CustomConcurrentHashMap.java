@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -101,34 +101,6 @@ operator|.
 name|base
 operator|.
 name|Ticker
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|AbstractMapEntry
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ForwardingConcurrentMap
 import|;
 end_import
 
@@ -3345,7 +3317,7 @@ argument_list|>
 name|newValue
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the value type is a computing reference (regardless of whether or not      * computation has completed). This is necessary to distiguish between partially-collected      * entries and computing entries, which need to be cleaned up differently.      */
+comment|/**      * Returns {@code true} if the value type is a computing reference (regardless of whether or not      * computation has completed). This is necessary to distiguish between partially-collected      * entries and computing entries, which need to be cleaned up differently.      */
 DECL|method|isComputingReference ()
 name|boolean
 name|isComputingReference
@@ -8654,7 +8626,7 @@ name|maxSegmentSize
 argument_list|)
 return|;
 block|}
-comment|/**    * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,    * computing, or expired. Unlike {@link Segment#getLiveValue} this method does not attempt to    * cleanup stale entries.    */
+comment|/**    * Gets the value from an entry. Returns {@code null} if the entry is invalid,    * partially-collected, computing, or expired. Unlike {@link Segment#getLiveValue} this method    * does not attempt to clean up stale entries.    */
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
 name|V
 name|getLiveValue
@@ -8724,7 +8696,7 @@ name|value
 return|;
 block|}
 comment|// expiration
-comment|/**    * Returns true if the entry has expired.    */
+comment|/**    * Returns {@code true} if the entry has expired.    */
 DECL|method|isExpired (ReferenceEntry<K, V> entry)
 name|boolean
 name|isExpired
@@ -8750,7 +8722,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if the entry has expired.    */
+comment|/**    * Returns {@code true} if the entry has expired.    */
 DECL|method|isExpired (ReferenceEntry<K, V> entry, long now)
 name|boolean
 name|isExpired
@@ -10439,7 +10411,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Performs eviction if the segment is full. This should only be called prior to adding a new      * entry and increasing {@code count}.      *      * @return true if eviction occurred      */
+comment|/**      * Performs eviction if the segment is full. This should only be called prior to adding a new      * entry and increasing {@code count}.      *      * @return {@code true} if eviction occurred      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -14021,7 +13993,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Returns true if the entry has been partially collected, meaning that either the key is null,      * or the value is null and it is not computing.      */
+comment|/**      * Returns {@code true} if the entry has been partially collected, meaning that either the key      * is null, or the value is null and it is not computing.      */
 DECL|method|isCollected (ReferenceEntry<K, V> entry)
 name|boolean
 name|isCollected
@@ -14059,7 +14031,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns true if the value has been partially collected, meaning that the value is null and      * it is not computing.      */
+comment|/**      * Returns {@code true} if the value has been partially collected, meaning that the value is      * null and it is not computing.      */
 DECL|method|isCollected (ValueReference<K, V> valueReference)
 name|boolean
 name|isCollected
@@ -14096,7 +14068,7 @@ literal|null
 operator|)
 return|;
 block|}
-comment|/**      * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,      * computing, or expired.      */
+comment|/**      * Gets the value from an entry. Returns {@code null} if the entry is invalid,      * partially-collected, computing, or expired.      */
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
 name|V
 name|getLiveValue
@@ -16942,7 +16914,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Finds the next entry in the current chain. Returns true if an entry was found.      */
+comment|/**      * Finds the next entry in the current chain. Returns {@code true} if an entry was found.      */
 DECL|method|nextInChain ()
 name|boolean
 name|nextInChain
@@ -16994,7 +16966,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Finds the next entry in the current table. Returns true if an entry was found.      */
+comment|/**      * Finds the next entry in the current table. Returns {@code true} if an entry was found.      */
 DECL|method|nextInTable ()
 name|boolean
 name|nextInTable
@@ -17045,7 +17017,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Advances to the given entry. Returns true if the entry was valid, false if it should be      * skipped.      */
+comment|/**      * Advances to the given entry. Returns {@code true} if the entry was valid, {@code false} if it      * should be skipped.      */
 DECL|method|advanceTo (ReferenceEntry<K, V> entry)
 name|boolean
 name|advanceTo

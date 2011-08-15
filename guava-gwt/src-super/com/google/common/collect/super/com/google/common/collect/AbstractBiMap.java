@@ -1415,6 +1415,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|// safe because esDelgate.contains(object).
 name|Entry
 argument_list|<
 name|?
@@ -1433,7 +1434,6 @@ argument_list|>
 operator|)
 name|object
 decl_stmt|;
-comment|// safe because esDelgate.contains(object).
 name|inverse
 operator|.
 name|delegate
@@ -1446,7 +1446,7 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*        * Remove the mapping in inverse before removing from esDelegate because if entry is part        * of esDelegate, entry might be invalidated after the mapping is removed from esDelegate.        */
+comment|/*        * Remove the mapping in inverse before removing from esDelegate because        * if entry is part of esDelegate, entry might be invalidated after the        * mapping is removed from esDelegate.        */
 name|esDelegate
 operator|.
 name|remove

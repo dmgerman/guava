@@ -1283,11 +1283,9 @@ name|put
 argument_list|(
 name|leftKey
 argument_list|,
-operator|new
 name|ValueDifferenceImpl
-argument_list|<
-name|V
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|leftValue
 argument_list|,
@@ -1907,7 +1905,43 @@ specifier|final
 name|V
 name|right
 decl_stmt|;
+DECL|method|create (@ullable V left, @Nullable V right)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|ValueDifference
+argument_list|<
+name|V
+argument_list|>
+name|create
+parameter_list|(
+annotation|@
+name|Nullable
+name|V
+name|left
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|right
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ValueDifferenceImpl
+argument_list|<
+name|V
+argument_list|>
+argument_list|(
+name|left
+argument_list|,
+name|right
+argument_list|)
+return|;
+block|}
 DECL|method|ValueDifferenceImpl (@ullable V left, @Nullable V right)
+specifier|private
 name|ValueDifferenceImpl
 parameter_list|(
 annotation|@
@@ -7075,7 +7109,7 @@ argument_list|>
 name|c
 parameter_list|)
 block|{
-comment|// TODO(user): find out why this is necessary to make GWT tests pass.  I mean, really.
+comment|// TODO(user): find out why this is necessary to make GWT tests pass.
 return|return
 name|super
 operator|.

@@ -738,7 +738,7 @@ argument_list|()
 return|;
 block|}
 comment|// Object methods
-comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code other} is a multiset    * of the same size and if, for each element, the two multisets have the same    * count.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset    * of the same size and if, for each element, the two multisets have the same    * count.    */
 DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override

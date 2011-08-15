@@ -162,7 +162,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a new, empty multiset, sorted according to the specified    * comparator. All elements inserted into the multiset must be<i>mutually    * comparable</i> by the specified comparator: {@code comparator.compare(e1,    * e2)} must not throw a {@code ClassCastException} for any elements {@code    * e1} and {@code e2} in the multiset. If the user attempts to add an element    * to the multiset that violates this constraint, the {@code add(Object)} call    * will throw a {@code ClassCastException}.    *    * @param comparator the comparator that will be used to sort this multiset. A    *     null value indicates that the elements'<i>natural ordering</i> should    *     be used.    */
-DECL|method|create (Comparator<? super E> comparator)
+DECL|method|create ( @ullable Comparator<? super E> comparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -174,6 +174,8 @@ name|E
 argument_list|>
 name|create
 parameter_list|(
+annotation|@
+name|Nullable
 name|Comparator
 argument_list|<
 name|?
@@ -194,7 +196,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an empty multiset containing the given initial elements, sorted    * according to the elements' natural order.    *    *<p>This implementation is highly efficient when {@code elements} is itself a    * {@link Multiset}.    *     *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
+comment|/**    * Creates an empty multiset containing the given initial elements, sorted    * according to the elements' natural order.    *    *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
 DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -258,10 +260,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|TreeMultiset (Comparator<? super E> comparator)
+DECL|method|TreeMultiset (@ullable Comparator<? super E> comparator)
 specifier|private
 name|TreeMultiset
 parameter_list|(
+annotation|@
+name|Nullable
 name|Comparator
 argument_list|<
 name|?

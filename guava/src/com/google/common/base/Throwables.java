@@ -148,8 +148,13 @@ parameter_list|)
 throws|throws
 name|X
 block|{
+comment|// Check for null is needed to avoid frequent JNI calls to isInstance().
 if|if
 condition|(
+name|throwable
+operator|!=
+literal|null
+operator|&&
 name|declaredType
 operator|.
 name|isInstance

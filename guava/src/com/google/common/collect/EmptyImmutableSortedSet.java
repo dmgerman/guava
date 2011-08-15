@@ -404,7 +404,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subSetImpl (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
+DECL|method|subSetImpl ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 name|ImmutableSortedSet
 argument_list|<
 name|E

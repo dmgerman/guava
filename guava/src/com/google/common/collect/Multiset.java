@@ -123,7 +123,7 @@ name|element
 parameter_list|)
 function_decl|;
 comment|// Bulk Operations
-comment|/**    * Adds a number of occurrences of an element to this multiset. Note that if    * {@code occurrences == 1}, this method has the identical effect to {@link    * #add(Object)}. This method is functionally equivalent (except in the case    * of overflow) to the call {@code addAll(Collections.nCopies(element,    * occurrences))}, which would presumably perform much more poorly.    *    * @param element the element to add occurrences of; may be {@code null} only    *     if explicitly allowed by the implementation    * @param occurrences the number of occurrences of the element to add. May be    *     zero, in which case no change will be made.    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     this operation would result in more than {@link Integer#MAX_VALUE}    *     occurrences of the element    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements. Note that if {@code    *     occurrences} is zero, the implementation may opt to return normally.    */
+comment|/**    * Adds a number of occurrences of an element to this multiset. Note that if    * {@code occurrences == 1}, this method has the identical effect to {@link    * #add(Object)}. This method is functionally equivalent (except in the case    * of overflow) to the call {@code addAll(Collections.nCopies(element,    * occurrences))}, which would presumably perform much more poorly.    *    * @param element the element to add occurrences of; may be null only if    *     explicitly allowed by the implementation    * @param occurrences the number of occurrences of the element to add. May be    *     zero, in which case no change will be made.    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     this operation would result in more than {@link Integer#MAX_VALUE}    *     occurrences of the element    * @throws NullPointerException if {@code element} is null and this    *     implementation does not permit null elements. Note that if {@code    *     occurrences} is zero, the implementation may opt to return normally.    */
 DECL|method|add (@ullable E element, int occurrences)
 name|int
 name|add
@@ -343,7 +343,7 @@ name|Object
 name|element
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p><b>Note</b>: This method ignores how often any element might appear in     * {@code c}, and only cares whether or not an element appears at all.    * If you wish to remove one occurrence in this multiset for every occurrence    * in {@code c}, see {@link Multisets#removeOccurrences(Multiset, Multiset)}.    *     *<p>This method refines {@link Collection#removeAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.     */
+comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This method ignores how often any element might appear in    * {@code c}, and only cares whether or not an element appears at all.    * If you wish to remove one occurrence in this multiset for every occurrence    * in {@code c}, see {@link Multisets#removeOccurrences(Multiset, Multiset)}.    *     *<p>This method refines {@link Collection#removeAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.     */
 annotation|@
 name|Override
 DECL|method|removeAll (Collection<?> c)
@@ -357,7 +357,7 @@ argument_list|>
 name|c
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *     *<p><b>Note</b>: This method ignores how often any element might appear in     * {@code c}, and only cares whether or not an element appears at all.    * If you wish to remove one occurrence in this multiset for every occurrence    * in {@code c}, see {@link Multisets#retainOccurrences(Multiset, Multiset)}.    *     *<p>This method refines {@link Collection#retainAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.    *     * @see Multisets#retainOccurrences(Multiset, Multiset)    */
+comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> This method ignores how often any element might appear in    * {@code c}, and only cares whether or not an element appears at all.    * If you wish to remove one occurrence in this multiset for every occurrence    * in {@code c}, see {@link Multisets#retainOccurrences(Multiset, Multiset)}.    *     *<p>This method refines {@link Collection#retainAll} to further specify that    * it<b>may not</b> throw an exception in response to any of {@code elements}    * being null or of the wrong type.    *     * @see Multisets#retainOccurrences(Multiset, Multiset)    */
 annotation|@
 name|Override
 DECL|method|retainAll (Collection<?> c)

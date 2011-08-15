@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An ordering for a pre-existing {@code comparator}. */
+comment|/** An ordering for a pre-existing comparator. */
 end_comment
 
 begin_class

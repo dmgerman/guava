@@ -509,7 +509,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be    * either inclusive (closed) or exclusive (open).    */
-DECL|method|upTo (C endpoint, BoundType boundType)
+DECL|method|upTo ( C endpoint, BoundType boundType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -649,7 +649,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a range from the given endpoint, which may be either inclusive    * (closed) or exclusive (open), with no upper bound.    */
-DECL|method|downTo (C endpoint, BoundType boundType)
+DECL|method|downTo ( C endpoint, BoundType boundType)
 specifier|public
 specifier|static
 parameter_list|<

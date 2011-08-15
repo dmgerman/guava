@@ -1369,8 +1369,8 @@ name|backingMap
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): once TreeMultiset is replaced with a SortedMultiset implementation,
-comment|// replace this with a subclass of Multisets.ElementSet.
+comment|// TODO(user): once TreeMultiset is replaced with a SortedMultiset
+comment|// implementation, replace this with a subclass of Multisets.ElementSet.
 DECL|class|MapBasedElementSet
 class|class
 name|MapBasedElementSet
@@ -1380,7 +1380,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|// This mapping is the usually the same as {@code backingMap}, but can be a
+comment|// This mapping is the usually the same as 'backingMap', but can be a
 comment|// submap in some implementations.
 DECL|field|map
 specifier|private

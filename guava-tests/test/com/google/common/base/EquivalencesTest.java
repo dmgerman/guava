@@ -68,7 +68,7 @@ name|common
 operator|.
 name|testing
 operator|.
-name|SerializableTester
+name|EquivalenceTester
 import|;
 end_import
 
@@ -78,11 +78,11 @@ name|com
 operator|.
 name|google
 operator|.
+name|common
+operator|.
 name|testing
 operator|.
-name|util
-operator|.
-name|EquivalenceTester
+name|SerializableTester
 import|;
 end_import
 

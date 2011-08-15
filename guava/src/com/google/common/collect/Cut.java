@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation detail for the internal structure of {@link Range} instances.  * Represents a unique way of "cutting" a "number line" (actually of instances  * of type {@code C}, not necessarily "numbers") into two sections; this can be  * done below a certain value, above a certain value, below all values or above  * all values. With this object defined in this way, an interval can always be  * represented by a pair of {@code Cut} instances.  *  * @author Kevin Bourrillion  */
+comment|/**  * Implementation detail for the internal structure of {@link Range} instances. Represents  * a unique way of "cutting" a "number line" (actually of instances of type {@code C}, not  * necessarily "numbers") into two sections; this can be done below a certain value, above  * a certain value, below all values or above all values. With this object defined in this  * way, an interval can always be represented by a pair of {@code Cut} instances.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -235,9 +235,7 @@ argument_list|>
 name|domain
 parameter_list|)
 function_decl|;
-comment|// the canonical form is a BelowValue cut whenever possible, otherwise
-comment|// ABOVE_ALL, and (only in the case of types that are unbounded below)
-comment|// BELOW_ALL.
+comment|/*    * The canonical form is a BelowValue cut whenever possible, otherwise ABOVE_ALL, or    * (only in the case of types that are unbounded below) BELOW_ALL.    */
 DECL|method|canonical (DiscreteDomain<C> domain)
 name|Cut
 argument_list|<
@@ -412,7 +410,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*    * The implementation neither produces nor consumes any non-null instance of    * type C, so casting the type parameter is safe.    */
+comment|/*    * The implementation neither produces nor consumes any non-null instance of type C, so    * casting the type parameter is safe.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

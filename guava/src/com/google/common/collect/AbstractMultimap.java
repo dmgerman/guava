@@ -1675,7 +1675,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * If collection is empty, remove it from {@code map}. For subcollections,      * check whether the ancestor collection is empty.      */
+comment|/**      * If collection is empty, remove it from {@code AbstractMultimap.this.map}.      * For subcollections, check whether the ancestor collection is empty.      */
 DECL|method|removeIfEmpty ()
 name|void
 name|removeIfEmpty

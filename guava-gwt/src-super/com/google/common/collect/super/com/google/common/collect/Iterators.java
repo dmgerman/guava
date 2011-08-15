@@ -596,7 +596,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Traverses an iterator and removes every element that belongs to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any elements are removed from {@code iterator}    */
+comment|/**    * Traverses an iterator and removes every element that belongs to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterator}    */
 DECL|method|removeAll ( Iterator<?> removeFrom, Collection<?> elementsToRemove)
 specifier|public
 specifier|static
@@ -733,7 +733,7 @@ return|return
 name|modified
 return|;
 block|}
-comment|/**    * Traverses an iterator and removes every element that does not belong to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any elements are removed from {@code iterator}    */
+comment|/**    * Traverses an iterator and removes every element that does not belong to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterator}    */
 DECL|method|retainAll ( Iterator<?> removeFrom, Collection<?> elementsToRetain)
 specifier|public
 specifier|static
@@ -1712,7 +1712,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it. The methods of the returned iterator may throw    * {@code NullPointerException} if any of the input iterators are null.    */
+comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it. The methods of the returned iterator may throw    * {@code NullPointerException} if any of the input iterators is null.    */
 DECL|method|concat ( final Iterator<? extends Iterator<? extends T>> inputs)
 specifier|public
 specifier|static
@@ -2462,7 +2462,7 @@ else|:
 name|defaultValue
 return|;
 block|}
-comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} is {@code true}, or    * {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since Guava release 02    */
+comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since Guava release 02    */
 DECL|method|indexOf ( Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static

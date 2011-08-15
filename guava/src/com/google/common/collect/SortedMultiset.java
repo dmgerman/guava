@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Multiset} which maintains the ordering of its elements, according to  * either their natural order or an explicit {@link Comparator}. In all cases,  * this implementation uses {@link Comparable#compareTo} or  * {@link Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p>  *<b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link Collection} contract, which it is  * specified in terms of {@link Object#equals}.  *  * @author Louis Wasserman  */
+comment|/**  * A {@link Multiset} which maintains the ordering of its elements, according to  * either their natural order or an explicit {@link Comparator}. In all cases,  * this implementation uses {@link Comparable#compareTo} or  * {@link Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link Collection} contract, which it is  * specified in terms of {@link Object#equals}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_interface
@@ -152,7 +152,7 @@ argument_list|>
 name|elementSet
 parameter_list|()
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>    * The iterator returns the elements in ascending order according to this    * multiset's comparator.    */
+comment|/**    * {@inheritDoc}    *    *<p>The iterator returns the elements in ascending order according to this    * multiset's comparator.    */
 DECL|method|iterator ()
 annotation|@
 name|Override

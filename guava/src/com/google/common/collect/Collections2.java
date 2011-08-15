@@ -275,7 +275,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Delegates to {@link Collection#contains}.  Returns {@code false} on {@code    * ClassCastException}    */
+comment|/**    * Delegates to {@link Collection#contains}. Returns {@code false} if the    * {@code contains} method throws a {@code ClassCastException}.    */
 DECL|method|safeContains (Collection<?> collection, Object object)
 specifier|static
 name|boolean

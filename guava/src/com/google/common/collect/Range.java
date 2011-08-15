@@ -275,7 +275,7 @@ name|belowAll
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the lower endpoint of this range.    *    * @throws IllegalStateException if this range is unbounded below (that is,    *     {@link #hasLowerBound()} is false)    */
+comment|/**    * Returns the lower endpoint of this range.    *    * @throws IllegalStateException if this range is unbounded below (that is,    *     {@link #hasLowerBound()} returns {@code false})    */
 DECL|method|lowerEndpoint ()
 specifier|public
 name|C
@@ -289,7 +289,7 @@ name|endpoint
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the type of this range's lower bound: {@link BoundType#CLOSED} if    * the range includes its lower endpoint, {@link BoundType#OPEN} if it does    * not.    *    * @throws IllegalStateException if this range is unbounded below (that is,    *     {@link #hasLowerBound()} is false)    */
+comment|/**    * Returns the type of this range's lower bound: {@link BoundType#CLOSED} if    * the range includes its lower endpoint, {@link BoundType#OPEN} if it does    * not.    *    * @throws IllegalStateException if this range is unbounded below (that is,    *     {@link #hasLowerBound()} returns {@code false})    */
 DECL|method|lowerBoundType ()
 specifier|public
 name|BoundType
@@ -319,7 +319,7 @@ name|aboveAll
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the upper endpoint of this range.    *    * @throws IllegalStateException if this range is unbounded above (that is,    *     {@link #hasUpperBound()} is false)    */
+comment|/**    * Returns the upper endpoint of this range.    *    * @throws IllegalStateException if this range is unbounded above (that is,    *     {@link #hasUpperBound()} returns {@code false})    */
 DECL|method|upperEndpoint ()
 specifier|public
 name|C
@@ -333,7 +333,7 @@ name|endpoint
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the type of this range's upper bound: {@link BoundType#CLOSED} if    * the range includes its upper endpoint, {@link BoundType#OPEN} if it does    * not.    *    * @throws IllegalStateException if this range is unbounded above (that is,    *     {@link #hasUpperBound()} is false)    */
+comment|/**    * Returns the type of this range's upper bound: {@link BoundType#CLOSED} if    * the range includes its upper endpoint, {@link BoundType#OPEN} if it does    * not.    *    * @throws IllegalStateException if this range is unbounded above (that is,    *     {@link #hasUpperBound()} returns {@code false})    */
 DECL|method|upperBoundType ()
 specifier|public
 name|BoundType
@@ -363,7 +363,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code value} is within the bounds of this    * range. For example, on the range {@code [0â¥2)}, {@code contains(1)}    * is true, while {@code contains(2)} is false.    */
+comment|/**    * Returns {@code true} if {@code value} is within the bounds of this    * range. For example, on the range {@code [0â¥2)}, {@code contains(1)}    * returns {@code true}, while {@code contains(2)} returns {@code false}.    */
 DECL|method|contains (C value)
 specifier|public
 name|boolean
@@ -705,7 +705,7 @@ name|newUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link ImmutableSortedSet} containing the same values in the    * given domain {@linkplain Range#contains contained} by this range.    *    *<p><b>Note</b>: {@code a.asSet().equals(b.asSet())} does not imply {@code    * a.equals(b)}! For example, {@code a} and {@code b} could be {@code [2â¥4]}    * and {@code (1â¥5)}, or the empty ranges {@code [3â¥3)} and {@code [4â¥4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet}    * view of a large range (such as {@code Ranges.greaterThan(0)}). Certain    * operations on such a set can be performed efficiently, but others (such as    * {@link Set#hashCode} or {@link Collections#frequency}) can cause major    * performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand    * form of set's contents such as {@code "[1â¥100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a    *     lower bound, or if neither has an upper bound    */
+comment|/**    * Returns an {@link ImmutableSortedSet} containing the same values in the    * given domain {@linkplain Range#contains contained} by this range.    *    *<p><b>Note:</b> {@code a.asSet().equals(b.asSet())} does not imply {@code    * a.equals(b)}! For example, {@code a} and {@code b} could be {@code [2â¥4]}    * and {@code (1â¥5)}, or the empty ranges {@code [3â¥3)} and {@code [4â¥4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet}    * view of a large range (such as {@code Ranges.greaterThan(0)}). Certain    * operations on such a set can be performed efficiently, but others (such as    * {@link Set#hashCode} or {@link Collections#frequency}) can cause major    * performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand    * form of set's contents such as {@code "[1â¥100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a    *     lower bound, or if neither has an upper bound    */
 comment|// TODO(kevinb): commit in spec to which methods are efficient?
 annotation|@
 name|GwtCompatible

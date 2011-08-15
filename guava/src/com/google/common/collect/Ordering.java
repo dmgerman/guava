@@ -263,7 +263,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// TODO(kevinb): the right way to explain this??
+comment|// TODO(kevinb): right way to explain this??
 DECL|method|natural ()
 specifier|public
 specifier|static
@@ -1077,7 +1077,7 @@ name|T
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *     *<p>The implementation does not necessarily use a<em>stable</em> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since Guava release 08    */
+comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since Guava release 08    */
 annotation|@
 name|Beta
 DECL|method|leastOf (Iterable<E> iterable, int k)
@@ -1235,7 +1235,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *     *<p>The implementation does not necessarily use a<em>stable</em> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since Guava release 08    */
+comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since Guava release 08    */
 annotation|@
 name|Beta
 DECL|method|greatestOf (Iterable<E> iterable, int k)

@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link SortedMap}. Does not permit null keys or values.  *  *<p>Unlike {@link Collections#unmodifiableSortedMap}, which is a<i>view</i>  * of a separate map which can still change, an instance of {@code  * ImmutableSortedMap} contains its own data and will<i>never</i> change.  * {@code ImmutableSortedMap} is convenient for {@code public static final} maps  * ("constant maps") and also lets you easily make a "defensive copy" of a map  * provided to your class by a caller.  *  *<p><b>Note</b>: Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class are  * guaranteed to be immutable.  *  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * An immutable {@link SortedMap}. Does not permit null keys or values.  *  *<p>Unlike {@link Collections#unmodifiableSortedMap}, which is a<i>view</i>  * of a separate map which can still change, an instance of {@code  * ImmutableSortedMap} contains its own data and will<i>never</i> change.  * {@code ImmutableSortedMap} is convenient for {@code public static final} maps  * ("constant maps") and also lets you easily make a "defensive copy" of a map  * provided to your class by a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class are  * guaranteed to be immutable.  *  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

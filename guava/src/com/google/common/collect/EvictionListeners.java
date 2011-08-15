@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of common eviction listeners.  *  * @author Charles Fry  * @since Guava release 07  * @deprecated Caching functionality in {@code MapMaker} is being moved to  *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to  *     {@code EvictionListeners} is provided by {@link com.google.common.cache.RemovalListeners}.  *<b>This class is scheduled for deletion in Guava release 11.</b>  */
+comment|/**  * A collection of common eviction listeners.  *  * @author Charles Fry  * @since Guava release 07  * @deprecated Caching functionality in {@code MapMaker} is being moved to  *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to  *     {@code EvictionListeners} is provided by {@link  *     com.google.common.cache.RemovalListeners}.<b>This class is scheduled for  *     deletion in Guava release 11.</b>  */
 end_comment
 
 begin_class
