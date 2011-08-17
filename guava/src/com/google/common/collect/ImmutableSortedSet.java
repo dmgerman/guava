@@ -226,6 +226,11 @@ name|SortedSet
 argument_list|<
 name|E
 argument_list|>
+implements|,
+name|SortedIterable
+argument_list|<
+name|E
+argument_list|>
 block|{
 DECL|field|NATURAL_ORDER
 specifier|private
@@ -2086,6 +2091,19 @@ return|return
 name|comparator
 return|;
 block|}
+annotation|@
+name|Override
+comment|// needed to unify the iterator() methods in Collection and SortedIterable
+DECL|method|iterator ()
+specifier|public
+specifier|abstract
+name|UnmodifiableIterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a serializable {@code ImmutableSortedSet}.    *    *<p>The {@link SortedSet#headSet} documentation states that a subset of a    * subset throws an {@link IllegalArgumentException} if passed a    * {@code toElement} greater than an earlier {@code toElement}. However, this    * method doesn't throw an exception in that situation, but instead keeps the    * original {@code toElement}.    */
 annotation|@
 name|Override

@@ -206,36 +206,7 @@ specifier|public
 class|class
 name|Helpers
 block|{
-DECL|method|checkNotNull (T reference)
-specifier|public
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|checkNotNull
-parameter_list|(
-name|T
-name|reference
-parameter_list|)
-block|{
-if|if
-condition|(
-name|reference
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NullPointerException
-argument_list|()
-throw|;
-block|}
-return|return
-name|reference
-return|;
-block|}
+comment|// Clone of Objects.equal
 DECL|method|equal (Object a, Object b)
 specifier|static
 name|boolean
@@ -267,6 +238,7 @@ argument_list|)
 operator|)
 return|;
 block|}
+comment|// Clone of Lists.newArrayList
 DECL|method|copyToList (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -341,6 +313,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|// Clone of Sets.newLinkedHashSet
 DECL|method|copyToSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -415,8 +388,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|// Would use Maps.immutableEntry
 DECL|method|mapEntry (K key, V value)
-specifier|public
 specifier|static
 parameter_list|<
 name|K
@@ -1642,8 +1615,6 @@ argument_list|)
 expr_stmt|;
 comment|// muhahaha!
 return|return
-name|Helpers
-operator|.
 name|equal
 argument_list|(
 name|this
@@ -1657,8 +1628,6 @@ name|getKey
 argument_list|()
 argument_list|)
 operator|&&
-name|Helpers
-operator|.
 name|equal
 argument_list|(
 name|this

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -32,6 +32,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -41,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * List returned by {@code ImmutableSortedSet.asList()} when the set isn't  * empty.  *  * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * List returned by {@code ImmutableSortedSet.asList()} when the set isn't empty.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -59,6 +69,11 @@ name|E
 parameter_list|>
 extends|extends
 name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+implements|implements
+name|SortedIterable
 argument_list|<
 name|E
 argument_list|>
@@ -112,8 +127,27 @@ operator|=
 name|backingList
 expr_stmt|;
 block|}
-comment|// Override contains(), indexOf(), and lastIndexOf() to be O(log N) instead of
-comment|// O(N).
+DECL|method|comparator ()
+annotation|@
+name|Override
+specifier|public
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|()
+block|{
+return|return
+name|backingSet
+operator|.
+name|comparator
+argument_list|()
+return|;
+block|}
+comment|// Override contains(), indexOf(), and lastIndexOf() to be O(log N) instead of O(N).
 DECL|method|contains (@ullable Object target)
 annotation|@
 name|Override

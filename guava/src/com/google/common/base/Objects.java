@@ -290,7 +290,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since Guava release 03    */
+comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@code Optional<T>},    * this can be accomplished with {@code first.or(second)}. That approach also    * allows for lazy evaluation of the fallback instance, using    * {@code first.or(Supplier)}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since Guava release 03    */
 DECL|method|firstNonNull (@ullable T first, @Nullable T second)
 specifier|public
 specifier|static

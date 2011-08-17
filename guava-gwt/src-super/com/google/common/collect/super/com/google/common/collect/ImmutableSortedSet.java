@@ -161,6 +161,11 @@ name|SortedSet
 argument_list|<
 name|E
 argument_list|>
+implements|,
+name|SortedIterable
+argument_list|<
+name|E
+argument_list|>
 block|{
 comment|// In the non-emulated source, this is in ImmutableSortedSetFauxverideShim,
 comment|// which overrides ImmutableSet& which ImmutableSortedSet extends.
@@ -1629,6 +1634,25 @@ return|return
 name|sortedDelegate
 operator|.
 name|comparator
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+comment|// needed to unify SortedIterable and Collection iterator() methods
+DECL|method|iterator ()
+specifier|public
+name|UnmodifiableIterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|iterator
 argument_list|()
 return|;
 block|}

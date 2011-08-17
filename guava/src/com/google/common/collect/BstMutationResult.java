@@ -46,7 +46,43 @@ name|BstModificationResult
 operator|.
 name|ModificationType
 operator|.
+name|IDENTITY
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|BstModificationResult
+operator|.
+name|ModificationType
+operator|.
 name|REBUILDING_CHANGE
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|BstModificationResult
+operator|.
+name|ModificationType
+operator|.
+name|REBALANCING_CHANGE
 import|;
 end_import
 
