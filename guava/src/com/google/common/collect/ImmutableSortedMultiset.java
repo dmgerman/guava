@@ -977,6 +977,29 @@ name|?
 argument_list|>
 condition|)
 block|{
+name|ImmutableSortedMultiset
+argument_list|<
+name|E
+argument_list|>
+name|multiset
+init|=
+operator|(
+name|ImmutableSortedMultiset
+argument_list|<
+name|E
+argument_list|>
+operator|)
+name|iterable
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|multiset
+operator|.
+name|isPartialView
+argument_list|()
+condition|)
+block|{
 return|return
 operator|(
 name|ImmutableSortedMultiset
@@ -986,6 +1009,7 @@ argument_list|>
 operator|)
 name|iterable
 return|;
+block|}
 block|}
 name|ImmutableList
 argument_list|<
@@ -1029,10 +1053,10 @@ argument_list|)
 return|;
 block|}
 name|verifyEntries
-argument_list|(
+parameter_list|(
 name|entries
-argument_list|)
-expr_stmt|;
+parameter_list|)
+constructor_decl|;
 return|return
 name|RegularImmutableSortedMultiset
 operator|.
@@ -1044,6 +1068,9 @@ name|entries
 argument_list|)
 return|;
 block|}
+end_class
+
+begin_function
 DECL|method|copyOfInternal ( Comparator<? super E> comparator, Iterator<? extends E> iterator)
 specifier|private
 specifier|static
@@ -1136,6 +1163,9 @@ name|entries
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|verifyEntries (Collection<Entry<E>> entries)
 specifier|private
 specifier|static
@@ -1176,6 +1206,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1229,6 +1262,9 @@ name|comparator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|comparator
 specifier|private
 specifier|final
@@ -1241,9 +1277,12 @@ name|E
 argument_list|>
 name|comparator
 decl_stmt|;
+end_decl_stmt
+
+begin_expr_stmt
 DECL|method|ImmutableSortedMultiset (Comparator<? super E> comparator)
 name|ImmutableSortedMultiset
-parameter_list|(
+argument_list|(
 name|Comparator
 argument_list|<
 name|?
@@ -1251,7 +1290,7 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
@@ -1261,9 +1300,8 @@ name|checkNotNull
 argument_list|(
 name|comparator
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
+block|;   }
+expr|@
 name|Override
 DECL|method|comparator ()
 specifier|public
@@ -1274,15 +1312,27 @@ super|super
 name|E
 argument_list|>
 name|comparator
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|comparator
 return|;
 block|}
+end_expr_stmt
+
+begin_comment
 comment|// Pretend the comparator can compare anything. If it turns out it can't
+end_comment
+
+begin_comment
 comment|// compare two elements, it'll throw a CCE. Only methods that are specified to
+end_comment
+
+begin_comment
 comment|// throw CCE should call this.
+end_comment
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1306,6 +1356,9 @@ operator|)
 name|comparator
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|reverseComparator
 specifier|private
 specifier|transient
@@ -1317,6 +1370,9 @@ name|E
 argument_list|>
 name|reverseComparator
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 DECL|method|reverseComparator ()
 name|Comparator
 argument_list|<
@@ -1365,6 +1421,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|elementSet
 specifier|private
 specifier|transient
@@ -1374,6 +1433,9 @@ name|E
 argument_list|>
 name|elementSet
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|elementSet ()
@@ -1411,6 +1473,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|createElementSet ()
 specifier|abstract
 name|ImmutableSortedSet
@@ -1420,6 +1485,9 @@ argument_list|>
 name|createElementSet
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_function_decl
 DECL|method|createDescendingElementSet ()
 specifier|abstract
 name|ImmutableSortedSet
@@ -1429,6 +1497,9 @@ argument_list|>
 name|createDescendingElementSet
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_decl_stmt
 DECL|field|descendingMultiset
 specifier|transient
 name|ImmutableSortedMultiset
@@ -1437,6 +1508,9 @@ name|E
 argument_list|>
 name|descendingMultiset
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 annotation|@
 name|Override
 DECL|method|descendingMultiset ()
@@ -1480,6 +1554,9 @@ return|return
 name|result
 return|;
 block|}
+end_function
+
+begin_function_decl
 DECL|method|descendingEntryIterator ()
 specifier|abstract
 name|UnmodifiableIterator
@@ -1492,7 +1569,13 @@ argument_list|>
 name|descendingEntryIterator
 parameter_list|()
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|pollFirstEntry ()
@@ -1511,7 +1594,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    */
+end_comment
+
+begin_function
 annotation|@
 name|Override
 DECL|method|pollLastEntry ()
@@ -1529,6 +1618,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+end_function
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|headMultiset (E upperBound, BoundType boundType)
@@ -1547,6 +1639,9 @@ name|BoundType
 name|boundType
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_function
 annotation|@
 name|Override
 DECL|method|subMultiset ( E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
@@ -1586,6 +1681,9 @@ name|upperBoundType
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function_decl
 annotation|@
 name|Override
 DECL|method|tailMultiset (E lowerBound, BoundType boundType)
@@ -1604,7 +1702,13 @@ name|BoundType
 name|boundType
 parameter_list|)
 function_decl|;
+end_function_decl
+
+begin_comment
 comment|/**    * Returns a builder that creates immutable sorted multisets with an explicit comparator. If the    * comparator has a more general type than the set being generated, such as creating a {@code    * SortedMultiset<Integer>} with a {@code Comparator<Number>}, use the {@link Builder}    * constructor instead.    *    * @throws NullPointerException if {@code comparator} is null    */
+end_comment
+
+begin_function
 DECL|method|orderedBy (Comparator<E> comparator)
 specifier|public
 specifier|static
@@ -1635,7 +1739,13 @@ name|comparator
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by the    * reverse of their natural ordering.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<E>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
+end_comment
+
+begin_function
 DECL|method|reverseOrder ()
 specifier|public
 specifier|static
@@ -1671,7 +1781,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by their    * natural ordering. The sorted multisets use {@link Ordering#natural()} as the comparator. This    * method provides more type-safety than {@link #builder}, as it can be called only for classes    * that implement {@link Comparable}.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<E>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
+end_comment
+
+begin_function
 DECL|method|naturalOrder ()
 specifier|public
 specifier|static
@@ -1704,7 +1820,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre> {@code    *    *   public static final ImmutableSortedMultiset<Bean> BEANS =    *       new ImmutableSortedMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    */
+end_comment
+
+begin_class
 DECL|class|Builder
 specifier|public
 specifier|static
@@ -1968,6 +2090,9 @@ argument_list|)
 return|;
 block|}
 block|}
+end_class
+
+begin_class
 DECL|class|SerializedForm
 specifier|private
 specifier|static
@@ -2148,6 +2273,9 @@ argument_list|()
 return|;
 block|}
 block|}
+end_class
+
+begin_function
 annotation|@
 name|Override
 DECL|method|writeReplace ()
@@ -2163,8 +2291,8 @@ name|this
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

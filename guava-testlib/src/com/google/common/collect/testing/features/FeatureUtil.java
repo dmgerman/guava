@@ -165,6 +165,33 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|Map
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|TesterRequirements
+argument_list|>
+DECL|field|classTesterRequirementsCache
+name|classTesterRequirementsCache
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|TesterRequirements
+argument_list|>
+argument_list|()
+decl_stmt|;
 comment|/**    * Given a set of features, add to it all the features directly or indirectly    * implied by any of them, and return it.    * @param features the set of features to expand    * @return the same set of features, expanded with all implied features    */
 DECL|method|addImpliedFeatures (Set<Feature<?>> features)
 specifier|public
@@ -303,12 +330,49 @@ parameter_list|)
 throws|throws
 name|ConflictingRequirementsException
 block|{
-return|return
+synchronized|synchronized
+init|(
+name|classTesterRequirementsCache
+init|)
+block|{
+name|TesterRequirements
+name|requirements
+init|=
+name|classTesterRequirementsCache
+operator|.
+name|get
+argument_list|(
+name|testerClass
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|requirements
+operator|==
+literal|null
+condition|)
+block|{
+name|requirements
+operator|=
 name|buildTesterRequirements
 argument_list|(
 name|testerClass
 argument_list|)
+expr_stmt|;
+name|classTesterRequirementsCache
+operator|.
+name|put
+argument_list|(
+name|testerClass
+argument_list|,
+name|requirements
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|requirements
 return|;
+block|}
 block|}
 comment|/**    * Get the full set of requirements for a tester class.    * @param testerMethod a test method of a tester class    * @return all the constraints implicitly or explicitly required by the    * method, its declaring class, or any of its superclasses.    * @throws ConflictingRequirementsException if the requirements are    * mutually inconsistent.    */
 DECL|method|getTesterRequirements (Method testerMethod)
@@ -628,7 +692,7 @@ return|;
 block|}
 comment|/**    * Find all the constraints explicitly or implicitly specified by a single    * tester annotation.    * @param testerAnnotation a tester annotation    * @return the requirements specified by the annotation    * @throws ConflictingRequirementsException if the requirements are mutually    *         inconsistent.    */
 DECL|method|buildTesterRequirements ( Annotation testerAnnotation)
-specifier|public
+specifier|private
 specifier|static
 name|TesterRequirements
 name|buildTesterRequirements

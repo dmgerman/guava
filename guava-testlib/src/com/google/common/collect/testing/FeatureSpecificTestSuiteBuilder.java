@@ -19,6 +19,32 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|disjoint
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+operator|.
+name|FINER
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -932,6 +958,30 @@ name|e
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+operator|!
+name|features
+operator|.
+name|containsAll
+argument_list|(
+name|requirements
+operator|.
+name|getPresentFeatures
+argument_list|()
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|logger
+operator|.
+name|isLoggable
+argument_list|(
+name|FINER
+argument_list|)
+condition|)
+block|{
 name|Set
 argument_list|<
 name|Feature
@@ -958,15 +1008,6 @@ argument_list|(
 name|features
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|missingFeatures
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
 name|logger
 operator|.
 name|finer
@@ -975,9 +1016,7 @@ name|Platform
 operator|.
 name|format
 argument_list|(
-literal|"%s: skipping because these features "
-operator|+
-literal|"are absent: %s"
+literal|"%s: skipping because these features are absent: %s"
 argument_list|,
 name|method
 argument_list|,
@@ -985,10 +1024,34 @@ name|missingFeatures
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
 block|}
+if|if
+condition|(
+name|intersect
+argument_list|(
+name|features
+argument_list|,
+name|requirements
+operator|.
+name|getAbsentFeatures
+argument_list|()
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|logger
+operator|.
+name|isLoggable
+argument_list|(
+name|FINER
+argument_list|)
+condition|)
+block|{
 name|Set
 argument_list|<
 name|Feature
@@ -1015,15 +1078,6 @@ argument_list|(
 name|features
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|unwantedFeatures
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
 name|logger
 operator|.
 name|finer
@@ -1032,9 +1086,7 @@ name|Platform
 operator|.
 name|format
 argument_list|(
-literal|"%s: skipping because these features "
-operator|+
-literal|"are present: %s"
+literal|"%s: skipping because these features are present: %s"
 argument_list|,
 name|method
 argument_list|,
@@ -1042,12 +1094,42 @@ name|unwantedFeatures
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
 block|}
 return|return
 literal|true
+return|;
+block|}
+DECL|method|intersect (Set<?> a, Set<?> b)
+specifier|private
+specifier|static
+name|boolean
+name|intersect
+parameter_list|(
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|a
+parameter_list|,
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|b
+parameter_list|)
+block|{
+return|return
+operator|!
+name|disjoint
+argument_list|(
+name|a
+argument_list|,
+name|b
+argument_list|)
 return|;
 block|}
 DECL|method|extractMethod (Test test)

@@ -357,7 +357,6 @@ return|;
 block|}
 comment|/** GWT safe version of Arrays.copyOf. */
 DECL|method|arraysCopyOf (T[] original, int newLength)
-specifier|private
 specifier|static
 parameter_list|<
 name|T

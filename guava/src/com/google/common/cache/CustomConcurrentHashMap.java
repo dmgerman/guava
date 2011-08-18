@@ -10315,7 +10315,7 @@ argument_list|()
 decl_stmt|;
 name|statsCounter
 operator|.
-name|recordCreateSuccess
+name|recordLoadSuccess
 argument_list|(
 name|end
 operator|-
@@ -10382,7 +10382,7 @@ argument_list|()
 decl_stmt|;
 name|statsCounter
 operator|.
-name|recordCreateException
+name|recordLoadException
 argument_list|(
 name|end
 operator|-

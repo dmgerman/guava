@@ -332,27 +332,27 @@ name|void
 name|recordHit
 parameter_list|()
 function_decl|;
-comment|/**      * Records the successful creation of a new value. This should be called when a cache request      * triggers the creation of a new value, and that creation completes succesfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the creating thread.      *      * @param createTime the number of nanoseconds the cache spent creating the new value      */
-DECL|method|recordCreateSuccess (long createTime)
+comment|/**      * Records the successful load of a new entry. This should be called when a cache request      * causes an entry to be loaded, and the loading completes succesfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
+DECL|method|recordLoadSuccess (long loadTime)
 specifier|public
 name|void
-name|recordCreateSuccess
+name|recordLoadSuccess
 parameter_list|(
 name|long
-name|createTime
+name|loadTime
 parameter_list|)
 function_decl|;
-comment|/**      * Records the failed creation of a new value. This should be called when a cache request      * triggers the creation of a new value, but that creation throws an exception. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the creating thread.      *      * @param createTime the number of nanoseconds the cache spent creating the new value prior to      *     an exception being thrown      */
-DECL|method|recordCreateException (long createTime)
+comment|/**      * Records the failed load of a new entry. This should be called when a cache request causes      * an entry to be loaded, but an exception is thrown while loading the entry. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value prior to an exception being thrown      */
+DECL|method|recordLoadException (long loadTime)
 specifier|public
 name|void
-name|recordCreateException
+name|recordLoadException
 parameter_list|(
 name|long
-name|createTime
+name|loadTime
 parameter_list|)
 function_decl|;
-comment|/**      * Records a single concurrent miss. This should be called when a cache request returns a      * value which was created by a different thread. In contrast to {@link #recordCreateSuccess}      * and {@link #recordCreateException}, this method should never be called by the creating      * thread. Multiple concurrent calls to {@link Cache} lookup methods with the same key on an      * absent value should result in a single call to either {@code recordCreateSuccess} or      * {@code recordCreateException} and multiple calls to this method, despite all being served by      * the results of a single creation.      */
+comment|/**      * Records a single concurrent miss. This should be called when a cache request returns a      * value which was loaded by a different thread. In contrast to {@link #recordLoadSuccess}      * and {@link #recordLoadException}, this method should never be called by the loading      * thread. Multiple concurrent calls to {@link Cache} lookup methods with the same key on an      * absent value should result in a single call to either {@code recordLoadSuccess} or      * {@code recordLoadException} and multiple calls to this method, despite all being served by      * the results of a single load operation.      */
 DECL|method|recordConcurrentMiss ()
 specifier|public
 name|void
@@ -405,31 +405,31 @@ operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
-DECL|field|createSuccessCount
+DECL|field|loadSuccessCount
 specifier|private
 specifier|final
 name|AtomicLong
-name|createSuccessCount
+name|loadSuccessCount
 init|=
 operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
-DECL|field|createExceptionCount
+DECL|field|loadExceptionCount
 specifier|private
 specifier|final
 name|AtomicLong
-name|createExceptionCount
+name|loadExceptionCount
 init|=
 operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
-DECL|field|totalCreateTime
+DECL|field|totalLoadTime
 specifier|private
 specifier|final
 name|AtomicLong
-name|totalCreateTime
+name|totalLoadTime
 init|=
 operator|new
 name|AtomicLong
@@ -461,13 +461,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|recordCreateSuccess (long createTime)
+DECL|method|recordLoadSuccess (long loadTime)
 specifier|public
 name|void
-name|recordCreateSuccess
+name|recordLoadSuccess
 parameter_list|(
 name|long
-name|createTime
+name|loadTime
 parameter_list|)
 block|{
 name|missCount
@@ -475,28 +475,28 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-name|createSuccessCount
+name|loadSuccessCount
 operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-name|totalCreateTime
+name|totalLoadTime
 operator|.
 name|addAndGet
 argument_list|(
-name|createTime
+name|loadTime
 argument_list|)
 expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|recordCreateException (long createTime)
+DECL|method|recordLoadException (long loadTime)
 specifier|public
 name|void
-name|recordCreateException
+name|recordLoadException
 parameter_list|(
 name|long
-name|createTime
+name|loadTime
 parameter_list|)
 block|{
 name|missCount
@@ -504,16 +504,16 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-name|createExceptionCount
+name|loadExceptionCount
 operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-name|totalCreateTime
+name|totalLoadTime
 operator|.
 name|addAndGet
 argument_list|(
-name|createTime
+name|loadTime
 argument_list|)
 expr_stmt|;
 block|}
@@ -567,17 +567,17 @@ operator|.
 name|get
 argument_list|()
 argument_list|,
-name|createSuccessCount
+name|loadSuccessCount
 operator|.
 name|get
 argument_list|()
 argument_list|,
-name|createExceptionCount
+name|loadExceptionCount
 operator|.
 name|get
 argument_list|()
 argument_list|,
-name|totalCreateTime
+name|totalLoadTime
 operator|.
 name|get
 argument_list|()
@@ -627,33 +627,33 @@ name|missCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|createSuccessCount
+name|loadSuccessCount
 operator|.
 name|addAndGet
 argument_list|(
 name|otherStats
 operator|.
-name|createSuccessCount
+name|loadSuccessCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|createExceptionCount
+name|loadExceptionCount
 operator|.
 name|addAndGet
 argument_list|(
 name|otherStats
 operator|.
-name|createExceptionCount
+name|loadExceptionCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|totalCreateTime
+name|totalLoadTime
 operator|.
 name|addAndGet
 argument_list|(
 name|otherStats
 operator|.
-name|totalCreateTime
+name|totalLoadTime
 argument_list|()
 argument_list|)
 expr_stmt|;
