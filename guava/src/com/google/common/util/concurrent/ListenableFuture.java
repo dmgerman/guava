@@ -38,7 +38,31 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ExecutorService
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Future
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|FutureTask
 import|;
 end_import
 
@@ -55,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Future} that accepts completion listeners.  Each listener has an  * associated executor, and is invoked using this executor once the future's  * computation is {@linkplain Future#isDone() complete}.  If the computation has  * already completed when the listener is added, the listener will execute  * immediately.  *  *<p>Common {@code ListenableFuture} implementations include {@link  * SettableFuture} and the futures returned by a {@link  * ListeningExecutorService} (typically {@link ListenableFutureTask}  * instances).  *  *<p>Usage:  *<pre>   {@code  *   final ListenableFuture<?> future = myService.async(myRequest);  *   future.addListener(new Runnable() {  *     public void run() {  *       System.out.println("Operation Complete.");  *       try {  *         System.out.println("Result: " + future.get());  *       } catch (Exception e) {  *         System.out.println("Error: " + e.message());  *       }  *     }  *   }, executor);}</pre>  *  * @author Sven Mawson  * @author Nishant Thakkar  * @since Guava release 01  */
+comment|/**  * A {@link Future} that accepts completion listeners.  Each listener has an  * associated executor, and it is invoked using this executor once the future's  * computation is {@linkplain Future#isDone() complete}.  If the computation has  * already completed when the listener is added, the listener will execute  * immediately.  *  *<h3>Purpose</h3>  *  * Most commonly, {@code ListenableFuture} is used as an input to another  * derived {@code Future}, as in {@link Futures#allAsList(Iterable)  * Futures.allAsList}. Many such methods are impossible to implement efficiently  * without listener support.  *  *<p>It is possible to call {@link #addListener addListener} directly, but this  * is uncommon because the {@code Runnable} interface does not provide direct  * access to the {@code Future} result. (Users who want such access may prefer  * {@link Futures#addCallback Futures.addCallback}.) Still, direct {@code  * addListener} calls are occasionally useful:<pre>   {@code  *   final String name = ...;  *   inFlight.add(name);  *   ListenableFuture<Result> future = service.query(name);  *   future.addListener(new Runnable() {  *     public void run() {  *       processedCount.incrementAndGet();  *       inFlight.remove(name);  *       lastProcessed.set(name);  *       logger.info("Done with {0}", name);  *     }  *   }, executor);}</pre>  *  *<h3>How to get an instance</h3>  *  * Developers are encouraged to return {@code ListenableFuture} from their  * methods so that users can take advantages of the utilities built atop the  * class. The way that they will create {@code ListenableFuture} instances  * depends on how they currently create {@code Future} instances:  *<ul>  *<li>If they are returned from an {@code ExecutorService}, convert that  * service to a {@link ListeningExecutorService}, usually by calling {@link  * MoreExecutors#listeningDecorator(ExecutorService)  * MoreExecutors.listeningDecorator}. (Custom executors may find it more  * convenient to use {@link ListenableFutureTask} directly.)  *<li>If they are manually filled in by a call to {@link FutureTask#set} or a  * similar method, create a {@link SettableFuture} instead. (Users with more  * complex needs may prefer {@link AbstractFuture}.)  *</ul>  *  * Occasionally, an API will return a plain {@code Future} and it will be  * impossible to change the return type. For this case, we provide a more  * expensive workaround in {@code JdkFutureAdapters}. However, when possible, it  * is more efficient and reliable to create a {@code ListenableFuture} directly.  *  * @author Sven Mawson  * @author Nishant Thakkar  * @since Guava release 01  */
 end_comment
 
 begin_interface
@@ -72,7 +96,7 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|/**    * Registers a listener to be {@linkplain Executor#execute(Runnable) run} on    * the given executor.  The listener will run when the {@code Future}'s    * computation is {@linkplain Future#isDone() complete} or, if the computation    * is already complete, immediately.    *    *<p>There is no guaranteed ordering of execution of listeners, but any    * listener added through this method is guaranteed to be called once the    * computation is complete.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor.    * Any exception thrown during {@code Executor.execute} (e.g., a {@code    * RejectedExecutionException} or an exception thrown by {@linkplain    * MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *    *<p>Note: For fast, lightweight listeners that would be safe to execute in    * any thread, consider {@link MoreExecutors#sameThreadExecutor}. For heavier    * listeners, {@code sameThreadExecutor()} carries some caveats: First, the    * thread that the listener runs in depends on whether the {@code Future} is    * done at the time it is added. In particular, if added late, listeners will    * run in the thread that calls {@code addListener}. Second, listeners may    * run in an internal thread of the system responsible for the input {@code    * Future}, such as an RPC network thread. Finally, during the execution of a    * listener, the thread cannot submit any additional listeners for execution,    * even if those listeners are to run in other executors.    *    *<p>This is the most general listener interface.    * For common operations performed using listeners,    * see {@link com.google.common.util.concurrent.Futures}    *    * @param listener the listener to run when the computation is complete    * @param executor the executor to run the listener in    * @throws NullPointerException if the executor or listener was null    * @throws RejectedExecutionException if we tried to execute the listener    *         immediately but the executor rejected it.    */
+comment|/**    * Registers a listener to be {@linkplain Executor#execute(Runnable) run} on    * the given executor.  The listener will run when the {@code Future}'s    * computation is {@linkplain Future#isDone() complete} or, if the computation    * is already complete, immediately.    *    *<p>There is no guaranteed ordering of execution of listeners, but any    * listener added through this method is guaranteed to be called once the    * computation is complete.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor.    * Any exception thrown during {@code Executor.execute} (e.g., a {@code    * RejectedExecutionException} or an exception thrown by {@linkplain    * MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *    *<p>Note: For fast, lightweight listeners that would be safe to execute in    * any thread, consider {@link MoreExecutors#sameThreadExecutor}. For heavier    * listeners, {@code sameThreadExecutor()} carries some caveats: First, the    * thread that the listener runs in depends on whether the {@code Future} is    * done at the time it is added. In particular, if added late, listeners will    * run in the thread that calls {@code addListener}. Second, listeners may    * run in an internal thread of the system responsible for the input {@code    * Future}, such as an RPC network thread. Finally, during the execution of a    * {@link MoreExecutors#sameThreadExecutor sameThreadExecutor} listener, all    * other registered but unexecuted listeners are prevented from running, even    * if those listeners are to run in other executors.    *    *<p>This is the most general listener interface.    * For common operations performed using listeners,    * see {@link com.google.common.util.concurrent.Futures}    *    * @param listener the listener to run when the computation is complete    * @param executor the executor to run the listener in    * @throws NullPointerException if the executor or listener was null    * @throws RejectedExecutionException if we tried to execute the listener    *         immediately but the executor rejected it.    */
 DECL|method|addListener (Runnable listener, Executor executor)
 name|void
 name|addListener

@@ -1137,7 +1137,7 @@ name|entrySplitter
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Splits {@code sequence} into substrings, splits each substring into      * an entry, and returns an unmodifiable map with each of the entries. For      * example,<code>      * Splitter.on(';').trimResults().withKeyValueSeparator("=>")      * .split("a=>b ; c=>b")      *</code> will return a mapping from {@code "a"} to {@code "b"} and      * {@code "c"} to {@code b}.      *      * @throws IllegalArgumentException if the specified sequence does not split      *         into valid map entries, or if there are duplicate keys      */
+comment|/**      * Splits {@code sequence} into substrings, splits each substring into      * an entry, and returns an unmodifiable map with each of the entries. For      * example,<code>      * Splitter.on(';').trimResults().withKeyValueSeparator("=>")      * .split("a=>b ; c=>b")      *</code> will return a mapping from {@code "a"} to {@code "b"} and      * {@code "c"} to {@code b}.      *      *<p>The returned map preserves the order of the entries from      * {@code sequence}.      *      * @throws IllegalArgumentException if the specified sequence does not split      *         into valid map entries, or if there are duplicate keys      */
 DECL|method|split (CharSequence sequence)
 specifier|public
 name|Map

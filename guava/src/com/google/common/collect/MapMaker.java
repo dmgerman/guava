@@ -2014,12 +2014,16 @@ specifier|final
 name|RemovalCause
 name|cause
 decl_stmt|;
-DECL|method|RemovalNotification (K key, V value, RemovalCause cause)
+DECL|method|RemovalNotification (@ullable K key, @Nullable V value, RemovalCause cause)
 name|RemovalNotification
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|,

@@ -122,9 +122,11 @@ specifier|final
 name|C
 name|endpoint
 decl_stmt|;
-DECL|method|Cut (C endpoint)
+DECL|method|Cut (@ullable C endpoint)
 name|Cut
 parameter_list|(
+annotation|@
+name|Nullable
 name|C
 name|endpoint
 parameter_list|)

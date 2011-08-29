@@ -76,6 +76,26 @@ name|features
 operator|.
 name|MapFeature
 operator|.
+name|ALLOWS_NULL_QUERIES
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|MapFeature
+operator|.
 name|SUPPORTS_REMOVE
 import|;
 end_import
@@ -514,12 +534,12 @@ name|SUPPORTS_REMOVE
 argument_list|,
 name|absent
 operator|=
-name|ALLOWS_NULL_KEYS
+name|ALLOWS_NULL_QUERIES
 argument_list|)
-DECL|method|testRemove_nullNotSupported ()
+DECL|method|testRemove_nullQueriesNotSupported ()
 specifier|public
 name|void
-name|testRemove_nullNotSupported
+name|testRemove_nullQueriesNotSupported
 parameter_list|()
 block|{
 try|try
@@ -558,7 +578,7 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_KEYS
+name|ALLOWS_NULL_QUERIES
 block|}
 argument_list|)
 DECL|method|testRemove_nullSupportedMissing ()

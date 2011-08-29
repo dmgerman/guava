@@ -81,6 +81,30 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Float
+operator|.
+name|POSITIVE_INFINITY
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -192,6 +216,22 @@ specifier|private
 name|Floats
 parameter_list|()
 block|{}
+comment|/**    * The number of bytes required to represent a primitive {@code float}    * value.    */
+DECL|field|BYTES
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BYTES
+init|=
+name|Float
+operator|.
+name|SIZE
+operator|/
+name|Byte
+operator|.
+name|SIZE
+decl_stmt|;
 comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Float) value).hashCode()}.    *    * @param value a primitive {@code float} value    * @return a hash code for the value    */
 DECL|method|hashCode (float value)
 specifier|public
@@ -239,6 +279,27 @@ name|a
 argument_list|,
 name|b
 argument_list|)
+return|;
+block|}
+comment|/**    * Returns {@code true} if {@code value} represents a real number. This is    * equivalent to, but not necessarily implemented as,    * {@code !(Float.isInfinite(value) || Float.isNaN(value))}.    */
+DECL|method|isFinite (float value)
+specifier|public
+specifier|static
+name|boolean
+name|isFinite
+parameter_list|(
+name|float
+name|value
+parameter_list|)
+block|{
+return|return
+name|NEGATIVE_INFINITY
+operator|<
+name|value
+operator|&
+name|value
+operator|<
+name|POSITIVE_INFINITY
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}. Note that this always returns {@code false} when {@code    * target} is {@code NaN}.    *    * @param array an array of {@code float} values, possibly empty    * @param target a primitive {@code float} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */

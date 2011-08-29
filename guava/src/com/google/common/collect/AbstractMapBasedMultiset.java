@@ -204,20 +204,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -253,7 +239,6 @@ argument_list|>
 implements|implements
 name|Serializable
 block|{
-comment|// TODO(kevinb): test whether a custom IntegerHolder would be faster
 DECL|field|backingMap
 specifier|private
 specifier|transient
@@ -261,7 +246,7 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|backingMap
 decl_stmt|;
@@ -273,7 +258,7 @@ name|long
 name|size
 decl_stmt|;
 comment|/** Standard constructor. */
-DECL|method|AbstractMapBasedMultiset (Map<E, AtomicInteger> backingMap)
+DECL|method|AbstractMapBasedMultiset (Map<E, Count> backingMap)
 specifier|protected
 name|AbstractMapBasedMultiset
 parameter_list|(
@@ -281,7 +266,7 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|backingMap
 parameter_list|)
@@ -310,7 +295,7 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|backingMap
 parameter_list|()
@@ -320,7 +305,7 @@ name|backingMap
 return|;
 block|}
 comment|/** Used during deserialization only. The backing map must be empty. */
-DECL|method|setBackingMap (Map<E, AtomicInteger> backingMap)
+DECL|method|setBackingMap (Map<E, Count> backingMap)
 name|void
 name|setBackingMap
 parameter_list|(
@@ -328,7 +313,7 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|backingMap
 parameter_list|)
@@ -387,7 +372,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|>
 name|backingEntries
@@ -419,7 +404,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|toRemove
 decl_stmt|;
@@ -456,7 +441,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|mapEntry
 init|=
@@ -518,7 +503,7 @@ operator|==
 literal|0
 condition|)
 block|{
-name|AtomicInteger
+name|Count
 name|frequency
 init|=
 name|backingMap
@@ -603,7 +588,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|AtomicInteger
+name|Count
 name|frequency
 range|:
 name|backingMap
@@ -700,7 +685,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|>
 name|entryIterator
@@ -712,7 +697,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|currentEntry
 decl_stmt|;
@@ -892,7 +877,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|AtomicInteger
+name|Count
 name|frequency
 init|=
 name|backingMap
@@ -981,7 +966,7 @@ argument_list|,
 name|occurrences
 argument_list|)
 expr_stmt|;
-name|AtomicInteger
+name|Count
 name|frequency
 init|=
 name|backingMap
@@ -1012,7 +997,7 @@ argument_list|(
 name|element
 argument_list|,
 operator|new
-name|AtomicInteger
+name|Count
 argument_list|(
 name|occurrences
 argument_list|)
@@ -1111,7 +1096,7 @@ argument_list|,
 name|occurrences
 argument_list|)
 expr_stmt|;
-name|AtomicInteger
+name|Count
 name|frequency
 init|=
 name|backingMap
@@ -1207,7 +1192,7 @@ argument_list|,
 literal|"count"
 argument_list|)
 expr_stmt|;
-name|AtomicInteger
+name|Count
 name|existingCounter
 decl_stmt|;
 name|int
@@ -1273,7 +1258,7 @@ argument_list|(
 name|element
 argument_list|,
 operator|new
-name|AtomicInteger
+name|Count
 argument_list|(
 name|count
 argument_list|)
@@ -1293,13 +1278,13 @@ return|return
 name|oldCount
 return|;
 block|}
-DECL|method|getAndSet (AtomicInteger i, int count)
+DECL|method|getAndSet (Count i, int count)
 specifier|private
 specifier|static
 name|int
 name|getAndSet
 parameter_list|(
-name|AtomicInteger
+name|Count
 name|i
 parameter_list|,
 name|int
@@ -1326,7 +1311,7 @@ name|count
 argument_list|)
 return|;
 block|}
-DECL|method|removeAllOccurrences (@ullable Object element, Map<E, AtomicInteger> map)
+DECL|method|removeAllOccurrences (@ullable Object element, Map<E, Count> map)
 specifier|private
 name|int
 name|removeAllOccurrences
@@ -1340,12 +1325,12 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|map
 parameter_list|)
 block|{
-name|AtomicInteger
+name|Count
 name|frequency
 init|=
 name|map
@@ -1423,7 +1408,7 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|map
 decl_stmt|;
@@ -1436,14 +1421,14 @@ name|E
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|MapBasedElementSet (Map<E, AtomicInteger> map)
+DECL|method|MapBasedElementSet (Map<E, Count> map)
 name|MapBasedElementSet
 parameter_list|(
 name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|map
 parameter_list|)
@@ -1497,7 +1482,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|>
 name|entries
@@ -1524,7 +1509,7 @@ name|Entry
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|toRemove
 decl_stmt|;
@@ -1739,7 +1724,7 @@ name|Map
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|getMap
 parameter_list|()

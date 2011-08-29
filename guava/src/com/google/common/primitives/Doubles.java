@@ -81,6 +81,30 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|NEGATIVE_INFINITY
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -192,6 +216,22 @@ specifier|private
 name|Doubles
 parameter_list|()
 block|{}
+comment|/**    * The number of bytes required to represent a primitive {@code double}    * value.    */
+DECL|field|BYTES
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BYTES
+init|=
+name|Double
+operator|.
+name|SIZE
+operator|/
+name|Byte
+operator|.
+name|SIZE
+decl_stmt|;
 comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Double) value).hashCode()}.    *    * @param value a primitive {@code double} value    * @return a hash code for the value    */
 DECL|method|hashCode (double value)
 specifier|public
@@ -241,6 +281,27 @@ name|a
 argument_list|,
 name|b
 argument_list|)
+return|;
+block|}
+comment|/**    * Returns {@code true} if {@code value} represents a real number. This is    * equivalent to, but not necessarily implemented as,    * {@code !(Double.isInfinite(value) || Double.isNaN(value))}.    */
+DECL|method|isFinite (double value)
+specifier|public
+specifier|static
+name|boolean
+name|isFinite
+parameter_list|(
+name|double
+name|value
+parameter_list|)
+block|{
+return|return
+name|NEGATIVE_INFINITY
+operator|<
+name|value
+operator|&
+name|value
+operator|<
+name|POSITIVE_INFINITY
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}. Note that this always returns {@code false} when {@code    * target} is {@code NaN}.    *    * @param array an array of {@code double} values, possibly empty    * @param target a primitive {@code double} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */

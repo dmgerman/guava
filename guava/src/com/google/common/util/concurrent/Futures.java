@@ -158,6 +158,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ImmutableList
@@ -398,12 +412,16 @@ specifier|private
 name|Futures
 parameter_list|()
 block|{}
-comment|/**    *<b>Soon to be removed (for Guava release 11), use    * {@link Uninterruptibles#getUninterruptibly(Future) getUninterruptibly}</b>    * Returns an uninterruptible view of a {@code Future}. If a thread is    * interrupted during an attempt to {@code get()} from the returned future, it    * continues to wait on the result until it is available or the timeout    * elapses, and only then re-interrupts the thread.    */
-comment|// TODO(user): Make this package-private internally
+comment|/**    * Returns an uninterruptible view of a {@code Future}. If a thread is    * interrupted during an attempt to {@code get()} from the returned future, it    * continues to wait on the result until it is available or the timeout    * elapses, and only then re-interrupts the thread.    * @deprecated Use    * {@link Uninterruptibles#getUninterruptibly(Future) getUninterruptibly}.    *<b>This method is scheduled for deletion in Guava Release 11.</b>    */
 annotation|@
 name|Deprecated
-DECL|method|makeUninterruptible ( final Future<V> future)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 specifier|public
+DECL|method|makeUninterruptible ( final Future<V> future)
 specifier|static
 parameter_list|<
 name|V
@@ -584,7 +602,7 @@ name|future
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p><b>Warning:</b> If the input future does not implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @deprecated Use {@link #makeChecked(ListenableFuture, Function)} by    *     ensuring that your input implements {@code ListenableFuture} by    *     creating it with {@link SettableFuture}, {@link    *     MoreExecutors#listeningDecorator(    *     java.util.concurrent.ExecutorService)}, {@link ListenableFutureTask},    *     {@link AbstractFuture}, and other utilities instead of creating plain    *     {@code Future} instances to be upgraded to {@code ListenableFuture}    *     after the fact.<b>This method is scheduled for deletion in Guava    *     release 11.</b>    */
+comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link Future} and a    * {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p><b>Warning:</b> If the input future does not implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException} with the actual cause of the exception.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @deprecated Obtain a {@link ListenableFuture}, following the advice in its    *     documentation and use {@link #makeChecked(ListenableFuture, Function)}.    *<b>This method is scheduled for deletion in Guava release 11.</b>    */
 annotation|@
 name|Deprecated
 specifier|public
@@ -925,7 +943,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   Function<RowKey, ListenableFuture<QueryResult>> queryFunction =    *       new Function<RowKey, ListenableFuture<QueryResult>>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       chain(queryFuture, queryFunction);    * }</pre>    *    *<p>Note: This overload of {@code chain} is designed for cases in which the    * work of creating the derived future is fast and lightweight, as the method    * does not accept an {@code Executor} to perform the the work in. For heavier    * derivations, this overload carries some caveats: First, the thread that the    * derivation runs in depends on whether the input {@code Future} is done at    * the time {@code chain} is called. In particular, if called late, {@code    * chain} will run the derivation in the thread that calls {@code chain}.    * Second, derivations may run in an internal thread of the system responsible    * for the input {@code Future}, such as an RPC network thread. Finally,    * during the execution of a derivation, the thread cannot submit any    * listeners for execution, even if those listeners are to run in other    * executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>The typical use for this method would be when a RPC call is dependent on    * the results of another RPC.  One would call the first RPC (input), create a    * function that calls another RPC based on input's result, and then call    * chain on input and that function to get a {@code ListenableFuture} of    * the result.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the chain.    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   Function<RowKey, ListenableFuture<QueryResult>> queryFunction =    *       new Function<RowKey, ListenableFuture<QueryResult>>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       chain(queryFuture, queryFunction);    * }</pre>    *    *<p>Note: This overload of {@code chain} is designed for cases in which the    * work of creating the derived future is fast and lightweight, as the method    * does not accept an {@code Executor} to perform the the work in. For heavier    * derivations, this overload carries some caveats: First, the thread that the    * derivation runs in depends on whether the input {@code Future} is done at    * the time {@code chain} is called. In particular, if called late, {@code    * chain} will run the derivation in the thread that calls {@code chain}.    * Second, derivations may run in an internal thread of the system responsible    * for the input {@code Future}, such as an RPC network thread. Finally,    * during the execution of a {@link MoreExecutors#sameThreadExecutor    * sameThreadExecutor} listener, all other registered but unexecuted    * listeners are prevented from running, even if those listeners are to run    * in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>The typical use for this method would be when a RPC call is dependent on    * the results of another RPC.  One would call the first RPC (input), create a    * function that calls another RPC based on input's result, and then call    * chain on input and that function to get a {@code ListenableFuture} of    * the result.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function)
 specifier|public
 specifier|static
@@ -978,7 +996,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   Function<RowKey, ListenableFuture<QueryResult>> queryFunction =    *       new Function<RowKey, ListenableFuture<QueryResult>>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       chain(queryFuture, queryFunction, executor);    * }</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>Note: For cases in which the work of creating the derived future is fast    * and lightweight, consider {@linkplain Futures#chain(ListenableFuture,    * Function) the other overload} or explicit use of {@link    * MoreExecutors#sameThreadExecutor}. For heavier derivations, this choice    * carries some caveats: First, the thread that the derivation runs in depends    * on whether the input {@code Future} is done at the time {@code chain} is    * called. In particular, if called late, {@code chain} will run the    * derivation in the thread that calls {@code chain}. Second, derivations may    * run in an internal thread of the system responsible for the input {@code    * Future}, such as an RPC network thread. Finally, during the execution of a    * derivation, the thread cannot submit any listeners for execution, even if    * those listeners are to run in other executors.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code Function} to the result of the original {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   Function<RowKey, ListenableFuture<QueryResult>> queryFunction =    *       new Function<RowKey, ListenableFuture<QueryResult>>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       chain(queryFuture, queryFunction, executor);    * }</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>Note: For cases in which the work of creating the derived future is fast    * and lightweight, consider {@linkplain Futures#chain(ListenableFuture,    * Function) the other overload} or explicit use of {@link    * MoreExecutors#sameThreadExecutor}. For heavier derivations, this choice    * carries some caveats: First, the thread that the derivation runs in depends    * on whether the input {@code Future} is done at the time {@code chain} is    * called. In particular, if called late, {@code chain} will run the    * derivation in the thread that calls {@code chain}. Second, derivations may    * run in an internal thread of the system responsible for the input {@code    * Future}, such as an RPC network thread. Finally, during the execution of a    * {@link MoreExecutors#sameThreadExecutor sameThreadExecutor} listener, all    * other registered but unexecuted listeners are prevented from running, even    * if those listeners are to run in other executors.    *    * @param input The future to chain    * @param function A function to chain the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the chain.    */
 DECL|method|chain (ListenableFuture<I> input, Function<? super I, ? extends ListenableFuture<? extends O>> function, Executor exec)
 specifier|public
 specifier|static
@@ -1054,7 +1072,7 @@ return|return
 name|chain
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction);    * }</pre>    *    *<p>Note: This overload of {@code transform} is designed for cases in which    * the transformation is fast and lightweight, as the method does not accept    * an {@code Executor} to perform the the work in. For heavier    * transformations, this overload carries some caveats: First, the thread that    * the transformation runs in depends on whether the input {@code Future} is    * done at the time {@code transform} is called. In particular, if called    * late, {@code transform} will perform the transformation in the thread that    * calls {@code transform}. Second, transformations may run in an internal    * thread of the system responsible for the input {@code Future}, such as an    * RPC network thread. Finally, during the execution of a transformation, the    * thread cannot submit any listeners for execution, even if those listeners    * are to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param future The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since Guava release 09 (in release 01 as {@code compose})    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction);    * }</pre>    *    *<p>Note: This overload of {@code transform} is designed for cases in which    * the transformation is fast and lightweight, as the method does not accept    * an {@code Executor} to perform the the work in. For heavier    * transformations, this overload carries some caveats: First, the thread that    * the transformation runs in depends on whether the input {@code Future} is    * done at the time {@code transform} is called. In particular, if called    * late, {@code transform} will perform the transformation in the thread that    * calls {@code transform}. Second, transformations may run in an internal    * thread of the system responsible for the input {@code Future}, such as an    * RPC network thread. Finally, during the execution of a {@link    * MoreExecutors#sameThreadExecutor sameThreadExecutor} listener, all other    * registered but unexecuted listeners are prevented from running, even if    * those listeners are to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param future The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since Guava release 09 (in release 01 as {@code compose})    */
 DECL|method|transform (ListenableFuture<I> future, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1103,7 +1121,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction, executor);    * }</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>Note: For cases in which the transformation is fast and lightweight,    * consider {@linkplain Futures#transform(ListenableFuture, Function) the    * other overload} or explicit use of {@link    * MoreExecutors#sameThreadExecutor}. For heavier transformations, this choice    * carries some caveats: First, the thread that the transformation runs in    * depends on whether the input {@code Future} is done at the time {@code    * transform} is called. In particular, if called late, {@code transform} will    * perform the transformation in the thread that calls {@code transform}.    * Second, transformations may run in an internal thread of the system    * responsible for the input {@code Future}, such as an RPC network thread.    * Finally, during the execution of a transformation, the thread cannot submit    * any listeners for execution, even if those listeners are to run in other    * executors.    *    * @param future The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the transformation.    * @since Guava release 09 (in release 02 as {@code compose})    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction, executor);    * }</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>Note: For cases in which the transformation is fast and lightweight,    * consider {@linkplain Futures#transform(ListenableFuture, Function) the    * other overload} or explicit use of {@link    * MoreExecutors#sameThreadExecutor}. For heavier transformations, this choice    * carries some caveats: First, the thread that the transformation runs in    * depends on whether the input {@code Future} is done at the time {@code    * transform} is called. In particular, if called late, {@code transform} will    * perform the transformation in the thread that calls {@code transform}.    * Second, transformations may run in an internal thread of the system    * responsible for the input {@code Future}, such as an RPC network thread.    * Finally, during the execution of a {@link MoreExecutors#sameThreadExecutor    * sameThreadExecutor} listener, all other registered but unexecuted    * listeners are prevented from running, even if those listeners are to run    * in other executors.    *    * @param future The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.    * @param exec Executor to run the function in.    * @return A future that holds result of the transformation.    * @since Guava release 09 (in release 02 as {@code compose})    */
 DECL|method|transform (ListenableFuture<I> future, final Function<? super I, ? extends O> function, Executor exec)
 specifier|public
 specifier|static
@@ -1408,7 +1426,9 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a new {@code Future} whose result is the product of applying the    * given {@code Function} to the result of the given {@code Future}. Example:    *    *<pre>   {@code    *   Future<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   Future<List<Row>> rowsFuture = transform(queryFuture, rowsFunction);    * }</pre>    *    *<p>Each call to {@code Future<O>.get(*)} results in a call to    * {@code Future<I>.get(*)}, but {@code function} is only applied once, so it    * is assumed that {@code Future<I>.get(*)} is idempotent.    *    *<p>When calling {@link Future#get(long, TimeUnit)} on the returned    * future, the timeout only applies to the future passed in to this method.    * Any additional time taken by applying {@code function} is not considered.    * (Exception: If the input future is a {@link ListenableFuture}, timeouts    * will be strictly enforced.)    *    * @param future The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that calls one of the varieties of {@code get()}.    * @return A future that computes result of the transformation    * @since Guava release 09 (in release 01 as {@code compose})    */
+comment|/**    * Returns a new {@code Future} whose result is the product of applying the    * given {@code Function} to the result of the given {@code Future}. Example:    *    *<pre>   {@code    *   Future<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   Future<List<Row>> rowsFuture = transform(queryFuture, rowsFunction);    * }</pre>    *    *<p>Each call to {@code Future<O>.get(*)} results in a call to    * {@code Future<I>.get(*)}, but {@code function} is only applied once, so it    * is assumed that {@code Future<I>.get(*)} is idempotent.    *    *<p>When calling {@link Future#get(long, TimeUnit)} on the returned    * future, the timeout only applies to the future passed in to this method.    * Any additional time taken by applying {@code function} is not considered.    * (Exception: If the input future is a {@link ListenableFuture}, timeouts    * will be strictly enforced.)    *    * @param future The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that calls one of the varieties of {@code get()}.    * @return A future that computes result of the transformation    * @since Guava release 09 (in release 01 as {@code compose})    * @deprecated Obtain a {@code ListenableFuture} (following the advice in its    *     documentation) and use {@link #transform(ListenableFuture, Function)}    *     or use {@link #lazyTransform(Future, Function)}, which will apply the    *     transformation on each call to {@code get()}.    *<b>This method is scheduled for deletion in Guava release 11.</b>    */
+annotation|@
+name|Deprecated
 DECL|method|transform (final Future<I> future, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -2719,6 +2739,173 @@ name|sameThreadExecutor
 argument_list|()
 argument_list|)
 return|;
+block|}
+comment|/**    * Registers separate success and failure callbacks to be run when the {@code    * Future}'s computation is {@linkplain java.util.concurrent.Future#isDone()    * complete} or, if the computation is already complete, immediately.    *    *<p>There is no guaranteed ordering of execution of callbacks, but any    * callback added through this method is guaranteed to be called once the    * computation is complete.    *    * Example:<pre> {@code    * ListenableFuture<QueryResult> future = ...;    * addCallback(future,    *     new FutureCallback<QueryResult> {    *       public void onSuccess(QueryResult result) {    *         storeInCache(result);    *       }    *       public void onFailure(Throwable t) {    *         reportError(t);    *       }    *     });}</pre>    *    *<p>Note: This overload of {@code addCallback} is designed for cases in    * which the callack is fast and lightweight, as the method does not accept    * an {@code Executor} to perform the the work in. For heavier    * callbacks, this overload carries some caveats: First, the thread that    * the callback runs in depends on whether the input {@code Future} is    * done at the time {@code addCallback} is called. In particular, if called    * late, {@code addCallback} will execute the callback in the thread that    * calls {@code addCallback}. Second, callbacks may run in an internal    * thread of the system responsible for the input {@code Future}, such as an    * RPC network thread. Finally, during the execution of a {@link    * MoreExecutors#sameThreadExecutor sameThreadExecutor} listener, all other    * registered but unexecuted listeners are prevented from running, even if    * those listeners are to run in other executors.    *    *<p>For a more general interface to attach a completion listener to a    * {@code Future}, see {@link ListenableFuture#addListener addListener}.    *    * @param future The future attach the callback to.    * @param callback The callback to invoke when {@code future} is completed.    * @since Guava release 10    */
+DECL|method|addCallback (ListenableFuture<V> future, FutureCallback<? super V> callback)
+specifier|public
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|void
+name|addCallback
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|,
+name|FutureCallback
+argument_list|<
+name|?
+super|super
+name|V
+argument_list|>
+name|callback
+parameter_list|)
+block|{
+name|addCallback
+argument_list|(
+name|future
+argument_list|,
+name|callback
+argument_list|,
+name|MoreExecutors
+operator|.
+name|sameThreadExecutor
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Registers separate success and failure callbacks to be run when the {@code    * Future}'s computation is {@linkplain java.util.concurrent.Future#isDone()    * complete} or, if the computation is already complete, immediately.    *    *<p>The callback is run in {@code executor}.    * There is no guaranteed ordering of execution of callbacks, but any    * callback added through this method is guaranteed to be called once the    * computation is complete.    *    * Example:<pre> {@code    * ListenableFuture<QueryResult> future = ...;    * Executor e = ...    * addCallback(future, e,    *     new FutureCallback<QueryResult> {    *       public void onSuccess(QueryResult result) {    *         storeInCache(result);    *       }    *       public void onFailure(Throwable t) {    *         reportError(t);    *       }    *     });}</pre>    *    * When the callback is fast and lightweight consider the    * {@link Futures#addCallback(ListenableFuture, FutureCallback)    * other overload} or explicit use of    * {@link MoreExecutors#sameThreadExecutor() sameThreadExecutor}. For heavier    * callbacks, this choice carries some caveats: First, the thread that    * the callback runs in depends on whether the input {@code Future} is    * done at the time {@code addCallback} is called. In particular, if called    * late, {@code addCallback} will execute the callback in the thread that    * calls {@code addCallback}. Second, callbacks may run in an internal    * thread of the system responsible for the input {@code Future}, such as an    * RPC network thread. Finally, during the execution of a {@link    * MoreExecutors#sameThreadExecutor sameThreadExecutor} listener, all other    * registered but unexecuted listeners are prevented from running, even if    * those listeners are to run in other executors.    *    *<p>For a more general interface to attach a completion listener to a    * {@code Future}, see {@link ListenableFuture#addListener addListener}.    *    * @param future The future attach the callback to.    * @param callback The callback to invoke when {@code future} is completed.    * @param executor The executor to run {@code callback} when the future    *    completes.    * @since Guava release 10    */
+DECL|method|addCallback (final ListenableFuture<V> future, final FutureCallback<? super V> callback, Executor executor)
+specifier|public
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|void
+name|addCallback
+parameter_list|(
+specifier|final
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|,
+specifier|final
+name|FutureCallback
+argument_list|<
+name|?
+super|super
+name|V
+argument_list|>
+name|callback
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|callback
+argument_list|)
+expr_stmt|;
+name|Runnable
+name|callbackListener
+init|=
+operator|new
+name|Runnable
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+try|try
+block|{
+comment|// TODO(user): (Before Guava release), validate that this
+comment|// is the thing for IE.
+name|V
+name|value
+init|=
+name|getUninterruptibly
+argument_list|(
+name|future
+argument_list|)
+decl_stmt|;
+name|callback
+operator|.
+name|onSuccess
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ExecutionException
+name|e
+parameter_list|)
+block|{
+name|callback
+operator|.
+name|onFailure
+argument_list|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+name|callback
+operator|.
+name|onFailure
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Error
+name|e
+parameter_list|)
+block|{
+name|callback
+operator|.
+name|onFailure
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+decl_stmt|;
+name|future
+operator|.
+name|addListener
+argument_list|(
+name|callbackListener
+argument_list|,
+name|executor
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Returns the result of {@link Future#get()}, converting most exceptions to a    * new instance of the given checked exception type. This reduces boilerplate    * for a common use of {@code Future} in which it is unnecessary to    * programmatically distinguish between exception types or to extract other    * information from the exception instance.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@code X} if the cause is a checked exception, an {@link    *     UncheckedExecutionException} if the cause is a {@code    *     RuntimeException}, or an {@link ExecutionError} if the cause is an    *     {@code Error}.    *<li>Any {@link InterruptedException} is wrapped in an {@code X} (after    *     restoring the interrupt).    *<li>Any {@link CancellationException} is propagated untouched, as is any    *     other {@link RuntimeException} (though {@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    * The overall principle is to continue to treat every checked exception as a    * checked exception, every unchecked exception as an unchecked exception, and    * every error as an error. In addition, the cause of any {@code    * ExecutionException} is wrapped in order to ensure that the new stack trace    * matches that of the current thread.    *    *<p>Instances of {@code exceptionClass} are created by choosing an arbitrary    * public constructor that accepts zero or more arguments, all of type {@code    * String} or {@code Throwable} (preferring constructors with at least one    * {@code String}) and calling the constructor via reflection. If the    * exception did not already have a cause, one is set by calling {@link    * Throwable#initCause(Throwable)} on it. If no such constructor exists, an    * {@code IllegalArgumentException} is thrown.    *    * @throws X if {@code get} throws any checked exception except for an {@code    *         ExecutionException} whose cause is not itself a checked exception    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with a {@code RuntimeException} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @throws IllegalArgumentException if {@code exceptionClass} extends {@code    *         RuntimeException} or does not have a suitable constructor    * @since Guava release 10    */
 annotation|@

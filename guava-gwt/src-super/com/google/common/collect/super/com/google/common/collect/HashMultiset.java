@@ -40,20 +40,6 @@ name|HashMap
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
-import|;
-end_import
-
 begin_comment
 comment|/**  * Multiset implementation backed by a {@link HashMap}.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
@@ -198,7 +184,7 @@ name|HashMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|()
 argument_list|)
@@ -219,7 +205,7 @@ operator|.
 expr|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 operator|>
 name|newHashMapWithExpectedSize
 argument_list|(

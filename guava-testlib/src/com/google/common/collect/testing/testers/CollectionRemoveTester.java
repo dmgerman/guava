@@ -36,6 +36,26 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
+name|ALLOWS_NULL_QUERIES
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|CollectionFeature
+operator|.
 name|ALLOWS_NULL_VALUES
 import|;
 end_import
@@ -486,7 +506,7 @@ name|SUPPORTS_REMOVE
 argument_list|,
 name|absent
 operator|=
-name|ALLOWS_NULL_VALUES
+name|ALLOWS_NULL_QUERIES
 argument_list|)
 DECL|method|testRemove_nullNotSupported ()
 specifier|public
@@ -529,13 +549,13 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_VALUES
+name|ALLOWS_NULL_QUERIES
 block|}
 argument_list|)
-DECL|method|testRemove_nullSupportedMissing ()
+DECL|method|testRemove_nullAllowed ()
 specifier|public
 name|void
-name|testRemove_nullSupportedMissing
+name|testRemove_nullAllowed
 parameter_list|()
 block|{
 name|assertFalse

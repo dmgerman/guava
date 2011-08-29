@@ -634,7 +634,6 @@ name|void
 name|testNot_equalityForNotOfKnownValues
 parameter_list|()
 block|{
-comment|/* Would be nice to have .addEqualObject(Predicates.not(FALSE)). */
 operator|new
 name|EqualsTester
 argument_list|()
@@ -667,7 +666,6 @@ operator|.
 name|testEquals
 argument_list|()
 expr_stmt|;
-comment|/* Would be nice to have .addEqualObject(Predicates.not(TRUE)). */
 operator|new
 name|EqualsTester
 argument_list|()
@@ -700,7 +698,6 @@ operator|.
 name|testEquals
 argument_list|()
 expr_stmt|;
-comment|/* Would be nice to have .addEqualObject(Predicates.not(notNull())). */
 operator|new
 name|EqualsTester
 argument_list|()
@@ -742,7 +739,6 @@ operator|.
 name|testEquals
 argument_list|()
 expr_stmt|;
-comment|/* Would be nice to have .addEqualObject(Predicates.not(isNull())). */
 operator|new
 name|EqualsTester
 argument_list|()

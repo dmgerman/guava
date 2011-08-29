@@ -1423,11 +1423,11 @@ name|timeout
 init|=
 name|TimeUnit
 operator|.
-name|MINUTES
+name|SECONDS
 operator|.
 name|toNanos
 argument_list|(
-literal|1
+literal|60
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2063,7 +2063,7 @@ literal|30
 argument_list|,
 name|TimeUnit
 operator|.
-name|MINUTES
+name|SECONDS
 argument_list|)
 argument_list|)
 operator|.

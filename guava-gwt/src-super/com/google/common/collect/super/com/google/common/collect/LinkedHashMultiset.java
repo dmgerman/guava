@@ -40,20 +40,6 @@ name|LinkedHashMap
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
-import|;
-end_import
-
 begin_comment
 comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its  * iterator orders elements according to when the first occurrence of the  * element was added. When the multiset contains multiple instances of an  * element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to  * the multiset, the element will appear at the end of the iteration.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
@@ -204,7 +190,7 @@ name|LinkedHashMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|()
 argument_list|)
@@ -226,7 +212,7 @@ name|LinkedHashMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|(
 name|Maps

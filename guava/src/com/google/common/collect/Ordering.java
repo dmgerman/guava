@@ -555,6 +555,12 @@ argument_list|<
 name|Object
 argument_list|>
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// TODO(kevinb): ?
 DECL|field|uids
 specifier|private
 name|Map

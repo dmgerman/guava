@@ -34,6 +34,26 @@ name|testing
 operator|.
 name|features
 operator|.
+name|CollectionFeature
+operator|.
+name|ALLOWS_NULL_QUERIES
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
 name|CollectionSize
 operator|.
 name|ZERO
@@ -89,6 +109,24 @@ operator|.
 name|testing
 operator|.
 name|WrongType
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|CollectionFeature
 import|;
 end_import
 
@@ -211,16 +249,16 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|MapFeature
+name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|ALLOWS_NULL_KEYS
+name|ALLOWS_NULL_QUERIES
 argument_list|)
-DECL|method|testGet_nullNotContainedButSupported ()
+DECL|method|testGet_nullNotContainedButAllowed ()
 specifier|public
 name|void
-name|testGet_nullNotContainedButSupported
+name|testGet_nullNotContainedButAllowed
 parameter_list|()
 block|{
 name|assertNull
@@ -235,13 +273,13 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|MapFeature
+name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
 name|absent
 operator|=
-name|ALLOWS_NULL_KEYS
+name|ALLOWS_NULL_QUERIES
 argument_list|)
 DECL|method|testGet_nullNotContainedAndUnsupported ()
 specifier|public

@@ -276,7 +276,7 @@ name|Iterables
 parameter_list|()
 block|{}
 comment|/** Returns an unmodifiable view of {@code iterable}. */
-DECL|method|unmodifiableIterable (final Iterable<T> iterable)
+DECL|method|unmodifiableIterable ( final Iterable<T> iterable)
 specifier|public
 specifier|static
 parameter_list|<
@@ -301,16 +301,106 @@ argument_list|(
 name|iterable
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|iterable
+operator|instanceof
+name|UnmodifiableIterable
+operator|||
+name|iterable
+operator|instanceof
+name|ImmutableCollection
+condition|)
+block|{
+return|return
+name|iterable
+return|;
+block|}
 return|return
 operator|new
+name|UnmodifiableIterable
+argument_list|<
+name|T
+argument_list|>
+argument_list|(
+name|iterable
+argument_list|)
+return|;
+block|}
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since Guava release 10    */
+DECL|method|unmodifiableIterable ( ImmutableCollection<E> iterable)
+annotation|@
+name|Deprecated
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|unmodifiableIterable
+parameter_list|(
+name|ImmutableCollection
+argument_list|<
+name|E
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+name|checkNotNull
+argument_list|(
+name|iterable
+argument_list|)
+return|;
+block|}
+DECL|class|UnmodifiableIterable
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|UnmodifiableIterable
+parameter_list|<
+name|T
+parameter_list|>
+implements|implements
 name|Iterable
 argument_list|<
 name|T
 argument_list|>
-argument_list|()
 block|{
+DECL|field|iterable
+specifier|private
+specifier|final
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+decl_stmt|;
+DECL|method|UnmodifiableIterable (Iterable<T> iterable)
+specifier|private
+name|UnmodifiableIterable
+parameter_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+name|this
+operator|.
+name|iterable
+operator|=
+name|iterable
+expr_stmt|;
+block|}
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -333,6 +423,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -346,8 +437,6 @@ argument_list|()
 return|;
 block|}
 comment|// no equals and hashCode; it would break the contract!
-block|}
-return|;
 block|}
 comment|/**    * Returns the number of elements in {@code iterable}.    */
 DECL|method|size (Iterable<?> iterable)

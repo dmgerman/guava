@@ -134,6 +134,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -179,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code char} primitives, that are not  * already found in either {@link Character} or {@link java.util.Arrays}.  *  *<p>All the operations in this class treat {@code char} values strictly  * numerically; they are neither Unicode-aware nor locale-dependent.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+comment|/**  * Static utility methods pertaining to {@code char} primitives, that are not  * already found in either {@link Character} or {@link Arrays}.  *  *<p>All the operations in this class treat {@code char} values strictly  * numerically; they are neither Unicode-aware nor locale-dependent.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
 end_comment
 
 begin_class
@@ -1234,7 +1244,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code char} arrays    * lexicographically. That is, it compares, using {@link    * #compare(char, char)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< ['a']< ['a', 'b']< ['b']}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link java.util.Arrays#equals(char[], char[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since Guava release 02    */
+comment|/**    * Returns a comparator that compares two {@code char} arrays    * lexicographically. That is, it compares, using {@link    * #compare(char, char)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< ['a']< ['a', 'b']< ['b']}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(char[], char[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since Guava release 02    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -1451,7 +1461,7 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * java.util.Arrays#asList(Object[])}. The list supports {@link List#set(int,    * Object)}, but any attempt to set a value to {@code null} will result in a    * {@link NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of    * {@code Character} objects written to or read from it.  For example, whether    * {@code list.get(0) == list.get(0)} is true for the returned list is    * unspecified.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
+comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)},    * but any attempt to set a value to {@code null} will result in a {@link    * NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of    * {@code Character} objects written to or read from it.  For example, whether    * {@code list.get(0) == list.get(0)} is true for the returned list is    * unspecified.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
 DECL|method|asList (char... backingArray)
 specifier|public
 specifier|static

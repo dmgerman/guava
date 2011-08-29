@@ -110,20 +110,6 @@ name|Iterator
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
-import|;
-end_import
-
 begin_comment
 comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
 end_comment
@@ -303,7 +289,7 @@ name|EnumMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|(
 name|type
@@ -418,7 +404,7 @@ name|EnumMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|(
 name|type

@@ -136,63 +136,57 @@ argument_list|<
 name|Collection
 argument_list|>
 block|{
+comment|/**    * The collection must not throw {@code NullPointerException} on calls    * such as {@code contains(null)} or {@code remove(null)}, but instead    * must return a simple {@code false}.    */
+DECL|enumConstant|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_QUERIES
+block|,
 DECL|enumConstant|ALLOWS_NULL_VALUES
 name|ALLOWS_NULL_VALUES
-block|,
-comment|/**    * Indicates that a collection disallows certain elements (other than    * {@code null}, whose validity as an element is indicated by the presence    * or absence of {@link #ALLOWS_NULL_VALUES}).    * From the documentation for {@link Collection}:    *<blockquote>"Some collection implementations have restrictions on the    * elements that they may contain.  For example, some implementations    * prohibit null elements, and some have restrictions on the types of their    * elements."</blockquote>    */
-DECL|enumConstant|RESTRICTS_ELEMENTS
-name|RESTRICTS_ELEMENTS
-block|,
-comment|/**    * Indicates that a collection has a well-defined ordering of its elements.    * The ordering may depend on the element values, such as a {@link SortedSet},    * or on the insertion ordering, such as a {@link LinkedHashSet}. All list    * tests automatically specify this feature.    */
-DECL|enumConstant|KNOWN_ORDER
-name|KNOWN_ORDER
-block|,
-comment|/**    * Indicates that a collection has a different {@link Object#toString}    * representation than most collections. If not specified, the collection    * tests will examine the value returned by {@link Object#toString}.    */
-DECL|enumConstant|NON_STANDARD_TOSTRING
-name|NON_STANDARD_TOSTRING
-block|,
-comment|/**    * Indicates that the constructor or factory method of a collection, usually    * an immutable set, throws an {@link IllegalArgumentException} when presented    * with duplicate elements instead of collapsing them to a single element or    * including duplicate instances in the collection.    */
-DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
-name|REJECTS_DUPLICATES_AT_CREATION
-block|,
-DECL|enumConstant|SUPPORTS_ADD
-name|SUPPORTS_ADD
-block|,
-DECL|enumConstant|SUPPORTS_REMOVE
-name|SUPPORTS_REMOVE
-block|,
-DECL|enumConstant|SUPPORTS_ADD_ALL
-name|SUPPORTS_ADD_ALL
-block|,
-DECL|enumConstant|SUPPORTS_REMOVE_ALL
-name|SUPPORTS_REMOVE_ALL
-block|,
-DECL|enumConstant|SUPPORTS_RETAIN_ALL
-name|SUPPORTS_RETAIN_ALL
-block|,
-DECL|enumConstant|SUPPORTS_CLEAR
-name|SUPPORTS_CLEAR
-block|,
-comment|/**    * Features supported by general-purpose collections -    * everything but {@link #RESTRICTS_ELEMENTS}.    * @see java.util.Collection the definition of general-purpose collections.    */
-DECL|enumConstant|GENERAL_PURPOSE
-name|GENERAL_PURPOSE
 parameter_list|(
-name|SUPPORTS_ADD
-parameter_list|,
-name|SUPPORTS_REMOVE
-parameter_list|,
-name|SUPPORTS_ADD_ALL
-parameter_list|,
-name|SUPPORTS_REMOVE_ALL
-parameter_list|,
-name|SUPPORTS_RETAIN_ALL
-parameter_list|,
-name|SUPPORTS_CLEAR
+name|ALLOWS_NULL_QUERIES
 parameter_list|)
 operator|,
-comment|/** Features supported by collections where only removal is allowed. */
-DECL|enumConstant|REMOVE_OPERATIONS
-constructor|REMOVE_OPERATIONS(       SUPPORTS_REMOVE
+comment|/**    * Indicates that a collection disallows certain elements (other than    * {@code null}, whose validity as an element is indicated by the presence    * or absence of {@link #ALLOWS_NULL_VALUES}).    * From the documentation for {@link Collection}:    *<blockquote>"Some collection implementations have restrictions on the    * elements that they may contain.  For example, some implementations    * prohibit null elements, and some have restrictions on the types of their    * elements."</blockquote>    */
+DECL|enumConstant|RESTRICTS_ELEMENTS
+constructor|RESTRICTS_ELEMENTS
+operator|,
+comment|/**    * Indicates that a collection has a well-defined ordering of its elements.    * The ordering may depend on the element values, such as a {@link SortedSet},    * or on the insertion ordering, such as a {@link LinkedHashSet}. All list    * tests automatically specify this feature.    */
+DECL|enumConstant|KNOWN_ORDER
+constructor|KNOWN_ORDER
+operator|,
+comment|/**    * Indicates that a collection has a different {@link Object#toString}    * representation than most collections. If not specified, the collection    * tests will examine the value returned by {@link Object#toString}.    */
+DECL|enumConstant|NON_STANDARD_TOSTRING
+constructor|NON_STANDARD_TOSTRING
+operator|,
+comment|/**    * Indicates that the constructor or factory method of a collection, usually    * an immutable set, throws an {@link IllegalArgumentException} when presented    * with duplicate elements instead of collapsing them to a single element or    * including duplicate instances in the collection.    */
+DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
+constructor|REJECTS_DUPLICATES_AT_CREATION
+operator|,
+DECL|enumConstant|SUPPORTS_ADD
+constructor|SUPPORTS_ADD
+operator|,
+DECL|enumConstant|SUPPORTS_REMOVE
+constructor|SUPPORTS_REMOVE
+operator|,
+DECL|enumConstant|SUPPORTS_ADD_ALL
+constructor|SUPPORTS_ADD_ALL
+operator|,
+DECL|enumConstant|SUPPORTS_REMOVE_ALL
+constructor|SUPPORTS_REMOVE_ALL
+operator|,
+DECL|enumConstant|SUPPORTS_RETAIN_ALL
+constructor|SUPPORTS_RETAIN_ALL
+operator|,
+DECL|enumConstant|SUPPORTS_CLEAR
+constructor|SUPPORTS_CLEAR
+operator|,
+comment|/**    * Features supported by general-purpose collections -    * everything but {@link #RESTRICTS_ELEMENTS}.    * @see java.util.Collection the definition of general-purpose collections.    */
+DECL|enumConstant|GENERAL_PURPOSE
+constructor|GENERAL_PURPOSE(       SUPPORTS_ADD
+operator|,
+constructor|SUPPORTS_REMOVE
+operator|,
+constructor|SUPPORTS_ADD_ALL
 operator|,
 constructor|SUPPORTS_REMOVE_ALL
 operator|,
@@ -201,6 +195,19 @@ operator|,
 constructor|SUPPORTS_CLEAR
 block|)
 enum|,
+comment|/** Features supported by collections where only removal is allowed. */
+DECL|enumConstant|REMOVE_OPERATIONS
+name|REMOVE_OPERATIONS
+argument_list|(
+name|SUPPORTS_REMOVE
+argument_list|,
+name|SUPPORTS_REMOVE_ALL
+argument_list|,
+name|SUPPORTS_RETAIN_ALL
+argument_list|,
+name|SUPPORTS_CLEAR
+argument_list|)
+operator|,
 comment|/**    * For documenting collections that support no optional features, such as    * {@link java.util.Collections#emptySet}    */
 DECL|enumConstant|NONE
 name|NONE

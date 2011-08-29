@@ -116,52 +116,59 @@ argument_list|<
 name|Map
 argument_list|>
 block|{
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code containsKey(null)}, {@code get(null)}, or {@code remove(null)}.    */
+DECL|enumConstant|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_QUERIES
+block|,
 DECL|enumConstant|ALLOWS_NULL_KEYS
 name|ALLOWS_NULL_KEYS
-block|,
-DECL|enumConstant|ALLOWS_NULL_VALUES
-name|ALLOWS_NULL_VALUES
-block|,
-DECL|enumConstant|RESTRICTS_KEYS
-name|RESTRICTS_KEYS
-block|,
-DECL|enumConstant|RESTRICTS_VALUES
-name|RESTRICTS_VALUES
-block|,
-DECL|enumConstant|SUPPORTS_PUT
-name|SUPPORTS_PUT
-block|,
-DECL|enumConstant|SUPPORTS_PUT_ALL
-name|SUPPORTS_PUT_ALL
-block|,
-DECL|enumConstant|SUPPORTS_REMOVE
-name|SUPPORTS_REMOVE
-block|,
-DECL|enumConstant|SUPPORTS_CLEAR
-name|SUPPORTS_CLEAR
-block|,
-comment|/**    * Indicates that the constructor or factory method of a map, usually an    * immutable map, throws an {@link IllegalArgumentException} when presented    * with duplicate keys instead of discarding all but one.    */
-DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
-name|REJECTS_DUPLICATES_AT_CREATION
-block|,
-DECL|enumConstant|GENERAL_PURPOSE
-name|GENERAL_PURPOSE
 parameter_list|(
-name|SUPPORTS_PUT
-parameter_list|,
-name|SUPPORTS_PUT_ALL
-parameter_list|,
-name|SUPPORTS_REMOVE
-parameter_list|,
-name|SUPPORTS_CLEAR
+name|ALLOWS_NULL_QUERIES
 parameter_list|)
 operator|,
-comment|/** Features supported by maps where only removal is allowed. */
-DECL|enumConstant|REMOVE_OPERATIONS
-constructor|REMOVE_OPERATIONS(       SUPPORTS_REMOVE
+DECL|enumConstant|ALLOWS_NULL_VALUES
+constructor|ALLOWS_NULL_VALUES
+operator|,
+DECL|enumConstant|RESTRICTS_KEYS
+constructor|RESTRICTS_KEYS
+operator|,
+DECL|enumConstant|RESTRICTS_VALUES
+constructor|RESTRICTS_VALUES
+operator|,
+DECL|enumConstant|SUPPORTS_PUT
+constructor|SUPPORTS_PUT
+operator|,
+DECL|enumConstant|SUPPORTS_PUT_ALL
+constructor|SUPPORTS_PUT_ALL
+operator|,
+DECL|enumConstant|SUPPORTS_REMOVE
+constructor|SUPPORTS_REMOVE
+operator|,
+DECL|enumConstant|SUPPORTS_CLEAR
+constructor|SUPPORTS_CLEAR
+operator|,
+comment|/**    * Indicates that the constructor or factory method of a map, usually an    * immutable map, throws an {@link IllegalArgumentException} when presented    * with duplicate keys instead of discarding all but one.    */
+DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
+constructor|REJECTS_DUPLICATES_AT_CREATION
+operator|,
+DECL|enumConstant|GENERAL_PURPOSE
+constructor|GENERAL_PURPOSE(       SUPPORTS_PUT
+operator|,
+constructor|SUPPORTS_PUT_ALL
+operator|,
+constructor|SUPPORTS_REMOVE
 operator|,
 constructor|SUPPORTS_CLEAR
 block|)
+enum|,
+comment|/** Features supported by maps where only removal is allowed. */
+DECL|enumConstant|REMOVE_OPERATIONS
+name|REMOVE_OPERATIONS
+argument_list|(
+name|SUPPORTS_REMOVE
+argument_list|,
+name|SUPPORTS_CLEAR
+argument_list|)
 enum|;
 end_enum
 

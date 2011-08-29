@@ -62,6 +62,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -93,20 +103,6 @@ operator|.
 name|util
 operator|.
 name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
 import|;
 end_import
 
@@ -230,6 +226,26 @@ name|comparator
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an iterator over the elements contained in this collection.    */
+annotation|@
+name|Override
+DECL|method|iterator ()
+specifier|public
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+comment|// Needed to avoid Javadoc bug.
+return|return
+name|super
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
 comment|/**    * Creates an empty multiset containing the given initial elements, sorted    * according to the elements' natural order.    *    *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    *<p>The type specification is {@code<E extends Comparable>}, instead of the    * more specific {@code<E extends Comparable<? super E>>}, to support    * classes defined without generics.    */
 DECL|method|create ( Iterable<? extends E> elements)
 specifier|public
@@ -331,7 +347,7 @@ name|TreeMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 argument_list|(
 name|checkNotNull
@@ -348,6 +364,7 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
+comment|/**    * Returns the comparator associated with this multiset.    */
 annotation|@
 name|Override
 DECL|method|comparator ()
@@ -496,7 +513,7 @@ name|SortedMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 operator|)
 name|backingMap
@@ -521,14 +538,14 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SortedMapBasedElementSet (SortedMap<E, AtomicInteger> map)
+DECL|method|SortedMapBasedElementSet (SortedMap<E, Count> map)
 name|SortedMapBasedElementSet
 parameter_list|(
 name|SortedMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|map
 parameter_list|)
@@ -544,7 +561,7 @@ name|SortedMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 name|sortedMap
 parameter_list|()
@@ -555,7 +572,7 @@ name|SortedMap
 argument_list|<
 name|E
 argument_list|,
-name|AtomicInteger
+name|Count
 argument_list|>
 operator|)
 name|getMap

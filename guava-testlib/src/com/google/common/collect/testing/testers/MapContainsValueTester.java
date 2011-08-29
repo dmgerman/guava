@@ -56,7 +56,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_VALUES
+name|*
 import|;
 end_import
 
@@ -214,12 +214,12 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|ALLOWS_NULL_VALUES
+name|ALLOWS_NULL_QUERIES
 argument_list|)
-DECL|method|testContains_nullNotContainedButSupported ()
+DECL|method|testContains_nullNotContainedButAllowed ()
 specifier|public
 name|void
-name|testContains_nullNotContainedButSupported
+name|testContains_nullNotContainedButAllowed
 parameter_list|()
 block|{
 name|assertFalse
@@ -243,7 +243,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|ALLOWS_NULL_VALUES
+name|ALLOWS_NULL_QUERIES
 argument_list|)
 DECL|method|testContains_nullNotContainedAndUnsupported ()
 specifier|public
