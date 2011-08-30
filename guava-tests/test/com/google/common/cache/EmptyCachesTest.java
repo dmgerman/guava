@@ -245,7 +245,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Cache} tests   *  * @author schmoe@google.com (mike nonemacher)  */
+comment|/**  * {@link Cache} tests that deal with empty caches.  *  * @author schmoe@google.com (mike nonemacher)  */
 end_comment
 
 begin_class

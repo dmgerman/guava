@@ -570,6 +570,14 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|method|testNothing ()
+specifier|public
+name|void
+name|testNothing
+parameter_list|()
+block|{
+comment|/*      * It's a warning if a TestCase subclass contains no tests, so we add one.      * Alternatively, we could stop extending TestCase, but I worry that someone      * will add a test in the future and not realize that it's being ignored.      */
+block|}
 block|}
 end_class
 

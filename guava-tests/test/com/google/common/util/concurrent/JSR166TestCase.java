@@ -192,6 +192,7 @@ end_comment
 
 begin_class
 DECL|class|JSR166TestCase
+specifier|abstract
 class|class
 name|JSR166TestCase
 extends|extends

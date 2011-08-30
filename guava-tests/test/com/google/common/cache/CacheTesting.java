@@ -1253,7 +1253,7 @@ if|if
 condition|(
 name|cchm
 operator|.
-name|expiresAfterWrite
+name|expires
 argument_list|()
 condition|)
 block|{
@@ -1335,14 +1335,13 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): should this be>=?
 name|assertTrue
 argument_list|(
 name|prev
 operator|.
 name|getExpirationTime
 argument_list|()
-operator|>
+operator|<=
 name|current
 operator|.
 name|getExpirationTime
