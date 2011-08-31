@@ -1200,7 +1200,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of {@code x} for the given    * radix, where {@code x} is treated as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}; must be    * between Character.MIN_RADIX and Character.MAX_RADIX.    */
+comment|/**    * Returns a string representation of {@code x} for the given    * radix, where {@code x} is treated as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}; must be    * between Character.MIN_RADIX and Character.MAX_RADIX.  Otherwise,    * the radix {@code 10} is used.    */
 DECL|method|toString (long x, int radix)
 specifier|public
 specifier|static
@@ -1214,6 +1214,26 @@ name|int
 name|radix
 parameter_list|)
 block|{
+if|if
+condition|(
+name|radix
+operator|<
+name|Character
+operator|.
+name|MIN_RADIX
+operator||
+name|radix
+operator|>
+name|Character
+operator|.
+name|MAX_RADIX
+condition|)
+block|{
+name|radix
+operator|=
+literal|10
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|x
