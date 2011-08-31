@@ -290,6 +290,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|atomic
 operator|.
 name|AtomicInteger
@@ -2570,9 +2582,13 @@ operator|new
 name|MapMaker
 argument_list|()
 operator|.
-name|maximumSize
+name|expireAfterWrite
 argument_list|(
-literal|99999999
+literal|1
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
 argument_list|)
 decl_stmt|;
 name|multiset
@@ -2856,6 +2872,12 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// TODO(kevinb): what to do?
 name|GenericMapMaker
 argument_list|<
 name|String

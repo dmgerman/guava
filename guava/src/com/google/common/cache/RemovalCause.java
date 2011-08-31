@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The reason why a cached entry was removed.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
+comment|/**  * The reason why a cached entry was removed.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_enum

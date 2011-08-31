@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to  * {@code ExecutionException} when the exception thrown by a task is an  * unchecked exception. This allows the client code to continue to distinguish  * between checked and unchecked exceptions, even when they come from other  * threads.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link  * ExecutionError}.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
+comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to  * {@code ExecutionException} when the exception thrown by a task is an  * unchecked exception. This allows the client code to continue to distinguish  * between checked and unchecked exceptions, even when they come from other  * threads.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link  * ExecutionError}.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_class

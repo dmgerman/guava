@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Error} variant of {@link java.util.concurrent.ExecutionException}. As  * with {@code ExecutionException}, the error's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread. That cause should  * itself be an {@code Error}; if not, use {@code ExecutionException} or {@link  * UncheckedExecutionException}. This allows the client code to continue to  * distinguish between exceptions and errors, even when they come from other  * threads.  *  * @author cpovirk@google.com (Chris Povirk)  * @since Guava release 10  */
+comment|/**  * {@link Error} variant of {@link java.util.concurrent.ExecutionException}. As  * with {@code ExecutionException}, the error's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread. That cause should  * itself be an {@code Error}; if not, use {@code ExecutionException} or {@link  * UncheckedExecutionException}. This allows the client code to continue to  * distinguish between exceptions and errors, even when they come from other  * threads.  *  * @author Chris Povirk  * @since Guava release 10  */
 end_comment
 
 begin_class

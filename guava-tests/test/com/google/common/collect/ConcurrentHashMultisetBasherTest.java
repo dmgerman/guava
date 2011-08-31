@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basher test for {@link ConcurrentHashMultiset}: start a bunch of threads, have each of them  * do operations at random. Each thread keeps track of the per-key deltas that it's directly  * responsible for; after all threads have completed, we sum the per-key deltas and compare to the  * existing multiset values.  *  * @author schmoe@google.com (mike nonemacher)  */
+comment|/**  * Basher test for {@link ConcurrentHashMultiset}: start a bunch of threads, have each of them  * do operations at random. Each thread keeps track of the per-key deltas that it's directly  * responsible for; after all threads have completed, we sum the per-key deltas and compare to the  * existing multiset values.  *  * @author mike nonemacher  */
 end_comment
 
 begin_class

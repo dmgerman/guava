@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A side of a binary search tree node, used to index its children.  *  * @author lowasser@google.com (Louis Wasserman)  */
+comment|/**  * A side of a binary search tree node, used to index its children.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_enum

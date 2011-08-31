@@ -6276,6 +6276,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testUnmodifiableIterableShortCircuit ()
 specifier|public
 name|void

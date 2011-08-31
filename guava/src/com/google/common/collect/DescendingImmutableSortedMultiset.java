@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A descending wrapper around an {@code ImmutableSortedMultiset}  *   * @author lowasser@google.com (Louis Wasserman)  */
+comment|/**  * A descending wrapper around an {@code ImmutableSortedMultiset}  *   * @author Louis Wasserman  */
 end_comment
 
 begin_class

@@ -1331,13 +1331,7 @@ name|Ordering
 operator|.
 name|compound
 argument_list|(
-name|Iterables
-operator|.
-name|unmodifiableIterable
-argument_list|(
-name|ImmutableList
-operator|.
-name|of
+name|asList
 argument_list|(
 name|byCharAt
 argument_list|(
@@ -1367,7 +1361,6 @@ argument_list|,
 name|byCharAt
 argument_list|(
 literal|5
-argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)

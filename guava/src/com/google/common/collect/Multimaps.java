@@ -7462,7 +7462,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    *<b>Deprecated.</b>    *    * @deprecated use {@link #index(linkIterator, Function)} by casting    * {@code values} to an {@code Iterator}, or better by implementing only    * {@code Iterator} and not {@code Iterable}.    */
+comment|/**    *<b>Deprecated.</b>    *    * @deprecated use {@link #index(Iterator, Function)} by casting {@code    *     values} to {@code Iterator<V>}, or better yet, by implementing only    *     {@code Iterator} and not {@code Iterable}.<b>This method is scheduled    *     for deletion in March 2012.</b>    */
 annotation|@
 name|Deprecated
 specifier|public

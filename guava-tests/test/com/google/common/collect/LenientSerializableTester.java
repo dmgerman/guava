@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Variant of {@link SerializableTester} that does not require the reserialized object's class to be  * identical to the original.  *  * @author cpovirk@google.com (Chris Povirk)  */
+comment|/**  * Variant of {@link SerializableTester} that does not require the reserialized object's class to be  * identical to the original.  *  * @author Chris Povirk  */
 end_comment
 
 begin_comment

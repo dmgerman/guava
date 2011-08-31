@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factories for common {@link DiscreteDomain} instances.  *  * @author gak@google.com (Gregory Kick)  * @since Guava release 10  */
+comment|/**  * Factories for common {@link DiscreteDomain} instances.  *  * @author Gregory Kick  * @since Guava release 10  */
 end_comment
 
 begin_class

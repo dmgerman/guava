@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A notification of the removal of a single entry. The key and/or value may be null if they were  * already garbage collected.  *  *<p>Like other {@code Map.Entry} instances associated with {@code CacheBuilder}, this class holds  * strong references to the key and value, regardless of the type of references the cache may be  * using.  *  * @author fry@google.com (Charles Fry)  * @since Guava release 10  */
+comment|/**  * A notification of the removal of a single entry. The key and/or value may be null if they were  * already garbage collected.  *  *<p>Like other {@code Map.Entry} instances associated with {@code CacheBuilder}, this class holds  * strong references to the key and value, regardless of the type of references the cache may be  * using.  *  * @author Charles Fry  * @since Guava release 10  */
 end_comment
 
 begin_class

@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty contiguous set.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * An empty contiguous set.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

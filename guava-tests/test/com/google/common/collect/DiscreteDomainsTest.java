@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link DiscreteDomains}.  *  * @author cpovirk@google.com (Chris Povirk)  */
+comment|/**  * Tests for {@link DiscreteDomains}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

@@ -1237,6 +1237,12 @@ name|bar
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testTransform_Future_genericsNull ()
 specifier|public
 name|void
@@ -1287,6 +1293,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testTransformValueRemainsMemoized_Future ()
 specifier|public
 name|void
@@ -1563,6 +1575,12 @@ extends|extends
 name|RuntimeException
 block|{}
 comment|/**    * Test that the function is invoked only once, even if it throws an    * exception. Also, test that that function's result is wrapped in an    * ExecutionException.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testTransformExceptionRemainsMemoized_Future ()
 specifier|public
 name|void
@@ -1985,6 +2003,12 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testTransform_Future_genericsHierarchy ()
 specifier|public
 name|void

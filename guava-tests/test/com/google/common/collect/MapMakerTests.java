@@ -298,6 +298,12 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated code
 specifier|final
 name|ConcurrentMap
 argument_list|<
@@ -526,6 +532,12 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated code
 specifier|final
 name|Map
 argument_list|<

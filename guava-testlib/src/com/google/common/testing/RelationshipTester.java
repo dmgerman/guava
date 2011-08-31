@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests a collection of objects according to the rules specified in a  * {@link RelationshipAssertion}.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * Tests a collection of objects according to the rules specified in a  * {@link RelationshipAssertion}.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

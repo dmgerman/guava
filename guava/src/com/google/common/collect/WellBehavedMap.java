@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Workaround for   *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">  * EnumMap bug</a>. If you want to pass an {@code EnumMap}, with the  * intention of using its {@code entrySet()} method, you should  * wrap the {@code EnumMap} in this class instead.   *   * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Workaround for   *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">  * EnumMap bug</a>. If you want to pass an {@code EnumMap}, with the  * intention of using its {@code entrySet()} method, you should  * wrap the {@code EnumMap} in this class instead.   *   * @author Dimitris Andreou  */
 end_comment
 
 begin_class

@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A callback for accepting the results of a {@link java.util.concurrent.Future}  * computation asynchronously.  *  *<p>To attach to a {@link ListenableFuture} use {@link Futures#addCallback}.  *  * @author azana@google.com (Anthony Zana)  * @since Guava release 10  */
+comment|/**  * A callback for accepting the results of a {@link java.util.concurrent.Future}  * computation asynchronously.  *  *<p>To attach to a {@link ListenableFuture} use {@link Futures#addCallback}.  *  * @author Anthony Zana  * @since Guava release 10  */
 end_comment
 
 begin_interface
