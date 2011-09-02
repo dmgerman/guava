@@ -175,7 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester for equals() and hashCode() methods of a class.  *  *<p>To use, create a new EqualsTester and add equality groups where each group  * contains objects that are supposed to be equal to each other, and objects of  * different groups are expected to be unequal. For example:  *<pre>  * new EqualsTester()  *     .addEqualityGroup("hello", "h" + "ello")  *     .addEqualityGroup("world", "wor" + "ld")  *     .addEqualityGroup(2, 1 + 1)  *     .testEquals();  *</pre>  * This tests:  *<ul>  *<li>comparing each object against itself returns true  *<li>comparing each object against null returns false  *<li>comparing each object an instance of an incompatible class returns false  *<li>comparing each pair of objects within the same equality group returns  *     true  *<li>comparing each pair of objects from different equality groups returns  *     false  *<li>the hash code of any two equal objects are equal  *</ul>  * For backward compatibility, the following usage pattern is also supported:  *<ol>  *<li>Create a reference instance of the class under test and use to create a  * new EqualsTester.  *  *<li>Create one or more new instances of the class that should be equal to the  * reference instance and pass to addEqualObject(). Multiple instances can be  * used to test subclasses.  *  *<li>Invoke {@link #testEquals} on the EqualsTester.  *</ol>  *  *<p>When a test fails, the error message labels the objects involved in  * the failed comparison as follows:  *<ul>  *<li>"{@code [group }<i>i</i>{@code , item }<i>j</i>{@code ]}" refers to the  *<i>j</i><sup>th</sup> item in the<i>i</i><sup>th</sup> equality group,  *       where both equality groups and the items within equality groups are  *       numbered starting from 1.  When either a constructor argument or an  *       equal object is provided, that becomes group 1.  *</ul>  *  * @author Jim McMaster  * @author Jige Yu  * @since Guava release 10  */
+comment|/**  * Tester for equals() and hashCode() methods of a class.  *  *<p>To use, create a new EqualsTester and add equality groups where each group  * contains objects that are supposed to be equal to each other, and objects of  * different groups are expected to be unequal. For example:  *<pre>  * new EqualsTester()  *     .addEqualityGroup("hello", "h" + "ello")  *     .addEqualityGroup("world", "wor" + "ld")  *     .addEqualityGroup(2, 1 + 1)  *     .testEquals();  *</pre>  * This tests:  *<ul>  *<li>comparing each object against itself returns true  *<li>comparing each object against null returns false  *<li>comparing each object an instance of an incompatible class returns false  *<li>comparing each pair of objects within the same equality group returns  *     true  *<li>comparing each pair of objects from different equality groups returns  *     false  *<li>the hash code of any two equal objects are equal  *</ul>  *  *<p>When a test fails, the error message labels the objects involved in  * the failed comparison as follows:  *<ul>  *<li>"{@code [group }<i>i</i>{@code , item }<i>j</i>{@code ]}" refers to the  *<i>j</i><sup>th</sup> item in the<i>i</i><sup>th</sup> equality group,  *       where both equality groups and the items within equality groups are  *       numbered starting from 1.  When either a constructor argument or an  *       equal object is provided, that becomes group 1.  *</ul>  *  * @author Jim McMaster  * @author Jige Yu  * @since Guava release 10  */
 end_comment
 
 begin_class
@@ -197,20 +197,6 @@ name|int
 name|REPETITIONS
 init|=
 literal|3
-decl_stmt|;
-DECL|field|defaultEqualObjects
-specifier|private
-specifier|final
-name|List
-argument_list|<
-name|Object
-argument_list|>
-name|defaultEqualObjects
-init|=
-name|Lists
-operator|.
-name|newArrayList
-argument_list|()
 decl_stmt|;
 DECL|field|equalityGroups
 specifier|private
@@ -383,23 +369,6 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|defaultEqualObjects
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|delegate
-operator|.
-name|addRelatedGroup
-argument_list|(
-name|defaultEqualObjects
-argument_list|)
-expr_stmt|;
-block|}
 for|for
 control|(
 name|List
@@ -462,14 +431,7 @@ name|Iterables
 operator|.
 name|concat
 argument_list|(
-name|defaultEqualObjects
-argument_list|,
-name|Iterables
-operator|.
-name|concat
-argument_list|(
 name|equalityGroups
-argument_list|)
 argument_list|)
 control|)
 block|{
