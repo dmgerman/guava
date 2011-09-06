@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class for converting between various ASCII case formats.  *  * @author Mike Bostock  * @since Guava release 01  */
+comment|/**  * Utility class for converting between various ASCII case formats.  *  * @author Mike Bostock  * @since 1.0  */
 end_comment
 
 begin_enum

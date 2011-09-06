@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract implementation of the {@link ListenableFuture} interface. This  * class is preferable to {@link java.util.concurrent.FutureTask} for two  * reasons: It implements {@code ListenableFuture}, and it does not implement  * {@code Runnable}. (If you want a {@code Runnable} implementation of {@code  * ListenableFuture}, create a {@link ListenableFutureTask}, or submit your  * tasks to a {@link ListeningExecutorService}.)  *  *<p>This class implements all methods in {@code ListenableFuture}.  * Subclasses should provide a way to set the result of the computation through  * the protected methods {@link #set(Object)} and  * {@link #setException(Throwable)}. Subclasses may also override {@link  * #interruptTask()}, which will be invoked automatically if a call to {@link  * #cancel(boolean) cancel(true)} succeeds in canceling the future.  *  *<p>{@code AbstractFuture} uses an {@link AbstractQueuedSynchronizer} to deal  * with concurrency issues and guarantee thread safety.  *  *<p>The state changing methods all return a boolean indicating success or  * failure in changing the future's state.  Valid states are running,  * completed, failed, or cancelled.  *  *<p>This class uses an {@link ExecutionList} to guarantee that all registered  * listeners will be executed, either when the future finishes or, for listeners  * that are added after the future completes, immediately.  * {@code Runnable}-{@code Executor} pairs are stored in the execution list but  * are not necessarily executed in the order in which they were added.  (If a  * listener is added after the Future is complete, it will be executed  * immediately, even if earlier listeners have not been executed. Additionally,  * executors need not guarantee FIFO execution, or different listeners may run  * in different executors.)  *  * @author Sven Mawson  * @since Guava release 01  */
+comment|/**  * An abstract implementation of the {@link ListenableFuture} interface. This  * class is preferable to {@link java.util.concurrent.FutureTask} for two  * reasons: It implements {@code ListenableFuture}, and it does not implement  * {@code Runnable}. (If you want a {@code Runnable} implementation of {@code  * ListenableFuture}, create a {@link ListenableFutureTask}, or submit your  * tasks to a {@link ListeningExecutorService}.)  *  *<p>This class implements all methods in {@code ListenableFuture}.  * Subclasses should provide a way to set the result of the computation through  * the protected methods {@link #set(Object)} and  * {@link #setException(Throwable)}. Subclasses may also override {@link  * #interruptTask()}, which will be invoked automatically if a call to {@link  * #cancel(boolean) cancel(true)} succeeds in canceling the future.  *  *<p>{@code AbstractFuture} uses an {@link AbstractQueuedSynchronizer} to deal  * with concurrency issues and guarantee thread safety.  *  *<p>The state changing methods all return a boolean indicating success or  * failure in changing the future's state.  Valid states are running,  * completed, failed, or cancelled.  *  *<p>This class uses an {@link ExecutionList} to guarantee that all registered  * listeners will be executed, either when the future finishes or, for listeners  * that are added after the future completes, immediately.  * {@code Runnable}-{@code Executor} pairs are stored in the execution list but  * are not necessarily executed in the order in which they were added.  (If a  * listener is added after the Future is complete, it will be executed  * immediately, even if earlier listeners have not been executed. Additionally,  * executors need not guarantee FIFO execution, or different listeners may run  * in different executors.)  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -306,7 +306,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since Guava release 10    */
+comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
 DECL|method|interruptTask ()
 specifier|protected
 name|void
@@ -424,7 +424,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    * @deprecated Most implementations will be satisfied with the default    * implementation of {@link #cancel(boolean)} and not need to call this method    * at all. Those that are not can delegate to {@code    * super.cancel(mayInterruptIfRunning)} or, to get behavior exactly equivalent    * to this method, {@code super.cancel(false)}. This method will be removed in    * Guava release 11.    */
+comment|/**    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    * @deprecated Most implementations will be satisfied with the default    * implementation of {@link #cancel(boolean)} and not need to call this method    * at all. Those that are not can delegate to {@code    * super.cancel(mayInterruptIfRunning)} or, to get behavior exactly equivalent    * to this method, {@code super.cancel(false)}. This method will be removed in    * release 11.0.    */
 annotation|@
 name|Beta
 annotation|@
@@ -457,7 +457,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *<b>Deprecated.</b> {@linkplain #addListener Add listeners} (possible executed    * in {@link MoreExecutors#sameThreadExecutor}) to perform the work currently    * performed by your {@code done} implementation. This method will be removed    * in Guava release 11.    *    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
+comment|/**    *<b>Deprecated.</b> {@linkplain #addListener Add listeners} (possible executed    * in {@link MoreExecutors#sameThreadExecutor}) to perform the work currently    * performed by your {@code done} implementation. This method will be removed    * in release 11.0.    *    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
 annotation|@
 name|Beta
 annotation|@

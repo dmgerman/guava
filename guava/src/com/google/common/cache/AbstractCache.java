@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method. This implementation throws an  * {@link UnsupportedOperationException} on calls to {@link #size}, {@link #invalidate},  * {@link #invalidateAll}, {@link #stats}, {@link #activeEntries}, and {@link #asMap}. The methods  * {@link #getUnchecked} and {@link #apply} are implemented in terms of {@link #get}. The method  * {@link #cleanUp} is a no-op.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -210,6 +210,14 @@ name|key
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cleanUp ()
+specifier|public
+name|void
+name|cleanUp
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|size ()
@@ -317,7 +325,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Accumulates statistics during the operation of a {@link Cache} for presentation by {@link    * Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.    *    * @since Guava release 10    */
+comment|/**    * Accumulates statistics during the operation of a {@link Cache} for presentation by {@link    * Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.    *    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|interface|StatsCounter
@@ -374,7 +382,7 @@ name|snapshot
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * A thread-safe {@link StatsCounter} implementation for use by {@link Cache} implementors.    *    * @since Guava release 10    */
+comment|/**    * A thread-safe {@link StatsCounter} implementation for use by {@link Cache} implementors.    *    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|class|SimpleStatsCounter

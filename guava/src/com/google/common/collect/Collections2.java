@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

@@ -428,18 +428,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ScheduledExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -465,7 +453,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A builder of {@link Cache} instances having any combination of the following features:  *  *<ul>  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>keys automatically wrapped in {@linkplain WeakReference weak} references  *<li>values automatically wrapped in {@linkplain WeakReference weak} or  *     {@linkplain SoftReference soft} references  *<li>notification of evicted (or otherwise removed) entries  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   Cache<Key, Graph> graphs = CacheBuilder.newBuilder()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .build(  *           new CacheLoader<Key, Graph>() {  *             public Graph load(Key key) throws AnyException {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional.  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements the optional operations {@link Cache#invalidate},  * {@link Cache#invalidateAll}, {@link Cache#size}, {@link Cache#stats}, and {@link Cache#asMap},  * with the following qualifications:  *  *<ul>  *<li>The {@code invalidateAll} method will invalidate all cached entries prior to returning, and  *     removal notifications will be issued for all invalidated entries.  *<li>The {@code asMap} view supports removal operations, but no other modifications.  *<li>The {@code asMap} view (and its collection views) have<i>weakly consistent iterators</i>.  *     This means that they are safe for concurrent use, but if other threads modify the cache after  *     the iterator is created, it is undefined which of these changes, if any, are reflected in  *     that iterator. These iterators never throw {@link ConcurrentModificationException}.  *</ul>  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the  * {@link Object#equals equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys} was specified, the cache uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues} or {@link #softValues} was  * specified, the cache uses identity comparisons for values.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the cache to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the cache. A partially-reclaimed entry is never exposed to the user.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache.  *  * @param<K> the base key type for all caches created by this builder  * @param<V> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  *<p>A builder of {@link Cache} instances having any combination of the following features:  *  *<ul>  *<li>least-recently-used eviction when a maximum size is exceeded  *<li>time-based expiration of entries, measured since last access or last write  *<li>keys automatically wrapped in {@linkplain WeakReference weak} references  *<li>values automatically wrapped in {@linkplain WeakReference weak} or  *     {@linkplain SoftReference soft} references  *<li>notification of evicted (or otherwise removed) entries  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   Cache<Key, Graph> graphs = CacheBuilder.newBuilder()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .maximumSize(10000)  *       .expireAfterWrite(10, TimeUnit.MINUTES)  *       .build(  *           new CacheLoader<Key, Graph>() {  *             public Graph load(Key key) throws AnyException {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  *  * These features are all optional.  *  *<p>The returned cache is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It implements the optional operations {@link Cache#invalidate},  * {@link Cache#invalidateAll}, {@link Cache#size}, {@link Cache#stats}, and {@link Cache#asMap},  * with the following qualifications:  *  *<ul>  *<li>The {@code invalidateAll} method will invalidate all cached entries prior to returning, and  *     removal notifications will be issued for all invalidated entries.  *<li>The {@code asMap} view supports removal operations, but no other modifications.  *<li>The {@code asMap} view (and its collection views) have<i>weakly consistent iterators</i>.  *     This means that they are safe for concurrent use, but if other threads modify the cache after  *     the iterator is created, it is undefined which of these changes, if any, are reflected in  *     that iterator. These iterators never throw {@link ConcurrentModificationException}.  *</ul>  *  *<p><b>Note:</b> by default, the returned cache uses equality comparisons (the  * {@link Object#equals equals} method) to determine equality for keys or values. However, if  * {@link #weakKeys} was specified, the cache uses identity ({@code ==})  * comparisons instead for keys. Likewise, if {@link #weakValues} or {@link #softValues} was  * specified, the cache uses identity comparisons for values.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the cache to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the cache. A partially-reclaimed entry is never exposed to the user.  *  *<p>Certain cache configurations will result in the accrual of periodic maintenance tasks which  * will be performed during write operations, or during occasional read operations in the absense of  * writes. The {@link Cache#cleanUp} method of the returned cache will also perform maintenance, but  * calling it should not be necessary with a high throughput cache. Only caches built with  * {@linkplain CacheBuilder#removalListener removalListener},  * {@linkplain CacheBuilder#expireAfterWrite expireAfterWrite},  * {@linkplain CacheBuilder#expireAfterAccess expireAfterAccess},  * {@linkplain CacheBuilder#weakKeys weakKeys}, {@linkplain CacheBuilder#weakValues weakValues},  * or {@linkplain CacheBuilder#softValues softValues} perform periodic maintenance.  *  *<p>The caches produced by {@code CacheBuilder} are serializable, and the deserialized caches  * retain all the configuration properties of the original cache.  *  * @param<K> the base key type for all caches created by this builder  * @param<V> the base value type for all caches created by this builder  * @author Charles Fry  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -740,10 +728,6 @@ argument_list|,
 name|V
 argument_list|>
 name|removalListener
-decl_stmt|;
-DECL|field|cleanupExecutor
-name|ScheduledExecutorService
-name|cleanupExecutor
 decl_stmt|;
 DECL|field|ticker
 name|Ticker
@@ -1128,7 +1112,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    * @throws IllegalStateException if the key strength was already set    */
+comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    *<p>Entries with keys that have been garbage collected may be counted by {@link Cache#size}, but    * will never be visible to read or write operations. Entries with garbage collected keys are    * cleaned up as part of the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the key strength was already set    */
 DECL|method|weakKeys ()
 specifier|public
 name|CacheBuilder
@@ -1220,7 +1204,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p>Weak values will be garbage collected once they are weakly reachable. This makes them a poor    * candidate for caching; consider {@link #softValues} instead.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    * @throws IllegalStateException if the value strength was already set    */
+comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p>Weak values will be garbage collected once they are weakly reachable. This makes them a poor    * candidate for caching; consider {@link #softValues} instead.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    *<p>Entries with values that have been garbage collected may be counted by {@link Cache#size},    * but will never be visible to read or write operations. Entries with garbage collected keys are    * cleaned up as part of the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the value strength was already set    */
 DECL|method|weakValues ()
 specifier|public
 name|CacheBuilder
@@ -1241,7 +1225,7 @@ name|WEAK
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache {@linkplain    * #maximumSize maximum size} instead of using soft references. You should only use this method if    * you are well familiar with the practical consequences of soft references.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    * @throws IllegalStateException if the value strength was already set    */
+comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache {@linkplain    * #maximumSize maximum size} instead of using soft references. You should only use this method if    * you are well familiar with the practical consequences of soft references.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    *<p>Entries with values that have been garbage collected may be counted by {@link Cache#size},    * but will never be visible to read or write operations. Entries with garbage collected values    * are cleaned up as part of the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the value strength was already set    */
 DECL|method|softValues ()
 specifier|public
 name|CacheBuilder
@@ -1313,7 +1297,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements will be evicted immediately after being loaded into    * the cache. This has the same effect as invoking {@link #maximumSize maximumSize}{@code (0)}. It    * can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements will be evicted immediately after being loaded into    * the cache. This has the same effect as invoking {@link #maximumSize maximumSize}{@code (0)}. It    * can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    */
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -1441,7 +1425,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or last access. Access time is reset by    * {@link Cache#get} and {@link Cache#getUnchecked}, but not by operations on the view returned by    * {@link Cache#asMap}.    *    *<p>When {@code duration} is zero, elements will be evicted immediately after being loaded into    * the cache. This has the same effect as invoking {@link #maximumSize maximumSize}{@code (0)}. It    * can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or last access. Access time is reset by    * {@link Cache#get} and {@link Cache#getUnchecked}, but not by operations on the view returned by    * {@link Cache#asMap}.    *    *<p>When {@code duration} is zero, elements will be evicted immediately after being loaded into    * the cache. This has the same effect as invoking {@link #maximumSize maximumSize}{@code (0)}. It    * can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -1521,15 +1505,6 @@ else|:
 name|expireAfterAccessNanos
 return|;
 block|}
-DECL|method|getCleanupExecutor ()
-name|ScheduledExecutorService
-name|getCleanupExecutor
-parameter_list|()
-block|{
-return|return
-name|cleanupExecutor
-return|;
-block|}
 comment|/**    * Specifies a nanosecond-precision time source for use in determining when entries should be    * expired. By default, {@link System#nanoTime} is used.    *    *<p>The primary intent of this method is to facilitate testing of caches which have been    * configured with {@link #expireAfterWrite} or {@link #expireAfterAccess}.    *    * @throws IllegalStateException if a ticker was already set    */
 DECL|method|ticker (Ticker ticker)
 specifier|public
@@ -1584,7 +1559,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener during invocations of any of that cache's public    * methods (even read-only methods).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
+comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener as part of the routine maintenance described    * in the class javadoc.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
 annotation|@
 name|CheckReturnValue
 DECL|method|removalListener ( RemovalListener<K1, V1> listener)
@@ -1975,21 +1950,6 @@ operator|.
 name|addValue
 argument_list|(
 literal|"removalListener"
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|cleanupExecutor
-operator|!=
-literal|null
-condition|)
-block|{
-name|s
-operator|.
-name|addValue
-argument_list|(
-literal|"cleanupExecutor"
 argument_list|)
 expr_stmt|;
 block|}

@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code int} primitives, that are not  * already found in either {@link Integer} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+comment|/**  * Static utility methods pertaining to {@code int} primitives, that are not  * already found in either {@link Integer} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -203,7 +203,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * The largest power of two that can be represented as an {@code int}.    *    * @since Guava release 10    */
+comment|/**    * The largest power of two that can be represented as an {@code int}.    *    * @since 10.0    */
 DECL|field|MAX_POWER_OF_TWO
 specifier|public
 specifier|static
@@ -1120,7 +1120,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code int} arrays    * lexicographically. That is, it compares, using {@link    * #compare(int, int)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [1]< [1, 2]< [2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(int[], int[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since Guava release 02    */
+comment|/**    * Returns a comparator that compares two {@code int} arrays    * lexicographically. That is, it compares, using {@link    * #compare(int, int)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [1]< [1, 2]< [2]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(int[], int[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

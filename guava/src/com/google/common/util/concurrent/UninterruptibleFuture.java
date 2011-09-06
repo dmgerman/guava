@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Future} whose {@code get} calls cannot be interrupted. If a thread  * is interrupted during such a call, the call continues to block until the  * result is available or the timeout elapses, and only then re-interrupts the  * thread. Obtain an instance of this type using {@link  * Futures#makeUninterruptible(Future)}.  *  * @author Kevin Bourrillion  * @since Guava release 01  * @deprecated Use  * {@link Uninterruptibles#getUninterruptibly(Future) getUninterruptibly}.  *<b>Scheduled for deletion in Guava Release 11</b>.  */
+comment|/**  * A {@code Future} whose {@code get} calls cannot be interrupted. If a thread  * is interrupted during such a call, the call continues to block until the  * result is available or the timeout elapses, and only then re-interrupts the  * thread. Obtain an instance of this type using {@link  * Futures#makeUninterruptible(Future)}.  *  * @author Kevin Bourrillion  * @since 1.0  * @deprecated Use  * {@link Uninterruptibles#getUninterruptibly(Future) getUninterruptibly}.  *<b>Scheduled for deletion in Guava Release 11</b>.  */
 end_comment
 
 begin_interface

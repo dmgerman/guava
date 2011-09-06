@@ -382,6 +382,20 @@ name|snapshot
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|cleanUp ()
+specifier|public
+name|void
+name|cleanUp
+parameter_list|()
+block|{
+name|map
+operator|.
+name|cleanUp
+argument_list|()
+expr_stmt|;
+block|}
 comment|// TODO(user): activeEntries
 DECL|class|CacheAsMap
 specifier|static

@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Marks a method as an event handler, as used by  * {@link AnnotatedHandlerFinder} and {@link EventBus}.  *  *<p>The type of event will be indicated by the method's first (and only)  * parameter.  If this annotation is applied to methods with zero parameters,  * or more than one parameter, the object containing the method will not be able  * to register for event delivery from the {@link EventBus}.  *  *<p>Unless also annotated with @{@link AllowConcurrentEvents}, event handler  * methods will be invoked serially by each event bus that they are registered  * with.  *  * @author Cliff Biffle  * @since Guava release 10  */
+comment|/**  * Marks a method as an event handler, as used by  * {@link AnnotatedHandlerFinder} and {@link EventBus}.  *  *<p>The type of event will be indicated by the method's first (and only)  * parameter.  If this annotation is applied to methods with zero parameters,  * or more than one parameter, the object containing the method will not be able  * to register for event delivery from the {@link EventBus}.  *  *<p>Unless also annotated with @{@link AllowConcurrentEvents}, event handler  * methods will be invoked serially by each event bus that they are registered  * with.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_annotation_defn

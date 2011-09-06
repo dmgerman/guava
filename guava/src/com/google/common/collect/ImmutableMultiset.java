@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable hash-based multiset. Does not permit null elements.  *  *<p>Its iterator orders elements according to the first appearance of the  * element among the items passed to the factory method or builder. When the  * multiset contains multiple instances of an element, those instances are  * consecutive in the iteration order.  *  * @author Jared Levy  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * An immutable hash-based multiset. Does not permit null elements.  *  *<p>Its iterator orders elements according to the first appearance of the  * element among the items passed to the factory method or builder. When the  * multiset contains multiple instances of an element, those instances are  * consecutive in the iteration order.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -220,7 +220,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    * @since Guava release 06 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable multiset containing a single element.    *    * @throws NullPointerException if {@code element} is null    * @since 6.0 (source-compatible since 2.0)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -250,7 +250,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since Guava release 06 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -285,7 +285,7 @@ name|e2
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since Guava release 06 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -325,7 +325,7 @@ name|e3
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since Guava release 06 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -370,7 +370,7 @@ name|e4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since Guava release 06 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -420,7 +420,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since Guava release 06 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable multiset containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 6.0 (source-compatible since 2.0)    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -521,7 +521,7 @@ name|all
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.of(2, 3, 1, 3)} yields a multiset with    * elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in January 2012.</b>    * @since Guava release 02 (changed from varargs in release 06)    */
+comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.of(2, 3, 1, 3)} yields a multiset with    * elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in January 2012.</b>    * @since 2.0 (changed from varargs in 6.0)    */
 annotation|@
 name|Deprecated
 DECL|method|of (E[] elements)
@@ -553,7 +553,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.copyOf([2, 3, 1, 3])} yields a multiset    * with elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 06    */
+comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.copyOf([2, 3, 1, 3])} yields a multiset    * with elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 6.0    */
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
@@ -1959,7 +1959,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable multiset instances, especially {@code    * public static final} multisets ("constant multisets"). Example:    *<pre> {@code    *    *   public static final ImmutableMultiset<Bean> BEANS =    *       new ImmutableMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multisets in series.    *    * @since Guava release 02 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable multiset instances, especially {@code    * public static final} multisets ("constant multisets"). Example:    *<pre> {@code    *    *   public static final ImmutableMultiset<Bean> BEANS =    *       new ImmutableMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multisets in series.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

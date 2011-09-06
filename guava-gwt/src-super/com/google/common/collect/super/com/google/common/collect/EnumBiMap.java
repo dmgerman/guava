@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *  * @author Mike Bostock  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

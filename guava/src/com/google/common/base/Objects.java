@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper functions that can operate on any {@code Object}.  *  * @author Laurence Gonsalves  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * Helper functions that can operate on any {@code Object}.  *  * @author Laurence Gonsalves  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -144,7 +144,7 @@ name|objects
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *   }}</pre>    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since Guava release 02    */
+comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *   }}</pre>    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since 2.0    */
 DECL|method|toStringHelper (Object self)
 specifier|public
 specifier|static
@@ -169,7 +169,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since Guava release 07 (source-compatible since release 02)    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since 7.0 (source-compatible since 2.0)    */
 DECL|method|toStringHelper (Class<?> clazz)
 specifier|public
 specifier|static
@@ -194,7 +194,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using {@code className} instead    * of using an instance's {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since Guava release 07 (source-compatible since release 02)    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using {@code className} instead    * of using an instance's {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since 7.0 (source-compatible since 2.0)    */
 DECL|method|toStringHelper (String className)
 specifier|public
 specifier|static
@@ -290,7 +290,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@code Optional<T>},    * this can be accomplished with {@code first.or(second)}. That approach also    * allows for lazy evaluation of the fallback instance, using    * {@code first.or(Supplier)}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since Guava release 03    */
+comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@code Optional<T>},    * this can be accomplished with {@code first.or(second)}. That approach also    * allows for lazy evaluation of the fallback instance, using    * {@code first.or(Supplier)}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since 3.0    */
 DECL|method|firstNonNull (@ullable T first, @Nullable T second)
 specifier|public
 specifier|static
@@ -324,7 +324,7 @@ name|second
 argument_list|)
 return|;
 block|}
-comment|/**    * Support class for {@link Objects#toStringHelper}.    *    * @author Jason Lee    * @since Guava release 02    */
+comment|/**    * Support class for {@link Objects#toStringHelper}.    *    * @author Jason Lee    * @since 2.0    */
 DECL|class|ToStringHelper
 specifier|public
 specifier|static

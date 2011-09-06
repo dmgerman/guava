@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Function} instances.  *  *<p>All methods returns serializable functions as long as they're given serializable parameters.  *  * @author Mike Bostock  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Function} instances.  *  *<p>All methods returns serializable functions as long as they're given serializable parameters.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1446,7 +1446,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function that always returns the result of invoking {@link Supplier#get} on {@code    * supplier}, regardless of its input.    *     * @since Guava release 10    */
+comment|/**    * Returns a function that always returns the result of invoking {@link Supplier#get} on {@code    * supplier}, regardless of its input.    *     * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|forSupplier (Supplier<T> supplier)

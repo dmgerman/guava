@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Marks an event handling method as being thread-safe.  This annotation  * indicates that EventBus may invoke the event handler simultaneously from  * multiple threads.  *  *<p>This does not mark the method as an event handler, and so should be used  * in combination with {@link Subscribe}.  *  * @author Cliff Biffle  * @since Guava release 10  */
+comment|/**  * Marks an event handling method as being thread-safe.  This annotation  * indicates that EventBus may invoke the event handler simultaneously from  * multiple threads.  *  *<p>This does not mark the method as an event handler, and so should be used  * in combination with {@link Subscribe}.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_annotation_defn

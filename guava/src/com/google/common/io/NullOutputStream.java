@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since Guava release 01  */
+comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 1.0  */
 end_comment
 
 begin_class

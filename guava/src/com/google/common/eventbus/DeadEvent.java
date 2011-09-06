@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps an event that was posted, but which had no subscribers and thus could  * not be delivered.  *  *<p>Subscribing a DeadEvent handler is useful for debugging or logging, as it  * can detect misconfigurations in a system's event distribution.  *  * @author Cliff Biffle  * @since Guava release 10  */
+comment|/**  * Wraps an event that was posted, but which had no subscribers and thus could  * not be delivered.  *  *<p>Subscribing a DeadEvent handler is useful for debugging or logging, as it  * can detect misconfigurations in a system's event distribution.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_class

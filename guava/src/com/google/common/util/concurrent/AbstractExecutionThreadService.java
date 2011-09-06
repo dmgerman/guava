@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since Guava release 01  */
+comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -397,7 +397,7 @@ name|stopAndWait
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService} may include the name    * in debugging output.    *    *<p>Subclasses may override this method.    *    * @since Guava release 10    */
+comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService} may include the name    * in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 10.0    */
 DECL|method|getServiceName ()
 specifier|protected
 name|String

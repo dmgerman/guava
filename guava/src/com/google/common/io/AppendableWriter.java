@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Writer that places all output on an {@link Appendable} target. If the target  * is {@link Flushable} or {@link Closeable}, flush()es and close()s will also  * be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since Guava release 01  */
+comment|/**  * Writer that places all output on an {@link Appendable} target. If the target  * is {@link Flushable} or {@link Closeable}, flush()es and close()s will also  * be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since 1.0  */
 end_comment
 
 begin_class

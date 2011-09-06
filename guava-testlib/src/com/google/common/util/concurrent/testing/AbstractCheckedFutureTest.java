@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case to make sure the {@link CheckedFuture#checkedGet()} and  * {@link CheckedFuture#checkedGet(long, TimeUnit)} methods work correctly.  *  * @author Sven Mawson  * @since Guava release 10  */
+comment|/**  * Test case to make sure the {@link CheckedFuture#checkedGet()} and  * {@link CheckedFuture#checkedGet(long, TimeUnit)} methods work correctly.  *  * @author Sven Mawson  * @since 10.0  */
 end_comment
 
 begin_class

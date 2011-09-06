@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Equivalence applied on functional result.  *  * @author Bob Lee  * @since Guava release 10  */
+comment|/**  * Equivalence applied on functional result.  *  * @author Bob Lee  * @since 10.0  */
 end_comment
 
 begin_class

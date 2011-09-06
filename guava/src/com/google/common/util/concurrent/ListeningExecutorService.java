@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} instances. To create an instance  * from an existing {@link ExecutorService}, call  * {@link MoreExecutors#listeningDecorator(ExecutorService)}.  *  * @author Chris Povirk  * @since Guava release 10  */
+comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} instances. To create an instance  * from an existing {@link ExecutorService}, call  * {@link MoreExecutors#listeningDecorator(ExecutorService)}.  *  * @author Chris Povirk  * @since 10.0  */
 end_comment
 
 begin_interface

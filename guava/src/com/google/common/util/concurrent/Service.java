@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and  * {@link #stop()} lifecycle methods to transfer into and out of this state.  * Example services include webservers, RPC servers and timers. The normal  * lifecycle of a service is:  *<ul>  *<li>{@link State#NEW} -&gt;</li>  *<li>{@link State#STARTING} -&gt;</li>  *<li>{@link State#RUNNING} -&gt;</li>  *<li>{@link State#STOPPING} -&gt;</li>  *<li>{@link State#TERMINATED}</li>  *</ul>  *  * If the service fails while starting, running or stopping, its state will be  * {@link State#FAILED}, and its behavior is undefined. Such a service cannot be  * started nor stopped.  *  *<p>Implementors of this interface are strongly encouraged to extend {@link  * AbstractService}, {@link AbstractExecutionThreadService}, or {@link  * AbstractIdleService}, which make the threading and state management easier.  *  * @author Jesse Wilson  * @since Guava release 09 (in release 01 as  *     {@code com.google.common.base.Service})  */
+comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and  * {@link #stop()} lifecycle methods to transfer into and out of this state.  * Example services include webservers, RPC servers and timers. The normal  * lifecycle of a service is:  *<ul>  *<li>{@link State#NEW} -&gt;</li>  *<li>{@link State#STARTING} -&gt;</li>  *<li>{@link State#RUNNING} -&gt;</li>  *<li>{@link State#STOPPING} -&gt;</li>  *<li>{@link State#TERMINATED}</li>  *</ul>  *  * If the service fails while starting, running or stopping, its state will be  * {@link State#FAILED}, and its behavior is undefined. Such a service cannot be  * started nor stopped.  *  *<p>Implementors of this interface are strongly encouraged to extend {@link  * AbstractService}, {@link AbstractExecutionThreadService}, or {@link  * AbstractIdleService}, which make the threading and state management easier.  *  * @author Jesse Wilson  * @since 9.0 (in 1.0 as  *     {@code com.google.common.base.Service})  */
 end_comment
 
 begin_interface
@@ -99,7 +99,7 @@ name|State
 name|stopAndWait
 parameter_list|()
 function_decl|;
-comment|/**    * The lifecycle states of a service.    *    * @since Guava release 09 (in release 01 as    *     {@code com.google.common.base.Service.State})    */
+comment|/**    * The lifecycle states of a service.    *    * @since 9.0 (in 1.0 as    *     {@code com.google.common.base.Service.State})    */
 annotation|@
 name|Beta
 comment|// should come out of Beta when Service does

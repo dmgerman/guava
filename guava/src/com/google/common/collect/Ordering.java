@@ -229,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  * The {@link #from(Comparator)} method returns the equivalent {@code Ordering}  * instance for a pre-existing comparator. You can also skip the comparator step  * and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  * The {@link #from(Comparator)} method returns the equivalent {@code Ordering}  * instance for a pre-existing comparator. You can also skip the comparator step  * and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -506,7 +506,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns an arbitrary ordering over all objects, for which {@code compare(a,    * b) == 0} implies {@code a == b} (identity equality). There is no meaning    * whatsoever to the order imposed, but it is constant for the life of the VM.    *    *<p>Because the ordering is identity-based, it is not "consistent with    * {@link Object#equals(Object)}" as defined by {@link Comparator}. Use    * caution when building a {@link SortedSet} or {@link SortedMap} from it, as    * the resulting collection will not behave exactly according to spec.    *    *<p>This ordering is not serializable, as its implementation relies on    * {@link System#identityHashCode(Object)}, so its behavior cannot be    * preserved across serialization.    *    * @since Guava release 02    */
+comment|/**    * Returns an arbitrary ordering over all objects, for which {@code compare(a,    * b) == 0} implies {@code a == b} (identity equality). There is no meaning    * whatsoever to the order imposed, but it is constant for the life of the VM.    *    *<p>Because the ordering is identity-based, it is not "consistent with    * {@link Object#equals(Object)}" as defined by {@link Comparator}. Use    * caution when building a {@link SortedSet} or {@link SortedMap} from it, as    * the resulting collection will not behave exactly according to spec.    *    *<p>This ordering is not serializable, as its implementation relies on    * {@link System#identityHashCode(Object)}, so its behavior cannot be    * preserved across serialization.    *    * @since 2.0    */
 DECL|method|arbitrary ()
 specifier|public
 specifier|static
@@ -952,7 +952,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new ordering which sorts iterables by comparing corresponding    * elements pairwise until a nonzero result is found; imposes "dictionary    * order". If the end of one iterable is reached, but not the other, the    * shorter iterable is considered to be less than the longer one. For example,    * a lexicographical natural ordering over integers considers {@code    * []< [1]< [1, 1]< [1, 2]< [2]}.    *    *<p>Note that {@code ordering.lexicographical().reverse()} is not    * equivalent to {@code ordering.reverse().lexicographical()} (consider how    * each would order {@code [1]} and {@code [1, 1]}).    *    * @since Guava release 02    */
+comment|/**    * Returns a new ordering which sorts iterables by comparing corresponding    * elements pairwise until a nonzero result is found; imposes "dictionary    * order". If the end of one iterable is reached, but not the other, the    * shorter iterable is considered to be less than the longer one. For example,    * a lexicographical natural ordering over integers considers {@code    * []< [1]< [1, 1]< [1, 2]< [2]}.    *    *<p>Note that {@code ordering.lexicographical().reverse()} is not    * equivalent to {@code ordering.reverse().lexicographical()} (consider how    * each would order {@code [1]} and {@code [1, 1]}).    *    * @since 2.0    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -1083,7 +1083,7 @@ name|T
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since Guava release 08    */
+comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|leastOf (Iterable<E> iterable, int k)
@@ -1241,7 +1241,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since Guava release 08    */
+comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|greatestOf (Iterable<E> iterable, int k)
@@ -1569,7 +1569,7 @@ return|return
 name|list
 return|;
 block|}
-comment|/**    * Returns an<i>immutable</i> copy of the given iterable sorted by this    * ordering. The input is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * resulting list in the same order they appeared in the input.    *    * @param iterable the elements to be copied and sorted    * @return a new immutable list containing the given elements in sorted order    * @throws NullPointerException if {@code iterable} or any of its elements is    *     null    * @since Guava release 03    */
+comment|/**    * Returns an<i>immutable</i> copy of the given iterable sorted by this    * ordering. The input is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * resulting list in the same order they appeared in the input.    *    * @param iterable the elements to be copied and sorted    * @return a new immutable list containing the given elements in sorted order    * @throws NullPointerException if {@code iterable} or any of its elements is    *     null    * @since 3.0    */
 DECL|method|immutableSortedCopy ( Iterable<E> iterable)
 specifier|public
 parameter_list|<

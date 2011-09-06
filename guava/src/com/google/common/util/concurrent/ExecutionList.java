@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A list of listeners, each with an associated {@code Executor}, that  * guarantees that every {@code Runnable} that is {@linkplain #add added} will  * be executed after {@link #execute()} is called. Any {@code Runnable} added  * after the call to {@code execute} is still guaranteed to execute. There is no  * guarantee, however, that listeners will be executed in the order that they  * are added.  *  *<p>Exceptions thrown by a listener will be propagated up to the executor.  * Any exception thrown during {@code Executor.execute} (e.g., a {@code  * RejectedExecutionException} or an exception thrown by {@linkplain  * MoreExecutors#sameThreadExecutor inline execution}) will be caught and  * logged.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since Guava release 01  */
+comment|/**  *<p>A list of listeners, each with an associated {@code Executor}, that  * guarantees that every {@code Runnable} that is {@linkplain #add added} will  * be executed after {@link #execute()} is called. Any {@code Runnable} added  * after the call to {@code execute} is still guaranteed to execute. There is no  * guarantee, however, that listeners will be executed in the order that they  * are added.  *  *<p>Exceptions thrown by a listener will be propagated up to the executor.  * Any exception thrown during {@code Executor.execute} (e.g., a {@code  * RejectedExecutionException} or an exception thrown by {@linkplain  * MoreExecutors#sameThreadExecutor inline execution}) will be caught and  * logged.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -279,7 +279,7 @@ name|execute
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Runs this execution list, executing all existing pairs in the order they    * were added. However, note that listeners added after this point may be    * executed before those previously added, and note that the execution order    * of all listeners is ultimately chosen by the implementations of the    * supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    *    * @since Guava release 10 (present in release 01 as {@code run})    */
+comment|/**    * Runs this execution list, executing all existing pairs in the order they    * were added. However, note that listeners added after this point may be    * executed before those previously added, and note that the execution order    * of all listeners is ultimately chosen by the implementations of the    * supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    *    * @since 10.0 (present in 1.0 as {@code run})    */
 DECL|method|execute ()
 specifier|public
 name|void

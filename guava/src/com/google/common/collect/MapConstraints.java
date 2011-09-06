@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory and utilities pertaining to the {@code MapConstraint} interface.  *  * @see Constraints  * @author Mike Bostock  * @since Guava release 03  */
+comment|/**  * Factory and utilities pertaining to the {@code MapConstraint} interface.  *  * @see Constraints  * @author Mike Bostock  * @since 3.0  */
 end_comment
 
 begin_class

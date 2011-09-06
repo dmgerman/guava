@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, such as {@code com} or {@code  * foo.co.uk}. Only syntactic analysis is performed; no DNS lookups or other  * network interactions take place. Thus there is no guarantee that the domain  * actually exists on the internet.  *  *<p>One common use of this class is to determine whether a given string is  * likely to represent an addressable domain on the web -- that is, for a  * candidate string {@code "xxx"}, might browsing to {@code "http://xxx/"}  * result in a webpage being displayed? In the past, this test was frequently  * done by determining whether the domain ended with a {@linkplain  * #isPublicSuffix() public suffix} but was not itself a public suffix. However,  * this test is no longer accurate. There are many domains which are both public  * suffixes and addressable as hosts; {@code "uk.com"} is one example. As a  * result, the only useful test to determine if a domain is a plausible web host  * is {@link #hasPublicSuffix()}. This will return {@code true} for many domains  * which (currently) are not hosts, such as {@code "com"}), but given that any  * public suffix may become a host without warning, it is better to err on the  * side of permissiveness and thus avoid spurious rejection of valid sites.  *  *<p>During construction, names are normalized in two ways:  *<ol>  *<li>ASCII uppercase characters are converted to lowercase.  *<li>Unicode dot separators other than the ASCII period ({@code '.'}) are  * converted to the ASCII period.  *</ol>  * The normalized values will be returned from {@link #name()} and  * {@link #parts()}, and will be reflected in the result of  * {@link #equals(Object)}.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names</a> such as {@code ç½ç».cn} are supported, as  * are the equivalent<a  * href="http://en.wikipedia.org/wiki/Internationalized_domain_name">IDNA  * Punycode-encoded</a> versions.  *  * @author Craig Berry  * @since Guava release 05  */
+comment|/**  * An immutable well-formed internet domain name, such as {@code com} or {@code  * foo.co.uk}. Only syntactic analysis is performed; no DNS lookups or other  * network interactions take place. Thus there is no guarantee that the domain  * actually exists on the internet.  *  *<p>One common use of this class is to determine whether a given string is  * likely to represent an addressable domain on the web -- that is, for a  * candidate string {@code "xxx"}, might browsing to {@code "http://xxx/"}  * result in a webpage being displayed? In the past, this test was frequently  * done by determining whether the domain ended with a {@linkplain  * #isPublicSuffix() public suffix} but was not itself a public suffix. However,  * this test is no longer accurate. There are many domains which are both public  * suffixes and addressable as hosts; {@code "uk.com"} is one example. As a  * result, the only useful test to determine if a domain is a plausible web host  * is {@link #hasPublicSuffix()}. This will return {@code true} for many domains  * which (currently) are not hosts, such as {@code "com"}), but given that any  * public suffix may become a host without warning, it is better to err on the  * side of permissiveness and thus avoid spurious rejection of valid sites.  *  *<p>During construction, names are normalized in two ways:  *<ol>  *<li>ASCII uppercase characters are converted to lowercase.  *<li>Unicode dot separators other than the ASCII period ({@code '.'}) are  * converted to the ASCII period.  *</ol>  * The normalized values will be returned from {@link #name()} and  * {@link #parts()}, and will be reflected in the result of  * {@link #equals(Object)}.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * internationalized domain names</a> such as {@code ç½ç».cn} are supported, as  * are the equivalent<a  * href="http://en.wikipedia.org/wiki/Internationalized_domain_name">IDNA  * Punycode-encoded</a> versions.  *  * @author Craig Berry  * @since 5.0  */
 end_comment
 
 begin_class
@@ -558,7 +558,7 @@ return|return
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * A deprecated synonym for {@link #from(String)}.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since Guava release 08 (previously named {@code from})    * @deprecated Use {@link #from(String)}    */
+comment|/**    * A deprecated synonym for {@link #from(String)}.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since 8.0 (previously named {@code from})    * @deprecated Use {@link #from(String)}    */
 annotation|@
 name|Deprecated
 DECL|method|fromLenient (String domain)
@@ -578,7 +578,7 @@ name|domain
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since Guava release 10 (previously named {@code fromLenient})    */
+comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since 10.0 (previously named {@code fromLenient})    */
 DECL|method|from (String domain)
 specifier|public
 specifier|static
@@ -876,7 +876,7 @@ return|return
 name|parts
 return|;
 block|}
-comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as    * defined by the Mozilla Foundation's    *<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public    * suffix is one under which Internet users can directly register names, such    * as {@code com}, {@code co.uk} or {@code pvt.k12.wy.us}. Examples of domain    * names that are<i>not</i> public suffixes include {@code google}, {@code    * google.com} and {@code foo.co.uk}.    *    * @return {@code true} if this domain name appears exactly on the public    *     suffix list    * @since Guava release 06    */
+comment|/**    * Indicates whether this domain name represents a<i>public suffix</i>, as    * defined by the Mozilla Foundation's    *<a href="http://publicsuffix.org/">Public Suffix List</a> (PSL). A public    * suffix is one under which Internet users can directly register names, such    * as {@code com}, {@code co.uk} or {@code pvt.k12.wy.us}. Examples of domain    * names that are<i>not</i> public suffixes include {@code google}, {@code    * google.com} and {@code foo.co.uk}.    *    * @return {@code true} if this domain name appears exactly on the public    *     suffix list    * @since 6.0    */
 DECL|method|isPublicSuffix ()
 specifier|public
 name|boolean
@@ -889,7 +889,7 @@ operator|==
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, including if it is a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code com}, but not for {@code google} or {@code google.foo}. This is    * the recommended method for determining whether a domain is potentially an    * addressable host.    *    * @since Guava release 06    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, including if it is a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code com}, but not for {@code google} or {@code google.foo}. This is    * the recommended method for determining whether a domain is potentially an    * addressable host.    *    * @since 6.0    */
 DECL|method|hasPublicSuffix ()
 specifier|public
 name|boolean
@@ -902,7 +902,7 @@ operator|!=
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the    * domain name, or {@code null} if no public suffix is present.    *    * @since Guava release 06    */
+comment|/**    * Returns the {@linkplain #isPublicSuffix() public suffix} portion of the    * domain name, or {@code null} if no public suffix is present.    *    * @since 6.0    */
 DECL|method|publicSuffix ()
 specifier|public
 name|InternetDomainName
@@ -921,7 +921,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, while not being a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code bar.ca.us}, but not for {@code google}, {@code com}, or {@code    * google.foo}.    *    *<p><b>Warning:</b> a {@code false} result from this method does not imply    * that the domain does not represent an addressable host, as many public    * suffixes are also addressable hosts. Use {@link #hasPublicSuffix()} for    * that test.    *    *<p>This method can be used to determine whether it will probably be    * possible to set cookies on the domain, though even that depends on    * individual browsers' implementations of cookie controls. See    *<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since Guava release 06    */
+comment|/**    * Indicates whether this domain name ends in a {@linkplain #isPublicSuffix()    * public suffix}, while not being a public suffix itself. For example,    * returns {@code true} for {@code www.google.com}, {@code foo.co.uk} and    * {@code bar.ca.us}, but not for {@code google}, {@code com}, or {@code    * google.foo}.    *    *<p><b>Warning:</b> a {@code false} result from this method does not imply    * that the domain does not represent an addressable host, as many public    * suffixes are also addressable hosts. Use {@link #hasPublicSuffix()} for    * that test.    *    *<p>This method can be used to determine whether it will probably be    * possible to set cookies on the domain, though even that depends on    * individual browsers' implementations of cookie controls. See    *<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since 6.0    */
 DECL|method|isUnderPublicSuffix ()
 specifier|public
 name|boolean
@@ -934,7 +934,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Indicates whether this domain name is composed of exactly one subdomain    * component followed by a {@linkplain #isPublicSuffix() public suffix}. For    * example, returns {@code true} for {@code google.com} and {@code foo.co.uk},    * but not for {@code www.google.com} or {@code co.uk}.    *    *<p><b>Warning:</b> A {@code true} result from this method does not imply    * that the domain is at the highest level which is addressable as a host, as    * many public suffixes are also addressable hosts. For example, the domain    * {@code bar.uk.com} has a public suffix of {@code uk.com}, so it would    * return {@code true} from this method. But {@code uk.com} is itself an    * addressable host.    *    *<p>This method can be used to determine whether a domain is probably the    * highest level for which cookies may be set, though even that depends on    * individual browsers' implementations of cookie controls. See    *<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since Guava release 06    */
+comment|/**    * Indicates whether this domain name is composed of exactly one subdomain    * component followed by a {@linkplain #isPublicSuffix() public suffix}. For    * example, returns {@code true} for {@code google.com} and {@code foo.co.uk},    * but not for {@code www.google.com} or {@code co.uk}.    *    *<p><b>Warning:</b> A {@code true} result from this method does not imply    * that the domain is at the highest level which is addressable as a host, as    * many public suffixes are also addressable hosts. For example, the domain    * {@code bar.uk.com} has a public suffix of {@code uk.com}, so it would    * return {@code true} from this method. But {@code uk.com} is itself an    * addressable host.    *    *<p>This method can be used to determine whether a domain is probably the    * highest level for which cookies may be set, though even that depends on    * individual browsers' implementations of cookie controls. See    *<a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a> for details.    *    * @since 6.0    */
 DECL|method|isTopPrivateDomain ()
 specifier|public
 name|boolean
@@ -947,7 +947,7 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/**    * Returns the portion of this domain name that is one level beneath the    * public suffix. For example, for {@code x.adwords.google.co.uk} it returns    * {@code google.co.uk}, since {@code co.uk} is a public suffix.    *    *<p>If {@link #isTopPrivateDomain()} is true, the current domain name    * instance is returned.    *    *<p>This method should not be used to determine the topmost parent domain    * which is addressable as a host, as many public suffixes are also    * addressable hosts. For example, the domain {@code foo.bar.uk.com} has    * a public suffix of {@code uk.com}, so it would return {@code bar.uk.com}    * from this method. But {@code uk.com} is itself an addressable host.    *    *<p>This method can be used to determine the probable highest level parent    * domain for which cookies may be set, though even that depends on individual    * browsers' implementations of cookie controls.    *    * @throws IllegalStateException if this domain does not end with a    *     public suffix    * @since Guava release 06    */
+comment|/**    * Returns the portion of this domain name that is one level beneath the    * public suffix. For example, for {@code x.adwords.google.co.uk} it returns    * {@code google.co.uk}, since {@code co.uk} is a public suffix.    *    *<p>If {@link #isTopPrivateDomain()} is true, the current domain name    * instance is returned.    *    *<p>This method should not be used to determine the topmost parent domain    * which is addressable as a host, as many public suffixes are also    * addressable hosts. For example, the domain {@code foo.bar.uk.com} has    * a public suffix of {@code uk.com}, so it would return {@code bar.uk.com}    * from this method. But {@code uk.com} is itself an addressable host.    *    *<p>This method can be used to determine the probable highest level parent    * domain for which cookies may be set, though even that depends on individual    * browsers' implementations of cookie controls.    *    * @throws IllegalStateException if this domain does not end with a    *     public suffix    * @since 6.0    */
 DECL|method|topPrivateDomain ()
 specifier|public
 name|InternetDomainName
@@ -1079,7 +1079,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * A deprecated synonym for {@link #isValid(String)}.    *    * @since Guava release 08 (previously named {@code isValid})    * @deprecated Use {@link #isValid(String)} instead    */
+comment|/**    * A deprecated synonym for {@link #isValid(String)}.    *    * @since 8.0 (previously named {@code isValid})    * @deprecated Use {@link #isValid(String)} instead    */
 annotation|@
 name|Deprecated
 DECL|method|isValidLenient (String name)
@@ -1099,7 +1099,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Indicates whether the argument is a syntactically valid domain name using    * lenient validation. Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *    *   domainName = InternetDomainName.isValid(name)    *       ? InternetDomainName.from(name)    *       : DEFAULT_DOMAIN;    *   }</pre>    *    *<pre>   {@code    *    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since Guava release 08 (previously named {@code isValidLenient})    */
+comment|/**    * Indicates whether the argument is a syntactically valid domain name using    * lenient validation. Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped.    *    *<p>The following two code snippets are equivalent:    *    *<pre>   {@code    *    *   domainName = InternetDomainName.isValid(name)    *       ? InternetDomainName.from(name)    *       : DEFAULT_DOMAIN;    *   }</pre>    *    *<pre>   {@code    *    *   try {    *     domainName = InternetDomainName.from(name);    *   } catch (IllegalArgumentException e) {    *     domainName = DEFAULT_DOMAIN;    *   }}</pre>    *    * @since 8.0 (previously named {@code isValidLenient})    */
 DECL|method|isValid (String name)
 specifier|public
 specifier|static

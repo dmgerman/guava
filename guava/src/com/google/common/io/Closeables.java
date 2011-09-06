@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods for working with {@link Closeable} objects.  *  * @author Michael Lancaster  * @since Guava release 01  */
+comment|/**  * Utility methods for working with {@link Closeable} objects.  *  * @author Michael Lancaster  * @since 1.0  */
 end_comment
 
 begin_class

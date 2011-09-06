@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to object arrays.  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to object arrays.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

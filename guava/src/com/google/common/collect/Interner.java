@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides equivalent behavior to {@link String#intern} for other immutable  * types.  *  * @author Kevin Bourrillion  * @since Guava release 03  */
+comment|/**  * Provides equivalent behavior to {@link String#intern} for other immutable  * types.  *  * @author Kevin Bourrillion  * @since 3.0  */
 end_comment
 
 begin_interface

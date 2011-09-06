@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a  * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns  * them as a {@link String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input elements are  * converted to strings using {@link Object#toString()} before being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is specified, the joining  * methods will throw {@link NullPointerException} if any given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration method such as {@code  * useForNull} has no effect on the instance it is invoked on! You must store and use the new joiner  * instance returned by the method. This makes joiners thread-safe, and safe to store as {@code  * static final} constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a  * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns  * them as a {@link String}. Example:<pre>   {@code  *  *   Joiner joiner = Joiner.on("; ").skipNulls();  *    . . .  *   return joiner.join("Harry", null, "Ron", "Hermione");}</pre>  *  * This returns the string {@code "Harry; Ron; Hermione"}. Note that all input elements are  * converted to strings using {@link Object#toString()} before being appended.  *  *<p>If neither {@link #skipNulls()} nor {@link #useForNull(String)} is specified, the joining  * methods will throw {@link NullPointerException} if any given element is null.  *  *<p><b>Warning: joiner instances are always immutable</b>; a configuration method such as {@code  * useForNull} has no effect on the instance it is invoked on! You must store and use the new joiner  * instance returned by the method. This makes joiners thread-safe, and safe to store as {@code  * static final} constants.<pre>   {@code  *  *   // Bad! Do not do this!  *   Joiner joiner = Joiner.on(',');  *   joiner.skipNulls(); // does nothing!  *   return joiner.join("wrong", null, "wrong");}</pre>  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -944,7 +944,7 @@ name|keyValueSeparator
 argument_list|)
 return|;
 block|}
-comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    *     {@code MapJoiner} method that accepts entries as input, and receive output of the form    *     {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code MapJoiner}    *     method that accepts a map as input, and receive output of the form {@code    *     key1=[A, B]&key2=C}.    *</ul>    *    * @since Guava release 02 (imported from Google Collections Library)    */
+comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    *     {@code MapJoiner} method that accepts entries as input, and receive output of the form    *     {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code MapJoiner}    *     method that accepts a map as input, and receive output of the form {@code    *     key1=[A, B]&key2=C}.    *</ul>    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|MapJoiner
 specifier|public
 specifier|final
@@ -1084,7 +1084,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code appendable}.      *      * @since Guava release 10      */
+comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code appendable}.      *      * @since 10.0      */
 annotation|@
 name|Beta
 DECL|method|appendTo (A appendable, Iterable<? extends Entry<?, ?>> entries)
@@ -1272,7 +1272,7 @@ return|return
 name|appendable
 return|;
 block|}
-comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since Guava release 10      */
+comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 10.0      */
 annotation|@
 name|Beta
 DECL|method|appendTo (StringBuilder builder, Iterable<? extends Entry<?, ?>> entries)
@@ -1328,7 +1328,7 @@ return|return
 name|builder
 return|;
 block|}
-comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since Guava release 10      */
+comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since 10.0      */
 annotation|@
 name|Beta
 DECL|method|join (Iterable<? extends Entry<?, ?>> entries)

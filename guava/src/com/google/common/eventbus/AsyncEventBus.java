@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link EventBus} that takes the Executor of your choice and uses it to  * dispatch events, allowing dispatch to occur asynchronously.  *  * @author Cliff Biffle  * @since Guava release 10  */
+comment|/**  * An {@link EventBus} that takes the Executor of your choice and uses it to  * dispatch events, allowing dispatch to occur asynchronously.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_class

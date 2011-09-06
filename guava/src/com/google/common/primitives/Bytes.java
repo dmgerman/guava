@@ -165,7 +165,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives, that are not  * already found in either {@link Byte} or {@link Arrays},<i>and interpret  * bytes as neither signed nor unsigned</i>. The methods which specifically  * treat bytes as signed or unsigned are found in {@link SignedBytes} and {@link  * UnsignedBytes}.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_comment

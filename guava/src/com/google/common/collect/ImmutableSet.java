@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -405,7 +405,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    * @since Guava release 03 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    * @since 3.0 (source-compatible since 2.0)    */
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static
@@ -930,7 +930,7 @@ return|return
 name|MAX_TABLE_SIZE
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 02 (changed from varargs in release 03)    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since 2.0 (changed from varargs in 3.0)    */
 comment|// TODO(kevinb): when this is removed, remember to remove from ISS and ISSFS
 annotation|@
 name|Deprecated
@@ -958,7 +958,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 03    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
@@ -1100,7 +1100,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, {@code copyOf} will    * return constant-space views, rather than linear-space copies, of some    * inputs known to be immutable. For some other immutable inputs, such as key    * sets of an {@code ImmutableMap}, it still performs a copy in order to avoid    * holding references to the values of the map. The heuristics used in this    * decision are undocumented and subject to change except that:    *<ul>    *<li>A full copy will be done of any {@code ImmutableSortedSet}.</li>    *<li>{@code ImmutableSet.copyOf()} is idempotent with respect to pointer    * equality.</li>    *</ul>    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 07 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, {@code copyOf} will    * return constant-space views, rather than linear-space copies, of some    * inputs known to be immutable. For some other immutable inputs, such as key    * sets of an {@code ImmutableMap}, it still performs a copy in order to avoid    * holding references to the values of the map. The heuristics used in this    * decision are undocumented and subject to change except that:    *<ul>    *<li>A full copy will be done of any {@code ImmutableSortedSet}.</li>    *<li>{@code ImmutableSet.copyOf()} is idempotent with respect to pointer    * equality.</li>    *</ul>    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -2091,7 +2091,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable set instances, especially {@code public    * static final} sets ("constant sets"). Example:<pre>   {@code    *    *   public static final ImmutableSet<Color> GOOGLE_COLORS =    *       new ImmutableSet.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple sets in series. Each set is a superset of the set    * created before it.    *    * @since Guava release 02 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable set instances, especially {@code public    * static final} sets ("constant sets"). Example:<pre>   {@code    *    *   public static final ImmutableSet<Color> GOOGLE_COLORS =    *       new ImmutableSet.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple sets in series. Each set is a superset of the set    * created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

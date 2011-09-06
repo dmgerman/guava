@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code boolean} primitives, that are not  * already found in either {@link Boolean} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+comment|/**  * Static utility methods pertaining to {@code boolean} primitives, that are not  * already found in either {@link Boolean} or {@link Arrays}.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -881,7 +881,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code boolean} arrays    * lexicographically. That is, it compares, using {@link    * #compare(boolean, boolean)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< [false]< [false, true]< [true]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(boolean[], boolean[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since Guava release 02    */
+comment|/**    * Returns a comparator that compares two {@code boolean} arrays    * lexicographically. That is, it compares, using {@link    * #compare(boolean, boolean)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< [false]< [false, true]< [true]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(boolean[], boolean[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static

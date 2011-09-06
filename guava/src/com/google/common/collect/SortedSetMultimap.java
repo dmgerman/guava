@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code SetMultimap} whose set of values for a given key are kept sorted;  * that is, they comprise a {@link SortedSet}. It cannot hold duplicate  * key-value pairs; adding a key-value pair that's already in the multimap has  * no effect. This interface does not specify the ordering of the multimap's  * keys.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link SortedSet} of values, while {@link Multimap#entries()}  * returns a {@link Set} of map entries. Though the method signature doesn't say  * so explicitly, the map returned by {@link #asMap} has {@code SortedSet}  * values.  *  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A {@code SetMultimap} whose set of values for a given key are kept sorted;  * that is, they comprise a {@link SortedSet}. It cannot hold duplicate  * key-value pairs; adding a key-value pair that's already in the multimap has  * no effect. This interface does not specify the ordering of the multimap's  * keys.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link SortedSet} of values, while {@link Multimap#entries()}  * returns a {@link Set} of map entries. Though the method signature doesn't say  * so explicitly, the map returned by {@link #asMap} has {@code SortedSet}  * values.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

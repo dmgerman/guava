@@ -257,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterators  * produced in this class are<i>lazy</i>, which means that they only advance  * the backing iteration when absolutely necessary.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@link Iterator}. Except as noted, each method has a corresponding  * {@link Iterable}-based method in the {@link Iterables} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterators  * produced in this class are<i>lazy</i>, which means that they only advance  * the backing iteration when absolutely necessary.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -518,7 +518,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since Guava release 10    */
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
 DECL|method|unmodifiableIterator ( UnmodifiableIterator<T> iterator)
 annotation|@
 name|Deprecated
@@ -736,7 +736,7 @@ return|return
 name|modified
 return|;
 block|}
-comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since Guava release 02    */
+comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since 2.0    */
 DECL|method|removeIf ( Iterator<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2615,7 +2615,7 @@ name|next
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate.  If no such element is found, {@code defaultValue} will be    * returned from this method and the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @since Guava release 07    */
+comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate.  If no such element is found, {@code defaultValue} will be    * returned from this method and the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @since 7.0    */
 DECL|method|find (Iterator<T> iterator, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2672,7 +2672,7 @@ else|:
 name|defaultValue
 return|;
 block|}
-comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since Guava release 02    */
+comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since 2.0    */
 DECL|method|indexOf ( Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2961,7 +2961,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Advances {@code iterator} {@code position + 1} times, returning the    * element at the {@code position}th position or {@code defaultValue}    * otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if the iterator is empty    *     or if {@code position} is greater than the number of elements    *     remaining in {@code iterator}    * @return the element at the specified position in {@code iterator} or    *     {@code defaultValue} if {@code iterator} produces fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since Guava release 04    */
+comment|/**    * Advances {@code iterator} {@code position + 1} times, returning the    * element at the {@code position}th position or {@code defaultValue}    * otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if the iterator is empty    *     or if {@code position} is greater than the number of elements    *     remaining in {@code iterator}    * @return the element at the specified position in {@code iterator} or    *     {@code defaultValue} if {@code iterator} produces fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
 DECL|method|get (Iterator<T> iterator, int position, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -3013,7 +3013,7 @@ name|defaultValue
 return|;
 block|}
 block|}
-comment|/**    * Returns the next element in {@code iterator} or {@code defaultValue} if    * the iterator is empty.  The {@link Iterables} analog to this method is    * {@link Iterables#getFirst}.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the next element of {@code iterator} or the default value    * @since Guava release 07    */
+comment|/**    * Returns the next element in {@code iterator} or {@code defaultValue} if    * the iterator is empty.  The {@link Iterables} analog to this method is    * {@link Iterables#getFirst}.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the next element of {@code iterator} or the default value    * @since 7.0    */
 DECL|method|getNext (Iterator<T> iterator, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -3094,7 +3094,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Advances {@code iterator} to the end, returning the last element or    * {@code defaultValue} if the iterator is empty.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the last element of {@code iterator}    * @since Guava release 03    */
+comment|/**    * Advances {@code iterator} to the end, returning the last element or    * {@code defaultValue} if the iterator is empty.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the last element of {@code iterator}    * @since 3.0    */
 DECL|method|getLast (Iterator<T> iterator, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -3130,7 +3130,7 @@ else|:
 name|defaultValue
 return|;
 block|}
-comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since Guava release 03    */
+comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3.0    */
 annotation|@
 name|Beta
 DECL|method|skip (Iterator<T> iterator, int numberToSkip)
@@ -3198,7 +3198,7 @@ return|return
 name|i
 return|;
 block|}
-comment|/**    * Creates an iterator returning the first {@code limitSize} elements of the    * given iterator. If the original iterator does not contain that many    * elements, the returned iterator will have the same behavior as the original    * iterator. The returned iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since Guava release 03    */
+comment|/**    * Creates an iterator returning the first {@code limitSize} elements of the    * given iterator. If the original iterator does not contain that many    * elements, the returned iterator will have the same behavior as the original    * iterator. The returned iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
 DECL|method|limit ( final Iterator<T> iterator, final int limitSize)
 specifier|public
 specifier|static
@@ -3313,7 +3313,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a view of the supplied {@code iterator} that removes each element    * from the supplied {@code iterator} as it is returned.    *    *<p>The provided iterator must support {@link Iterator#remove()} or    * else the returned iterator will fail on the first call to {@code    * next}.    *    * @param iterator the iterator to remove and return elements from    * @return an iterator that removes and returns elements from the    *     supplied iterator    * @since Guava release 02    */
+comment|/**    * Returns a view of the supplied {@code iterator} that removes each element    * from the supplied {@code iterator} as it is returned.    *    *<p>The provided iterator must support {@link Iterator#remove()} or    * else the returned iterator will fail on the first call to {@code    * next}.    *    * @param iterator the iterator to remove and return elements from    * @return an iterator that removes and returns elements from the    *     supplied iterator    * @since 2.0    */
 DECL|method|consumingIterator (final Iterator<T> iterator)
 specifier|public
 specifier|static
@@ -4005,7 +4005,7 @@ name|iterator
 argument_list|)
 return|;
 block|}
-comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since Guava release 10    */
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
 DECL|method|peekingIterator ( PeekingIterator<T> iterator)
 annotation|@
 name|Deprecated

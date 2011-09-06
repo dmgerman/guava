@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Wraps an exception that occurred during a computation in a different thread.  *  * @author Bob Lee  * @since Guava release 02 (imported from Google Collections Library)  * @deprecated this class is unused by com.google.common.collect.<b>This class  *     is scheduled for deletion in November 2012.</b>  */
+comment|/**  * Wraps an exception that occurred during a computation in a different thread.  *  * @author Bob Lee  * @since 2.0 (imported from Google Collections Library)  * @deprecated this class is unused by com.google.common.collect.<b>This class  *     is scheduled for deletion in November 2012.</b>  */
 end_comment
 
 begin_class

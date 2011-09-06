@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -319,7 +319,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since Guava release 10    */
+comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
 DECL|method|unmodifiableMultiset ( ImmutableMultiset<E> multiset)
 annotation|@
 name|Deprecated
@@ -1661,7 +1661,7 @@ literal|11
 return|;
 comment|// initial capacity will be rounded up to 16
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two multisets.    * An element's count in the multiset is the smaller of its counts in the two    * backing multisets. The iteration order of the returned multiset matches the    * element set of {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since Guava release 02    */
+comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two multisets.    * An element's count in the multiset is the smaller of its counts in the two    * backing multisets. The iteration order of the returned multiset matches the    * element set of {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 2.0    */
 DECL|method|intersection ( final Multiset<E> multiset1, final Multiset<?> multiset2)
 specifier|public
 specifier|static
@@ -1919,7 +1919,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since Guava release 10    */
+comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|containsOccurrences ( Multiset<?> superMultiset, Multiset<?> subMultiset)
@@ -1997,7 +1997,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Modifies {@code multisetToModify} so that its count for an element    * {@code e} is at most {@code multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to    * {@code Math.min(multisetToModify.count(e),    * multisetToRetain.count(e))}. This is similar to    * {@link #intersection(Multiset, Multiset) intersection}    * {@code (multisetToModify, multisetToRetain)}, but mutates    * {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps    * all occurrences of elements that appear at all in {@code    * multisetToRetain}, and deletes all occurrences of all other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result    *         of this operation    * @since Guava release 10    */
+comment|/**    * Modifies {@code multisetToModify} so that its count for an element    * {@code e} is at most {@code multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to    * {@code Math.min(multisetToModify.count(e),    * multisetToRetain.count(e))}. This is similar to    * {@link #intersection(Multiset, Multiset) intersection}    * {@code (multisetToModify, multisetToRetain)}, but mutates    * {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps    * all occurrences of elements that appear at all in {@code    * multisetToRetain}, and deletes all occurrences of all other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result    *         of this operation    * @since 10.0    */
 DECL|method|retainOccurrences (Multiset<?> multisetToModify, Multiset<?> multisetToRetain)
 annotation|@
 name|Beta
@@ -2166,7 +2166,7 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since Guava release 10    */
+comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0    */
 DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Multiset<?> occurrencesToRemove)
 annotation|@
 name|Beta

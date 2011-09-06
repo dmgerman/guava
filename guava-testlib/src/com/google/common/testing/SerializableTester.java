@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class for testing whether a class is serializable.  *  *<p>Unlike {@link com.google.common.util.SerializationChecker}, this class  * tests not only whether serialization succeeds, but also whether the  * serialized form is<i>correct</i>: i.e., whether an equivalent object can be  * reconstructed by<i>deserializing</i> the serialized form.  *  *<p>If serialization fails, you can use {@code SerializationChecker} to  * diagnose which referenced fields were not serializable.  *  * @author Mike Bostock  * @since Guava release 10  */
+comment|/**  * Helper class for testing whether a class is serializable.  *  *<p>Unlike {@link com.google.common.util.SerializationChecker}, this class  * tests not only whether serialization succeeds, but also whether the  * serialized form is<i>correct</i>: i.e., whether an equivalent object can be  * reconstructed by<i>deserializing</i> the serialized form.  *  *<p>If serialization fails, you can use {@code SerializationChecker} to  * diagnose which referenced fields were not serializable.  *  * @author Mike Bostock  * @since 10.0  */
 end_comment
 
 begin_class

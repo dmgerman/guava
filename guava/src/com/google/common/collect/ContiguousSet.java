@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}.  *  * @author Gregory Kick  * @since Guava release 10  */
+comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}.  *  * @author Gregory Kick  * @since 10.0  */
 end_comment
 
 begin_class

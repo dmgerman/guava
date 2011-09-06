@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of  * those interfaces. Similarly for {@code Appendable& Closeable} and  * {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @since Guava release 01  */
+comment|/**  * Provides utility methods for working with character streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  *<p>Some of the methods in this class take arguments with a generic type of  * {@code Readable& Closeable}. A {@link java.io.Reader} implements both of  * those interfaces. Similarly for {@code Appendable& Closeable} and  * {@link java.io.Writer}.  *  * @author Chris Nokleberg  * @author Bin Zhu  * @since 1.0  */
 end_comment
 
 begin_class

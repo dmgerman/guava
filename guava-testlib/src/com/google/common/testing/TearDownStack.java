@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code TearDownStack} contains a stack of {@link TearDown} instances.  *  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  * A {@code TearDownStack} contains a stack of {@link TearDown} instances.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class

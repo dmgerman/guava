@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since Guava release 01  */
+comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class

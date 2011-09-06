@@ -843,7 +843,7 @@ try|try
 block|{
 name|segment
 operator|.
-name|runCleanup
+name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
@@ -1081,7 +1081,7 @@ control|)
 block|{
 name|segment
 operator|.
-name|runCleanup
+name|cleanUp
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -2400,7 +2400,7 @@ argument_list|()
 expr_stmt|;
 name|segment
 operator|.
-name|runCleanup
+name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}

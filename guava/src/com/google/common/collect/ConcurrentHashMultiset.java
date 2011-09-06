@@ -251,7 +251,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset that supports concurrent modifications and that provides atomic  * versions of most {@code Multiset} operations (exceptions where noted). Null  * elements are not supported.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A multiset that supports concurrent modifications and that provides atomic  * versions of most {@code Multiset} operations (exceptions where noted). Null  * elements are not supported.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -396,7 +396,7 @@ return|return
 name|multiset
 return|;
 block|}
-comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker}    * to construct the internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any kind, this eviction    * applies to all occurrences of a given element as a single unit. However, most updates to the    * multiset do not count as map updates at all, since we're usually just mutating the value    * stored in the map, so {@link MapMaker#expireAfterAccess} makes sense (evict the entry that    * was queried or updated longest ago), but {@link MapMaker#expireAfterWrite} doesn't, because    * the eviction time is measured from when we saw the first occurrence of the object.    *    *<p>The returned multiset is serializable but any serialization caveats    * given in {@code MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful: the values are created    * internally and not exposed externally, so no one else will have a strong reference to the    * values. Weak keys on the other hand can be useful in some scenarios.    *    * @since Guava release 07    */
+comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker}    * to construct the internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any kind, this eviction    * applies to all occurrences of a given element as a single unit. However, most updates to the    * multiset do not count as map updates at all, since we're usually just mutating the value    * stored in the map, so {@link MapMaker#expireAfterAccess} makes sense (evict the entry that    * was queried or updated longest ago), but {@link MapMaker#expireAfterWrite} doesn't, because    * the eviction time is measured from when we saw the first occurrence of the object.    *    *<p>The returned multiset is serializable but any serialization caveats    * given in {@code MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful: the values are created    * internally and not exposed externally, so no one else will have a strong reference to the    * values. Weak keys on the other hand can be useful in some scenarios.    *    * @since 7.0    */
 annotation|@
 name|Beta
 DECL|method|create ( GenericMapMaker<? super E, ? super Number> mapMaker)

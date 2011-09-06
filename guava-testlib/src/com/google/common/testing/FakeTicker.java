@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Ticker whose value can be advanced programmatically in test.  *<p>  * This class is thread-safe.  *  * @author Jige Yu  * @since Guava release 10  */
+comment|/**  * A Ticker whose value can be advanced programmatically in test.  *<p>  * This class is thread-safe.  *  * @author Jige Yu  * @since 10.0  */
 end_comment
 
 begin_class

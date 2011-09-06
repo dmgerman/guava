@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Values are automatically loaded by the cache,  * and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #get} and {@link #getUnchecked} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking {@link  * #getUnchecked}.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * A semi-persistent mapping from keys to values. Values are automatically loaded by the cache,  * and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #get} and {@link #getUnchecked} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking {@link  * #getUnchecked}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_interface
@@ -253,6 +253,12 @@ argument_list|,
 name|V
 argument_list|>
 name|asMap
+parameter_list|()
+function_decl|;
+comment|/**    * Performs any pending maintenance operations needed by the cache. Exactly which activities are    * performed -- if any -- is implementation-dependent.    */
+DECL|method|cleanUp ()
+name|void
+name|cleanUp
 parameter_list|()
 function_decl|;
 block|}

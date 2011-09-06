@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sorted map which forwards all its method calls to another sorted map.  * Subclasses should override one or more methods to modify the behavior of  * the backing sorted map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><i>Warning:</i> The methods of {@code ForwardingSortedMap} forward  *<i>indiscriminately</i> to the methods of the delegate. For example,  * overriding {@link #put} alone<i>will not</i> change the behavior of {@link  * #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardPutAll} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use the  * comparator of the map to test equality for both keys and values, unlike  * {@code ForwardingMap}.  *  *<p>The {@code standard} methods and the collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A sorted map which forwards all its method calls to another sorted map.  * Subclasses should override one or more methods to modify the behavior of  * the backing sorted map as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><i>Warning:</i> The methods of {@code ForwardingSortedMap} forward  *<i>indiscriminately</i> to the methods of the delegate. For example,  * overriding {@link #put} alone<i>will not</i> change the behavior of {@link  * #putAll}, which can lead to unexpected behavior. In this case, you should  * override {@code putAll} as well, either providing your own implementation, or  * delegating to the provided {@code standardPutAll} method.  *  *<p>Each of the {@code standard} methods, where appropriate, use the  * comparator of the map to test equality for both keys and values, unlike  * {@code ForwardingMap}.  *  *<p>The {@code standard} methods and the collection views they return are not  * guaranteed to be thread-safe, even when all of the methods that they depend  * on are thread-safe.  *  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -358,7 +358,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #containsKey} in terms of the {@code    * firstKey()} method of {@link #tailMap}. If you override {@link #tailMap},    * you may wish to override {@link #containsKey} to forward to this    * implementation.    *    * @since Guava release 07    */
+comment|/**    * A sensible definition of {@link #containsKey} in terms of the {@code    * firstKey()} method of {@link #tailMap}. If you override {@link #tailMap},    * you may wish to override {@link #containsKey} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardContainsKey (@ullable Object key)
 annotation|@
 name|Override
@@ -455,7 +455,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #remove} in terms of the {@code    * iterator()} of the {@code entrySet()} of {@link #tailMap}. If you override    * {@link #tailMap}, you may wish to override {@link #remove} to forward    * to this implementation.    *    * @since Guava release 07    */
+comment|/**    * A sensible definition of {@link #remove} in terms of the {@code    * iterator()} of the {@code entrySet()} of {@link #tailMap}. If you override    * {@link #tailMap}, you may wish to override {@link #remove} to forward    * to this implementation.    *    * @since 7.0    */
 DECL|method|standardRemove (@ullable Object key)
 annotation|@
 name|Override
@@ -600,7 +600,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * A sensible default implementation of {@link #subMap(Object, Object)} in    * terms of {@link #headMap(Object)} and {@link #tailMap(Object)}. In some    * situations, you may wish to override {@link #subMap(Object, Object)} to    * forward to this implementation.    *    * @since Guava release 07    */
+comment|/**    * A sensible default implementation of {@link #subMap(Object, Object)} in    * terms of {@link #headMap(Object)} and {@link #tailMap(Object)}. In some    * situations, you may wish to override {@link #subMap(Object, Object)} to    * forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardSubMap (K fromKey, K toKey)
 annotation|@
 name|Beta

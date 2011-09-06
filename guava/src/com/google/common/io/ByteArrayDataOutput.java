@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An extension of {@code DataOutput} for writing to in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  *  * @author Jayaprabhakar Kadarkarai  * @since Guava release 01  */
+comment|/**  * An extension of {@code DataOutput} for writing to in-memory byte arrays; its  * methods offer identical functionality but do not throw {@link IOException}.  *  * @author Jayaprabhakar Kadarkarai  * @since 1.0  */
 end_comment
 
 begin_interface

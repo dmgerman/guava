@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A high-performance, immutable, random-access {@code List} implementation.  * Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableList}, which is a<i>view</i> of a  * separate collection that can still change, an instance of {@code  * ImmutableList} contains its own private data and will<i>never</i> change.  * {@code ImmutableList} is convenient for {@code public static final} lists  * ("constant lists") and also lets you easily make a "defensive copy" of a list  * provided to your class by a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * A high-performance, immutable, random-access {@code List} implementation.  * Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableList}, which is a<i>view</i> of a  * separate collection that can still change, an instance of {@code  * ImmutableList} contains its own private data and will<i>never</i> change.  * {@code ImmutableList} is convenient for {@code public static final} lists  * ("constant lists") and also lets you easily make a "defensive copy" of a list  * provided to your class by a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this type are  * guaranteed to be immutable.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -780,7 +780,7 @@ return|;
 block|}
 comment|// These go up to eleven. After that, you just get the varargs form, and
 comment|// whatever warnings might come along with it. :(
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since Guava release 03 (source-compatible since release 02)    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 3.0 (source-compatible since 2.0)    */
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10, E e11, E e12, E... others)
 specifier|public
 specifier|static
@@ -956,7 +956,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 02 (changed from varargs in release 03)    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since 2.0 (changed from varargs in 3.0)    */
 annotation|@
 name|Deprecated
 DECL|method|of (E[] elements)
@@ -1146,7 +1146,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any of {@code elements} is null    * @since Guava release 03    */
+comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
@@ -1583,7 +1583,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns this list instance.    *    * @since Guava release 02    */
+comment|/**    * Returns this list instance.    *    * @since 2.0    */
 DECL|method|asList ()
 annotation|@
 name|Override
@@ -1599,7 +1599,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Returns a view of this immutable list in reverse order. For example, {@code    * ImmutableList.of(1, 2, 3).reverse()} is equivalent to {@code    * ImmutableList.of(3, 2, 1)}.    *    * @return a view of this immutable list in reverse order    * @since Guava release 07    */
+comment|/**    * Returns a view of this immutable list in reverse order. For example, {@code    * ImmutableList.of(1, 2, 3).reverse()} is equivalent to {@code    * ImmutableList.of(3, 2, 1)}.    *    * @return a view of this immutable list in reverse order    * @since 7.0    */
 DECL|method|reverse ()
 specifier|public
 name|ImmutableList
@@ -2261,7 +2261,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since Guava release 02 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

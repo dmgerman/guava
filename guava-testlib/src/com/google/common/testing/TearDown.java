@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that can perform a {@link #tearDown} operation.  *  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  * An object that can perform a {@link #tearDown} operation.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_interface

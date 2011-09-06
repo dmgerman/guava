@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods for working with {@link Enum} instances.  *  * @author Steve McKay  *  * @since Guava release 09  */
+comment|/**  * Utility methods for working with {@link Enum} instances.  *  * @author Steve McKay  *  * @since 9.0  */
 end_comment
 
 begin_class

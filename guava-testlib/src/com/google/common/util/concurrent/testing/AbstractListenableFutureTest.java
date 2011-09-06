@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract test case parent for anything implementing {@link ListenableFuture}.  * Tests the two get methods and the addListener method.  *  * @author Sven Mawson  * @since Guava release 10  */
+comment|/**  * Abstract test case parent for anything implementing {@link ListenableFuture}.  * Tests the two get methods and the addListener method.  *  * @author Sven Mawson  * @since 10.0  */
 end_comment
 
 begin_class

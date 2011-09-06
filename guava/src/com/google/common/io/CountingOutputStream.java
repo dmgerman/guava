@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An OutputStream that counts the number of bytes written.  *  * @author Chris Nokleberg  * @since Guava release 01  */
+comment|/**  * An OutputStream that counts the number of bytes written.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class

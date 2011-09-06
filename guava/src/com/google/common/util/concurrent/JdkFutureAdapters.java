@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities necessary for working with libraries that supply plain {@link  * Future} instances.  *  * @author Sven Mawson  * @since Guava release 10 (replacing {@code Futures.makeListenable}, which  *     existed in release 01)  */
+comment|/**  * Utilities necessary for working with libraries that supply plain {@link  * Future} instances.  *  * @author Sven Mawson  * @since 10.0 (replacing {@code Futures.makeListenable}, which  *     existed in 1.0)  */
 end_comment
 
 begin_class

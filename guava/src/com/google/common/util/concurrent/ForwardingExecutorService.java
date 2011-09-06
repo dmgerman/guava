@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An executor service which forwards all its method calls to another executor  * service. Subclasses should override one or more methods to modify the  * behavior of the backing executor service as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kurt Alfred Kluever  * @since Guava release 10  */
+comment|/**  * An executor service which forwards all its method calls to another executor  * service. Subclasses should override one or more methods to modify the  * behavior of the backing executor service as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  * @author Kurt Alfred Kluever  * @since 10.0  */
 end_comment
 
 begin_class

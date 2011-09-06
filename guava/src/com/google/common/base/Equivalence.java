@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @author Ben Yu  * @author Gregory Kick  * @since Guava release 10 (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since Guava release 04)  */
+comment|/**  * A strategy for determining whether two instances are considered equivalent. Examples of  * equivalences are the {@link Equivalences#identity() identity equivalence} and {@link  * Equivalences#equals equals equivalence}.  *  * @author Bob Lee  * @author Ben Yu  * @author Gregory Kick  * @since 10.0 (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since 4.0)  */
 end_comment
 
 begin_class
@@ -157,7 +157,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code a} and {@code b} are considered equivalent.    *    *<p>Called by {@link #equivalent}. {@code a} and {@code b} are not the same    * object and are not nulls.    *    * @since Guava release 10 (previously, subclasses would override equivalent())    */
+comment|/**    * Returns {@code true} if {@code a} and {@code b} are considered equivalent.    *    *<p>Called by {@link #equivalent}. {@code a} and {@code b} are not the same    * object and are not nulls.    *    * @since 10.0 (previously, subclasses would override equivalent())    */
 DECL|method|doEquivalent (T a, T b)
 specifier|protected
 specifier|abstract
@@ -202,7 +202,7 @@ name|t
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash code for non-null object {@code t}.    *    *<p>Called by {@link #hash}.    *    * @since Guava release 10 (previously, subclasses would override hash())    */
+comment|/**    * Returns a hash code for non-null object {@code t}.    *    *<p>Called by {@link #hash}.    *    * @since 10.0 (previously, subclasses would override hash())    */
 DECL|method|doHash (T t)
 specifier|protected
 specifier|abstract
@@ -213,7 +213,7 @@ name|T
 name|t
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a new equivalence relation for {@code F} which evaluates equivalence by first applying    * {@code function} to the argument, then evaluating using {@code this}. That is, for any pair of    * non-null objects {@code x} and {@code y}, {@code    * equivalence.onResultOf(function).equivalent(a, b)} is true if and only if {@code    * equivalence.equivalent(function.apply(a), function.apply(b))} is true.    *    *<p>For example:<pre>   {@code    *    *    Equivalence<Person> SAME_AGE = Equivalences.equals().onResultOf(GET_PERSON_AGE);    * }</pre>    *     *<p>{@code function} will never be invoked with a null value.    *     *<p>Note that {@code function} must be consistent according to {@code this} equivalence    * relation. That is, invoking {@link Function#apply} multiple times for a given value must return    * equivalent results.    * For example, {@code Equivalences.identity().onResultOf(Functions.toStringFunction())} is broken    * because it's not guaranteed that {@link Object#toString}) always returns the same string    * instance.    *     * @since Guava release 10    */
+comment|/**    * Returns a new equivalence relation for {@code F} which evaluates equivalence by first applying    * {@code function} to the argument, then evaluating using {@code this}. That is, for any pair of    * non-null objects {@code x} and {@code y}, {@code    * equivalence.onResultOf(function).equivalent(a, b)} is true if and only if {@code    * equivalence.equivalent(function.apply(a), function.apply(b))} is true.    *    *<p>For example:<pre>   {@code    *    *    Equivalence<Person> SAME_AGE = Equivalences.equals().onResultOf(GET_PERSON_AGE);    * }</pre>    *     *<p>{@code function} will never be invoked with a null value.    *     *<p>Note that {@code function} must be consistent according to {@code this} equivalence    * relation. That is, invoking {@link Function#apply} multiple times for a given value must return    * equivalent results.    * For example, {@code Equivalences.identity().onResultOf(Functions.toStringFunction())} is broken    * because it's not guaranteed that {@link Object#toString}) always returns the same string    * instance.    *     * @since 10.0    */
 DECL|method|onResultOf (Function<F, ? extends T> function)
 specifier|public
 specifier|final
@@ -252,7 +252,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a wrapper of {@code reference} that implements    * {@link Wrapper#equals(Object) Object.equals()} such that    * {@code wrap(this, a).equals(wrap(this, b))} if and only if {@code this.equivalent(a, b)}.    *     * @since Guava release 10    */
+comment|/**    * Returns a wrapper of {@code reference} that implements    * {@link Wrapper#equals(Object) Object.equals()} such that    * {@code wrap(this, a).equals(wrap(this, b))} if and only if {@code this.equivalent(a, b)}.    *     * @since 10.0    */
 DECL|method|wrap (@ullable S reference)
 specifier|public
 specifier|final
@@ -286,7 +286,7 @@ name|reference
 argument_list|)
 return|;
 block|}
-comment|/**    * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an    * {@link Equivalence}.    *    *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv}    * that tests equivalence using their lengths:    *    *<pre>   {@code    *   equiv.wrap("a").equals(equiv.wrap("b")) // true    *   equiv.wrap("a").equals(equiv.wrap("hello")) // false    * }</pre>    *    *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.    *    *<pre>   {@code    *   equiv.wrap(obj).equals(obj) // always false    * }</pre>    *    * @since Guava release 10    */
+comment|/**    * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an    * {@link Equivalence}.    *    *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv}    * that tests equivalence using their lengths:    *    *<pre>   {@code    *   equiv.wrap("a").equals(equiv.wrap("b")) // true    *   equiv.wrap("a").equals(equiv.wrap("hello")) // false    * }</pre>    *    *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.    *    *<pre>   {@code    *   equiv.wrap(obj).equals(obj) // always false    * }</pre>    *    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|class|Wrapper
@@ -514,7 +514,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code this}.  Null iterables are equivalent to one another.    *     *<p>Note that this method performs a similar function for equivalences as {@link    * com.google.common.collect.Ordering#lexicographical} does for orderings.    *    * @since Guava release 10    */
+comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code this}.  Null iterables are equivalent to one another.    *     *<p>Note that this method performs a similar function for equivalences as {@link    * com.google.common.collect.Ordering#lexicographical} does for orderings.    *    * @since 10.0    */
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -553,7 +553,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to true if and only if the input is    * equivalent to {@code target} according to this equivalence relation.    *     * @since Guava release 10    */
+comment|/**    * Returns a predicate that evaluates to true if and only if the input is    * equivalent to {@code target} according to this equivalence relation.    *     * @since 10.0    */
 DECL|method|equivalentTo (@ullable T target)
 specifier|public
 specifier|final

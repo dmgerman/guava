@@ -380,18 +380,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|CancellationException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|ConcurrentLinkedQueue
 import|;
 end_import
@@ -417,30 +405,6 @@ operator|.
 name|concurrent
 operator|.
 name|ExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|ScheduledExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
 import|;
 end_import
 
@@ -613,14 +577,6 @@ name|DRAIN_MAX
 init|=
 literal|16
 decl_stmt|;
-DECL|field|CLEANUP_EXECUTOR_DELAY_SECS
-specifier|static
-specifier|final
-name|long
-name|CLEANUP_EXECUTOR_DELAY_SECS
-init|=
-literal|60
-decl_stmt|;
 comment|// Fields
 DECL|field|logger
 specifier|private
@@ -769,19 +725,13 @@ specifier|transient
 name|EntryFactory
 name|entryFactory
 decl_stmt|;
-comment|/** Performs routine cleanup. */
-DECL|field|cleanupExecutor
-specifier|final
-name|ScheduledExecutorService
-name|cleanupExecutor
-decl_stmt|;
 comment|/** Measures time in a testable way. */
 DECL|field|ticker
 specifier|final
 name|Ticker
 name|ticker
 decl_stmt|;
-comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    *    * @throws RejectedExecutionException if a cleanupExecutor was specified but rejects the cleanup    *     task    */
+comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
 DECL|method|CustomConcurrentHashMap (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, ? extends V> loader)
 name|CustomConcurrentHashMap
 parameter_list|(
@@ -903,13 +853,6 @@ argument_list|,
 name|evictsBySize
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|cleanupExecutor
-operator|=
-name|builder
-operator|.
-name|getCleanupExecutor
-argument_list|()
 expr_stmt|;
 name|ticker
 operator|=
@@ -1211,34 +1154,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// schedule cleanup after construction is complete
-if|if
-condition|(
-name|cleanupExecutor
-operator|!=
-literal|null
-condition|)
-block|{
-name|cleanupExecutor
-operator|.
-name|scheduleWithFixedDelay
-argument_list|(
-operator|new
-name|CleanupMapTask
-argument_list|(
-name|this
-argument_list|)
-argument_list|,
-name|CLEANUP_EXECUTOR_DELAY_SECS
-argument_list|,
-name|CLEANUP_EXECUTOR_DELAY_SECS
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 DECL|method|evictsBySize ()
 name|boolean
@@ -1312,17 +1227,6 @@ operator|!=
 name|Strength
 operator|.
 name|STRONG
-return|;
-block|}
-DECL|method|isInlineCleanup ()
-name|boolean
-name|isInlineCleanup
-parameter_list|()
-block|{
-return|return
-name|cleanupExecutor
-operator|==
-literal|null
 return|;
 block|}
 DECL|enum|Strength
@@ -14944,7 +14848,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**      * Performs routine cleanup following a read. Normally cleanup happens during writes, or from      * the cleanupExecutor. If cleanup is not observed after a sufficient number of reads, try      * cleaning up from the read thread.      */
+comment|/**      * Performs routine cleanup following a read. Normally cleanup happens during writes. If cleanup      * is not observed after a sufficient number of reads, try cleaning up from the read thread.      */
 DECL|method|postReadCleanup ()
 name|void
 name|postReadCleanup
@@ -14964,7 +14868,7 @@ operator|==
 literal|0
 condition|)
 block|{
-name|runCleanup
+name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
@@ -14994,9 +14898,9 @@ name|runUnlockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|runCleanup ()
+DECL|method|cleanUp ()
 name|void
-name|runCleanup
+name|cleanUp
 parameter_list|()
 block|{
 name|runLockedCleanup
@@ -17017,93 +16921,13 @@ block|}
 return|;
 block|}
 block|}
-DECL|class|CleanupMapTask
-specifier|static
-specifier|final
-class|class
-name|CleanupMapTask
-implements|implements
-name|Runnable
-block|{
-DECL|field|mapReference
-specifier|final
-name|WeakReference
-argument_list|<
-name|CustomConcurrentHashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-argument_list|>
-name|mapReference
-decl_stmt|;
-DECL|method|CleanupMapTask (CustomConcurrentHashMap<?, ?> map)
-specifier|public
-name|CleanupMapTask
-parameter_list|(
-name|CustomConcurrentHashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-name|this
-operator|.
-name|mapReference
-operator|=
-operator|new
-name|WeakReference
-argument_list|<
-name|CustomConcurrentHashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-argument_list|>
-argument_list|(
-name|map
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|run ()
+comment|// Cache support
+DECL|method|cleanUp ()
 specifier|public
 name|void
-name|run
+name|cleanUp
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-init|=
-name|mapReference
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|map
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|CancellationException
-argument_list|()
-throw|;
-block|}
 for|for
 control|(
 name|Segment
@@ -17114,17 +16938,14 @@ name|?
 argument_list|>
 name|segment
 range|:
-name|map
-operator|.
 name|segments
 control|)
 block|{
 name|segment
 operator|.
-name|runCleanup
+name|cleanUp
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// ConcurrentMap methods

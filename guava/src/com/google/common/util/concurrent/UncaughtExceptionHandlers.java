@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factories for {@link UncaughtExceptionHandler} instances.  *  * @author Gregory Kick  * @since Guava release 08  */
+comment|/**  * Factories for {@link UncaughtExceptionHandler} instances.  *  * @author Gregory Kick  * @since 8.0  */
 end_comment
 
 begin_class

@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since Guava release 10  *     (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since Guava release 09)  */
+comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since 10.0  *     (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since 9.0)  */
 end_comment
 
 begin_class
@@ -73,7 +73,7 @@ name|long
 name|read
 parameter_list|()
 function_decl|;
-comment|/**    * A ticker that reads the current time using {@link System#nanoTime}.    *    * @since Guava release 10    */
+comment|/**    * A ticker that reads the current time using {@link System#nanoTime}.    *    * @since 10.0    */
 DECL|method|systemTicker ()
 specifier|public
 specifier|static

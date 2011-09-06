@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since Guava release 01  */
+comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -551,7 +551,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Opens an output stream from the supplier, copies all bytes from the input    * to the output, and closes the output stream. Does not close or flush the    * output stream.    *    * @param from the input stream to read from    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @since Guava release 10    */
+comment|/**    * Opens an output stream from the supplier, copies all bytes from the input    * to the output, and closes the output stream. Does not close or flush the    * output stream.    *    * @param from the input stream to read from    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @since 10.0    */
 DECL|method|copy (InputStream from, OutputSupplier<? extends OutputStream> to)
 specifier|public
 specifier|static

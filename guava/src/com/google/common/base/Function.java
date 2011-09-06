@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Determines an output value based on an input value.  *  * @author Kevin Bourrillion  * @since Guava release 02 (imported from Google Collections Library)  */
+comment|/**  * Determines an output value based on an input value.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface

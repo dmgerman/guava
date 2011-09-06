@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A list iterator that does not support {@link #remove}, {@link #add}, or  * {@link #set}.  *  * @since Guava release 07  * @author Louis Wasserman  */
+comment|/**  * A list iterator that does not support {@link #remove}, {@link #add}, or  * {@link #set}.  *  * @since 7.0  * @author Louis Wasserman  */
 end_comment
 
 begin_class

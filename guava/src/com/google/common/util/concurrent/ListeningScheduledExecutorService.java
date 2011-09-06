@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ScheduledExecutorService} that returns {@link ListenableFuture}  * instances from its {@code ExecutorService} methods.  Futures returned by the  * {@code schedule*} methods, by contrast, need not implement {@code  * ListenableFuture}.  (To create an instance from an existing {@link  * ScheduledExecutorService}, call {@link  * MoreExecutors#listeningDecorator(ScheduledExecutorService)}.  *  *<p>TODO(cpovirk): make at least the one-time schedule() methods return a  * ListenableFuture, too? But then we'll need ListenableScheduledFuture...  *  * @author Chris Povirk  * @since Guava release 10  */
+comment|/**  * A {@link ScheduledExecutorService} that returns {@link ListenableFuture}  * instances from its {@code ExecutorService} methods.  Futures returned by the  * {@code schedule*} methods, by contrast, need not implement {@code  * ListenableFuture}.  (To create an instance from an existing {@link  * ScheduledExecutorService}, call {@link  * MoreExecutors#listeningDecorator(ScheduledExecutorService)}.  *  *<p>TODO(cpovirk): make at least the one-time schedule() methods return a  * ListenableFuture, too? But then we'll need ListenableScheduledFuture...  *  * @author Chris Povirk  * @since 10.0  */
 end_comment
 
 begin_interface

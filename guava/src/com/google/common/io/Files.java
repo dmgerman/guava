@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with files.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since Guava release 01  */
+comment|/**  * Provides utility methods for working with files.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -1330,7 +1330,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates any necessary but nonexistent parent directories of the specified    * file. Note that if this operation fails it may have succeeded in creating    * some (but not all) of the necessary parent directories.    *    * @throws IOException if an I/O error occurs, or if any necessary but    *     nonexistent parent directories of the specified file could not be    *     created.    * @since Guava release 04    */
+comment|/**    * Creates any necessary but nonexistent parent directories of the specified    * file. Note that if this operation fails it may have succeeded in creating    * some (but not all) of the necessary parent directories.    *    * @throws IOException if an I/O error occurs, or if any necessary but    *     nonexistent parent directories of the specified file could not be    *     created.    * @since 4.0    */
 DECL|method|createParentDirs (File file)
 specifier|public
 specifier|static
@@ -1489,7 +1489,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed in Guava release 11.    *    *<p>Deletes all the files within a directory. Does not delete the    * directory itself.    *    *<p>If the file argument is a symbolic link or there is a symbolic    * link in the path leading to the directory, this method will do    * nothing. Symbolic links within the directory are not followed.    *    * @param directory the directory to delete the contents of    * @throws IllegalArgumentException if the argument is not a directory    * @throws IOException if an I/O error occurs    */
+comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed in release 11.0.    *    *<p>Deletes all the files within a directory. Does not delete the    * directory itself.    *    *<p>If the file argument is a symbolic link or there is a symbolic    * link in the path leading to the directory, this method will do    * nothing. Symbolic links within the directory are not followed.    *    * @param directory the directory to delete the contents of    * @throws IllegalArgumentException if the argument is not a directory    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Deprecated
 DECL|method|deleteDirectoryContents (File directory)
@@ -1579,7 +1579,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed in Guava release 11.    *    *<p>Deletes a file or directory and all contents recursively.    *    *<p>If the file argument is a symbolic link the link will be deleted    * but not the target of the link. If the argument is a directory,    * symbolic links within the directory will not be followed.    *    * @param file the file to delete    * @throws IOException if an I/O error occurs    */
+comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed in release 11.0.    *    *<p>Deletes a file or directory and all contents recursively.    *    *<p>If the file argument is a symbolic link the link will be deleted    * but not the target of the link. If the argument is a directory,    * symbolic links within the directory will not be followed.    *    * @param file the file to delete    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Deprecated
 DECL|method|deleteRecursively (File file)
@@ -1835,7 +1835,7 @@ name|md
 argument_list|)
 return|;
 block|}
-comment|/**    * Fully maps a file read-only in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @return a read-only buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since Guava release 02    */
+comment|/**    * Fully maps a file read-only in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @return a read-only buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
 DECL|method|map (File file)
 specifier|public
 specifier|static
@@ -1859,7 +1859,7 @@ name|READ_ONLY
 argument_list|)
 return|;
 block|}
-comment|/**    * Fully maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since Guava release 02    */
+comment|/**    * Fully maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to its length.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws FileNotFoundException if the {@code file} does not exist    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
 DECL|method|map (File file, MapMode mode)
 specifier|public
 specifier|static
@@ -1909,7 +1909,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist,    * it will be created with the requested {@code size}. Thus this method is    * useful for creating memory mapped files which do not yet exist.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since Guava release 02    */
+comment|/**    * Maps a file in to memory as per    * {@link FileChannel#map(java.nio.channels.FileChannel.MapMode, long, long)}    * using the requested {@link MapMode}.    *    *<p>Files are mapped from offset 0 to {@code size}.    *    *<p>If the mode is {@link MapMode#READ_WRITE} and the file does not exist,    * it will be created with the requested {@code size}. Thus this method is    * useful for creating memory mapped files which do not yet exist.    *    *<p>This only works for files<= {@link Integer#MAX_VALUE} bytes.    *    * @param file the file to map    * @param mode the mode to use when mapping {@code file}    * @return a buffer reflecting {@code file}    * @throws IOException if an I/O error occurs    *    * @see FileChannel#map(MapMode, long, long)    * @since 2.0    */
 DECL|method|map (File file, MapMode mode, long size)
 specifier|public
 specifier|static
@@ -2057,7 +2057,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but    * not always) equivalent to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>fold out ../ when possible    *<li>fold out ./ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    * These heuristics do not always match the behavior of the filesystem. In    * particular, consider the path {@code a/../b}, which {@code simplifyPath}    * will change to {@code b}. If {@code a} is a symlink to {@code x}, {@code    * a/../b} may refer to a sibling of {@code x}, rather than the sibling of    * {@code a} referred to by {@code b}.    *    * @since Guava release 10    */
+comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but    * not always) equivalent to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>fold out ../ when possible    *<li>fold out ./ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    * These heuristics do not always match the behavior of the filesystem. In    * particular, consider the path {@code a/../b}, which {@code simplifyPath}    * will change to {@code b}. If {@code a} is a symlink to {@code x}, {@code    * a/../b} may refer to a sibling of {@code x}, rather than the sibling of    * {@code a} referred to by {@code b}.    *    * @since 10.0    */
 DECL|method|simplifyPath (String pathname)
 specifier|public
 specifier|static

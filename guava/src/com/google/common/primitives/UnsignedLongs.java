@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the long as an unsigned number.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Peter Epstein  * @since Guava release 10  */
+comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the long as an unsigned number.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Peter Epstein  * @since 10.0  */
 end_comment
 
 begin_class

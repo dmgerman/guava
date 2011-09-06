@@ -359,7 +359,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A test utility that verifies that your methods throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever any  * of their parameters are null. To use it, you must first provide valid default  * values for the parameter types used by the class.  *  * @author Kevin Bourrillion  * @since Guava release 10  */
+comment|/**  * A test utility that verifies that your methods throw {@link  * NullPointerException} or {@link UnsupportedOperationException} whenever any  * of their parameters are null. To use it, you must first provide valid default  * values for the parameter types used by the class.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class

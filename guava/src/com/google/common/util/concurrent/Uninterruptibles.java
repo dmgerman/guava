@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for treating interruptible operations as uninterruptible.  * In all cases, if a thread is interrupted during such a call, the call  * continues to block until the result is available or the timeout elapses,  * and only then re-interrupts the thread.  *  * @author Anthony Zana  * @since Guava release 10  */
+comment|/**  * Utilities for treating interruptible operations as uninterruptible.  * In all cases, if a thread is interrupted during such a call, the call  * continues to block until the result is available or the timeout elapses,  * and only then re-interrupts the thread.  *  * @author Anthony Zana  * @since 10.0  */
 end_comment
 
 begin_class

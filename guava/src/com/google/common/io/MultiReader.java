@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Reader} that will concatenates multiple readers  *  * @author Bin Zhu  * @since Guava release 01  */
+comment|/**  * A {@link Reader} that will concatenates multiple readers  *  * @author Bin Zhu  * @since 1.0  */
 end_comment
 
 begin_class

@@ -113,7 +113,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple mock implementation of {@code Runnable} that can be used for  * testing ListenableFutures.  *  * @author Nishant Thakkar  * @since Guava release 10  */
+comment|/**  * A simple mock implementation of {@code Runnable} that can be used for  * testing ListenableFutures.  *  * @author Nishant Thakkar  * @since 10.0  */
 end_comment
 
 begin_class

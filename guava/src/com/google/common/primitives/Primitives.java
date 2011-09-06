@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since Guava release 01  */
+comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -411,7 +411,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns an immutable set of all nine primitive types (including {@code    * void}). Note that a simpler way to test whether a {@code Class} instance    * is a member of this set is to call {@link Class#isPrimitive}.    *    * @since Guava release 03    */
+comment|/**    * Returns an immutable set of all nine primitive types (including {@code    * void}). Note that a simpler way to test whether a {@code Class} instance    * is a member of this set is to call {@link Class#isPrimitive}.    *    * @since 3.0    */
 DECL|method|allPrimitiveTypes ()
 specifier|public
 specifier|static
@@ -432,7 +432,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable set of all nine primitive-wrapper types (including    * {@link Void}).    *    * @since Guava release 03    */
+comment|/**    * Returns an immutable set of all nine primitive-wrapper types (including    * {@link Void}).    *    * @since 3.0    */
 DECL|method|allWrapperTypes ()
 specifier|public
 specifier|static

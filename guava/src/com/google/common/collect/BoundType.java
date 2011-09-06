@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Indicates whether an endpoint of some range is contained in the range itself ("closed") or not  * ("open"). If a range is unbounded on a side, it is neither open nor closed on that side; the  * bound simply does not exist.  *  * @since Guava release 10  */
+comment|/**  * Indicates whether an endpoint of some range is contained in the range itself ("closed") or not  * ("open"). If a range is unbounded on a side, it is neither open nor closed on that side; the  * bound simply does not exist.  *  * @since 10.0  */
 end_comment
 
 begin_enum

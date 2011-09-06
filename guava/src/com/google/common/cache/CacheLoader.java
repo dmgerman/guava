@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Computes or retrieves values, based on a key, for use in populating a {@code Cache}.  *  * @author Charles Fry  * @since Guava release 10  */
+comment|/**  * Computes or retrieves values, based on a key, for use in populating a {@code Cache}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
