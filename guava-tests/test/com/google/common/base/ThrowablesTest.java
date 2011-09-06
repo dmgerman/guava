@@ -1976,6 +1976,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testThrowCause_NoCombine ()
 specifier|public
 name|void
@@ -2054,6 +2060,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testThrowCause_Combine ()
 specifier|public
 name|void
@@ -2146,6 +2158,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testThrowCause_Null ()
 specifier|public
 name|void
@@ -2215,6 +2233,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testThrowCause_Error ()
 specifier|public
 name|void
@@ -2309,6 +2333,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// test of deprecated method
 DECL|method|testThrowCause_Throwable ()
 specifier|public
 name|void
