@@ -677,7 +677,7 @@ name|newCount
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #elementSet} in terms of the following    * methods: {@link #clear}, {@link #contains}, {@link #containsAll},    * {@link #count}, {@link #isEmpty}, the {@code size()} and {@code iterator()}    * methods of {@link #entrySet}, and {@link #remove(Object, int)}.  In many    * situations, you may wish to override {@link #elementSet} to forward to this    * implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardElementSet} constructor instead.  This    *             method will be removed in release 11.0.    */
+comment|/**    * A sensible definition of {@link #elementSet} in terms of the following    * methods: {@link #clear}, {@link #contains}, {@link #containsAll},    * {@link #count}, {@link #isEmpty}, the {@code size()} and {@code iterator()}    * methods of {@link #entrySet}, and {@link #remove(Object, int)}.  In many    * situations, you may wish to override {@link #elementSet} to forward to this    * implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardElementSet} constructor instead.  This    *             method will be removed from Guava in Guava release 11.0.    */
 DECL|method|standardElementSet ()
 annotation|@
 name|Beta

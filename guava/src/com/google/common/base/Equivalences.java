@@ -108,7 +108,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code elementEquivalence}.  Null iterables are equivalent to one another.    *    * @since 9.0    * @deprecated use {@link Equivalence#pairwise}, which behaves exactly the same.<b>This method is    *     scheduled for deletion in release 11.0.</b>    */
+comment|/**    * Returns an equivalence over iterables based on the equivalence of their elements.  More    * specifically, two iterables are considered equivalent if they both contain the same number of    * elements, and each pair of corresponding elements is equivalent according to    * {@code elementEquivalence}.  Null iterables are equivalent to one another.    *    * @since 9.0    * @deprecated use {@link Equivalence#pairwise}, which behaves exactly the same.<b>This method is    *     scheduled for deletion from Guava in Guava release 11.0.</b>    */
 annotation|@
 name|Deprecated
 annotation|@

@@ -424,7 +424,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    * @deprecated Most implementations will be satisfied with the default    * implementation of {@link #cancel(boolean)} and not need to call this method    * at all. Those that are not can delegate to {@code    * super.cancel(mayInterruptIfRunning)} or, to get behavior exactly equivalent    * to this method, {@code super.cancel(false)}. This method will be removed in    * release 11.0.    */
+comment|/**    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    * @deprecated Most implementations will be satisfied with the default    * implementation of {@link #cancel(boolean)} and not need to call this method    * at all. Those that are not can delegate to {@code    * super.cancel(mayInterruptIfRunning)} or, to get behavior exactly equivalent    * to this method, {@code super.cancel(false)}. This method will be removed    * from Guava in Guava release 11.0.    */
 annotation|@
 name|Beta
 annotation|@
@@ -457,7 +457,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *<b>Deprecated.</b> {@linkplain #addListener Add listeners} (possible executed    * in {@link MoreExecutors#sameThreadExecutor}) to perform the work currently    * performed by your {@code done} implementation. This method will be removed    * in release 11.0.    *    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
+comment|/**    *<b>Deprecated.</b> {@linkplain #addListener Add listeners} (possible executed    * in {@link MoreExecutors#sameThreadExecutor}) to perform the work currently    * performed by your {@code done} implementation. This method will be removed    * from Guava in Guava release 11.0.    *    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
 annotation|@
 name|Beta
 annotation|@

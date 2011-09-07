@@ -456,7 +456,7 @@ argument_list|>
 name|range
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the minimal range with the given boundary types for which all values in this set are    * {@linkplain Range#contains(Comparable) contained} within the range.    *    *<p>Note that this method will return ranges with unbounded endpoints if {@link BoundType#OPEN}    * is requested for a domain minimum or maximum.  For example, if {@code set} was created from the    * range {@code [1â¥Integer.MAX_VALUE]} then {@code set.range(CLOSED, OPEN)} must return    * {@code [1â¥â)}.    *    * @throws NoSuchElementException if this set is empty    */
+comment|/**    * Returns the minimal range with the given boundary types for which all values in this set are    * {@linkplain Range#contains(Comparable) contained} within the range.    *    *<p>Note that this method will return ranges with unbounded endpoints if {@link BoundType#OPEN}    * is requested for a domain minimum or maximum.  For example, if {@code set} was created from the    * range {@code [1..Integer.MAX_VALUE]} then {@code set.range(CLOSED, OPEN)} must return    * {@code [1..â)}.    *    * @throws NoSuchElementException if this set is empty    */
 DECL|method|range (BoundType lowerBoundType, BoundType upperBoundType)
 specifier|public
 specifier|abstract
@@ -473,7 +473,7 @@ name|BoundType
 name|upperBoundType
 parameter_list|)
 function_decl|;
-comment|/** Returns a short-hand representation of the contents such as {@code "[1â¥100]"}. */
+comment|/** Returns a short-hand representation of the contents such as {@code "[1..100]"}. */
 DECL|method|toString ()
 annotation|@
 name|Override

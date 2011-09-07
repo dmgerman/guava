@@ -627,7 +627,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardKeySet} constructor instead.  This    *             method will be removed in release 11.0.    */
+comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardKeySet} constructor instead.  This    *             method will be removed from Guava in Guava release 11.0.    */
 DECL|method|standardKeySet ()
 annotation|@
 name|Beta
@@ -708,7 +708,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardValues} constructor instead.  This    *             method will be removed in release 11.0.    */
+comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardValues} constructor instead.  This    *             method will be removed from Guava in Guava release 11.0.    */
 DECL|method|standardValues ()
 annotation|@
 name|Beta
@@ -789,7 +789,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since 7.0    * @deprecated Use {@code StandardEntrySet} instead.  This method will be    *             removed in release 11.0.    */
+comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since 7.0    * @deprecated Use {@code StandardEntrySet} instead.  This method will be    *             removed from Guava in Guava release 11.0.    */
 annotation|@
 name|Deprecated
 annotation|@

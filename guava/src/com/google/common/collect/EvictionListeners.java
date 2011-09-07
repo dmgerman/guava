@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of common eviction listeners.  *  * @author Charles Fry  * @since 7.0  * @deprecated Caching functionality in {@code MapMaker} is being moved to  *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to  *     {@code EvictionListeners} is provided by {@link  *     com.google.common.cache.RemovalListeners}.<b>This class is scheduled for  *     deletion in release 11.0.</b>  */
+comment|/**  * A collection of common eviction listeners.  *  * @author Charles Fry  * @since 7.0  * @deprecated Caching functionality in {@code MapMaker} is being moved to  *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to  *     {@code EvictionListeners} is provided by {@link  *     com.google.common.cache.RemovalListeners}.<b>This class is scheduled for  *     deletion from Guava in Guava release 11.0.</b>  */
 end_comment
 
 begin_class
@@ -72,7 +72,7 @@ specifier|private
 name|EvictionListeners
 parameter_list|()
 block|{}
-comment|/**    * Returns an asynchronous {@code MapEvictionListener} which processes all    * eviction notifications asynchronously, using {@code executor}.    *    * @param listener the backing listener    * @param executor the executor with which eviciton notifications are    *     asynchronously executed    * @deprecated Caching functionality in {@code MapMaker} is being moved to    *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to    *     {@code EvictionListeners#asynchronous} is provided by    *     {@link com.google.common.cache.RemovalListeners#asynchronous}.    *<b>This method is scheduled for deletion in release 11.0.</b>    */
+comment|/**    * Returns an asynchronous {@code MapEvictionListener} which processes all    * eviction notifications asynchronously, using {@code executor}.    *    * @param listener the backing listener    * @param executor the executor with which eviciton notifications are    *     asynchronously executed    * @deprecated Caching functionality in {@code MapMaker} is being moved to    *     {@link com.google.common.cache.CacheBuilder}. Functionality similar to    *     {@code EvictionListeners#asynchronous} is provided by    *     {@link com.google.common.cache.RemovalListeners#asynchronous}.    *<b>This method is scheduled for deletion from Guava in Guava release 11.0.</b>    */
 annotation|@
 name|Deprecated
 DECL|method|asynchronous ( final MapEvictionListener<K, V> listener, final Executor executor)

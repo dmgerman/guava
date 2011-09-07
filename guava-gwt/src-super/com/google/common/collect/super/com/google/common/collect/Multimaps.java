@@ -6882,6 +6882,8 @@ return|;
 block|}
 comment|/**    *<b>Deprecated.</b>    *    * @deprecated use {@link #index(Iterator, Function)} by casting {@code    *     values} to {@code Iterator<V>}, or better yet, by implementing only    *     {@code Iterator} and not {@code Iterable}.<b>This method is scheduled    *     for deletion in March 2012.</b>    */
 annotation|@
+name|Beta
+annotation|@
 name|Deprecated
 specifier|public
 specifier|static

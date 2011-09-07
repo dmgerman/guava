@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Legacy location of {@link AbstractFuture}.  *  * @author Sven Mawson  * @since 1.0  * @deprecated Use {@link AbstractFuture}.<b>This class is scheduled for deletion in release  *     11.0.</b>  */
+comment|/**  * Legacy location of {@link AbstractFuture}.  *  * @author Sven Mawson  * @since 1.0  * @deprecated Use {@link AbstractFuture}.<b>This class is scheduled for deletion from Guava in  *     Guava release 11.0.</b>  */
 end_comment
 
 begin_class

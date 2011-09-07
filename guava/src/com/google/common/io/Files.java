@@ -1489,7 +1489,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed in release 11.0.    *    *<p>Deletes all the files within a directory. Does not delete the    * directory itself.    *    *<p>If the file argument is a symbolic link or there is a symbolic    * link in the path leading to the directory, this method will do    * nothing. Symbolic links within the directory are not followed.    *    * @param directory the directory to delete the contents of    * @throws IllegalArgumentException if the argument is not a directory    * @throws IOException if an I/O error occurs    */
+comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed from Guava in Guava release    * 11.0.    *    *<p>Deletes all the files within a directory. Does not delete the    * directory itself.    *    *<p>If the file argument is a symbolic link or there is a symbolic    * link in the path leading to the directory, this method will do    * nothing. Symbolic links within the directory are not followed.    *    * @param directory the directory to delete the contents of    * @throws IllegalArgumentException if the argument is not a directory    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Deprecated
 DECL|method|deleteDirectoryContents (File directory)
@@ -1579,7 +1579,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed in release 11.0.    *    *<p>Deletes a file or directory and all contents recursively.    *    *<p>If the file argument is a symbolic link the link will be deleted    * but not the target of the link. If the argument is a directory,    * symbolic links within the directory will not be followed.    *    * @param file the file to delete    * @throws IOException if an I/O error occurs    */
+comment|/**    *<b>Deprecated.</b> This method suffers from poor symlink detection and race    * conditions. This functionality can be supported suitably only by shelling    * out to an operating system command such as {@code rm -rf} or {@code del    * /s}. This method is scheduled to be removed from Guava in Guava release    * 11.0.    *    *<p>Deletes a file or directory and all contents recursively.    *    *<p>If the file argument is a symbolic link the link will be deleted    * but not the target of the link. If the argument is a directory,    * symbolic links within the directory will not be followed.    *    * @param file the file to delete    * @throws IOException if an I/O error occurs    */
 annotation|@
 name|Deprecated
 DECL|method|deleteRecursively (File file)
