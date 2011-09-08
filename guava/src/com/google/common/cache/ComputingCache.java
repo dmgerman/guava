@@ -396,7 +396,7 @@ name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO(user): activeEntries
+comment|// TODO(fry): activeEntries
 DECL|class|CacheAsMap
 specifier|static
 specifier|final

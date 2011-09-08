@@ -3685,7 +3685,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|// TODO(user): check recency ordering
+comment|// TODO(fry): check recency ordering
 name|Object
 name|key
 init|=
@@ -4304,7 +4304,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|// TODO(user): check recency ordering
+comment|// TODO(fry): check recency ordering
 name|Object
 name|key
 init|=
@@ -4665,7 +4665,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|// TODO(user): check recency ordering
+comment|// TODO(fry): check recency ordering
 name|Object
 name|key
 init|=
@@ -4982,7 +4982,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|// TODO(user): check recency ordering
+comment|// TODO(fry): check recency ordering
 name|Object
 name|key
 init|=
@@ -5241,7 +5241,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|// TODO(user): check recency ordering
+comment|// TODO(fry): check recency ordering
 name|Object
 name|key
 init|=

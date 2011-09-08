@@ -195,7 +195,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|// TODO(user): add bulk operations
+comment|// TODO(fry): add bulk operations
 comment|/**    * Discards any cached value for key {@code key}, possibly asynchronously, so that a future    * invocation of {@code get(key)} will result in a cache miss and reload.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|invalidate (@ullable Object key)
 name|void

@@ -733,7 +733,7 @@ DECL|field|ticker
 name|Ticker
 name|ticker
 decl_stmt|;
-comment|// TODO(user): make constructor private and update tests to use newBuilder
+comment|// TODO(fry): make constructor private and update tests to use newBuilder
 DECL|method|CacheBuilder ()
 name|CacheBuilder
 parameter_list|()
@@ -2319,7 +2319,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// TODO(user): remove, as no code path can hit this
+comment|// TODO(fry): remove, as no code path can hit this
 comment|/** Computes on retrieval and evicts the result. */
 DECL|class|NullComputingConcurrentMap
 specifier|static

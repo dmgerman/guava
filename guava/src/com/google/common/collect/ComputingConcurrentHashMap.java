@@ -1671,7 +1671,7 @@ argument_list|(
 name|newValue
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): could also cancel computation if we had a thread handle
+comment|// TODO(fry): could also cancel computation if we had a thread handle
 block|}
 DECL|method|compute (K key, int hash)
 name|V
