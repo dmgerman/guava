@@ -104,6 +104,42 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Uninterruptibles
+operator|.
+name|putUninterruptibly
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Uninterruptibles
+operator|.
+name|takeUninterruptibly
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -2195,33 +2231,15 @@ name|mayInterruptIfRunning
 argument_list|)
 condition|)
 block|{
-try|try
-block|{
 comment|// This should never block since only one thread is allowed to cancel
 comment|// this Future.
-name|mayInterruptIfRunningChannel
-operator|.
-name|put
+name|putUninterruptibly
 argument_list|(
+name|mayInterruptIfRunningChannel
+argument_list|,
 name|mayInterruptIfRunning
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ignored
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 name|cancel
 argument_list|(
 name|inputFuture
@@ -2361,8 +2379,6 @@ condition|)
 block|{
 comment|// Handles the case where cancel was called while the function was
 comment|// being applied.
-try|try
-block|{
 comment|// There is a gap in cancel(boolean) between calling sync.cancel()
 comment|// and storing the value of mayInterruptIfRunning, so this thread
 comment|// needs to block, waiting for that value.
@@ -2370,28 +2386,12 @@ name|outputFuture
 operator|.
 name|cancel
 argument_list|(
+name|takeUninterruptibly
+argument_list|(
 name|mayInterruptIfRunningChannel
-operator|.
-name|take
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ignored
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 name|this
 operator|.
 name|outputFuture
