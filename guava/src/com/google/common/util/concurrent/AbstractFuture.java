@@ -179,7 +179,8 @@ operator|new
 name|ExecutionList
 argument_list|()
 decl_stmt|;
-comment|/*    * Blocks until either the task completes or the timeout expires.  Uses the    * sync blocking-with-timeout support provided by AQS.    */
+comment|/*    * Improve the documentation of when InterruptedException is thrown. Our    * behavior matches the JDK's, but the JDK's documentation is misleading.    */
+comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code    * InterruptedException} if the current thread is interrupted before or during    * the call, even if the value is already available.    *    * @throws InterruptedException if the current thread was interrupted before    *     or during the call (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
@@ -214,7 +215,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/*    * Blocks until the task completes or we get interrupted. Uses the    * interruptible blocking support provided by AQS.    */
+comment|/*    * Improve the documentation of when InterruptedException is thrown. Our    * behavior matches the JDK's, but the JDK's documentation is misleading.    */
+comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code    * InterruptedException} if the current thread is interrupted before or during    * the call, even if the value is already available.    *    * @throws InterruptedException if the current thread was interrupted before    *     or during the call (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|get ()
@@ -234,7 +236,6 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/*    * Checks if the sync is not in the running state.    */
 annotation|@
 name|Override
 DECL|method|isDone ()
@@ -250,7 +251,6 @@ name|isDone
 argument_list|()
 return|;
 block|}
-comment|/*    * Checks if the sync is in the cancelled state.    */
 annotation|@
 name|Override
 DECL|method|isCancelled ()
