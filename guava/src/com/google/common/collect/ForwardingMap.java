@@ -664,6 +664,11 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|method|StandardKeySet ()
+specifier|public
+name|StandardKeySet
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|map ()
@@ -745,6 +750,11 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|method|StandardValues ()
+specifier|public
+name|StandardValues
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|map ()
@@ -873,6 +883,11 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|method|StandardEntrySet ()
+specifier|public
+name|StandardEntrySet
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|map ()

@@ -712,6 +712,11 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|method|StandardElementSet ()
+specifier|public
+name|StandardElementSet
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|multiset ()
