@@ -2350,6 +2350,13 @@ name|name
 index|[
 name|firstNonSlash
 index|]
+operator|||
+name|name
+index|[
+name|q
+index|]
+operator|==
+literal|'.'
 condition|)
 block|{
 name|name
