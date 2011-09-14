@@ -2155,7 +2155,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    *<b>Deprecated.</b>    *    * @deprecated use {@link #uniqueIndex(Iterator, Function)} by casting {@code    *     values} to {@code Iterator<V>}, or better yet, by implementing only    *     {@code Iterator} and not {@code Iterable}.<b>This method is scheduled    *     for deletion in March 2012.</b>    */
+comment|/**    *<b>Deprecated.</b>    *    * @since 10.0    * @deprecated use {@link #uniqueIndex(Iterator, Function)} by casting {@code    *     values} to {@code Iterator<V>}, or better yet, by implementing only    *     {@code Iterator} and not {@code Iterable}.<b>This method is scheduled    *     for deletion in March 2012.</b>    */
 annotation|@
 name|Beta
 annotation|@
@@ -2224,7 +2224,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    */
+comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    * @since 10.0    */
 DECL|method|uniqueIndex ( Iterator<V> values, Function<? super V, K> keyFunction)
 specifier|public
 specifier|static

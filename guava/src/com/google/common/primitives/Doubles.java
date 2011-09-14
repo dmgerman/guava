@@ -216,7 +216,7 @@ specifier|private
 name|Doubles
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code double}    * value.    */
+comment|/**    * The number of bytes required to represent a primitive {@code double}    * value.    *    * @since 10.0    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -283,7 +283,7 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code value} represents a real number. This is    * equivalent to, but not necessarily implemented as,    * {@code !(Double.isInfinite(value) || Double.isNaN(value))}.    */
+comment|/**    * Returns {@code true} if {@code value} represents a real number. This is    * equivalent to, but not necessarily implemented as,    * {@code !(Double.isInfinite(value) || Double.isNaN(value))}.    *    * @since 10.0    */
 DECL|method|isFinite (double value)
 specifier|public
 specifier|static

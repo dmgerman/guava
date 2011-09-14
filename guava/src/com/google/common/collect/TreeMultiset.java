@@ -625,6 +625,7 @@ name|getMap
 argument_list|()
 return|;
 block|}
+comment|/**      * {@inheritDoc}      *      * @since 10.0      */
 annotation|@
 name|Override
 DECL|method|comparator ()
