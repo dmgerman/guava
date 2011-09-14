@@ -98,11 +98,6 @@ parameter_list|<
 name|T
 parameter_list|>
 implements|implements
-name|BaseHolder
-argument_list|<
-name|T
-argument_list|>
-implements|,
 name|Serializable
 block|{
 comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
@@ -216,6 +211,34 @@ specifier|private
 name|Optional
 parameter_list|()
 block|{}
+comment|/**    * Returns {@code true} if this holder contains a (non-null) instance.    */
+DECL|method|isPresent ()
+specifier|public
+specifier|abstract
+name|boolean
+name|isPresent
+parameter_list|()
+function_decl|;
+comment|// TODO(kevinb): isAbsent too?
+comment|/**    * Returns the contained instance, which must be present. If the instance might be    * absent, use {@link #or(Object)} or {@link #orNull} instead.    *    * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns    *     {@code false})    */
+DECL|method|get ()
+specifier|public
+specifier|abstract
+name|T
+name|get
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the contained instance if it is present; {@code defaultValue} otherwise. If    * no default value should be required because the instance is known to be present, use    * {@link #get()} instead. For a default value of {@code null}, use {@link #orNull}.    */
+DECL|method|or (T defaultValue)
+specifier|public
+specifier|abstract
+name|T
+name|or
+parameter_list|(
+name|T
+name|defaultValue
+parameter_list|)
+function_decl|;
 comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
@@ -252,6 +275,16 @@ name|T
 argument_list|>
 name|supplier
 parameter_list|)
+function_decl|;
+comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the    * instance is known to be present, use {@link #get()} instead.    */
+DECL|method|orNull ()
+annotation|@
+name|Nullable
+specifier|public
+specifier|abstract
+name|T
+name|orNull
+parameter_list|()
 function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
 DECL|method|equals (@ullable Object object)
