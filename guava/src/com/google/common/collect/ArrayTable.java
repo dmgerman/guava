@@ -1620,7 +1620,7 @@ specifier|transient
 name|CellSet
 name|cellSet
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p>The returned set's iterator traverses the mappings with the first row    * key, the mappings with the second row key, and so on.    *    *<p>The value in the returned cells may change if the table subsequently    * changes.    */
+comment|/**    * Returns an unmodifiable set of all row key / column key / value    * triplets. Changes to the table will update the returned set.    *    *<p>The returned set's iterator traverses the mappings with the first row    * key, the mappings with the second row key, and so on.    *    *<p>The value in the returned cells may change if the table subsequently    * changes.    *    * @return set of table cells consisting of row key / column key / value    *     triplets    */
 annotation|@
 name|Override
 DECL|method|cellSet ()
@@ -3505,7 +3505,7 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p>The returned collection's iterator traverses the values of the first row    * key, the values of the second row key, and so on.    */
+comment|/**    * Returns an unmodifiable collection of all values, which may contain    * duplicates. Changes to the table will update the returned collection.    *    *<p>The returned collection's iterator traverses the values of the first row    * key, the values of the second row key, and so on.    *    * @return collection of values    */
 annotation|@
 name|Override
 DECL|method|values ()
