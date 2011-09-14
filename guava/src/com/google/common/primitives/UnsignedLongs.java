@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the long as an unsigned number.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Peter Epstein  * @since 10.0  */
+comment|/**  * Static utility methods pertaining to {@code long} primitives that interpret values as  *<i>unsigned</i> (that is, any negative value {@code x} is treated as the positive value  * {@code 2^64 + x}). The methods for which signedness is not an issue are in {@link Longs}, as well  * as signed versions of methods for which signedness is an issue.  *  *<p>In addition, this class provides several static methods for converting a {@code long} to a  * {@code String} and a {@code String} to a {@code long} that treat the long as an unsigned number.  *  *<p>Users of these utilities must be<i>extremely careful</i> not to mix up signed and unsigned  * long values. When possible, it is recommended that the {@link UnsignedLong} wrapper class be  * used, at a small efficiency penalty, to enforce the distinction in the type system.  *  * @author Louis Wasserman  * @author Brian Milch  * @author Colin Evans  * @since 10.0  */
 end_comment
 
 begin_class
@@ -137,151 +137,26 @@ operator|-
 literal|1L
 decl_stmt|;
 comment|// Equivalent to 2^64 - 1
-DECL|method|toBigInteger (long unsigned)
-specifier|public
+comment|/**    * A (self-inverse) bijection which converts the ordering on unsigned longs    * to the ordering on longs, that is, {@code a<= b} as unsigned longs if and    * only if {@code rotate(a)<= rotate(b)} as signed longs.    */
+DECL|method|flip (long a)
+specifier|private
 specifier|static
-name|BigInteger
-name|toBigInteger
+name|long
+name|flip
 parameter_list|(
 name|long
-name|unsigned
+name|a
 parameter_list|)
 block|{
-name|BigInteger
-name|result
-init|=
-name|BigInteger
-operator|.
-name|valueOf
-argument_list|(
-name|unsigned
-operator|&
+return|return
+name|a
+operator|^
 name|Long
 operator|.
-name|MAX_VALUE
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|unsigned
-operator|<
-literal|0
-condition|)
-block|{
-name|result
-operator|=
-name|result
-operator|.
-name|setBit
-argument_list|(
-literal|63
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|result
+name|MIN_VALUE
 return|;
 block|}
-comment|/**    * Returns the {@code long} value that, when treated as unsigned, is equal to {@code value}, if    * possible.    *    * @param value a value between 0 inclusive and 2^64 exclusive    * @return the {@code long} value that, when treated as unsigned, equals {@code value}    * @throws IllegalArgumentException if {@code value} is negative or greater than or equal to 2^64    */
-DECL|method|checkedCast (BigInteger value)
-specifier|public
-specifier|static
-name|long
-name|checkedCast
-parameter_list|(
-name|BigInteger
-name|value
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|value
-operator|.
-name|signum
-argument_list|()
-operator|>=
-literal|0
-operator|&&
-name|value
-operator|.
-name|bitLength
-argument_list|()
-operator|<=
-literal|64
-argument_list|,
-literal|"out of range: %s"
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-return|return
-name|value
-operator|.
-name|longValue
-argument_list|()
-return|;
-block|}
-comment|/**    * Returns the {@code long} value that, when treated as unsigned, is nearest in value to    * {@code value}.    *    * @param value any {@code BigInteger} value    * @return {@link #MAX_VALUE} if {@code value>= 2^64}, {@code 0} if {@code value<= 0}, and    *         {@code value.longValue()} otherwise    */
-DECL|method|saturatedCast (BigInteger value)
-specifier|public
-specifier|static
-name|long
-name|saturatedCast
-parameter_list|(
-name|BigInteger
-name|value
-parameter_list|)
-block|{
-name|checkNotNull
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|value
-operator|.
-name|signum
-argument_list|()
-operator|<
-literal|0
-condition|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|value
-operator|.
-name|bitLength
-argument_list|()
-operator|>
-literal|64
-condition|)
-block|{
-return|return
-name|MAX_VALUE
-return|;
-block|}
-else|else
-block|{
-return|return
-name|value
-operator|.
-name|longValue
-argument_list|()
-return|;
-block|}
-block|}
-comment|/**    * Compares the two specified {@code long} values, treating them as unsigned values between    * {@code 0} and {@code 2^64 - 1} inclusive.    *    * @param a the first unsigned {@code long} to compare    * @param b the second unsigned {@code long} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive value if {@code a} is    *         greater than {@code b}; or zero if they are equal    */
+comment|/**    * Compares the two specified {@code long} values, treating them as unsigned    * values between {@code 0} and {@code 2^64 - 1} inclusive.    *    * @param a the first unsigned {@code long} to compare    * @param b the second unsigned {@code long} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *         value if {@code a} is greater than {@code b}; or zero if they are    *         equal    */
 DECL|method|compare (long a, long b)
 specifier|public
 specifier|static
@@ -300,21 +175,19 @@ name|Longs
 operator|.
 name|compare
 argument_list|(
+name|flip
+argument_list|(
 name|a
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 argument_list|,
+name|flip
+argument_list|(
 name|b
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the least value present in {@code array}.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is less than or equal to every other value in    *         the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the least value present in {@code array}.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is less than or equal to    *         every other value in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|min (long... array)
 specifier|public
 specifier|static
@@ -338,14 +211,13 @@ expr_stmt|;
 name|long
 name|min
 init|=
+name|flip
+argument_list|(
 name|array
 index|[
 literal|0
 index|]
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -367,14 +239,13 @@ block|{
 name|long
 name|next
 init|=
+name|flip
+argument_list|(
 name|array
 index|[
 name|i
 index|]
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -390,14 +261,13 @@ expr_stmt|;
 block|}
 block|}
 return|return
+name|flip
+argument_list|(
 name|min
-operator|-
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 return|;
 block|}
-comment|/**    * Returns the greatest value present in {@code array}.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is greater than or equal to every other value    *         in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the greatest value present in {@code array}.    *    * @param array a<i>nonempty</i> array of unsigned {@code long} values    * @return the value present in {@code array} that is greater than or equal    *         to every other value in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|max (long... array)
 specifier|public
 specifier|static
@@ -421,14 +291,13 @@ expr_stmt|;
 name|long
 name|max
 init|=
+name|flip
+argument_list|(
 name|array
 index|[
 literal|0
 index|]
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -450,14 +319,13 @@ block|{
 name|long
 name|next
 init|=
+name|flip
+argument_list|(
 name|array
 index|[
 name|i
 index|]
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -473,14 +341,13 @@ expr_stmt|;
 block|}
 block|}
 return|return
+name|flip
+argument_list|(
 name|max
-operator|-
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied unsigned {@code long} values separated    * by {@code separator}. For example, {@code join("-", 1, 2, 3)} returns    * the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of unsigned {@code long} values, possibly empty    */
+comment|/**    * Returns a string containing the supplied unsigned {@code long} values    * separated by {@code separator}. For example, {@code join("-", 1, 2, 3)}    * returns the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of unsigned {@code long} values, possibly empty    */
 DECL|method|join (String separator, long... array)
 specifier|public
 specifier|static
@@ -702,6 +569,7 @@ block|}
 block|}
 comment|/**    * Returns dividend / divisor, where the dividend and divisor are treated as    * unsigned 64-bit quantities.    *    * @param dividend the dividend (numerator)    * @param divisor  the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 DECL|method|divide (long dividend, long divisor)
+specifier|public
 specifier|static
 name|long
 name|divide
@@ -723,17 +591,14 @@ block|{
 comment|// i.e., divisor>= 2^63:
 if|if
 condition|(
+name|compare
+argument_list|(
 name|dividend
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
-operator|<
+argument_list|,
 name|divisor
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
+operator|<
+literal|0
 condition|)
 block|{
 return|return
@@ -792,17 +657,14 @@ return|return
 name|quotient
 operator|+
 operator|(
+name|compare
+argument_list|(
 name|rem
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
-operator|>=
+argument_list|,
 name|divisor
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
+operator|>=
+literal|0
 condition|?
 literal|1
 else|:
@@ -833,17 +695,14 @@ block|{
 comment|// i.e., divisor>= 2^63:
 if|if
 condition|(
+name|compare
+argument_list|(
 name|dividend
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
-operator|<
+argument_list|,
 name|divisor
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
+operator|<
+literal|0
 condition|)
 block|{
 return|return
@@ -904,17 +763,14 @@ return|return
 name|rem
 operator|-
 operator|(
+name|compare
+argument_list|(
 name|rem
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
-operator|>=
+argument_list|,
 name|divisor
-operator|+
-name|Long
-operator|.
-name|MIN_VALUE
+argument_list|)
+operator|>=
+literal|0
 condition|?
 name|divisor
 else|:
@@ -1111,7 +967,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/**    * Returns true if (current * radix) + digit is a number too large to be represented by an    * unsigned long. This is useful for detecting overflow while parsing a string representation of    * a number. Does not verify whether supplied radix is valid, passing an invalid radix will give    * undefined results or an ArrayIndexOutOfBoundsException.    */
+comment|/**    * Returns true if (current * radix) + digit is a number too large to be    * represented by an unsigned long. This is useful for detecting overflow    * while parsing a string representation of a number. Does not verify whether    * supplied radix is valid, passing an invalid radix will give undefined    * results or an ArrayIndexOutOfBoundsException.    */
 DECL|method|overflowInParse (long current, int digit, int radix)
 specifier|private
 specifier|static
@@ -1200,7 +1056,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of {@code x} for the given    * radix, where {@code x} is treated as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}; must be    * between Character.MIN_RADIX and Character.MAX_RADIX.  Otherwise,    * the radix {@code 10} is used.    */
+comment|/**    * Returns a string representation of {@code x} for the given radix, where    * {@code x} is treated as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between    *         {@link Character#MIN_RADIX} and {@link Character#MAX_RADIX}.    */
 DECL|method|toString (long x, int radix)
 specifier|public
 specifier|static
@@ -1214,26 +1070,25 @@ name|int
 name|radix
 parameter_list|)
 block|{
-if|if
-condition|(
+name|checkArgument
+argument_list|(
 name|radix
-operator|<
+operator|>=
 name|Character
 operator|.
 name|MIN_RADIX
-operator||
+operator|&&
 name|radix
-operator|>
+operator|<=
 name|Character
 operator|.
 name|MAX_RADIX
-condition|)
-block|{
+argument_list|,
+literal|"radix (%s) must be between Character.MIN_RADIX and Character.MAX_RADIX"
+argument_list|,
 name|radix
-operator|=
-literal|10
+argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|x
