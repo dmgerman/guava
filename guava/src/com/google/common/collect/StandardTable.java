@@ -262,6 +262,8 @@ implements|,
 name|Serializable
 block|{
 DECL|field|backingMap
+annotation|@
+name|GwtTransient
 specifier|final
 name|Map
 argument_list|<
@@ -277,6 +279,8 @@ argument_list|>
 name|backingMap
 decl_stmt|;
 DECL|field|factory
+annotation|@
+name|GwtTransient
 specifier|final
 name|Supplier
 argument_list|<

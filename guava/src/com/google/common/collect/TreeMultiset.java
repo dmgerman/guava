@@ -338,6 +338,8 @@ return|;
 block|}
 DECL|field|comparator
 specifier|private
+annotation|@
+name|GwtTransient
 specifier|final
 name|Comparator
 argument_list|<
