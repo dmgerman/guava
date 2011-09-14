@@ -538,7 +538,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if the bounds of {@code other} do not extend outside    * the bounds of this range. Examples:    *    *<ul>    *<li>{@code [3..6]} encloses {@code [4..5]}    *<li>{@code (3..6)} encloses {@code (3..6)}    *<li>{@code [3..6]} encloses {@code [4..4)} (even though the latter is    *     empty)    *<li>{@code (3..6]} does not enclose {@code [3..6]}    *<li>{@code [4..5]} does not enclose {@code (3..6)} (even though it contains    *     every value contained by the latter range)    *<li>{@code [3..6]} does not enclose {@code (1..1]} (even though it contains    *     every value contained by the latter range)    *</ul>    *    * Note that if {@code a.encloses(b)}, then {@code b.contains(v)} implies    * {@code a.contains(v)}, but as the last two examples illustrate, the    * converse is not always true.    *    *<p>The encloses relation has the following properties:    *    *<ul>    *<li>reflexive: {@code a.encloses(a)} is always true    *<li>antisymmetric: {@code a.encloses(b)&& b.encloses(a)} implies {@code    *     a.equals(b)}    *<li>transitive: {@code a.encloses(b)&& b.encloses(c)} implies {@code    *     a.encloses(c)}    *<li>not a total ordering: {@code !a.encloses(b)} does not imply {@code    *     b.encloses(a)}    *<li>there exists a {@linkplain Ranges#all maximal} range, for which    *     {@code encloses} is always true    *<li>there also exist {@linkplain #isEmpty minimal} ranges, for    *     which {@code encloses(b)} is always false when {@code !equals(b)}    *</ul>    */
+comment|/**    * Returns {@code true} if the bounds of {@code other} do not extend outside    * the bounds of this range. Examples:    *    *<ul>    *<li>{@code [3..6]} encloses {@code [4..5]}    *<li>{@code (3..6)} encloses {@code (3..6)}    *<li>{@code [3..6]} encloses {@code [4..4)} (even though the latter is    *     empty)    *<li>{@code (3..6]} does not enclose {@code [3..6]}    *<li>{@code [4..5]} does not enclose {@code (3..6)} (even though it contains    *     every value contained by the latter range)    *<li>{@code [3..6]} does not enclose {@code (1..1]} (even though it contains    *     every value contained by the latter range)    *</ul>    *    * Note that if {@code a.encloses(b)}, then {@code b.contains(v)} implies    * {@code a.contains(v)}, but as the last two examples illustrate, the    * converse is not always true.    *    *<p>The encloses relation has the following properties:    *    *<ul>    *<li>reflexive: {@code a.encloses(a)} is always true    *<li>antisymmetric: {@code a.encloses(b)&& b.encloses(a)} implies {@code    *     a.equals(b)}    *<li>transitive: {@code a.encloses(b)&& b.encloses(c)} implies {@code    *     a.encloses(c)}    *<li>not a total ordering: {@code !a.encloses(b)} does not imply {@code    *     b.encloses(a)}    *<li>there exists a {@linkplain Ranges#all maximal} range, for which    *     {@code encloses} is always true    *<li>there also exist {@linkplain #isEmpty minimal} ranges, for    *     which {@code encloses(b)} is always false when {@code !equals(b)}    *<li>if {@code a.encloses(b)}, then {@link #isConnected a.isConnected(b)}    *     is {@code true}.     *</ul>    */
 DECL|method|encloses (Range<C> other)
 specifier|public
 name|boolean
@@ -575,7 +575,7 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|/**    * Returns the maximal range {@linkplain #encloses enclosed} by both this    * range and {@code other}, if such a range exists. For example, the    * intersection of {@code [1..5]} and {@code (3..7)} is {@code (3..5]}. The    * resulting range may be empty; for example, {@code [1..5)} intersected with    * {@code [5..7)} yields the empty range {@code [5..5)}.    *    *<p>The intersection operation has the following properties:    *    *<ul>    *<li>commutative: {@code a.intersection(b)} produces the same result as    *     {@code b.intersection(a)}    *<li>associative: {@code a.intersection(b).intersection(c)} produces the    *     same result as {@code a.intersection(b.intersection(c))}    *<li>idempotent: {@code a.intersection(a)} equals {@code a}    *<li>identity ({@link Ranges#all}): {@code a.intersection(Ranges.all())}    *     equals {@code a}    *</ul>    *    * @throws IllegalArgumentException if no range exists that is enclosed by    *     both these ranges    */
+comment|/**    * Returns the maximal range {@linkplain #encloses enclosed} by both this    * range and {@code other}, if such a range exists.    *     *<p>For example, the intersection of {@code [1..5]} and {@code (3..7)} is    * {@code (3..5]}. The resulting range may be empty; for example,     * {@code [1..5)} intersected with {@code [5..7)} yields the empty range    * {@code [5..5)}.    *     *<p>Generally, the intersection exists if and only if this range and     * {@code other} are {@linkplain #isConnected connected}.    *    *<p>The intersection operation has the following properties:    *    *<ul>    *<li>commutative: {@code a.intersection(b)} produces the same result as    *     {@code b.intersection(a)}    *<li>associative: {@code a.intersection(b).intersection(c)} produces the    *     same result as {@code a.intersection(b.intersection(c))}    *<li>idempotent: {@code a.intersection(a)} equals {@code a}    *<li>identity ({@link Ranges#all}): {@code a.intersection(Ranges.all())}    *     equals {@code a}    *</ul>    *    * @throws IllegalArgumentException if no range exists that is enclosed by    *     both these ranges    */
 DECL|method|intersection (Range<C> other)
 specifier|public
 name|Range
@@ -640,7 +640,44 @@ name|newUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the minimal range that {@linkplain #encloses encloses} both this    * range and {@code other}. For example, the span of {@code [1..3]} and    * {@code (5..7)} is {@code [1..7)}. Note that the span may contain values    * that are not contained by either original range.    *    *<p>The span operation has the following properties:    *    *<ul>    *<li>closed: the range {@code a.span(b)} exists for all ranges {@code a} and    *     {@code b}    *<li>commutative: {@code a.span(b)} equals {@code b.span(a)}    *<li>associative: {@code a.span(b).span(c)} equals {@code a.span(b.span(c))}    *<li>idempotent: {@code a.span(a)} equals {@code a}    *</ul>    */
+comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is    * {@linkplain #encloses enclosed} by both this range and {@code other}.    *     *<p>For example,    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose    *     {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose    *     the empty range {@code [4, 4)}    *</ul>    *     *<p>Note that this range and {@code other} have a well-defined {@linkplain    * #span union} and {@linkplain #intersection intersection} (as a single,    * possibly-empty range) if and only if this method returns {@code true}.    *     *<p>The connectedness relation has the following properties:    *    *<ul>    *<li>symmetric: {@code a.isConnected(b)} produces the same result as    *     {@code b.isConnected(a)}    *<li>reflexive: {@code a.isConnected(a)} returns {@code true}    *</ul>    */
+DECL|method|isConnected (Range<C> other)
+specifier|public
+name|boolean
+name|isConnected
+parameter_list|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|other
+parameter_list|)
+block|{
+return|return
+name|lowerBound
+operator|.
+name|compareTo
+argument_list|(
+name|other
+operator|.
+name|upperBound
+argument_list|)
+operator|<=
+literal|0
+operator|&&
+name|other
+operator|.
+name|lowerBound
+operator|.
+name|compareTo
+argument_list|(
+name|upperBound
+argument_list|)
+operator|<=
+literal|0
+return|;
+block|}
+comment|/**    * Returns the minimal range that {@linkplain #encloses encloses} both this    * range and {@code other}. For example, the span of {@code [1..3]} and    * {@code (5..7)} is {@code [1..7)}. Note that the span may contain values    * that are not contained by either original range.    *    *<p>The span operation has the following properties:    *    *<ul>    *<li>closed: the range {@code a.span(b)} exists for all ranges {@code a} and    *     {@code b}    *<li>commutative: {@code a.span(b)} equals {@code b.span(a)}    *<li>associative: {@code a.span(b).span(c)} equals {@code a.span(b.span(c))}    *<li>idempotent: {@code a.span(a)} equals {@code a}    *</ul>    *     *<p>Note that the returned range is also called the<i>union</i> of this    * range and {@code other} if and only if the ranges are     * {@linkplain #isConnected connected}.    */
 DECL|method|span (Range<C> other)
 specifier|public
 name|Range
