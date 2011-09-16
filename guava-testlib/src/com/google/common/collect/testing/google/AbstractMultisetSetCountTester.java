@@ -56,6 +56,26 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
+name|RESTRICTS_ELEMENTS
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|CollectionFeature
+operator|.
 name|SUPPORTS_ADD
 import|;
 end_import
@@ -1121,11 +1141,17 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
+name|value
+operator|=
 block|{
 name|SUPPORTS_ADD
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
+argument_list|,
+name|absent
+operator|=
+name|RESTRICTS_ELEMENTS
 argument_list|)
 DECL|method|testSetCount_addNull_nullSupported ()
 specifier|public
