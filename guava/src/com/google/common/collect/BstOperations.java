@@ -118,7 +118,7 @@ block|{}
 comment|/**    * Returns the node with key {@code key} in {@code tree}, if any.    */
 annotation|@
 name|Nullable
-DECL|method|seek ( Comparator<? super K> comparator, @Nullable N tree, K key)
+DECL|method|seek ( Comparator<? super K> comparator, @Nullable N tree, @Nullable K key)
 specifier|public
 specifier|static
 parameter_list|<
@@ -149,6 +149,8 @@ name|Nullable
 name|N
 name|tree
 parameter_list|,
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -228,7 +230,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the result of performing the mutation specified by {@code mutationRule} in {@code    * tree} at the location with key {@code key}.    *    *<ul>    *<li>If the returned {@link BstModificationResult} has type {@code IDENTITY}, the exact    * original tree is returned.    *<li>If the returned {@code BstModificationResult} has type {@code REBUILDING_CHANGE},    * the tree will be rebuilt with the node factory of the mutation rule, but not rebalanced.    *<li>If the returned {@code BstModificationResult} has type {@code REBALANCING_CHANGE},    * the tree will be rebalanced using the balance policy of the mutation rule.    *</ul>    */
-DECL|method|mutate ( Comparator<? super K> comparator, BstMutationRule<K, N> mutationRule, @Nullable N tree, K key)
+DECL|method|mutate ( Comparator<? super K> comparator, BstMutationRule<K, N> mutationRule, @Nullable N tree, @Nullable K key)
 specifier|public
 specifier|static
 parameter_list|<
@@ -272,6 +274,8 @@ name|Nullable
 name|N
 name|tree
 parameter_list|,
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -284,11 +288,6 @@ expr_stmt|;
 name|checkNotNull
 argument_list|(
 name|mutationRule
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|key
 argument_list|)
 expr_stmt|;
 if|if

@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A reusable abstraction for a node in a binary search tree. Null keys are disallowed.  *  *<p>The node is considered to be immutable. Any subclass with mutable fields must create a new  * {@code BstNode} object upon any mutation, as the {@code Bst} classes assume that two nodes  * {@code a} and {@code b} represent exactly the same tree if and only if {@code a == b}.  *  *<p>A {@code BstNode} can be considered to be an<i>entry</i>, containing a key and possibly some  * value data, or it can be considered to be a<i>subtree</i>, representative of it and all its  * descendants.  *  * @author Louis Wasserman  * @param<K> The key type associated with this tree.  * @param<N> The type of the nodes in this tree.  */
+comment|/**  * A reusable abstraction for a node in a binary search tree. Null keys are allowed.  *  *<p>The node is considered to be immutable. Any subclass with mutable fields must create a new  * {@code BstNode} object upon any mutation, as the {@code Bst} classes assume that two nodes  * {@code a} and {@code b} represent exactly the same tree if and only if {@code a == b}.  *  *<p>A {@code BstNode} can be considered to be an<i>entry</i>, containing a key and possibly some  * value data, or it can be considered to be a<i>subtree</i>, representative of it and all its  * descendants.  *  * @author Louis Wasserman  * @param<K> The key type associated with this tree.  * @param<N> The type of the nodes in this tree.  */
 end_comment
 
 begin_class
@@ -162,9 +162,11 @@ specifier|final
 name|N
 name|right
 decl_stmt|;
-DECL|method|BstNode (K key, @Nullable N left, @Nullable N right)
+DECL|method|BstNode (@ullable K key, @Nullable N left, @Nullable N right)
 name|BstNode
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -183,10 +185,7 @@ name|this
 operator|.
 name|key
 operator|=
-name|checkNotNull
-argument_list|(
 name|key
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -202,6 +201,8 @@ name|right
 expr_stmt|;
 block|}
 comment|/**    * Returns the ordered key associated with this node.    */
+annotation|@
+name|Nullable
 DECL|method|getKey ()
 specifier|public
 specifier|final

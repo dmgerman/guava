@@ -183,7 +183,7 @@ parameter_list|>
 parameter_list|>
 block|{
 comment|/**    * Creates a {@code BstMutationResult}.    *    * @param targetKey The key targeted for modification. If {@code originalTarget} or {@code    *        changedTarget} are non-null, their keys must compare as equal to {@code targetKey}.    * @param originalRoot The root of the subtree that was modified.    * @param changedRoot The root of the subtree, after the modification and any rebalancing.    * @param modificationResult The result of the local modification to an entry.    */
-DECL|method|mutationResult (K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, BstModificationResult<N> modificationResult)
+DECL|method|mutationResult ( @ullable K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, BstModificationResult<N> modificationResult)
 specifier|public
 specifier|static
 parameter_list|<
@@ -206,6 +206,8 @@ name|N
 argument_list|>
 name|mutationResult
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|targetKey
 parameter_list|,
@@ -274,10 +276,12 @@ name|N
 argument_list|>
 name|modificationResult
 decl_stmt|;
-DECL|method|BstMutationResult (K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, BstModificationResult<N> modificationResult)
+DECL|method|BstMutationResult (@ullable K targetKey, @Nullable N originalRoot, @Nullable N changedRoot, BstModificationResult<N> modificationResult)
 specifier|private
 name|BstMutationResult
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|targetKey
 parameter_list|,
@@ -302,10 +306,7 @@ name|this
 operator|.
 name|targetKey
 operator|=
-name|checkNotNull
-argument_list|(
 name|targetKey
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
