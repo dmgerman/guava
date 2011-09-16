@@ -80,6 +80,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -140,6 +150,8 @@ name|K
 argument_list|,
 name|V
 argument_list|>
+implements|implements
+name|Serializable
 block|{
 DECL|field|map
 specifier|final
@@ -397,6 +409,29 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// TODO(fry): activeEntries
+comment|// Serialization Support
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1
+decl_stmt|;
+DECL|method|writeReplace ()
+name|Object
+name|writeReplace
+parameter_list|()
+block|{
+return|return
+name|map
+operator|.
+name|cacheSerializationProxy
+argument_list|()
+return|;
+block|}
+comment|// Inner Classes
 DECL|class|CacheAsMap
 specifier|static
 specifier|final
