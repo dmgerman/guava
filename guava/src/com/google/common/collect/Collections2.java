@@ -182,6 +182,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides static methods for working with {@code Collection} instances.  *  * @author Chris Povirk  * @author Mike Bostock  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
@@ -964,7 +974,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a collection that applies {@code function} to each element of    * {@code fromCollection}. The returned collection is a live view of {@code    * fromCollection}; changes to one affect the other.    *    *<p>The returned collection's {@code add()} and {@code addAll()} methods    * throw an {@link UnsupportedOperationException}. All other collection    * methods are supported, as long as {@code fromCollection} supports them.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code fromCollection} is.    *    *<p>When a live view is<i>not</i> needed, it may be faster to copy the    * transformed collection and use the copy.    */
+comment|/**    * Returns a collection that applies {@code function} to each element of    * {@code fromCollection}. The returned collection is a live view of {@code    * fromCollection}; changes to one affect the other.    *    *<p>The returned collection's {@code add()} and {@code addAll()} methods    * throw an {@link UnsupportedOperationException}. All other collection    * methods are supported, as long as {@code fromCollection} supports them.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code fromCollection} is.    *    *<p>When a live view is<i>not</i> needed, it may be faster to copy the    * transformed collection and use the copy.    *    *<p>If the input {@code Collection} is known to be a {@code List}, consider    * {@link Lists#transform}. If only an {@code Iterable} is available, use    * {@link Iterables#transform}.    */
 DECL|method|transform (Collection<F> fromCollection, Function<? super F, T> function)
 specifier|public
 specifier|static
