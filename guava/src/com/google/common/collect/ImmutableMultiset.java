@@ -757,13 +757,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|copyFromEntries ( Collection<Entry<E2>> entries)
+DECL|method|copyFromEntries ( Collection<? extends Entry<? extends E>> entries)
 specifier|static
 parameter_list|<
-name|E
-parameter_list|,
-name|E2
-extends|extends
 name|E
 parameter_list|>
 name|ImmutableMultiset
@@ -774,9 +770,13 @@ name|copyFromEntries
 parameter_list|(
 name|Collection
 argument_list|<
+name|?
+extends|extends
 name|Entry
 argument_list|<
-name|E2
+name|?
+extends|extends
+name|E
 argument_list|>
 argument_list|>
 name|entries
@@ -806,7 +806,9 @@ for|for
 control|(
 name|Entry
 argument_list|<
-name|E2
+name|?
+extends|extends
+name|E
 argument_list|>
 name|entry
 range|:
