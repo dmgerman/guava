@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|CharMatcher
+operator|.
+name|WHITESPACE
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -4566,10 +4582,12 @@ name|string
 parameter_list|)
 block|{
 return|return
-name|string
+name|WHITESPACE
 operator|.
-name|trim
-argument_list|()
+name|trimFrom
+argument_list|(
+name|string
+argument_list|)
 return|;
 block|}
 block|}

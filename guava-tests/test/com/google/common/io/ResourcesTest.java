@@ -18,6 +18,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|CharMatcher
+operator|.
+name|WHITESPACE
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -383,13 +399,12 @@ name|collector
 operator|.
 name|add
 argument_list|(
+name|WHITESPACE
+operator|.
+name|trimFrom
+argument_list|(
 name|line
-operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|trim
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -443,7 +458,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"alice's adventures in wonderland"
+literal|"ALICE'S ADVENTURES IN WONDERLAND"
 argument_list|,
 name|result
 operator|.
@@ -455,7 +470,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"the end"
+literal|"THE END"
 argument_list|,
 name|result
 operator|.
