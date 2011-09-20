@@ -111,6 +111,28 @@ name|E
 argument_list|>
 name|comparator
 decl_stmt|;
+comment|// needed for serialization
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|AbstractSortedMultiset ()
+name|AbstractSortedMultiset
+parameter_list|()
+block|{
+name|this
+argument_list|(
+operator|(
+name|Comparator
+operator|)
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|AbstractSortedMultiset (Comparator<? super E> comparator)
 name|AbstractSortedMultiset
 parameter_list|(

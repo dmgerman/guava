@@ -938,7 +938,7 @@ name|currentPath
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code key} is beyond the specified side of the specified range.    */
-DECL|method|beyond (GeneralRange<K> range, K key, BstSide side)
+DECL|method|beyond (GeneralRange<K> range, @Nullable K key, BstSide side)
 specifier|public
 specifier|static
 parameter_list|<
@@ -953,6 +953,8 @@ name|K
 argument_list|>
 name|range
 parameter_list|,
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -963,11 +965,6 @@ block|{
 name|checkNotNull
 argument_list|(
 name|range
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|key
 argument_list|)
 expr_stmt|;
 switch|switch
