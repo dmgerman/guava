@@ -1083,7 +1083,7 @@ parameter_list|)
 block|{
 comment|// initialSize will most likely be 2, but it's possible for the GC to have already run, so we'll
 comment|// observe a size of 1
-name|int
+name|long
 name|initialSize
 init|=
 name|cache

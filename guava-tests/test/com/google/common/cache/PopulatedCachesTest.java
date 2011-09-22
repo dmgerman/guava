@@ -1645,6 +1645,9 @@ argument_list|(
 operator|new
 name|Object
 index|[
+operator|(
+name|int
+operator|)
 name|cache
 operator|.
 name|size
@@ -1899,6 +1902,9 @@ argument_list|(
 operator|new
 name|Object
 index|[
+operator|(
+name|int
+operator|)
 name|cache
 operator|.
 name|size

@@ -1084,18 +1084,6 @@ operator|.
 name|cleanUp
 argument_list|()
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|segment
-operator|.
-name|count
-argument_list|,
-name|segmentSize
-argument_list|(
-name|segment
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|segment
@@ -1117,6 +1105,7 @@ argument_list|(
 name|segment
 argument_list|)
 decl_stmt|;
+comment|// check count after we have a strong reference to all entries
 name|assertEquals
 argument_list|(
 name|segment

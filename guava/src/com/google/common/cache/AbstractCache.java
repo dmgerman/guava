@@ -38,35 +38,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|collect
-operator|.
-name|ImmutableList
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|concurrent
 operator|.
 name|UncheckedExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -119,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method. This implementation throws an  * {@link UnsupportedOperationException} on calls to {@link #size}, {@link #invalidate},  * {@link #invalidateAll}, {@link #stats}, {@link #activeEntries}, and {@link #asMap}. The methods  * {@link #getUnchecked} and {@link #apply} are implemented in terms of {@link #get}. The method  * {@link #cleanUp} is a no-op.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method. This implementation throws an  * {@link UnsupportedOperationException} on calls to {@link #size}, {@link #invalidate},  * {@link #invalidateAll}, {@link #stats}, and {@link #asMap}. The methods  * {@link #getUnchecked} and {@link #apply} are implemented in terms of {@link #get}. The method  * {@link #cleanUp} is a no-op.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -222,7 +198,7 @@ annotation|@
 name|Override
 DECL|method|size ()
 specifier|public
-name|int
+name|long
 name|size
 parameter_list|()
 block|{
@@ -272,33 +248,6 @@ specifier|public
 name|CacheStats
 name|stats
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Override
-DECL|method|activeEntries (int limit)
-specifier|public
-name|ImmutableList
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|activeEntries
-parameter_list|(
-name|int
-name|limit
-parameter_list|)
 block|{
 throw|throw
 operator|new

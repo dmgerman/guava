@@ -17124,12 +17124,9 @@ return|return
 literal|true
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|size ()
-specifier|public
-name|int
-name|size
+DECL|method|longSize ()
+name|long
+name|longSize
 parameter_list|()
 block|{
 name|Segment
@@ -17178,11 +17175,24 @@ name|count
 expr_stmt|;
 block|}
 return|return
+name|sum
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|size ()
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
 name|Ints
 operator|.
 name|saturatedCast
 argument_list|(
-name|sum
+name|longSize
+argument_list|()
 argument_list|)
 return|;
 block|}

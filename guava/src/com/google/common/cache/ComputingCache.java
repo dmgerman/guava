@@ -269,14 +269,14 @@ annotation|@
 name|Override
 DECL|method|size ()
 specifier|public
-name|int
+name|long
 name|size
 parameter_list|()
 block|{
 return|return
 name|map
 operator|.
-name|size
+name|longSize
 argument_list|()
 return|;
 block|}
@@ -398,7 +398,6 @@ name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO(fry): activeEntries
 comment|// Serialization Support
 DECL|field|serialVersionUID
 specifier|private

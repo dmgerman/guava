@@ -52,20 +52,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|collect
-operator|.
-name|ImmutableList
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|concurrent
@@ -213,9 +199,9 @@ name|void
 name|invalidateAll
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the approximate number of entries in this cache. If the cache contains more than {@code    * Integer.MAX_VALUE} elements, returns {@code Integer.MAX_VALUE}.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
+comment|/**    * Returns the approximate number of entries in this cache.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|size ()
-name|int
+name|long
 name|size
 parameter_list|()
 function_decl|;
@@ -224,25 +210,6 @@ DECL|method|stats ()
 name|CacheStats
 name|stats
 parameter_list|()
-function_decl|;
-comment|/**    * Returns a list of immutable copies of this cache's most active entries, approximately ordered    * from least likely to be evicted to most likely to be evicted.    *    * @param limit the maximum number of entries to return    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
-DECL|method|activeEntries (int limit)
-name|ImmutableList
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|activeEntries
-parameter_list|(
-name|int
-name|limit
-parameter_list|)
 function_decl|;
 comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Assume that none of    * the returned map's optional operations will be implemented, unless otherwise specified.    *    *<p>Operations on the returned map will never cause new values to be loaded into the cache. So,    * unlike {@link #get} and {@link #getUnchecked}, this map's {@link Map#get get} method will    * always return {@code null} for a key that is not already cached.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|asMap ()
