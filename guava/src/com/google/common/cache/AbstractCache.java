@@ -84,16 +84,6 @@ name|AtomicLong
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method. This implementation throws an  * {@link UnsupportedOperationException} on calls to {@link #size}, {@link #invalidate},  * {@link #invalidateAll}, {@link #stats}, and {@link #asMap}. The methods  * {@link #getUnchecked} and {@link #apply} are implemented in terms of {@link #get}. The method  * {@link #cleanUp} is a no-op.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
@@ -127,8 +117,6 @@ parameter_list|()
 block|{}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|getUnchecked (K key)
 specifier|public
 name|V
@@ -167,8 +155,6 @@ block|}
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 DECL|method|apply (K key)
 specifier|public
 specifier|final
@@ -210,13 +196,11 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|invalidate (@ullable Object key)
+DECL|method|invalidate (Object key)
 specifier|public
 name|void
 name|invalidate
 parameter_list|(
-annotation|@
-name|Nullable
 name|Object
 name|key
 parameter_list|)

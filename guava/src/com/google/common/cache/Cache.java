@@ -110,16 +110,6 @@ name|ExecutionException
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * A semi-persistent mapping from keys to values. Values are automatically loaded by the cache,  * and are stored in the cache until either evicted or manually invalidated.  *  *<p>All methods other than {@link #get} and {@link #getUnchecked} are optional.  *  *<p>When evaluated as a {@link Function}, a cache yields the same result as invoking {@link  * #getUnchecked}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
@@ -144,10 +134,8 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary, and throwing an execution exception on failure. No state associated with this cache    * is modified until loading completes.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws ExecutionException if a checked exception was thrown while loading the response    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     response    * @throws ExecutionError if an error was thrown while loading the response    */
+comment|/**    * Returns the value associated with the given key, creating or retrieving that value if    * necessary, and throwing an execution exception on failure. No state associated with this cache    * is modified until loading completes. Note that this method will never return {@code null}.    *    * @throws ExecutionException if a checked exception was thrown while loading the response    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     response    * @throws ExecutionError if an error was thrown while loading the response    */
 DECL|method|get (K key)
-annotation|@
-name|Nullable
 name|V
 name|get
 parameter_list|(
@@ -157,10 +145,8 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Returns the value associated with the given key, loading that value if necessary. No state    * associated with this cache is modified until computation completes. Unlike {@link #get}, this    * method does not throw a checked exception, and thus should only be used in situations where    * checked exceptions are not thrown by the cache loader.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions.    * The {@link #get} method should be preferred for cache loaders which throw checked exceptions.    *    *<p>The implementation may support {@code null} as a valid cached value, or may return {@code    * null} without caching it, or may not permit null results at all.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the response,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the response    */
+comment|/**    * Returns the value associated with the given key, loading that value if necessary. No state    * associated with this cache is modified until computation completes. Unlike {@link #get}, this    * method does not throw a checked exception, and thus should only be used in situations where    * checked exceptions are not thrown by the cache loader. Note that this method will never return    * {@code null}.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions.    * The {@link #get} method should be preferred for cache loaders which throw checked exceptions.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the response,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the response    */
 DECL|method|getUnchecked (K key)
-annotation|@
-name|Nullable
 name|V
 name|getUnchecked
 parameter_list|(
@@ -172,8 +158,6 @@ comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface
 annotation|@
 name|Override
 DECL|method|apply (K key)
-annotation|@
-name|Nullable
 name|V
 name|apply
 parameter_list|(
@@ -183,12 +167,10 @@ parameter_list|)
 function_decl|;
 comment|// TODO(fry): add bulk operations
 comment|/**    * Discards any cached value for key {@code key}, possibly asynchronously, so that a future    * invocation of {@code get(key)} will result in a cache miss and reload.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
-DECL|method|invalidate (@ullable Object key)
+DECL|method|invalidate (Object key)
 name|void
 name|invalidate
 parameter_list|(
-annotation|@
-name|Nullable
 name|Object
 name|key
 parameter_list|)

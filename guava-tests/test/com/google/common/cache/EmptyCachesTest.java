@@ -338,13 +338,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|cache
-operator|.
-name|invalidate
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
 name|checkEmpty
 argument_list|(
 name|cache
