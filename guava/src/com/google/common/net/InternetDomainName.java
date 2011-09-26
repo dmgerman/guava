@@ -578,7 +578,7 @@ name|domain
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since 10.0 (previously named {@code fromLenient})    */
+comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValid}    * @since 10.0 (previously named {@code fromLenient})    */
 DECL|method|from (String domain)
 specifier|public
 specifier|static
@@ -1055,7 +1055,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the    * argument and a dot to the current name. For example, {@code    * InternetDomainName.fromLenient("foo.com").child("www.bar")} returns a new    * {@code InternetDomainName} with the value {@code www.bar.foo.com}. Only    * lenient validation is performed, as described {@link #from(String) here}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
+comment|/**    * Creates and returns a new {@code InternetDomainName} by prepending the    * argument and a dot to the current name. For example, {@code    * InternetDomainName.from("foo.com").child("www.bar")} returns a new    * {@code InternetDomainName} with the value {@code www.bar.foo.com}. Only    * lenient validation is performed, as described {@link #from(String) here}.    *    * @throws NullPointerException if leftParts is null    * @throws IllegalArgumentException if the resulting name is not valid    */
 DECL|method|child (String leftParts)
 specifier|public
 name|InternetDomainName
@@ -1205,6 +1205,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Equality testing is based on the text supplied by the caller,    * after normalization as described in the class documentation. For    * example, a non-ASCII Unicode domain name and the Punycode version    * of the same domain name would not be considered equal.    *    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
