@@ -1780,6 +1780,27 @@ name|rootReference
 argument_list|)
 return|;
 block|}
+comment|/**    * {@inheritDoc}    *    * @since 11.0    */
+annotation|@
+name|Override
+DECL|method|comparator ()
+specifier|public
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|comparator
+argument_list|()
+return|;
+block|}
 DECL|class|Node
 specifier|private
 specifier|static
