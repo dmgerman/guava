@@ -209,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for arithmetic on values of type {@code long}. Where possible, methods are defined and  * named analogously to their {@code BigInteger} counterparts.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@link BigInteger} can be found in  * {@link IntMath} and {@link BigIntegerMath} respectively.  For other common operations on  * {@code long} values, see {@link com.google.common.primitives.Longs}.  *  * @author Louis Wasserman  */
+comment|/**  * A class for arithmetic on values of type {@code long}. Where possible, methods are defined and  * named analogously to their {@code BigInteger} counterparts.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@link BigInteger} can be found in  * {@link IntMath} and {@link BigIntegerMath} respectively.  For other common operations on  * {@code long} values, see {@link com.google.common.primitives.Longs}.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class

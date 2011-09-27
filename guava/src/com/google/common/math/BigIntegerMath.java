@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A class for arithmetic on values of type {@code BigInteger}.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@code long} can be found in  * {@link IntMath} and {@link LongMath} respectively.  *  * @author Louis Wasserman  */
+comment|/**  * A class for arithmetic on values of type {@code BigInteger}.  *  *<p>The implementations of many methods in this class are based on material from Henry S. Warren,  * Jr.'s<i>Hacker's Delight</i>, (Addison Wesley, 2002).  *  *<p>Similar functionality for {@code int} and for {@code long} can be found in  * {@link IntMath} and {@link LongMath} respectively.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
