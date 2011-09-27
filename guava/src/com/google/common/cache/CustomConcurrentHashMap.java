@@ -174,6 +174,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|cache
+operator|.
+name|CacheBuilder
+operator|.
+name|OneWeigher
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|AbstractLinkedIterator
@@ -727,11 +743,22 @@ specifier|final
 name|Strength
 name|valueStrength
 decl_stmt|;
-comment|/** The maximum size of this map. UNSET_INT if there is no maximum. */
-DECL|field|maximumSize
+comment|/** The maximum weight of this map. UNSET_INT if there is no maximum. */
+DECL|field|maxWeight
 specifier|final
-name|int
-name|maximumSize
+name|long
+name|maxWeight
+decl_stmt|;
+comment|/** Weigher to weigh cache entries. */
+DECL|field|weigher
+specifier|final
+name|Weigher
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|weigher
 decl_stmt|;
 comment|/** How long after the last access to an entry the map will retain that entry. */
 DECL|field|expireAfterAccessNanos
@@ -869,11 +896,19 @@ operator|.
 name|getValueEquivalence
 argument_list|()
 expr_stmt|;
-name|maximumSize
+name|maxWeight
 operator|=
 name|builder
 operator|.
-name|maximumSize
+name|getMaximumWeight
+argument_list|()
+expr_stmt|;
+name|weigher
+operator|=
+name|builder
+operator|.
+name|getWeigher
+argument_list|()
 expr_stmt|;
 name|expireAfterAccessNanos
 operator|=
@@ -972,6 +1007,10 @@ if|if
 condition|(
 name|evictsBySize
 argument_list|()
+operator|&&
+operator|!
+name|customWeigher
+argument_list|()
 condition|)
 block|{
 name|initialCapacity
@@ -982,13 +1021,16 @@ name|min
 argument_list|(
 name|initialCapacity
 argument_list|,
-name|maximumSize
+operator|(
+name|int
+operator|)
+name|maxWeight
 argument_list|)
 expr_stmt|;
 block|}
 comment|// Find power-of-two sizes best matching arguments. Constraints:
-comment|// (segmentCount<= maximumSize)
-comment|//&& (concurrencyLevel> maximumSize || segmentCount> concurrencyLevel)
+comment|// (segmentCount<= maxWeight)
+comment|//&& (concurrencyLevel> maxWeight || segmentCount> concurrencyLevel)
 name|int
 name|segmentShift
 init|=
@@ -1010,11 +1052,14 @@ operator|!
 name|evictsBySize
 argument_list|()
 operator|||
+name|customWeigher
+argument_list|()
+operator|||
 name|segmentCount
 operator|*
 literal|2
 operator|<=
-name|maximumSize
+name|maxWeight
 operator|)
 condition|)
 block|{
@@ -1092,20 +1137,20 @@ name|evictsBySize
 argument_list|()
 condition|)
 block|{
-comment|// Ensure sum of segment max sizes = overall max size
-name|int
-name|maximumSegmentSize
+comment|// Ensure sum of segment max weights = overall max weights
+name|long
+name|maxSegmentWeight
 init|=
-name|maximumSize
+name|maxWeight
 operator|/
 name|segmentCount
 operator|+
 literal|1
 decl_stmt|;
-name|int
+name|long
 name|remainder
 init|=
-name|maximumSize
+name|maxWeight
 operator|%
 name|segmentCount
 decl_stmt|;
@@ -1135,7 +1180,7 @@ operator|==
 name|remainder
 condition|)
 block|{
-name|maximumSegmentSize
+name|maxSegmentWeight
 operator|--
 expr_stmt|;
 block|}
@@ -1150,7 +1195,7 @@ name|createSegment
 argument_list|(
 name|segmentSize
 argument_list|,
-name|maximumSegmentSize
+name|maxSegmentWeight
 argument_list|,
 name|statsCounterSupplier
 operator|.
@@ -1209,9 +1254,22 @@ name|evictsBySize
 parameter_list|()
 block|{
 return|return
-name|maximumSize
+name|maxWeight
 operator|!=
 name|UNSET_INT
+return|;
+block|}
+DECL|method|customWeigher ()
+name|boolean
+name|customWeigher
+parameter_list|()
+block|{
+return|return
+name|weigher
+operator|!=
+name|OneWeigher
+operator|.
+name|INSTANCE
 return|;
 block|}
 DECL|method|expires ()
@@ -1316,9 +1374,18 @@ name|entry
 parameter_list|,
 name|V
 name|value
+parameter_list|,
+name|int
+name|weight
 parameter_list|)
 block|{
 return|return
+operator|(
+name|weight
+operator|==
+literal|1
+operator|)
+condition|?
 operator|new
 name|StrongValueReference
 argument_list|<
@@ -1328,6 +1395,19 @@ name|V
 argument_list|>
 argument_list|(
 name|value
+argument_list|)
+else|:
+operator|new
+name|WeightedStrongValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|value
+argument_list|,
+name|weight
 argument_list|)
 return|;
 block|}
@@ -1385,9 +1465,18 @@ name|entry
 parameter_list|,
 name|V
 name|value
+parameter_list|,
+name|int
+name|weight
 parameter_list|)
 block|{
 return|return
+operator|(
+name|weight
+operator|==
+literal|1
+operator|)
+condition|?
 operator|new
 name|SoftValueReference
 argument_list|<
@@ -1403,6 +1492,25 @@ argument_list|,
 name|value
 argument_list|,
 name|entry
+argument_list|)
+else|:
+operator|new
+name|WeightedSoftValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|segment
+operator|.
+name|valueReferenceQueue
+argument_list|,
+name|value
+argument_list|,
+name|entry
+argument_list|,
+name|weight
 argument_list|)
 return|;
 block|}
@@ -1460,9 +1568,18 @@ name|entry
 parameter_list|,
 name|V
 name|value
+parameter_list|,
+name|int
+name|weight
 parameter_list|)
 block|{
 return|return
+operator|(
+name|weight
+operator|==
+literal|1
+operator|)
+condition|?
 operator|new
 name|WeakValueReference
 argument_list|<
@@ -1478,6 +1595,25 @@ argument_list|,
 name|value
 argument_list|,
 name|entry
+argument_list|)
+else|:
+operator|new
+name|WeightedWeakValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|segment
+operator|.
+name|valueReferenceQueue
+argument_list|,
+name|value
+argument_list|,
+name|entry
+argument_list|,
+name|weight
 argument_list|)
 return|;
 block|}
@@ -1500,7 +1636,7 @@ block|}
 block|}
 block|;
 comment|/**      * Creates a reference for the given value according to this value strength.      */
-DECL|method|referenceValue ( Segment<K, V> segment, ReferenceEntry<K, V> entry, V value)
+DECL|method|referenceValue ( Segment<K, V> segment, ReferenceEntry<K, V> entry, V value, int weight)
 specifier|abstract
 parameter_list|<
 name|K
@@ -1533,6 +1669,9 @@ name|entry
 parameter_list|,
 name|V
 name|value
+parameter_list|,
+name|int
+name|weight
 parameter_list|)
 function_decl|;
 comment|/**      * Returns the default equivalence strategy used to compare and hash keys or values referenced      * at this strength. This strategy will be used unless the user explicitly specifies an      * alternate strategy.      */
@@ -3341,6 +3480,12 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 function_decl|;
+comment|/**      * Returns the weight of this entry. This is assumed to be static between calls to setValue.      */
+DECL|method|getWeight ()
+name|int
+name|getWeight
+parameter_list|()
+function_decl|;
 comment|/**      * Returns the entry associated with this value reference, or {@code null} if this value      * reference is independent of any entry.      */
 DECL|method|getEntry ()
 name|ReferenceEntry
@@ -3423,6 +3568,17 @@ parameter_list|()
 block|{
 return|return
 literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+literal|1
 return|;
 block|}
 annotation|@
@@ -7707,7 +7863,6 @@ block|}
 comment|/**    * References a weak value.    */
 DECL|class|WeakValueReference
 specifier|static
-specifier|final
 class|class
 name|WeakValueReference
 parameter_list|<
@@ -7775,6 +7930,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|getEntry ()
 specifier|public
 name|ReferenceEntry
@@ -7800,11 +7967,7 @@ parameter_list|(
 name|V
 name|newValue
 parameter_list|)
-block|{
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+block|{}
 annotation|@
 name|Override
 DECL|method|copyFor ( ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
@@ -7879,7 +8042,6 @@ block|}
 comment|/**    * References a soft value.    */
 DECL|class|SoftValueReference
 specifier|static
-specifier|final
 class|class
 name|SoftValueReference
 parameter_list|<
@@ -7947,6 +8109,18 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|getEntry ()
 specifier|public
 name|ReferenceEntry
@@ -7972,11 +8146,7 @@ parameter_list|(
 name|V
 name|newValue
 parameter_list|)
-block|{
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
+block|{}
 annotation|@
 name|Override
 DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
@@ -8051,7 +8221,6 @@ block|}
 comment|/**    * References a strong value.    */
 DECL|class|StrongValueReference
 specifier|static
-specifier|final
 class|class
 name|StrongValueReference
 parameter_list|<
@@ -8096,6 +8265,18 @@ parameter_list|()
 block|{
 return|return
 name|referent
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+literal|1
 return|;
 block|}
 annotation|@
@@ -8182,6 +8363,313 @@ name|V
 name|newValue
 parameter_list|)
 block|{}
+block|}
+comment|/**    * References a weak value.    */
+DECL|class|WeightedWeakValueReference
+specifier|static
+specifier|final
+class|class
+name|WeightedWeakValueReference
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+extends|extends
+name|WeakValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+DECL|field|weight
+specifier|final
+name|int
+name|weight
+decl_stmt|;
+DECL|method|WeightedWeakValueReference (ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry, int weight)
+name|WeightedWeakValueReference
+parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
+name|V
+name|referent
+parameter_list|,
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|,
+name|int
+name|weight
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|queue
+argument_list|,
+name|referent
+argument_list|,
+name|entry
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|weight
+operator|=
+name|weight
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+name|weight
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFor ( ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+specifier|public
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|copyFor
+parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+return|return
+operator|new
+name|WeightedWeakValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|queue
+argument_list|,
+name|get
+argument_list|()
+argument_list|,
+name|entry
+argument_list|,
+name|weight
+argument_list|)
+return|;
+block|}
+block|}
+comment|/**    * References a soft value.    */
+DECL|class|WeightedSoftValueReference
+specifier|static
+specifier|final
+class|class
+name|WeightedSoftValueReference
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+extends|extends
+name|SoftValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+DECL|field|weight
+specifier|final
+name|int
+name|weight
+decl_stmt|;
+DECL|method|WeightedSoftValueReference (ReferenceQueue<V> queue, V referent, ReferenceEntry<K, V> entry, int weight)
+name|WeightedSoftValueReference
+parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
+name|V
+name|referent
+parameter_list|,
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|,
+name|int
+name|weight
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|queue
+argument_list|,
+name|referent
+argument_list|,
+name|entry
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|weight
+operator|=
+name|weight
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+name|weight
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+specifier|public
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|copyFor
+parameter_list|(
+name|ReferenceQueue
+argument_list|<
+name|V
+argument_list|>
+name|queue
+parameter_list|,
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+return|return
+operator|new
+name|WeightedSoftValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|queue
+argument_list|,
+name|get
+argument_list|()
+argument_list|,
+name|entry
+argument_list|,
+name|weight
+argument_list|)
+return|;
+block|}
+block|}
+comment|/**    * References a strong value.    */
+DECL|class|WeightedStrongValueReference
+specifier|static
+specifier|final
+class|class
+name|WeightedStrongValueReference
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+extends|extends
+name|StrongValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+DECL|field|weight
+specifier|final
+name|int
+name|weight
+decl_stmt|;
+DECL|method|WeightedStrongValueReference (V referent, int weight)
+name|WeightedStrongValueReference
+parameter_list|(
+name|V
+name|referent
+parameter_list|,
+name|int
+name|weight
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|referent
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|weight
+operator|=
+name|weight
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+return|return
+name|weight
+return|;
+block|}
 block|}
 comment|/**    * Applies a supplemental hash function to a given hash code, which defends against poor quality    * hash functions. This is critical when the concurrent hash map uses power-of-two length hash    * tables, that otherwise encounter collisions for hash codes that do not differ in lower or    * upper bits.    *    * @param h hash code    */
 DECL|method|rehash (int h)
@@ -8368,7 +8856,7 @@ literal|"Segment.this"
 argument_list|)
 annotation|@
 name|VisibleForTesting
-DECL|method|newValueReference (ReferenceEntry<K, V> entry, V value)
+DECL|method|newValueReference (ReferenceEntry<K, V> entry, V value, int weight)
 name|ValueReference
 argument_list|<
 name|K
@@ -8387,6 +8875,9 @@ name|entry
 parameter_list|,
 name|V
 name|value
+parameter_list|,
+name|int
+name|weight
 parameter_list|)
 block|{
 name|int
@@ -8410,6 +8901,8 @@ argument_list|,
 name|entry
 argument_list|,
 name|value
+argument_list|,
+name|weight
 argument_list|)
 return|;
 block|}
@@ -8585,7 +9078,7 @@ name|segmentMask
 index|]
 return|;
 block|}
-DECL|method|createSegment ( int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
+DECL|method|createSegment ( int initialCapacity, long maxSegmentWeight, StatsCounter statsCounter)
 name|Segment
 argument_list|<
 name|K
@@ -8597,8 +9090,8 @@ parameter_list|(
 name|int
 name|initialCapacity
 parameter_list|,
-name|int
-name|maxSegmentSize
+name|long
+name|maxSegmentWeight
 parameter_list|,
 name|StatsCounter
 name|statsCounter
@@ -8617,7 +9110,7 @@ name|this
 argument_list|,
 name|initialCapacity
 argument_list|,
-name|maxSegmentSize
+name|maxSegmentWeight
 argument_list|,
 name|statsCounter
 argument_list|)
@@ -9064,11 +9557,21 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-comment|/**      * The number of live elements in this segment's region. This does not include unset elements      * which are awaiting cleanup.      */
+comment|/**      * The number of live elements in this segment's region.      */
 DECL|field|count
 specifier|volatile
 name|int
 name|count
+decl_stmt|;
+comment|/**      * The weight of the live elements in this segment's region.      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|field|totalWeight
+name|int
+name|totalWeight
 decl_stmt|;
 comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * computing size or checking containsValue, then we might have an inconsistent view of state      * so (usually) must retry.      */
 DECL|field|modCount
@@ -9094,11 +9597,11 @@ argument_list|>
 argument_list|>
 name|table
 decl_stmt|;
-comment|/**      * The maximum size of this map. UNSET_INT if there is no maximum.      */
-DECL|field|maxSegmentSize
+comment|/**      * The maximum weight of this segment. UNSET_INT if there is no maximum.      */
+DECL|field|maxSegmentWeight
 specifier|final
-name|int
-name|maxSegmentSize
+name|long
+name|maxSegmentWeight
 decl_stmt|;
 comment|/**      * The key reference queue contains entries whose keys have been garbage collected, and which      * need to be cleaned up internally.      */
 DECL|field|keyReferenceQueue
@@ -9186,7 +9689,7 @@ specifier|final
 name|StatsCounter
 name|statsCounter
 decl_stmt|;
-DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize, StatsCounter statsCounter)
+DECL|method|Segment (CustomConcurrentHashMap<K, V> map, int initialCapacity, long maxSegmentWeight, StatsCounter statsCounter)
 name|Segment
 parameter_list|(
 name|CustomConcurrentHashMap
@@ -9200,8 +9703,8 @@ parameter_list|,
 name|int
 name|initialCapacity
 parameter_list|,
-name|int
-name|maxSegmentSize
+name|long
+name|maxSegmentWeight
 parameter_list|,
 name|StatsCounter
 name|statsCounter
@@ -9215,9 +9718,9 @@ name|map
 expr_stmt|;
 name|this
 operator|.
-name|maxSegmentSize
+name|maxSegmentWeight
 operator|=
-name|maxSegmentSize
+name|maxSegmentWeight
 expr_stmt|;
 name|this
 operator|.
@@ -9427,11 +9930,17 @@ expr_stmt|;
 comment|// 0.75
 if|if
 condition|(
+operator|!
+name|map
+operator|.
+name|customWeigher
+argument_list|()
+operator|&&
 name|this
 operator|.
 name|threshold
 operator|==
-name|maxSegmentSize
+name|maxSegmentWeight
 condition|)
 block|{
 comment|// prevent spurious expansion before eviction
@@ -9587,7 +10096,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|setValue (ReferenceEntry<K, V> entry, V value)
+DECL|method|setValue (ReferenceEntry<K, V> entry, K key, V value)
 name|void
 name|setValue
 parameter_list|(
@@ -9598,6 +10107,9 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|K
+name|key
 parameter_list|,
 name|V
 name|value
@@ -9616,6 +10128,29 @@ operator|.
 name|getValueReference
 argument_list|()
 decl_stmt|;
+name|int
+name|weight
+init|=
+name|map
+operator|.
+name|weigher
+operator|.
+name|weigh
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+decl_stmt|;
+name|checkState
+argument_list|(
+name|weight
+operator|>=
+literal|0
+argument_list|,
+literal|"Weights must be non-negative"
+argument_list|)
+expr_stmt|;
 name|ValueReference
 argument_list|<
 name|K
@@ -9635,6 +10170,8 @@ argument_list|,
 name|entry
 argument_list|,
 name|value
+argument_list|,
+name|weight
 argument_list|)
 decl_stmt|;
 name|entry
@@ -9647,6 +10184,8 @@ expr_stmt|;
 name|recordWrite
 argument_list|(
 name|entry
+argument_list|,
+name|weight
 argument_list|)
 expr_stmt|;
 name|previous
@@ -9932,10 +10471,7 @@ block|{
 name|V
 name|value
 init|=
-name|e
-operator|.
-name|getValueReference
-argument_list|()
+name|valueReference
 operator|.
 name|get
 argument_list|()
@@ -9953,7 +10489,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|value
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -9985,7 +10521,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|value
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -10293,13 +10829,37 @@ literal|null
 condition|)
 block|{
 comment|// the computed value was already clobbered
+comment|// create 0-weight value reference for removal notification
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|valueReference
+init|=
+name|map
+operator|.
+name|valueStrength
+operator|.
+name|referenceValue
+argument_list|(
+name|this
+argument_list|,
+name|e
+argument_list|,
+name|value
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 name|enqueueNotification
 argument_list|(
 name|key
 argument_list|,
 name|hash
 argument_list|,
-name|value
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -10732,7 +11292,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|recordWrite (ReferenceEntry<K, V> entry)
+DECL|method|recordWrite (ReferenceEntry<K, V> entry, int weight)
 name|void
 name|recordWrite
 parameter_list|(
@@ -10743,11 +11303,25 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|int
+name|weight
 parameter_list|)
 block|{
 comment|// we are already under lock, so drain the recency queue immediately
 name|drainRecencyQueue
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|weight
+operator|>
+literal|0
+condition|)
+block|{
+name|totalWeight
+operator|+=
+name|weight
 expr_stmt|;
 name|evictionQueue
 operator|.
@@ -10756,6 +11330,7 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|map
@@ -11031,6 +11606,11 @@ block|}
 block|}
 block|}
 comment|// eviction
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
 DECL|method|enqueueNotification (ReferenceEntry<K, V> entry, RemovalCause cause)
 name|void
 name|enqueueNotification
@@ -11063,15 +11643,17 @@ name|entry
 operator|.
 name|getValueReference
 argument_list|()
-operator|.
-name|get
-argument_list|()
 argument_list|,
 name|cause
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|enqueueNotification (@ullable K key, int hash, @Nullable V value, RemovalCause cause)
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
+DECL|method|enqueueNotification (@ullable K key, int hash, ValueReference<K, V> valueReference, RemovalCause cause)
 name|void
 name|enqueueNotification
 parameter_list|(
@@ -11083,15 +11665,25 @@ parameter_list|,
 name|int
 name|hash
 parameter_list|,
-annotation|@
-name|Nullable
+name|ValueReference
+argument_list|<
+name|K
+argument_list|,
 name|V
-name|value
+argument_list|>
+name|valueReference
 parameter_list|,
 name|RemovalCause
 name|cause
 parameter_list|)
 block|{
+name|totalWeight
+operator|-=
+name|valueReference
+operator|.
+name|getWeight
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|cause
@@ -11115,6 +11707,14 @@ operator|!=
 name|DISCARDING_QUEUE
 condition|)
 block|{
+name|V
+name|value
+init|=
+name|valueReference
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
 name|RemovalNotification
 argument_list|<
 name|K
@@ -11149,32 +11749,38 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Performs eviction if the segment is full. This should only be called prior to adding a new      * entry and increasing {@code count}.      *      * @return true if eviction occurred      */
+comment|/**      * Performs eviction if the segment is full. This should only be called prior to adding a new      * entry and increasing {@code count}.      */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
 DECL|method|evictEntries ()
-name|boolean
+name|void
 name|evictEntries
 parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
 name|map
 operator|.
 name|evictsBySize
 argument_list|()
-operator|&&
-name|count
-operator|>=
-name|maxSegmentSize
 condition|)
 block|{
+return|return;
+block|}
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
+while|while
+condition|(
+name|totalWeight
+operator|>
+name|maxSegmentWeight
+condition|)
+block|{
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -11212,13 +11818,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-return|return
-literal|true
-return|;
 block|}
-return|return
-literal|false
-return|;
 block|}
 comment|/**      * Returns first entry of bin for given hash.      */
 DECL|method|getFirst (int hash)
@@ -11925,13 +12525,6 @@ block|{
 operator|++
 name|modCount
 expr_stmt|;
-name|setValue
-argument_list|(
-name|e
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -11947,11 +12540,20 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
 name|COLLECTED
+argument_list|)
+expr_stmt|;
+name|setValue
+argument_list|(
+name|e
+argument_list|,
+name|key
+argument_list|,
+name|value
 argument_list|)
 expr_stmt|;
 name|newCount
@@ -11962,14 +12564,17 @@ name|count
 expr_stmt|;
 comment|// count remains unchanged
 block|}
-elseif|else
-if|if
-condition|(
-name|evictEntries
-argument_list|()
-condition|)
+else|else
 block|{
-comment|// evictEntries after setting new value
+name|setValue
+argument_list|(
+name|e
+argument_list|,
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 name|newCount
 operator|=
 name|this
@@ -11986,6 +12591,9 @@ operator|=
 name|newCount
 expr_stmt|;
 comment|// write-volatile
+name|evictEntries
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -12020,7 +12628,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -12031,8 +12639,13 @@ name|setValue
 argument_list|(
 name|e
 argument_list|,
+name|key
+argument_list|,
 name|value
 argument_list|)
+expr_stmt|;
+name|evictEntries
+argument_list|()
 expr_stmt|;
 return|return
 name|entryValue
@@ -12065,6 +12678,8 @@ name|setValue
 argument_list|(
 name|newEntry
 argument_list|,
+name|key
+argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
@@ -12077,13 +12692,6 @@ argument_list|,
 name|newEntry
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|evictEntries
-argument_list|()
-condition|)
-block|{
-comment|// evictEntries after setting new value
 name|newCount
 operator|=
 name|this
@@ -12092,7 +12700,6 @@ name|count
 operator|+
 literal|1
 expr_stmt|;
-block|}
 name|this
 operator|.
 name|count
@@ -12100,6 +12707,9 @@ operator|=
 name|newCount
 expr_stmt|;
 comment|// write-volatile
+name|evictEntries
+argument_list|()
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -12652,7 +13262,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -12726,7 +13336,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -12737,8 +13347,13 @@ name|setValue
 argument_list|(
 name|e
 argument_list|,
+name|key
+argument_list|,
 name|newValue
 argument_list|)
+expr_stmt|;
+name|evictEntries
+argument_list|()
 expr_stmt|;
 return|return
 literal|true
@@ -12952,7 +13567,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -13012,7 +13627,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|RemovalCause
 operator|.
@@ -13023,8 +13638,13 @@ name|setValue
 argument_list|(
 name|e
 argument_list|,
+name|key
+argument_list|,
 name|newValue
 argument_list|)
+expr_stmt|;
+name|evictEntries
+argument_list|()
 expr_stmt|;
 return|return
 name|entryValue
@@ -13243,7 +13863,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|cause
 argument_list|)
@@ -13514,7 +14134,7 @@ name|entryKey
 argument_list|,
 name|hash
 argument_list|,
-name|entryValue
+name|valueReference
 argument_list|,
 name|cause
 argument_list|)
@@ -13894,6 +14514,11 @@ return|return
 name|newFirst
 return|;
 block|}
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"Segment.this"
+argument_list|)
 DECL|method|removeCollectedEntry (ReferenceEntry<K, V> entry)
 name|void
 name|removeCollectedEntry
@@ -14050,9 +14675,6 @@ argument_list|,
 name|e
 operator|.
 name|getValueReference
-argument_list|()
-operator|.
-name|get
 argument_list|()
 argument_list|,
 name|RemovalCause
@@ -14283,9 +14905,6 @@ argument_list|,
 name|hash
 argument_list|,
 name|valueReference
-operator|.
-name|get
-argument_list|()
 argument_list|,
 name|RemovalCause
 operator|.
@@ -14679,9 +15298,6 @@ argument_list|,
 name|e
 operator|.
 name|getValueReference
-argument_list|()
-operator|.
-name|get
 argument_list|()
 argument_list|,
 name|cause
@@ -15386,6 +16002,21 @@ block|{
 return|return
 literal|true
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getWeight ()
+specifier|public
+name|int
+name|getWeight
+parameter_list|()
+block|{
+comment|// weights are assumed to be static, so can't be assigned before computation completes
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
 block|}
 comment|/**      * Waits for a computation to complete. Returns the result of the computation.      */
 annotation|@
@@ -19387,7 +20018,9 @@ name|expireAfterWriteNanos
 argument_list|,
 name|expireAfterAccessNanos
 argument_list|,
-name|maximumSize
+name|maxWeight
+argument_list|,
+name|weigher
 argument_list|,
 name|concurrencyLevel
 argument_list|,
@@ -19475,10 +20108,20 @@ specifier|final
 name|long
 name|expireAfterAccessNanos
 decl_stmt|;
-DECL|field|maximumSize
+DECL|field|maxWeight
 specifier|final
-name|int
-name|maximumSize
+name|long
+name|maxWeight
+decl_stmt|;
+DECL|field|weigher
+specifier|final
+name|Weigher
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|weigher
 decl_stmt|;
 DECL|field|concurrencyLevel
 specifier|final
@@ -19514,7 +20157,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|SerializationProxy (CacheLoader<? super K, V> loader, Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, Ticker ticker)
+DECL|method|SerializationProxy (CacheLoader<? super K, V> loader, Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, long maxWeight, Weigher<K, V> weigher, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, Ticker ticker)
 name|SerializationProxy
 parameter_list|(
 name|CacheLoader
@@ -19551,8 +20194,16 @@ parameter_list|,
 name|long
 name|expireAfterAccessNanos
 parameter_list|,
-name|int
-name|maximumSize
+name|long
+name|maxWeight
+parameter_list|,
+name|Weigher
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|weigher
 parameter_list|,
 name|int
 name|concurrencyLevel
@@ -19617,9 +20268,15 @@ name|expireAfterAccessNanos
 expr_stmt|;
 name|this
 operator|.
-name|maximumSize
+name|maxWeight
 operator|=
-name|maximumSize
+name|maxWeight
+expr_stmt|;
+name|this
+operator|.
+name|weigher
+operator|=
+name|weigher
 expr_stmt|;
 name|this
 operator|.
@@ -19668,7 +20325,7 @@ name|builder
 init|=
 name|CacheBuilder
 operator|.
-name|newBuilder
+name|newLenientBuilder
 argument_list|()
 operator|.
 name|setKeyStrength
@@ -19743,7 +20400,41 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|maximumSize
+name|weigher
+operator|!=
+name|OneWeigher
+operator|.
+name|INSTANCE
+condition|)
+block|{
+name|builder
+operator|.
+name|weigher
+argument_list|(
+name|weigher
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|maxWeight
+operator|!=
+name|UNSET_INT
+condition|)
+block|{
+name|builder
+operator|.
+name|maximumWeight
+argument_list|(
+name|maxWeight
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|maxWeight
 operator|!=
 name|UNSET_INT
 condition|)
@@ -19752,9 +20443,10 @@ name|builder
 operator|.
 name|maximumSize
 argument_list|(
-name|maximumSize
+name|maxWeight
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

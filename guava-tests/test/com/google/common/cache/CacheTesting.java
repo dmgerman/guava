@@ -1010,7 +1010,7 @@ name|totalSize
 operator|+=
 name|segment
 operator|.
-name|maxSegmentSize
+name|maxSegmentWeight
 expr_stmt|;
 block|}
 return|return
