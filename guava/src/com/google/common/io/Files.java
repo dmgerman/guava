@@ -2073,7 +2073,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but    * not always) equivalent to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>fold out ../ when possible    *<li>fold out ./ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    * These heuristics do not always match the behavior of the filesystem. In    * particular, consider the path {@code a/../b}, which {@code simplifyPath}    * will change to {@code b}. If {@code a} is a symlink to {@code x}, {@code    * a/../b} may refer to a sibling of {@code x}, rather than the sibling of    * {@code a} referred to by {@code b}.    *    * @since 10.0    */
+comment|/**    * Returns the lexically cleaned form of the path name,<i>usually</i> (but    * not always) equivalent to the original. The following heuristics are used:    *    *<ul>    *<li>empty string becomes .    *<li>fold out ../ when possible    *<li>fold out ./ when possible    *<li>collapse multiple slashes    *<li>delete trailing slashes (unless the path is just "/")    *</ul>    *    * These heuristics do not always match the behavior of the filesystem. In    * particular, consider the path {@code a/../b}, which {@code simplifyPath}    * will change to {@code b}. If {@code a} is a symlink to {@code x}, {@code    * a/../b} may refer to a sibling of {@code x}, rather than the sibling of    * {@code a} referred to by {@code b}.    *    * @since 11.0    */
 DECL|method|simplifyPath (String pathname)
 specifier|public
 specifier|static
