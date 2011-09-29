@@ -117,14 +117,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for Files.simplifyPath().  *  * @author Pablo Bellver  */
+comment|/**  * Unit tests for {@link Files#simplifyPath}.  *  * @author Pablo Bellver  */
 end_comment
 
 begin_class
-DECL|class|CleanPathTest
+DECL|class|FilesSimplifyPathTest
 specifier|public
 class|class
-name|CleanPathTest
+name|FilesSimplifyPathTest
 extends|extends
 name|TestCase
 block|{
