@@ -172,6 +172,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|testing
 operator|.
 name|NullPointerTester
@@ -219,10 +247,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for IntMath.  *  * @author Louis Wasserman  */
+comment|/**  * Tests for {@link IntMath}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|IntMathTest
 specifier|public
 class|class
@@ -230,6 +265,12 @@ name|IntMathTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantMaxPowerOfSqrt2Unsigned ()
 specifier|public
 name|void
@@ -269,6 +310,11 @@ name|MAX_POWER_OF_SQRT2_UNSIGNED
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"pow()"
+argument_list|)
 DECL|method|testConstantsPowersOf10 ()
 specifier|public
 name|void
@@ -315,6 +361,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantsHalfPowersOf10 ()
 specifier|public
 name|void
@@ -382,6 +434,12 @@ argument_list|)
 assert|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantsBiggestBinomials ()
 specifier|public
 name|void
@@ -490,6 +548,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"sqrt"
+argument_list|)
 DECL|method|testPowersSqrtMaxInt ()
 specifier|public
 name|void
@@ -563,6 +626,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"log2"
+argument_list|)
 DECL|method|testLog2ZeroAlwaysThrows ()
 specifier|public
 name|void
@@ -602,6 +670,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"log2"
+argument_list|)
 DECL|method|testLog2NegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -651,6 +724,12 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of BigIntegrerMath.log2 for all modes except UNNECESSARY.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testLog2MatchesBigInteger ()
 specifier|public
 name|void
@@ -701,6 +780,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of isPowerOfTwo(int).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"log2"
+argument_list|)
 DECL|method|testLog2Exact ()
 specifier|public
 name|void
@@ -764,6 +848,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"log10"
+argument_list|)
 DECL|method|testLog10ZeroAlwaysThrows ()
 specifier|public
 name|void
@@ -803,6 +892,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"log10"
+argument_list|)
 DECL|method|testLog10NegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -852,6 +946,12 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of BigIntegerMath.log10 for all modes except UNNECESSARY.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testLog10MatchesBigInteger ()
 specifier|public
 name|void
@@ -903,6 +1003,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of log10(int, FLOOR) and of pow(int, int).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"pow()"
+argument_list|)
 DECL|method|testLog10Exact ()
 specifier|public
 name|void
@@ -979,6 +1084,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"log10"
+argument_list|)
 DECL|method|testLog10TrivialOnPowerOfTen ()
 specifier|public
 name|void
@@ -1015,6 +1125,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// Simple test to cover sqrt(0) for all types and all modes.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"sqrt"
+argument_list|)
 DECL|method|testSqrtZeroAlwaysZero ()
 specifier|public
 name|void
@@ -1045,6 +1160,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"sqrt"
+argument_list|)
 DECL|method|testSqrtNegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1097,6 +1217,12 @@ block|}
 block|}
 block|}
 comment|/* Relies on the correctness of BigIntegerMath.sqrt for all modes except UNNECESSARY. */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testSqrtMatchesBigInteger ()
 specifier|public
 name|void
@@ -1153,6 +1279,11 @@ block|}
 block|}
 block|}
 comment|/* Relies on the correctness of sqrt(int, FLOOR). */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"sqrt"
+argument_list|)
 DECL|method|testSqrtExactMatchesFloorOrThrows ()
 specifier|public
 name|void
@@ -1227,6 +1358,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"2147483646^2 expected=4"
+argument_list|)
 DECL|method|testPow ()
 specifier|public
 name|void
@@ -1251,14 +1387,11 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|IntMath
-operator|.
-name|pow
-argument_list|(
 name|i
-argument_list|,
+operator|+
+literal|"^"
+operator|+
 name|pow
-argument_list|)
 argument_list|,
 name|BigInteger
 operator|.
@@ -1274,11 +1407,25 @@ argument_list|)
 operator|.
 name|intValue
 argument_list|()
+argument_list|,
+name|IntMath
+operator|.
+name|pow
+argument_list|(
+name|i
+argument_list|,
+name|pow
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"-2147483648/1 expected=2147483648"
+argument_list|)
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
@@ -1342,6 +1489,12 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|p
+operator|+
+literal|"/"
+operator|+
+name|q
+argument_list|,
 name|expected
 argument_list|,
 name|IntMath
@@ -1360,6 +1513,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"-2147483648/-1 not expected to divide evenly"
+argument_list|)
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
@@ -1398,6 +1556,12 @@ block|{
 name|assertEquals
 argument_list|(
 name|p
+operator|+
+literal|"/"
+operator|+
+name|q
+argument_list|,
+name|p
 argument_list|,
 name|IntMath
 operator|.
@@ -1415,6 +1579,14 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+name|p
+operator|+
+literal|"/"
+operator|+
+name|q
+operator|+
+literal|" expected to divide evenly"
+argument_list|,
 name|dividesEvenly
 argument_list|)
 expr_stmt|;
@@ -1427,6 +1599,14 @@ parameter_list|)
 block|{
 name|assertFalse
 argument_list|(
+name|p
+operator|+
+literal|"/"
+operator|+
+name|q
+operator|+
+literal|" not expected to divide evenly"
+argument_list|,
 name|dividesEvenly
 argument_list|)
 expr_stmt|;
@@ -1434,6 +1614,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"pow()"
+argument_list|)
 DECL|method|testZeroDivIsAlwaysZero ()
 specifier|public
 name|void
@@ -1475,6 +1660,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"pow()"
+argument_list|)
 DECL|method|testDivByZeroAlwaysFails ()
 specifier|public
 name|void
@@ -2155,6 +2345,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"-2147483648^1 expected=2147483648"
+argument_list|)
 DECL|method|testCheckedPow ()
 specifier|public
 name|void
@@ -2202,6 +2397,12 @@ try|try
 block|{
 name|assertEquals
 argument_list|(
+name|b
+operator|+
+literal|"^"
+operator|+
+name|k
+argument_list|,
 name|expectedResult
 operator|.
 name|intValue
@@ -2219,6 +2420,14 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
+name|b
+operator|+
+literal|"^"
+operator|+
+name|k
+operator|+
+literal|" should have succeeded"
+argument_list|,
 name|expectedSuccess
 argument_list|)
 expr_stmt|;
@@ -2231,6 +2440,14 @@ parameter_list|)
 block|{
 name|assertFalse
 argument_list|(
+name|b
+operator|+
+literal|"^"
+operator|+
+name|k
+operator|+
+literal|" should have failed"
+argument_list|,
 name|expectedSuccess
 argument_list|)
 expr_stmt|;
@@ -2239,6 +2456,12 @@ block|}
 block|}
 block|}
 comment|// Depends on the correctness of BigIntegerMath.factorial.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testFactorial ()
 specifier|public
 name|void
@@ -2301,6 +2524,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"factorial"
+argument_list|)
 DECL|method|testFactorialNegative ()
 specifier|public
 name|void
@@ -2339,6 +2567,12 @@ block|{}
 block|}
 block|}
 comment|// Depends on the correctness of BigIntegerMath.binomial.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"BigIntegerMath"
+argument_list|)
+comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testBinomial ()
 specifier|public
 name|void
@@ -2421,6 +2655,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"binomial"
+argument_list|)
 DECL|method|testBinomialOutside ()
 specifier|public
 name|void
@@ -2493,6 +2732,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"binomial"
+argument_list|)
 DECL|method|testBinomialNegative ()
 specifier|public
 name|void
@@ -2550,6 +2794,11 @@ operator|<=
 literal|31
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void

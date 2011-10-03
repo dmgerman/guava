@@ -144,6 +144,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
@@ -245,6 +259,8 @@ comment|/**  * Exhaustive input sets for every integral type.  *   * @author low
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MathTesting
 specifier|public
 class|class

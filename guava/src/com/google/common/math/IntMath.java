@@ -172,6 +172,34 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -201,6 +229,13 @@ comment|/**  * A class for arithmetic on values of type {@code int}. Where possi
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|IntMath
 specifier|public
 specifier|final
@@ -238,6 +273,11 @@ literal|0
 return|;
 block|}
 comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of two    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"need BigIntegerMath to adequately test"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -396,6 +436,11 @@ init|=
 literal|0xB504F333
 decl_stmt|;
 comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"need BigIntegerMath to adequately test"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -633,6 +678,11 @@ name|MAX_VALUE
 block|}
 decl_stmt|;
 comment|/**    * Returns {@code b} to the {@code k}th power. Even if the result overflows, it will be equal to    * {@code BigInteger.valueOf(b).pow(k).intValue()}. This implementation runs in {@code O(log k)}    * time.    *    *<p>Compare {@link #checkedPow}, which throws an {@link ArithmeticException} upon overflow.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"failing tests"
+argument_list|)
 DECL|method|pow (int b, int k)
 specifier|public
 specifier|static
@@ -825,6 +875,11 @@ block|}
 block|}
 comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"need BigIntegerMath to adequately test"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
@@ -975,6 +1030,11 @@ return|;
 block|}
 comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"failing tests"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
@@ -1000,6 +1060,22 @@ argument_list|(
 name|mode
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|q
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|ArithmeticException
+argument_list|(
+literal|"/ by zero"
+argument_list|)
+throw|;
+comment|// for GWT
+block|}
 name|int
 name|div
 init|=
@@ -1007,7 +1083,6 @@ name|p
 operator|/
 name|q
 decl_stmt|;
-comment|// throws if q == 0
 name|int
 name|rem
 init|=
@@ -1435,6 +1510,11 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    *<p>{@link #pow} may be faster, but does not check for overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *         {@code int} arithmetic    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"failing tests"
+argument_list|)
 DECL|method|checkedPow (int b, int k)
 specifier|public
 specifier|static
@@ -1653,6 +1733,11 @@ init|=
 literal|46340
 decl_stmt|;
 comment|/**    * Returns {@code n!}, or {@link Integer#MAX_VALUE} if the result does not fit in an {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"need BigIntegerMath to adequately test"
+argument_list|)
 DECL|method|factorial (int n)
 specifier|public
 specifier|static
@@ -1857,6 +1942,11 @@ literal|12
 block|}
 decl_stmt|;
 comment|/**    * Returns {@code n} choose {@code k}, also known as the binomial coefficient of {@code n} and    * {@code k}, or {@link Integer#MAX_VALUE} if the result does not fit in an {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}, {@code k< 0} or {@code k> n}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"need BigIntegerMath to adequately test"
+argument_list|)
 DECL|method|binomial (int n, int k)
 specifier|public
 specifier|static

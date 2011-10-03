@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|math
@@ -47,6 +61,8 @@ comment|/**  * A collection of preconditions for math functions.  *   * @author 
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MathPreconditions
 specifier|final
 class|class
