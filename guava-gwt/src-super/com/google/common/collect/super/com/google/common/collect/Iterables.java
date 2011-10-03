@@ -3403,22 +3403,41 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Determines if the given iterable contains no elements.    *    *<p>There is no precise {@link Iterator} equivalent to this method, since    * one can only ask an iterator whether it has any elements<i>remaining</i>    * (which one does using {@link Iterator#hasNext}).    *    * @return {@code true} if the iterable contains no elements    */
-DECL|method|isEmpty (Iterable<T> iterable)
+DECL|method|isEmpty (Iterable<?> iterable)
 specifier|public
 specifier|static
-parameter_list|<
-name|T
-parameter_list|>
 name|boolean
 name|isEmpty
 parameter_list|(
 name|Iterable
 argument_list|<
-name|T
+name|?
 argument_list|>
 name|iterable
 parameter_list|)
 block|{
+if|if
+condition|(
+name|iterable
+operator|instanceof
+name|Collection
+condition|)
+block|{
+return|return
+operator|(
+operator|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|iterable
+operator|)
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
 return|return
 operator|!
 name|iterable
