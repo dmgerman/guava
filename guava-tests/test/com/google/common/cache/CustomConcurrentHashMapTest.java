@@ -254,7 +254,7 @@ name|cache
 operator|.
 name|CustomConcurrentHashMap
 operator|.
-name|ComputingValueReference
+name|LoadingValueReference
 import|;
 end_import
 
@@ -2507,7 +2507,7 @@ name|value
 init|=
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -2528,7 +2528,7 @@ name|value
 argument_list|,
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -2675,7 +2675,7 @@ argument_list|)
 decl_stmt|;
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -2809,7 +2809,7 @@ condition|)
 block|{
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|entry
 operator|.
@@ -2972,7 +2972,7 @@ name|value
 argument_list|,
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3176,7 +3176,7 @@ name|value
 argument_list|,
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3212,7 +3212,7 @@ name|value
 argument_list|,
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3425,7 +3425,7 @@ name|value
 argument_list|,
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3461,7 +3461,7 @@ name|value
 argument_list|,
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3559,7 +3559,7 @@ name|one
 init|=
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3579,7 +3579,7 @@ name|two
 init|=
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)
@@ -3824,7 +3824,7 @@ try|try
 block|{
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|one
 argument_list|)
@@ -3892,7 +3892,7 @@ try|try
 block|{
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|one
 argument_list|)
@@ -3971,7 +3971,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-name|ComputingValueReference
+name|LoadingValueReference
 argument_list|<
 name|Object
 argument_list|,
@@ -3980,7 +3980,7 @@ argument_list|>
 name|valueReference
 init|=
 operator|(
-name|ComputingValueReference
+name|LoadingValueReference
 operator|)
 name|newEntry
 operator|.
@@ -3991,7 +3991,7 @@ name|assertNull
 argument_list|(
 name|valueReference
 operator|.
-name|computedValue
+name|loadedValue
 argument_list|)
 expr_stmt|;
 name|startSignal
@@ -4249,7 +4249,7 @@ try|try
 block|{
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|one
 argument_list|)
@@ -15591,7 +15591,7 @@ operator|new
 name|SerializableTicker
 argument_list|()
 decl_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,
@@ -15600,7 +15600,7 @@ argument_list|>
 name|one
 init|=
 operator|(
-name|ComputingCache
+name|LocalCache
 operator|)
 name|CacheBuilder
 operator|.
@@ -15681,7 +15681,7 @@ name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,
@@ -16995,10 +16995,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|isComputingReference ()
+DECL|method|isLoading ()
 specifier|public
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 block|{
 return|return

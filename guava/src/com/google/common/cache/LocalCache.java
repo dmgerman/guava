@@ -141,9 +141,9 @@ comment|/**  * Exposes a {@link CustomConcurrentHashMap} as a {@code Cache}.  * 
 end_comment
 
 begin_class
-DECL|class|ComputingCache
+DECL|class|LocalCache
 class|class
-name|ComputingCache
+name|LocalCache
 parameter_list|<
 name|K
 parameter_list|,
@@ -169,8 +169,8 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-DECL|method|ComputingCache (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, V> loader)
-name|ComputingCache
+DECL|method|LocalCache (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, V> loader)
+name|LocalCache
 parameter_list|(
 name|CacheBuilder
 argument_list|<
@@ -240,7 +240,7 @@ block|{
 return|return
 name|map
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|)

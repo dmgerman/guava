@@ -275,10 +275,10 @@ comment|/**  * @author Charles Fry  */
 end_comment
 
 begin_class
-DECL|class|ComputingCacheTest
+DECL|class|LocalCacheTest
 specifier|public
 class|class
-name|ComputingCacheTest
+name|LocalCacheTest
 extends|extends
 name|TestCase
 block|{
@@ -290,7 +290,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|K
 argument_list|,
@@ -319,7 +319,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|K
 argument_list|,
@@ -472,7 +472,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,
@@ -569,7 +569,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1067,7 +1067,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1691,7 +1691,7 @@ init|=
 name|createCacheBuilder
 argument_list|()
 decl_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2206,7 +2206,7 @@ argument_list|(
 name|SMALL_MAX_SIZE
 argument_list|)
 decl_stmt|;
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|Object
 argument_list|,

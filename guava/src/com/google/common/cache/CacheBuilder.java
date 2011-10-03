@@ -2209,7 +2209,7 @@ name|useNullCache
 argument_list|()
 condition|?
 operator|new
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|K1
 argument_list|,

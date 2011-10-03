@@ -1337,7 +1337,7 @@ DECL|enum|Strength
 enum|enum
 name|Strength
 block|{
-comment|/*      * TODO(kevinb): If we strongly reference the value and aren't computing, we needn't wrap the      * value. This could save ~8 bytes per entry.      */
+comment|/*      * TODO(kevinb): If we strongly reference the value and aren't loading, we needn't wrap the      * value. This could save ~8 bytes per entry.      */
 DECL|enumConstant|STRONG
 name|STRONG
 block|{
@@ -3472,7 +3472,7 @@ name|V
 name|get
 parameter_list|()
 function_decl|;
-comment|/**      * Waits for a value that may still be computing. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws ExecutionException if the computing thread throws an exception      * @throws ExecutionError if the computing thread throws an error      */
+comment|/**      * Waits for a value that may still be loading. Unlike get(), this method can block (in the      * case of FutureValueReference).      *      * @throws ExecutionException if the loading thread throws an exception      * @throws ExecutionError if the loading thread throws an error      */
 DECL|method|waitForValue ()
 name|V
 name|waitForValue
@@ -3522,7 +3522,7 @@ argument_list|>
 name|entry
 parameter_list|)
 function_decl|;
-comment|/**      * Notifify pending computations that a new value was set. This is only relevant to computing      * value references.      */
+comment|/**      * Notifify pending loads that a new value was set. This is only relevant to loading      * value references.      */
 DECL|method|notifyNewValue (V newValue)
 name|void
 name|notifyNewValue
@@ -3531,10 +3531,10 @@ name|V
 name|newValue
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the value type is a computing reference (regardless of whether or not      * computation has completed). This is necessary to distiguish between partially-collected      * entries and computing entries, which need to be cleaned up differently.      */
-DECL|method|isComputingReference ()
+comment|/**      * Returns true if a new value is currently loading, regardless of whether or not there is an      * existing value.      */
+DECL|method|isLoading ()
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 function_decl|;
 block|}
@@ -3631,7 +3631,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 block|{
 return|return
@@ -3661,7 +3661,7 @@ parameter_list|)
 block|{}
 block|}
 decl_stmt|;
-comment|/**    * Singleton placeholder that indicates a value is being computed.    */
+comment|/**    * Singleton placeholder that indicates a value is being loaded.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3696,7 +3696,7 @@ operator|)
 name|UNSET
 return|;
 block|}
-comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    * - Live: valid key/value are set    * - Computing: computation is pending    *    * Invalid:    * - Expired: time expired (key/value may still be set)    * - Collected: key/value was partially collected, but not yet cleaned up    * - Unset: marked as unset, awaiting cleanup or reuse    */
+comment|/**    * An entry in a reference map.    *    * Entries in the map can be in the following states:    *    * Valid:    * - Live: valid key/value are set    * - Loading: loading is pending    *    * Invalid:    * - Expired: time expired (key/value may still be set)    * - Collected: key/value was partially collected, but not yet cleaned up    * - Unset: marked as unset, awaiting cleanup or reuse    */
 DECL|interface|ReferenceEntry
 interface|interface
 name|ReferenceEntry
@@ -8015,10 +8015,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|isComputingReference ()
+DECL|method|isLoading ()
 specifier|public
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 block|{
 return|return
@@ -8194,10 +8194,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|isComputingReference ()
+DECL|method|isLoading ()
 specifier|public
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 block|{
 return|return
@@ -8329,10 +8329,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|isComputingReference ()
+DECL|method|isLoading ()
 specifier|public
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 block|{
 return|return
@@ -9116,7 +9116,7 @@ name|statsCounter
 argument_list|)
 return|;
 block|}
-comment|/**    * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,    * computing, or expired. Unlike {@link Segment#getLiveValue} this method does not attempt to    * cleanup stale entries.    */
+comment|/**    * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,    * loading, or expired. Unlike {@link Segment#getLiveValue} this method does not attempt to    * cleanup stale entries.    */
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
 name|V
 name|getLiveValue
@@ -9573,7 +9573,7 @@ DECL|field|totalWeight
 name|int
 name|totalWeight
 decl_stmt|;
-comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * computing size or checking containsValue, then we might have an inconsistent view of state      * so (usually) must retry.      */
+comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * loading size or checking containsValue, then we might have an inconsistent view of state      * so (usually) must retry.      */
 DECL|field|modCount
 name|int
 name|modCount
@@ -10196,10 +10196,10 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|// computation
-DECL|method|getOrCompute (K key, int hash, CacheLoader<? super K, V> loader)
+comment|// loading
+DECL|method|getOrLoad (K key, int hash, CacheLoader<? super K, V> loader)
 name|V
-name|getOrCompute
+name|getOrLoad
 parameter_list|(
 name|K
 name|key
@@ -10229,7 +10229,7 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|// don't call getLiveEntry, which would ignore computing values
+comment|// don't call getLiveEntry, which would ignore loading values
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -10295,8 +10295,8 @@ return|;
 block|}
 block|}
 block|}
-comment|// at this point e is either null, computing, or expired;
-comment|// avoid locking if it's already computing
+comment|// at this point e is either null, loading, or expired;
+comment|// avoid locking if it's already loading
 if|if
 condition|(
 name|e
@@ -10309,7 +10309,7 @@ operator|.
 name|getValueReference
 argument_list|()
 operator|.
-name|isComputingReference
+name|isLoading
 argument_list|()
 condition|)
 block|{
@@ -10318,13 +10318,13 @@ name|createNewEntry
 init|=
 literal|true
 decl_stmt|;
-name|ComputingValueReference
+name|LoadingValueReference
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|computingValueReference
+name|loadingValueReference
 init|=
 literal|null
 decl_stmt|;
@@ -10457,7 +10457,7 @@ if|if
 condition|(
 name|valueReference
 operator|.
-name|isComputingReference
+name|isLoading
 argument_list|()
 condition|)
 block|{
@@ -10576,10 +10576,10 @@ condition|(
 name|createNewEntry
 condition|)
 block|{
-name|computingValueReference
+name|loadingValueReference
 operator|=
 operator|new
-name|ComputingValueReference
+name|LoadingValueReference
 argument_list|<
 name|K
 argument_list|,
@@ -10611,7 +10611,7 @@ name|e
 operator|.
 name|setValueReference
 argument_list|(
-name|computingValueReference
+name|loadingValueReference
 argument_list|)
 expr_stmt|;
 name|table
@@ -10630,7 +10630,7 @@ name|e
 operator|.
 name|setValueReference
 argument_list|(
-name|computingValueReference
+name|loadingValueReference
 argument_list|)
 expr_stmt|;
 block|}
@@ -10652,7 +10652,7 @@ condition|)
 block|{
 comment|// This thread solely created the entry.
 return|return
-name|compute
+name|load
 argument_list|(
 name|key
 argument_list|,
@@ -10660,12 +10660,12 @@ name|hash
 argument_list|,
 name|e
 argument_list|,
-name|computingValueReference
+name|loadingValueReference
 argument_list|)
 return|;
 block|}
 block|}
-comment|// The entry already exists. Wait for the computation.
+comment|// The entry already exists. Wait for loading.
 name|checkState
 argument_list|(
 operator|!
@@ -10676,10 +10676,10 @@ argument_list|(
 name|e
 argument_list|)
 argument_list|,
-literal|"Recursive computation"
+literal|"Recursive load"
 argument_list|)
 expr_stmt|;
-comment|// don't consider expiration as we're concurrent with computation
+comment|// don't consider expiration as we're concurrent with loading
 name|V
 name|value
 init|=
@@ -10712,7 +10712,7 @@ return|return
 name|value
 return|;
 block|}
-comment|// else computing thread will clearValue
+comment|// else loading thread will clearValue
 continue|continue
 name|outer
 continue|;
@@ -10725,9 +10725,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|compute (K key, int hash, ReferenceEntry<K, V> e, ComputingValueReference<K, V> computingValueReference)
+DECL|method|load (K key, int hash, ReferenceEntry<K, V> e, LoadingValueReference<K, V> loadingValueReference)
 name|V
-name|compute
+name|load
 parameter_list|(
 name|K
 name|key
@@ -10743,13 +10743,13 @@ name|V
 argument_list|>
 name|e
 parameter_list|,
-name|ComputingValueReference
+name|LoadingValueReference
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|computingValueReference
+name|loadingValueReference
 parameter_list|)
 throws|throws
 name|ExecutionException
@@ -10779,9 +10779,9 @@ init|)
 block|{
 name|value
 operator|=
-name|computingValueReference
+name|loadingValueReference
 operator|.
-name|compute
+name|load
 argument_list|(
 name|key
 argument_list|,
@@ -10828,7 +10828,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// the computed value was already clobbered
+comment|// the loaded value was already clobbered
 comment|// create 0-weight value reference for removal notification
 name|ValueReference
 argument_list|<
@@ -10903,7 +10903,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|computingValueReference
+name|loadingValueReference
 argument_list|)
 expr_stmt|;
 block|}
@@ -12530,7 +12530,7 @@ condition|(
 operator|!
 name|valueReference
 operator|.
-name|isComputingReference
+name|isLoading
 argument_list|()
 condition|)
 block|{
@@ -13850,6 +13850,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// currently loading
 return|return
 literal|null
 return|;
@@ -14121,6 +14122,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// currently loading
 return|return
 literal|false
 return|;
@@ -14292,7 +14294,7 @@ name|getNext
 argument_list|()
 control|)
 block|{
-comment|// Computing references aren't actually in the map yet.
+comment|// Loading references aren't actually in the map yet.
 if|if
 condition|(
 operator|!
@@ -14301,7 +14303,7 @@ operator|.
 name|getValueReference
 argument_list|()
 operator|.
-name|isComputingReference
+name|isLoading
 argument_list|()
 condition|)
 block|{
@@ -15407,7 +15409,7 @@ if|if
 condition|(
 name|valueReference
 operator|.
-name|isComputingReference
+name|isLoading
 argument_list|()
 condition|)
 block|{
@@ -15426,7 +15428,7 @@ literal|null
 operator|)
 return|;
 block|}
-comment|/**      * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,      * computing, or expired.      */
+comment|/**      * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,      * loading, or expired.      */
 DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
 name|V
 name|getLiveValue
@@ -15627,10 +15629,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|interface|ComputedValue
+DECL|interface|LoadedValue
 specifier|private
 interface|interface
-name|ComputedValue
+name|LoadedValue
 parameter_list|<
 name|V
 parameter_list|>
@@ -15643,18 +15645,18 @@ throws|throws
 name|ExecutionException
 function_decl|;
 block|}
-comment|/**    * Used to propogate unchecked computation exceptions to other threads.    */
-DECL|class|ComputedUncheckedException
+comment|/**    * Used to propogate unchecked loading exceptions to other threads.    */
+DECL|class|LoadedUncheckedException
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|ComputedUncheckedException
+name|LoadedUncheckedException
 parameter_list|<
 name|V
 parameter_list|>
 implements|implements
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -15664,8 +15666,8 @@ specifier|final
 name|RuntimeException
 name|e
 decl_stmt|;
-DECL|method|ComputedUncheckedException (RuntimeException e)
-name|ComputedUncheckedException
+DECL|method|LoadedUncheckedException (RuntimeException e)
+name|LoadedUncheckedException
 parameter_list|(
 name|RuntimeException
 name|e
@@ -15695,18 +15697,18 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Used to propogate computation exceptions to other threads.    */
-DECL|class|ComputedException
+comment|/**    * Used to propogate loading exceptions to other threads.    */
+DECL|class|LoadedException
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|ComputedException
+name|LoadedException
 parameter_list|<
 name|V
 parameter_list|>
 implements|implements
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -15716,8 +15718,8 @@ specifier|final
 name|Exception
 name|e
 decl_stmt|;
-DECL|method|ComputedException (Exception e)
-name|ComputedException
+DECL|method|LoadedException (Exception e)
+name|LoadedException
 parameter_list|(
 name|Exception
 name|e
@@ -15749,18 +15751,18 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Used to propogate computation errors to other threads.    */
-DECL|class|ComputedError
+comment|/**    * Used to propogate loading errors to other threads.    */
+DECL|class|LoadedError
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|ComputedError
+name|LoadedError
 parameter_list|<
 name|V
 parameter_list|>
 implements|implements
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -15770,8 +15772,8 @@ specifier|final
 name|Error
 name|e
 decl_stmt|;
-DECL|method|ComputedError (Error e)
-name|ComputedError
+DECL|method|LoadedError (Error e)
+name|LoadedError
 parameter_list|(
 name|Error
 name|e
@@ -15801,18 +15803,18 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Used to provide computation result to other threads.    */
-DECL|class|ComputedReference
+comment|/**    * Used to provide loaded result to other threads.    */
+DECL|class|LoadedReference
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|ComputedReference
+name|LoadedReference
 parameter_list|<
 name|V
 parameter_list|>
 implements|implements
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -15822,8 +15824,8 @@ specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ComputedReference (V value)
-name|ComputedReference
+DECL|method|LoadedReference (V value)
+name|LoadedReference
 parameter_list|(
 name|V
 name|value
@@ -15852,20 +15854,20 @@ name|value
 return|;
 block|}
 block|}
-comment|/**    * Used to provide null computation result to other threads.    */
-DECL|class|ComputedNull
+comment|/**    * Used to provide null loaded result to other threads.    */
+DECL|class|LoadedNull
 specifier|private
 specifier|static
 specifier|final
 class|class
-name|ComputedNull
+name|LoadedNull
 parameter_list|<
 name|K
 parameter_list|,
 name|V
 parameter_list|>
 implements|implements
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -15875,9 +15877,9 @@ specifier|final
 name|String
 name|msg
 decl_stmt|;
-DECL|method|ComputedNull (CacheLoader<? super K, V> loader, K key)
+DECL|method|LoadedNull (CacheLoader<? super K, V> loader, K key)
 specifier|public
-name|ComputedNull
+name|LoadedNull
 parameter_list|(
 name|CacheLoader
 argument_list|<
@@ -15923,11 +15925,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|class|ComputingValueReference
+DECL|class|LoadingValueReference
 specifier|static
 specifier|final
 class|class
-name|ComputingValueReference
+name|LoadingValueReference
 parameter_list|<
 name|K
 parameter_list|,
@@ -15956,22 +15958,22 @@ decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"ComputingValueReference.this"
+literal|"LoadingValueReference.this"
 argument_list|)
 comment|// writes
-DECL|field|computedValue
+DECL|field|loadedValue
 specifier|volatile
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
-name|computedValue
+name|loadedValue
 init|=
 literal|null
 decl_stmt|;
-DECL|method|ComputingValueReference (CacheLoader<? super K, V> loader)
+DECL|method|LoadingValueReference (CacheLoader<? super K, V> loader)
 specifier|public
-name|ComputingValueReference
+name|LoadingValueReference
 parameter_list|(
 name|CacheLoader
 argument_list|<
@@ -15993,10 +15995,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|isComputingReference ()
+DECL|method|isLoading ()
 specifier|public
 name|boolean
-name|isComputingReference
+name|isLoading
 parameter_list|()
 block|{
 return|return
@@ -16031,7 +16033,7 @@ name|ExecutionException
 block|{
 if|if
 condition|(
-name|computedValue
+name|loadedValue
 operator|==
 literal|null
 condition|)
@@ -16050,7 +16052,7 @@ init|)
 block|{
 while|while
 condition|(
-name|computedValue
+name|loadedValue
 operator|==
 literal|null
 condition|)
@@ -16094,7 +16096,7 @@ block|}
 block|}
 block|}
 return|return
-name|computedValue
+name|loadedValue
 operator|.
 name|get
 argument_list|()
@@ -16113,10 +16115,10 @@ parameter_list|)
 block|{
 comment|// The pending computation was clobbered by a manual write. Unblock all
 comment|// pending gets, and have them return the new value.
-name|setComputedValue
+name|setLoadedValue
 argument_list|(
 operator|new
-name|ComputedReference
+name|LoadedReference
 argument_list|<
 name|V
 argument_list|>
@@ -16125,11 +16127,11 @@ name|newValue
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// TODO(fry): could also cancel computation if we had a thread handle
+comment|// TODO(fry): could also cancel loading if we had a thread handle
 block|}
-DECL|method|compute (K key, int hash)
+DECL|method|load (K key, int hash)
 name|V
-name|compute
+name|load
 parameter_list|(
 name|K
 name|key
@@ -16140,7 +16142,7 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -16168,7 +16170,7 @@ block|{
 name|valueWrapper
 operator|=
 operator|new
-name|ComputedNull
+name|LoadedNull
 argument_list|<
 name|K
 argument_list|,
@@ -16186,7 +16188,7 @@ block|{
 name|valueWrapper
 operator|=
 operator|new
-name|ComputedReference
+name|LoadedReference
 argument_list|<
 name|V
 argument_list|>
@@ -16205,7 +16207,7 @@ block|{
 name|valueWrapper
 operator|=
 operator|new
-name|ComputedUncheckedException
+name|LoadedUncheckedException
 argument_list|<
 name|V
 argument_list|>
@@ -16223,7 +16225,7 @@ block|{
 name|valueWrapper
 operator|=
 operator|new
-name|ComputedException
+name|LoadedException
 argument_list|<
 name|V
 argument_list|>
@@ -16241,7 +16243,7 @@ block|{
 name|valueWrapper
 operator|=
 operator|new
-name|ComputedError
+name|LoadedError
 argument_list|<
 name|V
 argument_list|>
@@ -16250,7 +16252,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|setComputedValue
+name|setLoadedValue
 argument_list|(
 name|valueWrapper
 argument_list|)
@@ -16262,11 +16264,11 @@ name|get
 argument_list|()
 return|;
 block|}
-DECL|method|setComputedValue (ComputedValue<V> newValue)
+DECL|method|setLoadedValue (LoadedValue<V> newValue)
 name|void
-name|setComputedValue
+name|setLoadedValue
 parameter_list|(
-name|ComputedValue
+name|LoadedValue
 argument_list|<
 name|V
 argument_list|>
@@ -16282,14 +16284,14 @@ if|if
 condition|(
 name|this
 operator|.
-name|computedValue
+name|loadedValue
 operator|==
 literal|null
 condition|)
 block|{
 name|this
 operator|.
-name|computedValue
+name|loadedValue
 operator|=
 name|newValue
 expr_stmt|;
@@ -17873,9 +17875,9 @@ name|hash
 argument_list|)
 return|;
 block|}
-DECL|method|getOrCompute (K key)
+DECL|method|getOrLoad (K key)
 name|V
-name|getOrCompute
+name|getOrLoad
 parameter_list|(
 name|K
 name|key
@@ -17900,7 +17902,7 @@ argument_list|(
 name|hash
 argument_list|)
 operator|.
-name|getOrCompute
+name|getOrLoad
 argument_list|(
 name|key
 argument_list|,
@@ -17910,7 +17912,7 @@ name|loader
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the internal entry for the specified key. The entry may be computing, expired, or    * partially collected.    */
+comment|/**    * Returns the internal entry for the specified key. The entry may be loading, expired, or    * partially collected.    */
 DECL|method|getEntry (@ullable Object key)
 name|ReferenceEntry
 argument_list|<
@@ -20030,7 +20032,7 @@ name|ticker
 argument_list|)
 return|;
 block|}
-comment|/**    * Serializes the configuration of a CustomConcurrentHashMap, reconsitituting it as a Cache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of ComputingCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a CustomConcurrentHashMap, reconsitituting it as a Cache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
 DECL|class|SerializationProxy
 specifier|static
 specifier|final

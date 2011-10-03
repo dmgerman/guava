@@ -381,7 +381,7 @@ DECL|class|CacheTesting
 class|class
 name|CacheTesting
 block|{
-comment|/**    * Poke into the Cache internals to simulate garbage collection of the value associated with the    * given key. This assumes that the associated entry is a WeakValueReference or a    * SoftValueReference (and not a ComputingValueReference), and throws an IllegalStateException    * if that assumption does not hold.    */
+comment|/**    * Poke into the Cache internals to simulate garbage collection of the value associated with the    * given key. This assumes that the associated entry is a WeakValueReference or a    * SoftValueReference (and not a LoadingValueReference), and throws an IllegalStateException    * if that assumption does not hold.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -710,13 +710,13 @@ if|if
 condition|(
 name|cache
 operator|instanceof
-name|ComputingCache
+name|LocalCache
 condition|)
 block|{
 return|return
 operator|(
 operator|(
-name|ComputingCache
+name|LocalCache
 argument_list|<
 name|K
 argument_list|,
@@ -763,7 +763,7 @@ return|return
 operator|(
 name|cache
 operator|instanceof
-name|ComputingCache
+name|LocalCache
 operator|)
 return|;
 block|}
