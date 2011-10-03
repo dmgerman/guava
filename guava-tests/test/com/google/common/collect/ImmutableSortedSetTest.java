@@ -6481,56 +6481,6 @@ name|iterator
 argument_list|()
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-DECL|method|testCreation_deprecatedOf ()
-specifier|public
-name|void
-name|testCreation_deprecatedOf
-parameter_list|()
-block|{
-name|ImmutableSortedSet
-argument_list|<
-name|String
-argument_list|>
-name|set
-init|=
-name|ImmutableSortedSet
-operator|.
-name|of
-argument_list|(
-operator|new
-name|String
-index|[]
-block|{
-literal|"c"
-block|,
-literal|"b"
-block|,
-literal|"a"
-block|}
-argument_list|)
-decl_stmt|;
-name|ASSERT
-operator|.
-name|that
-argument_list|(
-name|set
-argument_list|)
-operator|.
-name|hasContentsInOrder
-argument_list|(
-literal|"a"
-argument_list|,
-literal|"b"
-argument_list|,
-literal|"c"
-argument_list|)
-expr_stmt|;
-block|}
 comment|// In GWT, java.util.TreeSet throws ClassCastException when the comparator
 comment|// throws it, unlike JDK6.  Therefore, we accept ClassCastException as a
 comment|// valid result thrown by java.util.TreeSet#equals.

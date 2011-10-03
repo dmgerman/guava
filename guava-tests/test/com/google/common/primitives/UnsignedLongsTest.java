@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -35,6 +35,16 @@ operator|.
 name|math
 operator|.
 name|BigInteger
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
 import|;
 end_import
 
@@ -91,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for UnsignedLongs  *  * @author Brian Milch  * @author Louis Wasserman  */
+comment|/**  * Tests for UnsignedLongs  *   * @author Brian Milch  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -474,6 +484,90 @@ literal|5
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Too slow in GWT (~3min fully optimized)"
+argument_list|)
+DECL|method|testDivideRemainderEuclideanProperty ()
+specifier|public
+name|void
+name|testDivideRemainderEuclideanProperty
+parameter_list|()
+block|{
+comment|// Use a seed so that the test is deterministic:
+name|Random
+name|r
+init|=
+operator|new
+name|Random
+argument_list|(
+literal|0L
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|1000000
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|long
+name|dividend
+init|=
+name|r
+operator|.
+name|nextLong
+argument_list|()
+decl_stmt|;
+name|long
+name|divisor
+init|=
+name|r
+operator|.
+name|nextLong
+argument_list|()
+decl_stmt|;
+comment|// Test that the Euclidean property is preserved:
+name|assertTrue
+argument_list|(
+name|dividend
+operator|-
+operator|(
+name|divisor
+operator|*
+name|UnsignedLongs
+operator|.
+name|divide
+argument_list|(
+name|dividend
+argument_list|,
+name|divisor
+argument_list|)
+operator|+
+name|UnsignedLongs
+operator|.
+name|remainder
+argument_list|(
+name|dividend
+argument_list|,
+name|divisor
+argument_list|)
+operator|)
+operator|==
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|testParseLong ()
 specifier|public

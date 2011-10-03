@@ -60,20 +60,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Supplier
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -627,26 +613,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #keySet} in terms of the following methods:    * {@link #clear}, {@link #containsKey}, {@link #isEmpty}, {@link #remove},    * {@link #size}, and the {@code iterator} method of {@link #entrySet}. In    * many cases, you may wish to override {@link #keySet} to forward to this    * implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardKeySet} constructor instead.  This    *             method will be removed from Guava in Guava release 11.0.    */
-DECL|method|standardKeySet ()
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-specifier|protected
-name|Set
-argument_list|<
-name|K
-argument_list|>
-name|standardKeySet
-parameter_list|()
-block|{
-return|return
-operator|new
-name|StandardKeySet
-argument_list|()
-return|;
-block|}
 comment|/**    * A sensible implementation of {@link Map#keySet} in terms of the following    * methods: {@link ForwardingMap#clear}, {@link ForwardingMap#containsKey},    * {@link ForwardingMap#isEmpty}, {@link ForwardingMap#remove}, {@link    * ForwardingMap#size}, and the {@link Set#iterator} method of {@link    * ForwardingMap#entrySet}. In many cases, you may wish to override {@link    * ForwardingMap#keySet} to forward to this implementation or a subclass    * thereof.    *    * @since 10.0    */
 annotation|@
 name|Beta
@@ -713,26 +679,6 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #values} in terms of the following methods:    * {@link #clear}, {@link #containsValue}, {@link #isEmpty}, {@link #size},    * and the {@code iterator} method of {@link #entrySet}. In many cases, you    * may wish to override {@link #values} to forward to this implementation.    *    * @since 7.0    * @deprecated Use the {@code StandardValues} constructor instead.  This    *             method will be removed from Guava in Guava release 11.0.    */
-DECL|method|standardValues ()
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-specifier|protected
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-name|standardValues
-parameter_list|()
-block|{
-return|return
-operator|new
-name|StandardValues
-argument_list|()
-return|;
-block|}
 comment|/**    * A sensible implementation of {@link Map#values} in terms of the following    * methods: {@link ForwardingMap#clear}, {@link ForwardingMap#containsValue},    * {@link ForwardingMap#isEmpty}, {@link ForwardingMap#size}, and the {@link    * Set#iterator} method of {@link ForwardingMap#entrySet}. In many cases, you    * may wish to override {@link ForwardingMap#values} to forward to this    * implementation or a subclass thereof.    *    * @since 10.0    */
 annotation|@
 name|Beta
@@ -797,72 +743,6 @@ name|this
 argument_list|,
 name|value
 argument_list|)
-return|;
-block|}
-comment|/**    * A sensible definition of {@link #entrySet} in terms of the specified {@code    * Supplier}, which is used to generate iterators over the entry set, and in    * terms of the following methods: {@link #clear}, {@link #containsKey},    * {@link #get}, {@link #isEmpty}, {@link #remove}, and {@link #size}. In many    * cases, you may wish to override {@link #entrySet} to forward to this    * implementation.    *    * @param entryIteratorSupplier A creator for iterators over the entry set.    *        Each call to {@code get} must return an iterator that will    *        traverse the entire entry set.    *    * @since 7.0    * @deprecated Use {@code StandardEntrySet} instead.  This method will be    *             removed from Guava in Guava release 11.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|standardEntrySet ( final Supplier<Iterator<Entry<K, V>>> entryIteratorSupplier)
-specifier|protected
-name|Set
-argument_list|<
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|standardEntrySet
-parameter_list|(
-specifier|final
-name|Supplier
-argument_list|<
-name|Iterator
-argument_list|<
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-argument_list|>
-name|entryIteratorSupplier
-parameter_list|)
-block|{
-return|return
-operator|new
-name|StandardEntrySet
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|Iterator
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|iterator
-parameter_list|()
-block|{
-return|return
-name|entryIteratorSupplier
-operator|.
-name|get
-argument_list|()
-return|;
-block|}
-block|}
 return|;
 block|}
 comment|/**    * A sensible implementation of {@link Map#entrySet} in terms of the following    * methods: {@link ForwardingMap#clear}, {@link ForwardingMap#containsKey},    * {@link ForwardingMap#get}, {@link ForwardingMap#isEmpty}, {@link    * ForwardingMap#remove}, and {@link ForwardingMap#size}. In many cases, you    * may wish to override {@link #entrySet} to forward to this implementation    * or a subclass thereof.    *    * @since 10.0    */

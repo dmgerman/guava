@@ -754,40 +754,6 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kevinb): Consider factory methods that reject duplicates
-comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Comparable[])}.<b>This method is scheduled    *     for deletion in October 2011.</b>    * @since 2.0 (changed from varargs in 3.0)    */
-annotation|@
-name|Deprecated
-specifier|public
-DECL|method|of ( E[] elements)
-specifier|static
-parameter_list|<
-name|E
-extends|extends
-name|Comparable
-argument_list|<
-name|?
-super|super
-name|E
-argument_list|>
-parameter_list|>
-name|ImmutableSortedSet
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-return|return
-name|copyOf
-argument_list|(
-name|elements
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
 DECL|method|copyOf ( E[] elements)
 specifier|public

@@ -672,7 +672,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 64-bit    * quantities.    *     * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
+comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 64-bit    * quantities.    *     * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    * @since 11.0    */
 DECL|method|remainder (long dividend, long divisor)
 specifier|public
 specifier|static

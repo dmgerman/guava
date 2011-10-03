@@ -36,20 +36,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -290,7 +276,9 @@ return|return
 literal|false
 return|;
 block|}
-name|done
+name|executionList
+operator|.
+name|execute
 argument_list|()
 expr_stmt|;
 if|if
@@ -338,7 +326,7 @@ name|exec
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Subclasses should invoke this method to set the result of the computation    * to {@code value}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and call {@link #done()} if the    * state was successfully changed.    *    * @param value the value that was the result of the task.    * @return true if the state was successfully changed.    */
+comment|/**    * Subclasses should invoke this method to set the result of the computation    * to {@code value}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and invoke the listeners if the    * state was successfully changed.    *    * @param value the value that was the result of the task.    * @return true if the state was successfully changed.    */
 DECL|method|set (@ullable V value)
 specifier|protected
 name|boolean
@@ -365,7 +353,9 @@ condition|(
 name|result
 condition|)
 block|{
-name|done
+name|executionList
+operator|.
+name|execute
 argument_list|()
 expr_stmt|;
 block|}
@@ -373,7 +363,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Subclasses should invoke this method to set the result of the computation    * to an error, {@code throwable}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and call {@link #done()} if the    * state was successfully changed.    *    * @param throwable the exception that the task failed with.    * @return true if the state was successfully changed.    * @throws Error if the throwable was an {@link Error}.    */
+comment|/**    * Subclasses should invoke this method to set the result of the computation    * to an error, {@code throwable}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and invoke the listeners if the    * state was successfully changed.    *    * @param throwable the exception that the task failed with.    * @return true if the state was successfully changed.    * @throws Error if the throwable was an {@link Error}.    */
 DECL|method|setException (Throwable throwable)
 specifier|protected
 name|boolean
@@ -401,7 +391,9 @@ condition|(
 name|result
 condition|)
 block|{
-name|done
+name|executionList
+operator|.
+name|execute
 argument_list|()
 expr_stmt|;
 block|}
@@ -424,56 +416,6 @@ block|}
 return|return
 name|result
 return|;
-block|}
-comment|/**    *<p>Subclasses can invoke this method to mark the future as cancelled.    * This will set the state of the future to {@link    * AbstractFuture.Sync#CANCELLED} and call {@link #done()} if the state was    * successfully changed.    *    * @return true if the state was successfully changed.    * @deprecated Most implementations will be satisfied with the default    * implementation of {@link #cancel(boolean)} and not need to call this method    * at all. Those that are not can delegate to {@code    * super.cancel(mayInterruptIfRunning)} or, to get behavior exactly equivalent    * to this method, {@code super.cancel(false)}. This method will be removed    * from Guava in Guava release 11.0.    */
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-DECL|method|cancel ()
-specifier|protected
-specifier|final
-name|boolean
-name|cancel
-parameter_list|()
-block|{
-name|boolean
-name|result
-init|=
-name|sync
-operator|.
-name|cancel
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|result
-condition|)
-block|{
-name|done
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|result
-return|;
-block|}
-comment|/**    *<b>Deprecated.</b> {@linkplain #addListener Add listeners} (possible executed    * in {@link MoreExecutors#sameThreadExecutor}) to perform the work currently    * performed by your {@code done} implementation. This method will be removed    * from Guava in Guava release 11.0.    *    * Called by the success, failed, or cancelled methods to indicate that the    * value is now available and the latch can be released.    */
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-specifier|protected
-DECL|method|done ()
-name|void
-name|done
-parameter_list|()
-block|{
-name|executionList
-operator|.
-name|execute
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    *<p>Following the contract of {@link AbstractQueuedSynchronizer} we create a    * private subclass to hold the synchronizer.  This synchronizer is used to    * implement the blocking and waiting calls as well as to handle state changes    * in a thread-safe manner.  The current state of the future is held in the    * Sync state, and the lock is released whenever the state changes to either    * {@link #COMPLETED} or {@link #CANCELLED}.    *    *<p>To avoid races between threads doing release and acquire, we transition    * to the final state in two steps.  One thread will successfully CAS from    * RUNNING to COMPLETING, that thread will then set the result of the    * computation, and only then transition to COMPLETED or CANCELLED.    *    *<p>We don't use the integer argument passed between acquire methods so we    * pass around a -1 everywhere.    */
 DECL|class|Sync

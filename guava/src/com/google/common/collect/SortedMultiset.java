@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -15,6 +15,20 @@ operator|.
 name|collect
 package|;
 end_package
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
 
 begin_import
 import|import
@@ -71,13 +85,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Multiset} which maintains the ordering of its elements, according to  * either their natural order or an explicit {@link Comparator}. In all cases,  * this implementation uses {@link Comparable#compareTo} or  * {@link Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link Collection} contract, which it is  * specified in terms of {@link Object#equals}.  *  * @author Louis Wasserman  */
+comment|/**  * A {@link Multiset} which maintains the ordering of its elements, according to  * either their natural order or an explicit {@link Comparator}. In all cases,  * this implementation uses {@link Comparable#compareTo} or  * {@link Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *   *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link Collection} contract, which it is  * specified in terms of {@link Object#equals}.  *   * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_interface
-DECL|interface|SortedMultiset
+annotation|@
+name|Beta
 annotation|@
 name|GwtCompatible
+DECL|interface|SortedMultiset
+specifier|public
 interface|interface
 name|SortedMultiset
 parameter_list|<
@@ -172,7 +189,7 @@ argument_list|>
 name|descendingMultiset
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a view of this multiset restricted to the elements less than    * {@code upperBound}, optionally including {@code upperBound} itself. The    * returned multiset is a view of this multiset, so changes to one will be    * reflected in the other. The returned multiset supports all operations that    * this multiset supports.    *    *<p>The returned multiset will throw an {@link IllegalArgumentException} on    * attempts to add elements outside its range.    */
+comment|/**    * Returns a view of this multiset restricted to the elements less than    * {@code upperBound}, optionally including {@code upperBound} itself. The    * returned multiset is a view of this multiset, so changes to one will be    * reflected in the other. The returned multiset supports all operations that    * this multiset supports.    *     *<p>The returned multiset will throw an {@link IllegalArgumentException} on    * attempts to add elements outside its range.    */
 DECL|method|headMultiset (E upperBound, BoundType boundType)
 name|SortedMultiset
 argument_list|<
@@ -187,7 +204,7 @@ name|BoundType
 name|boundType
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a view of this multiset restricted to the range between    * {@code lowerBound} and {@code upperBound}. The returned multiset is a view    * of this multiset, so changes to one will be reflected in the other. The    * returned multiset supports all operations that this multiset supports.    *    *<p>The returned multiset will throw an {@link IllegalArgumentException} on    * attempts to add elements outside its range.    *    *<p>This method is equivalent to    * {@code tailMultiset(lowerBound, lowerBoundType).headMultiset(upperBound,    * upperBoundType)}.    */
+comment|/**    * Returns a view of this multiset restricted to the range between    * {@code lowerBound} and {@code upperBound}. The returned multiset is a view    * of this multiset, so changes to one will be reflected in the other. The    * returned multiset supports all operations that this multiset supports.    *     *<p>The returned multiset will throw an {@link IllegalArgumentException} on    * attempts to add elements outside its range.    *     *<p>This method is equivalent to    * {@code tailMultiset(lowerBound, lowerBoundType).headMultiset(upperBound,    * upperBoundType)}.    */
 DECL|method|subMultiset (E lowerBound, BoundType lowerBoundType, E upperBound, BoundType upperBoundType)
 name|SortedMultiset
 argument_list|<
@@ -208,7 +225,7 @@ name|BoundType
 name|upperBoundType
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a view of this multiset restricted to the elements greater than    * {@code lowerBound}, optionally including {@code lowerBound} itself. The    * returned multiset is a view of this multiset, so changes to one will be    * reflected in the other. The returned multiset supports all operations that    * this multiset supports.    *    *<p>The returned multiset will throw an {@link IllegalArgumentException} on    * attempts to add elements outside its range.    */
+comment|/**    * Returns a view of this multiset restricted to the elements greater than    * {@code lowerBound}, optionally including {@code lowerBound} itself. The    * returned multiset is a view of this multiset, so changes to one will be    * reflected in the other. The returned multiset supports all operations that    * this multiset supports.    *     *<p>The returned multiset will throw an {@link IllegalArgumentException} on    * attempts to add elements outside its range.    */
 DECL|method|tailMultiset (E lowerBound, BoundType boundType)
 name|SortedMultiset
 argument_list|<

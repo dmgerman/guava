@@ -26,20 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Preconditions
@@ -263,21 +249,6 @@ name|execute
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|/**    * Equivalent to {@link #execute}.    *    * @deprecated Use {@link #execute}. This method will be removed in Guava    * release 11.    */
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-specifier|public
-DECL|method|run ()
-name|void
-name|run
-parameter_list|()
-block|{
-name|execute
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * Runs this execution list, executing all existing pairs in the order they    * were added. However, note that listeners added after this point may be    * executed before those previously added, and note that the execution order    * of all listeners is ultimately chosen by the implementations of the    * supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    *    * @since 10.0 (present in 1.0 as {@code run})    */
 DECL|method|execute ()
