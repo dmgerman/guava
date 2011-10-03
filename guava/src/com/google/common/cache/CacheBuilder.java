@@ -1044,7 +1044,7 @@ else|:
 name|concurrencyLevel
 return|;
 block|}
-comment|/**    * Specifies the maximum number of entries the cache may contain. Note that the cache<b>may evict    * an entry before this limit is exceeded</b>. As the cache size grows close to the maximum, the    * cache evicts entries that are less likely to be used again. For example, the cache may evict an    * entry because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements will be evicted immediately after being loaded into the    * cache. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    * @param size the maximum size of the cache    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
+comment|/**    * Specifies the maximum number of entries the cache may contain. Note that the cache<b>may evict    * an entry before this limit is exceeded</b>. As the cache size grows close to the maximum, the    * cache evicts entries that are less likely to be used again. For example, the cache may evict an    * entry because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements will be evicted immediately after being loaded into the    * cache. This can be useful in testing, or to disable caching temporarily without a code change.    *    * @param size the maximum size of the cache    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
 DECL|method|maximumSize (long size)
 specifier|public
 name|CacheBuilder
@@ -1119,7 +1119,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When the maximum weight is zero, elements will be evicted immediately after being    * loaded into the cache. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    * @param weight the maximum weight the cache may contain    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 11.0    */
+comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When {@code weight} is zero, elements will be evicted immediately after being loaded into    * cache. This can be useful in testing, or to disable caching temporarily without a code    * change.    *    * @param weight the maximum weight the cache may contain    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 11.0    */
 DECL|method|maximumWeight (long weight)
 specifier|public
 name|CacheBuilder
@@ -1288,6 +1288,21 @@ name|long
 name|getMaximumWeight
 parameter_list|()
 block|{
+if|if
+condition|(
+name|expireAfterWriteNanos
+operator|==
+literal|0
+operator|||
+name|expireAfterAccessNanos
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|0
+return|;
+block|}
 return|return
 operator|(
 name|weigher
@@ -1551,7 +1566,7 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, this method hands off to    * {@link #maximumSize maximumSize}{@code (0)}, ignoring any otherwise-specificed maximum size or    * weight. This can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    */
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -1656,7 +1671,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, the most recent replacement of its value, or its last    * access. Access time is reset by {@link Cache#get} and {@link Cache#getUnchecked}, but not by    * operations on the view returned by {@link Cache#asMap}.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, the most recent replacement of its value, or its last    * access. Access time is reset by {@link Cache#get} and {@link Cache#getUnchecked}, but not by    * operations on the view returned by {@link Cache#asMap}.    *    *<p>When {@code duration} is zero, this method hands off to    * {@link #maximumSize maximumSize}{@code (0)}, ignoring any otherwise-specificed maximum size or    * weight. This can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
