@@ -537,6 +537,13 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|recordMiss
+parameter_list|()
+block|{}
+annotation|@
+name|Override
+specifier|public
+name|void
 name|recordLoadSuccess
 parameter_list|(
 name|long
@@ -552,13 +559,6 @@ parameter_list|(
 name|long
 name|loadTime
 parameter_list|)
-block|{}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|recordConcurrentMiss
-parameter_list|()
 block|{}
 annotation|@
 name|Override
@@ -1248,7 +1248,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When the maximum weight is zero, elements will be evicted immediately after being    * loaded into the cache. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    * @param weight the maximum weight the cache may contain    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
+comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When the maximum weight is zero, elements will be evicted immediately after being    * loaded into the cache. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    * @param weight the maximum weight the cache may contain    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 11.0    */
 DECL|method|maximumWeight (long weight)
 specifier|public
 name|CacheBuilder
@@ -1329,7 +1329,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Specifies the weigher to use in determining the weight of entries. Entry weight is taken    * into consideration by {@link #maximumWeight} when determining which entries to evict, and    * use of this method requires a corresponding call to {@link #maximumWeight} prior to calling    * {@link #build}. Weights are measured and recorded when entries are inserted into the    * cache, and are thus effectively static during the lifetime of a cache entry.    *    *<p>When the weight of an entry is zero it will not be considered for size-based eviction    * (though it still may be evicted by other means).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * weigher already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the weigher, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @param weight the maximum weight the cache may contain    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
+comment|/**    * Specifies the weigher to use in determining the weight of entries. Entry weight is taken    * into consideration by {@link #maximumWeight} when determining which entries to evict, and    * use of this method requires a corresponding call to {@link #maximumWeight} prior to calling    * {@link #build}. Weights are measured and recorded when entries are inserted into the    * cache, and are thus effectively static during the lifetime of a cache entry.    *    *<p>When the weight of an entry is zero it will not be considered for size-based eviction    * (though it still may be evicted by other means).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * weigher already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the weigher, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @param weight the maximum weight the cache may contain    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 11.0    */
 DECL|method|weigher ( Weigher<? super K1, ? super V1> weigher)
 specifier|public
 parameter_list|<
@@ -1825,7 +1825,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, or last access. Access time is reset by    * {@link Cache#get} and {@link Cache#getUnchecked}, but not by operations on the view returned by    * {@link Cache#asMap}.    *    *<p>When {@code duration} is zero, elements will be evicted immediately after being loaded into    * the cache. This has the same effect as invoking {@link #maximumSize maximumSize}{@code (0)}. It    * can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
+comment|/**    * Specifies that each entry should be automatically removed from the cache once a fixed duration    * has elapsed after the entry's creation, the most recent replacement of its value, or its last    * access. Access time is reset by {@link Cache#get} and {@link Cache#getUnchecked}, but not by    * operations on the view returned by {@link Cache#asMap}.    *    *<p>When {@code duration} is zero, elements will be evicted immediately after being loaded into    * the cache. This has the same effect as invoking {@link #maximumSize maximumSize}{@code (0)}. It    * can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Expired entries may be counted by {@link Cache#size}, but will never be visible to read or    * write operations. Expired entries are cleaned up as part of the routine maintenance described    * in the class javadoc.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -3271,6 +3271,11 @@ argument_list|()
 operator|-
 name|start
 decl_stmt|;
+name|statsCounter
+operator|.
+name|recordMiss
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|value
@@ -3321,6 +3326,26 @@ return|return
 name|value
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|refresh (K key)
+specifier|public
+name|void
+name|refresh
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+comment|// the old value is always gone by now
+name|get
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

@@ -138,7 +138,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**    * The entry was evicted due to size constraints. This can occur when using {@link    * CacheBuilder#maximumSize}.    */
+comment|/**    * The entry was evicted due to size constraints. This can occur when using {@link    * CacheBuilder#maximumSize} or {@link CacheBuilder#maximumWeight}.    */
 DECL|enumConstant|SIZE
 name|SIZE
 block|{

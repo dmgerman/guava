@@ -60,16 +60,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -89,6 +79,16 @@ operator|.
 name|concurrent
 operator|.
 name|ExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -192,8 +192,6 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Deprecated
-annotation|@
 name|Override
 annotation|@
 name|Nullable
@@ -217,6 +215,28 @@ argument_list|(
 name|key
 argument_list|)
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|refresh (K key)
+specifier|public
+name|void
+name|refresh
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|refresh
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

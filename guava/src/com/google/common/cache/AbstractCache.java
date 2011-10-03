@@ -196,6 +196,25 @@ throw|;
 block|}
 annotation|@
 name|Override
+DECL|method|refresh (K key)
+specifier|public
+name|void
+name|refresh
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
 DECL|method|invalidate (Object key)
 specifier|public
 name|void
@@ -273,6 +292,13 @@ name|void
 name|recordHit
 parameter_list|()
 function_decl|;
+comment|/**      * Records a single miss. This should be called when a cache request returns a value that was      * not found in the cache. This method should be called by the loading thread, as well as by      * threads blocking on the load. Multiple concurrent calls to {@link Cache} lookup methods with      * the same key on an absent value should result in a single call to either      * {@code recordLoadSuccess} or {@code recordLoadException} and multiple calls to this method,      * despite all being served by the results of a single load operation.      */
+DECL|method|recordMiss ()
+specifier|public
+name|void
+name|recordMiss
+parameter_list|()
+function_decl|;
 comment|/**      * Records the successful load of a new entry. This should be called when a cache request      * causes an entry to be loaded, and the loading completes succesfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
 DECL|method|recordLoadSuccess (long loadTime)
 specifier|public
@@ -292,13 +318,6 @@ parameter_list|(
 name|long
 name|loadTime
 parameter_list|)
-function_decl|;
-comment|/**      * Records a single concurrent miss. This should be called when a cache request returns a      * value which was loaded by a different thread. In contrast to {@link #recordLoadSuccess}      * and {@link #recordLoadException}, this method should never be called by the loading      * thread. Multiple concurrent calls to {@link Cache} lookup methods with the same key on an      * absent value should result in a single call to either {@code recordLoadSuccess} or      * {@code recordLoadException} and multiple calls to this method, despite all being served by      * the results of a single load operation.      */
-DECL|method|recordConcurrentMiss ()
-specifier|public
-name|void
-name|recordConcurrentMiss
-parameter_list|()
 function_decl|;
 comment|/**      * Records the eviction of an entry from the cache. This should only been called when an entry      * is evicted due to the cache's eviction strategy, and not as a result of manual {@linkplain      * Cache#invalidate invalidations}.      */
 DECL|method|recordEviction ()
@@ -402,6 +421,20 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|recordMiss ()
+specifier|public
+name|void
+name|recordMiss
+parameter_list|()
+block|{
+name|missCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|recordLoadSuccess (long loadTime)
 specifier|public
 name|void
@@ -411,11 +444,6 @@ name|long
 name|loadTime
 parameter_list|)
 block|{
-name|missCount
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
 name|loadSuccessCount
 operator|.
 name|incrementAndGet
@@ -440,11 +468,6 @@ name|long
 name|loadTime
 parameter_list|)
 block|{
-name|missCount
-operator|.
-name|incrementAndGet
-argument_list|()
-expr_stmt|;
 name|loadExceptionCount
 operator|.
 name|incrementAndGet
@@ -456,20 +479,6 @@ name|addAndGet
 argument_list|(
 name|loadTime
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|recordConcurrentMiss ()
-specifier|public
-name|void
-name|recordConcurrentMiss
-parameter_list|()
-block|{
-name|missCount
-operator|.
-name|incrementAndGet
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

@@ -166,6 +166,17 @@ name|key
 parameter_list|)
 function_decl|;
 comment|// TODO(fry): add bulk operations
+comment|/**    * Loads a new value for key {@code key}. While the new value is loading the previous value (if    * any) will continue to be returned by {@code get(key)} unless it is evicted. If the new    * value is loaded succesfully it will replace the previous value in the cache; if an exception is    * thrown while refreshing the previous value will remain.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    * @throws ExecutionException if a checked exception was thrown while refreshing the entry    * @throws UncheckedExecutionException if an unchecked exception was thrown while refreshing the    *     entry    * @throws ExecutionError if an error was thrown while refreshing the entry    * @since 11.0    */
+DECL|method|refresh (K key)
+name|void
+name|refresh
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+throws|throws
+name|ExecutionException
+function_decl|;
 comment|/**    * Discards any cached value for key {@code key}, possibly asynchronously, so that a future    * invocation of {@code get(key)} will result in a cache miss and reload.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|invalidate (Object key)
 name|void

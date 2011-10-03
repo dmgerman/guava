@@ -248,6 +248,27 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|refresh (K key)
+specifier|public
+name|void
+name|refresh
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+name|map
+operator|.
+name|refresh
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|invalidate (Object key)
 specifier|public
 name|void

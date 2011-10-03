@@ -945,7 +945,7 @@ control|)
 block|{
 name|counter
 operator|.
-name|recordConcurrentMiss
+name|recordMiss
 argument_list|()
 expr_stmt|;
 block|}
@@ -982,10 +982,6 @@ name|int
 name|requestCount
 init|=
 literal|11
-operator|+
-literal|13
-operator|+
-literal|17
 operator|+
 literal|23
 decl_stmt|;
@@ -1024,10 +1020,6 @@ expr_stmt|;
 name|int
 name|missCount
 init|=
-literal|13
-operator|+
-literal|17
-operator|+
 literal|23
 decl_stmt|;
 name|assertEquals
@@ -1236,7 +1228,7 @@ control|)
 block|{
 name|counter1
 operator|.
-name|recordConcurrentMiss
+name|recordMiss
 argument_list|()
 expr_stmt|;
 block|}
@@ -1360,7 +1352,7 @@ control|)
 block|{
 name|counter2
 operator|.
-name|recordConcurrentMiss
+name|recordMiss
 argument_list|()
 expr_stmt|;
 block|}
@@ -1400,10 +1392,6 @@ argument_list|(
 literal|38
 argument_list|,
 literal|60
-operator|+
-literal|44
-operator|+
-literal|54
 argument_list|,
 literal|44
 argument_list|,

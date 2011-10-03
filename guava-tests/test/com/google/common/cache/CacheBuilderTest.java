@@ -2257,10 +2257,7 @@ argument_list|()
 expr_stmt|;
 name|cache
 operator|.
-name|asMap
-argument_list|()
-operator|.
-name|clear
+name|invalidateAll
 argument_list|()
 expr_stmt|;
 comment|// let the computation proceed
@@ -2618,10 +2615,7 @@ expr_stmt|;
 block|}
 name|cache
 operator|.
-name|asMap
-argument_list|()
-operator|.
-name|clear
+name|invalidateAll
 argument_list|()
 expr_stmt|;
 name|tasksFinished
