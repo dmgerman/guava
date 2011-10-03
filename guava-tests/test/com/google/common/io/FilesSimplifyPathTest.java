@@ -457,6 +457,33 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testSimplifyRootedDotDots ()
+specifier|public
+name|void
+name|testSimplifyRootedDotDots
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"/"
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"/../../.."
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"/"
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"/../../../"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// b/4558855
 DECL|method|testMadbotsBug ()
 specifier|public
@@ -709,6 +736,80 @@ argument_list|,
 name|simplifyPath
 argument_list|(
 literal|"/."
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// http://code.google.com/p/guava-libraries/issues/detail?id=722
+DECL|method|testInitialSlashDotDot ()
+specifier|public
+name|void
+name|testInitialSlashDotDot
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"/c"
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"/../c"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// http://code.google.com/p/guava-libraries/issues/detail?id=722
+DECL|method|testInitialSlashDot ()
+specifier|public
+name|void
+name|testInitialSlashDot
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"/a"
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"/./a"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"/.a"
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"/.a/a/.."
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// http://code.google.com/p/guava-libraries/issues/detail?id=722
+DECL|method|testConsecutiveParentsAfterPresent ()
+specifier|public
+name|void
+name|testConsecutiveParentsAfterPresent
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"../.."
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"./../../"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"../.."
+argument_list|,
+name|simplifyPath
+argument_list|(
+literal|"./.././../"
 argument_list|)
 argument_list|)
 expr_stmt|;
