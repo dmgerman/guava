@@ -58,6 +58,30 @@ name|Executor
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 1.0  */
 end_comment
@@ -73,6 +97,25 @@ name|AbstractExecutionThreadService
 implements|implements
 name|Service
 block|{
+DECL|field|logger
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|AbstractExecutionThreadService
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 comment|/* use AbstractService for state management */
 DECL|field|delegate
 specifier|private
@@ -149,7 +192,21 @@ parameter_list|(
 name|Exception
 name|ignored
 parameter_list|)
-block|{}
+block|{
+name|logger
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|WARNING
+argument_list|,
+literal|"Error while attempting to shut down the service after failure."
+argument_list|,
+name|ignored
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 name|t
 throw|;
@@ -236,7 +293,7 @@ name|void
 name|triggerShutdown
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    *     *<p>The default implementation returns a new {@link Executor} that sets the     * name of its threads to the string returned by {@link #getServiceName}    */
 DECL|method|executor ()
 specifier|protected
 name|Executor
