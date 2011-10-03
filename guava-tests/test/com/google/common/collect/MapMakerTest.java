@@ -173,10 +173,10 @@ comment|/**  * @author Charles Fry  */
 end_comment
 
 begin_class
-DECL|class|MapMakerTests
+DECL|class|MapMakerTest
 specifier|public
 class|class
-name|MapMakerTests
+name|MapMakerTest
 extends|extends
 name|TestCase
 block|{
