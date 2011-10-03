@@ -829,7 +829,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
-specifier|public
 name|MapMaker
 name|expireAfterWrite
 parameter_list|(
@@ -898,7 +897,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|maximumSize (int maximumSize)
-specifier|public
 name|MapMaker
 name|maximumSize
 parameter_list|(

@@ -90,20 +90,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -713,15 +699,10 @@ else|:
 name|initialCapacity
 return|;
 block|}
-comment|/**    * Specifies the maximum number of entries the map may contain. Note that the map<b>may evict an    * entry before this limit is exceeded</b>. As the map size grows close to the maximum, the map    * evicts entries that are less likely to be used again. For example, the map may evict an entry    * because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements can be successfully added to the map, but are evicted    * immediately. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Caching functionality in {@code MapMaker} is being moved to    * {@link com.google.common.cache.CacheBuilder}.    *<b>This method is scheduled for deletion from Guava in Guava release 11.0.</b>    *    * @param size the maximum size of the map    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 8.0    */
-annotation|@
-name|Beta
+comment|/**    * Specifies the maximum number of entries the map may contain. Note that the map<b>may evict an    * entry before this limit is exceeded</b>. As the map size grows close to the maximum, the map    * evicts entries that are less likely to be used again. For example, the map may evict an entry    * because it hasn't been used recently or very often.    *    *<p>When {@code size} is zero, elements can be successfully added to the map, but are evicted    * immediately. This has the same effect as invoking {@link #expireAfterWrite    * expireAfterWrite}{@code (0, unit)} or {@link #expireAfterAccess expireAfterAccess}{@code (0,    * unit)}. It can be useful in testing, or to disable caching temporarily without a code change.    *    *<p>Caching functionality in {@code MapMaker} is being moved to    * {@link com.google.common.cache.CacheBuilder}.    *    * @param size the maximum size of the map    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    */
 annotation|@
 name|Override
-annotation|@
-name|Deprecated
 DECL|method|maximumSize (int size)
-specifier|public
 name|MapMaker
 name|maximumSize
 parameter_list|(
@@ -1123,13 +1104,10 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    *<p>Caching functionality in {@code MapMaker} is being moved to    * {@link com.google.common.cache.CacheBuilder}.    *<b>This method is scheduled for deletion from Guava in Guava release 11.0.</b>    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @since 8.0    */
+comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    *<p>Caching functionality in {@code MapMaker} is being moved to    * {@link com.google.common.cache.CacheBuilder}.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    */
 annotation|@
 name|Override
-annotation|@
-name|Deprecated
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
-specifier|public
 name|MapMaker
 name|expireAfterWrite
 parameter_list|(
@@ -1254,7 +1232,7 @@ else|:
 name|expireAfterWriteNanos
 return|;
 block|}
-comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's last read or write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    *<p>Caching functionality in {@code MapMaker} is being moved to    * {@link com.google.common.cache.CacheBuilder}.    *<b>This method is scheduled for deletion from Guava in Guava release 11.0.</b>    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    * @since 8.0    */
+comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's last read or write access.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    *<p>Caching functionality in {@code MapMaker} is being moved to    * {@link com.google.common.cache.CacheBuilder}.    *    * @param duration the length of time after an entry is last accessed that it should be    *     automatically removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to idle or time to live was already set    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1262,10 +1240,7 @@ literal|"To be supported"
 argument_list|)
 annotation|@
 name|Override
-annotation|@
-name|Deprecated
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
-specifier|public
 name|MapMaker
 name|expireAfterAccess
 parameter_list|(

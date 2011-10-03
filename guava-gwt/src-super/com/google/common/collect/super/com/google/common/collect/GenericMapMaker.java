@@ -129,13 +129,8 @@ name|int
 name|initialCapacity
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#maximumSize}.    *    * @since 8.0    */
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
+comment|/**    * See {@link MapMaker#maximumSize}.    */
 DECL|method|maximumSize (int maximumSize)
-specifier|public
 specifier|abstract
 name|GenericMapMaker
 argument_list|<
@@ -210,11 +205,8 @@ name|TimeUnit
 name|unit
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link MapMaker#expireAfterWrite}.    *    * @since 8.0    */
-annotation|@
-name|Deprecated
+comment|/**    * See {@link MapMaker#expireAfterWrite}.    */
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
-specifier|public
 specifier|abstract
 name|GenericMapMaker
 argument_list|<
