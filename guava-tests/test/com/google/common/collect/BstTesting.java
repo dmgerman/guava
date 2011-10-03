@@ -610,7 +610,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|long
 name|treeValue
 parameter_list|(
 annotation|@

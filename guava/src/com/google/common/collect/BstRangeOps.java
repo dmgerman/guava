@@ -116,7 +116,7 @@ argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|int
+name|long
 name|totalInRange
 parameter_list|(
 name|BstAggregate
@@ -165,7 +165,7 @@ return|return
 literal|0
 return|;
 block|}
-name|int
+name|long
 name|total
 init|=
 name|aggregate
@@ -239,7 +239,7 @@ argument_list|,
 name|N
 argument_list|>
 parameter_list|>
-name|int
+name|long
 name|totalBeyondRangeToSide
 parameter_list|(
 name|BstAggregate
@@ -265,7 +265,7 @@ name|N
 name|root
 parameter_list|)
 block|{
-name|int
+name|long
 name|accum
 init|=
 literal|0

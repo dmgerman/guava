@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An integer-valued function on binary search tree nodes that adds between nodes.  *   * @author Louis Wasserman  */
+comment|/**  * An integer-valued function on binary search tree nodes that adds between nodes.  *   *<p>The value of individual entries must fit into an {@code int}, but the value of an entire  * tree can require a {@code long}.  *   * @author Louis Wasserman  */
 end_comment
 
 begin_interface
@@ -63,7 +63,7 @@ parameter_list|>
 block|{
 comment|/**    * The total value on an entire subtree. Must be equal to the sum of the {@link #entryValue    * entryValue} of this node and all its descendants.    */
 DECL|method|treeValue (@ullable N tree)
-name|int
+name|long
 name|treeValue
 parameter_list|(
 annotation|@

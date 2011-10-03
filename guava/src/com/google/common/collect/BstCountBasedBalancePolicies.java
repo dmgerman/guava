@@ -471,7 +471,7 @@ name|N
 name|right
 parameter_list|)
 block|{
-name|int
+name|long
 name|countL
 init|=
 name|countAggregate
@@ -481,7 +481,7 @@ argument_list|(
 name|left
 argument_list|)
 decl_stmt|;
-name|int
+name|long
 name|countR
 init|=
 name|countAggregate
@@ -1142,7 +1142,7 @@ name|singleBalancePolicy
 argument_list|)
 return|;
 block|}
-name|int
+name|long
 name|countL
 init|=
 name|countAggregate
@@ -1152,7 +1152,7 @@ argument_list|(
 name|left
 argument_list|)
 decl_stmt|;
-name|int
+name|long
 name|countR
 init|=
 name|countAggregate
@@ -1323,7 +1323,7 @@ return|return
 name|left
 return|;
 block|}
-name|int
+name|long
 name|countL
 init|=
 name|countAggregate
@@ -1333,7 +1333,7 @@ argument_list|(
 name|left
 argument_list|)
 decl_stmt|;
-name|int
+name|long
 name|countR
 init|=
 name|countAggregate

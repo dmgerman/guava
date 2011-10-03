@@ -453,7 +453,7 @@ name|values
 argument_list|()
 control|)
 block|{
-name|int
+name|long
 name|count
 init|=
 name|BstRangeOps
@@ -543,7 +543,7 @@ name|values
 argument_list|()
 control|)
 block|{
-name|int
+name|long
 name|count
 init|=
 name|BstRangeOps
@@ -695,7 +695,7 @@ condition|)
 block|{
 continue|continue;
 block|}
-name|int
+name|long
 name|count
 init|=
 name|BstRangeOps
