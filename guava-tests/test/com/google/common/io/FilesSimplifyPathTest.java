@@ -128,15 +128,32 @@ name|FilesSimplifyPathTest
 extends|extends
 name|TestCase
 block|{
-DECL|method|testSimplify ()
+DECL|method|testSimplifyEmptyString ()
 specifier|public
 name|void
-name|testSimplify
+name|testSimplifyEmptyString
 parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
+literal|"."
+argument_list|,
+name|simplifyPath
+argument_list|(
 literal|""
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testSimplifyDot ()
+specifier|public
+name|void
+name|testSimplifyDot
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"."
 argument_list|,
 name|simplifyPath
 argument_list|(
@@ -145,22 +162,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSimplify1 ()
+DECL|method|testSimplifyWhiteSpace ()
 specifier|public
 name|void
-name|testSimplify1
+name|testSimplifyWhiteSpace
 parameter_list|()
 block|{
-name|assertEquals
-argument_list|(
-literal|"."
-argument_list|,
-name|simplifyPath
-argument_list|(
-literal|""
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|" "
