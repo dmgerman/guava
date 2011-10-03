@@ -60,22 +60,6 @@ name|math
 operator|.
 name|DoubleUtils
 operator|.
-name|MAX_DOUBLE_EXPONENT
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|DoubleUtils
-operator|.
 name|SIGNIFICAND_BITS
 import|;
 end_import
@@ -269,7 +253,6 @@ specifier|final
 class|class
 name|DoubleMath
 block|{
-comment|// TODO(fry): when we move to JDK 6, the changes of CL 24245020 can be reverted
 comment|/*    * This method returns a value y such that rounding y DOWN (towards zero) gives the same result    * as rounding x according to the specified mode.    */
 DECL|method|roundIntermediate (double x, RoundingMode mode)
 specifier|static
@@ -285,14 +268,11 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|getExponent
+operator|!
+name|isFinite
 argument_list|(
 name|x
 argument_list|)
-operator|==
-name|MAX_DOUBLE_EXPONENT
-operator|+
-literal|1
 condition|)
 block|{
 throw|throw
