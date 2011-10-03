@@ -156,9 +156,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|primitives
+name|math
 operator|.
-name|Ints
+name|IntMath
 import|;
 end_import
 
@@ -2751,7 +2751,7 @@ argument_list|>
 name|sets
 parameter_list|)
 block|{
-name|long
+name|int
 name|dividend
 init|=
 literal|1
@@ -2769,6 +2769,8 @@ operator|.
 name|builder
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|Set
@@ -2790,13 +2792,9 @@ name|Axis
 argument_list|(
 name|set
 argument_list|,
-operator|(
-name|int
-operator|)
 name|dividend
 argument_list|)
 decl_stmt|;
-comment|// check overflow at end
 name|builder
 operator|.
 name|add
@@ -2805,23 +2803,34 @@ name|axis
 argument_list|)
 expr_stmt|;
 name|dividend
-operator|*=
+operator|=
+name|IntMath
+operator|.
+name|checkedMultiply
+argument_list|(
+name|dividend
+argument_list|,
 name|axis
 operator|.
 name|size
 argument_list|()
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|dividend
-operator|<=
-name|Integer
-operator|.
-name|MAX_VALUE
-argument_list|,
-literal|"cartesian product is too big"
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|ArithmeticException
+name|overflow
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cartesian product too big"
+argument_list|)
+throw|;
 block|}
 name|this
 operator|.
@@ -2834,12 +2843,7 @@ argument_list|()
 expr_stmt|;
 name|size
 operator|=
-name|Ints
-operator|.
-name|checkedCast
-argument_list|(
 name|dividend
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|size ()
