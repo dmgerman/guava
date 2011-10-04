@@ -775,13 +775,7 @@ name|Object
 argument_list|>
 name|builder
 init|=
-operator|new
-name|CacheBuilder
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+name|newBuilder
 argument_list|()
 decl_stmt|;
 name|builder
