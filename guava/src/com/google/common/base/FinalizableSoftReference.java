@@ -45,8 +45,8 @@ comment|/**  * Soft reference with a {@code finalizeReferent()} method which a b
 end_comment
 
 begin_class
-specifier|public
 DECL|class|FinalizableSoftReference
+specifier|public
 specifier|abstract
 class|class
 name|FinalizableSoftReference
@@ -61,9 +61,7 @@ argument_list|>
 implements|implements
 name|FinalizableReference
 block|{
-comment|/**    * Constructs a new finalizable soft reference.    *    * @param referent to softly reference    * @param queue that should finalize the referent    * @deprecated FinalizableReferenceQueue is an unsound mechanism for cleaning up references,    *     because (1) it's single thread can be easily overloaded, and (2) it's insistance on running    *     a background thread is problematic in certain environments.<b>This class is scheduled for    *     deletion in December 2012.</b>    */
-annotation|@
-name|Deprecated
+comment|/**    * Constructs a new finalizable soft reference.    *    * @param referent to softly reference    * @param queue that should finalize the referent    */
 DECL|method|FinalizableSoftReference (T referent, FinalizableReferenceQueue queue)
 specifier|protected
 name|FinalizableSoftReference

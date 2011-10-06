@@ -121,8 +121,8 @@ comment|/**  * A reference queue with an associated background thread that deque
 end_comment
 
 begin_class
-specifier|public
 DECL|class|FinalizableReferenceQueue
+specifier|public
 class|class
 name|FinalizableReferenceQueue
 block|{
@@ -209,9 +209,7 @@ specifier|final
 name|boolean
 name|threadStarted
 decl_stmt|;
-comment|/**    * Constructs a new queue.    *    * @deprecated FinalizableReferenceQueue is an unsound mechanism for cleaning up references,    *     because (1) it's single thread can be easily overloaded, and (2) it's insistance on running    *     a background thread is problematic in certain environments.<b>This class is scheduled for    *     deletion in December 2012.</b>    */
-annotation|@
-name|Deprecated
+comment|/**    * Constructs a new queue.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -322,11 +320,6 @@ name|threadStarted
 expr_stmt|;
 block|}
 comment|/**    * Repeatedly dequeues references from the queue and invokes {@link    * FinalizableReference#finalizeReferent()} on them until the queue is empty. This method is a    * no-op if the background thread was created successfully.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
 DECL|method|cleanUp ()
 name|void
 name|cleanUp
