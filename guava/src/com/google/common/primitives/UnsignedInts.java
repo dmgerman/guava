@@ -651,7 +651,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code int} value represented by a string with the given radix.    *     * @param s the string containing the unsigned integer representation to be parsed.    * @param radix the radix to use while parsing {@code s}; must be between    *        {@link Character#MIN_RADIX} and {@link Character#MAX_RADIX}.    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int}, or    *         if supplied radix is invalid.    */
+comment|/**    * Returns the unsigned {@code int} value represented by a string with the given radix.    *     * @param string the string containing the unsigned integer representation to be parsed.    * @param radix the radix to use while parsing {@code s}; must be between    *        {@link Character#MIN_RADIX} and {@link Character#MAX_RADIX}.    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int}, or    *         if supplied radix is invalid.    */
 DECL|method|parseUnsignedInt (String string, int radix)
 specifier|public
 specifier|static
