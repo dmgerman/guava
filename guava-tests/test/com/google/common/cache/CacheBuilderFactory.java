@@ -181,8 +181,8 @@ DECL|class|CacheBuilderFactory
 class|class
 name|CacheBuilderFactory
 block|{
-comment|// Default values contain only 'null', which means don't call the MapMaker method (just give the
-comment|// MapMaker default).
+comment|// Default values contain only 'null', which means don't call the CacheBuilder method (just give
+comment|// the CacheBuilder default).
 DECL|field|concurrencyLevels
 specifier|private
 name|Set

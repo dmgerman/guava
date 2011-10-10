@@ -345,7 +345,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Legacy unit tests for MapMaker.  */
+comment|/**  * Unit tests for CacheBuilder.  */
 end_comment
 
 begin_class
