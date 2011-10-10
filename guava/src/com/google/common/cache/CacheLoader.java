@@ -102,7 +102,7 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
-comment|/**    * Computes or retrieves the value corresponding to {@code key}.    *    * @param key the non-null key whose value should be loaded    * @return the value associated with {@code key};<b>may not be null</b>    */
+comment|/**    * Computes or retrieves the value corresponding to {@code key}.    *    * @param key the non-null key whose value should be loaded    * @return the value associated with {@code key};<b>must not be null</b>    */
 DECL|method|load (K key)
 specifier|public
 specifier|abstract
@@ -115,7 +115,7 @@ parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Computes or retrieves a replacement value corresponding to an already-cached {@code key}. This    * method is called when an existing cache entry is refreshed, such as through a call to    * {@link Cache#refresh}.    *    *<p>This implementation simply delegates to {@link #load}. This method should be overriden when    * the new value can be computed more efficiently from the old value.    *    * @param key the non-null key whose value should be loaded    * @param oldValue the non-null old value corresponding to {@code key}    * @return the new value associated with {@code key};<b>may not be null</b>    * @since 11.0    */
+comment|/**    * Computes or retrieves a replacement value corresponding to an already-cached {@code key}. This    * method is called when an existing cache entry is refreshed, such as through a call to    * {@link Cache#refresh}.    *    *<p>This implementation simply delegates to {@link #load}. This method should be overriden when    * the new value can be computed more efficiently from the old value.    *    * @param key the non-null key whose value should be loaded    * @param oldValue the non-null old value corresponding to {@code key}    * @return the new value associated with {@code key};<b>must not be null</b>    * @since 11.0    */
 DECL|method|reload (K key, V oldValue)
 specifier|public
 name|V

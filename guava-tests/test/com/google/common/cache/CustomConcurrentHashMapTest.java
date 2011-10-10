@@ -1084,7 +1084,7 @@ name|loader
 argument_list|,
 name|map
 operator|.
-name|loader
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 block|}
@@ -16666,11 +16666,11 @@ name|assertEquals
 argument_list|(
 name|mapOne
 operator|.
-name|loader
+name|defaultLoader
 argument_list|,
 name|mapTwo
 operator|.
-name|loader
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 name|assertEquals

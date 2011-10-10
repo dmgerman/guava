@@ -66,6 +66,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Callable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ConcurrentMap
 import|;
 end_import
@@ -79,16 +91,6 @@ operator|.
 name|concurrent
 operator|.
 name|ExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
 import|;
 end_import
 
@@ -141,15 +143,11 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-annotation|@
-name|Nullable
-DECL|method|get (@ullable K key)
+DECL|method|get (K key)
 specifier|public
 name|V
 name|get
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -168,15 +166,11 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
-DECL|method|getUnchecked (@ullable K key)
+DECL|method|getUnchecked (K key)
 specifier|public
 name|V
 name|getUnchecked
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -193,15 +187,42 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|get (K key, Callable<V> valueLoader)
+specifier|public
+name|V
+name|get
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|Callable
+argument_list|<
+name|V
+argument_list|>
+name|valueLoader
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|key
+argument_list|,
+name|valueLoader
+argument_list|)
+return|;
+block|}
 annotation|@
-name|Nullable
-DECL|method|apply (@ullable K key)
+name|Override
+DECL|method|apply (K key)
 specifier|public
 name|V
 name|apply
 parameter_list|(
-annotation|@
-name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -240,13 +261,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|invalidate (@ullable Object key)
+DECL|method|invalidate (Object key)
 specifier|public
 name|void
 name|invalidate
 parameter_list|(
-annotation|@
-name|Nullable
 name|Object
 name|key
 parameter_list|)

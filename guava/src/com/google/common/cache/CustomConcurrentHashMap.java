@@ -695,7 +695,7 @@ argument_list|>
 index|[]
 name|segments
 decl_stmt|;
-DECL|field|loader
+DECL|field|defaultLoader
 specifier|final
 name|CacheLoader
 argument_list|<
@@ -705,7 +705,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|loader
+name|defaultLoader
 decl_stmt|;
 comment|/** The concurrency level. */
 DECL|field|concurrencyLevel
@@ -847,7 +847,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|loader
+name|defaultLoader
 operator|=
 name|checkNotNull
 argument_list|(
@@ -18767,6 +18767,35 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
+return|return
+name|getOrLoad
+argument_list|(
+name|key
+argument_list|,
+name|defaultLoader
+argument_list|)
+return|;
+block|}
+DECL|method|getOrLoad (K key, CacheLoader<? super K, V> loader)
+name|V
+name|getOrLoad
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loader
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
 name|int
 name|hash
 init|=
@@ -18926,7 +18955,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|loader
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 block|}
@@ -20924,7 +20953,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|loader
+name|defaultLoader
 argument_list|,
 name|keyStrength
 argument_list|,
