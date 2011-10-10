@@ -175,7 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset which maintains the ordering of its elements, according to either  * their natural order or an explicit {@link Comparator}. In all cases, this  * implementation uses {@link Comparable#compareTo} or {@link  * Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link java.util.Collection} contract,  * which is specified in terms of {@link Object#equals}.  *  * @author Neal Kanodia  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A multiset which maintains the ordering of its elements, according to either  * their natural order or an explicit {@link Comparator}. In all cases, this  * implementation uses {@link Comparable#compareTo} or {@link  * Comparator#compare} instead of {@link Object#equals} to determine  * equivalence of instances.  *  *<p><b>Warning:</b> The comparison must be<i>consistent with equals</i> as  * explained by the {@link Comparable} class specification. Otherwise, the  * resulting multiset will violate the {@link java.util.Collection} contract,  * which is specified in terms of {@link Object#equals}.  *  * @author Louis Wasserman  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
