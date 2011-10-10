@@ -463,7 +463,7 @@ case|:
 return|return
 literal|"\u03bcs"
 return|;
-comment|// ?s
+comment|// Î¼s
 case|case
 name|MILLISECONDS
 case|:
