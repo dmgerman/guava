@@ -114,6 +114,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 import|;
 end_import
@@ -2349,7 +2363,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate.    *    * @throws NoSuchElementException if no element in {@code iterable} matches    *     the given predicate    */
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * it is possible that<i>no</i> element will match, use {@link    * #tryFind)} or {@link #find(Iterable, Predicate, T)} instead.    *    * @throws NoSuchElementException if no element in {@code iterable} matches    *     the given predicate    */
 DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
@@ -2388,7 +2402,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found.    *    * @since 7.0    */
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found. Note that this can    * usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    * @since 7.0    */
 DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2431,6 +2445,48 @@ argument_list|,
 name|predicate
 argument_list|,
 name|defaultValue
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an {@link Optional} containing the first element in {@code    * iterable} that satisfies the given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code    * null}. If {@code null} is matched in {@code iterable}, a    * NullPointerException will be thrown.    *    * @since 11.0    */
+DECL|method|tryFind (Iterable<T> iterable, Predicate<? super T> predicate)
+specifier|public
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|tryFind
+parameter_list|(
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+name|iterable
+parameter_list|,
+name|Predicate
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|predicate
+parameter_list|)
+block|{
+return|return
+name|Iterators
+operator|.
+name|tryFind
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
 argument_list|)
 return|;
 block|}
