@@ -755,39 +755,6 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Enables leniant parsing for use with {@code CacheBuilderSpec}. This allows configuration    * combinations which don't make sense together, but which can't be forbidden by    * {@code CacheBuilderSpec} without making it too fragile.    */
-DECL|method|newLenientBuilder ()
-specifier|static
-name|CacheBuilder
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|newLenientBuilder
-parameter_list|()
-block|{
-name|CacheBuilder
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|builder
-init|=
-name|newBuilder
-argument_list|()
-decl_stmt|;
-name|builder
-operator|.
-name|strictParsing
-operator|=
-literal|false
-expr_stmt|;
-return|return
-name|builder
-return|;
-block|}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalences#equals()} otherwise.    */
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder

@@ -21274,7 +21274,7 @@ name|builder
 init|=
 name|CacheBuilder
 operator|.
-name|newLenientBuilder
+name|newBuilder
 argument_list|()
 operator|.
 name|setKeyStrength
@@ -21302,6 +21302,12 @@ argument_list|(
 name|concurrencyLevel
 argument_list|)
 decl_stmt|;
+name|builder
+operator|.
+name|strictParsing
+operator|=
+literal|false
+expr_stmt|;
 name|builder
 operator|.
 name|removalListener
