@@ -679,7 +679,7 @@ name|MAX_SIZE
 argument_list|,
 name|CacheTesting
 operator|.
-name|evictionQueueSize
+name|accessQueueSize
 argument_list|(
 name|cache
 argument_list|)
@@ -825,7 +825,7 @@ name|MAX_SIZE
 argument_list|,
 name|CacheTesting
 operator|.
-name|evictionQueueSize
+name|accessQueueSize
 argument_list|(
 name|cache
 argument_list|)
