@@ -172,7 +172,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the value of the given {@code int} as a {@code long}, when treated as unsigned.?    */
+comment|/**    * Returns the value of the given {@code int} as a {@code long}, when treated as unsigned.    */
 DECL|method|toLong (int value)
 specifier|public
 specifier|static
@@ -600,7 +600,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 64-bit    * quantities.    *     * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
+comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *     * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 DECL|method|remainder (int dividend, int divisor)
 specifier|public
 specifier|static
