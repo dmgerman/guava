@@ -1545,8 +1545,25 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|checkExpiration
+name|checkState
 argument_list|(
+name|expireAfterWriteNanos
+operator|==
+name|UNSET_INT
+argument_list|,
+literal|"expireAfterWrite was already set to %s ns"
+argument_list|,
+name|expireAfterWriteNanos
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|duration
+operator|>=
+literal|0
+argument_list|,
+literal|"duration cannot be negative: %s %s"
+argument_list|,
 name|duration
 argument_list|,
 name|unit
@@ -1566,54 +1583,6 @@ expr_stmt|;
 return|return
 name|this
 return|;
-block|}
-DECL|method|checkExpiration (long duration, TimeUnit unit)
-specifier|private
-name|void
-name|checkExpiration
-parameter_list|(
-name|long
-name|duration
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
-block|{
-name|checkState
-argument_list|(
-name|expireAfterWriteNanos
-operator|==
-name|UNSET_INT
-argument_list|,
-literal|"expireAfterWrite was already set to %s ns"
-argument_list|,
-name|expireAfterWriteNanos
-argument_list|)
-expr_stmt|;
-name|checkState
-argument_list|(
-name|expireAfterAccessNanos
-operator|==
-name|UNSET_INT
-argument_list|,
-literal|"expireAfterAccess was already set to %s ns"
-argument_list|,
-name|expireAfterAccessNanos
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|duration
-operator|>=
-literal|0
-argument_list|,
-literal|"duration cannot be negative: %s %s"
-argument_list|,
-name|duration
-argument_list|,
-name|unit
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|getExpireAfterWriteNanos ()
 name|long
@@ -1650,8 +1619,25 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|checkExpiration
+name|checkState
 argument_list|(
+name|expireAfterAccessNanos
+operator|==
+name|UNSET_INT
+argument_list|,
+literal|"expireAfterAccess was already set to %s ns"
+argument_list|,
+name|expireAfterAccessNanos
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|duration
+operator|>=
+literal|0
+argument_list|,
+literal|"duration cannot be negative: %s %s"
+argument_list|,
 name|duration
 argument_list|,
 name|unit
