@@ -265,7 +265,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset that supports concurrent modifications and that provides atomic  * versions of most {@code Multiset} operations (exceptions where noted). Null  * elements are not supported.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A multiset that supports concurrent modifications and that provides atomic versions of most  * {@code Multiset} operations (exceptions where noted). Null elements are not supported.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -299,9 +299,8 @@ name|AtomicInteger
 argument_list|>
 name|countMap
 decl_stmt|;
-comment|// This constant allows the deserialization code to set a final field. This
-comment|// holder class makes sure it is not initialized unless an instance is
-comment|// deserialized.
+comment|// This constant allows the deserialization code to set a final field. This holder class
+comment|// makes sure it is not initialized unless an instance is deserialized.
 DECL|class|FieldSettersHolder
 specifier|private
 specifier|static
@@ -364,7 +363,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ConcurrentHashMultiset} containing the specified    * elements, using the default initial capacity, load factor, and concurrency    * settings.    *     *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
+comment|/**    * Creates a new {@code ConcurrentHashMultiset} containing the specified elements, using    * the default initial capacity, load factor, and concurrency settings.    *    *<p>This implementation is highly efficient when {@code elements} is itself a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
 DECL|method|create (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -457,7 +456,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance using {@code countMap} to store elements and their    * counts.    *    *<p>This instance will assume ownership of {@code countMap}, and other code    * should not maintain references to the map or modify it in any way.    *    * @param countMap backing map for storing the elements in the multiset and    *     their counts. It must be empty.    * @throws IllegalArgumentException if {@code countMap} is not empty    */
+comment|/**    * Creates an instance using {@code countMap} to store elements and their counts.    *    *<p>This instance will assume ownership of {@code countMap}, and other code    * should not maintain references to the map or modify it in any way.    *    * @param countMap backing map for storing the elements in the multiset and    *     their counts. It must be empty.    * @throws IllegalArgumentException if {@code countMap} is not empty    */
 DECL|method|ConcurrentHashMultiset (ConcurrentMap<E, AtomicInteger> countMap)
 annotation|@
 name|VisibleForTesting
@@ -567,7 +566,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>If the data in the multiset is modified by any other threads during this    * method, it is undefined which (if any) of these modifications will be    * reflected in the result.    */
+comment|/**    * {@inheritDoc}    *    *<p>If the data in the multiset is modified by any other threads during this method,    * it is undefined which (if any) of these modifications will be reflected in the result.    */
 DECL|method|size ()
 annotation|@
 name|Override
@@ -731,7 +730,7 @@ name|list
 return|;
 block|}
 comment|// Modification Operations
-comment|/**    * Adds a number of occurrences of the specified element to this multiset.    *    * @param element the element to add    * @param occurrences the number of occurrences to add    * @return the previous count of the element before the operation; possibly    *     zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     the resulting amount would exceed {@link Integer#MAX_VALUE}    */
+comment|/**    * Adds a number of occurrences of the specified element to this multiset.    *    * @param element the element to add    * @param occurrences the number of occurrences to add    * @return the previous count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     the resulting amount would exceed {@link Integer#MAX_VALUE}    */
 DECL|method|add (E element, int occurrences)
 annotation|@
 name|Override
@@ -943,7 +942,7 @@ block|}
 comment|// If we're still here, there was a race, so just try again.
 block|}
 block|}
-comment|/**    * Removes a number of occurrences of the specified element from this    * multiset. If the multiset contains fewer than this number of occurrences to    * begin with, all occurrences will be removed.    *    * @param element the element whose occurrences should be removed    * @param occurrences the number of occurrences of the element to remove    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
+comment|/**    * Removes a number of occurrences of the specified element from this multiset. If the multiset    * contains fewer than this number of occurrences to begin with, all occurrences will be removed.    *    * @param element the element whose occurrences should be removed    * @param occurrences the number of occurrences of the element to remove    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 DECL|method|remove (@ullable Object element, int occurrences)
 annotation|@
 name|Override
@@ -1082,7 +1081,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or    * makes no change if this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect    * when the element count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code    *     occurrences} is zero)    */
+comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or makes no    * change if this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the    * element count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)    */
 DECL|method|removeExactly (@ullable Object element, int occurrences)
 specifier|public
 name|boolean
@@ -1206,7 +1205,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Adds or removes occurrences of {@code element} such that the {@link #count}    * of the element becomes {@code count}.    *    * @return the count of {@code element} in the multiset before this call    * @throws IllegalArgumentException if {@code count} is negative    */
+comment|/**    * Adds or removes occurrences of {@code element} such that the {@link #count} of the    * element becomes {@code count}.    *    * @return the count of {@code element} in the multiset before this call    * @throws IllegalArgumentException if {@code count} is negative    */
 DECL|method|setCount (E element, int count)
 annotation|@
 name|Override
@@ -1407,7 +1406,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Sets the number of occurrences of {@code element} to {@code newCount}, but    * only if the count is currently {@code expectedOldCount}. If {@code element} does    * not appear in the multiset exactly {@code expectedOldCount} times, no changes will    * be made.    *    * @return {@code true} if the change was successful. This usually indicates    *     that the multiset has been modified, but not always: in the case that    *     {@code expectedOldCount == newCount}, the method will return {@code true} if    *     the condition was met.    * @throws IllegalArgumentException if {@code expectedOldCount} or {@code newCount} is negative    */
+comment|/**    * Sets the number of occurrences of {@code element} to {@code newCount}, but only if    * the count is currently {@code expectedOldCount}. If {@code element} does not appear    * in the multiset exactly {@code expectedOldCount} times, no changes will be made.    *    * @return {@code true} if the change was successful. This usually indicates    *     that the multiset has been modified, but not always: in the case that    *     {@code expectedOldCount == newCount}, the method will return {@code true} if    *     the condition was met.    * @throws IllegalArgumentException if {@code expectedOldCount} or {@code newCount} is negative    */
 DECL|method|setCount (E element, int expectedOldCount, int newCount)
 annotation|@
 name|Override
