@@ -258,10 +258,8 @@ argument_list|>
 name|secondChoice
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise.    */
+comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise. If the    * supplier returns {@code null}, a {@link NullPointerException} will be thrown.    *    * @throws NullPointerException if the supplier returns {@code null}    */
 DECL|method|or (Supplier<? extends T> supplier)
-annotation|@
-name|Nullable
 specifier|public
 specifier|abstract
 name|T
@@ -675,8 +673,6 @@ block|}
 DECL|method|or (Supplier<?> supplier)
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 specifier|public
 name|Object
 name|or
@@ -689,10 +685,15 @@ name|supplier
 parameter_list|)
 block|{
 return|return
+name|checkNotNull
+argument_list|(
 name|supplier
 operator|.
 name|get
 argument_list|()
+argument_list|,
+literal|"use orNull() instead of a Supplier that returns null"
+argument_list|)
 return|;
 block|}
 DECL|method|orNull ()
