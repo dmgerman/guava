@@ -60,6 +60,22 @@ name|cache
 operator|.
 name|CacheBuilder
 operator|.
+name|NULL_TICKER
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|cache
+operator|.
+name|CacheBuilder
+operator|.
 name|UNSET_INT
 import|;
 end_import
@@ -944,7 +960,10 @@ operator|=
 name|builder
 operator|.
 name|getTicker
+argument_list|(
+name|recordsTime
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|removalListener
 operator|=
@@ -1327,6 +1346,39 @@ parameter_list|()
 block|{
 return|return
 name|expiresAfterWrite
+argument_list|()
+return|;
+block|}
+DECL|method|recordsWrite ()
+name|boolean
+name|recordsWrite
+parameter_list|()
+block|{
+return|return
+name|expiresAfterWrite
+argument_list|()
+return|;
+block|}
+DECL|method|recordsAccess ()
+name|boolean
+name|recordsAccess
+parameter_list|()
+block|{
+return|return
+name|expiresAfterAccess
+argument_list|()
+return|;
+block|}
+DECL|method|recordsTime ()
+name|boolean
+name|recordsTime
+parameter_list|()
+block|{
+return|return
+name|recordsWrite
+argument_list|()
+operator|||
+name|recordsAccess
 argument_list|()
 return|;
 block|}
@@ -7805,7 +7857,7 @@ block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#getLiveValue}    * instead.    */
 annotation|@
 name|VisibleForTesting
-DECL|method|isLive (ReferenceEntry<K, V> entry)
+DECL|method|isLive (ReferenceEntry<K, V> entry, long now)
 name|boolean
 name|isLive
 parameter_list|(
@@ -7816,6 +7868,9 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 return|return
@@ -7830,6 +7885,8 @@ operator|.
 name|getLiveValue
 argument_list|(
 name|entry
+argument_list|,
+name|now
 argument_list|)
 operator|!=
 literal|null
@@ -7902,7 +7959,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,    * loading, or expired. Unlike {@link Segment#getLiveValue} this method does not attempt to    * cleanup stale entries.    */
-DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
+DECL|method|getLiveValue (ReferenceEntry<K, V> entry, long now)
 name|V
 name|getLiveValue
 parameter_list|(
@@ -7913,6 +7970,9 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 if|if
@@ -7956,6 +8016,8 @@ condition|(
 name|isExpired
 argument_list|(
 name|entry
+argument_list|,
+name|now
 argument_list|)
 condition|)
 block|{
@@ -7968,43 +8030,6 @@ name|value
 return|;
 block|}
 comment|// expiration
-comment|/**    * Returns true if the entry has expired.    */
-DECL|method|isExpired (ReferenceEntry<K, V> entry)
-name|boolean
-name|isExpired
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|expires
-argument_list|()
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
-name|isExpired
-argument_list|(
-name|entry
-argument_list|,
-name|ticker
-operator|.
-name|read
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns true if the entry has expired.    */
 DECL|method|isExpired (ReferenceEntry<K, V> entry, long now)
 name|boolean
@@ -8915,7 +8940,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|setValue (ReferenceEntry<K, V> entry, K key, V value)
+DECL|method|setValue (ReferenceEntry<K, V> entry, K key, V value, long now)
 name|void
 name|setValue
 parameter_list|(
@@ -8932,6 +8957,9 @@ name|key
 parameter_list|,
 name|V
 name|value
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 name|ValueReference
@@ -9005,6 +9033,8 @@ argument_list|(
 name|entry
 argument_list|,
 name|weight
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|previous
@@ -9041,7 +9071,6 @@ name|ExecutionException
 block|{
 try|try
 block|{
-comment|// don't call getLiveEntry, which would ignore loading values
 if|if
 condition|(
 name|count
@@ -9050,6 +9079,7 @@ literal|0
 condition|)
 block|{
 comment|// read-volatile
+comment|// don't call getLiveEntry, which would ignore loading values
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -9072,12 +9102,24 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 name|V
 name|value
 init|=
 name|getLiveValue
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 decl_stmt|;
 if|if
@@ -9090,6 +9132,8 @@ block|{
 name|recordRead
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|statsCounter
@@ -9213,8 +9257,21 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+comment|// re-read ticker once inside the lock
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|int
 name|newCount
@@ -9376,14 +9433,11 @@ if|if
 condition|(
 name|map
 operator|.
-name|expires
-argument_list|()
-operator|&&
-name|map
-operator|.
 name|isExpired
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 condition|)
 block|{
@@ -9408,6 +9462,8 @@ block|{
 name|recordLockedRead
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|statsCounter
@@ -9636,9 +9692,22 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+comment|// re-read ticker now that loading has completed
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 name|recordRead
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 return|return
@@ -9861,8 +9930,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|AtomicReferenceArray
 argument_list|<
@@ -10384,7 +10465,7 @@ block|{}
 block|}
 comment|// recency queue, shared by expiration and eviction
 comment|/**      * Records the relative order in which this read was performed by adding {@code entry} to the      * recency queue. At write-time, or when the queue is full past the threshold, the queue will      * be drained and the entries therein processed.      *      *<p>Note: locked reads should use {@link #recordLockedRead}.      */
-DECL|method|recordRead (ReferenceEntry<K, V> entry)
+DECL|method|recordRead (ReferenceEntry<K, V> entry, long now)
 name|void
 name|recordRead
 parameter_list|(
@@ -10395,13 +10476,16 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 if|if
 condition|(
 name|map
 operator|.
-name|expiresAfterAccess
+name|recordsAccess
 argument_list|()
 condition|)
 block|{
@@ -10409,12 +10493,7 @@ name|entry
 operator|.
 name|setAccessTime
 argument_list|(
-name|map
-operator|.
-name|ticker
-operator|.
-name|read
-argument_list|()
+name|now
 argument_list|)
 expr_stmt|;
 block|}
@@ -10432,7 +10511,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|recordLockedRead (ReferenceEntry<K, V> entry)
+DECL|method|recordLockedRead (ReferenceEntry<K, V> entry, long now)
 name|void
 name|recordLockedRead
 parameter_list|(
@@ -10443,13 +10522,16 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 if|if
 condition|(
 name|map
 operator|.
-name|expiresAfterAccess
+name|recordsAccess
 argument_list|()
 condition|)
 block|{
@@ -10457,12 +10539,7 @@ name|entry
 operator|.
 name|setAccessTime
 argument_list|(
-name|map
-operator|.
-name|ticker
-operator|.
-name|read
-argument_list|()
+name|now
 argument_list|)
 expr_stmt|;
 block|}
@@ -10480,7 +10557,7 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|recordWrite (ReferenceEntry<K, V> entry, int weight)
+DECL|method|recordWrite (ReferenceEntry<K, V> entry, int weight, long now)
 name|void
 name|recordWrite
 parameter_list|(
@@ -10494,6 +10571,9 @@ name|entry
 parameter_list|,
 name|int
 name|weight
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 comment|// we are already under lock, so drain the recency queue immediately
@@ -10508,25 +10588,7 @@ if|if
 condition|(
 name|map
 operator|.
-name|expires
-argument_list|()
-condition|)
-block|{
-name|long
-name|time
-init|=
-name|map
-operator|.
-name|ticker
-operator|.
-name|read
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|map
-operator|.
-name|expiresAfterAccess
+name|recordsAccess
 argument_list|()
 condition|)
 block|{
@@ -10534,7 +10596,7 @@ name|entry
 operator|.
 name|setAccessTime
 argument_list|(
-name|time
+name|now
 argument_list|)
 expr_stmt|;
 block|}
@@ -10542,7 +10604,7 @@ if|if
 condition|(
 name|map
 operator|.
-name|expiresAfterWrite
+name|recordsWrite
 argument_list|()
 condition|)
 block|{
@@ -10550,10 +10612,9 @@ name|entry
 operator|.
 name|setWriteTime
 argument_list|(
-name|time
+name|now
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|accessQueue
 operator|.
@@ -10629,10 +10690,13 @@ block|}
 block|}
 comment|// expiration
 comment|/**      * Cleanup expired entries when the lock is available.      */
-DECL|method|tryExpireEntries ()
+DECL|method|tryExpireEntries (long now)
 name|void
 name|tryExpireEntries
-parameter_list|()
+parameter_list|(
+name|long
+name|now
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -10643,7 +10707,9 @@ block|{
 try|try
 block|{
 name|expireEntries
-argument_list|()
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 block|}
 finally|finally
@@ -10660,24 +10726,17 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|expireEntries ()
+DECL|method|expireEntries (long now)
 name|void
 name|expireEntries
-parameter_list|()
+parameter_list|(
+name|long
+name|now
+parameter_list|)
 block|{
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
-name|long
-name|now
-init|=
-name|map
-operator|.
-name|ticker
-operator|.
-name|read
-argument_list|()
-decl_stmt|;
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -11196,7 +11255,7 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|getLiveEntry (Object key, int hash)
+DECL|method|getLiveEntry (Object key, int hash, long now)
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -11210,6 +11269,9 @@ name|key
 parameter_list|,
 name|int
 name|hash
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 name|ReferenceEntry
@@ -11246,11 +11308,15 @@ operator|.
 name|isExpired
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 condition|)
 block|{
 name|tryExpireEntries
-argument_list|()
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 return|return
 literal|null
@@ -11281,6 +11347,16 @@ literal|0
 condition|)
 block|{
 comment|// read-volatile
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -11294,6 +11370,8 @@ argument_list|(
 name|key
 argument_list|,
 name|hash
+argument_list|,
+name|now
 argument_list|)
 decl_stmt|;
 if|if
@@ -11328,6 +11406,8 @@ block|{
 name|recordRead
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 block|}
@@ -11373,6 +11453,16 @@ literal|0
 condition|)
 block|{
 comment|// read-volatile
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -11386,6 +11476,8 @@ argument_list|(
 name|key
 argument_list|,
 name|hash
+argument_list|,
+name|now
 argument_list|)
 decl_stmt|;
 if|if
@@ -11443,6 +11535,16 @@ literal|0
 condition|)
 block|{
 comment|// read-volatile
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 name|AtomicReferenceArray
 argument_list|<
 name|ReferenceEntry
@@ -11516,6 +11618,8 @@ init|=
 name|getLiveValue
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 decl_stmt|;
 if|if
@@ -11581,8 +11685,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|int
 name|newCount
@@ -11777,6 +11893,8 @@ argument_list|,
 name|key
 argument_list|,
 name|value
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|newCount
@@ -11796,6 +11914,8 @@ argument_list|,
 name|key
 argument_list|,
 name|value
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|newCount
@@ -11833,6 +11953,8 @@ comment|// else return map.get(key);
 name|recordLockedRead
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 return|return
@@ -11865,6 +11987,8 @@ argument_list|,
 name|key
 argument_list|,
 name|value
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|evictEntries
@@ -11904,6 +12028,8 @@ argument_list|,
 name|key
 argument_list|,
 name|value
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|table
@@ -12325,8 +12451,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|AtomicReferenceArray
 argument_list|<
@@ -12569,6 +12707,8 @@ argument_list|,
 name|key
 argument_list|,
 name|newValue
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|evictEntries
@@ -12585,6 +12725,8 @@ comment|// "if (map.containsKey(key)&& map.get(key).equals(oldValue))..."
 name|recordLockedRead
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 return|return
@@ -12626,8 +12768,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|AtomicReferenceArray
 argument_list|<
@@ -12856,6 +13010,8 @@ argument_list|,
 name|key
 argument_list|,
 name|newValue
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|evictEntries
@@ -12896,8 +13052,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|int
 name|newCount
@@ -13166,8 +13334,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|int
 name|newCount
@@ -13361,6 +13541,8 @@ argument_list|,
 name|key
 argument_list|,
 name|newValue
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|this
@@ -13438,6 +13620,8 @@ argument_list|,
 name|key
 argument_list|,
 name|newValue
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|table
@@ -13492,8 +13676,20 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|preWriteCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|preWriteCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|int
 name|newCount
@@ -15060,7 +15256,7 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Gets the value from an entry. Returns null if the entry is invalid, partially-collected,      * loading, or expired.      */
-DECL|method|getLiveValue (ReferenceEntry<K, V> entry)
+DECL|method|getLiveValue (ReferenceEntry<K, V> entry, long now)
 name|V
 name|getLiveValue
 parameter_list|(
@@ -15071,6 +15267,9 @@ argument_list|,
 name|V
 argument_list|>
 name|entry
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 if|if
@@ -15122,11 +15321,15 @@ operator|.
 name|isExpired
 argument_list|(
 name|entry
+argument_list|,
+name|now
 argument_list|)
 condition|)
 block|{
 name|tryExpireEntries
-argument_list|()
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 return|return
 literal|null
@@ -15167,13 +15370,18 @@ name|GuardedBy
 argument_list|(
 literal|"Segment.this"
 argument_list|)
-DECL|method|preWriteCleanup ()
+DECL|method|preWriteCleanup (long now)
 name|void
 name|preWriteCleanup
-parameter_list|()
+parameter_list|(
+name|long
+name|now
+parameter_list|)
 block|{
 name|runLockedCleanup
-argument_list|()
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Performs routine cleanup following a write.      */
@@ -15191,17 +15399,32 @@ name|void
 name|cleanUp
 parameter_list|()
 block|{
-name|runLockedCleanup
+name|long
+name|now
+init|=
+name|map
+operator|.
+name|ticker
+operator|.
+name|read
 argument_list|()
+decl_stmt|;
+name|runLockedCleanup
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|runUnlockedCleanup
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|runLockedCleanup ()
+DECL|method|runLockedCleanup (long now)
 name|void
 name|runLockedCleanup
-parameter_list|()
+parameter_list|(
+name|long
+name|now
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -15215,7 +15438,9 @@ name|drainReferenceQueues
 argument_list|()
 expr_stmt|;
 name|expireEntries
-argument_list|()
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 comment|// calls drainRecencyQueue
 name|readCount
@@ -17765,6 +17990,11 @@ argument_list|(
 name|key
 argument_list|,
 name|hash
+argument_list|,
+name|ticker
+operator|.
+name|read
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -17881,6 +18111,14 @@ comment|// way for it to return a false negative would be for the target value t
 comment|// such that none of the subsequent iterations observed it, despite the fact that at every point
 comment|// in time it was present somewhere int the map. This becomes increasingly unlikely as
 comment|// CONTAINS_VALUE_RETRIES increases, though without locking it is theoretically possible.
+name|long
+name|now
+init|=
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 specifier|final
 name|Segment
 argument_list|<
@@ -18022,6 +18260,8 @@ operator|.
 name|getLiveValue
 argument_list|(
 name|e
+argument_list|,
+name|now
 argument_list|)
 decl_stmt|;
 if|if
@@ -18889,6 +19129,14 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|long
+name|now
+init|=
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 name|K
 name|key
 init|=
@@ -18903,6 +19151,8 @@ init|=
 name|getLiveValue
 argument_list|(
 name|entry
+argument_list|,
+name|now
 argument_list|)
 decl_stmt|;
 if|if
@@ -20088,6 +20338,21 @@ name|this
 operator|.
 name|ticker
 operator|=
+operator|(
+name|ticker
+operator|==
+name|Ticker
+operator|.
+name|systemTicker
+argument_list|()
+operator|||
+name|ticker
+operator|==
+name|NULL_TICKER
+operator|)
+condition|?
+literal|null
+else|:
 name|ticker
 expr_stmt|;
 block|}
@@ -20252,10 +20517,7 @@ if|if
 condition|(
 name|ticker
 operator|!=
-name|Ticker
-operator|.
-name|systemTicker
-argument_list|()
+literal|null
 condition|)
 block|{
 name|builder

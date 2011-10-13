@@ -2492,6 +2492,14 @@ operator|.
 name|MILLISECONDS
 argument_list|)
 expr_stmt|;
+name|long
+name|now
+init|=
+name|ticker
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Segment
@@ -2510,6 +2518,8 @@ block|{
 name|expireEntries
 argument_list|(
 name|segment
+argument_list|,
+name|now
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2555,7 +2565,7 @@ name|processPendingNotifications
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|expireEntries (Segment<?, ?> segment)
+DECL|method|expireEntries (Segment<?, ?> segment, long now)
 specifier|static
 name|void
 name|expireEntries
@@ -2567,6 +2577,9 @@ argument_list|,
 name|?
 argument_list|>
 name|segment
+parameter_list|,
+name|long
+name|now
 parameter_list|)
 block|{
 name|segment
@@ -2579,7 +2592,9 @@ block|{
 name|segment
 operator|.
 name|expireEntries
-argument_list|()
+argument_list|(
+name|now
+argument_list|)
 expr_stmt|;
 name|segment
 operator|.
