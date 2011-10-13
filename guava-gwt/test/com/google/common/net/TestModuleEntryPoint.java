@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty entry point for testing GWT compatibility.  *  * @author Hayward Chan  */
+comment|/**  * A dummy entry point of the test module.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class

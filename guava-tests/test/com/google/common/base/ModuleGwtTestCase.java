@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.collect
+DECL|package|com.google.common.base
 package|package
 name|com
 operator|.
@@ -12,7 +12,7 @@ name|google
 operator|.
 name|common
 operator|.
-name|collect
+name|base
 package|;
 end_package
 
@@ -37,10 +37,10 @@ comment|/**  * @author Hayward Chan  */
 end_comment
 
 begin_class
-DECL|class|CollectGwtTestCase
+DECL|class|ModuleGwtTestCase
 specifier|public
 class|class
-name|CollectGwtTestCase
+name|ModuleGwtTestCase
 extends|extends
 name|GWTTestCase
 block|{
@@ -51,7 +51,7 @@ specifier|final
 name|String
 name|MODULE_NAME
 init|=
-literal|"com.google.common.collect.testModule"
+literal|"com.google.common.base.testModule"
 decl_stmt|;
 DECL|method|getModuleName ()
 annotation|@
