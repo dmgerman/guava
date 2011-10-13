@@ -72,6 +72,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -284,6 +304,17 @@ name|T
 name|orNull
 parameter_list|()
 function_decl|;
+comment|/**    * Returns an immutable singleton {@link Set} whose only element is the    * contained instance if it is present; an empty immutable {@link Set}    * otherwise.    */
+DECL|method|asSet ()
+specifier|public
+specifier|abstract
+name|Set
+argument_list|<
+name|T
+argument_list|>
+name|asSet
+parameter_list|()
+function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
 DECL|method|equals (@ullable Object object)
 annotation|@
@@ -472,6 +503,26 @@ parameter_list|()
 block|{
 return|return
 name|reference
+return|;
+block|}
+DECL|method|asSet ()
+annotation|@
+name|Override
+specifier|public
+name|Set
+argument_list|<
+name|T
+argument_list|>
+name|asSet
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+name|reference
+argument_list|)
 return|;
 block|}
 DECL|method|equals (@ullable Object object)
@@ -708,6 +759,24 @@ parameter_list|()
 block|{
 return|return
 literal|null
+return|;
+block|}
+DECL|method|asSet ()
+annotation|@
+name|Override
+specifier|public
+name|Set
+argument_list|<
+name|Object
+argument_list|>
+name|asSet
+parameter_list|()
+block|{
+return|return
+name|Collections
+operator|.
+name|emptySet
+argument_list|()
 return|;
 block|}
 DECL|method|equals (@ullable Object object)
