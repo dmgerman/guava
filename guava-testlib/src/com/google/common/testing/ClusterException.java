@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -51,6 +65,8 @@ comment|/**  * An {@link ClusterException} is a data structure that allows for s
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|ClusterException
 specifier|final
 class|class
@@ -84,17 +100,12 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"%d exceptions were thrown. The first exception is listed as a cause."
-argument_list|,
 name|exceptions
 operator|.
 name|size
 argument_list|()
-argument_list|)
+operator|+
+literal|" exceptions were thrown. The first exception is listed as a cause."
 argument_list|,
 name|exceptions
 operator|.

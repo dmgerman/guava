@@ -74,6 +74,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -147,10 +161,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester for {@link Equivalence} relationships between groups of objects.  *  *<p>  * To use, create a new {@link EquivalenceTester} and add equivalence groups  * where each group contains objects that are supposed to be equal to each  * other. Objects of different groups are expected to be unequal. For example:  *  *<pre>  * {@code  * EquivalenceTester.of(someStringEquivalence)  *     .addEquivalenceGroup("hello", "h" + "ello")  *     .addEquivalenceGroup("world", "wor" + "ld")  *     .test();  * }  *</pre>  *  *<p>  * Note that testing {@link Objects#equals(Object)} is more simply done using  * the {@link EqualsTester}. It includes an extra test against an instance of an  * arbitrary class without having to explicitly add another equivalence group.  *  * @author Gregory Kick  *  * TODO(gak): turn this into a test suite so that each test can fail  * independently  */
+comment|/**  * Tester for {@link Equivalence} relationships between groups of objects.  *  *<p>  * To use, create a new {@link EquivalenceTester} and add equivalence groups  * where each group contains objects that are supposed to be equal to each  * other. Objects of different groups are expected to be unequal. For example:  *  *<pre>  * {@code  * EquivalenceTester.of(someStringEquivalence)  *     .addEquivalenceGroup("hello", "h" + "ello")  *     .addEquivalenceGroup("world", "wor" + "ld")  *     .test();  * }  *</pre>  *  *<p>  * Note that testing {@link Objects#equals(Object)} is more simply done using  * the {@link EqualsTester}. It includes an extra test against an instance of an  * arbitrary class without having to explicitly add another equivalence group.  *  * @author Gregory Kick  * @since 10.0  *  * TODO(gak): turn this into a test suite so that each test can fail  * independently  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|EquivalenceTester
 annotation|@
 name|GwtCompatible

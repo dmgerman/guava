@@ -30,6 +30,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Any object which can accept registrations of {@link TearDown} instances.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
@@ -37,6 +51,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|interface|TearDownAccepter
 specifier|public
 interface|interface
