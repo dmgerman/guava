@@ -2245,6 +2245,13 @@ block|}
 block|}
 return|;
 block|}
+comment|// Constructors
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|CharMatcher ()
+specifier|protected
+name|CharMatcher
+parameter_list|()
+block|{}
 comment|// Abstract methods
 comment|/** Determines a true or false value for the given character. */
 DECL|method|matches (char c)

@@ -102,6 +102,12 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|CacheLoader ()
+specifier|protected
+name|CacheLoader
+parameter_list|()
+block|{}
 comment|/**    * Computes or retrieves the value corresponding to {@code key}.    *    * @param key the non-null key whose value should be loaded    * @return the value associated with {@code key};<b>must not be null</b>    */
 DECL|method|load (K key)
 specifier|public
