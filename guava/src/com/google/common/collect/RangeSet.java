@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A set of values of type {@code C} made up of zero or more<i>disjoint</i> {@linkplain Range  * ranges}.  *   *<p>It is guaranteed that {@linkplain Range#isConnected connected} ranges will be  * {@linkplain Range#span coalesced} together, and that {@linkplain Range#isEmpty empty} ranges  * will never be held in a {@code RangeSet}.  *   * @author Kevin Bourrillion  * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * A set of values of type {@code C} made up of zero or more<i>disjoint</i> {@linkplain Range  * ranges}.  *   *<p>It is guaranteed that {@linkplain Range#isConnected connected} ranges will be  * {@linkplain Range#span coalesced} together, and that {@linkplain Range#isEmpty empty} ranges  * will never be held in a {@code RangeSet}.  *  *<p>For a {@link Set} whose contents are specified by a {@link Range}, see {@link ContiguousSet}.  *   * @author Kevin Bourrillion  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
@@ -287,19 +287,6 @@ init|=
 name|lastRange
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|firstRange
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|NoSuchElementException
-argument_list|()
-throw|;
-block|}
 return|return
 operator|new
 name|Range
@@ -681,7 +668,8 @@ name|result
 return|;
 block|}
 return|return
-literal|null
+name|endOfData
+argument_list|()
 return|;
 block|}
 block|}
