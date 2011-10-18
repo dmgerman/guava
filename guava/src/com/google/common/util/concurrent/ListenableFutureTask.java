@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Subclasses must make sure to call {@code super.done()} if they  * also override the {@link #done()} method, otherwise the listeners will not  * be called.  *  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Unlike {@code FutureTask}, {@code ListenableFutureTask} does not  * provide an overrideable {@link FutureTask#done() done()} method.  For similar  * functionality, call {@link #addListener}.  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -227,6 +227,7 @@ name|exec
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Internal implementation detail used to invoke the listeners.    */
 annotation|@
 name|Override
 DECL|method|done ()
