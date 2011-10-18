@@ -17,6 +17,54 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -41,20 +89,6 @@ operator|.
 name|base
 operator|.
 name|Objects
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
@@ -191,8 +225,6 @@ name|int
 name|getPort
 parameter_list|()
 block|{
-name|Preconditions
-operator|.
 name|checkState
 argument_list|(
 name|hasPort
@@ -236,8 +268,6 @@ name|int
 name|port
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|isValidPort
@@ -254,8 +284,6 @@ argument_list|(
 name|host
 argument_list|)
 decl_stmt|;
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 operator|!
@@ -306,8 +334,6 @@ name|String
 name|hostPortString
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|hostPortString
@@ -347,8 +373,6 @@ argument_list|(
 name|hostPortString
 argument_list|)
 decl_stmt|;
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|matcher
@@ -468,6 +492,22 @@ literal|null
 condition|)
 block|{
 comment|// Try to parse the whole port string as a number.
+comment|// JDK7 accepts leading plus signs. We don't want to.
+name|checkArgument
+argument_list|(
+operator|!
+name|portString
+operator|.
+name|startsWith
+argument_list|(
+literal|"+"
+argument_list|)
+argument_list|,
+literal|"Unparseable port number: %s"
+argument_list|,
+name|hostPortString
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|port
@@ -496,8 +536,6 @@ name|hostPortString
 argument_list|)
 throw|;
 block|}
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|isValidPort
@@ -533,8 +571,6 @@ name|int
 name|defaultPort
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|isValidPort
@@ -576,8 +612,6 @@ name|HostAndPort
 name|requireBracketsForIPv6
 parameter_list|()
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 operator|!
