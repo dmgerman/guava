@@ -134,7 +134,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|ReferenceEntry
 import|;

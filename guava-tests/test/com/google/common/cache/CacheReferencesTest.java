@@ -26,7 +26,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Strength
 operator|.
@@ -106,7 +106,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Strength
 import|;

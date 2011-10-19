@@ -42,7 +42,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMapTest
+name|LocalCacheAsMapTest
 operator|.
 name|SMALL_MAX_SIZE
 import|;
@@ -90,7 +90,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Segment
 import|;

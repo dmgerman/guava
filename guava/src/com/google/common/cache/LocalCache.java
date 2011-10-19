@@ -56,7 +56,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Segment
 import|;
@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exposes a {@link CustomConcurrentHashMap} as a {@code Cache}.  *  * @author Charles Fry  */
+comment|/**  * Exposes a {@link LocalCacheAsMap} as a {@code Cache}.  *  * @author Charles Fry  */
 end_comment
 
 begin_class
@@ -133,7 +133,7 @@ name|Serializable
 block|{
 DECL|field|map
 specifier|final
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|K
 argument_list|,
@@ -180,7 +180,7 @@ operator|.
 name|map
 operator|=
 operator|new
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|K
 argument_list|,

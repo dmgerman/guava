@@ -124,7 +124,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|ReferenceEntry
 import|;
@@ -140,7 +140,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Segment
 import|;
@@ -156,7 +156,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|ValueReference
 import|;
@@ -592,7 +592,7 @@ name|K
 name|key
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|K
 argument_list|,
@@ -600,7 +600,7 @@ name|V
 argument_list|>
 name|map
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -637,7 +637,7 @@ name|K
 name|key
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|K
 argument_list|,
@@ -645,7 +645,7 @@ name|V
 argument_list|>
 name|map
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -681,21 +681,21 @@ name|expand
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Gets the {@link CustomConcurrentHashMap} used by the given {@link Cache}, if any, or throws an    * IllegalArgumentException if this is a Cache type that doesn't have a CustomConcurrentHashMap.    */
-DECL|method|toCustomConcurrentHashMap (Cache<K, V> cache)
+comment|/**    * Gets the {@link LocalCacheAsMap} used by the given {@link Cache}, if any, or throws an    * IllegalArgumentException if this is a Cache type that doesn't have a LocalCacheAsMap.    */
+DECL|method|toLocalCacheAsMap (Cache<K, V> cache)
 specifier|static
 parameter_list|<
 name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 parameter_list|(
 name|Cache
 argument_list|<
@@ -740,15 +740,15 @@ operator|.
 name|getClass
 argument_list|()
 operator|+
-literal|" doesn't have a CustomConcurrentHashMap."
+literal|" doesn't have a LocalCacheAsMap."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Determines whether the given cache can be converted to a CustomConcurrentHashMap by    * {@link #toCustomConcurrentHashMap} without throwing an exception.    */
-DECL|method|hasCustomConcurrentHashMap (Cache<?, ?> cache)
+comment|/**    * Determines whether the given cache can be converted to a LocalCacheAsMap by    * {@link #toLocalCacheAsMap} without throwing an exception.    */
+DECL|method|hasLocalCacheAsMap (Cache<?, ?> cache)
 specifier|static
 name|boolean
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 parameter_list|(
 name|Cache
 argument_list|<
@@ -783,13 +783,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
 condition|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -797,7 +797,7 @@ name|?
 argument_list|>
 name|map
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -872,7 +872,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -880,7 +880,7 @@ condition|)
 block|{
 name|drainReferenceQueues
 argument_list|(
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -888,12 +888,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|drainReferenceQueues (CustomConcurrentHashMap<?, ?> cchm)
+DECL|method|drainReferenceQueues (LocalCacheAsMap<?, ?> cchm)
 specifier|static
 name|void
 name|drainReferenceQueues
 parameter_list|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -904,7 +904,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Segment
 name|segment
@@ -921,12 +921,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|drainReferenceQueue (CustomConcurrentHashMap.Segment<?, ?> segment)
+DECL|method|drainReferenceQueue (LocalCacheAsMap.Segment<?, ?> segment)
 specifier|static
 name|void
 name|drainReferenceQueue
 parameter_list|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Segment
 argument_list|<
@@ -973,7 +973,7 @@ argument_list|>
 name|cache
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -981,7 +981,7 @@ name|?
 argument_list|>
 name|map
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1034,7 +1034,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1042,7 +1042,7 @@ condition|)
 block|{
 name|checkValidState
 argument_list|(
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1050,12 +1050,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkValidState (CustomConcurrentHashMap<?, ?> cchm)
+DECL|method|checkValidState (LocalCacheAsMap<?, ?> cchm)
 specifier|static
 name|void
 name|checkValidState
 parameter_list|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -1193,7 +1193,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1201,7 +1201,7 @@ condition|)
 block|{
 name|checkExpiration
 argument_list|(
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1209,12 +1209,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkExpiration (CustomConcurrentHashMap<?, ?> cchm)
+DECL|method|checkExpiration (LocalCacheAsMap<?, ?> cchm)
 specifier|static
 name|void
 name|checkExpiration
 parameter_list|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -1559,7 +1559,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1567,7 +1567,7 @@ condition|)
 block|{
 name|checkEviction
 argument_list|(
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -1575,12 +1575,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkEviction (CustomConcurrentHashMap<?, ?> map)
+DECL|method|checkEviction (LocalCacheAsMap<?, ?> map)
 specifier|static
 name|void
 name|checkEviction
 parameter_list|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -1946,7 +1946,7 @@ argument_list|>
 name|cache
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -1954,7 +1954,7 @@ name|?
 argument_list|>
 name|cchm
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -2028,7 +2028,7 @@ argument_list|>
 name|cache
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -2036,7 +2036,7 @@ name|?
 argument_list|>
 name|cchm
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -2143,13 +2143,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
 condition|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -2157,7 +2157,7 @@ name|?
 argument_list|>
 name|cchm
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -2218,7 +2218,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasCustomConcurrentHashMap
+name|hasLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -2235,7 +2235,7 @@ operator|*
 name|maxSize
 argument_list|)
 expr_stmt|;
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|Integer
 argument_list|,
@@ -2243,7 +2243,7 @@ name|Integer
 argument_list|>
 name|cchm
 init|=
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -2427,7 +2427,7 @@ parameter_list|)
 block|{
 name|expireEntries
 argument_list|(
-name|toCustomConcurrentHashMap
+name|toLocalCacheAsMap
 argument_list|(
 name|cache
 argument_list|)
@@ -2438,12 +2438,12 @@ name|ticker
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|expireEntries ( CustomConcurrentHashMap<?, ?> cchm, long expiringTime, FakeTicker ticker)
+DECL|method|expireEntries ( LocalCacheAsMap<?, ?> cchm, long expiringTime, FakeTicker ticker)
 specifier|static
 name|void
 name|expireEntries
 parameter_list|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -2780,10 +2780,10 @@ if|if
 condition|(
 name|map
 operator|instanceof
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 condition|)
 block|{
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -2792,7 +2792,7 @@ argument_list|>
 name|cchm
 init|=
 operator|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 argument_list|<
 name|?
 argument_list|,
@@ -2826,7 +2826,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|CustomConcurrentHashMap
+name|LocalCacheAsMap
 operator|.
 name|Segment
 name|segment
