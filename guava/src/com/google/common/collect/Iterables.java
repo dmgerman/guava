@@ -3808,7 +3808,7 @@ specifier|static
 parameter_list|<
 name|T
 parameter_list|>
-name|UnmodifiableIterable
+name|Iterable
 argument_list|<
 name|T
 argument_list|>
