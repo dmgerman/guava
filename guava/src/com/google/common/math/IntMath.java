@@ -1732,7 +1732,7 @@ name|FLOOR_SQRT_MAX_INT
 init|=
 literal|46340
 decl_stmt|;
-comment|/**    * Returns {@code n!}, or {@link Integer#MAX_VALUE} if the result does not fit in an {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@link Integer#MAX_VALUE} if the    * result does not fit in a {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
