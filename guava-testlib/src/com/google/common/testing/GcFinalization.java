@@ -26,20 +26,6 @@ name|concurrent
 operator|.
 name|TimeUnit
 operator|.
-name|NANOSECONDS
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-operator|.
 name|SECONDS
 import|;
 end_import
@@ -149,11 +135,11 @@ name|GcFinalization
 parameter_list|()
 block|{}
 comment|/**    * 10 seconds ought to be long enough for any object to be GC'ed and finalized.  Unless we have a    * gigantic heap, in which case we scale by heap size.    */
-DECL|method|timeoutNanos ()
+DECL|method|timeoutSeconds ()
 specifier|private
 specifier|static
 name|long
-name|timeoutNanos
+name|timeoutSeconds
 parameter_list|()
 block|{
 comment|// This class can make no hard guarantees.  The methods in this class are inherently flaky, but
@@ -162,12 +148,12 @@ comment|// load timeout multiplier.  Or we could try to use a CPU time bound ins
 comment|// bound.  But these ideas are harder to implement.  We do not try to detect or handle a
 comment|// user-specified -XX:+DisableExplicitGC.
 comment|//
-comment|// TODO: Consider using java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()
+comment|// TODO(user): Consider using
+comment|// java/lang/management/OperatingSystemMXBean.html#getSystemLoadAverage()
 comment|//
-comment|// TODO: Consider scaling by number of mutator threads, e.g. using Thread#activeCount()
-name|long
-name|seconds
-init|=
+comment|// TODO(user): Consider scaling by number of mutator threads,
+comment|// e.g. using Thread#activeCount()
+return|return
 name|Math
 operator|.
 name|max
@@ -189,16 +175,6 @@ literal|1024L
 operator|*
 literal|1024L
 operator|)
-argument_list|)
-decl_stmt|;
-return|return
-name|NANOSECONDS
-operator|.
-name|convert
-argument_list|(
-name|seconds
-argument_list|,
-name|SECONDS
 argument_list|)
 return|;
 block|}
@@ -232,6 +208,13 @@ return|return;
 block|}
 specifier|final
 name|long
+name|timeoutSeconds
+init|=
+name|timeoutSeconds
+argument_list|()
+decl_stmt|;
+specifier|final
+name|long
 name|deadline
 init|=
 name|System
@@ -239,8 +222,12 @@ operator|.
 name|nanoTime
 argument_list|()
 operator|+
-name|timeoutNanos
-argument_list|()
+name|SECONDS
+operator|.
+name|toNanos
+argument_list|(
+name|timeoutSeconds
+argument_list|)
 decl_stmt|;
 do|do
 block|{
@@ -318,7 +305,14 @@ throw|throw
 operator|new
 name|TimeoutException
 argument_list|(
-literal|"Future not done within timeout"
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Future not done within timeout of %d seconds"
+argument_list|,
+name|timeoutSeconds
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -351,6 +345,13 @@ return|return;
 block|}
 specifier|final
 name|long
+name|timeoutSeconds
+init|=
+name|timeoutSeconds
+argument_list|()
+decl_stmt|;
+specifier|final
+name|long
 name|deadline
 init|=
 name|System
@@ -358,8 +359,12 @@ operator|.
 name|nanoTime
 argument_list|()
 operator|+
-name|timeoutNanos
-argument_list|()
+name|SECONDS
+operator|.
+name|toNanos
+argument_list|(
+name|timeoutSeconds
+argument_list|)
 decl_stmt|;
 do|do
 block|{
@@ -416,7 +421,14 @@ throw|throw
 operator|new
 name|TimeoutException
 argument_list|(
-literal|"CountDownLatch failed to count down within timeout"
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"CountDownLatch failed to count down within timeout of %d seconds"
+argument_list|,
+name|timeoutSeconds
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -491,6 +503,13 @@ return|return;
 block|}
 specifier|final
 name|long
+name|timeoutSeconds
+init|=
+name|timeoutSeconds
+argument_list|()
+decl_stmt|;
+specifier|final
+name|long
 name|deadline
 init|=
 name|System
@@ -498,8 +517,12 @@ operator|.
 name|nanoTime
 argument_list|()
 operator|+
-name|timeoutNanos
-argument_list|()
+name|SECONDS
+operator|.
+name|toNanos
+argument_list|(
+name|timeoutSeconds
+argument_list|)
 decl_stmt|;
 do|do
 block|{
@@ -564,7 +587,14 @@ throw|throw
 operator|new
 name|TimeoutException
 argument_list|(
-literal|"Predicate did not become true within timeout"
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Predicate did not become true within timeout of %d seconds"
+argument_list|,
+name|timeoutSeconds
+argument_list|)
 argument_list|)
 throw|;
 block|}
