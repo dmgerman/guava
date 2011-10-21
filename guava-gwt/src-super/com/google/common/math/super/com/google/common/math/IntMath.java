@@ -96,6 +96,8 @@ end_comment
 
 begin_class
 annotation|@
+name|Beta
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -345,8 +347,6 @@ name|m
 return|;
 block|}
 comment|/**    * Returns the greatest common divisor of {@code a, b}. Returns {@code 0} if    * {@code a == 0&& b == 0}.    *     * @throws IllegalArgumentException if {@code a< 0} or {@code b< 0}    */
-annotation|@
-name|Beta
 DECL|method|gcd (int a, int b)
 specifier|public
 specifier|static

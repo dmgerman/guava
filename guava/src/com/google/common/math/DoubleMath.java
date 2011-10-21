@@ -242,11 +242,27 @@ name|VisibleForTesting
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class for arithmetic on doubles that is not covered by {@link java.lang.Math}.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|DoubleMath
 specifier|public
 specifier|final
