@@ -84,6 +84,16 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Computes or retrieves values, based on a key, for use in populating a {@code Cache}.  *  *<p>Most implementations will only need to implement {@link #load}. Other methods may be  * overridden as desired.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
@@ -143,7 +153,35 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|// TODO(fry): loadAll
+comment|/**    * Computes or retrieves the values corresponding to {@code keys}. This method is called by    * {@link Cache#getAll}.    *    *<p>If the returned map doesn't contain all requested {@code keys} then the entries it does    * contain will be cached, but {@code getAll} will throw an exception. If the returned map    * contains extra keys not present in {@code keys} then all returned entries will be cached,    * but only the entries for {@code keys} will be returned from {@code getAll}.    *    *<p>This method should be overriden when bulk retrieval is significantly more efficient than    * many individual lookups. Note that {@link Cache#getAll} will defer to individual calls to    * {@link Cache#get} if this method is not overriden.    *    * @param keys the unique, non-null keys whose values should be loaded    * @return a map from each key in {@code keys} to the value associated with that key;    *<b>may not contain null values</b>    * @since 11.0    */
+DECL|method|loadAll (Iterable<? extends K> keys)
+specifier|public
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loadAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|>
+name|keys
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+comment|// This will be caught by getAll(), causing it to fall back to multiple calls to Cache.get
+throw|throw
+operator|new
+name|UnsupportedLoadingOperationException
+argument_list|()
+throw|;
+block|}
 comment|/**    * Returns a {@code CacheLoader} which creates values by applying a {@code Function} to the key.    */
 DECL|method|from (Function<K, V> function)
 specifier|public
@@ -377,6 +415,39 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
+block|}
+DECL|class|UnsupportedLoadingOperationException
+specifier|static
+specifier|final
+class|class
+name|UnsupportedLoadingOperationException
+extends|extends
+name|UnsupportedOperationException
+block|{}
+comment|/**    * Thrown to indicate that an invalid response was returned from a call to {@link CacheLoader}.    */
+DECL|class|InvalidCacheLoadException
+specifier|public
+specifier|static
+specifier|final
+class|class
+name|InvalidCacheLoadException
+extends|extends
+name|RuntimeException
+block|{
+DECL|method|InvalidCacheLoadException (String message)
+specifier|public
+name|InvalidCacheLoadException
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

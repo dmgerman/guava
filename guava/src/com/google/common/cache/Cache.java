@@ -146,7 +146,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the response    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     response    * @throws ExecutionError if an error was thrown while loading the response    */
+comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    */
 DECL|method|get (K key)
 name|V
 name|get
@@ -157,7 +157,7 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until computation    * completes. Unlike {@link #get}, this method does not throw a checked exception, and thus should    * only be used in situations where checked exceptions are not thrown by the cache loader.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions,    * and should not be used with cache loaders which throw checked exceptions.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the response,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the response    */
+comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until computation    * completes. Unlike {@link #get}, this method does not throw a checked exception, and thus should    * only be used in situations where checked exceptions are not thrown by the cache loader.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions,    * and should not be used with cache loaders which throw checked exceptions.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    */
 DECL|method|getUnchecked (K key)
 name|V
 name|getUnchecked
@@ -166,7 +166,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes.    *    *<p>This method functions identically to {@link #get(Object)}, simply using a different    * mechanism to load the value if missing. This method provides a simple substitute for the    * conventional "if cached, return; otherwise create, cache and return" pattern.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the response    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     response    * @throws ExecutionError if an error was thrown while loading the response    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
+comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes.    *    *<p>This method functions identically to {@link #get(Object)}, simply using a different    * mechanism to load the value if missing. This method provides a simple substitute for the    * conventional "if cached, return; otherwise create, cache and return" pattern.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
 DECL|method|get (K key, Callable<V> valueLoader)
 name|V
 name|get
@@ -183,7 +183,28 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the response,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the response    */
+comment|/**    * Returns a map of the values associated with {@code keys}, creating or retrieving those values    * if necessary. The returned map contains entries that were already cached, combined with newly    * loaded entries; it will never contain null keys or values.    *    *<p>Caches loaded by a {@link CacheLoader} will issue a single request to    * {@link CacheLoader#loadAll} for all keys which are not already present in the cache. All    * entries returned by {@link CacheLoader#loadAll} will be stored in the cache, over-writing    * any previously cached values. This method will throw an exception if    * {@link CacheLoader#loadAll} returns {@code null}, returns a map containing null keys or values,    * or fails to return an entry for each requested key.    *    *<p>Note that duplicate elements in {@code keys}, as determined by {@link Object#equals}, will    * be ignored.    *    * @throws ExecutionException if a checked exception was thrown while loading the values    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     values    * @throws ExecutionError if an error was thrown while loading the values    * @since 11.0    */
+DECL|method|getAll (Iterable<? extends K> keys)
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|>
+name|keys
+parameter_list|)
+throws|throws
+name|ExecutionException
+function_decl|;
+comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    */
 annotation|@
 name|Override
 DECL|method|apply (K key)
@@ -194,7 +215,6 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|// TODO(fry): add bulk operations
 comment|/**    * Loads a new value for key {@code key}. While the new value is loading the previous value (if    * any) will continue to be returned by {@code get(key)} unless it is evicted. If the new    * value is loaded succesfully it will replace the previous value in the cache; if an exception is    * thrown while refreshing the previous value will remain.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    * @throws ExecutionException if a checked exception was thrown while refreshing the entry    * @throws UncheckedExecutionException if an unchecked exception was thrown while refreshing the    *     entry    * @throws ExecutionError if an error was thrown while refreshing the entry    * @since 11.0    */
 DECL|method|refresh (K key)
 name|void
@@ -213,6 +233,18 @@ name|invalidate
 parameter_list|(
 name|Object
 name|key
+parameter_list|)
+function_decl|;
+comment|/**    * Discards any cached values for keys {@code keys}, possibly asynchronously, so that a future    * invocation of {@code get(key)} for any of those keys will result in a cache miss and reload.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */
+DECL|method|invalidateAll (Iterable<?> keys)
+name|void
+name|invalidateAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+argument_list|>
+name|keys
 parameter_list|)
 function_decl|;
 comment|/**    * Discards all entries in the cache, possibly asynchronously.    *    * @throws UnsupportedOperationException if this operation is not supported by the cache    *     implementation    */

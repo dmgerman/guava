@@ -38,11 +38,49 @@ name|google
 operator|.
 name|common
 operator|.
+name|collect
+operator|.
+name|ImmutableMap
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Maps
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|concurrent
 operator|.
 name|UncheckedExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -97,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method. This implementation throws an  * {@link UnsupportedOperationException} on calls to {@link #size}, {@link #invalidate},  * {@link #invalidateAll}, {@link #stats}, and {@link #asMap}. The methods  * {@link #getUnchecked} and {@link #apply} are implemented in terms of {@link #get}. The method  * {@link #cleanUp} is a no-op.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@code get} method. {@link #getUnchecked}, {@link #get(K, Callable)},  * and {@link #getAll} are implemented in terms of {@code get}; {@link #invalidateAll(Iterable)} is  * implemented in terms of {@link #invalidate}. The method {@link #cleanUp} is a no-op. All other  * methods throw an {@link UnsupportedOperationException}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -192,6 +230,84 @@ throw|;
 block|}
 annotation|@
 name|Override
+DECL|method|getAll (Iterable<? extends K> keys)
+specifier|public
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|>
+name|keys
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+name|Map
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|result
+init|=
+name|Maps
+operator|.
+name|newLinkedHashMap
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|K
+name|key
+range|:
+name|keys
+control|)
+block|{
+if|if
+condition|(
+operator|!
+name|result
+operator|.
+name|containsKey
+argument_list|(
+name|key
+argument_list|)
+condition|)
+block|{
+name|result
+operator|.
+name|put
+argument_list|(
+name|key
+argument_list|,
+name|get
+argument_list|(
+name|key
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|ImmutableMap
+operator|.
+name|copyOf
+argument_list|(
+name|result
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|apply (K key)
 specifier|public
 specifier|final
@@ -208,6 +324,35 @@ argument_list|(
 name|key
 argument_list|)
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|invalidateAll (Iterable<?> keys)
+specifier|public
+name|void
+name|invalidateAll
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+argument_list|>
+name|keys
+parameter_list|)
+block|{
+for|for
+control|(
+name|Object
+name|key
+range|:
+name|keys
+control|)
+block|{
+name|invalidate
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -322,19 +467,25 @@ specifier|public
 interface|interface
 name|StatsCounter
 block|{
-comment|/**      * Records a single hit. This should be called when a cache request returns a cached value.      */
-DECL|method|recordHit ()
+comment|/**      * Records cache hits. This should be called when a cache request returns a cached value.      *      * @param count the number of hits to record      */
+DECL|method|recordHits (int count)
 specifier|public
 name|void
-name|recordHit
-parameter_list|()
+name|recordHits
+parameter_list|(
+name|int
+name|count
+parameter_list|)
 function_decl|;
-comment|/**      * Records a single miss. This should be called when a cache request returns a value that was      * not found in the cache. This method should be called by the loading thread, as well as by      * threads blocking on the load. Multiple concurrent calls to {@link Cache} lookup methods with      * the same key on an absent value should result in a single call to either      * {@code recordLoadSuccess} or {@code recordLoadException} and multiple calls to this method,      * despite all being served by the results of a single load operation.      */
-DECL|method|recordMiss ()
+comment|/**      * Records cache misses. This should be called when a cache request returns a value that was      * not found in the cache. This method should be called by the loading thread, as well as by      * threads blocking on the load. Multiple concurrent calls to {@link Cache} lookup methods with      * the same key on an absent value should result in a single call to either      * {@code recordLoadSuccess} or {@code recordLoadException} and multiple calls to this method,      * despite all being served by the results of a single load operation.      *      * @param count the number of misses to record      */
+DECL|method|recordMisses (int count)
 specifier|public
 name|void
-name|recordMiss
-parameter_list|()
+name|recordMisses
+parameter_list|(
+name|int
+name|count
+parameter_list|)
 function_decl|;
 comment|/**      * Records the successful load of a new entry. This should be called when a cache request      * causes an entry to be loaded, and the loading completes succesfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
 DECL|method|recordLoadSuccess (long loadTime)
@@ -444,30 +595,40 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|recordHit ()
+DECL|method|recordHits (int count)
 specifier|public
 name|void
-name|recordHit
-parameter_list|()
+name|recordHits
+parameter_list|(
+name|int
+name|count
+parameter_list|)
 block|{
 name|hitCount
 operator|.
-name|incrementAndGet
-argument_list|()
+name|addAndGet
+argument_list|(
+name|count
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|recordMiss ()
+DECL|method|recordMisses (int count)
 specifier|public
 name|void
-name|recordMiss
-parameter_list|()
+name|recordMisses
+parameter_list|(
+name|int
+name|count
+parameter_list|)
 block|{
 name|missCount
 operator|.
-name|incrementAndGet
-argument_list|()
+name|addAndGet
+argument_list|(
+name|count
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
