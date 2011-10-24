@@ -3577,7 +3577,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows    * modules to provide users with "read-only" access to internal bimaps. Query    * operations on the returned bimap "read through" to the specified bimap, and    * attemps to modify the returned map, whether direct or via its collection    * views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
+comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows    * modules to provide users with "read-only" access to internal bimaps. Query    * operations on the returned bimap "read through" to the specified bimap, and    * attempts to modify the returned map, whether direct or via its collection    * views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
 DECL|method|unmodifiableBiMap ( BiMap<? extends K, ? extends V> bimap)
 specifier|public
 specifier|static
