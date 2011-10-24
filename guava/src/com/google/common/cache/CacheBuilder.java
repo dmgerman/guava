@@ -234,7 +234,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheInternalMap
+name|LocalCache
 operator|.
 name|Strength
 import|;
@@ -1983,6 +1983,8 @@ block|}
 return|return
 operator|new
 name|LocalCache
+operator|.
+name|AutoLocalCache
 argument_list|<
 name|K1
 argument_list|,

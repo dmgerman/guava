@@ -124,7 +124,23 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheInternalMap
+name|LocalCache
+operator|.
+name|AutoLocalCache
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|cache
+operator|.
+name|LocalCache
 operator|.
 name|ReferenceEntry
 import|;
@@ -140,7 +156,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheInternalMap
+name|LocalCache
 operator|.
 name|Segment
 import|;
@@ -156,7 +172,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheInternalMap
+name|LocalCache
 operator|.
 name|ValueReference
 import|;
@@ -592,7 +608,7 @@ name|K
 name|key
 parameter_list|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|K
 argument_list|,
@@ -600,7 +616,7 @@ name|V
 argument_list|>
 name|map
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -637,7 +653,7 @@ name|K
 name|key
 parameter_list|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|K
 argument_list|,
@@ -645,7 +661,7 @@ name|V
 argument_list|>
 name|map
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -681,21 +697,21 @@ name|expand
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Gets the {@link LocalCacheInternalMap} used by the given {@link Cache}, if any, or throws an    * IllegalArgumentException if this is a Cache type that doesn't have a LocalCacheInternalMap.    */
-DECL|method|toLocalCacheInternalMap (Cache<K, V> cache)
+comment|/**    * Gets the {@link LocalCache} used by the given {@link Cache}, if any, or throws an    * IllegalArgumentException if this is a Cache type that doesn't have a LocalCache.    */
+DECL|method|toLocalCache (Cache<K, V> cache)
 specifier|static
 parameter_list|<
 name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|toLocalCacheInternalMap
+name|toLocalCache
 parameter_list|(
 name|Cache
 argument_list|<
@@ -710,13 +726,13 @@ if|if
 condition|(
 name|cache
 operator|instanceof
-name|LocalCache
+name|AutoLocalCache
 condition|)
 block|{
 return|return
 operator|(
 operator|(
-name|LocalCache
+name|AutoLocalCache
 argument_list|<
 name|K
 argument_list|,
@@ -740,15 +756,15 @@ operator|.
 name|getClass
 argument_list|()
 operator|+
-literal|" doesn't have a LocalCacheInternalMap."
+literal|" doesn't have a LocalCache."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Determines whether the given cache can be converted to a LocalCacheInternalMap by    * {@link #toLocalCacheInternalMap} without throwing an exception.    */
-DECL|method|hasLocalCacheInternalMap (Cache<?, ?> cache)
+comment|/**    * Determines whether the given cache can be converted to a LocalCache by    * {@link #toLocalCache} without throwing an exception.    */
+DECL|method|hasLocalCache (Cache<?, ?> cache)
 specifier|static
 name|boolean
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 parameter_list|(
 name|Cache
 argument_list|<
@@ -763,7 +779,7 @@ return|return
 operator|(
 name|cache
 operator|instanceof
-name|LocalCache
+name|AutoLocalCache
 operator|)
 return|;
 block|}
@@ -783,13 +799,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
 condition|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -797,7 +813,7 @@ name|?
 argument_list|>
 name|map
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -872,7 +888,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -880,7 +896,7 @@ condition|)
 block|{
 name|drainReferenceQueues
 argument_list|(
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -888,12 +904,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|drainReferenceQueues (LocalCacheInternalMap<?, ?> cchm)
+DECL|method|drainReferenceQueues (LocalCache<?, ?> cchm)
 specifier|static
 name|void
 name|drainReferenceQueues
 parameter_list|(
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -904,7 +920,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|LocalCacheInternalMap
+name|LocalCache
 operator|.
 name|Segment
 name|segment
@@ -921,12 +937,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|drainReferenceQueue (LocalCacheInternalMap.Segment<?, ?> segment)
+DECL|method|drainReferenceQueue (LocalCache.Segment<?, ?> segment)
 specifier|static
 name|void
 name|drainReferenceQueue
 parameter_list|(
-name|LocalCacheInternalMap
+name|LocalCache
 operator|.
 name|Segment
 argument_list|<
@@ -973,7 +989,7 @@ argument_list|>
 name|cache
 parameter_list|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -981,7 +997,7 @@ name|?
 argument_list|>
 name|map
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1034,7 +1050,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1042,7 +1058,7 @@ condition|)
 block|{
 name|checkValidState
 argument_list|(
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1050,12 +1066,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkValidState (LocalCacheInternalMap<?, ?> cchm)
+DECL|method|checkValidState (LocalCache<?, ?> cchm)
 specifier|static
 name|void
 name|checkValidState
 parameter_list|(
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -1193,7 +1209,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1201,7 +1217,7 @@ condition|)
 block|{
 name|checkExpiration
 argument_list|(
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1209,12 +1225,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkExpiration (LocalCacheInternalMap<?, ?> cchm)
+DECL|method|checkExpiration (LocalCache<?, ?> cchm)
 specifier|static
 name|void
 name|checkExpiration
 parameter_list|(
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -1559,7 +1575,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1567,7 +1583,7 @@ condition|)
 block|{
 name|checkEviction
 argument_list|(
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -1575,12 +1591,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkEviction (LocalCacheInternalMap<?, ?> map)
+DECL|method|checkEviction (LocalCache<?, ?> map)
 specifier|static
 name|void
 name|checkEviction
 parameter_list|(
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -1946,7 +1962,7 @@ argument_list|>
 name|cache
 parameter_list|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -1954,7 +1970,7 @@ name|?
 argument_list|>
 name|cchm
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -2028,7 +2044,7 @@ argument_list|>
 name|cache
 parameter_list|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -2036,7 +2052,7 @@ name|?
 argument_list|>
 name|cchm
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -2143,13 +2159,13 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
 condition|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -2157,7 +2173,7 @@ name|?
 argument_list|>
 name|cchm
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -2218,7 +2234,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|hasLocalCacheInternalMap
+name|hasLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -2235,7 +2251,7 @@ operator|*
 name|maxSize
 argument_list|)
 expr_stmt|;
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -2243,7 +2259,7 @@ name|Integer
 argument_list|>
 name|cchm
 init|=
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -2427,7 +2443,7 @@ parameter_list|)
 block|{
 name|expireEntries
 argument_list|(
-name|toLocalCacheInternalMap
+name|toLocalCache
 argument_list|(
 name|cache
 argument_list|)
@@ -2438,12 +2454,12 @@ name|ticker
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|expireEntries ( LocalCacheInternalMap<?, ?> cchm, long expiringTime, FakeTicker ticker)
+DECL|method|expireEntries ( LocalCache<?, ?> cchm, long expiringTime, FakeTicker ticker)
 specifier|static
 name|void
 name|expireEntries
 parameter_list|(
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -2780,10 +2796,10 @@ if|if
 condition|(
 name|map
 operator|instanceof
-name|LocalCacheInternalMap
+name|LocalCache
 condition|)
 block|{
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -2792,7 +2808,7 @@ argument_list|>
 name|cchm
 init|=
 operator|(
-name|LocalCacheInternalMap
+name|LocalCache
 argument_list|<
 name|?
 argument_list|,
@@ -2826,7 +2842,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|LocalCacheInternalMap
+name|LocalCache
 operator|.
 name|Segment
 name|segment
