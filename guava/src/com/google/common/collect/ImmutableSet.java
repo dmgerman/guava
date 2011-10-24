@@ -930,34 +930,6 @@ return|return
 name|MAX_TABLE_SIZE
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since 2.0 (changed from varargs in 3.0)    */
-comment|// TODO(kevinb): when this is removed, remember to remove from ISS and ISSFS
-annotation|@
-name|Deprecated
-DECL|method|of (E[] elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-return|return
-name|copyOf
-argument_list|(
-name|elements
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
 DECL|method|copyOf (E[] elements)
 specifier|public

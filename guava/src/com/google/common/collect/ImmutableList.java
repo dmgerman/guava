@@ -956,33 +956,6 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in October 2011.</b>    * @throws NullPointerException if any of {@code elements} is null    * @since 2.0 (changed from varargs in 3.0)    */
-annotation|@
-name|Deprecated
-DECL|method|of (E[] elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-return|return
-name|copyOf
-argument_list|(
-name|elements
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an immutable list containing the given elements, in order. If    * {@code elements} is a {@link Collection}, this method behaves exactly as    * {@link #copyOf(Collection)}; otherwise, it behaves exactly as {@code    * copyOf(elements.iterator()}.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
