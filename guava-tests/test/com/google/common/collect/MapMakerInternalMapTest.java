@@ -26,7 +26,23 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|Lists
+operator|.
+name|newArrayList
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
 operator|.
 name|DISCARDING_QUEUE
 import|;
@@ -42,7 +58,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|DRAIN_THRESHOLD
 import|;
@@ -58,7 +74,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|nullEntry
 import|;
@@ -74,25 +90,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|unset
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Lists
-operator|.
-name|newArrayList
 import|;
 end_import
 
@@ -148,86 +148,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
-operator|.
-name|EntryFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|CustomConcurrentHashMap
-operator|.
-name|ReferenceEntry
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|CustomConcurrentHashMap
-operator|.
-name|Segment
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|CustomConcurrentHashMap
-operator|.
-name|Strength
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|CustomConcurrentHashMap
-operator|.
-name|ValueReference
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|MapMaker
 operator|.
 name|RemovalCause
@@ -263,6 +183,86 @@ operator|.
 name|MapMaker
 operator|.
 name|RemovalNotification
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
+operator|.
+name|EntryFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
+operator|.
+name|ReferenceEntry
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
+operator|.
+name|Segment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
+operator|.
+name|Strength
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
+operator|.
+name|ValueReference
 import|;
 end_import
 
@@ -427,10 +427,10 @@ argument_list|(
 literal|"deprecation"
 argument_list|)
 comment|// many tests of deprecated methods
-DECL|class|CustomConcurrentHashMapTest
+DECL|class|MapMakerInternalMapTest
 specifier|public
 class|class
-name|CustomConcurrentHashMapTest
+name|MapMakerInternalMapTest
 extends|extends
 name|TestCase
 block|{
@@ -452,7 +452,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -471,7 +471,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -493,7 +493,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -507,7 +507,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -549,7 +549,7 @@ name|void
 name|testDefaults
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -817,7 +817,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -912,7 +912,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1032,7 +1032,7 @@ name|int
 name|segmentCount
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1330,7 +1330,7 @@ name|int
 name|segmentSize
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1565,7 +1565,7 @@ name|int
 name|maxSize
 parameter_list|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1652,7 +1652,7 @@ name|void
 name|testSetWeakKeys
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1705,7 +1705,7 @@ name|void
 name|testSetSoftKeys
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1753,7 +1753,7 @@ name|void
 name|testSetWeakValues
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1801,7 +1801,7 @@ name|void
 name|testSetSoftValues
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1843,13 +1843,13 @@ name|entryFactory
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|checkStrength ( CustomConcurrentHashMap<Object, Object> map, Strength keyStrength, Strength valueStrength)
+DECL|method|checkStrength ( MapMakerInternalMap<Object, Object> map, Strength keyStrength, Strength valueStrength)
 specifier|private
 specifier|static
 name|void
 name|checkStrength
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1923,7 +1923,7 @@ name|unit
 init|=
 name|SECONDS
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1975,7 +1975,7 @@ name|unit
 init|=
 name|SECONDS
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2051,7 +2051,7 @@ parameter_list|)
 block|{}
 block|}
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2104,7 +2104,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2395,7 +2395,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2602,7 +2602,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2781,7 +2781,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2991,7 +2991,7 @@ name|allEntryTypeMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3253,7 +3253,7 @@ name|allEntryTypeMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3388,7 +3388,7 @@ name|evictsBySize
 argument_list|()
 condition|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|connectEvictables
 argument_list|(
@@ -3406,7 +3406,7 @@ name|expires
 argument_list|()
 condition|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|connectExpirables
 argument_list|(
@@ -3563,7 +3563,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertConnected ( CustomConcurrentHashMap<K, V> map, ReferenceEntry<K, V> one, ReferenceEntry<K, V> two)
+DECL|method|assertConnected ( MapMakerInternalMap<K, V> map, ReferenceEntry<K, V> one, ReferenceEntry<K, V> two)
 specifier|private
 specifier|static
 parameter_list|<
@@ -3574,7 +3574,7 @@ parameter_list|>
 name|void
 name|assertConnected
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -3644,7 +3644,7 @@ name|void
 name|testSegmentGetAndContains
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -4263,7 +4263,7 @@ name|void
 name|testSegmentReplaceValue
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -4624,7 +4624,7 @@ name|void
 name|testSegmentReplace
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -4941,7 +4941,7 @@ name|void
 name|testSegmentPut
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5200,7 +5200,7 @@ name|void
 name|testSegmentPutIfAbsent
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5459,7 +5459,7 @@ name|void
 name|testSegmentPut_expand
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5595,7 +5595,7 @@ name|maxSize
 init|=
 literal|10
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5732,7 +5732,7 @@ name|void
 name|testSegmentRemove
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -6051,7 +6051,7 @@ name|void
 name|testSegmentRemoveValue
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -6431,7 +6431,7 @@ name|void
 name|testExpand
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -6719,7 +6719,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -7143,7 +7143,7 @@ name|void
 name|testRemoveFromChain
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -7496,7 +7496,7 @@ name|void
 name|testExpand_cleanup
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -7824,7 +7824,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|countLiveEntries (CustomConcurrentHashMap<K, V> map)
+DECL|method|countLiveEntries (MapMakerInternalMap<K, V> map)
 specifier|private
 specifier|static
 parameter_list|<
@@ -7835,7 +7835,7 @@ parameter_list|>
 name|int
 name|countLiveEntries
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -7953,7 +7953,7 @@ name|void
 name|testClear
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8202,7 +8202,7 @@ name|void
 name|testRemoveEntry
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8477,7 +8477,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8869,7 +8869,7 @@ name|void
 name|testClearValue
 parameter_list|()
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -9195,7 +9195,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertNotificationEnqueued ( CustomConcurrentHashMap<K, V> map, K key, V value, int hash)
+DECL|method|assertNotificationEnqueued ( MapMakerInternalMap<K, V> map, K key, V value, int hash)
 specifier|private
 specifier|static
 parameter_list|<
@@ -9206,7 +9206,7 @@ parameter_list|>
 name|void
 name|assertNotificationEnqueued
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -9276,7 +9276,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -9437,7 +9437,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -9711,7 +9711,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -10014,7 +10014,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -10366,7 +10366,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -10622,7 +10622,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkAndDrainRecencyQueue (CustomConcurrentHashMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> reads)
+DECL|method|checkAndDrainRecencyQueue (MapMakerInternalMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> reads)
 specifier|static
 parameter_list|<
 name|K
@@ -10632,7 +10632,7 @@ parameter_list|>
 name|void
 name|checkAndDrainRecencyQueue
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -10694,7 +10694,7 @@ name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|checkEvictionQueues (CustomConcurrentHashMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> readOrder, List<ReferenceEntry<K, V>> writeOrder)
+DECL|method|checkEvictionQueues (MapMakerInternalMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> readOrder, List<ReferenceEntry<K, V>> writeOrder)
 specifier|static
 parameter_list|<
 name|K
@@ -10704,7 +10704,7 @@ parameter_list|>
 name|void
 name|checkEvictionQueues
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -10944,7 +10944,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkExpirationTimes (CustomConcurrentHashMap<K, V> map)
+DECL|method|checkExpirationTimes (MapMakerInternalMap<K, V> map)
 specifier|static
 parameter_list|<
 name|K
@@ -10954,7 +10954,7 @@ parameter_list|>
 name|void
 name|checkExpirationTimes
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -11081,7 +11081,7 @@ name|maxSize
 init|=
 literal|10
 decl_stmt|;
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -11400,7 +11400,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -11603,7 +11603,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -11819,7 +11819,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -12029,7 +12029,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|Object
 argument_list|,

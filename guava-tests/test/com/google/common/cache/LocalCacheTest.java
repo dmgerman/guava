@@ -42,7 +42,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMapTest
+name|LocalCacheInternalMapTest
 operator|.
 name|SMALL_MAX_SIZE
 import|;
@@ -90,7 +90,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|Segment
 import|;

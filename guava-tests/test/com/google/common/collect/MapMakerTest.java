@@ -40,9 +40,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMapTest
+name|MapMaker
 operator|.
-name|QueuingRemovalListener
+name|RemovalNotification
 import|;
 end_import
 
@@ -56,9 +56,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|MapMaker
+name|MapMakerInternalMapTest
 operator|.
-name|RemovalNotification
+name|QueuingRemovalListener
 import|;
 end_import
 

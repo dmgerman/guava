@@ -689,13 +689,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The concurrent hash map implementation built by {@link CacheBuilder}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Charles Fry  * @author Bob Lee ({@code com.google.common.collect.LocalCacheAsMap})  * @author Doug Lea ({@code ConcurrentHashMap})  */
+comment|/**  * The concurrent hash map implementation built by {@link CacheBuilder}.  *  *<p>This implementation is heavily derived from revision 1.96 of<a  * href="http://tinyurl.com/ConcurrentHashMap">ConcurrentHashMap.java</a>.  *  * @author Charles Fry  * @author Bob Lee ({@code com.google.common.collect.LocalCacheInternalMap})  * @author Doug Lea ({@code ConcurrentHashMap})  */
 end_comment
 
 begin_class
-DECL|class|LocalCacheAsMap
+DECL|class|LocalCacheInternalMap
 class|class
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 parameter_list|<
 name|K
 parameter_list|,
@@ -781,7 +781,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|class
 operator|.
@@ -935,8 +935,8 @@ name|StatsCounter
 name|globalStatsCounter
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
-DECL|method|LocalCacheAsMap (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, V> loader)
-name|LocalCacheAsMap
+DECL|method|LocalCacheInternalMap (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, V> loader)
+name|LocalCacheInternalMap
 parameter_list|(
 name|CacheBuilder
 argument_list|<
@@ -1090,7 +1090,7 @@ operator|.
 name|INSTANCE
 operator|)
 condition|?
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 expr|<
 name|RemovalNotification
@@ -8525,7 +8525,7 @@ comment|/*      * TODO(fry): Consider copying variables (like evictsBySize) from
 comment|/*      * Segments maintain a table of entry lists that are ALWAYS kept in a consistent state, so can      * be read without locking. Next fields of nodes are immutable (final). All list additions are      * performed at the front of each bin. This makes it easy to check changes, and also fast to      * traverse. When nodes would otherwise be changed, new nodes are created to replace them. This      * works well for hash tables since the bin lists tend to be short. (The average length is less      * than two.)      *      * Read operations can thus proceed without locking, but rely on selected uses of volatiles to      * ensure that completed write operations performed by other threads are noticed. For most      * purposes, the "count" field, tracking the number of elements, serves as that volatile      * variable ensuring visibility. This is convenient because this field needs to be read in many      * read operations anyway:      *      * - All (unsynchronized) read operations must first read the "count" field, and should not      * look at table entries if it is 0.      *      * - All (synchronized) write operations should write to the "count" field after structurally      * changing any bin. The operations must not take any action that could even momentarily      * cause a concurrent read operation to see inconsistent data. This is made easier by the      * nature of the read operations in Map. For example, no operation can reveal that the table      * has grown but the threshold has not yet been updated, so there are no atomicity requirements      * for this with respect to reads.      *      * As a guide, all critical volatile reads and writes to the count field are marked in code      * comments.      */
 DECL|field|map
 specifier|final
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -8665,10 +8665,10 @@ specifier|final
 name|StatsCounter
 name|statsCounter
 decl_stmt|;
-DECL|method|Segment (LocalCacheAsMap<K, V> map, int initialCapacity, long maxSegmentWeight, StatsCounter statsCounter)
+DECL|method|Segment (LocalCacheInternalMap<K, V> map, int initialCapacity, long maxSegmentWeight, StatsCounter statsCounter)
 name|Segment
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -8763,7 +8763,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 else|:
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 expr|<
 name|ReferenceEntry
@@ -8792,7 +8792,7 @@ name|V
 argument_list|>
 argument_list|()
 else|:
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 expr|<
 name|ReferenceEntry
@@ -8821,7 +8821,7 @@ name|V
 argument_list|>
 argument_list|()
 else|:
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 expr|<
 name|ReferenceEntry
@@ -11645,7 +11645,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * This method is a convenience for testing. Code should call {@link      * LocalCacheAsMap#containsValue} directly.      */
+comment|/**      * This method is a convenience for testing. Code should call {@link      * LocalCacheInternalMap#containsValue} directly.      */
 annotation|@
 name|VisibleForTesting
 DECL|method|containsValue (Object value)
@@ -19992,7 +19992,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20334,7 +20334,7 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20351,7 +20351,7 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20371,7 +20371,7 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20393,7 +20393,7 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20413,7 +20413,7 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20458,7 +20458,7 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20475,7 +20475,7 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20495,7 +20495,7 @@ name|o
 parameter_list|)
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20513,7 +20513,7 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20624,7 +20624,7 @@ block|}
 name|V
 name|v
 init|=
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20707,7 +20707,7 @@ name|key
 operator|!=
 literal|null
 operator|&&
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20731,7 +20731,7 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20748,7 +20748,7 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20764,7 +20764,7 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|this
 operator|.
@@ -20819,7 +20819,7 @@ name|ticker
 argument_list|)
 return|;
 block|}
-comment|/**    * Serializes the configuration of a LocalCacheAsMap, reconsitituting it as a Cache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
+comment|/**    * Serializes the configuration of a LocalCacheInternalMap, reconsitituting it as a Cache using    * CacheBuilder upon deserialization. An instance of this class is fit for use by the writeReplace    * of LocalCache.    *    * Unfortunately, readResolve() doesn't get called when a circular dependency is present, so the    * proxy must be able to behave as the cache itself.    */
 DECL|class|SerializationProxy
 specifier|static
 specifier|final

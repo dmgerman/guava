@@ -26,7 +26,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|Strength
 operator|.
@@ -44,7 +44,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|Strength
 operator|.
@@ -62,7 +62,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|Strength
 operator|.
@@ -2068,12 +2068,12 @@ name|WEAK
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testIdentityKeyEquality ( CustomConcurrentHashMap.Strength keyStrength)
+DECL|method|testIdentityKeyEquality ( MapMakerInternalMap.Strength keyStrength)
 specifier|private
 name|void
 name|testIdentityKeyEquality
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|Strength
 name|keyStrength
@@ -2305,12 +2305,12 @@ name|WEAK
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testLogicalKeyEquality ( CustomConcurrentHashMap.Strength keyStrength)
+DECL|method|testLogicalKeyEquality ( MapMakerInternalMap.Strength keyStrength)
 specifier|private
 name|void
 name|testLogicalKeyEquality
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|Strength
 name|keyStrength

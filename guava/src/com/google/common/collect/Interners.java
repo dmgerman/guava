@@ -98,7 +98,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|ReferenceEntry
 import|;
@@ -230,7 +230,7 @@ comment|// MapMaker is our friend, we know about this type
 DECL|field|map
 specifier|private
 specifier|final
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|E
 argument_list|,

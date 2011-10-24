@@ -550,7 +550,7 @@ name|identityLoader
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|?
 argument_list|,
@@ -560,7 +560,7 @@ name|map
 init|=
 name|CacheTesting
 operator|.
-name|toLocalCacheAsMap
+name|toLocalCacheInternalMap
 argument_list|(
 name|cache
 argument_list|)
@@ -675,7 +675,7 @@ name|identityLoader
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|?
 argument_list|,
@@ -685,7 +685,7 @@ name|map
 init|=
 name|CacheTesting
 operator|.
-name|toLocalCacheAsMap
+name|toLocalCacheInternalMap
 argument_list|(
 name|cache
 argument_list|)
@@ -914,7 +914,7 @@ name|identityLoader
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|?
 argument_list|,
@@ -924,7 +924,7 @@ name|map
 init|=
 name|CacheTesting
 operator|.
-name|toLocalCacheAsMap
+name|toLocalCacheInternalMap
 argument_list|(
 name|cache
 argument_list|)
@@ -3315,7 +3315,7 @@ name|identityLoader
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|?
 argument_list|,
@@ -3325,7 +3325,7 @@ name|map
 init|=
 name|CacheTesting
 operator|.
-name|toLocalCacheAsMap
+name|toLocalCacheInternalMap
 argument_list|(
 name|cache
 argument_list|)

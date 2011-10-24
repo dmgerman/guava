@@ -56,7 +56,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|Segment
 import|;
@@ -123,7 +123,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exposes a {@link LocalCacheAsMap} as a {@code Cache}.  *  * @author Charles Fry  */
+comment|/**  * Exposes a {@link LocalCacheInternalMap} as a {@code Cache}.  *  * @author Charles Fry  */
 end_comment
 
 begin_class
@@ -147,7 +147,7 @@ name|Serializable
 block|{
 DECL|field|map
 specifier|final
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -194,7 +194,7 @@ operator|.
 name|map
 operator|=
 operator|new
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,

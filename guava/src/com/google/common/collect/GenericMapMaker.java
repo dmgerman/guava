@@ -568,7 +568,7 @@ comment|/**    * See {@link MapMaker#makeCustomMap}.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"CustomConcurrentHashMap"
+literal|"MapMakerInternalMap"
 argument_list|)
 DECL|method|makeCustomMap ()
 specifier|abstract
@@ -577,7 +577,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,

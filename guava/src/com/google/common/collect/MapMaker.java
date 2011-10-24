@@ -218,7 +218,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 operator|.
 name|Strength
 import|;
@@ -1465,7 +1465,7 @@ literal|null
 operator|)
 condition|?
 operator|new
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -1487,13 +1487,13 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a CustomConcurrentHashMap for the benefit of internal callers that use features of    * that class not exposed through ConcurrentMap.    */
+comment|/**    * Returns a MapMakerInternalMap for the benefit of internal callers that use features of    * that class not exposed through ConcurrentMap.    */
 annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"CustomConcurrentHashMap"
+literal|"MapMakerInternalMap"
 argument_list|)
 DECL|method|makeCustomMap ()
 parameter_list|<
@@ -1501,7 +1501,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -1512,7 +1512,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,

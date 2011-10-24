@@ -42,7 +42,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|DISCARDING_QUEUE
 import|;
@@ -58,7 +58,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|DRAIN_THRESHOLD
 import|;
@@ -74,7 +74,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|nullEntry
 import|;
@@ -90,7 +90,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|unset
 import|;
@@ -298,7 +298,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|EntryFactory
 import|;
@@ -314,7 +314,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|LoadingValueReference
 import|;
@@ -330,7 +330,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|ReferenceEntry
 import|;
@@ -346,7 +346,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|Segment
 import|;
@@ -362,7 +362,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|Strength
 import|;
@@ -378,7 +378,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|ValueReference
 import|;
@@ -679,10 +679,10 @@ comment|/**  * @author Charles Fry  */
 end_comment
 
 begin_class
-DECL|class|LocalCacheAsMapTest
+DECL|class|LocalCacheInternalMapTest
 specifier|public
 class|class
-name|LocalCacheAsMapTest
+name|LocalCacheInternalMapTest
 extends|extends
 name|TestCase
 block|{
@@ -704,7 +704,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -723,7 +723,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -761,7 +761,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -790,7 +790,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -837,7 +837,7 @@ name|void
 name|testDefaults
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1089,7 +1089,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1167,7 +1167,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1262,7 +1262,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1382,7 +1382,7 @@ name|int
 name|segmentCount
 parameter_list|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1680,7 +1680,7 @@ name|int
 name|segmentSize
 parameter_list|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -1915,7 +1915,7 @@ name|long
 name|maxSize
 parameter_list|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2083,7 +2083,7 @@ name|void
 name|testSetWeakKeys
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2131,7 +2131,7 @@ name|void
 name|testSetWeakValues
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2179,7 +2179,7 @@ name|void
 name|testSetSoftValues
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2221,13 +2221,13 @@ name|entryFactory
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|checkStrength ( LocalCacheAsMap<Object, Object> map, Strength keyStrength, Strength valueStrength)
+DECL|method|checkStrength ( LocalCacheInternalMap<Object, Object> map, Strength keyStrength, Strength valueStrength)
 specifier|private
 specifier|static
 name|void
 name|checkStrength
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2303,7 +2303,7 @@ name|TimeUnit
 operator|.
 name|SECONDS
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2357,7 +2357,7 @@ name|TimeUnit
 operator|.
 name|SECONDS
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2412,7 +2412,7 @@ operator|.
 name|nullRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2467,7 +2467,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2679,7 +2679,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -2784,7 +2784,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3127,7 +3127,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3230,7 +3230,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3479,7 +3479,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3732,7 +3732,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -3934,7 +3934,7 @@ name|listener
 argument_list|)
 decl_stmt|;
 specifier|final
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -4404,7 +4404,7 @@ name|listener
 argument_list|)
 decl_stmt|;
 specifier|final
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -4592,7 +4592,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -4765,7 +4765,7 @@ init|=
 name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5050,7 +5050,7 @@ init|=
 name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5251,7 +5251,7 @@ init|=
 name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5431,7 +5431,7 @@ init|=
 name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5616,7 +5616,7 @@ init|=
 name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -5831,7 +5831,7 @@ name|allEntryTypeMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -6102,7 +6102,7 @@ name|allEntryTypeMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -6241,7 +6241,7 @@ name|usesAccessQueue
 argument_list|()
 condition|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|connectAccessOrder
 argument_list|(
@@ -6259,7 +6259,7 @@ name|usesWriteQueue
 argument_list|()
 condition|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|connectWriteOrder
 argument_list|(
@@ -6416,7 +6416,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertConnected ( LocalCacheAsMap<K, V> map, ReferenceEntry<K, V> one, ReferenceEntry<K, V> two)
+DECL|method|assertConnected ( LocalCacheInternalMap<K, V> map, ReferenceEntry<K, V> one, ReferenceEntry<K, V> two)
 specifier|private
 specifier|static
 parameter_list|<
@@ -6427,7 +6427,7 @@ parameter_list|>
 name|void
 name|assertConnected
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -6497,7 +6497,7 @@ name|void
 name|testSegmentGetAndContains
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -7124,7 +7124,7 @@ name|void
 name|testSegmentReplaceValue
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -7483,7 +7483,7 @@ name|void
 name|testSegmentReplace
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -7798,7 +7798,7 @@ name|void
 name|testSegmentPut
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8055,7 +8055,7 @@ name|void
 name|testSegmentPutIfAbsent
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8312,7 +8312,7 @@ name|void
 name|testSegmentPut_expand
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8448,7 +8448,7 @@ name|maxSize
 init|=
 literal|10
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -8596,7 +8596,7 @@ init|=
 name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -9268,7 +9268,7 @@ name|void
 name|testSegmentRemove
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -9585,7 +9585,7 @@ name|void
 name|testSegmentRemoveValue
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -9963,7 +9963,7 @@ name|void
 name|testExpand
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -10249,7 +10249,7 @@ init|=
 name|countingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -10673,7 +10673,7 @@ name|void
 name|testRemoveEntryFromChain
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -11026,7 +11026,7 @@ name|void
 name|testExpand_cleanup
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -11358,7 +11358,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|countLiveEntries (LocalCacheAsMap<K, V> map, long now)
+DECL|method|countLiveEntries (LocalCacheInternalMap<K, V> map, long now)
 specifier|private
 specifier|static
 parameter_list|<
@@ -11369,7 +11369,7 @@ parameter_list|>
 name|int
 name|countLiveEntries
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -11492,7 +11492,7 @@ name|void
 name|testClear
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -11750,7 +11750,7 @@ name|void
 name|testRemoveEntry
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -12022,7 +12022,7 @@ init|=
 name|countingRemovalListener
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -12423,7 +12423,7 @@ name|void
 name|testRemoveComputingValue
 parameter_list|()
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -12805,7 +12805,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertNotificationEnqueued ( LocalCacheAsMap<K, V> map, K key, V value, int hash)
+DECL|method|assertNotificationEnqueued ( LocalCacheInternalMap<K, V> map, K key, V value, int hash)
 specifier|private
 specifier|static
 parameter_list|<
@@ -12816,7 +12816,7 @@ parameter_list|>
 name|void
 name|assertNotificationEnqueued
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -12891,7 +12891,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -13057,7 +13057,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -13336,7 +13336,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -13660,7 +13660,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -14017,7 +14017,7 @@ name|allEvictingMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -14291,7 +14291,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkAndDrainRecencyQueue (LocalCacheAsMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> reads)
+DECL|method|checkAndDrainRecencyQueue (LocalCacheInternalMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> reads)
 specifier|static
 parameter_list|<
 name|K
@@ -14301,7 +14301,7 @@ parameter_list|>
 name|void
 name|checkAndDrainRecencyQueue
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -14363,7 +14363,7 @@ name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|checkEvictionQueues (LocalCacheAsMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> readOrder, List<ReferenceEntry<K, V>> writeOrder)
+DECL|method|checkEvictionQueues (LocalCacheInternalMap<K, V> map, Segment<K, V> segment, List<ReferenceEntry<K, V>> readOrder, List<ReferenceEntry<K, V>> writeOrder)
 specifier|static
 parameter_list|<
 name|K
@@ -14373,7 +14373,7 @@ parameter_list|>
 name|void
 name|checkEvictionQueues
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -14595,7 +14595,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkExpirationTimes (LocalCacheAsMap<K, V> map)
+DECL|method|checkExpirationTimes (LocalCacheInternalMap<K, V> map)
 specifier|static
 parameter_list|<
 name|K
@@ -14605,7 +14605,7 @@ parameter_list|>
 name|void
 name|checkExpirationTimes
 parameter_list|(
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -14797,7 +14797,7 @@ operator|new
 name|FakeTicker
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -15127,7 +15127,7 @@ operator|new
 name|FakeTicker
 argument_list|()
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -15585,7 +15585,7 @@ name|maxSize
 init|=
 literal|10
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -15925,7 +15925,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -16133,7 +16133,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -16354,7 +16354,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -16569,7 +16569,7 @@ name|allKeyValueStrengthMakers
 argument_list|()
 control|)
 block|{
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -17019,7 +17019,7 @@ name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,
@@ -17031,7 +17031,7 @@ name|one
 operator|.
 name|map
 decl_stmt|;
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 argument_list|<
 name|Object
 argument_list|,

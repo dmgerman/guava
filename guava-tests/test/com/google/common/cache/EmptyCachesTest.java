@@ -128,7 +128,7 @@ name|common
 operator|.
 name|cache
 operator|.
-name|LocalCacheAsMap
+name|LocalCacheInternalMap
 operator|.
 name|Strength
 import|;

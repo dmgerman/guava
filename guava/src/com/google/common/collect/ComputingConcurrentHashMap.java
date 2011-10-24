@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adds computing functionality to {@link CustomConcurrentHashMap}.  *  * @author Bob Lee  * @author Charles Fry  */
+comment|/**  * Adds computing functionality to {@link MapMakerInternalMap}.  *  * @author Bob Lee  * @author Charles Fry  */
 end_comment
 
 begin_class
@@ -248,7 +248,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,
@@ -432,10 +432,10 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ComputingSegment (CustomConcurrentHashMap<K, V> map, int initialCapacity, int maxSegmentSize)
+DECL|method|ComputingSegment (MapMakerInternalMap<K, V> map, int initialCapacity, int maxSegmentSize)
 name|ComputingSegment
 parameter_list|(
-name|CustomConcurrentHashMap
+name|MapMakerInternalMap
 argument_list|<
 name|K
 argument_list|,

@@ -253,7 +253,7 @@ operator|new
 name|MapMaker
 argument_list|()
 decl_stmt|;
-comment|// force MapMaker to use its own CustomConcurrentHashMap
+comment|// force MapMaker to use its own MapMakerInternalMap
 name|mapMaker
 operator|.
 name|useCustomMap
