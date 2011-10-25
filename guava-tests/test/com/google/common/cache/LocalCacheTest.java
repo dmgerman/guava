@@ -748,10 +748,6 @@ argument_list|>
 argument_list|(
 name|builder
 argument_list|,
-name|CacheBuilder
-operator|.
-name|DEFAULT_STATS_COUNTER
-argument_list|,
 name|CacheLoader
 operator|.
 name|from
@@ -814,10 +810,6 @@ name|V
 argument_list|>
 argument_list|(
 name|builder
-argument_list|,
-name|CacheBuilder
-operator|.
-name|DEFAULT_STATS_COUNTER
 argument_list|,
 name|loader
 argument_list|)

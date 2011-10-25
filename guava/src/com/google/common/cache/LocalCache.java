@@ -160,20 +160,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Supplier
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Ticker
 import|;
 end_import
@@ -947,7 +933,7 @@ name|StatsCounter
 name|globalStatsCounter
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
-DECL|method|LocalCache (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, V> loader)
+DECL|method|LocalCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
 name|LocalCache
 parameter_list|(
 name|CacheBuilder
@@ -961,14 +947,6 @@ super|super
 name|V
 argument_list|>
 name|builder
-parameter_list|,
-name|Supplier
-argument_list|<
-name|?
-extends|extends
-name|StatsCounter
-argument_list|>
-name|statsCounterSupplier
 parameter_list|,
 name|CacheLoader
 argument_list|<
@@ -1129,7 +1107,10 @@ argument_list|()
 expr_stmt|;
 name|globalStatsCounter
 operator|=
-name|statsCounterSupplier
+name|builder
+operator|.
+name|getStatsCounterSupplier
+argument_list|()
 operator|.
 name|get
 argument_list|()
@@ -1343,7 +1324,10 @@ name|segmentSize
 argument_list|,
 name|maxSegmentWeight
 argument_list|,
-name|statsCounterSupplier
+name|builder
+operator|.
+name|getStatsCounterSupplier
+argument_list|()
 operator|.
 name|get
 argument_list|()
@@ -1385,7 +1369,10 @@ name|segmentSize
 argument_list|,
 name|UNSET_INT
 argument_list|,
-name|statsCounterSupplier
+name|builder
+operator|.
+name|getStatsCounterSupplier
+argument_list|()
 operator|.
 name|get
 argument_list|()
@@ -21355,7 +21342,7 @@ name|V
 argument_list|>
 name|map
 decl_stmt|;
-DECL|method|AutoLocalCache (CacheBuilder<? super K, ? super V> builder, Supplier<? extends StatsCounter> statsCounterSupplier, CacheLoader<? super K, V> loader)
+DECL|method|AutoLocalCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
 name|AutoLocalCache
 parameter_list|(
 name|CacheBuilder
@@ -21369,14 +21356,6 @@ super|super
 name|V
 argument_list|>
 name|builder
-parameter_list|,
-name|Supplier
-argument_list|<
-name|?
-extends|extends
-name|StatsCounter
-argument_list|>
-name|statsCounterSupplier
 parameter_list|,
 name|CacheLoader
 argument_list|<
@@ -21402,8 +21381,6 @@ name|V
 argument_list|>
 argument_list|(
 name|builder
-argument_list|,
-name|statsCounterSupplier
 argument_list|,
 name|loader
 argument_list|)

@@ -377,7 +377,7 @@ name|DEFAULT_EXPIRATION_NANOS
 init|=
 literal|0
 decl_stmt|;
-DECL|field|DEFAULT_STATS_COUNTER
+DECL|field|NULL_STATS_COUNTER
 specifier|static
 specifier|final
 name|Supplier
@@ -386,7 +386,7 @@ name|?
 extends|extends
 name|StatsCounter
 argument_list|>
-name|DEFAULT_STATS_COUNTER
+name|NULL_STATS_COUNTER
 init|=
 name|Suppliers
 operator|.
@@ -718,6 +718,17 @@ decl_stmt|;
 DECL|field|ticker
 name|Ticker
 name|ticker
+decl_stmt|;
+DECL|field|statsCounterSupplier
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|StatsCounter
+argument_list|>
+name|statsCounterSupplier
+init|=
+name|CACHE_STATS_COUNTER
 decl_stmt|;
 comment|// TODO(fry): make constructor private and update tests to use newBuilder
 DECL|method|CacheBuilder ()
@@ -1862,6 +1873,46 @@ name|INSTANCE
 argument_list|)
 return|;
 block|}
+comment|/**    * Disable the accumulation of {@link CacheStats} during the operation of the cache.    */
+DECL|method|disableStats ()
+name|CacheBuilder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|disableStats
+parameter_list|()
+block|{
+name|checkState
+argument_list|(
+name|statsCounterSupplier
+operator|==
+name|CACHE_STATS_COUNTER
+argument_list|)
+expr_stmt|;
+name|statsCounterSupplier
+operator|=
+name|NULL_STATS_COUNTER
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+DECL|method|getStatsCounterSupplier ()
+name|Supplier
+argument_list|<
+name|?
+extends|extends
+name|StatsCounter
+argument_list|>
+name|getStatsCounterSupplier
+parameter_list|()
+block|{
+return|return
+name|statsCounterSupplier
+return|;
+block|}
 comment|/**    * Builds a cache, which either returns an already-loaded value for a given key or atomically    * computes or retrieves it using the supplied {@code CacheLoader}. If another thread is currently    * loading the value for this key, simply waits for that thread to finish and returns its    * loaded value. Note that multiple threads can concurrently load values for distinct keys.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @param loader the cache loader used to obtain new values    * @return a cache having the requested features    */
 DECL|method|build (CacheLoader<? super K1, V1> loader)
 specifier|public
@@ -1992,8 +2043,6 @@ name|V1
 argument_list|>
 argument_list|(
 name|this
-argument_list|,
-name|CACHE_STATS_COUNTER
 argument_list|,
 name|loader
 argument_list|)
