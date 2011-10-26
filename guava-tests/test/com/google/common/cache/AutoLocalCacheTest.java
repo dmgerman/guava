@@ -446,9 +446,7 @@ name|loader
 argument_list|,
 name|cache
 operator|.
-name|map
-operator|.
-name|defaultLoader
+name|loader
 argument_list|)
 expr_stmt|;
 block|}
@@ -1061,9 +1059,9 @@ name|map
 init|=
 name|cache
 operator|.
-name|map
+name|localCache
 decl_stmt|;
-comment|// mofidiable map view
+comment|// modifiable map view
 name|assertEquals
 argument_list|(
 name|EMPTY_STATS
@@ -2084,7 +2082,7 @@ name|segment
 init|=
 name|cache
 operator|.
-name|map
+name|localCache
 operator|.
 name|segments
 index|[

@@ -60,11 +60,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|Map
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMap
 import|;
 end_import
 
@@ -101,6 +105,16 @@ operator|.
 name|concurrent
 operator|.
 name|ExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -197,6 +211,29 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|Nullable
+DECL|method|getIfPresent (K key)
+specifier|public
+name|V
+name|getIfPresent
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|getIfPresent
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|get (K key, Callable<V> valueLoader)
 specifier|public
 name|V
@@ -230,7 +267,7 @@ annotation|@
 name|Override
 DECL|method|getAll (Iterable<? extends K> keys)
 specifier|public
-name|Map
+name|ImmutableMap
 argument_list|<
 name|K
 argument_list|,
@@ -254,6 +291,37 @@ name|delegate
 argument_list|()
 operator|.
 name|getAll
+argument_list|(
+name|keys
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getAllPresent (Iterable<? extends K> keys)
+specifier|public
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getAllPresent
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|>
+name|keys
+parameter_list|)
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|getAllPresent
 argument_list|(
 name|keys
 argument_list|)
@@ -299,6 +367,31 @@ operator|.
 name|refresh
 argument_list|(
 name|key
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|put (K key, V value)
+specifier|public
+name|void
+name|put
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|V
+name|value
+parameter_list|)
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|put
+argument_list|(
+name|key
+argument_list|,
+name|value
 argument_list|)
 expr_stmt|;
 block|}

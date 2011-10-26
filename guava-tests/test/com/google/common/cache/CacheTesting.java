@@ -742,7 +742,7 @@ operator|)
 name|cache
 operator|)
 operator|.
-name|map
+name|localCache
 return|;
 block|}
 throw|throw
