@@ -4,7 +4,7 @@ comment|/*  * Written by Doug Lea with assistance from members of JCP JSR-166  *
 end_comment
 
 begin_comment
-comment|/*  * Source:  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/JSR166TestCase.java?revision=1.74  * (We have made some trivial local modifications.)  */
+comment|/*  * Source:  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/JSR166TestCase.java?revision=1.90  * (We have made some trivial local modifications (commented out  * uncompilable code).)  */
 end_comment
 
 begin_package
@@ -36,9 +36,59 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|ByteArrayInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ObjectInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ObjectOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
 import|;
 end_import
 
@@ -71,6 +121,20 @@ operator|.
 name|concurrent
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicBoolean
 import|;
 end_import
 
@@ -198,6 +262,20 @@ name|JSR166TestCase
 extends|extends
 name|TestCase
 block|{
+DECL|field|useSecurityManager
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|useSecurityManager
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"jsr166.useSecurityManager"
+argument_list|)
+decl_stmt|;
 DECL|field|expensiveTests
 specifier|protected
 specifier|static
@@ -244,8 +322,6 @@ argument_list|,
 literal|100
 argument_list|)
 decl_stmt|;
-annotation|@
-name|Override
 DECL|method|runTest ()
 specifier|protected
 name|void
@@ -334,6 +410,106 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//     /**
+comment|//      * Runs all JSR166 unit tests using junit.textui.TestRunner
+comment|//      */
+comment|//     public static void main(String[] args) {
+comment|//         if (useSecurityManager) {
+comment|//             System.err.println("Setting a permissive security manager");
+comment|//             Policy.setPolicy(permissivePolicy());
+comment|//             System.setSecurityManager(new SecurityManager());
+comment|//         }
+comment|//         int iters = (args.length == 0) ? 1 : Integer.parseInt(args[0]);
+comment|//         Test s = suite();
+comment|//         for (int i = 0; i< iters; ++i) {
+comment|//             junit.textui.TestRunner.run(s);
+comment|//             System.gc();
+comment|//             System.runFinalization();
+comment|//         }
+comment|//         System.exit(0);
+comment|//     }
+comment|//     public static TestSuite newTestSuite(Object... suiteOrClasses) {
+comment|//         TestSuite suite = new TestSuite();
+comment|//         for (Object suiteOrClass : suiteOrClasses) {
+comment|//             if (suiteOrClass instanceof TestSuite)
+comment|//                 suite.addTest((TestSuite) suiteOrClass);
+comment|//             else if (suiteOrClass instanceof Class)
+comment|//                 suite.addTest(new TestSuite((Class<?>) suiteOrClass));
+comment|//             else
+comment|//                 throw new ClassCastException("not a test suite or class");
+comment|//         }
+comment|//         return suite;
+comment|//     }
+comment|//     /**
+comment|//      * Collects all JSR166 unit tests as one suite.
+comment|//      */
+comment|//     public static Test suite() {
+comment|//         return newTestSuite(
+comment|//             ForkJoinPoolTest.suite(),
+comment|//             ForkJoinTaskTest.suite(),
+comment|//             RecursiveActionTest.suite(),
+comment|//             RecursiveTaskTest.suite(),
+comment|//             LinkedTransferQueueTest.suite(),
+comment|//             PhaserTest.suite(),
+comment|//             ThreadLocalRandomTest.suite(),
+comment|//             AbstractExecutorServiceTest.suite(),
+comment|//             AbstractQueueTest.suite(),
+comment|//             AbstractQueuedSynchronizerTest.suite(),
+comment|//             AbstractQueuedLongSynchronizerTest.suite(),
+comment|//             ArrayBlockingQueueTest.suite(),
+comment|//             ArrayDequeTest.suite(),
+comment|//             AtomicBooleanTest.suite(),
+comment|//             AtomicIntegerArrayTest.suite(),
+comment|//             AtomicIntegerFieldUpdaterTest.suite(),
+comment|//             AtomicIntegerTest.suite(),
+comment|//             AtomicLongArrayTest.suite(),
+comment|//             AtomicLongFieldUpdaterTest.suite(),
+comment|//             AtomicLongTest.suite(),
+comment|//             AtomicMarkableReferenceTest.suite(),
+comment|//             AtomicReferenceArrayTest.suite(),
+comment|//             AtomicReferenceFieldUpdaterTest.suite(),
+comment|//             AtomicReferenceTest.suite(),
+comment|//             AtomicStampedReferenceTest.suite(),
+comment|//             ConcurrentHashMapTest.suite(),
+comment|//             ConcurrentLinkedDequeTest.suite(),
+comment|//             ConcurrentLinkedQueueTest.suite(),
+comment|//             ConcurrentSkipListMapTest.suite(),
+comment|//             ConcurrentSkipListSubMapTest.suite(),
+comment|//             ConcurrentSkipListSetTest.suite(),
+comment|//             ConcurrentSkipListSubSetTest.suite(),
+comment|//             CopyOnWriteArrayListTest.suite(),
+comment|//             CopyOnWriteArraySetTest.suite(),
+comment|//             CountDownLatchTest.suite(),
+comment|//             CyclicBarrierTest.suite(),
+comment|//             DelayQueueTest.suite(),
+comment|//             EntryTest.suite(),
+comment|//             ExchangerTest.suite(),
+comment|//             ExecutorsTest.suite(),
+comment|//             ExecutorCompletionServiceTest.suite(),
+comment|//             FutureTaskTest.suite(),
+comment|//             LinkedBlockingDequeTest.suite(),
+comment|//             LinkedBlockingQueueTest.suite(),
+comment|//             LinkedListTest.suite(),
+comment|//             LockSupportTest.suite(),
+comment|//             PriorityBlockingQueueTest.suite(),
+comment|//             PriorityQueueTest.suite(),
+comment|//             ReentrantLockTest.suite(),
+comment|//             ReentrantReadWriteLockTest.suite(),
+comment|//             ScheduledExecutorTest.suite(),
+comment|//             ScheduledExecutorSubclassTest.suite(),
+comment|//             SemaphoreTest.suite(),
+comment|//             SynchronousQueueTest.suite(),
+comment|//             SystemTest.suite(),
+comment|//             ThreadLocalTest.suite(),
+comment|//             ThreadPoolExecutorTest.suite(),
+comment|//             ThreadPoolExecutorSubclassTest.suite(),
+comment|//             ThreadTest.suite(),
+comment|//             TimeUnitTest.suite(),
+comment|//             TreeMapTest.suite(),
+comment|//             TreeSetTest.suite(),
+comment|//             TreeSubMapTest.suite(),
+comment|//             TreeSubSetTest.suite());
+comment|//     }
 DECL|field|SHORT_DELAY_MS
 specifier|public
 specifier|static
@@ -400,6 +576,40 @@ operator|*
 literal|200
 expr_stmt|;
 block|}
+comment|/**      * Returns a timeout in milliseconds to be used in tests that      * verify that operations block or time out.      */
+DECL|method|timeoutMillis ()
+name|long
+name|timeoutMillis
+parameter_list|()
+block|{
+return|return
+name|SHORT_DELAY_MS
+operator|/
+literal|4
+return|;
+block|}
+comment|/**      * Returns a new Date instance representing a time delayMillis      * milliseconds in the future.      */
+DECL|method|delayedDate (long delayMillis)
+name|Date
+name|delayedDate
+parameter_list|(
+name|long
+name|delayMillis
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Date
+argument_list|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|+
+name|delayMillis
+argument_list|)
+return|;
+block|}
 comment|/**      * The first exception encountered if any threadAssertXXX method fails.      */
 DECL|field|threadFailure
 specifier|private
@@ -439,8 +649,6 @@ name|t
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|setUp ()
 specifier|public
 name|void
@@ -451,9 +659,7 @@ name|setDelays
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Triggers test case failure if any thread assertions have failed,      * by rethrowing, in the test harness thread, any exception recorded      * earlier by threadRecordFailure.      */
-annotation|@
-name|Override
+comment|/**      * Extra checks that get done for all test cases.      *      * Triggers test case failure if any thread assertions have failed,      * by rethrowing, in the test harness thread, any exception recorded      * earlier by threadRecordFailure.      *      * Triggers test case failure if interrupt status is set in the main thread.      */
 DECL|method|tearDown ()
 specifier|public
 name|void
@@ -543,6 +749,20 @@ name|afe
 throw|;
 block|}
 block|}
+if|if
+condition|(
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|AssertionFailedError
+argument_list|(
+literal|"interrupt status set in main thread"
+argument_list|)
+throw|;
 block|}
 comment|/**      * Just like fail(reason), but additionally recording (using      * threadRecordFailure) any AssertionFailedError thrown, so that      * the current testcase will fail.      */
 DECL|method|threadFail (String reason)
@@ -900,7 +1120,7 @@ operator|+
 name|t
 argument_list|)
 decl_stmt|;
-name|t
+name|afe
 operator|.
 name|initCause
 argument_list|(
@@ -912,9 +1132,97 @@ name|afe
 throw|;
 block|}
 block|}
+comment|/**      * Delays, via Thread.sleep, for the given millisecond delay, but      * if the sleep is shorter than specified, may re-sleep or yield      * until time elapses.      */
+DECL|method|delay (long millis)
+specifier|static
+name|void
+name|delay
+parameter_list|(
+name|long
+name|millis
+parameter_list|)
+throws|throws
+name|InterruptedException
+block|{
+name|long
+name|startTime
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+name|long
+name|ns
+init|=
+name|millis
+operator|*
+literal|1000
+operator|*
+literal|1000
+decl_stmt|;
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
+if|if
+condition|(
+name|millis
+operator|>
+literal|0L
+condition|)
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|millis
+argument_list|)
+expr_stmt|;
+else|else
+comment|// too short to sleep
+name|Thread
+operator|.
+name|yield
+argument_list|()
+expr_stmt|;
+name|long
+name|d
+init|=
+name|ns
+operator|-
+operator|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|startTime
+operator|)
+decl_stmt|;
+if|if
+condition|(
+name|d
+operator|>
+literal|0L
+condition|)
+name|millis
+operator|=
+name|d
+operator|/
+operator|(
+literal|1000
+operator|*
+literal|1000
+operator|)
+expr_stmt|;
+else|else
+break|break;
+block|}
+block|}
 comment|/**      * Waits out termination of a thread pool or fails doing so.      */
 DECL|method|joinPool (ExecutorService exec)
-specifier|public
 name|void
 name|joinPool
 parameter_list|(
@@ -966,6 +1274,227 @@ literal|"Unexpected InterruptedException"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Checks that thread does not terminate within the default      * millisecond delay of {@code timeoutMillis()}.      */
+DECL|method|assertThreadStaysAlive (Thread thread)
+name|void
+name|assertThreadStaysAlive
+parameter_list|(
+name|Thread
+name|thread
+parameter_list|)
+block|{
+name|assertThreadStaysAlive
+argument_list|(
+name|thread
+argument_list|,
+name|timeoutMillis
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Checks that thread does not terminate within the given millisecond delay.      */
+DECL|method|assertThreadStaysAlive (Thread thread, long millis)
+name|void
+name|assertThreadStaysAlive
+parameter_list|(
+name|Thread
+name|thread
+parameter_list|,
+name|long
+name|millis
+parameter_list|)
+block|{
+try|try
+block|{
+comment|// No need to optimize the failing case via Thread.join.
+name|delay
+argument_list|(
+name|millis
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|thread
+operator|.
+name|isAlive
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Unexpected InterruptedException"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * Checks that the threads do not terminate within the default      * millisecond delay of {@code timeoutMillis()}.      */
+DECL|method|assertThreadsStayAlive (Thread... threads)
+name|void
+name|assertThreadsStayAlive
+parameter_list|(
+name|Thread
+modifier|...
+name|threads
+parameter_list|)
+block|{
+name|assertThreadsStayAlive
+argument_list|(
+name|timeoutMillis
+argument_list|()
+argument_list|,
+name|threads
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Checks that the threads do not terminate within the given millisecond delay.      */
+DECL|method|assertThreadsStayAlive (long millis, Thread... threads)
+name|void
+name|assertThreadsStayAlive
+parameter_list|(
+name|long
+name|millis
+parameter_list|,
+name|Thread
+modifier|...
+name|threads
+parameter_list|)
+block|{
+try|try
+block|{
+comment|// No need to optimize the failing case via Thread.join.
+name|delay
+argument_list|(
+name|millis
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|Thread
+name|thread
+range|:
+name|threads
+control|)
+name|assertTrue
+argument_list|(
+name|thread
+operator|.
+name|isAlive
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+literal|"Unexpected InterruptedException"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * Checks that future.get times out, with the default timeout of      * {@code timeoutMillis()}.      */
+DECL|method|assertFutureTimesOut (Future future)
+name|void
+name|assertFutureTimesOut
+parameter_list|(
+name|Future
+name|future
+parameter_list|)
+block|{
+name|assertFutureTimesOut
+argument_list|(
+name|future
+argument_list|,
+name|timeoutMillis
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Checks that future.get times out, with the given millisecond timeout.      */
+DECL|method|assertFutureTimesOut (Future future, long timeoutMillis)
+name|void
+name|assertFutureTimesOut
+parameter_list|(
+name|Future
+name|future
+parameter_list|,
+name|long
+name|timeoutMillis
+parameter_list|)
+block|{
+name|long
+name|startTime
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|future
+operator|.
+name|get
+argument_list|(
+name|timeoutMillis
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
+name|shouldThrow
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TimeoutException
+name|success
+parameter_list|)
+block|{         }
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|threadUnexpectedException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|future
+operator|.
+name|cancel
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+name|millisElapsedSince
+argument_list|(
+name|startTime
+argument_list|)
+operator|>=
+name|timeoutMillis
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Fails with message "should throw exception".      */
 DECL|method|shouldThrow ()
@@ -1469,8 +1998,6 @@ name|Permissions
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|getPermissions (CodeSource cs)
 specifier|public
 name|PermissionCollection
@@ -1484,8 +2011,6 @@ return|return
 name|perms
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|getPermissions (ProtectionDomain pd)
 specifier|public
 name|PermissionCollection
@@ -1499,8 +2024,6 @@ return|return
 name|perms
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|implies (ProtectionDomain pd, Permission p)
 specifier|public
 name|boolean
@@ -1522,8 +2045,6 @@ name|p
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|refresh ()
 specifier|public
 name|void
@@ -1621,9 +2142,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|millis
 argument_list|)
@@ -1656,33 +2175,7 @@ name|afe
 throw|;
 block|}
 block|}
-comment|/**      * Sleeps until the timeout has elapsed, or interrupted.      * Does<em>NOT</em> throw InterruptedException.      */
-DECL|method|sleepTillInterrupted (long timeoutMillis)
-name|void
-name|sleepTillInterrupted
-parameter_list|(
-name|long
-name|timeoutMillis
-parameter_list|)
-block|{
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-name|timeoutMillis
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|wakeup
-parameter_list|)
-block|{}
-block|}
-comment|/**      * Waits up to the specified number of milliseconds for the given      * thread to enter a wait state: BLOCKED, WAITING, or TIMED_WAITING.      */
+comment|/**      * Spin-waits up to the specified number of milliseconds for the given      * thread to enter a wait state: BLOCKED, WAITING, or TIMED_WAITING.      */
 DECL|method|waitForThreadToEnterWaitState (Thread thread, long timeoutMillis)
 name|void
 name|waitForThreadToEnterWaitState
@@ -1695,16 +2188,7 @@ name|timeoutMillis
 parameter_list|)
 block|{
 name|long
-name|timeoutNanos
-init|=
-name|timeoutMillis
-operator|*
-literal|1000L
-operator|*
-literal|1000L
-decl_stmt|;
-name|long
-name|t0
+name|startTime
 init|=
 name|System
 operator|.
@@ -1773,14 +2257,12 @@ expr_stmt|;
 elseif|else
 if|if
 condition|(
-name|System
-operator|.
-name|nanoTime
-argument_list|()
-operator|-
-name|t0
+name|millisElapsedSince
+argument_list|(
+name|startTime
+argument_list|)
 operator|>
-name|timeoutNanos
+name|timeoutMillis
 condition|)
 block|{
 name|threadAssertTrue
@@ -1800,7 +2282,24 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns the number of milliseconds since time given by      * startNanoTime, which must have been previously returned from a      * call to {@link System#nanoTime()}.      */
+comment|/**      * Waits up to LONG_DELAY_MS for the given thread to enter a wait      * state: BLOCKED, WAITING, or TIMED_WAITING.      */
+DECL|method|waitForThreadToEnterWaitState (Thread thread)
+name|void
+name|waitForThreadToEnterWaitState
+parameter_list|(
+name|Thread
+name|thread
+parameter_list|)
+block|{
+name|waitForThreadToEnterWaitState
+argument_list|(
+name|thread
+argument_list|,
+name|LONG_DELAY_MS
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Returns the number of milliseconds since time given by      * startNanoTime, which must have been previously returned from a      * call to {@link System.nanoTime()}.      */
 DECL|method|millisElapsedSince (long startNanoTime)
 name|long
 name|millisElapsedSince
@@ -1897,8 +2396,14 @@ if|if
 condition|(
 name|t
 operator|.
-name|isAlive
+name|getState
 argument_list|()
+operator|!=
+name|Thread
+operator|.
+name|State
+operator|.
+name|TERMINATED
 condition|)
 block|{
 name|t
@@ -1913,6 +2418,23 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**      * Waits for LONG_DELAY_MS milliseconds for the thread to      * terminate (using {@link Thread#join(long)}), else interrupts      * the thread (in the hope that it may terminate later) and fails.      */
+DECL|method|awaitTermination (Thread t)
+name|void
+name|awaitTermination
+parameter_list|(
+name|Thread
+name|t
+parameter_list|)
+block|{
+name|awaitTermination
+argument_list|(
+name|t
+argument_list|,
+name|LONG_DELAY_MS
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Some convenient Runnable classes
 DECL|class|CheckedRunnable
@@ -2098,8 +2620,6 @@ operator|=
 name|exceptionClass
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|run ()
 specifier|public
 specifier|final
@@ -2185,7 +2705,16 @@ parameter_list|(
 name|InterruptedException
 name|success
 parameter_list|)
-block|{             }
+block|{
+name|threadAssertFalse
+argument_list|(
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 catch|catch
 parameter_list|(
 name|Throwable
@@ -2306,7 +2835,16 @@ parameter_list|(
 name|InterruptedException
 name|success
 parameter_list|)
-block|{             }
+block|{
+name|threadAssertFalse
+argument_list|(
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 catch|catch
 parameter_list|(
 name|Throwable
@@ -2391,7 +2929,7 @@ name|TEST_STRING
 return|;
 block|}
 block|}
-DECL|method|latchAwaitingStringTask ( final CountDownLatch latch)
+DECL|method|latchAwaitingStringTask (final CountDownLatch latch)
 specifier|public
 name|Callable
 argument_list|<
@@ -2412,8 +2950,6 @@ name|String
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
 specifier|protected
 name|String
 name|realCall
@@ -2455,8 +2991,6 @@ operator|new
 name|CheckedRunnable
 argument_list|()
 block|{
-annotation|@
-name|Override
 specifier|public
 name|void
 name|realRun
@@ -2464,15 +2998,106 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
-name|latch
-operator|.
 name|await
-argument_list|()
+argument_list|(
+name|latch
+argument_list|)
 expr_stmt|;
 block|}
 block|}
 return|;
 block|}
+DECL|method|await (CountDownLatch latch)
+specifier|public
+name|void
+name|await
+parameter_list|(
+name|CountDownLatch
+name|latch
+parameter_list|)
+block|{
+try|try
+block|{
+name|assertTrue
+argument_list|(
+name|latch
+operator|.
+name|await
+argument_list|(
+name|LONG_DELAY_MS
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|threadUnexpectedException
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|await (Semaphore semaphore)
+specifier|public
+name|void
+name|await
+parameter_list|(
+name|Semaphore
+name|semaphore
+parameter_list|)
+block|{
+try|try
+block|{
+name|assertTrue
+argument_list|(
+name|semaphore
+operator|.
+name|tryAcquire
+argument_list|(
+name|LONG_DELAY_MS
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|threadUnexpectedException
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|//     /**
+comment|//      * Spin-waits up to LONG_DELAY_MS until flag becomes true.
+comment|//      */
+comment|//     public void await(AtomicBoolean flag) {
+comment|//         await(flag, LONG_DELAY_MS);
+comment|//     }
+comment|//     /**
+comment|//      * Spin-waits up to the specified timeout until flag becomes true.
+comment|//      */
+comment|//     public void await(AtomicBoolean flag, long timeoutMillis) {
+comment|//         long startTime = System.nanoTime();
+comment|//         while (!flag.get()) {
+comment|//             if (millisElapsedSince(startTime)> timeoutMillis)
+comment|//                 throw new AssertionFailedError("timed out");
+comment|//             Thread.yield();
+comment|//         }
+comment|//     }
 DECL|class|NPETask
 specifier|public
 specifier|static
@@ -2526,8 +3151,6 @@ name|ShortRunnable
 extends|extends
 name|CheckedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2536,9 +3159,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SHORT_DELAY_MS
 argument_list|)
@@ -2552,8 +3173,6 @@ name|ShortInterruptedRunnable
 extends|extends
 name|CheckedInterruptedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2562,9 +3181,7 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SHORT_DELAY_MS
 argument_list|)
@@ -2578,8 +3195,6 @@ name|SmallRunnable
 extends|extends
 name|CheckedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2588,9 +3203,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SMALL_DELAY_MS
 argument_list|)
@@ -2604,8 +3217,6 @@ name|SmallPossiblyInterruptedRunnable
 extends|extends
 name|CheckedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2614,9 +3225,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SMALL_DELAY_MS
 argument_list|)
@@ -2637,8 +3246,6 @@ name|SmallCallable
 extends|extends
 name|CheckedCallable
 block|{
-annotation|@
-name|Override
 DECL|method|realCall ()
 specifier|protected
 name|Object
@@ -2647,9 +3254,7 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SMALL_DELAY_MS
 argument_list|)
@@ -2668,8 +3273,6 @@ name|MediumRunnable
 extends|extends
 name|CheckedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2678,9 +3281,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|MEDIUM_DELAY_MS
 argument_list|)
@@ -2694,8 +3295,6 @@ name|MediumInterruptedRunnable
 extends|extends
 name|CheckedInterruptedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2704,9 +3303,7 @@ parameter_list|()
 throws|throws
 name|InterruptedException
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|MEDIUM_DELAY_MS
 argument_list|)
@@ -2728,8 +3325,6 @@ operator|new
 name|CheckedRunnable
 argument_list|()
 block|{
-annotation|@
-name|Override
 specifier|protected
 name|void
 name|realRun
@@ -2737,9 +3332,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|timeoutMillis
 argument_list|)
@@ -2762,8 +3355,6 @@ name|MediumPossiblyInterruptedRunnable
 extends|extends
 name|CheckedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2772,9 +3363,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|MEDIUM_DELAY_MS
 argument_list|)
@@ -2795,8 +3384,6 @@ name|LongPossiblyInterruptedRunnable
 extends|extends
 name|CheckedRunnable
 block|{
-annotation|@
-name|Override
 DECL|method|realRun ()
 specifier|protected
 name|void
@@ -2805,9 +3392,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|LONG_DELAY_MS
 argument_list|)
@@ -2900,9 +3485,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|timeoutMillis
 argument_list|)
@@ -2946,9 +3529,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SHORT_DELAY_MS
 argument_list|)
@@ -2990,9 +3571,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SMALL_DELAY_MS
 argument_list|)
@@ -3034,9 +3613,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|MEDIUM_DELAY_MS
 argument_list|)
@@ -3078,9 +3655,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|LONG_DELAY_MS
 argument_list|)
@@ -3150,9 +3725,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Thread
-operator|.
-name|sleep
+name|delay
 argument_list|(
 name|SMALL_DELAY_MS
 argument_list|)
@@ -3175,6 +3748,33 @@ name|TRUE
 return|;
 block|}
 block|}
+comment|//     /**
+comment|//      * Analog of CheckedRunnable for RecursiveAction
+comment|//      */
+comment|//     public abstract class CheckedRecursiveAction extends RecursiveAction {
+comment|//         protected abstract void realCompute() throws Throwable;
+comment|//         public final void compute() {
+comment|//             try {
+comment|//                 realCompute();
+comment|//             } catch (Throwable t) {
+comment|//                 threadUnexpectedException(t);
+comment|//             }
+comment|//         }
+comment|//     }
+comment|//     /**
+comment|//      * Analog of CheckedCallable for RecursiveTask
+comment|//      */
+comment|//     public abstract class CheckedRecursiveTask<T> extends RecursiveTask<T> {
+comment|//         protected abstract T realCompute() throws Throwable;
+comment|//         public final T compute() {
+comment|//             try {
+comment|//                 return realCompute();
+comment|//             } catch (Throwable t) {
+comment|//                 threadUnexpectedException(t);
+comment|//                 return null;
+comment|//             }
+comment|//         }
+comment|//     }
 comment|/**      * For use as RejectedExecutionHandler in constructors      */
 DECL|class|NoOpREHandler
 specifier|public
@@ -3197,7 +3797,7 @@ name|executor
 parameter_list|)
 block|{}
 block|}
-comment|/**      * A CyclicBarrier that fails with AssertionFailedErrors instead      * of throwing checked exceptions.      */
+comment|/**      * A CyclicBarrier that uses timed await and fails with      * AssertionFailedErrors instead of throwing checked exceptions.      */
 DECL|class|CheckedBarrier
 specifier|public
 class|class
@@ -3219,8 +3819,6 @@ name|parties
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|await ()
 specifier|public
 name|int
@@ -3233,8 +3831,28 @@ return|return
 name|super
 operator|.
 name|await
-argument_list|()
+argument_list|(
+literal|2
+operator|*
+name|LONG_DELAY_MS
+argument_list|,
+name|MILLISECONDS
+argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|TimeoutException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionFailedError
+argument_list|(
+literal|"timed out"
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -3267,7 +3885,6 @@ block|}
 block|}
 block|}
 DECL|method|checkEmpty (BlockingQueue q)
-specifier|public
 name|void
 name|checkEmpty
 parameter_list|(
@@ -3429,6 +4046,117 @@ argument_list|(
 name|ie
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|serialClone (T o)
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|serialClone
+parameter_list|(
+name|T
+name|o
+parameter_list|)
+block|{
+try|try
+block|{
+name|ByteArrayOutputStream
+name|bos
+init|=
+operator|new
+name|ByteArrayOutputStream
+argument_list|()
+decl_stmt|;
+name|ObjectOutputStream
+name|oos
+init|=
+operator|new
+name|ObjectOutputStream
+argument_list|(
+name|bos
+argument_list|)
+decl_stmt|;
+name|oos
+operator|.
+name|writeObject
+argument_list|(
+name|o
+argument_list|)
+expr_stmt|;
+name|oos
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+name|oos
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|ObjectInputStream
+name|ois
+init|=
+operator|new
+name|ObjectInputStream
+argument_list|(
+operator|new
+name|ByteArrayInputStream
+argument_list|(
+name|bos
+operator|.
+name|toByteArray
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|T
+name|clone
+init|=
+operator|(
+name|T
+operator|)
+name|ois
+operator|.
+name|readObject
+argument_list|()
+decl_stmt|;
+name|assertSame
+argument_list|(
+name|o
+operator|.
+name|getClass
+argument_list|()
+argument_list|,
+name|clone
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|clone
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|threadUnexpectedException
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 block|}
 block|}
