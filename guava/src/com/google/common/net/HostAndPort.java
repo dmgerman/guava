@@ -116,13 +116,27 @@ name|Pattern
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|concurrent
+operator|.
+name|Immutable
+import|;
+end_import
+
 begin_comment
-comment|/**  * HostAndPort performs high-level segmenting of host:port strings.  *  *<p>Example usage:  *<pre>  * HostAndPort hp = HostAndPort.fromString("[2001:db8::1]")  *     .withDefaultPort(80)  *     .requireBracketsForIPv6();  * hp.getHostText();  // returns "2001:db8::1"  * hp.getPort();      // returns 80  * hp.toString();     // returns "[2001:db8::1]:80"  *</pre>  *  *<p>Here are some examples of recognized formats:  *<ul>  *<li>example.com  *<li>example.com:80  *<li>192.0.2.1  *<li>192.0.2.1:80  *<li>[2001:db8::1]     - {@link #getHostText()} omits brackets  *<li>[2001:db8::1]:80  - {@link #getHostText()} omits brackets  *<li>2001:db8::1       - Use {@link #requireBracketsForIPv6()} to prohibit this  *</ul>  *  *<p>Note that this is not an exhaustive list, because these methods are only  * concerned with brackets, colons, and port numbers.  Full validation of the  * host field (if desired) is the caller's responsibility.  *  * @author Paul Marks  * @since 10.0  */
+comment|/**  * An immutable representation of a host and port.  *  *<p>Example usage:  *<pre>  * HostAndPort hp = HostAndPort.fromString("[2001:db8::1]")  *     .withDefaultPort(80)  *     .requireBracketsForIPv6();  * hp.getHostText();  // returns "2001:db8::1"  * hp.getPort();      // returns 80  * hp.toString();     // returns "[2001:db8::1]:80"  *</pre>  *  *<p>Here are some examples of recognized formats:  *<ul>  *<li>example.com  *<li>example.com:80  *<li>192.0.2.1  *<li>192.0.2.1:80  *<li>[2001:db8::1]     - {@link #getHostText()} omits brackets  *<li>[2001:db8::1]:80  - {@link #getHostText()} omits brackets  *<li>2001:db8::1       - Use {@link #requireBracketsForIPv6()} to prohibit this  *</ul>  *  *<p>Note that this is not an exhaustive list, because these methods are only  * concerned with brackets, colons, and port numbers.  Full validation of the  * host field (if desired) is the caller's responsibility.  *  * @author Paul Marks  * @since 10.0  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Immutable
 DECL|class|HostAndPort
 specifier|public
 specifier|final
