@@ -3348,11 +3348,9 @@ name|i
 operator|>=
 literal|0
 argument_list|,
-literal|"Incrementing "
-operator|+
+literal|"Incrementing %s would wrap."
+argument_list|,
 name|address
-operator|+
-literal|" would wrap."
 argument_list|)
 expr_stmt|;
 name|addr
