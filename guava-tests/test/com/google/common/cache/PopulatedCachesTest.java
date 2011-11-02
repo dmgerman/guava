@@ -327,7 +327,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Cache} tests that deal with caches that actually contain some key-value mappings.  *  * @author mike nonemacher  */
+comment|/**  * {@link LoadingCache} tests that deal with caches that actually contain some key-value mappings.  *  * @author mike nonemacher  */
 end_comment
 
 begin_class
@@ -374,7 +374,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -438,7 +438,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -579,7 +579,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -787,7 +787,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -982,7 +982,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1083,7 +1083,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1303,7 +1303,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1432,7 +1432,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1582,7 +1582,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1839,7 +1839,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2074,7 +2074,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2340,7 +2340,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2435,7 +2435,7 @@ DECL|method|caches ()
 specifier|private
 name|Iterable
 argument_list|<
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2445,7 +2445,7 @@ argument_list|>
 name|caches
 parameter_list|()
 block|{
-comment|// lots of different ways to configure a Cache
+comment|// lots of different ways to configure a LoadingCache
 name|CacheBuilderFactory
 name|factory
 init|=
@@ -2472,7 +2472,7 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|,
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2484,7 +2484,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2652,7 +2652,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|warmUp (Cache<Object, Object> cache)
+DECL|method|warmUp (LoadingCache<Object, Object> cache)
 specifier|private
 name|List
 argument_list|<
@@ -2667,7 +2667,7 @@ argument_list|>
 argument_list|>
 name|warmUp
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2688,7 +2688,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the entries that were added to the map, so they won't fall out of a map with weak or    * soft references until the caller drops the reference to the returned entries.    */
-DECL|method|warmUp ( Cache<Object, Object> cache, int minimum, int maximum)
+DECL|method|warmUp ( LoadingCache<Object, Object> cache, int minimum, int maximum)
 specifier|private
 name|List
 argument_list|<
@@ -2703,7 +2703,7 @@ argument_list|>
 argument_list|>
 name|warmUp
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,

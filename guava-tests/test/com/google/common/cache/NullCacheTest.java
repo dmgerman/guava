@@ -153,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Cache} tests for caches with a maximum size of zero.  *  * @author mike nonemacher  */
+comment|/**  * {@link LoadingCache} tests for caches with a maximum size of zero.  *  * @author mike nonemacher  */
 end_comment
 
 begin_class
@@ -200,7 +200,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -322,7 +322,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -446,7 +446,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -563,7 +563,7 @@ name|void
 name|testGet_computeNull
 parameter_list|()
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -645,7 +645,7 @@ operator|new
 name|RuntimeException
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,

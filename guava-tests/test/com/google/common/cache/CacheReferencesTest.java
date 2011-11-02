@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests of basic {@link Cache} operations with all possible combinations of key& value strengths.  *  * @author mike nonemacher  */
+comment|/**  * Tests of basic {@link LoadingCache} operations with all possible combinations of key& value  * strengths.  *  * @author mike nonemacher  */
 end_comment
 
 begin_class
@@ -278,7 +278,7 @@ DECL|method|caches ()
 specifier|private
 name|Iterable
 argument_list|<
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -314,7 +314,7 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|,
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -326,7 +326,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -364,7 +364,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -452,7 +452,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -566,7 +566,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -716,7 +716,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Key
 argument_list|,
@@ -977,7 +977,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1059,12 +1059,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|assertCleanup ( Cache<Integer, String> cache, CountingRemovalListener<Integer, String> removalListener)
+DECL|method|assertCleanup (LoadingCache<Integer, String> cache, CountingRemovalListener<Integer, String> removalListener)
 specifier|private
 name|void
 name|assertCleanup
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,

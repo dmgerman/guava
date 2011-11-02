@@ -468,7 +468,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -940,7 +940,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1411,7 +1411,7 @@ argument_list|(
 name|backingLoader
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1965,7 +1965,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2259,7 +2259,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2589,7 +2589,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2871,7 +2871,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -3120,7 +3120,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -3205,7 +3205,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -3633,7 +3633,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -3785,7 +3785,7 @@ parameter_list|()
 throws|throws
 name|ExecutionException
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -4000,7 +4000,7 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -4521,7 +4521,7 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -4699,7 +4699,7 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -5202,7 +5202,7 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -5382,7 +5382,7 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -5887,7 +5887,7 @@ argument_list|(
 name|e
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -6120,7 +6120,7 @@ init|=
 name|countingRemovalListener
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -6257,7 +6257,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -6495,7 +6495,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -6630,7 +6630,7 @@ operator|new
 name|CountingLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -6740,7 +6740,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Make sure Cache correctly wraps ExecutionExceptions and UncheckedExecutionExceptions.    */
+comment|/**    * Make sure LoadingCache correctly wraps ExecutionExceptions and UncheckedExecutionExceptions.    */
 DECL|method|testLoadingExceptionWithCause ()
 specifier|public
 name|void
@@ -6775,7 +6775,7 @@ argument_list|(
 name|cause
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -6796,7 +6796,7 @@ name|uee
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -7144,7 +7144,7 @@ argument_list|(
 name|cause
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -7168,7 +7168,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -7405,7 +7405,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -7560,7 +7560,7 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -7747,7 +7747,7 @@ operator|new
 name|RuntimeException
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -7956,7 +7956,7 @@ operator|new
 name|IOException
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -8172,7 +8172,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test-helper method that performs {@code nThreads} concurrent calls to {@code cache.get(key)}    * or {@code cache.getUnchecked(key)}, and returns a List containing each of the results. The    * result for any given call to {@code cache.get} or {@code cache.getUnchecked} is the value    * returned, or the exception thrown.    *    *<p>As we iterate from {@code 0} to {@code nThreads}, threads with an even index will call    * {@code getUnchecked}, and threads with an odd index will call {@code get}. If the cache throws    * exceptions, this difference may be visible in the returned List.    */
-DECL|method|doConcurrentGet (final Cache<K, ?> cache, final K key, int nThreads, final CountDownLatch gettersStartedSignal)
+DECL|method|doConcurrentGet (final LoadingCache<K, ?> cache, final K key, int nThreads, final CountDownLatch gettersStartedSignal)
 specifier|private
 specifier|static
 parameter_list|<
@@ -8185,7 +8185,7 @@ argument_list|>
 name|doConcurrentGet
 parameter_list|(
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|K
 argument_list|,
@@ -8573,7 +8573,7 @@ block|}
 block|}
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -8916,7 +8916,7 @@ block|}
 block|}
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -9251,7 +9251,7 @@ block|}
 block|}
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -9673,7 +9673,7 @@ literal|2
 argument_list|)
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,

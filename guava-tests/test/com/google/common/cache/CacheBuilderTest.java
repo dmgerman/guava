@@ -375,7 +375,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -526,7 +526,7 @@ name|void
 name|testInitialCapacity_small
 parameter_list|()
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|?
 argument_list|,
@@ -651,7 +651,7 @@ name|void
 name|testInitialCapacity_smallest
 parameter_list|()
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|?
 argument_list|,
@@ -890,7 +890,7 @@ name|void
 name|testConcurrencyLevel_small
 parameter_list|()
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|?
 argument_list|,
@@ -2008,7 +2008,7 @@ init|=
 name|countingRemovalListener
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2192,7 +2192,7 @@ name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -2385,7 +2385,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// "Basher tests", where we throw a bunch of stuff at a Cache and check basic invariants.
+comment|// "Basher tests", where we throw a bunch of stuff at a LoadingCache and check basic invariants.
 comment|/**    * This is a less carefully-controlled version of {@link #testRemovalNotification_clear} - this is    * a black-box test that tries to create lots of different thread-interleavings, and asserts that    * each computation is affected by a call to {@code clear()} (and therefore gets passed to the    * removal listener), or else is not affected by the {@code clear()} (and therefore exists in the    * cache afterward).    */
 DECL|method|testRemovalNotification_clear_basher ()
 specifier|public
@@ -2427,7 +2427,7 @@ name|queuingRemovalListener
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -3004,7 +3004,7 @@ block|}
 block|}
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -3296,7 +3296,7 @@ name|void
 name|testSizingDefaults
 parameter_list|()
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|?
 argument_list|,

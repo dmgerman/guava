@@ -126,7 +126,7 @@ name|cache
 operator|.
 name|LocalCache
 operator|.
-name|AutoLocalCache
+name|LocalLoadingCache
 import|;
 end_import
 
@@ -726,13 +726,13 @@ if|if
 condition|(
 name|cache
 operator|instanceof
-name|AutoLocalCache
+name|LocalLoadingCache
 condition|)
 block|{
 return|return
 operator|(
 operator|(
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|K
 argument_list|,
@@ -779,7 +779,7 @@ return|return
 operator|(
 name|cache
 operator|instanceof
-name|AutoLocalCache
+name|LocalLoadingCache
 operator|)
 return|;
 block|}
@@ -2204,12 +2204,12 @@ parameter_list|)
 function_decl|;
 block|}
 comment|/**    * Assuming the given cache has maximum size {@code maxSize}, this method populates the cache (by    * getting a bunch of different keys), then makes sure all the items in the cache are also in the    * eviction queue. It will invoke the given {@code operation} on the first element in the    * eviction queue, and then reverify that all items in the cache are in the eviction queue, and    * verify that the head of the eviction queue has changed as a result of the operation.    */
-DECL|method|checkRecency (Cache<Integer, Integer> cache, int maxSize, Receiver<ReferenceEntry<Integer, Integer>> operation)
+DECL|method|checkRecency (LoadingCache<Integer, Integer> cache, int maxSize, Receiver<ReferenceEntry<Integer, Integer>> operation)
 specifier|static
 name|void
 name|checkRecency
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -2377,12 +2377,12 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Warms the given cache by getting all values in {@code [start, end)}, in order.    */
-DECL|method|warmUp (Cache<Integer, Integer> map, int start, int end)
+DECL|method|warmUp (LoadingCache<Integer, Integer> map, int start, int end)
 specifier|static
 name|void
 name|warmUp
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,

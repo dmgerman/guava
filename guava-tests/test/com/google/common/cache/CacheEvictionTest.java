@@ -252,7 +252,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -319,7 +319,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -379,7 +379,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -484,7 +484,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -610,7 +610,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -746,7 +746,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -882,7 +882,7 @@ name|identityLoader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -971,7 +971,7 @@ name|identityLoader
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1070,7 +1070,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1378,7 +1378,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1746,7 +1746,7 @@ init|=
 name|identityLoader
 argument_list|()
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -1898,12 +1898,12 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getAll (Cache<Integer, Integer> cache, List<Integer> keys)
+DECL|method|getAll (LoadingCache<Integer, Integer> cache, List<Integer> keys)
 specifier|private
 name|void
 name|getAll
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,

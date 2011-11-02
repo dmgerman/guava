@@ -245,7 +245,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link Cache} tests that deal with empty caches.  *  * @author mike nonemacher  */
+comment|/**  * {@link LoadingCache} tests that deal with empty caches.  *  * @author mike nonemacher  */
 end_comment
 
 begin_class
@@ -264,7 +264,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -291,7 +291,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -353,7 +353,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -406,7 +406,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -506,7 +506,7 @@ name|ExecutionException
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -556,7 +556,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -607,7 +607,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -669,7 +669,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -750,7 +750,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -810,7 +810,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -925,7 +925,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1071,7 +1071,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1133,7 +1133,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1214,7 +1214,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1274,7 +1274,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1389,7 +1389,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1535,7 +1535,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1602,7 +1602,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1698,7 +1698,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1763,7 +1763,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1910,7 +1910,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2093,7 +2093,7 @@ DECL|method|caches ()
 specifier|private
 name|Iterable
 argument_list|<
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2103,7 +2103,7 @@ argument_list|>
 name|caches
 parameter_list|()
 block|{
-comment|// lots of different ways to configure a Cache
+comment|// lots of different ways to configure a LoadingCache
 name|CacheBuilderFactory
 name|factory
 init|=
@@ -2130,7 +2130,7 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|,
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2142,7 +2142,7 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2328,12 +2328,12 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|warmUp (Cache<Object, Object> cache, int minimum, int maximum)
+DECL|method|warmUp (LoadingCache<Object, Object> cache, int minimum, int maximum)
 specifier|private
 name|void
 name|warmUp
 parameter_list|(
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Object
 argument_list|,

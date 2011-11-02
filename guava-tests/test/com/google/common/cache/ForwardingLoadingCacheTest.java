@@ -115,20 +115,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link ForwardingCache}.  *  * @author Charles Fry  */
+comment|/**  * Unit test for {@link ForwardingLoadingCache}.  *  * @author Charles Fry  */
 end_comment
 
 begin_class
-DECL|class|ForwardingCacheTest
+DECL|class|ForwardingLoadingCacheTest
 specifier|public
 class|class
-name|ForwardingCacheTest
+name|ForwardingLoadingCacheTest
 extends|extends
 name|TestCase
 block|{
 DECL|field|forward
 specifier|private
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -138,7 +138,7 @@ name|forward
 decl_stmt|;
 DECL|field|mock
 specifier|private
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -172,7 +172,7 @@ name|mock
 operator|=
 name|createMock
 argument_list|(
-name|Cache
+name|LoadingCache
 operator|.
 name|class
 argument_list|)
@@ -180,7 +180,7 @@ expr_stmt|;
 name|forward
 operator|=
 operator|new
-name|ForwardingCache
+name|ForwardingLoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -191,7 +191,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Cache
+name|LoadingCache
 argument_list|<
 name|String
 argument_list|,
@@ -207,10 +207,10 @@ block|}
 block|}
 expr_stmt|;
 block|}
-DECL|method|testGetIfPresent ()
+DECL|method|testGet ()
 specifier|public
 name|void
-name|testGetIfPresent
+name|testGet
 parameter_list|()
 throws|throws
 name|ExecutionException
@@ -219,7 +219,7 @@ name|expect
 argument_list|(
 name|mock
 operator|.
-name|getIfPresent
+name|get
 argument_list|(
 literal|"key"
 argument_list|)
@@ -245,7 +245,7 @@ name|TRUE
 argument_list|,
 name|forward
 operator|.
-name|getIfPresent
+name|get
 argument_list|(
 literal|"key"
 argument_list|)
@@ -257,10 +257,58 @@ name|mock
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGetAllPresent ()
+DECL|method|testGetUnchecked ()
 specifier|public
 name|void
-name|testGetAllPresent
+name|testGetUnchecked
+parameter_list|()
+block|{
+name|expect
+argument_list|(
+name|mock
+operator|.
+name|getUnchecked
+argument_list|(
+literal|"key"
+argument_list|)
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+name|Boolean
+operator|.
+name|TRUE
+argument_list|)
+expr_stmt|;
+name|replay
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
+name|assertSame
+argument_list|(
+name|Boolean
+operator|.
+name|TRUE
+argument_list|,
+name|forward
+operator|.
+name|getUnchecked
+argument_list|(
+literal|"key"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|verify
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testGetAll ()
+specifier|public
+name|void
+name|testGetAll
 parameter_list|()
 throws|throws
 name|ExecutionException
@@ -269,7 +317,7 @@ name|expect
 argument_list|(
 name|mock
 operator|.
-name|getAllPresent
+name|getAll
 argument_list|(
 name|ImmutableList
 operator|.
@@ -314,7 +362,7 @@ argument_list|)
 argument_list|,
 name|forward
 operator|.
-name|getAllPresent
+name|getAll
 argument_list|(
 name|ImmutableList
 operator|.
@@ -322,6 +370,54 @@ name|of
 argument_list|(
 literal|"key"
 argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|verify
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testApply ()
+specifier|public
+name|void
+name|testApply
+parameter_list|()
+block|{
+name|expect
+argument_list|(
+name|mock
+operator|.
+name|apply
+argument_list|(
+literal|"key"
+argument_list|)
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+name|Boolean
+operator|.
+name|TRUE
+argument_list|)
+expr_stmt|;
+name|replay
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
+name|assertSame
+argument_list|(
+name|Boolean
+operator|.
+name|TRUE
+argument_list|,
+name|forward
+operator|.
+name|apply
+argument_list|(
+literal|"key"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -362,22 +458,19 @@ name|mock
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testInvalidateAllIterable ()
+DECL|method|testRefresh ()
 specifier|public
 name|void
-name|testInvalidateAllIterable
+name|testRefresh
 parameter_list|()
+throws|throws
+name|ExecutionException
 block|{
 name|mock
 operator|.
-name|invalidateAll
-argument_list|(
-name|ImmutableList
-operator|.
-name|of
+name|refresh
 argument_list|(
 literal|"key"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|replay
@@ -387,14 +480,9 @@ argument_list|)
 expr_stmt|;
 name|forward
 operator|.
-name|invalidateAll
-argument_list|(
-name|ImmutableList
-operator|.
-name|of
+name|refresh
 argument_list|(
 literal|"key"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|verify
@@ -580,7 +668,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ForwardingCache
+name|ForwardingLoadingCache
 argument_list|<
 name|K
 argument_list|,
@@ -591,7 +679,7 @@ annotation|@
 name|Override
 DECL|method|delegate ()
 specifier|protected
-name|Cache
+name|LoadingCache
 argument_list|<
 name|K
 argument_list|,

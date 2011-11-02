@@ -1914,7 +1914,7 @@ name|statsCounterSupplier
 return|;
 block|}
 comment|/**    * Builds a cache, which either returns an already-loaded value for a given key or atomically    * computes or retrieves it using the supplied {@code CacheLoader}. If another thread is currently    * loading the value for this key, simply waits for that thread to finish and returns its    * loaded value. Note that multiple threads can concurrently load values for distinct keys.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @param loader the cache loader used to obtain new values    * @return a cache having the requested features    */
-DECL|method|build (CacheLoader<? super K1, V1> loader)
+DECL|method|build ( CacheLoader<? super K1, V1> loader)
 specifier|public
 parameter_list|<
 name|K1
@@ -1925,7 +1925,7 @@ name|V1
 extends|extends
 name|V
 parameter_list|>
-name|Cache
+name|LoadingCache
 argument_list|<
 name|K1
 argument_list|,
@@ -1951,7 +1951,7 @@ return|return
 operator|new
 name|LocalCache
 operator|.
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|K1
 argument_list|,
@@ -1964,7 +1964,7 @@ name|loader
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a cache which does not automatically load values when keys are requested. The returned    * cache will throw an {@link UnsupportedOperationException} for all methods which depend on    * automatically loading values: {@link Cache#get}, {@link Cache#getUnchecked},    * {@link Cache#getAll}, {@link Cache#apply}, and {@link Cache#refresh}.    *    *<p>Prefer {@link #build(CacheLoader)} when the cache creation and the cache loading code are    * collocated.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @return a cache having the requested features    */
+comment|/**    * Builds a cache which does not automatically load values when keys are requested.    *    *<p>Consider {@link #build(CacheLoader)} instead, if it is feasible to implement a    * {@code CacheLoader}.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @return a cache having the requested features    */
 DECL|method|build ()
 specifier|public
 parameter_list|<
@@ -1992,7 +1992,7 @@ return|return
 operator|new
 name|LocalCache
 operator|.
-name|ManualLocalCache
+name|LocalManualCache
 argument_list|<
 name|K1
 argument_list|,

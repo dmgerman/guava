@@ -92,7 +92,7 @@ name|cache
 operator|.
 name|LocalCache
 operator|.
-name|AutoLocalCache
+name|LocalLoadingCache
 import|;
 end_import
 
@@ -303,10 +303,10 @@ comment|/**  * @author Charles Fry  */
 end_comment
 
 begin_class
-DECL|class|AutoLocalCacheTest
+DECL|class|LocalLoadingCacheTest
 specifier|public
 class|class
-name|AutoLocalCacheTest
+name|LocalLoadingCacheTest
 extends|extends
 name|TestCase
 block|{
@@ -318,7 +318,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|K
 argument_list|,
@@ -347,7 +347,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|K
 argument_list|,
@@ -424,7 +424,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -535,7 +535,7 @@ argument_list|(
 literal|2
 argument_list|)
 decl_stmt|;
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1033,7 +1033,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1407,7 +1407,7 @@ operator|.
 name|disableStats
 argument_list|()
 decl_stmt|;
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -1541,7 +1541,7 @@ init|=
 name|createCacheBuilder
 argument_list|()
 decl_stmt|;
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2056,7 +2056,7 @@ argument_list|(
 name|SMALL_MAX_SIZE
 argument_list|)
 decl_stmt|;
-name|AutoLocalCache
+name|LocalLoadingCache
 argument_list|<
 name|Object
 argument_list|,
@@ -2192,7 +2192,7 @@ block|{
 specifier|final
 name|AtomicReference
 argument_list|<
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -2204,7 +2204,7 @@ init|=
 operator|new
 name|AtomicReference
 argument_list|<
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
@@ -2274,7 +2274,7 @@ block|}
 block|}
 block|}
 decl_stmt|;
-name|Cache
+name|LoadingCache
 argument_list|<
 name|Integer
 argument_list|,
