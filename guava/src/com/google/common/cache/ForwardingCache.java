@@ -401,7 +401,8 @@ name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO(fry): remove the LoadingCache methods once all users are migrated
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|get (K key)
@@ -426,6 +427,8 @@ argument_list|)
 return|;
 block|}
 annotation|@
+name|Deprecated
+annotation|@
 name|Override
 DECL|method|getUnchecked (K key)
 specifier|public
@@ -447,38 +450,7 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Override
-DECL|method|getAll (Iterable<? extends K> keys)
-specifier|public
-name|ImmutableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|getAll
-parameter_list|(
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|K
-argument_list|>
-name|keys
-parameter_list|)
-throws|throws
-name|ExecutionException
-block|{
-return|return
-name|delegate
-argument_list|()
-operator|.
-name|getAll
-argument_list|(
-name|keys
-argument_list|)
-return|;
-block|}
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|apply (K key)
@@ -499,28 +471,6 @@ argument_list|(
 name|key
 argument_list|)
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|refresh (K key)
-specifier|public
-name|void
-name|refresh
-parameter_list|(
-name|K
-name|key
-parameter_list|)
-throws|throws
-name|ExecutionException
-block|{
-name|delegate
-argument_list|()
-operator|.
-name|refresh
-argument_list|(
-name|key
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * A simplified version of {@link ForwardingCache} where subclasses can pass in an already    * constructed {@link Cache} as the delegete.    *    * @since 10.0    */
 annotation|@
