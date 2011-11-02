@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Testing utilities relating to garbage collection finalization.  *  *<p>Use this class to test code triggered by<em>finalization</em>, that is, one of the  * following actions taken by the java garbage collection system:  *  *<ul>  *<li>invoking the {@code finalize} methods of unreachable objects  *<li>clearing weak references to unreachable referents  *<li>enqueuing weak references to unreachable referents in their reference queue  *</ul>  *  *<p>This class uses (possibly repeated) invocations of {@link java.lang.System#gc()} to cause  * finalization to happen.  However, a call to {@code System.gc()} is specified to be no more  * than a hint, so this technique may fail at the whim of the JDK implementation, for example if  * a user specified the JVM flag {@code -XX:+DisableExplicitGC}.  But in practice, it works very  * well for ordinary tests.  *  *<p>Failure of the expected event to occur within an implementation-defined "reasonable" time  * period will result in a {@link TimeoutException}.  *  *<p>Here's an example that tests a {@code finalize} method:  *  *<pre>   {@code  *   final CountDownLatch latch = new CountDownLatch(1);  *   Object x = new MyClass() {  *     ...  *     protected void finalize() { latch.countDown(); ... }  *   };  *   x = null;  // Hint to the JIT that x is unreachable  *   GcFinalization.await(latch);  * }</pre>  *  *<p>Here's an example that uses a user-defined finalization predicate:  *  *<pre>   {@code  *   final WeakHashMap<Object, Object> map = new WeakHashMap<Object, Object>();  *   map.put(new Object(), Boolean.TRUE);  *   GcFinalization.awaitDone(new FinalizationPredicate() {  *     public boolean isDone() {  *       return map.isEmpty();  *     }  *   });  * }</pre>  *  *<p>This class cannot currently be used to test soft references, since this class does not try to  * create the memory pressure required to cause soft references to be cleared.  *  * @author schmoe@google.com (mike nonemacher)  * @author martinrb@google.com (Martin Buchholz)  * @since 11.0  */
+comment|/**  * Testing utilities relating to garbage collection finalization.  *  *<p>Use this class to test code triggered by<em>finalization</em>, that is, one of the  * following actions taken by the java garbage collection system:  *  *<ul>  *<li>invoking the {@code finalize} methods of unreachable objects  *<li>clearing weak references to unreachable referents  *<li>enqueuing weak references to unreachable referents in their reference queue  *</ul>  *  *<p>This class uses (possibly repeated) invocations of {@link java.lang.System#gc()} to cause  * finalization to happen.  However, a call to {@code System.gc()} is specified to be no more  * than a hint, so this technique may fail at the whim of the JDK implementation, for example if  * a user specified the JVM flag {@code -XX:+DisableExplicitGC}.  But in practice, it works very  * well for ordinary tests.  *  *<p>Failure of the expected event to occur within an implementation-defined "reasonable" time  * period or an interrupt while waiting for the expected event will result in a {@link  * RuntimeException}.  *  *<p>Here's an example that tests a {@code finalize} method:  *  *<pre>   {@code  *   final CountDownLatch latch = new CountDownLatch(1);  *   Object x = new MyClass() {  *     ...  *     protected void finalize() { latch.countDown(); ... }  *   };  *   x = null;  // Hint to the JIT that x is unreachable  *   GcFinalization.await(latch);  * }</pre>  *  *<p>Here's an example that uses a user-defined finalization predicate:  *  *<pre>   {@code  *   final WeakHashMap<Object, Object> map = new WeakHashMap<Object, Object>();  *   map.put(new Object(), Boolean.TRUE);  *   GcFinalization.awaitDone(new FinalizationPredicate() {  *     public boolean isDone() {  *       return map.isEmpty();  *     }  *   });  * }</pre>  *  *<p>This class cannot currently be used to test soft references, since this class does not try to  * create the memory pressure required to cause soft references to be cleared.  *  *<p>This class only provides testing utilities.  It is not designed for direct use in production  * or for benchmarking.  *  * @author schmoe@google.com (mike nonemacher)  * @author martinrb@google.com (Martin Buchholz)  * @since 11.0  */
 end_comment
 
 begin_class
@@ -178,7 +178,7 @@ operator|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Waits until the given future {@linkplain Future#isDone is done}, invoking the garbage    * collector as necessary to try to ensure that this will happen.    *    * @throws InterruptedException if interrupted while waiting    * @throws TimeoutException if timed out    */
+comment|/**    * Waits until the given future {@linkplain Future#isDone is done}, invoking the garbage    * collector as necessary to try to ensure that this will happen.    *    * @throws RuntimeException if timed out or interrupted while waiting    */
 DECL|method|awaitDone (Future<?> future)
 specifier|public
 specifier|static
@@ -191,10 +191,6 @@ name|?
 argument_list|>
 name|future
 parameter_list|)
-throws|throws
-name|InterruptedException
-throws|,
-name|TimeoutException
 block|{
 if|if
 condition|(
@@ -282,6 +278,32 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+name|RuntimeException
+name|ae
+init|=
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Unexpected interrupt while waiting for future"
+argument_list|)
+decl_stmt|;
+name|ae
+operator|.
+name|initCause
+argument_list|(
+name|ie
+argument_list|)
+expr_stmt|;
+throw|throw
+name|ae
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|TimeoutException
 name|tryHarder
 parameter_list|)
@@ -303,20 +325,20 @@ condition|)
 do|;
 throw|throw
 operator|new
-name|TimeoutException
+name|RuntimeException
 argument_list|(
 name|String
 operator|.
 name|format
 argument_list|(
-literal|"Future not done within timeout of %d seconds"
+literal|"Future not done within %d second timeout"
 argument_list|,
 name|timeoutSeconds
 argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Waits until the given latch has {@linkplain CountDownLatch#countDown counted down} to zero,    * invoking the garbage collector as necessary to try to ensure that this will happen.    *    * @throws InterruptedException if interrupted while waiting    * @throws TimeoutException if timed out    */
+comment|/**    * Waits until the given latch has {@linkplain CountDownLatch#countDown counted down} to zero,    * invoking the garbage collector as necessary to try to ensure that this will happen.    *    * @throws RuntimeException if timed out or interrupted while waiting    */
 DECL|method|await (CountDownLatch latch)
 specifier|public
 specifier|static
@@ -326,10 +348,6 @@ parameter_list|(
 name|CountDownLatch
 name|latch
 parameter_list|)
-throws|throws
-name|InterruptedException
-throws|,
-name|TimeoutException
 block|{
 if|if
 condition|(
@@ -390,6 +408,8 @@ operator|.
 name|gc
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|latch
@@ -403,6 +423,33 @@ argument_list|)
 condition|)
 block|{
 return|return;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+name|RuntimeException
+name|ae
+init|=
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Unexpected interrupt while waiting for latch"
+argument_list|)
+decl_stmt|;
+name|ae
+operator|.
+name|initCause
+argument_list|(
+name|ie
+argument_list|)
+expr_stmt|;
+throw|throw
+name|ae
+throw|;
 block|}
 block|}
 do|while
@@ -419,13 +466,13 @@ condition|)
 do|;
 throw|throw
 operator|new
-name|TimeoutException
+name|RuntimeException
 argument_list|(
 name|String
 operator|.
 name|format
 argument_list|(
-literal|"CountDownLatch failed to count down within timeout of %d seconds"
+literal|"Latch failed to count down within %d second timeout"
 argument_list|,
 name|timeoutSeconds
 argument_list|)
@@ -476,7 +523,7 @@ name|isDone
 parameter_list|()
 function_decl|;
 block|}
-comment|/**    * Waits until the given predicate returns true, invoking the garbage collector as necessary to    * try to ensure that this will happen.    *    * @throws InterruptedException if interrupted while waiting    * @throws TimeoutException if timed out    */
+comment|/**    * Waits until the given predicate returns true, invoking the garbage collector as necessary to    * try to ensure that this will happen.    *    * @throws RuntimeException if timed out or interrupted while waiting    */
 DECL|method|awaitDone (FinalizationPredicate predicate)
 specifier|public
 specifier|static
@@ -486,10 +533,6 @@ parameter_list|(
 name|FinalizationPredicate
 name|predicate
 parameter_list|)
-throws|throws
-name|InterruptedException
-throws|,
-name|TimeoutException
 block|{
 if|if
 condition|(
@@ -585,20 +628,20 @@ condition|)
 do|;
 throw|throw
 operator|new
-name|TimeoutException
+name|RuntimeException
 argument_list|(
 name|String
 operator|.
 name|format
 argument_list|(
-literal|"Predicate did not become true within timeout of %d seconds"
+literal|"Predicate did not become true within %d second timeout"
 argument_list|,
 name|timeoutSeconds
 argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Waits until the given weak reference is cleared, invoking the garbage collector as necessary    * to try to ensure that this will happen.    *    *<p>This is a convenience method, equivalent to:    *<pre>   {@code    *   awaitDone(new FinalizationPredicate() {    *     public boolean isDone() {    *       return ref.get() == null;    *     }    *   });    * }</pre>    *    * @throws InterruptedException if interrupted while waiting    * @throws TimeoutException if timed out    */
+comment|/**    * Waits until the given weak reference is cleared, invoking the garbage collector as necessary    * to try to ensure that this will happen.    *    *<p>This is a convenience method, equivalent to:    *<pre>   {@code    *   awaitDone(new FinalizationPredicate() {    *     public boolean isDone() {    *       return ref.get() == null;    *     }    *   });    * }</pre>    *    * @throws RuntimeException if timed out or interrupted while waiting    */
 DECL|method|awaitClear (final WeakReference<?> ref)
 specifier|public
 specifier|static
@@ -612,10 +655,6 @@ name|?
 argument_list|>
 name|ref
 parameter_list|)
-throws|throws
-name|InterruptedException
-throws|,
-name|TimeoutException
 block|{
 name|awaitDone
 argument_list|(

@@ -109,8 +109,6 @@ specifier|public
 name|void
 name|testAwait_CountDownLatch
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 specifier|final
 name|CountDownLatch
@@ -170,8 +168,6 @@ specifier|public
 name|void
 name|testAwaitDone_Future
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 specifier|final
 name|SettableFuture
@@ -241,8 +237,6 @@ specifier|public
 name|void
 name|testAwaitDone_Future_Cancel
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 specifier|final
 name|SettableFuture
@@ -312,8 +306,6 @@ specifier|public
 name|void
 name|testAwaitClear
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 specifier|final
 name|WeakReference
@@ -354,8 +346,6 @@ specifier|public
 name|void
 name|testAwaitDone_FinalizationPredicate
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 specifier|final
 name|WeakHashMap
