@@ -377,6 +377,15 @@ name|DEFAULT_EXPIRATION_NANOS
 init|=
 literal|0
 decl_stmt|;
+DECL|field|DEFAULT_REFRESH_NANOS
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_REFRESH_NANOS
+init|=
+literal|0
+decl_stmt|;
 DECL|field|NULL_STATS_COUNTER
 specifier|static
 specifier|final
@@ -688,6 +697,12 @@ name|expireAfterAccessNanos
 init|=
 name|UNSET_INT
 decl_stmt|;
+DECL|field|refreshNanos
+name|long
+name|refreshNanos
+init|=
+name|UNSET_INT
+decl_stmt|;
 DECL|field|keyEquivalence
 name|Equivalence
 argument_list|<
@@ -757,6 +772,25 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|()
+return|;
+block|}
+comment|/**    * Enables lenient parsing. Useful for tests and spec parsing.    */
+DECL|method|lenientParsing ()
+name|CacheBuilder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|lenientParsing
+parameter_list|()
+block|{
+name|strictParsing
+operator|=
+literal|false
+expr_stmt|;
+return|return
+name|this
 return|;
 block|}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalences#equals()} otherwise.    */
@@ -1679,6 +1713,85 @@ else|:
 name|expireAfterAccessNanos
 return|;
 block|}
+comment|/**    * Specifies that active entries are eligible for automatic refresh once a fixed duration has    * elapsed after the entry's creation, or the most recent replacement of its value. Refreshes are    * performed by calling {@link Cache#refresh}.    *    *<p>Currently automatic refreshes are performed inline when the first stale request for an entry    * occurs.    *    * @param duration the length of time after an entry is created that it should be considered    *     stale, and thus eligible for refresh    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the refresh interval was already set    * @since 11.0    */
+DECL|method|refreshInterval (long duration, TimeUnit unit)
+specifier|public
+name|CacheBuilder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|refreshInterval
+parameter_list|(
+name|long
+name|duration
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
+name|checkState
+argument_list|(
+name|refreshNanos
+operator|==
+name|UNSET_INT
+argument_list|,
+literal|"refresh was already set to %s ns"
+argument_list|,
+name|refreshNanos
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|duration
+operator|>
+literal|0
+argument_list|,
+literal|"duration must be positive: %s %s"
+argument_list|,
+name|duration
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|refreshNanos
+operator|=
+name|unit
+operator|.
+name|toNanos
+argument_list|(
+name|duration
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+DECL|method|getRefreshNanos ()
+name|long
+name|getRefreshNanos
+parameter_list|()
+block|{
+return|return
+operator|(
+name|refreshNanos
+operator|==
+name|UNSET_INT
+operator|)
+condition|?
+name|DEFAULT_REFRESH_NANOS
+else|:
+name|refreshNanos
+return|;
+block|}
 comment|/**    * Specifies a nanosecond-precision time source for use in determining when entries should be    * expired. By default, {@link System#nanoTime} is used.    *    *<p>The primary intent of this method is to facilitate testing of caches which have been    * configured with {@link #expireAfterWrite} or {@link #expireAfterAccess}.    *    * @throws IllegalStateException if a ticker was already set    */
 DECL|method|ticker (Ticker ticker)
 specifier|public
@@ -1746,7 +1859,7 @@ else|:
 name|NULL_TICKER
 return|;
 block|}
-comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener as part of the routine maintenance described    * in the class javadoc.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
+comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener as part of the routine maintenance described    * in the class javadoc.    *    *<p><b>Note:</b><i>all exceptions thrown by {@code listener} will be logged and then    * swallowed</i>. If they need to be acted upon then they should be dealt with appropriately prior    * to being thrown.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
 annotation|@
 name|CheckReturnValue
 DECL|method|removalListener ( RemovalListener<? super K1, ? super V1> listener)
@@ -1964,7 +2077,7 @@ name|loader
 argument_list|)
 return|;
 block|}
-comment|/**    * Builds a cache which does not automatically load values when keys are requested.    *    *<p>Consider {@link #build(CacheLoader)} instead, if it is feasible to implement a    * {@code CacheLoader}.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @return a cache having the requested features    */
+comment|/**    * Builds a cache which does not automatically load values when keys are requested.    *    *<p>Consider {@link #build(CacheLoader)} instead, if it is feasible to implement a    * {@code CacheLoader}.    *    *<p>This method does not alter the state of this {@code CacheBuilder} instance, so it can be    * invoked again to create multiple independent caches.    *    * @return a cache having the requested features    * @since 11.0    */
 DECL|method|build ()
 specifier|public
 parameter_list|<

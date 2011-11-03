@@ -230,8 +230,6 @@ parameter_list|(
 name|K
 name|key
 parameter_list|)
-throws|throws
-name|ExecutionException
 block|{
 name|delegate
 argument_list|()

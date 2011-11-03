@@ -100,6 +100,20 @@ name|concurrent
 operator|.
 name|TimeUnit
 operator|.
+name|MILLISECONDS
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
 name|SECONDS
 import|;
 end_import
@@ -146,7 +160,7 @@ name|cache
 operator|.
 name|CacheBuilderFactory
 operator|.
-name|ExpirationSpec
+name|DurationSpec
 import|;
 end_import
 
@@ -2523,7 +2537,7 @@ parameter_list|()
 block|{
 comment|// This is trickier than expected. We plan to put 15 values in each of these (WARMUP_MIN to
 comment|// WARMUP_MAX), but the tests assume no values get evicted. Even with a maximumSize of 100, one
-comment|// of the values gets evicted. With weak/soft keys, we use identity equality, which means using
+comment|// of the values gets evicted. With weak keys, we use identity equality, which means using
 comment|// System.identityHashCode, which means the assignment of keys to segments is nondeterministic,
 comment|// so more than (maximumSize / #segments) keys could get assigned to the same segment, which
 comment|// would cause one to be evicted.
@@ -2607,42 +2621,79 @@ literal|1000
 argument_list|)
 argument_list|)
 operator|.
-name|withExpirations
+name|withExpireAfterWrites
 argument_list|(
 name|ImmutableSet
 operator|.
 name|of
 argument_list|(
-name|ExpirationSpec
+comment|// DurationSpec.of(500, MILLISECONDS),
+name|DurationSpec
 operator|.
-name|afterAccess
+name|of
 argument_list|(
-literal|10
+literal|1
 argument_list|,
 name|SECONDS
 argument_list|)
 argument_list|,
-name|ExpirationSpec
+name|DurationSpec
 operator|.
-name|afterAccess
+name|of
 argument_list|(
 literal|1
 argument_list|,
 name|DAYS
 argument_list|)
-argument_list|,
-name|ExpirationSpec
+argument_list|)
+argument_list|)
 operator|.
-name|afterWrite
+name|withExpireAfterAccesses
 argument_list|(
-literal|10
+name|ImmutableSet
+operator|.
+name|of
+argument_list|(
+comment|// DurationSpec.of(500, MILLISECONDS),
+name|DurationSpec
+operator|.
+name|of
+argument_list|(
+literal|1
 argument_list|,
 name|SECONDS
 argument_list|)
 argument_list|,
-name|ExpirationSpec
+name|DurationSpec
 operator|.
-name|afterWrite
+name|of
+argument_list|(
+literal|1
+argument_list|,
+name|DAYS
+argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|withRefreshes
+argument_list|(
+name|ImmutableSet
+operator|.
+name|of
+argument_list|(
+comment|// DurationSpec.of(500, MILLISECONDS),
+name|DurationSpec
+operator|.
+name|of
+argument_list|(
+literal|1
+argument_list|,
+name|SECONDS
+argument_list|)
+argument_list|,
+name|DurationSpec
+operator|.
+name|of
 argument_list|(
 literal|1
 argument_list|,
