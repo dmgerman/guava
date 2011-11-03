@@ -379,66 +379,6 @@ comment|// The rest of the behavior of ANY and NONE will be covered in the tests
 comment|// the text processing methods below.
 comment|// The next tests require ICU4J and have, at least for now, been sliced out
 comment|// of the open-source view of the tests.
-comment|// For GWT-compatibility reasons, CharMatcher.JAVA_WHITESPACE doesn't actually
-comment|// use Character.isWhitespace. This test ensures that its custom
-comment|// implementation stays in sync with the implementation of
-comment|// Character.isWhitespace.
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Character.isWhitespace"
-argument_list|)
-DECL|method|testJavaWhitespace ()
-specifier|public
-name|void
-name|testJavaWhitespace
-parameter_list|()
-block|{
-for|for
-control|(
-name|int
-name|c
-init|=
-literal|0
-init|;
-name|c
-operator|<=
-name|Character
-operator|.
-name|MAX_VALUE
-condition|;
-name|c
-operator|++
-control|)
-block|{
-name|assertEquals
-argument_list|(
-literal|""
-operator|+
-name|c
-argument_list|,
-name|Character
-operator|.
-name|isWhitespace
-argument_list|(
-name|c
-argument_list|)
-argument_list|,
-name|CharMatcher
-operator|.
-name|JAVA_WHITESPACE
-operator|.
-name|matches
-argument_list|(
-operator|(
-name|char
-operator|)
-name|c
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
