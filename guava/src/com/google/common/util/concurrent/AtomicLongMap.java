@@ -44,7 +44,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
+name|Beta
 import|;
 end_import
 
@@ -123,12 +123,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty},  * {@link #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p>Unlike {@link com.google.common.collect.Multiset}, values may be negative, and zeroes are  * not automatically removed.  *  * @author Charles Fry  */
+comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty},  * {@link #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p>Unlike {@link com.google.common.collect.Multiset}, values may be negative, and zeroes are  * not automatically removed.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
 
 begin_class
 annotation|@
-name|GwtCompatible
+name|Beta
 DECL|class|AtomicLongMap
 specifier|public
 specifier|final

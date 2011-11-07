@@ -62,20 +62,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|testing
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -195,29 +181,16 @@ init|=
 literal|100
 decl_stmt|;
 DECL|field|random
+specifier|private
 name|Random
 name|random
-decl_stmt|;
-annotation|@
-name|Override
-DECL|method|setUp ()
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-block|{
-name|random
-operator|=
+init|=
 operator|new
 name|Random
 argument_list|(
-name|TestUtil
-operator|.
-name|getRandomSeed
-argument_list|()
+literal|301
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 DECL|method|testNulls ()
 specifier|public
 name|void
