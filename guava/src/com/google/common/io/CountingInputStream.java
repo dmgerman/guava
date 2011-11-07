@@ -234,6 +234,7 @@ DECL|method|mark (int readlimit)
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|mark
 parameter_list|(
@@ -258,6 +259,7 @@ DECL|method|reset ()
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|reset
 parameter_list|()
