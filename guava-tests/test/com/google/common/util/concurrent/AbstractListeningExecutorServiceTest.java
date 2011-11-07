@@ -213,11 +213,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"divzero"
-argument_list|)
 DECL|class|AbstractListeningExecutorServiceTest
 specifier|public
 class|class
@@ -1103,11 +1098,13 @@ name|Object
 name|call
 parameter_list|()
 block|{
-return|return
-literal|5
-operator|/
-literal|0
-return|;
+throw|throw
+operator|new
+name|ArithmeticException
+argument_list|(
+literal|"/ by zero"
+argument_list|)
+throw|;
 block|}
 block|}
 decl_stmt|;
@@ -1297,11 +1294,13 @@ name|Integer
 name|call
 parameter_list|()
 block|{
-return|return
-literal|5
-operator|/
-literal|0
-return|;
+throw|throw
+operator|new
+name|ArithmeticException
+argument_list|(
+literal|"/ by zero"
+argument_list|)
+throw|;
 block|}
 block|}
 argument_list|)
@@ -2146,11 +2145,13 @@ name|Integer
 name|call
 parameter_list|()
 block|{
-return|return
-literal|5
-operator|/
-literal|0
-return|;
+throw|throw
+operator|new
+name|ArithmeticException
+argument_list|(
+literal|"/ by zero"
+argument_list|)
+throw|;
 block|}
 block|}
 argument_list|)
