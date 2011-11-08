@@ -1127,16 +1127,17 @@ operator|.
 name|cleanUp
 argument_list|()
 expr_stmt|;
-name|assertEquals
+comment|// under high memory pressure keys/values may be nulled out but not yet enqueued
+name|assertTrue
 argument_list|(
-name|segment
-operator|.
-name|count
-argument_list|,
 name|table
 operator|.
 name|size
 argument_list|()
+operator|<=
+name|segment
+operator|.
+name|count
 argument_list|)
 expr_stmt|;
 for|for
