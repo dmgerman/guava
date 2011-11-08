@@ -32,6 +32,38 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Futures
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ListenableFuture
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -520,7 +552,10 @@ annotation|@
 name|Override
 DECL|method|reload (Integer key, Integer oldValue)
 specifier|public
+name|ListenableFuture
+argument_list|<
 name|Integer
+argument_list|>
 name|reload
 parameter_list|(
 name|Integer
@@ -536,9 +571,14 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 return|return
+name|Futures
+operator|.
+name|immediateFuture
+argument_list|(
 name|oldValue
 operator|+
 literal|1
+argument_list|)
 return|;
 block|}
 DECL|method|getLoadCount ()

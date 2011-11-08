@@ -76,6 +76,38 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Futures
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ListenableFuture
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -131,10 +163,13 @@ parameter_list|)
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Computes or retrieves a replacement value corresponding to an already-cached {@code key}. This    * method is called when an existing cache entry is refreshed, such as through a call to    * {@link Cache#refresh}.    *    *<p>This implementation simply delegates to {@link #load}. This method should be overriden when    * the new value can be computed more efficiently from the old value.    *    *<p><b>Note:</b><i>all exceptions thrown by this method will be logged and then swallowed</i>.    * If they need to be acted upon then they should be dealt with appropriately prior to being    * thrown.    *    * @param key the non-null key whose value should be loaded    * @param oldValue the non-null old value corresponding to {@code key}    * @return the new value associated with {@code key};<b>must not be null</b>    * @since 11.0    */
+comment|/**    * Computes or retrieves a replacement value corresponding to an already-cached {@code key}. This    * method is called when an existing cache entry is refreshed, such as through a call to    * {@link Cache#refresh}.    *    *<p>This implementation simply delegates to {@link #load}. This method should be overriden when    * the new value can be computed more efficiently from the old value.    *    *<p><b>Note:</b><i>all exceptions thrown by this method will be logged and then swallowed</i>.    *    * @param key the non-null key whose value should be loaded    * @param oldValue the non-null old value corresponding to {@code key}    * @return the future new value associated with {@code key};    *<b>must not be null, must not return null</b>    * @since 11.0    */
 DECL|method|reload (K key, V oldValue)
 specifier|public
+name|ListenableFuture
+argument_list|<
 name|V
+argument_list|>
 name|reload
 parameter_list|(
 name|K
@@ -147,9 +182,14 @@ throws|throws
 name|Exception
 block|{
 return|return
+name|Futures
+operator|.
+name|immediateFuture
+argument_list|(
 name|load
 argument_list|(
 name|key
+argument_list|)
 argument_list|)
 return|;
 block|}

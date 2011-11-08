@@ -510,7 +510,7 @@ name|int
 name|count
 parameter_list|)
 function_decl|;
-comment|/**      * Records the successful load of a new entry. This should be called when a cache request      * causes an entry to be loaded, and the loading completes succesfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
+comment|/**      * Records the successful load of a new entry. This should be called when a cache request      * causes an entry to be loaded, and the loading completes successfully. In contrast to      * {@link #recordConcurrentMiss}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
 DECL|method|recordLoadSuccess (long loadTime)
 specifier|public
 name|void
