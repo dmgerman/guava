@@ -757,8 +757,8 @@ name|CANCELLED
 argument_list|)
 return|;
 block|}
-comment|/**      * Implementation of completing a task.  Either {@code v} or {@code t} will      * be set but not both.  The {@code finalState} is the state to change to      * from {@link #RUNNING}.  If the state is not in the RUNNING state we      * return {@code false}.      *      * @param v the value to set as the result of the computation.      * @param t the exception to set as the result of the computation.      * @param finalState the state to transition to.      */
-DECL|method|complete (@ullable V v, Throwable t, int finalState)
+comment|/**      * Implementation of completing a task.  Either {@code v} or {@code t} will      * be set but not both.  The {@code finalState} is the state to change to      * from {@link #RUNNING}.  If the state is not in the RUNNING state we      * return {@code false} after waiting for the state to be set to a valid      * final state ({@link #COMPLETED} or {@link #CANCELLED}).      *      * @param v the value to set as the result of the computation.      * @param t the exception to set as the result of the computation.      * @param finalState the state to transition to.      */
+DECL|method|complete (@ullable V v, @Nullable Throwable t, int finalState)
 specifier|private
 name|boolean
 name|complete
@@ -768,6 +768,8 @@ name|Nullable
 name|V
 name|v
 parameter_list|,
+annotation|@
+name|Nullable
 name|Throwable
 name|t
 parameter_list|,
@@ -775,16 +777,23 @@ name|int
 name|finalState
 parameter_list|)
 block|{
-if|if
-condition|(
+name|boolean
+name|doCompletion
+init|=
 name|compareAndSetState
 argument_list|(
 name|RUNNING
 argument_list|,
 name|COMPLETING
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|doCompletion
 condition|)
 block|{
+comment|// If this thread successfully transitioned to COMPLETING, set the value
+comment|// and exception and then release to the final state.
 name|this
 operator|.
 name|value
@@ -802,13 +811,27 @@ argument_list|(
 name|finalState
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
-comment|// The state was not RUNNING, so there are no valid transitions.
+elseif|else
+if|if
+condition|(
+name|getState
+argument_list|()
+operator|==
+name|COMPLETING
+condition|)
+block|{
+comment|// If some other thread is currently completing the future, block until
+comment|// they are done so we can guarantee completion.
+name|acquireShared
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 return|return
-literal|false
+name|doCompletion
 return|;
 block|}
 block|}
