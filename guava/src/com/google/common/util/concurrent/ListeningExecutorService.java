@@ -82,6 +82,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|RejectedExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|TimeUnit
 import|;
 end_import
@@ -98,7 +110,7 @@ name|ListeningExecutorService
 extends|extends
 name|ExecutorService
 block|{
-comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    */
+comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    * @throws RejectedExecutionException {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|submit (Callable<T> task)
@@ -118,7 +130,7 @@ argument_list|>
 name|task
 parameter_list|)
 function_decl|;
-comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    */
+comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    * @throws RejectedExecutionException {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|submit (Runnable task)
@@ -132,7 +144,7 @@ name|Runnable
 name|task
 parameter_list|)
 function_decl|;
-comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    */
+comment|/**    * @return a {@code ListenableFuture} representing pending completion of the task    * @throws RejectedExecutionException {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|submit (Runnable task, T result)
@@ -152,7 +164,7 @@ name|T
 name|result
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances.    *    * @return A list of {@code ListenableFuture} instances representing the tasks, in the same    *         sequential order as produced by the iterator for the given task list, each of which has    *         completed.    */
+comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances.    *    * @return A list of {@code ListenableFuture} instances representing the tasks, in the same    *         sequential order as produced by the iterator for the given task list, each of which has    *         completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
 annotation|@
 name|Override
 DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
@@ -182,7 +194,7 @@ parameter_list|)
 throws|throws
 name|InterruptedException
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances.    *    * @return a list of {@code ListenableFuture} instances representing the tasks, in the same    *         sequential order as produced by the iterator for the given task list. If the operation    *         did not time out, each task will have completed. If it did time out, some of these    *         tasks will not have completed.    */
+comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances.    *    * @return a list of {@code ListenableFuture} instances representing the tasks, in the same    *         sequential order as produced by the iterator for the given task list. If the operation    *         did not time out, each task will have completed. If it did time out, some of these    *         tasks will not have completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
 annotation|@
 name|Override
 DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)

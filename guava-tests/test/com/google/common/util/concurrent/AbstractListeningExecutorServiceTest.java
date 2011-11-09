@@ -100,18 +100,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|AbstractExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|ArrayBlockingQueue
 import|;
 end_import
@@ -220,7 +208,7 @@ name|AbstractListeningExecutorServiceTest
 extends|extends
 name|JSR166TestCase
 block|{
-comment|/**      * A no-frills implementation of AbstractExecutorService, designed      * to test the submit methods only.      */
+comment|/**      * A no-frills implementation of AbstractListeningExecutorService, designed      * to test the submit methods only.      */
 DECL|class|DirectExecutorService
 specifier|static
 class|class

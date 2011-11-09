@@ -182,7 +182,7 @@ argument_list|>
 name|asMap
 parameter_list|()
 function_decl|;
-comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they    * contain the same values. Equality does not depend on the ordering of keys    * or values.    */
+comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they    * contain the same values. Equality does not depend on the ordering of keys    * or values.    *    *<p>An empty {@code SetMultimap} is equal to any other empty {@code    * Multimap}, including an empty {@code ListMultimap}.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object obj)
