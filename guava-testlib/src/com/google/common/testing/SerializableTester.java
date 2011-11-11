@@ -240,24 +240,19 @@ argument_list|(
 name|object
 argument_list|)
 decl_stmt|;
-name|GuavaAsserts
+operator|new
+name|EqualsTester
+argument_list|()
 operator|.
-name|checkEqualsAndHashCodeMethods
+name|addEqualityGroup
 argument_list|(
-literal|"Equals/Hashcode mismatch.  original="
-operator|+
-name|object
-operator|+
-literal|", copy="
-operator|+
-name|copy
-argument_list|,
 name|object
 argument_list|,
 name|copy
-argument_list|,
-literal|true
 argument_list|)
+operator|.
+name|testEquals
+argument_list|()
 expr_stmt|;
 name|GuavaAsserts
 operator|.

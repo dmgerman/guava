@@ -141,7 +141,7 @@ block|{
 comment|// expected
 name|assertContains
 argument_list|(
-literal|"Equals/Hashcode mismatch.  original="
+literal|"must be equal to"
 argument_list|,
 name|error
 operator|.
@@ -197,7 +197,7 @@ block|{
 comment|// expected
 name|assertContains
 argument_list|(
-literal|"Equals/Hashcode mismatch.  original="
+literal|"must be equal to the hash"
 argument_list|,
 name|error
 operator|.
@@ -315,7 +315,11 @@ name|other
 parameter_list|)
 block|{
 return|return
-literal|true
+operator|(
+name|other
+operator|instanceof
+name|ClassWhichIsAlwaysEqualButHasDifferentHashcodes
+operator|)
 return|;
 block|}
 block|}
