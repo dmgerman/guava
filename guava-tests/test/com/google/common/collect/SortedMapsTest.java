@@ -198,6 +198,11 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|class|SortedMapsTest
 specifier|public
 class|class
