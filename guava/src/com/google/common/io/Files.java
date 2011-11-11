@@ -904,7 +904,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all the bytes from one file to another.    *.    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all the bytes from one file to another.    *.    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|copy (File from, File to)
 specifier|public
 specifier|static
@@ -920,6 +920,25 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|Preconditions
+operator|.
+name|checkArgument
+argument_list|(
+operator|!
+name|from
+operator|.
+name|equals
+argument_list|(
+name|to
+argument_list|)
+argument_list|,
+literal|"Source %s and destination %s must be different"
+argument_list|,
+name|from
+argument_list|,
+name|to
+argument_list|)
+expr_stmt|;
 name|copy
 argument_list|(
 name|newInputStreamSupplier
@@ -1443,7 +1462,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Moves the file from one path to another. This method can rename a file or    * move it to a different directory, like the Unix {@code mv} command.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Moves the file from one path to another. This method can rename a file or    * move it to a different directory, like the Unix {@code mv} command.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|move (File from, File to)
 specifier|public
 specifier|static
