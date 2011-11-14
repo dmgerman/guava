@@ -74,17 +74,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|GuavaAsserts
-operator|.
-name|TestAssertionFailure
+name|AssertionFailedError
 import|;
 end_import
 
@@ -350,7 +344,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -450,7 +444,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -502,7 +496,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -554,7 +548,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -601,7 +595,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -685,7 +679,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -847,7 +841,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -924,7 +918,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -979,7 +973,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -1071,7 +1065,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{

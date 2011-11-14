@@ -62,17 +62,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|GuavaAsserts
-operator|.
-name|TestAssertionFailure
+name|AssertionFailedError
 import|;
 end_import
 
@@ -510,7 +504,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|unexpected
 parameter_list|)
 block|{
@@ -579,7 +573,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
@@ -654,7 +648,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|unexpected
 parameter_list|)
 block|{
@@ -728,7 +722,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
@@ -1032,7 +1026,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|incorrectError
 parameter_list|)
 block|{
@@ -1090,7 +1084,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
@@ -1526,7 +1520,7 @@ comment|// All args nullable:  anything goes!
 block|}
 block|}
 block|}
-comment|/*    * This next part consists of several sample classes that provide    * demonstrations of conditions that cause NullPointerTester    * to succeed/fail.    *    * Add naughty classes to failClasses to verify that NullPointerTest    * raises an TestAssertionFailure.    *    * Add acceptable classes to passClasses to verify that NullPointerTest    * doesn't complain.    */
+comment|/*    * This next part consists of several sample classes that provide    * demonstrations of conditions that cause NullPointerTester    * to succeed/fail.    *    * Add naughty classes to failClasses to verify that NullPointerTest    * raises an AssertionFailedError.    *    * Add acceptable classes to passClasses to verify that NullPointerTest    * doesn't complain.    */
 comment|/** List of classes that NullPointerTester should pass as acceptable. */
 DECL|field|failClasses
 specifier|static
@@ -2807,7 +2801,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
@@ -2870,7 +2864,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{

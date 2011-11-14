@@ -58,6 +58,16 @@ name|Objects
 import|;
 end_import
 
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|AssertionFailedError
+import|;
+end_import
+
 begin_comment
 comment|/**  * Contains additional assertion methods not found in JUnit.  *  * @author Kevin Bourillion  * @since 10.0  */
 end_comment
@@ -166,7 +176,7 @@ parameter_list|()
 block|{
 throw|throw
 operator|new
-name|TestAssertionFailure
+name|AssertionFailedError
 argument_list|()
 throw|;
 block|}
@@ -183,7 +193,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|TestAssertionFailure
+name|AssertionFailedError
 argument_list|(
 name|message
 argument_list|)
@@ -320,39 +330,6 @@ name|o2
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-comment|/**    * An error thrown when test assertions are shown to be invalid.    *     * @author cgruber@google.com (Christian Gruber)    */
-DECL|class|TestAssertionFailure
-specifier|public
-specifier|static
-class|class
-name|TestAssertionFailure
-extends|extends
-name|AssertionError
-block|{
-DECL|method|TestAssertionFailure ()
-specifier|public
-name|TestAssertionFailure
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|TestAssertionFailure (String errorMessage)
-specifier|public
-name|TestAssertionFailure
-parameter_list|(
-name|String
-name|errorMessage
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|errorMessage
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class

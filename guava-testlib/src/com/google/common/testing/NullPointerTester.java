@@ -158,17 +158,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|GuavaAsserts
-operator|.
-name|TestAssertionFailure
+name|AssertionFailedError
 import|;
 end_import
 
@@ -1455,11 +1449,11 @@ condition|)
 block|{
 return|return;
 block|}
-name|TestAssertionFailure
+name|AssertionFailedError
 name|error
 init|=
 operator|new
-name|TestAssertionFailure
+name|AssertionFailedError
 argument_list|(
 literal|"wrong exception thrown from "
 operator|+

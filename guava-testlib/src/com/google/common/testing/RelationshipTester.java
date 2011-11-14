@@ -76,17 +76,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|GuavaAsserts
-operator|.
-name|TestAssertionFailure
+name|AssertionFailedError
 import|;
 end_import
 
@@ -422,14 +416,14 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
 comment|// TODO(gak): special handling for ComparisonFailure?
 throw|throw
 operator|new
-name|TestAssertionFailure
+name|AssertionFailedError
 argument_list|(
 name|e
 operator|.
@@ -529,14 +523,14 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|TestAssertionFailure
+name|AssertionFailedError
 name|e
 parameter_list|)
 block|{
 comment|// TODO(gak): special handling for ComparisonFailure?
 throw|throw
 operator|new
-name|TestAssertionFailure
+name|AssertionFailedError
 argument_list|(
 name|e
 operator|.
@@ -633,7 +627,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * A strategy for testing the relationship between objects.  Methods are expected to throw    * {@link TestAssertionFailure} whenever the relationship is violated.    *    *<p>As a convenience, any occurrence of {@code $ITEM}, {@code $RELATED} or {@code $UNRELATED} in    * the error message will be replaced with a string that combines the {@link Object#toString()},    * item number and group number of the respective item.    *    */
+comment|/**    * A strategy for testing the relationship between objects.  Methods are expected to throw    * {@link AssertionFailedError} whenever the relationship is violated.    *    *<p>As a convenience, any occurrence of {@code $ITEM}, {@code $RELATED} or {@code $UNRELATED} in    * the error message will be replaced with a string that combines the {@link Object#toString()},    * item number and group number of the respective item.    *    */
 DECL|interface|RelationshipAssertion
 interface|interface
 name|RelationshipAssertion
