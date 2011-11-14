@@ -1799,6 +1799,43 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * Adds the given {@code entry} to the map, making it immutable if      * necessary. Duplicate keys, according to the comparator (which might be      * the keys' natural order), are not allowed, and will cause {@link #build}      * to fail.      *      * @since 11.0      */
+DECL|method|put (Entry<? extends K, ? extends V> entry)
+annotation|@
+name|Override
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|put
+parameter_list|(
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+name|super
+operator|.
+name|put
+argument_list|(
+name|entry
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Associates all of the given map's keys and values in the built map.      * Duplicate keys, according to the comparator (which might be the keys'      * natural order), are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
 DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
