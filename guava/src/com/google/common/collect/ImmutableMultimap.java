@@ -161,6 +161,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -783,6 +785,55 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * Adds an entry to the built multimap.      *       * @since 11.0      */
+DECL|method|put (Entry<? extends K, ? extends V> entry)
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|put
+parameter_list|(
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+name|builderMultimap
+operator|.
+name|put
+argument_list|(
+name|checkNotNull
+argument_list|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+argument_list|)
+argument_list|,
+name|checkNotNull
+argument_list|(
+name|entry
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Stores a collection of values with the same key in the built multimap.      *      * @throws NullPointerException if {@code key}, {@code values}, or any      *     element in {@code values} is null. The builder is left in an invalid      *     state.      */
 DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
@@ -904,8 +955,6 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -1764,8 +1813,6 @@ specifier|private
 specifier|transient
 name|ImmutableCollection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1782,8 +1829,6 @@ DECL|method|entries ()
 specifier|public
 name|ImmutableCollection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1796,8 +1841,6 @@ parameter_list|()
 block|{
 name|ImmutableCollection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1847,8 +1890,6 @@ parameter_list|>
 extends|extends
 name|ImmutableCollection
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1892,8 +1933,6 @@ name|Override
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1909,8 +1948,6 @@ name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1941,8 +1978,6 @@ return|return
 operator|new
 name|UnmodifiableIterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1989,8 +2024,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2013,8 +2046,6 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2112,13 +2143,9 @@ if|if
 condition|(
 name|object
 operator|instanceof
-name|Map
-operator|.
 name|Entry
 condition|)
 block|{
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -2128,8 +2155,6 @@ argument_list|>
 name|entry
 init|=
 operator|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -2240,8 +2265,6 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -2398,8 +2421,6 @@ name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?

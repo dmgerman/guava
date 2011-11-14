@@ -161,6 +161,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -951,6 +953,57 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * Adds an entry to the built multimap if it is not already present.      *      * @since 11.0      */
+DECL|method|put (Entry<? extends K, ? extends V> entry)
+annotation|@
+name|Override
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|put
+parameter_list|(
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+name|builderMultimap
+operator|.
+name|put
+argument_list|(
+name|checkNotNull
+argument_list|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+argument_list|)
+argument_list|,
+name|checkNotNull
+argument_list|(
+name|entry
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 DECL|method|putAll (K key, Iterable<? extends V> values)
 annotation|@
 name|Override
@@ -1075,8 +1128,6 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -1396,8 +1447,6 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|?
@@ -1718,8 +1767,6 @@ specifier|private
 specifier|transient
 name|ImmutableSet
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1737,8 +1784,6 @@ name|Override
 specifier|public
 name|ImmutableSet
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -1751,8 +1796,6 @@ parameter_list|()
 block|{
 name|ImmutableSet
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
