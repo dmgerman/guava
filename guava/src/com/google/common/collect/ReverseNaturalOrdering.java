@@ -56,6 +56,16 @@ name|Serializable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_comment
 comment|/** An ordering that uses the reverse of the natural order of the values. */
 end_comment
@@ -159,7 +169,7 @@ name|natural
 argument_list|()
 return|;
 block|}
-comment|// Override the six min/max methods to "hoist" delegation outside loops
+comment|// Override the min/max methods to "hoist" delegation outside loops
 DECL|method|min (E a, E b)
 annotation|@
 name|Override
@@ -232,6 +242,36 @@ argument_list|,
 name|c
 argument_list|,
 name|rest
+argument_list|)
+return|;
+block|}
+DECL|method|min (Iterator<E> iterator)
+annotation|@
+name|Override
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|Comparable
+parameter_list|>
+name|E
+name|min
+parameter_list|(
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+return|return
+name|NaturalOrdering
+operator|.
+name|INSTANCE
+operator|.
+name|max
+argument_list|(
+name|iterator
 argument_list|)
 return|;
 block|}
@@ -337,6 +377,36 @@ argument_list|,
 name|c
 argument_list|,
 name|rest
+argument_list|)
+return|;
+block|}
+DECL|method|max (Iterator<E> iterator)
+annotation|@
+name|Override
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|Comparable
+parameter_list|>
+name|E
+name|max
+parameter_list|(
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+return|return
+name|NaturalOrdering
+operator|.
+name|INSTANCE
+operator|.
+name|min
+argument_list|(
+name|iterator
 argument_list|)
 return|;
 block|}

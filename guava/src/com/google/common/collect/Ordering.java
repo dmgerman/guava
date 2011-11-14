@@ -1083,7 +1083,7 @@ name|T
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|leastOf (Iterable<E> iterable, int k)
@@ -1241,7 +1241,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *     * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|greatestOf (Iterable<E> iterable, int k)
@@ -1774,8 +1774,10 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|max (Iterable<E> iterable)
+comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned. The    * iterator will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @param iterator the iterator whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    *    * @since 11.0    */
+annotation|@
+name|Beta
+DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
 name|E
@@ -1785,24 +1787,13 @@ parameter_list|>
 name|E
 name|max
 parameter_list|(
-name|Iterable
-argument_list|<
-name|E
-argument_list|>
-name|iterable
-parameter_list|)
-block|{
 name|Iterator
 argument_list|<
 name|E
 argument_list|>
 name|iterator
-init|=
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
+parameter_list|)
+block|{
 comment|// let this throw NoSuchElementException as necessary
 name|E
 name|maxSoFar
@@ -1835,6 +1826,34 @@ expr_stmt|;
 block|}
 return|return
 name|maxSoFar
+return|;
+block|}
+comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param iterable the iterable whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+DECL|method|max (Iterable<E> iterable)
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|E
+name|max
+parameter_list|(
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+name|max
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
@@ -1942,8 +1961,10 @@ else|:
 name|b
 return|;
 block|}
-comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|min (Iterable<E> iterable)
+comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned. The    * iterator will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @param iterator the iterator whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    *    * @since 11.0    */
+annotation|@
+name|Beta
+DECL|method|min (Iterator<E> iterator)
 specifier|public
 parameter_list|<
 name|E
@@ -1953,24 +1974,13 @@ parameter_list|>
 name|E
 name|min
 parameter_list|(
-name|Iterable
-argument_list|<
-name|E
-argument_list|>
-name|iterable
-parameter_list|)
-block|{
 name|Iterator
 argument_list|<
 name|E
 argument_list|>
 name|iterator
-init|=
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
+parameter_list|)
+block|{
 comment|// let this throw NoSuchElementException as necessary
 name|E
 name|minSoFar
@@ -2003,6 +2013,34 @@ expr_stmt|;
 block|}
 return|return
 name|minSoFar
+return|;
+block|}
+comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param iterable the iterable whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterable} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
+DECL|method|min (Iterable<E> iterable)
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|E
+name|min
+parameter_list|(
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+return|return
+name|min
+argument_list|(
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */

@@ -58,6 +58,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -182,7 +192,7 @@ operator|)
 name|forwardOrder
 return|;
 block|}
-comment|// Override the six min/max methods to "hoist" delegation outside loops
+comment|// Override the min/max methods to "hoist" delegation outside loops
 DECL|method|min (E a, E b)
 annotation|@
 name|Override
@@ -251,6 +261,34 @@ argument_list|,
 name|c
 argument_list|,
 name|rest
+argument_list|)
+return|;
+block|}
+DECL|method|min (Iterator<E> iterator)
+annotation|@
+name|Override
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|E
+name|min
+parameter_list|(
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+return|return
+name|forwardOrder
+operator|.
+name|max
+argument_list|(
+name|iterator
 argument_list|)
 return|;
 block|}
@@ -350,6 +388,34 @@ argument_list|,
 name|c
 argument_list|,
 name|rest
+argument_list|)
+return|;
+block|}
+DECL|method|max (Iterator<E> iterator)
+annotation|@
+name|Override
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|E
+name|max
+parameter_list|(
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+return|return
+name|forwardOrder
+operator|.
+name|min
+argument_list|(
+name|iterator
 argument_list|)
 return|;
 block|}
