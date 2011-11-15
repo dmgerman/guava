@@ -67,10 +67,6 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO(chrisn): Find some way to reliably test finalize functionality
-end_comment
-
-begin_comment
 comment|/**  * Unit tests for {@link FileBackedOutputStream}.  *  * @author Chris Nokleberg  */
 end_comment
 
@@ -97,6 +93,8 @@ argument_list|,
 literal|100
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|testThreshold
@@ -106,6 +104,8 @@ argument_list|,
 literal|100
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|testThreshold
@@ -115,6 +115,8 @@ argument_list|,
 literal|100
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|testThreshold
@@ -122,6 +124,108 @@ argument_list|(
 literal|1000
 argument_list|,
 literal|100
+argument_list|,
+literal|true
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|0
+argument_list|,
+literal|100
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|10
+argument_list|,
+literal|100
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|100
+argument_list|,
+literal|100
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|1000
+argument_list|,
+literal|100
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO(user): Add an @VisibleForTesting invokeFinalize method inside
+comment|// FileBackedOutputStream and use that to test that the file was actually deleted
+comment|// on finalize
+DECL|method|testThreshold_resetOnFinalize ()
+specifier|public
+name|void
+name|testThreshold_resetOnFinalize
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|testThreshold
+argument_list|(
+literal|0
+argument_list|,
+literal|100
+argument_list|,
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|10
+argument_list|,
+literal|100
+argument_list|,
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|100
+argument_list|,
+literal|100
+argument_list|,
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|testThreshold
+argument_list|(
+literal|1000
+argument_list|,
+literal|100
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -133,6 +237,8 @@ argument_list|,
 literal|100
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|testThreshold
@@ -142,6 +248,8 @@ argument_list|,
 literal|100
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|testThreshold
@@ -151,6 +259,8 @@ argument_list|,
 literal|100
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|testThreshold
@@ -160,10 +270,12 @@ argument_list|,
 literal|100
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testThreshold (int fileThreshold, int dataSize, boolean singleByte)
+DECL|method|testThreshold (int fileThreshold, int dataSize, boolean singleByte, boolean resetOnFinalize)
 specifier|private
 name|void
 name|testThreshold
@@ -176,9 +288,12 @@ name|dataSize
 parameter_list|,
 name|boolean
 name|singleByte
+parameter_list|,
+name|boolean
+name|resetOnFinalize
 parameter_list|)
 throws|throws
-name|Exception
+name|IOException
 block|{
 name|byte
 index|[]
@@ -196,6 +311,8 @@ operator|new
 name|FileBackedOutputStream
 argument_list|(
 name|fileThreshold
+argument_list|,
+name|resetOnFinalize
 argument_list|)
 decl_stmt|;
 name|InputSupplier
