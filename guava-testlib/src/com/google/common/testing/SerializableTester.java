@@ -17,6 +17,16 @@ package|;
 end_package
 
 begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
 import|import static
 name|com
 operator|.
@@ -264,7 +274,7 @@ operator|.
 name|testEquals
 argument_list|()
 expr_stmt|;
-name|GuavaAsserts
+name|Assert
 operator|.
 name|assertEquals
 argument_list|(

@@ -162,6 +162,16 @@ name|junit
 operator|.
 name|framework
 operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
 name|AssertionFailedError
 import|;
 end_import
@@ -1401,7 +1411,7 @@ argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
-name|GuavaAsserts
+name|Assert
 operator|.
 name|fail
 argument_list|(
@@ -1630,7 +1640,7 @@ name|indexOfParamToSetToNull
 argument_list|)
 condition|)
 block|{
-name|GuavaAsserts
+name|Assert
 operator|.
 name|assertTrue
 argument_list|(

@@ -247,7 +247,7 @@ block|{
 comment|// expected
 name|assertContains
 argument_list|(
-literal|"Expected 'class "
+literal|"expected:<class "
 argument_list|,
 name|error
 operator|.

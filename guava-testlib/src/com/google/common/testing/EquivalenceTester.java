@@ -34,15 +34,11 @@ end_import
 
 begin_import
 import|import static
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|GuavaAsserts
+name|Assert
 operator|.
 name|assertEquals
 import|;
@@ -50,15 +46,11 @@ end_import
 
 begin_import
 import|import static
-name|com
+name|junit
 operator|.
-name|google
+name|framework
 operator|.
-name|common
-operator|.
-name|testing
-operator|.
-name|GuavaAsserts
+name|Assert
 operator|.
 name|assertTrue
 import|;
