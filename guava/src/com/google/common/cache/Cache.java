@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A semi-persistent mapping from keys to values. Cache entries are manually added using  * {@link #get(K, Callable)} or {@link #put(K, V)}, and are stored in the cache until either  * evicted or manually invalidated.  *  *<p>All methods other than {@link #getIfPresent} are optional.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * A semi-persistent mapping from keys to values. Cache entries are manually added using  * {@link #get(K, Callable)} or {@link #put(K, V)}, and are stored in the cache until either  * evicted or manually invalidated.  *  *<p>Implementations of this interface are expected to be thread-safe, and can be safely accessed  * by multiple concurrent threads.  *  *<p>All methods other than {@link #getIfPresent} are optional.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_interface
@@ -171,7 +171,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes.    *    *<p>This method functions identically to {@link #get(Object)}, simply using a different    * mechanism to load the value if missing. This method provides a simple substitute for the    * conventional "if cached, return; otherwise create, cache and return" pattern.    *    *<p>Note that if all access to the cache is via this method, it may make more sense to implement    * a {@link CacheLoader} and use {@link #get(Object)}.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    */
+comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes. This method provides a simple substitute for the conventional    * "if cached, return; otherwise create, cache and return" pattern.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    */
 DECL|method|get (K key, Callable<V> valueLoader)
 name|V
 name|get
@@ -219,7 +219,7 @@ name|V
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Discards any cached value for key {@code key}, possibly asynchronously, so that a future    * invocation of {@code get(key)} will result in a cache miss and reload.    */
+comment|/**    * Discards any cached value for key {@code key}.    */
 DECL|method|invalidate (Object key)
 name|void
 name|invalidate
@@ -228,7 +228,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Discards any cached values for keys {@code keys}, possibly asynchronously, so that a future    * invocation of {@code get(key)} for any of those keys will result in a cache miss and reload.    */
+comment|/**    * Discards any cached values for keys {@code keys}.    */
 DECL|method|invalidateAll (Iterable<?> keys)
 name|void
 name|invalidateAll
@@ -240,7 +240,7 @@ argument_list|>
 name|keys
 parameter_list|)
 function_decl|;
-comment|/**    * Discards all entries in the cache, possibly asynchronously.    */
+comment|/**    * Discards all entries in the cache.    */
 DECL|method|invalidateAll ()
 name|void
 name|invalidateAll
@@ -258,7 +258,7 @@ name|CacheStats
 name|stats
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Assume that none of    * the returned map's optional operations will be implemented, unless otherwise specified.    */
+comment|/**    * Returns a view of the entries stored in this cache as a thread-safe map. Modifications made to    * the map directly affect the cache.    */
 DECL|method|asMap ()
 name|ConcurrentMap
 argument_list|<
