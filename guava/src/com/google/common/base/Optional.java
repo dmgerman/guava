@@ -239,7 +239,6 @@ name|boolean
 name|isPresent
 parameter_list|()
 function_decl|;
-comment|// TODO(kevinb): isAbsent too?
 comment|/**    * Returns the contained instance, which must be present. If the instance might be    * absent, use {@link #or(Object)} or {@link #orNull} instead.    *    * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns    *     {@code false})    */
 DECL|method|get ()
 specifier|public
