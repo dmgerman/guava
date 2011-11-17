@@ -644,6 +644,11 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|testAwaitDone_Future_Interrupted_Interrupted ()
@@ -711,6 +716,11 @@ block|{
 name|interruptenator
 operator|.
 name|shutdown
+argument_list|()
+expr_stmt|;
+name|Thread
+operator|.
+name|interrupted
 argument_list|()
 expr_stmt|;
 block|}
@@ -788,6 +798,11 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|method|testAwaitDone_FinalizationPredicate_Interrupted ()
@@ -856,6 +871,11 @@ block|{
 name|interruptenator
 operator|.
 name|shutdown
+argument_list|()
+expr_stmt|;
+name|Thread
+operator|.
+name|interrupted
 argument_list|()
 expr_stmt|;
 block|}
