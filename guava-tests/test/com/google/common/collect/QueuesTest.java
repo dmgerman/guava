@@ -24,20 +24,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|concurrent
@@ -185,12 +171,10 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link Queues}.  *  * @author Dimitris Andreou  * @since 11.0  */
+comment|/**  * Tests for {@link Queues}.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|QueuesTest
 specifier|public
 class|class
