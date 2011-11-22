@@ -4195,8 +4195,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// Construct the heap with a minimum size of 1, because
-comment|// PriorityQueue will fail if it's 0.
 name|queue
 operator|=
 operator|new
@@ -4208,19 +4206,7 @@ name|T
 argument_list|>
 argument_list|>
 argument_list|(
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|1
-argument_list|,
-name|Iterables
-operator|.
-name|size
-argument_list|(
-name|iterators
-argument_list|)
-argument_list|)
+literal|2
 argument_list|,
 name|heapComparator
 argument_list|)
