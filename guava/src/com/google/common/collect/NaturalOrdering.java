@@ -132,10 +132,15 @@ parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
+name|left
+argument_list|)
+expr_stmt|;
+comment|// for GWT
+name|checkNotNull
+argument_list|(
 name|right
 argument_list|)
 expr_stmt|;
-comment|// left null is caught later
 if|if
 condition|(
 name|left
