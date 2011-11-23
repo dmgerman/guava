@@ -108,7 +108,7 @@ operator|=
 name|canonicalForm
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@code HostSpecifier} built from the provided {@code specifier},    * which is already known to be valid.  If the {@code specifier} might be    * invalid, use {@link #from(String)} instead.    *    *<p>The specifier must be in one of these formats:    *<ul>    *<li>A domain name, like {@code google.com}    *<li>A IPv4 address string, like {@code 127.0.0.1}    *<li>An IPv6 address string with or without brackets, like    *     {@code [2001:db8::1]} or {@code 2001:db8::1}    *<li>An IPv6 address string enclosed in square brackets, like    *     {[2001:db8::1]}    *</ul>    *    * @throws IllegalArgumentException if the specifier is not valid.    */
+comment|/**    * Returns a {@code HostSpecifier} built from the provided {@code specifier},    * which is already known to be valid.  If the {@code specifier} might be    * invalid, use {@link #from(String)} instead.    *    *<p>The specifier must be in one of these formats:    *<ul>    *<li>A domain name, like {@code google.com}    *<li>A IPv4 address string, like {@code 127.0.0.1}    *<li>An IPv6 address string with or without brackets, like    *     {@code [2001:db8::1]} or {@code 2001:db8::1}    *</ul>    *    * @throws IllegalArgumentException if the specifier is not valid.    */
 DECL|method|fromValid (String specifier)
 specifier|public
 specifier|static
