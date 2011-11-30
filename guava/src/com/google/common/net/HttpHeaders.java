@@ -487,6 +487,16 @@ name|ALLOW
 init|=
 literal|"Allow"
 decl_stmt|;
+comment|/** The HTTP Content-Disposition header field name. */
+DECL|field|CONTENT_DISPOSITION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONTENT_DISPOSITION
+init|=
+literal|"Content-Disposition"
+decl_stmt|;
 comment|/** The HTTP Content-Encoding header field name. */
 DECL|field|CONTENT_ENCODING
 specifier|public
@@ -516,16 +526,6 @@ name|String
 name|CONTENT_LOCATION
 init|=
 literal|"Content-Location"
-decl_stmt|;
-comment|/** The HTTP Content-Disposition header field name. */
-DECL|field|CONTENT_DISPOSITION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|CONTENT_DISPOSITION
-init|=
-literal|"Content-Disposition"
 decl_stmt|;
 comment|/** The HTTP Content-MD5 header field name. */
 DECL|field|CONTENT_MD5
