@@ -446,7 +446,9 @@ name|loader
 argument_list|,
 name|cache
 operator|.
-name|loader
+name|localCache
+operator|.
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 block|}

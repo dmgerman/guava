@@ -1034,8 +1034,23 @@ specifier|final
 name|StatsCounter
 name|globalStatsCounter
 decl_stmt|;
+comment|/**    * The default cache loader to use on loading operations.    */
+annotation|@
+name|Nullable
+DECL|field|defaultLoader
+specifier|final
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|defaultLoader
+decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
-DECL|method|LocalCache (CacheBuilder<? super K, ? super V> builder)
+DECL|method|LocalCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
 name|LocalCache
 parameter_list|(
 name|CacheBuilder
@@ -1049,6 +1064,16 @@ super|super
 name|V
 argument_list|>
 name|builder
+parameter_list|,
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loader
 parameter_list|)
 block|{
 name|concurrencyLevel
@@ -1204,6 +1229,10 @@ argument_list|()
 operator|.
 name|get
 argument_list|()
+expr_stmt|;
+name|defaultLoader
+operator|=
+name|loader
 expr_stmt|;
 name|int
 name|initialCapacity
@@ -12151,17 +12180,31 @@ argument_list|,
 name|now
 argument_list|)
 expr_stmt|;
-comment|// only refresh on getOrLoad
+return|return
+name|scheduleRefresh
+argument_list|(
+name|e
+argument_list|,
+name|e
+operator|.
+name|getKey
+argument_list|()
+argument_list|,
+name|hash
+argument_list|,
+name|value
+argument_list|,
+name|now
+argument_list|,
+name|map
+operator|.
+name|defaultLoader
+argument_list|)
+return|;
 block|}
-else|else
-block|{
 name|tryDrainReferenceQueues
 argument_list|()
 expr_stmt|;
-block|}
-return|return
-name|value
-return|;
 block|}
 return|return
 literal|null
@@ -18319,14 +18362,33 @@ name|loader
 argument_list|)
 return|;
 block|}
-DECL|method|getAll (Iterable<? extends K> keys)
+DECL|method|getOrLoad (K key)
+name|V
+name|getOrLoad
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+throws|throws
+name|ExecutionException
+block|{
+return|return
+name|get
+argument_list|(
+name|key
+argument_list|,
+name|defaultLoader
+argument_list|)
+return|;
+block|}
+DECL|method|getAllPresent (Iterable<? extends K> keys)
 name|ImmutableMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|getAll
+name|getAllPresent
 parameter_list|(
 name|Iterable
 argument_list|<
@@ -18426,7 +18488,7 @@ name|result
 argument_list|)
 return|;
 block|}
-DECL|method|getAll (Iterable<? extends K> keys, CacheLoader<? super K, V> loader)
+DECL|method|getAll (Iterable<? extends K> keys)
 name|ImmutableMap
 argument_list|<
 name|K
@@ -18442,16 +18504,6 @@ extends|extends
 name|K
 argument_list|>
 name|keys
-parameter_list|,
-name|CacheLoader
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|loader
 parameter_list|)
 throws|throws
 name|ExecutionException
@@ -18577,7 +18629,7 @@ name|loadAll
 argument_list|(
 name|keysToLoad
 argument_list|,
-name|loader
+name|defaultLoader
 argument_list|)
 decl_stmt|;
 for|for
@@ -18655,7 +18707,7 @@ name|get
 argument_list|(
 name|key
 argument_list|,
-name|loader
+name|defaultLoader
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -19114,22 +19166,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|refresh (K key, CacheLoader<? super K, V> loader)
+DECL|method|refresh (K key)
 name|void
 name|refresh
 parameter_list|(
 name|K
 name|key
-parameter_list|,
-name|CacheLoader
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|loader
 parameter_list|)
 block|{
 name|int
@@ -19154,7 +19196,7 @@ name|key
 argument_list|,
 name|hash
 argument_list|,
-name|loader
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 block|}
@@ -21284,6 +21326,18 @@ specifier|final
 name|Ticker
 name|ticker
 decl_stmt|;
+DECL|field|loader
+specifier|final
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loader
+decl_stmt|;
 DECL|field|delegate
 specifier|transient
 name|Cache
@@ -21351,10 +21405,14 @@ argument_list|,
 name|cache
 operator|.
 name|ticker
+argument_list|,
+name|cache
+operator|.
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ManualSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, long maxWeight, Weigher<K, V> weigher, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, Ticker ticker)
+DECL|method|ManualSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, long maxWeight, Weigher<K, V> weigher, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, Ticker ticker, CacheLoader<? super K, V> loader)
 specifier|private
 name|ManualSerializationProxy
 parameter_list|(
@@ -21410,6 +21468,16 @@ name|removalListener
 parameter_list|,
 name|Ticker
 name|ticker
+parameter_list|,
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loader
 parameter_list|)
 block|{
 name|this
@@ -21492,6 +21560,12 @@ condition|?
 literal|null
 else|:
 name|ticker
+expr_stmt|;
+name|this
+operator|.
+name|loader
+operator|=
+name|loader
 expr_stmt|;
 block|}
 DECL|method|recreateCacheBuilder ()
@@ -21766,18 +21840,6 @@ name|serialVersionUID
 init|=
 literal|1
 decl_stmt|;
-DECL|field|loader
-specifier|final
-name|CacheLoader
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|loader
-decl_stmt|;
 DECL|field|autoDelegate
 specifier|transient
 name|LoadingCache
@@ -21788,7 +21850,7 @@ name|V
 argument_list|>
 name|autoDelegate
 decl_stmt|;
-DECL|method|LoadingSerializationProxy (LocalCache<K, V> cache, CacheLoader<? super K, V> loader)
+DECL|method|LoadingSerializationProxy (LocalCache<K, V> cache)
 name|LoadingSerializationProxy
 parameter_list|(
 name|LocalCache
@@ -21798,28 +21860,12 @@ argument_list|,
 name|V
 argument_list|>
 name|cache
-parameter_list|,
-name|CacheLoader
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|loader
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|cache
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|loader
-operator|=
-name|loader
 expr_stmt|;
 block|}
 DECL|method|readObject (ObjectInputStream in)
@@ -22034,6 +22080,41 @@ name|builder
 parameter_list|)
 block|{
 name|this
+argument_list|(
+name|builder
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|LocalManualCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
+specifier|protected
+name|LocalManualCache
+parameter_list|(
+name|CacheBuilder
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|?
+super|super
+name|V
+argument_list|>
+name|builder
+parameter_list|,
+name|CacheLoader
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|loader
+parameter_list|)
+block|{
+name|this
 operator|.
 name|localCache
 operator|=
@@ -22046,6 +22127,8 @@ name|V
 argument_list|>
 argument_list|(
 name|builder
+argument_list|,
+name|loader
 argument_list|)
 expr_stmt|;
 block|}
@@ -22160,7 +22243,7 @@ block|{
 return|return
 name|localCache
 operator|.
-name|getAll
+name|getAllPresent
 argument_list|(
 name|keys
 argument_list|)
@@ -22405,18 +22488,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|loader
-specifier|final
-name|CacheLoader
-argument_list|<
-name|?
-super|super
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|loader
-decl_stmt|;
 DECL|method|LocalLoadingCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
 name|LocalLoadingCache
 parameter_list|(
@@ -22446,15 +22517,11 @@ block|{
 name|super
 argument_list|(
 name|builder
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|loader
-operator|=
+argument_list|,
 name|checkNotNull
 argument_list|(
 name|loader
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -22475,11 +22542,9 @@ block|{
 return|return
 name|localCache
 operator|.
-name|get
+name|getOrLoad
 argument_list|(
 name|key
-argument_list|,
-name|loader
 argument_list|)
 return|;
 block|}
@@ -22550,8 +22615,6 @@ operator|.
 name|getAll
 argument_list|(
 name|keys
-argument_list|,
-name|loader
 argument_list|)
 return|;
 block|}
@@ -22571,8 +22634,6 @@ operator|.
 name|refresh
 argument_list|(
 name|key
-argument_list|,
-name|loader
 argument_list|)
 expr_stmt|;
 block|}
@@ -22620,8 +22681,6 @@ name|V
 argument_list|>
 argument_list|(
 name|localCache
-argument_list|,
-name|loader
 argument_list|)
 return|;
 block|}

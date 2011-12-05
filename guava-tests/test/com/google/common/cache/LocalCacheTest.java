@@ -934,6 +934,8 @@ name|V
 argument_list|>
 argument_list|(
 name|builder
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
@@ -17539,13 +17541,13 @@ name|localCache
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|two
+name|localCacheTwo
 operator|.
-name|loader
+name|defaultLoader
 argument_list|,
-name|three
+name|localCacheThree
 operator|.
-name|loader
+name|defaultLoader
 argument_list|)
 expr_stmt|;
 name|assertEquals
