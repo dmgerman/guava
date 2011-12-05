@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -98,7 +112,8 @@ class|class
 name|Closeables
 block|{
 DECL|field|logger
-specifier|private
+annotation|@
+name|VisibleForTesting
 specifier|static
 specifier|final
 name|Logger
