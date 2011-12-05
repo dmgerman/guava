@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A factory for {@code Escaper} instances suitable for escaping strings so they  * can be safely included in URIs or particular sections of URIs.  *  *<p>For more information on URI escaping, see  *<a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  *  * @author David Beaumont  * @since 11.0  */
+comment|/**  * A factory for {@code Escaper} instances suitable for escaping strings so they  * can be safely included in URIs or particular sections of URIs.  *  *<p>If the resulting URIs are inserted into an HTML or XML document, they will  * require additional escaping with {@link com.google.common.html.HtmlEscapers}  * or {@link com.google.common.xml.XmlEscapers}.  *  *<p>For more information on URI escaping, see  *<a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>.  *  * @author David Beaumont  * @since 11.0  */
 end_comment
 
 begin_class

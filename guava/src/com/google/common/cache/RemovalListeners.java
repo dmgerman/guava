@@ -60,7 +60,7 @@ specifier|private
 name|RemovalListeners
 parameter_list|()
 block|{}
-comment|/**    * Returns an asynchronous {@code RemovalListener} which processes all    * eviction notifications asynchronously, using {@code executor}.    *    * @param listener the backing listener    * @param executor the executor with which removal notifications are    *     asynchronously executed    */
+comment|/**    * Returns a {@code RemovalListener} which processes all eviction    * notifications using {@code executor}.    *    * @param listener the backing listener    * @param executor the executor with which removal notifications are    *     asynchronously executed    */
 DECL|method|asynchronous ( final RemovalListener<K, V> listener, final Executor executor)
 specifier|public
 specifier|static

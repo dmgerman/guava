@@ -230,7 +230,7 @@ return|return
 name|isRunning
 return|;
 block|}
-comment|/**    * Starts the stopwatch.    *    * @throws IllegalStateException if the stopwatch is already running.    */
+comment|/**    * Starts the stopwatch.    *    * @return this {@code Stopwatch} instance    * @throws IllegalStateException if the stopwatch is already running.    */
 DECL|method|start ()
 specifier|public
 name|Stopwatch
@@ -258,7 +258,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Stops the stopwatch. Future reads will return the fixed duration that had    * elapsed up to this point.    *    * @throws IllegalStateException if the stopwatch is already stopped.    */
+comment|/**    * Stops the stopwatch. Future reads will return the fixed duration that had    * elapsed up to this point.    *    * @return this {@code Stopwatch} instance    * @throws IllegalStateException if the stopwatch is already stopped.    */
 DECL|method|stop ()
 specifier|public
 name|Stopwatch
@@ -292,7 +292,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets the elapsed time for this stopwatch to zero,    * and places it in a stopped state.    */
+comment|/**    * Sets the elapsed time for this stopwatch to zero,    * and places it in a stopped state.    *    * @return this {@code Stopwatch} instance    */
 DECL|method|reset ()
 specifier|public
 name|Stopwatch

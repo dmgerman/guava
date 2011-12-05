@@ -666,7 +666,7 @@ name|limit
 operator|>
 literal|0
 argument_list|,
-literal|"must be greater then zero: %s"
+literal|"must be greater than zero: %s"
 argument_list|,
 name|limit
 argument_list|)

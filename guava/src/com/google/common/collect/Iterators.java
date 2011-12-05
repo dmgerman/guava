@@ -365,7 +365,7 @@ throw|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Returns the empty iterator.    *    *<p>The {@link Iterable} equivalent of this method is {@link    * Collections#emptySet}.    */
+comment|/**    * Returns the empty iterator.    *    *<p>The {@link Iterable} equivalent of this method is {@link    * ImmutableSet#of()}.    */
 comment|// Casting to any type is safe since there are no actual elements.
 annotation|@
 name|SuppressWarnings

@@ -44,7 +44,7 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * US-ASCII: seven-bit ASCII, a.k.a. ISO646-US, a.k.a the Basic Latin block of the Unicode    * character set.    */
+comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    */
 DECL|field|US_ASCII
 specifier|public
 specifier|static
@@ -59,7 +59,7 @@ argument_list|(
 literal|"US-ASCII"
 argument_list|)
 decl_stmt|;
-comment|/**    * ISO-8859-1. ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1.    */
+comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    */
 DECL|field|ISO_8859_1
 specifier|public
 specifier|static

@@ -706,7 +706,7 @@ argument_list|)
 return|;
 block|}
 comment|// LinkedList
-comment|/**    * Creates an empty {@code LinkedList} instance.    *    *<p><b>Note:</b> if you need an immutable empty {@link List}, use    * {@link Collections#emptyList} instead.    *    * @return a new, empty {@code LinkedList}    */
+comment|/**    * Creates an empty {@code LinkedList} instance.    *    *<p><b>Note:</b> if you need an immutable empty {@link List}, use    * {@link ImmutableList#of()} instead.    *    * @return a new, empty {@code LinkedList}    */
 annotation|@
 name|GwtCompatible
 argument_list|(
