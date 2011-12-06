@@ -44,20 +44,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|concurrent
@@ -117,14 +103,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Futures#chain(ListenableFuture, Function)}.  *  * @author Nishant Thakkar  */
+comment|/**  * Base class for unit tests for {@code Futures.chain} and asynchronous {@code  * Futures.transform}.  *  * @author Nishant Thakkar  */
 end_comment
 
 begin_class
-DECL|class|FuturesChainTest
+DECL|class|AbstractFuturesChainTest
 specifier|public
+specifier|abstract
 class|class
-name|FuturesChainTest
+name|AbstractFuturesChainTest
 extends|extends
 name|AbstractChainedListenableFutureTest
 argument_list|<
@@ -182,6 +169,7 @@ DECL|method|buildChainingFuture ( ListenableFuture<Integer> inputFuture)
 annotation|@
 name|Override
 specifier|protected
+specifier|final
 name|ListenableFuture
 argument_list|<
 name|String
@@ -219,18 +207,28 @@ literal|1
 argument_list|)
 expr_stmt|;
 return|return
-name|Futures
-operator|.
 name|chain
 argument_list|(
 name|inputFuture
-argument_list|,
-operator|new
-name|ChainingFunction
-argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Overridden by subclasses to return the result of {@code    * Futures.chain(inputFuture, f)} or {@code    * Futures.transform(inputFuture, f)}, where {@code f} is a {@code Function}    * or {@code AsyncFunction} that delegates to {@link #apply}.    */
+DECL|method|chain ( ListenableFuture<Integer> inputFuture)
+specifier|abstract
+name|ListenableFuture
+argument_list|<
+name|String
+argument_list|>
+name|chain
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|Integer
+argument_list|>
+name|inputFuture
+parameter_list|)
+function_decl|;
 DECL|method|getSuccessfulResult ()
 annotation|@
 name|Override
@@ -243,25 +241,9 @@ return|return
 name|RESULT_DATA
 return|;
 block|}
-DECL|class|ChainingFunction
-specifier|private
-class|class
-name|ChainingFunction
-implements|implements
-name|Function
-argument_list|<
-name|Integer
-argument_list|,
-name|ListenableFuture
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
-block|{
-annotation|@
-name|Override
+comment|/**    * Implements the {@code apply} method of the {@code Function} or {@code    * AsyncFunction} used in {@link #chain}.    */
 DECL|method|apply (Integer input)
-specifier|public
+specifier|final
 name|ListenableFuture
 argument_list|<
 name|String
@@ -319,7 +301,6 @@ block|}
 return|return
 name|outputFuture
 return|;
-block|}
 block|}
 DECL|method|testFutureGetThrowsFunctionException ()
 specifier|public
