@@ -5045,6 +5045,53 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Remove each element in an iterable from a set.    */
+DECL|method|removeAllImpl (Set<?> set, Iterable<?> iterable)
+specifier|static
+name|boolean
+name|removeAllImpl
+parameter_list|(
+name|Set
+argument_list|<
+name|?
+argument_list|>
+name|set
+parameter_list|,
+name|Iterable
+argument_list|<
+name|?
+argument_list|>
+name|iterable
+parameter_list|)
+block|{
+comment|// TODO(jlevy): Have ForwardingSet.standardRemoveAll() call this method.
+name|boolean
+name|changed
+init|=
+literal|false
+decl_stmt|;
+for|for
+control|(
+name|Object
+name|o
+range|:
+name|iterable
+control|)
+block|{
+name|changed
+operator||=
+name|set
+operator|.
+name|remove
+argument_list|(
+name|o
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|changed
+return|;
+block|}
 block|}
 end_class
 

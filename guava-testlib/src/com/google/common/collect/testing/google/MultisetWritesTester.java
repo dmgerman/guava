@@ -258,6 +258,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Method
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collections
@@ -294,6 +306,27 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/**    * Returns the {@link Method} instance for    * {@link #testEntrySet_iterator()} so that tests of    * classes with unmodifiable iterators can suppress it.    */
+DECL|method|getEntrySetIteratorMethod ()
+specifier|public
+specifier|static
+name|Method
+name|getEntrySetIteratorMethod
+parameter_list|()
+block|{
+return|return
+name|Platform
+operator|.
+name|getMethod
+argument_list|(
+name|MultisetWritesTester
+operator|.
+name|class
+argument_list|,
+literal|"testEntrySet_iterator"
+argument_list|)
+return|;
+block|}
 annotation|@
 name|CollectionFeature
 operator|.

@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for Multimaps.transformValues().asMap().  *   * @author Louis Wasserman  */
+comment|/**  * Tests for Multimaps.transformValues().asMap().  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -85,6 +85,8 @@ parameter_list|()
 block|{
 name|super
 argument_list|(
+literal|true
+argument_list|,
 literal|true
 argument_list|,
 literal|true

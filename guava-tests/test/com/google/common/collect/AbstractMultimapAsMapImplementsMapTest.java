@@ -89,7 +89,7 @@ name|Integer
 argument_list|>
 argument_list|>
 block|{
-DECL|method|AbstractMultimapAsMapImplementsMapTest ( boolean modifiable, boolean allowsNulls)
+DECL|method|AbstractMultimapAsMapImplementsMapTest ( boolean modifiable, boolean allowsNulls, boolean supportsIteratorRemove)
 specifier|public
 name|AbstractMultimapAsMapImplementsMapTest
 parameter_list|(
@@ -98,6 +98,9 @@ name|modifiable
 parameter_list|,
 name|boolean
 name|allowsNulls
+parameter_list|,
+name|boolean
+name|supportsIteratorRemove
 parameter_list|)
 block|{
 name|super
@@ -111,6 +114,8 @@ argument_list|,
 name|modifiable
 argument_list|,
 name|modifiable
+argument_list|,
+name|supportsIteratorRemove
 argument_list|)
 expr_stmt|;
 block|}
