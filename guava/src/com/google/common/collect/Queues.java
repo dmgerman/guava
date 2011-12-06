@@ -672,8 +672,8 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * As {@link BlockingQueue#drainTo(Collection, int)}, but waiting up to the specified wait time    * if necessary for {@code maxElements} elements to become available.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param maxElements the maximum number of elements to be transferred    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
-DECL|method|drain (BlockingQueue<E> q, Collection<? super E> buffer, int maxElements, long timeout, TimeUnit unit)
+comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested    * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
+DECL|method|drain (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
 parameter_list|<
@@ -697,7 +697,7 @@ argument_list|>
 name|buffer
 parameter_list|,
 name|int
-name|maxElements
+name|numElements
 parameter_list|,
 name|long
 name|timeout
@@ -740,7 +740,7 @@ while|while
 condition|(
 name|added
 operator|<
-name|maxElements
+name|numElements
 condition|)
 block|{
 comment|// we could rely solely on #poll, but #drainTo might be more efficient when there are multiple
@@ -753,7 +753,7 @@ name|drainTo
 argument_list|(
 name|buffer
 argument_list|,
-name|maxElements
+name|numElements
 operator|-
 name|added
 argument_list|)
@@ -762,7 +762,7 @@ if|if
 condition|(
 name|added
 operator|<
-name|maxElements
+name|numElements
 condition|)
 block|{
 comment|// not enough elements immediately available; will have to poll
@@ -811,8 +811,8 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * As {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)}, but with a different    * behavior in case it is interrupted while waiting. In that case, the operation will continue as    * usual, and in the end the thread's interruption status will be set (no {@code    * InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param maxElements the maximum number of elements to be transferred    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
-DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int maxElements, long timeout, TimeUnit unit)
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},    * but with a different behavior in case it is interrupted while waiting. In that case, the    * operation will continue as usual, and in the end the thread's interruption status will be set    * (no {@code InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
 parameter_list|<
@@ -836,7 +836,7 @@ argument_list|>
 name|buffer
 parameter_list|,
 name|int
-name|maxElements
+name|numElements
 parameter_list|,
 name|long
 name|timeout
@@ -883,7 +883,7 @@ while|while
 condition|(
 name|added
 operator|<
-name|maxElements
+name|numElements
 condition|)
 block|{
 comment|// we could rely solely on #poll, but #drainTo might be more efficient when there are
@@ -896,7 +896,7 @@ name|drainTo
 argument_list|(
 name|buffer
 argument_list|,
-name|maxElements
+name|numElements
 operator|-
 name|added
 argument_list|)
@@ -905,7 +905,7 @@ if|if
 condition|(
 name|added
 operator|<
-name|maxElements
+name|numElements
 condition|)
 block|{
 comment|// not enough elements immediately available; will have to poll
