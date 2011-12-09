@@ -127,6 +127,7 @@ decl_stmt|;
 comment|/**    * Returns a {@link Function} that invokes {@link #escape(String)} on this escaper.    */
 DECL|method|asFunction ()
 specifier|public
+specifier|final
 name|Function
 argument_list|<
 name|String

@@ -151,6 +151,7 @@ block|}
 comment|/**    * Returns the escaped form of a given literal string, starting at the given index. This method is    * called by the {@link #escape(String)} method when it discovers that escaping is required. It is    * protected to allow subclasses to override the fastpath escaping function to inline their    * escaping test. See {@link CharEscaperBuilder} for an example usage.    *    * @param s the literal string to be escaped    * @param index the index to start escaping from    * @return the escaped form of {@code string}    * @throws NullPointerException if {@code string} is null    */
 DECL|method|escapeSlow (String s, int index)
 specifier|protected
+specifier|final
 name|String
 name|escapeSlow
 parameter_list|(
