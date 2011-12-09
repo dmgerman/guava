@@ -546,7 +546,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code CacheStats} representing the sum of this {@code CacheStats}    * and {@code other}.    */
+comment|/**    * Returns a new {@code CacheStats} representing the sum of this {@code CacheStats}    * and {@code other}.    *    * @since 11.0    */
 DECL|method|plus (CacheStats other)
 specifier|public
 name|CacheStats

@@ -313,7 +313,7 @@ name|T
 name|orNull
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an immutable singleton {@link Set} whose only element is the    * contained instance if it is present; an empty immutable {@link Set}    * otherwise.    */
+comment|/**    * Returns an immutable singleton {@link Set} whose only element is the    * contained instance if it is present; an empty immutable {@link Set}    * otherwise.    *    * @since 11.0    */
 DECL|method|asSet ()
 specifier|public
 specifier|abstract
@@ -359,7 +359,7 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    */
+comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0    */
 DECL|method|presentInstances (Iterable<Optional<T>> optionals)
 specifier|public
 specifier|static

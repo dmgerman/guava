@@ -165,6 +165,7 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 annotation|@
@@ -188,6 +189,7 @@ name|key
 argument_list|)
 return|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|get (K key, Callable<V> valueLoader)
@@ -219,6 +221,7 @@ name|valueLoader
 argument_list|)
 return|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|getAllPresent (Iterable<? extends K> keys)
@@ -250,6 +253,7 @@ name|keys
 argument_list|)
 return|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|put (K key, V value)
@@ -295,6 +299,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|invalidateAll (Iterable<?> keys)

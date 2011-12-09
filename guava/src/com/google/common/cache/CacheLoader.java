@@ -504,7 +504,7 @@ name|UnsupportedLoadingOperationException
 extends|extends
 name|UnsupportedOperationException
 block|{}
-comment|/**    * Thrown to indicate that an invalid response was returned from a call to {@link CacheLoader}.    */
+comment|/**    * Thrown to indicate that an invalid response was returned from a call to {@link CacheLoader}.    *    * @since 11.0    */
 DECL|class|InvalidCacheLoadException
 specifier|public
 specifier|static

@@ -181,6 +181,7 @@ specifier|protected
 name|AbstractCache
 parameter_list|()
 block|{}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|get (K key, Callable<V> valueLoader)
@@ -206,6 +207,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|getAllPresent (Iterable<? extends K> keys)
@@ -282,6 +284,7 @@ name|result
 argument_list|)
 return|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|put (K key, V value)
@@ -341,6 +344,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * @since 11.0    */
 annotation|@
 name|Override
 DECL|method|invalidateAll (Iterable<?> keys)
@@ -506,7 +510,7 @@ specifier|public
 interface|interface
 name|StatsCounter
 block|{
-comment|/**      * Records cache hits. This should be called when a cache request returns a cached value.      *      * @param count the number of hits to record      */
+comment|/**      * Records cache hits. This should be called when a cache request returns a cached value.      *      * @param count the number of hits to record      * @since 11.0      */
 DECL|method|recordHits (int count)
 specifier|public
 name|void
@@ -516,7 +520,7 @@ name|int
 name|count
 parameter_list|)
 function_decl|;
-comment|/**      * Records cache misses. This should be called when a cache request returns a value that was      * not found in the cache. This method should be called by the loading thread, as well as by      * threads blocking on the load. Multiple concurrent calls to {@link Cache} lookup methods with      * the same key on an absent value should result in a single call to either      * {@code recordLoadSuccess} or {@code recordLoadException} and multiple calls to this method,      * despite all being served by the results of a single load operation.      *      * @param count the number of misses to record      */
+comment|/**      * Records cache misses. This should be called when a cache request returns a value that was      * not found in the cache. This method should be called by the loading thread, as well as by      * threads blocking on the load. Multiple concurrent calls to {@link Cache} lookup methods with      * the same key on an absent value should result in a single call to either      * {@code recordLoadSuccess} or {@code recordLoadException} and multiple calls to this method,      * despite all being served by the results of a single load operation.      *      * @param count the number of misses to record      * @since 11.0      */
 DECL|method|recordMisses (int count)
 specifier|public
 name|void

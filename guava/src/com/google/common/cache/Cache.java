@@ -176,7 +176,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    */
+comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    *    * @since 11.0    */
 annotation|@
 name|Nullable
 DECL|method|getIfPresent (K key)
@@ -187,7 +187,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes. This method provides a simple substitute for the conventional    * "if cached, return; otherwise create, cache and return" pattern.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    */
+comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes. This method provides a simple substitute for the conventional    * "if cached, return; otherwise create, cache and return" pattern.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    *    * @since 11.0    */
 DECL|method|get (K key, Callable<V> valueLoader)
 name|V
 name|get
@@ -204,7 +204,7 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Returns a map of the values associated with {@code keys} in this cache. The returned map will    * only contain entries which are already present in the cache.    */
+comment|/**    * Returns a map of the values associated with {@code keys} in this cache. The returned map will    * only contain entries which are already present in the cache.    *    * @since 11.0    */
 DECL|method|getAllPresent (Iterable<? extends K> keys)
 name|ImmutableMap
 argument_list|<
@@ -223,7 +223,7 @@ argument_list|>
 name|keys
 parameter_list|)
 function_decl|;
-comment|/**    * Associates {@code value} with {@code key} in this cache. If the cache previously contained a    * value associated with {@code key}, the old value is replaced by {@code value}.    *    *<p>Prefer {@link #get(K, Callable)} when using the conventional "if cached, return; otherwise    * create, cache and return" pattern.    */
+comment|/**    * Associates {@code value} with {@code key} in this cache. If the cache previously contained a    * value associated with {@code key}, the old value is replaced by {@code value}.    *    *<p>Prefer {@link #get(K, Callable)} when using the conventional "if cached, return; otherwise    * create, cache and return" pattern.    *    * @since 11.0    */
 DECL|method|put (K key, V value)
 name|void
 name|put
@@ -244,7 +244,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Discards any cached values for keys {@code keys}.    */
+comment|/**    * Discards any cached values for keys {@code keys}.    *    * @since 11.0    */
 DECL|method|invalidateAll (Iterable<?> keys)
 name|void
 name|invalidateAll
