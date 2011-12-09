@@ -636,6 +636,7 @@ operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
+comment|/**      * @since 11.0      */
 annotation|@
 name|Override
 DECL|method|recordHits (int count)
@@ -655,6 +656,7 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * @since 11.0      */
 annotation|@
 name|Override
 DECL|method|recordMisses (int count)
