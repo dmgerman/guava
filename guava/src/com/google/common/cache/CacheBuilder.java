@@ -102,6 +102,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Ascii
@@ -339,6 +367,13 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|CacheBuilder
 specifier|public
 specifier|final
@@ -1381,6 +1416,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    *<p>Entries with keys that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations. Entries with garbage collected keys are    * cleaned up as part of the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the key strength was already set    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|weakKeys ()
 specifier|public
 name|CacheBuilder
@@ -1473,6 +1513,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p>Weak values will be garbage collected once they are weakly reachable. This makes them a poor    * candidate for caching; consider {@link #softValues} instead.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    *<p>Entries with values that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations. Entries with garbage collected keys are    * cleaned up as part of the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the value strength was already set    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|weakValues ()
 specifier|public
 name|CacheBuilder
@@ -1494,6 +1539,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache {@linkplain    * #maximumSize maximum size} instead of using soft references. You should only use this method if    * you are well familiar with the practical consequences of soft references.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    *<p>Entries with values that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations. Entries with garbage collected values    * are cleaned up as part of the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the value strength was already set    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.ref.SoftReference"
+argument_list|)
 DECL|method|softValues ()
 specifier|public
 name|CacheBuilder
@@ -1714,6 +1764,11 @@ name|expireAfterAccessNanos
 return|;
 block|}
 comment|/**    * Specifies that active entries are eligible for automatic refresh once a fixed duration has    * elapsed after the entry's creation, or the most recent replacement of its value. The semantics    * of refreshes are specified in {@link LoadingCache#refresh}, and are performed by calling    * {@link CacheLoader#reload}.    *    *<p>As the default implementation of {@link CacheLoader#reload} is synchronous, it is    * recommended that users of this method override {@link CacheLoader#reload} with an asynchrnous    * implementation; otherwise refreshes will block other cache operations.    *    *<p>Currently automatic refreshes are performed when the first stale request for an entry    * occurs. The request triggering refresh will make a blocking call to {@link CacheLoader#reload}    * and immediately return the new value if the returned future is complete, and the old value    * otherwise.    *    *<p><b>Note:</b><i>all exceptions thrown during refresh will be logged and then swallowed</i>.    *    * @param duration the length of time after an entry is created that it should be considered    *     stale, and thus eligible for refresh    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the refresh interval was already set    * @since 11.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|refreshInterval (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
@@ -1793,6 +1848,11 @@ name|refreshNanos
 return|;
 block|}
 comment|/**    * Specifies a nanosecond-precision time source for use in determining when entries should be    * expired. By default, {@link System#nanoTime} is used.    *    *<p>The primary intent of this method is to facilitate testing of caches which have been    * configured with {@link #expireAfterWrite} or {@link #expireAfterAccess}.    *    * @throws IllegalStateException if a ticker was already set    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|ticker (Ticker ticker)
 specifier|public
 name|CacheBuilder
@@ -1862,6 +1922,11 @@ block|}
 comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener as part of the routine maintenance described    * in the class javadoc.    *    *<p><b>Note:</b><i>all exceptions thrown by {@code listener} will be logged (using    * {@link java.util.logging.Logger})and then swallowed</i>.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|removalListener ( RemovalListener<? super K1, ? super V1> listener)
 specifier|public
 parameter_list|<

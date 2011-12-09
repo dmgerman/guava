@@ -148,6 +148,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Ticker
@@ -349,6 +377,13 @@ comment|/**  * Unit tests for CacheBuilder.  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|CacheBuilderTest
 specifier|public
 class|class
@@ -356,6 +391,11 @@ name|CacheBuilderTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"removalListener"
+argument_list|)
 DECL|method|testNewBuilder ()
 specifier|public
 name|void
@@ -520,6 +560,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CacheTesting"
+argument_list|)
 DECL|method|testInitialCapacity_small ()
 specifier|public
 name|void
@@ -645,6 +690,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CacheTesting"
+argument_list|)
 DECL|method|testInitialCapacity_smallest ()
 specifier|public
 name|void
@@ -884,6 +934,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CacheTesting"
+argument_list|)
 DECL|method|testConcurrencyLevel_small ()
 specifier|public
 name|void
@@ -1053,6 +1108,40 @@ name|IllegalStateException
 name|expected
 parameter_list|)
 block|{}
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"maximumWeight"
+argument_list|)
+DECL|method|testMaximumSize_andWeight ()
+specifier|public
+name|void
+name|testMaximumSize_andWeight
+parameter_list|()
+block|{
+name|CacheBuilder
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|builder
+init|=
+operator|new
+name|CacheBuilder
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+operator|.
+name|maximumSize
+argument_list|(
+literal|16
+argument_list|)
+decl_stmt|;
 try|try
 block|{
 name|builder
@@ -1073,6 +1162,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"maximumWeight"
+argument_list|)
 DECL|method|testMaximumWeight_negative ()
 specifier|public
 name|void
@@ -1117,6 +1211,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"maximumWeight"
+argument_list|)
 DECL|method|testMaximumWeight_setTwice ()
 specifier|public
 name|void
@@ -1185,6 +1284,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"maximumWeight"
+argument_list|)
 DECL|method|testMaximumWeight_withoutWeigher ()
 specifier|public
 name|void
@@ -1234,6 +1338,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"weigher"
+argument_list|)
 DECL|method|testWeigher_withoutMaximumWeight ()
 specifier|public
 name|void
@@ -1286,6 +1395,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"weigher"
+argument_list|)
 DECL|method|testWeigher_withMaximumSize ()
 specifier|public
 name|void
@@ -1377,6 +1491,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"weakKeys"
+argument_list|)
 DECL|method|testKeyStrengthSetTwice ()
 specifier|public
 name|void
@@ -1421,6 +1540,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"weakValues"
+argument_list|)
 DECL|method|testValueStrengthSetTwice ()
 specifier|public
 name|void
@@ -1661,6 +1785,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"expireAfterAccess"
+argument_list|)
 DECL|method|testTimeToIdle_negative ()
 specifier|public
 name|void
@@ -1707,6 +1836,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"expireAfterAccess"
+argument_list|)
 DECL|method|testTimeToIdle_small ()
 specifier|public
 name|void
@@ -1733,6 +1867,11 @@ argument_list|)
 expr_stmt|;
 comment|// well, it didn't blow up.
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"expireAfterAccess"
+argument_list|)
 DECL|method|testTimeToIdle_setTwice ()
 specifier|public
 name|void
@@ -1786,6 +1925,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"expireAfterAccess"
+argument_list|)
 DECL|method|testTimeToIdleAndToLive ()
 specifier|public
 name|void
@@ -1819,6 +1963,11 @@ argument_list|)
 expr_stmt|;
 comment|// well, it didn't blow up.
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"refreshInterval"
+argument_list|)
 DECL|method|testRefresh_zero ()
 specifier|public
 name|void
@@ -1864,6 +2013,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"refreshInterval"
+argument_list|)
 DECL|method|testRefresh_setTwice ()
 specifier|public
 name|void
@@ -1917,6 +2071,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"ticker"
+argument_list|)
 DECL|method|testTicker_setTwice ()
 specifier|public
 name|void
@@ -1974,6 +2133,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"removalListener"
+argument_list|)
 DECL|method|testRemovalListener_setTwice ()
 specifier|public
 name|void
@@ -2036,6 +2200,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"removalListener"
+argument_list|)
 DECL|method|testNullCache ()
 specifier|public
 name|void
@@ -2146,6 +2315,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"removalListener"
+argument_list|)
 DECL|method|testRemovalNotification_clear ()
 specifier|public
 name|void
@@ -2432,6 +2606,11 @@ expr_stmt|;
 block|}
 comment|// "Basher tests", where we throw a bunch of stuff at a LoadingCache and check basic invariants.
 comment|/**    * This is a less carefully-controlled version of {@link #testRemovalNotification_clear} - this is    * a black-box test that tries to create lots of different thread-interleavings, and asserts that    * each computation is affected by a call to {@code clear()} (and therefore gets passed to the    * removal listener), or else is not affected by the {@code clear()} (and therefore exists in the    * cache afterward).    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"removalListener"
+argument_list|)
 DECL|method|testRemovalNotification_clear_basher ()
 specifier|public
 name|void
@@ -2857,6 +3036,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Calls get() repeatedly from many different threads, and tests that all of the removed entries    * (removed because of size limits or expiration) trigger appropriate removal notifications.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"removalListener"
+argument_list|)
 DECL|method|testRemovalNotification_get_basher ()
 specifier|public
 name|void
@@ -3295,6 +3479,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullParameters ()
 specifier|public
 name|void
@@ -3335,6 +3524,11 @@ name|builder
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CacheTesting"
+argument_list|)
 DECL|method|testSizingDefaults ()
 specifier|public
 name|void
@@ -3406,6 +3600,11 @@ argument_list|)
 expr_stmt|;
 comment|// capacity / conc level
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"CountDownLatch"
+argument_list|)
 DECL|class|DelayingIdentityLoader
 specifier|static
 specifier|final

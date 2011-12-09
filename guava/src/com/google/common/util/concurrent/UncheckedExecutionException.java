@@ -32,6 +32,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to  * {@code ExecutionException} when the exception thrown by a task is an  * unchecked exception. This allows the client code to continue to distinguish  * between checked and unchecked exceptions, even when they come from other  * threads.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link  * ExecutionError}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
@@ -39,6 +53,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|class|UncheckedExecutionException
 specifier|public
 class|class
