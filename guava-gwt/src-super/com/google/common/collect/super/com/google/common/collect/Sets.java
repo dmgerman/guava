@@ -863,6 +863,39 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+comment|/**    * Creates a {@code LinkedHashSet} instance, with a high enough "initial    * capacity" that it<i>should</i> hold {@code expectedSize} elements without    * growth. This behavior cannot be broadly guaranteed, but it is observed to    * be true for OpenJDK 1.6. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the    *        returned set    * @return a new, empty {@code LinkedHashSet} with enough capacity to hold    *         {@code expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 11.0    */
+DECL|method|newLinkedHashSetWithExpectedSize ( int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|LinkedHashSet
+argument_list|<
+name|E
+argument_list|>
+name|newLinkedHashSetWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+return|return
+operator|new
+name|LinkedHashSet
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|Maps
+operator|.
+name|capacity
+argument_list|(
+name|expectedSize
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Creates a<i>mutable</i> {@code LinkedHashSet} instance containing the    * given elements in order.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use {@link ImmutableSet#copyOf(Iterable)} instead.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code LinkedHashSet} containing those elements (minus    *     duplicates)    */
 DECL|method|newLinkedHashSet ( Iterable<? extends E> elements)
 specifier|public
