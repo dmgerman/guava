@@ -425,27 +425,6 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|get (K key)
-specifier|public
-name|V
-name|get
-parameter_list|(
-name|K
-name|key
-parameter_list|)
-throws|throws
-name|ExecutionException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
 DECL|method|getUnchecked (K key)
 specifier|public
 name|V
