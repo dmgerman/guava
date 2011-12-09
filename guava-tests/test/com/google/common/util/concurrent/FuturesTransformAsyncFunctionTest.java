@@ -103,15 +103,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for unit tests for {@code Futures.chain} and asynchronous {@code  * Futures.transform}.  *  * @author Nishant Thakkar  */
+comment|/**  * Unit tests for {@link Futures#transform(ListenableFuture, AsyncFunction)}.  *  * @author Nishant Thakkar  */
 end_comment
 
 begin_class
-DECL|class|AbstractFuturesChainTest
+DECL|class|FuturesTransformAsyncFunctionTest
 specifier|public
-specifier|abstract
 class|class
-name|AbstractFuturesChainTest
+name|FuturesTransformAsyncFunctionTest
 extends|extends
 name|AbstractChainedListenableFutureTest
 argument_list|<
@@ -169,7 +168,6 @@ DECL|method|buildChainingFuture ( ListenableFuture<Integer> inputFuture)
 annotation|@
 name|Override
 specifier|protected
-specifier|final
 name|ListenableFuture
 argument_list|<
 name|String
@@ -207,28 +205,18 @@ literal|1
 argument_list|)
 expr_stmt|;
 return|return
-name|chain
+name|Futures
+operator|.
+name|transform
 argument_list|(
 name|inputFuture
+argument_list|,
+operator|new
+name|ChainingFunction
+argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Overridden by subclasses to return the result of {@code    * Futures.chain(inputFuture, f)} or {@code    * Futures.transform(inputFuture, f)}, where {@code f} is a {@code Function}    * or {@code AsyncFunction} that delegates to {@link #apply}.    */
-DECL|method|chain ( ListenableFuture<Integer> inputFuture)
-specifier|abstract
-name|ListenableFuture
-argument_list|<
-name|String
-argument_list|>
-name|chain
-parameter_list|(
-name|ListenableFuture
-argument_list|<
-name|Integer
-argument_list|>
-name|inputFuture
-parameter_list|)
-function_decl|;
 DECL|method|getSuccessfulResult ()
 annotation|@
 name|Override
@@ -241,9 +229,22 @@ return|return
 name|RESULT_DATA
 return|;
 block|}
-comment|/**    * Implements the {@code apply} method of the {@code Function} or {@code    * AsyncFunction} used in {@link #chain}.    */
+DECL|class|ChainingFunction
+specifier|private
+class|class
+name|ChainingFunction
+implements|implements
+name|AsyncFunction
+argument_list|<
+name|Integer
+argument_list|,
+name|String
+argument_list|>
+block|{
+annotation|@
+name|Override
 DECL|method|apply (Integer input)
-specifier|final
+specifier|public
 name|ListenableFuture
 argument_list|<
 name|String
@@ -301,6 +302,7 @@ block|}
 return|return
 name|outputFuture
 return|;
+block|}
 block|}
 DECL|method|testFutureGetThrowsFunctionException ()
 specifier|public
