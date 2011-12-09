@@ -16,8 +16,50 @@ name|primitives
 package|;
 end_package
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
 begin_comment
-comment|/**  * Android {@code Integer.java}, stripped down to {@code parseInt} methods.  */
+comment|/**  * Static utility methods derived from Android's {@code Integer.java}.  */
 end_comment
 
 begin_class
@@ -26,11 +68,34 @@ specifier|final
 class|class
 name|AndroidInteger
 block|{
-comment|/**    * Parses the specified string as a signed integer value using the specified    * radix. The ASCII character \u002d ('-') is recognized as the minus sign.    *    * @param string    *            the string representation of an integer value.    * @param radix    *            the radix to use when parsing.    * @return the primitive integer value represented by {@code string} using    *         {@code radix}.    * @throws NumberFormatException    *             if {@code string} is {@code null} or has a length of zero,    *             {@code radix< Character.MIN_RADIX},    *             {@code radix> Character.MAX_RADIX}, or if {@code string}    *             can not be parsed as an integer value.    */
-DECL|method|parseInt (String string, int radix)
+comment|/**    * See {@link Ints#tryParse(String)} for the public interface.    */
+annotation|@
+name|CheckForNull
+DECL|method|tryParse (String string)
 specifier|static
-name|int
-name|parseInt
+name|Integer
+name|tryParse
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+block|{
+return|return
+name|tryParse
+argument_list|(
+name|string
+argument_list|,
+literal|10
+argument_list|)
+return|;
+block|}
+comment|/**    * See {@link Ints#tryParse(String, int)} for the public interface.    */
+annotation|@
+name|CheckForNull
+DECL|method|tryParse (String string, int radix)
+specifier|static
+name|Integer
+name|tryParse
 parameter_list|(
 name|String
 name|string
@@ -38,40 +103,46 @@ parameter_list|,
 name|int
 name|radix
 parameter_list|)
-throws|throws
-name|NumberFormatException
 block|{
-if|if
-condition|(
+name|checkNotNull
+argument_list|(
 name|string
-operator|==
-literal|null
-operator|||
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
 name|radix
-argument_list|<
+operator|>=
 name|Character
 operator|.
 name|MIN_RADIX
-operator|||
+argument_list|,
+literal|"Invalid radix %s, min radix is %s"
+argument_list|,
 name|radix
-argument_list|>
+argument_list|,
+name|Character
+operator|.
+name|MIN_RADIX
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|radix
+operator|<=
 name|Character
 operator|.
 name|MAX_RADIX
-condition|)
-block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
+argument_list|,
+literal|"Invalid radix %s, max radix is %s"
+argument_list|,
+name|radix
+argument_list|,
+name|Character
+operator|.
+name|MAX_RADIX
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|int
 name|length
 init|=
@@ -91,17 +162,9 @@ operator|==
 literal|0
 condition|)
 block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 name|boolean
 name|negative
@@ -125,20 +188,12 @@ operator|==
 name|length
 condition|)
 block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 return|return
-name|parse
+name|tryParse
 argument_list|(
 name|string
 argument_list|,
@@ -150,11 +205,13 @@ name|negative
 argument_list|)
 return|;
 block|}
-DECL|method|parse (String string, int offset, int radix, boolean negative)
+annotation|@
+name|CheckForNull
+DECL|method|tryParse (String string, int offset, int radix, boolean negative)
 specifier|private
 specifier|static
-name|int
-name|parse
+name|Integer
+name|tryParse
 parameter_list|(
 name|String
 name|string
@@ -168,8 +225,6 @@ parameter_list|,
 name|boolean
 name|negative
 parameter_list|)
-throws|throws
-name|NumberFormatException
 block|{
 name|int
 name|max
@@ -225,17 +280,9 @@ operator|-
 literal|1
 condition|)
 block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 if|if
 condition|(
@@ -244,17 +291,9 @@ operator|>
 name|result
 condition|)
 block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 name|int
 name|next
@@ -272,17 +311,9 @@ operator|>
 name|result
 condition|)
 block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 name|result
 operator|=
@@ -307,18 +338,30 @@ operator|<
 literal|0
 condition|)
 block|{
-throw|throw
-operator|new
-name|NumberFormatException
-argument_list|(
-literal|"unable to parse '"
-operator|+
-name|string
-operator|+
-literal|"' as integer"
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
+block|}
+comment|// For GWT where ints do not overflow
+if|if
+condition|(
+name|result
+operator|>
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|||
+name|result
+operator|<
+name|Integer
+operator|.
+name|MIN_VALUE
+condition|)
+block|{
+return|return
+literal|null
+return|;
 block|}
 return|return
 name|result
