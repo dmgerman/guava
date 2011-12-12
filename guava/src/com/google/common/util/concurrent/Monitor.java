@@ -277,6 +277,11 @@ name|ReentrantLock
 name|lock
 decl_stmt|;
 comment|/**    * The guards associated with this monitor that currently have waiters ({@code waiterCount> 0}).    * This is an ArrayList rather than, say, a HashSet so that iteration and almost all adds don't    * incur any object allocation overhead.    */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"lock"
+argument_list|)
 DECL|field|activeGuards
 specifier|private
 specifier|final
@@ -1405,11 +1410,6 @@ name|satisfied
 return|;
 block|}
 comment|/**    * Waits for the guard to be satisfied. Waits indefinitely, but may be interrupted. May be    * called only by a thread currently occupying this monitor.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
 DECL|method|waitFor (Guard guard)
 specifier|public
 name|void
@@ -1460,11 +1460,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Waits for the guard to be satisfied. Waits indefinitely. May be called only by a thread    * currently occupying this monitor.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
 DECL|method|waitForUninterruptibly (Guard guard)
 specifier|public
 name|void
@@ -1513,11 +1508,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Waits for the guard to be satisfied. Waits at most the given time, and may be interrupted.    * May be called only by a thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
 DECL|method|waitFor (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1582,11 +1572,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Waits for the guard to be satisfied. Waits at most the given time. May be called only by a    * thread currently occupying this monitor.    *    * @return whether the guard is now satisfied    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
 DECL|method|waitForUninterruptibly (Guard guard, long time, TimeUnit unit)
 specifier|public
 name|boolean
@@ -1649,11 +1634,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Leaves this monitor. May be called only by a thread currently occupying this monitor.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
 DECL|method|leave ()
 specifier|public
 name|void
