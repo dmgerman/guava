@@ -188,7 +188,7 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the value associated with {@code key} in this cache, obtaining that value from    * {@code valueLoader} if necessary. No observable state associated with this cache is modified    * until loading completes. This method provides a simple substitute for the conventional    * "if cached, return; otherwise create, cache and return" pattern.    *    *<p><b>Warning:</b> as with {@link CacheLoader#load}, {@code valueLoader}<b>must not</b> return    * {@code null}; it may either return a non-null value or throw an exception.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    *    * @since 11.0    */
-DECL|method|get (K key, Callable<V> valueLoader)
+DECL|method|get (K key, Callable<? extends V> valueLoader)
 name|V
 name|get
 parameter_list|(
@@ -197,6 +197,8 @@ name|key
 parameter_list|,
 name|Callable
 argument_list|<
+name|?
+extends|extends
 name|V
 argument_list|>
 name|valueLoader
@@ -291,7 +293,7 @@ name|void
 name|cleanUp
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed in Guava release 12.0.    */
+comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed from {@code Cache} in Guava release 12.0. Note that    * {@link CacheBuilder#build(CacheLoader)} now returns a {@code LoadingCache}, so this deprecation    * (migration) can be dealt with by simply changing the type of references to the results of    * {@link CacheBuilder#build(CacheLoader)}.    */
 DECL|method|get (K key)
 annotation|@
 name|Deprecated
@@ -304,7 +306,7 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until computation    * completes. Unlike {@link #get}, this method does not throw a checked exception, and thus should    * only be used in situations where checked exceptions are not thrown by the cache loader.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions,    * and should not be used with cache loaders which throw checked exceptions.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed in Guava release 12.0.    */
+comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until computation    * completes. Unlike {@link #get}, this method does not throw a checked exception, and thus should    * only be used in situations where checked exceptions are not thrown by the cache loader.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions,    * and should not be used with cache loaders which throw checked exceptions.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed from {@code Cache} in Guava release 12.0. Note that    * {@link CacheBuilder#build(CacheLoader)} now returns a {@code LoadingCache}, so this deprecation    * (migration) can be dealt with by simply changing the type of references to the results of    * {@link CacheBuilder#build(CacheLoader)}.    */
 DECL|method|getUnchecked (K key)
 annotation|@
 name|Deprecated
@@ -315,7 +317,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed in Guava release 12.0.    */
+comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed from {@code Cache} in Guava release 12.0. Note that    * {@link CacheBuilder#build(CacheLoader)} now returns a {@code LoadingCache}, so this deprecation    * (migration) can be dealt with by simply changing the type of references to the results of    * {@link CacheBuilder#build(CacheLoader)}.    */
 DECL|method|apply (K key)
 annotation|@
 name|Deprecated

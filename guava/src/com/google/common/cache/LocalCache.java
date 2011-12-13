@@ -22173,7 +22173,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (K key, final Callable<V> valueLoader)
+DECL|method|get (K key, final Callable<? extends V> valueLoader)
 specifier|public
 name|V
 name|get
@@ -22184,6 +22184,8 @@ parameter_list|,
 specifier|final
 name|Callable
 argument_list|<
+name|?
+extends|extends
 name|V
 argument_list|>
 name|valueLoader

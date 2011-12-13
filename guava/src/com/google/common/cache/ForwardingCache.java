@@ -192,7 +192,7 @@ block|}
 comment|/**    * @since 11.0    */
 annotation|@
 name|Override
-DECL|method|get (K key, Callable<V> valueLoader)
+DECL|method|get (K key, Callable<? extends V> valueLoader)
 specifier|public
 name|V
 name|get
@@ -202,6 +202,8 @@ name|key
 parameter_list|,
 name|Callable
 argument_list|<
+name|?
+extends|extends
 name|V
 argument_list|>
 name|valueLoader
