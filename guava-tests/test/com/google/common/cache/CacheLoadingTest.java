@@ -1620,7 +1620,7 @@ argument_list|(
 name|ticker
 argument_list|)
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|1
 argument_list|,
@@ -2056,7 +2056,7 @@ argument_list|(
 name|ticker
 argument_list|)
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|1
 argument_list|,
@@ -5809,7 +5809,7 @@ argument_list|(
 name|ticker
 argument_list|)
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|1
 argument_list|,
@@ -7757,7 +7757,7 @@ argument_list|(
 name|ticker
 argument_list|)
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|1
 argument_list|,
@@ -9518,7 +9518,7 @@ argument_list|(
 name|ticker
 argument_list|)
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|1
 argument_list|,
@@ -11283,7 +11283,7 @@ argument_list|(
 name|ticker
 argument_list|)
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|1
 argument_list|,

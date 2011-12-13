@@ -1966,7 +1966,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"refreshInterval"
+literal|"refreshAfterWrite"
 argument_list|)
 DECL|method|testRefresh_zero ()
 specifier|public
@@ -1995,7 +1995,7 @@ try|try
 block|{
 name|builder
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|0
 argument_list|,
@@ -2016,7 +2016,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"refreshInterval"
+literal|"refreshAfterWrite"
 argument_list|)
 DECL|method|testRefresh_setTwice ()
 specifier|public
@@ -2041,7 +2041,7 @@ name|Object
 argument_list|>
 argument_list|()
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|3600
 argument_list|,
@@ -2053,7 +2053,7 @@ block|{
 comment|// even to the same value is not allowed
 name|builder
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|3600
 argument_list|,

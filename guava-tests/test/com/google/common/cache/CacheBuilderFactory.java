@@ -1139,7 +1139,7 @@ condition|)
 block|{
 name|builder
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 name|refresh
 operator|.

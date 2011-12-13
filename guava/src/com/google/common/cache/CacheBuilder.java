@@ -1769,7 +1769,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
 argument_list|)
-DECL|method|refreshInterval (long duration, TimeUnit unit)
+DECL|method|refreshAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder
 argument_list|<
@@ -1777,7 +1777,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|refreshInterval
+name|refreshAfterWrite
 parameter_list|(
 name|long
 name|duration
@@ -2196,7 +2196,7 @@ name|refreshNanos
 operator|==
 name|UNSET_INT
 argument_list|,
-literal|"refreshInterval requires a LoadingCache"
+literal|"refreshAfterWrite requires a LoadingCache"
 argument_list|)
 expr_stmt|;
 block|}

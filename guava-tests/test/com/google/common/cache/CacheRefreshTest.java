@@ -130,7 +130,7 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 literal|3
 argument_list|,

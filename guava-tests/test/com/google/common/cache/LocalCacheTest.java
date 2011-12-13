@@ -2584,7 +2584,7 @@ argument_list|(
 name|createCacheBuilder
 argument_list|()
 operator|.
-name|refreshInterval
+name|refreshAfterWrite
 argument_list|(
 name|duration
 argument_list|,
