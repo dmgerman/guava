@@ -1608,7 +1608,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Copies each key-value mapping in {@code source} into {@code dest}, with    * its key and value reversed.    *    * @param source any multimap    * @param dest the multimap to copy into; usually empty    * @return {@code dest}    */
+comment|/**    * Copies each key-value mapping in {@code source} into {@code dest}, with    * its key and value reversed.    *    *<p>If {@code source} is an {@link ImmutableMultimap}, consider using    * {@link ImmutableMultimap#inverse} instead.    *    * @param source any multimap    * @param dest the multimap to copy into; usually empty    * @return {@code dest}    */
 DECL|method|invertFrom ( Multimap<? extends V, ? extends K> source, M dest)
 specifier|public
 specifier|static

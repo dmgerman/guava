@@ -187,7 +187,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link Multimap}. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableMultimap(Multimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * An immutable {@link Multimap}. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableMultimap(Multimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  *<p>In addition to methods defined by {@link Multimap}, an {@link #inverse}  * method is also supported.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -198,6 +198,7 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+comment|// TODO(user): If BiMultimap graduates from labs, this class should implement it.
 DECL|class|ImmutableMultimap
 specifier|public
 specifier|abstract
@@ -785,7 +786,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds an entry to the built multimap.      *       * @since 11.0      */
+comment|/**      * Adds an entry to the built multimap.      *      * @since 11.0      */
 DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
@@ -999,7 +1000,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Specifies the ordering of the generated multimap's keys.      *       * @since 8.0      */
+comment|/**      * Specifies the ordering of the generated multimap's keys.      *      * @since 8.0      */
 annotation|@
 name|Beta
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
@@ -1043,7 +1044,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *       * @since 8.0      */
+comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *      * @since 8.0      */
 annotation|@
 name|Beta
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
@@ -1425,6 +1426,21 @@ parameter_list|(
 name|K
 name|key
 parameter_list|)
+function_decl|;
+comment|/**    * Returns an immutable multimap which is the inverse of this one. For every    * key-value mapping in the original, the result will have a mapping with    * key and value reversed.    *    * @since 11    */
+annotation|@
+name|Beta
+DECL|method|inverse ()
+specifier|public
+specifier|abstract
+name|ImmutableMultimap
+argument_list|<
+name|V
+argument_list|,
+name|K
+argument_list|>
+name|inverse
+parameter_list|()
 function_decl|;
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
 annotation|@
