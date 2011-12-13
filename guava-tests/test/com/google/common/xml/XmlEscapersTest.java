@@ -125,6 +125,8 @@ argument_list|(
 name|xmlEscaper
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Test quotes are escaped.
@@ -187,6 +189,8 @@ argument_list|(
 name|xmlContentEscaper
 argument_list|,
 literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Test quotes are not escaped.
@@ -215,8 +219,88 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testXmlAttributeEscaper ()
+specifier|public
+name|void
+name|testXmlAttributeEscaper
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|CharEscaper
+name|xmlAttributeEscaper
+init|=
+operator|(
+name|CharEscaper
+operator|)
+name|XmlEscapers
+operator|.
+name|xmlAttributeEscaper
+argument_list|()
+decl_stmt|;
+name|assertBasicXmlEscaper
+argument_list|(
+name|xmlAttributeEscaper
+argument_list|,
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// Test quotes are escaped.
+name|assertEquals
+argument_list|(
+literal|"&quot;test&quot;"
+argument_list|,
+name|xmlAttributeEscaper
+operator|.
+name|escape
+argument_list|(
+literal|"\"test\""
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"&apos;test&apos;"
+argument_list|,
+name|xmlAttributeEscaper
+operator|.
+name|escape
+argument_list|(
+literal|"\'test'"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// Test all escapes
+name|assertEquals
+argument_list|(
+literal|"a&quot;b&lt;c&gt;d&amp;e&quot;f&apos;"
+argument_list|,
+name|xmlAttributeEscaper
+operator|.
+name|escape
+argument_list|(
+literal|"a\"b<c>d&e\"f'"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// Test '\t', '\n' and '\r' are escaped.
+name|assertEquals
+argument_list|(
+literal|"a&#x9;b&#xA;c&#xD;d"
+argument_list|,
+name|xmlAttributeEscaper
+operator|.
+name|escape
+argument_list|(
+literal|"a\tb\nc\rd"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Helper to assert common properties of xml escapers.
-DECL|method|assertBasicXmlEscaper (CharEscaper xmlEscaper, boolean shouldEscapeQuotes)
+DECL|method|assertBasicXmlEscaper (CharEscaper xmlEscaper, boolean shouldEscapeQuotes, boolean shouldEscapeWhitespaceChars)
 specifier|private
 name|void
 name|assertBasicXmlEscaper
@@ -226,6 +310,9 @@ name|xmlEscaper
 parameter_list|,
 name|boolean
 name|shouldEscapeQuotes
+parameter_list|,
+name|boolean
+name|shouldEscapeWhitespaceChars
 parameter_list|)
 block|{
 comment|// Simple examples (smoke tests)
@@ -345,6 +432,35 @@ literal|'\r'
 condition|)
 block|{
 comment|// Only these whitespace chars are permitted in XML,
+if|if
+condition|(
+name|shouldEscapeWhitespaceChars
+condition|)
+block|{
+name|assertEscaping
+argument_list|(
+name|xmlEscaper
+argument_list|,
+literal|"&#x"
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|ch
+argument_list|)
+operator|.
+name|toUpperCase
+argument_list|()
+operator|+
+literal|";"
+argument_list|,
+name|ch
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|assertUnescaped
 argument_list|(
 name|xmlEscaper
@@ -352,6 +468,7 @@ argument_list|,
 name|ch
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

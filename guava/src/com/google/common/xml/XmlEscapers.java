@@ -68,6 +68,20 @@ name|common
 operator|.
 name|escape
 operator|.
+name|Escaper
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|escape
+operator|.
 name|Escapers
 import|;
 end_import
@@ -117,20 +131,7 @@ comment|// the character values {@code 0xFFFE} and {@code 0xFFFF} which are not
 comment|// permitted in XML. For more detail see section
 comment|//<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#charsets">2.2</a> of
 comment|// the XML specification.
-comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in an XML document as either element    * content or attribute values. See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#syntax">2.4</a> of the    * XML specification.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). Any non-ASCII characters appearing in the input    * will be preserved in the output. Specifically "\r" (carriage return) is    * preserved in the output, which may result in it being silently converted to    * "\n" when the XML is parsed.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
-DECL|method|xmlEscaper ()
-specifier|public
-specifier|static
-name|CharEscaper
-name|xmlEscaper
-parameter_list|()
-block|{
-comment|// TODO(user): Update callers and return Escaper (remove cast below).
-return|return
-name|XML_ESCAPER
-return|;
-block|}
-comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in an XML document as element content.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#syntax">2.4</a> of the    * XML specification.    *    *<p><b>Note</b>: Double and single quotes are not escaped, so it is<b>not    * safe</b> to use this escaper to escape attribute values. Use    * {@link #xmlEscaper} for cases where the output can appear in either    * attribute values or element content.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). Any non-ASCII characters appearing in the input    * will be preserved in the output. Specifically "\r" (carriage return) is    * preserved in the output, which may result in it being silently converted to    * "\n" when the XML is parsed.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
+comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in an XML document as element content.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#syntax">2.4</a> of the    * XML specification.    *    *<p><b>Note</b>: Double and single quotes are not escaped, so it is<b>not    * safe</b> to use this escaper to escape attribute values. Use    * {@link #xmlEscaper} if the output can appear in element content or    * {@link #xmlAttributeEscaper} in attribute values.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). Any non-ASCII characters appearing in the input    * will be preserved in the output. Specifically "\r" (carriage return) is    * preserved in the output, which may result in it being silently converted to    * "\n" when the XML is parsed.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
 DECL|method|xmlContentEscaper ()
 specifier|public
 specifier|static
@@ -138,10 +139,21 @@ name|CharEscaper
 name|xmlContentEscaper
 parameter_list|()
 block|{
-comment|// TODO(user): Consider removing this to reduce the number of escapers.
 comment|// TODO(user): Update callers and return Escaper (remove cast below).
 return|return
 name|XML_CONTENT_ESCAPER
+return|;
+block|}
+comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in an XML document as attribute values.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#AVNormalize">3.3.3</a>    * of the XML specification.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR), however horizontal tab {@code '\t'}, line feed    * {@code '\n'} and carriage return {@code '\r'} are escaped to a    * corresponding NCR {@code "&#x9;"}, {@code "&#xA;"}, and {@code "&#xD;"}    * respectively. Any other non-ASCII characters appearing in the input will    * be preserved in the output.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
+DECL|method|xmlAttributeEscaper ()
+specifier|public
+specifier|static
+name|Escaper
+name|xmlAttributeEscaper
+parameter_list|()
+block|{
+return|return
+name|XML_ATTRIBUTE_ESCAPER
 return|;
 block|}
 DECL|field|XML_ESCAPER
@@ -157,6 +169,13 @@ specifier|static
 specifier|final
 name|CharEscaper
 name|XML_CONTENT_ESCAPER
+decl_stmt|;
+DECL|field|XML_ATTRIBUTE_ESCAPER
+specifier|private
+specifier|static
+specifier|final
+name|Escaper
+name|XML_ATTRIBUTE_ESCAPER
 decl_stmt|;
 static|static
 block|{
@@ -301,6 +320,40 @@ operator|=
 operator|(
 name|CharEscaper
 operator|)
+name|builder
+operator|.
+name|build
+argument_list|()
+expr_stmt|;
+name|builder
+operator|.
+name|addEscape
+argument_list|(
+literal|'\t'
+argument_list|,
+literal|"&#x9;"
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|addEscape
+argument_list|(
+literal|'\n'
+argument_list|,
+literal|"&#xA;"
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|addEscape
+argument_list|(
+literal|'\r'
+argument_list|,
+literal|"&#xD;"
+argument_list|)
+expr_stmt|;
+name|XML_ATTRIBUTE_ESCAPER
+operator|=
 name|builder
 operator|.
 name|build
