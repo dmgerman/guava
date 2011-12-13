@@ -245,6 +245,7 @@ operator|&
 literal|0xffffffff
 expr_stmt|;
 block|}
+comment|/**    * Returns an {@code UnsignedInteger} that, when treated as signed, is    * equal to {@code value}.    */
 DECL|method|asUnsigned (int value)
 specifier|public
 specifier|static
@@ -263,6 +264,7 @@ name|value
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@code UnsignedInteger} that is equal to {@code value},    * if possible.  The inverse operation of {@link #longValue()}.    */
 DECL|method|valueOf (long value)
 specifier|public
 specifier|static
@@ -544,7 +546,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedInteger} as an {@code int}. This is an inverse    * operation to {@link #asUnsigned}.    *     *<p>    * Note that if this {@code UnsignedInteger} holds a value {@code>= 2^31}, the returned value    * will be equal to {@code this - 2^32}.    */
+comment|/**    * Returns the value of this {@code UnsignedInteger} as an {@code int}. This is an inverse    * operation to {@link #asUnsigned}.    *     *<p>Note that if this {@code UnsignedInteger} holds a value {@code>= 2^31}, the returned value    * will be equal to {@code this - 2^32}.    */
 annotation|@
 name|Override
 DECL|method|intValue ()
@@ -618,6 +620,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Compares this unsigned integer to another unsigned integer.    * Returns {@code 0} if they are equal, a negative number if {@code this< other},    * and a positive number if {@code this> other}.    */
 annotation|@
 name|Override
 DECL|method|compareTo (UnsignedInteger other)

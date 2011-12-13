@@ -189,7 +189,7 @@ operator|&
 name|INT_MASK
 return|;
 block|}
-comment|/**    * Returns the least value present in {@code array}.    *     * @param array a<i>nonempty</i> array of unsigned {@code int} values    * @return the value present in {@code array} that is less than or equal to every other value in    *         the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the least value present in {@code array}, treating values as unsigned.    *     * @param array a<i>nonempty</i> array of unsigned {@code int} values    * @return the value present in {@code array} that is less than or equal to every other value in    *         the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|min (int... array)
 specifier|public
 specifier|static
@@ -269,7 +269,7 @@ name|min
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the greatest value present in {@code array}.    *     * @param array a<i>nonempty</i> array of unsigned {@code int} values    * @return the value present in {@code array} that is greater than or equal to every other value    *         in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
+comment|/**    * Returns the greatest value present in {@code array}, treating values as unsigned.    *     * @param array a<i>nonempty</i> array of unsigned {@code int} values    * @return the value present in {@code array} that is greater than or equal to every other value    *         in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
 DECL|method|max (int... array)
 specifier|public
 specifier|static
@@ -449,7 +449,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code int} arrays lexicographically. That is, it    * compares, using {@link #compare(int, int)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter array as the lesser.    * For example, {@code []< [1]< [1, 2]< [2]}. Values are treated as unsigned.    *     *<p>    * The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link Arrays#equals(int[], int[])}.    *     * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order"> Lexicographical order    *      article at Wikipedia</a>    */
+comment|/**    * Returns a comparator that compares two arrays of unsigned {@code int} values lexicographically.    * That is, it compares, using {@link #compare(int, int)}), the first pair of values that follow    * any common prefix, or when one array is a prefix of the other, treats the shorter array as the    * lesser. For example, {@code []< [1]< [1, 2]< [2]< [1<< 31]}.    *     *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link Arrays#equals(int[], int[])}.    *     * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order"> Lexicographical order    *      article at Wikipedia</a>    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
