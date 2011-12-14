@@ -105,13 +105,17 @@ specifier|transient
 name|E
 name|element
 decl_stmt|;
-comment|// Non-volatile because:
-comment|//   - Integer is immutable and thus thread-safe;
-comment|//   - no problems if one thread overwrites the cachedHashCode from another.
+comment|// This is transient because it will be recalculated on the first
+comment|// call to hashCode().
+comment|//
+comment|// A race condition is avoided since threads will either see that the value
+comment|// is zero and recalculate it themselves, or two threads will see it at
+comment|// the same time, and both recalculate it.  If the cachedHashCode is 0,
+comment|// it will always be recalculated, unfortunately.
 DECL|field|cachedHashCode
 specifier|private
 specifier|transient
-name|Integer
+name|int
 name|cachedHashCode
 decl_stmt|;
 DECL|method|SingletonImmutableSet (E element)
@@ -401,7 +405,8 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-name|Integer
+comment|// Racy single-check.
+name|int
 name|code
 init|=
 name|cachedHashCode
@@ -410,17 +415,18 @@ if|if
 condition|(
 name|code
 operator|==
-literal|null
+literal|0
 condition|)
 block|{
-return|return
 name|cachedHashCode
+operator|=
+name|code
 operator|=
 name|element
 operator|.
 name|hashCode
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 return|return
 name|code
@@ -434,7 +440,9 @@ name|isHashCodeFast
 parameter_list|()
 block|{
 return|return
-literal|false
+name|cachedHashCode
+operator|!=
+literal|0
 return|;
 block|}
 DECL|method|toString ()
