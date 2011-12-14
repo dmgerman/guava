@@ -42,6 +42,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Throwables
 import|;
 end_import
@@ -232,15 +246,18 @@ name|?
 argument_list|>
 name|schedule
 parameter_list|(
-name|ScheduledExecutorService
+name|AbstractService
 name|service
+parameter_list|,
+name|ScheduledExecutorService
+name|executor
 parameter_list|,
 name|Runnable
 name|task
 parameter_list|)
 block|{
 return|return
-name|service
+name|executor
 operator|.
 name|scheduleWithFixedDelay
 argument_list|(
@@ -291,15 +308,18 @@ name|?
 argument_list|>
 name|schedule
 parameter_list|(
-name|ScheduledExecutorService
+name|AbstractService
 name|service
+parameter_list|,
+name|ScheduledExecutorService
+name|executor
 parameter_list|,
 name|Runnable
 name|task
 parameter_list|)
 block|{
 return|return
-name|service
+name|executor
 operator|.
 name|scheduleAtFixedRate
 argument_list|(
@@ -316,8 +336,8 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Schedules the task to run continuously on the provided service.  */
-DECL|method|schedule (ScheduledExecutorService service, Runnable task)
+comment|/** Schedules the task to run on the provided executor on behalf of the service.  */
+DECL|method|schedule (AbstractService service, ScheduledExecutorService executor, Runnable runnable)
 specifier|abstract
 name|Future
 argument_list|<
@@ -325,11 +345,14 @@ name|?
 argument_list|>
 name|schedule
 parameter_list|(
-name|ScheduledExecutorService
+name|AbstractService
 name|service
 parameter_list|,
+name|ScheduledExecutorService
+name|executor
+parameter_list|,
 name|Runnable
-name|task
+name|runnable
 parameter_list|)
 function_decl|;
 DECL|method|Scheduler ()
@@ -342,7 +365,7 @@ comment|/* use AbstractService for state management */
 DECL|field|delegate
 specifier|private
 specifier|final
-name|Service
+name|AbstractService
 name|delegate
 init|=
 operator|new
@@ -508,6 +531,8 @@ argument_list|()
 operator|.
 name|schedule
 argument_list|(
+name|delegate
+argument_list|,
 name|executorService
 argument_list|,
 name|task
@@ -826,7 +851,7 @@ name|stopAndWait
 argument_list|()
 return|;
 block|}
-comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to     * use a dynamically changing schedule.  After every execution of the task, assuming it hasn't     * been cancelled, the {@link #scheduleNextIteration} method will be called.    *     * @author Luke Sandberg    * @since 11.0    */
+comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to     * use a dynamically changing schedule.  After every execution of the task, assuming it hasn't     * been cancelled, the {@link #getNextSchedule} method will be called.    *     * @author Luke Sandberg    * @since 11.0    */
 annotation|@
 name|Beta
 DECL|class|CustomScheduler
@@ -861,11 +886,18 @@ specifier|final
 name|Runnable
 name|wrappedRunnable
 decl_stmt|;
-comment|/** The service on which this Callable will be scheduled. */
-DECL|field|service
+comment|/** The executor on which this Callable will be scheduled. */
+DECL|field|executor
 specifier|private
 specifier|final
 name|ScheduledExecutorService
+name|executor
+decl_stmt|;
+comment|/**         * The service that is managing this callable.  This is used so that failure can be         * reported properly.        */
+DECL|field|service
+specifier|private
+specifier|final
+name|AbstractService
 name|service
 decl_stmt|;
 comment|/**        * This lock is used to ensure safe and correct cancellation, it ensures that a new task is         * not scheduled while a cancel is ongoing.  Also it protects the currentFuture variable to         * ensure that it is assigned atomically with being scheduled.        */
@@ -893,12 +925,14 @@ name|Void
 argument_list|>
 name|currentFuture
 decl_stmt|;
-DECL|method|ReschedulableCallable (ScheduledExecutorService service, Runnable runnable)
-specifier|public
+DECL|method|ReschedulableCallable (AbstractService service, ScheduledExecutorService executor, Runnable runnable)
 name|ReschedulableCallable
 parameter_list|(
-name|ScheduledExecutorService
+name|AbstractService
 name|service
+parameter_list|,
+name|ScheduledExecutorService
+name|executor
 parameter_list|,
 name|Runnable
 name|runnable
@@ -909,6 +943,12 @@ operator|.
 name|wrappedRunnable
 operator|=
 name|runnable
+expr_stmt|;
+name|this
+operator|.
+name|executor
+operator|=
+name|executor
 expr_stmt|;
 name|this
 operator|.
@@ -970,20 +1010,54 @@ name|isCancelled
 argument_list|()
 condition|)
 block|{
-name|currentFuture
-operator|=
+specifier|final
+name|Schedule
+name|schedule
+init|=
 name|CustomScheduler
 operator|.
 name|this
 operator|.
-name|scheduleNextIteration
+name|getNextSchedule
+argument_list|()
+decl_stmt|;
+name|currentFuture
+operator|=
+name|executor
+operator|.
+name|schedule
 argument_list|(
-name|service
-argument_list|,
 name|this
+argument_list|,
+name|schedule
+operator|.
+name|delay
+argument_list|,
+name|schedule
+operator|.
+name|unit
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+comment|// If an exception is thrown by the subclass then we need to make sure that the service
+comment|// notices and transitions to the FAILED state.  We do it by calling notifyFailed directly
+comment|// because the service does not monitor the state of the future so if the exception is not
+comment|// caught and forwarded to the service the task would stop executing but the service would
+comment|// have no idea.
+name|service
+operator|.
+name|notifyFailed
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -1055,7 +1129,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|schedule (ScheduledExecutorService service, Runnable runnable)
+DECL|method|schedule (AbstractService service, ScheduledExecutorService executor, Runnable runnable)
 specifier|final
 name|Future
 argument_list|<
@@ -1063,8 +1137,11 @@ name|?
 argument_list|>
 name|schedule
 parameter_list|(
-name|ScheduledExecutorService
+name|AbstractService
 name|service
+parameter_list|,
+name|ScheduledExecutorService
+name|executor
 parameter_list|,
 name|Runnable
 name|runnable
@@ -1078,6 +1155,8 @@ name|ReschedulableCallable
 argument_list|(
 name|service
 argument_list|,
+name|executor
+argument_list|,
 name|runnable
 argument_list|)
 decl_stmt|;
@@ -1090,25 +1169,68 @@ return|return
 name|task
 return|;
 block|}
-comment|/**      * Schedules the callable for its next execution, the callable should be scheduled using the       * {@link ScheduledExecutorService#schedule} method.      *       * @param service the service to schedule the callable on      * @param callable the task to schedule       * @return a future that       */
-DECL|method|scheduleNextIteration (ScheduledExecutorService service, Callable<Void> callable)
+comment|/**      * A value object that represents an absolute delay until a task should be invoked.      *       * @author Luke Sandberg      * @since 11.0      */
+annotation|@
+name|Beta
+DECL|class|Schedule
+specifier|protected
+specifier|static
+specifier|final
+class|class
+name|Schedule
+block|{
+DECL|field|delay
+specifier|private
+specifier|final
+name|long
+name|delay
+decl_stmt|;
+DECL|field|unit
+specifier|private
+specifier|final
+name|TimeUnit
+name|unit
+decl_stmt|;
+comment|/**        * @param delay the time from now to delay execution        * @param unit the time unit of the delay parameter        */
+DECL|method|Schedule (long delay, TimeUnit unit)
+specifier|public
+name|Schedule
+parameter_list|(
+name|long
+name|delay
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delay
+operator|=
+name|delay
+expr_stmt|;
+name|this
+operator|.
+name|unit
+operator|=
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * Calculates the time at which to next invoke the task.      *       *<p>This is guaranteed to be called immediately after the task has completed an iteration and      * on the same thread as the previous execution of {@link       * AbstractScheduledService#runOneIteration}.      *       * @return a schedule that defines the delay before the next execution.      */
+DECL|method|getNextSchedule ()
 specifier|protected
 specifier|abstract
-name|Future
-argument_list|<
-name|Void
-argument_list|>
-name|scheduleNextIteration
-parameter_list|(
-name|ScheduledExecutorService
-name|service
-parameter_list|,
-name|Callable
-argument_list|<
-name|Void
-argument_list|>
-name|callable
-parameter_list|)
+name|Schedule
+name|getNextSchedule
+parameter_list|()
+throws|throws
+name|Exception
 function_decl|;
 block|}
 block|}
