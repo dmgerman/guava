@@ -1636,7 +1636,7 @@ name|parameterIsPrimitiveOrNullable
 argument_list|(
 name|func
 argument_list|,
-name|indexOfParamToSetToNull
+name|i
 argument_list|)
 condition|)
 block|{
