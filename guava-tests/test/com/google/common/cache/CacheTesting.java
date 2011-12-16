@@ -1510,6 +1510,7 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+comment|// read accesses may be slightly misordered
 name|assertTrue
 argument_list|(
 name|prev
@@ -1521,6 +1522,18 @@ name|current
 operator|.
 name|getAccessTime
 argument_list|()
+operator|||
+name|prev
+operator|.
+name|getAccessTime
+argument_list|()
+operator|-
+name|current
+operator|.
+name|getAccessTime
+argument_list|()
+operator|<
+literal|1000
 argument_list|)
 expr_stmt|;
 block|}
