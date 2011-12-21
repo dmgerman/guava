@@ -698,8 +698,8 @@ annotation|@
 name|Beta
 annotation|@
 name|Deprecated
-specifier|public
 DECL|method|join (I parts)
+specifier|public
 specifier|final
 parameter_list|<
 name|I
