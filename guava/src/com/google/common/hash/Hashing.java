@@ -302,7 +302,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the MD5 hash algorithm by delegating to the MD5    * {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    */
 DECL|method|md5 ()
 specifier|public
 specifier|static
@@ -327,7 +327,7 @@ argument_list|(
 literal|"MD5"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the SHA-1 algorithm by delegating to the SHA-1    * {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits) by delegating to the    * SHA-1 {@link MessageDigest}.    */
 DECL|method|sha1 ()
 specifier|public
 specifier|static
@@ -352,7 +352,7 @@ argument_list|(
 literal|"SHA-1"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the SHA-256 algorithm by delegating to the SHA-256    * {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the SHA-256 algorithm (256 hash bits) by delegating to    * the SHA-256 {@link MessageDigest}.    */
 DECL|method|sha256 ()
 specifier|public
 specifier|static
@@ -377,7 +377,7 @@ argument_list|(
 literal|"SHA-256"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the SHA-512 algorithm by delegating to the SHA-512    * {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the SHA-512 algorithm (512 hash bits) by delegating to the    * SHA-512 {@link MessageDigest}.    */
 DECL|method|sha512 ()
 specifier|public
 specifier|static
