@@ -360,7 +360,7 @@ name|toString
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0    */
-DECL|method|presentInstances (Iterable<Optional<T>> optionals)
+DECL|method|presentInstances (final Iterable<Optional<T>> optionals)
 specifier|public
 specifier|static
 parameter_list|<
@@ -372,6 +372,7 @@ name|T
 argument_list|>
 name|presentInstances
 parameter_list|(
+specifier|final
 name|Iterable
 argument_list|<
 name|Optional
@@ -387,24 +388,6 @@ argument_list|(
 name|optionals
 argument_list|)
 expr_stmt|;
-specifier|final
-name|Iterator
-argument_list|<
-name|Optional
-argument_list|<
-name|T
-argument_list|>
-argument_list|>
-name|iterator
-init|=
-name|checkNotNull
-argument_list|(
-name|optionals
-operator|.
-name|iterator
-argument_list|()
-argument_list|)
-decl_stmt|;
 return|return
 operator|new
 name|Iterable
@@ -431,6 +414,25 @@ name|T
 argument_list|>
 argument_list|()
 block|{
+specifier|private
+specifier|final
+name|Iterator
+argument_list|<
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+argument_list|>
+name|iterator
+init|=
+name|checkNotNull
+argument_list|(
+name|optionals
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 specifier|protected
