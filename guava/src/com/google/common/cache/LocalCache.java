@@ -14788,15 +14788,6 @@ name|this
 operator|.
 name|table
 decl_stmt|;
-if|if
-condition|(
-name|map
-operator|.
-name|removalNotificationQueue
-operator|!=
-name|DISCARDING_QUEUE
-condition|)
-block|{
 for|for
 control|(
 name|int
@@ -14865,7 +14856,6 @@ operator|.
 name|EXPLICIT
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
