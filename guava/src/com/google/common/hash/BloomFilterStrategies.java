@@ -89,12 +89,12 @@ specifier|final
 name|HashFunction
 name|hashFunction
 decl_stmt|;
-DECL|method|From128ToN (int longs, HashFunction hashFunction)
+DECL|method|From128ToN (int bits, HashFunction hashFunction)
 specifier|private
 name|From128ToN
 parameter_list|(
 name|int
-name|longs
+name|bits
 parameter_list|,
 name|HashFunction
 name|hashFunction
@@ -115,7 +115,7 @@ name|this
 operator|.
 name|bits
 operator|=
-name|longs
+name|bits
 expr_stmt|;
 block|}
 DECL|method|withBits (int bits, HashFunction hashFunction)
