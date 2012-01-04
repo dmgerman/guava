@@ -112,6 +112,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ConcurrentMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ExecutionException
 import|;
 end_import
@@ -209,6 +221,19 @@ parameter_list|(
 name|K
 name|key
 parameter_list|)
+function_decl|;
+comment|/**    * {@inheritDoc}    *    *<p><b>Note that although the view<i>is</i> modifiable, no method on the returned map will ever    * cause entries to be automatically loaded.</b>    */
+annotation|@
+name|Override
+DECL|method|asMap ()
+name|ConcurrentMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|asMap
+parameter_list|()
 function_decl|;
 block|}
 end_interface
