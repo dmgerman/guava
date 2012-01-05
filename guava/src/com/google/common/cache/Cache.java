@@ -204,7 +204,7 @@ argument_list|>
 name|keys
 parameter_list|)
 function_decl|;
-comment|/**    * Associates {@code value} with {@code key} in this cache. If the cache previously contained a    * value associated with {@code key}, the old value is replaced by {@code value}.    *    *<p>Prefer {@link #get(K, Callable)} when using the conventional "if cached, return; otherwise    * create, cache and return" pattern.    *    * @since 11.0    */
+comment|/**    * Associates {@code value} with {@code key} in this cache. If the cache previously contained a    * value associated with {@code key}, the old value is replaced by {@code value}.    *    *<p>Prefer {@link #get(Object, Callable)} when using the conventional "if cached, return;    * otherwise create, cache and return" pattern.    *    * @since 11.0    */
 DECL|method|put (K key, V value)
 name|void
 name|put
