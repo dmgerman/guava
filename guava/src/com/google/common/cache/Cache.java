@@ -52,20 +52,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|ImmutableMap
@@ -168,13 +154,6 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-extends|extends
-name|Function
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
 block|{
 comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    *    * @since 11.0    */
 annotation|@
@@ -292,41 +271,6 @@ DECL|method|cleanUp ()
 name|void
 name|cleanUp
 parameter_list|()
-function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until loading completes.    *    * @throws ExecutionException if a checked exception was thrown while loading the value    * @throws UncheckedExecutionException if an unchecked exception was thrown while loading the    *     value    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed from {@code Cache} in Guava release 12.0. Note that    * {@link CacheBuilder#build(CacheLoader)} now returns a {@code LoadingCache}, so this deprecation    * (migration) can be dealt with by simply changing the type of references to the results of    * {@link CacheBuilder#build(CacheLoader)}.    */
-DECL|method|get (K key)
-annotation|@
-name|Deprecated
-name|V
-name|get
-parameter_list|(
-name|K
-name|key
-parameter_list|)
-throws|throws
-name|ExecutionException
-function_decl|;
-comment|/**    * Returns the value associated with {@code key} in this cache, first loading that value if    * necessary. No observable state associated with this cache is modified until computation    * completes. Unlike {@link #get}, this method does not throw a checked exception, and thus should    * only be used in situations where checked exceptions are not thrown by the cache loader.    *    *<p><b>Warning:</b> this method silently converts checked exceptions to unchecked exceptions,    * and should not be used with cache loaders which throw checked exceptions.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed from {@code Cache} in Guava release 12.0. Note that    * {@link CacheBuilder#build(CacheLoader)} now returns a {@code LoadingCache}, so this deprecation    * (migration) can be dealt with by simply changing the type of references to the results of    * {@link CacheBuilder#build(CacheLoader)}.    */
-DECL|method|getUnchecked (K key)
-annotation|@
-name|Deprecated
-name|V
-name|getUnchecked
-parameter_list|(
-name|K
-name|key
-parameter_list|)
-function_decl|;
-comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value,    *     regardless of whether the exception was checked or unchecked    * @throws ExecutionError if an error was thrown while loading the value    * @deprecated This method has been split out into the {@link LoadingCache} interface, and will be    * removed from {@code Cache} in Guava release 12.0. Note that    * {@link CacheBuilder#build(CacheLoader)} now returns a {@code LoadingCache}, so this deprecation    * (migration) can be dealt with by simply changing the type of references to the results of    * {@link CacheBuilder#build(CacheLoader)}.    */
-DECL|method|apply (K key)
-annotation|@
-name|Deprecated
-name|V
-name|apply
-parameter_list|(
-name|K
-name|key
-parameter_list|)
 function_decl|;
 block|}
 end_interface
