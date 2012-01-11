@@ -212,11 +212,39 @@ block|}
 block|}
 return|;
 block|}
-DECL|class|CustomInterner
+comment|/**    * Returns a new thread-safe interner which retains a weak reference to each instance it has    * interned, and so does not prevent these instances from being garbage-collected. This most    * likely does not perform as well as {@link #newStrongInterner}, but is the best alternative    * when the memory usage of that implementation is unacceptable. Note that unlike {@link    * String#intern}, using this interner does not consume memory in the permanent generation.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
+DECL|method|newWeakInterner ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Interner
+argument_list|<
+name|E
+argument_list|>
+name|newWeakInterner
+parameter_list|()
+block|{
+return|return
+operator|new
+name|WeakInterner
+argument_list|<
+name|E
+argument_list|>
+argument_list|()
+return|;
+block|}
+DECL|class|WeakInterner
 specifier|private
 specifier|static
 class|class
-name|CustomInterner
+name|WeakInterner
 parameter_list|<
 name|E
 parameter_list|>
@@ -237,28 +265,12 @@ argument_list|,
 name|Dummy
 argument_list|>
 name|map
-decl_stmt|;
-DECL|method|CustomInterner (GenericMapMaker<? super E, Object> mm)
-name|CustomInterner
-parameter_list|(
-name|GenericMapMaker
-argument_list|<
-name|?
-super|super
-name|E
-argument_list|,
-name|Object
-argument_list|>
-name|mm
-parameter_list|)
-block|{
-name|this
+init|=
+operator|new
+name|MapMaker
+argument_list|()
 operator|.
-name|map
-operator|=
-name|mm
-operator|.
-name|strongValues
+name|weakKeys
 argument_list|()
 operator|.
 name|keyEquivalence
@@ -271,8 +283,7 @@ argument_list|)
 operator|.
 name|makeCustomMap
 argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
 DECL|method|intern (E sample)
 annotation|@
 name|Override
@@ -373,41 +384,6 @@ name|Dummy
 block|{
 name|VALUE
 block|}
-block|}
-comment|/**    * Returns a new thread-safe interner which retains a weak reference to each instance it has    * interned, and so does not prevent these instances from being garbage-collected. This most    * likely does not perform as well as {@link #newStrongInterner}, but is the best alternative    * when the memory usage of that implementation is unacceptable. Note that unlike {@link    * String#intern}, using this interner does not consume memory in the permanent generation.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
-DECL|method|newWeakInterner ()
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|Interner
-argument_list|<
-name|E
-argument_list|>
-name|newWeakInterner
-parameter_list|()
-block|{
-return|return
-operator|new
-name|CustomInterner
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-operator|new
-name|MapMaker
-argument_list|()
-operator|.
-name|weakKeys
-argument_list|()
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns a function that delegates to the {@link Interner#intern} method of the given interner.    *    * @since 8.0    */
 DECL|method|asFunction (Interner<E> interner)
