@@ -1390,6 +1390,11 @@ name|on
 argument_list|(
 literal|", "
 argument_list|)
+operator|.
+name|useForNull
+argument_list|(
+literal|"null"
+argument_list|)
 decl_stmt|;
 comment|// TODO(user): Maybe move the mathematical methods to a separate
 comment|// package-permission class.
