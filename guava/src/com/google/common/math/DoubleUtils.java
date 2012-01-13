@@ -34,16 +34,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|math
-operator|.
-name|BigInteger
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|google
@@ -53,6 +43,16 @@ operator|.
 name|annotations
 operator|.
 name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|math
+operator|.
+name|BigInteger
 import|;
 end_import
 
@@ -230,7 +230,7 @@ name|double
 name|d
 parameter_list|)
 block|{
-comment|// TODO: replace with Math.getExponent in JDK 6
+comment|// TODO(user): replace with Math.getExponent in JDK 6
 name|long
 name|bits
 init|=
@@ -279,7 +279,7 @@ name|int
 name|scale
 parameter_list|)
 block|{
-comment|// TODO: replace with Math.scalb in JDK 6
+comment|// TODO(user): replace with Math.scalb in JDK 6
 name|int
 name|exponent
 init|=
@@ -698,6 +698,45 @@ argument_list|(
 name|bits
 argument_list|)
 return|;
+block|}
+comment|/**    * Returns its argument if it is non-negative, zero if it is negative.    */
+DECL|method|ensureNonNegative (double value)
+specifier|static
+name|double
+name|ensureNonNegative
+parameter_list|(
+name|double
+name|value
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+operator|!
+name|Double
+operator|.
+name|isNaN
+argument_list|(
+name|value
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|value
+operator|>
+literal|0.0
+condition|)
+block|{
+return|return
+name|value
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|0.0
+return|;
+block|}
 block|}
 DECL|field|ONE_BITS
 specifier|private
