@@ -382,7 +382,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|C
 argument_list|>

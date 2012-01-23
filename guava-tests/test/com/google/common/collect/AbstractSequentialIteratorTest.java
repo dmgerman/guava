@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for {@link AbstractLinkedIterator}. */
+comment|/** Tests for {@link AbstractSequentialIterator}. */
 end_comment
 
 begin_class
@@ -146,10 +146,10 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-DECL|class|AbstractLinkedIteratorTest
+DECL|class|AbstractSequentialIteratorTest
 specifier|public
 class|class
-name|AbstractLinkedIteratorTest
+name|AbstractSequentialIteratorTest
 extends|extends
 name|TestCase
 block|{
@@ -312,7 +312,7 @@ argument_list|>
 name|powersOfTwo
 init|=
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|Integer
 argument_list|>
@@ -561,7 +561,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|Integer
 argument_list|>
@@ -611,7 +611,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|T
 argument_list|>
@@ -650,7 +650,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|Object
 argument_list|>

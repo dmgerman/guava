@@ -288,7 +288,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 import|;
 end_import
 
@@ -17281,7 +17281,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|ReferenceEntry
 argument_list|<
@@ -17907,7 +17907,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|ReferenceEntry
 argument_list|<

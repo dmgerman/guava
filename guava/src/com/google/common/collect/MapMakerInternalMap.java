@@ -14810,7 +14810,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|ReferenceEntry
 argument_list|<
@@ -15436,7 +15436,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 argument_list|<
 name|ReferenceEntry
 argument_list|<

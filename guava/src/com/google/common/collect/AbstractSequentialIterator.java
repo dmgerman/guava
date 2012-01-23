@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -65,21 +51,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  *<p>Example:<pre>   {@code  *  *   Iterator<Integer> powersOfTwo = new AbstractLinkedIterator<Integer>(1) {  *     protected Integer computeNext(Integer previous) {  *       return (previous == 1<< 30) ? null : previous * 2;  *     }  *   };}</pre>  *  * @author Chris Povirk  * @since 8.0  * @deprecated This class has been renamed to {@link  *     AbstractSequentialIterator}.  It is scheduled to be removed in Guava  *     release 13.0.  */
+comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  *<p>Example:<pre>   {@code  *  *   Iterator<Integer> powersOfTwo = new AbstractSequentialIterator<Integer>(1) {  *     protected Integer computeNext(Integer previous) {  *       return (previous == 1<< 30) ? null : previous * 2;  *     }  *   };}</pre>  *  * @author Chris Povirk  * @since 12.0 (in Guava as {@code AbstractLinkedIterator} since 8.0)  */
 end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-annotation|@
 name|GwtCompatible
-DECL|class|AbstractLinkedIterator
+DECL|class|AbstractSequentialIterator
 specifier|public
 specifier|abstract
 class|class
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 parameter_list|<
 name|T
 parameter_list|>
@@ -95,9 +77,9 @@ name|T
 name|nextOrNull
 decl_stmt|;
 comment|/**    * Creates a new iterator with the given first element, or, if {@code    * firstOrNull} is null, creates a new empty iterator.    */
-DECL|method|AbstractLinkedIterator (@ullable T firstOrNull)
+DECL|method|AbstractSequentialIterator (@ullable T firstOrNull)
 specifier|protected
-name|AbstractLinkedIterator
+name|AbstractSequentialIterator
 parameter_list|(
 annotation|@
 name|Nullable
