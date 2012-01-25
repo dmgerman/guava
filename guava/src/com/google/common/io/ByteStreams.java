@@ -557,7 +557,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Opens an output stream from the supplier, copies all bytes from the input    * to the output, and closes the output stream. Does not close or flush the    * output stream.    *    * @param from the input stream to read from    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @since 10.0    */
+comment|/**    * Opens an output stream from the supplier, copies all bytes from the input    * to the output, and closes the output stream. Does not close or flush the    * input stream.    *    * @param from the input stream to read from    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @since 10.0    */
 DECL|method|copy (InputStream from, OutputSupplier<? extends OutputStream> to)
 specifier|public
 specifier|static

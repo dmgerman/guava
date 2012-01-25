@@ -102,6 +102,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|comparator
+annotation|@
+name|GwtTransient
 specifier|final
 name|Comparator
 argument_list|<
