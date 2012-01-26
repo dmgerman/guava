@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link HashFunction} adapter for {@link MessageDigest}s.  *  * @author kevinb@google.com (Kevin Bourrillion)  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * {@link HashFunction} adapter for {@link MessageDigest}s.  *   * @author kevinb@google.com (Kevin Bourrillion)  * @author andreou@google.com (Dimitris Andreou)  */
 end_comment
 
 begin_class
@@ -790,8 +790,6 @@ name|Charset
 name|charset
 parameter_list|)
 block|{
-try|try
-block|{
 return|return
 name|putBytes
 argument_list|(
@@ -803,31 +801,9 @@ operator|.
 name|getBytes
 argument_list|(
 name|charset
-operator|.
-name|name
-argument_list|()
 argument_list|)
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-name|impossible
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-name|impossible
-argument_list|)
-throw|;
-block|}
 block|}
 DECL|method|putObject (T instance, Funnel<? super T> funnel)
 annotation|@
