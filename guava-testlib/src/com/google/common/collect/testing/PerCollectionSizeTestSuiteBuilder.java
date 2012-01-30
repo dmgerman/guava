@@ -558,6 +558,7 @@ name|suite
 return|;
 block|}
 DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<T, E>> parentBuilder)
+specifier|protected
 name|List
 argument_list|<
 name|TestSuite

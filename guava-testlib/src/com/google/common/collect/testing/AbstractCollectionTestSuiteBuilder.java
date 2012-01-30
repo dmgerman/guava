@@ -475,9 +475,10 @@ name|class
 argument_list|)
 return|;
 block|}
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
 annotation|@
 name|Override
+DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder< ?, ? extends OneSizeTestContainerGenerator<Collection<E>, E>> parentBuilder)
+specifier|protected
 name|List
 argument_list|<
 name|TestSuite

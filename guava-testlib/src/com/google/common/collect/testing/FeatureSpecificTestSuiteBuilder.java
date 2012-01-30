@@ -350,7 +350,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getSubjectGenerator ()
-specifier|protected
+specifier|public
 name|G
 name|getSubjectGenerator
 parameter_list|()
@@ -491,7 +491,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getFeatures ()
-specifier|protected
+specifier|public
 name|Set
 argument_list|<
 name|Feature
@@ -559,7 +559,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getName ()
-specifier|protected
+specifier|public
 name|String
 name|getName
 parameter_list|()
@@ -632,7 +632,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|getSuppressedTests ()
-specifier|protected
+specifier|public
 name|Set
 argument_list|<
 name|Method

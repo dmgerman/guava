@@ -281,9 +281,10 @@ return|return
 name|testers
 return|;
 block|}
-DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
 annotation|@
 name|Override
+DECL|method|createDerivedSuites (FeatureSpecificTestSuiteBuilder<?, ? extends OneSizeTestContainerGenerator<Map<K, V>, Entry<K, V>>> parentBuilder)
+specifier|protected
 name|List
 argument_list|<
 name|TestSuite

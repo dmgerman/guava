@@ -390,6 +390,7 @@ return|;
 block|}
 comment|// Would use Maps.immutableEntry
 DECL|method|mapEntry (K key, V value)
+specifier|public
 specifier|static
 parameter_list|<
 name|K
