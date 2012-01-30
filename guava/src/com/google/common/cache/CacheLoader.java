@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -159,8 +145,6 @@ comment|/**  * Computes or retrieves values, based on a key, for use in populati
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 argument_list|(
