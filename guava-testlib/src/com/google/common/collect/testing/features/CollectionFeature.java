@@ -180,6 +180,9 @@ operator|,
 DECL|enumConstant|SUPPORTS_CLEAR
 constructor|SUPPORTS_CLEAR
 operator|,
+DECL|enumConstant|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+constructor|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+operator|,
 comment|/**    * Features supported by general-purpose collections -    * everything but {@link #RESTRICTS_ELEMENTS}.    * @see java.util.Collection the definition of general-purpose collections.    */
 DECL|enumConstant|GENERAL_PURPOSE
 constructor|GENERAL_PURPOSE(       SUPPORTS_ADD

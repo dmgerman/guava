@@ -74,6 +74,24 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|CollectionIteratorTester
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -491,8 +509,13 @@ block|{
 return|return
 name|Collections
 operator|.
-name|emptySet
+name|singleton
+argument_list|(
+name|CollectionIteratorTester
+operator|.
+name|getIteratorKnownOrderRemoveSupportedMethod
 argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|method|suppressForUnmodifiableSet ()
@@ -745,6 +768,10 @@ name|CollectionFeature
 operator|.
 name|ALLOWS_NULL_VALUES
 argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+argument_list|,
 name|CollectionSize
 operator|.
 name|ANY
@@ -826,6 +853,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
+argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionSize
 operator|.
@@ -924,6 +955,10 @@ name|CollectionFeature
 operator|.
 name|RESTRICTS_ELEMENTS
 argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+argument_list|,
 name|CollectionSize
 operator|.
 name|ANY
@@ -1001,6 +1036,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
+argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionSize
 operator|.
@@ -1096,6 +1135,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
+argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionSize
 operator|.

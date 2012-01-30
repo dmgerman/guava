@@ -767,6 +767,10 @@ name|CollectionFeature
 operator|.
 name|ALLOWS_NULL_VALUES
 argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+argument_list|,
 name|CollectionSize
 operator|.
 name|ANY
@@ -844,6 +848,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|ALLOWS_NULL_VALUES
+argument_list|,
+name|CollectionFeature
+operator|.
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionSize
 operator|.

@@ -147,6 +147,9 @@ operator|,
 DECL|enumConstant|SUPPORTS_CLEAR
 constructor|SUPPORTS_CLEAR
 operator|,
+DECL|enumConstant|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+constructor|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+operator|,
 comment|/**    * Indicates that the constructor or factory method of a map, usually an    * immutable map, throws an {@link IllegalArgumentException} when presented    * with duplicate keys instead of discarding all but one.    */
 DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
 constructor|REJECTS_DUPLICATES_AT_CREATION
