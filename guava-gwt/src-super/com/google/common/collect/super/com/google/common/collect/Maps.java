@@ -415,7 +415,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Map} instances. Also see this  * class's counterparts {@link Lists} and {@link Sets}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@link Map} instances (including instances of  * {@link SortedMap}, {@link BiMap}, etc.). Also see this class's counterparts  * {@link Lists}, {@link Sets} and {@link Queues}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -942,43 +942,6 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|()
-return|;
-block|}
-comment|/**    * Returns a synchronized (thread-safe) bimap backed by the specified bimap.    * In order to guarantee serial access, it is critical that<b>all</b> access    * to the backing bimap is accomplished through the returned bimap.    *    *<p>It is imperative that the user manually synchronize on the returned map    * when accessing any of its collection views:<pre>   {@code    *    *   BiMap<Long, String> map = Maps.synchronizedBiMap(    *       HashBiMap.<Long, String>create());    *   ...    *   Set<Long> set = map.keySet();  // Needn't be in synchronized block    *   ...    *   synchronized (map) {  // Synchronizing on map, not set!    *     Iterator<Long> it = set.iterator(); // Must be in synchronized block    *     while (it.hasNext()) {    *       foo(it.next());    *     }    *   }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap to be wrapped in a synchronized view    * @return a sychronized view of the specified bimap    */
-DECL|method|synchronizedBiMap (BiMap<K, V> bimap)
-specifier|public
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|BiMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|synchronizedBiMap
-parameter_list|(
-name|BiMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|bimap
-parameter_list|)
-block|{
-return|return
-name|Synchronized
-operator|.
-name|biMap
-argument_list|(
-name|bimap
-argument_list|,
-literal|null
-argument_list|)
 return|;
 block|}
 comment|/**    * Computes the difference between two maps. This difference is an immutable    * snapshot of the state of the maps at the time this method is called. It    * will never change, even if the maps change at a later time.    *    *<p>Since this method uses {@code HashMap} instances internally, the keys of    * the supplied maps must be well-behaved with respect to    * {@link Object#equals} and {@link Object#hashCode}.    *    *<p><b>Note:</b>If you only need to know whether two maps have the same    * mappings, call {@code left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    */
@@ -3576,6 +3539,43 @@ name|this
 argument_list|)
 return|;
 block|}
+block|}
+comment|/**    * Returns a synchronized (thread-safe) bimap backed by the specified bimap.    * In order to guarantee serial access, it is critical that<b>all</b> access    * to the backing bimap is accomplished through the returned bimap.    *    *<p>It is imperative that the user manually synchronize on the returned map    * when accessing any of its collection views:<pre>   {@code    *    *   BiMap<Long, String> map = Maps.synchronizedBiMap(    *       HashBiMap.<Long, String>create());    *   ...    *   Set<Long> set = map.keySet();  // Needn't be in synchronized block    *   ...    *   synchronized (map) {  // Synchronizing on map, not set!    *     Iterator<Long> it = set.iterator(); // Must be in synchronized block    *     while (it.hasNext()) {    *       foo(it.next());    *     }    *   }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap to be wrapped in a synchronized view    * @return a sychronized view of the specified bimap    */
+DECL|method|synchronizedBiMap (BiMap<K, V> bimap)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|BiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|synchronizedBiMap
+parameter_list|(
+name|BiMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|bimap
+parameter_list|)
+block|{
+return|return
+name|Synchronized
+operator|.
+name|biMap
+argument_list|(
+name|bimap
+argument_list|,
+literal|null
+argument_list|)
+return|;
 block|}
 comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows    * modules to provide users with "read-only" access to internal bimaps. Query    * operations on the returned bimap "read through" to the specified bimap, and    * attempts to modify the returned map, whether direct or via its collection    * views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
 DECL|method|unmodifiableBiMap ( BiMap<? extends K, ? extends V> bimap)
