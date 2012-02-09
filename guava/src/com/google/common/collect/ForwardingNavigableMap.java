@@ -1094,7 +1094,9 @@ name|navigableKeySet
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible implementation of {@link NavigableMap#navigableKeySet} in terms of the methods of    * this {@code NavigableMap}. In many cases, you may wish to override    * {@link ForwardingNavigableMap#navigableKeySet} to forward to this implementation or a subclass    * thereof.    */
+comment|/**    * A sensible implementation of {@link NavigableMap#navigableKeySet} in terms of the methods of    * this {@code NavigableMap}. In many cases, you may wish to override    * {@link ForwardingNavigableMap#navigableKeySet} to forward to this implementation or a subclass    * thereof.    *    * @since 12.0    */
+annotation|@
+name|Beta
 DECL|class|StandardNavigableKeySet
 specifier|protected
 class|class
