@@ -70,6 +70,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Deque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|PriorityQueue
 import|;
 end_import
@@ -181,7 +191,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Queue}  * instances. Also see this class's counterparts  * {@link Lists}, {@link Sets}, and {@link Maps}.  *  * @author Kurt Alfred Kluever  * @since 11.0  */
+comment|/**  * Static utility methods pertaining to {@link Queue} and {@link Deque} instances.  * Also see this class's counterparts {@link Lists}, {@link Sets}, and {@link Maps}.  *  * @author Kurt Alfred Kluever  * @since 11.0  */
 end_comment
 
 begin_class
@@ -228,6 +238,100 @@ argument_list|)
 return|;
 block|}
 comment|// ArrayDeque
+comment|/**    * Creates an empty {@code ArrayDeque} instance.    *    * @return a new, empty {@code ArrayDeque}    */
+DECL|method|newArrayDeque ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ArrayDeque
+argument_list|<
+name|E
+argument_list|>
+name|newArrayDeque
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ArrayDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|()
+return|;
+block|}
+comment|/**    * Creates an {@code ArrayDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code ArrayDeque} containing those elements    */
+DECL|method|newArrayDeque (Iterable<? extends E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ArrayDeque
+argument_list|<
+name|E
+argument_list|>
+name|newArrayDeque
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+if|if
+condition|(
+name|elements
+operator|instanceof
+name|Collection
+condition|)
+block|{
+return|return
+operator|new
+name|ArrayDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|Collections2
+operator|.
+name|cast
+argument_list|(
+name|elements
+argument_list|)
+argument_list|)
+return|;
+block|}
+name|ArrayDeque
+argument_list|<
+name|E
+argument_list|>
+name|deque
+init|=
+operator|new
+name|ArrayDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|Iterables
+operator|.
+name|addAll
+argument_list|(
+name|deque
+argument_list|,
+name|elements
+argument_list|)
+expr_stmt|;
+return|return
+name|deque
+return|;
+block|}
 comment|// ConcurrentLinkedQueue
 comment|/**    * Creates an empty {@code ConcurrentLinkedQueue} instance.    *    * @return a new, empty {@code ConcurrentLinkedQueue}    */
 DECL|method|newConcurrentLinkedQueue ()
@@ -324,6 +428,128 @@ name|queue
 return|;
 block|}
 comment|// LinkedBlockingDeque
+comment|/**    * Creates an empty {@code LinkedBlockingDeque} instance.    *    * @return a new, empty {@code LinkedBlockingDeque}    */
+DECL|method|newLinkedBlockingDeque ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+name|newLinkedBlockingDeque
+parameter_list|()
+block|{
+return|return
+operator|new
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|()
+return|;
+block|}
+comment|/**    * Creates a {@code LinkedBlockingDeque} with the given (fixed) capacity.    *    * @param capacity the capacity of this deque    * @return a new, empty {@code LinkedBlockingDeque}    * @throws IllegalArgumentException if {@code capacity} is less than 1    */
+DECL|method|newLinkedBlockingDeque (int capacity)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+name|newLinkedBlockingDeque
+parameter_list|(
+name|int
+name|capacity
+parameter_list|)
+block|{
+return|return
+operator|new
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|capacity
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates an {@code LinkedBlockingDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingDeque} containing those elements    */
+DECL|method|newLinkedBlockingDeque (Iterable<? extends E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+name|newLinkedBlockingDeque
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+if|if
+condition|(
+name|elements
+operator|instanceof
+name|Collection
+condition|)
+block|{
+return|return
+operator|new
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|Collections2
+operator|.
+name|cast
+argument_list|(
+name|elements
+argument_list|)
+argument_list|)
+return|;
+block|}
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+name|deque
+init|=
+operator|new
+name|LinkedBlockingDeque
+argument_list|<
+name|E
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|Iterables
+operator|.
+name|addAll
+argument_list|(
+name|deque
+argument_list|,
+name|elements
+argument_list|)
+expr_stmt|;
+return|return
+name|deque
+return|;
+block|}
 comment|// LinkedBlockingQueue
 comment|/**    * Creates an empty {@code LinkedBlockingQueue} instance.    *    * @return a new, empty {@code LinkedBlockingQueue}    */
 DECL|method|newLinkedBlockingQueue ()
@@ -662,7 +888,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested    * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
+comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested     * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
 DECL|method|drain (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -801,7 +1027,7 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},    * but with a different behavior in case it is interrupted while waiting. In that case, the    * operation will continue as usual, and in the end the thread's interruption status will be set    * (no {@code InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},     * but with a different behavior in case it is interrupted while waiting. In that case, the     * operation will continue as usual, and in the end the thread's interruption status will be set     * (no {@code InterruptedException} is thrown).     *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
 DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
