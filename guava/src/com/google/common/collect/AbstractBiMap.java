@@ -230,7 +230,6 @@ argument_list|>
 name|delegate
 decl_stmt|;
 DECL|field|inverse
-specifier|private
 specifier|transient
 name|AbstractBiMap
 argument_list|<
@@ -315,6 +314,32 @@ parameter_list|()
 block|{
 return|return
 name|delegate
+return|;
+block|}
+comment|/**    * Returns its input, or throws an exception if this is not a valid key.    */
+DECL|method|checkKey (K key)
+name|K
+name|checkKey
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+block|{
+return|return
+name|key
+return|;
+block|}
+comment|/**    * Returns its input, or throws an exception if this is not a valid value.    */
+DECL|method|checkValue (V value)
+name|V
+name|checkValue
+parameter_list|(
+name|V
+name|value
+parameter_list|)
+block|{
+return|return
+name|value
 return|;
 block|}
 comment|/**    * Specifies the delegate maps going in each direction. Called by the    * constructor and by subclasses during deserialization.    */
@@ -507,6 +532,16 @@ name|boolean
 name|force
 parameter_list|)
 block|{
+name|checkKey
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
+name|checkValue
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 name|boolean
 name|containedKey
 init|=
@@ -1935,6 +1970,44 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*      * Serialization stores the forward bimap, the inverse of this inverse.      * Deserialization calls inverse() on the forward bimap and returns that      * inverse.      *      * If a bimap and its inverse are serialized together, the deserialized      * instances have inverse() methods that return the other.      */
+annotation|@
+name|Override
+DECL|method|checkKey (K key)
+name|K
+name|checkKey
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+block|{
+return|return
+name|inverse
+operator|.
+name|checkValue
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|checkValue (V value)
+name|V
+name|checkValue
+parameter_list|(
+name|V
+name|value
+parameter_list|)
+block|{
+return|return
+name|inverse
+operator|.
+name|checkKey
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
 comment|/**      * @serialData the forward bimap      */
 annotation|@
 name|GwtIncompatible

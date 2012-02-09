@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -554,6 +570,40 @@ parameter_list|()
 block|{
 return|return
 name|valueType
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|checkKey (K key)
+name|K
+name|checkKey
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+block|{
+return|return
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|checkValue (V value)
+name|V
+name|checkValue
+parameter_list|(
+name|V
+name|value
+parameter_list|)
+block|{
+return|return
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|)
 return|;
 block|}
 comment|/**    * @serialData the key class, value class, number of entries, first key, first    *     value, second key, second value, and so on.    */
