@@ -1128,17 +1128,20 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Runs {@link #testConstructor} on every public constructor in class {@code    * c}.    */
-DECL|method|testAllPublicConstructors (Class<?> c)
+comment|/**    * Runs {@link #testConstructor} on every constructor in class {@code c} that    * has at least {@code minimalVisibility}.    */
+DECL|method|testConstructors (Class<?> c, Visibility minimalVisibility)
 specifier|public
 name|void
-name|testAllPublicConstructors
+name|testConstructors
 parameter_list|(
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|c
+parameter_list|,
+name|Visibility
+name|minimalVisibility
 parameter_list|)
 block|{
 for|for
@@ -1157,7 +1160,9 @@ control|)
 block|{
 if|if
 condition|(
-name|isPublic
+name|minimalVisibility
+operator|.
+name|isVisible
 argument_list|(
 name|constructor
 argument_list|)
@@ -1177,17 +1182,43 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Runs {@link #testMethod} on every public static method in class    * {@code c}.    */
-DECL|method|testAllPublicStaticMethods (Class<?> c)
+comment|/**    * Runs {@link #testConstructor} on every public constructor in class {@code    * c}.    */
+DECL|method|testAllPublicConstructors (Class<?> c)
 specifier|public
 name|void
-name|testAllPublicStaticMethods
+name|testAllPublicConstructors
 parameter_list|(
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|c
+parameter_list|)
+block|{
+name|testConstructors
+argument_list|(
+name|c
+argument_list|,
+name|Visibility
+operator|.
+name|PUBLIC
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Runs {@link #testMethod} on every static method declared in class {@code c}    * that has at least {@code minimalVisibility}.    */
+DECL|method|testStaticMethods (Class<?> c, Visibility minimalVisibility)
+specifier|public
+name|void
+name|testStaticMethods
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|c
+parameter_list|,
+name|Visibility
+name|minimalVisibility
 parameter_list|)
 block|{
 for|for
@@ -1203,7 +1234,9 @@ control|)
 block|{
 if|if
 condition|(
-name|isPublic
+name|minimalVisibility
+operator|.
+name|isVisible
 argument_list|(
 name|method
 argument_list|)
@@ -1230,14 +1263,40 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Runs {@link #testMethod} on every public instance method of    * {@code instance}.    */
-DECL|method|testAllPublicInstanceMethods (Object instance)
+comment|/**    * Runs {@link #testMethod} on every public static method declared by class    * {@code c}.    */
+DECL|method|testAllPublicStaticMethods (Class<?> c)
 specifier|public
 name|void
-name|testAllPublicInstanceMethods
+name|testAllPublicStaticMethods
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|c
+parameter_list|)
+block|{
+name|testStaticMethods
+argument_list|(
+name|c
+argument_list|,
+name|Visibility
+operator|.
+name|PUBLIC
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Runs {@link #testMethod} on every instance method declared by the class    * of {@code instance} with at least {@code minimalVisibility}.    */
+DECL|method|testInstanceMethods ( Object instance, Visibility minimalVisibility)
+specifier|public
+name|void
+name|testInstanceMethods
 parameter_list|(
 name|Object
 name|instance
+parameter_list|,
+name|Visibility
+name|minimalVisibility
 parameter_list|)
 block|{
 name|Class
@@ -1264,7 +1323,9 @@ control|)
 block|{
 if|if
 condition|(
-name|isPublic
+name|minimalVisibility
+operator|.
+name|isVisible
 argument_list|(
 name|method
 argument_list|)
@@ -1291,6 +1352,26 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|/**    * Runs {@link #testMethod} on every public instance method declared by the    * class of {@code instance}.    */
+DECL|method|testAllPublicInstanceMethods (Object instance)
+specifier|public
+name|void
+name|testAllPublicInstanceMethods
+parameter_list|(
+name|Object
+name|instance
+parameter_list|)
+block|{
+name|testInstanceMethods
+argument_list|(
+name|instance
+argument_list|,
+name|Visibility
+operator|.
+name|PUBLIC
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Verifies that {@code method} produces a {@link NullPointerException}    * or {@link UnsupportedOperationException} whenever<i>any</i> of its    * non-{@link Nullable} parameters are null.    *    * @param instance the instance to invoke {@code method} on, or null if    *     {@code method} is static    */
 DECL|method|testMethod (Object instance, Method method)
@@ -1631,6 +1712,119 @@ name|getDeclaringClass
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|/** Visibility of any method or constructor. */
+DECL|enum|Visibility
+specifier|public
+enum|enum
+name|Visibility
+block|{
+DECL|enumConstant|PACKAGE
+name|PACKAGE
+block|{
+annotation|@
+name|Override
+name|boolean
+name|isVisible
+parameter_list|(
+name|int
+name|modifiers
+parameter_list|)
+block|{
+return|return
+operator|!
+name|Modifier
+operator|.
+name|isPrivate
+argument_list|(
+name|modifiers
+argument_list|)
+return|;
+block|}
+block|}
+block|,
+DECL|enumConstant|PROTECTED
+name|PROTECTED
+block|{
+annotation|@
+name|Override
+name|boolean
+name|isVisible
+parameter_list|(
+name|int
+name|modifiers
+parameter_list|)
+block|{
+return|return
+name|Modifier
+operator|.
+name|isPublic
+argument_list|(
+name|modifiers
+argument_list|)
+operator|||
+name|Modifier
+operator|.
+name|isProtected
+argument_list|(
+name|modifiers
+argument_list|)
+return|;
+block|}
+block|}
+block|,
+DECL|enumConstant|PUBLIC
+name|PUBLIC
+block|{
+annotation|@
+name|Override
+name|boolean
+name|isVisible
+parameter_list|(
+name|int
+name|modifiers
+parameter_list|)
+block|{
+return|return
+name|Modifier
+operator|.
+name|isPublic
+argument_list|(
+name|modifiers
+argument_list|)
+return|;
+block|}
+block|}
+block|;
+DECL|method|isVisible (int modifiers)
+specifier|abstract
+name|boolean
+name|isVisible
+parameter_list|(
+name|int
+name|modifiers
+parameter_list|)
+function_decl|;
+comment|/**      * Returns {@code true} if {@code member} is visible under {@code this}      * visibility.      */
+DECL|method|isVisible (Member member)
+specifier|final
+name|boolean
+name|isVisible
+parameter_list|(
+name|Member
+name|member
+parameter_list|)
+block|{
+return|return
+name|isVisible
+argument_list|(
+name|member
+operator|.
+name|getModifiers
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * Verifies that {@code func} produces a {@link NullPointerException} or    * {@link UnsupportedOperationException} when the parameter in position {@code    * paramIndex} is null.  If this parameter is marked {@link Nullable}, this    * method does nothing.    *    * @param instance the instance to invoke {@code func} on, or null if    *     {@code func} is static    */
 DECL|method|testFunctorParameter (Object instance, Functor func, int paramIndex, Class<?> testedClass)
@@ -2138,28 +2332,6 @@ name|IllegalAccessException
 throws|,
 name|InstantiationException
 function_decl|;
-block|}
-DECL|method|isPublic (Member member)
-specifier|private
-specifier|static
-name|boolean
-name|isPublic
-parameter_list|(
-name|Member
-name|member
-parameter_list|)
-block|{
-return|return
-name|Modifier
-operator|.
-name|isPublic
-argument_list|(
-name|member
-operator|.
-name|getModifiers
-argument_list|()
-argument_list|)
-return|;
 block|}
 DECL|method|isStatic (Member member)
 specifier|private
