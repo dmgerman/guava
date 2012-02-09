@@ -539,7 +539,7 @@ name|withFeatures
 argument_list|(
 name|CollectionFeature
 operator|.
-name|NONE
+name|SERIALIZABLE
 argument_list|,
 name|CollectionSize
 operator|.
@@ -609,7 +609,7 @@ name|withFeatures
 argument_list|(
 name|CollectionFeature
 operator|.
-name|NONE
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -684,6 +684,10 @@ argument_list|(
 name|ListFeature
 operator|.
 name|SUPPORTS_SET
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -762,6 +766,10 @@ argument_list|(
 name|ListFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -847,6 +855,10 @@ name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SERIALIZABLE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
@@ -926,6 +938,10 @@ argument_list|(
 name|ListFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -1018,7 +1034,7 @@ name|withFeatures
 argument_list|(
 name|CollectionFeature
 operator|.
-name|NONE
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -1116,6 +1132,10 @@ argument_list|(
 name|ListFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.

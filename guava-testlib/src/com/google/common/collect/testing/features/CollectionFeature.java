@@ -211,6 +211,15 @@ argument_list|,
 name|SUPPORTS_CLEAR
 argument_list|)
 operator|,
+DECL|enumConstant|SERIALIZABLE
+DECL|enumConstant|SERIALIZABLE_INCLUDING_VIEWS
+name|SERIALIZABLE
+operator|,
+name|SERIALIZABLE_INCLUDING_VIEWS
+argument_list|(
+name|SERIALIZABLE
+argument_list|)
+operator|,
 comment|/**    * For documenting collections that support no optional features, such as    * {@link java.util.Collections#emptySet}    */
 DECL|enumConstant|NONE
 name|NONE

@@ -342,6 +342,10 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SERIALIZABLE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|GENERAL_PURPOSE
 argument_list|)
 operator|.
@@ -375,6 +379,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -474,6 +482,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -600,6 +612,10 @@ name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SERIALIZABLE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|ALLOWS_NULL_VALUES
 argument_list|)
 operator|.
@@ -633,6 +649,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|ALLOWS_NULL_VALUES
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -687,6 +707,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
