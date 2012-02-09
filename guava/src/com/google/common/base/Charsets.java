@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *  * @author Mike Bostock  * @since 1.0  */
+comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *   *<p>See the Guava User Guide article on<a  * href="http://code.google.com/p/guava-libraries/wiki/StringsExplained#Charsets">  * {@code Charsets}</a>.  *   * @author Mike Bostock  * @since 1.0  */
 end_comment
 
 begin_class

@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factories for common {@link DiscreteDomain} instances.  *  * @author Gregory Kick  * @since 10.0  */
+comment|/**  * Factories for common {@link DiscreteDomain} instances.  *   *<p>See the Guava User Guide section on<a href=  * "http://code.google.com/p/guava-libraries/wiki/RangesExplained#Discrete_Domains">  * {@code DiscreteDomain}</a>.  *  * @author Gregory Kick  * @since 10.0  */
 end_comment
 
 begin_class

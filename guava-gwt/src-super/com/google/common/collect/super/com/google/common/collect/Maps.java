@@ -415,7 +415,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Map} instances (including instances of  * {@link SortedMap}, {@link BiMap}, etc.). Also see this class's counterparts  * {@link Lists}, {@link Sets} and {@link Queues}.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@link Map} instances (including instances of  * {@link SortedMap}, {@link BiMap}, etc.). Also see this class's counterparts  * {@link Lists}, {@link Sets} and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Maps">  * {@code Maps}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Isaac Shum  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

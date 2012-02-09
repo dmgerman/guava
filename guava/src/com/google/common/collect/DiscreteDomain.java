@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such as all  * {@link Integer}s. A discrete domain is one that supports the three basic  * operations: {@link #next}, {@link #previous} and {@link #distance}, according  * to their specifications. The methods {@link #minValue} and {@link #maxValue}  * should also be overridden for bounded types.  *  *<p>A discrete domain always represents the<i>entire</i> set of values of its  * type; it cannot represent partial domains such as "prime integers" or  * "strings of length 5."  *  * @author Kevin Bourrillion  * @since 10.0  * @see DiscreteDomains  */
+comment|/**  * A descriptor for a<i>discrete</i> {@code Comparable} domain such as all  * {@link Integer}s. A discrete domain is one that supports the three basic  * operations: {@link #next}, {@link #previous} and {@link #distance}, according  * to their specifications. The methods {@link #minValue} and {@link #maxValue}  * should also be overridden for bounded types.  *  *<p>A discrete domain always represents the<i>entire</i> set of values of its  * type; it cannot represent partial domains such as "prime integers" or  * "strings of length 5."  *   *<p>See the Guava User Guide section on<a href=  * "http://code.google.com/p/guava-libraries/wiki/RangesExplained#Discrete_Domains">  * {@code DiscreteDomain}</a>.  *  * @author Kevin Bourrillion  * @since 10.0  * @see DiscreteDomains  */
 end_comment
 
 begin_class

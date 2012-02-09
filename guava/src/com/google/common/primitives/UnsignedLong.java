@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *  *<p><b>Please do not extend this class; it will be made final in the near future.</b>  *  * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
+comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *  *<p><b>Please do not extend this class; it will be made final in the near future.</b>  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *  * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
 end_comment
 
 begin_class

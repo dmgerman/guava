@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Unlike {@code FutureTask}, {@code ListenableFutureTask} does not  * provide an overrideable {@link FutureTask#done() done()} method.  For similar  * functionality, call {@link #addListener}.  *  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Unlike {@code FutureTask}, {@code ListenableFutureTask} does not  * provide an overrideable {@link FutureTask#done() done()} method.  For similar  * functionality, call {@link #addListener}.  *   *<p>  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
