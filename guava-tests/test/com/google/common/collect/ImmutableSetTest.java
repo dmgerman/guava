@@ -807,7 +807,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|16
+literal|8
 argument_list|,
 name|ImmutableSet
 operator|.
@@ -821,7 +821,7 @@ name|assertEquals
 argument_list|(
 literal|1
 operator|<<
-literal|30
+literal|29
 argument_list|,
 name|ImmutableSet
 operator|.
@@ -837,7 +837,7 @@ name|assertEquals
 argument_list|(
 literal|1
 operator|<<
-literal|30
+literal|29
 argument_list|,
 name|ImmutableSet
 operator|.
@@ -926,7 +926,7 @@ literal|100
 argument_list|,
 literal|2
 argument_list|,
-literal|8
+literal|4
 argument_list|)
 expr_stmt|;
 name|verifyTableSize
@@ -935,7 +935,7 @@ literal|100
 argument_list|,
 literal|5
 argument_list|,
-literal|16
+literal|8
 argument_list|)
 expr_stmt|;
 name|verifyTableSize
@@ -944,7 +944,7 @@ literal|100
 argument_list|,
 literal|33
 argument_list|,
-literal|256
+literal|64
 argument_list|)
 expr_stmt|;
 name|verifyTableSize
@@ -953,7 +953,7 @@ literal|17
 argument_list|,
 literal|17
 argument_list|,
-literal|64
+literal|32
 argument_list|)
 expr_stmt|;
 name|verifyTableSize
@@ -962,7 +962,7 @@ literal|17
 argument_list|,
 literal|16
 argument_list|,
-literal|64
+literal|32
 argument_list|)
 expr_stmt|;
 name|verifyTableSize
@@ -971,7 +971,7 @@ literal|17
 argument_list|,
 literal|15
 argument_list|,
-literal|64
+literal|32
 argument_list|)
 expr_stmt|;
 block|}

@@ -70,6 +70,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|primitives
 operator|.
 name|Ints
@@ -826,9 +840,7 @@ elseif|else
 if|if
 condition|(
 name|tableSize
-operator|>
-literal|2
-operator|*
+operator|!=
 name|chooseTableSize
 argument_list|(
 name|uniqueElements
@@ -877,19 +889,40 @@ name|Ints
 operator|.
 name|MAX_POWER_OF_TWO
 decl_stmt|;
+comment|// Represents how tightly we can pack things, as a maximum.
+DECL|field|DESIRED_LOAD_FACTOR
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|DESIRED_LOAD_FACTOR
+init|=
+literal|0.7
+decl_stmt|;
 comment|// If the set has this many elements, it will "max out" the table size
 DECL|field|CUTOFF
+specifier|private
 specifier|static
 specifier|final
 name|int
 name|CUTOFF
 init|=
-literal|1
-operator|<<
-literal|29
+operator|(
+name|int
+operator|)
+name|Math
+operator|.
+name|floor
+argument_list|(
+name|MAX_TABLE_SIZE
+operator|*
+name|DESIRED_LOAD_FACTOR
+argument_list|)
 decl_stmt|;
-comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses linear probing in its implementation.  The returned size is the    * smallest power of two that can hold setSize elements while being at most    * 50% full, if possible.    */
+comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses open addressing with linear probing in its implementation.  The    * returned size is the smallest power of two that can hold setSize elements    * with the desired load factor.    *    *<p>Do not call this method with setSize< 2.    */
 DECL|method|chooseTableSize (int setSize)
+annotation|@
+name|VisibleForTesting
 specifier|static
 name|int
 name|chooseTableSize
@@ -898,6 +931,7 @@ name|int
 name|setSize
 parameter_list|)
 block|{
+comment|// Correct the size for open addressing to match desired load factor.
 if|if
 condition|(
 name|setSize
@@ -905,15 +939,37 @@ operator|<
 name|CUTOFF
 condition|)
 block|{
-return|return
+comment|// Round up to the next highest power of 2.
+name|int
+name|tableSize
+init|=
 name|Integer
 operator|.
 name|highestOneBit
 argument_list|(
 name|setSize
+operator|-
+literal|1
 argument_list|)
 operator|<<
-literal|2
+literal|1
+decl_stmt|;
+while|while
+condition|(
+name|tableSize
+operator|*
+name|DESIRED_LOAD_FACTOR
+operator|<
+name|setSize
+condition|)
+block|{
+name|tableSize
+operator|<<=
+literal|1
+expr_stmt|;
+block|}
+return|return
+name|tableSize
 return|;
 block|}
 comment|// The table can't be completely full or we'll get infinite reprobes
