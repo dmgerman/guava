@@ -854,6 +854,12 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|StandardDescendingMap ()
+specifier|public
+name|StandardDescendingMap
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|forward ()
@@ -1070,6 +1076,12 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|StandardNavigableKeySet ()
+specifier|public
+name|StandardNavigableKeySet
+parameter_list|()
+block|{}
 annotation|@
 name|Override
 DECL|method|map ()

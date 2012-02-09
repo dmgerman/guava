@@ -630,6 +630,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
 DECL|method|StandardKeySet ()
 specifier|public
 name|StandardKeySet
@@ -696,6 +697,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
 DECL|method|StandardValues ()
 specifier|public
 name|StandardValues
@@ -763,6 +765,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
 DECL|method|StandardEntrySet ()
 specifier|public
 name|StandardEntrySet

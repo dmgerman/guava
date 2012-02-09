@@ -441,8 +441,9 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
 DECL|method|StandardDescendingSet ()
-specifier|protected
+specifier|public
 name|StandardDescendingSet
 parameter_list|()
 block|{

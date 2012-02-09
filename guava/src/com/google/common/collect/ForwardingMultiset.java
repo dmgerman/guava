@@ -692,6 +692,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|/** Constructor for use by subclasses. */
 DECL|method|StandardElementSet ()
 specifier|public
 name|StandardElementSet
