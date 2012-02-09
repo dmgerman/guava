@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * See http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp  * MurmurHash3_x64_128  *   * @author aappleby@google.com (Austin Appleby)  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * See http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp  * MurmurHash3_x64_128  *  * @author aappleby@google.com (Austin Appleby)  * @author andreou@google.com (Dimitris Andreou)  */
 end_comment
 
 begin_class
@@ -76,6 +76,7 @@ name|AbstractStreamingHashFunction
 implements|implements
 name|Serializable
 block|{
+comment|// TODO(user): when the shortcuts are implemented, update BloomFilterStrategies
 DECL|field|seed
 specifier|private
 specifier|final

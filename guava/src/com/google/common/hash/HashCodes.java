@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Static factories for {@link HashCode} instances.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Static factories for {@link HashCode} instances.  *   * @author andreou@google.com (Dimitris Andreou)  */
 end_comment
 
 begin_class
@@ -31,7 +31,7 @@ specifier|private
 name|HashCodes
 parameter_list|()
 block|{ }
-comment|/**    * Creates a 32-bit {@code HashCode}, of which the bytes will form the passed int, interpreted    * in little endian order.    */
+comment|/**    * Creates a 32-bit {@code HashCode}, of which the bytes will form the passed int, interpreted     * in little endian order.    */
 DECL|method|fromInt (int hash)
 specifier|static
 name|HashCode
@@ -165,7 +165,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates a 64-bit {@code HashCode}, of which the bytes will form the passed long, interpreted    * in little endian order.    */
+comment|/**    * Creates a 64-bit {@code HashCode}, of which the bytes will form the passed long, interpreted     * in little endian order.    */
 DECL|method|fromLong (long hash)
 specifier|static
 name|HashCode
@@ -334,7 +334,7 @@ name|hash
 return|;
 block|}
 block|}
-comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,    * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).    */
+comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).     */
 DECL|method|fromBytes (byte[] bytes)
 specifier|static
 name|HashCode
@@ -598,157 +598,6 @@ operator|)
 operator|<<
 literal|56
 operator|)
-return|;
-block|}
-block|}
-comment|/**    * Slices a hash code into pieces of the specified number of bits each.    */
-DECL|method|slice (HashCode hashCode, int bitsPerSlice)
-specifier|static
-name|HashCodeSlicer
-name|slice
-parameter_list|(
-name|HashCode
-name|hashCode
-parameter_list|,
-name|int
-name|bitsPerSlice
-parameter_list|)
-block|{
-comment|// TODO(user): special case for hashCodes.bits() == 32 or 64
-return|return
-operator|new
-name|HashCodeSlicer
-argument_list|(
-name|hashCode
-operator|.
-name|asBytes
-argument_list|()
-argument_list|,
-name|bitsPerSlice
-argument_list|)
-return|;
-block|}
-DECL|class|HashCodeSlicer
-specifier|static
-class|class
-name|HashCodeSlicer
-block|{
-DECL|field|bytes
-specifier|final
-name|byte
-index|[]
-name|bytes
-decl_stmt|;
-DECL|field|bitsPerSlice
-specifier|final
-name|int
-name|bitsPerSlice
-decl_stmt|;
-DECL|field|byteIndex
-name|int
-name|byteIndex
-decl_stmt|;
-DECL|field|bitIndex
-name|int
-name|bitIndex
-decl_stmt|;
-DECL|method|HashCodeSlicer (byte[] bytes, int bitsPerSlice)
-name|HashCodeSlicer
-parameter_list|(
-name|byte
-index|[]
-name|bytes
-parameter_list|,
-name|int
-name|bitsPerSlice
-parameter_list|)
-block|{
-name|this
-operator|.
-name|bytes
-operator|=
-name|bytes
-expr_stmt|;
-name|this
-operator|.
-name|bitsPerSlice
-operator|=
-name|bitsPerSlice
-expr_stmt|;
-block|}
-DECL|method|nextSlice ()
-name|int
-name|nextSlice
-parameter_list|()
-block|{
-comment|// TODO(user): this can be optimized. Especially if we move to int[]
-comment|// and even more if Mitzenmacher's trick works, then we have cheap
-comment|// hash bits so no problem with just picking K whole, convenient ints.
-name|int
-name|slice
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|bitsPerSlice
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|int
-name|nextBit
-init|=
-operator|(
-name|bytes
-index|[
-name|byteIndex
-index|]
-operator|>>>
-name|bitIndex
-operator|)
-operator|&
-literal|1
-decl_stmt|;
-name|slice
-operator|=
-operator|(
-name|slice
-operator|<<
-literal|1
-operator|)
-operator||
-name|nextBit
-expr_stmt|;
-name|bitIndex
-operator|++
-expr_stmt|;
-if|if
-condition|(
-name|bitIndex
-operator|==
-literal|8
-condition|)
-block|{
-name|bitIndex
-operator|=
-literal|0
-expr_stmt|;
-name|byteIndex
-operator|++
-expr_stmt|;
-block|}
-block|}
-return|return
-name|slice
 return|;
 block|}
 block|}

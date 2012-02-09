@@ -175,7 +175,7 @@ name|assertTrue
 argument_list|(
 name|BloomFilter
 operator|.
-name|optimalK
+name|optimalNumOfHashFunctions
 argument_list|(
 name|n
 argument_list|,
@@ -232,7 +232,7 @@ name|assertTrue
 argument_list|(
 name|BloomFilter
 operator|.
-name|optimalM
+name|optimalNumOfBits
 argument_list|(
 name|n
 argument_list|,
@@ -273,7 +273,7 @@ name|assertTrue
 argument_list|(
 name|BloomFilter
 operator|.
-name|optimalM
+name|optimalNumOfBits
 argument_list|(
 name|random
 operator|.
@@ -303,7 +303,7 @@ name|MAX_VALUE
 argument_list|,
 name|BloomFilter
 operator|.
-name|optimalM
+name|optimalNumOfBits
 argument_list|(
 name|Integer
 operator|.

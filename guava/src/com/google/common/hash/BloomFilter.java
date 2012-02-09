@@ -49,46 +49,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|IntMath
-operator|.
-name|log2
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|Math
-operator|.
-name|max
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|math
-operator|.
-name|RoundingMode
-operator|.
-name|CEILING
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -140,9 +100,9 @@ name|common
 operator|.
 name|hash
 operator|.
-name|HashCodes
+name|BloomFilterStrategies
 operator|.
-name|HashCodeSlicer
+name|BitArray
 import|;
 end_import
 
@@ -174,19 +134,76 @@ parameter_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/** A power of two sized bit set */
+comment|/**    * A strategy to translate T instances, to {@code numHashFunctions} bit indexes.    */
+DECL|interface|Strategy
+interface|interface
+name|Strategy
+extends|extends
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+block|{
+comment|/**      * Sets {@code numHashFunctions} bits of the given bit array, by hashing a user element.       */
+DECL|method|put (T object, Funnel<? super T> funnel, int numHashFunctions, BitArray bits)
+parameter_list|<
+name|T
+parameter_list|>
+name|void
+name|put
+parameter_list|(
+name|T
+name|object
+parameter_list|,
+name|Funnel
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|funnel
+parameter_list|,
+name|int
+name|numHashFunctions
+parameter_list|,
+name|BitArray
+name|bits
+parameter_list|)
+function_decl|;
+comment|/**      * Queries {@code numHashFunctions} bits of the given bit array, by hashing a user element;      * returns {@code true} if and only if all selected bits are set.       */
+DECL|method|mightContain ( T object, Funnel<? super T> funnel, int numHashFunctions, BitArray bits)
+parameter_list|<
+name|T
+parameter_list|>
+name|boolean
+name|mightContain
+parameter_list|(
+name|T
+name|object
+parameter_list|,
+name|Funnel
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|funnel
+parameter_list|,
+name|int
+name|numHashFunctions
+parameter_list|,
+name|BitArray
+name|bits
+parameter_list|)
+function_decl|;
+block|}
+comment|/** The bit set of the BloomFilter (not necessarily power of 2!)*/
 DECL|field|bits
 specifier|private
 specifier|final
 name|BitArray
 name|bits
-decl_stmt|;
-comment|/** Number of bits required to index a bit out of {@code bits} */
-DECL|field|hashBitsPerSlice
-specifier|private
-specifier|final
-name|int
-name|hashBitsPerSlice
 decl_stmt|;
 comment|/** Number of hashes per element */
 DECL|field|numHashFunctions
@@ -195,7 +212,7 @@ specifier|final
 name|int
 name|numHashFunctions
 decl_stmt|;
-comment|/** The funnel to translate T's to bytes */
+comment|/** The funnel to translate Ts to bytes */
 DECL|field|funnel
 specifier|private
 specifier|final
@@ -205,15 +222,15 @@ name|T
 argument_list|>
 name|funnel
 decl_stmt|;
-comment|/** The HashFunction that generates as many bits as this BloomFilter needs */
-DECL|field|hashFunction
+comment|/**    * The strategy we employ to map an element T to {@code numHashFunctions} bit indexes.    */
+DECL|field|strategy
 specifier|private
 specifier|final
-name|HashFunction
-name|hashFunction
+name|Strategy
+name|strategy
 decl_stmt|;
 comment|/**    * Creates a BloomFilter.     */
-DECL|method|BloomFilter (BitArray bits, int numHashFunctions, Funnel<T> funnel, HashFunction hashFunction)
+DECL|method|BloomFilter (BitArray bits, int numHashFunctions, Funnel<T> funnel, Strategy strategy)
 specifier|private
 name|BloomFilter
 parameter_list|(
@@ -229,8 +246,8 @@ name|T
 argument_list|>
 name|funnel
 parameter_list|,
-name|HashFunction
-name|hashFunction
+name|Strategy
+name|strategy
 parameter_list|)
 block|{
 name|Preconditions
@@ -270,175 +287,59 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|hashFunction
+name|strategy
 operator|=
-name|checkNotNull
-argument_list|(
-name|hashFunction
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|hashBitsPerSlice
-operator|=
-name|log2
-argument_list|(
-name|max
-argument_list|(
-name|bits
-operator|.
-name|size
-argument_list|()
-argument_list|,
-name|Long
-operator|.
-name|SIZE
-comment|/* minimum capacity */
-argument_list|)
-argument_list|,
-name|CEILING
-argument_list|)
+name|strategy
 expr_stmt|;
 block|}
 comment|/**    * Returns {@code true} if the element<i>might</i> have been put in this Bloom filter,     * {@code false} if this is<i>definitely</i> not the case.     */
-DECL|method|mightContain (T instance)
+DECL|method|mightContain (T object)
 specifier|public
 name|boolean
 name|mightContain
 parameter_list|(
 name|T
-name|instance
+name|object
 parameter_list|)
 block|{
-name|HashCodeSlicer
-name|slicer
-init|=
-name|HashCodes
+return|return
+name|strategy
 operator|.
-name|slice
+name|mightContain
 argument_list|(
-name|hashFunction
-operator|.
-name|newHasher
-argument_list|()
-operator|.
-name|putObject
-argument_list|(
-name|instance
+name|object
 argument_list|,
 name|funnel
-argument_list|)
-operator|.
-name|hash
-argument_list|()
 argument_list|,
-name|hashBitsPerSlice
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
 name|numHashFunctions
-condition|;
-name|i
-operator|++
-control|)
-block|{
-if|if
-condition|(
-operator|!
+argument_list|,
 name|bits
-operator|.
-name|get
-argument_list|(
-name|slicer
-operator|.
-name|nextSlice
-argument_list|()
 argument_list|)
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
-return|return
-literal|true
 return|;
 block|}
 comment|/**    * Puts an element into this {@code BloomFilter}. Ensures that subsequent invocations of     * {@link #mightContain(Object)} with the same element will always return {@code true}.    */
-DECL|method|put (T instance)
+DECL|method|put (T object)
 specifier|public
 name|void
 name|put
 parameter_list|(
 name|T
-name|instance
+name|object
 parameter_list|)
 block|{
-name|HashCodeSlicer
-name|slicer
-init|=
-name|HashCodes
+name|strategy
 operator|.
-name|slice
+name|put
 argument_list|(
-name|hashFunction
-operator|.
-name|newHasher
-argument_list|()
-operator|.
-name|putObject
-argument_list|(
-name|instance
+name|object
 argument_list|,
 name|funnel
-argument_list|)
-operator|.
-name|hash
-argument_list|()
 argument_list|,
-name|hashBitsPerSlice
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
 name|numHashFunctions
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|int
-name|nextSlice
-init|=
-name|slicer
-operator|.
-name|nextSlice
-argument_list|()
-decl_stmt|;
+argument_list|,
 name|bits
-operator|.
-name|set
-argument_list|(
-name|nextSlice
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|getHashCount ()
 annotation|@
@@ -494,132 +395,6 @@ name|numHashFunctions
 argument_list|)
 return|;
 block|}
-comment|// This little gem is kindly offered by kevinb
-DECL|class|BitArray
-specifier|private
-specifier|static
-class|class
-name|BitArray
-block|{
-DECL|field|data
-specifier|final
-name|long
-index|[]
-name|data
-decl_stmt|;
-DECL|method|BitArray (int bits)
-name|BitArray
-parameter_list|(
-name|int
-name|bits
-parameter_list|)
-block|{
-name|this
-argument_list|(
-operator|new
-name|long
-index|[
-name|bits
-operator|>>
-literal|6
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Used by serialization
-DECL|method|BitArray (long[] data)
-name|BitArray
-parameter_list|(
-name|long
-index|[]
-name|data
-parameter_list|)
-block|{
-name|checkArgument
-argument_list|(
-name|data
-operator|.
-name|length
-operator|>
-literal|0
-argument_list|,
-literal|"data length is zero!"
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|data
-operator|=
-name|data
-expr_stmt|;
-block|}
-DECL|method|set (int index)
-name|void
-name|set
-parameter_list|(
-name|int
-name|index
-parameter_list|)
-block|{
-name|data
-index|[
-name|index
-operator|>>
-literal|6
-index|]
-operator||=
-operator|(
-literal|1L
-operator|<<
-name|index
-operator|)
-expr_stmt|;
-block|}
-DECL|method|get (int index)
-name|boolean
-name|get
-parameter_list|(
-name|int
-name|index
-parameter_list|)
-block|{
-return|return
-operator|(
-name|data
-index|[
-name|index
-operator|>>
-literal|6
-index|]
-operator|&
-operator|(
-literal|1L
-operator|<<
-name|index
-operator|)
-operator|)
-operator|!=
-literal|0
-return|;
-block|}
-comment|/** Number of bits */
-DECL|method|size ()
-name|int
-name|size
-parameter_list|()
-block|{
-return|return
-name|data
-operator|.
-name|length
-operator|*
-name|Long
-operator|.
-name|SIZE
-return|;
-block|}
-block|}
-comment|/*    * Cheat sheet for the factories:    *     * m: total bits    * n: expected insertions    * b: m/n, bits per insertion     * p: expected false positive probability    *     * 1) Optimal k = b * ln2    * 2) p = (1 - e ^ (-kn/m))^k    * 3) For optimal k: p = 2 ^ (-k) ~= 0.6185^b    * 4) For optimal k: m = -nlnp / ((ln2) ^ 2)    *     * I expect the user to provide "n", and then one of {m,b,p} is needed.    * Providing both (n, m) and (n, b) would be confusing, so I go for the 2nd.    */
 comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number     * of insertions and expected false positive probability.    *     *<p>Note that overflowing a {@code BloomFilter} with significantly more elements     * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *     *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided     * {@code Funnel<T>} is.    *     * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed     *        {@code BloomFilter<T>}; must be positive    * @param falsePositiveProbability the desired false positive probability (must be positive and     *        less than 1.0)    * @return a {@code Builder}    */
 DECL|method|create (Funnel<T> funnel, int expectedInsertions , double falsePositiveProbability)
 specifier|public
@@ -676,9 +451,9 @@ argument_list|)
 expr_stmt|;
 comment|/*       * andreou: I wanted to put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less that 10kb. Who cares!      */
 name|int
-name|m
+name|numBits
 init|=
-name|optimalM
+name|optimalNumOfBits
 argument_list|(
 name|expectedInsertions
 argument_list|,
@@ -686,59 +461,13 @@ name|falsePositiveProbability
 argument_list|)
 decl_stmt|;
 name|int
-name|k
+name|numHashFunctions
 init|=
-name|optimalK
+name|optimalNumOfHashFunctions
 argument_list|(
 name|expectedInsertions
 argument_list|,
-name|m
-argument_list|)
-decl_stmt|;
-name|BitArray
-name|bits
-init|=
-operator|new
-name|BitArray
-argument_list|(
-literal|1
-operator|<<
-name|log2
-argument_list|(
-name|max
-argument_list|(
-name|m
-argument_list|,
-name|Long
-operator|.
-name|SIZE
-comment|/* minimum capacity */
-argument_list|)
-argument_list|,
-name|CEILING
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|HashFunction
-name|hashFunction
-init|=
-name|BloomFilterStrategies
-operator|.
-name|From128ToN
-operator|.
-name|withBits
-argument_list|(
-name|bits
-operator|.
-name|size
-argument_list|()
-operator|*
-name|k
-argument_list|,
-name|Hashing
-operator|.
-name|murmur3_128
-argument_list|()
+name|numBits
 argument_list|)
 decl_stmt|;
 return|return
@@ -748,13 +477,19 @@ argument_list|<
 name|T
 argument_list|>
 argument_list|(
-name|bits
+operator|new
+name|BitArray
+argument_list|(
+name|numBits
+argument_list|)
 argument_list|,
-name|k
+name|numHashFunctions
 argument_list|,
 name|funnel
 argument_list|,
-name|hashFunction
+name|BloomFilterStrategies
+operator|.
+name|MURMUR128_MITZ_32
 argument_list|)
 return|;
 block|}
@@ -794,6 +529,7 @@ argument_list|)
 return|;
 comment|// FYI, for 3%, we always get 5 hash functions
 block|}
+comment|/*    * Cheat sheet:    *     * m: total bits    * n: expected insertions    * b: m/n, bits per insertion     * p: expected false positive probability    *     * 1) Optimal k = b * ln2    * 2) p = (1 - e ^ (-kn/m))^k    * 3) For optimal k: p = 2 ^ (-k) ~= 0.6185^b    * 4) For optimal k: m = -nlnp / ((ln2) ^ 2)    */
 DECL|field|LN2
 specifier|private
 specifier|static
@@ -820,12 +556,12 @@ operator|*
 name|LN2
 decl_stmt|;
 comment|/**    * Computes the optimal k (number of hashes per element inserted in Bloom filter), given the     * expected insertions and total number of bits in the Bloom filter.    *     * See http://en.wikipedia.org/wiki/File:Bloom_filter_fp_probability.svg for the formula.    *     * @param n expected insertions (must be positive)    * @param m total number of bits in Bloom filter (must be positive)    */
-DECL|method|optimalK (int n, int m)
+DECL|method|optimalNumOfHashFunctions (int n, int m)
 annotation|@
 name|VisibleForTesting
 specifier|static
 name|int
-name|optimalK
+name|optimalNumOfHashFunctions
 parameter_list|(
 name|int
 name|n
@@ -858,12 +594,12 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Computes m (total bits of Bloom filter) which is expected to achieve, for the specified     * expected insertions, the required false positive probability.    *     * See http://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives for the formula.    *     * @param n expected insertions (must be positive)    * @param p false positive rate (must be 0< p< 1)    */
-DECL|method|optimalM (int n, double p)
+DECL|method|optimalNumOfBits (int n, double p)
 annotation|@
 name|VisibleForTesting
 specifier|static
 name|int
-name|optimalM
+name|optimalNumOfBits
 parameter_list|(
 name|int
 name|n
@@ -938,10 +674,10 @@ name|T
 argument_list|>
 name|funnel
 decl_stmt|;
-DECL|field|hashFunction
+DECL|field|strategy
 specifier|final
-name|HashFunction
-name|hashFunction
+name|Strategy
+name|strategy
 decl_stmt|;
 DECL|method|SerialForm (BloomFilter<T> bf)
 name|SerialForm
@@ -981,11 +717,11 @@ name|funnel
 expr_stmt|;
 name|this
 operator|.
-name|hashFunction
+name|strategy
 operator|=
 name|bf
 operator|.
-name|hashFunction
+name|strategy
 expr_stmt|;
 block|}
 DECL|method|readResolve ()
@@ -1010,7 +746,7 @@ name|numHashFunctions
 argument_list|,
 name|funnel
 argument_list|,
-name|hashFunction
+name|strategy
 argument_list|)
 return|;
 block|}
@@ -1021,7 +757,7 @@ specifier|final
 name|long
 name|serialVersionUID
 init|=
-literal|0
+literal|1
 decl_stmt|;
 block|}
 block|}
