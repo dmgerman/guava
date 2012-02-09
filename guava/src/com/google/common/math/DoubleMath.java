@@ -76,22 +76,6 @@ name|math
 operator|.
 name|DoubleUtils
 operator|.
-name|getExponent
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|DoubleUtils
-operator|.
 name|getSignificand
 import|;
 end_import
@@ -125,22 +109,6 @@ operator|.
 name|DoubleUtils
 operator|.
 name|isNormal
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|DoubleUtils
-operator|.
-name|next
 import|;
 end_import
 
@@ -210,21 +178,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|math
+name|google
 operator|.
-name|BigInteger
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|common
 operator|.
-name|math
+name|annotations
 operator|.
-name|RoundingMode
+name|Beta
 import|;
 end_import
 
@@ -244,15 +206,21 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|math
 operator|.
-name|common
+name|BigInteger
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|annotations
+name|math
 operator|.
-name|Beta
+name|RoundingMode
 import|;
 end_import
 
@@ -469,11 +437,11 @@ operator|)
 condition|?
 name|x
 else|:
-name|next
+name|DoubleUtils
+operator|.
+name|nextDown
 argument_list|(
 name|z
-argument_list|,
-literal|false
 argument_list|)
 return|;
 comment|// x + 0.5 - epsilon
@@ -496,11 +464,11 @@ operator|)
 condition|?
 name|x
 else|:
-name|next
+name|Math
+operator|.
+name|nextUp
 argument_list|(
 name|z
-argument_list|,
-literal|true
 argument_list|)
 return|;
 comment|// x - 0.5 + epsilon
@@ -695,6 +663,8 @@ block|}
 name|int
 name|exponent
 init|=
+name|Math
+operator|.
 name|getExponent
 argument_list|(
 name|x
@@ -858,6 +828,8 @@ expr_stmt|;
 name|int
 name|exponent
 init|=
+name|Math
+operator|.
 name|getExponent
 argument_list|(
 name|x
@@ -1040,6 +1012,8 @@ name|x
 argument_list|)
 argument_list|)
 operator|<=
+name|Math
+operator|.
 name|getExponent
 argument_list|(
 name|x

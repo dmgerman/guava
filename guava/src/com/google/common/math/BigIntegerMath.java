@@ -965,9 +965,9 @@ if|if
 condition|(
 name|log2
 operator|<
-name|DoubleUtils
+name|Double
 operator|.
-name|MAX_DOUBLE_EXPONENT
+name|MAX_EXPONENT
 condition|)
 block|{
 name|sqrt0
