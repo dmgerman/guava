@@ -54,6 +54,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|primitives
 operator|.
 name|UnsignedInts
@@ -866,25 +880,28 @@ operator|~
 literal|31
 return|;
 block|}
-comment|// TODO(kevinb): probably expose this via a Hashing method at some point?
+comment|// TODO(kevinb): Maybe expose this class via a static Hashing method?
+annotation|@
+name|VisibleForTesting
 DECL|class|ConcatenatedHashFunction
-specifier|private
 specifier|static
+specifier|final
 class|class
 name|ConcatenatedHashFunction
 extends|extends
 name|AbstractCompositeHashFunction
 block|{
 DECL|field|bits
+specifier|private
 specifier|final
 name|int
 name|bits
 decl_stmt|;
-DECL|method|ConcatenatedHashFunction (HashFunction[] functions)
+DECL|method|ConcatenatedHashFunction (HashFunction... functions)
 name|ConcatenatedHashFunction
 parameter_list|(
 name|HashFunction
-index|[]
+modifier|...
 name|functions
 parameter_list|)
 block|{
@@ -901,16 +918,14 @@ decl_stmt|;
 for|for
 control|(
 name|HashFunction
-name|f
+name|function
 range|:
-name|this
-operator|.
 name|functions
 control|)
 block|{
 name|bitSum
 operator|+=
-name|f
+name|function
 operator|.
 name|bits
 argument_list|()
@@ -934,6 +949,7 @@ index|[]
 name|hashers
 parameter_list|)
 block|{
+comment|// TODO(user): Get rid of the ByteBuffer here?
 name|byte
 index|[]
 name|bytes
