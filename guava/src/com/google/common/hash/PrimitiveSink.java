@@ -43,20 +43,20 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which can receive a stream of primitive values.  *   * @author Kevin Bourrillion  * @since 11.0  */
+comment|/**  * An object which can receive a stream of primitive values.  *   * @author Kevin Bourrillion  * @since 12.0 (in 11.0 as {@code Sink})  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
-DECL|interface|Sink
+DECL|interface|PrimitiveSink
 specifier|public
 interface|interface
-name|Sink
+name|PrimitiveSink
 block|{
 comment|/**    * Puts a byte into this sink.    *    * @param b a byte    * @return this instance    */
 DECL|method|putByte (byte b)
-name|Sink
+name|PrimitiveSink
 name|putByte
 parameter_list|(
 name|byte
@@ -65,7 +65,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts an array of bytes into this sink.    *    * @param bytes a byte array    * @return this instance    */
 DECL|method|putBytes (byte[] bytes)
-name|Sink
+name|PrimitiveSink
 name|putBytes
 parameter_list|(
 name|byte
@@ -75,7 +75,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a chunk of an array of bytes into this sink. {@code bytes[off]} is the first byte written,    * {@code bytes[off + len - 1]} is the last.     *     * @param bytes a byte array    * @param off the start offset in the array    * @param len the number of bytes to write    * @return this instance     * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length} or    *   {@code len< 0}    */
 DECL|method|putBytes (byte[] bytes, int off, int len)
-name|Sink
+name|PrimitiveSink
 name|putBytes
 parameter_list|(
 name|byte
@@ -91,7 +91,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a short into this sink.    */
 DECL|method|putShort (short s)
-name|Sink
+name|PrimitiveSink
 name|putShort
 parameter_list|(
 name|short
@@ -100,7 +100,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts an int into this sink.    */
 DECL|method|putInt (int i)
-name|Sink
+name|PrimitiveSink
 name|putInt
 parameter_list|(
 name|int
@@ -109,7 +109,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a long into this sink.    */
 DECL|method|putLong (long l)
-name|Sink
+name|PrimitiveSink
 name|putLong
 parameter_list|(
 name|long
@@ -118,7 +118,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a float into this sink.    */
 DECL|method|putFloat (float f)
-name|Sink
+name|PrimitiveSink
 name|putFloat
 parameter_list|(
 name|float
@@ -127,7 +127,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a double into this sink.    */
 DECL|method|putDouble (double d)
-name|Sink
+name|PrimitiveSink
 name|putDouble
 parameter_list|(
 name|double
@@ -136,7 +136,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a boolean into this sink.    */
 DECL|method|putBoolean (boolean b)
-name|Sink
+name|PrimitiveSink
 name|putBoolean
 parameter_list|(
 name|boolean
@@ -145,7 +145,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a character into this sink.    */
 DECL|method|putChar (char c)
-name|Sink
+name|PrimitiveSink
 name|putChar
 parameter_list|(
 name|char
@@ -154,7 +154,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a string into this sink.    */
 DECL|method|putString (CharSequence charSequence)
-name|Sink
+name|PrimitiveSink
 name|putString
 parameter_list|(
 name|CharSequence
@@ -163,7 +163,7 @@ parameter_list|)
 function_decl|;
 comment|/**    * Puts a string into this sink using the given charset.    */
 DECL|method|putString (CharSequence charSequence, Charset charset)
-name|Sink
+name|PrimitiveSink
 name|putString
 parameter_list|(
 name|CharSequence

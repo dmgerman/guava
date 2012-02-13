@@ -523,11 +523,11 @@ parameter_list|(
 name|Object
 name|object
 parameter_list|,
-name|Sink
-name|byteSink
+name|PrimitiveSink
+name|bytePrimitiveSink
 parameter_list|)
 block|{
-name|byteSink
+name|bytePrimitiveSink
 operator|.
 name|putInt
 argument_list|(
@@ -562,7 +562,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -577,7 +577,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -611,7 +611,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -626,7 +626,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -663,7 +663,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -681,7 +681,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -715,7 +715,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -733,7 +733,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -767,7 +767,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -782,7 +782,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -816,7 +816,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -831,7 +831,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -865,7 +865,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -880,7 +880,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -914,7 +914,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -929,7 +929,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -963,7 +963,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -992,7 +992,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -1026,7 +1026,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)
@@ -1085,7 +1085,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|Sink
+name|PrimitiveSink
 name|sink
 range|:
 name|sinks
@@ -1102,7 +1102,7 @@ block|}
 block|}
 block|}
 block|;
-DECL|method|performAction (Random random, Iterable<? extends Sink> sinks)
+DECL|method|performAction (Random random, Iterable<? extends PrimitiveSink> sinks)
 specifier|abstract
 name|void
 name|performAction
@@ -1114,7 +1114,7 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|Sink
+name|PrimitiveSink
 argument_list|>
 name|sinks
 parameter_list|)

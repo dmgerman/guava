@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which can send data from an object of type {@code T} into a {@code Sink}.  *   * @author Dimitris Andreou  * @since 11.0  */
+comment|/**  * An object which can send data from an object of type {@code T} into a {@code PrimitiveSink}.  *   * @author Dimitris Andreou  * @since 11.0  */
 end_comment
 
 begin_interface
@@ -45,15 +45,15 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|/**    * Sends a stream of data from the {@code from} object into the sink {@code into}. There    * is no requirement that this data be complete enough to fully reconstitute the object    * later.    */
-DECL|method|funnel (T from, Sink into)
+comment|/**    * Sends a stream of data from the {@code from} object into the sink {@code into}. There    * is no requirement that this data be complete enough to fully reconstitute the object    * later.    *    * @since 12.0 (in 11.0 version, {@code PrimitiveSink} was still called {@code Sink})    */
+DECL|method|funnel (T from, PrimitiveSink into)
 name|void
 name|funnel
 parameter_list|(
 name|T
 name|from
 parameter_list|,
-name|Sink
+name|PrimitiveSink
 name|into
 parameter_list|)
 function_decl|;

@@ -80,7 +80,7 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|funnel (byte[] from, Sink into)
+DECL|method|funnel (byte[] from, PrimitiveSink into)
 specifier|public
 name|void
 name|funnel
@@ -89,7 +89,7 @@ name|byte
 index|[]
 name|from
 parameter_list|,
-name|Sink
+name|PrimitiveSink
 name|into
 parameter_list|)
 block|{
@@ -144,7 +144,7 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|funnel (CharSequence from, Sink into)
+DECL|method|funnel (CharSequence from, PrimitiveSink into)
 specifier|public
 name|void
 name|funnel
@@ -152,7 +152,7 @@ parameter_list|(
 name|CharSequence
 name|from
 parameter_list|,
-name|Sink
+name|PrimitiveSink
 name|into
 parameter_list|)
 block|{
