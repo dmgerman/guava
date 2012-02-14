@@ -122,6 +122,22 @@ specifier|private
 name|Hashing
 parameter_list|()
 block|{}
+comment|/**    * Used to randomize goodFastHash() instances, so that programs which persist anything    * dependent on hashcodes of those, will fail sooner than later.    */
+DECL|field|GOOD_FAST_HASH_SEED
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|GOOD_FAST_HASH_SEED
+init|=
+operator|(
+name|int
+operator|)
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 comment|/**    * Returns a general-purpose,<b>non-cryptographic-strength</b>, streaming hash function that    * produces hash codes of length at least {@code minimumBits}. Users without specific    * compatibility requirements and who do not persist the hash codes are encouraged to    * choose this hash function.    *    *<p><b>Warning: the implementation is unspecified and is subject to change.</b>    *    * @throws IllegalArgumentException if {@code minimumBits} is not positive    */
 DECL|method|goodFastHash (int minimumBits)
 specifier|public
@@ -150,7 +166,9 @@ condition|)
 block|{
 return|return
 name|murmur3_32
-argument_list|()
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
 return|;
 block|}
 elseif|else
@@ -163,7 +181,9 @@ condition|)
 block|{
 return|return
 name|murmur3_128
-argument_list|()
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
 return|;
 block|}
 else|else
@@ -190,6 +210,11 @@ index|[
 name|hashFunctionsNeeded
 index|]
 decl_stmt|;
+name|int
+name|seed
+init|=
+name|GOOD_FAST_HASH_SEED
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -212,12 +237,14 @@ index|]
 operator|=
 name|murmur3_128
 argument_list|(
-name|i
-operator|*
-literal|1500450271
-comment|/* a prime; shouldn't matter */
+name|seed
 argument_list|)
 expr_stmt|;
+name|seed
+operator|+=
+literal|1500450271
+expr_stmt|;
+comment|// a prime; shouldn't matter
 block|}
 return|return
 operator|new

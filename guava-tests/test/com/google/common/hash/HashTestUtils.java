@@ -1219,6 +1219,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+comment|// originally was 2 * Math.log(...), making it try more times to avoid flakiness issues
 name|int
 name|maxCount
 init|=
@@ -1226,7 +1227,7 @@ call|(
 name|int
 call|)
 argument_list|(
-literal|2
+literal|4
 operator|*
 name|Math
 operator|.
@@ -1239,7 +1240,7 @@ operator|*
 name|hashBits
 argument_list|)
 operator|+
-literal|0.999
+literal|1
 argument_list|)
 decl_stmt|;
 while|while
