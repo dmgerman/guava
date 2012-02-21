@@ -3358,7 +3358,6 @@ operator|-
 literal|1
 return|;
 block|}
-comment|// TODO(kevinb): add matchesAnyOf()
 comment|/**    * Returns the index of the first matching character in a character sequence, or {@code -1} if no    * matching character is present.    *    *<p>The default implementation iterates over the sequence in forward order calling {@link    * #matches} for each character.    *    * @param sequence the character sequence to examine from the beginning    * @return an index, or {@code -1} if no character matches    */
 DECL|method|indexIn (CharSequence sequence)
 specifier|public
