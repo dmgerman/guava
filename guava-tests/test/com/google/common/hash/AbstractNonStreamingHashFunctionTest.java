@@ -558,6 +558,23 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|hashInt (int input)
+specifier|public
+name|HashCode
+name|hashInt
+parameter_list|(
+name|int
+name|input
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 block|}
 end_class

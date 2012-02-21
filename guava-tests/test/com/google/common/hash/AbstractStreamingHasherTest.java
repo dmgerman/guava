@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for AbstractHashSink.  *   * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for AbstractHashSink.  *  * @author andreou@google.com (Dimitris Andreou)  */
 end_comment
 
 begin_class
@@ -848,7 +848,7 @@ name|ok
 parameter_list|)
 block|{}
 block|}
-comment|/**    * This test creates a long random sequence of inputs, then a lot of differently configured    * sinks process it; all should produce the same answer, the only difference should be the    * number of process()/processRemaining() invocations, due to alignment.      */
+comment|/**    * This test creates a long random sequence of inputs, then a lot of differently configured    * sinks process it; all should produce the same answer, the only difference should be the    * number of process()/processRemaining() invocations, due to alignment.    */
 DECL|method|testExhaustive ()
 specifier|public
 name|void
@@ -1583,6 +1583,23 @@ name|HashCode
 name|hashLong
 parameter_list|(
 name|long
+name|input
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashInt (int input)
+specifier|public
+name|HashCode
+name|hashInt
+parameter_list|(
+name|int
 name|input
 parameter_list|)
 block|{

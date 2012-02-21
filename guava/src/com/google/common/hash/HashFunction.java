@@ -74,13 +74,22 @@ name|Hasher
 name|newHasher
 parameter_list|()
 function_decl|;
-comment|/**    * Begins a new hash code computation as {@link #newHasher()}, but provides a hint of the     * expected size of the input (in bytes). This is only important for non-streaming hash    * functions (hash functions that need to buffer their whole input before processing any     * of it).      */
+comment|/**    * Begins a new hash code computation as {@link #newHasher()}, but provides a hint of the    * expected size of the input (in bytes). This is only important for non-streaming hash    * functions (hash functions that need to buffer their whole input before processing any    * of it).    */
 DECL|method|newHasher (int expectedInputSize)
 name|Hasher
 name|newHasher
 parameter_list|(
 name|int
 name|expectedInputSize
+parameter_list|)
+function_decl|;
+comment|/**    * Shortcut for {@code newHasher().putInt(input).hash()}; returns the hash code for the given    * {@code int} value, interpreted in little-endian byte order. The implementation<i>might</i>    * perform better than its longhand equivalent, but should not perform worse.    *    * @since 12.0    */
+DECL|method|hashInt (int input)
+name|HashCode
+name|hashInt
+parameter_list|(
+name|int
+name|input
 parameter_list|)
 function_decl|;
 comment|/**    * Shortcut for {@code newHasher().putLong(input).hash()}; returns the hash code for the    * given {@code long} value, interpreted in little-endian byte order. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse.    */
@@ -102,7 +111,7 @@ index|[]
 name|input
 parameter_list|)
 function_decl|;
-comment|/**    * Shortcut for {@code newHasher().putBytes(input, off, len).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform     * worse.     *     * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length}    *   or {@code len< 0}    */
+comment|/**    * Shortcut for {@code newHasher().putBytes(input, off, len).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform    * worse.    *    * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length}    *   or {@code len< 0}    */
 DECL|method|hashBytes (byte[] input, int off, int len)
 name|HashCode
 name|hashBytes

@@ -143,6 +143,30 @@ name|hash
 argument_list|()
 return|;
 block|}
+DECL|method|hashInt (int input)
+annotation|@
+name|Override
+specifier|public
+name|HashCode
+name|hashInt
+parameter_list|(
+name|int
+name|input
+parameter_list|)
+block|{
+return|return
+name|newHasher
+argument_list|()
+operator|.
+name|putInt
+argument_list|(
+name|input
+argument_list|)
+operator|.
+name|hash
+argument_list|()
+return|;
+block|}
 DECL|method|hashLong (long input)
 annotation|@
 name|Override
