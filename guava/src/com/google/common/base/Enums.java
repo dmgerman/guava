@@ -131,7 +131,7 @@ specifier|private
 name|Enums
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined.    * For example, to get the {@code Description} annotation on the {@code GOLF}    * constant of enum {@code Sport}, use    * {@code Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    */
+comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined.    * For example, to get the {@code Description} annotation on the {@code GOLF}    * constant of enum {@code Sport}, use    * {@code Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    *    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
