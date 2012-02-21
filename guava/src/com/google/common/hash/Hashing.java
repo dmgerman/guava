@@ -750,7 +750,7 @@ block|}
 return|return
 name|HashCodes
 operator|.
-name|fromBytes
+name|fromBytesNoCopy
 argument_list|(
 name|resultBytes
 argument_list|)
@@ -871,7 +871,7 @@ block|}
 return|return
 name|HashCodes
 operator|.
-name|fromBytes
+name|fromBytesNoCopy
 argument_list|(
 name|resultBytes
 argument_list|)
@@ -1024,7 +1024,7 @@ block|}
 return|return
 name|HashCodes
 operator|.
-name|fromBytes
+name|fromBytesNoCopy
 argument_list|(
 name|bytes
 argument_list|)

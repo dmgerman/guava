@@ -807,7 +807,7 @@ expr_stmt|;
 return|return
 name|HashCodes
 operator|.
-name|fromBytes
+name|fromBytesNoCopy
 argument_list|(
 name|bb
 operator|.

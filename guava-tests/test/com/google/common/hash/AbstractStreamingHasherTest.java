@@ -1012,6 +1012,32 @@ name|sinksAndControl
 argument_list|)
 expr_stmt|;
 block|}
+comment|// We need to ensure that at least 4 bytes have been put into the hasher or else
+comment|// Hasher#hash will throw an ISE.
+name|int
+name|intToPut
+init|=
+name|random
+operator|.
+name|nextInt
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Hasher
+name|hasher
+range|:
+name|sinksAndControl
+control|)
+block|{
+name|hasher
+operator|.
+name|putInt
+argument_list|(
+name|intToPut
+argument_list|)
+expr_stmt|;
+block|}
 for|for
 control|(
 name|Sink

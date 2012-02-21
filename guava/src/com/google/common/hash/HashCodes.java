@@ -16,12 +16,45 @@ name|hash
 package|;
 end_package
 
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
 begin_comment
-comment|/**  * Static factories for {@link HashCode} instances.  *   * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Static factories for creating {@link HashCode} instances; most users should never have to use  * this.  *  * @author Dimitris Andreou  * @since 12.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|HashCodes
+specifier|public
 specifier|final
 class|class
 name|HashCodes
@@ -33,6 +66,7 @@ parameter_list|()
 block|{ }
 comment|/**    * Creates a 32-bit {@code HashCode}, of which the bytes will form the passed int, interpreted     * in little endian order.    */
 DECL|method|fromInt (int hash)
+specifier|public
 specifier|static
 name|HashCode
 name|fromInt
@@ -52,6 +86,7 @@ block|}
 DECL|class|IntHashCode
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|IntHashCode
 extends|extends
@@ -167,6 +202,7 @@ block|}
 block|}
 comment|/**    * Creates a 64-bit {@code HashCode}, of which the bytes will form the passed long, interpreted     * in little endian order.    */
 DECL|method|fromLong (long hash)
+specifier|public
 specifier|static
 name|HashCode
 name|fromLong
@@ -186,6 +222,7 @@ block|}
 DECL|class|LongHashCode
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|LongHashCode
 extends|extends
@@ -334,11 +371,44 @@ name|hash
 return|;
 block|}
 block|}
-comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).     */
+comment|/**    * Creates a {@code HashCode} from a byte array. The array is defensively copied to preserve    * the immutability contract of {@code HashCode}. The array must be at least of length 4.    */
 DECL|method|fromBytes (byte[] bytes)
+specifier|public
 specifier|static
 name|HashCode
 name|fromBytes
+parameter_list|(
+name|byte
+index|[]
+name|bytes
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|bytes
+operator|.
+name|length
+operator|>=
+literal|4
+argument_list|,
+literal|"A HashCode must contain at least 4 bytes."
+argument_list|)
+expr_stmt|;
+return|return
+name|fromBytesNoCopy
+argument_list|(
+name|bytes
+operator|.
+name|clone
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).     */
+DECL|method|fromBytesNoCopy (byte[] bytes)
+specifier|static
+name|HashCode
+name|fromBytesNoCopy
 parameter_list|(
 name|byte
 index|[]
@@ -356,6 +426,7 @@ block|}
 DECL|class|BytesHashCode
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|BytesHashCode
 extends|extends
