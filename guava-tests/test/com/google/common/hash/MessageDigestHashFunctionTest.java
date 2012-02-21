@@ -164,9 +164,11 @@ parameter_list|)
 throws|throws
 name|NoSuchAlgorithmException
 block|{
-name|HashTestUtils
+name|assertEquals
+argument_list|(
+name|HashCodes
 operator|.
-name|assertEqualHashes
+name|fromBytes
 argument_list|(
 name|MessageDigest
 operator|.
@@ -179,6 +181,7 @@ name|digest
 argument_list|(
 name|input
 argument_list|)
+argument_list|)
 argument_list|,
 operator|new
 name|MessageDigestHashFunction
@@ -190,9 +193,6 @@ name|hashBytes
 argument_list|(
 name|input
 argument_list|)
-operator|.
-name|asBytes
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
