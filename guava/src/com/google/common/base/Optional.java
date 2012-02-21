@@ -281,7 +281,7 @@ argument_list|>
 name|secondChoice
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise. If the    * supplier returns {@code null}, a {@link NullPointerException} will be thrown.    *    * @throws NullPointerException if the supplier returns {@code null}    */
+comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise. If the    * supplier returns {@code null}, a {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the supplier returns {@code null}    */
 DECL|method|or (Supplier<? extends T> supplier)
 specifier|public
 specifier|abstract
@@ -307,7 +307,7 @@ name|T
 name|orNull
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an immutable singleton {@link Set} whose only element is the    * contained instance if it is present; an empty immutable {@link Set}    * otherwise.    *    * @since 11.0    */
+comment|/**    * Returns an immutable singleton {@link Set} whose only element is the contained instance    * if it is present; an empty immutable {@link Set} otherwise.    *    * @since 11.0    */
 DECL|method|asSet ()
 specifier|public
 specifier|abstract
@@ -317,6 +317,30 @@ name|T
 argument_list|>
 name|asSet
 parameter_list|()
+function_decl|;
+comment|/**    * If the instance is present, it is transformed with the given {@link Function}; otherwise,    * {@link Optional#absent} is returned. If the function returns {@code null}, a    * {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the function returns {@code null}    *    * @since 12.0    */
+DECL|method|transform (Function<? super T, V> function)
+specifier|public
+specifier|abstract
+parameter_list|<
+name|V
+parameter_list|>
+name|Optional
+argument_list|<
+name|V
+argument_list|>
+name|transform
+parameter_list|(
+name|Function
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|,
+name|V
+argument_list|>
+name|function
+parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
 DECL|method|equals (@ullable Object object)

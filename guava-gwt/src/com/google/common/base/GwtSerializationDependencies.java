@@ -222,6 +222,36 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+DECL|method|transform (Function<? super T, V> function)
+annotation|@
+name|Override
+specifier|public
+parameter_list|<
+name|V
+parameter_list|>
+name|Optional
+argument_list|<
+name|V
+argument_list|>
+name|transform
+parameter_list|(
+name|Function
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|,
+name|V
+argument_list|>
+name|function
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
 DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
