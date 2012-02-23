@@ -11897,9 +11897,6 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
-name|weakValues
-argument_list|()
-operator|.
 name|removalListener
 argument_list|(
 name|removalListener
