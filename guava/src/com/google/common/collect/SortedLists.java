@@ -711,7 +711,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Binary searches the list for the specified key, using the specified key function.    *    *<p>Equivalent to {@link #binarySearch(List, Function, Object, Comparator, KeyPresentBehavior,    * KeyAbsentBehavior)} using {@link Ordering#natural}.    */
-DECL|method|binarySearch (List<E> list, Function<? super E, K> keyFunction, K key, KeyPresentBehavior presentBehavior, KeyAbsentBehavior absentBehavior)
+DECL|method|binarySearch (List<E> list, Function<? super E, K> keyFunction, @Nullable K key, KeyPresentBehavior presentBehavior, KeyAbsentBehavior absentBehavior)
 specifier|public
 specifier|static
 parameter_list|<
@@ -740,6 +740,8 @@ name|K
 argument_list|>
 name|keyFunction
 parameter_list|,
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
@@ -771,7 +773,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Binary searches the list for the specified key, using the specified key function.    *    *<p>Equivalent to    * {@link #binarySearch(List, Object, Comparator, KeyPresentBehavior, KeyAbsentBehavior)} using    * {@link Lists#transform(List, Function) Lists.transform(list, keyFunction)}.    */
-DECL|method|binarySearch ( List<E> list, Function<? super E, K> keyFunction, K key, Comparator<? super K> keyComparator, KeyPresentBehavior presentBehavior, KeyAbsentBehavior absentBehavior)
+DECL|method|binarySearch ( List<E> list, Function<? super E, K> keyFunction, @Nullable K key, Comparator<? super K> keyComparator, KeyPresentBehavior presentBehavior, KeyAbsentBehavior absentBehavior)
 specifier|public
 specifier|static
 parameter_list|<
@@ -798,6 +800,8 @@ name|K
 argument_list|>
 name|keyFunction
 parameter_list|,
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
