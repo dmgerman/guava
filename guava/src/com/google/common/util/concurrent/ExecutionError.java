@@ -28,7 +28,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
+name|Beta
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
+name|GwtCompatible
 import|;
 end_import
 

@@ -30,6 +30,24 @@ name|testing
 operator|.
 name|EscaperAsserts
 operator|.
+name|assertEscaping
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|escape
+operator|.
+name|testing
+operator|.
+name|EscaperAsserts
+operator|.
 name|assertUnescaped
 import|;
 end_import
@@ -49,24 +67,6 @@ operator|.
 name|EscaperAsserts
 operator|.
 name|assertUnicodeEscaping
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|escape
-operator|.
-name|testing
-operator|.
-name|EscaperAsserts
-operator|.
-name|assertEscaping
 import|;
 end_import
 

@@ -68,11 +68,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|util
+name|testing
 operator|.
-name|concurrent
-operator|.
-name|AtomicLongMap
+name|NullPointerTester
 import|;
 end_import
 
@@ -84,9 +82,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|testing
+name|util
 operator|.
-name|NullPointerTester
+name|concurrent
+operator|.
+name|AtomicLongMap
 import|;
 end_import
 

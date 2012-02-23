@@ -23,20 +23,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
 import|import static
 name|java
 operator|.
@@ -57,6 +43,20 @@ operator|.
 name|Double
 operator|.
 name|longBitsToDouble
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
 import|;
 end_import
 

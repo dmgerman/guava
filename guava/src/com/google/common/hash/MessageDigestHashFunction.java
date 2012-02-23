@@ -28,7 +28,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkState
+name|checkPositionIndexes
 import|;
 end_import
 
@@ -44,7 +44,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkPositionIndexes
+name|checkState
 import|;
 end_import
 

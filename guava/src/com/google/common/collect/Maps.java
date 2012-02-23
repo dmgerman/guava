@@ -380,16 +380,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|NoSuchElementException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 operator|.
 name|Entry
@@ -413,6 +403,16 @@ operator|.
 name|util
 operator|.
 name|NavigableSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|NoSuchElementException
 import|;
 end_import
 

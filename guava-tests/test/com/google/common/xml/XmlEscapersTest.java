@@ -30,7 +30,7 @@ name|testing
 operator|.
 name|EscaperAsserts
 operator|.
-name|assertUnescaped
+name|assertEscaping
 import|;
 end_import
 
@@ -48,7 +48,7 @@ name|testing
 operator|.
 name|EscaperAsserts
 operator|.
-name|assertEscaping
+name|assertUnescaped
 import|;
 end_import
 
