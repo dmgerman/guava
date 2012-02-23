@@ -58,6 +58,22 @@ name|common
 operator|.
 name|base
 operator|.
+name|Charsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 operator|.
 name|checkArgument
@@ -121,20 +137,6 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
 import|;
 end_import
 
@@ -477,11 +479,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 annotation|@
 name|Immutable
 DECL|class|MediaType
@@ -498,15 +495,6 @@ name|String
 name|CHARSET_ATTRIBUTE
 init|=
 literal|"charset"
-decl_stmt|;
-DECL|field|UTF_8
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|UTF_8
-init|=
-literal|"utf-8"
 decl_stmt|;
 comment|/** Matcher for type, subtype and attributes. */
 DECL|field|TOKEN_MATCHER
@@ -628,10 +616,8 @@ argument_list|,
 literal|"cache-manifest"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -650,10 +636,8 @@ argument_list|,
 literal|"css"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -672,10 +656,8 @@ argument_list|,
 literal|"csv"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -694,10 +676,8 @@ argument_list|,
 literal|"html"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -716,10 +696,8 @@ argument_list|,
 literal|"calendar"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -738,10 +716,8 @@ argument_list|,
 literal|"plain"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -761,10 +737,8 @@ argument_list|,
 literal|"javascript"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -783,10 +757,8 @@ argument_list|,
 literal|"vcard"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -805,10 +777,8 @@ argument_list|,
 literal|"xml"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -888,10 +858,8 @@ argument_list|,
 literal|"svg+xml"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -1063,10 +1031,8 @@ argument_list|,
 literal|"atom+xml"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -1131,10 +1097,8 @@ argument_list|,
 literal|"javascript"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -1153,10 +1117,8 @@ argument_list|,
 literal|"json"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -1415,10 +1377,8 @@ argument_list|,
 literal|"rtf"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -1467,10 +1427,8 @@ argument_list|,
 literal|"xhtml+xml"
 argument_list|)
 operator|.
-name|withParameter
+name|withCharset
 argument_list|(
-name|CHARSET_ATTRIBUTE
-argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
@@ -2073,13 +2031,8 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an optional charset for the value of the charset parameter if it is specified.    *    * @throws IllegalStateException if multiple charset values have been set for this media type    * @throws IllegalCharsetNameException if a charset value is present, but illegal    * @throws UnsupportedCharsetException if a charset value is present, but no support is available    * in this instance of the Java virtual machine    */
+comment|/**    * Returns an optional charset for the value of the charset parameter if it is specified.    *    * @throws IllegalStateException if multiple charset values have been set for this media type    * @throws IllegalCharsetNameException if a charset value is present, but illegal    * @throws UnsupportedCharsetException if a charset value is present, but no support is available    *     in this instance of the Java virtual machine    */
 DECL|method|charset ()
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 specifier|public
 name|Optional
 argument_list|<
@@ -2330,11 +2283,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new instance with the same type and subtype as this instance, with the    * {@code charset} parameter set to the {@link Charset#name name} of the given charset. Only one    * {@code charset} parameter will be present on the new instance regardless of the number set on    * this one.    *    *<p>If a charset must be specified that is not supported on this JVM (and thus is not    * representable as a {@link Charset} instance, use {@link #withParameter}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 DECL|method|withCharset (Charset charset)
 specifier|public
 name|MediaType

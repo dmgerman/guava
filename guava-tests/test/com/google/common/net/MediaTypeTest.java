@@ -49,48 +49,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Modifier
-operator|.
-name|isFinal
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Modifier
-operator|.
-name|isPublic
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Modifier
-operator|.
-name|isStatic
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -142,63 +100,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Predicate
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Throwables
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ImmutableList
 import|;
 end_import
 
@@ -265,18 +167,6 @@ operator|.
 name|framework
 operator|.
 name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Field
 import|;
 end_import
 
@@ -1032,11 +922,6 @@ parameter_list|)
 block|{}
 block|}
 DECL|method|testWithCharset ()
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 specifier|public
 name|void
 name|testWithCharset
@@ -1425,11 +1310,6 @@ parameter_list|)
 block|{}
 block|}
 DECL|method|testGetCharset ()
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 specifier|public
 name|void
 name|testGetCharset
@@ -1473,6 +1353,18 @@ name|charset
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|testGetCharset_utf16 ()
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
+specifier|public
+name|void
+name|testGetCharset_utf16
+parameter_list|()
+block|{
 name|assertEquals
 argument_list|(
 name|Optional
@@ -1495,11 +1387,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|testGetCharset_tooMany ()
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 specifier|public
 name|void
 name|testGetCharset_tooMany
@@ -1534,11 +1421,6 @@ parameter_list|)
 block|{}
 block|}
 DECL|method|testGetCharset_illegalCharset ()
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 specifier|public
 name|void
 name|testGetCharset_illegalCharset
@@ -1573,11 +1455,6 @@ parameter_list|)
 block|{}
 block|}
 DECL|method|testGetCharset_unsupportedCharset ()
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
 specifier|public
 name|void
 name|testGetCharset_unsupportedCharset
@@ -1677,6 +1554,20 @@ argument_list|)
 operator|.
 name|addEqualityGroup
 argument_list|(
+name|MediaType
+operator|.
+name|create
+argument_list|(
+literal|"text"
+argument_list|,
+literal|"plain"
+argument_list|)
+operator|.
+name|withCharset
+argument_list|(
+name|UTF_8
+argument_list|)
+argument_list|,
 name|MediaType
 operator|.
 name|create
@@ -1911,15 +1802,15 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testEquals_charset ()
+DECL|method|testEquals_nonUtf8Charsets ()
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"java.nio.charset.Charset"
+literal|"Non-UTF-8 Charset"
 argument_list|)
 specifier|public
 name|void
-name|testEquals_charset
+name|testEquals_nonUtf8Charsets
 parameter_list|()
 block|{
 operator|new
@@ -1952,78 +1843,6 @@ operator|.
 name|withCharset
 argument_list|(
 name|UTF_8
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|create
-argument_list|(
-literal|"text"
-argument_list|,
-literal|"plain"
-argument_list|)
-operator|.
-name|withParameter
-argument_list|(
-literal|"CHARSET"
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|create
-argument_list|(
-literal|"text"
-argument_list|,
-literal|"plain"
-argument_list|)
-operator|.
-name|withParameters
-argument_list|(
-name|ImmutableMultimap
-operator|.
-name|of
-argument_list|(
-literal|"charset"
-argument_list|,
-literal|"utf-8"
-argument_list|)
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|parse
-argument_list|(
-literal|"text/plain; charset=utf-8"
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|parse
-argument_list|(
-literal|"text/plain; CHARSET=utf-8"
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|parse
-argument_list|(
-literal|"text/plain; charset=\"utf-8\""
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|parse
-argument_list|(
-literal|"text/plain; charset=\"\\u\\tf-\\8\""
-argument_list|)
-argument_list|,
-name|MediaType
-operator|.
-name|parse
-argument_list|(
-literal|"text/plain; charset=UTF-8"
 argument_list|)
 argument_list|)
 operator|.
