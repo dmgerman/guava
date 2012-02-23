@@ -18,6 +18,34 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -43,6 +71,13 @@ comment|/**  * Unit test for {@link Charsets}.  *  * @author Mike Bostock  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|CharsetsTest
 specifier|public
 class|class
@@ -50,6 +85,11 @@ name|CharsetsTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|method|testUsAscii ()
 specifier|public
 name|void
@@ -71,6 +111,11 @@ name|US_ASCII
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|method|testIso88591 ()
 specifier|public
 name|void
@@ -113,6 +158,11 @@ name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|method|testUtf16be ()
 specifier|public
 name|void
@@ -134,6 +184,11 @@ name|UTF_16BE
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|method|testUtf16le ()
 specifier|public
 name|void
@@ -155,6 +210,11 @@ name|UTF_16LE
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|method|testUtf16 ()
 specifier|public
 name|void

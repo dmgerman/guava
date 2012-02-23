@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|nio
@@ -79,46 +65,6 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
-DECL|field|US_ASCII
-specifier|public
-specifier|static
-specifier|final
-name|Charset
-name|US_ASCII
-init|=
-name|Charset
-operator|.
-name|forName
-argument_list|(
-literal|"US-ASCII"
-argument_list|)
-decl_stmt|;
-comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
-DECL|field|ISO_8859_1
-specifier|public
-specifier|static
-specifier|final
-name|Charset
-name|ISO_8859_1
-init|=
-name|Charset
-operator|.
-name|forName
-argument_list|(
-literal|"ISO-8859-1"
-argument_list|)
-decl_stmt|;
 comment|/**    * UTF-8: eight-bit UCS Transformation Format.    */
 DECL|field|UTF_8
 specifier|public
@@ -132,66 +78,6 @@ operator|.
 name|forName
 argument_list|(
 literal|"UTF-8"
-argument_list|)
-decl_stmt|;
-comment|/**    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
-DECL|field|UTF_16BE
-specifier|public
-specifier|static
-specifier|final
-name|Charset
-name|UTF_16BE
-init|=
-name|Charset
-operator|.
-name|forName
-argument_list|(
-literal|"UTF-16BE"
-argument_list|)
-decl_stmt|;
-comment|/**    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
-DECL|field|UTF_16LE
-specifier|public
-specifier|static
-specifier|final
-name|Charset
-name|UTF_16LE
-init|=
-name|Charset
-operator|.
-name|forName
-argument_list|(
-literal|"UTF-16LE"
-argument_list|)
-decl_stmt|;
-comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
-DECL|field|UTF_16
-specifier|public
-specifier|static
-specifier|final
-name|Charset
-name|UTF_16
-init|=
-name|Charset
-operator|.
-name|forName
-argument_list|(
-literal|"UTF-16"
 argument_list|)
 decl_stmt|;
 comment|/*    * Please do not add new Charset references to this class, unless those character encodings are    * part of the set required to be supported by all Java platform implementations! Any Charsets    * initialized here may cause unexpected delays when this class is loaded. See the Charset    * Javadocs for the list of built-in character encodings.    */
