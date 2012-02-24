@@ -22283,6 +22283,34 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> m)
+specifier|public
+name|void
+name|putAll
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|m
+parameter_list|)
+block|{
+name|localCache
+operator|.
+name|putAll
+argument_list|(
+name|m
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
 DECL|method|invalidate (Object key)
 specifier|public
 name|void

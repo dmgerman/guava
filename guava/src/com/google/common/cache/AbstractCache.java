@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@link #getIfPresent} method. {@link #getAllPresent} is implemented in  * terms of {@code getIfPresent}; {@link #invalidateAll(Iterable)} is implemented in terms of  * {@link #invalidate}. The method {@link #cleanUp} is a no-op. All other methods throw an  * {@link UnsupportedOperationException}.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * This class provides a skeletal implementation of the {@code Cache} interface to minimize the  * effort required to implement this interface.  *  *<p>To implement a cache, the programmer needs only to extend this class and provide an  * implementation for the {@link #put} and {@link #getIfPresent} methods. {@link #getAllPresent} is  * implemented in terms of {@link #getIfPresent}; {@link #putAll} is implemented in terms of  * {@link #put}, {@link #invalidateAll(Iterable)} is implemented in terms of {@link #invalidate}.  * The method {@link #cleanUp} is a no-op. All other methods throw an  * {@link UnsupportedOperationException}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
@@ -290,6 +290,64 @@ operator|new
 name|UnsupportedOperationException
 argument_list|()
 throw|;
+block|}
+comment|/**    * @since 12.0    */
+annotation|@
+name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> m)
+specifier|public
+name|void
+name|putAll
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|m
+parameter_list|)
+block|{
+for|for
+control|(
+name|Map
+operator|.
+name|Entry
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|entry
+range|:
+name|m
+operator|.
+name|entrySet
+argument_list|()
+control|)
+block|{
+name|put
+argument_list|(
+name|entry
+operator|.
+name|getKey
+argument_list|()
+argument_list|,
+name|entry
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

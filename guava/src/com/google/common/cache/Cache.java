@@ -96,6 +96,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|Callable
@@ -214,6 +224,24 @@ name|key
 parameter_list|,
 name|V
 name|value
+parameter_list|)
+function_decl|;
+comment|/**    * Copies all of the mappings from the specified map to the cache. The effect of this call is    * equivalent to that of calling {@code put(k, v)} on this map once for each mapping from key    * {@code k} to value {@code v} in the specified map. The behavior of this operation is undefined    * if the specified map is modified while the operation is in progress.    *    * @since 12.0    */
+DECL|method|putAll (Map<? extends K,? extends V> m)
+name|void
+name|putAll
+parameter_list|(
+name|Map
+argument_list|<
+name|?
+extends|extends
+name|K
+argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+name|m
 parameter_list|)
 function_decl|;
 comment|/**    * Discards any cached value for key {@code key}.    */
