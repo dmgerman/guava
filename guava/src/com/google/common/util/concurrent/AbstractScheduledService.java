@@ -683,26 +683,24 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/** Start the service. */
+comment|/**     * Start the service.    *     *<p>By default this method does nothing.    */
 DECL|method|startUp ()
 specifier|protected
-specifier|abstract
 name|void
 name|startUp
 parameter_list|()
 throws|throws
 name|Exception
-function_decl|;
-comment|/** Stop the service. This is guaranteed not to run concurrently with {@link #runOneIteration}. */
+block|{}
+comment|/**    * Stop the service. This is guaranteed not to run concurrently with {@link #runOneIteration}.    *     *<p>By default this method does nothing.     */
 DECL|method|shutDown ()
 specifier|protected
-specifier|abstract
 name|void
 name|shutDown
 parameter_list|()
 throws|throws
 name|Exception
-function_decl|;
+block|{}
 comment|/**    * Returns the {@link Scheduler} object used to configure this service.  This method will only be    * called once.     */
 DECL|method|scheduler ()
 specifier|protected

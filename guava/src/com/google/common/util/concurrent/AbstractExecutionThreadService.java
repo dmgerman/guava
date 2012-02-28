@@ -257,7 +257,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Start the service. This method is invoked on the execution thread.    */
+comment|/**    * Start the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
 DECL|method|startUp ()
 specifier|protected
 name|void
@@ -276,7 +276,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Stop the service. This method is invoked on the execution thread.    */
+comment|/**    * Stop the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
 comment|// TODO: consider supporting a TearDownTestCase-like API
 DECL|method|shutDown ()
 specifier|protected
@@ -286,7 +286,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Invoked to request the service to stop.    */
+comment|/**    * Invoked to request the service to stop.    *     *<p>By default this method does nothing.    */
 DECL|method|triggerShutdown ()
 specifier|protected
 name|void

@@ -360,26 +360,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{ }
-DECL|method|startUp ()
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|startUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{ }
-DECL|method|shutDown ()
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|shutDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{ }
 DECL|method|scheduler ()
 annotation|@
 name|Override
@@ -2332,26 +2312,6 @@ literal|10
 argument_list|)
 return|;
 block|}
-DECL|method|startUp ()
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|startUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{ }
-DECL|method|shutDown ()
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|shutDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{ }
 DECL|method|scheduler ()
 annotation|@
 name|Override
