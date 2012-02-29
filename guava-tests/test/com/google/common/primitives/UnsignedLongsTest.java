@@ -832,6 +832,29 @@ block|{
 comment|// expected
 block|}
 block|}
+try|try
+block|{
+name|UnsignedLongs
+operator|.
+name|parseUnsignedLong
+argument_list|(
+literal|"1234567890abcdef1"
+argument_list|,
+literal|16
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|nfe
+parameter_list|)
+block|{
+comment|// expected
+block|}
 block|}
 DECL|method|testParseLongThrowsExceptionForInvalidRadix ()
 specifier|public
