@@ -56,6 +56,16 @@ name|RoundingMode
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
 begin_comment
 comment|/**  * Collections of strategies of generating the {@code k * log(M)} bits required for an element to  * be mapped to a {@link BloomFilter} of {@code M} bits and {@code k} hash functions. These  * strategies are part of the serialized form of the Bloom filters that use them, thus they must be  * preserved as is (no updates allowed, only introduction of new versions).  *  * @author andreou@google.com (Dimitris Andreou)  */
 end_comment
@@ -81,7 +91,7 @@ specifier|public
 parameter_list|<
 name|T
 parameter_list|>
-name|void
+name|boolean
 name|put
 parameter_list|(
 name|T
@@ -147,6 +157,11 @@ operator|>>>
 literal|32
 argument_list|)
 decl_stmt|;
+name|boolean
+name|bitsChanged
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -184,7 +199,8 @@ operator|~
 name|nextHash
 expr_stmt|;
 block|}
-comment|// up to here, the code is identical with the next method
+name|bitsChanged
+operator||=
 name|bits
 operator|.
 name|set
@@ -198,6 +214,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|bitsChanged
+return|;
 block|}
 annotation|@
 name|Override
@@ -307,7 +326,6 @@ operator|~
 name|nextHash
 expr_stmt|;
 block|}
-comment|// up to here, the code is identical with the previous method
 if|if
 condition|(
 operator|!
@@ -401,14 +419,23 @@ operator|=
 name|data
 expr_stmt|;
 block|}
+comment|/** Returns true if the bit changed value. */
 DECL|method|set (int index)
-name|void
+name|boolean
 name|set
 parameter_list|(
 name|int
 name|index
 parameter_list|)
 block|{
+name|boolean
+name|wasSet
+init|=
+name|get
+argument_list|(
+name|index
+argument_list|)
+decl_stmt|;
 name|data
 index|[
 name|index
@@ -422,6 +449,10 @@ operator|<<
 name|index
 operator|)
 expr_stmt|;
+return|return
+operator|!
+name|wasSet
+return|;
 block|}
 DECL|method|get (int index)
 name|boolean
@@ -464,6 +495,82 @@ operator|*
 name|Long
 operator|.
 name|SIZE
+return|;
+block|}
+DECL|method|copy ()
+name|BitArray
+name|copy
+parameter_list|()
+block|{
+return|return
+operator|new
+name|BitArray
+argument_list|(
+name|data
+operator|.
+name|clone
+argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|method|equals (Object o)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+if|if
+condition|(
+name|o
+operator|instanceof
+name|BitArray
+condition|)
+block|{
+name|BitArray
+name|bitArray
+init|=
+operator|(
+name|BitArray
+operator|)
+name|o
+decl_stmt|;
+return|return
+name|Arrays
+operator|.
+name|equals
+argument_list|(
+name|data
+argument_list|,
+name|bitArray
+operator|.
+name|data
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|Arrays
+operator|.
+name|hashCode
+argument_list|(
+name|data
+argument_list|)
 return|;
 block|}
 block|}

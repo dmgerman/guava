@@ -30,6 +30,16 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An object which can send data from an object of type {@code T} into a {@code PrimitiveSink}.  *   * @author Dimitris Andreou  * @since 11.0  */
 end_comment
@@ -44,6 +54,8 @@ name|Funnel
 parameter_list|<
 name|T
 parameter_list|>
+extends|extends
+name|Serializable
 block|{
 comment|/**    * Sends a stream of data from the {@code from} object into the sink {@code into}. There    * is no requirement that this data be complete enough to fully reconstitute the object    * later.    *    * @since 12.0 (in 11.0 version, {@code PrimitiveSink} was still called {@code Sink})    */
 DECL|method|funnel (T from, PrimitiveSink into)

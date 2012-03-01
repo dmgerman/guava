@@ -134,7 +134,7 @@ parameter_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/**    * A strategy to translate T instances, to {@code numHashFunctions} bit indexes.    */
+comment|/**    * A strategy to translate T instances, to {@code numHashFunctions} bit indexes.    *    *<p>Implementations should be collections of pure functions (i.e. stateless).    */
 DECL|interface|Strategy
 interface|interface
 name|Strategy
@@ -145,12 +145,12 @@ name|io
 operator|.
 name|Serializable
 block|{
-comment|/**      * Sets {@code numHashFunctions} bits of the given bit array, by hashing a user element.       */
+comment|/**      * Sets {@code numHashFunctions} bits of the given bit array, by hashing a user element.      *      *<p>Returns whether any bits changed as a result of this operation.      */
 DECL|method|put (T object, Funnel<? super T> funnel, int numHashFunctions, BitArray bits)
 parameter_list|<
 name|T
 parameter_list|>
-name|void
+name|boolean
 name|put
 parameter_list|(
 name|T
@@ -292,6 +292,36 @@ operator|=
 name|strategy
 expr_stmt|;
 block|}
+comment|/**    * Creates a new {@code BloomFilter} that's a copy of this instance. The new instance is equal to    * this instance but shares no mutable state.    *    * @since 12.0    */
+DECL|method|copy ()
+specifier|public
+name|BloomFilter
+argument_list|<
+name|T
+argument_list|>
+name|copy
+parameter_list|()
+block|{
+return|return
+operator|new
+name|BloomFilter
+argument_list|<
+name|T
+argument_list|>
+argument_list|(
+name|bits
+operator|.
+name|copy
+argument_list|()
+argument_list|,
+name|numHashFunctions
+argument_list|,
+name|funnel
+argument_list|,
+name|strategy
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns {@code true} if the element<i>might</i> have been put in this Bloom filter,     * {@code false} if this is<i>definitely</i> not the case.     */
 DECL|method|mightContain (T object)
 specifier|public
@@ -317,16 +347,17 @@ name|bits
 argument_list|)
 return|;
 block|}
-comment|/**    * Puts an element into this {@code BloomFilter}. Ensures that subsequent invocations of     * {@link #mightContain(Object)} with the same element will always return {@code true}.    */
+comment|/**    * Puts an element into this {@code BloomFilter}. Ensures that subsequent invocations of     * {@link #mightContain(Object)} with the same element will always return {@code true}.    *     * @return true if the bloom filter's bits changed as a result of this operation. If the bits    *         changed, this is<i>definitely</i> the first time {@code object} has been added to the    *         filter. If the bits haven't changed, this<i>might</i> be the first time {@code object}    *         has been added to the filter. Note that {@code put(t)} always returns the    *<i>opposite</i> result to what {@code mightContain(t)} would have returned at the time    *         it is called."    * @since 12.0 (present in 11.0 with {@code void} return type})    */
 DECL|method|put (T object)
 specifier|public
-name|void
+name|boolean
 name|put
 parameter_list|(
 name|T
 name|object
 parameter_list|)
 block|{
+return|return
 name|strategy
 operator|.
 name|put
@@ -339,7 +370,90 @@ name|numHashFunctions
 argument_list|,
 name|bits
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * {@inheritDoc}    *    *<p>This implementation uses reference equality to compare funnels.    */
+DECL|method|equals (Object o)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+if|if
+condition|(
+name|o
+operator|instanceof
+name|BloomFilter
+condition|)
+block|{
+name|BloomFilter
+name|that
+init|=
+operator|(
+name|BloomFilter
+operator|)
+name|o
+decl_stmt|;
+return|return
+name|this
+operator|.
+name|numHashFunctions
+operator|==
+name|that
+operator|.
+name|numHashFunctions
+operator|&&
+name|this
+operator|.
+name|bits
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|bits
+argument_list|)
+operator|&&
+name|this
+operator|.
+name|funnel
+operator|==
+name|that
+operator|.
+name|funnel
+operator|&&
+name|this
+operator|.
+name|strategy
+operator|==
+name|that
+operator|.
+name|strategy
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|bits
+operator|.
+name|hashCode
+argument_list|()
+return|;
 block|}
 DECL|method|getHashCount ()
 annotation|@
@@ -395,7 +509,7 @@ name|numHashFunctions
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number     * of insertions and expected false positive probability.    *     *<p>Note that overflowing a {@code BloomFilter} with significantly more elements     * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *     *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided     * {@code Funnel<T>} is.    *     * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed     *        {@code BloomFilter<T>}; must be positive    * @param falsePositiveProbability the desired false positive probability (must be positive and     *        less than 1.0)    * @return a {@code Builder}    */
+comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number     * of insertions and expected false positive probability.    *     *<p>Note that overflowing a {@code BloomFilter} with significantly more elements     * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *     *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided     * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *     * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed     *        {@code BloomFilter<T>}; must be positive    * @param falsePositiveProbability the desired false positive probability (must be positive and     *        less than 1.0)    * @return a {@code Builder}    */
 DECL|method|create (Funnel<T> funnel, int expectedInsertions , double falsePositiveProbability)
 specifier|public
 specifier|static
