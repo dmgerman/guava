@@ -467,6 +467,15 @@ block|,
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|}
 argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
 DECL|method|testAddConcurrentWithIteration ()
 specifier|public
 name|void

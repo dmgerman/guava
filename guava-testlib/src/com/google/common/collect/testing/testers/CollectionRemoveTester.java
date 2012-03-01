@@ -116,6 +116,26 @@ name|features
 operator|.
 name|CollectionSize
 operator|.
+name|SEVERAL
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|CollectionSize
+operator|.
 name|ZERO
 import|;
 end_import
@@ -314,9 +334,7 @@ name|CollectionSize
 operator|.
 name|Require
 argument_list|(
-name|absent
-operator|=
-name|ZERO
+name|SEVERAL
 argument_list|)
 DECL|method|testRemovePresentConcurrentWithIteration ()
 specifier|public

@@ -3425,6 +3425,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|ALLOWS_NULL_QUERIES
+argument_list|,
+name|CollectionFeature
+operator|.
+name|REMOVE_OPERATIONS
 argument_list|)
 operator|.
 name|createTestSuite

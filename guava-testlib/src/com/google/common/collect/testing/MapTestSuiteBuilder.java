@@ -1158,6 +1158,18 @@ argument_list|(
 name|mapFeatures
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|mapFeatures
+operator|.
+name|contains
+argument_list|(
+name|MapFeature
+operator|.
+name|ALLOWS_NULL_QUERIES
+argument_list|)
+condition|)
+block|{
 name|valuesCollectionFeatures
 operator|.
 name|add
@@ -1167,6 +1179,7 @@ operator|.
 name|ALLOWS_NULL_QUERIES
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|mapFeatures

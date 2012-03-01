@@ -977,10 +977,6 @@ name|CollectionFeature
 operator|.
 name|RESTRICTS_ELEMENTS
 argument_list|,
-name|CollectionFeature
-operator|.
-name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
-argument_list|,
 name|CollectionSize
 operator|.
 name|ANY

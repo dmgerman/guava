@@ -288,6 +288,14 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
+name|suppressing
+argument_list|(
+name|parentBuilder
+operator|.
+name|getSuppressedTests
+argument_list|()
+argument_list|)
+operator|.
 name|createTestSuite
 argument_list|()
 argument_list|)

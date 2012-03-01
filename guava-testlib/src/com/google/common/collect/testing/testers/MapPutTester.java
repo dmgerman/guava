@@ -393,6 +393,15 @@ block|,
 name|SUPPORTS_PUT
 block|}
 argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
 DECL|method|testPutAbsentConcurrentWithEntrySetIteration ()
 specifier|public
 name|void
@@ -459,6 +468,15 @@ block|,
 name|SUPPORTS_PUT
 block|}
 argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
 DECL|method|testPutAbsentConcurrentWithKeySetIteration ()
 specifier|public
 name|void
@@ -519,6 +537,15 @@ name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|,
 name|SUPPORTS_PUT
 block|}
+argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
 argument_list|)
 DECL|method|testPutAbsentConcurrentWithValueIteration ()
 specifier|public

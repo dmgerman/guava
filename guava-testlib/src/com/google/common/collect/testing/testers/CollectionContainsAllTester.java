@@ -437,6 +437,15 @@ name|Require
 argument_list|(
 name|ALLOWS_NULL_VALUES
 argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
 DECL|method|testContainsAll_nullPresent ()
 specifier|public
 name|void
