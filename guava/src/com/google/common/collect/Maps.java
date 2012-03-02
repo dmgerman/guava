@@ -2166,8 +2166,6 @@ return|;
 block|}
 block|}
 comment|/**    * Computes the difference between two sorted maps, using the comparator of    * the left map, or {@code Ordering.natural()} if the left map uses the    * natural ordering of its elements. This difference is an immutable snapshot    * of the state of the maps at the time this method is called. It will never    * change, even if the maps change at a later time.    *    *<p>Since this method uses {@code TreeMap} instances internally, the keys of    * the right map must all compare as distinct according to the comparator    * of the left map.    *    *<p><b>Note:</b>If you only need to know whether two sorted maps have the    * same mappings, call {@code left.equals(right)} instead of this method.    *    * @param left the map to treat as the "left" map for purposes of comparison    * @param right the map to treat as the "right" map for purposes of comparison    * @return the difference between the two maps    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|difference ( SortedMap<K, ? extends V> left, Map<? extends K, ? extends V> right)
 specifier|public
 specifier|static

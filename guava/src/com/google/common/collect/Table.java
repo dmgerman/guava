@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -105,8 +91,6 @@ end_comment
 begin_interface
 annotation|@
 name|GwtCompatible
-annotation|@
-name|Beta
 DECL|interface|Table
 specifier|public
 interface|interface
@@ -384,8 +368,6 @@ name|columnMap
 parameter_list|()
 function_decl|;
 comment|/**    * Row key / column key / value triplet corresponding to a mapping in a table.    *    * @since 7.0    */
-annotation|@
-name|Beta
 DECL|interface|Cell
 interface|interface
 name|Cell

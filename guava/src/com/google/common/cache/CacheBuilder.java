@@ -807,6 +807,74 @@ argument_list|>
 argument_list|()
 return|;
 block|}
+comment|/**    * Constructs a new {@code CacheBuilder} instance with the settings specified in {@code spec}.    *    * @since 12.0    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|from (CacheBuilderSpec spec)
+specifier|public
+specifier|static
+name|CacheBuilder
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|from
+parameter_list|(
+name|CacheBuilderSpec
+name|spec
+parameter_list|)
+block|{
+return|return
+name|spec
+operator|.
+name|toCacheBuilder
+argument_list|()
+operator|.
+name|lenientParsing
+argument_list|()
+return|;
+block|}
+comment|/**    * Constructs a new {@code CacheBuilder} instance with the settings specified in {@code spec}.    * This is especially useful for command-line configuration of a {@code CacheBuilder}.    *    * @param spec a String in the format specified by {@link CacheBuilderSpec}    * @since 12.0    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
+DECL|method|from (String spec)
+specifier|public
+specifier|static
+name|CacheBuilder
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|from
+parameter_list|(
+name|String
+name|spec
+parameter_list|)
+block|{
+return|return
+name|from
+argument_list|(
+name|CacheBuilderSpec
+operator|.
+name|parse
+argument_list|(
+name|spec
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Enables lenient parsing. Useful for tests and spec parsing.    */
 DECL|method|lenientParsing ()
 name|CacheBuilder
