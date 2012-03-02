@@ -1415,6 +1415,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 block|{
+specifier|final
 name|ToRemove
 argument_list|<
 name|E

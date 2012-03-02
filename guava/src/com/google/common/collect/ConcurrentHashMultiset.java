@@ -1731,7 +1731,6 @@ argument_list|>
 name|c
 parameter_list|)
 block|{
-comment|/*          * TODO(cpovirk): should we be smart like AbstractSet and iterate over c instead if it's          * small? Should standardRemoveAll itself be smart?          */
 return|return
 name|standardRemoveAll
 argument_list|(
