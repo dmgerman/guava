@@ -167,7 +167,7 @@ name|char
 name|c
 parameter_list|)
 function_decl|;
-comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(Charsets.UTF_16LE)}.    */
+comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(Charsets.UTF_16LE))}.    */
 DECL|method|putString (CharSequence charSequence)
 annotation|@
 name|Override
@@ -178,7 +178,7 @@ name|CharSequence
 name|charSequence
 parameter_list|)
 function_decl|;
-comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(charset)}.    */
+comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(charset))}.    */
 DECL|method|putString (CharSequence charSequence, Charset charset)
 annotation|@
 name|Override

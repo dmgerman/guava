@@ -835,6 +835,21 @@ argument_list|(
 name|UTF_8
 argument_list|)
 decl_stmt|;
+DECL|field|TIFF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|TIFF
+init|=
+operator|new
+name|MediaType
+argument_list|(
+name|IMAGE_TYPE
+argument_list|,
+literal|"tiff"
+argument_list|)
+decl_stmt|;
 comment|/* audio types */
 DECL|field|MP4_AUDIO
 specifier|public
@@ -1540,6 +1555,13 @@ argument_list|(
 name|SVG_UTF_8
 argument_list|,
 name|SVG_UTF_8
+argument_list|)
+operator|.
+name|put
+argument_list|(
+name|TIFF
+argument_list|,
+name|TIFF
 argument_list|)
 comment|/* audio types */
 operator|.
