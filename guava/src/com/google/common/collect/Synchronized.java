@@ -4333,7 +4333,7 @@ argument_list|>
 argument_list|>
 name|entry
 init|=
-name|iterator
+name|super
 operator|.
 name|next
 argument_list|()
@@ -6279,7 +6279,7 @@ block|{
 return|return
 name|typePreservingCollection
 argument_list|(
-name|iterator
+name|super
 operator|.
 name|next
 argument_list|()

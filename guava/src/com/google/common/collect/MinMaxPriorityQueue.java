@@ -138,6 +138,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayDeque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|ArrayList
 import|;
 end_import
@@ -189,16 +199,6 @@ operator|.
 name|util
 operator|.
 name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedList
 import|;
 end_import
 
@@ -2692,7 +2692,6 @@ name|expectedModCount
 init|=
 name|modCount
 decl_stmt|;
-comment|// TODO(user): Switch to ArrayDeque once Guava supports it.
 DECL|field|forgetMeNot
 specifier|private
 name|Queue
@@ -2907,7 +2906,7 @@ block|{
 name|forgetMeNot
 operator|=
 operator|new
-name|LinkedList
+name|ArrayDeque
 argument_list|<
 name|E
 argument_list|>

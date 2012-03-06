@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Iterators
-operator|.
-name|transform
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -43,20 +27,6 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Function
 import|;
 end_import
 
@@ -91,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Workaround for   *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">  * EnumMap bug</a>. If you want to pass an {@code EnumMap}, with the  * intention of using its {@code entrySet()} method, you should  * wrap the {@code EnumMap} in this class instead.   *  *<p>This class is not thread-safe even if the underlying map is.  *   * @author Dimitris Andreou  */
+comment|/**  * Workaround for  *<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6312706">  * EnumMap bug</a>. If you want to pass an {@code EnumMap}, with the  * intention of using its {@code entrySet()} method, you should  * wrap the {@code EnumMap} in this class instead.  *  *<p>This class is not thread-safe even if the underlying map is.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class
@@ -158,7 +128,7 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-comment|/**    * Wraps the given map into a {@code WellBehavedEntriesMap}, which    * intercepts its {@code entrySet()} method by taking the     * {@code Set<K> keySet()} and transforming it to    * {@code Set<Entry<K, V>>}. All other invocations are delegated as-is.      */
+comment|/**    * Wraps the given map into a {@code WellBehavedEntriesMap}, which    * intercepts its {@code entrySet()} method by taking the    * {@code Set<K> keySet()} and transforming it to    * {@code Set<Entry<K, V>>}. All other invocations are delegated as-is.    */
 DECL|method|wrap (Map<K, V> delegate)
 specifier|static
 parameter_list|<
@@ -294,9 +264,9 @@ operator|.
 name|this
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -311,38 +281,35 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-name|transform
+operator|new
+name|TransformedIterator
+argument_list|<
+name|K
+argument_list|,
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
 argument_list|(
 name|keySet
 argument_list|()
 operator|.
 name|iterator
 argument_list|()
-argument_list|,
-operator|new
-name|Function
-argument_list|<
-name|K
-argument_list|,
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-argument_list|()
+argument_list|)
 block|{
 annotation|@
 name|Override
-specifier|public
 name|Entry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|apply
+name|transform
 parameter_list|(
 specifier|final
 name|K
@@ -407,7 +374,6 @@ block|}
 return|;
 block|}
 block|}
-argument_list|)
 return|;
 block|}
 block|}
