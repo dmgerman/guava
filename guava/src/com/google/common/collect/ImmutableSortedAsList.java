@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
@@ -27,6 +27,8 @@ operator|.
 name|base
 operator|.
 name|Preconditions
+operator|.
+name|checkPositionIndexes
 import|;
 end_import
 
@@ -147,32 +149,7 @@ name|comparator
 argument_list|()
 return|;
 block|}
-comment|// Override contains(), indexOf(), and lastIndexOf() to be O(log N) instead of O(N).
-DECL|method|contains (@ullable Object target)
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|contains
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|target
-parameter_list|)
-block|{
-comment|// TODO: why not contains(target)?
-return|return
-name|backingSet
-operator|.
-name|indexOf
-argument_list|(
-name|target
-argument_list|)
-operator|>=
-literal|0
-return|;
-block|}
+comment|// Override indexOf() and lastIndexOf() to be O(log N) instead of O(N).
 DECL|method|indexOf (@ullable Object target)
 annotation|@
 name|Override
@@ -236,8 +213,6 @@ name|int
 name|toIndex
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkPositionIndexes
 argument_list|(
 name|fromIndex
