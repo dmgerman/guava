@@ -855,7 +855,7 @@ throw|throw
 operator|new
 name|NumberFormatException
 argument_list|(
-literal|"illegal radix:"
+literal|"illegal radix: "
 operator|+
 name|radix
 argument_list|)
@@ -1128,54 +1128,27 @@ operator|<
 literal|0
 condition|)
 block|{
-comment|// Split x into high-order and low-order halves.
-comment|// Individual digits are generated from the bottom half into which
-comment|// bits are moved continously from the top half.
+comment|// Separate off the last digit using unsigned division. That will leave
+comment|// a number that is nonnegative as a signed integer.
 name|long
-name|top
+name|quotient
 init|=
+name|divide
+argument_list|(
 name|x
-operator|>>>
-literal|32
+argument_list|,
+name|radix
+argument_list|)
 decl_stmt|;
 name|long
-name|bot
+name|rem
 init|=
-operator|(
 name|x
-operator|&
-literal|0xffffffffl
-operator|)
-operator|+
-operator|(
-operator|(
-name|top
-operator|%
+operator|-
+name|quotient
+operator|*
 name|radix
-operator|)
-operator|<<
-literal|32
-operator|)
 decl_stmt|;
-name|top
-operator|/=
-name|radix
-expr_stmt|;
-while|while
-condition|(
-operator|(
-name|bot
-operator|>
-literal|0
-operator|)
-operator|||
-operator|(
-name|top
-operator|>
-literal|0
-operator|)
-condition|)
-block|{
 name|buf
 index|[
 operator|--
@@ -1186,44 +1159,19 @@ name|Character
 operator|.
 name|forDigit
 argument_list|(
-call|(
+operator|(
 name|int
-call|)
-argument_list|(
-name|bot
-operator|%
-name|radix
-argument_list|)
+operator|)
+name|rem
 argument_list|,
 name|radix
 argument_list|)
 expr_stmt|;
-name|bot
+name|x
 operator|=
-operator|(
-name|bot
-operator|/
-name|radix
-operator|)
-operator|+
-operator|(
-operator|(
-name|top
-operator|%
-name|radix
-operator|)
-operator|<<
-literal|32
-operator|)
-expr_stmt|;
-name|top
-operator|/=
-name|radix
+name|quotient
 expr_stmt|;
 block|}
-block|}
-else|else
-block|{
 comment|// Simple modulo/division approach
 while|while
 condition|(
@@ -1258,7 +1206,6 @@ name|x
 operator|/=
 name|radix
 expr_stmt|;
-block|}
 block|}
 comment|// Generate string
 return|return
