@@ -1500,9 +1500,9 @@ index|[
 name|size
 index|]
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|source
 argument_list|,

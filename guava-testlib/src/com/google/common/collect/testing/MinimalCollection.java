@@ -417,9 +417,9 @@ operator|.
 name|length
 index|]
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|contents
 argument_list|,

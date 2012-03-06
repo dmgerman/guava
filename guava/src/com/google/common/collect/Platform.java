@@ -94,46 +94,6 @@ name|clone
 argument_list|()
 return|;
 block|}
-comment|/**    * Wrapper around {@link System#arraycopy} so that it can be emulated    * correctly in GWT.    *    *<p>It is only intended for the case {@code src} and {@code dest} are    * different.  It also doesn't validate the types and indices.    *    *<p>As of GWT 2.0, The built-in {@link System#arraycopy} doesn't work    * in general case.  See    * http://code.google.com/p/google-web-toolkit/issues/detail?id=3621    * for more details.    */
-DECL|method|unsafeArrayCopy ( Object[] src, int srcPos, Object[] dest, int destPos, int length)
-specifier|static
-name|void
-name|unsafeArrayCopy
-parameter_list|(
-name|Object
-index|[]
-name|src
-parameter_list|,
-name|int
-name|srcPos
-parameter_list|,
-name|Object
-index|[]
-name|dest
-parameter_list|,
-name|int
-name|destPos
-parameter_list|,
-name|int
-name|length
-parameter_list|)
-block|{
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|src
-argument_list|,
-name|srcPos
-argument_list|,
-name|dest
-argument_list|,
-name|destPos
-argument_list|,
-name|length
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Returns a new array of the given length with the specified component type.    *    * @param type the component type    * @param length the length of the new array    */
 annotation|@
 name|GwtIncompatible

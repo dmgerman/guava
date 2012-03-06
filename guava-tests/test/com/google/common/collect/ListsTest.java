@@ -800,9 +800,9 @@ operator|-
 literal|1
 index|]
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,
@@ -904,9 +904,9 @@ operator|-
 literal|2
 index|]
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,

@@ -193,9 +193,9 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|elements
 argument_list|,

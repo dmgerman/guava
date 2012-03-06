@@ -146,9 +146,9 @@ index|]
 operator|=
 name|element
 expr_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|array
 argument_list|,
@@ -245,9 +245,9 @@ argument_list|,
 name|newLength
 argument_list|)
 decl_stmt|;
-name|Platform
+name|System
 operator|.
-name|unsafeArrayCopy
+name|arraycopy
 argument_list|(
 name|original
 argument_list|,
