@@ -1984,9 +1984,6 @@ name|this
 operator|.
 name|size
 operator|=
-operator|(
-name|long
-operator|)
 name|elemCount
 operator|+
 name|sizeOrZero
