@@ -69,16 +69,6 @@ specifier|private
 name|int
 name|value
 decl_stmt|;
-DECL|method|Count ()
-name|Count
-parameter_list|()
-block|{
-name|this
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|Count (int value)
 name|Count
 parameter_list|(
