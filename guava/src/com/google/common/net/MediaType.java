@@ -443,7 +443,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an<a href="http://en.wikipedia.org/wiki/Internet_media_type">Internet Media Type</a>  * (also known as a MIME Type or Content Type). All values for type, subtype, parameter attributes  * or parameter values must be valid according to RFCs 2045 and 2046.  *  *<p>All portions of the media type that are case-insensitive (type, subtype, parameter attributes)  * are normalized to lowercase. The value of the {@code charset} parameter is normalized to  * lowercase, but all others are left as-is.  *  *<p>Note that this specifically does<strong>not</strong> represent the value of the MIME  * {@code Content-Type} header and as such has no support for header-specific considerations such as  * line wrapping and comments.  *  *<p>For media types that take a charset the predefined constants default to UTF-8 and have a  * "_UTF_8" suffix. To get a version without a character set, use {@link #withoutParameters}.  *  * @since 12.0  *  * @author Gregory Kick  */
+comment|/**  * Represents an<a href="http://en.wikipedia.org/wiki/Internet_media_type">Internet Media Type</a>  * (also known as a MIME Type or Content Type). All values for type, subtype, parameter attributes  * or parameter values must be valid according to RFCs 2045 and 2046.  *  *<p>All portions of the media type that are case-insensitive (type, subtype, parameter attributes)  * are normalized to lowercase. The value of the {@code charset} parameter is normalized to  * lowercase, but all others are left as-is.  *  *<p>Note that this specifically does<strong>not</strong> represent the value of the MIME  * {@code Content-Type} header and as such has no support for header-specific considerations such as  * line folding and comments.  *  *<p>For media types that take a charset the predefined constants default to UTF-8 and have a  * "_UTF_8" suffix. To get a version without a character set, use {@link #withoutParameters}.  *  * @since 12.0  *  * @author Gregory Kick  */
 end_comment
 
 begin_class
@@ -523,6 +523,21 @@ name|noneOf
 argument_list|(
 literal|"\"\\\r"
 argument_list|)
+argument_list|)
+decl_stmt|;
+comment|/*    * This matches the same characters as linear-white-space from RFC 822, but we make no effort to    * enforce any particular rules with regards to line folding as stated in the class docs.    */
+DECL|field|LINEAR_WHITE_SPACE
+specifier|private
+specifier|static
+specifier|final
+name|CharMatcher
+name|LINEAR_WHITE_SPACE
+init|=
+name|CharMatcher
+operator|.
+name|anyOf
+argument_list|(
+literal|" \t\r\n"
 argument_list|)
 decl_stmt|;
 comment|// TODO(gak): make these public?
@@ -2746,9 +2761,9 @@ argument_list|)
 expr_stmt|;
 name|tokenizer
 operator|.
-name|consumeCharacter
+name|consumeToken
 argument_list|(
-literal|' '
+name|LINEAR_WHITE_SPACE
 argument_list|)
 expr_stmt|;
 name|String
