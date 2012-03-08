@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkPositionIndexes
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -194,17 +178,14 @@ name|target
 argument_list|)
 return|;
 block|}
-comment|// The returned ImmutableSortedAsList maintains the contains(), indexOf(), and
-comment|// lastIndexOf() performance benefits.
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
-specifier|public
+DECL|method|subListUnchecked (int fromIndex, int toIndex)
 name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|subList
+name|subListUnchecked
 parameter_list|(
 name|int
 name|fromIndex
@@ -213,31 +194,7 @@ name|int
 name|toIndex
 parameter_list|)
 block|{
-name|checkPositionIndexes
-argument_list|(
-name|fromIndex
-argument_list|,
-name|toIndex
-argument_list|,
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
-operator|(
-name|fromIndex
-operator|==
-name|toIndex
-operator|)
-condition|?
-name|ImmutableList
-operator|.
-expr|<
-name|E
-operator|>
-name|of
-argument_list|()
-else|:
 operator|new
 name|RegularImmutableSortedSet
 argument_list|<
