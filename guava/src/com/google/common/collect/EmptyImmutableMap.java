@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty immutable map.  *   * @author Jesse Wilson  * @author Kevin Bourrillion  */
+comment|/**  * An empty immutable map.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -167,6 +167,29 @@ block|{
 return|return
 literal|false
 return|;
+block|}
+DECL|method|createEntrySet ()
+annotation|@
+name|Override
+name|ImmutableSet
+argument_list|<
+name|Entry
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+argument_list|>
+name|createEntrySet
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"should never be called"
+argument_list|)
+throw|;
 block|}
 DECL|method|entrySet ()
 annotation|@

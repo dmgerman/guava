@@ -839,10 +839,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|entrySet ()
+DECL|method|createEntrySet ()
 annotation|@
 name|Override
-specifier|public
 name|ImmutableSet
 argument_list|<
 name|Entry
@@ -852,7 +851,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-name|entrySet
+name|createEntrySet
 parameter_list|()
 block|{
 return|return
