@@ -487,7 +487,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code iterable} contains {@code element}; that is,    * any object for which {@code equals(element)} is true.    */
+comment|/**    * Returns {@code true} if {@code iterable} contains any object for which {@code equals(element)}    * is true.    */
 DECL|method|contains (Iterable<?> iterable, @Nullable Object element)
 specifier|public
 specifier|static
@@ -2128,7 +2128,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns {@code true} if one or more elements in {@code iterable} satisfy    * the predicate.    */
+comment|/**    * Returns {@code true} if any element in {@code iterable} satisfies the predicate.    */
 DECL|method|any ( Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
