@@ -521,38 +521,6 @@ name|all
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.of(2, 3, 1, 3)} yields a multiset with    * elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @deprecated use {@link #copyOf(Object[])}.<b>This method is scheduled for    *     deletion in January 2012.</b>    * @since 2.0 (changed from varargs in 6.0)    */
-annotation|@
-name|Deprecated
-DECL|method|of (E[] elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableMultiset
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-return|return
-name|copyOf
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-name|elements
-argument_list|)
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an immutable multiset containing the given elements.    *    *<p>The multiset is ordered by the first occurrence of each element. For    * example, {@code ImmutableMultiset.copyOf([2, 3, 1, 3])} yields a multiset    * with elements in the order {@code 2, 3, 3, 1}.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 6.0    */
 DECL|method|copyOf (E[] elements)
 specifier|public
