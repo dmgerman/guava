@@ -507,8 +507,6 @@ name|required
 init|=
 name|getAllRequiredToFauxveride
 argument_list|(
-name|descendant
-argument_list|,
 name|ancestor
 argument_list|)
 decl_stmt|;
@@ -548,7 +546,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getAllRequiredToFauxveride ( Class<?> descendant, Class<?> ancestor)
+DECL|method|getAllRequiredToFauxveride (Class<?> ancestor)
 specifier|private
 specifier|static
 name|Set
@@ -557,12 +555,6 @@ name|MethodSignature
 argument_list|>
 name|getAllRequiredToFauxveride
 parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|descendant
-parameter_list|,
 name|Class
 argument_list|<
 name|?

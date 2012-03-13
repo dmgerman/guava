@@ -5131,15 +5131,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Set
-argument_list|<
-name|List
-argument_list|<
-name|Integer
-argument_list|>
-argument_list|>
-name|productSet
-init|=
 name|Sets
 operator|.
 name|cartesianProduct
@@ -5154,7 +5145,7 @@ name|set
 argument_list|,
 name|set
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IAE"

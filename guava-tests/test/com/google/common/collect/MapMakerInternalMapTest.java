@@ -8396,8 +8396,6 @@ argument_list|,
 name|key
 argument_list|,
 name|value
-argument_list|,
-name|hash
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -9195,7 +9193,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertNotificationEnqueued ( MapMakerInternalMap<K, V> map, K key, V value, int hash)
+DECL|method|assertNotificationEnqueued ( MapMakerInternalMap<K, V> map, K key, V value)
 specifier|private
 specifier|static
 parameter_list|<
@@ -9219,9 +9217,6 @@ name|key
 parameter_list|,
 name|V
 name|value
-parameter_list|,
-name|int
-name|hash
 parameter_list|)
 block|{
 name|RemovalNotification

@@ -239,12 +239,6 @@ block|{
 try|try
 block|{
 name|GeneralRange
-argument_list|<
-name|Integer
-argument_list|>
-name|range
-init|=
-name|GeneralRange
 operator|.
 name|range
 argument_list|(
@@ -258,7 +252,7 @@ literal|2
 argument_list|,
 name|uboundType
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IAE"

@@ -1671,14 +1671,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|class|SomeThrowable
-specifier|private
-specifier|static
-class|class
-name|SomeThrowable
-extends|extends
-name|Throwable
-block|{}
 DECL|class|SomeError
 specifier|private
 specifier|static
