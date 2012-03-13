@@ -1373,8 +1373,8 @@ name|length
 return|;
 block|}
 block|}
-comment|/**    * Copies a collection of {@code Short} instances into a new array of    * primitive {@code short} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Short} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
-DECL|method|toArray (Collection<Short> collection)
+comment|/**    * Returns an array containing each value of {@code collection}, converted to    * a {@code short} value in the manner of {@link Number#shortValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    * @since 1.0 (parameter was {@code Collection<Short>} before 12.0)    */
+DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static
 name|short
@@ -1383,7 +1383,9 @@ name|toArray
 parameter_list|(
 name|Collection
 argument_list|<
-name|Short
+name|?
+extends|extends
+name|Number
 argument_list|>
 name|collection
 parameter_list|)
@@ -1455,7 +1457,8 @@ name|i
 index|]
 operator|=
 operator|(
-name|Short
+operator|(
+name|Number
 operator|)
 name|checkNotNull
 argument_list|(
@@ -1464,6 +1467,10 @@ index|[
 name|i
 index|]
 argument_list|)
+operator|)
+operator|.
+name|shortValue
+argument_list|()
 expr_stmt|;
 block|}
 return|return

@@ -735,8 +735,8 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Copies a collection of {@code Byte} instances into a new array of    * primitive {@code byte} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Byte} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
-DECL|method|toArray (Collection<Byte> collection)
+comment|/**    * Returns an array containing each value of {@code collection}, converted to    * a {@code byte} value in the manner of {@link Number#byteValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    * @since 1.0 (parameter was {@code Collection<Byte>} before 12.0)    */
+DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static
 name|byte
@@ -745,7 +745,9 @@ name|toArray
 parameter_list|(
 name|Collection
 argument_list|<
-name|Byte
+name|?
+extends|extends
+name|Number
 argument_list|>
 name|collection
 parameter_list|)
@@ -817,7 +819,8 @@ name|i
 index|]
 operator|=
 operator|(
-name|Byte
+operator|(
+name|Number
 operator|)
 name|checkNotNull
 argument_list|(
@@ -826,6 +829,10 @@ index|[
 name|i
 index|]
 argument_list|)
+operator|)
+operator|.
+name|byteValue
+argument_list|()
 expr_stmt|;
 block|}
 return|return

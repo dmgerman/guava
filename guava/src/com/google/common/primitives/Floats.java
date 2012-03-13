@@ -1179,8 +1179,8 @@ name|length
 return|;
 block|}
 block|}
-comment|/**    * Copies a collection of {@code Float} instances into a new array of    * primitive {@code float} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Float} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
-DECL|method|toArray (Collection<Float> collection)
+comment|/**    * Returns an array containing each value of {@code collection}, converted to    * a {@code float} value in the manner of {@link Number#floatValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    * @since 1.0 (parameter was {@code Collection<Float>} before 12.0)    */
+DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static
 name|float
@@ -1189,7 +1189,9 @@ name|toArray
 parameter_list|(
 name|Collection
 argument_list|<
-name|Float
+name|?
+extends|extends
+name|Number
 argument_list|>
 name|collection
 parameter_list|)
@@ -1261,7 +1263,8 @@ name|i
 index|]
 operator|=
 operator|(
-name|Float
+operator|(
+name|Number
 operator|)
 name|checkNotNull
 argument_list|(
@@ -1270,6 +1273,10 @@ index|[
 name|i
 index|]
 argument_list|)
+operator|)
+operator|.
+name|floatValue
+argument_list|()
 expr_stmt|;
 block|}
 return|return
