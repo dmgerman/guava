@@ -56,11 +56,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|math
 operator|.
-name|Preconditions
+name|LongMath
 operator|.
-name|checkState
+name|binomial
 import|;
 end_import
 
@@ -102,7 +102,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|VisibleForTesting
+name|GwtIncompatible
 import|;
 end_import
 
@@ -159,6 +159,20 @@ operator|.
 name|base
 operator|.
 name|Predicates
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|math
+operator|.
+name|IntMath
 import|;
 end_import
 
@@ -263,6 +277,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Collections2
 specifier|public
 specifier|final
@@ -1460,7 +1479,12 @@ argument_list|(
 literal|"null"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1]    * will have only one permutation, instead of two. This is why the elements    * have to implement {@link Comparable}.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to    * {@code Collections2.orderedPermutations(list, Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException if the specified iterable is null or has any    *     null elements.    * @since 12.0    */
+comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1]    * will have only one permutation, instead of two. This is why the elements    * have to implement {@link Comparable}.    *     *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to    * {@code Collections2.orderedPermutations(list, Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException if the specified iterable is null or has any    *     null elements.    * @since 12.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"com.google.common.math"
+argument_list|)
 annotation|@
 name|Beta
 specifier|public
@@ -1504,7 +1528,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable} using the specified {@link Comparator} for establishing    * the lexicographical ordering.    *    *<p>Examples:<pre>   {@code    *    *   for (List<String> perm : orderedPermutations(asList("b", "c", "a"))) {    *     println(perm);    *   }    *   // -> ["a", "b", "c"]    *   // -> ["a", "c", "b"]    *   // -> ["b", "a", "c"]    *   // -> ["b", "c", "a"]    *   // -> ["c", "a", "b"]    *   // -> ["c", "b", "a"]    *    *   for (List<Integer> perm : orderedPermutations(asList(1, 2, 2, 1))) {    *     println(perm);    *   }    *   // -> [1, 1, 2, 2]    *   // -> [1, 2, 1, 2]    *   // -> [1, 2, 2, 1]    *   // -> [2, 1, 1, 2]    *   // -> [2, 1, 2, 1]    *   // -> [2, 2, 1, 1]}</pre>    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Elements that compare equal are considered equal and no new permutations    * are created by swapping them.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    * @param elements the original iterable whose elements have to be permuted.    * @param comparator a comparator for the iterable's elements.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException If the specified iterable is null, has any    *     null elements, or if the specified comparator is null.    * @since 12.0    */
+comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable} using the specified {@link Comparator} for establishing    * the lexicographical ordering.    *    *<p>Examples:<pre>   {@code    *    *   for (List<String> perm : orderedPermutations(asList("b", "c", "a"))) {    *     println(perm);    *   }    *   // -> ["a", "b", "c"]    *   // -> ["a", "c", "b"]    *   // -> ["b", "a", "c"]    *   // -> ["b", "c", "a"]    *   // -> ["c", "a", "b"]    *   // -> ["c", "b", "a"]    *    *   for (List<Integer> perm : orderedPermutations(asList(1, 2, 2, 1))) {    *     println(perm);    *   }    *   // -> [1, 1, 2, 2]    *   // -> [1, 2, 1, 2]    *   // -> [1, 2, 2, 1]    *   // -> [2, 1, 1, 2]    *   // -> [2, 1, 2, 1]    *   // -> [2, 2, 1, 1]}</pre>    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Elements that compare equal are considered equal and no new permutations    * are created by swapping them.    *     *<p>An empty iterable has only one permutation, which is an empty list.    *    * @param elements the original iterable whose elements have to be permuted.    * @param comparator a comparator for the iterable's elements.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException If the specified iterable is null, has any    *     null elements, or if the specified comparator is null.    * @since 12.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"com.google.common.math"
+argument_list|)
 DECL|method|orderedPermutations ( Iterable<E> elements, Comparator<? super E> comparator)
 annotation|@
 name|Beta
@@ -1550,6 +1579,11 @@ name|comparator
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used by GwtCompatible code (yet)"
+argument_list|)
 DECL|class|OrderedPermutationCollection
 specifier|private
 specifier|static
@@ -1644,7 +1678,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * The number of permutations with repeated elements is calculated as      * follows:      *<ul>      *<li>For an empty list, it is 1 (base case).</li>      *<li>When r numbers are added to a list of n-r elements, the number of      * permutations is increased by a factor of (n choose r).</li>      *</ul>      */
-DECL|method|calculateSize (List<E> sortedInputList, Comparator<? super E> comparator)
+DECL|method|calculateSize ( List<E> sortedInputList, Comparator<? super E> comparator)
+specifier|private
 specifier|static
 parameter_list|<
 name|E
@@ -1667,8 +1702,6 @@ argument_list|>
 name|comparator
 parameter_list|)
 block|{
-try|try
-block|{
 name|long
 name|permutations
 init|=
@@ -1684,22 +1717,15 @@ name|r
 init|=
 literal|1
 decl_stmt|;
-for|for
-control|(
-init|;
+while|while
+condition|(
 name|n
 operator|<
 name|sortedInputList
 operator|.
 name|size
 argument_list|()
-condition|;
-name|n
-operator|++
-operator|,
-name|r
-operator|++
-control|)
+condition|)
 block|{
 name|int
 name|comparison
@@ -1725,14 +1751,6 @@ name|n
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// The list is sorted, this is an invariant.
-name|checkState
-argument_list|(
-name|comparison
-operator|<=
-literal|0
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|comparison
@@ -1743,7 +1761,7 @@ block|{
 comment|// We move to the next non-repeated element.
 name|permutations
 operator|*=
-name|binomialCoefficient
+name|binomial
 argument_list|(
 name|n
 argument_list|,
@@ -1754,7 +1772,6 @@ name|r
 operator|=
 literal|0
 expr_stmt|;
-comment|// Return early if we have more than MAX_VALUE permutations.
 if|if
 condition|(
 operator|!
@@ -1771,10 +1788,16 @@ name|MAX_VALUE
 return|;
 block|}
 block|}
+name|n
+operator|++
+expr_stmt|;
+name|r
+operator|++
+expr_stmt|;
 block|}
 name|permutations
 operator|*=
-name|binomialCoefficient
+name|binomial
 argument_list|(
 name|n
 argument_list|,
@@ -1802,20 +1825,6 @@ name|int
 operator|)
 name|permutations
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// Overflow. Fall back to max size.
-return|return
-name|Integer
-operator|.
-name|MAX_VALUE
-return|;
-block|}
 block|}
 DECL|method|size ()
 annotation|@
@@ -1935,6 +1944,11 @@ literal|")"
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used by GwtCompatible code (yet)"
+argument_list|)
 DECL|class|OrderedPermutationIterator
 specifier|private
 specifier|static
@@ -2250,7 +2264,12 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Collection}.    *    *<p><i>Notes:</i> This is an implementation of the Plain Changes algorithm    * for permutations generation, described in Knuth's "The Art of Computer    * Programming", Volume 4, Chapter 7, Section 7.2.1.2.    *    *<p>If the input list contains equal elements, some of the generated    * permutations will be equal.    *    *<p>An empty collection has only one permutation, which is an empty list.    *    * @param elements the original collection whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original collection.    * @throws NullPointerException if the specified collection is null or has any    *     null elements.    * @since 12.0    */
+comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Collection}.    *    *<p><i>Notes:</i> This is an implementation of the Plain Changes algorithm    * for permutations generation, described in Knuth's "The Art of Computer    * Programming", Volume 4, Chapter 7, Section 7.2.1.2.    *     *<p>If the input list contains equal elements, some of the generated    * permutations will be equal.    *     *<p>An empty collection has only one permutation, which is an empty list.    *     * @param elements the original collection whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original collection.    * @throws NullPointerException if the specified collection is null or has any    *     null elements.    * @since 12.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"com.google.common.math"
+argument_list|)
 DECL|method|permutations ( Collection<E> elements)
 annotation|@
 name|Beta
@@ -2291,6 +2310,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used by GwtCompatible code (yet)"
+argument_list|)
 DECL|class|PermutationCollection
 specifier|private
 specifier|static
@@ -2343,7 +2367,9 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|safeIntFactorial
+name|IntMath
+operator|.
+name|factorial
 argument_list|(
 name|inputList
 operator|.
@@ -2456,6 +2482,11 @@ literal|")"
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used by GwtCompatible code (yet)"
+argument_list|)
 DECL|class|PermutationIterator
 specifier|private
 specifier|static
@@ -2765,6 +2796,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns {@code true} if the second list is a permutation of the first.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used by GwtCompatible code (yet)"
+argument_list|)
 DECL|method|isPermutation (List<?> first, List<?> second)
 specifier|private
 specifier|static
@@ -2836,73 +2872,11 @@ name|secondSet
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): Maybe move the mathematical methods to a separate
-comment|// package-permission class.
-comment|/**    * We could do a better job if we reused a library function here.    * We do not check for overflow here. The caller will do it, since the result    * will be narrowed to an int anyway.    */
-DECL|method|binomialCoefficient (int n, int k)
-specifier|private
-specifier|static
-name|long
-name|binomialCoefficient
-parameter_list|(
-name|int
-name|n
-parameter_list|,
-name|int
-name|k
-parameter_list|)
-block|{
-name|checkArgument
+annotation|@
+name|GwtIncompatible
 argument_list|(
-name|n
-operator|>=
-name|k
+literal|"not used by GwtCompatible code (yet)"
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|k
-operator|>
-name|n
-operator|-
-name|k
-condition|)
-block|{
-return|return
-name|factorialQuotient
-argument_list|(
-name|n
-argument_list|,
-name|k
-argument_list|)
-operator|/
-name|factorial
-argument_list|(
-name|n
-operator|-
-name|k
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-return|return
-name|factorialQuotient
-argument_list|(
-name|n
-argument_list|,
-name|n
-operator|-
-name|k
-argument_list|)
-operator|/
-name|factorial
-argument_list|(
-name|k
-argument_list|)
-return|;
-block|}
-block|}
 DECL|method|isPositiveInt (long n)
 specifier|private
 specifier|static
@@ -2923,218 +2897,6 @@ operator|<=
 name|Integer
 operator|.
 name|MAX_VALUE
-return|;
-block|}
-comment|/**    * Returns the factorial of n as a int, or Integer.MAX_VALUE if the result    * is too large.    */
-DECL|method|safeIntFactorial (int n)
-specifier|private
-specifier|static
-name|int
-name|safeIntFactorial
-parameter_list|(
-name|int
-name|n
-parameter_list|)
-block|{
-name|checkArgument
-argument_list|(
-name|n
-operator|>=
-literal|0
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|n
-operator|>
-literal|12
-condition|)
-block|{
-return|return
-name|Integer
-operator|.
-name|MAX_VALUE
-return|;
-block|}
-return|return
-operator|(
-name|int
-operator|)
-name|FACTORIALS
-index|[
-name|n
-index|]
-return|;
-block|}
-comment|/** Precalculated factorials */
-DECL|field|FACTORIALS
-specifier|private
-specifier|static
-specifier|final
-name|long
-index|[]
-name|FACTORIALS
-init|=
-block|{
-literal|1L
-block|,
-literal|1L
-block|,
-literal|2L
-block|,
-literal|6L
-block|,
-literal|24L
-block|,
-literal|120L
-block|,
-literal|720L
-block|,
-literal|5040L
-block|,
-literal|40320L
-block|,
-literal|362880L
-block|,
-literal|3628800L
-block|,
-literal|39916800L
-block|,
-literal|479001600L
-block|,
-literal|6227020800L
-block|,
-literal|87178291200L
-block|,
-literal|1307674368000L
-block|,
-literal|20922789888000L
-block|,
-literal|355687428096000L
-block|,
-literal|6402373705728000L
-block|,
-literal|121645100408832000L
-block|,
-literal|2432902008176640000L
-block|}
-decl_stmt|;
-comment|/**    * We could do a better job if we reused a library function here.    */
-DECL|method|factorial (int n)
-annotation|@
-name|VisibleForTesting
-specifier|static
-name|long
-name|factorial
-parameter_list|(
-name|int
-name|n
-parameter_list|)
-block|{
-name|checkArgument
-argument_list|(
-name|n
-operator|>=
-literal|0
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|n
-operator|<=
-literal|20
-argument_list|,
-literal|"Numeric overflow calculating the factorial of: %d"
-argument_list|,
-name|n
-argument_list|)
-expr_stmt|;
-return|return
-name|FACTORIALS
-index|[
-name|n
-index|]
-return|;
-block|}
-comment|/**    * Returns n! / d!.    */
-DECL|method|factorialQuotient (int n, int d)
-specifier|private
-specifier|static
-name|long
-name|factorialQuotient
-parameter_list|(
-name|int
-name|n
-parameter_list|,
-name|int
-name|d
-parameter_list|)
-block|{
-name|checkArgument
-argument_list|(
-name|n
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|d
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|n
-operator|>=
-name|d
-argument_list|)
-expr_stmt|;
-name|long
-name|result
-init|=
-literal|1
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-name|d
-operator|+
-literal|1
-init|;
-name|i
-operator|<=
-name|n
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|result
-operator|*=
-name|i
-expr_stmt|;
-if|if
-condition|(
-name|result
-operator|<
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Numeric overflow"
-argument_list|)
-throw|;
-block|}
-block|}
-return|return
-name|result
 return|;
 block|}
 block|}

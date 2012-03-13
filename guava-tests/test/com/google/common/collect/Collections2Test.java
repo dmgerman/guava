@@ -26,9 +26,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Collections2
+name|Iterables
 operator|.
-name|factorial
+name|concat
 import|;
 end_import
 
@@ -93,6 +93,18 @@ operator|.
 name|Arrays
 operator|.
 name|asList
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|nCopies
 import|;
 end_import
 
@@ -2294,6 +2306,11 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetEmpty ()
 specifier|public
 name|void
@@ -2378,6 +2395,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetOneElement ()
 specifier|public
 name|void
@@ -2430,6 +2452,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetThreeElements ()
 specifier|public
 name|void
@@ -2560,6 +2587,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetRepeatedElements ()
 specifier|public
 name|void
@@ -2709,6 +2741,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetRepeatedElementsSize ()
 specifier|public
 name|void
@@ -2767,12 +2804,59 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetSizeOverflow ()
 specifier|public
 name|void
 name|testOrderedPermutationSetSizeOverflow
 parameter_list|()
 block|{
+comment|// 12 elements won't overflow
+name|assertEquals
+argument_list|(
+literal|479001600
+comment|/*12!*/
+argument_list|,
+name|Collections2
+operator|.
+name|orderedPermutations
+argument_list|(
+name|newArrayList
+argument_list|(
+literal|1
+argument_list|,
+literal|2
+argument_list|,
+literal|3
+argument_list|,
+literal|4
+argument_list|,
+literal|5
+argument_list|,
+literal|6
+argument_list|,
+literal|7
+argument_list|,
+literal|8
+argument_list|,
+literal|9
+argument_list|,
+literal|10
+argument_list|,
+literal|11
+argument_list|,
+literal|12
+argument_list|)
+argument_list|)
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// 13 elements overflow an int
 name|assertEquals
 argument_list|(
@@ -2879,7 +2963,39 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Force an overflow in the binomial coefficient calculation
+comment|// Almost force an overflow in the binomial coefficient calculation
+name|assertEquals
+argument_list|(
+literal|1391975640
+comment|/*C(34,14)*/
+argument_list|,
+name|Collections2
+operator|.
+name|orderedPermutations
+argument_list|(
+name|concat
+argument_list|(
+name|nCopies
+argument_list|(
+literal|20
+argument_list|,
+literal|1
+argument_list|)
+argument_list|,
+name|nCopies
+argument_list|(
+literal|14
+argument_list|,
+literal|2
+argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Do force an overflow in the binomial coefficient calculation
 name|assertEquals
 argument_list|(
 name|Integer
@@ -2890,75 +3006,21 @@ name|Collections2
 operator|.
 name|orderedPermutations
 argument_list|(
-name|newArrayList
+name|concat
 argument_list|(
-literal|1
+name|nCopies
+argument_list|(
+literal|21
 argument_list|,
 literal|1
+argument_list|)
 argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
-argument_list|,
-literal|1
+name|nCopies
+argument_list|(
+literal|14
 argument_list|,
 literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
-argument_list|,
-literal|2
+argument_list|)
 argument_list|)
 argument_list|)
 operator|.
@@ -2967,6 +3029,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testOrderedPermutationSetContains ()
 specifier|public
 name|void
@@ -3102,6 +3169,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetEmpty ()
 specifier|public
 name|void
@@ -3189,6 +3261,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetOneElement ()
 specifier|public
 name|void
@@ -3238,6 +3315,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetTwoElements ()
 specifier|public
 name|void
@@ -3298,6 +3380,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetThreeElements ()
 specifier|public
 name|void
@@ -3420,6 +3507,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetThreeElementsOutOfOrder ()
 specifier|public
 name|void
@@ -3542,6 +3634,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetThreeRepeatedElements ()
 specifier|public
 name|void
@@ -3664,6 +3761,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetFourElements ()
 specifier|public
 name|void
@@ -4088,6 +4190,11 @@ name|permutations
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetSize ()
 specifier|public
 name|void
@@ -4220,6 +4327,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetSizeOverflow ()
 specifier|public
 name|void
@@ -4391,6 +4503,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"permutations"
+argument_list|)
 DECL|method|testPermutationSetContains ()
 specifier|public
 name|void
@@ -4525,104 +4642,6 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-DECL|method|testFactorials ()
-specifier|public
-name|void
-name|testFactorials
-parameter_list|()
-block|{
-comment|// We check the factorials invariant, to make sure that they are not
-comment|// accidentally modified, since they are hard-coded.
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<=
-literal|20
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|assertEquals
-argument_list|(
-name|i
-operator|*
-name|factorial
-argument_list|(
-name|i
-operator|-
-literal|1
-argument_list|)
-argument_list|,
-name|factorial
-argument_list|(
-name|i
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-DECL|method|testFactorials_EdgeValues ()
-specifier|public
-name|void
-name|testFactorials_EdgeValues
-parameter_list|()
-block|{
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|factorial
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|factorial
-argument_list|(
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expected IllegalArgumentException."
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{}
-try|try
-block|{
-name|factorial
-argument_list|(
-literal|21
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expected IllegalArgumentException."
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{}
 block|}
 DECL|method|assertNextPermutation (List<T> expectedPermutation, Iterator<List<T>> permutations)
 specifier|private
