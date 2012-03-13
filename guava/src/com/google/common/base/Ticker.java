@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A time source; returns a time value representing the number of nanoseconds  * elapsed since some fixed but arbitrary point in time.  *  * @author Kevin Bourrillion  * @since 10.0  *     (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since 9.0)  */
+comment|/**  * A time source; returns a time value representing the number of nanoseconds elapsed since some  * fixed but arbitrary point in time. Note that most users should use {@link Stopwatch} instead of  * interacting with this class directly.  *  *<p><b>Warning:</b> this interface can only be used to measure elapsed time, not wall time.  *  * @author Kevin Bourrillion  * @since 10.0  *     (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"  *>mostly source-compatible</a> since 9.0)  */
 end_comment
 
 begin_class
