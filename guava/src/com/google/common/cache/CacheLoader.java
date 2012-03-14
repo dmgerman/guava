@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -247,6 +261,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Returns a {@code CacheLoader} which creates values by applying a {@code Function} to the key.    */
+annotation|@
+name|Beta
 DECL|method|from (Function<K, V> function)
 specifier|public
 specifier|static
@@ -371,6 +387,8 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns a {@code CacheLoader} which obtains values from a {@code Supplier} (independent of the    * key).    */
+annotation|@
+name|Beta
 DECL|method|from (Supplier<V> supplier)
 specifier|public
 specifier|static
