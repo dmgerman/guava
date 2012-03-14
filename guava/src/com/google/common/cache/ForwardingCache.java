@@ -180,12 +180,12 @@ annotation|@
 name|Override
 annotation|@
 name|Nullable
-DECL|method|getIfPresent (K key)
+DECL|method|getIfPresent (Object key)
 specifier|public
 name|V
 name|getIfPresent
 parameter_list|(
-name|K
+name|Object
 name|key
 parameter_list|)
 block|{
@@ -236,7 +236,7 @@ block|}
 comment|/**    * @since 11.0    */
 annotation|@
 name|Override
-DECL|method|getAllPresent (Iterable<? extends K> keys)
+DECL|method|getAllPresent (Iterable<?> keys)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -249,8 +249,6 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
-extends|extends
-name|K
 argument_list|>
 name|keys
 parameter_list|)

@@ -18387,7 +18387,7 @@ name|defaultLoader
 argument_list|)
 return|;
 block|}
-DECL|method|getAllPresent (Iterable<? extends K> keys)
+DECL|method|getAllPresent (Iterable<?> keys)
 name|ImmutableMap
 argument_list|<
 name|K
@@ -18399,8 +18399,6 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
-extends|extends
-name|K
 argument_list|>
 name|keys
 parameter_list|)
@@ -18430,7 +18428,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|K
+name|Object
 name|key
 range|:
 name|keys
@@ -18457,11 +18455,25 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// TODO(fry): store entry key instead of query key
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|K
+name|castKey
+init|=
+operator|(
+name|K
+operator|)
+name|key
+decl_stmt|;
 name|result
 operator|.
 name|put
 argument_list|(
-name|key
+name|castKey
 argument_list|,
 name|value
 argument_list|)
@@ -22143,12 +22155,12 @@ annotation|@
 name|Override
 annotation|@
 name|Nullable
-DECL|method|getIfPresent (K key)
+DECL|method|getIfPresent (Object key)
 specifier|public
 name|V
 name|getIfPresent
 parameter_list|(
-name|K
+name|Object
 name|key
 parameter_list|)
 block|{
@@ -22229,7 +22241,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getAllPresent (Iterable<? extends K> keys)
+DECL|method|getAllPresent (Iterable<?> keys)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -22242,8 +22254,6 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
-extends|extends
-name|K
 argument_list|>
 name|keys
 parameter_list|)

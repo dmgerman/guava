@@ -260,7 +260,7 @@ specifier|public
 name|Integer
 name|getIfPresent
 parameter_list|(
-name|Integer
+name|Object
 name|key
 parameter_list|)
 block|{

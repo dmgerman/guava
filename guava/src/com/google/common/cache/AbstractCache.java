@@ -193,10 +193,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * @since 11.0    */
+comment|/**    * This implementation of {@code getAllPresent} lacks any insight into the internal cache data    * structure, and is thus forced to return the query keys instead of the cached keys. This is only    * possible with an unsafe cast which requires {@code keys} to actually be of type {@code K}.    *    * {@inheritDoc}    *    * @since 11.0    */
 annotation|@
 name|Override
-DECL|method|getAllPresent (Iterable<? extends K> keys)
+DECL|method|getAllPresent (Iterable<?> keys)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -209,8 +209,6 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
-extends|extends
-name|K
 argument_list|>
 name|keys
 parameter_list|)
@@ -230,7 +228,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|K
+name|Object
 name|key
 range|:
 name|keys
@@ -247,11 +245,24 @@ name|key
 argument_list|)
 condition|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+name|K
+name|castKey
+init|=
+operator|(
+name|K
+operator|)
+name|key
+decl_stmt|;
 name|result
 operator|.
 name|put
 argument_list|(
-name|key
+name|castKey
 argument_list|,
 name|getIfPresent
 argument_list|(

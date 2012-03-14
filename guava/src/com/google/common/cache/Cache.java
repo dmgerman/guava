@@ -168,11 +168,11 @@ block|{
 comment|/**    * Returns the value associated with {@code key} in this cache, or {@code null} if there is no    * cached value for {@code key}.    *    * @since 11.0    */
 annotation|@
 name|Nullable
-DECL|method|getIfPresent (K key)
+DECL|method|getIfPresent (Object key)
 name|V
 name|getIfPresent
 parameter_list|(
-name|K
+name|Object
 name|key
 parameter_list|)
 function_decl|;
@@ -196,7 +196,7 @@ throws|throws
 name|ExecutionException
 function_decl|;
 comment|/**    * Returns a map of the values associated with {@code keys} in this cache. The returned map will    * only contain entries which are already present in the cache.    *    * @since 11.0    */
-DECL|method|getAllPresent (Iterable<? extends K> keys)
+DECL|method|getAllPresent (Iterable<?> keys)
 name|ImmutableMap
 argument_list|<
 name|K
@@ -208,8 +208,6 @@ parameter_list|(
 name|Iterable
 argument_list|<
 name|?
-extends|extends
-name|K
 argument_list|>
 name|keys
 parameter_list|)

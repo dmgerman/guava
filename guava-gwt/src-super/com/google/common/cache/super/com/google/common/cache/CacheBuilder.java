@@ -755,12 +755,12 @@ annotation|@
 name|Override
 annotation|@
 name|Nullable
-DECL|method|getIfPresent (K key)
+DECL|method|getIfPresent (Object key)
 specifier|public
 name|V
 name|getIfPresent
 parameter_list|(
-name|K
+name|Object
 name|key
 parameter_list|)
 block|{
