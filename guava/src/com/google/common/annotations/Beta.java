@@ -76,10 +76,6 @@ name|Target
 import|;
 end_import
 
-begin_comment
-comment|/**  * Signifies that a public API (public class, method or field) is subject to  * incompatible changes, or even removal, in a future release. An API bearing  * this annotation is exempt from any compatibility guarantees made by its  * containing library.  *  * @author Kevin Bourrillion  */
-end_comment
-
 begin_annotation_defn
 annotation|@
 name|Retention
