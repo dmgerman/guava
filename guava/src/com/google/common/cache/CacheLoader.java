@@ -260,7 +260,7 @@ name|UnsupportedLoadingOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Returns a {@code CacheLoader} which creates values by applying a {@code Function} to the key.    */
+comment|/**    * Returns a cache loader based on an<i>existing</i> function instance. Note that there's no need    * to create a<i>new</i> function just to pass it in here; just subclass {@code CacheLoader} and    * implement {@link #load load} instead.    *    * @param function the function to be used for loading values; must never return {@code null}    * @return a cache loader that loads values by passing each key to {@code function}    */
 annotation|@
 name|Beta
 DECL|method|from (Function<K, V> function)
@@ -386,7 +386,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a {@code CacheLoader} which obtains values from a {@code Supplier} (independent of the    * key).    */
+comment|/**    * Returns a cache loader based on an<i>existing</i> supplier instance. Note that there's no need    * to create a<i>new</i> supplier just to pass it in here; just subclass {@code CacheLoader} and    * implement {@link #load load} instead.    *    * @param supplier the supplier to be used for loading values; must never return {@code null}    * @return a cache loader that loads values by calling {@link Supplier#get}, irrespective of the    *     key    */
 annotation|@
 name|Beta
 DECL|method|from (Supplier<V> supplier)
