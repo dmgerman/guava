@@ -1133,7 +1133,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterable}, or {@code    * defaultValue} if the iterable is empty.    *    * @throws IllegalArgumentException if the iterator contains multiple    *     elements    */
-DECL|method|getOnlyElement ( Iterable<T> iterable, @Nullable T defaultValue)
+DECL|method|getOnlyElement ( Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1144,6 +1144,8 @@ name|getOnlyElement
 parameter_list|(
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
@@ -2427,7 +2429,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found. Note that this can    * usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    * @since 7.0    */
-DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
+DECL|method|find (Iterable<? extends T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2438,6 +2440,8 @@ name|find
 parameter_list|(
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
@@ -2770,7 +2774,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns the element at the specified position in an iterable or a default    * value otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if {@code position} is    *     greater than or equal to the size of the iterable    * @return the element at the specified position in {@code iterable} or    *     {@code defaultValue} if {@code iterable} contains fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
-DECL|method|get (Iterable<T> iterable, int position, @Nullable T defaultValue)
+DECL|method|get (Iterable<? extends T> iterable, int position, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2781,6 +2785,8 @@ name|get
 parameter_list|(
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
@@ -2827,7 +2833,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the first element in {@code iterable} or {@code defaultValue} if    * the iterable is empty.  The {@link Iterators} analog to this method is    * {@link Iterators#getNext}.    *    * @param defaultValue the default value to return if the iterable is empty    * @return the first element of {@code iterable} or the default value    * @since 7.0    */
-DECL|method|getFirst (Iterable<T> iterable, @Nullable T defaultValue)
+DECL|method|getFirst (Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2838,6 +2844,8 @@ name|getFirst
 parameter_list|(
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
@@ -2964,7 +2972,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the last element of {@code iterable} or {@code defaultValue} if    * the iterable is empty.    *    * @param defaultValue the value to return if {@code iterable} is empty    * @return the last element of {@code iterable} or the default value    * @since 3.0    */
-DECL|method|getLast (Iterable<T> iterable, @Nullable T defaultValue)
+DECL|method|getLast (Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2975,6 +2983,8 @@ name|getLast
 parameter_list|(
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|iterable
