@@ -26,6 +26,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ImmutableMap
@@ -155,6 +183,13 @@ comment|/**  * Tests for {@link AtomicLongMap}.  *  * @author schmoe@google.com 
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|AtomicLongMapTest
 specifier|public
 class|class
@@ -191,6 +226,11 @@ argument_list|(
 literal|301
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -4201,6 +4241,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|testModify_basher ()
 specifier|public
 name|void
