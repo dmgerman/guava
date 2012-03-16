@@ -394,31 +394,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testOf_empty ()
-specifier|public
-name|void
-name|testOf_empty
-parameter_list|()
-block|{
-name|assertEquals
-argument_list|(
-name|ImmutableList
-operator|.
-name|of
-argument_list|()
-argument_list|,
-name|Lists
-operator|.
-name|newArrayList
-argument_list|(
-name|FluentIterable
-operator|.
-name|of
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testSize0 ()
 specifier|public
 name|void

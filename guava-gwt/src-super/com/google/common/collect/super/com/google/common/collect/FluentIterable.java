@@ -289,35 +289,6 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing no elements.    */
-DECL|method|of ()
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|FluentIterable
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|()
-block|{
-return|return
-name|FluentIterable
-operator|.
-name|from
-argument_list|(
-name|ImmutableList
-operator|.
-expr|<
-name|E
-operator|>
-name|of
-argument_list|()
-argument_list|)
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|iterator ()
