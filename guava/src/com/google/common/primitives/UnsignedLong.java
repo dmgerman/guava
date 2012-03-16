@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *  *<p><b>Please do not extend this class; it will be made final in the near future.</b>  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *  * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
+comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *   *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *   * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
 end_comment
 
 begin_class
@@ -122,6 +122,7 @@ literal|true
 argument_list|)
 DECL|class|UnsignedLong
 specifier|public
+specifier|final
 class|class
 name|UnsignedLong
 extends|extends
@@ -134,7 +135,6 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
-comment|// TODO(user): make final as soon as util.UnsignedLong is migrated over
 DECL|field|UNSIGNED_MASK
 specifier|private
 specifier|static
@@ -191,7 +191,7 @@ name|long
 name|value
 decl_stmt|;
 DECL|method|UnsignedLong (long value)
-specifier|protected
+specifier|private
 name|UnsignedLong
 parameter_list|(
 name|long
@@ -205,7 +205,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *    *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    */
+comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *     *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    */
 DECL|method|asUnsigned (long value)
 specifier|public
 specifier|static
@@ -224,7 +224,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code UnsignedLong} representing the same value as the specified {@code BigInteger}    * . This is the inverse operation of {@link #bigIntegerValue()}.    *    * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^64}    */
+comment|/**    * Returns a {@code UnsignedLong} representing the same value as the specified {@code BigInteger}    * . This is the inverse operation of {@link #bigIntegerValue()}.    *     * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^64}    */
 DECL|method|valueOf (BigInteger value)
 specifier|public
 specifier|static
@@ -273,7 +273,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *     * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value    */
 DECL|method|valueOf (String string)
 specifier|public
 specifier|static
@@ -293,7 +293,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *         {@link Character#MAX_RADIX}    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *     * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *         {@link Character#MAX_RADIX}    */
 DECL|method|valueOf (String string, int radix)
 specifier|public
 specifier|static
@@ -481,7 +481,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedLong} as a {@code long}. This is an inverse operation    * to {@link #asUnsigned}.    *    *<p>Note that if this {@code UnsignedLong} holds a value {@code>= 2^63}, the returned value    * will be equal to {@code this - 2^64}.    */
+comment|/**    * Returns the value of this {@code UnsignedLong} as a {@code long}. This is an inverse operation    * to {@link #asUnsigned}.    *     *<p>Note that if this {@code UnsignedLong} holds a value {@code>= 2^63}, the returned value    * will be equal to {@code this - 2^64}.    */
 annotation|@
 name|Override
 DECL|method|longValue ()
