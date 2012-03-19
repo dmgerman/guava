@@ -243,6 +243,38 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|class|Ints
+specifier|public
+specifier|static
+class|class
+name|Ints
+extends|extends
+name|SampleElements
+argument_list|<
+name|Integer
+argument_list|>
+block|{
+DECL|method|Ints ()
+specifier|public
+name|Ints
+parameter_list|()
+block|{
+comment|// elements aren't sorted, to better test SortedSet iteration ordering
+name|super
+argument_list|(
+literal|1
+argument_list|,
+literal|0
+argument_list|,
+literal|2
+argument_list|,
+literal|3
+argument_list|,
+literal|4
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|method|mapEntries ( SampleElements<K> keys, SampleElements<V> values)
 specifier|public
 specifier|static

@@ -50,7 +50,7 @@ name|testing
 operator|.
 name|testers
 operator|.
-name|MapNavigationTester
+name|NavigableMapNavigationTester
 import|;
 end_import
 
@@ -272,7 +272,7 @@ name|testers
 operator|.
 name|add
 argument_list|(
-name|MapNavigationTester
+name|NavigableMapNavigationTester
 operator|.
 name|class
 argument_list|)

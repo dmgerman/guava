@@ -300,9 +300,14 @@ return|return
 name|this
 return|;
 block|}
-comment|//Abstract method doesn't exist in GWT emulation
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used by GWT emulation"
+argument_list|)
 DECL|method|indexOf (Object target)
-comment|/* @Override */
+annotation|@
+name|Override
 name|int
 name|indexOf
 parameter_list|(
@@ -536,6 +541,36 @@ name|C
 argument_list|>
 argument_list|(
 name|domain
+argument_list|)
+return|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
+DECL|method|createDescendingSet ()
+name|ImmutableSortedSet
+argument_list|<
+name|C
+argument_list|>
+name|createDescendingSet
+parameter_list|()
+block|{
+return|return
+operator|new
+name|EmptyImmutableSortedSet
+argument_list|<
+name|C
+argument_list|>
+argument_list|(
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+operator|.
+name|reverse
+argument_list|()
 argument_list|)
 return|;
 block|}

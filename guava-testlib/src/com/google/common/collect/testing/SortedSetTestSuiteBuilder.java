@@ -32,7 +32,7 @@ name|testing
 operator|.
 name|testers
 operator|.
-name|NavigableSetNavigationTester
+name|SortedSetNavigationTester
 import|;
 end_import
 
@@ -47,20 +47,19 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a NavigableSet implementation.  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a SortedSet implementation.  */
 end_comment
 
 begin_class
-DECL|class|NavigableSetTestSuiteBuilder
+DECL|class|SortedSetTestSuiteBuilder
 specifier|public
-specifier|final
 class|class
-name|NavigableSetTestSuiteBuilder
+name|SortedSetTestSuiteBuilder
 parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|SortedSetTestSuiteBuilder
+name|SetTestSuiteBuilder
 argument_list|<
 name|E
 argument_list|>
@@ -71,7 +70,7 @@ specifier|static
 parameter_list|<
 name|E
 parameter_list|>
-name|NavigableSetTestSuiteBuilder
+name|SortedSetTestSuiteBuilder
 argument_list|<
 name|E
 argument_list|>
@@ -84,14 +83,14 @@ argument_list|>
 name|generator
 parameter_list|)
 block|{
-name|NavigableSetTestSuiteBuilder
+name|SortedSetTestSuiteBuilder
 argument_list|<
 name|E
 argument_list|>
 name|builder
 init|=
 operator|new
-name|NavigableSetTestSuiteBuilder
+name|SortedSetTestSuiteBuilder
 argument_list|<
 name|E
 argument_list|>
@@ -149,7 +148,7 @@ name|testers
 operator|.
 name|add
 argument_list|(
-name|NavigableSetNavigationTester
+name|SortedSetNavigationTester
 operator|.
 name|class
 argument_list|)

@@ -465,6 +465,35 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|createDescendingSet ()
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|createDescendingSet
+parameter_list|()
+block|{
+return|return
+operator|new
+name|EmptyImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|Ordering
+operator|.
+name|from
+argument_list|(
+name|comparator
+argument_list|)
+operator|.
+name|reverse
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

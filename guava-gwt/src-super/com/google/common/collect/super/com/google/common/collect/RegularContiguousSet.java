@@ -168,9 +168,56 @@ operator|=
 name|range
 expr_stmt|;
 block|}
-comment|// Abstract method doesn't exist in GWT emulation
+DECL|method|intersectionInCurrentDomain (Range<C> other)
+specifier|private
+name|ContiguousSet
+argument_list|<
+name|C
+argument_list|>
+name|intersectionInCurrentDomain
+parameter_list|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|other
+parameter_list|)
+block|{
+return|return
+operator|(
+name|range
+operator|.
+name|isConnected
+argument_list|(
+name|other
+argument_list|)
+operator|)
+condition|?
+name|range
+operator|.
+name|intersection
+argument_list|(
+name|other
+argument_list|)
+operator|.
+name|asSet
+argument_list|(
+name|domain
+argument_list|)
+else|:
+operator|new
+name|EmptyContiguousSet
+argument_list|<
+name|C
+argument_list|>
+argument_list|(
+name|domain
+argument_list|)
+return|;
+block|}
 DECL|method|headSetImpl (C toElement, boolean inclusive)
-comment|/* @Override */
+annotation|@
+name|Override
 name|ContiguousSet
 argument_list|<
 name|C
@@ -185,9 +232,7 @@ name|inclusive
 parameter_list|)
 block|{
 return|return
-name|range
-operator|.
-name|intersection
+name|intersectionInCurrentDomain
 argument_list|(
 name|Ranges
 operator|.
@@ -203,52 +248,11 @@ name|inclusive
 argument_list|)
 argument_list|)
 argument_list|)
-operator|.
-name|asSet
-argument_list|(
-name|domain
-argument_list|)
 return|;
 block|}
-comment|// Abstract method doesn't exist in GWT emulation
-DECL|method|indexOf (Object target)
-comment|/* @Override */
-name|int
-name|indexOf
-parameter_list|(
-name|Object
-name|target
-parameter_list|)
-block|{
-return|return
-name|contains
-argument_list|(
-name|target
-argument_list|)
-condition|?
-operator|(
-name|int
-operator|)
-name|domain
-operator|.
-name|distance
-argument_list|(
-name|first
-argument_list|()
-argument_list|,
-operator|(
-name|C
-operator|)
-name|target
-argument_list|)
-else|:
-operator|-
-literal|1
-return|;
-block|}
-comment|// Abstract method doesn't exist in GWT emulation
 DECL|method|subSetImpl (C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
-comment|/* @Override */
+annotation|@
+name|Override
 name|ContiguousSet
 argument_list|<
 name|C
@@ -268,10 +272,38 @@ name|boolean
 name|toInclusive
 parameter_list|)
 block|{
-return|return
-name|range
+if|if
+condition|(
+name|fromElement
 operator|.
-name|intersection
+name|compareTo
+argument_list|(
+name|toElement
+argument_list|)
+operator|==
+literal|0
+operator|&&
+operator|!
+name|fromInclusive
+operator|&&
+operator|!
+name|toInclusive
+condition|)
+block|{
+comment|// Range would reject our attempt to create (x, x).
+return|return
+operator|new
+name|EmptyContiguousSet
+argument_list|<
+name|C
+argument_list|>
+argument_list|(
+name|domain
+argument_list|)
+return|;
+block|}
+return|return
+name|intersectionInCurrentDomain
 argument_list|(
 name|Ranges
 operator|.
@@ -296,16 +328,11 @@ name|toInclusive
 argument_list|)
 argument_list|)
 argument_list|)
-operator|.
-name|asSet
-argument_list|(
-name|domain
-argument_list|)
 return|;
 block|}
-comment|// Abstract method doesn't exist in GWT emulation
 DECL|method|tailSetImpl (C fromElement, boolean inclusive)
-comment|/* @Override */
+annotation|@
+name|Override
 name|ContiguousSet
 argument_list|<
 name|C
@@ -320,9 +347,7 @@ name|inclusive
 parameter_list|)
 block|{
 return|return
-name|range
-operator|.
-name|intersection
+name|intersectionInCurrentDomain
 argument_list|(
 name|Ranges
 operator|.
@@ -337,11 +362,6 @@ argument_list|(
 name|inclusive
 argument_list|)
 argument_list|)
-argument_list|)
-operator|.
-name|asSet
-argument_list|(
-name|domain
 argument_list|)
 return|;
 block|}

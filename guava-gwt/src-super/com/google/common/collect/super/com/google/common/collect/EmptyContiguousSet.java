@@ -276,21 +276,6 @@ return|return
 name|this
 return|;
 block|}
-comment|//Abstract method doesn't exist in GWT emulation
-DECL|method|indexOf (Object target)
-comment|/* @Override */
-name|int
-name|indexOf
-parameter_list|(
-name|Object
-name|target
-parameter_list|)
-block|{
-return|return
-operator|-
-literal|1
-return|;
-block|}
 DECL|method|iterator ()
 annotation|@
 name|Override
