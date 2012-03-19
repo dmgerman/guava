@@ -2555,7 +2555,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new media type with the given type and subtype.    *    * @throws IllegalArgumentException if type or subtype is invalid or if a wildcard is used for the    * subtype, but not the type.    */
+comment|/**    * Creates a new media type with the given type and subtype.    *    * @throws IllegalArgumentException if type or subtype is invalid or if a wildcard is used for the    * type, but not the subtype.    */
 DECL|method|create (String type, String subtype)
 specifier|public
 specifier|static
@@ -2752,7 +2752,7 @@ argument_list|(
 name|normalizedSubtype
 argument_list|)
 argument_list|,
-literal|"A wildcard subtype cannot be used with a non-wildcard type"
+literal|"A wildcard type cannot be used with a non-wildcard subtype"
 argument_list|)
 expr_stmt|;
 specifier|final
