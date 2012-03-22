@@ -116,16 +116,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -166,7 +156,7 @@ literal|true
 argument_list|)
 DECL|class|FluentIterable
 specifier|public
-specifier|final
+specifier|abstract
 class|class
 name|FluentIterable
 parameter_list|<
@@ -178,6 +168,8 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// We store 'iterable' and use it instead of 'this' to allow Iterables to perform instanceof
+comment|// checks on the _original_ iterable when FluentIterable.from is used.
 DECL|field|iterable
 specifier|private
 specifier|final
@@ -187,8 +179,20 @@ name|E
 argument_list|>
 name|iterable
 decl_stmt|;
+comment|/** Constructor for use by subclasses. */
+DECL|method|FluentIterable ()
+specifier|protected
+name|FluentIterable
+parameter_list|()
+block|{
+name|this
+operator|.
+name|iterable
+operator|=
+name|this
+expr_stmt|;
+block|}
 DECL|method|FluentIterable (Iterable<E> iterable)
-specifier|private
 name|FluentIterable
 parameter_list|(
 name|Iterable
@@ -211,7 +215,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@code iterable} itself if it    * is already a {@code FluentIterable}.    */
-DECL|method|from (Iterable<E> iterable)
+DECL|method|from (final Iterable<E> iterable)
 specifier|public
 specifier|static
 parameter_list|<
@@ -223,6 +227,7 @@ name|E
 argument_list|>
 name|from
 parameter_list|(
+specifier|final
 name|Iterable
 argument_list|<
 name|E
@@ -235,9 +240,6 @@ operator|(
 name|iterable
 operator|instanceof
 name|FluentIterable
-argument_list|<
-name|?
-argument_list|>
 operator|)
 condition|?
 operator|(
@@ -256,6 +258,25 @@ argument_list|>
 argument_list|(
 name|iterable
 argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|iterable
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
+block|}
 return|;
 block|}
 comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to    * {@code FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to    *     {@code FluentIterable}    */
@@ -289,24 +310,6 @@ name|iterable
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|iterator ()
-specifier|public
-name|Iterator
-argument_list|<
-name|E
-argument_list|>
-name|iterator
-parameter_list|()
-block|{
-return|return
-name|iterable
-operator|.
-name|iterator
-argument_list|()
-return|;
-block|}
 comment|/**    * Returns a string representation of this fluent iterable, with the format    * {@code [e1, e2, ..., en]}.    */
 annotation|@
 name|Override
@@ -328,6 +331,7 @@ block|}
 comment|/**    * Returns the number of elements in this fluent iterable.    */
 DECL|method|size ()
 specifier|public
+specifier|final
 name|int
 name|size
 parameter_list|()
@@ -344,6 +348,7 @@ block|}
 comment|/**    * Returns {@code true} if this fluent iterable contains any object for which    * {@code equals(element)} is true.    */
 DECL|method|contains (@ullable Object element)
 specifier|public
+specifier|final
 name|boolean
 name|contains
 parameter_list|(
@@ -367,6 +372,7 @@ block|}
 comment|/**    * Returns the single element contained in this fluent iterable.    *    * @throws NoSuchElementException if this fluent iterable is empty    * @throws IllegalArgumentException if this fluent iterable contains multiple elements    */
 DECL|method|getOnlyElement ()
 specifier|public
+specifier|final
 name|E
 name|getOnlyElement
 parameter_list|()
@@ -383,6 +389,7 @@ block|}
 comment|/**    * Returns the single element contained in this fluent iterable, or {@code defaultValue}    * if this fluent iterable is empty.    *    * @throws IllegalArgumentException if this iterable contains multiple elements    */
 DECL|method|getOnlyElement (@ullable E defaultValue)
 specifier|public
+specifier|final
 name|E
 name|getOnlyElement
 parameter_list|(
@@ -406,6 +413,7 @@ block|}
 comment|/**    * Returns a fluent iterable whose {@code Iterator} cycles indefinitely over the elements of    * this fluent iterable.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After    * {@code remove()} is called, subsequent cycles omit the removed element, which is no longer in    * this fluent iterable. The iterator's {@code hasNext()} method returns {@code true} until    * this fluent iterable is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    */
 DECL|method|cycle ()
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|E
@@ -428,6 +436,7 @@ block|}
 comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by those of {@code other}. The iterators are not polled until necessary.    *    *<p>The returned iterable's {@code Iterator} supports {@code remove()} when the corresponding    * {@code Iterator} supports it.    */
 DECL|method|append (Iterable<? extends E> other)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|E
@@ -460,6 +469,7 @@ block|}
 comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by {@code elements}.    */
 DECL|method|append (E... elements)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|E
@@ -491,8 +501,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Divides this fluent iterable into unmodifiable fluent iterables of the given    * size (the final iterable may be smaller). For example, partitioning a fluent iterable    * containing {@code [a, b, c, d, e]} with a partition size of 3 yields    * {@code [[a, b, c], [d, e]]} -- an outer fluent iterable containing two inner    * fluent iterables of three and two elements, all in the original order.    *    *<p>Iterators returned by the returned outer and innter fluent iterables do not support the    * {@link Iterator#remove()} method.    *    * @param size the desired size of each partition (the last may be smaller)    * @return a fluent iterable of fluent iterables containing the elements of this    *     fluent iterable divided into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
+comment|// TODO(kevinb): return FluentIterable<List<E>> instead?
 DECL|method|partition (int size)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|FluentIterable
@@ -531,8 +543,10 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Divides this fluent iterable into unmodifiable fluent iterables of the given    * size, padding the final fluent iterable with null values if necessary. For example,    * partitioning a fluent iterable containing {@code [a, b, c, d, e]} with a partition size    * of 3 yields {@code [[a, b, c], [d, e, null]]} -- an outer fluent iterable containing two    * inner fluent iterables of three elements each, all in the original order.    *    *<p>Iterators returned by the returned fluent iterables do not    * support the {@link Iterator#remove()} method.    *    * @param size the desired size of each partition    * @return a fluent iterable of fluent iterables containing the elements of this    *     fluent iterable divided into partitions (the final fluent iterable may have    *     trailing null elements)    * @throws IllegalArgumentException if {@code size} is nonpositive    */
+comment|// TODO(kevinb): return FluentIterable<List<E>> instead
 DECL|method|partitionWithPadding (int size)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|FluentIterable
@@ -573,6 +587,7 @@ block|}
 comment|/**    * Returns the elements from this fluent iterable that satisfy a predicate. The    * resulting fluent iterable's iterator does not support {@code remove()}.    */
 DECL|method|filter (Predicate<? super E> predicate)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|E
@@ -605,6 +620,7 @@ block|}
 comment|/**    * Returns {@code true} if any element in this fluent iterable satisfies the predicate.    */
 DECL|method|anyMatch (Predicate<? super E> predicate)
 specifier|public
+specifier|final
 name|boolean
 name|anyMatch
 parameter_list|(
@@ -631,6 +647,7 @@ block|}
 comment|/**    * Returns {@code true} if every element in this fluent iterable satisfies the predicate.    * If this fluent iterable is empty, {@code true} is returned.    */
 DECL|method|allMatch (Predicate<? super E> predicate)
 specifier|public
+specifier|final
 name|boolean
 name|allMatch
 parameter_list|(
@@ -657,6 +674,7 @@ block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable that    * satisfies the given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code null}. If {@code null}    * is matched in this fluent iterable, a {@link NullPointerException} will be thrown.    */
 DECL|method|firstMatch (Predicate<? super E> predicate)
 specifier|public
+specifier|final
 name|Optional
 argument_list|<
 name|E
@@ -686,6 +704,7 @@ block|}
 comment|/**    * Returns a fluent iterable that applies {@code function} to each element of this    * fluent iterable.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this iterable's    * iterator does. After a successful {@code remove()} call, this fluent iterable no longer    * contains the corresponding element.    */
 DECL|method|transform (Function<? super E, T> function)
 specifier|public
+specifier|final
 parameter_list|<
 name|T
 parameter_list|>
@@ -723,6 +742,7 @@ block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use    *     {@code iterator().next()} or {@link Iterables#getFirst} instead.    */
 DECL|method|first ()
 specifier|public
+specifier|final
 name|Optional
 argument_list|<
 name|E
@@ -749,9 +769,6 @@ argument_list|()
 condition|?
 name|Optional
 operator|.
-expr|<
-name|E
-operator|>
 name|of
 argument_list|(
 name|iterator
@@ -772,6 +789,7 @@ block|}
 comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
 DECL|method|last ()
 specifier|public
+specifier|final
 name|Optional
 argument_list|<
 name|E
@@ -812,6 +830,7 @@ block|}
 comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip}    * elements. If this fluent iterable contains fewer than {@code numberToSkip} elements,    * the returned fluent iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are    * reflected in the returned fluent iterable. That is, the its iterator skips the first    * {@code numberToSkip} elements that exist when the iterator is created, not when {@code skip()}    * is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the    * {@code Iterator} of this fluent iterable supports it. Note that it is<i>not</i>    * possible to delete the last skipped element by immediately calling {@code remove()} on the    * returned fluent iterable's iterator, as the {@code Iterator} contract states that a call    * to {@code * remove()} before a call to {@code next()} will throw an    * {@link IllegalStateException}.    */
 DECL|method|skip (int numberToSkip)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|E
@@ -839,6 +858,7 @@ block|}
 comment|/**    * Creates a fluent iterable with the first {@code size} elements of this    * fluent iterable. If this fluent iterable does not contain that many elements,    * the returned fluent iterable will have the same behavior as this fluent iterable.    * The returned fluent iterable's iterator supports {@code remove()} if this    * fluent iterable's iterator does.    *    * @param size the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
 DECL|method|limit (int size)
 specifier|public
+specifier|final
 name|FluentIterable
 argument_list|<
 name|E
@@ -866,6 +886,7 @@ block|}
 comment|/**    * Determines whether this fluent iterable is empty.    */
 DECL|method|isEmpty ()
 specifier|public
+specifier|final
 name|boolean
 name|isEmpty
 parameter_list|()
@@ -884,6 +905,7 @@ block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * fluent iterable in proper sequence.    */
 DECL|method|toImmutableList ()
 specifier|public
+specifier|final
 name|ImmutableList
 argument_list|<
 name|E
@@ -900,41 +922,10 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    */
-DECL|method|toImmutableSortedList (Comparator<? super E> comparator)
-specifier|public
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
-name|toImmutableSortedList
-parameter_list|(
-name|Comparator
-argument_list|<
-name|?
-super|super
-name|E
-argument_list|>
-name|comparator
-parameter_list|)
-block|{
-return|return
-name|Ordering
-operator|.
-name|from
-argument_list|(
-name|comparator
-argument_list|)
-operator|.
-name|immutableSortedCopy
-argument_list|(
-name|iterable
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this    * fluent iterable with duplicates removed.    */
 DECL|method|toImmutableSet ()
 specifier|public
+specifier|final
 name|ImmutableSet
 argument_list|<
 name|E
@@ -954,6 +945,7 @@ block|}
 comment|/**    * Returns the element at the specified position in this fluent iterable.    *    * @param position position of the element to return    * @return the element at the specified position in this fluent iterable    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of this fluent iterable    */
 DECL|method|get (int position)
 specifier|public
+specifier|final
 name|E
 name|get
 parameter_list|(

@@ -7929,9 +7929,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|Iterables
-operator|.
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|String
 argument_list|>

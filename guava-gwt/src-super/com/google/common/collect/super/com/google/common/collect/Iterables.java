@@ -369,8 +369,8 @@ name|UnmodifiableIterable
 parameter_list|<
 name|T
 parameter_list|>
-implements|implements
-name|Iterable
+extends|extends
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -1393,7 +1393,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|Iterable
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -1759,7 +1759,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -1935,7 +1935,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|List
 argument_list|<
@@ -2016,7 +2016,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|List
 argument_list|<
@@ -2097,7 +2097,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -2424,7 +2424,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -3012,7 +3012,7 @@ name|iterable
 decl_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -3068,7 +3068,7 @@ return|;
 block|}
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -3241,7 +3241,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|IterableWithToString
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -3304,7 +3304,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|Iterable
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -3347,7 +3347,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|Iterable
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
@@ -3596,38 +3596,6 @@ return|return
 literal|false
 return|;
 block|}
-DECL|class|IterableWithToString
-specifier|abstract
-specifier|static
-class|class
-name|IterableWithToString
-parameter_list|<
-name|E
-parameter_list|>
-implements|implements
-name|Iterable
-argument_list|<
-name|E
-argument_list|>
-block|{
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|Iterables
-operator|.
-name|toString
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
-block|}
 comment|/**    * Returns an iterable over the merged contents of all given    * {@code iterables}. Equivalent entries will not be de-duplicated.    *    *<p>Callers must ensure that the source {@code iterables} are in    * non-descending order as this method does not sort its input.    *    *<p>For any equivalent elements across all {@code iterables}, it is    * undefined which element is returned first.    *    * @since 11.0    */
 annotation|@
 name|Beta
@@ -3688,7 +3656,7 @@ argument_list|>
 name|iterable
 init|=
 operator|new
-name|Iterable
+name|FluentIterable
 argument_list|<
 name|T
 argument_list|>
