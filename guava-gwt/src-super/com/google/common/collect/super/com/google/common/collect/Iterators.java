@@ -3091,18 +3091,15 @@ block|}
 comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3.0    */
 annotation|@
 name|Beta
-DECL|method|skip (Iterator<T> iterator, int numberToSkip)
+DECL|method|skip (Iterator<?> iterator, int numberToSkip)
 specifier|public
 specifier|static
-parameter_list|<
-name|T
-parameter_list|>
 name|int
 name|skip
 parameter_list|(
 name|Iterator
 argument_list|<
-name|T
+name|?
 argument_list|>
 name|iterator
 parameter_list|,
