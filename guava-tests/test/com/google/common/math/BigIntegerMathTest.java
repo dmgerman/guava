@@ -280,6 +280,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|testing
 operator|.
 name|NullPointerTester
@@ -331,6 +359,13 @@ comment|/**  * Tests for BigIntegerMath.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|BigIntegerMathTest
 specifier|public
 class|class
@@ -338,6 +373,11 @@ name|BigIntegerMathTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantSqrt2PrecomputedBits ()
 specifier|public
 name|void
@@ -986,6 +1026,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10ZeroAlwaysThrows ()
 specifier|public
 name|void
@@ -1025,6 +1070,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10NegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1076,6 +1126,11 @@ block|{}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10Floor ()
 specifier|public
 name|void
@@ -1154,6 +1209,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10Ceiling ()
 specifier|public
 name|void
@@ -1237,6 +1297,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of log10(BigInteger, FLOOR).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10Exact ()
 specifier|public
 name|void
@@ -1314,6 +1379,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10HalfUp ()
 specifier|public
 name|void
@@ -1400,6 +1470,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10HalfDown ()
 specifier|public
 name|void
@@ -1487,6 +1562,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// Relies on the correctness of log10(BigInteger, {HALF_UP,HALF_DOWN}).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10HalfEven ()
 specifier|public
 name|void
@@ -1553,6 +1633,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10TrivialOnPowerOf10 ()
 specifier|public
 name|void
@@ -1595,6 +1680,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtZeroAlwaysZero ()
 specifier|public
 name|void
@@ -1625,6 +1715,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtNegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1673,6 +1768,11 @@ block|{}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtFloor ()
 specifier|public
 name|void
@@ -1766,6 +1866,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtCeiling ()
 specifier|public
 name|void
@@ -1867,6 +1972,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of sqrt(BigInteger, FLOOR).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtExact ()
 specifier|public
 name|void
@@ -1945,6 +2055,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtHalfUp ()
 specifier|public
 name|void
@@ -2068,6 +2183,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtHalfDown ()
 specifier|public
 name|void
@@ -2192,6 +2312,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// Relies on the correctness of sqrt(BigInteger, {HALF_UP,HALF_DOWN}).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtHalfEven ()
 specifier|public
 name|void
@@ -2257,6 +2382,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
@@ -2332,6 +2462,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
@@ -2413,6 +2548,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testZeroDivIsAlwaysZero ()
 specifier|public
 name|void
@@ -2454,6 +2594,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testDivByZeroAlwaysFails ()
 specifier|public
 name|void
@@ -2776,6 +2921,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void

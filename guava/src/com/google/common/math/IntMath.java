@@ -276,11 +276,6 @@ return|;
 block|}
 comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of two    */
 annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"need BigIntegerMath to adequately test"
-argument_list|)
-annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
@@ -1032,11 +1027,6 @@ return|;
 block|}
 comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
 annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"failing tests"
-argument_list|)
-annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
@@ -1733,11 +1723,6 @@ init|=
 literal|46340
 decl_stmt|;
 comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@link Integer#MAX_VALUE} if the    * result does not fit in a {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"need BigIntegerMath to adequately test"
-argument_list|)
 DECL|method|factorial (int n)
 specifier|public
 specifier|static

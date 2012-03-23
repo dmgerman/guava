@@ -130,6 +130,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|math
+operator|.
+name|TestPlatform
+operator|.
+name|intsCanGoOutOfRange
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|math
@@ -626,11 +642,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"log2"
-argument_list|)
 DECL|method|testLog2ZeroAlwaysThrows ()
 specifier|public
 name|void
@@ -670,11 +681,6 @@ parameter_list|)
 block|{}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"log2"
-argument_list|)
 DECL|method|testLog2NegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -724,12 +730,6 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of BigIntegrerMath.log2 for all modes except UNNECESSARY.
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testLog2MatchesBigInteger ()
 specifier|public
 name|void
@@ -780,11 +780,6 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of isPowerOfTwo(int).
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"log2"
-argument_list|)
 DECL|method|testLog2Exact ()
 specifier|public
 name|void
@@ -1421,11 +1416,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"-2147483648/1 expected=2147483648"
-argument_list|)
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
@@ -1456,6 +1446,33 @@ range|:
 name|ALL_SAFE_ROUNDING_MODES
 control|)
 block|{
+comment|// Skip some tests that fail due to GWT's non-compliant int implementation.
+comment|// TODO(cpovirk): does this test fail for only some rounding modes or for all?
+comment|// TODO(cpovirk): why is dividing by 1 a problem?
+if|if
+condition|(
+name|p
+operator|==
+operator|-
+literal|2147483648
+operator|&&
+operator|(
+name|q
+operator|==
+literal|1
+operator|||
+name|q
+operator|==
+operator|-
+literal|1
+operator|)
+operator|&&
+name|intsCanGoOutOfRange
+argument_list|()
+condition|)
+block|{
+continue|continue;
+block|}
 name|int
 name|expected
 init|=
@@ -1513,11 +1530,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"-2147483648/-1 not expected to divide evenly"
-argument_list|)
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
@@ -1540,6 +1552,25 @@ range|:
 name|NONZERO_INTEGER_CANDIDATES
 control|)
 block|{
+comment|// Skip some tests that fail due to GWT's non-compliant int implementation.
+if|if
+condition|(
+name|p
+operator|==
+operator|-
+literal|2147483648
+operator|&&
+name|q
+operator|==
+operator|-
+literal|1
+operator|&&
+name|intsCanGoOutOfRange
+argument_list|()
+condition|)
+block|{
+continue|continue;
+block|}
 name|boolean
 name|dividesEvenly
 init|=
@@ -1585,7 +1616,7 @@ literal|"/"
 operator|+
 name|q
 operator|+
-literal|" expected to divide evenly"
+literal|" not expected to divide evenly"
 argument_list|,
 name|dividesEvenly
 argument_list|)
@@ -1605,7 +1636,7 @@ literal|"/"
 operator|+
 name|q
 operator|+
-literal|" not expected to divide evenly"
+literal|" expected to divide evenly"
 argument_list|,
 name|dividesEvenly
 argument_list|)
@@ -1614,11 +1645,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"pow()"
-argument_list|)
 DECL|method|testZeroDivIsAlwaysZero ()
 specifier|public
 name|void
@@ -1660,11 +1686,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"pow()"
-argument_list|)
 DECL|method|testDivByZeroAlwaysFails ()
 specifier|public
 name|void
@@ -2456,12 +2477,6 @@ block|}
 block|}
 block|}
 comment|// Depends on the correctness of BigIntegerMath.factorial.
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testFactorial ()
 specifier|public
 name|void
@@ -2524,11 +2539,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"factorial"
-argument_list|)
 DECL|method|testFactorialNegative ()
 specifier|public
 name|void

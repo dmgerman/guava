@@ -100,20 +100,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Function
@@ -277,11 +263,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|Collections2
 specifier|public
 specifier|final
@@ -1479,12 +1460,7 @@ argument_list|(
 literal|"null"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1]    * will have only one permutation, instead of two. This is why the elements    * have to implement {@link Comparable}.    *     *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to    * {@code Collections2.orderedPermutations(list, Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException if the specified iterable is null or has any    *     null elements.    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math"
-argument_list|)
+comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1]    * will have only one permutation, instead of two. This is why the elements    * have to implement {@link Comparable}.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to    * {@code Collections2.orderedPermutations(list, Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException if the specified iterable is null or has any    *     null elements.    * @since 12.0    */
 annotation|@
 name|Beta
 specifier|public
@@ -1528,12 +1504,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable} using the specified {@link Comparator} for establishing    * the lexicographical ordering.    *    *<p>Examples:<pre>   {@code    *    *   for (List<String> perm : orderedPermutations(asList("b", "c", "a"))) {    *     println(perm);    *   }    *   // -> ["a", "b", "c"]    *   // -> ["a", "c", "b"]    *   // -> ["b", "a", "c"]    *   // -> ["b", "c", "a"]    *   // -> ["c", "a", "b"]    *   // -> ["c", "b", "a"]    *    *   for (List<Integer> perm : orderedPermutations(asList(1, 2, 2, 1))) {    *     println(perm);    *   }    *   // -> [1, 1, 2, 2]    *   // -> [1, 2, 1, 2]    *   // -> [1, 2, 2, 1]    *   // -> [2, 1, 1, 2]    *   // -> [2, 1, 2, 1]    *   // -> [2, 2, 1, 1]}</pre>    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Elements that compare equal are considered equal and no new permutations    * are created by swapping them.    *     *<p>An empty iterable has only one permutation, which is an empty list.    *    * @param elements the original iterable whose elements have to be permuted.    * @param comparator a comparator for the iterable's elements.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException If the specified iterable is null, has any    *     null elements, or if the specified comparator is null.    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math"
-argument_list|)
+comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable} using the specified {@link Comparator} for establishing    * the lexicographical ordering.    *    *<p>Examples:<pre>   {@code    *    *   for (List<String> perm : orderedPermutations(asList("b", "c", "a"))) {    *     println(perm);    *   }    *   // -> ["a", "b", "c"]    *   // -> ["a", "c", "b"]    *   // -> ["b", "a", "c"]    *   // -> ["b", "c", "a"]    *   // -> ["c", "a", "b"]    *   // -> ["c", "b", "a"]    *    *   for (List<Integer> perm : orderedPermutations(asList(1, 2, 2, 1))) {    *     println(perm);    *   }    *   // -> [1, 1, 2, 2]    *   // -> [1, 2, 1, 2]    *   // -> [1, 2, 2, 1]    *   // -> [2, 1, 1, 2]    *   // -> [2, 1, 2, 1]    *   // -> [2, 2, 1, 1]}</pre>    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Elements that compare equal are considered equal and no new permutations    * are created by swapping them.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    * @param elements the original iterable whose elements have to be permuted.    * @param comparator a comparator for the iterable's elements.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException If the specified iterable is null, has any    *     null elements, or if the specified comparator is null.    * @since 12.0    */
 DECL|method|orderedPermutations ( Iterable<E> elements, Comparator<? super E> comparator)
 annotation|@
 name|Beta
@@ -1579,11 +1550,6 @@ name|comparator
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not used by GwtCompatible code (yet)"
-argument_list|)
 DECL|class|OrderedPermutationCollection
 specifier|private
 specifier|static
@@ -1944,11 +1910,6 @@ literal|")"
 return|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not used by GwtCompatible code (yet)"
-argument_list|)
 DECL|class|OrderedPermutationIterator
 specifier|private
 specifier|static
@@ -2264,12 +2225,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Collection}.    *    *<p><i>Notes:</i> This is an implementation of the Plain Changes algorithm    * for permutations generation, described in Knuth's "The Art of Computer    * Programming", Volume 4, Chapter 7, Section 7.2.1.2.    *     *<p>If the input list contains equal elements, some of the generated    * permutations will be equal.    *     *<p>An empty collection has only one permutation, which is an empty list.    *     * @param elements the original collection whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original collection.    * @throws NullPointerException if the specified collection is null or has any    *     null elements.    * @since 12.0    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math"
-argument_list|)
+comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Collection}.    *    *<p><i>Notes:</i> This is an implementation of the Plain Changes algorithm    * for permutations generation, described in Knuth's "The Art of Computer    * Programming", Volume 4, Chapter 7, Section 7.2.1.2.    *    *<p>If the input list contains equal elements, some of the generated    * permutations will be equal.    *    *<p>An empty collection has only one permutation, which is an empty list.    *    * @param elements the original collection whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original collection.    * @throws NullPointerException if the specified collection is null or has any    *     null elements.    * @since 12.0    */
 DECL|method|permutations ( Collection<E> elements)
 annotation|@
 name|Beta
@@ -2310,11 +2266,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not used by GwtCompatible code (yet)"
-argument_list|)
 DECL|class|PermutationCollection
 specifier|private
 specifier|static
@@ -2482,11 +2433,6 @@ literal|")"
 return|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not used by GwtCompatible code (yet)"
-argument_list|)
 DECL|class|PermutationIterator
 specifier|private
 specifier|static
@@ -2796,11 +2742,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns {@code true} if the second list is a permutation of the first.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not used by GwtCompatible code (yet)"
-argument_list|)
 DECL|method|isPermutation (List<?> first, List<?> second)
 specifier|private
 specifier|static
@@ -2872,11 +2813,6 @@ name|secondSet
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not used by GwtCompatible code (yet)"
-argument_list|)
 DECL|method|isPositiveInt (long n)
 specifier|private
 specifier|static

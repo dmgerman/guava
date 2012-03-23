@@ -184,6 +184,34 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -215,6 +243,13 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|LongMath
 specifier|public
 specifier|final
@@ -413,6 +448,11 @@ literal|0xB504F333F9DE6484L
 decl_stmt|;
 comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
@@ -553,6 +593,11 @@ argument_list|()
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|log10Floor (long x)
 specifier|static
 name|int
@@ -605,6 +650,11 @@ literal|1
 return|;
 block|}
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
+annotation|@
 name|VisibleForTesting
 DECL|field|POWERS_OF_10
 specifier|static
@@ -655,6 +705,11 @@ block|}
 decl_stmt|;
 comment|// HALF_POWERS_OF_10[i] = largest long less than 10^(i + 0.5)
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
+annotation|@
 name|VisibleForTesting
 DECL|field|HALF_POWERS_OF_10
 specifier|static
@@ -704,6 +759,11 @@ literal|3162277660168379331L
 block|}
 decl_stmt|;
 comment|/**    * Returns {@code b} to the {@code k}th power. Even if the result overflows, it will be equal to    * {@code BigInteger.valueOf(b).pow(k).longValue()}. This implementation runs in {@code O(log k)}    * time.    *    * @throws IllegalArgumentException if {@code k< 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|pow (long b, int k)
 specifier|public
 specifier|static
@@ -908,6 +968,11 @@ block|}
 block|}
 comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
@@ -1054,6 +1119,11 @@ argument_list|()
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|sqrtFloor (long x)
 specifier|private
 specifier|static
@@ -1138,6 +1208,11 @@ name|sqrt0
 return|;
 block|}
 comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1366,6 +1441,11 @@ name|div
 return|;
 block|}
 comment|/**    * Returns {@code x mod m}. This differs from {@code x % m} in that it always returns a    * non-negative result.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|mod (long x, int m)
 specifier|public
 specifier|static
@@ -1396,6 +1476,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code x mod m}. This differs from {@code x % m} in that it always returns a    * non-negative result.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|mod (long x, long m)
 specifier|public
 specifier|static
@@ -1450,6 +1535,11 @@ name|m
 return|;
 block|}
 comment|/**    * Returns the greatest common divisor of {@code a, b}. Returns {@code 0} if    * {@code a == 0&& b == 0}.    *    * @throws IllegalArgumentException if {@code a< 0} or {@code b< 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|gcd (long a, long b)
 specifier|public
 specifier|static
@@ -1584,6 +1674,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the sum of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a + b} overflows in signed {@code long} arithmetic    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|checkedAdd (long a, long b)
 specifier|public
 specifier|static
@@ -1628,6 +1723,11 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the difference of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a - b} overflows in signed {@code long} arithmetic    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|checkedSubtract (long a, long b)
 specifier|public
 specifier|static
@@ -1672,6 +1772,11 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the product of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a * b} overflows in signed {@code long} arithmetic    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|checkedMultiply (long a, long b)
 specifier|public
 specifier|static
@@ -1784,6 +1889,11 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *         {@code long} arithmetic    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|checkedPow (long b, int k)
 specifier|public
 specifier|static
@@ -2006,6 +2116,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|field|FLOOR_SQRT_MAX_LONG
 annotation|@
 name|VisibleForTesting
@@ -2017,6 +2132,11 @@ init|=
 literal|3037000499L
 decl_stmt|;
 comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@link Long#MAX_VALUE} if the    * result does not fit in a {@code long}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|factorial (int n)
 specifier|public
 specifier|static
@@ -2835,6 +2955,11 @@ block|}
 decl_stmt|;
 comment|// These values were generated by using checkedMultiply to see when the simple multiply/divide
 comment|// algorithm would lead to an overflow.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|fitsInInt (long x)
 specifier|static
 name|boolean

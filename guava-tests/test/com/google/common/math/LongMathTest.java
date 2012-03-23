@@ -220,6 +220,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|testing
 operator|.
 name|NullPointerTester
@@ -271,6 +299,13 @@ comment|/**  * Tests for LongMath.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|LongMathTest
 specifier|public
 class|class
@@ -278,6 +313,11 @@ name|LongMathTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantMaxPowerOfSqrt2Unsigned ()
 specifier|public
 name|void
@@ -317,6 +357,11 @@ name|MAX_POWER_OF_SQRT2_UNSIGNED
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantsPowersOf10 ()
 specifier|public
 name|void
@@ -390,6 +435,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantsHalfPowersOf10 ()
 specifier|public
 name|void
@@ -498,6 +548,11 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantsSqrtMaxLong ()
 specifier|public
 name|void
@@ -523,6 +578,11 @@ name|FLOOR_SQRT_MAX_LONG
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantsFactorials ()
 specifier|public
 name|void
@@ -609,6 +669,11 @@ name|expect
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantsBiggestBinomials ()
 specifier|public
 name|void
@@ -719,6 +784,11 @@ argument_list|)
 expr_stmt|;
 comment|// 2 * k is the smallest value for which we don't replace k with (n-k).
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testConstantsBiggestSimpleBinomials ()
 specifier|public
 name|void
@@ -854,6 +924,11 @@ parameter_list|)
 block|{}
 block|}
 comment|// Throws an ArithmeticException if "the simple implementation" of binomial coefficients overflows
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|simpleBinomial (int n, int k)
 specifier|private
 name|long
@@ -1160,6 +1235,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10ZeroAlwaysThrows ()
 specifier|public
 name|void
@@ -1199,6 +1279,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10NegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1248,6 +1333,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of BigIntegerMath.log10 for all modes except UNNECESSARY.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10MatchesBigInteger ()
 specifier|public
 name|void
@@ -1298,6 +1388,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of log10(long, FLOOR) and of pow(long, int).
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10Exact ()
 specifier|public
 name|void
@@ -1374,6 +1469,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testLog10TrivialOnPowerOf10 ()
 specifier|public
 name|void
@@ -1409,6 +1509,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtNegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1458,6 +1563,11 @@ block|}
 block|}
 block|}
 comment|// Relies on the correctness of BigIntegerMath.sqrt for all modes except UNNECESSARY.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtMatchesBigInteger ()
 specifier|public
 name|void
@@ -1513,6 +1623,11 @@ block|}
 block|}
 block|}
 comment|/* Relies on the correctness of sqrt(long, FLOOR). */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testSqrtExactMatchesFloorOrThrows ()
 specifier|public
 name|void
@@ -1587,6 +1702,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testPow ()
 specifier|public
 name|void
@@ -1637,6 +1757,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
@@ -1718,6 +1843,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
@@ -1792,6 +1922,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testZeroDivIsAlwaysZero ()
 specifier|public
 name|void
@@ -1833,6 +1968,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testDivByZeroAlwaysFails ()
 specifier|public
 name|void
@@ -1883,6 +2023,11 @@ block|{}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testIntMod ()
 specifier|public
 name|void
@@ -1936,6 +2081,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testIntModNegativeModulusFails ()
 specifier|public
 name|void
@@ -1984,6 +2134,11 @@ block|{}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testIntModZeroModulusFails ()
 specifier|public
 name|void
@@ -2023,6 +2178,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testMod ()
 specifier|public
 name|void
@@ -2076,6 +2236,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testModNegativeModulusFails ()
 specifier|public
 name|void
@@ -2124,6 +2289,11 @@ block|{}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testGCD ()
 specifier|public
 name|void
@@ -2177,6 +2347,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testGCDZero ()
 specifier|public
 name|void
@@ -2235,6 +2410,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testGCDNegativePositiveThrows ()
 specifier|public
 name|void
@@ -2297,6 +2477,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testGCDNegativeZeroThrows ()
 specifier|public
 name|void
@@ -2359,6 +2544,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testCheckedAdd ()
 specifier|public
 name|void
@@ -2444,6 +2634,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testCheckedSubtract ()
 specifier|public
 name|void
@@ -2529,6 +2724,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testCheckedMultiply ()
 specifier|public
 name|void
@@ -2614,6 +2814,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testCheckedPow ()
 specifier|public
 name|void
@@ -2698,6 +2903,11 @@ block|}
 block|}
 block|}
 comment|// Depends on the correctness of BigIntegerMath.factorial.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testFactorial ()
 specifier|public
 name|void
@@ -2760,6 +2970,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testFactorialNegative ()
 specifier|public
 name|void
@@ -3009,6 +3224,11 @@ operator|<=
 literal|63
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void
