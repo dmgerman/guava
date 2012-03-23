@@ -589,7 +589,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/** Returns the raw type or throws if the represented type cannot reduce to a raw class. */
+comment|/**    * Returns the raw type of {@code T}. Formally speaking, if {@code T} is returned by    * {@link java.lang.reflect.Method#getGenericReturnType}, the raw type is what's returned by    * {@link java.lang.reflect.Method#getReturnType} of the same method object. Specifically:    *<ul>    *<li>If {@code T} is a {@code Class} itself, {@code T} itself is returned.    *<li>If {@code T} is a {@link ParameterizedType}, the raw type of the parameterized type is    *     returned.    *<li>If {@code T} is a {@link GenericArrayType}, the returned type is the corresponding array    *     class. For example: {@code List<Integer>[] => List[]}.    *<li>If {@code T} is a type variable or a wildcard type, the raw type of the first upper bound    *     is returned. For example: {@code<X extends Foo> => Foo}.    *</ul>    */
 DECL|method|getRawType ()
 specifier|public
 specifier|final
