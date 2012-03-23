@@ -120,16 +120,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -155,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@code FluentIterable} provides a rich interface for manipulating {@code Iterable}s in a chained  * fashion. A {@code FluentIterable} can be created from an {@code Iterable}, or from a set of  * elements. The following types of methods are provided on {@code FluentIterable}:  *<ul>  *<li>chained methods which return a new {@code FluentIterable} based in some way on the contents  * of the current one (for example {@link #transform})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  * array (for example {@link #toImmutableList})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  * {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  * {@link #anyMatch})  *</ul>  *  *<p>Here is an example that merges the lists returned by two separate database calls, transforms  * it by invoking {@code toString()} on each element, and returns the first 10 elements as an  * {@code ImmutableList}:<pre>   {@code  *  *   FluentIterable  *       .from(database.getClientList())  *       .append(database.getProviderList())  *       .transform(Functions.toStringFunction())  *       .limit(10)  *       .toImmutableList();}</pre>  *  * Anything which can be done using {@code FluentIterable} could be done in a different fashion  * (often with {@link Iterables}), however the use of {@code FluentIterable} makes many sets of  * operations significantly more concise.  *  * @author Marcin Mikosik  * @since 12.0  */
+comment|/**  * {@code FluentIterable} provides a rich interface for manipulating {@code Iterable}s in a chained  * fashion. A {@code FluentIterable} can be created from an {@code Iterable}, or from a set of  * elements. The following types of methods are provided on {@code FluentIterable}:  *<ul>  *<li>chained methods which return a new {@code FluentIterable} based in some way on the contents  * of the current one (for example {@link #transform})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  * array (for example {@link #toImmutableList})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  * {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  * {@link #anyMatch})  *</ul>  *  *<p>Here is an example that merges the lists returned by two separate database calls, transforms  * it by invoking {@code toString()} on each element, and returns the first 10 elements as an  * {@code ImmutableList}:<pre>   {@code  *  *   FluentIterable  *       .from(database.getClientList())  *       .transform(Functions.toStringFunction())  *       .limit(10)  *       .toImmutableList();}</pre>  *  * Anything which can be done using {@code FluentIterable} could be done in a different fashion  * (often with {@link Iterables}), however the use of {@code FluentIterable} makes many sets of  * operations significantly more concise.  *  * @author Marcin Mikosik  * @since 12.0  */
 end_comment
 
 begin_class
@@ -383,47 +373,6 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the single element contained in this fluent iterable.    *    * @throws NoSuchElementException if this fluent iterable is empty    * @throws IllegalArgumentException if this fluent iterable contains multiple elements    */
-DECL|method|getOnlyElement ()
-specifier|public
-specifier|final
-name|E
-name|getOnlyElement
-parameter_list|()
-block|{
-return|return
-name|Iterables
-operator|.
-name|getOnlyElement
-argument_list|(
-name|iterable
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the single element contained in this fluent iterable, or {@code defaultValue}    * if this fluent iterable is empty.    *    * @throws IllegalArgumentException if this iterable contains multiple elements    */
-DECL|method|getOnlyElement (@ullable E defaultValue)
-specifier|public
-specifier|final
-name|E
-name|getOnlyElement
-parameter_list|(
-annotation|@
-name|Nullable
-name|E
-name|defaultValue
-parameter_list|)
-block|{
-return|return
-name|Iterables
-operator|.
-name|getOnlyElement
-argument_list|(
-name|iterable
-argument_list|,
-name|defaultValue
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a fluent iterable whose {@code Iterator} cycles indefinitely over the elements of    * this fluent iterable.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After    * {@code remove()} is called, subsequent cycles omit the removed element, which is no longer in    * this fluent iterable. The iterator's {@code hasNext()} method returns {@code true} until    * this fluent iterable is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    */
 DECL|method|cycle ()
 specifier|public
@@ -443,73 +392,6 @@ operator|.
 name|cycle
 argument_list|(
 name|iterable
-argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by those of {@code other}. The iterators are not polled until necessary.    *    *<p>The returned iterable's {@code Iterator} supports {@code remove()} when the corresponding    * {@code Iterator} supports it.    */
-DECL|method|append (Iterable<? extends E> other)
-specifier|public
-specifier|final
-name|FluentIterable
-argument_list|<
-name|E
-argument_list|>
-name|append
-parameter_list|(
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|E
-argument_list|>
-name|other
-parameter_list|)
-block|{
-return|return
-name|from
-argument_list|(
-name|Iterables
-operator|.
-name|concat
-argument_list|(
-name|iterable
-argument_list|,
-name|other
-argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by {@code elements}.    */
-DECL|method|append (E... elements)
-specifier|public
-specifier|final
-name|FluentIterable
-argument_list|<
-name|E
-argument_list|>
-name|append
-parameter_list|(
-name|E
-modifier|...
-name|elements
-parameter_list|)
-block|{
-return|return
-name|from
-argument_list|(
-name|Iterables
-operator|.
-name|concat
-argument_list|(
-name|iterable
-argument_list|,
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-name|elements
-argument_list|)
 argument_list|)
 argument_list|)
 return|;

@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -73,10 +87,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Captures a free type variable that can be used in {@link TypeToken#where}.  * For example:<pre>   {@code  *  *   static<T> TypeToken<List<T>> listOf(Class<T> elementType) {  *     return new TypeToken<List<T>>() {}  *         .where(new TypeParameter<T>() {}, elementType);  *   }  * }</pre>  *  * @author Ben Yu  */
+comment|/**  * Captures a free type variable that can be used in {@link TypeToken#where}.  * For example:<pre>   {@code  *  *   static<T> TypeToken<List<T>> listOf(Class<T> elementType) {  *     return new TypeToken<List<T>>() {}  *         .where(new TypeParameter<T>() {}, elementType);  *   }  * }</pre>  *  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|TypeParameter
 specifier|public
 specifier|abstract
