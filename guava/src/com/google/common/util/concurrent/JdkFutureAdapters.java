@@ -50,20 +50,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|VisibleForTesting
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -137,7 +123,7 @@ specifier|final
 class|class
 name|JdkFutureAdapters
 block|{
-comment|/**    * Assigns a thread to the given {@link Future} to provide {@link    * ListenableFuture} functionality.    *    *<p><b>Warning:</b> If the input future does not already implement {@link    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>Prefer to create {@code ListenableFuture} instances with {@link    * SettableFuture}, {@link MoreExecutors#listeningDecorator(    * java.util.concurrent.ExecutorService)}, {@link ListenableFutureTask},    * {@link AbstractFuture}, and other utilities over creating plain {@code    * Future} instances to be upgraded to {@code ListenableFuture} after the    * fact.    */
+comment|/**    * Assigns a thread to the given {@link Future} to provide {@link    * ListenableFuture} functionality.    *    *<p><b>Warning:</b> If the input future does not already implement {@code    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by taking a thread from an internal,    * unbounded pool at the first call to {@code addListener} and holding it    * until the future is {@linkplain Future#isDone() done}.    *    *<p>Prefer to create {@code ListenableFuture} instances with {@link    * SettableFuture}, {@link MoreExecutors#listeningDecorator(    * java.util.concurrent.ExecutorService)}, {@link ListenableFutureTask},    * {@link AbstractFuture}, and other utilities over creating plain {@code    * Future} instances to be upgraded to {@code ListenableFuture} after the    * fact.    */
 DECL|method|listenInPoolThread ( Future<V> future)
 specifier|public
 specifier|static
@@ -188,9 +174,9 @@ name|future
 argument_list|)
 return|;
 block|}
-annotation|@
-name|VisibleForTesting
+comment|/**    * Submits a blocking task for the given {@link Future} to provide {@link    * ListenableFuture} functionality.    *    *<p><b>Warning:</b> If the input future does not already implement {@code    * ListenableFuture}, the returned future will emulate {@link    * ListenableFuture#addListener} by submitting a task to the given executor at    * at the first call to {@code addListener}. The task must be started by the    * executor promptly, or else the returned {@code ListenableFuture} may fail    * to work.  The task's execution consists of blocking until the input future    * is {@linkplain Future#isDone() done}, so each call to this method may    * claim and hold a thread for an arbitrary length of time. Use of bounded    * executors or other executors that may fail to execute a task promptly may    * result in deadlocks.    *    *<p>Prefer to create {@code ListenableFuture} instances with {@link    * SettableFuture}, {@link MoreExecutors#listeningDecorator(    * java.util.concurrent.ExecutorService)}, {@link ListenableFutureTask},    * {@link AbstractFuture}, and other utilities over creating plain {@code    * Future} instances to be upgraded to {@code ListenableFuture} after the    * fact.    *    * @since 12.0    */
 DECL|method|listenInPoolThread ( Future<V> future, Executor executor)
+specifier|public
 specifier|static
 parameter_list|<
 name|V
