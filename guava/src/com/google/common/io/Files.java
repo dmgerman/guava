@@ -90,6 +90,34 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|hash
+operator|.
+name|HashCode
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|hash
+operator|.
+name|HashFunction
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1738,7 +1766,10 @@ name|checksum
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes and returns the digest value for a file.    * The digest object is reset when this method returns successfully.    *    * @param file the file to read    * @param md the digest object    * @return the result of {@link MessageDigest#digest()} after updating the    *     digest object with all of the bytes in this file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Computes and returns the digest value for a file.    * The digest object is reset when this method returns successfully.    *    * @param file the file to read    * @param md the digest object    * @return the result of {@link MessageDigest#digest()} after updating the    *     digest object with all of the bytes in this file    * @throws IOException if an I/O error occurs    * @deprecated Use {@link #hash}, for example    *     {@code Files.hash(file, Hashing.sha1())}.    */
+annotation|@
+name|Deprecated
+comment|// To be removed Sept 2013.
 DECL|method|getDigest (File file, MessageDigest md)
 specifier|public
 specifier|static
@@ -1766,6 +1797,36 @@ name|file
 argument_list|)
 argument_list|,
 name|md
+argument_list|)
+return|;
+block|}
+comment|/**    * Computes the hash code of the {@code file} using {@code hashFunction}.    *    * @param file the file to read    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the file    * @throws IOException if an I/O error occurs    * @since 12.0    */
+DECL|method|hash (File file, HashFunction hashFunction)
+specifier|public
+specifier|static
+name|HashCode
+name|hash
+parameter_list|(
+name|File
+name|file
+parameter_list|,
+name|HashFunction
+name|hashFunction
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|ByteStreams
+operator|.
+name|hash
+argument_list|(
+name|newInputStreamSupplier
+argument_list|(
+name|file
+argument_list|)
+argument_list|,
+name|hashFunction
 argument_list|)
 return|;
 block|}
