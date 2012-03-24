@@ -1290,9 +1290,11 @@ name|maxWeight
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Find power-of-two sizes best matching arguments. Constraints:
-comment|// (segmentCount<= maxWeight)
-comment|//&& (concurrencyLevel> maxWeight || segmentCount> concurrencyLevel)
+comment|// Find the lowest power-of-two segmentCount that exceeds concurrencyLevel, unless
+comment|// maximumSize/Weight is specified in which case ensure that each segment gets at least 10
+comment|// entries. The special casing for size-based eviction is only necessary because that eviction
+comment|// happens per segment instead of globally, so too many segments compared to the maximum size
+comment|// will result in random eviction behavior.
 name|int
 name|segmentShift
 init|=
@@ -1314,12 +1316,9 @@ operator|!
 name|evictsBySize
 argument_list|()
 operator|||
-name|customWeigher
-argument_list|()
-operator|||
 name|segmentCount
 operator|*
-literal|2
+literal|20
 operator|<=
 name|maxWeight
 operator|)
