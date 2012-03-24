@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -468,6 +482,15 @@ name|SystemLoader
 implements|implements
 name|FinalizerLoader
 block|{
+comment|// This is used by the ClassLoader-leak test in FinalizableReferenceQueueTest to disable
+comment|// finding Finalizer on the system class path even if it is there.
+annotation|@
+name|VisibleForTesting
+DECL|field|disabled
+specifier|static
+name|boolean
+name|disabled
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|loadFinalizer ()
@@ -479,6 +502,15 @@ argument_list|>
 name|loadFinalizer
 parameter_list|()
 block|{
+if|if
+condition|(
+name|disabled
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|ClassLoader
 name|systemLoader
 decl_stmt|;
@@ -746,6 +778,9 @@ name|URL
 name|base
 parameter_list|)
 block|{
+comment|// We use the bootstrap class loader as the parent because Finalizer by design uses
+comment|// only standard Java classes. That also means that FinalizableReferenceQueueTest
+comment|// doesn't pick up the wrong version of the Finalizer class.
 return|return
 operator|new
 name|URLClassLoader
@@ -756,6 +791,8 @@ index|[]
 block|{
 name|base
 block|}
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
