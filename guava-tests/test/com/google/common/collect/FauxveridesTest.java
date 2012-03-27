@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests that all {@code public static} methods "inherited" from superclasses  * are "overridden" in each immutable-collection class. This ensures, for  * example, that a call written "{@code ImmutableSortedSet.copyOf()}" cannot  * secretly be a call to {@code ImmutableSet.copyOf()}.  *  * @author Chris Povirk  */
+comment|/**  * Tests that all {@code public static} methods "inherited" from superclasses  * are "overridden" in each immutable-collection class. This ensures, for  * example, that a call written "{@code ImmutableSortedSet.copyOf()}" cannot  * secretly be a call to {@code ImmutableSet.copyOf()}.  *   * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -327,6 +327,24 @@ operator|.
 name|class
 argument_list|,
 name|ImmutableSet
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testImmutableSortedMultiset ()
+specifier|public
+name|void
+name|testImmutableSortedMultiset
+parameter_list|()
+block|{
+name|doHasAllFauxveridesTest
+argument_list|(
+name|ImmutableSortedMultiset
+operator|.
+name|class
+argument_list|,
+name|ImmutableMultiset
 operator|.
 name|class
 argument_list|)

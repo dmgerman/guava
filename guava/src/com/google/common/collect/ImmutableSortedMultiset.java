@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -53,16 +67,6 @@ operator|.
 name|io
 operator|.
 name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 
@@ -127,16 +131,19 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@code SortedMultiset} that stores its elements in a sorted array. Some instances  * are ordered by an explicit comparator, while others follow the natural sort ordering of their  * elements. Either way, null elements are not supported.  *  *<p>Unlike {@link Multisets#unmodifiableSortedMultiset}, which is a<i>view</i> of a separate  * collection that can still change, an instance of {@code ImmutableSortedMultiset} contains its  * own private data and will<i>never</i> change. This class is convenient for {@code public static  * final} multisets ("constant multisets") and also lets you easily make a "defensive copy" of a  * set provided to your class by a caller.  *  *<p>The multisets returned by the {@link #headMultiset}, {@link #tailMultiset}, and  * {@link #subMultiset} methods share the same array as the original multiset, preventing that  * array from being garbage collected. If this is a concern, the data may be copied into a  * correctly-sized array by calling {@link #copyOfSorted}.  *  *<p><b>Note on element equivalence:</b> The {@link #contains(Object)},  * {@link #containsAll(Collection)}, and {@link #equals(Object)} implementations must check whether  * a provided object is equivalent to an element in the collection. Unlike most collections, an  * {@code ImmutableSortedMultiset} doesn't use {@link Object#equals} to determine if two elements  * are equivalent. Instead, with an explicit comparator, the following relation determines whether  * elements {@code x} and {@code y} are equivalent:  *  *<pre>   {@code  *  *   {(x, y) | comparator.compare(x, y) == 0}}</pre>  *  * With natural ordering of elements, the following relation determines whether two elements are  * equivalent:  *  *<pre>   {@code  *  *   {(x, y) | x.compareTo(y) == 0}}</pre>  *  *<b>Warning:</b> Like most multisets, an {@code ImmutableSortedMultiset} will not function  * correctly if an element is modified after being placed in the multiset. For this reason, and to  * avoid general confusion, it is strongly recommended to place only immutable objects into this  * collection.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as it has no public or  * protected constructors. Thus, instances of this type are guaranteed to be immutable.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Louis Wasserman  */
+comment|/**  * An immutable {@code SortedMultiset} that stores its elements in a sorted array. Some instances  * are ordered by an explicit comparator, while others follow the natural sort ordering of their  * elements. Either way, null elements are not supported.  *  *<p>Unlike {@link Multisets#unmodifiableSortedMultiset}, which is a<i>view</i> of a separate  * collection that can still change, an instance of {@code ImmutableSortedMultiset} contains its  * own private data and will<i>never</i> change. This class is convenient for {@code public static  * final} multisets ("constant multisets") and also lets you easily make a "defensive copy" of a  * set provided to your class by a caller.  *  *<p>The multisets returned by the {@link #headMultiset}, {@link #tailMultiset}, and  * {@link #subMultiset} methods share the same array as the original multiset, preventing that  * array from being garbage collected. If this is a concern, the data may be copied into a  * correctly-sized array by calling {@link #copyOfSorted}.  *  *<p><b>Note on element equivalence:</b> The {@link #contains(Object)},  * {@link #containsAll(Collection)}, and {@link #equals(Object)} implementations must check whether  * a provided object is equivalent to an element in the collection. Unlike most collections, an  * {@code ImmutableSortedMultiset} doesn't use {@link Object#equals} to determine if two elements  * are equivalent. Instead, with an explicit comparator, the following relation determines whether  * elements {@code x} and {@code y} are equivalent:  *  *<pre>   {@code  *  *   {(x, y) | comparator.compare(x, y) == 0}}</pre>  *  * With natural ordering of elements, the following relation determines whether two elements are  * equivalent:  *  *<pre>   {@code  *  *   {(x, y) | x.compareTo(y) == 0}}</pre>  *  *<b>Warning:</b> Like most multisets, an {@code ImmutableSortedMultiset} will not function  * correctly if an element is modified after being placed in the multiset. For this reason, and to  * avoid general confusion, it is strongly recommended to place only immutable objects into this  * collection.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as it has no public or  * protected constructors. Thus, instances of this type are guaranteed to be immutable.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"hasn't been tested yet"
 argument_list|)
 DECL|class|ImmutableSortedMultiset
+specifier|public
 specifier|abstract
 class|class
 name|ImmutableSortedMultiset
@@ -562,11 +569,9 @@ name|E
 argument_list|>
 name|all
 init|=
-operator|new
-name|ArrayList
-argument_list|<
-name|E
-argument_list|>
+name|Lists
+operator|.
+name|newArrayListWithCapacity
 argument_list|(
 name|size
 argument_list|)
@@ -1572,7 +1577,7 @@ function_decl|;
 end_function_decl
 
 begin_comment
-comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    */
 end_comment
 
 begin_function
@@ -1597,7 +1602,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    */
 end_comment
 
 begin_function
