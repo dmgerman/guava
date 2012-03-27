@@ -315,7 +315,35 @@ annotation|@
 name|Override
 specifier|public
 name|ComparisonChain
+name|compareTrueFirst
+parameter_list|(
+name|boolean
+name|left
+parameter_list|,
+name|boolean
+name|right
+parameter_list|)
+block|{
+return|return
+name|classify
+argument_list|(
+name|Booleans
+operator|.
 name|compare
+argument_list|(
+name|right
+argument_list|,
+name|left
+argument_list|)
+argument_list|)
+return|;
+comment|// reversed
+block|}
+annotation|@
+name|Override
+specifier|public
+name|ComparisonChain
+name|compareFalseFirst
 parameter_list|(
 name|boolean
 name|left
@@ -560,12 +588,30 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|compare (boolean left, boolean right)
+DECL|method|compareTrueFirst (boolean left, boolean right)
 annotation|@
 name|Override
 specifier|public
 name|ComparisonChain
-name|compare
+name|compareTrueFirst
+parameter_list|(
+name|boolean
+name|left
+parameter_list|,
+name|boolean
+name|right
+parameter_list|)
+block|{
+return|return
+name|this
+return|;
+block|}
+DECL|method|compareFalseFirst (boolean left, boolean right)
+annotation|@
+name|Override
+specifier|public
+name|ComparisonChain
+name|compareFalseFirst
 parameter_list|(
 name|boolean
 name|left
@@ -694,10 +740,40 @@ name|double
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Compares two {@code boolean} values as specified by {@link    * Booleans#compare},<i>if</i> the result of this comparison chain has not    * already been determined.    */
-DECL|method|compare (boolean left, boolean right)
+comment|/**    * Compares two {@code boolean} values, considering {@code true} to be less    * than {@code false},<i>if</i> the result of this comparison chain has not    * already been determined.    *    * @since 12.0    */
+DECL|method|compareTrueFirst (boolean left, boolean right)
 specifier|public
 specifier|abstract
+name|ComparisonChain
+name|compareTrueFirst
+parameter_list|(
+name|boolean
+name|left
+parameter_list|,
+name|boolean
+name|right
+parameter_list|)
+function_decl|;
+comment|/**    * Compares two {@code boolean} values, considering {@code false} to be less    * than {@code true},<i>if</i> the result of this comparison chain has not    * already been determined.    *    * @since 12.0 (present as {@code compare} since 2.0)    */
+DECL|method|compareFalseFirst (boolean left, boolean right)
+specifier|public
+specifier|abstract
+name|ComparisonChain
+name|compareFalseFirst
+parameter_list|(
+name|boolean
+name|left
+parameter_list|,
+name|boolean
+name|right
+parameter_list|)
+function_decl|;
+comment|/**    * Old name of {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed    *     are being either negated or reversed, undo the negation or reversal and    *     use {@link #compareTrueFirst}.<b>This method is scheduled for deletion    *     in September 2013.</b>    */
+annotation|@
+name|Deprecated
+DECL|method|compare (boolean left, boolean right)
+specifier|public
+specifier|final
 name|ComparisonChain
 name|compare
 parameter_list|(
@@ -707,7 +783,16 @@ parameter_list|,
 name|boolean
 name|right
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|compareFalseFirst
+argument_list|(
+name|left
+argument_list|,
+name|right
+argument_list|)
+return|;
+block|}
 comment|/**    * Ends this comparison chain and returns its result: a value having the    * same sign as the first nonzero comparison result in the chain, or zero if    * every result was zero.    */
 DECL|method|result ()
 specifier|public
