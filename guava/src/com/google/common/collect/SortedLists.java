@@ -576,9 +576,6 @@ name|NEXT_LOWER
 block|{
 annotation|@
 name|Override
-argument_list|<
-name|E
-argument_list|>
 name|int
 name|resultIndex
 parameter_list|(
@@ -601,9 +598,6 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
-name|E
-parameter_list|>
 name|int
 name|resultIndex
 parameter_list|(
@@ -624,9 +618,6 @@ block|{
 annotation|@
 name|Override
 specifier|public
-parameter_list|<
-name|E
-parameter_list|>
 name|int
 name|resultIndex
 parameter_list|(
@@ -643,9 +634,6 @@ block|}
 block|;
 DECL|method|resultIndex (int higherIndex)
 specifier|abstract
-parameter_list|<
-name|E
-parameter_list|>
 name|int
 name|resultIndex
 parameter_list|(
