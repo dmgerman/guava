@@ -447,26 +447,26 @@ name|DEL
 init|=
 literal|127
 decl_stmt|;
-comment|/**    * The minimum value of an ASCII character.    *    * @since 9.0    */
+comment|/**    * The minimum value of an ASCII character.    *    * @since 9.0 (was type {@code int} before 12.0)    */
 annotation|@
 name|Beta
 DECL|field|MIN
 specifier|public
 specifier|static
 specifier|final
-name|int
+name|char
 name|MIN
 init|=
 literal|0
 decl_stmt|;
-comment|/**    * The maximum value of an ASCII character.    *    * @since 9.0    */
+comment|/**    * The maximum value of an ASCII character.    *    * @since 9.0 (was type {@code int} before 12.0)    */
 annotation|@
 name|Beta
 DECL|field|MAX
 specifier|public
 specifier|static
 specifier|final
-name|int
+name|char
 name|MAX
 init|=
 literal|127
