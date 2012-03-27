@@ -978,7 +978,7 @@ else|:
 name|exponent
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code x} represents a mathematical integer.    *     *<p>This is equivalent to, but not necessarily implemented as, the expression {@code    * !Double.isNaN(x)&& !Double.isInfinite(x)&& x == Math.rint(x)}.    */
+comment|/**    * Returns {@code true} if {@code x} represents a mathematical integer.    *    *<p>This is equivalent to, but not necessarily implemented as, the expression {@code    * !Double.isNaN(x)&& !Double.isInfinite(x)&& x == Math.rint(x)}.    */
 DECL|method|isMathematicalInteger (double x)
 specifier|public
 specifier|static
@@ -1157,6 +1157,11 @@ literal|0x1
 literal|.95d5f3d928edep945
 block|}
 decl_stmt|;
+DECL|method|DoubleMath ()
+specifier|private
+name|DoubleMath
+parameter_list|()
+block|{}
 block|}
 end_class
 
