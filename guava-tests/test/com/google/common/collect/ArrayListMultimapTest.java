@@ -533,7 +533,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10
+literal|3
 argument_list|,
 name|multimap
 operator|.
@@ -661,7 +661,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10
+literal|3
 argument_list|,
 name|multimap
 operator|.

@@ -196,7 +196,7 @@ specifier|final
 name|int
 name|DEFAULT_VALUES_PER_KEY
 init|=
-literal|10
+literal|3
 decl_stmt|;
 DECL|field|expectedValuesPerKey
 annotation|@
