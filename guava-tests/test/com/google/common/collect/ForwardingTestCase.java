@@ -199,6 +199,7 @@ name|TestCase
 block|{
 DECL|field|calls
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|String
