@@ -16,6 +16,18 @@ name|collect
 package|;
 end_package
 
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|emptyList
+import|;
+end_import
+
 begin_comment
 comment|/**  * GWT emulated version of EmptyImmutableList.  *  * @author Hayward Chan  */
 end_comment
@@ -26,7 +38,7 @@ specifier|final
 class|class
 name|EmptyImmutableList
 extends|extends
-name|ImmutableList
+name|ForwardingImmutableList
 argument_list|<
 name|Object
 argument_list|>
@@ -41,6 +53,17 @@ operator|new
 name|EmptyImmutableList
 argument_list|()
 decl_stmt|;
+DECL|method|EmptyImmutableList ()
+name|EmptyImmutableList
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|emptyList
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

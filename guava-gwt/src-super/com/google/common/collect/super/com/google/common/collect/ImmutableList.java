@@ -112,16 +112,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ListIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|RandomAccess
 import|;
 end_import
@@ -137,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulated version of {@link ImmutableList}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulated version of {@link ImmutableList}.  * TODO(cpovirk): more doc  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
@@ -156,7 +146,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|ForwardingImmutableCollection
+name|ImmutableCollection
 argument_list|<
 name|E
 argument_list|>
@@ -168,59 +158,10 @@ argument_list|>
 implements|,
 name|RandomAccess
 block|{
-DECL|field|delegate
-specifier|private
-specifier|transient
-specifier|final
-name|List
-argument_list|<
-name|E
-argument_list|>
-name|delegate
-decl_stmt|;
-DECL|method|ImmutableList (List<E> delegate)
-name|ImmutableList
-parameter_list|(
-name|List
-argument_list|<
-name|E
-argument_list|>
-name|delegate
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|delegate
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|delegate
-operator|=
-name|Collections
-operator|.
-name|unmodifiableList
-argument_list|(
-name|delegate
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|ImmutableList ()
 name|ImmutableList
 parameter_list|()
-block|{
-name|this
-argument_list|(
-name|Collections
-operator|.
-expr|<
-name|E
-operator|>
-name|emptyList
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{}
 comment|// Casting to any type is safe because the list will never hold any elements.
 annotation|@
 name|SuppressWarnings
@@ -1434,7 +1375,7 @@ return|;
 block|}
 block|}
 comment|// Factory method that skips the null checks.  Used only when the elements
-comment|// are guaranteed to be null.
+comment|// are guaranteed to be non-null.
 DECL|method|unsafeDelegateList (List<? extends E> list)
 specifier|static
 parameter_list|<
@@ -1632,6 +1573,8 @@ name|castedArray
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (@ullable Object object)
 specifier|public
 name|int
@@ -1644,14 +1587,27 @@ name|object
 parameter_list|)
 block|{
 return|return
-name|delegate
+operator|(
+name|object
+operator|==
+literal|null
+operator|)
+condition|?
+operator|-
+literal|1
+else|:
+name|Lists
 operator|.
-name|indexOf
+name|indexOfImpl
 argument_list|(
+name|this
+argument_list|,
 name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (@ullable Object object)
 specifier|public
 name|int
@@ -1664,10 +1620,21 @@ name|object
 parameter_list|)
 block|{
 return|return
-name|delegate
+operator|(
+name|object
+operator|==
+literal|null
+operator|)
+condition|?
+operator|-
+literal|1
+else|:
+name|Lists
 operator|.
-name|lastIndexOf
+name|lastIndexOfImpl
 argument_list|(
+name|this
+argument_list|,
 name|object
 argument_list|)
 return|;
@@ -1750,26 +1717,25 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|get (int index)
+DECL|method|iterator ()
+annotation|@
+name|Override
 specifier|public
+name|UnmodifiableIterator
+argument_list|<
 name|E
-name|get
-parameter_list|(
-name|int
-name|index
-parameter_list|)
+argument_list|>
+name|iterator
+parameter_list|()
 block|{
 return|return
-name|delegate
-operator|.
-name|get
-argument_list|(
-name|index
-argument_list|)
+name|listIterator
+argument_list|()
 return|;
 block|}
 DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
+specifier|abstract
 name|ImmutableList
 argument_list|<
 name|E
@@ -1782,24 +1748,12 @@ parameter_list|,
 name|int
 name|toIndex
 parameter_list|)
-block|{
-return|return
-name|unsafeDelegateList
-argument_list|(
-name|delegate
-operator|.
-name|subList
-argument_list|(
-name|fromIndex
-argument_list|,
-name|toIndex
-argument_list|)
-argument_list|)
-return|;
-block|}
+function_decl|;
 DECL|method|listIterator ()
+annotation|@
+name|Override
 specifier|public
-name|ListIterator
+name|UnmodifiableListIterator
 argument_list|<
 name|E
 argument_list|>
@@ -1807,15 +1761,17 @@ name|listIterator
 parameter_list|()
 block|{
 return|return
-name|delegate
-operator|.
 name|listIterator
-argument_list|()
+argument_list|(
+literal|0
+argument_list|)
 return|;
 block|}
 DECL|method|listIterator (int index)
+annotation|@
+name|Override
 specifier|public
-name|ListIterator
+name|UnmodifiableListIterator
 argument_list|<
 name|E
 argument_list|>
@@ -1826,12 +1782,40 @@ name|index
 parameter_list|)
 block|{
 return|return
-name|delegate
+operator|new
+name|AbstractIndexedListIterator
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|size
+argument_list|()
+argument_list|,
+name|index
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|protected
+name|E
+name|get
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+block|{
+return|return
+name|ImmutableList
 operator|.
-name|listIterator
+name|this
+operator|.
+name|get
 argument_list|(
 name|index
 argument_list|)
+return|;
+block|}
+block|}
 return|;
 block|}
 DECL|method|asList ()
@@ -1883,66 +1867,6 @@ name|unsafeDelegateList
 argument_list|(
 name|list
 argument_list|)
-return|;
-block|}
-DECL|method|toArray ()
-annotation|@
-name|Override
-specifier|public
-name|Object
-index|[]
-name|toArray
-parameter_list|()
-block|{
-comment|// Note that ArrayList.toArray() doesn't work here because it returns E[]
-comment|// instead of Object[].
-return|return
-name|delegate
-operator|.
-name|toArray
-argument_list|(
-operator|new
-name|Object
-index|[
-name|size
-argument_list|()
-index|]
-argument_list|)
-return|;
-block|}
-DECL|method|equals (Object obj)
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|obj
-parameter_list|)
-block|{
-return|return
-name|delegate
-operator|.
-name|equals
-argument_list|(
-name|obj
-argument_list|)
-return|;
-block|}
-DECL|method|hashCode ()
-annotation|@
-name|Override
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-name|delegate
-operator|.
-name|hashCode
-argument_list|()
 return|;
 block|}
 DECL|method|builder ()

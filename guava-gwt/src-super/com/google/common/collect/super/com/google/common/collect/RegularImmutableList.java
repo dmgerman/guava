@@ -38,7 +38,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|ImmutableList
+name|ForwardingImmutableList
 argument_list|<
 name|E
 argument_list|>

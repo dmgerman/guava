@@ -2127,6 +2127,17 @@ name|int
 name|toIndex
 parameter_list|)
 block|{
+name|checkPositionIndexes
+argument_list|(
+name|fromIndex
+argument_list|,
+name|toIndex
+argument_list|,
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// for GWT
 return|return
 name|charactersOf
 argument_list|(
@@ -2163,6 +2174,15 @@ name|int
 name|index
 parameter_list|)
 block|{
+name|checkElementIndex
+argument_list|(
+name|index
+argument_list|,
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// for GWT
 return|return
 name|string
 operator|.
@@ -2462,6 +2482,15 @@ name|int
 name|index
 parameter_list|)
 block|{
+name|checkElementIndex
+argument_list|(
+name|index
+argument_list|,
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// for GWT
 return|return
 name|sequence
 operator|.
@@ -2670,6 +2699,17 @@ name|int
 name|toIndex
 parameter_list|)
 block|{
+name|checkPositionIndexes
+argument_list|(
+name|fromIndex
+argument_list|,
+name|toIndex
+argument_list|,
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// for GWT
 return|return
 name|charactersOf
 argument_list|(
