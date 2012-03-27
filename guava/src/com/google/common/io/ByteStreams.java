@@ -2857,10 +2857,9 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes and returns the digest value for a supplied input stream.    * The digest object is reset when this method returns successfully.    *    * @param supplier the input stream factory    * @param md the digest object    * @return the result of {@link MessageDigest#digest()} after updating the    *     digest object with all of the bytes in the stream    * @throws IOException if an I/O error occurs    * @deprecated Use {@link #hash}, for example    *     {@code ByteStreams.hash(supplier, Hashing.sha1())}.    */
+comment|/**    * Computes and returns the digest value for a supplied input stream.    * The digest object is reset when this method returns successfully.    *    * @param supplier the input stream factory    * @param md the digest object    * @return the result of {@link MessageDigest#digest()} after updating the    *     digest object with all of the bytes in the stream    * @throws IOException if an I/O error occurs    * @deprecated Use {@link #hash} instead. For example,    *     {@code ByteStreams.hash(supplier, Hashing.sha1())}. This method is    *     scheduled to be removed in Guava release 13.0.    */
 annotation|@
 name|Deprecated
-comment|// To be removed Sept 2013.
 DECL|method|getDigest (InputSupplier<? extends InputStream> supplier, final MessageDigest md)
 specifier|public
 specifier|static

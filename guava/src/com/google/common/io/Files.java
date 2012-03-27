@@ -1780,10 +1780,9 @@ name|checksum
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes and returns the digest value for a file.    * The digest object is reset when this method returns successfully.    *    * @param file the file to read    * @param md the digest object    * @return the result of {@link MessageDigest#digest()} after updating the    *     digest object with all of the bytes in this file    * @throws IOException if an I/O error occurs    * @deprecated Use {@link #hash}, for example    *     {@code Files.hash(file, Hashing.sha1())}.    */
+comment|/**    * Computes and returns the digest value for a file.    * The digest object is reset when this method returns successfully.    *    * @param file the file to read    * @param md the digest object    * @return the result of {@link MessageDigest#digest()} after updating the    *     digest object with all of the bytes in this file    * @throws IOException if an I/O error occurs    * @deprecated Use {@link #hash} instead. For example,    *     {@code Files.hash(file, Hashing.sha1())}. This method is scheduled to    *     be removed in Guava release 13.0.    */
 annotation|@
 name|Deprecated
-comment|// To be removed Sept 2013.
 DECL|method|getDigest (File file, MessageDigest md)
 specifier|public
 specifier|static
