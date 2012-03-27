@@ -99,6 +99,76 @@ specifier|final
 class|class
 name|Reflection
 block|{
+comment|/**    * Returns the package name of {@code cls} according to the Java Language Specification (section    * 6.7). Unlike {@link Class#getPackage}, this method only parses the class name, without    * attempting to define the {@link Package} and hence load files.    */
+DECL|method|getPackageName (Class<?> cls)
+specifier|public
+specifier|static
+name|String
+name|getPackageName
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|cls
+parameter_list|)
+block|{
+return|return
+name|getPackageName
+argument_list|(
+name|cls
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the package name of {@code classFullName} according to the Java Language Specification    * (section 6.7). Unlike {@link Class#getPackage}, this method only parses the class name, without    * attempting to define the {@link Package} and hence load files.    */
+DECL|method|getPackageName (String classFullName)
+specifier|public
+specifier|static
+name|String
+name|getPackageName
+parameter_list|(
+name|String
+name|classFullName
+parameter_list|)
+block|{
+name|int
+name|lastDot
+init|=
+name|classFullName
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|'.'
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|lastDot
+operator|<
+literal|0
+condition|)
+block|{
+return|return
+literal|""
+return|;
+block|}
+else|else
+block|{
+return|return
+name|classFullName
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|lastDot
+argument_list|)
+return|;
+block|}
+block|}
 comment|/**    * Ensures that the given classes are initialized, as described in    *<a href="http://java.sun.com/docs/books/jls/third_edition/html/execution.html#12.4.2">    * JLS Section 12.4.2</a>.    *    *<p>WARNING: Normally it's a smell if a class needs to be explicitly initialized, because static    * state hurts system maintainability and testability. In cases when you have no choice while    * inter-operating with a legacy framework, this method helps to keep the code less ugly.    *    * @throws ExceptionInInitializerError if an exception is thrown during    *   initialization of a class    */
 DECL|method|initialize (Class<?>.... classes)
 specifier|public
