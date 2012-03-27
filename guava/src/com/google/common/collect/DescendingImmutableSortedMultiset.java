@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -27,10 +27,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A descending wrapper around an {@code ImmutableSortedMultiset}  *   * @author Louis Wasserman  */
+comment|/**  * A descending wrapper around an {@code ImmutableSortedMultiset}  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
+comment|// uses writeReplace, not default serialization
 DECL|class|DescendingImmutableSortedMultiset
 specifier|final
 class|class
@@ -188,7 +194,54 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|descendingEntryIterator ()
+DECL|method|createEntrySet ()
+name|ImmutableSet
+argument_list|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|createEntrySet
+parameter_list|()
+block|{
+specifier|final
+name|ImmutableSet
+argument_list|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|forwardEntrySet
+init|=
+name|forward
+operator|.
+name|entrySet
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|EntrySet
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|forwardEntrySet
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|UnmodifiableIterator
 argument_list|<
 name|Entry
@@ -196,14 +249,40 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
-name|descendingEntryIterator
+name|iterator
 parameter_list|()
 block|{
 return|return
-name|forward
-operator|.
-name|entryIterator
+name|asList
 argument_list|()
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+name|ImmutableList
+argument_list|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+name|createAsList
+parameter_list|()
+block|{
+return|return
+name|forwardEntrySet
+operator|.
+name|asList
+argument_list|()
+operator|.
+name|reverse
+argument_list|()
+return|;
+block|}
+block|}
 return|;
 block|}
 annotation|@
@@ -280,40 +359,6 @@ name|boundType
 argument_list|)
 operator|.
 name|descendingMultiset
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|entryIterator ()
-name|UnmodifiableIterator
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|entryIterator
-parameter_list|()
-block|{
-return|return
-name|forward
-operator|.
-name|descendingEntryIterator
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|distinctElements ()
-name|int
-name|distinctElements
-parameter_list|()
-block|{
-return|return
-name|forward
-operator|.
-name|distinctElements
 argument_list|()
 return|;
 block|}

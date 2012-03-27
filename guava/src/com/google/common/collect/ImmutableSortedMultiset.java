@@ -1561,21 +1561,6 @@ return|;
 block|}
 end_function
 
-begin_function_decl
-DECL|method|descendingEntryIterator ()
-specifier|abstract
-name|UnmodifiableIterator
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|descendingEntryIterator
-parameter_list|()
-function_decl|;
-end_function_decl
-
 begin_comment
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    */
 end_comment

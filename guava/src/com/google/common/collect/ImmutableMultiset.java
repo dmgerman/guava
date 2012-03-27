@@ -132,16 +132,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -909,7 +899,10 @@ argument_list|>
 argument_list|>
 name|entryIterator
 init|=
-name|entryIterator
+name|entrySet
+argument_list|()
+operator|.
+name|iterator
 argument_list|()
 decl_stmt|;
 return|return
@@ -1288,7 +1281,8 @@ annotation|@
 name|Override
 DECL|method|entrySet ()
 specifier|public
-name|Set
+specifier|final
+name|ImmutableSet
 argument_list|<
 name|Entry
 argument_list|<
@@ -1326,25 +1320,8 @@ else|:
 name|es
 return|;
 block|}
-DECL|method|entryIterator ()
-specifier|abstract
-name|UnmodifiableIterator
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|entryIterator
-parameter_list|()
-function_decl|;
-DECL|method|distinctElements ()
-specifier|abstract
-name|int
-name|distinctElements
-parameter_list|()
-function_decl|;
 DECL|method|createEntrySet ()
+specifier|abstract
 name|ImmutableSet
 argument_list|<
 name|Entry
@@ -1354,25 +1331,11 @@ argument_list|>
 argument_list|>
 name|createEntrySet
 parameter_list|()
-block|{
-return|return
-operator|new
-name|EntrySet
-argument_list|<
-name|E
-argument_list|>
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
+function_decl|;
 DECL|class|EntrySet
-specifier|static
+specifier|abstract
 class|class
 name|EntrySet
-parameter_list|<
-name|E
-parameter_list|>
 extends|extends
 name|ImmutableSet
 argument_list|<
@@ -1382,69 +1345,6 @@ name|E
 argument_list|>
 argument_list|>
 block|{
-DECL|field|multiset
-specifier|transient
-specifier|final
-name|ImmutableMultiset
-argument_list|<
-name|E
-argument_list|>
-name|multiset
-decl_stmt|;
-DECL|method|EntrySet (ImmutableMultiset<E> multiset)
-specifier|public
-name|EntrySet
-parameter_list|(
-name|ImmutableMultiset
-argument_list|<
-name|E
-argument_list|>
-name|multiset
-parameter_list|)
-block|{
-name|this
-operator|.
-name|multiset
-operator|=
-name|multiset
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|iterator ()
-specifier|public
-name|UnmodifiableIterator
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|iterator
-parameter_list|()
-block|{
-return|return
-name|multiset
-operator|.
-name|entryIterator
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|size ()
-specifier|public
-name|int
-name|size
-parameter_list|()
-block|{
-return|return
-name|multiset
-operator|.
-name|distinctElements
-argument_list|()
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|isPartialView ()
@@ -1453,7 +1353,9 @@ name|isPartialView
 parameter_list|()
 block|{
 return|return
-name|multiset
+name|ImmutableMultiset
+operator|.
+name|this
 operator|.
 name|isPartialView
 argument_list|()
@@ -1508,8 +1410,6 @@ block|}
 name|int
 name|count
 init|=
-name|multiset
-operator|.
 name|count
 argument_list|(
 name|entry
@@ -1666,7 +1566,9 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|multiset
+name|ImmutableMultiset
+operator|.
+name|this
 operator|.
 name|hashCode
 argument_list|()
@@ -1674,6 +1576,7 @@ return|;
 block|}
 comment|// We can't label this with @Override, because it doesn't override anything
 comment|// in the GWT emulated version.
+comment|// TODO(cpovirk): try making all copies of this method @GwtIncompatible instead
 DECL|method|writeReplace ()
 name|Object
 name|writeReplace
@@ -1686,9 +1589,21 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|(
-name|multiset
+name|ImmutableMultiset
+operator|.
+name|this
 argument_list|)
 return|;
+block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 DECL|class|EntrySetSerializedForm
 specifier|static
@@ -1737,16 +1652,6 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-block|}
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|0
-decl_stmt|;
 block|}
 DECL|class|SerializedForm
 specifier|private

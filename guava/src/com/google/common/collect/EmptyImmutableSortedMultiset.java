@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -57,6 +57,12 @@ comment|/**  * An empty immutable sorted multiset.  *  * @author Louis Wasserman
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
+comment|// Uses writeReplace, not default serialization
 DECL|class|EmptyImmutableSortedMultiset
 specifier|final
 class|class
@@ -189,41 +195,21 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|descendingEntryIterator ()
-name|UnmodifiableIterator
+DECL|method|createEntrySet ()
+name|ImmutableSet
 argument_list|<
 name|Entry
 argument_list|<
 name|E
 argument_list|>
 argument_list|>
-name|descendingEntryIterator
+name|createEntrySet
 parameter_list|()
 block|{
 return|return
-name|Iterators
+name|ImmutableSet
 operator|.
-name|emptyIterator
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|entryIterator ()
-name|UnmodifiableIterator
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|entryIterator
-parameter_list|()
-block|{
-return|return
-name|Iterators
-operator|.
-name|emptyIterator
+name|of
 argument_list|()
 return|;
 block|}
@@ -287,17 +273,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|this
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|distinctElements ()
-name|int
-name|distinctElements
-parameter_list|()
-block|{
-return|return
-literal|0
 return|;
 block|}
 annotation|@
