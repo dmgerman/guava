@@ -56,6 +56,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Charsets
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Joiner
 import|;
 end_import
@@ -364,7 +378,7 @@ specifier|private
 name|Files
 parameter_list|()
 block|{}
-comment|/**    * Returns a buffered reader that reads from a file using the given    * character set.    *    * @param file the file to read from    * @param charset the character set used when writing the file    * @return the buffered reader    */
+comment|/**    * Returns a buffered reader that reads from a file using the given    * character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the buffered reader    */
 DECL|method|newReader (File file, Charset charset)
 specifier|public
 specifier|static
@@ -398,7 +412,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a buffered writer that writes to a file using the given    * character set.    *    * @param file the file to write to    * @param charset the character set used when writing the file    * @return the buffered writer    */
+comment|/**    * Returns a buffered writer that writes to a file using the given    * character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the buffered writer    */
 DECL|method|newWriter (File file, Charset charset)
 specifier|public
 specifier|static
@@ -561,7 +575,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a file using the given character set.    *    * @param file the file to read from    * @param charset the character set used when reading the file    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a file using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newReaderSupplier (File file, Charset charset)
 specifier|public
 specifier|static
@@ -592,7 +606,7 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to a file using the given character set.    *    * @param file the file to write to    * @param charset the character set used when writing the file    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newWriterSupplier (File file, Charset charset)
 specifier|public
 specifier|static
@@ -620,7 +634,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to or append to a file using the given character set.    *    * @param file the file to write to    * @param charset the character set used when writing the file    * @param append if true, the encoded characters will be appended to the file;    *     otherwise the file is overwritten    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to or append to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @param append if true, the encoded characters will be appended to the file;    *     otherwise the file is overwritten    * @return the factory    */
 DECL|method|newWriterSupplier (File file, Charset charset, boolean append)
 specifier|public
 specifier|static
@@ -773,7 +787,7 @@ name|b
 return|;
 block|}
 block|}
-comment|/**    * Reads all characters from a file into a {@link String}, using the given    * character set.    *    * @param file the file to read from    * @param charset the character set used when reading the file    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all characters from a file into a {@link String}, using the given    * character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a string containing all the characters from the file    * @throws IOException if an I/O error occurs    */
 DECL|method|toString (File file, Charset charset)
 specifier|public
 specifier|static
@@ -978,7 +992,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies to a file all characters from a {@link Readable} and    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the readable supplier    * @param to the destination file    * @param charset the character set used when writing the file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies to a file all characters from a {@link Readable} and    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the readable supplier    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    */
 DECL|method|copy ( InputSupplier<R> from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1022,7 +1036,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Writes a character sequence (such as a string) to a file using the given    * character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the character set used when writing the file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Writes a character sequence (such as a string) to a file using the given    * character set.    *    * @param from the character sequence to write    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    */
 DECL|method|write (CharSequence from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1053,7 +1067,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Appends a character sequence (such as a string) to a file using the given    * character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the character set used when writing the file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Appends a character sequence (such as a string) to a file using the given    * character set.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    */
 DECL|method|append (CharSequence from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1084,7 +1098,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Private helper method. Writes a character sequence to a file,    * optionally appending.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the character set used when writing the file    * @param append true to append, false to overwrite    * @throws IOException if an I/O error occurs    */
+comment|/**    * Private helper method. Writes a character sequence to a file,    * optionally appending.    *    * @param from the character sequence to append    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @param append true to append, false to overwrite    * @throws IOException if an I/O error occurs    */
 DECL|method|write (CharSequence from, File to, Charset charset, boolean append)
 specifier|private
 specifier|static
@@ -1123,7 +1137,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all characters from a file to a {@link Appendable}&    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the source file    * @param charset the character set used when reading the file    * @param to the appendable supplier    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all characters from a file to a {@link Appendable}&    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param to the appendable supplier    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (File from, Charset charset, OutputSupplier<W> to)
 specifier|public
 specifier|static
@@ -1167,7 +1181,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all characters from a file to an appendable object,    * using the given character set.    *    * @param from the source file    * @param charset the character set used when reading the file    * @param to the appendable object    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all characters from a file to an appendable object,    * using the given character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param to the appendable object    * @throws IOException if an I/O error occurs    */
 DECL|method|copy (File from, Charset charset, Appendable to)
 specifier|public
 specifier|static
@@ -1590,7 +1604,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Reads the first line from a file. The line does not include    * line-termination characters, but does include other leading and    * trailing whitespace.    *    * @param file the file to read from    * @param charset the character set used when writing the file    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads the first line from a file. The line does not include    * line-termination characters, but does include other leading and    * trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the first line, or null if the file is empty    * @throws IOException if an I/O error occurs    */
 DECL|method|readFirstLine (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1622,7 +1636,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads all of the lines from a file. The lines do not include    * line-termination characters, but do include other leading and    * trailing whitespace.    *    * @param file the file to read from    * @param charset the character set used when writing the file    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a file. The lines do not include    * line-termination characters, but do include other leading and    * trailing whitespace.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1657,7 +1671,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Streams lines from a {@link File}, stopping when our callback returns    * false, or we have read all of the lines.    *    * @param file the file to read from    * @param charset the character set used when writing the file    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a {@link File}, stopping when our callback returns    * false, or we have read all of the lines.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param callback the {@link LineProcessor} to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (File file, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static

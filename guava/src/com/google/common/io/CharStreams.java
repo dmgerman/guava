@@ -40,6 +40,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Charsets
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 import|;
 end_import
@@ -272,7 +286,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link InputStreamReader},    * using the given {@link InputStream} factory and character set.    *    * @param in the factory that will be used to open input streams    * @param charset the character set used to decode the input stream    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link InputStreamReader},    * using the given {@link InputStream} factory and character set.    *    * @param in the factory that will be used to open input streams    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newReaderSupplier ( final InputSupplier<? extends InputStream> in, final Charset charset)
 specifier|public
 specifier|static
@@ -343,7 +357,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter},    * using the given {@link OutputStream} factory and character set.    *    * @param out the factory that will be used to open output streams    * @param charset the character set used to encode the output stream    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter},    * using the given {@link OutputStream} factory and character set.    *    * @param out the factory that will be used to open output streams    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newWriterSupplier ( final OutputSupplier<? extends OutputStream> out, final Charset charset)
 specifier|public
 specifier|static

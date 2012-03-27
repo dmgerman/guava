@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Charsets
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -199,7 +213,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a URL using the given character set.    *    * @param url the URL to read from    * @param charset the character set used when reading the URL contents    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a URL using the given character set.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newReaderSupplier ( URL url, Charset charset)
 specifier|public
 specifier|static
@@ -256,7 +270,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads all characters from a URL into a {@link String}, using the given    * character set.    *    * @param url the URL to read from    * @param charset the character set used when reading the URL    * @return a string containing all the characters from the URL    * @throws IOException if an I/O error occurs.    */
+comment|/**    * Reads all characters from a URL into a {@link String}, using the given    * character set.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a string containing all the characters from the URL    * @throws IOException if an I/O error occurs.    */
 DECL|method|toString (URL url, Charset charset)
 specifier|public
 specifier|static
@@ -286,7 +300,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Streams lines from a URL, stopping when our callback returns false, or we    * have read all of the lines.    *    * @param url the URL to read from    * @param charset the character set used when reading the URL    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a URL, stopping when our callback returns false, or we    * have read all of the lines.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (URL url, Charset charset, LineProcessor<T> callback)
 specifier|public
 specifier|static
@@ -327,7 +341,7 @@ name|callback
 argument_list|)
 return|;
 block|}
-comment|/**    * Reads all of the lines from a URL. The lines do not include    * line-termination characters, but do include other leading and trailing    * whitespace.    *    * @param url the URL to read from    * @param charset the character set used when writing the file    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a URL. The lines do not include    * line-termination characters, but do include other leading and trailing    * whitespace.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
 DECL|method|readLines (URL url, Charset charset)
 specifier|public
 specifier|static
