@@ -40,6 +40,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Preconditions
 import|;
 end_import
@@ -222,7 +236,7 @@ specifier|private
 name|InetAddresses
 parameter_list|()
 block|{}
-comment|/**    * Returns an {@link Inet4Address}, given a byte array representation    * of the IPv4 address.    *    * @param bytes byte array representing an IPv4 address (should be    *              of length 4).    * @return {@link Inet4Address} corresponding to the supplied byte    *         array.    * @throws IllegalArgumentException if a valid {@link Inet4Address}    *         can not be created.    */
+comment|/**    * Returns an {@link Inet4Address}, given a byte array representation of the IPv4 address.    *    * @param bytes byte array representing an IPv4 address (should be of length 4)    * @return {@link Inet4Address} corresponding to the supplied byte array    * @throws IllegalArgumentException if a valid {@link Inet4Address} can not be created    */
 DECL|method|getInet4Address (byte[] bytes)
 specifier|private
 specifier|static
@@ -262,7 +276,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@link InetAddress} having the given string    * representation.    *    *<p>This deliberately avoids all nameservice lookups (e.g. no DNS).    *    * @param ipString {@code String} containing an IPv4 or IPv6 string literal,    *                 e.g. {@code "192.168.0.1"} or {@code "2001:db8::1"}    * @return {@link InetAddress} representing the argument    * @throws IllegalArgumentException if the argument is not a valid    *         IP string literal    */
+comment|/**    * Returns the {@link InetAddress} having the given string representation.    *    *<p>This deliberately avoids all nameservice lookups (e.g. no DNS).    *    * @param ipString {@code String} containing an IPv4 or IPv6 string literal, e.g.    *     {@code "192.168.0.1"} or {@code "2001:db8::1"}    * @return {@link InetAddress} representing the argument    * @throws IllegalArgumentException if the argument is not a valid IP string literal    */
 DECL|method|forString (String ipString)
 specifier|public
 specifier|static
@@ -1351,7 +1365,7 @@ name|hextets
 argument_list|)
 return|;
 block|}
-comment|/**    * Identify and mark the longest run of zeroes in an IPv6 address.    *    *<p>Only runs of two or more hextets are considered.  In case of a tie, the    * leftmost run wins.  If a qualifying run is found, its hextets are replaced    * by the sentinel value -1.    *    * @param hextets {@code int[]} mutable array of eight 16-bit hextets.    */
+comment|/**    * Identify and mark the longest run of zeroes in an IPv6 address.    *    *<p>Only runs of two or more hextets are considered.  In case of a tie, the    * leftmost run wins.  If a qualifying run is found, its hextets are replaced    * by the sentinel value -1.    *    * @param hextets {@code int[]} mutable array of eight 16-bit hextets    */
 DECL|method|compressLongestRunOfZeroes (int[] hextets)
 specifier|private
 specifier|static
@@ -1492,7 +1506,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Convert a list of hextets into a human-readable IPv6 address.    *    *<p>In order for "::" compression to work, the input should contain negative    * sentinel values in place of the elided zeroes.    *    * @param hextets {@code int[]} array of eight 16-bit hextets, or -1s.    */
+comment|/**    * Convert a list of hextets into a human-readable IPv6 address.    *    *<p>In order for "::" compression to work, the input should contain negative    * sentinel values in place of the elided zeroes.    *    * @param hextets {@code int[]} array of eight 16-bit hextets, or -1s    */
 DECL|method|hextetsToIPv6String (int[] hextets)
 specifier|private
 specifier|static
@@ -1800,7 +1814,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Evaluates whether the argument is an IPv6 "compat" address.    *    *<p>An "IPv4 compatible", or "compat", address is one with 96 leading    * bits of zero, with the remaining 32 bits interpreted as an    * IPv4 address.  These are conventionally represented in string    * literals as {@code "::192.168.0.1"}, though {@code "::c0a8:1"} is    * also considered an IPv4 compatible address (and equivalent to    * {@code "::192.168.0.1"}).    *    *<p>For more on IPv4 compatible addresses see section 2.5.5.1 of    *<a target="_parent"    *    href="http://tools.ietf.org/html/rfc4291#section-2.5.5.1"    *>http://tools.ietf.org/html/rfc4291</a>    *    *<p>NOTE: This method is different from    * {@link Inet6Address#isIPv4CompatibleAddress} in that it more    * correctly classifies {@code "::"} and {@code "::1"} as    * proper IPv6 addresses (which they are), NOT IPv4 compatible    * addresses (which they are generally NOT considered to be).    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           compatible address format    * @return {@code true} if the argument is a valid "compat" address    */
+comment|/**    * Evaluates whether the argument is an IPv6 "compat" address.    *    *<p>An "IPv4 compatible", or "compat", address is one with 96 leading    * bits of zero, with the remaining 32 bits interpreted as an    * IPv4 address.  These are conventionally represented in string    * literals as {@code "::192.168.0.1"}, though {@code "::c0a8:1"} is    * also considered an IPv4 compatible address (and equivalent to    * {@code "::192.168.0.1"}).    *    *<p>For more on IPv4 compatible addresses see section 2.5.5.1 of    *<a target="_parent"    *    href="http://tools.ietf.org/html/rfc4291#section-2.5.5.1"    *>http://tools.ietf.org/html/rfc4291</a>    *    *<p>NOTE: This method is different from    * {@link Inet6Address#isIPv4CompatibleAddress} in that it more    * correctly classifies {@code "::"} and {@code "::1"} as    * proper IPv6 addresses (which they are), NOT IPv4 compatible    * addresses (which they are generally NOT considered to be).    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4 compatible address format    * @return {@code true} if the argument is a valid "compat" address    */
 DECL|method|isCompatIPv4Address (Inet6Address ip)
 specifier|public
 specifier|static
@@ -1891,7 +1905,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the IPv4 address embedded in an IPv4 compatible address.    *    * @param ip {@link Inet6Address} to be examined for an embedded    *           IPv4 address    * @return {@link Inet4Address} of the embedded IPv4 address    * @throws IllegalArgumentException if the argument is not a valid    *         IPv4 compatible address    */
+comment|/**    * Returns the IPv4 address embedded in an IPv4 compatible address.    *    * @param ip {@link Inet6Address} to be examined for an embedded IPv4 address    * @return {@link Inet4Address} of the embedded IPv4 address    * @throws IllegalArgumentException if the argument is not a valid IPv4 compatible address    */
 DECL|method|getCompatIPv4Address (Inet6Address ip)
 specifier|public
 specifier|static
@@ -1922,6 +1936,8 @@ expr_stmt|;
 return|return
 name|getInet4Address
 argument_list|(
+name|Arrays
+operator|.
 name|copyOfRange
 argument_list|(
 name|ip
@@ -1936,7 +1952,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Evaluates whether the argument is a 6to4 address.    *    *<p>6to4 addresses begin with the {@code "2002::/16"} prefix.    * The next 32 bits are the IPv4 address of the host to which    * IPv6-in-IPv4 tunneled packets should be routed.    *    *<p>For more on 6to4 addresses see section 2 of    *<a target="_parent" href="http://tools.ietf.org/html/rfc3056#section-2"    *>http://tools.ietf.org/html/rfc3056</a>    *    * @param ip {@link Inet6Address} to be examined for 6to4 address    *        format    * @return {@code true} if the argument is a 6to4 address    */
+comment|/**    * Evaluates whether the argument is a 6to4 address.    *    *<p>6to4 addresses begin with the {@code "2002::/16"} prefix.    * The next 32 bits are the IPv4 address of the host to which    * IPv6-in-IPv4 tunneled packets should be routed.    *    *<p>For more on 6to4 addresses see section 2 of    *<a target="_parent" href="http://tools.ietf.org/html/rfc3056#section-2"    *>http://tools.ietf.org/html/rfc3056</a>    *    * @param ip {@link Inet6Address} to be examined for 6to4 address format    * @return {@code true} if the argument is a 6to4 address    */
 DECL|method|is6to4Address (Inet6Address ip)
 specifier|public
 specifier|static
@@ -1982,7 +1998,7 @@ literal|0x02
 operator|)
 return|;
 block|}
-comment|/**    * Returns the IPv4 address embedded in a 6to4 address.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           in 6to4 address.    * @return {@link Inet4Address} of embedded IPv4 in 6to4 address.    * @throws IllegalArgumentException if the argument is not a valid    *         IPv6 6to4 address.    */
+comment|/**    * Returns the IPv4 address embedded in a 6to4 address.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4 in 6to4 address    * @return {@link Inet4Address} of embedded IPv4 in 6to4 address    * @throws IllegalArgumentException if the argument is not a valid IPv6 6to4 address    */
 DECL|method|get6to4IPv4Address (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2013,6 +2029,8 @@ expr_stmt|;
 return|return
 name|getInet4Address
 argument_list|(
+name|Arrays
+operator|.
 name|copyOfRange
 argument_list|(
 name|ip
@@ -2027,7 +2045,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * A simple data class to encapsulate the information to be found in a    * Teredo address.    *    *<p>All of the fields in this class are encoded in various portions    * of the IPv6 address as part of the protocol.  More protocols details    * can be found at:    *<a target="_parent" href="http://en.wikipedia.org/wiki/Teredo_tunneling"    *>http://en.wikipedia.org/wiki/Teredo_tunneling</a>.    *    *<p>The RFC can be found here:    *<a target="_parent" href="http://tools.ietf.org/html/rfc4380"    *>http://tools.ietf.org/html/rfc4380</a>.    *    * @since 5.0    */
+comment|/**    * A simple immutable data class to encapsulate the information to be found in a    * Teredo address.    *    *<p>All of the fields in this class are encoded in various portions    * of the IPv6 address as part of the protocol.  More protocols details    * can be found at:    *<a target="_parent" href="http://en.wikipedia.org/wiki/Teredo_tunneling"    *>http://en.wikipedia.org/wiki/Teredo_tunneling</a>.    *    *<p>The RFC can be found here:    *<a target="_parent" href="http://tools.ietf.org/html/rfc4380"    *>http://tools.ietf.org/html/rfc4380</a>.    *    * @since 5.0    */
 annotation|@
 name|Beta
 DECL|class|TeredoInfo
@@ -2061,9 +2079,9 @@ specifier|final
 name|int
 name|flags
 decl_stmt|;
-comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the      * value {@code "0.0.0.0"} will be assumed.      *      * @throws IllegalArgumentException if either of the {@code port}      *         or the {@code flags} arguments are out of range of an      *         unsigned short      */
+comment|/**      * Constructs a TeredoInfo instance.      *      *<p>Both server and client can be {@code null}, in which case the      * value {@code "0.0.0.0"} will be assumed.      *      * @throws IllegalArgumentException if either of the {@code port} or the {@code flags}      *     arguments are out of range of an unsigned short      */
 comment|// TODO: why is this public?
-DECL|method|TeredoInfo (@ullable Inet4Address server, @Nullable Inet4Address client, int port, int flags)
+DECL|method|TeredoInfo ( @ullable Inet4Address server, @Nullable Inet4Address client, int port, int flags)
 specifier|public
 name|TeredoInfo
 parameter_list|(
@@ -2126,52 +2144,32 @@ argument_list|,
 name|flags
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|server
-operator|!=
-literal|null
-condition|)
-block|{
 name|this
 operator|.
 name|server
 operator|=
-name|server
-expr_stmt|;
-block|}
-else|else
-block|{
-name|this
+name|Objects
 operator|.
+name|firstNonNull
+argument_list|(
 name|server
-operator|=
+argument_list|,
 name|ANY4
+argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|client
-operator|!=
-literal|null
-condition|)
-block|{
 name|this
 operator|.
 name|client
 operator|=
-name|client
-expr_stmt|;
-block|}
-else|else
-block|{
-name|this
+name|Objects
 operator|.
+name|firstNonNull
+argument_list|(
 name|client
-operator|=
+argument_list|,
 name|ANY4
+argument_list|)
 expr_stmt|;
-block|}
 name|this
 operator|.
 name|port
@@ -2226,7 +2224,7 @@ name|flags
 return|;
 block|}
 block|}
-comment|/**    * Evaluates whether the argument is a Teredo address.    *    *<p>Teredo addresses begin with the {@code "2001::/32"} prefix.    *    * @param ip {@link Inet6Address} to be examined for Teredo address    *        format.    * @return {@code true} if the argument is a Teredo address    */
+comment|/**    * Evaluates whether the argument is a Teredo address.    *    *<p>Teredo addresses begin with the {@code "2001::/32"} prefix.    *    * @param ip {@link Inet6Address} to be examined for Teredo address format    * @return {@code true} if the argument is a Teredo address    */
 DECL|method|isTeredoAddress (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2290,7 +2288,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns the Teredo information embedded in a Teredo address.    *    * @param ip {@link Inet6Address} to be examined for embedded Teredo    *           information    * @return extracted {@code TeredoInfo}    * @throws IllegalArgumentException if the argument is not a valid    *         IPv6 Teredo address    */
+comment|/**    * Returns the Teredo information embedded in a Teredo address.    *    * @param ip {@link Inet6Address} to be examined for embedded Teredo information    * @return extracted {@code TeredoInfo}    * @throws IllegalArgumentException if the argument is not a valid IPv6 Teredo address    */
 DECL|method|getTeredoInfo (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2332,6 +2330,8 @@ name|server
 init|=
 name|getInet4Address
 argument_list|(
+name|Arrays
+operator|.
 name|copyOfRange
 argument_list|(
 name|bytes
@@ -2382,6 +2382,8 @@ name|byte
 index|[]
 name|clientBytes
 init|=
+name|Arrays
+operator|.
 name|copyOfRange
 argument_list|(
 name|bytes
@@ -2446,7 +2448,7 @@ name|flags
 argument_list|)
 return|;
 block|}
-comment|/**    * Evaluates whether the argument is an ISATAP address.    *    *<p>From RFC 5214: "ISATAP interface identifiers are constructed in    * Modified EUI-64 format [...] by concatenating the 24-bit IANA OUI    * (00-00-5E), the 8-bit hexadecimal value 0xFE, and a 32-bit IPv4    * address in network byte order [...]"    *    *<p>For more on ISATAP addresses see section 6.1 of    *<a target="_parent" href="http://tools.ietf.org/html/rfc5214#section-6.1"    *>http://tools.ietf.org/html/rfc5214</a>    *    * @param ip {@link Inet6Address} to be examined for ISATAP address    *        format.    * @return {@code true} if the argument is an ISATAP address    */
+comment|/**    * Evaluates whether the argument is an ISATAP address.    *    *<p>From RFC 5214: "ISATAP interface identifiers are constructed in    * Modified EUI-64 format [...] by concatenating the 24-bit IANA OUI    * (00-00-5E), the 8-bit hexadecimal value 0xFE, and a 32-bit IPv4    * address in network byte order [...]"    *    *<p>For more on ISATAP addresses see section 6.1 of    *<a target="_parent" href="http://tools.ietf.org/html/rfc5214#section-6.1"    *>http://tools.ietf.org/html/rfc5214</a>    *    * @param ip {@link Inet6Address} to be examined for ISATAP address format    * @return {@code true} if the argument is an ISATAP address    */
 DECL|method|isIsatapAddress (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2544,7 +2546,7 @@ literal|0xfe
 operator|)
 return|;
 block|}
-comment|/**    * Returns the IPv4 address embedded in an ISATAP address.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           in ISATAP address    * @return {@link Inet4Address} of embedded IPv4 in an ISATAP address    * @throws IllegalArgumentException if the argument is not a valid    *         IPv6 ISATAP address    */
+comment|/**    * Returns the IPv4 address embedded in an ISATAP address.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4 in ISATAP address    * @return {@link Inet4Address} of embedded IPv4 in an ISATAP address    * @throws IllegalArgumentException if the argument is not a valid IPv6 ISATAP address    */
 DECL|method|getIsatapIPv4Address (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2575,6 +2577,8 @@ expr_stmt|;
 return|return
 name|getInet4Address
 argument_list|(
+name|Arrays
+operator|.
 name|copyOfRange
 argument_list|(
 name|ip
@@ -2589,7 +2593,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Examines the Inet6Address to determine if it is an IPv6 address of one    * of the specified address types that contain an embedded IPv4 address.    *    *<p>NOTE: ISATAP addresses are explicitly excluded from this method    * due to their trivial spoofability.  With other transition addresses    * spoofing involves (at least) infection of one's BGP routing table.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           client address.    * @return {@code true} if there is an embedded IPv4 client address.    * @since 7.0    */
+comment|/**    * Examines the Inet6Address to determine if it is an IPv6 address of one    * of the specified address types that contain an embedded IPv4 address.    *    *<p>NOTE: ISATAP addresses are explicitly excluded from this method    * due to their trivial spoofability.  With other transition addresses    * spoofing involves (at least) infection of one's BGP routing table.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4 client address    * @return {@code true} if there is an embedded IPv4 client address    * @since 7.0    */
 DECL|method|hasEmbeddedIPv4ClientAddress (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2617,7 +2621,7 @@ name|ip
 argument_list|)
 return|;
 block|}
-comment|/**    * Examines the Inet6Address to extract the embedded IPv4 client address    * if the InetAddress is an IPv6 address of one of the specified address    * types that contain an embedded IPv4 address.    *    *<p>NOTE: ISATAP addresses are explicitly excluded from this method    * due to their trivial spoofability.  With other transition addresses    * spoofing involves (at least) infection of one's BGP routing table.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4    *           client address.    * @return {@link Inet4Address} of embedded IPv4 client address.    * @throws IllegalArgumentException if the argument does not have a valid    *         embedded IPv4 address.    */
+comment|/**    * Examines the Inet6Address to extract the embedded IPv4 client address    * if the InetAddress is an IPv6 address of one of the specified address    * types that contain an embedded IPv4 address.    *    *<p>NOTE: ISATAP addresses are explicitly excluded from this method    * due to their trivial spoofability.  With other transition addresses    * spoofing involves (at least) infection of one's BGP routing table.    *    * @param ip {@link Inet6Address} to be examined for embedded IPv4 client address    * @return {@link Inet4Address} of embedded IPv4 client address    * @throws IllegalArgumentException if the argument does not have a valid embedded IPv4 address    */
 DECL|method|getEmbeddedIPv4ClientAddress (Inet6Address ip)
 specifier|public
 specifier|static
@@ -2694,7 +2698,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**    * Evaluates whether the argument is an "IPv4 mapped" IPv6 address.    *    *<p>An "IPv4 mapped" address is anything in the range ::ffff:0:0/96    * (sometimes written as ::ffff:0.0.0.0/96), with the last 32 bits    * interpreted as an IPv4 address.    *    *<p>For more on IPv4 mapped addresses see section 2.5.5.2 of    *<a target="_parent"    *    href="http://tools.ietf.org/html/rfc4291#section-2.5.5.2"    *>http://tools.ietf.org/html/rfc4291</a>    *    *<p>Note: This method takes a {@code String} argument because    * {@link InetAddress} automatically collapses mapped addresses to IPv4.    * (It is actually possible to avoid this using one of the obscure    * {@link Inet6Address} methods, but it would be unwise to depend on such    * a poorly-documented feature.)    *    * @param ipString {@code String} to be examined for embedded IPv4-mapped    *     IPv6 address format    * @return {@code true} if the argument is a valid "mapped" address    * @since 10.0    */
+comment|/**    * Evaluates whether the argument is an "IPv4 mapped" IPv6 address.    *    *<p>An "IPv4 mapped" address is anything in the range ::ffff:0:0/96    * (sometimes written as ::ffff:0.0.0.0/96), with the last 32 bits    * interpreted as an IPv4 address.    *    *<p>For more on IPv4 mapped addresses see section 2.5.5.2 of    *<a target="_parent"    *    href="http://tools.ietf.org/html/rfc4291#section-2.5.5.2"    *>http://tools.ietf.org/html/rfc4291</a>    *    *<p>Note: This method takes a {@code String} argument because    * {@link InetAddress} automatically collapses mapped addresses to IPv4.    * (It is actually possible to avoid this using one of the obscure    * {@link Inet6Address} methods, but it would be unwise to depend on such    * a poorly-documented feature.)    *    * @param ipString {@code String} to be examined for embedded IPv4-mapped IPv6 address format    * @return {@code true} if the argument is a valid "mapped" address    * @since 10.0    */
 DECL|method|isMappedIPv4Address (String ipString)
 specifier|public
 specifier|static
@@ -3133,7 +3137,7 @@ name|reversed
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new InetAddress that is one more than the passed in address.    * This method works for both IPv4 and IPv6 addresses.    *    * @param address the InetAddress to increment    * @return a new InetAddress that is one more than the passed in address.    * @throws IllegalArgumentException if InetAddress is at the end of its    *         range.    * @since 10.0    */
+comment|/**    * Returns a new InetAddress that is one more than the passed in address.    * This method works for both IPv4 and IPv6 addresses.    *    * @param address the InetAddress to increment    * @return a new InetAddress that is one more than the passed in address    * @throws IllegalArgumentException if InetAddress is at the end of its range    * @since 10.0    */
 DECL|method|increment (InetAddress address)
 specifier|public
 specifier|static
@@ -3216,7 +3220,7 @@ name|addr
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns true if the InetAddress is either 255.255.255.255 for IPv4 or    * ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    *    * @return true if the InetAddress is either 255.255.255.255 for IPv4 or    *          ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    * @since 10.0    */
+comment|/**    * Returns true if the InetAddress is either 255.255.255.255 for IPv4 or    * ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6.    *    * @return true if the InetAddress is either 255.255.255.255 for IPv4 or    *     ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff for IPv6    * @since 10.0    */
 DECL|method|isMaximum (InetAddress address)
 specifier|public
 specifier|static
@@ -3273,79 +3277,6 @@ block|}
 block|}
 return|return
 literal|true
-return|;
-block|}
-comment|/**    * This method emulates the Java 6 method    * {@code Arrays.copyOfRange(byte, int, int)}, which is not available in    * Java 5, and thus cannot be used in Guava code.    */
-DECL|method|copyOfRange (byte[] original, int from, int to)
-specifier|private
-specifier|static
-name|byte
-index|[]
-name|copyOfRange
-parameter_list|(
-name|byte
-index|[]
-name|original
-parameter_list|,
-name|int
-name|from
-parameter_list|,
-name|int
-name|to
-parameter_list|)
-block|{
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
-name|original
-argument_list|)
-expr_stmt|;
-name|int
-name|end
-init|=
-name|Math
-operator|.
-name|min
-argument_list|(
-name|to
-argument_list|,
-name|original
-operator|.
-name|length
-argument_list|)
-decl_stmt|;
-name|byte
-index|[]
-name|result
-init|=
-operator|new
-name|byte
-index|[
-name|to
-operator|-
-name|from
-index|]
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|original
-argument_list|,
-name|from
-argument_list|,
-name|result
-argument_list|,
-literal|0
-argument_list|,
-name|end
-operator|-
-name|from
-argument_list|)
-expr_stmt|;
-return|return
-name|result
 return|;
 block|}
 block|}
