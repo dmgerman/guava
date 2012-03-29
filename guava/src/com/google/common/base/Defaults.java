@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides default values for all Java types, as defined by the JLS.  *  * @author Ben Yu  */
+comment|/**  * This class provides default values for all Java types, as defined by the JLS.  *  * @author Ben Yu  * @since 1.0  */
 end_comment
 
 begin_class

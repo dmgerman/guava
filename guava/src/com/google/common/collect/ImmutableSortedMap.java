@@ -2541,7 +2541,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are less than (or equal to, if {@code inclusive}) {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code toKey}    * greater than an earlier {@code toKey}. However, this method doesn't throw    * an exception in that situation, but instead keeps the original {@code    * toKey}.    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are less than (or equal to, if {@code inclusive}) {@code toKey}.    *    *<p>The {@link SortedMap#headMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code toKey}    * greater than an earlier {@code toKey}. However, this method doesn't throw    * an exception in that situation, but instead keeps the original {@code    * toKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
 DECL|method|headMap (K toKey, boolean inclusive)
@@ -2639,7 +2639,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys ranges from {@code fromKey} to {@code toKey}, inclusive or    * exclusive as indicated by the boolean flags.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}. Similarly, this method keeps the original {@code toKey}, instead    * of throwing an exception, if passed a {@code toKey} greater than an earlier    * {@code toKey}.    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys ranges from {@code fromKey} to {@code toKey}, inclusive or    * exclusive as indicated by the boolean flags.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}. Similarly, this method keeps the original {@code toKey}, instead    * of throwing an exception, if passed a {@code toKey} greater than an earlier    * {@code toKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
 DECL|method|subMap (K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
@@ -2731,7 +2731,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are greater than (or equal to, if {@code inclusive})    * {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}.    */
+comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys are greater than (or equal to, if {@code inclusive})    * {@code fromKey}.    *    *<p>The {@link SortedMap#tailMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
 DECL|method|tailMap (K fromKey, boolean inclusive)

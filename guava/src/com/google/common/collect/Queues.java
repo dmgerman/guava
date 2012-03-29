@@ -238,7 +238,7 @@ argument_list|)
 return|;
 block|}
 comment|// ArrayDeque
-comment|/**    * Creates an empty {@code ArrayDeque} instance.    *    * @return a new, empty {@code ArrayDeque}    */
+comment|/**    * Creates an empty {@code ArrayDeque} instance.    *    * @return a new, empty {@code ArrayDeque}    * @since 12.0    */
 DECL|method|newArrayDeque ()
 specifier|public
 specifier|static
@@ -261,7 +261,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code ArrayDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code ArrayDeque} containing those elements    */
+comment|/**    * Creates an {@code ArrayDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code ArrayDeque} containing those elements    * @since 12.0    */
 DECL|method|newArrayDeque (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -428,7 +428,7 @@ name|queue
 return|;
 block|}
 comment|// LinkedBlockingDeque
-comment|/**    * Creates an empty {@code LinkedBlockingDeque} instance.    *    * @return a new, empty {@code LinkedBlockingDeque}    */
+comment|/**    * Creates an empty {@code LinkedBlockingDeque} instance.    *    * @return a new, empty {@code LinkedBlockingDeque}    * @since 12.0    */
 DECL|method|newLinkedBlockingDeque ()
 specifier|public
 specifier|static
@@ -451,7 +451,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedBlockingDeque} with the given (fixed) capacity.    *    * @param capacity the capacity of this deque    * @return a new, empty {@code LinkedBlockingDeque}    * @throws IllegalArgumentException if {@code capacity} is less than 1    */
+comment|/**    * Creates a {@code LinkedBlockingDeque} with the given (fixed) capacity.    *    * @param capacity the capacity of this deque    * @return a new, empty {@code LinkedBlockingDeque}    * @throws IllegalArgumentException if {@code capacity} is less than 1    * @since 12.0    */
 DECL|method|newLinkedBlockingDeque (int capacity)
 specifier|public
 specifier|static
@@ -479,7 +479,7 @@ name|capacity
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code LinkedBlockingDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingDeque} containing those elements    */
+comment|/**    * Creates an {@code LinkedBlockingDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingDeque} containing those elements    * @since 12.0    */
 DECL|method|newLinkedBlockingDeque (Iterable<? extends E> elements)
 specifier|public
 specifier|static

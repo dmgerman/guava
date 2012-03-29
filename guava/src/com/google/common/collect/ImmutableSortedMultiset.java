@@ -1813,7 +1813,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre> {@code    *    *   public static final ImmutableSortedMultiset<Bean> BEANS =    *       new ImmutableSortedMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    */
+comment|/**    * A builder for creating immutable multiset instances, especially {@code public static final}    * multisets ("constant multisets"). Example:    *    *<pre> {@code    *    *   public static final ImmutableSortedMultiset<Bean> BEANS =    *       new ImmutableSortedMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple times to build    * multiple multisets in series.    *    * @since 12.0    */
 end_comment
 
 begin_class
