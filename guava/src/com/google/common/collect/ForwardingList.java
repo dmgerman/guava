@@ -563,7 +563,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible default implementation of {@link #listIterator(int)}, in terms    * of {@link #size} and {@link #get(int)}. If you override either of these    * methods you may wish to override {@link #listIterator(int)} to forward to    * this implementation.    *    * @since 7.0    */
+comment|/**    * A sensible default implementation of {@link #listIterator(int)}, in terms    * of {@link #size}, {@link #get(int)}, {@link #set(int, Object)}, {@link    * #add(int, Object)}, and {@link #remove(int)}. If you override any of these    * methods, you may wish to override {@link #listIterator(int)} to forward to    * this implementation.    *    * @since 7.0    */
 DECL|method|standardListIterator (int start)
 annotation|@
 name|Beta
