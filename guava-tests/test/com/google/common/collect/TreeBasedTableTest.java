@@ -72,7 +72,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|MapTestSuiteBuilder
+name|SortedMapInterfaceTest
 import|;
 end_import
 
@@ -88,7 +88,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|SortedMapInterfaceTest
+name|SortedMapTestSuiteBuilder
 import|;
 end_import
 
@@ -295,7 +295,7 @@ name|suite
 operator|.
 name|addTest
 argument_list|(
-name|MapTestSuiteBuilder
+name|SortedMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(

@@ -174,6 +174,16 @@ name|SortedMap
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|SortedSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a SortedMap implementation.  */
 end_comment
@@ -488,7 +498,7 @@ DECL|method|createDerivedKeySetSuite ( TestSetGenerator<K> keySetGenerator)
 annotation|@
 name|Override
 specifier|protected
-name|SortedSetTestSuiteBuilder
+name|SetTestSuiteBuilder
 argument_list|<
 name|K
 argument_list|>
@@ -501,8 +511,25 @@ argument_list|>
 name|keySetGenerator
 parameter_list|)
 block|{
+comment|/*      * TODO(cpovirk): Consider requiring a SortedSet by default and requiring tests of a given      * implementation to opt out if they wish to return Set. This would encourage us to return      * keySets that implement SortedSet      */
 return|return
+operator|(
+name|keySetGenerator
+operator|.
+name|create
+argument_list|()
+operator|instanceof
+name|SortedSet
+operator|)
+condition|?
 name|SortedSetTestSuiteBuilder
+operator|.
+name|using
+argument_list|(
+name|keySetGenerator
+argument_list|)
+else|:
+name|SetTestSuiteBuilder
 operator|.
 name|using
 argument_list|(

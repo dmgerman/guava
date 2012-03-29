@@ -28,7 +28,9 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|MapTestSuiteBuilder
+name|Helpers
+operator|.
+name|NullsBeforeTwo
 import|;
 end_import
 
@@ -45,6 +47,22 @@ operator|.
 name|testing
 operator|.
 name|SafeTreeMap
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|SortedMapTestSuiteBuilder
 import|;
 end_import
 
@@ -574,7 +592,7 @@ name|suite
 operator|.
 name|addTest
 argument_list|(
-name|MapTestSuiteBuilder
+name|SortedMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
@@ -699,7 +717,7 @@ name|suite
 operator|.
 name|addTest
 argument_list|(
-name|MapTestSuiteBuilder
+name|SortedMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
@@ -715,13 +733,9 @@ name|String
 argument_list|>
 name|comparator
 init|=
-name|Ordering
+name|NullsBeforeTwo
 operator|.
-name|natural
-argument_list|()
-operator|.
-name|nullsFirst
-argument_list|()
+name|INSTANCE
 decl_stmt|;
 annotation|@
 name|Override
@@ -846,7 +860,7 @@ name|suite
 operator|.
 name|addTest
 argument_list|(
-name|MapTestSuiteBuilder
+name|SortedMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
