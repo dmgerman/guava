@@ -33,6 +33,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|Helpers
+operator|.
+name|orderEntriesByKey
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -638,7 +656,10 @@ name|insertionOrder
 parameter_list|)
 block|{
 return|return
+name|orderEntriesByKey
+argument_list|(
 name|insertionOrder
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1077,6 +1098,10 @@ name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
 argument_list|,
+name|CollectionFeature
+operator|.
+name|KNOWN_ORDER
+argument_list|,
 name|MapFeature
 operator|.
 name|REJECTS_DUPLICATES_AT_CREATION
@@ -1121,6 +1146,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|KNOWN_ORDER
 argument_list|,
 name|MapFeature
 operator|.

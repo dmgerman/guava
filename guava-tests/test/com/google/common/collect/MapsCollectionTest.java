@@ -76,7 +76,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 import|;
 end_import
 
@@ -219,7 +219,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test suites for wrappers in {@code Maps}.  *   * @author Louis Wasserman  */
+comment|/**  * Test suites for wrappers in {@code Maps}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -253,7 +253,7 @@ operator|.
 name|using
 argument_list|(
 operator|new
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 argument_list|()
 block|{
 annotation|@
@@ -364,7 +364,7 @@ operator|.
 name|using
 argument_list|(
 operator|new
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 argument_list|()
 block|{
 annotation|@

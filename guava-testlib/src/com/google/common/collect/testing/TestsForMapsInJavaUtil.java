@@ -843,7 +843,7 @@ operator|.
 name|using
 argument_list|(
 operator|new
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 argument_list|()
 block|{
 annotation|@
@@ -1048,7 +1048,7 @@ operator|.
 name|using
 argument_list|(
 operator|new
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 argument_list|()
 block|{
 annotation|@

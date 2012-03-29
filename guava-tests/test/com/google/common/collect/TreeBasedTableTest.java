@@ -104,7 +104,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 import|;
 end_import
 
@@ -241,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test cases for {@link TreeBasedTable}.  *   * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * Test cases for {@link TreeBasedTable}.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -300,7 +300,7 @@ operator|.
 name|using
 argument_list|(
 operator|new
-name|TestStringMapGenerator
+name|TestStringSortedMapGenerator
 argument_list|()
 block|{
 annotation|@

@@ -413,6 +413,10 @@ name|CollectionFeature
 operator|.
 name|SERIALIZABLE
 argument_list|,
+name|CollectionFeature
+operator|.
+name|KNOWN_ORDER
+argument_list|,
 name|MapFeature
 operator|.
 name|REJECTS_DUPLICATES_AT_CREATION

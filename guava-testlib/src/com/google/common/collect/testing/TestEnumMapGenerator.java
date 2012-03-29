@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|Helpers
+operator|.
+name|orderEntriesByKey
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -339,7 +357,7 @@ name|length
 index|]
 return|;
 block|}
-comment|/** Returns the original element list, unchanged. */
+comment|/** Returns the elements sorted in natural order. */
 annotation|@
 name|Override
 DECL|method|order ( List<Entry<AnEnum, String>> insertionOrder)
@@ -368,7 +386,10 @@ name|insertionOrder
 parameter_list|)
 block|{
 return|return
+name|orderEntriesByKey
+argument_list|(
 name|insertionOrder
+argument_list|)
 return|;
 block|}
 block|}

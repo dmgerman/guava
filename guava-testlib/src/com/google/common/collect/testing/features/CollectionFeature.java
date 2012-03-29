@@ -150,7 +150,7 @@ comment|/**    * Indicates that a collection disallows certain elements (other t
 DECL|enumConstant|RESTRICTS_ELEMENTS
 constructor|RESTRICTS_ELEMENTS
 operator|,
-comment|/**    * Indicates that a collection has a well-defined ordering of its elements.    * The ordering may depend on the element values, such as a {@link SortedSet},    * or on the insertion ordering, such as a {@link LinkedHashSet}. All list    * tests automatically specify this feature.    */
+comment|/**    * Indicates that a collection has a well-defined ordering of its elements.    * The ordering may depend on the element values, such as a {@link SortedSet},    * or on the insertion ordering, such as a {@link LinkedHashSet}. All list    * tests and sorted-collection tests automatically specify this feature.    */
 DECL|enumConstant|KNOWN_ORDER
 constructor|KNOWN_ORDER
 operator|,
