@@ -384,6 +384,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|lang
 operator|.
 name|reflect
@@ -5341,17 +5351,12 @@ name|props
 init|=
 literal|"test\n second = 2\n Third item :   a short  phrase   "
 decl_stmt|;
-comment|// TODO: change to StringReader in Java 1.6
 name|testProp
 operator|.
 name|load
 argument_list|(
 operator|new
-name|java
-operator|.
-name|io
-operator|.
-name|StringBufferInputStream
+name|StringReader
 argument_list|(
 name|props
 argument_list|)
@@ -5474,17 +5479,12 @@ name|override
 init|=
 literal|"test\njava.version : hidden"
 decl_stmt|;
-comment|// TODO: change to StringReader in Java 1.6
 name|testProp
 operator|.
 name|load
 argument_list|(
 operator|new
-name|java
-operator|.
-name|io
-operator|.
-name|StringBufferInputStream
+name|StringReader
 argument_list|(
 name|override
 argument_list|)
