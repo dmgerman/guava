@@ -102,7 +102,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|MapTestSuiteBuilder
+name|NavigableMapTestSuiteBuilder
 import|;
 end_import
 
@@ -378,7 +378,7 @@ name|suite
 operator|.
 name|addTest
 argument_list|(
-name|MapTestSuiteBuilder
+name|NavigableMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
@@ -395,7 +395,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|SERIALIZABLE
+name|SERIALIZABLE_INCLUDING_VIEWS
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -405,7 +405,7 @@ name|MapFeature
 operator|.
 name|REJECTS_DUPLICATES_AT_CREATION
 argument_list|,
-name|CollectionFeature
+name|MapFeature
 operator|.
 name|ALLOWS_NULL_QUERIES
 argument_list|)
