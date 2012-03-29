@@ -71,7 +71,6 @@ name|TestStringSortedMapGenerator
 extends|extends
 name|TestStringMapGenerator
 block|{
-comment|/** Sorts the entries by natural order. */
 annotation|@
 name|Override
 DECL|method|order (List<Entry<String, String>> insertionOrder)

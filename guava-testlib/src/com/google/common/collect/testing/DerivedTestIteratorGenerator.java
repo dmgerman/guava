@@ -46,6 +46,8 @@ name|TestIteratorGenerator
 argument_list|<
 name|E
 argument_list|>
+implements|,
+name|DerivedGenerator
 block|{
 specifier|private
 specifier|final
@@ -84,7 +86,9 @@ operator|=
 name|collectionGenerator
 expr_stmt|;
 block|}
-DECL|method|getCollectionGenerator ()
+annotation|@
+name|Override
+DECL|method|getInnerGenerator ()
 specifier|public
 name|TestSubjectGenerator
 argument_list|<
@@ -95,7 +99,7 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
-name|getCollectionGenerator
+name|getInnerGenerator
 parameter_list|()
 block|{
 return|return
