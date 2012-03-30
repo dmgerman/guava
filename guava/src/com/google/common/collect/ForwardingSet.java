@@ -178,9 +178,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #removeAll} in terms of {@link #iterator} and {@link #remove}.    * If you override {@code iterator} or {@code remove}, you may wish to override    * {@link #removeAll} to forward to this implementation.    *    * @since 12.0    */
-annotation|@
-name|Beta
+comment|/**    * A sensible definition of {@link #removeAll} in terms of {@link #iterator} and {@link #remove}.    * If you override {@code iterator} or {@code remove}, you may wish to override    * {@link #removeAll} to forward to this implementation.    *    * @since 7.0 (this version overrides the {@code ForwardingCollection} version as of 12.0)    */
 annotation|@
 name|Override
 DECL|method|standardRemoveAll (Collection<?> collection)
