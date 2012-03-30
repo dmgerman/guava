@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -401,6 +415,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * When called, the formatted output returned by {@link #toString()} will      * ignore {@code null} values.      *      * @since 12.0      */
+annotation|@
+name|Beta
 DECL|method|omitNullValues ()
 specifier|public
 name|ToStringHelper
