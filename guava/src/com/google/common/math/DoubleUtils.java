@@ -33,6 +33,90 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|MAX_EXPONENT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|MIN_EXPONENT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|doubleToRawLongBits
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|isNaN
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Double
+operator|.
+name|longBitsToDouble
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Math
+operator|.
+name|getExponent
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -43,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for {@code double} primitives. Some of these are exposed in JDK 6,  * but we can't depend on them there.  *   * @author Louis Wasserman  */
+comment|/**  * Utilities for {@code double} primitives. Some of these are exposed in JDK 6,  * but we can't depend on them there.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -156,8 +240,6 @@ expr_stmt|;
 name|int
 name|exponent
 init|=
-name|Math
-operator|.
 name|getExponent
 argument_list|(
 name|d
@@ -166,8 +248,6 @@ decl_stmt|;
 name|long
 name|bits
 init|=
-name|Double
-operator|.
 name|doubleToRawLongBits
 argument_list|(
 name|d
@@ -181,8 +261,6 @@ return|return
 operator|(
 name|exponent
 operator|==
-name|Double
-operator|.
 name|MIN_EXPONENT
 operator|-
 literal|1
@@ -207,15 +285,11 @@ name|d
 parameter_list|)
 block|{
 return|return
-name|Math
-operator|.
 name|getExponent
 argument_list|(
 name|d
 argument_list|)
 operator|<=
-name|Double
-operator|.
 name|MAX_EXPONENT
 return|;
 block|}
@@ -229,16 +303,34 @@ name|d
 parameter_list|)
 block|{
 return|return
-name|Math
-operator|.
 name|getExponent
 argument_list|(
 name|d
 argument_list|)
 operator|>=
-name|Double
-operator|.
 name|MIN_EXPONENT
+return|;
+block|}
+DECL|method|fastAbs (double d)
+specifier|static
+name|double
+name|fastAbs
+parameter_list|(
+name|double
+name|d
+parameter_list|)
+block|{
+return|return
+name|longBitsToDouble
+argument_list|(
+name|doubleToRawLongBits
+argument_list|(
+name|d
+argument_list|)
+operator|&
+operator|~
+name|SIGN_MASK
+argument_list|)
 return|;
 block|}
 comment|/*    * Returns x scaled by a power of 2 such that it is in the range [1, 2). Assumes x is positive,    * normal, and finite.    */
@@ -254,8 +346,6 @@ block|{
 name|long
 name|significand
 init|=
-name|Double
-operator|.
 name|doubleToRawLongBits
 argument_list|(
 name|x
@@ -264,8 +354,6 @@ operator|&
 name|SIGNIFICAND_MASK
 decl_stmt|;
 return|return
-name|Double
-operator|.
 name|longBitsToDouble
 argument_list|(
 name|significand
@@ -326,8 +414,6 @@ if|if
 condition|(
 name|exponent
 operator|>
-name|Double
-operator|.
 name|MAX_EXPONENT
 condition|)
 block|{
@@ -337,12 +423,10 @@ operator|.
 name|signum
 argument_list|()
 operator|*
-name|Double
-operator|.
 name|POSITIVE_INFINITY
 return|;
 block|}
-comment|/*      * We need the top SIGNIFICAND_BITS + 1 bits, including the "implicit" one bit. To make      * rounding easier, we pick out the top SIGNIFICAND_BITS + 2 bits, so we have one to help us      * round up or down. twiceSignifFloor will contain the top SIGNIFICAND_BITS + 2 bits, and      * signifFloor the top SIGNIFICAND_BITS + 1.      *       * It helps to consider the real number signif = absX * 2^(SIGNIFICAND_BITS - exponent).      */
+comment|/*      * We need the top SIGNIFICAND_BITS + 1 bits, including the "implicit" one bit. To make      * rounding easier, we pick out the top SIGNIFICAND_BITS + 2 bits, so we have one to help us      * round up or down. twiceSignifFloor will contain the top SIGNIFICAND_BITS + 2 bits, and      * signifFloor the top SIGNIFICAND_BITS + 1.      *      * It helps to consider the real number signif = absX * 2^(SIGNIFICAND_BITS - exponent).      */
 name|int
 name|shift
 init|=
@@ -448,8 +532,6 @@ operator|&
 name|SIGN_MASK
 expr_stmt|;
 return|return
-name|Double
-operator|.
 name|longBitsToDouble
 argument_list|(
 name|bits
@@ -469,8 +551,6 @@ block|{
 name|checkArgument
 argument_list|(
 operator|!
-name|Double
-operator|.
 name|isNaN
 argument_list|(
 name|value
@@ -502,8 +582,6 @@ specifier|final
 name|long
 name|ONE_BITS
 init|=
-name|Double
-operator|.
 name|doubleToRawLongBits
 argument_list|(
 literal|1.0
