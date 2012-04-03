@@ -58,6 +58,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -125,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret  * values as<i>unsigned</i> (that is, any negative value {@code b} is treated  * as the positive value {@code 256 + b}). The corresponding methods that treat  * the values as signed are found in {@link SignedBytes}, and the methods for  * which signedness is not an issue are in {@link Bytes}.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret  * values as<i>unsigned</i> (that is, any negative value {@code b} is treated  * as the positive value {@code 256 + b}). The corresponding methods that treat  * the values as signed are found in {@link SignedBytes}, and the methods for  * which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @author Louis Wasserman  * @since 1.0  */
 end_comment
 
 begin_class
@@ -148,14 +162,32 @@ specifier|final
 name|byte
 name|MAX_POWER_OF_TWO
 init|=
-call|(
+operator|(
 name|byte
-call|)
-argument_list|(
-literal|1
-operator|<<
-literal|7
-argument_list|)
+operator|)
+literal|0x80
+decl_stmt|;
+comment|/**    * The largest value that fits into an unsigned byte.    *    * @since 13.0    */
+DECL|field|MAX_VALUE
+specifier|public
+specifier|static
+specifier|final
+name|byte
+name|MAX_VALUE
+init|=
+operator|(
+name|byte
+operator|)
+literal|0xFF
+decl_stmt|;
+DECL|field|UNSIGNED_MASK
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|UNSIGNED_MASK
+init|=
+literal|0xFF
 decl_stmt|;
 comment|/**    * Returns the value of the given byte as an integer, when treated as    * unsigned. That is, returns {@code value + 256} if {@code value} is    * negative; {@code value} itself otherwise.    *    * @since 6.0    */
 DECL|method|toInt (byte value)
@@ -171,7 +203,7 @@ block|{
 return|return
 name|value
 operator|&
-literal|0xFF
+name|UNSIGNED_MASK
 return|;
 block|}
 comment|/**    * Returns the {@code byte} value that, when treated as unsigned, is equal to    * {@code value}, if possible.    *    * @param value a value between 0 and 255 inclusive    * @return the {@code byte} value that, when treated as unsigned, equals    *     {@code value}    * @throws IllegalArgumentException if {@code value} is negative or greater    *     than 255    */
@@ -189,7 +221,9 @@ name|checkArgument
 argument_list|(
 name|value
 operator|>>
-literal|8
+name|Byte
+operator|.
+name|SIZE
 operator|==
 literal|0
 argument_list|,
@@ -220,14 +254,14 @@ if|if
 condition|(
 name|value
 operator|>
-literal|255
+name|toInt
+argument_list|(
+name|MAX_VALUE
+argument_list|)
 condition|)
 block|{
 return|return
-operator|(
-name|byte
-operator|)
-literal|255
+name|MAX_VALUE
 return|;
 comment|// -1
 block|}
@@ -438,6 +472,163 @@ operator|)
 name|max
 return|;
 block|}
+comment|/**    * Returns a string representation of x, where x is treated as unsigned.    *    * @since 13.0    */
+annotation|@
+name|Beta
+DECL|method|toString (byte x)
+specifier|public
+specifier|static
+name|String
+name|toString
+parameter_list|(
+name|byte
+name|x
+parameter_list|)
+block|{
+return|return
+name|toString
+argument_list|(
+name|x
+argument_list|,
+literal|10
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated    * as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    * @since 13.0    */
+annotation|@
+name|Beta
+DECL|method|toString (byte x, int radix)
+specifier|public
+specifier|static
+name|String
+name|toString
+parameter_list|(
+name|byte
+name|x
+parameter_list|,
+name|int
+name|radix
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|radix
+operator|>=
+name|Character
+operator|.
+name|MIN_RADIX
+operator|&&
+name|radix
+operator|<=
+name|Character
+operator|.
+name|MAX_RADIX
+argument_list|,
+literal|"radix (%s) must be between Character.MIN_RADIX and Character.MAX_RADIX"
+argument_list|,
+name|radix
+argument_list|)
+expr_stmt|;
+comment|// Benchmarks indicate this is probably not worth optimizing.
+return|return
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|toInt
+argument_list|(
+name|x
+argument_list|)
+argument_list|,
+name|radix
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the unsigned {@code byte} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *         value    * @since 13.0    */
+annotation|@
+name|Beta
+DECL|method|parseUnsignedByte (String string)
+specifier|public
+specifier|static
+name|byte
+name|parseUnsignedByte
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+block|{
+return|return
+name|parseUnsignedByte
+argument_list|(
+name|string
+argument_list|,
+literal|10
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the unsigned {@code byte} value represented by a string with the given radix.    *    * @param s the string containing the unsigned {@code byte} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *         with the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    * @since 13.0    */
+annotation|@
+name|Beta
+DECL|method|parseUnsignedByte (String string, int radix)
+specifier|public
+specifier|static
+name|byte
+name|parseUnsignedByte
+parameter_list|(
+name|String
+name|string
+parameter_list|,
+name|int
+name|radix
+parameter_list|)
+block|{
+name|int
+name|parse
+init|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|checkNotNull
+argument_list|(
+name|string
+argument_list|)
+argument_list|,
+name|radix
+argument_list|)
+decl_stmt|;
+comment|// We need to throw a NumberFormatException, so we have to duplicate checkedCast. =(
+if|if
+condition|(
+name|parse
+operator|>>
+name|Byte
+operator|.
+name|SIZE
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+operator|(
+name|byte
+operator|)
+name|parse
+return|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|NumberFormatException
+argument_list|(
+literal|"out of range: "
+operator|+
+name|parse
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/**    * Returns a string containing the supplied {@code byte} values separated by    * {@code separator}. For example, {@code join(":", (byte) 1, (byte) 2,    * (byte) 255)} returns the string {@code "1:2:255"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code byte} values, possibly empty    */
 DECL|method|join (String separator, byte... array)
 specifier|public
@@ -482,7 +673,14 @@ name|array
 operator|.
 name|length
 operator|*
-literal|5
+operator|(
+literal|3
+operator|+
+name|separator
+operator|.
+name|length
+argument_list|()
+operator|)
 argument_list|)
 decl_stmt|;
 name|builder
@@ -524,7 +722,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|toInt
+name|toString
 argument_list|(
 name|array
 index|[
