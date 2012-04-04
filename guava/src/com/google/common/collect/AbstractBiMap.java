@@ -317,10 +317,12 @@ name|delegate
 return|;
 block|}
 comment|/**    * Returns its input, or throws an exception if this is not a valid key.    */
-DECL|method|checkKey (K key)
+DECL|method|checkKey (@ullable K key)
 name|K
 name|checkKey
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -330,10 +332,12 @@ name|key
 return|;
 block|}
 comment|/**    * Returns its input, or throws an exception if this is not a valid value.    */
-DECL|method|checkValue (V value)
+DECL|method|checkValue (@ullable V value)
 name|V
 name|checkValue
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)

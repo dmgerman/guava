@@ -1082,7 +1082,7 @@ argument_list|>
 name|defaultLoader
 decl_stmt|;
 comment|/**    * Creates a new, empty map with the specified strategy, initial capacity and concurrency level.    */
-DECL|method|LocalCache (CacheBuilder<? super K, ? super V> builder, CacheLoader<? super K, V> loader)
+DECL|method|LocalCache ( CacheBuilder<? super K, ? super V> builder, @Nullable CacheLoader<? super K, V> loader)
 name|LocalCache
 parameter_list|(
 name|CacheBuilder
@@ -1097,6 +1097,8 @@ name|V
 argument_list|>
 name|builder
 parameter_list|,
+annotation|@
+name|Nullable
 name|CacheLoader
 argument_list|<
 name|?
