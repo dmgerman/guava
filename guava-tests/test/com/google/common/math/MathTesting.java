@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exhaustive input sets for every integral type.  *   * @author lowasser@google.com (Louis Wasserman)  */
+comment|/**  * Exhaustive input sets for every integral type.  *  * @author lowasser@google.com (Louis Wasserman)  */
 end_comment
 
 begin_class
@@ -1287,6 +1287,28 @@ name|Double
 argument_list|>
 name|FRACTIONAL_DOUBLE_CANDIDATES
 decl_stmt|;
+DECL|field|INFINITIES
+specifier|static
+specifier|final
+name|Iterable
+argument_list|<
+name|Double
+argument_list|>
+name|INFINITIES
+init|=
+name|Doubles
+operator|.
+name|asList
+argument_list|(
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+argument_list|,
+name|Double
+operator|.
+name|NEGATIVE_INFINITY
+argument_list|)
+decl_stmt|;
 DECL|field|FINITE_DOUBLE_CANDIDATES
 specifier|static
 specifier|final
@@ -1313,6 +1335,15 @@ argument_list|<
 name|Double
 argument_list|>
 name|ALL_DOUBLE_CANDIDATES
+decl_stmt|;
+DECL|field|DOUBLE_CANDIDATES_EXCEPT_NAN
+specifier|static
+specifier|final
+name|Iterable
+argument_list|<
+name|Double
+argument_list|>
+name|DOUBLE_CANDIDATES_EXCEPT_NAN
 decl_stmt|;
 static|static
 block|{
@@ -1714,7 +1745,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-name|ALL_DOUBLE_CANDIDATES
+name|DOUBLE_CANDIDATES_EXCEPT_NAN
 operator|=
 name|Iterables
 operator|.
@@ -1722,16 +1753,19 @@ name|concat
 argument_list|(
 name|FINITE_DOUBLE_CANDIDATES
 argument_list|,
+name|INFINITIES
+argument_list|)
+expr_stmt|;
+name|ALL_DOUBLE_CANDIDATES
+operator|=
+name|Iterables
+operator|.
+name|concat
+argument_list|(
+name|DOUBLE_CANDIDATES_EXCEPT_NAN
+argument_list|,
 name|asList
 argument_list|(
-name|Double
-operator|.
-name|POSITIVE_INFINITY
-argument_list|,
-name|Double
-operator|.
-name|NEGATIVE_INFINITY
-argument_list|,
 name|Double
 operator|.
 name|NaN

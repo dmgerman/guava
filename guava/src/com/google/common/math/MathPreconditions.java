@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection of preconditions for math functions.  *   * @author Louis Wasserman  */
+comment|/**  * A collection of preconditions for math functions.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -279,6 +279,46 @@ name|signum
 argument_list|()
 operator|<
 literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|role
+operator|+
+literal|" ("
+operator|+
+name|x
+operator|+
+literal|") must be>= 0"
+argument_list|)
+throw|;
+block|}
+return|return
+name|x
+return|;
+block|}
+DECL|method|checkNonNegative (String role, double x)
+specifier|static
+name|double
+name|checkNonNegative
+parameter_list|(
+name|String
+name|role
+parameter_list|,
+name|double
+name|x
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|x
+operator|>=
+literal|0
+operator|)
 condition|)
 block|{
 throw|throw
