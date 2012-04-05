@@ -1379,10 +1379,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testDisableStats ()
+DECL|method|testNoStats ()
 specifier|public
 name|void
-name|testDisableStats
+name|testNoStats
 parameter_list|()
 block|{
 name|CacheBuilder
@@ -1405,10 +1405,16 @@ name|maximumSize
 argument_list|(
 literal|2
 argument_list|)
-operator|.
-name|disableStats
-argument_list|()
 decl_stmt|;
+comment|// TODO(fry): remove this override once the default is changed to NULL_STATS_COUNTER
+name|builder
+operator|.
+name|statsCounterSupplier
+operator|=
+name|CacheBuilder
+operator|.
+name|NULL_STATS_COUNTER
+expr_stmt|;
 name|LocalLoadingCache
 argument_list|<
 name|Object

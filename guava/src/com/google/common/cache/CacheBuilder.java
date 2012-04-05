@@ -2119,27 +2119,23 @@ name|INSTANCE
 argument_list|)
 return|;
 block|}
-comment|/**    * Disable the accumulation of {@link CacheStats} during the operation of the cache.    */
-DECL|method|disableStats ()
+comment|/**    * Enable the accumulation of {@link CacheStats} during the operation of the cache. Without this    * {@link Cache#stats} will return zero for all statistics. Note that recording stats requires    * bookkeeping to be performed with each operation, and thus imposes a performance penalty on    * cache operation.    *    * @since 12.0 (previously, stats collection was automatic)    */
+DECL|method|recordStats ()
+specifier|public
 name|CacheBuilder
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|disableStats
+name|recordStats
 parameter_list|()
 block|{
-name|checkState
-argument_list|(
-name|statsCounterSupplier
-operator|==
-name|CACHE_STATS_COUNTER
-argument_list|)
-expr_stmt|;
+comment|// TODO(fry): enable this check once the default is changed to NULL_STATS_COUNTER
+comment|// checkState(statsCounterSupplier == NULL_STATS_COUNTER);
 name|statsCounterSupplier
 operator|=
-name|NULL_STATS_COUNTER
+name|CACHE_STATS_COUNTER
 expr_stmt|;
 return|return
 name|this
