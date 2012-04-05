@@ -461,7 +461,7 @@ name|runtimeType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new type token of {@code T}. Free type variables are resolved against {@code    * declaringClass}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *    *   abstract class IKnowMyType<T> {    *     TypeToken<T> getMyType() {    *       return new TypeToken<T>(getClass()) {};    *     }    *   }    *    *   new IKnowMyType<String>() {}.getMyType() => String    * }</pre>    */
+comment|/**    * Constructs a new type token of {@code T} while resolving free type variables in the context of    * {@code declaringClass}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *    *   abstract class IKnowMyType<T> {    *     TypeToken<T> getMyType() {    *       return new TypeToken<T>(getClass()) {};    *     }    *   }    *    *   new IKnowMyType<String>() {}.getMyType() => String    * }</pre>    */
 DECL|method|TypeToken (Class<?> declaringClass)
 specifier|protected
 name|TypeToken
@@ -641,7 +641,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Returns the resolved type of the represented type token. */
+comment|/** Returns the represented type. */
 DECL|method|getType ()
 specifier|public
 specifier|final
@@ -653,7 +653,7 @@ return|return
 name|runtimeType
 return|;
 block|}
-comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by the {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       TypeToken<K> keyType, TypeToken<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       TypeToken<K> keyType, TypeToken<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
 DECL|method|where (TypeParameter<X> typeParam, TypeToken<X> typeArg)
 specifier|public
 specifier|final
@@ -719,7 +719,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by the {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       Class<K> keyType, Class<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       Class<K> keyType, Class<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
 DECL|method|where (TypeParameter<X> typeParam, Class<X> typeArg)
 specifier|public
 specifier|final
@@ -1592,7 +1592,7 @@ name|runtimeType
 argument_list|)
 return|;
 block|}
-comment|/** Returns true if this type is known to be an array type. */
+comment|/**    * Returns true if this type is known to be an array type, such as {@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.    */
 DECL|method|isArray ()
 specifier|public
 specifier|final
@@ -1607,7 +1607,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**    * Returns the Type representing the component type of an array. If this type does not represent    * an array type this method returns null.    */
+comment|/**    * Returns the array component type if this type represents an array ({@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.), or else {@code null} is returned.    */
 DECL|method|getComponentType ()
 annotation|@
 name|Nullable
@@ -2447,7 +2447,7 @@ block|}
 end_enum
 
 begin_comment
-comment|/**    * Returns true if {@code o} is another {@code TypeToken} that represents the same {@link Type}    * at runtime.    */
+comment|/**    * Returns true if {@code o} is another {@code TypeToken} that represents the same {@link Type}.    */
 end_comment
 
 begin_function
@@ -2539,6 +2539,10 @@ argument_list|)
 return|;
 block|}
 end_function
+
+begin_comment
+comment|/** Implemented to support serialization of subclasses. */
+end_comment
 
 begin_function
 DECL|method|writeReplace ()
