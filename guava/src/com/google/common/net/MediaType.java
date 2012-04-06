@@ -2937,7 +2937,7 @@ argument_list|)
 expr_stmt|;
 name|tokenizer
 operator|.
-name|consumeToken
+name|consumeTokenIfPresent
 argument_list|(
 name|LINEAR_WHITE_SPACE
 argument_list|)
@@ -3141,9 +3141,9 @@ operator|=
 name|input
 expr_stmt|;
 block|}
-DECL|method|consumeToken (CharMatcher matcher)
+DECL|method|consumeTokenIfPresent (CharMatcher matcher)
 name|String
-name|consumeToken
+name|consumeTokenIfPresent
 parameter_list|(
 name|CharMatcher
 name|matcher
@@ -3174,13 +3174,6 @@ argument_list|,
 name|startPosition
 argument_list|)
 expr_stmt|;
-name|checkState
-argument_list|(
-name|position
-operator|!=
-name|startPosition
-argument_list|)
-expr_stmt|;
 return|return
 name|hasMore
 argument_list|()
@@ -3200,6 +3193,38 @@ name|substring
 argument_list|(
 name|startPosition
 argument_list|)
+return|;
+block|}
+DECL|method|consumeToken (CharMatcher matcher)
+name|String
+name|consumeToken
+parameter_list|(
+name|CharMatcher
+name|matcher
+parameter_list|)
+block|{
+name|int
+name|startPosition
+init|=
+name|position
+decl_stmt|;
+name|String
+name|token
+init|=
+name|consumeTokenIfPresent
+argument_list|(
+name|matcher
+argument_list|)
+decl_stmt|;
+name|checkState
+argument_list|(
+name|position
+operator|!=
+name|startPosition
+argument_list|)
+expr_stmt|;
+return|return
+name|token
 return|;
 block|}
 DECL|method|consumeCharacter (CharMatcher matcher)

@@ -2476,6 +2476,13 @@ name|MediaType
 operator|.
 name|parse
 argument_list|(
+literal|"text/plain;charset=utf-8"
+argument_list|)
+argument_list|,
+name|MediaType
+operator|.
+name|parse
+argument_list|(
 literal|"text/plain; charset=utf-8"
 argument_list|)
 argument_list|,
