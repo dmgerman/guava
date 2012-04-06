@@ -97,6 +97,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|()
 decl_stmt|;
@@ -786,6 +789,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build

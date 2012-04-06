@@ -730,6 +730,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|identityLoader
@@ -1279,6 +1282,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|loader
@@ -1613,6 +1619,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|ticker
@@ -2051,6 +2060,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|ticker
 argument_list|(
 name|ticker
@@ -2406,6 +2418,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -2877,6 +2892,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -4673,6 +4691,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|constantLoader
@@ -5153,6 +5174,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|loader
@@ -5474,6 +5498,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -5802,6 +5829,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|ticker
@@ -6162,6 +6192,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|bulkLoader
@@ -6312,6 +6345,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -6527,6 +6563,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -7081,6 +7120,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|loader
@@ -7412,6 +7454,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -7750,6 +7795,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|ticker
@@ -8130,6 +8178,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|bulkLoader
@@ -8306,6 +8357,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -8844,6 +8898,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|loader
@@ -9173,6 +9230,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -9511,6 +9571,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|ticker
@@ -9889,6 +9952,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|bulkLoader
@@ -10067,6 +10133,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -10607,6 +10676,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|loader
@@ -10938,6 +11010,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build
@@ -11276,6 +11351,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|ticker
@@ -11654,6 +11732,9 @@ init|=
 name|CacheBuilder
 operator|.
 name|newBuilder
+argument_list|()
+operator|.
+name|recordStats
 argument_list|()
 operator|.
 name|build

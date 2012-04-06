@@ -3246,6 +3246,9 @@ operator|.
 name|newBuilder
 argument_list|()
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|concurrencyLevel
 argument_list|(
 literal|2

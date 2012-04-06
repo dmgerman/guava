@@ -2518,6 +2518,9 @@ block|{
 return|return
 name|builder
 operator|.
+name|recordStats
+argument_list|()
+operator|.
 name|build
 argument_list|(
 name|identityLoader
