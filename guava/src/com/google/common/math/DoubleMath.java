@@ -807,7 +807,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the base 2 logarithm of a double value.    *    *<p>Special cases:    *<ul>    *<li>If {@code x} is NaN or less than zero, the result is NaN.    *<li>If {@code x} is positive infinity, the result is positive infinity.    *<li>If {@code x} is positive or negative zero, the result is negative infinity.    *</ul>    *    *<p>The computed result must be within 1 ulp of the exact result.    *    *<p>If the result of this method will be immediately rounded to an {@code int},    * {@link #log2(double, RoundingMode)} is faster.    */
+comment|/**    * Returns the base 2 logarithm of a double value.    *    *<p>Special cases:    *<ul>    *<li>If {@code x} is NaN or less than zero, the result is NaN.    *<li>If {@code x} is positive infinity, the result is positive infinity.    *<li>If {@code x} is positive or negative zero, the result is negative infinity.    *</ul>    *    *<p>The computed result is within 1 ulp of the exact result.    *    *<p>If the result of this method will be immediately rounded to an {@code int},    * {@link #log2(double, RoundingMode)} is faster.    */
 DECL|method|log2 (double x)
 specifier|public
 specifier|static

@@ -796,6 +796,7 @@ expr_stmt|;
 block|}
 DECL|method|assertParseFails (String value)
 specifier|private
+specifier|static
 name|void
 name|assertParseFails
 parameter_list|(
@@ -803,11 +804,6 @@ name|String
 name|value
 parameter_list|)
 block|{
-name|boolean
-name|overflowCaught
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 name|UnsignedBytes
@@ -817,23 +813,16 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|e
+name|expected
 parameter_list|)
-block|{
-name|overflowCaught
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|overflowCaught
-argument_list|)
-expr_stmt|;
+block|{     }
 block|}
 DECL|method|testParseUnsignedByte ()
 specifier|public
@@ -893,6 +882,11 @@ argument_list|(
 literal|"-128"
 argument_list|)
 expr_stmt|;
+name|assertParseFails
+argument_list|(
+literal|"256"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testMaxValue ()
 specifier|public
@@ -928,6 +922,7 @@ expr_stmt|;
 block|}
 DECL|method|assertParseFails (String value, int radix)
 specifier|private
+specifier|static
 name|void
 name|assertParseFails
 parameter_list|(
@@ -938,11 +933,6 @@ name|int
 name|radix
 parameter_list|)
 block|{
-name|boolean
-name|overflowCaught
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 name|UnsignedBytes
@@ -954,23 +944,16 @@ argument_list|,
 name|radix
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|e
+name|expected
 parameter_list|)
-block|{
-name|overflowCaught
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|overflowCaught
-argument_list|)
-expr_stmt|;
+block|{     }
 block|}
 DECL|method|testParseUnsignedByteWithRadix ()
 specifier|public
@@ -1062,6 +1045,35 @@ name|toString
 argument_list|(
 operator|-
 literal|1
+argument_list|,
+name|radix
+argument_list|)
+argument_list|,
+name|radix
+argument_list|)
+expr_stmt|;
+name|assertParseFails
+argument_list|(
+name|Integer
+operator|.
+name|toString
+argument_list|(
+operator|-
+literal|128
+argument_list|,
+name|radix
+argument_list|)
+argument_list|,
+name|radix
+argument_list|)
+expr_stmt|;
+name|assertParseFails
+argument_list|(
+name|Integer
+operator|.
+name|toString
+argument_list|(
+literal|256
 argument_list|,
 name|radix
 argument_list|)

@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for {@code double} primitives. Some of these are exposed in JDK 6,  * but we can't depend on them there.  *  * @author Louis Wasserman  */
+comment|/**  * Utilities for {@code double} primitives.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

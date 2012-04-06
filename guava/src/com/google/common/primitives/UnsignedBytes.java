@@ -1204,7 +1204,7 @@ operator|>>>
 name|n
 operator|)
 operator|&
-literal|0xFFL
+name|UNSIGNED_MASK
 operator|)
 operator|-
 operator|(
@@ -1214,7 +1214,7 @@ operator|>>>
 name|n
 operator|)
 operator|&
-literal|0xFFL
+name|UNSIGNED_MASK
 operator|)
 argument_list|)
 return|;
