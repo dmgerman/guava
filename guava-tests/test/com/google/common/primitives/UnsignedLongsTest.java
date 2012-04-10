@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for UnsignedLongs  *   * @author Brian Milch  * @author Louis Wasserman  */
+comment|/**  * Tests for UnsignedLongs  *  * @author Brian Milch  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -1041,6 +1041,98 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|testJoin ()
+specifier|public
+name|void
+name|testJoin
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|""
+argument_list|,
+name|join
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1"
+argument_list|,
+name|join
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"1,2"
+argument_list|,
+name|join
+argument_list|(
+literal|1
+argument_list|,
+literal|2
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"18446744073709551615,9223372036854775808"
+argument_list|,
+name|join
+argument_list|(
+operator|-
+literal|1
+argument_list|,
+name|Long
+operator|.
+name|MIN_VALUE
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"123"
+argument_list|,
+name|UnsignedLongs
+operator|.
+name|join
+argument_list|(
+literal|""
+argument_list|,
+literal|1
+argument_list|,
+literal|2
+argument_list|,
+literal|3
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|join (long... values)
+specifier|private
+specifier|static
+name|String
+name|join
+parameter_list|(
+name|long
+modifier|...
+name|values
+parameter_list|)
+block|{
+return|return
+name|UnsignedLongs
+operator|.
+name|join
+argument_list|(
+literal|","
+argument_list|,
+name|values
+argument_list|)
+return|;
 block|}
 annotation|@
 name|GwtIncompatible
