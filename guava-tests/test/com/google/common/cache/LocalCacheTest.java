@@ -3621,8 +3621,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -3872,8 +3870,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -5096,8 +5092,6 @@ operator|.
 name|create
 argument_list|(
 literal|null
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|valueRef
@@ -7669,8 +7663,6 @@ operator|.
 name|create
 argument_list|(
 name|oldValue
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -8028,8 +8020,6 @@ operator|.
 name|create
 argument_list|(
 name|oldValue
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -8390,8 +8380,6 @@ operator|.
 name|create
 argument_list|(
 name|oldValue
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -8647,8 +8635,6 @@ operator|.
 name|create
 argument_list|(
 name|oldValue
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -9415,8 +9401,6 @@ operator|.
 name|create
 argument_list|(
 name|value3
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|valueRef
@@ -9798,8 +9782,6 @@ operator|.
 name|create
 argument_list|(
 name|oldValue
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -10122,8 +10104,6 @@ operator|.
 name|create
 argument_list|(
 name|oldValue
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -11595,8 +11575,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -12887,8 +12865,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -13065,8 +13041,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -13384,8 +13358,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|valueRef
@@ -13486,8 +13458,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -18923,8 +18893,6 @@ operator|.
 name|create
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 decl_stmt|;
 name|entry
@@ -19478,16 +19446,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|entry
-specifier|final
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-decl_stmt|;
 DECL|field|value
 specifier|private
 name|V
@@ -19499,26 +19457,11 @@ name|loading
 init|=
 literal|false
 decl_stmt|;
-DECL|method|DummyValueReference (ReferenceEntry<K, V> entry)
+DECL|method|DummyValueReference ()
 specifier|public
 name|DummyValueReference
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
+parameter_list|()
 block|{
-name|this
-argument_list|(
-literal|null
-argument_list|,
-name|entry
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|loading
@@ -19526,20 +19469,12 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-DECL|method|DummyValueReference (V value, ReferenceEntry<K, V> entry)
+DECL|method|DummyValueReference (V value)
 specifier|public
 name|DummyValueReference
 parameter_list|(
 name|V
 name|value
-parameter_list|,
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
 parameter_list|)
 block|{
 name|this
@@ -19548,14 +19483,8 @@ name|value
 operator|=
 name|value
 expr_stmt|;
-name|this
-operator|.
-name|entry
-operator|=
-name|entry
-expr_stmt|;
 block|}
-DECL|method|create (V value, ReferenceEntry<K, V> entry)
+DECL|method|create (V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -19573,14 +19502,6 @@ name|create
 parameter_list|(
 name|V
 name|value
-parameter_list|,
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
 parameter_list|)
 block|{
 return|return
@@ -19593,12 +19514,10 @@ name|V
 argument_list|>
 argument_list|(
 name|value
-argument_list|,
-name|entry
 argument_list|)
 return|;
 block|}
-DECL|method|createLoading (ReferenceEntry<K, V> entry)
+DECL|method|createLoading ()
 specifier|public
 specifier|static
 parameter_list|<
@@ -19613,15 +19532,7 @@ argument_list|,
 name|V
 argument_list|>
 name|createLoading
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 operator|new
@@ -19631,9 +19542,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-argument_list|(
-name|entry
-argument_list|)
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -19674,12 +19583,12 @@ name|getEntry
 parameter_list|()
 block|{
 return|return
-name|entry
+literal|null
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -19695,6 +19604,9 @@ name|V
 argument_list|>
 name|queue
 parameter_list|,
+name|V
+name|value
+parameter_list|,
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -19705,18 +19617,7 @@ name|entry
 parameter_list|)
 block|{
 return|return
-operator|new
-name|DummyValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|value
-argument_list|,
-name|entry
-argument_list|)
+name|this
 return|;
 block|}
 DECL|method|setLoading (boolean loading)

@@ -13413,7 +13413,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -13428,6 +13428,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<

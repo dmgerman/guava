@@ -3413,7 +3413,7 @@ name|getEntry
 parameter_list|()
 function_decl|;
 comment|/**      * Creates a copy of this reference for the given entry.      */
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor (ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 name|ValueReference
 argument_list|<
 name|K
@@ -3427,6 +3427,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -3536,6 +3539,9 @@ argument_list|<
 name|Object
 argument_list|>
 name|queue
+parameter_list|,
+name|Object
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -7087,7 +7093,7 @@ parameter_list|)
 block|{}
 annotation|@
 name|Override
-DECL|method|copyFor ( ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7102,6 +7108,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -7123,8 +7132,7 @@ argument_list|>
 argument_list|(
 name|queue
 argument_list|,
-name|get
-argument_list|()
+name|value
 argument_list|,
 name|entry
 argument_list|)
@@ -7278,7 +7286,7 @@ parameter_list|)
 block|{}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7293,6 +7301,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -7314,8 +7325,7 @@ argument_list|>
 argument_list|(
 name|queue
 argument_list|,
-name|get
-argument_list|()
+name|value
 argument_list|,
 name|entry
 argument_list|)
@@ -7439,7 +7449,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7454,6 +7464,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -7595,7 +7608,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor ( ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7610,6 +7623,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -7631,8 +7647,7 @@ argument_list|>
 argument_list|(
 name|queue
 argument_list|,
-name|get
-argument_list|()
+name|value
 argument_list|,
 name|entry
 argument_list|,
@@ -7719,7 +7734,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -7734,6 +7749,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
@@ -7755,8 +7773,7 @@ argument_list|>
 argument_list|(
 name|queue
 argument_list|,
-name|get
-argument_list|()
+name|value
 argument_list|,
 name|entry
 argument_list|,
@@ -9167,6 +9184,7 @@ name|next
 argument_list|)
 return|;
 block|}
+comment|/**      * Copies {@code original} into a new entry chained to {@code newNext}. Returns the new entry,      * or {@code null} if {@code original} was already garbage collected.      */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -9198,6 +9216,21 @@ argument_list|>
 name|newNext
 parameter_list|)
 block|{
+if|if
+condition|(
+name|original
+operator|.
+name|getKey
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+comment|// key collected
+return|return
+literal|null
+return|;
+block|}
 name|ValueReference
 argument_list|<
 name|K
@@ -9211,6 +9244,33 @@ operator|.
 name|getValueReference
 argument_list|()
 decl_stmt|;
+name|V
+name|value
+init|=
+name|valueReference
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|value
+operator|==
+literal|null
+operator|)
+operator|&&
+name|valueReference
+operator|.
+name|isActive
+argument_list|()
+condition|)
+block|{
+comment|// value collected
+return|return
+literal|null
+return|;
+block|}
 name|ReferenceEntry
 argument_list|<
 name|K
@@ -9243,6 +9303,8 @@ argument_list|(
 name|this
 operator|.
 name|valueReferenceQueue
+argument_list|,
+name|value
 argument_list|,
 name|newEntry
 argument_list|)
@@ -13167,25 +13229,6 @@ name|getNext
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
-name|isCollected
-argument_list|(
-name|e
-argument_list|)
-condition|)
-block|{
-name|removeCollectedEntry
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|newCount
-operator|--
-expr_stmt|;
-block|}
-else|else
-block|{
 name|int
 name|newIndex
 init|=
@@ -13226,6 +13269,13 @@ argument_list|,
 name|newNext
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|newFirst
+operator|!=
+literal|null
+condition|)
+block|{
 name|newTable
 operator|.
 name|set
@@ -13234,6 +13284,17 @@ name|newIndex
 argument_list|,
 name|newFirst
 argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|removeCollectedEntry
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+name|newCount
+operator|--
 expr_stmt|;
 block|}
 block|}
@@ -15129,13 +15190,34 @@ name|getNext
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
-name|isCollected
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|next
+init|=
+name|copyEntry
 argument_list|(
 name|e
+argument_list|,
+name|newFirst
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|next
+operator|!=
+literal|null
 condition|)
+block|{
+name|newFirst
+operator|=
+name|next
+expr_stmt|;
+block|}
+else|else
 block|{
 name|removeCollectedEntry
 argument_list|(
@@ -15144,18 +15226,6 @@ argument_list|)
 expr_stmt|;
 name|newCount
 operator|--
-expr_stmt|;
-block|}
-else|else
-block|{
-name|newFirst
-operator|=
-name|copyEntry
-argument_list|(
-name|e
-argument_list|,
-name|newFirst
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -16018,63 +16088,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Returns true if the entry has been partially collected, meaning that either the key is null,      * or the value is active but null.      */
-DECL|method|isCollected (ReferenceEntry<K, V> entry)
-name|boolean
-name|isCollected
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-if|if
-condition|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-name|ValueReference
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|valueReference
-init|=
-name|entry
-operator|.
-name|getValueReference
-argument_list|()
-decl_stmt|;
-return|return
-operator|(
-name|valueReference
-operator|.
-name|get
-argument_list|()
-operator|==
-literal|null
-operator|)
-operator|&&
-name|valueReference
-operator|.
-name|isActive
-argument_list|()
-return|;
-block|}
 comment|/**      * Performs routine cleanup following a read. Normally cleanup happens during writes. If cleanup      * is not observed after a sufficient number of reads, try cleaning up from the read thread.      */
 DECL|method|postReadCleanup ()
 name|void
@@ -16722,7 +16735,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor (ReferenceQueue<V> queue, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -16737,6 +16750,9 @@ argument_list|<
 name|V
 argument_list|>
 name|queue
+parameter_list|,
+name|V
+name|value
 parameter_list|,
 name|ReferenceEntry
 argument_list|<
