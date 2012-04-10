@@ -2631,7 +2631,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * no such element is found, the iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}. If it is possible that    *<i>no</i> element will match, use {@link #tryFind)} or {@link    * #find(Iterator, Predicate, T)} instead.    *    * @throws NoSuchElementException if no element in {@code iterator} matches    *     the given predicate    */
+comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * no such element is found, the iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}. If it is possible that    *<i>no</i> element will match, use {@link #tryFind} or {@link    * #find(Iterator, Predicate, Object)} instead.    *    * @throws NoSuchElementException if no element in {@code iterator} matches    *     the given predicate    */
 DECL|method|find ( Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static

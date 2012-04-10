@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A navigable set which forwards all its method calls to another navigable set. Subclasses should  * override one or more methods to modify the behavior of the backing set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *   *<p><i>Warning:</i> The methods of {@code ForwardingNavigableSet} forward<i>indiscriminately</i>  * to the methods of the delegate. For example, overriding {@link #add} alone<i>will not</i>  * change the behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you  * should override {@code addAll} as well, either providing your own implementation, or delegating  * to the provided {@code standardAddAll} method.  *   *<p>Each of the {@code standard} methods uses the set's comparator (or the natural ordering of  * the elements, if there is no comparator) to test element equality. As a result, if the  * comparator is not consistent with equals, some of the standard implementations may violate the  * {@code Set} contract.  *   *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *   * @author Louis Wasserman  * @since 12.0  */
+comment|/**  * A navigable set which forwards all its method calls to another navigable set. Subclasses should  * override one or more methods to modify the behavior of the backing set as desired per the<a  * href="http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p><i>Warning:</i> The methods of {@code ForwardingNavigableSet} forward<i>indiscriminately</i>  * to the methods of the delegate. For example, overriding {@link #add} alone<i>will not</i>  * change the behavior of {@link #addAll}, which can lead to unexpected behavior. In this case, you  * should override {@code addAll} as well, either providing your own implementation, or delegating  * to the provided {@code standardAddAll} method.  *  *<p>Each of the {@code standard} methods uses the set's comparator (or the natural ordering of  * the elements, if there is no comparator) to test element equality. As a result, if the  * comparator is not consistent with equals, some of the standard implementations may violate the  * {@code Set} contract.  *  *<p>The {@code standard} methods and the collection views they return are not guaranteed to be  * thread-safe, even when all of the methods that they depend on are thread-safe.  *  * @author Louis Wasserman  * @since 12.0  */
 end_comment
 
 begin_class
@@ -426,7 +426,7 @@ name|descendingSet
 argument_list|()
 return|;
 block|}
-comment|/**    * A sensible implementation of {@link #descendingSet} in terms of the other methods of    * {@link NavigableSet}, notably including {@link NavigableSet#descendingIterator}.    *     *<p>In many cases, you may wish to override {@link #descendingSet} to forward to this    * implementation or a subclass thereof.    *     * @since 12.0    */
+comment|/**    * A sensible implementation of {@link NavigableSet#descendingSet} in terms of the other methods    * of {@link NavigableSet}, notably including {@link NavigableSet#descendingIterator}.    *    *<p>In many cases, you may wish to override {@link ForwardingNavigableSet#descendingSet} to    * forward to this implementation or a subclass thereof.    *    * @since 12.0    */
 annotation|@
 name|Beta
 DECL|class|StandardDescendingSet

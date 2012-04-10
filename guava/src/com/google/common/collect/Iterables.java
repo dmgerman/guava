@@ -2389,7 +2389,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * it is possible that<i>no</i> element will match, use {@link    * #tryFind)} or {@link #find(Iterable, Predicate, T)} instead.    *    * @throws NoSuchElementException if no element in {@code iterable} matches    *     the given predicate    */
+comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * it is possible that<i>no</i> element will match, use {@link #tryFind} or    * {@link #find(Iterable, Predicate, Object)} instead.    *    * @throws NoSuchElementException if no element in {@code iterable} matches    *     the given predicate    */
 DECL|method|find (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static

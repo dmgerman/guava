@@ -794,7 +794,7 @@ argument_list|,
 literal|"plain"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://www.rfc-editor.org/rfc/rfc4329.txt">RFC 4329</a> declares    * {link #JAVASCRIPT application/javascript} to be the correct media type for JavaScript, but this    * may be necessary in certain situations for compatibility.    */
+comment|/**    *<a href="http://www.rfc-editor.org/rfc/rfc4329.txt">RFC 4329</a> declares    * {@link #JAVASCRIPT_UTF_8 application/javascript} to be the correct media type for JavaScript,    * but this may be necessary in certain situations for compatibility.    */
 DECL|field|TEXT_JAVASCRIPT_UTF_8
 specifier|public
 specifier|static
