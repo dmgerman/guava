@@ -1178,42 +1178,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"GWT is at millisecond granularity"
-argument_list|)
-DECL|method|testDefault ()
-specifier|public
-name|void
-name|testDefault
-parameter_list|()
-block|{
-comment|// By default System.nanoTime() is used as the time source
-name|long
-name|value
-init|=
-operator|new
-name|Stopwatch
-argument_list|()
-operator|.
-name|start
-argument_list|()
-operator|.
-name|elapsedTime
-argument_list|(
-name|NANOSECONDS
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|value
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
-comment|// There isn't much else we can test about this
-block|}
 block|}
 end_class
 
