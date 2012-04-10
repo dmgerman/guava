@@ -1185,6 +1185,12 @@ name|String
 name|computeNext
 parameter_list|()
 block|{
+comment|/*        * The returned string will be from the end of the last match to the        * beginning of the next one. nextStart is the start position of the        * returned substring, while offset is the place to start looking for a        * separator.        */
+name|int
+name|nextStart
+init|=
+name|offset
+decl_stmt|;
 while|while
 condition|(
 name|offset
@@ -1196,7 +1202,7 @@ block|{
 name|int
 name|start
 init|=
-name|offset
+name|nextStart
 decl_stmt|;
 name|int
 name|end
@@ -1243,6 +1249,35 @@ argument_list|(
 name|separatorPosition
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|offset
+operator|==
+name|nextStart
+condition|)
+block|{
+comment|/*            * This occurs when some pattern has an empty match, even if it            * doesn't match the empty string -- for example, if it requires            * lookahead or the like. The offset must be increased to look for            * separators beyond this point, without changing the start position            * of the next returned substring -- so nextStart stays the same.            */
+name|offset
+operator|++
+expr_stmt|;
+if|if
+condition|(
+name|offset
+operator|>=
+name|toSplit
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+name|offset
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
+continue|continue;
 block|}
 while|while
 condition|(
@@ -1301,6 +1336,11 @@ operator|==
 name|end
 condition|)
 block|{
+comment|// Don't include the (unused) separator in next split string.
+name|nextStart
+operator|=
+name|offset
+expr_stmt|;
 continue|continue;
 block|}
 if|if
