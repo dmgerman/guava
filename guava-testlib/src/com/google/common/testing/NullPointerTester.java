@@ -409,7 +409,9 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Ignore a member (constructor or method) in testAllXxx methods. Returns    * this object.    */
+comment|/**    * Ignore {@code member} in the tests that follow. Returns this object.    * @deprecated Use {@link #ignore(Method)} instead. This method will be    *     removed from Guava in Guava release 13.0.    */
+annotation|@
+name|Deprecated
 DECL|method|ignore (Member member)
 specifier|public
 name|NullPointerTester
@@ -424,6 +426,27 @@ operator|.
 name|add
 argument_list|(
 name|member
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * Ignore {@code method} in the tests that follow. Returns this object.    *    * @since 13.0    */
+DECL|method|ignore (Method method)
+specifier|public
+name|NullPointerTester
+name|ignore
+parameter_list|(
+name|Method
+name|method
+parameter_list|)
+block|{
+name|ignoredMembers
+operator|.
+name|add
+argument_list|(
+name|method
 argument_list|)
 expr_stmt|;
 return|return
