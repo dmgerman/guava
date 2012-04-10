@@ -46,8 +46,18 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
 begin_comment
-comment|/**  * Static factories for creating {@link HashCode} instances; most users should never have to use  * this.  *  * @author Dimitris Andreou  * @since 12.0  */
+comment|/**  * Static factories for creating {@link HashCode} instances; most users should never have to use  * this. All returned instances are {@link Serializable}.  *  * @author Dimitris Andreou  * @since 12.0  */
 end_comment
 
 begin_class
@@ -91,6 +101,8 @@ class|class
 name|IntHashCode
 extends|extends
 name|HashCode
+implements|implements
+name|Serializable
 block|{
 DECL|field|hash
 specifier|final
@@ -199,6 +211,15 @@ literal|"this HashCode only has 32 bits; cannot create a long"
 argument_list|)
 throw|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 comment|/**    * Creates a 64-bit {@code HashCode}, of which the bytes will form the passed long, interpreted     * in little endian order.    */
 DECL|method|fromLong (long hash)
@@ -227,6 +248,8 @@ class|class
 name|LongHashCode
 extends|extends
 name|HashCode
+implements|implements
+name|Serializable
 block|{
 DECL|field|hash
 specifier|final
@@ -370,6 +393,15 @@ return|return
 name|hash
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 comment|/**    * Creates a {@code HashCode} from a byte array. The array is defensively copied to preserve    * the immutability contract of {@code HashCode}. The array must be at least of length 4.    */
 DECL|method|fromBytes (byte[] bytes)
@@ -404,7 +436,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).     */
+comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).    */
 DECL|method|fromBytesNoCopy (byte[] bytes)
 specifier|static
 name|HashCode
@@ -431,6 +463,8 @@ class|class
 name|BytesHashCode
 extends|extends
 name|HashCode
+implements|implements
+name|Serializable
 block|{
 DECL|field|bytes
 specifier|final
@@ -671,6 +705,15 @@ literal|56
 operator|)
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 block|}
 end_class
