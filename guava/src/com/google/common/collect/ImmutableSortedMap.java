@@ -2298,10 +2298,22 @@ argument_list|>
 name|createAsList
 parameter_list|()
 block|{
-comment|// TODO(user): make the returned list delegate to the entrySet for contains checks
-comment|// can't do it right now without rewriting ImmutableAsList
 return|return
+operator|new
+name|RegularImmutableAsList
+argument_list|<
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|>
+argument_list|(
+name|this
+argument_list|,
 name|entries
+argument_list|)
 return|;
 block|}
 block|}

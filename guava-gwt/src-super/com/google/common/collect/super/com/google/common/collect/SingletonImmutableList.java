@@ -33,12 +33,24 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|java
 operator|.
 name|util
 operator|.
 name|Collections
+operator|.
+name|singletonList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -60,6 +72,15 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|delegate
+specifier|final
+specifier|transient
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|delegate
+decl_stmt|;
 comment|// This reference is used both by the custom field serializer, and by the
 comment|// GWT compiler to infer the elements of the lists that needs to be
 comment|// serialized.
@@ -74,16 +95,15 @@ name|E
 name|element
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|Collections
+name|this
 operator|.
+name|delegate
+operator|=
 name|singletonList
 argument_list|(
 name|checkNotNull
 argument_list|(
 name|element
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -93,6 +113,20 @@ name|element
 operator|=
 name|element
 expr_stmt|;
+block|}
+DECL|method|delegateList ()
+annotation|@
+name|Override
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|delegateList
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
 block|}
 block|}
 end_class

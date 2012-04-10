@@ -28,6 +28,16 @@ name|emptyList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
 comment|/**  * GWT emulated version of EmptyImmutableList.  *  * @author Hayward Chan  */
 end_comment
@@ -54,15 +64,24 @@ name|EmptyImmutableList
 argument_list|()
 decl_stmt|;
 DECL|method|EmptyImmutableList ()
+specifier|private
 name|EmptyImmutableList
 parameter_list|()
+block|{   }
+DECL|method|delegateList ()
+annotation|@
+name|Override
+name|List
+argument_list|<
+name|Object
+argument_list|>
+name|delegateList
+parameter_list|()
 block|{
-name|super
-argument_list|(
+return|return
 name|emptyList
 argument_list|()
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 block|}
 end_class

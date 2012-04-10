@@ -3984,9 +3984,9 @@ name|keySet
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|SerializableTester
+name|LenientSerializableTester
 operator|.
-name|reserializeAndAssert
+name|reserializeAndAssertLenient
 argument_list|(
 name|multimap
 operator|.

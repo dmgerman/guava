@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -61,12 +51,6 @@ comment|/**  * GWT emulated version of {@link ImmutableList}.  * TODO(cpovirk): 
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
-comment|// we're overriding default serialization
 DECL|class|ForwardingImmutableList
 specifier|public
 specifier|abstract
@@ -81,38 +65,19 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|field|delegate
-specifier|private
-specifier|final
-specifier|transient
-name|List
-argument_list|<
-name|E
-argument_list|>
-name|delegate
-decl_stmt|;
-DECL|method|ForwardingImmutableList (List<E> delegate)
+DECL|method|ForwardingImmutableList ()
 name|ForwardingImmutableList
-parameter_list|(
+parameter_list|()
+block|{   }
+DECL|method|delegateList ()
+specifier|abstract
 name|List
 argument_list|<
 name|E
 argument_list|>
-name|delegate
-parameter_list|)
-block|{
-name|this
-operator|.
-name|delegate
-operator|=
-name|Collections
-operator|.
-name|unmodifiableList
-argument_list|(
-name|delegate
-argument_list|)
-expr_stmt|;
-block|}
+name|delegateList
+parameter_list|()
+function_decl|;
 DECL|method|indexOf (@ullable Object object)
 specifier|public
 name|int
@@ -125,7 +90,8 @@ name|object
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|indexOf
 argument_list|(
@@ -145,7 +111,8 @@ name|object
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|lastIndexOf
 argument_list|(
@@ -163,7 +130,8 @@ name|index
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|get
 argument_list|(
@@ -189,7 +157,8 @@ block|{
 return|return
 name|unsafeDelegateList
 argument_list|(
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|subList
 argument_list|(
@@ -214,7 +183,8 @@ name|Iterators
 operator|.
 name|unmodifiableListIterator
 argument_list|(
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|listIterator
 argument_list|()
@@ -238,7 +208,8 @@ name|Iterators
 operator|.
 name|unmodifiableListIterator
 argument_list|(
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|listIterator
 argument_list|(
@@ -259,7 +230,8 @@ block|{
 comment|// Note that ArrayList.toArray() doesn't work here because it returns E[]
 comment|// instead of Object[].
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|toArray
 argument_list|(
@@ -284,7 +256,8 @@ name|obj
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|equals
 argument_list|(
@@ -301,7 +274,8 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|hashCode
 argument_list|()
@@ -323,7 +297,8 @@ name|Iterators
 operator|.
 name|unmodifiableIterator
 argument_list|(
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -348,7 +323,8 @@ name|object
 operator|!=
 literal|null
 operator|&&
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|contains
 argument_list|(
@@ -371,7 +347,8 @@ name|targets
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|containsAll
 argument_list|(
@@ -386,7 +363,8 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|size
 argument_list|()
@@ -401,7 +379,8 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|isEmpty
 argument_list|()
@@ -424,7 +403,8 @@ name|other
 parameter_list|)
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|toArray
 argument_list|(
@@ -441,7 +421,8 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|delegateList
+argument_list|()
 operator|.
 name|toString
 argument_list|()

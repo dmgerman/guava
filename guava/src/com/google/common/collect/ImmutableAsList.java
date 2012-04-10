@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -61,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * List returned by {@link ImmutableCollection#asList} when the collection isn't  * an {@link ImmutableList} or an {@link ImmutableSortedSet}.  *  * @author Jared Levy  */
+comment|/**  * List returned by {@link ImmutableCollection#asList} that delegates {@code contains} checks  * to the backing collection.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -82,60 +96,27 @@ argument_list|(
 literal|"serial"
 argument_list|)
 DECL|class|ImmutableAsList
-specifier|final
+specifier|abstract
 class|class
 name|ImmutableAsList
 parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|RegularImmutableList
+name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|field|collection
-specifier|private
-specifier|final
-specifier|transient
+DECL|method|delegateCollection ()
+specifier|abstract
 name|ImmutableCollection
 argument_list|<
 name|E
 argument_list|>
-name|collection
-decl_stmt|;
-DECL|method|ImmutableAsList (Object[] array, ImmutableCollection<E> collection)
-name|ImmutableAsList
-parameter_list|(
-name|Object
-index|[]
-name|array
-parameter_list|,
-name|ImmutableCollection
-argument_list|<
-name|E
-argument_list|>
-name|collection
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|array
-argument_list|,
-literal|0
-argument_list|,
-name|array
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|collection
-operator|=
-name|collection
-expr_stmt|;
-block|}
+name|delegateCollection
+parameter_list|()
+function_decl|;
 DECL|method|contains (Object target)
 annotation|@
 name|Override
@@ -147,10 +128,11 @@ name|Object
 name|target
 parameter_list|)
 block|{
-comment|// The collection's contains() is at least as fast as RegularImmutableList's
+comment|// The collection's contains() is at least as fast as ImmutableList's
 comment|// and is often faster.
 return|return
-name|collection
+name|delegateCollection
+argument_list|()
 operator|.
 name|contains
 argument_list|(
@@ -158,7 +140,59 @@ name|target
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|size ()
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|delegateCollection
+argument_list|()
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isEmpty ()
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|delegateCollection
+argument_list|()
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isPartialView ()
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+name|delegateCollection
+argument_list|()
+operator|.
+name|isPartialView
+argument_list|()
+return|;
+block|}
 comment|/**    * Serialized form that leads to the same performance as the original list.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|class|SerializedForm
 specifier|static
 class|class
@@ -213,6 +247,11 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -232,6 +271,11 @@ literal|"Use SerializedForm"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|method|writeReplace ()
 annotation|@
 name|Override
@@ -243,7 +287,8 @@ return|return
 operator|new
 name|SerializedForm
 argument_list|(
-name|collection
+name|delegateCollection
+argument_list|()
 argument_list|)
 return|;
 block|}

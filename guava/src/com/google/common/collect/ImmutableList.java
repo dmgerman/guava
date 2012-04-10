@@ -1215,8 +1215,8 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|copyFromCollection ( Collection<? extends E> collection)
-specifier|private
+comment|/**    * Views the array as an immutable list.  The array must have only {@code E} elements.    *    *<p>The array must be internally created.    */
+DECL|method|asImmutableList (Object[] elements)
 specifier|static
 parameter_list|<
 name|E
@@ -1225,26 +1225,13 @@ name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|copyFromCollection
+name|asImmutableList
 parameter_list|(
-name|Collection
-argument_list|<
-name|?
-extends|extends
-name|E
-argument_list|>
-name|collection
-parameter_list|)
-block|{
 name|Object
 index|[]
 name|elements
-init|=
-name|collection
-operator|.
-name|toArray
-argument_list|()
-decl_stmt|;
+parameter_list|)
+block|{
 switch|switch
 condition|(
 name|elements
@@ -1293,8 +1280,6 @@ return|return
 name|list
 return|;
 default|default:
-comment|// safe to use the array without copying it
-comment|// as specified by Collection.toArray().
 return|return
 name|construct
 argument_list|(
@@ -1302,6 +1287,37 @@ name|elements
 argument_list|)
 return|;
 block|}
+block|}
+DECL|method|copyFromCollection ( Collection<? extends E> collection)
+specifier|private
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|copyFromCollection
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|collection
+parameter_list|)
+block|{
+return|return
+name|asImmutableList
+argument_list|(
+name|collection
+operator|.
+name|toArray
+argument_list|()
+argument_list|)
+return|;
 block|}
 comment|/** {@code elements} has to be internally created array. */
 DECL|method|construct (Object... elements)

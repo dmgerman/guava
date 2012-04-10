@@ -1462,7 +1462,14 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|backedBy (E[] elements)
+comment|/**    * Views the array as an immutable list.  The array must have only {@code E} elements.    *    *<p>The array must be internally created.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// caller is reponsible for getting this right
+DECL|method|asImmutableList (Object[] elements)
 specifier|static
 parameter_list|<
 name|E
@@ -1471,9 +1478,9 @@ name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|backedBy
+name|asImmutableList
 parameter_list|(
-name|E
+name|Object
 index|[]
 name|elements
 parameter_list|)
@@ -1481,6 +1488,9 @@ block|{
 return|return
 name|unsafeDelegateList
 argument_list|(
+operator|(
+name|List
+operator|)
 name|Arrays
 operator|.
 name|asList
@@ -1734,8 +1744,9 @@ argument_list|()
 return|;
 block|}
 DECL|method|subList (int fromIndex, int toIndex)
+annotation|@
+name|Override
 specifier|public
-specifier|abstract
 name|ImmutableList
 argument_list|<
 name|E
@@ -1748,7 +1759,23 @@ parameter_list|,
 name|int
 name|toIndex
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|unsafeDelegateList
+argument_list|(
+name|Lists
+operator|.
+name|subListImpl
+argument_list|(
+name|this
+argument_list|,
+name|fromIndex
+argument_list|,
+name|toIndex
+argument_list|)
+argument_list|)
+return|;
+block|}
 DECL|method|listIterator ()
 annotation|@
 name|Override

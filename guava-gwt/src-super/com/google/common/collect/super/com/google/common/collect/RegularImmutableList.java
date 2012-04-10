@@ -17,6 +17,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|unmodifiableList
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -43,6 +55,15 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|delegate
+specifier|private
+specifier|final
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|delegate
+decl_stmt|;
 DECL|method|RegularImmutableList (List<E> delegate)
 name|RegularImmutableList
 parameter_list|(
@@ -53,11 +74,30 @@ argument_list|>
 name|delegate
 parameter_list|)
 block|{
-name|super
+comment|// TODO(cpovirk): avoid redundant unmodifiableList wrapping
+name|this
+operator|.
+name|delegate
+operator|=
+name|unmodifiableList
 argument_list|(
 name|delegate
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|delegateList ()
+annotation|@
+name|Override
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|delegateList
+parameter_list|()
+block|{
+return|return
+name|delegate
+return|;
 block|}
 block|}
 end_class

@@ -565,9 +565,23 @@ return|return
 operator|new
 name|EntrySet
 argument_list|()
+return|;
+block|}
+DECL|class|EntrySet
+specifier|private
+class|class
+name|EntrySet
+extends|extends
+name|ImmutableMultiset
+argument_list|<
+name|E
+argument_list|>
+operator|.
+name|EntrySet
 block|{
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -582,6 +596,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -602,13 +617,8 @@ argument_list|()
 return|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// upcasting entries is totally safe
-annotation|@
 name|Override
+DECL|method|createAsList ()
 name|ImmutableList
 argument_list|<
 name|Entry
@@ -619,16 +629,22 @@ argument_list|>
 name|createAsList
 parameter_list|()
 block|{
-comment|// TODO(user): make this delegate contains() calls to entries
 return|return
-operator|(
-name|ImmutableList
-operator|)
+operator|new
+name|RegularImmutableAsList
+argument_list|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+argument_list|>
+argument_list|(
+name|this
+argument_list|,
 name|entries
+argument_list|)
 return|;
 block|}
-block|}
-return|;
 block|}
 annotation|@
 name|Override

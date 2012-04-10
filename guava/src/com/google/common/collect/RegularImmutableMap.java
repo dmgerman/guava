@@ -971,10 +971,9 @@ argument_list|>
 name|createAsList
 parameter_list|()
 block|{
-comment|// TODO(user): make this delegate contains calls to the EntrySet
 return|return
 operator|new
-name|RegularImmutableList
+name|RegularImmutableAsList
 argument_list|<
 name|Entry
 argument_list|<
@@ -984,6 +983,8 @@ name|V
 argument_list|>
 argument_list|>
 argument_list|(
+name|this
+argument_list|,
 name|entries
 argument_list|)
 return|;
