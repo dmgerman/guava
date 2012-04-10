@@ -247,7 +247,7 @@ comment|/**  * A double-ended priority queue, which provides constant-time acces
 end_comment
 
 begin_comment
-comment|// TODO(kevinb): @GwtCompatible
+comment|// TODO(kevinb): GWT compatibility
 end_comment
 
 begin_class
