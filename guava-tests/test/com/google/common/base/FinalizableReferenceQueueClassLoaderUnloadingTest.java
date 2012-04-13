@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|testing
-operator|.
-name|testsize
-operator|.
-name|Sequential
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -596,8 +582,6 @@ name|loaderRef
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Sequential
 DECL|method|testUnloadableWithoutSecurityManager ()
 specifier|public
 name|void
@@ -640,8 +624,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Sequential
 DECL|method|testUnloadableWithSecurityManager ()
 specifier|public
 name|void
