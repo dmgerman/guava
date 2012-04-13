@@ -1910,6 +1910,12 @@ return|return
 name|insertionOrder
 return|;
 block|}
+comment|/**    * Private replacement for {@link com.google.gwt.user.client.rpc.GwtTransient} to work around    * build-system quirks.    */
+DECL|annotation|GwtTransient
+specifier|private
+annotation_defn|@interface
+name|GwtTransient
+block|{}
 comment|/**    * Compares strings in natural order except that null comes immediately before a given value. This    * works better than Ordering.natural().nullsFirst() because, if null comes before all other    * values, it lies outside the submap/submultiset ranges we test, and the variety of tests that    * exercise null handling fail on those subcollections.    */
 DECL|class|NullsBefore
 specifier|public
@@ -1925,7 +1931,10 @@ argument_list|>
 implements|,
 name|Serializable
 block|{
+comment|/*      * We don't serialize this class in GWT, so we don't care about whether GWT will serialize this      * field.      */
 DECL|field|justAfterNull
+annotation|@
+name|GwtTransient
 specifier|private
 specifier|final
 name|String
