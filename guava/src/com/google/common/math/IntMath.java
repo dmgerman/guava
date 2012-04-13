@@ -1500,11 +1500,6 @@ name|result
 return|;
 block|}
 comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    *<p>{@link #pow} may be faster, but does not check for overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *         {@code int} arithmetic    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"failing tests"
-argument_list|)
 DECL|method|checkedPow (int b, int k)
 specifier|public
 specifier|static

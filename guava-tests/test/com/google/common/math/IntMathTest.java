@@ -1448,7 +1448,6 @@ control|)
 block|{
 comment|// Skip some tests that fail due to GWT's non-compliant int implementation.
 comment|// TODO(cpovirk): does this test fail for only some rounding modes or for all?
-comment|// TODO(cpovirk): why is dividing by 1 a problem?
 if|if
 condition|(
 name|p
@@ -1456,16 +1455,10 @@ operator|==
 operator|-
 literal|2147483648
 operator|&&
-operator|(
-name|q
-operator|==
-literal|1
-operator|||
 name|q
 operator|==
 operator|-
 literal|1
-operator|)
 operator|&&
 name|intsCanGoOutOfRange
 argument_list|()
@@ -1512,7 +1505,10 @@ literal|"/"
 operator|+
 name|q
 argument_list|,
+name|force32
+argument_list|(
 name|expected
+argument_list|)
 argument_list|,
 name|IntMath
 operator|.
@@ -2366,11 +2362,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"-2147483648^1 expected=2147483648"
-argument_list|)
 DECL|method|testCheckedPow ()
 specifier|public
 name|void
@@ -2424,10 +2415,13 @@ literal|"^"
 operator|+
 name|k
 argument_list|,
+name|force32
+argument_list|(
 name|expectedResult
 operator|.
 name|intValue
 argument_list|()
+argument_list|)
 argument_list|,
 name|IntMath
 operator|.
@@ -2855,6 +2849,23 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|force32 (int value)
+specifier|private
+specifier|static
+name|int
+name|force32
+parameter_list|(
+name|int
+name|value
+parameter_list|)
+block|{
+comment|// GWT doesn't consistently overflow values to make them 32-bit, so we need to force it.
+return|return
+name|value
+operator|&
+literal|0xffffffff
+return|;
 block|}
 block|}
 end_class
