@@ -49,11 +49,6 @@ name|ForwardingImmutableList
 parameter_list|<
 name|E
 parameter_list|>
-extends|extends
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
 block|{
 DECL|method|ForwardingImmutableList ()
 specifier|private

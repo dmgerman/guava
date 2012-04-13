@@ -52,7 +52,6 @@ end_comment
 
 begin_class
 DECL|class|ForwardingImmutableList
-specifier|public
 specifier|abstract
 class|class
 name|ForwardingImmutableList
