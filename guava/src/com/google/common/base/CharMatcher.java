@@ -563,7 +563,7 @@ name|inRange
 argument_list|(
 literal|'\u0600'
 argument_list|,
-literal|'\u0603'
+literal|'\u0604'
 argument_list|)
 argument_list|)
 operator|.
@@ -571,7 +571,7 @@ name|or
 argument_list|(
 name|anyOf
 argument_list|(
-literal|"\u06dd\u070f\u1680\u17b4\u17b5\u180e"
+literal|"\u06dd\u070f\u1680\u180e"
 argument_list|)
 argument_list|)
 operator|.
