@@ -61,10 +61,34 @@ block|{
 comment|/**    * The endpoint value<i>is not</i> considered part of the set ("exclusive").    */
 DECL|enumConstant|OPEN
 name|OPEN
+block|{
+annotation|@
+name|Override
+name|BoundType
+name|flip
+parameter_list|()
+block|{
+return|return
+name|CLOSED
+return|;
+block|}
+block|}
 block|,
 comment|/**    * The endpoint value<i>is</i> considered part of the set ("inclusive").    */
 DECL|enumConstant|CLOSED
 name|CLOSED
+block|{
+annotation|@
+name|Override
+name|BoundType
+name|flip
+parameter_list|()
+block|{
+return|return
+name|OPEN
+return|;
+block|}
+block|}
 block|;
 comment|/**    * Returns the bound type corresponding to a boolean value for inclusivity.    */
 DECL|method|forBoolean (boolean inclusive)
@@ -84,6 +108,12 @@ else|:
 name|OPEN
 return|;
 block|}
+DECL|method|flip ()
+specifier|abstract
+name|BoundType
+name|flip
+parameter_list|()
+function_decl|;
 block|}
 end_enum
 
