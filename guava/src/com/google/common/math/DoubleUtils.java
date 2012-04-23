@@ -311,28 +311,6 @@ operator|>=
 name|MIN_EXPONENT
 return|;
 block|}
-DECL|method|fastAbs (double d)
-specifier|static
-name|double
-name|fastAbs
-parameter_list|(
-name|double
-name|d
-parameter_list|)
-block|{
-return|return
-name|longBitsToDouble
-argument_list|(
-name|doubleToRawLongBits
-argument_list|(
-name|d
-argument_list|)
-operator|&
-operator|~
-name|SIGN_MASK
-argument_list|)
-return|;
-block|}
 comment|/*    * Returns x scaled by a power of 2 such that it is in the range [1, 2). Assumes x is positive,    * normal, and finite.    */
 DECL|method|scaleNormalize (double x)
 specifier|static

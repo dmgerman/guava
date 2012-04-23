@@ -76,22 +76,6 @@ name|math
 operator|.
 name|DoubleUtils
 operator|.
-name|fastAbs
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|DoubleUtils
-operator|.
 name|getSignificand
 import|;
 end_import
@@ -189,6 +173,18 @@ operator|.
 name|MathPreconditions
 operator|.
 name|checkRoundingUnnecessary
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Math
+operator|.
+name|abs
 import|;
 end_import
 
@@ -477,7 +473,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|fastAbs
+name|abs
 argument_list|(
 name|x
 operator|-
@@ -492,7 +488,7 @@ name|x
 operator|+
 name|copySign
 argument_list|(
-literal|1.0
+literal|0.5
 argument_list|,
 name|x
 argument_list|)
@@ -519,7 +515,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|fastAbs
+name|abs
 argument_list|(
 name|x
 operator|-
