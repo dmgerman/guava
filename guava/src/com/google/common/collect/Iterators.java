@@ -1765,7 +1765,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines two iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    */
+comment|/**    * Combines two iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1827,7 +1827,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines three iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}. The source iterators    * are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    */
+comment|/**    * Combines three iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}. The source iterators    * are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1904,7 +1904,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines four iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}, followed by the elements    * in {@code d}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    */
+comment|/**    * Combines four iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}, followed by the elements    * in {@code d}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1996,7 +1996,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    * @throws NullPointerException if any of the provided iterators is null    */
+comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    *    * @throws NullPointerException if any of the provided iterators is null    */
 DECL|method|concat (Iterator<? extends T>.... inputs)
 specifier|public
 specifier|static
@@ -2034,7 +2034,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it. The methods of the returned iterator may throw    * {@code NullPointerException} if any of the input iterators is null.    */
+comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it. The methods of the returned iterator may throw    * {@code NullPointerException} if any of the input iterators is null.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
 DECL|method|concat ( final Iterator<? extends Iterator<? extends T>> inputs)
 specifier|public
 specifier|static
