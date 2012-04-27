@@ -5827,11 +5827,6 @@ operator|instanceof
 name|Map
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Map
@@ -9174,6 +9169,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+comment|/** Suite for filter methods. */
 DECL|class|FilteredMapTests
 specifier|public
 specifier|static
@@ -10825,6 +10821,7 @@ return|;
 block|}
 block|}
 block|}
+comment|/** Tests for {@link Maps#filterEntries(Map, Predicate)}. */
 DECL|class|FilteredEntriesSortedMapInterfaceTest
 specifier|public
 specifier|static

@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class can be used by any generic super class to resolve one of its type  * parameter to the actual type argument used by the subclass, provided the type  * argument is carried on the class declaration.  *   * @author Ben Yu  */
+comment|/**  * This class can be used by any generic super class to resolve one of its type  * parameter to the actual type argument used by the subclass, provided the type  * argument is carried on the class declaration.  *  * @author Ben Yu  */
 end_comment
 
 begin_class
@@ -656,9 +656,6 @@ condition|(
 name|type
 operator|instanceof
 name|TypeVariable
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 return|return
@@ -1276,9 +1273,6 @@ condition|(
 name|type
 operator|instanceof
 name|Class
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|introspectClass

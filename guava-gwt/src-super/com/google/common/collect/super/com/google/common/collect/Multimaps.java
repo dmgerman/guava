@@ -7235,9 +7235,6 @@ operator|instanceof
 name|Multiset
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|Multiset
@@ -7318,9 +7315,6 @@ operator|instanceof
 name|Multiset
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|Multiset
@@ -7716,9 +7710,6 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_class
 DECL|class|Values
 specifier|static
 specifier|abstract
@@ -7828,13 +7819,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * A skeleton implementation of {@link Multimap#entries()}.    */
-end_comment
-
-begin_class
 DECL|class|Entries
 specifier|static
 specifier|abstract
@@ -7905,11 +7890,6 @@ operator|instanceof
 name|Map
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Map
@@ -7976,11 +7956,6 @@ operator|instanceof
 name|Map
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Map
@@ -8043,13 +8018,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * A skeleton implementation of {@link SetMultimap#entries()}.    */
-end_comment
-
-begin_class
 DECL|class|EntrySet
 specifier|static
 specifier|abstract
@@ -8122,13 +8091,7 @@ argument_list|)
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * A skeleton implementation of {@link Multimap#asMap()}.    */
-end_comment
-
-begin_class
 DECL|class|AsMap
 specifier|static
 specifier|abstract
@@ -8493,13 +8456,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * Support removal operations when filtering a filtered multimap. Since a    * filtered multimap has iterators that don't support remove, passing one to    * the FilteredMultimap constructor would lead to a multimap whose removal    * operations would fail. This method combines the predicates to avoid that    * problem.    */
-end_comment
-
-begin_function
 DECL|method|filterFiltered (FilteredMultimap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
@@ -8577,9 +8534,6 @@ name|predicate
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|FilteredMultimap
 specifier|private
 specifier|static
@@ -11133,11 +11087,6 @@ condition|(
 name|o
 operator|instanceof
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Entry
@@ -11319,9 +11268,6 @@ return|;
 block|}
 block|}
 block|}
-end_class
-
-begin_decl_stmt
 DECL|field|keys
 name|AbstractMultiset
 argument_list|<
@@ -11329,9 +11275,6 @@ name|K
 argument_list|>
 name|keys
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 DECL|method|keys ()
 annotation|@
 name|Override
@@ -11359,9 +11302,6 @@ else|:
 name|keys
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|Keys
 class|class
 name|Keys
@@ -11688,13 +11628,10 @@ return|;
 block|}
 block|}
 block|}
+block|}
+comment|// TODO(jlevy): Create methods that filter a SetMultimap or SortedSetMultimap.
+block|}
 end_class
 
-begin_comment
-unit|}
-comment|// TODO(jlevy): Create methods that filter a SetMultimap or SortedSetMultimap.
-end_comment
-
-unit|}
 end_unit
 

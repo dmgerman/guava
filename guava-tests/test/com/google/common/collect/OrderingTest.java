@@ -1393,7 +1393,9 @@ name|Ordering
 operator|.
 name|compound
 argument_list|(
-name|asList
+name|ImmutableList
+operator|.
+name|of
 argument_list|(
 name|byCharAt
 argument_list|(

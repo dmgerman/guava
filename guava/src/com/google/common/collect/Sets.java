@@ -3654,9 +3654,6 @@ operator|(
 name|element
 operator|instanceof
 name|List
-argument_list|<
-name|?
-argument_list|>
 operator|)
 condition|)
 block|{

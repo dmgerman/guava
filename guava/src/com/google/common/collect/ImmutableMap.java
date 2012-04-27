@@ -760,11 +760,6 @@ condition|(
 name|entry
 operator|instanceof
 name|ImmutableEntry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|checkNotNull

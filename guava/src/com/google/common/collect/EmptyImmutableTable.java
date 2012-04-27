@@ -192,13 +192,6 @@ condition|(
 name|obj
 operator|instanceof
 name|Table
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Table

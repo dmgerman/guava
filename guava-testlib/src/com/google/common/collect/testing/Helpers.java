@@ -1600,11 +1600,6 @@ operator|instanceof
 name|Map
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Map

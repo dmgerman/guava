@@ -48,33 +48,6 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|newArray (Class<T> type, int length)
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|newArray
-parameter_list|(
-name|Class
-argument_list|<
-name|T
-argument_list|>
-name|type
-parameter_list|,
-name|int
-name|length
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Platform.newArray is not supported in GWT yet."
-argument_list|)
-throw|;
-block|}
 DECL|method|newArray (T[] reference, int length)
 specifier|static
 parameter_list|<

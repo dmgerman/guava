@@ -442,9 +442,6 @@ operator|(
 name|runtimeType
 operator|instanceof
 name|TypeVariable
-argument_list|<
-name|?
-argument_list|>
 operator|)
 argument_list|,
 literal|"Cannot construct a TypeToken for a type variable.\n"

@@ -2058,9 +2058,6 @@ operator|instanceof
 name|MapDifference
 operator|.
 name|ValueDifference
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|MapDifference

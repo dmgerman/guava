@@ -671,13 +671,6 @@ condition|(
 name|obj
 operator|instanceof
 name|Table
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Table
@@ -782,9 +775,6 @@ return|return
 literal|false
 return|;
 block|}
-end_class
-
-begin_function
 DECL|method|hashCode ()
 annotation|@
 name|Override
@@ -806,9 +796,6 @@ name|singleValue
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -861,8 +848,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

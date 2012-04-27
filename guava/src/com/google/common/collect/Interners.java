@@ -515,9 +515,6 @@ condition|(
 name|other
 operator|instanceof
 name|InternerFunction
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|InternerFunction

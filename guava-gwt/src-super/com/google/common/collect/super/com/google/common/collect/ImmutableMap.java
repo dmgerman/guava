@@ -836,11 +836,6 @@ condition|(
 name|entry
 operator|instanceof
 name|ImmutableEntry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|checkNotNull
@@ -1605,11 +1600,6 @@ condition|(
 name|object
 operator|instanceof
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 operator|&&
 operator|(
 operator|(
@@ -1627,7 +1617,7 @@ name|getKey
 argument_list|()
 operator|==
 literal|null
-argument_list|)
+condition|)
 block|{
 return|return
 literal|false
@@ -1707,16 +1697,11 @@ name|result
 return|;
 block|}
 block|}
-end_class
-
-begin_empty_stmt
-unit|)
-empty_stmt|;
-end_empty_stmt
-
-begin_decl_stmt
-unit|}    private
+argument_list|)
+return|;
+block|}
 DECL|field|cachedKeySet
+specifier|private
 specifier|transient
 name|ImmutableSet
 argument_list|<
@@ -1726,9 +1711,6 @@ name|cachedKeySet
 init|=
 literal|null
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 DECL|method|keySet ()
 specifier|public
 name|ImmutableSet
@@ -1763,9 +1745,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_decl_stmt
 DECL|field|cachedValues
 specifier|private
 specifier|transient
@@ -1777,9 +1756,6 @@ name|cachedValues
 init|=
 literal|null
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 DECL|method|values ()
 specifier|public
 name|ImmutableCollection
@@ -1814,9 +1790,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|size ()
 specifier|public
 name|int
@@ -1830,9 +1803,6 @@ name|size
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
@@ -1855,9 +1825,6 @@ name|object
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|hashCode ()
 annotation|@
 name|Override
@@ -1873,9 +1840,6 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -1891,8 +1855,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

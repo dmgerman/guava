@@ -974,9 +974,6 @@ condition|(
 name|object
 operator|instanceof
 name|RegularContiguousSet
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|RegularContiguousSet
@@ -1045,13 +1042,7 @@ name|object
 argument_list|)
 return|;
 block|}
-end_class
-
-begin_comment
 comment|// copied to make sure not to use the GWT-emulated version
-end_comment
-
-begin_function
 DECL|method|hashCode ()
 annotation|@
 name|Override
@@ -1069,9 +1060,6 @@ name|this
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_class
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1157,9 +1145,6 @@ argument_list|)
 return|;
 block|}
 block|}
-end_class
-
-begin_function
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1185,9 +1170,6 @@ name|domain
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1197,9 +1179,6 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1221,9 +1200,6 @@ name|DescendingContiguousSet
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_class
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1538,8 +1514,8 @@ literal|false
 return|;
 block|}
 block|}
+block|}
 end_class
 
-unit|}
 end_unit
 

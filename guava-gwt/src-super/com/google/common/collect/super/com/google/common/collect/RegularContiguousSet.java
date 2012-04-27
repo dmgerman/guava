@@ -909,9 +909,6 @@ condition|(
 name|object
 operator|instanceof
 name|RegularContiguousSet
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|RegularContiguousSet
@@ -980,13 +977,7 @@ name|object
 argument_list|)
 return|;
 block|}
-end_class
-
-begin_comment
 comment|// copied to make sure not to use the GWT-emulated version
-end_comment
-
-begin_function
 DECL|method|hashCode ()
 annotation|@
 name|Override
@@ -1004,9 +995,6 @@ name|this
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_decl_stmt
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1016,8 +1004,8 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-end_decl_stmt
+block|}
+end_class
 
-unit|}
 end_unit
 

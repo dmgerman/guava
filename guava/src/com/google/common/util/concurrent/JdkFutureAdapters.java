@@ -148,9 +148,6 @@ condition|(
 name|future
 operator|instanceof
 name|ListenableFuture
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 return|return
@@ -207,9 +204,6 @@ condition|(
 name|future
 operator|instanceof
 name|ListenableFuture
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 return|return

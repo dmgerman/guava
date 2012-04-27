@@ -255,13 +255,6 @@ condition|(
 name|table
 operator|instanceof
 name|ImmutableTable
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 annotation|@
@@ -1236,13 +1229,6 @@ condition|(
 name|obj
 operator|instanceof
 name|Table
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Table

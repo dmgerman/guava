@@ -7831,9 +7831,6 @@ operator|instanceof
 name|Multiset
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|Multiset
@@ -7914,9 +7911,6 @@ operator|instanceof
 name|Multiset
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|Multiset
@@ -8312,9 +8306,6 @@ argument_list|()
 return|;
 block|}
 block|}
-end_class
-
-begin_class
 DECL|class|Values
 specifier|static
 specifier|abstract
@@ -8424,13 +8415,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * A skeleton implementation of {@link Multimap#entries()}.    */
-end_comment
-
-begin_class
 DECL|class|Entries
 specifier|static
 specifier|abstract
@@ -8501,11 +8486,6 @@ operator|instanceof
 name|Map
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Map
@@ -8572,11 +8552,6 @@ operator|instanceof
 name|Map
 operator|.
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Map
@@ -8639,13 +8614,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * A skeleton implementation of {@link SetMultimap#entries()}.    */
-end_comment
-
-begin_class
 DECL|class|EntrySet
 specifier|static
 specifier|abstract
@@ -8718,13 +8687,7 @@ argument_list|)
 return|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * A skeleton implementation of {@link Multimap#asMap()}.    */
-end_comment
-
-begin_class
 DECL|class|AsMap
 specifier|static
 specifier|abstract
@@ -9089,13 +9052,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_comment
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals.    *    * @since 11.0    */
-end_comment
-
-begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -9205,13 +9162,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose values    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a value that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose value satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 11.0    */
-end_comment
-
-begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -9321,13 +9272,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} that    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key/value pair that doesn't satisfy the predicate,    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    *    * @since 11.0    */
-end_comment
-
-begin_function
 annotation|@
 name|Beta
 annotation|@
@@ -9419,13 +9364,7 @@ name|entryPredicate
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Support removal operations when filtering a filtered multimap. Since a    * filtered multimap has iterators that don't support remove, passing one to    * the FilteredMultimap constructor would lead to a multimap whose removal    * operations would fail. This method combines the predicates to avoid that    * problem.    */
-end_comment
-
-begin_function
 DECL|method|filterFiltered (FilteredMultimap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
@@ -9503,9 +9442,6 @@ name|predicate
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|FilteredMultimap
 specifier|private
 specifier|static
@@ -12059,11 +11995,6 @@ condition|(
 name|o
 operator|instanceof
 name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
 condition|)
 block|{
 name|Entry
@@ -12245,9 +12176,6 @@ return|;
 block|}
 block|}
 block|}
-end_class
-
-begin_decl_stmt
 DECL|field|keys
 name|AbstractMultiset
 argument_list|<
@@ -12255,9 +12183,6 @@ name|K
 argument_list|>
 name|keys
 decl_stmt|;
-end_decl_stmt
-
-begin_function
 DECL|method|keys ()
 annotation|@
 name|Override
@@ -12285,9 +12210,6 @@ else|:
 name|keys
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|Keys
 class|class
 name|Keys
@@ -12614,13 +12536,10 @@ return|;
 block|}
 block|}
 block|}
+block|}
+comment|// TODO(jlevy): Create methods that filter a SetMultimap or SortedSetMultimap.
+block|}
 end_class
 
-begin_comment
-unit|}
-comment|// TODO(jlevy): Create methods that filter a SetMultimap or SortedSetMultimap.
-end_comment
-
-unit|}
 end_unit
 

@@ -48,6 +48,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Array
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collection
@@ -93,6 +105,11 @@ name|GwtIncompatible
 argument_list|(
 literal|"Array.newInstance(Class, int)"
 argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 DECL|method|newArray (Class<T> type, int length)
 specifier|public
 specifier|static
@@ -114,9 +131,13 @@ name|length
 parameter_list|)
 block|{
 return|return
-name|Platform
+operator|(
+name|T
+index|[]
+operator|)
+name|Array
 operator|.
-name|newArray
+name|newInstance
 argument_list|(
 name|type
 argument_list|,

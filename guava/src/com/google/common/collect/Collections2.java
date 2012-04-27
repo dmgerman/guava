@@ -1861,9 +1861,6 @@ condition|(
 name|obj
 operator|instanceof
 name|List
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|List
@@ -2384,9 +2381,6 @@ condition|(
 name|obj
 operator|instanceof
 name|List
-argument_list|<
-name|?
-argument_list|>
 condition|)
 block|{
 name|List

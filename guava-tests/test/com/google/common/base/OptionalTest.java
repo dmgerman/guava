@@ -1573,6 +1573,12 @@ argument_list|()
 decl_stmt|;
 comment|// Number value = first.or(0.5); // error
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe covariant cast
 DECL|method|testSampleCodeFine1 ()
 specifier|public
 name|void
@@ -1603,6 +1609,12 @@ argument_list|)
 decl_stmt|;
 comment|// fine
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe covariant cast
 DECL|method|testSampleCodeFine2 ()
 specifier|public
 name|void

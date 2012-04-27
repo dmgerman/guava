@@ -16686,6 +16686,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|keySet
+specifier|transient
 name|Set
 argument_list|<
 name|K
@@ -16730,6 +16731,7 @@ operator|)
 return|;
 block|}
 DECL|field|values
+specifier|transient
 name|Collection
 argument_list|<
 name|V
@@ -16774,6 +16776,7 @@ operator|)
 return|;
 block|}
 DECL|field|entrySet
+specifier|transient
 name|Set
 argument_list|<
 name|Entry

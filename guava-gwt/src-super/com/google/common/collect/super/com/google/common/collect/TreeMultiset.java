@@ -2401,12 +2401,6 @@ else|else
 block|{
 name|current
 operator|=
-operator|(
-name|AvlNode
-argument_list|<
-name|E
-argument_list|>
-operator|)
 name|current
 operator|.
 name|pred
@@ -2599,11 +2593,13 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|checkAndSet (T expected, T newValue)
+DECL|method|checkAndSet (@ullable T expected, T newValue)
 specifier|public
 name|void
 name|checkAndSet
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|expected
 parameter_list|,
@@ -2648,6 +2644,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|elem
+annotation|@
+name|Nullable
 specifier|private
 specifier|final
 name|E
@@ -2706,9 +2704,11 @@ name|E
 argument_list|>
 name|succ
 decl_stmt|;
-DECL|method|AvlNode (E elem, int elemCount)
+DECL|method|AvlNode (@ullable E elem, int elemCount)
 name|AvlNode
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|elem
 parameter_list|,
@@ -2973,7 +2973,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|add (Comparator<? super E> comparator, E e, int count, int[] result)
+DECL|method|add (Comparator<? super E> comparator, @Nullable E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -2988,6 +2988,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|e
 parameter_list|,
@@ -3246,7 +3248,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|remove (Comparator<? super E> comparator, E e, int count, int[] result)
+DECL|method|remove (Comparator<? super E> comparator, @Nullable E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3261,6 +3263,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|e
 parameter_list|,
@@ -3531,7 +3535,7 @@ name|this
 return|;
 block|}
 block|}
-DECL|method|setCount (Comparator<? super E> comparator, E e, int count, int[] result)
+DECL|method|setCount (Comparator<? super E> comparator, @Nullable E e, int count, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3546,6 +3550,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|e
 parameter_list|,
@@ -3844,7 +3850,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|setCount ( Comparator<? super E> comparator, E e, int expectedCount, int newCount, int[] result)
+DECL|method|setCount ( Comparator<? super E> comparator, @Nullable E e, int expectedCount, int newCount, int[] result)
 name|AvlNode
 argument_list|<
 name|E
@@ -3859,6 +3865,8 @@ name|E
 argument_list|>
 name|comparator
 parameter_list|,
+annotation|@
+name|Nullable
 name|E
 name|e
 parameter_list|,

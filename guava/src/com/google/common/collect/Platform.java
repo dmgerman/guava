@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -92,51 +78,6 @@ name|array
 operator|.
 name|clone
 argument_list|()
-return|;
-block|}
-comment|/**    * Returns a new array of the given length with the specified component type.    *    * @param type the component type    * @param length the length of the new array    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Array.newInstance(Class, int)"
-argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-DECL|method|newArray (Class<T> type, int length)
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|newArray
-parameter_list|(
-name|Class
-argument_list|<
-name|T
-argument_list|>
-name|type
-parameter_list|,
-name|int
-name|length
-parameter_list|)
-block|{
-return|return
-operator|(
-name|T
-index|[]
-operator|)
-name|Array
-operator|.
-name|newInstance
-argument_list|(
-name|type
-argument_list|,
-name|length
-argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new array of the given length with the same type as a reference    * array.    *    * @param reference any array of the desired type    * @param length the length of the new array    */
