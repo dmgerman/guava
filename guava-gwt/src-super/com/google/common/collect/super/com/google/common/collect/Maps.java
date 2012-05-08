@@ -3601,7 +3601,6 @@ argument_list|>
 name|delegate
 decl_stmt|;
 DECL|field|inverse
-specifier|transient
 name|BiMap
 argument_list|<
 name|V
