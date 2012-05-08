@@ -2763,23 +2763,63 @@ parameter_list|)
 block|{}
 block|}
 block|}
-comment|// Depends on the correctness of BigIntegerMath.factorial
-DECL|method|testBinomial ()
+DECL|method|testBinomialSmall ()
 specifier|public
 name|void
-name|testBinomial
+name|testBinomialSmall
 parameter_list|()
+block|{
+name|runBinomialTest
+argument_list|(
+literal|0
+argument_list|,
+literal|30
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"too slow"
+argument_list|)
+DECL|method|testBinomialLarge ()
+specifier|public
+name|void
+name|testBinomialLarge
+parameter_list|()
+block|{
+name|runBinomialTest
+argument_list|(
+literal|31
+argument_list|,
+literal|100
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Depends on the correctness of BigIntegerMath.factorial
+DECL|method|runBinomialTest (int firstN, int lastN)
+specifier|private
+specifier|static
+name|void
+name|runBinomialTest
+parameter_list|(
+name|int
+name|firstN
+parameter_list|,
+name|int
+name|lastN
+parameter_list|)
 block|{
 for|for
 control|(
 name|int
 name|n
 init|=
-literal|0
+name|firstN
 init|;
 name|n
 operator|<=
-literal|50
+name|lastN
 condition|;
 name|n
 operator|++
