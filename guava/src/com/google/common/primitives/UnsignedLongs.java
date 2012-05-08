@@ -137,7 +137,7 @@ operator|-
 literal|1L
 decl_stmt|;
 comment|// Equivalent to 2^64 - 1
-comment|/**    * A (self-inverse) bijection which converts the ordering on unsigned longs to the ordering on    * longs, that is, {@code a<= b} as unsigned longs if and only if {@code rotate(a)<= rotate(b)}    * as signed longs.    */
+comment|/**    * A (self-inverse) bijection which converts the ordering on unsigned longs to the ordering on    * longs, that is, {@code a<= b} as unsigned longs if and only if {@code flip(a)<= flip(b)}    * as signed longs.    */
 DECL|method|flip (long a)
 specifier|private
 specifier|static
