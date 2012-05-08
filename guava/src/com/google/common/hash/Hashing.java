@@ -443,6 +443,7 @@ argument_list|(
 literal|"SHA-512"
 argument_list|)
 decl_stmt|;
+comment|// Lazy initiliazation holder class idiom.
 comment|/**    * If {@code hashCode} has enough bits, returns {@code hashCode.asLong()}, otherwise    * returns a {@code long} value with {@code hashCode.asInt()} as the least-significant    * four bytes and {@code 0x00} as each of the most-significant four bytes.    */
 DECL|method|padToLong (HashCode hashCode)
 specifier|public
