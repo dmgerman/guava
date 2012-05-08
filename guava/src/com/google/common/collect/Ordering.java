@@ -229,7 +229,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  * The {@link #from(Comparator)} method returns the equivalent {@code Ordering}  * instance for a pre-existing comparator. You can also skip the comparator step  * and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/OrderingExplained">  * {@code Ordering}</a>.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A comparator with added methods to support common functions. For example:  *<pre>   {@code  *  *   if (Ordering.from(comparator).reverse().isOrdered(list)) { ... }}</pre>  *  * The {@link #from(Comparator)} method returns the equivalent {@code Ordering}  * instance for a pre-existing comparator. You can also skip the comparator step  * and extend {@code Ordering} directly:<pre>   {@code  *  *   Ordering<String> byLengthOrdering = new Ordering<String>() {  *     public int compare(String left, String right) {  *       return Ints.compare(left.length(), right.length());  *     }  *   };}</pre>  *  * Except as noted, the orderings returned by the factory methods of this  * class are serializable if and only if the provided instances that back them  * are. For example, if {@code ordering} and {@code function} can themselves be  * serialized, then {@code ordering.onResultOf(function)} can as well.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/OrderingExplained">  * {@code Ordering}</a>.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -250,6 +250,35 @@ name|T
 argument_list|>
 block|{
 comment|// Static factories
+comment|/**    * Returns an ordering which treats all values as equal. This can be useful in conjunction with    * nullsFirst() or nullsLast() to treat all non-null objects as equal, or to make sorting a    * no-op.    *    *<p>The returned comparator is serializable.    */
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|serializable
+operator|=
+literal|true
+argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|allEqual ()
+specifier|public
+specifier|static
+name|Ordering
+argument_list|<
+name|Object
+argument_list|>
+name|allEqual
+parameter_list|()
+block|{
+return|return
+name|AllEqualOrdering
+operator|.
+name|INSTANCE
+return|;
+block|}
 comment|/**    * Returns a serializable ordering that uses the natural order of the values.    * The ordering throws a {@link NullPointerException} when passed a null    * parameter.    *    *<p>The type specification is {@code<C extends Comparable>}, instead of    * the technically correct {@code<C extends Comparable<? super C>>}, to    * support legacy types from before Java 5.    */
 annotation|@
 name|GwtCompatible
