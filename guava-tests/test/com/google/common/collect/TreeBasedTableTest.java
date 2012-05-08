@@ -259,6 +259,11 @@ name|TreeBasedTableTest
 extends|extends
 name|AbstractTableTest
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static

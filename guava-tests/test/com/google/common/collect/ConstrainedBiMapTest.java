@@ -54,6 +54,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|MapConstraintsTest
@@ -193,12 +207,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link MapConstraints#constrainedBiMap}.  *   * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * Tests for {@link MapConstraints#constrainedBiMap}.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ConstrainedBiMapTest
 specifier|public
 class|class
@@ -240,6 +259,11 @@ operator|new
 name|TestConstraint
 argument_list|()
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
