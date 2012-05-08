@@ -362,6 +362,17 @@ operator|=
 name|keySetHashCodeMutable
 expr_stmt|;
 block|}
+comment|/**    * Closed addressing tends to perform well even with high load factors.    * Being conservative here ensures that the table is still likely to be    * relatively sparse (hence it misses fast) while saving space.    */
+DECL|field|MAX_LOAD_FACTOR
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|MAX_LOAD_FACTOR
+init|=
+literal|1.2
+decl_stmt|;
+comment|/**    * Give a good hash table size for the given number of keys.    *    * @param size The number of keys to be inserted. Must be greater than or equal to 2.    */
 DECL|method|chooseTableSize (int size)
 specifier|private
 specifier|static
@@ -372,7 +383,8 @@ name|int
 name|size
 parameter_list|)
 block|{
-comment|// least power of 2 greater than size
+comment|// Get the recommended table size.
+comment|// Round down to the nearest power of 2.
 name|int
 name|tableSize
 init|=
@@ -382,9 +394,24 @@ name|highestOneBit
 argument_list|(
 name|size
 argument_list|)
-operator|<<
-literal|1
 decl_stmt|;
+comment|// Check to make sure that we will not exceed the maximum load factor.
+if|if
+condition|(
+operator|(
+name|double
+operator|)
+name|size
+operator|/
+name|tableSize
+operator|>
+name|MAX_LOAD_FACTOR
+condition|)
+block|{
+name|tableSize
+operator|<<=
+literal|1
+expr_stmt|;
 name|checkArgument
 argument_list|(
 name|tableSize
@@ -396,6 +423,7 @@ argument_list|,
 name|size
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|tableSize
 return|;
