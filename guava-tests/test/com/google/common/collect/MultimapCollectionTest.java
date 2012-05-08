@@ -68,7 +68,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 import|;
 end_import
 
@@ -781,7 +781,7 @@ name|ALLOWS_NULL_VALUES
 block|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 block|}
 decl_stmt|;
 DECL|field|COLLECTION_FEATURES_REMOVE_ORDER
@@ -809,7 +809,7 @@ name|KNOWN_ORDER
 block|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 block|}
 decl_stmt|;
 DECL|field|FOR_MAP_FEATURES_ONE
@@ -830,7 +830,7 @@ name|ONE
 block|,
 name|ALLOWS_NULL_VALUES
 block|,
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 block|,   }
 decl_stmt|;
 DECL|field|FOR_MAP_FEATURES_ANY
@@ -851,7 +851,7 @@ name|ANY
 block|,
 name|ALLOWS_NULL_VALUES
 block|,
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 block|,   }
 decl_stmt|;
 DECL|field|STRING_TREESET_FACTORY
@@ -3616,7 +3616,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -3723,7 +3723,7 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|,
 name|ListFeature
 operator|.
@@ -3820,7 +3820,7 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite
@@ -4156,7 +4156,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite
@@ -4251,7 +4251,7 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite
@@ -4678,7 +4678,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite

@@ -1331,7 +1331,7 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite

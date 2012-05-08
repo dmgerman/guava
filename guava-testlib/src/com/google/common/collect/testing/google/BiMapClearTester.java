@@ -36,7 +36,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 import|;
 end_import
 
@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester for {@code BiMap.clear}.  *   * @author Louis Wasserman  */
+comment|/**  * Tester for {@code BiMap.clear}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -115,7 +115,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testClearClearsInverse ()
 specifier|public
@@ -166,7 +166,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testKeySetClearClearsInverse ()
 specifier|public
@@ -220,7 +220,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testValuesClearClearsInverse ()
 specifier|public
@@ -274,7 +274,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testClearInverseClears ()
 specifier|public
@@ -324,7 +324,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testClearInverseKeySetClears ()
 specifier|public
@@ -377,7 +377,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testClearInverseValuesClears ()
 specifier|public

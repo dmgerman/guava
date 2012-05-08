@@ -96,7 +96,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 import|;
 end_import
 
@@ -283,7 +283,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRemoveAll_emptyCollection ()
 specifier|public
@@ -315,7 +315,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRemoveAll_nonePresent ()
 specifier|public
@@ -351,7 +351,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -400,7 +400,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -454,7 +454,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 block|,
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|}
@@ -532,7 +532,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -603,7 +603,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRemoveAll_unsupportedEmptyCollection ()
 specifier|public
@@ -648,7 +648,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRemoveAll_unsupportedNonePresent ()
 specifier|public
@@ -697,7 +697,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -766,7 +766,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -804,7 +804,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -850,7 +850,7 @@ name|Require
 argument_list|(
 name|value
 operator|=
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|,
 name|absent
 operator|=
@@ -909,7 +909,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 block|,
 name|ALLOWS_NULL_QUERIES
 block|}
@@ -958,7 +958,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
@@ -1005,7 +1005,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRemoveAll_containsWrongType ()
 specifier|public

@@ -138,14 +138,8 @@ operator|,
 DECL|enumConstant|SUPPORTS_PUT
 constructor|SUPPORTS_PUT
 operator|,
-DECL|enumConstant|SUPPORTS_PUT_ALL
-constructor|SUPPORTS_PUT_ALL
-operator|,
 DECL|enumConstant|SUPPORTS_REMOVE
 constructor|SUPPORTS_REMOVE
-operator|,
-DECL|enumConstant|SUPPORTS_CLEAR
-constructor|SUPPORTS_CLEAR
 operator|,
 DECL|enumConstant|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 constructor|FAILS_FAST_ON_CONCURRENT_MODIFICATION
@@ -157,21 +151,8 @@ operator|,
 DECL|enumConstant|GENERAL_PURPOSE
 constructor|GENERAL_PURPOSE(       SUPPORTS_PUT
 operator|,
-constructor|SUPPORTS_PUT_ALL
-operator|,
 constructor|SUPPORTS_REMOVE
-operator|,
-constructor|SUPPORTS_CLEAR
 block|)
-enum|,
-comment|/** Features supported by maps where only removal is allowed. */
-DECL|enumConstant|REMOVE_OPERATIONS
-name|REMOVE_OPERATIONS
-argument_list|(
-name|SUPPORTS_REMOVE
-argument_list|,
-name|SUPPORTS_CLEAR
-argument_list|)
 enum|;
 end_enum
 

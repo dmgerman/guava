@@ -116,7 +116,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 import|;
 end_import
 
@@ -381,7 +381,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 DECL|method|testPutAll_supportedNothing ()
 specifier|public
@@ -409,7 +409,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 DECL|method|testPutAll_unsupportedNothing ()
 specifier|public
@@ -444,7 +444,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 DECL|method|testPutAll_supportedNonePresent ()
 specifier|public
@@ -477,7 +477,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 DECL|method|testPutAll_unsupportedNonePresent ()
 specifier|public
@@ -525,7 +525,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -574,7 +574,7 @@ argument_list|(
 block|{
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|,
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 block|}
 argument_list|)
 annotation|@
@@ -657,7 +657,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -715,7 +715,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -763,7 +763,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 block|,
 name|ALLOWS_NULL_KEYS
 block|}
@@ -797,7 +797,7 @@ name|Require
 argument_list|(
 name|value
 operator|=
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|,
 name|absent
 operator|=
@@ -845,7 +845,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
@@ -879,7 +879,7 @@ name|Require
 argument_list|(
 name|value
 operator|=
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|,
 name|absent
 operator|=
@@ -926,7 +926,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_PUT_ALL
+name|SUPPORTS_PUT
 argument_list|)
 DECL|method|testPutAll_nullCollectionReference ()
 specifier|public

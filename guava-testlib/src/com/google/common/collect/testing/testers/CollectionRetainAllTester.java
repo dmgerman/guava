@@ -56,7 +56,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 import|;
 end_import
 
@@ -530,7 +530,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -561,7 +561,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -590,7 +590,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -638,7 +638,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -670,7 +670,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -701,7 +701,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -730,7 +730,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -778,7 +778,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -810,7 +810,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRetainAll_superset ()
 specifier|public
@@ -834,7 +834,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRetainAll_supersetUnsupported ()
 specifier|public
@@ -857,7 +857,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -898,7 +898,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -934,7 +934,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRetainAll_sameElements ()
 specifier|public
@@ -958,7 +958,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testRetainAll_sameElementsUnsupported ()
 specifier|public
@@ -981,7 +981,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1022,7 +1022,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1058,7 +1058,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1091,7 +1091,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1131,7 +1131,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1160,7 +1160,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1192,7 +1192,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
@@ -1231,7 +1231,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
@@ -1278,7 +1278,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
@@ -1317,7 +1317,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -1355,7 +1355,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize

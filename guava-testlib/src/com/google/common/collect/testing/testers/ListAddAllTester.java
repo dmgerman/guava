@@ -36,7 +36,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 import|;
 end_import
 
@@ -141,7 +141,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -193,7 +193,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -248,7 +248,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 DECL|method|testAddAll_withDuplicates ()
 specifier|public

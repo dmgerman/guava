@@ -96,26 +96,6 @@ name|features
 operator|.
 name|ListFeature
 operator|.
-name|SUPPORTS_ADD_ALL_WITH_INDEX
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|features
-operator|.
-name|ListFeature
-operator|.
 name|SUPPORTS_ADD_WITH_INDEX
 import|;
 end_import
@@ -241,7 +221,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -297,7 +277,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -354,7 +334,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -418,7 +398,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -486,7 +466,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 DECL|method|testAddAllAtIndex_supportedNothing ()
 specifier|public
@@ -521,7 +501,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 DECL|method|testAddAllAtIndex_unsupportedNothing ()
 specifier|public
@@ -563,7 +543,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 DECL|method|testAddAllAtIndex_withDuplicates ()
 specifier|public
@@ -640,7 +620,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionFeature
@@ -698,7 +678,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionFeature
@@ -764,7 +744,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -821,7 +801,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -870,7 +850,7 @@ name|ListFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL_WITH_INDEX
+name|SUPPORTS_ADD_WITH_INDEX
 argument_list|)
 DECL|method|testAddAllAtIndex_nullCollectionReference ()
 specifier|public

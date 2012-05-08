@@ -114,26 +114,6 @@ name|testing
 operator|.
 name|features
 operator|.
-name|CollectionFeature
-operator|.
-name|SUPPORTS_ADD_ALL
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|features
-operator|.
 name|CollectionSize
 operator|.
 name|ZERO
@@ -291,7 +271,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 DECL|method|testAddAll_supportedNothing ()
 specifier|public
@@ -323,7 +303,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 DECL|method|testAddAll_unsupportedNothing ()
 specifier|public
@@ -362,7 +342,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 DECL|method|testAddAll_supportedNonePresent ()
 specifier|public
@@ -402,7 +382,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 DECL|method|testAddAll_unsupportedNonePresent ()
 specifier|public
@@ -452,7 +432,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -536,7 +516,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -676,7 +656,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -733,7 +713,7 @@ argument_list|(
 name|value
 operator|=
 block|{
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 block|,
 name|ALLOWS_NULL_VALUES
 block|}
@@ -788,7 +768,7 @@ name|Require
 argument_list|(
 name|value
 operator|=
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|,
 name|absent
 operator|=
@@ -846,7 +826,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_ADD_ALL
+name|SUPPORTS_ADD
 argument_list|)
 DECL|method|testAddAll_nullCollectionReference ()
 specifier|public

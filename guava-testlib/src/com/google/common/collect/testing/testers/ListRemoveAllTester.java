@@ -36,7 +36,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 import|;
 end_import
 
@@ -161,7 +161,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize

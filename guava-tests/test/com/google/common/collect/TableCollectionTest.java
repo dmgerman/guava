@@ -493,7 +493,7 @@ name|ANY
 block|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 block|,
 name|CollectionFeature
 operator|.
@@ -522,7 +522,7 @@ name|KNOWN_ORDER
 block|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 block|,
 name|CollectionFeature
 operator|.
@@ -3120,7 +3120,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -3179,7 +3179,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -3255,7 +3255,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -3428,7 +3428,7 @@ name|ALLOWS_NULL_QUERIES
 argument_list|,
 name|CollectionFeature
 operator|.
-name|REMOVE_OPERATIONS
+name|SUPPORTS_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite

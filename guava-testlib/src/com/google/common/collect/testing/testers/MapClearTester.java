@@ -96,7 +96,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 import|;
 end_import
 
@@ -211,7 +211,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testClear ()
 specifier|public
@@ -245,7 +245,7 @@ argument_list|(
 block|{
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|,
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 block|}
 argument_list|)
 annotation|@
@@ -317,7 +317,7 @@ argument_list|(
 block|{
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|,
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 block|}
 argument_list|)
 annotation|@
@@ -384,7 +384,7 @@ argument_list|(
 block|{
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 block|,
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 block|}
 argument_list|)
 annotation|@
@@ -450,7 +450,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize
@@ -500,7 +500,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 annotation|@
 name|CollectionSize

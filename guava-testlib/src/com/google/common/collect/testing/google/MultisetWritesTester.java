@@ -56,67 +56,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_CLEAR
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|features
-operator|.
-name|CollectionFeature
-operator|.
 name|SUPPORTS_REMOVE
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|features
-operator|.
-name|CollectionFeature
-operator|.
-name|SUPPORTS_REMOVE_ALL
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|features
-operator|.
-name|CollectionFeature
-operator|.
-name|SUPPORTS_RETAIN_ALL
 import|;
 end_import
 
@@ -694,7 +634,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_CLEAR
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_clear ()
 specifier|public
@@ -1037,7 +977,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_removeAll_present ()
 specifier|public
@@ -1105,7 +1045,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_removeAll_missing ()
 specifier|public
@@ -1164,7 +1104,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_REMOVE_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_removeAll_null ()
 specifier|public
@@ -1210,7 +1150,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_retainAll_present ()
 specifier|public
@@ -1276,7 +1216,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_retainAll_missing ()
 specifier|public
@@ -1335,7 +1275,7 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-name|SUPPORTS_RETAIN_ALL
+name|SUPPORTS_REMOVE
 argument_list|)
 DECL|method|testEntrySet_retainAll_null ()
 specifier|public
