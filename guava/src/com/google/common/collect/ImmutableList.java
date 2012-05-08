@@ -1219,7 +1219,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Views the array as an immutable list.  The array must have only {@code E} elements.    *    *<p>The array must be internally created.    */
+comment|/**    * Views the array as an immutable list.  The array must have only non-null {@code E} elements.    *    *<p>The array must be internally created.    */
 DECL|method|asImmutableList (Object[] elements)
 specifier|static
 parameter_list|<
