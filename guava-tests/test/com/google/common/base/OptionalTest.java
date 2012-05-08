@@ -1524,6 +1524,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/*    * The following tests demonstrate the shortcomings of or() and test that the casting workaround    * mentioned in the method Javadoc does in fact compile.    */
 DECL|method|testSampleCodeError1 ()
 specifier|public
 name|void
