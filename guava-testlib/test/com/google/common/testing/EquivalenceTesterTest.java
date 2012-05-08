@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|contrib
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|ASSERT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -534,16 +550,21 @@ name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|ASSERT
+operator|.
+name|that
 argument_list|(
-literal|"TestObject{group=1, item=2} [group 1, item 2] must be equivalent to "
-operator|+
-literal|"TestObject{group=1, item=1} [group 1, item 1]"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"TestObject{group=1, item=2} [group 1, item 2] must be equivalent to "
+operator|+
+literal|"TestObject{group=1, item=1} [group 1, item 1]"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -700,16 +721,21 @@ name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|ASSERT
+operator|.
+name|that
 argument_list|(
-literal|"TestObject{group=1, item=2} [group 1, item 2] must be equivalent to "
-operator|+
-literal|"TestObject{group=1, item=3} [group 1, item 3]"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"TestObject{group=1, item=2} [group 1, item 2] must be equivalent to "
+operator|+
+literal|"TestObject{group=1, item=3} [group 1, item 3]"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -811,16 +837,21 @@ name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|ASSERT
+operator|.
+name|that
 argument_list|(
-literal|"TestObject{group=1, item=1} [group 1, item 1] must be inequivalent to "
-operator|+
-literal|"TestObject{group=2, item=1} [group 2, item 1]"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"TestObject{group=1, item=1} [group 1, item 1] must be inequivalent to "
+operator|+
+literal|"TestObject{group=2, item=1} [group 2, item 1]"
 argument_list|)
 expr_stmt|;
 return|return;
