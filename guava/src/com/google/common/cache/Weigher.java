@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Calculates the weights of cache entries.  *  * @author fry@google.com (Charles Fry)  * @since 11.0  */
+comment|/**  * Calculates the weights of cache entries.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
 
 begin_interface

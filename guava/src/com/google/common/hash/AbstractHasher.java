@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract hasher, implementing {@link #putBoolean(boolean)}, {@link #putDouble(double)},  * {@link #putFloat(float)}, {@link #putString(CharSequence)}, and  * {@link #putString(CharSequence, Charset)} as prescribed by {@link Hasher}.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * An abstract hasher, implementing {@link #putBoolean(boolean)}, {@link #putDouble(double)},  * {@link #putFloat(float)}, {@link #putString(CharSequence)}, and  * {@link #putString(CharSequence, Charset)} as prescribed by {@link Hasher}.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

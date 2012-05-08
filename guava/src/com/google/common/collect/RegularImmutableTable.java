@@ -167,7 +167,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link ImmutableTable} holding an arbitrary number of  * cells.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * An implementation of {@link ImmutableTable} holding an arbitrary number of  * cells.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

@@ -276,7 +276,7 @@ name|newHasher
 argument_list|()
 return|;
 block|}
-comment|/**    * A convenience base class for implementors of {@code Hasher}; handles accumulating data    * until an entire "chunk" (of implementation-dependent length) is ready to be hashed.    *    * @author kevinb@google.com (Kevin Bourrillion)    * @author andreou@google.com (Dimitris Andreou)    */
+comment|/**    * A convenience base class for implementors of {@code Hasher}; handles accumulating data    * until an entire "chunk" (of implementation-dependent length) is ready to be hashed.    *    * @author Kevin Bourrillion    * @author Dimitris Andreou    */
 comment|// TODO(kevinb): this class still needs some design-and-document-for-inheritance love
 DECL|class|AbstractStreamingHasher
 specifier|protected

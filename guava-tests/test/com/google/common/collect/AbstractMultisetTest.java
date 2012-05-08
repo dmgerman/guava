@@ -321,23 +321,6 @@ name|assertSize
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Don't run {@code NullPointerTester} on multisets, since they fail with    * Java 6 due to a bug in the JDK, as illustrated in the commented out    * method {@code HashMultisetTest#testAnnotations()}.    */
-comment|// TODO: Figure out if this is still true...
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
-DECL|method|testNullPointerExceptions ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testNullPointerExceptions
-parameter_list|()
-throws|throws
-name|Exception
-block|{}
 DECL|method|testCountZero ()
 specifier|public
 name|void

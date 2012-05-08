@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code  * Map<E, AtomicInteger>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code  * readObject} and {@code writeObject} methods.  *  * @author Kevin Bourrillion  */
+comment|/**  * Basic implementation of {@code Multiset<E>} backed by an instance of {@code  * Map<E, Count>}.  *  *<p>For serialization to work, the subclass must specify explicit {@code  * readObject} and {@code writeObject} methods.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -1127,13 +1127,15 @@ name|oldCount
 return|;
 block|}
 comment|// Roughly a 33% performance improvement over AbstractMultiset.setCount().
-DECL|method|setCount (E element, int count)
+DECL|method|setCount (@ullable E element, int count)
 annotation|@
 name|Override
 specifier|public
 name|int
 name|setCount
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|element
 parameter_list|,

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulated version of LongAdder.  *  * @author fry@google.com (Charles Fry)  */
+comment|/**  * GWT emulated version of LongAdder.  *  * @author Charles Fry  */
 end_comment
 
 begin_class

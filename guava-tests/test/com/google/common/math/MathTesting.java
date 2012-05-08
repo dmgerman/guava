@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exhaustive input sets for every integral type.  *  * @author lowasser@google.com (Louis Wasserman)  */
+comment|/**  * Exhaustive input sets for every integral type.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

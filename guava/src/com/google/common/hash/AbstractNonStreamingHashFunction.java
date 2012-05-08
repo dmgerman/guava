@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Skeleton implementation of {@link HashFunction}, appropriate for non-streaming algorithms.  * All the hash computation done using {@linkplain #newHasher()} are delegated to the {@linkplain  * #hashBytes(byte[], int, int)} method.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Skeleton implementation of {@link HashFunction}, appropriate for non-streaming algorithms.  * All the hash computation done using {@linkplain #newHasher()} are delegated to the {@linkplain  * #hashBytes(byte[], int, int)} method.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

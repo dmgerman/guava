@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * @author Gregory Kick  */
 end_comment
 
 begin_class

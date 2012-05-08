@@ -1972,7 +1972,7 @@ index|[]
 name|toFloatArray
 parameter_list|()
 block|{
-comment|// Arrays.copyOfRange() requires Java 6
+comment|// Arrays.copyOfRange() is not available under GWT
 name|int
 name|size
 init|=

@@ -213,11 +213,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|count (Object element)
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -288,11 +290,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|add (E element, int occurrences)
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -306,13 +310,15 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|remove (Object element)
+DECL|method|remove (@ullable Object element)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|element
 parameter_list|)
@@ -330,11 +336,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|remove (Object element, int occurrences)
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|element
 parameter_list|,
@@ -350,11 +358,13 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|setCount (E element, int count)
+DECL|method|setCount (@ullable E element, int count)
 specifier|public
 name|int
 name|setCount
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -375,11 +385,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setCount (E element, int oldCount, int newCount)
+DECL|method|setCount (@ullable E element, int oldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -404,7 +416,7 @@ argument_list|)
 return|;
 block|}
 comment|// Bulk Operations
-comment|/**    * {@inheritDoc}    *     *<p>This implementation is highly efficient when {@code elementsToAdd}    * is itself a {@link Multiset}.    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation is highly efficient when {@code elementsToAdd}    * is itself a {@link Multiset}.    */
 DECL|method|addAll (Collection<? extends E> elementsToAdd)
 annotation|@
 name|Override

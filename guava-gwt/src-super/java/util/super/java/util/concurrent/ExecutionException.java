@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Emulation of ExecutionException.  *  * @author fry@google.com (Charles Fry)  */
+comment|/**  * Emulation of ExecutionException.  *  * @author Charles Fry  */
 end_comment
 
 begin_class

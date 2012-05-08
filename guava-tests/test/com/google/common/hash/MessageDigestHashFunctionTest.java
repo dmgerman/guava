@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for the MessageDigestHashFunction.  *  * @author kak@google.com (Kurt Alfred Kluever)  */
+comment|/**  * Tests for the MessageDigestHashFunction.  *  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class

@@ -44,6 +44,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkState
 import|;
 end_import
@@ -275,7 +291,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset that supports concurrent modifications and that provides atomic versions of most  * {@code Multiset} operations (exceptions where noted). Null elements are not supported.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A multiset that supports concurrent modifications and that provides atomic versions of most  * {@code Multiset} operations (exceptions where noted). Null elements are not supported.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -419,7 +435,7 @@ return|return
 name|multiset
 return|;
 block|}
-comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker}    * to construct the internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any kind, this eviction    * applies to all occurrences of a given element as a single unit. However, most updates to the    * multiset do not count as map updates at all, since we're usually just mutating the value    * stored in the map, so {@link MapMaker#expireAfterAccess} makes sense (evict the entry that    * was queried or updated longest ago), but {@link MapMaker#expireAfterWrite} doesn't, because    * the eviction time is measured from when we saw the first occurrence of the object.    *    *<p>The returned multiset is serializable but any serialization caveats    * given in {@code MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful: the values are created    * internally and not exposed externally, so no one else will have a strong reference to the    * values. Weak keys on the other hand can be useful in some scenarios.    *     * @since 7.0    */
+comment|/**    * Creates a new, empty {@code ConcurrentHashMultiset} using {@code mapMaker}    * to construct the internal backing map.    *    *<p>If this {@link MapMaker} is configured to use entry eviction of any kind, this eviction    * applies to all occurrences of a given element as a single unit. However, most updates to the    * multiset do not count as map updates at all, since we're usually just mutating the value    * stored in the map, so {@link MapMaker#expireAfterAccess} makes sense (evict the entry that    * was queried or updated longest ago), but {@link MapMaker#expireAfterWrite} doesn't, because    * the eviction time is measured from when we saw the first occurrence of the object.    *    *<p>The returned multiset is serializable but any serialization caveats    * given in {@code MapMaker} apply.    *    *<p>Finally, soft/weak values can be used but are not very useful: the values are created    * internally and not exposed externally, so no one else will have a strong reference to the    * values. Weak keys on the other hand can be useful in some scenarios.    *    * @since 7.0    */
 annotation|@
 name|Beta
 DECL|method|create ( GenericMapMaker<? super E, ? super Number> mapMaker)
@@ -755,6 +771,11 @@ name|int
 name|occurrences
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|element
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|occurrences
@@ -953,6 +974,7 @@ comment|// If we're still here, there was a race, so just try again.
 block|}
 block|}
 comment|/**    * Removes a number of occurrences of the specified element from this multiset. If the multiset    * contains fewer than this number of occurrences to begin with, all occurrences will be removed.    *    * @param element the element whose occurrences should be removed    * @param occurrences the number of occurrences of the element to remove    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
+comment|/*    * TODO(cpovirk): remove and removeExactly currently accept null inputs only    * if occurrences == 0. This satisfies both NullPointerTester and    * CollectionRemoveTester.testRemove_nullAllowed, but it's not clear that it's    * a good policy, especially because, in order for the test to pass, the    * parameter must be misleadingly annotated as @Nullable. I suspect that    * we'll want to remove @Nullable, add an eager checkNotNull, and loosen up    * testRemove_nullAllowed.    */
 DECL|method|remove (@ullable Object element, int occurrences)
 annotation|@
 name|Override
@@ -1230,6 +1252,11 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|element
+argument_list|)
+expr_stmt|;
 name|checkNonnegative
 argument_list|(
 name|count
@@ -1434,6 +1461,11 @@ name|int
 name|newCount
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|element
+argument_list|)
+expr_stmt|;
 name|checkNonnegative
 argument_list|(
 name|expectedOldCount

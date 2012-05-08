@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A minimal GWT emulation of {@link Charset}.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * A minimal GWT emulation of {@link Charset}.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

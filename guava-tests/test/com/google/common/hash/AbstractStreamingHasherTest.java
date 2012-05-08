@@ -169,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for AbstractHashSink.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for AbstractHashSink.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

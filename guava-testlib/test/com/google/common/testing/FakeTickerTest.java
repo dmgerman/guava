@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link FakeTicker}.  *  * @author benyu@google.com (Jige Yu)  */
+comment|/**  * Unit test for {@link FakeTicker}.  *  * @author Jige Yu  */
 end_comment
 
 begin_class

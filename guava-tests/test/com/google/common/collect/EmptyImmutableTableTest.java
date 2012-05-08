@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link EmptyImmutableTable}  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * Tests {@link EmptyImmutableTable}  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

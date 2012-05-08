@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link ImmutableTable} that holds a single cell.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * An implementation of {@link ImmutableTable} that holds a single cell.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

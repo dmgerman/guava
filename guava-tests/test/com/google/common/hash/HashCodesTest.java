@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for HashCodes, especially making sure that their endianness promises (big-endian)  * are upheld.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for HashCodes, especially making sure that their endianness promises (big-endian)  * are upheld.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

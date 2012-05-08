@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link HashFunction} adapter for {@link MessageDigest}s.  *   * @author kevinb@google.com (Kevin Bourrillion)  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * {@link HashFunction} adapter for {@link MessageDigest}s.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link AtomicLongMap}.  *  * @author schmoe@google.com (mike nonemacher)  */
+comment|/**  * Tests for {@link AtomicLongMap}.  *  * @author mike nonemacher  */
 end_comment
 
 begin_class

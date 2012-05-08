@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Hashing}.  *  * @author andreou@google.com (Dimitris Andreou)  * @author kak@google.com (Kurt Alfred Kluever)  */
+comment|/**  * Unit tests for {@link Hashing}.  *  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class

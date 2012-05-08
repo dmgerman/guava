@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * See http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp  * MurmurHash3_x86_32  *   * @author aappleby@google.com (Austin Appleby)  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * See http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp  * MurmurHash3_x86_32  *  * @author Austin Appleby  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

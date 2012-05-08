@@ -89,7 +89,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for SimpleGenericBloomFilter and derived BloomFilter views.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for SimpleGenericBloomFilter and derived BloomFilter views.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

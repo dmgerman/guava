@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT serialization logic for {@link PairwiseEquivalence}.  *  * @author kkanitkar@google.com (Kedar Kanitkar)  */
+comment|/**  * GWT serialization logic for {@link PairwiseEquivalence}.  *  * @author Kedar Kanitkar  */
 end_comment
 
 begin_class

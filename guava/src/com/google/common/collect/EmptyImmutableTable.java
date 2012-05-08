@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty implementation of {@link ImmutableTable}.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * An empty implementation of {@link ImmutableTable}.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

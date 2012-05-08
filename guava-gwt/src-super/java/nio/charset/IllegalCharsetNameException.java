@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulation of {@link IllegalCharsetNameException}.  *  * @author gak@google.com (Gregory Kick)  */
+comment|/**  * GWT emulation of {@link IllegalCharsetNameException}.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

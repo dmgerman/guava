@@ -1106,11 +1106,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|add (E element, int occurrences)
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|element
 parameter_list|,
@@ -2444,7 +2446,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|headMultiset (E upperBound, BoundType boundType)
+DECL|method|headMultiset (@ullable E upperBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -2452,6 +2454,8 @@ name|E
 argument_list|>
 name|headMultiset
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|upperBound
 parameter_list|,
@@ -2491,7 +2495,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|tailMultiset (E lowerBound, BoundType boundType)
+DECL|method|tailMultiset (@ullable E lowerBound, BoundType boundType)
 specifier|public
 name|SortedMultiset
 argument_list|<
@@ -2499,6 +2503,8 @@ name|E
 argument_list|>
 name|tailMultiset
 parameter_list|(
+annotation|@
+name|Nullable
 name|E
 name|lowerBound
 parameter_list|,

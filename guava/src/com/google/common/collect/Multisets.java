@@ -3233,6 +3233,11 @@ argument_list|>
 name|elementsToRetain
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|elementsToRetain
+argument_list|)
+expr_stmt|;
 name|Collection
 argument_list|<
 name|?

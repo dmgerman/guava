@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link GcFinalization}.  *  * @author martinrb@google.com (Martin Buchholz)  * @author schmoe@google.com (mike nonemacher)  */
+comment|/**  * Tests for {@link GcFinalization}.  *  * @author Martin Buchholz  * @author mike nonemacher  */
 end_comment
 
 begin_class

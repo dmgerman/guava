@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for HashExtractors.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for HashExtractors.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

@@ -485,7 +485,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * The behavior of toString() and iteration is tested by LinkedHashMultiset,    * which shares a lot of code with HashMultiset and has deterministic    * iteration order.    */
-comment|/**    * This test fails with Java 6, preventing us from running    * NullPointerTester on multisets.   public void testAnnotations() throws Exception {     Method method = HashMultiset.class.getDeclaredMethod(         "add", Object.class, int.class);     assertTrue(method.getParameterAnnotations()[0].length> 0);   }   */
 annotation|@
 name|Override
 annotation|@
