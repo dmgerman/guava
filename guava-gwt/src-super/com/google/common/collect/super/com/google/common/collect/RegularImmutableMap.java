@@ -41,7 +41,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ImmutableMap
+name|ForwardingImmutableMap
 argument_list|<
 name|K
 argument_list|,

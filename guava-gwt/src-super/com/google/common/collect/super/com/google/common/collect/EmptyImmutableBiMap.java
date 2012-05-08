@@ -27,44 +27,68 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWT emulation of {@link EmptyImmutableSet}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulation of {@link EmptyImmutableBiMap}.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
-DECL|class|EmptyImmutableSet
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
+DECL|class|EmptyImmutableBiMap
 specifier|final
 class|class
-name|EmptyImmutableSet
+name|EmptyImmutableBiMap
 extends|extends
-name|ForwardingImmutableSet
+name|ImmutableBiMap
 argument_list|<
+name|Object
+argument_list|,
 name|Object
 argument_list|>
 block|{
-DECL|method|EmptyImmutableSet ()
+DECL|field|INSTANCE
+specifier|static
+specifier|final
+name|EmptyImmutableBiMap
+name|INSTANCE
+init|=
+operator|new
+name|EmptyImmutableBiMap
+argument_list|()
+decl_stmt|;
+DECL|method|EmptyImmutableBiMap ()
 specifier|private
-name|EmptyImmutableSet
+name|EmptyImmutableBiMap
 parameter_list|()
 block|{
 name|super
 argument_list|(
 name|Collections
 operator|.
-name|emptySet
+name|emptyMap
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|INSTANCE
-specifier|static
-specifier|final
-name|EmptyImmutableSet
-name|INSTANCE
-init|=
-operator|new
-name|EmptyImmutableSet
-argument_list|()
-decl_stmt|;
+DECL|method|inverse ()
+annotation|@
+name|Override
+specifier|public
+name|ImmutableBiMap
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|inverse
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 

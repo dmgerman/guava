@@ -152,7 +152,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|ImmutableSet
+name|ForwardingImmutableSet
 argument_list|<
 name|E
 argument_list|>
@@ -167,6 +167,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+comment|// TODO(cpovirk): split into ImmutableSortedSet/ForwardingImmutableSortedSet?
 comment|// In the non-emulated source, this is in ImmutableSortedSetFauxverideShim,
 comment|// which overrides ImmutableSet& which ImmutableSortedSet extends.
 comment|// It is necessary here because otherwise the builder() method

@@ -16,56 +16,17 @@ name|collect
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
 begin_comment
-comment|/**  * GWT emulation of {@link EmptyImmutableSet}.  *  * @author Hayward Chan  */
+comment|/**  * Even though {@link ImmutableBiMap} cannot be instantiated, we still need  * a custom field serializer to unify the type signature of  * {@code ImmutableBiMap[]} on server and client side.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
-DECL|class|EmptyImmutableSet
+DECL|class|ImmutableBiMap_CustomFieldSerializer
+specifier|public
 specifier|final
 class|class
-name|EmptyImmutableSet
-extends|extends
-name|ForwardingImmutableSet
-argument_list|<
-name|Object
-argument_list|>
-block|{
-DECL|method|EmptyImmutableSet ()
-specifier|private
-name|EmptyImmutableSet
-parameter_list|()
-block|{
-name|super
-argument_list|(
-name|Collections
-operator|.
-name|emptySet
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-DECL|field|INSTANCE
-specifier|static
-specifier|final
-name|EmptyImmutableSet
-name|INSTANCE
-init|=
-operator|new
-name|EmptyImmutableSet
-argument_list|()
-decl_stmt|;
-block|}
+name|ImmutableBiMap_CustomFieldSerializer
+block|{}
 end_class
 
 end_unit

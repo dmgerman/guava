@@ -112,7 +112,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|ForwardingImmutableCollection
+name|ImmutableCollection
 argument_list|<
 name|E
 argument_list|>
@@ -122,43 +122,10 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|ImmutableSet (Set<E> delegate)
-name|ImmutableSet
-parameter_list|(
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|delegate
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|Collections
-operator|.
-name|unmodifiableSet
-argument_list|(
-name|delegate
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|ImmutableSet ()
 name|ImmutableSet
 parameter_list|()
-block|{
-name|this
-argument_list|(
-name|Collections
-operator|.
-expr|<
-name|E
-operator|>
-name|emptySet
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{}
 comment|// Casting to any type is safe because the set will never hold any elements.
 annotation|@
 name|SuppressWarnings
@@ -988,10 +955,12 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|delegate
+name|Sets
 operator|.
-name|hashCode
-argument_list|()
+name|hashCodeImpl
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 DECL|method|builder ()

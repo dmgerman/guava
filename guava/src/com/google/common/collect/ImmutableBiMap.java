@@ -91,22 +91,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|EMPTY_IMMUTABLE_BIMAP
-specifier|private
-specifier|static
-specifier|final
-name|ImmutableBiMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|EMPTY_IMMUTABLE_BIMAP
-init|=
-operator|new
-name|EmptyBiMap
-argument_list|()
-decl_stmt|;
 comment|/**    * Returns the empty bimap.    */
 comment|// Casting to any type is safe because the set will never hold any elements.
 annotation|@
@@ -140,7 +124,9 @@ argument_list|,
 name|V
 argument_list|>
 operator|)
-name|EMPTY_IMMUTABLE_BIMAP
+name|EmptyImmutableBiMap
+operator|.
+name|INSTANCE
 return|;
 block|}
 comment|/**    * Returns an immutable bimap containing a single entry.    */
@@ -1035,83 +1021,6 @@ operator|.
 name|toString
 argument_list|()
 return|;
-block|}
-comment|/** Bimap with no mappings. */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
-comment|// uses writeReplace(), not default serialization
-DECL|class|EmptyBiMap
-specifier|static
-class|class
-name|EmptyBiMap
-extends|extends
-name|ImmutableBiMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-block|{
-DECL|method|delegate ()
-annotation|@
-name|Override
-name|ImmutableMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|delegate
-parameter_list|()
-block|{
-return|return
-name|ImmutableMap
-operator|.
-name|of
-argument_list|()
-return|;
-block|}
-DECL|method|inverse ()
-annotation|@
-name|Override
-specifier|public
-name|ImmutableBiMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|inverse
-parameter_list|()
-block|{
-return|return
-name|this
-return|;
-block|}
-DECL|method|isPartialView ()
-annotation|@
-name|Override
-name|boolean
-name|isPartialView
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-DECL|method|readResolve ()
-name|Object
-name|readResolve
-parameter_list|()
-block|{
-return|return
-name|EMPTY_IMMUTABLE_BIMAP
-return|;
-comment|// preserve singleton property
-block|}
 block|}
 comment|/**    * Serialized type for all ImmutableBiMap instances. It captures the logical    * contents and they are reconstructed using public factory methods. This    * ensures that the implementation types remain as implementation details.    *    * Since the bimap is immutable, ImmutableBiMap doesn't require special logic    * for keeping the bimap and its inverse in sync during serialization, the way    * AbstractBiMap does.    */
 DECL|class|SerializedForm

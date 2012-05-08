@@ -145,7 +145,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ImmutableMap
+name|ForwardingImmutableMap
 argument_list|<
 name|K
 argument_list|,
@@ -1708,7 +1708,8 @@ name|ks
 return|;
 block|}
 DECL|method|createKeySet ()
-specifier|private
+annotation|@
+name|Override
 name|ImmutableSortedSet
 argument_list|<
 name|K

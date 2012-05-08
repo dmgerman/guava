@@ -16,6 +16,16 @@ name|collect
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
 begin_comment
 comment|/**  * GWT emulation of {@link EmptyImmutableMap}.  In GWT, it is a thin wrapper  * around {@link java.util.Collections#emptyMap()}.  *  * @author Hayward Chan  */
 end_comment
@@ -26,13 +36,26 @@ specifier|final
 class|class
 name|EmptyImmutableMap
 extends|extends
-name|ImmutableMap
+name|ForwardingImmutableMap
 argument_list|<
 name|Object
 argument_list|,
 name|Object
 argument_list|>
 block|{
+DECL|method|EmptyImmutableMap ()
+name|EmptyImmutableMap
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|field|INSTANCE
 specifier|static
 specifier|final

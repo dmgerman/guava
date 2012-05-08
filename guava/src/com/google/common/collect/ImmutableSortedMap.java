@@ -2251,15 +2251,31 @@ specifier|private
 class|class
 name|EntrySet
 extends|extends
+name|ImmutableMapEntrySet
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+DECL|method|map ()
+annotation|@
+name|Override
 name|ImmutableMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-operator|.
-name|EntrySet
+name|map
+parameter_list|()
 block|{
+return|return
+name|ImmutableSortedMap
+operator|.
+name|this
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|iterator ()

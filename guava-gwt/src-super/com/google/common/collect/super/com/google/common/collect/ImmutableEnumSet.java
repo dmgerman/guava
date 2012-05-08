@@ -39,7 +39,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|ImmutableSet
+name|ForwardingImmutableSet
 argument_list|<
 name|E
 argument_list|>
