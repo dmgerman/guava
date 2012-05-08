@@ -608,24 +608,32 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|,
+literal|"null key in entry: null=%s"
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|value
+argument_list|,
+literal|"null value in entry: %s=null"
+argument_list|,
+name|key
+argument_list|)
+expr_stmt|;
 return|return
 name|Maps
 operator|.
 name|immutableEntry
 argument_list|(
-name|checkNotNull
-argument_list|(
 name|key
 argument_list|,
-literal|"null key"
-argument_list|)
-argument_list|,
-name|checkNotNull
-argument_list|(
 name|value
-argument_list|,
-literal|"null value"
-argument_list|)
 argument_list|)
 return|;
 block|}
