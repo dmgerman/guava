@@ -257,6 +257,12 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|AbstractExecutionThreadService ()
+specifier|protected
+name|AbstractExecutionThreadService
+parameter_list|()
+block|{}
 comment|/**    * Start the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
 DECL|method|startUp ()
 specifier|protected

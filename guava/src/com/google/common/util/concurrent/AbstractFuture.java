@@ -165,6 +165,12 @@ operator|new
 name|ExecutionList
 argument_list|()
 decl_stmt|;
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|AbstractFuture ()
+specifier|protected
+name|AbstractFuture
+parameter_list|()
+block|{}
 comment|/*    * Improve the documentation of when InterruptedException is thrown. Our    * behavior matches the JDK's, but the JDK's documentation is misleading.    */
 comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code    * InterruptedException} if the current thread is interrupted before or during    * the call, even if the value is already available.    *    * @throws InterruptedException if the current thread was interrupted before    *     or during the call (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@

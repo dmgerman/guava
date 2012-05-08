@@ -596,6 +596,12 @@ operator|new
 name|LongAdder
 argument_list|()
 decl_stmt|;
+comment|/**      * Constructs an instance with all counts initialized to zero.      */
+DECL|method|SimpleStatsCounter ()
+specifier|public
+name|SimpleStatsCounter
+parameter_list|()
+block|{}
 comment|/**      * @since 11.0      */
 annotation|@
 name|Override

@@ -243,7 +243,7 @@ name|DLE
 init|=
 literal|16
 decl_stmt|;
-comment|/**    * Device Controls: Characters for the control    * of ancillary devices associated with data processing or    * telecommunication systems, more especially switching devices "on" or    * "off."  (If a single "stop" control is required to interrupt or turn    * off ancillary devices, DC4 is the preferred assignment.)    *    * @since 8.0    */
+comment|/**    * Device Control 1. Characters for the control    * of ancillary devices associated with data processing or    * telecommunication systems, more especially switching devices "on" or    * "off."  (If a single "stop" control is required to interrupt or turn    * off ancillary devices, DC4 is the preferred assignment.)    *    * @since 8.0    */
 DECL|field|DC1
 specifier|public
 specifier|static
@@ -254,7 +254,7 @@ init|=
 literal|17
 decl_stmt|;
 comment|// aka XON
-comment|/**    * Transmission on/off: Although originally defined as DC1, this ASCII    * control character is now better known as the XON code used for software    * flow control in serial communications.  The main use is restarting    * the transmission after the communication has been stopped by the XOFF    * control code.    *    * @since 8.0    */
+comment|/**    * Transmission On: Although originally defined as DC1, this ASCII    * control character is now better known as the XON code used for software    * flow control in serial communications.  The main use is restarting    * the transmission after the communication has been stopped by the XOFF    * control code.    *    * @since 8.0    */
 DECL|field|XON
 specifier|public
 specifier|static
@@ -265,7 +265,7 @@ init|=
 literal|17
 decl_stmt|;
 comment|// aka DC1
-comment|/**    * @see #DC1    *    * @since 8.0    */
+comment|/**    * Device Control 2. Characters for the control    * of ancillary devices associated with data processing or    * telecommunication systems, more especially switching devices "on" or    * "off."  (If a single "stop" control is required to interrupt or turn    * off ancillary devices, DC4 is the preferred assignment.)    *    * @since 8.0    */
 DECL|field|DC2
 specifier|public
 specifier|static
@@ -275,7 +275,7 @@ name|DC2
 init|=
 literal|18
 decl_stmt|;
-comment|/**    * @see #DC1    *    * @since 8.0    */
+comment|/**    * Device Control 3. Characters for the control    * of ancillary devices associated with data processing or    * telecommunication systems, more especially switching devices "on" or    * "off."  (If a single "stop" control is required to interrupt or turn    * off ancillary devices, DC4 is the preferred assignment.)    *    * @since 8.0    */
 DECL|field|DC3
 specifier|public
 specifier|static
@@ -286,7 +286,7 @@ init|=
 literal|19
 decl_stmt|;
 comment|// aka XOFF
-comment|/**    * Transmission off. @see #XON    *    * @since 8.0    */
+comment|/**    * Transmission off. See {@link #XON} for explanation.    *    * @since 8.0    */
 DECL|field|XOFF
 specifier|public
 specifier|static
@@ -297,7 +297,7 @@ init|=
 literal|19
 decl_stmt|;
 comment|// aka DC3
-comment|/**    * @see #DC1    *    * @since 8.0    */
+comment|/**    * Device Control 4. Characters for the control    * of ancillary devices associated with data processing or    * telecommunication systems, more especially switching devices "on" or    * "off."  (If a single "stop" control is required to interrupt or turn    * off ancillary devices, DC4 is the preferred assignment.)    *    * @since 8.0    */
 DECL|field|DC4
 specifier|public
 specifier|static
@@ -377,7 +377,7 @@ name|ESC
 init|=
 literal|27
 decl_stmt|;
-comment|/**    * File/Group/Record/Unit Separator: These information separators may be    * used within data in optional fashion, except that their hierarchical    * relationship shall be: FS is the most inclusive, then GS, then RS,    * and US is least inclusive.  (The content and length of a File, Group,    * Record, or Unit are not specified.)    *    * @since 8.0    */
+comment|/**    * File Separator: These four information separators may be    * used within data in optional fashion, except that their hierarchical    * relationship shall be: FS is the most inclusive, then GS, then RS,    * and US is least inclusive.  (The content and length of a File, Group,    * Record, or Unit are not specified.)    *    * @since 8.0    */
 DECL|field|FS
 specifier|public
 specifier|static
@@ -387,7 +387,7 @@ name|FS
 init|=
 literal|28
 decl_stmt|;
-comment|/**    * @see #FS    *    * @since 8.0    */
+comment|/**    * Group Separator: These four information separators may be    * used within data in optional fashion, except that their hierarchical    * relationship shall be: FS is the most inclusive, then GS, then RS,    * and US is least inclusive.  (The content and length of a File, Group,    * Record, or Unit are not specified.)    *    * @since 8.0    */
 DECL|field|GS
 specifier|public
 specifier|static
@@ -397,7 +397,7 @@ name|GS
 init|=
 literal|29
 decl_stmt|;
-comment|/**    * @see #FS    *    * @since 8.0    */
+comment|/**    * Record Separator: These four information separators may be    * used within data in optional fashion, except that their hierarchical    * relationship shall be: FS is the most inclusive, then GS, then RS,    * and US is least inclusive.  (The content and length of a File, Group,    * Record, or Unit are not specified.)    *    * @since 8.0    */
 DECL|field|RS
 specifier|public
 specifier|static
@@ -407,7 +407,7 @@ name|RS
 init|=
 literal|30
 decl_stmt|;
-comment|/**    * @see #FS    *    * @since 8.0    */
+comment|/**    * Unit Separator: These four information separators may be    * used within data in optional fashion, except that their hierarchical    * relationship shall be: FS is the most inclusive, then GS, then RS,    * and US is least inclusive.  (The content and length of a File, Group,    * Record, or Unit are not specified.)    *    * @since 8.0    */
 DECL|field|US
 specifier|public
 specifier|static
