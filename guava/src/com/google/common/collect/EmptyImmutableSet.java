@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty immutable set.  *   * @author Kevin Bourrillion  */
+comment|/**  * An empty immutable set.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -125,19 +125,42 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|contains (Object target)
+DECL|method|contains (@ullable Object target)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)
 block|{
 return|return
 literal|false
+return|;
+block|}
+DECL|method|containsAll (Collection<?> targets)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|containsAll
+parameter_list|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+name|targets
+parameter_list|)
+block|{
+return|return
+name|targets
+operator|.
+name|isEmpty
+argument_list|()
 return|;
 block|}
 DECL|method|iterator ()
@@ -169,20 +192,6 @@ return|return
 literal|false
 return|;
 block|}
-DECL|field|EMPTY_ARRAY
-specifier|private
-specifier|static
-specifier|final
-name|Object
-index|[]
-name|EMPTY_ARRAY
-init|=
-operator|new
-name|Object
-index|[
-literal|0
-index|]
-decl_stmt|;
 DECL|method|toArray ()
 annotation|@
 name|Override
@@ -193,6 +202,8 @@ name|toArray
 parameter_list|()
 block|{
 return|return
+name|ObjectArrays
+operator|.
 name|EMPTY_ARRAY
 return|;
 block|}
@@ -212,45 +223,31 @@ index|[]
 name|a
 parameter_list|)
 block|{
-if|if
-condition|(
-name|a
-operator|.
-name|length
-operator|>
-literal|0
-condition|)
-block|{
-name|a
-index|[
-literal|0
-index|]
-operator|=
-literal|null
-expr_stmt|;
-block|}
 return|return
+name|asList
+argument_list|()
+operator|.
+name|toArray
+argument_list|(
 name|a
+argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|asList ()
 specifier|public
-name|boolean
-name|containsAll
-parameter_list|(
-name|Collection
+name|ImmutableList
 argument_list|<
-name|?
+name|Object
 argument_list|>
-name|targets
-parameter_list|)
+name|asList
+parameter_list|()
 block|{
 return|return
-name|targets
+name|ImmutableList
 operator|.
-name|isEmpty
+name|of
 argument_list|()
 return|;
 block|}

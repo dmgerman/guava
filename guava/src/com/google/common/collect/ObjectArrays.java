@@ -94,6 +94,19 @@ specifier|final
 class|class
 name|ObjectArrays
 block|{
+DECL|field|EMPTY_ARRAY
+specifier|static
+specifier|final
+name|Object
+index|[]
+name|EMPTY_ARRAY
+init|=
+operator|new
+name|Object
+index|[
+literal|0
+index|]
+decl_stmt|;
 DECL|method|ObjectArrays ()
 specifier|private
 name|ObjectArrays

@@ -558,7 +558,7 @@ block|{
 return|return
 name|Iterators
 operator|.
-name|EMPTY_ITERATOR
+name|EMPTY_LIST_ITERATOR
 return|;
 block|}
 DECL|field|EMPTY_ARRAY

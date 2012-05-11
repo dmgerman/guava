@@ -1281,7 +1281,6 @@ annotation|@
 name|Override
 DECL|method|entrySet ()
 specifier|public
-specifier|final
 name|ImmutableSet
 argument_list|<
 name|Entry

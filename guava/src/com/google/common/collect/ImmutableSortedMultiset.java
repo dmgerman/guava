@@ -1530,6 +1530,7 @@ annotation|@
 name|Override
 DECL|method|pollLastEntry ()
 specifier|public
+specifier|final
 name|Entry
 argument_list|<
 name|E
