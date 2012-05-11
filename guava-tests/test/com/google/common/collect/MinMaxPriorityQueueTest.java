@@ -5637,8 +5637,6 @@ specifier|public
 name|void
 name|testNullPointers
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|NullPointerTester
 name|tester

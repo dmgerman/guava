@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link Throwables}.  *  * @author Kevin Bourrillion   */
+comment|/**  * Unit test for {@link Throwables}.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -2085,8 +2085,6 @@ specifier|public
 name|void
 name|testNullPointers
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|NullPointerTester
 name|tester

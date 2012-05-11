@@ -7069,7 +7069,7 @@ empty_stmt|;
 end_empty_stmt
 
 begin_function
-unit|}      public
+unit|}    public
 DECL|method|testIsAssignableFrom_wildcard_noBound ()
 parameter_list|<
 name|N
@@ -7139,7 +7139,7 @@ empty_stmt|;
 end_empty_stmt
 
 begin_function
-unit|}      public
+unit|}    public
 parameter_list|<
 name|N1
 extends|extends
@@ -7366,7 +7366,7 @@ empty_stmt|;
 end_empty_stmt
 
 begin_function
-unit|}      public
+unit|}    public
 parameter_list|<
 name|N1
 extends|extends
@@ -7675,7 +7675,7 @@ empty_stmt|;
 end_empty_stmt
 
 begin_function
-unit|}      public
+unit|}    public
 parameter_list|<
 name|L
 extends|extends
@@ -8992,7 +8992,7 @@ empty_stmt|;
 end_empty_stmt
 
 begin_function
-unit|}      public
+unit|}    public
 DECL|method|testToGenericType ()
 name|void
 name|testToGenericType
@@ -12803,8 +12803,6 @@ parameter_list|>
 name|void
 name|testNulls
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 operator|new
 name|NullPointerTester

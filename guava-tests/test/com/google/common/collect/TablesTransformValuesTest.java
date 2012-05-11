@@ -282,8 +282,6 @@ specifier|public
 name|void
 name|testNullPointerInstance
 parameter_list|()
-throws|throws
-name|Exception
 block|{}
 comment|// put() and putAll() aren't supported.
 DECL|method|testPut ()

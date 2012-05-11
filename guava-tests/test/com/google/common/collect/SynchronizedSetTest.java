@@ -185,8 +185,6 @@ specifier|public
 name|void
 name|testNullPointerExceptions
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 comment|/* Skip this test, as SynchronizedSet is not a public class. */
 block|}

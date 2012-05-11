@@ -373,8 +373,6 @@ specifier|public
 name|void
 name|testNulls
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 specifier|final
 name|NullPointerTester
