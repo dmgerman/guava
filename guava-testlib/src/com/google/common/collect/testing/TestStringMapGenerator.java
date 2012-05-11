@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -55,6 +69,8 @@ comment|/**  * Implementation helper for {@link TestMapGenerator} for use with m
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|TestStringMapGenerator
 specifier|public
 specifier|abstract

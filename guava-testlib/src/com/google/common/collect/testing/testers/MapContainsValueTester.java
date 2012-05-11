@@ -68,6 +68,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -133,6 +147,8 @@ comment|/**  * A generic JUnit test which tests {@code containsValue()} operatio
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MapContainsValueTester
 specifier|public
 class|class

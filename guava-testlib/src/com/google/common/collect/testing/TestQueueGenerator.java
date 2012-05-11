@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -33,6 +47,8 @@ comment|/**  * Creates queues, containing sample elements, to be tested.  *  *<p
 end_comment
 
 begin_interface
+annotation|@
+name|GwtCompatible
 DECL|interface|TestQueueGenerator
 specifier|public
 interface|interface

@@ -128,6 +128,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -217,6 +231,8 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// too many "unchecked generic array creations"
+annotation|@
+name|GwtCompatible
 DECL|class|ListAddAtIndexTester
 specifier|public
 class|class

@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -73,6 +87,8 @@ comment|/**  * Base class for testers of classes (including {@link Collection}  
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|AbstractContainerTester
 specifier|public
 specifier|abstract
@@ -244,7 +260,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Asserts that the collection under test contains exactly the elements it was    * initialized with plus the given elements, according to    * {@link #expectContents(java.util.Collection)}. In other words, for the    * default {@code expectContents()} implementation, the number of occurrences    * of each given element has increased by one since the test collection was    * created, and the number of occurrences of all other elements has not    * changed.    *     *<p>Note: This means that a test like the following will fail if    * {@code collection} is a {@code Set}:    *    *<pre>    * collection.add(existingElement);    * expectAdded(existingElement);</pre>    *    * In this case, {@code collection} was not modified as a result of the    * {@code add()} call, and the test will fail because the number of    * occurrences of {@code existingElement} is unchanged.    *    * @param elements expected additional contents of {@link #container}    */
+comment|/**    * Asserts that the collection under test contains exactly the elements it was    * initialized with plus the given elements, according to    * {@link #expectContents(java.util.Collection)}. In other words, for the    * default {@code expectContents()} implementation, the number of occurrences    * of each given element has increased by one since the test collection was    * created, and the number of occurrences of all other elements has not    * changed.    *    *<p>Note: This means that a test like the following will fail if    * {@code collection} is a {@code Set}:    *    *<pre>    * collection.add(existingElement);    * expectAdded(existingElement);</pre>    *    * In this case, {@code collection} was not modified as a result of the    * {@code add()} call, and the test will fail because the number of    * occurrences of {@code existingElement} is unchanged.    *    * @param elements expected additional contents of {@link #container}    */
 DECL|method|expectAdded (E... elements)
 specifier|protected
 specifier|final

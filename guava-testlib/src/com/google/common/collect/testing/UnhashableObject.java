@@ -18,11 +18,27 @@ name|testing
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * An unhashable object to be used in testing as values in our collections.  *  *<p>This class is GWT compatible.  *  * @author Regina O'Dell  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|UnhashableObject
 specifier|public
 class|class

@@ -48,6 +48,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -89,10 +103,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic reserialization test for collection types that must preserve {@code equals()} behavior  * when reserialized.  (Sets and Lists, but not bare Collections.)  *   * @author Louis Wasserman  */
+comment|/**  * Basic reserialization test for collection types that must preserve {@code equals()} behavior  * when reserialized.  (Sets and Lists, but not bare Collections.)  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|CollectionSerializationEqualTester
 specifier|public
 class|class

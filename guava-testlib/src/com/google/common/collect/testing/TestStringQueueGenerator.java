@@ -26,6 +26,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -61,6 +75,8 @@ comment|/**  * Create queue of strings for tests.  *  *<p>This class is GWT comp
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|TestStringQueueGenerator
 specifier|public
 specifier|abstract

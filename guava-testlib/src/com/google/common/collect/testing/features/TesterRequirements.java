@@ -28,6 +28,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -61,6 +75,8 @@ comment|/**  * Encapsulates the constraints that a class under test must satisfy
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|TesterRequirements
 specifier|public
 specifier|final

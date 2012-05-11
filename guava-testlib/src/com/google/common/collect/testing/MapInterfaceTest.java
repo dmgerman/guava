@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -127,6 +141,8 @@ comment|/**  * Tests representing the contract of {@link Map}. Concrete subclass
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MapInterfaceTest
 specifier|public
 specifier|abstract

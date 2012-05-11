@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -35,6 +49,8 @@ comment|/**  * Methods factored out so that they can be emulated differently in 
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|Platform
 class|class
 name|Platform

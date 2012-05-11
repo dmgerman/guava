@@ -22,6 +22,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -37,6 +51,8 @@ comment|/**  * This class is emulated in GWT.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|Platform
 class|class
 name|Platform

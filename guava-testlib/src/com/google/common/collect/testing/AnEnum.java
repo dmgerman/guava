@@ -18,11 +18,27 @@ name|testing
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * A sample enumerated type we use for testing.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_enum
+annotation|@
+name|GwtCompatible
 DECL|enum|AnEnum
 specifier|public
 enum|enum

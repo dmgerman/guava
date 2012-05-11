@@ -22,6 +22,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -101,6 +115,8 @@ name|RUNTIME
 argument_list|)
 annotation|@
 name|Documented
+annotation|@
+name|GwtCompatible
 DECL|annotation|TesterAnnotation
 specifier|public
 annotation_defn|@interface

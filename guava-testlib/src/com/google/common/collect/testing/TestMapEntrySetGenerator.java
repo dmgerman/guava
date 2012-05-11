@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -53,6 +67,8 @@ comment|/**  * Creates map entries using sample keys and sample values.  *  *<p>
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|TestMapEntrySetGenerator
 specifier|public
 specifier|abstract

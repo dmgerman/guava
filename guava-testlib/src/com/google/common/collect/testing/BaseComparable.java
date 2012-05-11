@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -29,10 +43,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple base class to verify that we handle generics correctly.  *   * @author Kevin Bourrillion  */
+comment|/**  * Simple base class to verify that we handle generics correctly.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|BaseComparable
 specifier|public
 class|class

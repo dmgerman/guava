@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -53,6 +67,8 @@ comment|/**  * Create integer sets for testing collections that are sorted by na
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|TestIntegerSortedSetGenerator
 specifier|public
 specifier|abstract

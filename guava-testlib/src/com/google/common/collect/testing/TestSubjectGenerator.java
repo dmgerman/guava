@@ -18,11 +18,27 @@ name|testing
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * To be implemented by test generators that can produce test subjects without  * requiring any parameters.  *  *<p>This class is GWT compatible.  *  * @param<T> the type created by this generator.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface
+annotation|@
+name|GwtCompatible
 DECL|interface|TestSubjectGenerator
 specifier|public
 interface|interface

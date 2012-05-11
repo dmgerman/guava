@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -53,6 +67,8 @@ comment|/**  * To be implemented by test generators of things that can contain  
 end_comment
 
 begin_interface
+annotation|@
+name|GwtCompatible
 DECL|interface|TestContainerGenerator
 specifier|public
 interface|interface

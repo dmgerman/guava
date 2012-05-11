@@ -68,6 +68,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -137,6 +151,8 @@ comment|/**  * Tests {@link java.util.Map#hashCode}.  *  *<p>This class is GWT c
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MapHashCodeTester
 specifier|public
 class|class

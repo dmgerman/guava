@@ -20,11 +20,27 @@ name|testers
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * A generic JUnit test which tests {@code get()} operations on a list. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|ListGetTester
 specifier|public
 class|class

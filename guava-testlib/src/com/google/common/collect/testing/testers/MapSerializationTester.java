@@ -48,6 +48,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -89,10 +103,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic serialization test for maps.  *   * @author Louis Wasserman  */
+comment|/**  * Basic serialization test for maps.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MapSerializationTester
 specifier|public
 class|class

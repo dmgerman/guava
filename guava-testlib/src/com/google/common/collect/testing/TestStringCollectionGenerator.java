@@ -26,6 +26,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -61,6 +75,8 @@ comment|/**  * String creation for testing arbitrary collections.  *  *<p>This c
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|TestStringCollectionGenerator
 specifier|public
 specifier|abstract
