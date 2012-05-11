@@ -264,6 +264,73 @@ literal|"c"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testToString ()
+specifier|public
+name|void
+name|testToString
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"[]"
+argument_list|,
+name|Splitter
+operator|.
+name|on
+argument_list|(
+literal|','
+argument_list|)
+operator|.
+name|split
+argument_list|(
+literal|""
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[a, b, c]"
+argument_list|,
+name|Splitter
+operator|.
+name|on
+argument_list|(
+literal|','
+argument_list|)
+operator|.
+name|split
+argument_list|(
+literal|"a,b,c"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"[yam, bam, jam, ham]"
+argument_list|,
+name|Splitter
+operator|.
+name|on
+argument_list|(
+literal|", "
+argument_list|)
+operator|.
+name|split
+argument_list|(
+literal|"yam, bam, jam, ham"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testCharacterSimpleSplitWithNoDelimiter ()
 specifier|public
 name|void
