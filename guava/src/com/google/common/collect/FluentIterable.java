@@ -610,6 +610,49 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Applies {@code function} to each element of this fluent iterable and returns    * a fluent iterable with the concatenated combination of results.  {@code function}    * returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this    * function-returned iterables' iterator does. After a successful {@code remove()} call,    * the returned fluent iterable no longer contains the corresponding element.    *    * @since 13.0    */
+DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<T>> function)
+specifier|public
+parameter_list|<
+name|T
+parameter_list|>
+name|FluentIterable
+argument_list|<
+name|T
+argument_list|>
+name|transformAndConcat
+parameter_list|(
+name|Function
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|,
+name|?
+extends|extends
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
+argument_list|>
+name|function
+parameter_list|)
+block|{
+return|return
+name|from
+argument_list|(
+name|Iterables
+operator|.
+name|concat
+argument_list|(
+name|transform
+argument_list|(
+name|function
+argument_list|)
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use    *     {@code iterator().next()} or {@link Iterables#getFirst} instead.    */
 DECL|method|first ()
 specifier|public
