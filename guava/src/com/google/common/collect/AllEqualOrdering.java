@@ -115,7 +115,6 @@ block|{
 return|return
 literal|0
 return|;
-comment|// left and right always compare as equal.
 block|}
 annotation|@
 name|Override
@@ -145,7 +144,6 @@ argument_list|(
 name|iterable
 argument_list|)
 return|;
-comment|// Skip the sort, as it has no effect
 block|}
 annotation|@
 name|Override
@@ -175,7 +173,6 @@ argument_list|(
 name|iterable
 argument_list|)
 return|;
-comment|// Avoid needless object creation.
 block|}
 annotation|@
 name|SuppressWarnings
@@ -205,9 +202,7 @@ argument_list|>
 operator|)
 name|this
 return|;
-comment|// The same forwards and backwards, avoid needless indirection.
 block|}
-comment|// preserving singleton-ness gives equals()/hashCode() for free
 DECL|method|readResolve ()
 specifier|private
 name|Object

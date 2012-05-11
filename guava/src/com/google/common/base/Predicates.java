@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the use of {@code  * Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the use of {@code  * Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -666,7 +666,7 @@ name|clazz
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a predicate that evaluates to {@code true} if the class being    * tested is assignable from the given class.  The returned predicate    * does not allow null inputs.    *     * @since 10.0    */
+comment|/**    * Returns a predicate that evaluates to {@code true} if the class being    * tested is assignable from the given class.  The returned predicate    * does not allow null inputs.    *    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1209,6 +1209,7 @@ name|T
 name|t
 parameter_list|)
 block|{
+comment|// Avoid using the Iterator to avoid generating garbage (issue 820).
 for|for
 control|(
 name|int
@@ -1419,6 +1420,7 @@ name|T
 name|t
 parameter_list|)
 block|{
+comment|// Avoid using the Iterator to avoid generating garbage (issue 820).
 for|for
 control|(
 name|int

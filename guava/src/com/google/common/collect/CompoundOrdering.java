@@ -242,6 +242,7 @@ name|T
 name|right
 parameter_list|)
 block|{
+comment|// Avoid using the Iterator to avoid generating garbage (issue 979).
 name|int
 name|size
 init|=

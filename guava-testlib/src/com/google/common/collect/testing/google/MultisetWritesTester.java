@@ -281,7 +281,7 @@ name|testAddOccurrencesZero
 parameter_list|()
 block|{
 name|int
-name|expectedCount
+name|originalCount
 init|=
 name|getMultiset
 argument_list|()
@@ -295,7 +295,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|expectedCount
+literal|"old count"
+argument_list|,
+name|originalCount
 argument_list|,
 name|getMultiset
 argument_list|()
@@ -328,7 +330,7 @@ name|testAddOccurrences
 parameter_list|()
 block|{
 name|int
-name|expectedCount
+name|originalCount
 init|=
 name|getMultiset
 argument_list|()
@@ -342,7 +344,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|expectedCount
+literal|"old count"
+argument_list|,
+name|originalCount
 argument_list|,
 name|getMultiset
 argument_list|()
@@ -359,7 +363,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|expectedCount
+literal|"old count"
+argument_list|,
+name|originalCount
 operator|+
 literal|2
 argument_list|,
@@ -472,7 +478,7 @@ name|testRemoveZeroNoOp
 parameter_list|()
 block|{
 name|int
-name|expectedCount
+name|originalCount
 init|=
 name|getMultiset
 argument_list|()
@@ -486,7 +492,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|expectedCount
+literal|"old count"
+argument_list|,
+name|originalCount
 argument_list|,
 name|getMultiset
 argument_list|()
