@@ -117,8 +117,6 @@ annotation|@
 name|Documented
 annotation|@
 name|GwtCompatible
-annotation|@
-name|Beta
 DECL|annotation|Beta
 specifier|public
 annotation_defn|@interface

@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -448,8 +434,6 @@ init|=
 literal|127
 decl_stmt|;
 comment|/**    * The minimum value of an ASCII character.    *    * @since 9.0 (was type {@code int} before 12.0)    */
-annotation|@
-name|Beta
 DECL|field|MIN
 specifier|public
 specifier|static
@@ -460,8 +444,6 @@ init|=
 literal|0
 decl_stmt|;
 comment|/**    * The maximum value of an ASCII character.    *    * @since 9.0 (was type {@code int} before 12.0)    */
-annotation|@
-name|Beta
 DECL|field|MAX
 specifier|public
 specifier|static
