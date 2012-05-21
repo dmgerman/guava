@@ -14367,15 +14367,23 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
+comment|// replace the old LoadingValueReference if it's live, otherwise
+comment|// perform a putIfAbsent
 if|if
 condition|(
-name|entryValue
-operator|==
-literal|null
-operator|||
 name|oldValueReference
 operator|==
 name|valueReference
+operator|||
+operator|(
+name|entryValue
+operator|==
+literal|null
+operator|&&
+name|valueReference
+operator|!=
+name|UNSET
+operator|)
 condition|)
 block|{
 operator|++
