@@ -86,6 +86,15 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|elementSet
+specifier|private
+specifier|final
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|elementSet
+decl_stmt|;
 DECL|method|EmptyImmutableSortedMultiset (Comparator<? super E> comparator)
 name|EmptyImmutableSortedMultiset
 parameter_list|(
@@ -98,7 +107,13 @@ argument_list|>
 name|comparator
 parameter_list|)
 block|{
-name|super
+name|this
+operator|.
+name|elementSet
+operator|=
+name|ImmutableSortedSet
+operator|.
+name|emptySet
 argument_list|(
 name|comparator
 argument_list|)
@@ -203,42 +218,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createElementSet ()
+DECL|method|elementSet ()
+specifier|public
 name|ImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
-name|createElementSet
+name|elementSet
 parameter_list|()
 block|{
 return|return
-name|ImmutableSortedSet
-operator|.
-name|emptySet
-argument_list|(
-name|comparator
-argument_list|()
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|createDescendingElementSet ()
-name|ImmutableSortedSet
-argument_list|<
-name|E
-argument_list|>
-name|createDescendingElementSet
-parameter_list|()
-block|{
-return|return
-name|ImmutableSortedSet
-operator|.
-name|emptySet
-argument_list|(
-name|reverseComparator
-argument_list|()
-argument_list|)
+name|elementSet
 return|;
 block|}
 annotation|@

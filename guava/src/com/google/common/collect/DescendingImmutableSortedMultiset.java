@@ -70,14 +70,6 @@ argument_list|>
 name|forward
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|forward
-operator|.
-name|reverseComparator
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|forward
@@ -160,35 +152,22 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|createElementSet ()
+DECL|method|elementSet ()
+specifier|public
 name|ImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
-name|createElementSet
-parameter_list|()
-block|{
-return|return
-name|forward
-operator|.
-name|createDescendingElementSet
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|createDescendingElementSet ()
-name|ImmutableSortedSet
-argument_list|<
-name|E
-argument_list|>
-name|createDescendingElementSet
+name|elementSet
 parameter_list|()
 block|{
 return|return
 name|forward
 operator|.
 name|elementSet
+argument_list|()
+operator|.
+name|descendingSet
 argument_list|()
 return|;
 block|}
