@@ -160,20 +160,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Equivalences
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Objects
 import|;
 end_import
@@ -894,7 +880,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalences#equals()} otherwise.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalence#equals()} otherwise.    */
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
@@ -954,7 +940,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the cache uses {@link Equivalences#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalences#equals()}    * otherwise.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the cache uses {@link Equivalence#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalence#equals()}    * otherwise.    */
 DECL|method|valueEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<

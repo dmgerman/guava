@@ -86,20 +86,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Equivalences
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Ticker
 import|;
 end_import
@@ -1265,7 +1251,7 @@ name|defaultEquivalence
 parameter_list|()
 block|{
 return|return
-name|Equivalences
+name|Equivalence
 operator|.
 name|equals
 argument_list|()
@@ -1340,7 +1326,7 @@ name|defaultEquivalence
 parameter_list|()
 block|{
 return|return
-name|Equivalences
+name|Equivalence
 operator|.
 name|identity
 argument_list|()
@@ -1415,7 +1401,7 @@ name|defaultEquivalence
 parameter_list|()
 block|{
 return|return
-name|Equivalences
+name|Equivalence
 operator|.
 name|identity
 argument_list|()
@@ -3904,8 +3890,8 @@ parameter_list|)
 block|{}
 block|}
 DECL|class|AbstractReferenceEntry
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractReferenceEntry
 parameter_list|<

@@ -146,20 +146,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Equivalences
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Function
 import|;
 end_import
@@ -500,7 +486,7 @@ literal|null
 operator|)
 return|;
 block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalences#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalences#equals()}    * otherwise.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalence#equals()}    * otherwise.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -568,7 +554,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the map uses {@link Equivalences#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalences#equals()}    * otherwise.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalence#equals()}    * otherwise.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(

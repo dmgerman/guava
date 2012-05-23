@@ -70,7 +70,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Equivalences
+name|Equivalence
 import|;
 end_import
 
@@ -275,7 +275,7 @@ argument_list|()
 operator|.
 name|keyEquivalence
 argument_list|(
-name|Equivalences
+name|Equivalence
 operator|.
 name|equals
 argument_list|()
