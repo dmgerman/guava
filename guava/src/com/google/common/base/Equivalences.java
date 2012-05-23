@@ -64,8 +64,9 @@ specifier|private
 name|Equivalences
 parameter_list|()
 block|{}
-comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @since 8.0 (present null-friendly behavior)    * @since 4.0 (otherwise)    */
-comment|// TODO(user): Deprecate this method. See b/6512852
+comment|/**    * Returns an equivalence that delegates to {@link Object#equals} and {@link Object#hashCode}.    * {@link Equivalence#equivalent} returns {@code true} if both values are null, or if neither    * value is null and {@link Object#equals} returns {@code true}. {@link Equivalence#hash} returns    * {@code 0} if passed a null value.    *    * @since 8.0 (present null-friendly behavior)    * @since 4.0 (otherwise)    * @deprecated This method has been moved to {@link Equivalence#equals}. This method is scheduled    *     to be removed in Guava release 14.0.    */
+annotation|@
+name|Deprecated
 DECL|method|equals ()
 specifier|public
 specifier|static
@@ -84,8 +85,9 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code.  {@link Equivalence#equivalent}    * returns {@code true} if {@code a == b}, including in the case that a and b are both null.    */
-comment|// TODO(user): Deprecate this method. See b/6512852
+comment|/**    * Returns an equivalence that uses {@code ==} to compare values and {@link    * System#identityHashCode(Object)} to compute the hash code.  {@link Equivalence#equivalent}    * returns {@code true} if {@code a == b}, including in the case that a and b are both null.    *    * @deprecated This method has been moved to {@link Equivalence#identity}. This method is schedule    *     to be removed in Guava release 14.0.    */
+annotation|@
+name|Deprecated
 DECL|method|identity ()
 specifier|public
 specifier|static
