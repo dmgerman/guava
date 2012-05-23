@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -83,20 +99,6 @@ operator|.
 name|base
 operator|.
 name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
@@ -230,8 +232,6 @@ name|this
 operator|.
 name|iterable
 operator|=
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|iterable
@@ -326,8 +326,6 @@ name|iterable
 parameter_list|)
 block|{
 return|return
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|iterable
