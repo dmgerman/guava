@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Bloom filter for instances of {@code T}. A Bloom filter offers an approximate containment test  * with one-sided error: if it claims that an element is contained in it, this might be in error,  * but if it claims that an element is<i>not</i> contained in it, then this is definitely true.  *  *<p>If you are unfamiliar with Bloom filters, this nice  *<a href="http://llimllib.github.com/bloomfilter-tutorial/">tutorial</a> may help you understand  * how they work.  *  * @param<T> the type of instances that the {@code BloomFilter} accepts  * @author Dimitris Andreou  * @author Kevin Bourrillion  * @since 11.0  */
+comment|/**  * A Bloom filter for instances of {@code T}. A Bloom filter offers an approximate containment test  * with one-sided error: if it claims that an element is contained in it, this might be in error,  * but if it claims that an element is<i>not</i> contained in it, then this is definitely true.  *  *<p>If you are unfamiliar with Bloom filters, this nice  *<a href="http://llimllib.github.com/bloomfilter-tutorial/">tutorial</a> may help you understand  * how they work.  *  *  * @param<T> the type of instances that the {@code BloomFilter} accepts  * @author Dimitris Andreou  * @author Kevin Bourrillion  * @since 11.0  */
 end_comment
 
 begin_class
@@ -134,7 +134,6 @@ parameter_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/*    * TODO(user): add this above (when the other serial form is published):    *<p>Bloom filters are serializable, but also support a more compact serial    * representation via the {} and {} methods. Both serialized forms will continue to    * be supported by future versions of this library.    */
 comment|/**    * A strategy to translate T instances, to {@code numHashFunctions} bit indexes.    *    *<p>Implementations should be collections of pure functions (i.e. stateless).    */
 DECL|interface|Strategy
 interface|interface
@@ -397,6 +396,35 @@ name|bits
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the probability that {@linkplain #mightContain(Object)} will erroneously return    * {@code true} for an object that has not actually been put in the {@code BloomFilter}.    *    *<p>Ideally, this number should be close to the {@code falsePositiveProbability} parameter    * passed in {@linkplain #create(Funnel, int, double)}, or smaller. If it is    * significantly higher, it is usually the case that too many elements (more than    * expected) have been put in the {@code BloomFilter}, degenerating it.    */
+DECL|method|expectedFalsePositiveProbability ()
+specifier|public
+name|double
+name|expectedFalsePositiveProbability
+parameter_list|()
+block|{
+return|return
+name|Math
+operator|.
+name|pow
+argument_list|(
+operator|(
+name|double
+operator|)
+name|bits
+operator|.
+name|bitCount
+argument_list|()
+operator|/
+name|bits
+operator|.
+name|size
+argument_list|()
+argument_list|,
+name|numHashFunctions
+argument_list|)
+return|;
+block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation uses reference equality to compare funnels.    */
 DECL|method|equals (Object o)
 annotation|@
@@ -495,49 +523,6 @@ parameter_list|()
 block|{
 return|return
 name|numHashFunctions
-return|;
-block|}
-DECL|method|computeExpectedFalsePositiveRate (int insertions)
-annotation|@
-name|VisibleForTesting
-name|double
-name|computeExpectedFalsePositiveRate
-parameter_list|(
-name|int
-name|insertions
-parameter_list|)
-block|{
-return|return
-name|Math
-operator|.
-name|pow
-argument_list|(
-literal|1
-operator|-
-name|Math
-operator|.
-name|exp
-argument_list|(
-operator|-
-name|numHashFunctions
-operator|*
-operator|(
-operator|(
-name|double
-operator|)
-name|insertions
-operator|/
-operator|(
-name|bits
-operator|.
-name|size
-argument_list|()
-operator|)
-operator|)
-argument_list|)
-argument_list|,
-name|numHashFunctions
-argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @param falsePositiveProbability the desired false positive probability (must be positive and    *        less than 1.0)    * @return a {@code BloomFilter}    */
