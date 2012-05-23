@@ -1304,7 +1304,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8
+literal|2
 argument_list|,
 name|multimap
 operator|.
@@ -1353,7 +1353,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8
+literal|2
 argument_list|,
 name|copy
 operator|.

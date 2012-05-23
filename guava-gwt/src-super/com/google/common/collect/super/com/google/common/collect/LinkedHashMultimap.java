@@ -183,7 +183,7 @@ specifier|final
 name|int
 name|DEFAULT_VALUES_PER_KEY
 init|=
-literal|8
+literal|2
 decl_stmt|;
 annotation|@
 name|VisibleForTesting
