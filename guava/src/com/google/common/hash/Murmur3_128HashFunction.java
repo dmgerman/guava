@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_import
-import|import static
+import|import
 name|com
 operator|.
 name|google
@@ -27,8 +27,6 @@ operator|.
 name|primitives
 operator|.
 name|UnsignedBytes
-operator|.
-name|toInt
 import|;
 end_import
 
@@ -134,27 +132,45 @@ name|Murmur3_128Hasher
 extends|extends
 name|AbstractStreamingHasher
 block|{
+DECL|field|CHUNK_SIZE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|CHUNK_SIZE
+init|=
+literal|16
+decl_stmt|;
+DECL|field|C1
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|C1
+init|=
+literal|0x87c37b91114253d5L
+decl_stmt|;
+DECL|field|C2
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|C2
+init|=
+literal|0x4cf5ad432745937fL
+decl_stmt|;
 DECL|field|h1
+specifier|private
 name|long
 name|h1
 decl_stmt|;
 DECL|field|h2
+specifier|private
 name|long
 name|h2
 decl_stmt|;
-DECL|field|c1
-name|long
-name|c1
-init|=
-literal|0x87c37b91114253d5L
-decl_stmt|;
-DECL|field|c2
-name|long
-name|c2
-init|=
-literal|0x4cf5ad432745937fL
-decl_stmt|;
 DECL|field|len
+specifier|private
 name|int
 name|len
 decl_stmt|;
@@ -167,7 +183,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|16
+name|CHUNK_SIZE
 argument_list|)
 expr_stmt|;
 name|h1
@@ -208,8 +224,9 @@ argument_list|()
 decl_stmt|;
 name|len
 operator|+=
-literal|16
+name|CHUNK_SIZE
 expr_stmt|;
+empty_stmt|;
 name|bmix64
 argument_list|(
 name|k1
@@ -232,7 +249,7 @@ parameter_list|)
 block|{
 name|k1
 operator|*=
-name|c1
+name|C1
 expr_stmt|;
 name|k1
 operator|=
@@ -247,7 +264,7 @@ argument_list|)
 expr_stmt|;
 name|k1
 operator|*=
-name|c2
+name|C2
 expr_stmt|;
 name|h1
 operator|^=
@@ -278,7 +295,7 @@ literal|0x52dce729
 expr_stmt|;
 name|k2
 operator|*=
-name|c2
+name|C2
 expr_stmt|;
 name|k2
 operator|=
@@ -293,7 +310,7 @@ argument_list|)
 expr_stmt|;
 name|k2
 operator|*=
-name|c1
+name|C1
 expr_stmt|;
 name|h2
 operator|^=
@@ -367,6 +384,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -388,6 +407,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -409,6 +430,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -430,6 +453,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -451,6 +476,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -472,6 +499,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -493,6 +522,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -507,7 +538,7 @@ literal|0
 expr_stmt|;
 name|k2
 operator|*=
-name|c2
+name|C2
 expr_stmt|;
 name|k2
 operator|=
@@ -522,7 +553,7 @@ argument_list|)
 expr_stmt|;
 name|k2
 operator|*=
-name|c1
+name|C1
 expr_stmt|;
 name|h2
 operator|^=
@@ -537,6 +568,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -558,6 +591,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -579,6 +614,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -600,6 +637,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -621,6 +660,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -642,6 +683,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -663,6 +706,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -684,6 +729,8 @@ operator|^=
 operator|(
 name|long
 operator|)
+name|UnsignedBytes
+operator|.
 name|toInt
 argument_list|(
 name|bb
@@ -698,7 +745,7 @@ literal|0
 expr_stmt|;
 name|k1
 operator|*=
-name|c1
+name|C1
 expr_stmt|;
 name|k1
 operator|=
@@ -713,7 +760,7 @@ argument_list|)
 expr_stmt|;
 name|k1
 operator|*=
-name|c2
+name|C2
 expr_stmt|;
 name|h1
 operator|^=
@@ -769,9 +816,11 @@ name|h2
 operator|+=
 name|h1
 expr_stmt|;
-name|ByteBuffer
-name|bb
-init|=
+return|return
+name|HashCodes
+operator|.
+name|fromBytesNoCopy
+argument_list|(
 name|ByteBuffer
 operator|.
 name|wrap
@@ -779,7 +828,7 @@ argument_list|(
 operator|new
 name|byte
 index|[
-literal|16
+name|CHUNK_SIZE
 index|]
 argument_list|)
 operator|.
@@ -789,27 +838,16 @@ name|ByteOrder
 operator|.
 name|LITTLE_ENDIAN
 argument_list|)
-decl_stmt|;
-name|bb
 operator|.
 name|putLong
 argument_list|(
 name|h1
 argument_list|)
-expr_stmt|;
-name|bb
 operator|.
 name|putLong
 argument_list|(
 name|h2
 argument_list|)
-expr_stmt|;
-return|return
-name|HashCodes
-operator|.
-name|fromBytesNoCopy
-argument_list|(
-name|bb
 operator|.
 name|array
 argument_list|()
@@ -818,6 +856,7 @@ return|;
 block|}
 DECL|method|fmix64 (long k)
 specifier|private
+specifier|static
 name|long
 name|fmix64
 parameter_list|(
