@@ -106,8 +106,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
@@ -319,6 +317,8 @@ name|asSet
 parameter_list|()
 function_decl|;
 comment|/**    * If the instance is present, it is transformed with the given {@link Function}; otherwise,    * {@link Optional#absent} is returned. If the function returns {@code null}, a    * {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the function returns {@code null}    *    * @since 12.0    */
+annotation|@
+name|Beta
 DECL|method|transform (Function<? super T, V> function)
 specifier|public
 specifier|abstract
@@ -378,6 +378,8 @@ name|toString
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0    */
+annotation|@
+name|Beta
 DECL|method|presentInstances (final Iterable<Optional<T>> optionals)
 specifier|public
 specifier|static
