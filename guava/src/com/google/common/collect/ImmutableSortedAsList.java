@@ -198,6 +198,10 @@ argument_list|(
 name|target
 argument_list|)
 decl_stmt|;
+comment|// TODO(kevinb): reconsider if it's really worth making feeble attempts at
+comment|// sanity for inconsistent comparators.
+comment|// The equals() check is needed when the comparator isn't compatible with
+comment|// equals().
 return|return
 operator|(
 name|index
