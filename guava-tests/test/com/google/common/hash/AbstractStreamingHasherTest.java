@@ -265,7 +265,7 @@ argument_list|(
 operator|new
 name|byte
 index|[]
-block|{ }
+block|{}
 argument_list|)
 expr_stmt|;
 name|sink

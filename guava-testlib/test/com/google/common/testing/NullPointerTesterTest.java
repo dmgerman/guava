@@ -1977,7 +1977,7 @@ name|Nullable
 name|Integer
 name|i
 parameter_list|)
-block|{ }
+block|{}
 DECL|method|twoNullableArgsThrowsFirstArg ( @ullable String s, @Nullable Integer i)
 specifier|public
 name|void
@@ -2049,7 +2049,7 @@ name|Nullable
 name|String
 name|s
 parameter_list|)
-block|{ }
+block|{}
 DECL|method|staticOneNullableArgThrows (@ullable String s)
 specifier|public
 specifier|static

@@ -662,7 +662,7 @@ class|class
 name|ShutDown
 extends|extends
 name|Exception
-block|{ }
+block|{}
 block|}
 end_class
 

@@ -147,7 +147,7 @@ specifier|public
 name|void
 name|flush
 parameter_list|()
-block|{ }
+block|{}
 annotation|@
 name|Override
 DECL|method|close ()
@@ -155,7 +155,7 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-block|{ }
+block|{}
 DECL|method|clear ()
 specifier|public
 name|void

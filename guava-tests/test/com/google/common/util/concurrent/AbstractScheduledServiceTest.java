@@ -359,7 +359,7 @@ name|runOneIteration
 parameter_list|()
 throws|throws
 name|Exception
-block|{ }
+block|{}
 DECL|method|scheduler ()
 annotation|@
 name|Override
@@ -2071,7 +2071,7 @@ name|startUp
 parameter_list|()
 throws|throws
 name|Exception
-block|{ }
+block|{}
 DECL|method|shutDown ()
 annotation|@
 name|Override
@@ -2081,7 +2081,7 @@ name|shutDown
 parameter_list|()
 throws|throws
 name|Exception
-block|{ }
+block|{}
 DECL|method|scheduler ()
 annotation|@
 name|Override

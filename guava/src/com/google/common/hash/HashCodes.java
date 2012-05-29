@@ -73,7 +73,7 @@ DECL|method|HashCodes ()
 specifier|private
 name|HashCodes
 parameter_list|()
-block|{ }
+block|{}
 comment|/**    * Creates a 32-bit {@code HashCode}, of which the bytes will form the passed int, interpreted     * in little endian order.    */
 DECL|method|fromInt (int hash)
 specifier|public

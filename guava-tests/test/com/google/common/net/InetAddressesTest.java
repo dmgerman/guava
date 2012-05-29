@@ -3457,7 +3457,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{ }
+block|{}
 block|}
 DECL|method|testIncrementIPv6 ()
 specifier|public
@@ -3584,7 +3584,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{ }
+block|{}
 block|}
 block|}
 end_class

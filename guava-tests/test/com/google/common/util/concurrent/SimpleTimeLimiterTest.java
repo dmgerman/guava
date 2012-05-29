@@ -902,7 +902,7 @@ class|class
 name|SampleException
 extends|extends
 name|Exception
-block|{ }
+block|{}
 DECL|class|SampleImpl
 specifier|public
 specifier|static

@@ -1339,7 +1339,7 @@ block|}
 DECL|method|ImmutableSortedMultiset ()
 name|ImmutableSortedMultiset
 parameter_list|()
-block|{ }
+block|{}
 annotation|@
 name|Override
 DECL|method|comparator ()
