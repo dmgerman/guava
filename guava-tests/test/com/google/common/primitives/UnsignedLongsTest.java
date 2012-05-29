@@ -128,7 +128,6 @@ block|{
 comment|// max value
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -139,12 +138,10 @@ literal|0xffffffffffffffffL
 argument_list|)
 operator|<
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -155,13 +152,11 @@ literal|0
 argument_list|)
 operator|>
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 comment|// both with high bit set
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -172,12 +167,10 @@ literal|0xffffffffffffffffL
 argument_list|)
 operator|<
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -188,13 +181,11 @@ literal|0xff1a618b7f65ea12L
 argument_list|)
 operator|>
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 comment|// one with high bit set
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -205,12 +196,10 @@ literal|0xff1a618b7f65ea12L
 argument_list|)
 operator|<
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -221,13 +210,11 @@ literal|0x5a4316b8c153ac4dL
 argument_list|)
 operator|>
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 comment|// neither with high bit set
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -238,12 +225,10 @@ literal|0x6cf78a4b139a4e2aL
 argument_list|)
 operator|<
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -254,13 +239,11 @@ literal|0x5a4316b8c153ac4dL
 argument_list|)
 operator|>
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 comment|// same value
 name|assertTrue
 argument_list|(
-operator|(
 name|UnsignedLongs
 operator|.
 name|compare
@@ -271,7 +254,6 @@ literal|0xff1a618b7f65ea12L
 argument_list|)
 operator|==
 literal|0
-operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -538,8 +520,10 @@ name|nextLong
 argument_list|()
 decl_stmt|;
 comment|// Test that the Euclidean property is preserved:
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|dividend
 operator|-
 operator|(
@@ -563,8 +547,6 @@ argument_list|,
 name|divisor
 argument_list|)
 operator|)
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 block|}
@@ -574,8 +556,6 @@ specifier|public
 name|void
 name|testParseLong
 parameter_list|()
-block|{
-try|try
 block|{
 name|assertEquals
 argument_list|(
@@ -637,27 +617,6 @@ literal|"7851896530399809066"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|boolean
-name|overflowCaught
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 comment|// One more than maximum value
@@ -668,23 +627,16 @@ argument_list|(
 literal|"18446744073709551616"
 argument_list|)
 expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|e
+name|expected
 parameter_list|)
-block|{
-name|overflowCaught
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|overflowCaught
-argument_list|)
-expr_stmt|;
+block|{     }
 block|}
 DECL|method|testDecodeLong ()
 specifier|public
@@ -799,19 +751,15 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected
-block|}
+block|{     }
 block|}
 DECL|method|testParseLongWithRadix ()
 specifier|public
 name|void
 name|testParseLongWithRadix
 parameter_list|()
-throws|throws
-name|NumberFormatException
 block|{
 name|assertEquals
 argument_list|(
@@ -945,11 +893,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{       }
 block|}
 try|try
 block|{
@@ -969,11 +915,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testParseLongThrowsExceptionForInvalidRadix ()
 specifier|public
@@ -981,8 +925,7 @@ name|void
 name|testParseLongThrowsExceptionForInvalidRadix
 parameter_list|()
 block|{
-comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX,
-comment|// inclusive.
+comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX, inclusive.
 try|try
 block|{
 name|UnsignedLongs
@@ -1005,11 +948,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 try|try
 block|{
 name|UnsignedLongs
@@ -1032,11 +973,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
@@ -1057,11 +996,9 @@ block|}
 catch|catch
 parameter_list|(
 name|NumberFormatException
-name|nfe
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{     }
 block|}
 DECL|method|testToString ()
 specifier|public
@@ -1171,16 +1108,24 @@ name|assertEquals
 argument_list|(
 literal|""
 argument_list|,
+name|UnsignedLongs
+operator|.
 name|join
-argument_list|()
+argument_list|(
+literal|","
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1"
 argument_list|,
+name|UnsignedLongs
+operator|.
 name|join
 argument_list|(
+literal|","
+argument_list|,
 literal|1
 argument_list|)
 argument_list|)
@@ -1189,8 +1134,12 @@ name|assertEquals
 argument_list|(
 literal|"1,2"
 argument_list|,
+name|UnsignedLongs
+operator|.
 name|join
 argument_list|(
+literal|","
+argument_list|,
 literal|1
 argument_list|,
 literal|2
@@ -1201,8 +1150,12 @@ name|assertEquals
 argument_list|(
 literal|"18446744073709551615,9223372036854775808"
 argument_list|,
+name|UnsignedLongs
+operator|.
 name|join
 argument_list|(
+literal|","
+argument_list|,
 operator|-
 literal|1
 argument_list|,
@@ -1230,28 +1183,25 @@ literal|3
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-DECL|method|join (long... values)
-specifier|private
-specifier|static
-name|String
-name|join
-parameter_list|(
-name|long
-modifier|...
-name|values
-parameter_list|)
-block|{
-return|return
+name|assertEquals
+argument_list|(
+literal|"184467440737095516159223372036854775808"
+argument_list|,
 name|UnsignedLongs
 operator|.
 name|join
 argument_list|(
-literal|","
+literal|""
 argument_list|,
-name|values
+operator|-
+literal|1
+argument_list|,
+name|Long
+operator|.
+name|MIN_VALUE
 argument_list|)
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
