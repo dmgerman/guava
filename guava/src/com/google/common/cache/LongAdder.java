@@ -80,6 +80,7 @@ end_comment
 
 begin_class
 DECL|class|LongAdder
+specifier|final
 class|class
 name|LongAdder
 extends|extends

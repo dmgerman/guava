@@ -531,6 +531,7 @@ name|Beta
 DECL|class|SimpleStatsCounter
 specifier|public
 specifier|static
+specifier|final
 class|class
 name|SimpleStatsCounter
 implements|implements
