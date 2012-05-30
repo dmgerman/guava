@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Multimap} that can hold duplicate key-value pairs and that maintains  * the insertion ordering of values for a given key.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link List} of values. Though the method signature doesn't say  * so explicitly, the map returned by {@link #asMap} has {@code List} values.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@code Multimap} that can hold duplicate key-value pairs and that maintains  * the insertion ordering of values for a given key. See the {@link Multimap}  * documentation for information common to all multimaps.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link List} of values. Though the method signature doesn't say  * so explicitly, the map returned by {@link #asMap} has {@code List} values.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_interface
