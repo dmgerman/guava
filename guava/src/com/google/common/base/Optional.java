@@ -377,10 +377,10 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0    */
+comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0 (generics widened in 13.0)    */
 annotation|@
 name|Beta
-DECL|method|presentInstances (final Iterable<Optional<T>> optionals)
+DECL|method|presentInstances ( final Iterable<? extends Optional<? extends T>> optionals)
 specifier|public
 specifier|static
 parameter_list|<
@@ -395,8 +395,12 @@ parameter_list|(
 specifier|final
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|Optional
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 argument_list|>
@@ -438,8 +442,12 @@ specifier|private
 specifier|final
 name|Iterator
 argument_list|<
+name|?
+extends|extends
 name|Optional
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 argument_list|>
@@ -470,6 +478,8 @@ condition|)
 block|{
 name|Optional
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 name|optional
