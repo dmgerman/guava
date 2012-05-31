@@ -2566,6 +2566,39 @@ return|;
 block|}
 end_function
 
+begin_comment
+comment|/**    * Ensures that this type token doesn't contain type variables, which can cause unchecked type    * errors for callers like {@link TypeToInstanceMap}.    */
+end_comment
+
+begin_function
+DECL|method|rejectTypeVariables ()
+specifier|final
+name|TypeToken
+argument_list|<
+name|T
+argument_list|>
+name|rejectTypeVariables
+parameter_list|()
+block|{
+name|checkArgument
+argument_list|(
+operator|!
+name|Types
+operator|.
+name|containsTypeVariable
+argument_list|(
+name|runtimeType
+argument_list|)
+argument_list|,
+literal|"%s contains a type variable and is not safe for the operation"
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+end_function
+
 begin_function
 DECL|method|isAssignable (Type from, Type to)
 specifier|private
