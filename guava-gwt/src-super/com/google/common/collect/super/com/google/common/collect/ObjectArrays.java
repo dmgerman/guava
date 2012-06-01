@@ -479,6 +479,41 @@ operator|=
 name|temp
 expr_stmt|;
 block|}
+comment|// We do this instead of Preconditions.checkNotNull to save boxing and array
+comment|// creation cost.
+DECL|method|checkElementNotNull (Object element, int index)
+specifier|static
+name|Object
+name|checkElementNotNull
+parameter_list|(
+name|Object
+name|element
+parameter_list|,
+name|int
+name|index
+parameter_list|)
+block|{
+if|if
+condition|(
+name|element
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"at index "
+operator|+
+name|index
+argument_list|)
+throw|;
+block|}
+return|return
+name|element
+return|;
+block|}
 block|}
 end_class
 
