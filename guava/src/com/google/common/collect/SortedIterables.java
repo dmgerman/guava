@@ -438,6 +438,7 @@ operator|)
 name|elements
 return|;
 block|}
+comment|/*        * We assume that the comparator is consistent with equals (or rather, consistent with        * whatever |elements| uses for equality). Thus, we don't need to deduplicate.        */
 name|List
 argument_list|<
 name|E

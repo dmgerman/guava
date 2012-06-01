@@ -186,20 +186,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ImmutableSortedSet
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|Iterables
 import|;
 end_import
@@ -243,20 +229,6 @@ operator|.
 name|collect
 operator|.
 name|Ordering
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Sets
 import|;
 end_import
 
@@ -357,16 +329,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|SortedSet
 import|;
 end_import
 
@@ -1753,7 +1715,7 @@ name|ImmutableSet
 operator|.
 name|copyOf
 argument_list|(
-name|Sets
+name|Iterables
 operator|.
 name|filter
 argument_list|(
@@ -2162,7 +2124,7 @@ end_decl_stmt
 begin_function
 unit|}    private
 DECL|method|findAllTypes ()
-name|SortedSet
+name|ImmutableList
 argument_list|<
 name|TypeToken
 argument_list|<
@@ -4416,7 +4378,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|ImmutableSortedSet
+name|ImmutableList
 argument_list|<
 name|K
 argument_list|>
@@ -4441,14 +4403,14 @@ argument_list|>
 name|valueComparator
 parameter_list|)
 block|{
-name|Comparator
+name|Ordering
 argument_list|<
 name|K
 argument_list|>
-name|keyComparator
+name|keyOrdering
 init|=
 operator|new
-name|Comparator
+name|Ordering
 argument_list|<
 name|K
 argument_list|>
@@ -4491,12 +4453,10 @@ block|}
 block|}
 decl_stmt|;
 return|return
-name|ImmutableSortedSet
+name|keyOrdering
 operator|.
-name|copyOf
+name|immutableSortedCopy
 argument_list|(
-name|keyComparator
-argument_list|,
 name|map
 operator|.
 name|keySet
