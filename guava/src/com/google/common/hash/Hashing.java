@@ -122,7 +122,7 @@ specifier|private
 name|Hashing
 parameter_list|()
 block|{}
-comment|/**    * Used to randomize goodFastHash() instances, so that programs which persist anything    * dependent on hashcodes of those, will fail sooner than later.    */
+comment|/**    * Used to randomize {@link #goodFastHash} instances, so that programs which persist anything    * dependent on hashcodes of those, will fail sooner than later.    */
 DECL|field|GOOD_FAST_HASH_SEED
 specifier|private
 specifier|static
@@ -138,7 +138,33 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|/**    * Returns a general-purpose,<b>non-cryptographic-strength</b>, streaming hash function that    * produces hash codes of length at least {@code minimumBits}. Users without specific    * compatibility requirements and who do not persist the hash codes are encouraged to    * choose this hash function.    *    *<p><b>Warning: the implementation is unspecified and is subject to change.</b>    *    * @throws IllegalArgumentException if {@code minimumBits} is not positive    */
+comment|// Used by goodFastHash when minimumBits == 32.
+DECL|field|GOOD_FAST_HASH_FUNCTION_32
+specifier|private
+specifier|static
+specifier|final
+name|HashFunction
+name|GOOD_FAST_HASH_FUNCTION_32
+init|=
+name|murmur3_32
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
+decl_stmt|;
+comment|// Used by goodFastHash when 32< minimumBits<= 128.
+DECL|field|GOOD_FAST_HASH_FUNCTION_128
+specifier|private
+specifier|static
+specifier|final
+name|HashFunction
+name|GOOD_FAST_HASH_FUNCTION_128
+init|=
+name|murmur3_128
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
+decl_stmt|;
+comment|/**    * Returns a general-purpose,<b>non-cryptographic-strength</b>, streaming hash function that    * produces hash codes of length at least {@code minimumBits}. Users without specific    * compatibility requirements and who do not persist the hash codes are encouraged to    * choose this hash function.    *    *<p>Repeated calls to {@link #goodFastHash} with the same {@code minimumBits} value will    * return {@link HashFunction} instances with identical behavior (but not necessarily the    * same instance) for the duration of the current virtual machine.    *    *<p><b>Warning: the implementation is unspecified and is subject to change.</b>    *    * @throws IllegalArgumentException if {@code minimumBits} is not positive    */
 DECL|method|goodFastHash (int minimumBits)
 specifier|public
 specifier|static
@@ -165,13 +191,9 @@ literal|32
 condition|)
 block|{
 return|return
-name|murmur3_32
-argument_list|(
-name|GOOD_FAST_HASH_SEED
-argument_list|)
+name|GOOD_FAST_HASH_FUNCTION_32
 return|;
 block|}
-elseif|else
 if|if
 condition|(
 name|bits
@@ -180,15 +202,10 @@ literal|128
 condition|)
 block|{
 return|return
-name|murmur3_128
-argument_list|(
-name|GOOD_FAST_HASH_SEED
-argument_list|)
+name|GOOD_FAST_HASH_FUNCTION_128
 return|;
 block|}
-else|else
-block|{
-comment|// Join some 128-bit murmur3s
+comment|// Otherwise, join together some 128-bit murmur3s
 name|int
 name|hashFunctionsNeeded
 init|=
@@ -210,6 +227,13 @@ index|[
 name|hashFunctionsNeeded
 index|]
 decl_stmt|;
+name|hashFunctions
+index|[
+literal|0
+index|]
+operator|=
+name|GOOD_FAST_HASH_FUNCTION_128
+expr_stmt|;
 name|int
 name|seed
 init|=
@@ -220,7 +244,7 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|1
 init|;
 name|i
 operator|<
@@ -230,6 +254,11 @@ name|i
 operator|++
 control|)
 block|{
+name|seed
+operator|+=
+literal|1500450271
+expr_stmt|;
+comment|// a prime; shouldn't matter
 name|hashFunctions
 index|[
 name|i
@@ -240,11 +269,6 @@ argument_list|(
 name|seed
 argument_list|)
 expr_stmt|;
-name|seed
-operator|+=
-literal|1500450271
-expr_stmt|;
-comment|// a prime; shouldn't matter
 block|}
 return|return
 operator|new
@@ -253,7 +277,6 @@ argument_list|(
 name|hashFunctions
 argument_list|)
 return|;
-block|}
 block|}
 comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">32-bit murmur3    * algorithm</a> (little-endian variant), using the given seed value.    */
 DECL|method|murmur3_32 (int seed)
