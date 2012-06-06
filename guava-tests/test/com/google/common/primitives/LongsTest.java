@@ -1710,22 +1710,59 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
+DECL|method|assertByteArrayEquals (byte[] expected, byte[] actual)
+specifier|private
+specifier|static
+name|void
+name|assertByteArrayEquals
+parameter_list|(
+name|byte
+index|[]
+name|expected
+parameter_list|,
+name|byte
+index|[]
+name|actual
+parameter_list|)
+block|{
+name|assertTrue
 argument_list|(
-literal|"Longs.toByteArray"
+literal|"Expected: "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|expected
 argument_list|)
+operator|+
+literal|", but got: "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|actual
+argument_list|)
+argument_list|,
+name|Arrays
+operator|.
+name|equals
+argument_list|(
+name|expected
+argument_list|,
+name|actual
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testToByteArray ()
 specifier|public
 name|void
 name|testToByteArray
 parameter_list|()
 block|{
-name|assertTrue
-argument_list|(
-name|Arrays
-operator|.
-name|equals
+name|assertByteArrayEquals
 argument_list|(
 operator|new
 name|byte
@@ -1755,13 +1792,8 @@ argument_list|(
 literal|0x1213141516171819L
 argument_list|)
 argument_list|)
-argument_list|)
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|Arrays
-operator|.
-name|equals
+name|assertByteArrayEquals
 argument_list|(
 operator|new
 name|byte
@@ -1815,14 +1847,8 @@ argument_list|(
 literal|0xFFEEDDCCBBAA9988L
 argument_list|)
 argument_list|)
-argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Longs.fromByteArray"
-argument_list|)
 DECL|method|testFromByteArray ()
 specifier|public
 name|void
@@ -1945,11 +1971,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Longs.fromBytes"
-argument_list|)
 DECL|method|testFromBytes ()
 specifier|public
 name|void
@@ -2057,11 +2078,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Longs.fromByteArray, Longs.toByteArray"
-argument_list|)
 DECL|method|testByteArrayRoundTrips ()
 specifier|public
 name|void
