@@ -3398,8 +3398,8 @@ argument_list|>
 name|getEntry
 parameter_list|()
 function_decl|;
-comment|/**      * Creates a copy of this reference for the given entry.      */
-DECL|method|copyFor (ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
+comment|/**      * Creates a copy of this reference for the given entry.      *      *<p>{@code value} may be null only for a loading reference.      */
+DECL|method|copyFor ( ReferenceQueue<V> queue, @Nullable V value, ReferenceEntry<K, V> entry)
 name|ValueReference
 argument_list|<
 name|K
@@ -3414,6 +3414,8 @@ name|V
 argument_list|>
 name|queue
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|,
@@ -3526,6 +3528,8 @@ name|Object
 argument_list|>
 name|queue
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|,
@@ -16729,7 +16733,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyFor ( ReferenceQueue<V> queue, V value, ReferenceEntry<K, V> entry)
+DECL|method|copyFor ( ReferenceQueue<V> queue, @Nullable V value, ReferenceEntry<K, V> entry)
 specifier|public
 name|ValueReference
 argument_list|<
@@ -16745,6 +16749,8 @@ name|V
 argument_list|>
 name|queue
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|,
