@@ -720,12 +720,16 @@ name|V
 argument_list|>
 name|successorInMultimap
 decl_stmt|;
-DECL|method|ValueEntry (K key, V value, int valueHash, @Nullable ValueEntry<K, V> nextInValueSetHashRow)
+DECL|method|ValueEntry (@ullable K key, @Nullable V value, int valueHash, @Nullable ValueEntry<K, V> nextInValueSetHashRow)
 name|ValueEntry
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|,
