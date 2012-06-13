@@ -909,16 +909,6 @@ name|DEFAULT_VALUE_SET_CAPACITY
 init|=
 literal|2
 decl_stmt|;
-comment|/**    * This is a bit higher than normal to minimize memory consumption, especially for the small    * value sets most often found in multimaps.    */
-DECL|field|VALUE_SET_LOAD_FACTOR
-specifier|private
-specifier|static
-specifier|final
-name|double
-name|VALUE_SET_LOAD_FACTOR
-init|=
-literal|1.0
-decl_stmt|;
 DECL|field|MAX_VALUE_SET_TABLE_SIZE
 specifier|private
 specifier|static
@@ -1169,6 +1159,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/*      * We currently use a fixed load factor of 1.0, a bit higher than normal to reduce memory      * consumption.      */
 DECL|field|key
 specifier|private
 specifier|final
@@ -1199,11 +1190,6 @@ name|int
 name|modCount
 init|=
 literal|0
-decl_stmt|;
-DECL|field|rehashThreshold
-specifier|private
-name|int
-name|rehashThreshold
 decl_stmt|;
 comment|// We use the set object itself as the end of the linked list, avoiding an unnecessary
 comment|// entry object per key.
@@ -1255,8 +1241,7 @@ name|lastEntry
 operator|=
 name|this
 expr_stmt|;
-comment|// Round expected values up to a power of 2, and adjust if necessary to obey the load factor.
-comment|// TODO(user): look over that description to make sure that it's right
+comment|// Round expected values up to a power of 2 to get the table size.
 name|int
 name|tableSize
 init|=
@@ -1278,27 +1263,6 @@ argument_list|)
 operator|<<
 literal|1
 decl_stmt|;
-while|while
-condition|(
-name|tableSize
-operator|>
-literal|0
-operator|&&
-operator|(
-name|tableSize
-operator|*
-name|VALUE_SET_LOAD_FACTOR
-operator|)
-operator|<
-name|expectedValues
-condition|)
-block|{
-comment|// TODO(user): would a shift be faster? Would the right thing happen with overflow?
-name|tableSize
-operator|*=
-literal|2
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|tableSize
@@ -1336,19 +1300,6 @@ operator|.
 name|hashTable
 operator|=
 name|hashTable
-expr_stmt|;
-name|this
-operator|.
-name|rehashThreshold
-operator|=
-call|(
-name|int
-call|)
-argument_list|(
-name|VALUE_SET_LOAD_FACTOR
-operator|*
-name|tableSize
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -2043,7 +1994,9 @@ if|if
 condition|(
 name|size
 operator|>
-name|rehashThreshold
+name|hashTable
+operator|.
+name|length
 operator|&&
 name|hashTable
 operator|.
@@ -2166,21 +2119,6 @@ operator|=
 name|valueEntry
 expr_stmt|;
 block|}
-name|this
-operator|.
-name|rehashThreshold
-operator|=
-call|(
-name|int
-call|)
-argument_list|(
-name|VALUE_SET_LOAD_FACTOR
-operator|*
-name|hashTable
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 annotation|@
