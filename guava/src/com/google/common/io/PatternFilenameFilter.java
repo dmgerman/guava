@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * File name filter that only accepts files matching a regular expression. This class is thread-safe  * and immutable.  *  * @author Apple Chow  * @since 1.0  */
+comment|/**  * File name filter that only accepts files matching a regular expression. This  * class is thread-safe and immutable.  *  * @author Apple Chow  * @since 1.0  */
 end_comment
 
 begin_class

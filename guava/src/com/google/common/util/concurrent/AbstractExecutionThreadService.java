@@ -201,7 +201,9 @@ name|Level
 operator|.
 name|WARNING
 argument_list|,
-literal|"Error while attempting to shut down the service after failure."
+literal|"Error while attempting to shut down the service"
+operator|+
+literal|" after failure."
 argument_list|,
 name|ignored
 argument_list|)
@@ -460,7 +462,7 @@ name|stopAndWait
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService} may include the name    * in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 10.0    */
+comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService}    * may include the name in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 10.0    */
 DECL|method|getServiceName ()
 specifier|protected
 name|String

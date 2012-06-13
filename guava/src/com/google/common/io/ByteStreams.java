@@ -243,7 +243,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -3157,7 +3157,7 @@ block|}
 return|;
 block|}
 comment|/**    * Joins multiple {@link InputStream} suppliers into a single supplier.    * Streams returned from the supplier will contain the concatenated data from    * the streams of the underlying suppliers.    *    *<p>Only one underlying input stream will be open at a time. Closing the    * joined stream will close the open underlying stream.    *    *<p>Reading from the joined stream will throw a {@link NullPointerException}    * if any of the suppliers are null or return null.    *    * @param suppliers the suppliers to concatenate    * @return a supplier that will return a stream containing the concatenated    *     stream data    */
-DECL|method|join ( final Iterable<? extends InputSupplier<? extends InputStream>> suppliers)
+DECL|method|join (final Iterable<? extends InputSupplier<? extends InputStream>> suppliers)
 specifier|public
 specifier|static
 name|InputSupplier

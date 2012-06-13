@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the use of {@code  * Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the  * use of {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -1261,7 +1261,7 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|// 0x12472c2c is a random number to help avoid collisions with OrPredicate
+comment|// add a random number to avoid collisions with OrPredicate
 return|return
 name|components
 operator|.
@@ -1471,7 +1471,7 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|// 0x053c91cf is a random number to help avoid collisions with AndPredicate
+comment|// add a random number to avoid collisions with AndPredicate
 return|return
 name|components
 operator|.

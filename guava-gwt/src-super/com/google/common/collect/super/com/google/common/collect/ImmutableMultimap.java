@@ -208,7 +208,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-comment|// TODO(user): If BiMultimap graduates from labs, this class should implement it.
 DECL|class|ImmutableMultimap
 specifier|public
 specifier|abstract
@@ -1446,7 +1445,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns an immutable multimap which is the inverse of this one. For every    * key-value mapping in the original, the result will have a mapping with    * key and value reversed.    *    * @since 11    */
+comment|/**    * Returns an immutable multimap which is the inverse of this one. For every    * key-value mapping in the original, the result will have a mapping with    * key and value reversed.    *    * @since 11.0    */
 annotation|@
 name|Beta
 DECL|method|inverse ()

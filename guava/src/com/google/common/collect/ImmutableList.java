@@ -1634,7 +1634,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Called by the default implementation of {@link #subList} when    * {@code toIndex - fromIndex> 1}, after index validation has already been performed.    */
+comment|/**    * Called by the default implementation of {@link #subList} when {@code    * toIndex - fromIndex> 1}, after index validation has already been    * performed.    */
 DECL|method|subListUnchecked (int fromIndex, int toIndex)
 name|ImmutableList
 argument_list|<

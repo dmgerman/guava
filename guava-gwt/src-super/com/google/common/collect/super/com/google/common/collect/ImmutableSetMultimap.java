@@ -1857,7 +1857,7 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a set multimap cannot contain multiple pairs with the same key and    * value, this method returns an {@code ImmutableSetMultimap} rather than the    * {@code ImmutableMultimap} specified in the {@code ImmutableMultimap} class.    *    * @since 11    */
+comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a set multimap cannot contain multiple pairs with    * the same key and value, this method returns an {@code ImmutableSetMultimap}    * rather than the {@code ImmutableMultimap} specified in the {@code    * ImmutableMultimap} class.    *    * @since 11.0    */
 annotation|@
 name|Beta
 DECL|method|inverse ()

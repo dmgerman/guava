@@ -154,7 +154,7 @@ specifier|private
 name|UnsignedBytes
 parameter_list|()
 block|{}
-comment|/**    * The largest power of two that can be represented as an unsigned {@code byte}.    *    * @since 10.0    */
+comment|/**    * The largest power of two that can be represented as an unsigned {@code    * byte}.    *    * @since 10.0    */
 DECL|field|MAX_POWER_OF_TWO
 specifier|public
 specifier|static

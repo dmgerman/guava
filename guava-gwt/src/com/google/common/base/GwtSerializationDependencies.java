@@ -222,7 +222,7 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|transform (Function<? super T, V> function)
+DECL|method|transform ( Function<? super T, V> function)
 annotation|@
 name|Override
 specifier|public

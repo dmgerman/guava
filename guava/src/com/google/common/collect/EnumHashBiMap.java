@@ -332,7 +332,7 @@ operator|=
 name|keyType
 expr_stmt|;
 block|}
-comment|// Overriding these three methods to show that values may be null (but not keys)
+comment|// Overriding these 3 methods to show that values may be null (but not keys)
 annotation|@
 name|Override
 DECL|method|checkKey (K key)
