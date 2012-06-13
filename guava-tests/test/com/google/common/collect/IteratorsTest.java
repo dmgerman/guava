@@ -28,6 +28,22 @@ name|collect
 operator|.
 name|Iterators
 operator|.
+name|advance
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Iterators
+operator|.
 name|get
 import|;
 end_import
@@ -45,22 +61,6 @@ operator|.
 name|Iterators
 operator|.
 name|getLast
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Iterators
-operator|.
-name|skip
 import|;
 end_import
 
@@ -9332,10 +9332,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSkip_basic ()
+DECL|method|testAdvance_basic ()
 specifier|public
 name|void
-name|testSkip_basic
+name|testAdvance_basic
 parameter_list|()
 block|{
 name|List
@@ -9372,7 +9372,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|skip
+name|advance
 argument_list|(
 name|iterator
 argument_list|,
@@ -9390,10 +9390,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSkip_pastEnd ()
+DECL|method|testAdvance_pastEnd ()
 specifier|public
 name|void
-name|testSkip_pastEnd
+name|testAdvance_pastEnd
 parameter_list|()
 block|{
 name|List
@@ -9430,7 +9430,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|skip
+name|advance
 argument_list|(
 name|iterator
 argument_list|,
@@ -9446,10 +9446,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSkip_illegalArgument ()
+DECL|method|testAdvance_illegalArgument ()
 specifier|public
 name|void
-name|testSkip_illegalArgument
+name|testAdvance_illegalArgument
 parameter_list|()
 block|{
 name|List
@@ -9480,7 +9480,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|skip
+name|advance
 argument_list|(
 name|iterator
 argument_list|,

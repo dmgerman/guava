@@ -3409,9 +3409,11 @@ else|:
 name|defaultValue
 return|;
 block|}
-comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3.0    */
+comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3.0    * @deprecated This method has been renamed to {@link #advance(java.util.Iterator, int) advance}.    *     This method is scheduled to be deleted in Guava 14.0.    */
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|method|skip (Iterator<?> iterator, int numberToSkip)
 specifier|public
 specifier|static
@@ -3428,6 +3430,34 @@ name|int
 name|numberToSkip
 parameter_list|)
 block|{
+return|return
+name|advance
+argument_list|(
+name|iterator
+argument_list|,
+name|numberToSkip
+argument_list|)
+return|;
+block|}
+comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToAdvance} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements the iterator was advanced    * @since 13.0 (since 3.0 as {@code Iterators.skip})    */
+annotation|@
+name|Beta
+DECL|method|advance (Iterator<?> iterator, int numberToAdvance)
+specifier|public
+specifier|static
+name|int
+name|advance
+parameter_list|(
+name|Iterator
+argument_list|<
+name|?
+argument_list|>
+name|iterator
+parameter_list|,
+name|int
+name|numberToAdvance
+parameter_list|)
+block|{
 name|checkNotNull
 argument_list|(
 name|iterator
@@ -3435,11 +3465,11 @@ argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-name|numberToSkip
+name|numberToAdvance
 operator|>=
 literal|0
 argument_list|,
-literal|"number to skip cannot be negative"
+literal|"number to advance cannot be negative"
 argument_list|)
 expr_stmt|;
 name|int
@@ -3453,7 +3483,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|numberToSkip
+name|numberToAdvance
 operator|&&
 name|iterator
 operator|.
