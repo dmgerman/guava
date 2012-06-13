@@ -94,16 +94,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|AbstractSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Arrays
 import|;
 end_import
@@ -1165,7 +1155,9 @@ specifier|final
 class|class
 name|ValueSet
 extends|extends
-name|AbstractSet
+name|Sets
+operator|.
+name|ImprovedAbstractSet
 argument_list|<
 name|V
 argument_list|>
