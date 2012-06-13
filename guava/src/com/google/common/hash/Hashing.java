@@ -504,7 +504,7 @@ name|asLong
 argument_list|()
 return|;
 block|}
-comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    */
+comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    *<p>    * If you might want to have weights for the buckets in the future, take a look at    * {@code weightedConsistentHash}.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public
 specifier|static
@@ -530,7 +530,7 @@ name|buckets
 argument_list|)
 return|;
 block|}
-comment|/**    * Assigns to {@code input} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    */
+comment|/**    * Assigns to {@code input} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    *<p>    * If you might want to have weights for the buckets in the future, take a look at    * {@code weightedConsistentHash}.    */
 DECL|method|consistentHash (long input, int buckets)
 specifier|public
 specifier|static
@@ -555,10 +555,14 @@ argument_list|,
 name|buckets
 argument_list|)
 expr_stmt|;
-name|long
-name|h
+name|LinearCongruentialGenerator
+name|generator
 init|=
+operator|new
+name|LinearCongruentialGenerator
+argument_list|(
 name|input
+argument_list|)
 decl_stmt|;
 name|int
 name|candidate
@@ -574,35 +578,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|// See http://en.wikipedia.org/wiki/Linear_congruential_generator
-comment|// These values for a and m come from the C++ version of this function.
-name|h
-operator|=
-literal|2862933555777941757L
-operator|*
-name|h
-operator|+
-literal|1
-expr_stmt|;
-name|double
-name|inv
-init|=
-literal|0x1
-literal|.0p31
-operator|/
-operator|(
-call|(
-name|int
-call|)
-argument_list|(
-name|h
-operator|>>>
-literal|33
-argument_list|)
-operator|+
-literal|1
-operator|)
-decl_stmt|;
 name|next
 operator|=
 call|(
@@ -614,8 +589,11 @@ name|candidate
 operator|+
 literal|1
 operator|)
-operator|*
-name|inv
+operator|/
+name|generator
+operator|.
+name|nextDouble
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -1064,6 +1042,73 @@ parameter_list|()
 block|{
 return|return
 name|bits
+return|;
+block|}
+block|}
+DECL|class|LinearCongruentialGenerator
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|LinearCongruentialGenerator
+block|{
+DECL|field|state
+specifier|private
+name|long
+name|state
+decl_stmt|;
+DECL|method|LinearCongruentialGenerator (long seed)
+specifier|public
+name|LinearCongruentialGenerator
+parameter_list|(
+name|long
+name|seed
+parameter_list|)
+block|{
+name|this
+operator|.
+name|state
+operator|=
+name|seed
+expr_stmt|;
+block|}
+DECL|method|nextDouble ()
+specifier|public
+name|double
+name|nextDouble
+parameter_list|()
+block|{
+name|state
+operator|=
+literal|2862933555777941757L
+operator|*
+name|state
+operator|+
+literal|1
+expr_stmt|;
+return|return
+operator|(
+call|(
+name|double
+call|)
+argument_list|(
+call|(
+name|int
+call|)
+argument_list|(
+name|state
+operator|>>>
+literal|33
+argument_list|)
+operator|+
+literal|1
+argument_list|)
+operator|)
+operator|/
+operator|(
+literal|0x1
+literal|.0p31
+operator|)
 return|;
 block|}
 block|}
