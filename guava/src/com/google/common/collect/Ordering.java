@@ -210,6 +210,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|TreeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|atomic
@@ -461,7 +471,7 @@ argument_list|)
 return|;
 block|}
 comment|// Ordering<Object> singletons
-comment|/**    * Returns an ordering which treats all values as equal. This can be useful in conjunction with    * nullsFirst() or nullsLast() to treat all non-null objects as equal, or to make sorting a    * no-op.    *    *<p>The returned comparator is serializable.    */
+comment|/**    * Returns an ordering which treats all values as equal, indicating "no    * ordering." Passing this ordering to any<i>stable</i> sort algorithm    * results in no change to the order of elements. Note especially that {@link    * #sortedCopy} and {@link #immutableSortedCopy} are stable, and in the    * returned instance these are implemented by simply copying the source list.    *    *<p>Example:<pre>   {@code    *    *   Ordering.allEqual().nullsLast().sortedCopy(    *       asList(t, null, e, s, null, t, null))}</pre>    *    * Assuming {@code t}, {@code e} and {@code s} are non-null, this returns    * {@code [t, e, s, t, null, null, null]} regardlesss of the true comparison    * order of those three values (which might not even implement {@link    * Comparable} at all).    *    *<p><b>Warning:</b> by definition, this comparator is not<i>consistent with    * equals</i> (as defined {@linkplain Comparator here}). Avoid its use in    * APIs, such as {@link TreeSet#TreeSet(Comparator)}, where such consistency    * is expected.    *    *<p>The returned comparator is serializable.    */
 annotation|@
 name|GwtCompatible
 argument_list|(
