@@ -3101,7 +3101,7 @@ argument_list|()
 decl_stmt|;
 name|Iterators
 operator|.
-name|skip
+name|advance
 argument_list|(
 name|iterator
 argument_list|,
