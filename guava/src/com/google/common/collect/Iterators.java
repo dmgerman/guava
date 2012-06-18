@@ -3440,8 +3440,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToAdvance} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements the iterator was advanced    * @since 13.0 (since 3.0 as {@code Iterators.skip})    */
-annotation|@
-name|Beta
 DECL|method|advance (Iterator<?> iterator, int numberToAdvance)
 specifier|public
 specifier|static
