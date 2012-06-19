@@ -46,6 +46,18 @@ name|ForwardingObject
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Executor
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
@@ -177,6 +189,47 @@ name|delegate
 argument_list|()
 operator|.
 name|isRunning
+argument_list|()
+return|;
+block|}
+DECL|method|addListener (Listener listener, Executor executor)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|addListener
+parameter_list|(
+name|Listener
+name|listener
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|addListener
+argument_list|(
+name|listener
+argument_list|,
+name|executor
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|failureCause ()
+annotation|@
+name|Override
+specifier|public
+name|Throwable
+name|failureCause
+parameter_list|()
+block|{
+return|return
+name|delegate
+argument_list|()
+operator|.
+name|failureCause
 argument_list|()
 return|;
 block|}
