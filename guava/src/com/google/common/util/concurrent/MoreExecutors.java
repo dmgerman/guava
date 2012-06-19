@@ -581,6 +581,10 @@ comment|// We're shutting down anyway, so just ignore.
 block|}
 block|}
 block|}
+argument_list|,
+literal|"DelayedShutdownHook-for-"
+operator|+
+name|service
 argument_list|)
 argument_list|)
 expr_stmt|;
