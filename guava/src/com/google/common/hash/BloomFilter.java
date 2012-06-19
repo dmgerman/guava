@@ -560,10 +560,10 @@ expr_stmt|;
 name|checkArgument
 argument_list|(
 name|expectedInsertions
-operator|>
+operator|>=
 literal|0
 argument_list|,
-literal|"Expected insertions must be positive"
+literal|"Expected insertions cannot be negative"
 argument_list|)
 expr_stmt|;
 name|checkArgument
@@ -579,6 +579,18 @@ argument_list|,
 literal|"False positive probability in (0.0, 1.0)"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|expectedInsertions
+operator|==
+literal|0
+condition|)
+block|{
+name|expectedInsertions
+operator|=
+literal|1
+expr_stmt|;
+block|}
 comment|/*      * andreou: I wanted to put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less that 10kb. Who cares!      */
 name|int
 name|numBits
