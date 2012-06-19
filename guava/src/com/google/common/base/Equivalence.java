@@ -86,8 +86,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 DECL|class|Equivalence
 specifier|public
@@ -287,8 +285,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Wraps an object so that {@link #equals(Object)} and {@link #hashCode()} delegate to an    * {@link Equivalence}.    *    *<p>For example, given an {@link Equivalence} for {@link String strings} named {@code equiv}    * that tests equivalence using their lengths:    *    *<pre>   {@code    *   equiv.wrap("a").equals(equiv.wrap("b")) // true    *   equiv.wrap("a").equals(equiv.wrap("hello")) // false    * }</pre>    *    *<p>Note in particular that an equivalence wrapper is never equal to the object it wraps.    *    *<pre>   {@code    *   equiv.wrap(obj).equals(obj) // always false    * }</pre>    *    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|class|Wrapper
 specifier|public
 specifier|static
@@ -554,6 +550,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to true if and only if the input is    * equivalent to {@code target} according to this equivalence relation.    *     * @since 10.0    */
+annotation|@
+name|Beta
 DECL|method|equivalentTo (@ullable T target)
 specifier|public
 specifier|final
