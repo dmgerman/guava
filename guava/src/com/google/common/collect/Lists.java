@@ -827,8 +827,6 @@ return|;
 block|}
 comment|/**    * Creates an empty {@code CopyOnWriteArrayList} instance.    *    *<p><b>Note:</b> if you need an immutable empty {@link List}, use    * {@link Collections#emptyList} instead.    *    * @return a new, empty {@code CopyOnWriteArrayList}    * @since 12.0    */
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"CopyOnWriteArrayList"
@@ -856,8 +854,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code CopyOnWriteArrayList} instance containing the given elements.    *    * @param elements the elements that the list should contain, in order    * @return a new {@code CopyOnWriteArrayList} containing those elements    * @since 12.0    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(

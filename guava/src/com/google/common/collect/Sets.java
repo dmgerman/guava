@@ -1198,8 +1198,6 @@ return|;
 block|}
 comment|/**    * Creates an empty {@code CopyOnWriteArraySet} instance.    *    *<p><b>Note:</b> if you need an immutable empty {@link Set}, use    * {@link Collections#emptySet} instead.    *    * @return a new, empty {@code CopyOnWriteArraySet}    * @since 12.0    */
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"CopyOnWriteArraySet"
@@ -1227,8 +1225,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code CopyOnWriteArraySet} instance containing the given elements.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code CopyOnWriteArraySet} containing those elements    * @since 12.0    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
