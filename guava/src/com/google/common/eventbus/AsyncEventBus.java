@@ -134,7 +134,6 @@ block|}
 annotation|@
 name|Override
 DECL|method|enqueueEvent (Object event, EventHandler handler)
-specifier|protected
 name|void
 name|enqueueEvent
 parameter_list|(
@@ -160,6 +159,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Dispatch {@code events} in the order they were posted, regardless of    * the posting thread.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// only deprecated for external subclasses
 annotation|@
 name|Override
 DECL|method|dispatchQueuedEvents ()
@@ -207,7 +212,6 @@ comment|/**    * Calls the {@link #executor} to dispatch {@code event} to {@code
 annotation|@
 name|Override
 DECL|method|dispatch (final Object event, final EventHandler handler)
-specifier|protected
 name|void
 name|dispatch
 parameter_list|(

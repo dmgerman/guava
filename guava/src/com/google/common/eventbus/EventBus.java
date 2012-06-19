@@ -353,11 +353,7 @@ name|get
 parameter_list|()
 block|{
 return|return
-operator|new
-name|CopyOnWriteArraySet
-argument_list|<
-name|EventHandler
-argument_list|>
+name|newHandlerSet
 argument_list|()
 return|;
 block|}
@@ -801,6 +797,12 @@ comment|/**    * Posts an event to all registered handlers.  This method will re
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// only deprecated for external subclasses
 DECL|method|post (Object event)
 specifier|public
 name|void
@@ -926,7 +928,6 @@ end_comment
 
 begin_function
 DECL|method|enqueueEvent (Object event, EventHandler handler)
-specifier|protected
 name|void
 name|enqueueEvent
 parameter_list|(
@@ -957,10 +958,12 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Drain the queue of events to be dispatched. As the queue is being drained,    * new events may be posted to the end of the queue.    */
+comment|/**    * Drain the queue of events to be dispatched. As the queue is being drained,    * new events may be posted to the end of the queue.    *    * @deprecated This method should not be overridden outside of the eventbus package. It is    *     scheduled for removal in Guava 14.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 DECL|method|dispatchQueuedEvents ()
 specifier|protected
 name|void
@@ -1046,7 +1049,6 @@ end_comment
 
 begin_function
 DECL|method|dispatch (Object event, EventHandler wrapper)
-specifier|protected
 name|void
 name|dispatch
 parameter_list|(
@@ -1132,7 +1134,6 @@ end_comment
 
 begin_function
 DECL|method|newHandlerSet ()
-specifier|protected
 name|Set
 argument_list|<
 name|EventHandler
