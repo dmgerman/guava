@@ -902,6 +902,39 @@ name|iterable
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.  To produce an    * {@code ImmutableList} sorted by its natural ordering, use    * {@code toImmutableSortedList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 13.0    */
+DECL|method|toSortedImmutableList (Comparator<? super E> comparator)
+specifier|public
+specifier|final
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|toSortedImmutableList
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|)
+block|{
+return|return
+name|Ordering
+operator|.
+name|from
+argument_list|(
+name|comparator
+argument_list|)
+operator|.
+name|immutableSortedCopy
+argument_list|(
+name|iterable
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this    * fluent iterable with duplicates removed.    */
 DECL|method|toImmutableSet ()
 specifier|public
