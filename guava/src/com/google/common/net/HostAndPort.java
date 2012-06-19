@@ -96,6 +96,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|regex
@@ -142,6 +152,8 @@ specifier|public
 specifier|final
 class|class
 name|HostAndPort
+implements|implements
+name|Serializable
 block|{
 comment|/** Magic value indicating the absence of a port number. */
 DECL|field|NO_PORT
@@ -843,6 +855,15 @@ operator|<=
 literal|65535
 return|;
 block|}
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0
+decl_stmt|;
 block|}
 end_class
 
