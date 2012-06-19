@@ -328,8 +328,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|appendTo (A appendable, Iterator<?> parts)
 specifier|public
 parameter_list|<
@@ -574,8 +572,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|appendTo (StringBuilder builder, Iterator<?> parts)
 specifier|public
 specifier|final
@@ -761,8 +757,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|join (Iterator<?> parts)
 specifier|public
 specifier|final
