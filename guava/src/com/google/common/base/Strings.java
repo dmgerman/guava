@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -569,8 +555,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the longest string {@code prefix} such that    * {@code a.toString().startsWith(prefix)&& b.toString().startsWith(prefix)},    * taking care not to split surrogate pairs. If {@code a} and {@code b} have    * no common prefix, returns the empty string.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|commonPrefix (CharSequence a, CharSequence b)
 specifier|public
 specifier|static
@@ -682,8 +666,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the longest string {@code suffix} such that    * {@code a.toString().endsWith(suffix)&& b.toString().endsWith(suffix)},    * taking care not to split surrogate pairs. If {@code a} and {@code b} have    * no common suffix, returns the empty string.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|commonSuffix (CharSequence a, CharSequence b)
 specifier|public
 specifier|static
