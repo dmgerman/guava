@@ -261,6 +261,8 @@ name|defaultValue
 parameter_list|)
 function_decl|;
 comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
+annotation|@
+name|Beta
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 specifier|abstract
@@ -280,6 +282,8 @@ name|secondChoice
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise. If the    * supplier returns {@code null}, a {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the supplier returns {@code null}    */
+annotation|@
+name|Beta
 DECL|method|or (Supplier<? extends T> supplier)
 specifier|public
 specifier|abstract
@@ -296,9 +300,9 @@ name|supplier
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the    * instance is known to be present, use {@link #get()} instead.    */
-DECL|method|orNull ()
 annotation|@
 name|Nullable
+DECL|method|orNull ()
 specifier|public
 specifier|abstract
 name|T
@@ -343,9 +347,9 @@ name|function
 parameter_list|)
 function_decl|;
 comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 specifier|abstract
 name|boolean
@@ -358,9 +362,9 @@ name|object
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a hash code for this instance.    */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 specifier|abstract
 name|int
@@ -368,9 +372,9 @@ name|hashCode
 parameter_list|()
 function_decl|;
 comment|/**    * Returns a string representation for this instance. The form of this string    * representation is unspecified.    */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 specifier|abstract
 name|String
