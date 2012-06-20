@@ -4605,7 +4605,7 @@ block|}
 comment|/**    * Returns a view of a sorted map whose values are derived from the original    * sorted map's entries. In contrast to {@link #transformValues}, this    * method's entry-transformation logic may depend on the key as well as the    * value.    *    *<p>All other properties of the transformed map, such as iteration order,    * are left intact. For example, the code:<pre>   {@code    *    *   Map<String, Boolean> options =    *       ImmutableSortedMap.of("verbose", true, "sort", false);    *   EntryTransformer<String, Boolean, String> flagPrefixer =    *       new EntryTransformer<String, Boolean, String>() {    *         public String transformEntry(String key, Boolean value) {    *           return value ? key : "yes" + key;    *         }    *       };    *   SortedMap<String, String> transformed =    *       LabsMaps.transformSortedEntries(options, flagPrefixer);    *   System.out.println(transformed);}</pre>    *    * ... prints {@code {sort=yessort, verbose=verbose}}.    *    *<p>Changes in the underlying map are reflected in this view. Conversely,    * this view supports removal operations, and these are reflected in the    * underlying map.    *    *<p>It's acceptable for the underlying map to contain null keys and null    * values provided that the transformer is capable of accepting null inputs.    * The transformed map might contain null values if the transformer sometimes    * gives a null result.    *    *<p>The returned map is not thread-safe or serializable, even if the    * underlying map is.    *    *<p>The transformer is applied lazily, invoked when needed. This is    * necessary for the returned map to be a view, but it means that the    * transformer will be applied many times for bulk operations like {@link    * Map#containsValue} and {@link Object#toString}. For this to perform well,    * {@code transformer} should be fast. To avoid lazy evaluation when the    * returned map doesn't need to be a view, copy the returned map into a new    * map of your choosing.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * {@code EntryTransformer} key type {@code K}, {@code k.equals(k2)} implies    * that {@code k2} is also of type {@code K}. Using an {@code    * EntryTransformer} key type for which this may not hold, such as {@code    * ArrayList}, may risk a {@code ClassCastException} when calling methods on    * the transformed map.    *    * @since 11.0    */
 annotation|@
 name|Beta
-DECL|method|transformEntries ( final SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+DECL|method|transformEntries ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 specifier|public
 specifier|static
 parameter_list|<
@@ -4623,7 +4623,57 @@ name|V2
 argument_list|>
 name|transformEntries
 parameter_list|(
-specifier|final
+name|SortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V1
+argument_list|>
+name|fromMap
+parameter_list|,
+name|EntryTransformer
+argument_list|<
+name|?
+super|super
+name|K
+argument_list|,
+name|?
+super|super
+name|V1
+argument_list|,
+name|V2
+argument_list|>
+name|transformer
+parameter_list|)
+block|{
+return|return
+name|Platform
+operator|.
+name|mapsTransformEntriesSortedMap
+argument_list|(
+name|fromMap
+argument_list|,
+name|transformer
+argument_list|)
+return|;
+block|}
+DECL|method|transformEntriesIgnoreNavigable ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V1
+parameter_list|,
+name|V2
+parameter_list|>
+name|SortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V2
+argument_list|>
+name|transformEntriesIgnoreNavigable
+parameter_list|(
 name|SortedMap
 argument_list|<
 name|K

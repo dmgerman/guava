@@ -5208,6 +5208,42 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+comment|/**    * Returns a synchronized (thread-safe) navigable set backed by the specified    * navigable set.  In order to guarantee serial access, it is critical that    *<b>all</b> access to the backing navigable set is accomplished    * through the returned navigable set (or its views).    *    *<p>It is imperative that the user manually synchronize on the returned    * sorted set when iterating over it or any of its {@code descendingSet},    * {@code subSet}, {@code headSet}, or {@code tailSet} views.<pre>   {@code    *    *   NavigableSet<E> set = synchronizedNavigableSet(new TreeSet<E>());    *    ...    *   synchronized (set) {    *     // Must be in the synchronized block    *     Iterator<E> it = set.iterator();    *     while (it.hasNext()){    *       foo(it.next());    *     }    *   }}</pre>    *    * or:<pre>   {@code    *    *   NavigableSet<E> set = synchronizedNavigableSet(new TreeSet<E>());    *   NavigableSet<E> set2 = set.descendingSet().headSet(foo);    *    ...    *   synchronized (set) { // Note: set, not set2!!!    *     // Must be in the synchronized block    *     Iterator<E> it = set2.descendingIterator();    *     while (it.hasNext())    *       foo(it.next());    *     }    *   }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned navigable set will be serializable if the specified    * navigable set is serializable.    *    * @param navigableSet the navigable set to be "wrapped" in a synchronized    *    navigable set.    * @return a synchronized view of the specified navigable set.    * @since 13.0    */
+annotation|@
+name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
+DECL|method|synchronizedNavigableSet ( NavigableSet<E> navigableSet)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+name|synchronizedNavigableSet
+parameter_list|(
+name|NavigableSet
+argument_list|<
+name|E
+argument_list|>
+name|navigableSet
+parameter_list|)
+block|{
+return|return
+name|NavigableSets
+operator|.
+name|synchronizedNavigableSet
+argument_list|(
+name|navigableSet
+argument_list|)
+return|;
+block|}
 comment|/**    * Remove each element in an iterable from a set.    */
 DECL|method|removeAllImpl (Set<?> set, Iterator<?> iterator)
 specifier|static
