@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Computes or retrieves values, based on a key, for use in populating a {@link LoadingCache}.  *  *<p>Most implementations will only need to implement {@link #load}. Other methods may be  * overridden as desired.  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * Computes or retrieves values, based on a key, for use in populating a {@link LoadingCache}.  *  *<p>Most implementations will only need to implement {@link #load}. Other methods may be  * overridden as desired.  *  *<p>Usage example:<pre>   {@code  *  *   CacheLoader<Key, Graph> loader = new CacheLoader<Key, Graph>() {  *     public Graph load(Key key) throws AnyException {  *       return createExpensiveGraph(key);  *     }  *   };  *   LoadingCache<Key, Graph> cache = CacheBuilder.newBuilder().build(loader);}</pre>  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
