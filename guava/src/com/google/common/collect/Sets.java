@@ -5234,9 +5234,9 @@ name|navigableSet
 parameter_list|)
 block|{
 return|return
-name|NavigableSets
+name|Synchronized
 operator|.
-name|synchronizedNavigableSet
+name|navigableSet
 argument_list|(
 name|navigableSet
 argument_list|)
