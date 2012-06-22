@@ -105,7 +105,7 @@ argument_list|>
 name|stop
 parameter_list|()
 function_decl|;
-comment|/**    * Initiates service shutdown (if necessary), returning once the service has    * finished stopping. If this is {@link State#STARTING}, startup will be    * cancelled. If this is {@link State#NEW}, it is {@link State#TERMINATED    * terminated} without having been started nor stopped. Unlike calling {@code    * stop().get()}, this method throws no checked exceptions.    *    * @throws UncheckedExecutionException if shutdown failed    * @return the state of the service when shutdown finished.    */
+comment|/**    * Initiates service shutdown (if necessary), returning once the service has    * finished stopping. If this is {@link State#STARTING}, startup will be    * cancelled. If this is {@link State#NEW}, it is {@link State#TERMINATED    * terminated} without having been started nor stopped. Unlike calling {@code    * stop().get()}, this method throws no checked exceptions.    *    * @throws UncheckedExecutionException if the service has failed or fails during shutdown    * @return the state of the service when shutdown finished.    */
 DECL|method|stopAndWait ()
 name|State
 name|stopAndWait
@@ -166,7 +166,6 @@ annotation|@
 name|Beta
 comment|// should come out of Beta when Service does
 DECL|interface|Listener
-specifier|public
 interface|interface
 name|Listener
 block|{
