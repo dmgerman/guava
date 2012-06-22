@@ -3210,6 +3210,119 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+DECL|class|HardToCreate
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|HardToCreate
+block|{
+DECL|method|HardToCreate (HardToCreate x)
+specifier|private
+name|HardToCreate
+parameter_list|(
+name|HardToCreate
+name|x
+parameter_list|)
+block|{}
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// used by reflection
+DECL|class|CanCreateDefault
+specifier|private
+specifier|static
+class|class
+name|CanCreateDefault
+block|{
+DECL|method|foo (@ullable HardToCreate ignored, String required)
+specifier|public
+name|void
+name|foo
+parameter_list|(
+annotation|@
+name|Nullable
+name|HardToCreate
+name|ignored
+parameter_list|,
+name|String
+name|required
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|required
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|testCanCreateDefault ()
+specifier|public
+name|void
+name|testCanCreateDefault
+parameter_list|()
+block|{
+name|shouldPass
+argument_list|(
+operator|new
+name|CanCreateDefault
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// used by reflection
+DECL|class|CannotCreateDefault
+specifier|private
+specifier|static
+class|class
+name|CannotCreateDefault
+block|{
+DECL|method|foo (HardToCreate ignored, String required)
+specifier|public
+name|void
+name|foo
+parameter_list|(
+name|HardToCreate
+name|ignored
+parameter_list|,
+name|String
+name|required
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|ignored
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|required
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|testCannotCreateDefault ()
+specifier|public
+name|void
+name|testCannotCreateDefault
+parameter_list|()
+block|{
+name|shouldFail
+argument_list|(
+operator|new
+name|CannotCreateDefault
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|shouldPass (Object instance, Visibility visibility)
 specifier|private
 specifier|static
@@ -3273,6 +3386,7 @@ name|PUBLIC
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO(cpovirk): eliminate surprising Object/Class overloading of shouldFail
 DECL|method|shouldFail (Object instance, Visibility visibility)
 specifier|private
 specifier|static
@@ -3409,7 +3523,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|shouldFail (Class<?> instance)
+DECL|method|shouldFail (Class<?> cls)
 specifier|private
 specifier|static
 name|void
@@ -3419,12 +3533,12 @@ name|Class
 argument_list|<
 name|?
 argument_list|>
-name|instance
+name|cls
 parameter_list|)
 block|{
 name|shouldFail
 argument_list|(
-name|instance
+name|cls
 argument_list|,
 name|Visibility
 operator|.
