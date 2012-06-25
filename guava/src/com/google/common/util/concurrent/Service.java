@@ -57,19 +57,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and  * {@link #stop()} lifecycle methods to transition between states.  * Example services include webservers, RPC servers and timers.   *   *   *<p>The normal lifecycle of a service is:  *<ul>  *<li>{@linkplain State#NEW NEW} -&gt;  *<li>{@linkplain State#STARTING STARTING} -&gt;  *<li>{@linkplain State#RUNNING RUNNING} -&gt;  *<li>{@linkplain State#STOPPING STOPPING} -&gt;  *<li>{@linkplain State#TERMINATED TERMINATED}  *</ul>  *   *<p>There are deviations from this if there are failures or if {@link Service#stop} is called   * before the {@link Service} reaches the {@linkplain State#RUNNING RUNNING} state.  The set of   * legal transitions form a<a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>,  * therefore every method of the listener will be called at most once.  N.B. The   * {@link State#FAILED} and {@link State#TERMINATED} states are terminal states, once a service   * enters either of these states it cannot ever leave them.   *   *<p>Implementors of this interface are strongly encouraged to extend one of   * the abstract classes in this package which implement this interface and   * make the threading and state management easier.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 9.0 (in 1.0 as  *     {@code com.google.common.base.Service})  */
+comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and {@link #stop()}  * lifecycle methods to transition between states. Example services include webservers, RPC servers  * and timers.  *  *<p>The normal lifecycle of a service is:  *<ul>  *<li>{@linkplain State#NEW NEW} -&gt;  *<li>{@linkplain State#STARTING STARTING} -&gt;  *<li>{@linkplain State#RUNNING RUNNING} -&gt;  *<li>{@linkplain State#STOPPING STOPPING} -&gt;  *<li>{@linkplain State#TERMINATED TERMINATED}  *</ul>  *  *<p>There are deviations from this if there are failures or if {@link Service#stop} is called   * before the {@link Service} reaches the {@linkplain State#RUNNING RUNNING} state. The set of legal  * transitions form a<a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>,   * therefore every method of the listener will be called at most once. N.B. The {@link State#FAILED}  * and {@link State#TERMINATED} states are terminal states, once a service enters either of these  * states it cannot ever leave them.  *  *<p>Implementors of this interface are strongly encouraged to extend one of the abstract classes   * in this package which implement this interface and make the threading and state management   * easier.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 9.0 (in 1.0 as {@code com.google.common.base.Service})  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
-comment|// TODO(kevinb): make abstract class?
 DECL|interface|Service
 specifier|public
 interface|interface
 name|Service
 block|{
-comment|/**    * If the service state is {@link State#NEW}, this initiates service startup    * and returns immediately. If the service has already been started, this    * method returns immediately without taking action. A stopped service may not    * be restarted.    *    * @return a future for the startup result, regardless of whether this call    *     initiated startup. Calling {@link ListenableFuture#get} will block    *     until the service has finished starting, and returns one of {@link    *     State#RUNNING}, {@link State#STOPPING} or {@link State#TERMINATED}. If    *     the service fails to start, {@link ListenableFuture#get} will throw an    *     {@link ExecutionException}, and the service's state will be {@link    *     State#FAILED}. If it has already finished starting, {@link    *     ListenableFuture#get} returns immediately. Cancelling this future has    *     no effect on the service.    */
+comment|/**    * If the service state is {@link State#NEW}, this initiates service startup and returns    * immediately. If the service has already been started, this method returns immediately without    * taking action. A stopped service may not be restarted.    *    * @return a future for the startup result, regardless of whether this call initiated startup.    *         Calling {@link ListenableFuture#get} will block until the service has finished    *         starting, and returns one of {@link State#RUNNING}, {@link State#STOPPING} or    *         {@link State#TERMINATED}. If the service fails to start, {@link ListenableFuture#get}    *         will throw an {@link ExecutionException}, and the service's state will be    *         {@link State#FAILED}. If it has already finished starting, {@link ListenableFuture#get}    *         returns immediately. Cancelling this future has no effect on the service.    */
 DECL|method|start ()
 name|ListenableFuture
 argument_list|<
@@ -78,7 +77,7 @@ argument_list|>
 name|start
 parameter_list|()
 function_decl|;
-comment|/**    * Initiates service startup (if necessary), returning once the service has    * finished starting. Unlike calling {@code start().get()}, this method throws    * no checked exceptions, and it cannot be {@linkplain Thread#interrupt    * interrupted}.    *    * @throws UncheckedExecutionException if startup failed    * @return the state of the service when startup finished.    */
+comment|/**    * Initiates service startup (if necessary), returning once the service has finished starting.    * Unlike calling {@code start().get()}, this method throws no checked exceptions, and it cannot    * be {@linkplain Thread#interrupt interrupted}.    *    * @throws UncheckedExecutionException if startup failed    * @return the state of the service when startup finished.    */
 DECL|method|startAndWait ()
 name|State
 name|startAndWait
@@ -96,7 +95,7 @@ name|State
 name|state
 parameter_list|()
 function_decl|;
-comment|/**    * If the service is {@linkplain State#STARTING starting} or {@linkplain    * State#RUNNING running}, this initiates service shutdown and returns    * immediately. If the service is {@linkplain State#NEW new}, it is    * {@linkplain State#TERMINATED terminated} without having been started nor    * stopped.  If the service has already been stopped, this method returns    * immediately without taking action.    *    * @return a future for the shutdown result, regardless of whether this call    *     initiated shutdown. Calling {@link ListenableFuture#get} will block    *     until the service has finished shutting down, and either returns    *     {@link State#TERMINATED} or throws an {@link ExecutionException}. If    *     it has already finished stopping, {@link ListenableFuture#get} returns    *     immediately.  Cancelling this future has no effect on the service.    */
+comment|/**    * If the service is {@linkplain State#STARTING starting} or {@linkplain State#RUNNING running},    * this initiates service shutdown and returns immediately. If the service is    * {@linkplain State#NEW new}, it is {@linkplain State#TERMINATED terminated} without having been    * started nor stopped. If the service has already been stopped, this method returns immediately    * without taking action.    *    * @return a future for the shutdown result, regardless of whether this call initiated shutdown.    *         Calling {@link ListenableFuture#get} will block until the service has finished shutting    *         down, and either returns {@link State#TERMINATED} or throws an    *         {@link ExecutionException}. If it has already finished stopping,    *         {@link ListenableFuture#get} returns immediately. Cancelling this future has no effect    *         on the service.    */
 DECL|method|stop ()
 name|ListenableFuture
 argument_list|<
@@ -105,7 +104,7 @@ argument_list|>
 name|stop
 parameter_list|()
 function_decl|;
-comment|/**    * Initiates service shutdown (if necessary), returning once the service has    * finished stopping. If this is {@link State#STARTING}, startup will be    * cancelled. If this is {@link State#NEW}, it is {@link State#TERMINATED    * terminated} without having been started nor stopped. Unlike calling {@code    * stop().get()}, this method throws no checked exceptions.    *    * @throws UncheckedExecutionException if the service has failed or fails during shutdown    * @return the state of the service when shutdown finished.    */
+comment|/**    * Initiates service shutdown (if necessary), returning once the service has finished stopping. If    * this is {@link State#STARTING}, startup will be cancelled. If this is {@link State#NEW}, it is    * {@link State#TERMINATED terminated} without having been started nor stopped. Unlike calling    * {@code stop().get()}, this method throws no checked exceptions.    *    * @throws UncheckedExecutionException if the service has failed or fails during shutdown    * @return the state of the service when shutdown finished.    */
 DECL|method|stopAndWait ()
 name|State
 name|stopAndWait
@@ -129,7 +128,7 @@ name|Executor
 name|executor
 parameter_list|)
 function_decl|;
-comment|/**    * The lifecycle states of a service.    *    * @since 9.0 (in 1.0 as    *     {@code com.google.common.base.Service.State})    */
+comment|/**    * The lifecycle states of a service.    *    * @since 9.0 (in 1.0 as {@code com.google.common.base.Service.State})    */
 annotation|@
 name|Beta
 comment|// should come out of Beta when Service does
@@ -153,11 +152,11 @@ comment|/**      * A service in this state is transitioning to {@link #TERMINATE
 DECL|enumConstant|STOPPING
 name|STOPPING
 block|,
-comment|/**      * A service in this state has completed execution normally. It does minimal      * work and consumes minimal resources.      */
+comment|/**      * A service in this state has completed execution normally. It does minimal work and consumes      * minimal resources.      */
 DECL|enumConstant|TERMINATED
 name|TERMINATED
 block|,
-comment|/**      * A service in this state has encountered a problem and may not be      * operational. It cannot be started nor stopped.      */
+comment|/**      * A service in this state has encountered a problem and may not be operational. It cannot be      * started nor stopped.      */
 DECL|enumConstant|FAILED
 name|FAILED
 block|}
