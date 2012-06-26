@@ -480,6 +480,34 @@ argument_list|,
 literal|16
 argument_list|)
 decl_stmt|;
+DECL|field|LN_10
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|LN_10
+init|=
+name|Math
+operator|.
+name|log
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
+DECL|field|LN_2
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|LN_2
+init|=
+name|Math
+operator|.
+name|log
+argument_list|(
+literal|2
+argument_list|)
+decl_stmt|;
 comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, or {@code 1} if {@code n == 0}.    *    *<p><b>Warning</b>: the result takes<i>O(n log n)</i> space, so use cautiously.    *    *<p>This uses an efficient binary recursive algorithm to compute the factorial    * with balanced multiplies.  It also removes all the 2s from the intermediate    * products (shifting them back in at the end).    *    * @throws IllegalArgumentException if {@code n< 0}    */
 DECL|method|factorial (int n)
 specifier|public
