@@ -1716,7 +1716,17 @@ condition|(
 name|a
 operator|==
 literal|0
-operator||
+condition|)
+block|{
+comment|// 0 % b == 0, so b divides a, but the converse doesn't hold.
+comment|// BigInteger.gcd is consistent with this decision.
+return|return
+name|b
+return|;
+block|}
+elseif|else
+if|if
+condition|(
 name|b
 operator|==
 literal|0
@@ -1724,11 +1734,10 @@ condition|)
 block|{
 return|return
 name|a
-operator||
-name|b
 return|;
+comment|// similar logic
 block|}
-comment|/*      * Uses the binary GCD algorithm; see http://en.wikipedia.org/wiki/Binary_GCD_algorithm.      * This is over 40% faster than the Euclidean algorithm in benchmarks.      */
+comment|/*      * Uses the binary GCD algorithm; see http://en.wikipedia.org/wiki/Binary_GCD_algorithm.      * This is>60% faster than the Euclidean algorithm in benchmarks.      */
 name|int
 name|aTwos
 init|=
@@ -1767,33 +1776,52 @@ name|b
 condition|)
 block|{
 comment|// both a, b are odd
-if|if
-condition|(
-name|a
-operator|<
-name|b
-condition|)
-block|{
-comment|// swap a, b
+comment|// The key to the binary GCD algorithm is as follows:
+comment|// Both a and b are odd.  Assume a> b; then gcd(a - b, b) = gcd(a, b).
+comment|// But in gcd(a - b, b), a - b is even and b is odd, so we can divide out powers of two.
+comment|// We bend over backwards to avoid branching, adapting a technique from
+comment|// http://graphics.stanford.edu/~seander/bithacks.html#IntegerMinOrMax
 name|long
-name|t
+name|delta
 init|=
+name|a
+operator|-
 name|b
 decl_stmt|;
-name|b
+comment|// can't overflow, since a and b are nonnegative
+name|long
+name|minDeltaOrZero
+init|=
+name|delta
+operator|&
+operator|(
+name|delta
+operator|>>
+operator|(
+name|Long
+operator|.
+name|SIZE
+operator|-
+literal|1
+operator|)
+operator|)
+decl_stmt|;
+comment|// equivalent to Math.min(delta, 0)
+name|a
 operator|=
-name|a
+name|delta
+operator|-
+name|minDeltaOrZero
+operator|-
+name|minDeltaOrZero
 expr_stmt|;
-name|a
-operator|=
-name|t
-expr_stmt|;
-block|}
-name|a
-operator|-=
+comment|// sets a to Math.abs(a - b)
+comment|// a is now nonnegative and even
 name|b
+operator|+=
+name|minDeltaOrZero
 expr_stmt|;
-comment|// a is now positive and even
+comment|// sets b to min(old a, b)
 name|a
 operator|>>=
 name|Long

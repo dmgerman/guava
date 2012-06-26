@@ -128,6 +128,18 @@ begin_import
 import|import static
 name|java
 operator|.
+name|lang
+operator|.
+name|Math
+operator|.
+name|min
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
 name|math
 operator|.
 name|RoundingMode
@@ -1426,32 +1438,137 @@ argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
-comment|// The simple Euclidean algorithm is the fastest for ints, and is easily the most readable.
-while|while
+if|if
 condition|(
-name|b
-operator|!=
+name|a
+operator|==
 literal|0
 condition|)
 block|{
-name|int
-name|t
-init|=
+comment|// 0 % b == 0, so b divides a, but the converse doesn't hold.
+comment|// BigInteger.gcd is consistent with this decision.
+return|return
 name|b
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|b
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+name|a
+return|;
+comment|// similar logic
+block|}
+comment|/*      * Uses the binary GCD algorithm; see http://en.wikipedia.org/wiki/Binary_GCD_algorithm.      * This is>40% faster than the Euclidean algorithm in benchmarks.      */
+name|int
+name|aTwos
+init|=
+name|Integer
+operator|.
+name|numberOfTrailingZeros
+argument_list|(
+name|a
+argument_list|)
+decl_stmt|;
+name|a
+operator|>>=
+name|aTwos
+expr_stmt|;
+comment|// divide out all 2s
+name|int
+name|bTwos
+init|=
+name|Integer
+operator|.
+name|numberOfTrailingZeros
+argument_list|(
+name|b
+argument_list|)
 decl_stmt|;
 name|b
-operator|=
+operator|>>=
+name|bTwos
+expr_stmt|;
+comment|// divide out all 2s
+while|while
+condition|(
 name|a
-operator|%
+operator|!=
 name|b
-expr_stmt|;
+condition|)
+block|{
+comment|// both a, b are odd
+comment|// The key to the binary GCD algorithm is as follows:
+comment|// Both a and b are odd.  Assume a> b; then gcd(a - b, b) = gcd(a, b).
+comment|// But in gcd(a - b, b), a - b is even and b is odd, so we can divide out powers of two.
+comment|// We bend over backwards to avoid branching, adapting a technique from
+comment|// http://graphics.stanford.edu/~seander/bithacks.html#IntegerMinOrMax
+name|int
+name|delta
+init|=
+name|a
+operator|-
+name|b
+decl_stmt|;
+comment|// can't overflow, since a and b are nonnegative
+name|int
+name|minDeltaOrZero
+init|=
+name|delta
+operator|&
+operator|(
+name|delta
+operator|>>
+operator|(
+name|Integer
+operator|.
+name|SIZE
+operator|-
+literal|1
+operator|)
+operator|)
+decl_stmt|;
+comment|// equivalent to Math.min(delta, 0)
 name|a
 operator|=
-name|t
+name|delta
+operator|-
+name|minDeltaOrZero
+operator|-
+name|minDeltaOrZero
 expr_stmt|;
+comment|// sets a to Math.abs(a - b)
+comment|// a is now nonnegative and even
+name|b
+operator|+=
+name|minDeltaOrZero
+expr_stmt|;
+comment|// sets b to min(old a, b)
+name|a
+operator|>>=
+name|Integer
+operator|.
+name|numberOfTrailingZeros
+argument_list|(
+name|a
+argument_list|)
+expr_stmt|;
+comment|// divide out all 2s, since 2 doesn't divide b
 block|}
 return|return
 name|a
+operator|<<
+name|min
+argument_list|(
+name|aTwos
+argument_list|,
+name|bTwos
+argument_list|)
 return|;
 block|}
 comment|/**    * Returns the sum of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a + b} overflows in signed {@code int} arithmetic    */
