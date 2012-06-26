@@ -35,22 +35,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkState
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -954,48 +938,6 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|failureCause ()
-specifier|public
-specifier|final
-name|Throwable
-name|failureCause
-parameter_list|()
-block|{
-name|lock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-name|checkState
-argument_list|(
-name|state
-operator|==
-name|State
-operator|.
-name|FAILED
-argument_list|,
-literal|"getFailure is only valid if the service has failed, service is %s"
-argument_list|,
-name|state
-argument_list|)
-expr_stmt|;
-return|return
-name|failure
-return|;
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|unlock
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Override
 DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
 specifier|final
@@ -1353,7 +1295,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**     * A {@link Service.Listener} that schedules the callbacks of the delegate listener on an     * {@link Executor}.    */
+comment|/**    * A {@link Service.Listener} that schedules the callbacks of the delegate listener on an    * {@link Executor}.    */
 DECL|class|ListenerExecutorPair
 specifier|private
 specifier|static
@@ -1395,7 +1337,7 @@ operator|=
 name|executor
 expr_stmt|;
 block|}
-comment|/**      * Executes the given {@link Runnable} on {@link #executor} logging and swallowing all       * exceptions      */
+comment|/**      * Executes the given {@link Runnable} on {@link #executor} logging and swallowing all      * exceptions      */
 DECL|method|execute (Runnable runnable)
 name|void
 name|execute

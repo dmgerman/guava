@@ -424,22 +424,6 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|failureCause ()
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|Throwable
-name|failureCause
-parameter_list|()
-block|{
-return|return
-name|delegate
-operator|.
-name|failureCause
-argument_list|()
-return|;
-block|}
 DECL|method|getServiceName ()
 specifier|private
 name|String

@@ -217,22 +217,6 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|failureCause ()
-annotation|@
-name|Override
-specifier|public
-name|Throwable
-name|failureCause
-parameter_list|()
-block|{
-return|return
-name|delegate
-argument_list|()
-operator|.
-name|failureCause
-argument_list|()
-return|;
-block|}
 comment|/**    * A sensible default implementation of {@link #startAndWait()}, in terms of    * {@link #start}. If you override {@link #start}, you may wish to override    * {@link #startAndWait()} to forward to this implementation.    * @since 9.0    */
 DECL|method|standardStartAndWait ()
 specifier|protected
