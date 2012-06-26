@@ -3,6 +3,10 @@ begin_comment
 comment|// GENERATED FILE - DO NOT EDIT
 end_comment
 
+begin_comment
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|com.google.common.net
 package|package
@@ -44,16 +48,6 @@ name|ImmutableSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_comment
 comment|/**  * A generated static class containing public members which provide domain  * name patterns used in determining whether a given domain name is an  * effective top-level domain (TLD).  */
 end_comment
@@ -62,6 +56,7 @@ begin_class
 annotation|@
 name|GwtCompatible
 DECL|class|TldPatterns
+specifier|final
 class|class
 name|TldPatterns
 block|{
@@ -69,14 +64,12 @@ DECL|method|TldPatterns ()
 specifier|private
 name|TldPatterns
 parameter_list|()
-block|{
-comment|// Prevent instantiation.
-block|}
+block|{}
 comment|/**    * If a hostname is contained in this set, it is a TLD.    */
 DECL|field|EXACT
 specifier|static
 specifier|final
-name|Set
+name|ImmutableSet
 argument_list|<
 name|String
 argument_list|>
@@ -8875,7 +8868,7 @@ comment|/**    * If a hostname is not in the EXCLUDE set, and if removing its   
 DECL|field|UNDER
 specifier|static
 specifier|final
-name|Set
+name|ImmutableSet
 argument_list|<
 name|String
 argument_list|>
@@ -9068,7 +9061,7 @@ comment|/**    * The elements in this set would pass the UNDER test, but are    
 DECL|field|EXCLUDED
 specifier|static
 specifier|final
-name|Set
+name|ImmutableSet
 argument_list|<
 name|String
 argument_list|>
