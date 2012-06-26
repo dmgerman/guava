@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for RateLimiter.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for RateLimiter.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

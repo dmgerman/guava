@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests of {@link TypeResolver}.  *  * @author benyu@google.com (Ben Yu)  */
+comment|/**  * Unit tests of {@link TypeResolver}.  *  * @author Ben Yu  */
 end_comment
 
 begin_class

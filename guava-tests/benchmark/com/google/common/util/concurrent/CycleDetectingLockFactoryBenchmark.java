@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Benchmarks for {@link CycleDetectingLockFactory}.  *  * @author Darick Tong (darick@google.com)  */
+comment|/**  * Benchmarks for {@link CycleDetectingLockFactory}.  *  * @author Darick Tong  */
 end_comment
 
 begin_class

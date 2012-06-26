@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for Striped.  *  * @author andreou@google.com (Dimitris Andreou)  */
+comment|/**  * Tests for Striped.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

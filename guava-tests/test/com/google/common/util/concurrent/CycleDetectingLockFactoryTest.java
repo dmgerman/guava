@@ -205,7 +205,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unittests for {@link CycleDetectingLockFactory}.  *  * @author Darick Tong (darick@google.com)  */
+comment|/**  * Unittests for {@link CycleDetectingLockFactory}.  *  * @author Darick Tong  */
 end_comment
 
 begin_class
