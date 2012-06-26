@@ -841,7 +841,7 @@ name|ParameterizedType
 operator|)
 name|typeResolver
 operator|.
-name|resolve
+name|resolveType
 argument_list|(
 name|parameterized
 operator|.

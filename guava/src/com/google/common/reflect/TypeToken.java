@@ -701,7 +701,7 @@ argument_list|>
 argument_list|(
 name|resolver
 operator|.
-name|resolve
+name|resolveType
 argument_list|(
 name|runtimeType
 argument_list|)
@@ -796,7 +796,7 @@ name|of
 argument_list|(
 name|resolver
 operator|.
-name|resolve
+name|resolveType
 argument_list|(
 name|type
 argument_list|)
@@ -2564,7 +2564,7 @@ operator|new
 name|TypeResolver
 argument_list|()
 operator|.
-name|resolve
+name|resolveType
 argument_list|(
 name|runtimeType
 argument_list|)
@@ -4495,7 +4495,7 @@ argument_list|,
 name|runtimeType
 argument_list|)
 operator|.
-name|resolve
+name|resolveType
 argument_list|(
 name|genericSubtype
 operator|.
