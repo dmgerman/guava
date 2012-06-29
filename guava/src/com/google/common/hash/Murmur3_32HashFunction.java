@@ -726,10 +726,18 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// fall through
+break|break;
 default|default:
-name|k1
-operator|=
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"Should never get here."
+argument_list|)
+throw|;
+block|}
+name|h1
+operator|^=
 name|Murmur3_32HashFunction
 operator|.
 name|mixK1
@@ -737,11 +745,6 @@ argument_list|(
 name|k1
 argument_list|)
 expr_stmt|;
-name|h1
-operator|^=
-name|k1
-expr_stmt|;
-block|}
 block|}
 DECL|method|makeHash ()
 annotation|@
