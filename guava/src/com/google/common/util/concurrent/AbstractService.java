@@ -30,7 +30,39 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
 import|;
 end_import
 
@@ -226,8 +258,20 @@ name|GuardedBy
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|concurrent
+operator|.
+name|Immutable
+import|;
+end_import
+
 begin_comment
-comment|/**  * Base class for implementing services that can handle {@link #doStart} and  * {@link #doStop} requests, responding to them with {@link #notifyStarted()}  * and {@link #notifyStopped()} callbacks. Its subclasses must manage threads  * manually; consider {@link AbstractExecutionThreadService} if you need only a  * single execution thread.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 1.0  */
+comment|/**  * Base class for implementing services that can handle {@link #doStart} and {@link #doStop}  * requests, responding to them with {@link #notifyStarted()} and {@link #notifyStopped()}  * callbacks. Its subclasses must manage threads manually; consider  * {@link AbstractExecutionThreadService} if you need only a single execution thread.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -310,7 +354,7 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
-comment|/**    * The queue of listeners that are waiting to be executed.    *    *<p>Enqueue operations should be protected by {@link #lock} while dequeue    * operations should be protected by the implicit lock on this object. Dequeue    * operations should be executed atomically with the execution of the    * {@link Runnable} and additionally the {@link #lock} should not be held when    * the listeners are being executed. Use {@link #executeListeners} for this    * operation.  This is necessary to ensure that elements on the queue are    * executed in the correct order.  Enqueue operations should be protected so    * that listeners are added in the correct order. We use a concurrent queue    * implementation so that enqueues can be executed concurrently with dequeues.    */
+comment|/**    * The queue of listeners that are waiting to be executed.    *    *<p>Enqueue operations should be protected by {@link #lock} while dequeue operations should be    * protected by the implicit lock on this object. Dequeue operations should be executed atomically    * with the execution of the {@link Runnable} and additionally the {@link #lock} should not be    * held when the listeners are being executed. Use {@link #executeListeners} for this operation.    * This is necessary to ensure that elements on the queue are executed in the correct order.    * Enqueue operations should be protected so that listeners are added in the correct order. We use    * a concurrent queue implementation so that enqueues can be executed concurrently with dequeues.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -330,55 +374,33 @@ operator|.
 name|newConcurrentLinkedQueue
 argument_list|()
 decl_stmt|;
-comment|/**    * The exception that caused this service to fail.  This will be {@code null}    * unless the service has failed.    */
+comment|/**    * The current state of the service.  This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field.  This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.    *    *<p>To update this field correctly the lock must be held to guarantee that the state is    * consistent.    */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"lock"
 argument_list|)
-annotation|@
-name|Nullable
-DECL|field|failure
+DECL|field|snapshot
 specifier|private
-name|Throwable
-name|failure
-decl_stmt|;
-comment|/**    * The internal state, which equals external state unless    * shutdownWhenStartupFinishes is true.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
-DECL|field|state
-specifier|private
-name|State
-name|state
+specifier|volatile
+name|StateSnapshot
+name|snapshot
 init|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|NEW
-decl_stmt|;
-comment|/**    * If true, the user requested a shutdown while the service was still starting    * up.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
 argument_list|)
-DECL|field|shutdownWhenStartupFinishes
-specifier|private
-name|boolean
-name|shutdownWhenStartupFinishes
-init|=
-literal|false
 decl_stmt|;
 DECL|method|AbstractService ()
 specifier|protected
 name|AbstractService
 parameter_list|()
 block|{
-comment|// Add a listener to update the futures.  This needs to be added first so
-comment|// that it is executed before the other listeners.  This way the other
-comment|// listeners can access the completed futures.
+comment|// Add a listener to update the futures. This needs to be added first so that it is executed
+comment|// before the other listeners. This way the other listeners can access the completed futures.
 name|addListener
 argument_list|(
 operator|new
@@ -581,7 +603,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This method is called by {@link #start} to initiate service startup. The    * invocation of this method should cause a call to {@link #notifyStarted()},    * either during this method's run, or after it has returned. If startup    * fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different    * thread where it is convenient. It is invoked exactly once on service    * startup, even when {@link #start} is called multiple times.    */
+comment|/**    * This method is called by {@link #start} to initiate service startup. The invocation of this    * method should cause a call to {@link #notifyStarted()}, either during this method's run, or    * after it has returned. If startup fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #start} is called    * multiple times.    */
 DECL|method|doStart ()
 specifier|protected
 specifier|abstract
@@ -589,7 +611,7 @@ name|void
 name|doStart
 parameter_list|()
 function_decl|;
-comment|/**    * This method should be used to initiate service shutdown. The invocation    * of this method should cause a call to {@link #notifyStopped()}, either    * during this method's run, or after it has returned. If shutdown fails, the    * invocation should cause a call to {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different    * thread where it is convenient. It is invoked exactly once on service    * shutdown, even when {@link #stop} is called multiple times.    */
+comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p> This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stop} is called    * multiple times.    */
 DECL|method|doStop ()
 specifier|protected
 specifier|abstract
@@ -618,6 +640,8 @@ try|try
 block|{
 if|if
 condition|(
+name|snapshot
+operator|.
 name|state
 operator|==
 name|State
@@ -625,11 +649,15 @@ operator|.
 name|NEW
 condition|)
 block|{
-name|state
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|STARTING
+argument_list|)
 expr_stmt|;
 name|starting
 argument_list|()
@@ -687,17 +715,23 @@ try|try
 block|{
 switch|switch
 condition|(
+name|snapshot
+operator|.
 name|state
 condition|)
 block|{
 case|case
 name|NEW
 case|:
-name|state
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|TERMINATED
+argument_list|)
 expr_stmt|;
 name|terminated
 argument_list|(
@@ -710,9 +744,19 @@ break|break;
 case|case
 name|STARTING
 case|:
-name|shutdownWhenStartupFinishes
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
+name|State
+operator|.
+name|STARTING
+argument_list|,
 literal|true
+argument_list|,
+literal|null
+argument_list|)
 expr_stmt|;
 name|stopping
 argument_list|(
@@ -725,11 +769,15 @@ break|break;
 case|case
 name|RUNNING
 case|:
-name|state
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|STOPPING
+argument_list|)
 expr_stmt|;
 name|stopping
 argument_list|(
@@ -760,6 +808,8 @@ name|AssertionError
 argument_list|(
 literal|"Unexpected state: "
 operator|+
+name|snapshot
+operator|.
 name|state
 argument_list|)
 throw|;
@@ -828,7 +878,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Implementing classes should invoke this method once their service has    * started. It will cause the service to transition from {@link    * State#STARTING} to {@link State#RUNNING}.    *    * @throws IllegalStateException if the service is not    *     {@link State#STARTING}.    */
+comment|/**    * Implementing classes should invoke this method once their service has started. It will cause    * the service to transition from {@link State#STARTING} to {@link State#RUNNING}.    *    * @throws IllegalStateException if the service is not {@link State#STARTING}.    */
 DECL|method|notifyStarted ()
 specifier|protected
 specifier|final
@@ -845,6 +895,8 @@ try|try
 block|{
 if|if
 condition|(
+name|snapshot
+operator|.
 name|state
 operator|!=
 name|State
@@ -860,6 +912,8 @@ name|IllegalStateException
 argument_list|(
 literal|"Cannot notifyStarted() when the service is "
 operator|+
+name|snapshot
+operator|.
 name|state
 argument_list|)
 decl_stmt|;
@@ -874,14 +928,20 @@ throw|;
 block|}
 if|if
 condition|(
+name|snapshot
+operator|.
 name|shutdownWhenStartupFinishes
 condition|)
 block|{
-name|state
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|STOPPING
+argument_list|)
 expr_stmt|;
 comment|// We don't call listeners here because we already did that when we set the
 comment|// shutdownWhenStartupFinishes flag.
@@ -891,11 +951,15 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|state
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|RUNNING
+argument_list|)
 expr_stmt|;
 name|running
 argument_list|()
@@ -914,7 +978,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Implementing classes should invoke this method once their service has    * stopped. It will cause the service to transition from {@link    * State#STOPPING} to {@link State#TERMINATED}.    *    * @throws IllegalStateException if the service is neither {@link    *     State#STOPPING} nor {@link State#RUNNING}.    */
+comment|/**    * Implementing classes should invoke this method once their service has stopped. It will cause    * the service to transition from {@link State#STOPPING} to {@link State#TERMINATED}.    *    * @throws IllegalStateException if the service is neither {@link State#STOPPING} nor    *         {@link State#RUNNING}.    */
 DECL|method|notifyStopped ()
 specifier|protected
 specifier|final
@@ -931,12 +995,16 @@ try|try
 block|{
 if|if
 condition|(
+name|snapshot
+operator|.
 name|state
 operator|!=
 name|State
 operator|.
 name|STOPPING
 operator|&&
+name|snapshot
+operator|.
 name|state
 operator|!=
 name|State
@@ -952,6 +1020,8 @@ name|IllegalStateException
 argument_list|(
 literal|"Cannot notifyStopped() when the service is "
 operator|+
+name|snapshot
+operator|.
 name|state
 argument_list|)
 decl_stmt|;
@@ -967,13 +1037,19 @@ block|}
 name|State
 name|previous
 init|=
+name|snapshot
+operator|.
 name|state
 decl_stmt|;
-name|state
+name|snapshot
 operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|TERMINATED
+argument_list|)
 expr_stmt|;
 name|terminated
 argument_list|(
@@ -993,7 +1069,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Invoke this method to transition the service to the    * {@link State#FAILED}. The service will<b>not be stopped</b> if it    * is running. Invoke this method when a service has failed critically or    * otherwise cannot be started nor stopped.    */
+comment|/**    * Invoke this method to transition the service to the {@link State#FAILED}. The service will    *<b>not be stopped</b> if it is running. Invoke this method when a service has failed critically    * or otherwise cannot be started nor stopped.    */
 DECL|method|notifyFailed (Throwable cause)
 specifier|protected
 specifier|final
@@ -1018,13 +1094,14 @@ try|try
 block|{
 switch|switch
 condition|(
+name|snapshot
+operator|.
 name|state
 condition|)
 block|{
 case|case
 name|NEW
 case|:
-comment|/* fall-through */
 case|case
 name|TERMINATED
 case|:
@@ -1034,6 +1111,8 @@ name|IllegalStateException
 argument_list|(
 literal|"Failed while in state:"
 operator|+
+name|snapshot
+operator|.
 name|state
 argument_list|,
 name|cause
@@ -1042,28 +1121,32 @@ throw|;
 case|case
 name|RUNNING
 case|:
-comment|/* fall-through */
 case|case
 name|STARTING
 case|:
-comment|/* fall-through */
 case|case
 name|STOPPING
 case|:
 name|State
 name|previous
 init|=
+name|snapshot
+operator|.
 name|state
 decl_stmt|;
-name|failure
+name|snapshot
 operator|=
-name|cause
-expr_stmt|;
-name|state
-operator|=
+operator|new
+name|StateSnapshot
+argument_list|(
 name|State
 operator|.
 name|FAILED
+argument_list|,
+literal|false
+argument_list|,
+name|cause
+argument_list|)
 expr_stmt|;
 name|failed
 argument_list|(
@@ -1085,6 +1168,8 @@ name|AssertionError
 argument_list|(
 literal|"Unexpected state: "
 operator|+
+name|snapshot
+operator|.
 name|state
 argument_list|)
 throw|;
@@ -1129,45 +1214,12 @@ name|State
 name|state
 parameter_list|()
 block|{
-name|lock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-if|if
-condition|(
-name|shutdownWhenStartupFinishes
-operator|&&
-name|state
-operator|==
-name|State
-operator|.
-name|STARTING
-condition|)
-block|{
 return|return
-name|State
+name|snapshot
 operator|.
-name|STOPPING
-return|;
-block|}
-else|else
-block|{
-return|return
-name|state
-return|;
-block|}
-block|}
-finally|finally
-block|{
-name|lock
-operator|.
-name|unlock
+name|externalState
 argument_list|()
-expr_stmt|;
-block|}
+return|;
 block|}
 annotation|@
 name|Override
@@ -1207,12 +1259,16 @@ try|try
 block|{
 if|if
 condition|(
+name|snapshot
+operator|.
 name|state
 operator|!=
 name|State
 operator|.
 name|TERMINATED
 operator|&&
+name|snapshot
+operator|.
 name|state
 operator|!=
 name|State
@@ -1750,7 +1806,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * A {@link Service.Listener} that schedules the callbacks of the delegate listener on an    * {@link Executor}.    */
+comment|/** A simple holder for a listener and its executor. */
 DECL|class|ListenerExecutorPair
 specifier|private
 specifier|static
@@ -1835,6 +1891,179 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|/**    * An immutable snapshot of the current state of the service. This class represents a consistent    * snapshot of the state and therefore it can be used to answer simple queries without needing to    * grab a lock.    */
+annotation|@
+name|Immutable
+DECL|class|StateSnapshot
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|StateSnapshot
+block|{
+comment|/**      * The internal state, which equals external state unless      * shutdownWhenStartupFinishes is true.      */
+DECL|field|state
+specifier|final
+name|State
+name|state
+decl_stmt|;
+comment|/**      * If true, the user requested a shutdown while the service was still starting      * up.      */
+DECL|field|shutdownWhenStartupFinishes
+specifier|final
+name|boolean
+name|shutdownWhenStartupFinishes
+decl_stmt|;
+comment|/**      * The exception that caused this service to fail.  This will be {@code null}      * unless the service has failed.      */
+annotation|@
+name|Nullable
+DECL|field|failure
+specifier|final
+name|Throwable
+name|failure
+decl_stmt|;
+DECL|method|StateSnapshot (State internalState)
+name|StateSnapshot
+parameter_list|(
+name|State
+name|internalState
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|internalState
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|StateSnapshot (State internalState, boolean shutdownWhenStartupFinishes, Throwable failure)
+name|StateSnapshot
+parameter_list|(
+name|State
+name|internalState
+parameter_list|,
+name|boolean
+name|shutdownWhenStartupFinishes
+parameter_list|,
+name|Throwable
+name|failure
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+operator|!
+name|shutdownWhenStartupFinishes
+operator|||
+name|internalState
+operator|==
+name|State
+operator|.
+name|STARTING
+argument_list|,
+literal|"shudownWhenStartupFinishes can only be set if state is STARTING. Got %s instead."
+argument_list|,
+name|internalState
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+operator|!
+operator|(
+name|failure
+operator|!=
+literal|null
+operator|^
+name|internalState
+operator|==
+name|State
+operator|.
+name|FAILED
+operator|)
+argument_list|,
+literal|"A failure cause should be set if and only if the state is failed.  Got %s and %s "
+operator|+
+literal|"instead."
+argument_list|,
+name|internalState
+argument_list|,
+name|failure
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|state
+operator|=
+name|internalState
+expr_stmt|;
+name|this
+operator|.
+name|shutdownWhenStartupFinishes
+operator|=
+name|shutdownWhenStartupFinishes
+expr_stmt|;
+name|this
+operator|.
+name|failure
+operator|=
+name|failure
+expr_stmt|;
+block|}
+comment|/** @see Service#state() */
+DECL|method|externalState ()
+name|State
+name|externalState
+parameter_list|()
+block|{
+if|if
+condition|(
+name|shutdownWhenStartupFinishes
+operator|&&
+name|state
+operator|==
+name|State
+operator|.
+name|STARTING
+condition|)
+block|{
+return|return
+name|State
+operator|.
+name|STOPPING
+return|;
+block|}
+else|else
+block|{
+return|return
+name|state
+return|;
+block|}
+block|}
+comment|/** @see Service#failureCause() */
+DECL|method|failureCause ()
+name|Throwable
+name|failureCause
+parameter_list|()
+block|{
+name|checkState
+argument_list|(
+name|state
+operator|==
+name|State
+operator|.
+name|FAILED
+argument_list|,
+literal|"failureCause() is only valid if the service has failed, service is %s"
+argument_list|,
+name|state
+argument_list|)
+expr_stmt|;
+return|return
+name|failure
+return|;
 block|}
 block|}
 block|}
