@@ -382,7 +382,7 @@ name|MILLISECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the current elapsed time; equivalent to    * {@code toString(4)} (four significant figures).    */
+comment|/**    * Returns a string representation of the current elapsed time.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -403,7 +403,9 @@ literal|4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the current elapsed time, choosing an    * appropriate unit and using the specified number of significant figures.    * For example, at the instant when {@code elapsedTime(NANOSECONDS)} would    * return {1234567}, {@code toString(4)} returns {@code "1.235 ms"}.    */
+comment|/**    * Returns a string representation of the current elapsed time, choosing an    * appropriate unit and using the specified number of significant figures.    * For example, at the instant when {@code elapsedTime(NANOSECONDS)} would    * return {1234567}, {@code toString(4)} returns {@code "1.235 ms"}.    *    * @deprecated Use {@link #toString()} instead. This method is scheduled    *     to be removed in Guava release 15.0.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 argument_list|(
