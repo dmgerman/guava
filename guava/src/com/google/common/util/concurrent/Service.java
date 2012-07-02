@@ -183,7 +183,7 @@ name|State
 name|from
 parameter_list|)
 function_decl|;
-comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.      * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram.  Therefore, if this method is called, no other methods will be called on the      * {@link Listener}.      *      * @param from The previous state that is being transitioned from.  The only valid values for      *     this are {@linkplain State#NEW NEW} or {@linkplain State#STOPPING STOPPING}.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.      * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram.  Therefore, if this method is called, no other methods will be called on the      * {@link Listener}.      *      * @param from The previous state that is being transitioned from.  The only valid values for      *     this are {@linkplain State#NEW NEW}, {@linkplain State#RUNNING RUNNING} or      *     {@linkplain State#STOPPING STOPPING}.      */
 DECL|method|terminated (State from)
 name|void
 name|terminated
@@ -192,7 +192,7 @@ name|State
 name|from
 parameter_list|)
 function_decl|;
-comment|/**      * Called when the service transitions to the {@linkplain State#FAILED FAILED} state. The      * {@linkplain State#FAILED FAILED} state is a terminal state in the transition diagram.      * Therefore, if this method is called, no other methods will be called on the {@link Listener}.      *      * @param from The previous state that is being transitioned from.  Failure can occur in any      *     state with the exception of {@linkplain State#NEW NEW}.      * @param failure The exception that caused the failure.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#FAILED FAILED} state. The      * {@linkplain State#FAILED FAILED} state is a terminal state in the transition diagram.      * Therefore, if this method is called, no other methods will be called on the {@link Listener}.      *      * @param from The previous state that is being transitioned from.  Failure can occur in any      *     state with the exception of {@linkplain State#NEW NEW} or      *     {@linkplain State#TERMINATED TERMINATED}.      * @param failure The exception that caused the failure.      */
 DECL|method|failed (State from, Throwable failure)
 name|void
 name|failed
