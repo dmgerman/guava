@@ -455,13 +455,6 @@ name|Object
 argument_list|>
 name|keyEquivalence
 decl_stmt|;
-DECL|field|valueEquivalence
-name|Equivalence
-argument_list|<
-name|Object
-argument_list|>
-name|valueEquivalence
-decl_stmt|;
 DECL|field|ticker
 name|Ticker
 name|ticker
@@ -472,21 +465,7 @@ specifier|public
 name|MapMaker
 parameter_list|()
 block|{}
-DECL|method|useNullMap ()
-specifier|private
-name|boolean
-name|useNullMap
-parameter_list|()
-block|{
-return|return
-operator|(
-name|nullRemovalCause
-operator|==
-literal|null
-operator|)
-return|;
-block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalence#equals()}    * otherwise.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalence#equals()}    * otherwise. The only place this is used is in {@link Interners.WeakInterner}.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -547,76 +526,6 @@ argument_list|(
 name|keyEquivalence
 argument_list|,
 name|getKeyStrength
-argument_list|()
-operator|.
-name|defaultEquivalence
-argument_list|()
-argument_list|)
-return|;
-block|}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalence#equals()}    * otherwise.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
-annotation|@
-name|Override
-DECL|method|valueEquivalence (Equivalence<Object> equivalence)
-name|MapMaker
-name|valueEquivalence
-parameter_list|(
-name|Equivalence
-argument_list|<
-name|Object
-argument_list|>
-name|equivalence
-parameter_list|)
-block|{
-name|checkState
-argument_list|(
-name|valueEquivalence
-operator|==
-literal|null
-argument_list|,
-literal|"value equivalence was already set to %s"
-argument_list|,
-name|valueEquivalence
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|valueEquivalence
-operator|=
-name|checkNotNull
-argument_list|(
-name|equivalence
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|useCustomMap
-operator|=
-literal|true
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-DECL|method|getValueEquivalence ()
-name|Equivalence
-argument_list|<
-name|Object
-argument_list|>
-name|getValueEquivalence
-parameter_list|()
-block|{
-return|return
-name|firstNonNull
-argument_list|(
-name|valueEquivalence
-argument_list|,
-name|getValueStrength
 argument_list|()
 operator|.
 name|defaultEquivalence
@@ -816,23 +725,6 @@ else|:
 name|concurrencyLevel
 return|;
 block|}
-comment|/**    * Specifies that each key (not value) stored in the map should be strongly referenced.    *    * @throws IllegalStateException if the key strength was already set    */
-annotation|@
-name|Override
-DECL|method|strongKeys ()
-name|MapMaker
-name|strongKeys
-parameter_list|()
-block|{
-return|return
-name|setKeyStrength
-argument_list|(
-name|Strength
-operator|.
-name|STRONG
-argument_list|)
-return|;
-block|}
 comment|/**    * Specifies that each key (not value) stored in the map should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of keys, which is a technical violation of the {@link Map}    * specification, and may not be what you expect.    *    * @throws IllegalStateException if the key strength was already set    * @see WeakReference    */
 annotation|@
 name|GwtIncompatible
@@ -936,23 +828,6 @@ name|firstNonNull
 argument_list|(
 name|keyStrength
 argument_list|,
-name|Strength
-operator|.
-name|STRONG
-argument_list|)
-return|;
-block|}
-comment|/**    * Specifies that each value (not key) stored in the map should be strongly referenced.    *    * @throws IllegalStateException if the value strength was already set    */
-annotation|@
-name|Override
-DECL|method|strongValues ()
-name|MapMaker
-name|strongValues
-parameter_list|()
-block|{
-return|return
-name|setValueStrength
-argument_list|(
 name|Strength
 operator|.
 name|STRONG
@@ -1525,8 +1400,11 @@ name|computingFunction
 parameter_list|)
 block|{
 return|return
-name|useNullMap
-argument_list|()
+operator|(
+name|nullRemovalCause
+operator|==
+literal|null
+operator|)
 condition|?
 operator|new
 name|ComputingMapAdapter
@@ -1727,21 +1605,6 @@ operator|.
 name|addValue
 argument_list|(
 literal|"keyEquivalence"
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|valueEquivalence
-operator|!=
-literal|null
-condition|)
-block|{
-name|s
-operator|.
-name|addValue
-argument_list|(
-literal|"valueEquivalence"
 argument_list|)
 expr_stmt|;
 block|}

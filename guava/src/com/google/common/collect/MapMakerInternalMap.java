@@ -780,9 +780,9 @@ argument_list|()
 expr_stmt|;
 name|valueEquivalence
 operator|=
-name|builder
+name|valueStrength
 operator|.
-name|getValueEquivalence
+name|defaultEquivalence
 argument_list|()
 expr_stmt|;
 name|maximumSize
@@ -18369,11 +18369,6 @@ operator|.
 name|keyEquivalence
 argument_list|(
 name|keyEquivalence
-argument_list|)
-operator|.
-name|valueEquivalence
-argument_list|(
-name|valueEquivalence
 argument_list|)
 operator|.
 name|concurrencyLevel

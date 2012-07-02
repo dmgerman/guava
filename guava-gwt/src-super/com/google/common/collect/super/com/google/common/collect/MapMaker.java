@@ -174,7 +174,7 @@ specifier|final
 name|int
 name|maximumSize
 decl_stmt|;
-DECL|method|ExpiringComputingMap (long expirationMillis, int maximumSize, int initialCapacity, float loadFactor)
+DECL|method|ExpiringComputingMap ( long expirationMillis, int maximumSize, int initialCapacity, float loadFactor)
 name|ExpiringComputingMap
 parameter_list|(
 name|long
@@ -962,28 +962,6 @@ throw|;
 block|}
 comment|// GWT technically only supports concurrencyLevel == 1, but we silently
 comment|// ignore other positive values.
-return|return
-name|this
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|strongKeys ()
-name|MapMaker
-name|strongKeys
-parameter_list|()
-block|{
-return|return
-name|this
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|strongValues ()
-name|MapMaker
-name|strongValues
-parameter_list|()
-block|{
 return|return
 name|this
 return|;
