@@ -124,20 +124,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|testing
-operator|.
-name|util
-operator|.
-name|MoreAsserts
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -3313,9 +3299,7 @@ name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|MoreAsserts
-operator|.
-name|assertNotEqual
+name|assertNotSame
 argument_list|(
 name|State
 operator|.
@@ -3392,9 +3376,7 @@ name|startAndWait
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|MoreAsserts
-operator|.
-name|assertNotEqual
+name|assertNotSame
 argument_list|(
 name|State
 operator|.
@@ -3473,9 +3455,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|MoreAsserts
-operator|.
-name|assertNotEqual
+name|assertNotSame
 argument_list|(
 name|from
 argument_list|,
