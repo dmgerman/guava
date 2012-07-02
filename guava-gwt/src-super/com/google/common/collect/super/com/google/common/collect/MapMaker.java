@@ -805,29 +805,6 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|public
-DECL|method|expiration (long duration, TimeUnit unit)
-name|MapMaker
-name|expiration
-parameter_list|(
-name|long
-name|duration
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
-block|{
-return|return
-name|expireAfterWrite
-argument_list|(
-name|duration
-argument_list|,
-name|unit
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|expireAfterWrite (long duration, TimeUnit unit)
 name|MapMaker
 name|expireAfterWrite

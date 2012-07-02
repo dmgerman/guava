@@ -1066,32 +1066,6 @@ name|STRONG
 argument_list|)
 return|;
 block|}
-comment|/**    * Old name of {@link #expireAfterWrite}.    *    * @deprecated Caching functionality in {@code MapMaker} is being moved to    *     {@link com.google.common.cache.CacheBuilder}. Functionality equivalent to    *     {@link MapMaker#expiration} is provided by    *     {@link com.google.common.cache.CacheBuilder#expireAfterWrite}. Note that {@code    *     CacheBuilder} is simply an enhanced API for an implementation which was branched from    *     {@code MapMaker}.    *<b>This method is scheduled for deletion in July 2012.</b>    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-specifier|public
-DECL|method|expiration (long duration, TimeUnit unit)
-name|MapMaker
-name|expiration
-parameter_list|(
-name|long
-name|duration
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
-block|{
-return|return
-name|expireAfterWrite
-argument_list|(
-name|duration
-argument_list|,
-name|unit
-argument_list|)
-return|;
-block|}
 comment|/**    * Specifies that each entry should be automatically removed from the map once a fixed duration    * has elapsed after the entry's creation, or the most recent replacement of its value.    *    *<p>When {@code duration} is zero, elements can be successfully added to the map, but are    * evicted immediately. This has a very similar effect to invoking {@link #maximumSize    * maximumSize}{@code (0)}. It can be useful in testing, or to disable caching temporarily without    * a code change.    *    *<p>Expired entries may be counted by {@link Map#size}, but will never be visible to read or    * write operations. Expired entries are currently cleaned up during write operations, or during    * occasional read operations in the absense of writes; though this behavior may change in the    * future.    *    * @param duration the length of time after an entry is created that it should be automatically    *     removed    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the time to live or time to idle was already set    * @deprecated Caching functionality in {@code MapMaker} is being moved to    *     {@link com.google.common.cache.CacheBuilder}, with {@link #expireAfterWrite} being    *     replaced by {@link com.google.common.cache.CacheBuilder#expireAfterWrite}. Note that {@code    *     CacheBuilder} is simply an enhanced API for an implementation which was branched from    *     {@code MapMaker}.    */
 annotation|@
 name|Deprecated
