@@ -1849,7 +1849,26 @@ decl_stmt|;
 return|return
 operator|new
 name|CharMatcher
+argument_list|(
+operator|new
+name|StringBuilder
+argument_list|(
+literal|"CharMatcher.anyOf(\""
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|sequence
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|"\")"
+argument_list|)
+operator|.
+name|toString
 argument_list|()
+argument_list|)
 block|{
 annotation|@
 name|Override
@@ -2330,8 +2349,8 @@ name|String
 name|description
 decl_stmt|;
 comment|// Constructors
+comment|/**    * Sets the {@code toString()} from the given description.    */
 DECL|method|CharMatcher (String description)
-specifier|private
 name|CharMatcher
 parameter_list|(
 name|String
@@ -3012,6 +3031,9 @@ operator|.
 name|from
 argument_list|(
 name|chars
+argument_list|,
+name|toString
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -3031,6 +3053,9 @@ operator|.
 name|from
 argument_list|(
 name|chars
+argument_list|,
+name|toString
+argument_list|()
 argument_list|)
 return|;
 block|}

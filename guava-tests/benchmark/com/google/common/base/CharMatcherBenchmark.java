@@ -433,6 +433,8 @@ name|matcher
 operator|.
 name|slowGetChars
 argument_list|()
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 block|}
@@ -461,6 +463,8 @@ name|matcher
 operator|.
 name|slowGetChars
 argument_list|()
+argument_list|,
+literal|""
 argument_list|)
 expr_stmt|;
 block|}

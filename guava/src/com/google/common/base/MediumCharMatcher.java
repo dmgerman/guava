@@ -85,7 +85,7 @@ specifier|final
 name|long
 name|filter
 decl_stmt|;
-DECL|method|MediumCharMatcher (char[] table, long filter, boolean containsZero)
+DECL|method|MediumCharMatcher (char[] table, long filter, boolean containsZero, String description)
 specifier|private
 name|MediumCharMatcher
 parameter_list|(
@@ -98,8 +98,16 @@ name|filter
 parameter_list|,
 name|boolean
 name|containsZero
+parameter_list|,
+name|String
+name|description
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|description
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|table
@@ -226,7 +234,7 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|from (char[] chars)
+DECL|method|from (char[] chars, String description)
 specifier|static
 name|CharMatcher
 name|from
@@ -234,6 +242,9 @@ parameter_list|(
 name|char
 index|[]
 name|chars
+parameter_list|,
+name|String
+name|description
 parameter_list|)
 block|{
 comment|// Compute the filter.
@@ -362,6 +373,8 @@ argument_list|,
 name|filter
 argument_list|,
 name|containsZero
+argument_list|,
+name|description
 argument_list|)
 return|;
 block|}

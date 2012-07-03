@@ -98,7 +98,7 @@ specifier|final
 name|long
 name|filter
 decl_stmt|;
-DECL|method|SmallCharMatcher (char[] table, long filter, boolean containsZero, boolean reprobe)
+DECL|method|SmallCharMatcher (char[] table, long filter, boolean containsZero, boolean reprobe, String description)
 specifier|private
 name|SmallCharMatcher
 parameter_list|(
@@ -114,8 +114,16 @@ name|containsZero
 parameter_list|,
 name|boolean
 name|reprobe
+parameter_list|,
+name|String
+name|description
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|description
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|table
@@ -308,7 +316,7 @@ return|return
 name|table
 return|;
 block|}
-DECL|method|from (char[] chars)
+DECL|method|from (char[] chars, String description)
 specifier|static
 name|CharMatcher
 name|from
@@ -316,6 +324,9 @@ parameter_list|(
 name|char
 index|[]
 name|chars
+parameter_list|,
+name|String
+name|description
 parameter_list|)
 block|{
 name|long
@@ -442,6 +453,8 @@ argument_list|,
 name|containsZero
 argument_list|,
 name|reprobe
+argument_list|,
+name|description
 argument_list|)
 return|;
 block|}
