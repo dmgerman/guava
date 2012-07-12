@@ -260,6 +260,26 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Suppliers.compose("
+operator|+
+name|function
+operator|+
+literal|", "
+operator|+
+name|supplier
+operator|+
+literal|")"
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
