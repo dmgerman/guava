@@ -441,6 +441,22 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Suppliers.memoize("
+operator|+
+name|delegate
+operator|+
+literal|")"
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -678,6 +694,28 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+comment|// This is a little strange if the unit the user provided was not NANOS,
+comment|// but we don't want to store the unit just for toString
+return|return
+literal|"Suppliers.memoizeWithExpiration("
+operator|+
+name|delegate
+operator|+
+literal|", "
+operator|+
+name|durationNanos
+operator|+
+literal|", NANOS)"
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -765,6 +803,22 @@ parameter_list|()
 block|{
 return|return
 name|instance
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Suppliers.ofInstance("
+operator|+
+name|instance
+operator|+
+literal|")"
 return|;
 block|}
 DECL|field|serialVersionUID
@@ -875,6 +929,22 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Suppliers.synchronizedSupplier("
+operator|+
+name|delegate
+operator|+
+literal|")"
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -958,6 +1028,18 @@ name|input
 operator|.
 name|get
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Suppliers.supplierFunction()"
 return|;
 block|}
 block|}
