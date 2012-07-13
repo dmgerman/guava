@@ -3052,7 +3052,7 @@ block|{
 name|int
 name|nTasks
 init|=
-literal|3000
+literal|1000
 decl_stmt|;
 name|int
 name|nThreads
