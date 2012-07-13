@@ -1139,8 +1139,9 @@ name|values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|VisibleForTesting
 DECL|class|ValueSet
-specifier|private
 specifier|final
 class|class
 name|ValueSet
@@ -1799,6 +1800,21 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**      * The threshold above which the hash table should be rebuilt.      */
+DECL|method|threshold ()
+annotation|@
+name|VisibleForTesting
+name|int
+name|threshold
+parameter_list|()
+block|{
+return|return
+name|hashTable
+operator|.
+name|length
+return|;
+comment|// load factor of 1.0
+block|}
 annotation|@
 name|Override
 DECL|method|add (@ullable V value)
@@ -1994,9 +2010,8 @@ if|if
 condition|(
 name|size
 operator|>
-name|hashTable
-operator|.
-name|length
+name|threshold
+argument_list|()
 operator|&&
 name|hashTable
 operator|.
