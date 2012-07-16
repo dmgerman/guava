@@ -6988,6 +6988,8 @@ argument_list|,
 literal|1
 argument_list|,
 literal|2
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -7045,6 +7047,8 @@ argument_list|,
 literal|2
 argument_list|,
 literal|3
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|fail
@@ -7085,6 +7089,8 @@ argument_list|,
 literal|0
 argument_list|,
 literal|0
+argument_list|,
+literal|0
 argument_list|)
 operator|.
 name|hasNext
@@ -7100,6 +7106,8 @@ argument_list|(
 name|array
 argument_list|,
 literal|1
+argument_list|,
+literal|0
 argument_list|,
 literal|0
 argument_list|)
@@ -7119,6 +7127,8 @@ argument_list|,
 literal|2
 argument_list|,
 literal|0
+argument_list|,
+literal|0
 argument_list|)
 operator|.
 name|hasNext
@@ -7135,6 +7145,8 @@ name|array
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+literal|0
 argument_list|,
 literal|0
 argument_list|)
@@ -7158,6 +7170,8 @@ argument_list|(
 name|array
 argument_list|,
 literal|3
+argument_list|,
+literal|0
 argument_list|,
 literal|0
 argument_list|)
@@ -7309,6 +7323,8 @@ argument_list|,
 literal|1
 argument_list|,
 literal|3
+argument_list|,
+literal|0
 argument_list|)
 return|;
 block|}

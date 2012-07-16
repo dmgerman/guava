@@ -375,7 +375,7 @@ block|}
 try|try
 block|{
 return|return
-name|binarySearch
+name|unsafeBinarySearch
 argument_list|(
 name|o
 argument_list|)
@@ -562,40 +562,17 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|binarySearch (Object key)
+DECL|method|unsafeBinarySearch (Object key)
 specifier|private
 name|int
-name|binarySearch
+name|unsafeBinarySearch
 parameter_list|(
 name|Object
 name|key
 parameter_list|)
+throws|throws
+name|ClassCastException
 block|{
-comment|// TODO(kevinb): split this into binarySearch(E) and
-comment|// unsafeBinarySearch(Object), use each appropriately. name all methods that
-comment|// might throw CCE "unsafe*".
-comment|// Pretend the comparator can compare anything. If it turns out it can't
-comment|// compare a and b, we should get a CCE on the subsequent line. Only methods
-comment|// that are spec'd to throw CCE should call this.
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-name|Comparator
-argument_list|<
-name|Object
-argument_list|>
-name|unsafeComparator
-init|=
-operator|(
-name|Comparator
-argument_list|<
-name|Object
-argument_list|>
-operator|)
-name|comparator
-decl_stmt|;
 return|return
 name|Collections
 operator|.
@@ -606,6 +583,7 @@ argument_list|,
 name|key
 argument_list|,
 name|unsafeComparator
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1147,11 +1125,6 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|indexOf (@ullable Object target)
 annotation|@
 name|Override
@@ -1189,12 +1162,9 @@ name|binarySearch
 argument_list|(
 name|elements
 argument_list|,
-operator|(
-name|E
-operator|)
 name|target
 argument_list|,
-name|comparator
+name|unsafeComparator
 argument_list|()
 argument_list|,
 name|ANY_PRESENT

@@ -1211,11 +1211,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted set containing the elements of a sorted set,    * sorted by the same {@code Comparator}. That behavior differs from {@link    * #copyOf(Iterable)}, which always uses the natural ordering of the    * elements.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is safe to use even when {@code sortedSet} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if {@code sortedSet} or any of its elements    *     is null    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|copyOfSorted (SortedSet<E> sortedSet)
 specifier|public
 specifier|static
@@ -1243,31 +1238,13 @@ name|E
 argument_list|>
 name|comparator
 init|=
-name|sortedSet
+name|SortedIterables
 operator|.
 name|comparator
-argument_list|()
+argument_list|(
+name|sortedSet
+argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|comparator
-operator|==
-literal|null
-condition|)
-block|{
-name|comparator
-operator|=
-operator|(
-name|Comparator
-argument_list|<
-name|?
-super|super
-name|E
-argument_list|>
-operator|)
-name|NATURAL_ORDER
-expr_stmt|;
-block|}
 name|E
 index|[]
 name|elements

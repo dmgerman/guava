@@ -3649,44 +3649,6 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an iterator containing the elements in the specified range of    * {@code array} in order. The returned iterator is a view of the array;    * subsequent changes to the array will be reflected in the iterator.    *    *<p>The {@code Iterable} equivalent of this method is {@code    * Arrays.asList(array).subList(offset, offset + length)}.    *    * @param array array to read elements out of    * @param offset index of first array element to retrieve    * @param length number of elements in iteration    * @throws IndexOutOfBoundsException if {@code offset} is negative, {@code    *     length} is negative, or {@code offset + length> array.length}    */
-DECL|method|forArray ( final T[] array, final int offset, int length)
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|UnmodifiableIterator
-argument_list|<
-name|T
-argument_list|>
-name|forArray
-parameter_list|(
-specifier|final
-name|T
-index|[]
-name|array
-parameter_list|,
-specifier|final
-name|int
-name|offset
-parameter_list|,
-name|int
-name|length
-parameter_list|)
-block|{
-return|return
-name|forArray
-argument_list|(
-name|array
-argument_list|,
-name|offset
-argument_list|,
-name|length
-argument_list|,
-literal|0
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a list iterator containing the elements in the specified range of    * {@code array} in order, starting at the specified index.    *    *<p>The {@code Iterable} equivalent of this method is {@code    * Arrays.asList(array).subList(offset, offset + length).listIterator(index)}.    */
 DECL|method|forArray ( final T[] array, final int offset, int length, int index)
 specifier|static
