@@ -72,20 +72,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Joiner
@@ -239,14 +225,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object of this class encapsulates type mappings from type variables. Mappings are established  * with {@link #where} and types are resolved using {@link #resolveType}.  *  *<p>Note that usually type mappings are already implied by the static type hierarchy (for example,  * the {@code E} type variable declared by class {@code List} naturally maps to {@code String} in  * the context of {@code class MyStringList implements List<String>}. In such case, prefer to use  * {@link TypeToken#resolveType} since it's simpler and more type safe. This class should only be  * used when the type mapping isn't implied by the static type hierarchy, but provided through other  * means such as an annotation or external configuration file.  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * An object of this class encapsulates type mappings from type variables. Mappings are established  * with {@link #where} and types are resolved using {@link #resolveType}.  *  *<p>Note that usually type mappings are already implied by the static type hierarchy (for example,  * the {@code E} type variable declared by class {@code List} naturally maps to {@code String} in  * the context of {@code class MyStringList implements List<String>}. In such case, prefer to use  * {@link TypeToken#resolveType} since it's simpler and more type safe. This class should only be  * used when the type mapping isn't implied by the static type hierarchy, but provided through other  * means such as an annotation or external configuration file.  *  * @author Ben Yu  */
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|TypeResolver
-specifier|public
 class|class
 name|TypeResolver
 block|{
