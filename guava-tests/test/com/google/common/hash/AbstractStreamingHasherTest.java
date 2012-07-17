@@ -1485,6 +1485,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// Assumes that AbstractNonStreamingHashFunction works properly (must be tested elsewhere!)
 DECL|class|Control
 specifier|private
 specifier|static

@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes   * in little-endian order.  *  * @author Kevin Bourrillion  * @since 11.0  */
+comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes  * in little-endian order.  *  * @author Kevin Bourrillion  * @since 11.0  */
 end_comment
 
 begin_interface
@@ -167,7 +167,7 @@ name|char
 name|c
 parameter_list|)
 function_decl|;
-comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(Charsets.UTF_16LE))}.    */
+comment|/**    * Equivalent to processing each {@code char} value in the {@code CharSequence}, in order.    * The input must not be updated while this method is in progress.    */
 DECL|method|putString (CharSequence charSequence)
 annotation|@
 name|Override
@@ -212,7 +212,7 @@ argument_list|>
 name|funnel
 parameter_list|)
 function_decl|;
-comment|/**    * Computes a hash code based on the data that have been provided to this hasher. The result is    * unspecified if this method is called more than once on the same instance.     */
+comment|/**    * Computes a hash code based on the data that have been provided to this hasher. The result is    * unspecified if this method is called more than once on the same instance.    */
 DECL|method|hash ()
 name|HashCode
 name|hash
