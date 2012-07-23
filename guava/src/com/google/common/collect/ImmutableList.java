@@ -1857,7 +1857,9 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|addAll (int index, Collection<? extends E> newElements)
@@ -1884,7 +1886,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|set (int index, E element)
@@ -1906,7 +1910,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|add (int index, E element)
@@ -1928,7 +1934,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the list unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|remove (int index)

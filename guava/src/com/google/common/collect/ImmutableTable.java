@@ -1104,8 +1104,10 @@ argument_list|>
 name|rowMap
 parameter_list|()
 function_decl|;
-comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|clear ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -1120,8 +1122,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|put (R rowKey, C columnKey, V value)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -1145,8 +1149,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|putAll ( Table<? extends R, ? extends C, ? extends V> table)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -1177,8 +1183,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|remove (Object rowKey, Object columnKey)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public

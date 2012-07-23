@@ -71,6 +71,11 @@ DECL|method|getTestInstances ()
 name|getTestInstances
 parameter_list|()
 function_decl|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|method|testClear ()
 specifier|public
 specifier|final
@@ -115,6 +120,11 @@ comment|// success
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|method|testPut ()
 specifier|public
 specifier|final
@@ -165,6 +175,11 @@ comment|// success
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|method|testPutAll ()
 specifier|public
 specifier|final
@@ -220,6 +235,11 @@ comment|// success
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
 DECL|method|testRemove ()
 specifier|public
 specifier|final

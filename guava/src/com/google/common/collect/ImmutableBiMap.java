@@ -910,7 +910,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the bimap unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the bimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|forcePut (K key, V value)

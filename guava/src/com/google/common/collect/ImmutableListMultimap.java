@@ -1276,6 +1276,8 @@ decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a list multimap can contain multiple pairs with    * the same key and value, this method returns an {@code    * ImmutableListMultimap} rather than the {@code ImmutableMultimap} specified    * in the {@code ImmutableMultimap} class.    *    * @since 11    */
 annotation|@
 name|Beta
+annotation|@
+name|Override
 DECL|method|inverse ()
 specifier|public
 name|ImmutableListMultimap
@@ -1389,8 +1391,10 @@ return|return
 name|invertedMultimap
 return|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|removeAll (Object key)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -1410,8 +1414,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|replaceValues ( K key, Iterable<? extends V> values)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public

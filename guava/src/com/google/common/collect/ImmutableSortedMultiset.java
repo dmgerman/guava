@@ -1390,7 +1390,9 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|pollFirstEntry ()
@@ -1409,7 +1411,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * {@inheritDoc}    *    *<p>This implementation is guaranteed to throw an {@link UnsupportedOperationException}.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|pollLastEntry ()

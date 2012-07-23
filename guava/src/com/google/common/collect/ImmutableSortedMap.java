@@ -2663,6 +2663,9 @@ literal|1
 argument_list|)
 return|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|pollFirstEntry ()
@@ -2683,6 +2686,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the map unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|pollLastEntry ()

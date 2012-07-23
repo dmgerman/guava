@@ -2416,7 +2416,9 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/**    * Guaranteed to throw an exception and leave the set unmodified.    *    * @since 12.0    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -2437,7 +2439,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * @since 12.0    */
+comment|/**    * Guaranteed to throw an exception and leave the set unmodified.    *    * @since 12.0    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 argument_list|(

@@ -2027,8 +2027,10 @@ return|return
 name|invertedMultimap
 return|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|removeAll (Object key)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -2048,8 +2050,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    */
+comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 DECL|method|replaceValues ( K key, Iterable<? extends V> values)
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
