@@ -9281,33 +9281,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * An implementation of {@link Map#hashCode}.    */
-DECL|method|hashCodeImpl (Map<?, ?> map)
-specifier|static
-name|int
-name|hashCodeImpl
-parameter_list|(
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|map
-parameter_list|)
-block|{
-return|return
-name|Sets
-operator|.
-name|hashCodeImpl
-argument_list|(
-name|map
-operator|.
-name|entrySet
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**    * An implementation of {@link Map#toString}.    */
 DECL|method|toStringImpl (Map<?, ?> map)
 specifier|static

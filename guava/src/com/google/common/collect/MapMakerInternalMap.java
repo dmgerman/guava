@@ -14050,44 +14050,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Returns {@code true} if the entry has been partially collected, meaning that either the key      * is null, or the value is null and it is not computing.      */
-DECL|method|isCollected (ReferenceEntry<K, V> entry)
-name|boolean
-name|isCollected
-parameter_list|(
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-if|if
-condition|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-return|return
-name|isCollected
-argument_list|(
-name|entry
-operator|.
-name|getValueReference
-argument_list|()
-argument_list|)
-return|;
-block|}
 comment|/**      * Returns {@code true} if the value has been partially collected, meaning that the value is      * null and it is not computing.      */
 DECL|method|isCollected (ValueReference<K, V> valueReference)
 name|boolean
@@ -15961,55 +15923,6 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the live internal entry for the specified key. Does not impact recency ordering.    */
-DECL|method|getLiveEntry (@ullable Object key)
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|getLiveEntry
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|key
-parameter_list|)
-block|{
-if|if
-condition|(
-name|key
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-name|int
-name|hash
-init|=
-name|hash
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-return|return
-name|segmentFor
-argument_list|(
-name|hash
-argument_list|)
-operator|.
-name|getLiveEntry
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|)
-return|;
-block|}
 annotation|@
 name|Override
 DECL|method|containsKey (@ullable Object key)
@@ -16830,6 +16743,14 @@ DECL|class|HashIterator
 specifier|abstract
 class|class
 name|HashIterator
+parameter_list|<
+name|E
+parameter_list|>
+implements|implements
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
 block|{
 DECL|field|nextSegmentIndex
 name|int
@@ -16898,6 +16819,13 @@ name|advance
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|next ()
+specifier|public
+specifier|abstract
+name|E
+name|next
+parameter_list|()
+function_decl|;
 DECL|method|advance ()
 specifier|final
 name|void
@@ -17225,8 +17153,6 @@ class|class
 name|KeyIterator
 extends|extends
 name|HashIterator
-implements|implements
-name|Iterator
 argument_list|<
 name|K
 argument_list|>
@@ -17254,8 +17180,6 @@ class|class
 name|ValueIterator
 extends|extends
 name|HashIterator
-implements|implements
-name|Iterator
 argument_list|<
 name|V
 argument_list|>
@@ -17471,8 +17395,6 @@ class|class
 name|EntryIterator
 extends|extends
 name|HashIterator
-implements|implements
-name|Iterator
 argument_list|<
 name|Entry
 argument_list|<

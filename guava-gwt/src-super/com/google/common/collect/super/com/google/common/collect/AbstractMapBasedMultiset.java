@@ -246,20 +246,6 @@ name|size
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|backingMap ()
-name|Map
-argument_list|<
-name|E
-argument_list|,
-name|Count
-argument_list|>
-name|backingMap
-parameter_list|()
-block|{
-return|return
-name|backingMap
-return|;
-block|}
 comment|/** Used during deserialization only. The backing map must be empty. */
 DECL|method|setBackingMap (Map<E, Count> backingMap)
 name|void
