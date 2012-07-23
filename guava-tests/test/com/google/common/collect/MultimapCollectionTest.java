@@ -1904,6 +1904,10 @@ name|MapFeature
 operator|.
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
+argument_list|,
 name|CollectionSize
 operator|.
 name|ANY
@@ -2021,6 +2025,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionSize
 operator|.
@@ -2278,6 +2286,10 @@ name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
 argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
+argument_list|,
 name|CollectionSize
 operator|.
 name|ANY
@@ -2391,6 +2403,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionSize
 operator|.
@@ -2628,6 +2644,10 @@ name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SERIALIZABLE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|KNOWN_ORDER
 argument_list|,
 name|CollectionSize
@@ -2736,6 +2756,10 @@ argument_list|(
 name|MapFeature
 operator|.
 name|ALLOWS_NULL_QUERIES
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -2851,6 +2875,10 @@ argument_list|,
 name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|,
 name|CollectionSize
 operator|.
