@@ -514,17 +514,6 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|getHashCount ()
-annotation|@
-name|VisibleForTesting
-name|int
-name|getHashCount
-parameter_list|()
-block|{
-return|return
-name|numHashFunctions
-return|;
-block|}
 comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @param falsePositiveProbability the desired false positive probability (must be positive and    *        less than 1.0)    * @return a {@code BloomFilter}    */
 DECL|method|create (Funnel<T> funnel, int expectedInsertions , double falsePositiveProbability)
 specifier|public

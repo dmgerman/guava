@@ -209,6 +209,8 @@ literal|8
 expr_stmt|;
 block|}
 DECL|method|bits ()
+annotation|@
+name|Override
 specifier|public
 name|int
 name|bits
