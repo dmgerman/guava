@@ -523,7 +523,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// There's no way to test LEGACY_WHITESPACE, really; it just is what it is.
 comment|// Omitting tests for the rest of the JAVA_* constants as these are defined
 comment|// as extremely straightforward pass-throughs to the JDK methods.
 comment|// We're testing the is(), isNot(), anyOf(), noneOf() and inRange() methods
