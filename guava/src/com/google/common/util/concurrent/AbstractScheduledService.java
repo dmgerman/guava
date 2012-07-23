@@ -216,7 +216,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * A scheduler defines the policy for how the {@link AbstractScheduledService} should run its    * task.    *    *<p>Consider using the {@link #newFixedDelaySchedule} and {@link #newFixedRateSchedule} factory    * methods, these provide {@link Scheduler} instances for the common use case of running the    * service with a fixed schedule.  If more flexibility is needed then consider subclassing the    * {@link CustomScheduler} abstract class in preference to creating your own {@link Scheduler}    * implementation.    *    * @author Luke Sandberg    * @since 11.0    */
+comment|/**    * A scheduler defines the policy for how the {@link AbstractScheduledService} should run its    * task.    *    *<p>Consider using the {@link #newFixedDelaySchedule} and {@link #newFixedRateSchedule} factory    * methods, these provide {@link Scheduler} instances for the common use case of running the    * service with a fixed schedule.  If more flexibility is needed then consider subclassing    * {@link CustomScheduler}.    *    * @author Luke Sandberg    * @since 11.0    */
 DECL|class|Scheduler
 specifier|public
 specifier|abstract
