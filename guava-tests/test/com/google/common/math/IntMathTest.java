@@ -2860,12 +2860,6 @@ parameter_list|)
 block|{}
 block|}
 block|}
-comment|// Helper method that asserts the arithmetic mean of x and y is equal
-comment|// to the expectedMean.
-comment|// Helper method that asserts the arithmetic mean of x and y is equal
-comment|// to the result of computeMeanSafely.
-comment|// Computes the mean in a way that is obvious and resilient to
-comment|// overflow by using BigInteger arithmetic.
 DECL|method|fitsInInt (BigInteger big)
 specifier|private
 name|boolean
