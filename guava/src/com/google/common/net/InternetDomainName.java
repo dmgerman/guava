@@ -558,7 +558,7 @@ return|return
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * A deprecated synonym for {@link #from(String)}.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValidLenient}    * @since 8.0 (previously named {@code from})    * @deprecated Use {@link #from(String)}    */
+comment|/**    * A deprecated synonym for {@link #from(String)}.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValid}    * @since 8.0 (previously named {@code from})    * @deprecated Use {@link #from(String)}    */
 annotation|@
 name|Deprecated
 DECL|method|fromLenient (String domain)
