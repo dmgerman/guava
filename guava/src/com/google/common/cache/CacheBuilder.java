@@ -1447,26 +1447,6 @@ name|INSTANCE
 argument_list|)
 return|;
 block|}
-comment|/**    * Specifies that each key (not value) stored in the cache should be strongly referenced.    *    * @throws IllegalStateException if the key strength was already set    */
-DECL|method|strongKeys ()
-name|CacheBuilder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|strongKeys
-parameter_list|()
-block|{
-return|return
-name|setKeyStrength
-argument_list|(
-name|Strength
-operator|.
-name|STRONG
-argument_list|)
-return|;
-block|}
 comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    *<p>Entries with keys that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations; such entries are cleaned up as part of    * the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the key strength was already set    */
 annotation|@
 name|GwtIncompatible
@@ -1538,26 +1518,6 @@ name|firstNonNull
 argument_list|(
 name|keyStrength
 argument_list|,
-name|Strength
-operator|.
-name|STRONG
-argument_list|)
-return|;
-block|}
-comment|/**    * Specifies that each value (not key) stored in the cache should be strongly referenced.    *    * @throws IllegalStateException if the value strength was already set    */
-DECL|method|strongValues ()
-name|CacheBuilder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|strongValues
-parameter_list|()
-block|{
-return|return
-name|setValueStrength
-argument_list|(
 name|Strength
 operator|.
 name|STRONG

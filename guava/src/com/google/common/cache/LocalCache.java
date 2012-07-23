@@ -19224,61 +19224,6 @@ name|hash
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the live internal entry for the specified key.    */
-DECL|method|getLiveEntry (@ullable Object key)
-name|ReferenceEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|getLiveEntry
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|key
-parameter_list|)
-block|{
-comment|// does not impact recency ordering
-if|if
-condition|(
-name|key
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-name|int
-name|hash
-init|=
-name|hash
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-return|return
-name|segmentFor
-argument_list|(
-name|hash
-argument_list|)
-operator|.
-name|getLiveEntry
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|,
-name|ticker
-operator|.
-name|read
-argument_list|()
-argument_list|)
-return|;
-block|}
 DECL|method|refresh (K key)
 name|void
 name|refresh
@@ -20172,6 +20117,14 @@ DECL|class|HashIterator
 specifier|abstract
 class|class
 name|HashIterator
+parameter_list|<
+name|T
+parameter_list|>
+implements|implements
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
 block|{
 DECL|field|nextSegmentIndex
 name|int
@@ -20240,6 +20193,13 @@ name|advance
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|next ()
+specifier|public
+specifier|abstract
+name|T
+name|next
+parameter_list|()
+function_decl|;
 DECL|method|advance ()
 specifier|final
 name|void
@@ -20577,8 +20537,6 @@ class|class
 name|KeyIterator
 extends|extends
 name|HashIterator
-implements|implements
-name|Iterator
 argument_list|<
 name|K
 argument_list|>
@@ -20606,8 +20564,6 @@ class|class
 name|ValueIterator
 extends|extends
 name|HashIterator
-implements|implements
-name|Iterator
 argument_list|<
 name|V
 argument_list|>
@@ -20829,8 +20785,6 @@ class|class
 name|EntryIterator
 extends|extends
 name|HashIterator
-implements|implements
-name|Iterator
 argument_list|<
 name|Entry
 argument_list|<
