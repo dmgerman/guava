@@ -248,11 +248,19 @@ argument_list|(
 name|checkNotNull
 argument_list|(
 name|k1
+argument_list|,
+literal|"null key in entry: null=%s"
+argument_list|,
+name|v1
 argument_list|)
 argument_list|,
 name|checkNotNull
 argument_list|(
 name|v1
+argument_list|,
+literal|"null value in entry: %s=null"
+argument_list|,
+name|k1
 argument_list|)
 argument_list|)
 return|;
