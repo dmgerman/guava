@@ -3409,36 +3409,6 @@ else|:
 name|defaultValue
 return|;
 block|}
-comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToSkip} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements skipped    * @since 3.0    * @deprecated This method has been renamed to {@link #advance(java.util.Iterator, int) advance}.    *     This method is scheduled to be deleted in Guava 14.0.    */
-annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-DECL|method|skip (Iterator<?> iterator, int numberToSkip)
-specifier|public
-specifier|static
-name|int
-name|skip
-parameter_list|(
-name|Iterator
-argument_list|<
-name|?
-argument_list|>
-name|iterator
-parameter_list|,
-name|int
-name|numberToSkip
-parameter_list|)
-block|{
-return|return
-name|advance
-argument_list|(
-name|iterator
-argument_list|,
-name|numberToSkip
-argument_list|)
-return|;
-block|}
 comment|/**    * Calls {@code next()} on {@code iterator}, either {@code numberToAdvance} times    * or until {@code hasNext()} returns {@code false}, whichever comes first.    *    * @return the number of elements the iterator was advanced    * @since 13.0 (since 3.0 as {@code Iterators.skip})    */
 DECL|method|advance (Iterator<?> iterator, int numberToAdvance)
 specifier|public
