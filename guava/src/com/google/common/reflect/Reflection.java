@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkNotNull
 import|;
 end_import
@@ -83,8 +99,8 @@ specifier|final
 class|class
 name|Reflection
 block|{
-comment|/**    * Returns the package name of {@code cls} according to the Java Language Specification (section    * 6.7). Unlike {@link Class#getPackage}, this method only parses the class name, without    * attempting to define the {@link Package} and hence load files.    */
-DECL|method|getPackageName (Class<?> cls)
+comment|/**    * Returns the package name of {@code clazz} according to the Java Language Specification (section    * 6.7). Unlike {@link Class#getPackage}, this method only parses the class name, without    * attempting to define the {@link Package} and hence load files.    */
+DECL|method|getPackageName (Class<?> clazz)
 specifier|public
 specifier|static
 name|String
@@ -94,13 +110,13 @@ name|Class
 argument_list|<
 name|?
 argument_list|>
-name|cls
+name|clazz
 parameter_list|)
 block|{
 return|return
 name|getPackageName
 argument_list|(
-name|cls
+name|clazz
 operator|.
 name|getName
 argument_list|()
@@ -128,20 +144,15 @@ argument_list|(
 literal|'.'
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+return|return
+operator|(
 name|lastDot
 operator|<
 literal|0
-condition|)
-block|{
-return|return
+operator|)
+condition|?
 literal|""
-return|;
-block|}
-else|else
-block|{
-return|return
+else|:
 name|classFullName
 operator|.
 name|substring
@@ -151,7 +162,6 @@ argument_list|,
 name|lastDot
 argument_list|)
 return|;
-block|}
 block|}
 comment|/**    * Ensures that the given classes are initialized, as described in    *<a href="http://java.sun.com/docs/books/jls/third_edition/html/execution.html#12.4.2">    * JLS Section 12.4.2</a>.    *    *<p>WARNING: Normally it's a smell if a class needs to be explicitly initialized, because static    * state hurts system maintainability and testability. In cases when you have no choice while    * inter-operating with a legacy framework, this method helps to keep the code less ugly.    *    * @throws ExceptionInInitializerError if an exception is thrown during    *   initialization of a class    */
 DECL|method|initialize (Class<?>.... classes)
@@ -240,25 +250,18 @@ argument_list|(
 name|handler
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
+name|checkArgument
+argument_list|(
 name|interfaceType
 operator|.
 name|isInterface
 argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
+argument_list|,
+literal|"%s is not an interface"
+argument_list|,
 name|interfaceType
-operator|+
-literal|" is not an interface"
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|Object
 name|object
 init|=
