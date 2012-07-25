@@ -2310,6 +2310,41 @@ block|,
 literal|33
 block|}
 decl_stmt|;
+comment|/**    * Returns the arithmetic mean of {@code x} and {@code y}, rounded towards    * negative infinity. This method is overflow resilient.    *    * @since 14.0    */
+DECL|method|mean (int x, int y)
+specifier|public
+specifier|static
+name|int
+name|mean
+parameter_list|(
+name|int
+name|x
+parameter_list|,
+name|int
+name|y
+parameter_list|)
+block|{
+comment|// Efficient method for computing the arithmetic mean.
+comment|// The alternative (x + y) / 2 fails for large values.
+comment|// The alternative (x + y)>>> 1 fails for negative values.
+return|return
+operator|(
+name|x
+operator|&
+name|y
+operator|)
+operator|+
+operator|(
+operator|(
+name|x
+operator|^
+name|y
+operator|)
+operator|>>
+literal|1
+operator|)
+return|;
+block|}
 DECL|method|IntMath ()
 specifier|private
 name|IntMath
