@@ -1940,7 +1940,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StateSnapshot (State internalState, boolean shutdownWhenStartupFinishes, Throwable failure)
+DECL|method|StateSnapshot ( State internalState, boolean shutdownWhenStartupFinishes, @Nullable Throwable failure)
 name|StateSnapshot
 parameter_list|(
 name|State
@@ -1949,6 +1949,8 @@ parameter_list|,
 name|boolean
 name|shutdownWhenStartupFinishes
 parameter_list|,
+annotation|@
+name|Nullable
 name|Throwable
 name|failure
 parameter_list|)
