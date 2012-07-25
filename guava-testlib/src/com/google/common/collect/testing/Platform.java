@@ -32,18 +32,6 @@ name|GwtCompatible
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Method
-import|;
-end_import
-
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  *<p>This class is emulated in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -148,47 +136,6 @@ argument_list|,
 name|args
 argument_list|)
 return|;
-block|}
-DECL|method|getMethod (Class<?> clazz, String name)
-specifier|static
-name|Method
-name|getMethod
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-block|{
-try|try
-block|{
-return|return
-name|clazz
-operator|.
-name|getMethod
-argument_list|(
-name|name
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 DECL|method|classGetSimpleName (Class<?> clazz)
 specifier|static

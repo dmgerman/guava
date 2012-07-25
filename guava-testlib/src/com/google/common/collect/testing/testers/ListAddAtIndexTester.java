@@ -142,6 +142,36 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|Helpers
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -233,6 +263,11 @@ argument_list|)
 comment|// too many "unchecked generic array creations"
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ListAddAtIndexTester
 specifier|public
 class|class
@@ -798,6 +833,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testAddAtIndex_nullSupported()} so that tests can suppress it. See    * {@link CollectionAddTester#getAddNullSupportedMethod()} for details.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getAddNullSupportedMethod ()
 specifier|public
 specifier|static
@@ -806,7 +846,7 @@ name|getAddNullSupportedMethod
 parameter_list|()
 block|{
 return|return
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(

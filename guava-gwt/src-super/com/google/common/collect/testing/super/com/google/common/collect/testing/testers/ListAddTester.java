@@ -102,20 +102,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|testing
@@ -164,19 +150,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
+name|util
 operator|.
-name|reflect
-operator|.
-name|Method
+name|List
 import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests add operations on a set. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.SetTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * A generic JUnit test which tests {@code add(Object)} operations on a list.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// too many "unchecked generic array creations"
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -184,15 +174,15 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-DECL|class|SetAddTester
+DECL|class|ListAddTester
 specifier|public
 class|class
-name|SetAddTester
+name|ListAddTester
 parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|AbstractSetTester
+name|AbstractListTester
 argument_list|<
 name|E
 argument_list|>
@@ -219,11 +209,11 @@ name|void
 name|testAdd_supportedPresent
 parameter_list|()
 block|{
-name|assertFalse
+name|assertTrue
 argument_list|(
-literal|"add(present) should return false"
+literal|"add(present) should return true"
 argument_list|,
-name|getSet
+name|getList
 argument_list|()
 operator|.
 name|add
@@ -234,9 +224,63 @@ name|e0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|expectUnchanged
-argument_list|()
+name|expectAdded
+argument_list|(
+name|samples
+operator|.
+name|e0
+argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|CollectionFeature
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|SUPPORTS_ADD
+argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
+comment|/*    * absent = ZERO isn't required, since unmodList.add() must    * throw regardless, but it keeps the method name accurate.    */
+DECL|method|testAdd_unsupportedPresent ()
+specifier|public
+name|void
+name|testAdd_unsupportedPresent
+parameter_list|()
+block|{
+try|try
+block|{
+name|getList
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|samples
+operator|.
+name|e0
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"add(present) should throw"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|expected
+parameter_list|)
+block|{     }
 block|}
 annotation|@
 name|CollectionFeature
@@ -283,11 +327,11 @@ argument_list|(
 name|array
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertTrue
 argument_list|(
-literal|"add(nullPresent) should return false"
+literal|"add(nullPresent) should return true"
 argument_list|,
-name|getSet
+name|getList
 argument_list|()
 operator|.
 name|add
@@ -296,37 +340,31 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|expectContents
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|expected
+init|=
+name|Helpers
+operator|.
+name|copyToList
 argument_list|(
 name|array
 argument_list|)
+decl_stmt|;
+name|expected
+operator|.
+name|add
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
-block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testAdd_supportedNullPresent()} so that tests can suppress it. See    * {@link CollectionAddTester#getAddNullSupportedMethod()} for details.    */
-annotation|@
-name|GwtIncompatible
+name|expectContents
 argument_list|(
-literal|"reflection"
+name|expected
 argument_list|)
-DECL|method|getAddSupportedNullPresentMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getAddSupportedNullPresentMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|SetAddTester
-operator|.
-name|class
-argument_list|,
-literal|"testAdd_supportedNullPresent"
-argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 end_class

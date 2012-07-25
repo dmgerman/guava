@@ -121,16 +121,14 @@ import|;
 end_import
 
 begin_import
-import|import
-name|com
+import|import static
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
+name|Collections
 operator|.
-name|annotations
-operator|.
-name|GwtCompatible
+name|singletonList
 import|;
 end_import
 
@@ -144,7 +142,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtIncompatible
+name|GwtCompatible
 import|;
 end_import
 
@@ -176,7 +174,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|Helpers
+name|MinimalCollection
 import|;
 end_import
 
@@ -213,18 +211,6 @@ operator|.
 name|features
 operator|.
 name|CollectionSize
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Method
 import|;
 end_import
 
@@ -248,8 +234,18 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code add} operations on a collection.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
+comment|/**  * A generic JUnit test which tests addAll operations on a collection. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -266,10 +262,10 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-DECL|class|CollectionAddTester
+DECL|class|CollectionAddAllTester
 specifier|public
 class|class
-name|CollectionAddTester
+name|CollectionAddAllTester
 parameter_list|<
 name|E
 parameter_list|>
@@ -286,23 +282,93 @@ name|Require
 argument_list|(
 name|SUPPORTS_ADD
 argument_list|)
-DECL|method|testAdd_supportedNotPresent ()
+DECL|method|testAddAll_supportedNothing ()
 specifier|public
 name|void
-name|testAdd_supportedNotPresent
+name|testAddAll_supportedNothing
+parameter_list|()
+block|{
+name|assertFalse
+argument_list|(
+literal|"addAll(nothing) should return false"
+argument_list|,
+name|collection
+operator|.
+name|addAll
+argument_list|(
+name|emptyCollection
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectUnchanged
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|CollectionFeature
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|SUPPORTS_ADD
+argument_list|)
+DECL|method|testAddAll_unsupportedNothing ()
+specifier|public
+name|void
+name|testAddAll_unsupportedNothing
+parameter_list|()
+block|{
+try|try
+block|{
+name|assertFalse
+argument_list|(
+literal|"addAll(nothing) should return false or throw"
+argument_list|,
+name|collection
+operator|.
+name|addAll
+argument_list|(
+name|emptyCollection
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|tolerated
+parameter_list|)
+block|{     }
+name|expectUnchanged
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|CollectionFeature
+operator|.
+name|Require
+argument_list|(
+name|SUPPORTS_ADD
+argument_list|)
+DECL|method|testAddAll_supportedNonePresent ()
+specifier|public
+name|void
+name|testAddAll_supportedNonePresent
 parameter_list|()
 block|{
 name|assertTrue
 argument_list|(
-literal|"add(notPresent) should return true"
+literal|"addAll(nonePresent) should return true"
 argument_list|,
 name|collection
 operator|.
-name|add
+name|addAll
 argument_list|(
-name|samples
-operator|.
-name|e3
+name|createDisjointCollection
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -311,6 +377,10 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|,
+name|samples
+operator|.
+name|e4
 argument_list|)
 expr_stmt|;
 block|}
@@ -323,26 +393,25 @@ name|absent
 operator|=
 name|SUPPORTS_ADD
 argument_list|)
-DECL|method|testAdd_unsupportedNotPresent ()
+DECL|method|testAddAll_unsupportedNonePresent ()
 specifier|public
 name|void
-name|testAdd_unsupportedNotPresent
+name|testAddAll_unsupportedNonePresent
 parameter_list|()
 block|{
 try|try
 block|{
 name|collection
 operator|.
-name|add
+name|addAll
 argument_list|(
-name|samples
-operator|.
-name|e3
+name|createDisjointCollection
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"add(notPresent) should throw"
+literal|"addAll(nonePresent) should throw"
 argument_list|)
 expr_stmt|;
 block|}
@@ -360,6 +429,92 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|,
+name|samples
+operator|.
+name|e4
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|CollectionFeature
+operator|.
+name|Require
+argument_list|(
+name|SUPPORTS_ADD
+argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
+DECL|method|testAddAll_supportedSomePresent ()
+specifier|public
+name|void
+name|testAddAll_supportedSomePresent
+parameter_list|()
+block|{
+name|assertTrue
+argument_list|(
+literal|"addAll(somePresent) should return true"
+argument_list|,
+name|collection
+operator|.
+name|addAll
+argument_list|(
+name|MinimalCollection
+operator|.
+name|of
+argument_list|(
+name|samples
+operator|.
+name|e3
+argument_list|,
+name|samples
+operator|.
+name|e0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"should contain "
+operator|+
+name|samples
+operator|.
+name|e3
+argument_list|,
+name|collection
+operator|.
+name|contains
+argument_list|(
+name|samples
+operator|.
+name|e3
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"should contain "
+operator|+
+name|samples
+operator|.
+name|e0
+argument_list|,
+name|collection
+operator|.
+name|contains
+argument_list|(
+name|samples
+operator|.
+name|e0
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -381,25 +536,170 @@ name|absent
 operator|=
 name|ZERO
 argument_list|)
-DECL|method|testAdd_unsupportedPresent ()
+DECL|method|testAddAll_unsupportedSomePresent ()
 specifier|public
 name|void
-name|testAdd_unsupportedPresent
+name|testAddAll_unsupportedSomePresent
+parameter_list|()
+block|{
+try|try
+block|{
+name|collection
+operator|.
+name|addAll
+argument_list|(
+name|MinimalCollection
+operator|.
+name|of
+argument_list|(
+name|samples
+operator|.
+name|e3
+argument_list|,
+name|samples
+operator|.
+name|e0
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"addAll(somePresent) should throw"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|expected
+parameter_list|)
+block|{     }
+name|expectUnchanged
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|CollectionFeature
+operator|.
+name|Require
+argument_list|(
+block|{
+name|SUPPORTS_ADD
+block|,
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+block|}
+argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
+DECL|method|testAddAllConcurrentWithIteration ()
+specifier|public
+name|void
+name|testAddAllConcurrentWithIteration
+parameter_list|()
+block|{
+try|try
+block|{
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+init|=
+name|collection
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|collection
+operator|.
+name|addAll
+argument_list|(
+name|MinimalCollection
+operator|.
+name|of
+argument_list|(
+name|samples
+operator|.
+name|e3
+argument_list|,
+name|samples
+operator|.
+name|e0
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|iterator
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected ConcurrentModificationException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ConcurrentModificationException
+name|expected
+parameter_list|)
+block|{
+comment|// success
+block|}
+block|}
+annotation|@
+name|CollectionFeature
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|SUPPORTS_ADD
+argument_list|)
+annotation|@
+name|CollectionSize
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ZERO
+argument_list|)
+DECL|method|testAddAll_unsupportedAllPresent ()
+specifier|public
+name|void
+name|testAddAll_unsupportedAllPresent
 parameter_list|()
 block|{
 try|try
 block|{
 name|assertFalse
 argument_list|(
-literal|"add(present) should return false or throw"
+literal|"addAll(allPresent) should return false or throw"
 argument_list|,
 name|collection
 operator|.
-name|add
+name|addAll
+argument_list|(
+name|MinimalCollection
+operator|.
+name|of
 argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -431,24 +731,36 @@ name|absent
 operator|=
 name|RESTRICTS_ELEMENTS
 argument_list|)
-DECL|method|testAdd_nullSupported ()
+DECL|method|testAddAll_nullSupported ()
 specifier|public
 name|void
-name|testAdd_nullSupported
+name|testAddAll_nullSupported
 parameter_list|()
 block|{
-name|assertTrue
-argument_list|(
-literal|"add(null) should return true"
-argument_list|,
-name|collection
-operator|.
-name|add
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|containsNull
+init|=
+name|singletonList
 argument_list|(
 literal|null
 argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"addAll(containsNull) should return true"
+argument_list|,
+name|collection
+operator|.
+name|addAll
+argument_list|(
+name|containsNull
+argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*      * We need (E) to force interpretation of null as the single element of a      * varargs array, not the array itself      */
 name|expectAdded
 argument_list|(
 operator|(
@@ -471,24 +783,35 @@ name|absent
 operator|=
 name|ALLOWS_NULL_VALUES
 argument_list|)
-DECL|method|testAdd_nullUnsupported ()
+DECL|method|testAddAll_nullUnsupported ()
 specifier|public
 name|void
-name|testAdd_nullUnsupported
+name|testAddAll_nullUnsupported
 parameter_list|()
 block|{
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|containsNull
+init|=
+name|singletonList
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
 try|try
 block|{
 name|collection
 operator|.
-name|add
+name|addAll
 argument_list|(
-literal|null
+name|containsNull
 argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"add(null) should throw"
+literal|"addAll(containsNull) should throw"
 argument_list|)
 expr_stmt|;
 block|}
@@ -503,7 +826,7 @@ argument_list|()
 expr_stmt|;
 name|expectNullMissingWhenNullUnsupported
 argument_list|(
-literal|"Should not contain null after unsupported add(null)"
+literal|"Should not contain null after unsupported addAll(containsNull)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -512,123 +835,35 @@ name|CollectionFeature
 operator|.
 name|Require
 argument_list|(
-block|{
 name|SUPPORTS_ADD
-block|,
-name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
-block|}
 argument_list|)
-annotation|@
-name|CollectionSize
-operator|.
-name|Require
-argument_list|(
-name|absent
-operator|=
-name|ZERO
-argument_list|)
-DECL|method|testAddConcurrentWithIteration ()
+DECL|method|testAddAll_nullCollectionReference ()
 specifier|public
 name|void
-name|testAddConcurrentWithIteration
+name|testAddAll_nullCollectionReference
 parameter_list|()
 block|{
 try|try
 block|{
-name|Iterator
-argument_list|<
-name|E
-argument_list|>
-name|iterator
-init|=
 name|collection
 operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-name|assertTrue
+name|addAll
 argument_list|(
-name|collection
-operator|.
-name|add
-argument_list|(
-name|samples
-operator|.
-name|e3
+literal|null
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|iterator
-operator|.
-name|next
-argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Expected ConcurrentModificationException"
+literal|"addAll(null) should throw NullPointerException"
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ConcurrentModificationException
+name|NullPointerException
 name|expected
 parameter_list|)
-block|{
-comment|// success
-block|}
-block|}
-comment|/**    * Returns the {@link Method} instance for {@link #testAdd_nullSupported()} so    * that tests of {@link    * java.util.Collections#checkedCollection(java.util.Collection, Class)} can    * suppress it with {@code FeatureSpecificTestSuiteBuilder.suppressing()}    * until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6409434">Sun bug    * 6409434</a> is fixed. It's unclear whether nulls were to be permitted or    * forbidden, but presumably the eventual fix will be to permit them, as it    * seems more likely that code would depend on that behavior than on the    * other. Thus, we say the bug is in add(), which fails to support null.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|getAddNullSupportedMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getAddNullSupportedMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|CollectionAddTester
-operator|.
-name|class
-argument_list|,
-literal|"testAdd_nullSupported"
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the {@link Method} instance for {@link #testAdd_nullSupported()} so    * that tests of {@link    * java.util.Collections#checkedCollection(java.util.Collection, Class)} can    * suppress it with {@code FeatureSpecificTestSuiteBuilder.suppressing()}    * until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5045147">Sun    * bug 5045147</a> is fixed.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|getAddNullUnsupportedMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getAddNullUnsupportedMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|CollectionAddTester
-operator|.
-name|class
-argument_list|,
-literal|"testAdd_nullUnsupported"
-argument_list|)
-return|;
+block|{     }
 block|}
 block|}
 end_class

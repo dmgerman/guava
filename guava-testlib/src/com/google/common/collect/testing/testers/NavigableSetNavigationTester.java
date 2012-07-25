@@ -1399,7 +1399,7 @@ operator|new
 name|Method
 index|[]
 block|{
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(
@@ -1410,7 +1410,7 @@ argument_list|,
 literal|"testLowerHole"
 argument_list|)
 block|,
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(
@@ -1421,7 +1421,7 @@ argument_list|,
 literal|"testFloorHole"
 argument_list|)
 block|,
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(
@@ -1432,7 +1432,7 @@ argument_list|,
 literal|"testCeilingHole"
 argument_list|)
 block|,
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(

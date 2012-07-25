@@ -34,18 +34,6 @@ name|GwtCompatible
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Method
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class is emulated in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -57,48 +45,6 @@ DECL|class|Platform
 class|class
 name|Platform
 block|{
-comment|/**    * Delegate to {@link Class#getMethod(String, Class[])}.  Not    * usable in GWT.    */
-DECL|method|getMethod (Class<?> clazz, String methodName)
-specifier|static
-name|Method
-name|getMethod
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|,
-name|String
-name|methodName
-parameter_list|)
-block|{
-try|try
-block|{
-return|return
-name|clazz
-operator|.
-name|getMethod
-argument_list|(
-name|methodName
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchMethodException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
 comment|/**    * Format the template with args, only supports the placeholder    * {@code %s}.    */
 DECL|method|format (String template, Object... args)
 specifier|static

@@ -154,11 +154,41 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
 operator|.
 name|AbstractCollectionTester
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|Helpers
 import|;
 end_import
 
@@ -269,6 +299,11 @@ argument_list|)
 comment|// too many "unchecked generic array creations"
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|CollectionAddAllTester
 specifier|public
 class|class
@@ -873,6 +908,11 @@ parameter_list|)
 block|{     }
 block|}
 comment|/**    * Returns the {@link Method} instance for {@link    * #testAddAll_nullUnsupported()} so that tests can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5045147">Sun    * bug 5045147</a> is fixed.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getAddAllNullUnsupportedMethod ()
 specifier|public
 specifier|static
@@ -881,7 +921,7 @@ name|getAddAllNullUnsupportedMethod
 parameter_list|()
 block|{
 return|return
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(

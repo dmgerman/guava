@@ -1164,7 +1164,7 @@ operator|)
 name|test
 decl_stmt|;
 return|return
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(
@@ -1197,7 +1197,7 @@ operator|)
 name|test
 decl_stmt|;
 return|return
-name|Platform
+name|Helpers
 operator|.
 name|getMethod
 argument_list|(
