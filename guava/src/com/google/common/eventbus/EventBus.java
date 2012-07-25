@@ -958,14 +958,11 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Drain the queue of events to be dispatched. As the queue is being drained,    * new events may be posted to the end of the queue.    *    * @deprecated This method should not be overridden outside of the eventbus package. It is    *     scheduled for removal in Guava 14.0.    */
+comment|/**    * Drain the queue of events to be dispatched. As the queue is being drained,    * new events may be posted to the end of the queue.    */
 end_comment
 
 begin_function
-annotation|@
-name|Deprecated
 DECL|method|dispatchQueuedEvents ()
-specifier|protected
 name|void
 name|dispatchQueuedEvents
 parameter_list|()
