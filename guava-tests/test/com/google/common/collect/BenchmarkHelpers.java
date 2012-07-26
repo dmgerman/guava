@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper classes for various benchmarks.  *   * @author Christopher Swenson  */
+comment|/**  * Helper classes for various benchmarks.  *  * @author Christopher Swenson  */
 end_comment
 
 begin_class
@@ -301,7 +301,7 @@ argument_list|)
 return|;
 block|}
 block|}
-block|;
+block|,     ;
 DECL|method|create (Collection<Element> contents)
 specifier|abstract
 name|Set
