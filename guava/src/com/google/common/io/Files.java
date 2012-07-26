@@ -936,7 +936,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all the bytes from one file to another.    *.    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
+comment|/**    * Copies all the bytes from one file to another.    *    *<p><b>Warning:</b> If {@code to} represents an existing file, that file    * will be overwritten with the contents of {@code from}. If {@code to} and    * {@code from} refer to the<i>same</i> file, the contents of that file    * will be deleted.    *    * @param from the source file    * @param to the destination file    * @throws IOException if an I/O error occurs    * @throws IllegalArgumentException if {@code from.equals(to)}    */
 DECL|method|copy (File from, File to)
 specifier|public
 specifier|static
