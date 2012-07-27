@@ -122,34 +122,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -835,13 +807,6 @@ comment|/**  * The concurrent hash map implementation built by {@link CacheBuild
 end_comment
 
 begin_class
-annotation|@
-name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|LocalCache
 class|class
 name|LocalCache
@@ -20101,11 +20066,6 @@ name|entrySet
 decl_stmt|;
 annotation|@
 name|Override
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Not supported."
-argument_list|)
 DECL|method|entrySet ()
 specifier|public
 name|Set
@@ -20233,8 +20193,6 @@ name|advance
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 DECL|method|next ()
 specifier|public
 specifier|abstract
@@ -20501,8 +20459,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -20544,8 +20500,6 @@ return|return
 name|lastReturned
 return|;
 block|}
-annotation|@
-name|Override
 DECL|method|remove ()
 specifier|public
 name|void
@@ -22800,8 +22754,6 @@ name|serialVersionUID
 init|=
 literal|1
 decl_stmt|;
-annotation|@
-name|Override
 DECL|method|writeReplace ()
 name|Object
 name|writeReplace
