@@ -862,6 +862,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Enables lenient parsing. Useful for tests and spec parsing.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|lenientParsing ()
 name|CacheBuilder
 argument_list|<
@@ -881,6 +886,11 @@ name|this
 return|;
 block|}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalence#equals()} otherwise.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
@@ -941,6 +951,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the cache uses {@link Equivalence#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalence#equals()}    * otherwise.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|valueEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
@@ -1206,6 +1221,11 @@ name|this
 return|;
 block|}
 comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When {@code weight} is zero, elements will be evicted immediately after being loaded into    * cache. This can be useful in testing, or to disable caching temporarily without a code    * change.    *    *<p>Note that weight is only used to determine whether the cache is over capacity; it has no    * effect on selecting which entry should be evicted next.    *    *<p>This feature cannot be used in conjunction with {@link #maximumSize}.    *    * @param weight the maximum total weight of entries the cache may contain    * @throws IllegalArgumentException if {@code weight} is negative    * @throws IllegalStateException if a maximum weight or size was already set    * @since 11.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|maximumWeight (long weight)
 specifier|public
 name|CacheBuilder
@@ -1270,6 +1290,11 @@ name|this
 return|;
 block|}
 comment|/**    * Specifies the weigher to use in determining the weight of entries. Entry weight is taken    * into consideration by {@link #maximumWeight(long)} when determining which entries to evict, and    * use of this method requires a corresponding call to {@link #maximumWeight(long)} prior to    * calling {@link #build}. Weights are measured and recorded when entries are inserted into the    * cache, and are thus effectively static during the lifetime of a cache entry.    *    *<p>When the weight of an entry is zero it will not be considered for size-based eviction    * (though it still may be evicted by other means).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * weigher already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the weigher, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 11.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|weigher ( Weigher<? super K1, ? super V1> weigher)
 specifier|public
 parameter_list|<
@@ -1781,7 +1806,7 @@ name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"To be supported"
+literal|"To be supported (synchronously)."
 argument_list|)
 DECL|method|refreshAfterWrite (long duration, TimeUnit unit)
 specifier|public
@@ -1862,11 +1887,6 @@ name|refreshNanos
 return|;
 block|}
 comment|/**    * Specifies a nanosecond-precision time source for use in determining when entries should be    * expired. By default, {@link System#nanoTime} is used.    *    *<p>The primary intent of this method is to facilitate testing of caches which have been    * configured with {@link #expireAfterWrite} or {@link #expireAfterAccess}.    *    * @throws IllegalStateException if a ticker was already set    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
 DECL|method|ticker (Ticker ticker)
 specifier|public
 name|CacheBuilder
@@ -1936,11 +1956,6 @@ block|}
 comment|/**    * Specifies a listener instance, which all caches built using this {@code CacheBuilder} will    * notify each time an entry is removed from the cache by any means.    *    *<p>Each cache built by this {@code CacheBuilder} after this method is called invokes the    * supplied listener after removing an element for any reason (see removal causes in {@link    * RemovalCause}). It will invoke the listener as part of the routine maintenance described    * in the class javadoc.    *    *<p><b>Note:</b><i>all exceptions thrown by {@code listener} will be logged (using    * {@link java.util.logging.Logger})and then swallowed</i>.    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * listener already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the listener, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @throws IllegalStateException if a removal listener was already set    */
 annotation|@
 name|CheckReturnValue
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
 DECL|method|removalListener ( RemovalListener<? super K1, ? super V1> listener)
 specifier|public
 parameter_list|<
