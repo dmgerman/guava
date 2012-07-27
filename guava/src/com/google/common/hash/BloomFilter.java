@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Bloom filter for instances of {@code T}. A Bloom filter offers an approximate containment test  * with one-sided error: if it claims that an element is contained in it, this might be in error,  * but if it claims that an element is<i>not</i> contained in it, then this is definitely true.  *  *<p>If you are unfamiliar with Bloom filters, this nice  *<a href="http://llimllib.github.com/bloomfilter-tutorial/">tutorial</a> may help you understand  * how they work.  *  *  * @param<T> the type of instances that the {@code BloomFilter} accepts  * @author Dimitris Andreou  * @author Kevin Bourrillion  * @since 11.0  */
+comment|/**  * A Bloom filter for instances of {@code T}. A Bloom filter offers an approximate containment test  * with one-sided error: if it claims that an element is contained in it, this might be in error,  * but if it claims that an element is<i>not</i> contained in it, then this is definitely true.  *  *<p>If you are unfamiliar with Bloom filters, this nice  *<a href="http://llimllib.github.com/bloomfilter-tutorial/">tutorial</a> may help you understand  * how they work.  *  *<p>The false positive probability ({@code FPP}) of a bloom filter is defined as the probability  * that {@linkplain #mightContain(Object)} will erroneously return {@code true} for an object that  * has not actually been put in the {@code BloomFilter}.  *  *  * @param<T> the type of instances that the {@code BloomFilter} accepts  * @author Dimitris Andreou  * @author Kevin Bourrillion  * @since 11.0  */
 end_comment
 
 begin_class
@@ -396,13 +396,14 @@ name|bits
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the probability that {@linkplain #mightContain(Object)} will erroneously return    * {@code true} for an object that has not actually been put in the {@code BloomFilter}.    *    *<p>Ideally, this number should be close to the {@code falsePositiveProbability} parameter    * passed in {@linkplain #create(Funnel, int, double)}, or smaller. If it is    * significantly higher, it is usually the case that too many elements (more than    * expected) have been put in the {@code BloomFilter}, degenerating it.    */
-DECL|method|expectedFalsePositiveProbability ()
+comment|/**    * Returns the probability that {@linkplain #mightContain(Object)} will erroneously return    * {@code true} for an object that has not actually been put in the {@code BloomFilter}.    *    *<p>Ideally, this number should be close to the {@code fpp} parameter    * passed in {@linkplain #create(Funnel, int, double)}, or smaller. If it is    * significantly higher, it is usually the case that too many elements (more than    * expected) have been put in the {@code BloomFilter}, degenerating it.    *    * @since 14.0 (since 11.0 as expectedFalsePositiveProbability())    */
+DECL|method|expectedFpp ()
 specifier|public
 name|double
-name|expectedFalsePositiveProbability
+name|expectedFpp
 parameter_list|()
 block|{
+comment|// You down with FPP? (Yeah you know me!) Who's down with FPP? (Every last homie!)
 return|return
 name|Math
 operator|.
@@ -423,6 +424,20 @@ argument_list|()
 argument_list|,
 name|numHashFunctions
 argument_list|)
+return|;
+block|}
+comment|/**    * @deprecated Use {@link expectedFpp} instead.    */
+annotation|@
+name|Deprecated
+DECL|method|expectedFalsePositiveProbability ()
+specifier|public
+name|double
+name|expectedFalsePositiveProbability
+parameter_list|()
+block|{
+return|return
+name|expectedFpp
+argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation uses reference equality to compare funnels.    */
@@ -514,8 +529,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @param falsePositiveProbability the desired false positive probability (must be positive and    *        less than 1.0)    * @return a {@code BloomFilter}    */
-DECL|method|create (Funnel<T> funnel, int expectedInsertions , double falsePositiveProbability)
+comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
+DECL|method|create ( Funnel<T> funnel, int expectedInsertions , double fpp)
 specifier|public
 specifier|static
 parameter_list|<
@@ -538,7 +553,7 @@ name|expectedInsertions
 comment|/* n */
 parameter_list|,
 name|double
-name|falsePositiveProbability
+name|fpp
 parameter_list|)
 block|{
 name|checkNotNull
@@ -552,20 +567,24 @@ name|expectedInsertions
 operator|>=
 literal|0
 argument_list|,
-literal|"Expected insertions cannot be negative"
+literal|"Expected insertions (%s) cannot be negative"
+argument_list|,
+name|expectedInsertions
 argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-name|falsePositiveProbability
+name|fpp
 operator|>
 literal|0.0
 operator|&
-name|falsePositiveProbability
+name|fpp
 operator|<
 literal|1.0
 argument_list|,
-literal|"False positive probability in (0.0, 1.0)"
+literal|"False positive probability (%s) must be in (0.0, 1.0)"
+argument_list|,
+name|fpp
 argument_list|)
 expr_stmt|;
 if|if
@@ -580,7 +599,7 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-comment|/*      * andreou: I wanted to put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less that 10kb. Who cares!      */
+comment|/*      * TODO(user): Put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less that 10kb. Who cares!      */
 name|int
 name|numBits
 init|=
@@ -588,7 +607,7 @@ name|optimalNumOfBits
 argument_list|(
 name|expectedInsertions
 argument_list|,
-name|falsePositiveProbability
+name|fpp
 argument_list|)
 decl_stmt|;
 name|int

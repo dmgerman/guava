@@ -455,10 +455,10 @@ name|copy
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testExpectedFalsePositiveProbability ()
+DECL|method|testExpectedFpp ()
 specifier|public
 name|void
-name|testExpectedFalsePositiveProbability
+name|testExpectedFpp
 parameter_list|()
 block|{
 name|BloomFilter
@@ -485,7 +485,7 @@ name|fpp
 init|=
 name|bf
 operator|.
-name|expectedFalsePositiveProbability
+name|expectedFpp
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -520,7 +520,7 @@ name|newFpp
 init|=
 name|bf
 operator|.
-name|expectedFalsePositiveProbability
+name|expectedFpp
 argument_list|()
 decl_stmt|;
 comment|// if changed, the new fpp is strictly higher, otherwise it is the same
@@ -998,12 +998,12 @@ name|assertEquals
 argument_list|(
 name|bf
 operator|.
-name|expectedFalsePositiveProbability
+name|expectedFpp
 argument_list|()
 argument_list|,
 name|copy
 operator|.
-name|expectedFalsePositiveProbability
+name|expectedFpp
 argument_list|()
 argument_list|)
 expr_stmt|;
