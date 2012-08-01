@@ -18,6 +18,34 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -47,6 +75,13 @@ comment|/**  * Utility {@link RemovalListener} implementations intended for use 
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|TestingRemovalListeners
 class|class
 name|TestingRemovalListeners
@@ -80,6 +115,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Type-inferring factory method for creating a {@link QueuingRemovalListener}.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"ConcurrentLinkedQueue"
+argument_list|)
 DECL|method|queuingRemovalListener ()
 specifier|static
 parameter_list|<
@@ -136,6 +176,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@link RemovalListener} that adds all {@link RemovalNotification} objects to a queue.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"ConcurrentLinkedQueue"
+argument_list|)
 DECL|class|QueuingRemovalListener
 specifier|static
 class|class

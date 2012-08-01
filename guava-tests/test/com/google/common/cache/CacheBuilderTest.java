@@ -391,11 +391,6 @@ name|CacheBuilderTest
 extends|extends
 name|TestCase
 block|{
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"removalListener"
-argument_list|)
 DECL|method|testNewBuilder ()
 specifier|public
 name|void
@@ -1785,11 +1780,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"expireAfterAccess"
-argument_list|)
 DECL|method|testTimeToIdle_negative ()
 specifier|public
 name|void
@@ -1836,11 +1826,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"expireAfterAccess"
-argument_list|)
 DECL|method|testTimeToIdle_small ()
 specifier|public
 name|void
@@ -1867,11 +1852,6 @@ argument_list|)
 expr_stmt|;
 comment|// well, it didn't blow up.
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"expireAfterAccess"
-argument_list|)
 DECL|method|testTimeToIdle_setTwice ()
 specifier|public
 name|void
@@ -1925,11 +1905,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"expireAfterAccess"
-argument_list|)
 DECL|method|testTimeToIdleAndToLive ()
 specifier|public
 name|void
@@ -2071,11 +2046,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"ticker"
-argument_list|)
 DECL|method|testTicker_setTwice ()
 specifier|public
 name|void
@@ -2133,11 +2103,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"removalListener"
-argument_list|)
 DECL|method|testRemovalListener_setTwice ()
 specifier|public
 name|void
@@ -2203,7 +2168,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"removalListener"
+literal|"CacheTesting"
 argument_list|)
 DECL|method|testNullCache ()
 specifier|public
@@ -2318,7 +2283,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"removalListener"
+literal|"QueuingRemovalListener"
 argument_list|)
 DECL|method|testRemovalNotification_clear ()
 specifier|public
@@ -2609,7 +2574,7 @@ comment|/**    * This is a less carefully-controlled version of {@link #testRemo
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"removalListener"
+literal|"QueuingRemovalListener"
 argument_list|)
 DECL|method|testRemovalNotification_clear_basher ()
 specifier|public
@@ -3039,7 +3004,7 @@ comment|/**    * Calls get() repeatedly from many different threads, and tests t
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"removalListener"
+literal|"QueuingRemovalListener"
 argument_list|)
 DECL|method|testRemovalNotification_get_basher ()
 specifier|public
