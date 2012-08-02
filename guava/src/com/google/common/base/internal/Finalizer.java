@@ -155,14 +155,11 @@ name|FINALIZABLE_REFERENCE
 init|=
 literal|"com.google.common.base.FinalizableReference"
 decl_stmt|;
-comment|/**    * Starts the Finalizer thread. FinalizableReferenceQueue calls this method    * reflectively.    *    * @param finalizableReferenceClass FinalizableReference.class    * @param frq reference to instance of FinalizableReferenceQueue that started    *  this thread    * @return ReferenceQueue which Finalizer will poll    */
-DECL|method|startFinalizer ( Class<?> finalizableReferenceClass, Object frq)
+comment|/**    * Starts the Finalizer thread. FinalizableReferenceQueue calls this method    * reflectively.    *    * @param finalizableReferenceClass FinalizableReference.class.    * @param queue a reference queue that the thread will poll.    * @param frqReference a phantom reference to the FinalizableReferenceQueue, which will be    * queued either when the FinalizableReferenceQueue is no longer referenced anywhere, or when    * its close() method is called.    */
+DECL|method|startFinalizer ( Class<?> finalizableReferenceClass, ReferenceQueue<Object> queue, PhantomReference<Object> frqReference)
 specifier|public
 specifier|static
-name|ReferenceQueue
-argument_list|<
-name|Object
-argument_list|>
+name|void
 name|startFinalizer
 parameter_list|(
 name|Class
@@ -171,8 +168,17 @@ name|?
 argument_list|>
 name|finalizableReferenceClass
 parameter_list|,
+name|ReferenceQueue
+argument_list|<
 name|Object
-name|frq
+argument_list|>
+name|queue
+parameter_list|,
+name|PhantomReference
+argument_list|<
+name|Object
+argument_list|>
+name|frqReference
 parameter_list|)
 block|{
 comment|/*      * We use FinalizableReference.class for two things:      *      * 1) To invoke FinalizableReference.finalizeReferent()      *      * 2) To detect when FinalizableReference's class loader has to be garbage      * collected, at which point, Finalizer can stop running      */
@@ -210,7 +216,9 @@ name|Finalizer
 argument_list|(
 name|finalizableReferenceClass
 argument_list|,
-name|frq
+name|queue
+argument_list|,
+name|frqReference
 argument_list|)
 decl_stmt|;
 name|Thread
@@ -288,11 +296,6 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-return|return
-name|finalizer
-operator|.
-name|queue
-return|;
 block|}
 DECL|field|finalizableReferenceClassReference
 specifier|private
@@ -323,13 +326,6 @@ argument_list|<
 name|Object
 argument_list|>
 name|queue
-init|=
-operator|new
-name|ReferenceQueue
-argument_list|<
-name|Object
-argument_list|>
-argument_list|()
 decl_stmt|;
 DECL|field|inheritableThreadLocals
 specifier|private
@@ -342,7 +338,7 @@ name|getInheritableThreadLocalsField
 argument_list|()
 decl_stmt|;
 comment|/** Constructs a new finalizer thread. */
-DECL|method|Finalizer (Class<?> finalizableReferenceClass, Object frq)
+DECL|method|Finalizer ( Class<?> finalizableReferenceClass, ReferenceQueue<Object> queue, PhantomReference<Object> frqReference)
 specifier|private
 name|Finalizer
 parameter_list|(
@@ -352,10 +348,25 @@ name|?
 argument_list|>
 name|finalizableReferenceClass
 parameter_list|,
+name|ReferenceQueue
+argument_list|<
 name|Object
-name|frq
+argument_list|>
+name|queue
+parameter_list|,
+name|PhantomReference
+argument_list|<
+name|Object
+argument_list|>
+name|frqReference
 parameter_list|)
 block|{
+name|this
+operator|.
+name|queue
+operator|=
+name|queue
+expr_stmt|;
 name|this
 operator|.
 name|finalizableReferenceClassReference
@@ -377,16 +388,7 @@ name|this
 operator|.
 name|frqReference
 operator|=
-operator|new
-name|PhantomReference
-argument_list|<
-name|Object
-argument_list|>
-argument_list|(
-name|frq
-argument_list|,
-name|queue
-argument_list|)
+name|frqReference
 expr_stmt|;
 block|}
 comment|/**    * Loops continuously, pulling references off the queue and cleaning them up.    */
