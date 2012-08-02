@@ -152,7 +152,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ComputingConcurrentHashMap
+name|MapMaker
 operator|.
 name|ComputingMapAdapter
 import|;
