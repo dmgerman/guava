@@ -8409,7 +8409,7 @@ name|entry
 operator|.
 name|getAccessTime
 argument_list|()
-operator|>
+operator|>=
 name|expireAfterAccessNanos
 operator|)
 condition|)
@@ -8430,7 +8430,7 @@ name|entry
 operator|.
 name|getWriteTime
 argument_list|()
-operator|>
+operator|>=
 name|expireAfterWriteNanos
 operator|)
 condition|)

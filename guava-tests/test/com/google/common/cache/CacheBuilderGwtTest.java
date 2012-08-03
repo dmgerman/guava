@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test suite for {@link CacheBuilder}.  *  * @author Jon Donovan  */
+comment|/**  * Test suite for {@link CacheBuilder}.  * TODO(cpovirk): merge into CacheBuilderTest?  *  * @author Jon Donovan  */
 end_comment
 
 begin_class
@@ -1252,14 +1252,13 @@ name|fakeTicker
 operator|.
 name|advance
 argument_list|(
-literal|1001
+literal|1000
 argument_list|,
 name|TimeUnit
 operator|.
 name|MILLISECONDS
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): 1000
 name|assertEquals
 argument_list|(
 literal|null
@@ -1452,14 +1451,13 @@ name|fakeTicker
 operator|.
 name|advance
 argument_list|(
-literal|500
+literal|499
 argument_list|,
 name|TimeUnit
 operator|.
 name|MILLISECONDS
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): 499
 name|assertEquals
 argument_list|(
 literal|null
@@ -1514,14 +1512,13 @@ name|fakeTicker
 operator|.
 name|advance
 argument_list|(
-literal|501
+literal|500
 argument_list|,
 name|TimeUnit
 operator|.
 name|MILLISECONDS
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): 500
 name|assertEquals
 argument_list|(
 literal|null

@@ -5837,7 +5837,7 @@ argument_list|)
 operator|.
 name|expireAfterWrite
 argument_list|(
-literal|2
+literal|3
 argument_list|,
 name|TimeUnit
 operator|.
@@ -15892,7 +15892,7 @@ argument_list|)
 operator|.
 name|expireAfterWrite
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|TimeUnit
 operator|.
@@ -16222,7 +16222,7 @@ argument_list|)
 operator|.
 name|expireAfterAccess
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|TimeUnit
 operator|.
