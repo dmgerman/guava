@@ -42,7 +42,21 @@ name|common
 operator|.
 name|math
 operator|.
-name|IntMath
+name|LongMath
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
+name|Ints
 import|;
 end_import
 
@@ -369,10 +383,10 @@ DECL|field|bitCount
 name|int
 name|bitCount
 decl_stmt|;
-DECL|method|BitArray (int bits)
+DECL|method|BitArray (long bits)
 name|BitArray
 parameter_list|(
-name|int
+name|long
 name|bits
 parameter_list|)
 block|{
@@ -381,7 +395,11 @@ argument_list|(
 operator|new
 name|long
 index|[
-name|IntMath
+name|Ints
+operator|.
+name|checkedCast
+argument_list|(
+name|LongMath
 operator|.
 name|divide
 argument_list|(
@@ -392,6 +410,7 @@ argument_list|,
 name|RoundingMode
 operator|.
 name|CEILING
+argument_list|)
 argument_list|)
 index|]
 argument_list|)

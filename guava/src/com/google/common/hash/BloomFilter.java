@@ -600,7 +600,7 @@ literal|1
 expr_stmt|;
 block|}
 comment|/*      * TODO(user): Put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less that 10kb. Who cares!      */
-name|int
+name|long
 name|numBits
 init|=
 name|optimalNumOfBits
@@ -620,6 +620,8 @@ argument_list|,
 name|numBits
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 return|return
 operator|new
 name|BloomFilter
@@ -642,6 +644,27 @@ operator|.
 name|MURMUR128_MITZ_32
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Could not create BloomFilter of "
+operator|+
+name|numBits
+operator|+
+literal|" bits"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions, and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
 DECL|method|create (Funnel<T> funnel, int expectedInsertions )
@@ -706,17 +729,17 @@ operator|*
 name|LN2
 decl_stmt|;
 comment|/**    * Computes the optimal k (number of hashes per element inserted in Bloom filter), given the    * expected insertions and total number of bits in the Bloom filter.    *    * See http://en.wikipedia.org/wiki/File:Bloom_filter_fp_probability.svg for the formula.    *    * @param n expected insertions (must be positive)    * @param m total number of bits in Bloom filter (must be positive)    */
-DECL|method|optimalNumOfHashFunctions (int n, int m)
+DECL|method|optimalNumOfHashFunctions (long n, long m)
 annotation|@
 name|VisibleForTesting
 specifier|static
 name|int
 name|optimalNumOfHashFunctions
 parameter_list|(
-name|int
+name|long
 name|n
 parameter_list|,
-name|int
+name|long
 name|m
 parameter_list|)
 block|{
@@ -744,23 +767,35 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Computes m (total bits of Bloom filter) which is expected to achieve, for the specified    * expected insertions, the required false positive probability.    *    * See http://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives for the formula.    *    * @param n expected insertions (must be positive)    * @param p false positive rate (must be 0< p< 1)    */
-DECL|method|optimalNumOfBits (int n, double p)
+DECL|method|optimalNumOfBits (long n, double p)
 annotation|@
 name|VisibleForTesting
 specifier|static
-name|int
+name|long
 name|optimalNumOfBits
 parameter_list|(
-name|int
+name|long
 name|n
 parameter_list|,
 name|double
 name|p
 parameter_list|)
 block|{
+if|if
+condition|(
+name|p
+operator|==
+literal|0
+condition|)
+name|p
+operator|=
+name|Double
+operator|.
+name|MIN_VALUE
+expr_stmt|;
 return|return
 call|(
-name|int
+name|long
 call|)
 argument_list|(
 operator|-

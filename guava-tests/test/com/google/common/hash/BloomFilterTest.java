@@ -318,12 +318,10 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|// and some crazy values
+comment|// and some crazy values (this used to be capped to Integer.MAX_VALUE, now it can go bigger
 name|assertEquals
 argument_list|(
-name|Integer
-operator|.
-name|MAX_VALUE
+literal|3327428144502L
 argument_list|,
 name|BloomFilter
 operator|.
@@ -339,6 +337,48 @@ name|MIN_VALUE
 argument_list|)
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|BloomFilter
+operator|.
+name|create
+argument_list|(
+name|HashTestUtils
+operator|.
+name|BAD_FUNNEL
+argument_list|,
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|,
+name|Double
+operator|.
+name|MIN_VALUE
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"we can't represent such a large BF!"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{
+name|assertEquals
+argument_list|(
+literal|"Could not create BloomFilter of 3327428144502 bits"
+argument_list|,
+name|expected
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|checkSanity (BloomFilter<Object> bf)
 specifier|private
