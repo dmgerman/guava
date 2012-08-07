@@ -86,7 +86,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Preconditions
+name|Objects
 import|;
 end_import
 
@@ -113,6 +113,16 @@ operator|.
 name|io
 operator|.
 name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -256,65 +266,61 @@ name|Strategy
 name|strategy
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|numHashFunctions
 operator|>
 literal|0
 argument_list|,
-literal|"numHashFunctions zero or negative"
+literal|"numHashFunctions (%s) must be> 0"
+argument_list|,
+name|numHashFunctions
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|bits
-operator|=
-name|checkNotNull
+name|checkArgument
 argument_list|(
-name|bits
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
 name|numHashFunctions
-operator|=
-name|numHashFunctions
-expr_stmt|;
-name|this
-operator|.
-name|funnel
-operator|=
-name|checkNotNull
-argument_list|(
-name|funnel
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|strategy
-operator|=
-name|strategy
-expr_stmt|;
-comment|/*      * This only exists to forbid BFs that cannot use the compact persistent representation.      * If it ever throws, at a user who was not intending to use that representation, we should      * reconsider      */
-if|if
-condition|(
-name|numHashFunctions
-operator|>
+operator|<=
 literal|255
-condition|)
-block|{
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Currently we don't allow BloomFilters that would use more than"
-operator|+
-literal|"255 hash functions, please contact the guava team"
+argument_list|,
+literal|"numHashFunctions (%s) must be<= 255"
+argument_list|,
+name|numHashFunctions
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
+name|this
+operator|.
+name|bits
+operator|=
+name|checkNotNull
+argument_list|(
+name|bits
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|numHashFunctions
+operator|=
+name|numHashFunctions
+expr_stmt|;
+name|this
+operator|.
+name|funnel
+operator|=
+name|checkNotNull
+argument_list|(
+name|funnel
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|strategy
+operator|=
+name|checkNotNull
+argument_list|(
+name|strategy
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Creates a new {@code BloomFilter} that's a copy of this instance. The new instance is equal to    * this instance but shares no mutable state.    *    * @since 12.0    */
 DECL|method|copy ()
@@ -371,7 +377,7 @@ name|bits
 argument_list|)
 return|;
 block|}
-comment|/**    * Puts an element into this {@code BloomFilter}. Ensures that subsequent invocations of    * {@link #mightContain(Object)} with the same element will always return {@code true}.    *    * @return true if the bloom filter's bits changed as a result of this operation. If the bits    *         changed, this is<i>definitely</i> the first time {@code object} has been added to the    *         filter. If the bits haven't changed, this<i>might</i> be the first time {@code object}    *         has been added to the filter. Note that {@code put(t)} always returns the    *<i>opposite</i> result to what {@code mightContain(t)} would have returned at the time    *         it is called."    * @since 12.0 (present in 11.0 with {@code void} return type})    */
+comment|/**    * Puts an element into this {@code BloomFilter}. Ensures that subsequent invocations of    * {@link #mightContain(Object)} with the same element will always return {@code true}.    *    * @return true if the bloom filter's bits changed as a result of this operation. If the bits    *     changed, this is<i>definitely</i> the first time {@code object} has been added to the    *     filter. If the bits haven't changed, this<i>might</i> be the first time {@code object}    *     has been added to the filter. Note that {@code put(t)} always returns the    *<i>opposite</i> result to what {@code mightContain(t)} would have returned at the time    *     it is called."    * @since 12.0 (present in 11.0 with {@code void} return type})    */
 DECL|method|put (T object)
 specifier|public
 name|boolean
@@ -441,20 +447,33 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation uses reference equality to compare funnels.    */
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
-name|o
+name|object
 parameter_list|)
 block|{
 if|if
 condition|(
-name|o
+name|object
+operator|==
+name|this
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+if|if
+condition|(
+name|object
 operator|instanceof
 name|BloomFilter
 condition|)
@@ -471,7 +490,7 @@ argument_list|<
 name|?
 argument_list|>
 operator|)
-name|o
+name|object
 decl_stmt|;
 return|return
 name|this
@@ -484,6 +503,22 @@ name|numHashFunctions
 operator|&&
 name|this
 operator|.
+name|funnel
+operator|==
+name|that
+operator|.
+name|funnel
+operator|&&
+name|this
+operator|.
+name|strategy
+operator|==
+name|that
+operator|.
+name|strategy
+operator|&&
+name|this
+operator|.
 name|bits
 operator|.
 name|equals
@@ -492,44 +527,36 @@ name|that
 operator|.
 name|bits
 argument_list|)
-operator|&&
-name|this
-operator|.
-name|funnel
-operator|==
-name|that
-operator|.
-name|funnel
-operator|&&
-name|this
-operator|.
-name|strategy
-operator|==
-name|that
-operator|.
-name|strategy
 return|;
 block|}
 return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
 parameter_list|()
 block|{
 return|return
-name|bits
+name|Objects
 operator|.
 name|hashCode
-argument_list|()
+argument_list|(
+name|numHashFunctions
+argument_list|,
+name|funnel
+argument_list|,
+name|strategy
+argument_list|,
+name|bits
+argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
+comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
 DECL|method|create ( Funnel<T> funnel, int expectedInsertions , double fpp)
 specifier|public
 specifier|static
@@ -567,7 +594,7 @@ name|expectedInsertions
 operator|>=
 literal|0
 argument_list|,
-literal|"Expected insertions (%s) cannot be negative"
+literal|"Expected insertions (%s) must be>= 0"
 argument_list|,
 name|expectedInsertions
 argument_list|)
@@ -577,12 +604,19 @@ argument_list|(
 name|fpp
 operator|>
 literal|0.0
-operator|&
+argument_list|,
+literal|"False positive probability (%s) must be> 0.0"
+argument_list|,
+name|fpp
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
 name|fpp
 operator|<
 literal|1.0
 argument_list|,
-literal|"False positive probability (%s) must be in (0.0, 1.0)"
+literal|"False positive probability (%s) must be< 1.0"
 argument_list|,
 name|fpp
 argument_list|)
@@ -666,7 +700,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions, and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *        {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
+comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions, and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
 DECL|method|create (Funnel<T> funnel, int expectedInsertions )
 specifier|public
 specifier|static
@@ -703,35 +737,10 @@ return|;
 comment|// FYI, for 3%, we always get 5 hash functions
 block|}
 comment|/*    * Cheat sheet:    *    * m: total bits    * n: expected insertions    * b: m/n, bits per insertion     * p: expected false positive probability    *    * 1) Optimal k = b * ln2    * 2) p = (1 - e ^ (-kn/m))^k    * 3) For optimal k: p = 2 ^ (-k) ~= 0.6185^b    * 4) For optimal k: m = -nlnp / ((ln2) ^ 2)    */
-DECL|field|LN2
-specifier|private
-specifier|static
-specifier|final
-name|double
-name|LN2
-init|=
-name|Math
-operator|.
-name|log
-argument_list|(
-literal|2
-argument_list|)
-decl_stmt|;
-DECL|field|LN2_SQUARED
-specifier|private
-specifier|static
-specifier|final
-name|double
-name|LN2_SQUARED
-init|=
-name|LN2
-operator|*
-name|LN2
-decl_stmt|;
 comment|/**    * Computes the optimal k (number of hashes per element inserted in Bloom filter), given the    * expected insertions and total number of bits in the Bloom filter.    *    * See http://en.wikipedia.org/wiki/File:Bloom_filter_fp_probability.svg for the formula.    *    * @param n expected insertions (must be positive)    * @param m total number of bits in Bloom filter (must be positive)    */
-DECL|method|optimalNumOfHashFunctions (long n, long m)
 annotation|@
 name|VisibleForTesting
+DECL|method|optimalNumOfHashFunctions (long n, long m)
 specifier|static
 name|int
 name|optimalNumOfHashFunctions
@@ -761,15 +770,20 @@ name|m
 operator|/
 name|n
 operator|*
-name|LN2
+name|Math
+operator|.
+name|log
+argument_list|(
+literal|2
+argument_list|)
 argument_list|)
 argument_list|)
 return|;
 block|}
 comment|/**    * Computes m (total bits of Bloom filter) which is expected to achieve, for the specified    * expected insertions, the required false positive probability.    *    * See http://en.wikipedia.org/wiki/Bloom_filter#Probability_of_false_positives for the formula.    *    * @param n expected insertions (must be positive)    * @param p false positive rate (must be 0< p< 1)    */
-DECL|method|optimalNumOfBits (long n, double p)
 annotation|@
 name|VisibleForTesting
+DECL|method|optimalNumOfBits (long n, double p)
 specifier|static
 name|long
 name|optimalNumOfBits
@@ -787,12 +801,14 @@ name|p
 operator|==
 literal|0
 condition|)
+block|{
 name|p
 operator|=
 name|Double
 operator|.
 name|MIN_VALUE
 expr_stmt|;
+block|}
 return|return
 call|(
 name|long
@@ -808,7 +824,21 @@ argument_list|(
 name|p
 argument_list|)
 operator|/
-name|LN2_SQUARED
+operator|(
+name|Math
+operator|.
+name|log
+argument_list|(
+literal|2
+argument_list|)
+operator|*
+name|Math
+operator|.
+name|log
+argument_list|(
+literal|2
+argument_list|)
+operator|)
 argument_list|)
 return|;
 block|}
