@@ -5497,6 +5497,75 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNullOutputStream ()
+specifier|public
+name|void
+name|testNullOutputStream
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// create a null output stream
+name|OutputStream
+name|nos
+init|=
+name|ByteStreams
+operator|.
+name|nullOutputStream
+argument_list|()
+decl_stmt|;
+comment|// write to the output stream
+name|nos
+operator|.
+name|write
+argument_list|(
+literal|'n'
+argument_list|)
+expr_stmt|;
+name|String
+name|test
+init|=
+literal|"Test string for NullOutputStream"
+decl_stmt|;
+name|nos
+operator|.
+name|write
+argument_list|(
+name|test
+operator|.
+name|getBytes
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|nos
+operator|.
+name|write
+argument_list|(
+name|test
+operator|.
+name|getBytes
+argument_list|()
+argument_list|,
+literal|2
+argument_list|,
+literal|10
+argument_list|)
+expr_stmt|;
+comment|// nothing really to assert?
+name|assertSame
+argument_list|(
+name|ByteStreams
+operator|.
+name|nullOutputStream
+argument_list|()
+argument_list|,
+name|ByteStreams
+operator|.
+name|nullOutputStream
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|copyOfRange (byte[] in, int from, int to)
 specifier|private
 specifier|static

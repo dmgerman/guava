@@ -41,12 +41,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 1.0  */
+comment|/**  * Implementation of {@link OutputStream} that simply discards written bytes.  *  * @author Spencer Kimball  * @since 1.0  * @deprecated Use {@link ByteStreams#nullOutputStream} instead.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|class|NullOutputStream
 specifier|public
 specifier|final

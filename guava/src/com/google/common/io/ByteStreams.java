@@ -2222,6 +2222,72 @@ argument_list|()
 return|;
 block|}
 block|}
+DECL|field|NULL_OUTPUT_STREAM
+specifier|private
+specifier|static
+specifier|final
+name|OutputStream
+name|NULL_OUTPUT_STREAM
+init|=
+operator|new
+name|OutputStream
+argument_list|()
+block|{
+comment|/** Discards the specified byte. */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|write
+parameter_list|(
+name|int
+name|b
+parameter_list|)
+block|{         }
+comment|/** Discards the specified byte array. */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|write
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|)
+block|{         }
+comment|/** Discards the specified byte array. */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|write
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|,
+name|int
+name|off
+parameter_list|,
+name|int
+name|len
+parameter_list|)
+block|{         }
+block|}
+decl_stmt|;
+comment|/**    * Returns a {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com/google/common/io/NullOutputStream.java)    */
+DECL|method|nullOutputStream ()
+specifier|public
+specifier|static
+name|OutputStream
+name|nullOutputStream
+parameter_list|()
+block|{
+return|return
+name|NULL_OUTPUT_STREAM
+return|;
+block|}
 comment|// TODO(chrisn): Not all streams support skipping.
 comment|/** Returns the length of a supplied input stream, in bytes. */
 DECL|method|length (InputSupplier<? extends InputStream> supplier)
