@@ -1213,6 +1213,37 @@ return|return
 name|added
 return|;
 block|}
+comment|/**    * Returns a synchronized (thread-safe) queue backed by the specified queue. In order to    * guarantee serial access, it is critical that<b>all</b> access to the backing queue is    * accomplished through the returned queue.    *    *<p>It is imperative that the user manually synchronize on the returned queue when accessing    * any of its collection views:<pre>   {@code    *    *   Queue<K, V> queue = Queues.synchronizedQueue(MinMaxPriorityQueue<E>.create());    *   ...    *   queue.add(element);  // Needn't be in synchronized block    *   ...    *   synchronized (queue) {  // Synchronizing on queue, not values!    *     Iterator<V> i = values.iterator(); // Must be in synchronized block    *     while (i.hasNext()) {    *       foo(i.next());    *     }    *   }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned queue will be serializable if the specified queue is serializable.    *    * @param queue the queue to be wrapped in a synchronized view    * @return a synchronized view of the specified queue    * @since 14.0    */
+DECL|method|synchronizedQueue (Queue<E> queue)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|Queue
+argument_list|<
+name|E
+argument_list|>
+name|synchronizedQueue
+parameter_list|(
+name|Queue
+argument_list|<
+name|E
+argument_list|>
+name|queue
+parameter_list|)
+block|{
+return|return
+name|Synchronized
+operator|.
+name|queue
+argument_list|(
+name|queue
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
