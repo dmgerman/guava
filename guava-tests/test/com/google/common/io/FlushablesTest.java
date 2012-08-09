@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -92,7 +92,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|Closeable
+name|Flushable
 import|;
 end_import
 
@@ -107,54 +107,54 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Closeables}.  *  *<p>Checks proper closing behavior, and ensures that  * IOExceptions on Closeable.close() are not  * propagated out from the {@link Closeables#close} method if {@code  * swallowException} is true.  *  * @author Michael Lancaster  */
+comment|/**  * Unit tests for {@link Flushables}.  *  *<p>Checks proper flushing behavior, and ensures that  * IOExceptions on Flushable.flush() are not  * propagated out from the {@link Flushables#flush} method if {@code  * swallowException} is true.  *  * @author Michael Lancaster  */
 end_comment
 
 begin_class
-DECL|class|CloseablesTest
+DECL|class|FlushablesTest
 specifier|public
 class|class
-name|CloseablesTest
+name|FlushablesTest
 extends|extends
 name|TestCase
 block|{
-DECL|field|mockCloseable
+DECL|field|mockFlushable
 specifier|private
-name|Closeable
-name|mockCloseable
+name|Flushable
+name|mockFlushable
 decl_stmt|;
-DECL|method|testClose_closeableClean ()
+DECL|method|testFlush_clean ()
 specifier|public
 name|void
-name|testClose_closeableClean
+name|testFlush_clean
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 comment|// make sure that no exception is thrown regardless of value of
 comment|// 'swallowException' when the mock does not throw an exception.
-name|setupCloseable
+name|setupFlushable
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|doClose
+name|doFlush
 argument_list|(
-name|mockCloseable
+name|mockFlushable
 argument_list|,
 literal|false
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|setupCloseable
+name|setupFlushable
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|doClose
+name|doFlush
 argument_list|(
-name|mockCloseable
+name|mockFlushable
 argument_list|,
 literal|true
 argument_list|,
@@ -162,106 +162,76 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testClose_closeableWithEatenException ()
+DECL|method|testFlush_flushableWithEatenException ()
 specifier|public
 name|void
-name|testClose_closeableWithEatenException
+name|testFlush_flushableWithEatenException
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 comment|// make sure that no exception is thrown if 'swallowException' is true
-comment|// when the mock does throw an exception.
-name|setupCloseable
+comment|// when the mock does throw an exception on flush.
+name|setupFlushable
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|doClose
+name|doFlush
 argument_list|(
-name|mockCloseable
+name|mockFlushable
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testClose_closeableWithThrownException ()
+DECL|method|testFlush_flushableWithThrownException ()
 specifier|public
 name|void
-name|testClose_closeableWithThrownException
+name|testFlush_flushableWithThrownException
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 comment|// make sure that the exception is thrown if 'swallowException' is false
-comment|// when the mock does throw an exception.
-name|setupCloseable
+comment|// when the mock does throw an exception on flush.
+name|setupFlushable
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|doClose
+name|doFlush
 argument_list|(
-name|mockCloseable
+name|mockFlushable
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testCloseQuietly_closeableWithEatenException ()
+DECL|method|testFlushQuietly_flushableWithEatenException ()
 specifier|public
 name|void
-name|testCloseQuietly_closeableWithEatenException
+name|testFlushQuietly_flushableWithEatenException
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// make sure that no exception is thrown by CloseQuietly when the mock does
-comment|// throw an exception on close
-name|setupCloseable
+comment|// make sure that no exception is thrown by flushQuietly when the mock does
+comment|// throw an exception on flush.
+name|setupFlushable
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|Closeables
+name|Flushables
 operator|.
-name|closeQuietly
+name|flushQuietly
 argument_list|(
-name|mockCloseable
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|testCloseNull ()
-specifier|public
-name|void
-name|testCloseNull
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|Closeables
-operator|.
-name|close
-argument_list|(
-literal|null
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-name|Closeables
-operator|.
-name|close
-argument_list|(
-literal|null
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|Closeables
-operator|.
-name|closeQuietly
-argument_list|(
-literal|null
+name|mockFlushable
 argument_list|)
 expr_stmt|;
 block|}
@@ -275,11 +245,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|mockCloseable
+name|mockFlushable
 operator|=
 name|createStrictMock
 argument_list|(
-name|Closeable
+name|Flushable
 operator|.
 name|class
 argument_list|)
@@ -306,32 +276,32 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Set up a closeable to expect to be closed, and optionally to throw an
-comment|// exception.
-DECL|method|setupCloseable (boolean shouldThrow)
+comment|// Set up a flushable to expect to be flushed, and optionally to
+comment|// throw an exception.
+DECL|method|setupFlushable (boolean shouldThrowOnFlush)
 specifier|private
 name|void
-name|setupCloseable
+name|setupFlushable
 parameter_list|(
 name|boolean
-name|shouldThrow
+name|shouldThrowOnFlush
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|reset
 argument_list|(
-name|mockCloseable
+name|mockFlushable
 argument_list|)
 expr_stmt|;
-name|mockCloseable
+name|mockFlushable
 operator|.
-name|close
+name|flush
 argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|shouldThrow
+name|shouldThrowOnFlush
 condition|)
 block|{
 name|expectThrown
@@ -340,43 +310,20 @@ expr_stmt|;
 block|}
 name|replay
 argument_list|(
-name|mockCloseable
+name|mockFlushable
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doClose (Closeable closeable, boolean swallowException)
-specifier|private
-name|void
-name|doClose
-parameter_list|(
-name|Closeable
-name|closeable
-parameter_list|,
-name|boolean
-name|swallowException
-parameter_list|)
-block|{
-name|doClose
-argument_list|(
-name|closeable
-argument_list|,
-name|swallowException
-argument_list|,
-operator|!
-name|swallowException
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Close the closeable using the Closeables, passing in the swallowException
+comment|// Flush the flushable using the Flushables, passing in the swallowException
 comment|// parameter. expectThrown determines whether we expect an exception to
-comment|// be thrown by Closeables.close;
-DECL|method|doClose (Closeable closeable, boolean swallowException, boolean expectThrown)
+comment|// be thrown by Flushables.flush;
+DECL|method|doFlush (Flushable flushable, boolean swallowException, boolean expectThrown)
 specifier|private
 name|void
-name|doClose
+name|doFlush
 parameter_list|(
-name|Closeable
-name|closeable
+name|Flushable
+name|flushable
 parameter_list|,
 name|boolean
 name|swallowException
@@ -387,11 +334,11 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|Closeables
+name|Flushables
 operator|.
-name|close
+name|flush
 argument_list|(
-name|closeable
+name|flushable
 argument_list|,
 name|swallowException
 argument_list|)
@@ -429,7 +376,7 @@ block|}
 block|}
 name|verify
 argument_list|(
-name|closeable
+name|flushable
 argument_list|)
 expr_stmt|;
 block|}
