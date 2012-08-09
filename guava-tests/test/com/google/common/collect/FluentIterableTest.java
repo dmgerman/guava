@@ -3932,10 +3932,10 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAddTo_List ()
+DECL|method|testCopyInto_List ()
 specifier|public
 name|void
-name|testAddTo_List
+name|testCopyInto_List
 parameter_list|()
 block|{
 name|ASSERT
@@ -3951,7 +3951,7 @@ argument_list|,
 literal|5
 argument_list|)
 operator|.
-name|addTo
+name|copyInto
 argument_list|(
 name|Lists
 operator|.
@@ -3978,10 +3978,10 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAddTo_Set ()
+DECL|method|testCopyInto_Set ()
 specifier|public
 name|void
-name|testAddTo_Set
+name|testCopyInto_Set
 parameter_list|()
 block|{
 name|ASSERT
@@ -3997,7 +3997,7 @@ argument_list|,
 literal|5
 argument_list|)
 operator|.
-name|addTo
+name|copyInto
 argument_list|(
 name|Sets
 operator|.
@@ -4022,10 +4022,10 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAddTo_SetAllDuplicates ()
+DECL|method|testCopyInto_SetAllDuplicates ()
 specifier|public
 name|void
-name|testAddTo_SetAllDuplicates
+name|testCopyInto_SetAllDuplicates
 parameter_list|()
 block|{
 name|ASSERT
@@ -4041,7 +4041,7 @@ argument_list|,
 literal|5
 argument_list|)
 operator|.
-name|addTo
+name|copyInto
 argument_list|(
 name|Sets
 operator|.
@@ -4070,10 +4070,10 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAddTo_NonCollection ()
+DECL|method|testCopyInto_NonCollection ()
 specifier|public
 name|void
-name|testAddTo_NonCollection
+name|testCopyInto_NonCollection
 parameter_list|()
 block|{
 specifier|final
@@ -4155,7 +4155,7 @@ argument_list|(
 name|iterable
 argument_list|)
 operator|.
-name|addTo
+name|copyInto
 argument_list|(
 name|list
 argument_list|)

@@ -1079,8 +1079,8 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/**    * Adds all the elements from this fluent iterable to {@code collection}.    *    * @param collection the collection to add elements to    * @return the collection passed in as the parameter    * @since 14.0    */
-DECL|method|addTo (C collection)
+comment|/**    * Copies all the elements from this fluent iterable to {@code collection}. This is equivalent to    * calling {@code Iterables.addAll(collection, this)}.    *    * @param collection the collection to copy elements to    * @return {@code collection}, for convenience    * @since 14.0    */
+DECL|method|copyInto (C collection)
 specifier|public
 specifier|final
 parameter_list|<
@@ -1094,7 +1094,7 @@ name|E
 argument_list|>
 parameter_list|>
 name|C
-name|addTo
+name|copyInto
 parameter_list|(
 name|C
 name|collection
