@@ -44,6 +44,22 @@ name|VisibleForTesting
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|CharMatcher
+operator|.
+name|FastMatcher
+import|;
+end_import
+
 begin_comment
 comment|/**  * An immutable version of CharMatcher for medium-sized sets of characters that uses a hash table  * with linear probing to check for matches.  *  * @author Christopher Swenson  */
 end_comment
@@ -61,7 +77,7 @@ specifier|final
 class|class
 name|MediumCharMatcher
 extends|extends
-name|CharMatcher
+name|FastMatcher
 block|{
 DECL|field|MAX_SIZE
 specifier|static
@@ -222,21 +238,6 @@ expr_stmt|;
 block|}
 return|return
 name|tableSize
-return|;
-block|}
-comment|// This method is thread-safe, since if any two threads execute it simultaneously, all
-comment|// that will happen is that they compute the same data structure twice, but nothing will ever
-comment|// be incorrect.
-annotation|@
-name|Override
-DECL|method|precomputed ()
-specifier|public
-name|CharMatcher
-name|precomputed
-parameter_list|()
-block|{
-return|return
-name|this
 return|;
 block|}
 annotation|@

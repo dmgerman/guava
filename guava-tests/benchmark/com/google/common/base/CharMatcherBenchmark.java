@@ -421,8 +421,6 @@ operator|.
 name|setBits
 argument_list|(
 name|tmp
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|int
