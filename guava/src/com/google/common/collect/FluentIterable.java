@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@code FluentIterable} provides a rich interface for manipulating {@code Iterable}s in a chained  * fashion. A {@code FluentIterable} can be created from an {@code Iterable}, or from a set of  * elements. The following types of methods are provided on {@code FluentIterable}:  *<ul>  *<li>chained methods which return a new {@code FluentIterable} based in some way on the contents  * of the current one (for example {@link #transform})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  * array (for example {@link #toImmutableList})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  * {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  * {@link #anyMatch})  *</ul>  *  *<p>Here is an example that merges the lists returned by two separate database calls, transforms  * it by invoking {@code toString()} on each element, and returns the first 10 elements as an  * {@code ImmutableList}:<pre>   {@code  *  *   FluentIterable  *       .from(database.getClientList())  *       .filter(activeInLastMonth())  *       .transform(Functions.toStringFunction())  *       .limit(10)  *       .toImmutableList();}</pre>  *  * Anything which can be done using {@code FluentIterable} could be done in a different fashion  * (often with {@link Iterables}), however the use of {@code FluentIterable} makes many sets of  * operations significantly more concise.  *  * @author Marcin Mikosik  * @since 12.0  */
+comment|/**  * {@code FluentIterable} provides a rich interface for manipulating {@code Iterable}s in a chained  * fashion. A {@code FluentIterable} can be created from an {@code Iterable}, or from a set of  * elements. The following types of methods are provided on {@code FluentIterable}:  *<ul>  *<li>chained methods which return a new {@code FluentIterable} based in some way on the contents  * of the current one (for example {@link #transform})  *<li>conversion methods which copy the {@code FluentIterable}'s contents into a new collection or  * array (for example {@link #toList})  *<li>element extraction methods which facilitate the retrieval of certain elements (for example  * {@link #last})  *<li>query methods which answer questions about the {@code FluentIterable}'s contents (for example  * {@link #anyMatch})  *</ul>  *  *<p>Here is an example that merges the lists returned by two separate database calls, transforms  * it by invoking {@code toString()} on each element, and returns the first 10 elements as an  * {@code ImmutableList}:<pre>   {@code  *  *   FluentIterable  *       .from(database.getClientList())  *       .filter(activeInLastMonth())  *       .transform(Functions.toStringFunction())  *       .limit(10)  *       .toList();}</pre>  *  * Anything which can be done using {@code FluentIterable} could be done in a different fashion  * (often with {@link Iterables}), however the use of {@code FluentIterable} makes many sets of  * operations significantly more concise.  *  * @author Marcin Mikosik  * @since 12.0  */
 end_comment
 
 begin_class
@@ -1048,7 +1048,9 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * fluent iterable in proper sequence.    *    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * fluent iterable in proper sequence.    *    * @deprecated Use {@link #toList()} instead. This method is scheduled for removal in Guava 15.0.    */
+annotation|@
+name|Deprecated
 DECL|method|toImmutableList ()
 specifier|public
 specifier|final
@@ -1064,7 +1066,9 @@ name|toList
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.  To produce an    * {@code ImmutableList} sorted by its natural ordering, use    * {@code toSortedImmutableList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 13.0    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.  To produce an    * {@code ImmutableList} sorted by its natural ordering, use    * {@code toSortedImmutableList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 13.0    * @deprecated Use {@link #toSortedList(Comparator)} instead. This method is scheduled for removal    *     in Guava 15.0.    */
+annotation|@
+name|Deprecated
 DECL|method|toSortedImmutableList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1090,7 +1094,9 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this    * fluent iterable with duplicates removed.    */
+comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this    * fluent iterable with duplicates removed.    *    * @deprecated Use {@link #toSet()} instead. This method is scheduled for removal in Guava 15.0.    */
+annotation|@
+name|Deprecated
 DECL|method|toImmutableSet ()
 specifier|public
 specifier|final
@@ -1106,7 +1112,9 @@ name|toSet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}, with duplicates    * (determined by {@code comparator.compare(x, y) == 0}) removed. To produce an    * {@code ImmutableSortedSet} sorted by its natural ordering, use    * {@code toImmutableSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}, with duplicates    * (determined by {@code comparator.compare(x, y) == 0}) removed. To produce an    * {@code ImmutableSortedSet} sorted by its natural ordering, use    * {@code toImmutableSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @deprecated Use {@link #toSortedSet(Comparator)} instead. This method is scheduled for removal    *     in Guava 15.0.    */
+annotation|@
+name|Deprecated
 DECL|method|toImmutableSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
