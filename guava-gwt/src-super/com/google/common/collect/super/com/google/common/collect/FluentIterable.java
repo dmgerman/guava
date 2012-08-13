@@ -892,15 +892,15 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * fluent iterable in proper sequence.    */
-DECL|method|toImmutableList ()
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
+DECL|method|toList ()
 specifier|public
 specifier|final
 name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|toImmutableList
+name|toList
 parameter_list|()
 block|{
 return|return
@@ -912,15 +912,15 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.  To produce an    * {@code ImmutableList} sorted by its natural ordering, use    * {@code toSortedImmutableList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 13.0    */
-DECL|method|toSortedImmutableList (Comparator<? super E> comparator)
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}.  To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
 name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|toSortedImmutableList
+name|toSortedList
 parameter_list|(
 name|Comparator
 argument_list|<
@@ -945,6 +945,98 @@ name|iterable
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
+DECL|method|toSet ()
+specifier|public
+specifier|final
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|toSet
+parameter_list|()
+block|{
+return|return
+name|ImmutableSet
+operator|.
+name|copyOf
+argument_list|(
+name|iterable
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
+DECL|method|toSortedSet (Comparator<? super E> comparator)
+specifier|public
+specifier|final
+name|ImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+name|toSortedSet
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|)
+block|{
+return|return
+name|ImmutableSortedSet
+operator|.
+name|copyOf
+argument_list|(
+name|comparator
+argument_list|,
+name|iterable
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * fluent iterable in proper sequence.    *    */
+DECL|method|toImmutableList ()
+specifier|public
+specifier|final
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|toImmutableList
+parameter_list|()
+block|{
+return|return
+name|toList
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.  To produce an    * {@code ImmutableList} sorted by its natural ordering, use    * {@code toSortedImmutableList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 13.0    */
+DECL|method|toSortedImmutableList (Comparator<? super E> comparator)
+specifier|public
+specifier|final
+name|ImmutableList
+argument_list|<
+name|E
+argument_list|>
+name|toSortedImmutableList
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
+name|comparator
+parameter_list|)
+block|{
+return|return
+name|toSortedList
+argument_list|(
+name|comparator
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this    * fluent iterable with duplicates removed.    */
 DECL|method|toImmutableSet ()
 specifier|public
@@ -957,15 +1049,11 @@ name|toImmutableSet
 parameter_list|()
 block|{
 return|return
-name|ImmutableSet
-operator|.
-name|copyOf
-argument_list|(
-name|iterable
-argument_list|)
+name|toSet
+argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}, with duplicates    * (determined by {@code comaprator.compare(x, y) == 0}) removed. To produce an    * {@code ImmutableSortedSet} sorted by its natural ordering, use    * {@code toImmutableSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}, with duplicates    * (determined by {@code comparator.compare(x, y) == 0}) removed. To produce an    * {@code ImmutableSortedSet} sorted by its natural ordering, use    * {@code toImmutableSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    */
 DECL|method|toImmutableSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -985,13 +1073,9 @@ name|comparator
 parameter_list|)
 block|{
 return|return
-name|ImmutableSortedSet
-operator|.
-name|copyOf
+name|toSortedSet
 argument_list|(
 name|comparator
-argument_list|,
-name|iterable
 argument_list|)
 return|;
 block|}

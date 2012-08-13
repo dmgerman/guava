@@ -3597,10 +3597,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableList ()
+DECL|method|testToList ()
 specifier|public
 name|void
-name|testToImmutableList
+name|testToList
 parameter_list|()
 block|{
 name|assertEquals
@@ -3629,15 +3629,15 @@ argument_list|,
 literal|4
 argument_list|)
 operator|.
-name|toImmutableList
+name|toList
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableList_empty ()
+DECL|method|testToList_empty ()
 specifier|public
 name|void
-name|testToImmutableList_empty
+name|testToList_empty
 parameter_list|()
 block|{
 name|assertTrue
@@ -3645,7 +3645,7 @@ argument_list|(
 name|fluent
 argument_list|()
 operator|.
-name|toImmutableList
+name|toList
 argument_list|()
 operator|.
 name|isEmpty
@@ -3653,10 +3653,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToSortedImmutableList_withComparator ()
+DECL|method|testToSortedList_withComparator ()
 specifier|public
 name|void
-name|testToSortedImmutableList_withComparator
+name|testToSortedList_withComparator
 parameter_list|()
 block|{
 name|assertEquals
@@ -3685,7 +3685,7 @@ argument_list|,
 literal|2
 argument_list|)
 operator|.
-name|toSortedImmutableList
+name|toSortedList
 argument_list|(
 name|Ordering
 operator|.
@@ -3701,10 +3701,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToSortedImmutableList_withDuplicates ()
+DECL|method|testToSortedList_withDuplicates ()
 specifier|public
 name|void
-name|testToSortedImmutableList_withDuplicates
+name|testToSortedList_withDuplicates
 parameter_list|()
 block|{
 name|assertEquals
@@ -3733,7 +3733,7 @@ argument_list|,
 literal|3
 argument_list|)
 operator|.
-name|toSortedImmutableList
+name|toSortedList
 argument_list|(
 name|Ordering
 operator|.
@@ -3749,10 +3749,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableSet ()
+DECL|method|testToSet ()
 specifier|public
 name|void
-name|testToImmutableSet
+name|testToSet
 parameter_list|()
 block|{
 name|ASSERT
@@ -3770,7 +3770,7 @@ argument_list|,
 literal|4
 argument_list|)
 operator|.
-name|toImmutableSet
+name|toSet
 argument_list|()
 argument_list|)
 operator|.
@@ -3786,10 +3786,10 @@ literal|4
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableSet_removeDuplicates ()
+DECL|method|testToSet_removeDuplicates ()
 specifier|public
 name|void
-name|testToImmutableSet_removeDuplicates
+name|testToSet_removeDuplicates
 parameter_list|()
 block|{
 name|ASSERT
@@ -3807,7 +3807,7 @@ argument_list|,
 literal|2
 argument_list|)
 operator|.
-name|toImmutableSet
+name|toSet
 argument_list|()
 argument_list|)
 operator|.
@@ -3819,10 +3819,10 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableSet_empty ()
+DECL|method|testToSet_empty ()
 specifier|public
 name|void
-name|testToImmutableSet_empty
+name|testToSet_empty
 parameter_list|()
 block|{
 name|assertTrue
@@ -3830,7 +3830,7 @@ argument_list|(
 name|fluent
 argument_list|()
 operator|.
-name|toImmutableSet
+name|toSet
 argument_list|()
 operator|.
 name|isEmpty
@@ -3838,10 +3838,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableSortedSet ()
+DECL|method|testToSortedSet ()
 specifier|public
 name|void
-name|testToImmutableSortedSet
+name|testToSortedSet
 parameter_list|()
 block|{
 name|ASSERT
@@ -3859,7 +3859,7 @@ argument_list|,
 literal|3
 argument_list|)
 operator|.
-name|toImmutableSortedSet
+name|toSortedSet
 argument_list|(
 name|Ordering
 operator|.
@@ -3886,10 +3886,10 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testToImmutableSortedSet_removeDuplicates ()
+DECL|method|testToSortedSet_removeDuplicates ()
 specifier|public
 name|void
-name|testToImmutableSortedSet_removeDuplicates
+name|testToSortedSet_removeDuplicates
 parameter_list|()
 block|{
 name|ASSERT
@@ -3907,7 +3907,7 @@ argument_list|,
 literal|3
 argument_list|)
 operator|.
-name|toImmutableSortedSet
+name|toSortedSet
 argument_list|(
 name|Ordering
 operator|.
