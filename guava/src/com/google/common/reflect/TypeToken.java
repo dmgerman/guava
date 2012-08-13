@@ -1790,7 +1790,7 @@ operator|.
 name|IGNORE_TYPE_VARIABLE_OR_WILDCARD
 argument_list|)
 operator|.
-name|toImmutableSet
+name|toSet
 argument_list|()
 operator|)
 return|;
@@ -1967,7 +1967,7 @@ operator|.
 name|INTERFACE_ONLY
 argument_list|)
 operator|.
-name|toImmutableSet
+name|toSet
 argument_list|()
 operator|)
 return|;
@@ -2083,7 +2083,7 @@ return|;
 block|}
 block|}
 block|)
-function|.toImmutableSet
+function|.toSet
 parameter_list|()
 function|;
 block|}
@@ -2243,7 +2243,7 @@ operator|.
 name|IGNORE_TYPE_VARIABLE_OR_WILDCARD
 argument_list|)
 operator|.
-name|toImmutableSet
+name|toSet
 argument_list|()
 operator|)
 return|;
