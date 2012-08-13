@@ -86,7 +86,7 @@ name|java
 operator|.
 name|lang
 operator|.
-name|Double
+name|Float
 operator|.
 name|NEGATIVE_INFINITY
 import|;
@@ -98,7 +98,7 @@ name|java
 operator|.
 name|lang
 operator|.
-name|Double
+name|Float
 operator|.
 name|POSITIVE_INFINITY
 import|;
@@ -114,35 +114,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
 import|;
 end_import
 
@@ -163,16 +135,6 @@ operator|.
 name|util
 operator|.
 name|AbstractList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -226,30 +188,8 @@ name|RandomAccess
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code double} primitives, that are not  * already found in either {@link Double} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code float} primitives, that are not  * already found in either {@link Float} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
@@ -260,18 +200,18 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-DECL|class|Doubles
+DECL|class|Floats
 specifier|public
 specifier|final
 class|class
-name|Doubles
+name|Floats
 block|{
-DECL|method|Doubles ()
+DECL|method|Floats ()
 specifier|private
-name|Doubles
+name|Floats
 parameter_list|()
 block|{}
-comment|/**    * The number of bytes required to represent a primitive {@code double}    * value.    *    * @since 10.0    */
+comment|/**    * The number of bytes required to represent a primitive {@code float}    * value.    *    * @since 10.0    */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -279,7 +219,7 @@ specifier|final
 name|int
 name|BYTES
 init|=
-name|Double
+name|Float
 operator|.
 name|SIZE
 operator|/
@@ -287,21 +227,22 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Double) value).hashCode()}.    *    * @param value a primitive {@code double} value    * @return a hash code for the value    */
-DECL|method|hashCode (double value)
+comment|/**    * Returns a hash code for {@code value}; equal to the result of invoking    * {@code ((Float) value).hashCode()}.    *    * @param value a primitive {@code float} value    * @return a hash code for the value    */
+DECL|method|hashCode (float value)
 specifier|public
 specifier|static
 name|int
 name|hashCode
 parameter_list|(
-name|double
+name|float
 name|value
 parameter_list|)
 block|{
+comment|// TODO(kevinb): is there a better way, that's still gwt-safe?
 return|return
 operator|(
 operator|(
-name|Double
+name|Float
 operator|)
 name|value
 operator|)
@@ -309,26 +250,23 @@ operator|.
 name|hashCode
 argument_list|()
 return|;
-comment|// TODO(kevinb): do it this way when we can (GWT problem):
-comment|// long bits = Double.doubleToLongBits(value);
-comment|// return (int)(bits ^ (bits>>> 32));
 block|}
-comment|/**    * Compares the two specified {@code double} values. The sign of the value    * returned is the same as that of<code>((Double) a).{@linkplain    * Double#compareTo compareTo}(b)</code>. As with that method, {@code NaN} is    * treated as greater than all other values, and {@code 0.0> -0.0}.    *    * @param a the first {@code double} to compare    * @param b the second {@code double} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
-DECL|method|compare (double a, double b)
+comment|/**    * Compares the two specified {@code float} values using {@link    * Float#compare(float, float)}. You may prefer to invoke that method    * directly; this method exists only for consistency with the other utilities    * in this package.    *    * @param a the first {@code float} to compare    * @param b the second {@code float} to compare    * @return the result of invoking {@link Float#compare(float, float)}    */
+DECL|method|compare (float a, float b)
 specifier|public
 specifier|static
 name|int
 name|compare
 parameter_list|(
-name|double
+name|float
 name|a
 parameter_list|,
-name|double
+name|float
 name|b
 parameter_list|)
 block|{
 return|return
-name|Double
+name|Float
 operator|.
 name|compare
 argument_list|(
@@ -338,14 +276,14 @@ name|b
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code value} represents a real number. This is    * equivalent to, but not necessarily implemented as,    * {@code !(Double.isInfinite(value) || Double.isNaN(value))}.    *    * @since 10.0    */
-DECL|method|isFinite (double value)
+comment|/**    * Returns {@code true} if {@code value} represents a real number. This is    * equivalent to, but not necessarily implemented as,    * {@code !(Float.isInfinite(value) || Float.isNaN(value))}.    *    * @since 10.0    */
+DECL|method|isFinite (float value)
 specifier|public
 specifier|static
 name|boolean
 name|isFinite
 parameter_list|(
-name|double
+name|float
 name|value
 parameter_list|)
 block|{
@@ -359,24 +297,24 @@ operator|<
 name|POSITIVE_INFINITY
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}. Note that this always returns {@code false} when {@code    * target} is {@code NaN}.    *    * @param array an array of {@code double} values, possibly empty    * @param target a primitive {@code double} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
-DECL|method|contains (double[] array, double target)
+comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}. Note that this always returns {@code false} when {@code    * target} is {@code NaN}.    *    * @param array an array of {@code float} values, possibly empty    * @param target a primitive {@code float} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
+DECL|method|contains (float[] array, float target)
 specifier|public
 specifier|static
 name|boolean
 name|contains
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
-name|double
+name|float
 name|target
 parameter_list|)
 block|{
 for|for
 control|(
-name|double
+name|float
 name|value
 range|:
 name|array
@@ -398,18 +336,18 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the index of the first appearance of the value {@code target} in    * {@code array}. Note that this always returns {@code -1} when {@code target}    * is {@code NaN}.    *    * @param array an array of {@code double} values, possibly empty    * @param target a primitive {@code double} value    * @return the least index {@code i} for which {@code array[i] == target}, or    *     {@code -1} if no such index exists.    */
-DECL|method|indexOf (double[] array, double target)
+comment|/**    * Returns the index of the first appearance of the value {@code target} in    * {@code array}. Note that this always returns {@code -1} when {@code target}    * is {@code NaN}.    *    * @param array an array of {@code float} values, possibly empty    * @param target a primitive {@code float} value    * @return the least index {@code i} for which {@code array[i] == target}, or    *     {@code -1} if no such index exists.    */
+DECL|method|indexOf (float[] array, float target)
 specifier|public
 specifier|static
 name|int
 name|indexOf
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
-name|double
+name|float
 name|target
 parameter_list|)
 block|{
@@ -429,17 +367,17 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kevinb): consider making this public
-DECL|method|indexOf ( double[] array, double target, int start, int end)
+DECL|method|indexOf ( float[] array, float target, int start, int end)
 specifier|private
 specifier|static
 name|int
 name|indexOf
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
-name|double
+name|float
 name|target
 parameter_list|,
 name|int
@@ -485,17 +423,17 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns the start position of the first occurrence of the specified {@code    * target} within {@code array}, or {@code -1} if there is no such occurrence.    *    *<p>More formally, returns the lowest index {@code i} such that {@code    * java.util.Arrays.copyOfRange(array, i, i + target.length)} contains exactly    * the same elements as {@code target}.    *    *<p>Note that this always returns {@code -1} when {@code target} contains    * {@code NaN}.    *    * @param array the array to search for the sequence {@code target}    * @param target the array to search for as a sub-sequence of {@code array}    */
-DECL|method|indexOf (double[] array, double[] target)
+DECL|method|indexOf (float[] array, float[] target)
 specifier|public
 specifier|static
 name|int
 name|indexOf
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
-name|double
+name|float
 index|[]
 name|target
 parameter_list|)
@@ -598,18 +536,18 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the index of the last appearance of the value {@code target} in    * {@code array}. Note that this always returns {@code -1} when {@code target}    * is {@code NaN}.    *    * @param array an array of {@code double} values, possibly empty    * @param target a primitive {@code double} value    * @return the greatest index {@code i} for which {@code array[i] == target},    *     or {@code -1} if no such index exists.    */
-DECL|method|lastIndexOf (double[] array, double target)
+comment|/**    * Returns the index of the last appearance of the value {@code target} in    * {@code array}. Note that this always returns {@code -1} when {@code target}    * is {@code NaN}.    *    * @param array an array of {@code float} values, possibly empty    * @param target a primitive {@code float} value    * @return the greatest index {@code i} for which {@code array[i] == target},    *     or {@code -1} if no such index exists.    */
+DECL|method|lastIndexOf (float[] array, float target)
 specifier|public
 specifier|static
 name|int
 name|lastIndexOf
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
-name|double
+name|float
 name|target
 parameter_list|)
 block|{
@@ -629,17 +567,17 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kevinb): consider making this public
-DECL|method|lastIndexOf ( double[] array, double target, int start, int end)
+DECL|method|lastIndexOf ( float[] array, float target, int start, int end)
 specifier|private
 specifier|static
 name|int
 name|lastIndexOf
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
-name|double
+name|float
 name|target
 parameter_list|,
 name|int
@@ -686,14 +624,14 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Returns the least value present in {@code array}, using the same rules of    * comparison as {@link Math#min(double, double)}.    *    * @param array a<i>nonempty</i> array of {@code double} values    * @return the value present in {@code array} that is less than or equal to    *     every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
-DECL|method|min (double... array)
+comment|/**    * Returns the least value present in {@code array}, using the same rules of    * comparison as {@link Math#min(float, float)}.    *    * @param array a<i>nonempty</i> array of {@code float} values    * @return the value present in {@code array} that is less than or equal to    *     every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+DECL|method|min (float... array)
 specifier|public
 specifier|static
-name|double
+name|float
 name|min
 parameter_list|(
-name|double
+name|float
 modifier|...
 name|array
 parameter_list|)
@@ -707,7 +645,7 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
-name|double
+name|float
 name|min
 init|=
 name|array
@@ -751,14 +689,14 @@ return|return
 name|min
 return|;
 block|}
-comment|/**    * Returns the greatest value present in {@code array}, using the same rules    * of comparison as {@link Math#max(double, double)}.    *    * @param array a<i>nonempty</i> array of {@code double} values    * @return the value present in {@code array} that is greater than or equal to    *     every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
-DECL|method|max (double... array)
+comment|/**    * Returns the greatest value present in {@code array}, using the same rules    * of comparison as {@link Math#min(float, float)}.    *    * @param array a<i>nonempty</i> array of {@code float} values    * @return the value present in {@code array} that is greater than or equal to    *     every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+DECL|method|max (float... array)
 specifier|public
 specifier|static
-name|double
+name|float
 name|max
 parameter_list|(
-name|double
+name|float
 modifier|...
 name|array
 parameter_list|)
@@ -772,7 +710,7 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
-name|double
+name|float
 name|max
 init|=
 name|array
@@ -816,15 +754,15 @@ return|return
 name|max
 return|;
 block|}
-comment|/**    * Returns the values from each provided array combined into a single array.    * For example, {@code concat(new double[] {a, b}, new double[] {}, new    * double[] {c}} returns the array {@code {a, b, c}}.    *    * @param arrays zero or more {@code double} arrays    * @return a single array containing all the values from the source arrays, in    *     order    */
-DECL|method|concat (double[]... arrays)
+comment|/**    * Returns the values from each provided array combined into a single array.    * For example, {@code concat(new float[] {a, b}, new float[] {}, new    * float[] {c}} returns the array {@code {a, b, c}}.    *    * @param arrays zero or more {@code float} arrays    * @return a single array containing all the values from the source arrays, in    *     order    */
+DECL|method|concat (float[]... arrays)
 specifier|public
 specifier|static
-name|double
+name|float
 index|[]
 name|concat
 parameter_list|(
-name|double
+name|float
 index|[]
 modifier|...
 name|arrays
@@ -837,7 +775,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|double
+name|float
 index|[]
 name|array
 range|:
@@ -851,12 +789,12 @@ operator|.
 name|length
 expr_stmt|;
 block|}
-name|double
+name|float
 index|[]
 name|result
 init|=
 operator|new
-name|double
+name|float
 index|[
 name|length
 index|]
@@ -868,7 +806,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|double
+name|float
 index|[]
 name|array
 range|:
@@ -904,14 +842,14 @@ name|result
 return|;
 block|}
 comment|/**    * Returns an array containing the same values as {@code array}, but    * guaranteed to be of a specified minimum length. If {@code array} already    * has a length of at least {@code minLength}, it is returned directly.    * Otherwise, a new array of size {@code minLength + padding} is returned,    * containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is    *     necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is    *     negative    * @return an array containing the values of {@code array}, with guaranteed    *     minimum length {@code minLength}    */
-DECL|method|ensureCapacity ( double[] array, int minLength, int padding)
+DECL|method|ensureCapacity ( float[] array, int minLength, int padding)
 specifier|public
 specifier|static
-name|double
+name|float
 index|[]
 name|ensureCapacity
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
@@ -966,14 +904,14 @@ name|array
 return|;
 block|}
 comment|// Arrays.copyOf() requires Java 6
-DECL|method|copyOf (double[] original, int length)
+DECL|method|copyOf (float[] original, int length)
 specifier|private
 specifier|static
-name|double
+name|float
 index|[]
 name|copyOf
 parameter_list|(
-name|double
+name|float
 index|[]
 name|original
 parameter_list|,
@@ -981,12 +919,12 @@ name|int
 name|length
 parameter_list|)
 block|{
-name|double
+name|float
 index|[]
 name|copy
 init|=
 operator|new
-name|double
+name|float
 index|[
 name|length
 index|]
@@ -1019,8 +957,8 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * Returns a string containing the supplied {@code double} values, converted    * to strings as specified by {@link Double#toString(double)}, and separated    * by {@code separator}. For example, {@code join("-", 1.0, 2.0, 3.0)} returns    * the string {@code "1.0-2.0-3.0"}.    *    *<p>Note that {@link Double#toString(double)} formats {@code double}    * differently in GWT sometimes.  In the previous example, it returns the    * string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code double} values, possibly empty    */
-DECL|method|join (String separator, double... array)
+comment|/**    * Returns a string containing the supplied {@code float} values, converted    * to strings as specified by {@link Float#toString(float)}, and separated by    * {@code separator}. For example, {@code join("-", 1.0f, 2.0f, 3.0f)}    * returns the string {@code "1.0-2.0-3.0"}.    *    *<p>Note that {@link Float#toString(float)} formats {@code float}    * differently in GWT.  In the previous example, it returns the string {@code    * "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code float} values, possibly empty    */
+DECL|method|join (String separator, float... array)
 specifier|public
 specifier|static
 name|String
@@ -1029,7 +967,7 @@ parameter_list|(
 name|String
 name|separator
 parameter_list|,
-name|double
+name|float
 modifier|...
 name|array
 parameter_list|)
@@ -1116,13 +1054,13 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a comparator that compares two {@code double} arrays    * lexicographically. That is, it compares, using {@link    * #compare(double, double)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example,    * {@code []< [1.0]< [1.0, 2.0]< [2.0]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(double[], double[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2.0    */
+comment|/**    * Returns a comparator that compares two {@code float} arrays    * lexicographically. That is, it compares, using {@link    * #compare(float, float)}), the first pair of values that follow any    * common prefix, or when one array is a prefix of the other, treats the    * shorter array as the lesser. For example, {@code []< [1.0f]< [1.0f, 2.0f]    *< [2.0f]}.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link Arrays#equals(float[], float[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2.0    */
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
 name|Comparator
 argument_list|<
-name|double
+name|float
 index|[]
 argument_list|>
 name|lexicographicalComparator
@@ -1141,7 +1079,7 @@ name|LexicographicalComparator
 implements|implements
 name|Comparator
 argument_list|<
-name|double
+name|float
 index|[]
 argument_list|>
 block|{
@@ -1150,16 +1088,16 @@ name|INSTANCE
 block|;
 annotation|@
 name|Override
-DECL|method|compare (double[] left, double[] right)
+DECL|method|compare (float[] left, float[] right)
 specifier|public
 name|int
 name|compare
 parameter_list|(
-name|double
+name|float
 index|[]
 name|left
 parameter_list|,
-name|double
+name|float
 index|[]
 name|right
 parameter_list|)
@@ -1198,7 +1136,7 @@ block|{
 name|int
 name|result
 init|=
-name|Doubles
+name|Floats
 operator|.
 name|compare
 argument_list|(
@@ -1236,11 +1174,11 @@ name|length
 return|;
 block|}
 block|}
-comment|/**    * Returns an array containing each value of {@code collection}, converted to    * a {@code double} value in the manner of {@link Number#doubleValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    * @since 1.0 (parameter was {@code Collection<Double>} before 12.0)    */
+comment|/**    * Returns an array containing each value of {@code collection}, converted to    * a {@code float} value in the manner of {@link Number#floatValue}.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    * @param collection a collection of {@code Number} instances    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    * @since 1.0 (parameter was {@code Collection<Float>} before 12.0)    */
 DECL|method|toArray (Collection<? extends Number> collection)
 specifier|public
 specifier|static
-name|double
+name|float
 index|[]
 name|toArray
 parameter_list|(
@@ -1257,18 +1195,18 @@ if|if
 condition|(
 name|collection
 operator|instanceof
-name|DoubleArrayAsList
+name|FloatArrayAsList
 condition|)
 block|{
 return|return
 operator|(
 operator|(
-name|DoubleArrayAsList
+name|FloatArrayAsList
 operator|)
 name|collection
 operator|)
 operator|.
-name|toDoubleArray
+name|toFloatArray
 argument_list|()
 return|;
 block|}
@@ -1288,12 +1226,12 @@ name|boxedArray
 operator|.
 name|length
 decl_stmt|;
-name|double
+name|float
 index|[]
 name|array
 init|=
 operator|new
-name|double
+name|float
 index|[
 name|len
 index|]
@@ -1332,7 +1270,7 @@ index|]
 argument_list|)
 operator|)
 operator|.
-name|doubleValue
+name|floatValue
 argument_list|()
 expr_stmt|;
 block|}
@@ -1340,17 +1278,17 @@ return|return
 name|array
 return|;
 block|}
-comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)},    * but any attempt to set a value to {@code null} will result in a {@link    * NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of    * {@code Double} objects written to or read from it.  For example, whether    * {@code list.get(0) == list.get(0)} is true for the returned list is    * unspecified.    *    *<p>The returned list may have unexpected behavior if it contains {@code    * NaN}, or if {@code NaN} is used as a parameter to any of its methods.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
-DECL|method|asList (double... backingArray)
+comment|/**    * Returns a fixed-size list backed by the specified array, similar to {@link    * Arrays#asList(Object[])}. The list supports {@link List#set(int, Object)},    * but any attempt to set a value to {@code null} will result in a {@link    * NullPointerException}.    *    *<p>The returned list maintains the values, but not the identities, of    * {@code Float} objects written to or read from it.  For example, whether    * {@code list.get(0) == list.get(0)} is true for the returned list is    * unspecified.    *    *<p>The returned list may have unexpected behavior if it contains {@code    * NaN}, or if {@code NaN} is used as a parameter to any of its methods.    *    * @param backingArray the array to back the list    * @return a list view of the array    */
+DECL|method|asList (float... backingArray)
 specifier|public
 specifier|static
 name|List
 argument_list|<
-name|Double
+name|Float
 argument_list|>
 name|asList
 parameter_list|(
-name|double
+name|float
 modifier|...
 name|backingArray
 parameter_list|)
@@ -1373,7 +1311,7 @@ return|;
 block|}
 return|return
 operator|new
-name|DoubleArrayAsList
+name|FloatArrayAsList
 argument_list|(
 name|backingArray
 argument_list|)
@@ -1381,15 +1319,15 @@ return|;
 block|}
 annotation|@
 name|GwtCompatible
-DECL|class|DoubleArrayAsList
+DECL|class|FloatArrayAsList
 specifier|private
 specifier|static
 class|class
-name|DoubleArrayAsList
+name|FloatArrayAsList
 extends|extends
 name|AbstractList
 argument_list|<
-name|Double
+name|Float
 argument_list|>
 implements|implements
 name|RandomAccess
@@ -1398,7 +1336,7 @@ name|Serializable
 block|{
 DECL|field|array
 specifier|final
-name|double
+name|float
 index|[]
 name|array
 decl_stmt|;
@@ -1412,10 +1350,10 @@ specifier|final
 name|int
 name|end
 decl_stmt|;
-DECL|method|DoubleArrayAsList (double[] array)
-name|DoubleArrayAsList
+DECL|method|FloatArrayAsList (float[] array)
+name|FloatArrayAsList
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|)
@@ -1432,10 +1370,10 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|DoubleArrayAsList (double[] array, int start, int end)
-name|DoubleArrayAsList
+DECL|method|FloatArrayAsList (float[] array, int start, int end)
+name|FloatArrayAsList
 parameter_list|(
-name|double
+name|float
 index|[]
 name|array
 parameter_list|,
@@ -1495,7 +1433,7 @@ DECL|method|get (int index)
 annotation|@
 name|Override
 specifier|public
-name|Double
+name|Float
 name|get
 parameter_list|(
 name|int
@@ -1535,17 +1473,17 @@ return|return
 operator|(
 name|target
 operator|instanceof
-name|Double
+name|Float
 operator|)
 operator|&&
-name|Doubles
+name|Floats
 operator|.
 name|indexOf
 argument_list|(
 name|array
 argument_list|,
 operator|(
-name|Double
+name|Float
 operator|)
 name|target
 argument_list|,
@@ -1574,20 +1512,20 @@ if|if
 condition|(
 name|target
 operator|instanceof
-name|Double
+name|Float
 condition|)
 block|{
 name|int
 name|i
 init|=
-name|Doubles
+name|Floats
 operator|.
 name|indexOf
 argument_list|(
 name|array
 argument_list|,
 operator|(
-name|Double
+name|Float
 operator|)
 name|target
 argument_list|,
@@ -1631,20 +1569,20 @@ if|if
 condition|(
 name|target
 operator|instanceof
-name|Double
+name|Float
 condition|)
 block|{
 name|int
 name|i
 init|=
-name|Doubles
+name|Floats
 operator|.
 name|lastIndexOf
 argument_list|(
 name|array
 argument_list|,
 operator|(
-name|Double
+name|Float
 operator|)
 name|target
 argument_list|,
@@ -1672,17 +1610,17 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|set (int index, Double element)
+DECL|method|set (int index, Float element)
 annotation|@
 name|Override
 specifier|public
-name|Double
+name|Float
 name|set
 parameter_list|(
 name|int
 name|index
 parameter_list|,
-name|Double
+name|Float
 name|element
 parameter_list|)
 block|{
@@ -1694,7 +1632,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|double
+name|float
 name|oldValue
 init|=
 name|array
@@ -1727,7 +1665,7 @@ name|Override
 specifier|public
 name|List
 argument_list|<
-name|Double
+name|Float
 argument_list|>
 name|subList
 parameter_list|(
@@ -1769,7 +1707,7 @@ return|;
 block|}
 return|return
 operator|new
-name|DoubleArrayAsList
+name|FloatArrayAsList
 argument_list|(
 name|array
 argument_list|,
@@ -1809,14 +1747,14 @@ if|if
 condition|(
 name|object
 operator|instanceof
-name|DoubleArrayAsList
+name|FloatArrayAsList
 condition|)
 block|{
-name|DoubleArrayAsList
+name|FloatArrayAsList
 name|that
 init|=
 operator|(
-name|DoubleArrayAsList
+name|FloatArrayAsList
 operator|)
 name|object
 decl_stmt|;
@@ -1928,7 +1866,7 @@ literal|31
 operator|*
 name|result
 operator|+
-name|Doubles
+name|Floats
 operator|.
 name|hashCode
 argument_list|(
@@ -2023,10 +1961,10 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|toDoubleArray ()
-name|double
+DECL|method|toFloatArray ()
+name|float
 index|[]
-name|toDoubleArray
+name|toFloatArray
 parameter_list|()
 block|{
 comment|// Arrays.copyOfRange() is not available under GWT
@@ -2036,12 +1974,12 @@ init|=
 name|size
 argument_list|()
 decl_stmt|;
-name|double
+name|float
 index|[]
 name|result
 init|=
 operator|new
-name|double
+name|float
 index|[
 name|size
 index|]
@@ -2074,141 +2012,6 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
-block|}
-comment|/**    * This is adapted from the regex suggested by {@link Double#valueOf(String)}    * for prevalidating inputs.  All valid inputs must pass this regex, but it's    * semantically fine if not all inputs that pass this regex are valid --    * only a performance hit is incurred, not a semantics bug.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"regular expressions"
-argument_list|)
-DECL|field|FLOATING_POINT_PATTERN
-specifier|static
-specifier|final
-name|Pattern
-name|FLOATING_POINT_PATTERN
-init|=
-name|fpPattern
-argument_list|()
-decl_stmt|;
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"regular expressions"
-argument_list|)
-DECL|method|fpPattern ()
-specifier|private
-specifier|static
-name|Pattern
-name|fpPattern
-parameter_list|()
-block|{
-name|String
-name|decimal
-init|=
-literal|"(?:\\d++(?:\\.\\d*+)?|\\.\\d++)"
-decl_stmt|;
-name|String
-name|completeDec
-init|=
-name|decimal
-operator|+
-literal|"(?:[eE][+-]?\\d++)?[fFdD]?"
-decl_stmt|;
-name|String
-name|hex
-init|=
-literal|"(?:\\p{XDigit}++(?:\\.\\p{XDigit}*+)?|\\.\\p{XDigit}++)"
-decl_stmt|;
-name|String
-name|completeHex
-init|=
-literal|"0[xX]"
-operator|+
-name|hex
-operator|+
-literal|"[pP][+-]?\\d++[fFdD]?"
-decl_stmt|;
-name|String
-name|fpPattern
-init|=
-literal|"[+-]?(?:NaN|Infinity|"
-operator|+
-name|completeDec
-operator|+
-literal|"|"
-operator|+
-name|completeHex
-operator|+
-literal|")"
-decl_stmt|;
-return|return
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-name|fpPattern
-argument_list|)
-return|;
-block|}
-comment|/**    * Parses the specified string as a double-precision floating point value.    * The ASCII character {@code '-'} (<code>'&#92;u002D'</code>) is recognized    * as the minus sign.    *    *<p>Unlike {@link Double#parseDouble(String)}, this method returns    * {@code null} instead of throwing an exception if parsing fails.    * Valid inputs are exactly those accepted by {@link Double#valueOf(String)},    * except that leading and trailing whitespace is not permitted.    *    *<p>This implementation is likely to be faster than {@code    * Double.parseDouble} if many failures are expected.    *    * @param string the string representation of a {@code double} value    * @return the floating point value represented by {@code string}, or    *     {@code null} if {@code string} has a length of zero or cannot be    *     parsed as a {@code double} value    * @since 14.0    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"regular expressions"
-argument_list|)
-annotation|@
-name|Nullable
-annotation|@
-name|Beta
-DECL|method|tryParse (String string)
-specifier|public
-specifier|static
-name|Double
-name|tryParse
-parameter_list|(
-name|String
-name|string
-parameter_list|)
-block|{
-if|if
-condition|(
-name|FLOATING_POINT_PATTERN
-operator|.
-name|matcher
-argument_list|(
-name|string
-argument_list|)
-operator|.
-name|matches
-argument_list|()
-condition|)
-block|{
-comment|// TODO(user): could be potentially optimized, but only with
-comment|// extensive testing
-try|try
-block|{
-return|return
-name|Double
-operator|.
-name|parseDouble
-argument_list|(
-name|string
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e
-parameter_list|)
-block|{
-comment|// Double.parseDouble has changed specs several times, so fall through
-comment|// gracefully
-block|}
-block|}
-return|return
-literal|null
-return|;
 block|}
 block|}
 end_class

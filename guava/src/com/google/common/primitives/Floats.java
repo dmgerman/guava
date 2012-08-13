@@ -114,7 +114,35 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
 import|;
 end_import
 
@@ -198,6 +226,16 @@ name|RandomAccess
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code float} primitives, that are not  * already found in either {@link Float} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
@@ -205,6 +243,11 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Floats
 specifier|public
 specifier|final
@@ -2017,6 +2060,68 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
+block|}
+comment|/**    * Parses the specified string as a single-precision floating point value.    * The ASCII character {@code '-'} (<code>'&#92;u002D'</code>) is recognized    * as the minus sign.    *    *<p>Unlike {@link Float#parseFloat(String)}, this method returns    * {@code null} instead of throwing an exception if parsing fails.    * Valid inputs are exactly those accepted by {@link Float#valueOf(String)},    * except that leading and trailing whitespace is not permitted.    *    *<p>This implementation is likely to be faster than {@code    * Float.parseFloat} if many failures are expected.    *    * @param string the string representation of a {@code float} value    * @return the floating point value represented by {@code string}, or    *     {@code null} if {@code string} has a length of zero or cannot be    *     parsed as a {@code float} value    * @since 14.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"regular expressions"
+argument_list|)
+annotation|@
+name|Nullable
+annotation|@
+name|Beta
+DECL|method|tryParse (String string)
+specifier|public
+specifier|static
+name|Float
+name|tryParse
+parameter_list|(
+name|String
+name|string
+parameter_list|)
+block|{
+if|if
+condition|(
+name|Doubles
+operator|.
+name|FLOATING_POINT_PATTERN
+operator|.
+name|matcher
+argument_list|(
+name|string
+argument_list|)
+operator|.
+name|matches
+argument_list|()
+condition|)
+block|{
+comment|// TODO(user): could be potentially optimized, but only with
+comment|// extensive testing
+try|try
+block|{
+return|return
+name|Float
+operator|.
+name|parseFloat
+argument_list|(
+name|string
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+comment|// Float.parseFloat has changed specs several times, so fall through
+comment|// gracefully
+block|}
+block|}
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class
