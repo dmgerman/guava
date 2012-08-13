@@ -446,7 +446,6 @@ name|expectedFpp
 argument_list|()
 return|;
 block|}
-comment|/**    * {@inheritDoc}    *    *<p>This implementation uses reference equality to compare funnels.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -504,18 +503,13 @@ operator|&&
 name|this
 operator|.
 name|funnel
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|that
 operator|.
 name|funnel
-operator|&&
-name|this
-operator|.
-name|strategy
-operator|==
-name|that
-operator|.
-name|strategy
+argument_list|)
 operator|&&
 name|this
 operator|.
@@ -526,6 +520,17 @@ argument_list|(
 name|that
 operator|.
 name|bits
+argument_list|)
+operator|&&
+name|this
+operator|.
+name|strategy
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|strategy
 argument_list|)
 return|;
 block|}
