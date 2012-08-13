@@ -56,9 +56,17 @@ name|common
 operator|.
 name|testing
 operator|.
-name|junit3
+name|TearDownStack
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
 operator|.
-name|TearDownTestCase
+name|framework
+operator|.
+name|TestCase
 import|;
 end_import
 
@@ -180,8 +188,20 @@ specifier|public
 class|class
 name|AbstractExecutionThreadServiceTest
 extends|extends
-name|TearDownTestCase
+name|TestCase
 block|{
+DECL|field|tearDownStack
+specifier|private
+specifier|final
+name|TearDownStack
+name|tearDownStack
+init|=
+operator|new
+name|TearDownStack
+argument_list|(
+literal|true
+argument_list|)
+decl_stmt|;
 DECL|field|enterRun
 specifier|private
 specifier|final
@@ -281,6 +301,21 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
+DECL|method|tearDown ()
+annotation|@
+name|Override
+specifier|protected
+specifier|final
+name|void
+name|tearDown
+parameter_list|()
+block|{
+name|tearDownStack
+operator|.
+name|runTearDown
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testServiceStartStop ()
 specifier|public
 name|void
@@ -1789,6 +1824,8 @@ DECL|method|FakeService ()
 name|FakeService
 parameter_list|()
 block|{
+name|tearDownStack
+operator|.
 name|addTearDown
 argument_list|(
 name|this
