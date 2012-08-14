@@ -998,8 +998,8 @@ block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * fluent iterable in proper sequence.    *    * @deprecated Use {@link #toList()} instead. This method is scheduled for removal in Guava 15.0.    */
 annotation|@
 name|Deprecated
-specifier|public
 DECL|method|toImmutableList ()
+specifier|public
 specifier|final
 name|ImmutableList
 argument_list|<
@@ -1016,8 +1016,8 @@ block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}.  To produce an    * {@code ImmutableList} sorted by its natural ordering, use    * {@code toSortedImmutableList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 13.0    * @deprecated Use {@link #toSortedList(Comparator)} instead. This method is scheduled for removal    *     in Guava 15.0.    */
 annotation|@
 name|Deprecated
-specifier|public
 DECL|method|toSortedImmutableList (Comparator<? super E> comparator)
+specifier|public
 specifier|final
 name|ImmutableList
 argument_list|<
@@ -1044,8 +1044,8 @@ block|}
 comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this    * fluent iterable with duplicates removed.    *    * @deprecated Use {@link #toSet()} instead. This method is scheduled for removal in Guava 15.0.    */
 annotation|@
 name|Deprecated
-specifier|public
 DECL|method|toImmutableSet ()
+specifier|public
 specifier|final
 name|ImmutableSet
 argument_list|<
@@ -1062,8 +1062,8 @@ block|}
 comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this    * {@code FluentIterable} in the order specified by {@code comparator}, with duplicates    * (determined by {@code comparator.compare(x, y) == 0}) removed. To produce an    * {@code ImmutableSortedSet} sorted by its natural ordering, use    * {@code toImmutableSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @deprecated Use {@link #toSortedSet(Comparator)} instead. This method is scheduled for removal    *     in Guava 15.0.    */
 annotation|@
 name|Deprecated
-specifier|public
 DECL|method|toImmutableSortedSet (Comparator<? super E> comparator)
+specifier|public
 specifier|final
 name|ImmutableSortedSet
 argument_list|<
