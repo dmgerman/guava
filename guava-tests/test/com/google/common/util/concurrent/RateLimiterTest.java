@@ -153,6 +153,43 @@ literal|"R0.20"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testImmediateTryAcquire ()
+specifier|public
+name|void
+name|testImmediateTryAcquire
+parameter_list|()
+block|{
+name|RateLimiter
+name|r
+init|=
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Unable to acquire initial permit"
+argument_list|,
+name|r
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"Capable of acquiring secondary permit"
+argument_list|,
+name|r
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testSimpleRateUpdate ()
 specifier|public
 name|void

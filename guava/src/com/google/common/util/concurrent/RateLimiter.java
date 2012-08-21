@@ -538,6 +538,49 @@ name|unit
 argument_list|)
 return|;
 block|}
+comment|/**    * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.    *    * @param permits the number of permits to acquire    * @return {@code true} if the permits were acquired, {@code false} otherwise    */
+DECL|method|tryAcquire (int permits)
+specifier|public
+name|boolean
+name|tryAcquire
+parameter_list|(
+name|int
+name|permits
+parameter_list|)
+block|{
+return|return
+name|tryAcquire
+argument_list|(
+name|permits
+argument_list|,
+literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|MICROSECONDS
+argument_list|)
+return|;
+block|}
+comment|/**    * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without    * delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(1)}.    *    * @return {@code true} if the permit was acquired, {@code false} otherwise    */
+DECL|method|tryAcquire ()
+specifier|public
+name|boolean
+name|tryAcquire
+parameter_list|()
+block|{
+return|return
+name|tryAcquire
+argument_list|(
+literal|1
+argument_list|,
+literal|0
+argument_list|,
+name|TimeUnit
+operator|.
+name|MICROSECONDS
+argument_list|)
+return|;
+block|}
 comment|/**    * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permits would not have been granted    * before the timeout expired.    *    * @param permits the number of permits to acquire    * @param timeout the maximum time to wait for the permits    * @param unit the time unit of the timeout argument    * @return {@code true} if the permits were acquired, {@code false} otherwise    */
 DECL|method|tryAcquire (int permits, long timeout, TimeUnit unit)
 specifier|public
