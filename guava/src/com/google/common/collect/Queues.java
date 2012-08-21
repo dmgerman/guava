@@ -195,8 +195,6 @@ comment|/**  * Static utility methods pertaining to {@link Queue} and {@link Deq
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|Queues
 specifier|public
 specifier|final
@@ -889,6 +887,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested     * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
+annotation|@
+name|Beta
 DECL|method|drain (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1028,6 +1028,8 @@ name|added
 return|;
 block|}
 comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},     * but with a different behavior in case it is interrupted while waiting. In that case, the     * operation will continue as usual, and in the end the thread's interruption status will be set     * (no {@code InterruptedException} is thrown).     *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+annotation|@
+name|Beta
 DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1214,6 +1216,8 @@ name|added
 return|;
 block|}
 comment|/**    * Returns a synchronized (thread-safe) queue backed by the specified queue. In order to    * guarantee serial access, it is critical that<b>all</b> access to the backing queue is    * accomplished through the returned queue.    *    *<p>It is imperative that the user manually synchronize on the returned queue when accessing    * the queue's iterator:<pre>   {@code    *    *   Queue<E> queue = Queues.synchronizedQueue(MinMaxPriorityQueue<E>.create());    *   ...    *   queue.add(element);  // Needn't be in synchronized block    *   ...    *   synchronized (queue) {  // Must synchronize on queue!    *     Iterator<E> i = queue.iterator(); // Must be in synchronized block    *     while (i.hasNext()) {    *       foo(i.next());    *     }    *   }}</pre>    *    * Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned queue will be serializable if the specified queue is serializable.    *    * @param queue the queue to be wrapped in a synchronized view    * @return a synchronized view of the specified queue    * @since 14.0    */
+annotation|@
+name|Beta
 DECL|method|synchronizedQueue (Queue<E> queue)
 specifier|public
 specifier|static
