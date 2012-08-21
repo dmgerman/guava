@@ -1399,6 +1399,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the single element contained in {@code iterator}, or {@code    * defaultValue} if the iterator is empty.    *    * @throws IllegalArgumentException if the iterator contains multiple    *     elements.  The state of the iterator is unspecified.    */
+annotation|@
+name|Nullable
 DECL|method|getOnlyElement (Iterator<? extends T> iterator, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -2853,6 +2855,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate. If no such element is found, {@code defaultValue} will be    * returned from this method and the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}. Note that this can    * usually be handled more naturally using {@code    * tryFind(iterator, predicate).or(defaultValue)}.    *    * @since 7.0    */
+annotation|@
+name|Nullable
 DECL|method|find (Iterator<? extends T> iterator, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -3235,6 +3239,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Advances {@code iterator} {@code position + 1} times, returning the    * element at the {@code position}th position or {@code defaultValue}    * otherwise.    *    * @param position position of the element to return    * @param defaultValue the default value to return if the iterator is empty    *     or if {@code position} is greater than the number of elements    *     remaining in {@code iterator}    * @return the element at the specified position in {@code iterator} or    *     {@code defaultValue} if {@code iterator} produces fewer than    *     {@code position + 1} elements.    * @throws IndexOutOfBoundsException if {@code position} is negative    * @since 4.0    */
+annotation|@
+name|Nullable
 DECL|method|get (Iterator<? extends T> iterator, int position, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -3289,6 +3295,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the next element in {@code iterator} or {@code defaultValue} if    * the iterator is empty.  The {@link Iterables} analog to this method is    * {@link Iterables#getFirst}.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the next element of {@code iterator} or the default value    * @since 7.0    */
+annotation|@
+name|Nullable
 DECL|method|getNext (Iterator<? extends T> iterator, @Nullable T defaultValue)
 specifier|public
 specifier|static
@@ -3372,6 +3380,8 @@ block|}
 block|}
 block|}
 comment|/**    * Advances {@code iterator} to the end, returning the last element or    * {@code defaultValue} if the iterator is empty.    *    * @param defaultValue the default value to return if the iterator is empty    * @return the last element of {@code iterator}    * @since 3.0    */
+annotation|@
+name|Nullable
 DECL|method|getLast (Iterator<? extends T> iterator, @Nullable T defaultValue)
 specifier|public
 specifier|static
