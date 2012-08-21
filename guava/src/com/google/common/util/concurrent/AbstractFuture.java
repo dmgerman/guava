@@ -652,10 +652,11 @@ case|case
 name|CANCELLED
 case|:
 throw|throw
-operator|new
-name|CancellationException
+name|cancellationExceptionWithCause
 argument_list|(
 literal|"Task was cancelled."
+argument_list|,
+name|exception
 argument_list|)
 throw|;
 default|default:
@@ -806,10 +807,20 @@ name|value
 operator|=
 name|v
 expr_stmt|;
+comment|// Don't actually construct a CancellationException until necessary.
 name|this
 operator|.
 name|exception
 operator|=
+name|isCancelled
+argument_list|()
+condition|?
+operator|new
+name|CancellationException
+argument_list|(
+literal|"Future.cancel() was called."
+argument_list|)
+else|:
 name|t
 expr_stmt|;
 name|releaseShared
@@ -840,6 +851,39 @@ return|return
 name|doCompletion
 return|;
 block|}
+block|}
+DECL|method|cancellationExceptionWithCause ( String message, Throwable cause)
+specifier|static
+specifier|final
+name|CancellationException
+name|cancellationExceptionWithCause
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|CancellationException
+name|exception
+init|=
+operator|new
+name|CancellationException
+argument_list|(
+name|message
+argument_list|)
+decl_stmt|;
+name|exception
+operator|.
+name|initCause
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+return|return
+name|exception
+return|;
 block|}
 block|}
 end_class
