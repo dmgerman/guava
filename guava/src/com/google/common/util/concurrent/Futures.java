@@ -716,14 +716,18 @@ name|V
 argument_list|>
 block|{
 DECL|field|value
+annotation|@
+name|Nullable
 specifier|private
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmediateSuccessfulFuture (V value)
+DECL|method|ImmediateSuccessfulFuture (@ullable V value)
 name|ImmediateSuccessfulFuture
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -774,14 +778,18 @@ name|X
 argument_list|>
 block|{
 DECL|field|value
+annotation|@
+name|Nullable
 specifier|private
 specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmediateSuccessfulCheckedFuture (V value)
+DECL|method|ImmediateSuccessfulCheckedFuture (@ullable V value)
 name|ImmediateSuccessfulCheckedFuture
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
