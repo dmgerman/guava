@@ -426,6 +426,30 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -519,6 +543,25 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|ImmediateFuture
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|addListener (Runnable listener, Executor executor)
@@ -533,6 +576,22 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|listener
+argument_list|,
+literal|"Runnable was null."
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|executor
+argument_list|,
+literal|"Executor was null."
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|executor
 operator|.
 name|execute
@@ -540,6 +599,35 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+comment|// ListenableFuture's contract is that it will not throw unchecked
+comment|// exceptions, so log the bad runnable and/or executor and swallow it.
+name|log
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|SEVERE
+argument_list|,
+literal|"RuntimeException while executing runnable "
+operator|+
+name|listener
+operator|+
+literal|" with executor "
+operator|+
+name|executor
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
