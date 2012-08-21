@@ -536,7 +536,7 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"deprecated"
+literal|"deprecation"
 argument_list|)
 comment|// test of a deprecated method
 DECL|method|testCompareBooleans ()
