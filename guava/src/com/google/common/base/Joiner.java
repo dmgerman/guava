@@ -874,6 +874,8 @@ name|Override
 name|CharSequence
 name|toString
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|part
 parameter_list|)
