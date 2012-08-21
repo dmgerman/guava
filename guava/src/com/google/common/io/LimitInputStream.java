@@ -75,12 +75,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 1.0  */
+comment|/**  * An InputStream that limits the number of bytes which can be read.  *  * @author Charles Fry  * @since 1.0  * @deprecated Use {@link ByteStreams#limit} instead. This class is scheduled  *     to be removed in Guava release 15.0.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|class|LimitInputStream
 specifier|public
 specifier|final

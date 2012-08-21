@@ -5705,10 +5705,10 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testMark ()
+DECL|method|testLimit_mark ()
 specifier|public
 name|void
-name|testMark
+name|testLimit_mark
 parameter_list|()
 throws|throws
 name|Exception
@@ -5838,10 +5838,10 @@ name|read
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSkip ()
+DECL|method|testLimit_skip ()
 specifier|public
 name|void
-name|testSkip
+name|testLimit_skip
 parameter_list|()
 throws|throws
 name|Exception
@@ -5944,10 +5944,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testMarkNotSet ()
+DECL|method|testLimit_markNotSet ()
 specifier|public
 name|void
-name|testMarkNotSet
+name|testLimit_markNotSet
 parameter_list|()
 block|{
 name|byte
@@ -6009,10 +6009,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testMarkNotSupported ()
+DECL|method|testLimit_markNotSupported ()
 specifier|public
 name|void
-name|testMarkNotSupported
+name|testLimit_markNotSupported
 parameter_list|()
 block|{
 name|InputStream
