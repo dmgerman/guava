@@ -2276,7 +2276,7 @@ parameter_list|)
 block|{         }
 block|}
 decl_stmt|;
-comment|/**    * Returns a {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com/google/common/io/NullOutputStream.java)    */
+comment|/**    * Returns a {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com.google.common.io.NullOutputStream)    */
 DECL|method|nullOutputStream ()
 specifier|public
 specifier|static
@@ -2288,9 +2288,33 @@ return|return
 name|NULL_OUTPUT_STREAM
 return|;
 block|}
+comment|/**    * Wraps a {@link InputStream}, limiting the number of bytes which can be    * read.    *    * @param in the input stream to be wrapped    * @param limit the maximum number of bytes to be read    * @return a length-limited {@link InputStream}    * @since 14.0 (since 1.0 as com.google.common.io.LimitInputStream)    */
+DECL|method|limit (InputStream in, long limit)
+specifier|public
+specifier|static
+name|InputStream
+name|limit
+parameter_list|(
+name|InputStream
+name|in
+parameter_list|,
+name|long
+name|limit
+parameter_list|)
+block|{
+return|return
+operator|new
+name|LimitInputStream
+argument_list|(
+name|in
+argument_list|,
+name|limit
+argument_list|)
+return|;
+block|}
 comment|// TODO(chrisn): Not all streams support skipping.
 comment|/** Returns the length of a supplied input stream, in bytes. */
-DECL|method|length (InputSupplier<? extends InputStream> supplier)
+DECL|method|length ( InputSupplier<? extends InputStream> supplier)
 specifier|public
 specifier|static
 name|long
@@ -2602,7 +2626,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Attempts to read {@code len} bytes from the stream into the given array    * starting at {@code off}, with the same behavior as    * {@link DataInput#readFully(byte[], int, int)}. Does not close the    * stream.    *    * @param in the input stream to read from.    * @param b the buffer into which the data is read.    * @param off an int specifying the offset into the data.    * @param len an int specifying the number of bytes to read.    * @throws EOFException if this stream reaches the end before reading all    *     the bytes.    * @throws IOException if an I/O error occurs.    */
-DECL|method|readFully (InputStream in, byte[] b, int off, int len)
+DECL|method|readFully ( InputStream in, byte[] b, int off, int len)
 specifier|public
 specifier|static
 name|void
@@ -2719,7 +2743,7 @@ block|}
 block|}
 block|}
 comment|/**    * Process the bytes of a supplied stream    *    * @param supplier the input stream factory    * @param processor the object to which to pass the bytes of the stream    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    */
-DECL|method|readBytes (InputSupplier<? extends InputStream> supplier, ByteProcessor<T> processor)
+DECL|method|readBytes ( InputSupplier<? extends InputStream> supplier, ByteProcessor<T> processor)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2834,7 +2858,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Computes and returns the checksum value for a supplied input stream.    * The checksum object is reset when this method returns successfully.    *    * @param supplier the input stream factory    * @param checksum the checksum object    * @return the result of {@link Checksum#getValue} after updating the    *     checksum object with all of the bytes in the stream    * @throws IOException if an I/O error occurs    */
-DECL|method|getChecksum (InputSupplier<? extends InputStream> supplier, final Checksum checksum)
+DECL|method|getChecksum ( InputSupplier<? extends InputStream> supplier, final Checksum checksum)
 specifier|public
 specifier|static
 name|long
@@ -3180,8 +3204,7 @@ throw|;
 block|}
 block|}
 return|return
-operator|new
-name|LimitInputStream
+name|limit
 argument_list|(
 name|in
 argument_list|,
