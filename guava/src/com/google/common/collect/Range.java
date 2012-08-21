@@ -33,22 +33,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Ranges
-operator|.
-name|create
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -150,6 +134,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|NoSuchElementException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -175,7 +169,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range (or "interval") defines the<i>boundaries</i> around a contiguous span of values of some  * {@code Comparable} type; for example, "integers from 1 to 100 inclusive." Note that it is not  * possible to<i>iterate</i> over these contained values unless an appropriate {@link  * DiscreteDomain} can be provided to the {@link #asSet asSet} method.  *  *<h3>Types of ranges</h3>  *  *<p>Each end of the range may be bounded or unbounded. If bounded, there is an associated  *<i>endpoint</i> value, and the range is considered to be either<i>open</i> (does not include the  * endpoint) or<i>closed</i> (includes the endpoint) on that side. With three possibilities on each  * side, this yields nine basic types of ranges, enumerated below. (Notation: a square bracket  * ({@code [ ]}) indicates that the range is closed on that side; a parenthesis ({@code ( )}) means  * it is either open or unbounded. The construct {@code {x | statement}} is read "the set of all  *<i>x</i> such that<i>statement</i>.")  *  *<blockquote><table>  *<tr><td><b>Notation</b><td><b>Definition</b><td><b>Factory method</b>  *<tr><td>{@code (a..b)}<td>{@code {x | a< x< b}}<td>{@link Ranges#open open}  *<tr><td>{@code [a..b]}<td>{@code {x | a<= x<= b}}<td>{@link Ranges#closed closed}  *<tr><td>{@code (a..b]}<td>{@code {x | a< x<= b}}<td>{@link Ranges#openClosed openClosed}  *<tr><td>{@code [a..b)}<td>{@code {x | a<= x< b}}<td>{@link Ranges#closedOpen closedOpen}  *<tr><td>{@code (a..+â)}<td>{@code {x | x> a}}<td>{@link Ranges#greaterThan greaterThan}  *<tr><td>{@code [a..+â)}<td>{@code {x | x>= a}}<td>{@link Ranges#atLeast atLeast}  *<tr><td>{@code (-â..b)}<td>{@code {x | x< b}}<td>{@link Ranges#lessThan lessThan}  *<tr><td>{@code (-â..b]}<td>{@code {x | x<= b}}<td>{@link Ranges#atMost atMost}  *<tr><td>{@code (-â..+â)}<td>{@code {x}}<td>{@link Ranges#all all}  *</table></blockquote>  *  *<p>When both endpoints exist, the upper endpoint may not be less than the lower. The endpoints  * may be equal only if at least one of the bounds is closed:  *  *<ul>  *<li>{@code [a..a]} : a singleton range  *<li>{@code [a..a); (a..a]} : {@linkplain #isEmpty empty} ranges; also valid  *<li>{@code (a..a)} :<b>invalid</b>; an exception will be thrown  *</ul>  *  *<h3>Warnings</h3>  *  *<ul>  *<li>Use immutable value types only, if at all possible. If you must use a mutable type,<b>do  *     not</b> allow the endpoint instances to mutate after the range is created!  *<li>Your value type's comparison method should be {@linkplain Comparable consistent with equals}  *     if at all possible. Otherwise, be aware that concepts used throughout this documentation such  *     as "equal", "same", "unique" and so on actually refer to whether {@link Comparable#compareTo  *     compareTo} returns zero, not whether {@link Object#equals equals} returns {@code true}.  *<li>A class which implements {@code Comparable<UnrelatedType>} is very broken, and will cause  *     undefined horrible things to happen in {@code Range}. For now, the Range API does not prevent  *     its use, because this would also rule out all ungenerified (pre-JDK1.5) data types.<b>This  *     may change in the future.</b>  *</ul>  *  *<h3>Other notes</h3>  *  *<ul>  *<li>Instances of this type are obtained using the static factory methods in the {@link Ranges}  *     class.  *<li>Ranges are<i>convex</i>: whenever two values are contained, all values in between them must  *     also be contained. More formally, for any {@code c1<= c2<= c3} of type {@code C}, {@code  *     r.contains(c1)&& r.contains(c3)} implies {@code r.contains(c2)}). This means that a {@code  *     Range<Integer>} can never be used to represent, say, "all<i>prime</i> numbers from 1 to  *     100."  *<li>When evaluated as a {@link Predicate}, a range yields the same result as invoking {@link  *     #contains}.  *<li>Terminology note: a range {@code a} is said to be the<i>maximal</i> range having property  *<i>P</i> if, for all ranges {@code b} also having property<i>P</i>, {@code a.encloses(b)}.  *     Likewise, {@code a} is<i>minimal</i> when {@code b.encloses(a)} for all {@code b} having  *     property<i>P</i>. See, for example, the definition of {@link #intersection intersection}.  *</ul>  *  *<h3>Further reading</h3>  *  *<p>See the Guava User Guide article on  *<a href="http://code.google.com/p/guava-libraries/wiki/RangesExplained">{@code Range}</a>.  *  * @author Kevin Bourrillion  * @author Gregory Kick  * @since 10.0  */
+comment|/**  * A range (or "interval") defines the<i>boundaries</i> around a contiguous span of values of some  * {@code Comparable} type; for example, "integers from 1 to 100 inclusive." Note that it is not  * possible to<i>iterate</i> over these contained values unless an appropriate {@link  * DiscreteDomain} can be provided to the {@link #asSet asSet} method.  *  *<h3>Types of ranges</h3>  *  *<p>Each end of the range may be bounded or unbounded. If bounded, there is an associated  *<i>endpoint</i> value, and the range is considered to be either<i>open</i> (does not include the  * endpoint) or<i>closed</i> (includes the endpoint) on that side. With three possibilities on each  * side, this yields nine basic types of ranges, enumerated below. (Notation: a square bracket  * ({@code [ ]}) indicates that the range is closed on that side; a parenthesis ({@code ( )}) means  * it is either open or unbounded. The construct {@code {x | statement}} is read "the set of all  *<i>x</i> such that<i>statement</i>.")  *  *<blockquote><table>  *<tr><td><b>Notation</b><td><b>Definition</b><td><b>Factory method</b>  *<tr><td>{@code (a..b)}<td>{@code {x | a< x< b}}<td>{@link Range#open open}  *<tr><td>{@code [a..b]}<td>{@code {x | a<= x<= b}}<td>{@link Range#closed closed}  *<tr><td>{@code (a..b]}<td>{@code {x | a< x<= b}}<td>{@link Range#openClosed openClosed}  *<tr><td>{@code [a..b)}<td>{@code {x | a<= x< b}}<td>{@link Range#closedOpen closedOpen}  *<tr><td>{@code (a..+â)}<td>{@code {x | x> a}}<td>{@link Range#greaterThan greaterThan}  *<tr><td>{@code [a..+â)}<td>{@code {x | x>= a}}<td>{@link Range#atLeast atLeast}  *<tr><td>{@code (-â..b)}<td>{@code {x | x< b}}<td>{@link Range#lessThan lessThan}  *<tr><td>{@code (-â..b]}<td>{@code {x | x<= b}}<td>{@link Range#atMost atMost}  *<tr><td>{@code (-â..+â)}<td>{@code {x}}<td>{@link Range#all all}  *</table></blockquote>  *  *<p>When both endpoints exist, the upper endpoint may not be less than the lower. The endpoints  * may be equal only if at least one of the bounds is closed:  *  *<ul>  *<li>{@code [a..a]} : a singleton range  *<li>{@code [a..a); (a..a]} : {@linkplain #isEmpty empty} ranges; also valid  *<li>{@code (a..a)} :<b>invalid</b>; an exception will be thrown  *</ul>  *  *<h3>Warnings</h3>  *  *<ul>  *<li>Use immutable value types only, if at all possible. If you must use a mutable type,<b>do  *     not</b> allow the endpoint instances to mutate after the range is created!  *<li>Your value type's comparison method should be {@linkplain Comparable consistent with equals}  *     if at all possible. Otherwise, be aware that concepts used throughout this documentation such  *     as "equal", "same", "unique" and so on actually refer to whether {@link Comparable#compareTo  *     compareTo} returns zero, not whether {@link Object#equals equals} returns {@code true}.  *<li>A class which implements {@code Comparable<UnrelatedType>} is very broken, and will cause  *     undefined horrible things to happen in {@code Range}. For now, the Range API does not prevent  *     its use, because this would also rule out all ungenerified (pre-JDK1.5) data types.<b>This  *     may change in the future.</b>  *</ul>  *  *<h3>Other notes</h3>  *  *<ul>  *<li>Instances of this type are obtained using the static factory methods in this class.  *<li>Ranges are<i>convex</i>: whenever two values are contained, all values in between them must  *     also be contained. More formally, for any {@code c1<= c2<= c3} of type {@code C}, {@code  *     r.contains(c1)&& r.contains(c3)} implies {@code r.contains(c2)}). This means that a {@code  *     Range<Integer>} can never be used to represent, say, "all<i>prime</i> numbers from 1 to  *     100."  *<li>When evaluated as a {@link Predicate}, a range yields the same result as invoking {@link  *     #contains}.  *<li>Terminology note: a range {@code a} is said to be the<i>maximal</i> range having property  *<i>P</i> if, for all ranges {@code b} also having property<i>P</i>, {@code a.encloses(b)}.  *     Likewise, {@code a} is<i>minimal</i> when {@code b.encloses(a)} for all {@code b} having  *     property<i>P</i>. See, for example, the definition of {@link #intersection intersection}.  *</ul>  *  *<h3>Further reading</h3>  *  *<p>See the Guava User Guide article on  *<a href="http://code.google.com/p/guava-libraries/wiki/RangesExplained">{@code Range}</a>.  *  * @author Kevin Bourrillion  * @author Gregory Kick  * @since 10.0  */
 end_comment
 
 begin_class
@@ -248,7 +242,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than<i>or    *     equal to</i> {@code upper}    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than<i>or    *     equal to</i> {@code upper}    * @since 14.0    */
 DECL|method|open (C lower, C upper)
 specifier|public
 specifier|static
@@ -292,7 +286,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    */
+comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
 DECL|method|closed (C lower, C upper)
 specifier|public
 specifier|static
@@ -336,7 +330,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    */
+comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
 DECL|method|closedOpen ( C lower, C upper)
 specifier|public
 specifier|static
@@ -380,7 +374,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
 DECL|method|openClosed ( C lower, C upper)
 specifier|public
 specifier|static
@@ -424,7 +418,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains any value from {@code lower} to {@code    * upper}, where each endpoint may be either inclusive (closed) or exclusive    * (open).    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    */
+comment|/**    * Returns a range that contains any value from {@code lower} to {@code    * upper}, where each endpoint may be either inclusive (closed) or exclusive    * (open).    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
 DECL|method|range ( C lower, BoundType lowerType, C upper, BoundType upperType)
 specifier|public
 specifier|static
@@ -530,7 +524,7 @@ name|upperBound
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values strictly less than {@code    * endpoint}.    */
+comment|/**    * Returns a range that contains all values strictly less than {@code    * endpoint}.    *    * @since 14.0    */
 DECL|method|lessThan (C endpoint)
 specifier|public
 specifier|static
@@ -572,7 +566,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values less than or equal to    * {@code endpoint}.    */
+comment|/**    * Returns a range that contains all values less than or equal to    * {@code endpoint}.    *    * @since 14.0    */
 DECL|method|atMost (C endpoint)
 specifier|public
 specifier|static
@@ -614,7 +608,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be    * either inclusive (closed) or exclusive (open).    */
+comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be    * either inclusive (closed) or exclusive (open).    *    * @since 14.0    */
 DECL|method|upTo ( C endpoint, BoundType boundType)
 specifier|public
 specifier|static
@@ -670,7 +664,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/**    * Returns a range that contains all values strictly greater than {@code    * endpoint}.    */
+comment|/**    * Returns a range that contains all values strictly greater than {@code    * endpoint}.    *    * @since 14.0    */
 DECL|method|greaterThan (C endpoint)
 specifier|public
 specifier|static
@@ -712,7 +706,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that contains all values greater than or equal to    * {@code endpoint}.    */
+comment|/**    * Returns a range that contains all values greater than or equal to    * {@code endpoint}.    *    * @since 14.0    */
 DECL|method|atLeast (C endpoint)
 specifier|public
 specifier|static
@@ -754,7 +748,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range from the given endpoint, which may be either inclusive    * (closed) or exclusive (open), with no upper bound.    */
+comment|/**    * Returns a range from the given endpoint, which may be either inclusive    * (closed) or exclusive (open), with no upper bound.    *    * @since 14.0    */
 DECL|method|downTo ( C endpoint, BoundType boundType)
 specifier|public
 specifier|static
@@ -810,7 +804,7 @@ argument_list|()
 throw|;
 block|}
 block|}
-comment|/** Returns a range that contains every value of type {@code C}. */
+comment|/**    * Returns a range that contains every value of type {@code C}.    *    * @since 14.0    */
 DECL|method|all ()
 specifier|public
 specifier|static
@@ -850,7 +844,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a range that {@linkplain Range#contains(Comparable) contains} only    * the given value. The returned range is {@linkplain BoundType#CLOSED closed}    * on both ends.    */
+comment|/**    * Returns a range that {@linkplain Range#contains(Comparable) contains} only    * the given value. The returned range is {@linkplain BoundType#CLOSED closed}    * on both ends.    *    * @since 14.0    */
 DECL|method|singleton (C value)
 specifier|public
 specifier|static
@@ -881,7 +875,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the minimal range that    * {@linkplain Range#contains(Comparable) contains} all of the given values.    * The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i>    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    */
+comment|/**    * Returns the minimal range that    * {@linkplain Range#contains(Comparable) contains} all of the given values.    * The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i>    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    * @since 14.0    */
 DECL|method|encloseAll ( Iterable<C> values)
 specifier|public
 specifier|static
@@ -1368,7 +1362,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if the bounds of {@code other} do not extend outside the bounds of this    * range. Examples:    *    *<ul>    *<li>{@code [3..6]} encloses {@code [4..5]}    *<li>{@code (3..6)} encloses {@code (3..6)}    *<li>{@code [3..6]} encloses {@code [4..4)} (even though the latter is empty)    *<li>{@code (3..6]} does not enclose {@code [3..6]}    *<li>{@code [4..5]} does not enclose {@code (3..6)} (even though it contains every value    *     contained by the latter range)    *<li>{@code [3..6]} does not enclose {@code (1..1]} (even though it contains every value    *     contained by the latter range)    *</ul>    *    * Note that if {@code a.encloses(b)}, then {@code b.contains(v)} implies {@code a.contains(v)},    * but as the last two examples illustrate, the converse is not always true.    *    *<p>Being reflexive, antisymmetric and transitive, the {@code encloses} relation defines a    *<i>partial order</i> over ranges. There exists a unique {@linkplain Ranges#all maximal} range    * according to this relation, and also numerous {@linkplain #isEmpty minimal} ranges. Enclosure    * also implies {@linkplain #isConnected connectedness}.    */
+comment|/**    * Returns {@code true} if the bounds of {@code other} do not extend outside the bounds of this    * range. Examples:    *    *<ul>    *<li>{@code [3..6]} encloses {@code [4..5]}    *<li>{@code (3..6)} encloses {@code (3..6)}    *<li>{@code [3..6]} encloses {@code [4..4)} (even though the latter is empty)    *<li>{@code (3..6]} does not enclose {@code [3..6]}    *<li>{@code [4..5]} does not enclose {@code (3..6)} (even though it contains every value    *     contained by the latter range)    *<li>{@code [3..6]} does not enclose {@code (1..1]} (even though it contains every value    *     contained by the latter range)    *</ul>    *    * Note that if {@code a.encloses(b)}, then {@code b.contains(v)} implies {@code a.contains(v)},    * but as the last two examples illustrate, the converse is not always true.    *    *<p>Being reflexive, antisymmetric and transitive, the {@code encloses} relation defines a    *<i>partial order</i> over ranges. There exists a unique {@linkplain Range#all maximal} range    * according to this relation, and also numerous {@linkplain #isEmpty minimal} ranges. Enclosure    * also implies {@linkplain #isConnected connectedness}.    */
 DECL|method|encloses (Range<C> other)
 specifier|public
 name|boolean
@@ -1442,7 +1436,7 @@ operator|<=
 literal|0
 return|;
 block|}
-comment|/**    * Returns the maximal range {@linkplain #encloses enclosed} by both this range and {@code    * connectedRange}, if such a range exists.    *    *<p>For example, the intersection of {@code [1..5]} and {@code (3..7)} is {@code (3..5]}. The    * resulting range may be empty; for example, {@code [1..5)} intersected with {@code [5..7)}    * yields the empty range {@code [5..5)}.    *    *<p>The intersection exists if and only if the two ranges are {@linkplain #isConnected    * connected}.    *    *<p>The intersection operation is commutative, associative and idempotent, and its identity    * element is {@link Ranges#all}).    *    * @throws IllegalArgumentException if {@code isConnected(connectedRange)} is {@code false}    */
+comment|/**    * Returns the maximal range {@linkplain #encloses enclosed} by both this range and {@code    * connectedRange}, if such a range exists.    *    *<p>For example, the intersection of {@code [1..5]} and {@code (3..7)} is {@code (3..5]}. The    * resulting range may be empty; for example, {@code [1..5)} intersected with {@code [5..7)}    * yields the empty range {@code [5..5)}.    *    *<p>The intersection exists if and only if the two ranges are {@linkplain #isConnected    * connected}.    *    *<p>The intersection operation is commutative, associative and idempotent, and its identity    * element is {@link Range#all}).    *    * @throws IllegalArgumentException if {@code isConnected(connectedRange)} is {@code false}    */
 DECL|method|intersection (Range<C> connectedRange)
 specifier|public
 name|Range
@@ -1572,7 +1566,7 @@ name|newUpper
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link ContiguousSet} containing the same values in the given domain    * {@linkplain Range#contains contained} by this range.    *    *<p><b>Note:</b> {@code a.asSet(d).equals(b.asSet(d))} does not imply {@code a.equals(b)}! For    * example, {@code a} and {@code b} could be {@code [2..4]} and {@code (1..5)}, or the empty    * ranges {@code [3..3)} and {@code [4..4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet} view of a large    * range (such as {@code Ranges.greaterThan(0)}). Certain operations on such a set can be    * performed efficiently, but others (such as {@link Set#hashCode} or {@link    * Collections#frequency}) can cause major performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand form of the set's    * contents, such as {@code "[1..100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a lower bound, or if    *     neither has an upper bound    */
+comment|/**    * Returns an {@link ContiguousSet} containing the same values in the given domain    * {@linkplain Range#contains contained} by this range.    *    *<p><b>Note:</b> {@code a.asSet(d).equals(b.asSet(d))} does not imply {@code a.equals(b)}! For    * example, {@code a} and {@code b} could be {@code [2..4]} and {@code (1..5)}, or the empty    * ranges {@code [3..3)} and {@code [4..4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet} view of a large    * range (such as {@code Range.greaterThan(0)}). Certain operations on such a set can be    * performed efficiently, but others (such as {@link Set#hashCode} or {@link    * Collections#frequency}) can cause major performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand form of the set's    * contents, such as {@code "[1..100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a lower bound, or if    *     neither has an upper bound    */
 comment|// TODO(kevinb): commit in spec to which methods are efficient?
 annotation|@
 name|GwtCompatible

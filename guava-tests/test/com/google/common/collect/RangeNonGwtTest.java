@@ -102,7 +102,7 @@ name|tester
 operator|.
 name|testAllPublicStaticMethods
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|class
 argument_list|)
@@ -111,7 +111,7 @@ name|tester
 operator|.
 name|testAllPublicInstanceMethods
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|all
 argument_list|()
@@ -121,7 +121,7 @@ name|tester
 operator|.
 name|testAllPublicInstanceMethods
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(

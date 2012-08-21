@@ -282,20 +282,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Ranges
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|Sets
 import|;
 end_import
@@ -1944,7 +1930,7 @@ condition|)
 block|{
 comment|/*          * The (tooLow + 1, tooHigh) arguments below would be invalid because tooLow would be          * greater than tooHigh.          */
 return|return
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2115,7 +2101,7 @@ name|isEmpty
 argument_list|()
 operator|)
 condition|?
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2124,7 +2110,7 @@ argument_list|,
 literal|0
 argument_list|)
 else|:
-name|Ranges
+name|Range
 operator|.
 name|encloseAll
 argument_list|(

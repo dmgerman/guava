@@ -118,7 +118,7 @@ name|builder
 operator|.
 name|add
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -158,7 +158,7 @@ name|builder
 operator|.
 name|add
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|upTo
 argument_list|(
@@ -172,7 +172,7 @@ name|builder
 operator|.
 name|add
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|downTo
 argument_list|(
@@ -258,7 +258,7 @@ name|builder
 operator|.
 name|add
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|range
 argument_list|(

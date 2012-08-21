@@ -258,7 +258,7 @@ block|{
 return|return
 name|intersectionInCurrentDomain
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|upTo
 argument_list|(
@@ -329,7 +329,7 @@ block|}
 return|return
 name|intersectionInCurrentDomain
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|range
 argument_list|(
@@ -373,7 +373,7 @@ block|{
 return|return
 name|intersectionInCurrentDomain
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|downTo
 argument_list|(
@@ -855,7 +855,7 @@ operator|<
 literal|0
 operator|)
 condition|?
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -918,7 +918,7 @@ name|upperBoundType
 parameter_list|)
 block|{
 return|return
-name|Ranges
+name|Range
 operator|.
 name|create
 argument_list|(

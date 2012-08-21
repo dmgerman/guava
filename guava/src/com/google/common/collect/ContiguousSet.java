@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}.  *  *<p><b>Warning:</b> Be extremely careful what you do with conceptually large instances (such as  * {@code ContiguousSet.create(Ranges.greaterThan(0), DiscreteDomains.integers()}). Certain  * operations on such a set can be performed efficiently, but others (such as {@link Set#hashCode}  * or {@link Collections#frequency}) can cause major performance problems.  *  * @author Gregory Kick  * @since 10.0  */
+comment|/**  * A sorted set of contiguous values in a given {@link DiscreteDomain}.  *  *<p><b>Warning:</b> Be extremely careful what you do with conceptually large instances (such as  * {@code ContiguousSet.create(Range.greaterThan(0), DiscreteDomains.integers()}). Certain  * operations on such a set can be performed efficiently, but others (such as {@link Set#hashCode}  * or {@link Collections#frequency}) can cause major performance problems.  *  * @author Gregory Kick  * @since 10.0  */
 end_comment
 
 begin_class
@@ -219,7 +219,7 @@ name|effectiveRange
 operator|.
 name|intersection
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|atLeast
 argument_list|(
@@ -246,7 +246,7 @@ name|effectiveRange
 operator|.
 name|intersection
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|atMost
 argument_list|(

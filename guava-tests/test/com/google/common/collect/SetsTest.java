@@ -5136,7 +5136,7 @@ name|Integer
 argument_list|>
 name|set
 init|=
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(

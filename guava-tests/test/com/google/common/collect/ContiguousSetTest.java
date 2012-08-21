@@ -576,7 +576,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -593,7 +593,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -610,7 +610,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -627,7 +627,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -644,7 +644,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -660,7 +660,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -676,7 +676,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -692,7 +692,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -726,7 +726,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -747,7 +747,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -766,7 +766,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -787,7 +787,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|atLeast
 argument_list|(
@@ -807,7 +807,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -828,7 +828,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|atMost
 argument_list|(
@@ -864,7 +864,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -899,7 +899,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -935,7 +935,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -990,7 +990,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1224,7 +1224,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1263,7 +1263,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1453,7 +1453,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1492,7 +1492,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1805,7 +1805,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1854,7 +1854,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1893,7 +1893,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1933,7 +1933,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -1961,7 +1961,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -1991,7 +1991,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -2025,7 +2025,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2053,7 +2053,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2083,7 +2083,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -2119,7 +2119,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2188,7 +2188,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2278,7 +2278,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2399,7 +2399,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2412,7 +2412,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2431,7 +2431,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2444,7 +2444,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2463,7 +2463,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2476,7 +2476,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2495,7 +2495,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2508,7 +2508,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2527,7 +2527,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2540,7 +2540,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2563,7 +2563,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2576,7 +2576,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2599,7 +2599,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2612,7 +2612,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2635,7 +2635,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2648,7 +2648,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2671,7 +2671,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2684,7 +2684,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2707,7 +2707,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2720,7 +2720,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2743,7 +2743,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2756,7 +2756,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2779,7 +2779,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2792,7 +2792,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2815,7 +2815,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2828,7 +2828,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2851,7 +2851,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2864,7 +2864,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2887,7 +2887,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2900,7 +2900,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -2923,7 +2923,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -2936,7 +2936,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|openClosed
 argument_list|(
@@ -2958,15 +2958,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testRange_unboundedRanges ()
+DECL|method|testRange_unboundedRange ()
 specifier|public
 name|void
-name|testRange_unboundedRanges
+name|testRange_unboundedRange
 parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -2983,7 +2983,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -3001,7 +3001,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|atLeast
 argument_list|(
@@ -3014,7 +3014,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -3036,7 +3036,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|all
 argument_list|()
@@ -3045,7 +3045,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -3067,7 +3067,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|atMost
 argument_list|(
@@ -3080,7 +3080,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 expr|<
 name|Integer
@@ -3117,7 +3117,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -3140,7 +3140,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closedOpen
 argument_list|(
@@ -3194,7 +3194,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -3215,7 +3215,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -3247,7 +3247,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|closed
 argument_list|(
@@ -3277,7 +3277,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(
@@ -3318,7 +3318,7 @@ name|ContiguousSet
 operator|.
 name|create
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|open
 argument_list|(

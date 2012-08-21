@@ -844,7 +844,7 @@ name|Integer
 argument_list|>
 name|range
 init|=
-name|Ranges
+name|Range
 operator|.
 name|range
 argument_list|(
@@ -1391,7 +1391,7 @@ name|GeneralRange
 operator|.
 name|from
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|all
 argument_list|()
@@ -1436,7 +1436,7 @@ name|GeneralRange
 operator|.
 name|from
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|upTo
 argument_list|(
@@ -1467,7 +1467,7 @@ name|GeneralRange
 operator|.
 name|from
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|downTo
 argument_list|(
@@ -1532,7 +1532,7 @@ name|GeneralRange
 operator|.
 name|from
 argument_list|(
-name|Ranges
+name|Range
 operator|.
 name|range
 argument_list|(
