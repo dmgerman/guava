@@ -3695,6 +3695,7 @@ return|;
 block|}
 DECL|method|fitsInLong (BigInteger big)
 specifier|private
+specifier|static
 name|boolean
 name|fitsInLong
 parameter_list|(
@@ -3729,17 +3730,6 @@ operator|new
 name|NullPointerTester
 argument_list|()
 decl_stmt|;
-name|tester
-operator|.
-name|setDefault
-argument_list|(
-name|RoundingMode
-operator|.
-name|class
-argument_list|,
-name|FLOOR
-argument_list|)
-expr_stmt|;
 name|tester
 operator|.
 name|setDefault

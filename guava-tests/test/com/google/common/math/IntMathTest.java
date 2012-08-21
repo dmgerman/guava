@@ -3271,6 +3271,7 @@ return|;
 block|}
 DECL|method|fitsInInt (BigInteger big)
 specifier|private
+specifier|static
 name|boolean
 name|fitsInInt
 parameter_list|(
@@ -3314,17 +3315,6 @@ operator|.
 name|class
 argument_list|,
 literal|1
-argument_list|)
-expr_stmt|;
-name|tester
-operator|.
-name|setDefault
-argument_list|(
-name|RoundingMode
-operator|.
-name|class
-argument_list|,
-name|FLOOR
 argument_list|)
 expr_stmt|;
 name|tester
