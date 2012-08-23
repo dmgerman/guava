@@ -538,7 +538,7 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.    *    * @param permits the number of permits to acquire    * @return {@code true} if the permits were acquired, {@code false} otherwise    */
+comment|/**    * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.    *    * @param permits the number of permits to acquire    * @return {@code true} if the permits were acquired, {@code false} otherwise    * @since 14.0    */
 DECL|method|tryAcquire (int permits)
 specifier|public
 name|boolean
@@ -561,7 +561,7 @@ name|MICROSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without    * delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(1)}.    *    * @return {@code true} if the permit was acquired, {@code false} otherwise    */
+comment|/**    * Acquires a permit from this {@link RateLimiter} if it can be acquired immediately without    * delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(1)}.    *    * @return {@code true} if the permit was acquired, {@code false} otherwise    * @since 14.0    */
 DECL|method|tryAcquire ()
 specifier|public
 name|boolean
