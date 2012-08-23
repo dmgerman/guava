@@ -98,6 +98,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|hash
 operator|.
 name|BloomFilterStrategies
@@ -142,6 +156,11 @@ parameter_list|<
 name|T
 parameter_list|>
 implements|implements
+name|Predicate
+argument_list|<
+name|T
+argument_list|>
+implements|,
 name|Serializable
 block|{
 comment|/**    * A strategy to translate T instances, to {@code numHashFunctions} bit indexes.    *    *<p>Implementations should be collections of pure functions (i.e. stateless).    */
@@ -374,6 +393,25 @@ argument_list|,
 name|numHashFunctions
 argument_list|,
 name|bits
+argument_list|)
+return|;
+block|}
+comment|/**    * Equivalent to {@link #mightContain}; provided only to satisfy the {@link Predicate} interface.    * When using a reference of type {@code BloomFilter}, always invoke {@link #mightContain}    * directly instead.    */
+DECL|method|apply (T input)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|apply
+parameter_list|(
+name|T
+name|input
+parameter_list|)
+block|{
+return|return
+name|mightContain
+argument_list|(
+name|input
 argument_list|)
 return|;
 block|}
