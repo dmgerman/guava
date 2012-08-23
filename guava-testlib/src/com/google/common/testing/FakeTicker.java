@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -85,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Ticker whose value can be advanced programmatically in test.  *<p>  * This class is thread-safe.  *  * @author Jige Yu  * @since 10.0  */
+comment|/**  * A Ticker whose value can be advanced programmatically in test.  *<p>  * The ticker can be configured so that the time is incremented whenever {@link #read} is called:  * see {@link #setAutoIncrementStep}.  *<p>  * This class is thread-safe.  *  * @author Jige Yu  * @since 10.0  */
 end_comment
 
 begin_class
@@ -109,6 +125,12 @@ init|=
 operator|new
 name|AtomicLong
 argument_list|()
+decl_stmt|;
+DECL|field|autoIncrementStepNanos
+specifier|private
+specifier|volatile
+name|long
+name|autoIncrementStepNanos
 decl_stmt|;
 comment|/** Advances the ticker value by {@code time} in {@code timeUnit}. */
 DECL|method|advance (long time, TimeUnit timeUnit)
@@ -156,6 +178,43 @@ return|return
 name|this
 return|;
 block|}
+comment|/**    * Sets the increment applied to the ticker whenever it is queried.    *    *<p>The default behavior is to auto increment by zero. i.e: The ticker is left unchanged when    * queried.    */
+DECL|method|setAutoIncrementStep (long autoIncrementStep, TimeUnit timeUnit)
+specifier|public
+name|FakeTicker
+name|setAutoIncrementStep
+parameter_list|(
+name|long
+name|autoIncrementStep
+parameter_list|,
+name|TimeUnit
+name|timeUnit
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|autoIncrementStep
+operator|>=
+literal|0
+argument_list|,
+literal|"May not auto-increment by a negative amount"
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|autoIncrementStepNanos
+operator|=
+name|timeUnit
+operator|.
+name|toNanos
+argument_list|(
+name|autoIncrementStep
+argument_list|)
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 DECL|method|read ()
 annotation|@
 name|Override
@@ -167,8 +226,10 @@ block|{
 return|return
 name|nanos
 operator|.
-name|get
-argument_list|()
+name|getAndAdd
+argument_list|(
+name|autoIncrementStepNanos
+argument_list|)
 return|;
 block|}
 block|}
