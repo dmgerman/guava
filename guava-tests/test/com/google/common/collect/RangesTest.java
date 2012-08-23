@@ -123,6 +123,12 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"deprecation"
+argument_list|)
+comment|// since Ranges is deprecated
 DECL|class|RangesTest
 specifier|public
 class|class
