@@ -6269,7 +6269,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|","
+literal|','
 argument_list|)
 operator|.
 name|split
@@ -6381,7 +6381,7 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-literal|";"
+literal|';'
 argument_list|)
 operator|.
 name|split
