@@ -354,7 +354,7 @@ name|NANOSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in milliseconds, with any fraction rounded down. This is identical to    * {@code elapsedTime(TimeUnit.MILLISECONDS}.    */
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in milliseconds, with any fraction rounded down. This is identical to    * {@code elapsedTime(TimeUnit.MILLISECONDS)}.    */
 DECL|method|elapsedMillis ()
 specifier|public
 name|long
