@@ -441,7 +441,7 @@ return|return
 name|classes
 return|;
 block|}
-comment|/** Returns all top level classes in the package identified by {@code packageName}. */
+comment|/** Returns all top level classes whose package name is {@code packageName}. */
 DECL|method|getClasses (String packageName)
 specifier|public
 name|ImmutableSet
@@ -509,27 +509,79 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/** Returns all top level classes in package {@code pkg}. */
-DECL|method|getClasses (Package pkg)
+comment|/**    * Returns all top level classes whose package name is {@code packageName} or starts with    * {@code packageName} followed by a '.'.    */
+DECL|method|getClassesRecursive (String packageName)
 specifier|public
 name|ImmutableSet
 argument_list|<
 name|ClassInfo
 argument_list|>
-name|getClasses
+name|getClassesRecursive
 parameter_list|(
-name|Package
-name|pkg
+name|String
+name|packageName
 parameter_list|)
 block|{
-return|return
-name|getClasses
+name|checkNotNull
 argument_list|(
-name|pkg
+name|packageName
+argument_list|)
+expr_stmt|;
+name|String
+name|packagePrefix
+init|=
+name|packageName
+operator|+
+literal|'.'
+decl_stmt|;
+name|ImmutableSet
+operator|.
+name|Builder
+argument_list|<
+name|ClassInfo
+argument_list|>
+name|builder
+init|=
+name|ImmutableSet
+operator|.
+name|builder
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|ClassInfo
+name|classInfo
+range|:
+name|classes
+control|)
+block|{
+if|if
+condition|(
+name|classInfo
 operator|.
 name|getName
 argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+name|packagePrefix
 argument_list|)
+condition|)
+block|{
+name|builder
+operator|.
+name|add
+argument_list|(
+name|classInfo
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|builder
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/** Represents a class that can be loaded through {@link #load}. */
@@ -1277,7 +1329,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according    * to<a href="http://docs.oracle.com/javase/1.4.2/docs/guide/jar/jar.html#Main%20Attributes"/>    * JAR File Specification</a>. If {@code manifest} is null, it means the jar file has no manifest,    * and an empty set will be returned.    */
+comment|/**    * Returns the class path URIs specified by the {@code Class-Path} manifest attribute, according    * to<a href="http://docs.oracle.com/javase/1.4.2/docs/guide/jar/jar.html#Main%20Attributes">    * JAR File Specification</a>. If {@code manifest} is null, it means the jar file has no manifest,    * and an empty set will be returned.    */
 DECL|method|getClassPathFromManifest ( File jarFile, @Nullable Manifest manifest)
 annotation|@
 name|VisibleForTesting
@@ -1406,7 +1458,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the absolute uri of the Class-Path entry value as specified in    *<a href="http://docs.oracle.com/javase/1.4.2/docs/guide/jar/jar.html#Main%20Attributes"/>    * JAR File Specification</a>. Even though the specification only talks about relative urls,    * absolute urls are actually supported too (for example, in Maven surefire plugin).    */
+comment|/**    * Returns the absolute uri of the Class-Path entry value as specified in    *<a href="http://docs.oracle.com/javase/1.4.2/docs/guide/jar/jar.html#Main%20Attributes">    * JAR File Specification</a>. Even though the specification only talks about relative urls,    * absolute urls are actually supported too (for example, in Maven surefire plugin).    */
 DECL|method|getClassPathEntry (File jarFile, String path)
 annotation|@
 name|VisibleForTesting
