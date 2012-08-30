@@ -541,7 +541,7 @@ argument_list|)
 operator|.
 name|named
 argument_list|(
-literal|"ImmutableMap.keySet"
+literal|"ImmutableMap"
 argument_list|)
 operator|.
 name|createTestSuite

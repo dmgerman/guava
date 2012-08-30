@@ -470,7 +470,7 @@ name|numHashFunctions
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Use {@link expectedFpp} instead.    */
+comment|/**    * @deprecated Use {@link #expectedFpp} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|expectedFalsePositiveProbability ()
