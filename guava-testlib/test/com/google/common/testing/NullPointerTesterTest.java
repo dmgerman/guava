@@ -693,9 +693,9 @@ argument_list|()
 operator|.
 name|testMethodParameter
 argument_list|(
+operator|new
 name|OneArg
-operator|.
-name|class
+argument_list|()
 argument_list|,
 name|method
 argument_list|,
@@ -764,9 +764,9 @@ argument_list|()
 operator|.
 name|testMethodParameter
 argument_list|(
+operator|new
 name|OneArg
-operator|.
-name|class
+argument_list|()
 argument_list|,
 name|method
 argument_list|,
