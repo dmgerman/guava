@@ -296,6 +296,14 @@ argument_list|(
 name|future
 operator|.
 name|wasInterrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|future
+operator|.
+name|interruptTaskWasCalled
 argument_list|)
 expr_stmt|;
 block|}
@@ -343,6 +351,14 @@ argument_list|(
 name|future
 operator|.
 name|wasInterrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|future
+operator|.
+name|interruptTaskWasCalled
 argument_list|)
 expr_stmt|;
 block|}
@@ -861,9 +877,9 @@ argument_list|<
 name|String
 argument_list|>
 block|{
-DECL|field|wasInterrupted
+DECL|field|interruptTaskWasCalled
 name|boolean
-name|wasInterrupted
+name|interruptTaskWasCalled
 decl_stmt|;
 DECL|method|interruptTask ()
 annotation|@
@@ -873,7 +889,7 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{
-name|wasInterrupted
+name|interruptTaskWasCalled
 operator|=
 literal|true
 expr_stmt|;

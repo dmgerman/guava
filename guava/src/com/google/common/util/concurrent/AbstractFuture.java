@@ -275,7 +275,9 @@ operator|!
 name|sync
 operator|.
 name|cancel
-argument_list|()
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
 condition|)
 block|{
 return|return
@@ -307,6 +309,21 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{   }
+comment|/**    * Returns true if this future was cancelled with {@code    * mayInterruptIfRunning} set to {@code true}.    *    * @since 14.0    */
+DECL|method|wasInterrupted ()
+specifier|protected
+specifier|final
+name|boolean
+name|wasInterrupted
+parameter_list|()
+block|{
+return|return
+name|sync
+operator|.
+name|wasInterrupted
+argument_list|()
+return|;
+block|}
 comment|/**    * {@inheritDoc}    *    * @since 10.0    */
 annotation|@
 name|Override
@@ -423,7 +440,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    *<p>Following the contract of {@link AbstractQueuedSynchronizer} we create a    * private subclass to hold the synchronizer.  This synchronizer is used to    * implement the blocking and waiting calls as well as to handle state changes    * in a thread-safe manner.  The current state of the future is held in the    * Sync state, and the lock is released whenever the state changes to either    * {@link #COMPLETED} or {@link #CANCELLED}.    *    *<p>To avoid races between threads doing release and acquire, we transition    * to the final state in two steps.  One thread will successfully CAS from    * RUNNING to COMPLETING, that thread will then set the result of the    * computation, and only then transition to COMPLETED or CANCELLED.    *    *<p>We don't use the integer argument passed between acquire methods so we    * pass around a -1 everywhere.    */
+comment|/**    *<p>Following the contract of {@link AbstractQueuedSynchronizer} we create a    * private subclass to hold the synchronizer.  This synchronizer is used to    * implement the blocking and waiting calls as well as to handle state changes    * in a thread-safe manner.  The current state of the future is held in the    * Sync state, and the lock is released whenever the state changes to    * {@link #COMPLETED}, {@link #CANCELLED}, or {@link #INTERRUPTED}    *    *<p>To avoid races between threads doing release and acquire, we transition    * to the final state in two steps.  One thread will successfully CAS from    * RUNNING to COMPLETING, that thread will then set the result of the    * computation, and only then transition to COMPLETED, CANCELLED, or    * INTERRUPTED.    *    *<p>We don't use the integer argument passed between acquire methods so we    * pass around a -1 everywhere.    */
 DECL|class|Sync
 specifier|static
 specifier|final
@@ -476,6 +493,14 @@ name|int
 name|CANCELLED
 init|=
 literal|4
+decl_stmt|;
+DECL|field|INTERRUPTED
+specifier|static
+specifier|final
+name|int
+name|INTERRUPTED
+init|=
+literal|8
 decl_stmt|;
 DECL|field|value
 specifier|private
@@ -651,6 +676,9 @@ block|}
 case|case
 name|CANCELLED
 case|:
+case|case
+name|INTERRUPTED
+case|:
 throw|throw
 name|cancellationExceptionWithCause
 argument_list|(
@@ -671,7 +699,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Checks if the state is {@link #COMPLETED} or {@link #CANCELLED}.      */
+comment|/**      * Checks if the state is {@link #COMPLETED}, {@link #CANCELLED}, or {@link      * INTERRUPTED}.      */
 DECL|method|isDone ()
 name|boolean
 name|isDone
@@ -686,23 +714,46 @@ operator|(
 name|COMPLETED
 operator||
 name|CANCELLED
+operator||
+name|INTERRUPTED
 operator|)
 operator|)
 operator|!=
 literal|0
 return|;
 block|}
-comment|/**      * Checks if the state is {@link #CANCELLED}.      */
+comment|/**      * Checks if the state is {@link #CANCELLED} or {@link #INTERRUPTED}.      */
 DECL|method|isCancelled ()
 name|boolean
 name|isCancelled
 parameter_list|()
 block|{
 return|return
+operator|(
+name|getState
+argument_list|()
+operator|&
+operator|(
+name|CANCELLED
+operator||
+name|INTERRUPTED
+operator|)
+operator|)
+operator|!=
+literal|0
+return|;
+block|}
+comment|/**      * Checks if the state is {@link #INTERRUPTED}.      */
+DECL|method|wasInterrupted ()
+name|boolean
+name|wasInterrupted
+parameter_list|()
+block|{
+return|return
 name|getState
 argument_list|()
 operator|==
-name|CANCELLED
+name|INTERRUPTED
 return|;
 block|}
 comment|/**      * Transition to the COMPLETED state and set the value.      */
@@ -747,11 +798,14 @@ name|COMPLETED
 argument_list|)
 return|;
 block|}
-comment|/**      * Transition to the CANCELLED state.      */
-DECL|method|cancel ()
+comment|/**      * Transition to the CANCELLED or INTERRUPTED state.      */
+DECL|method|cancel (boolean interrupt)
 name|boolean
 name|cancel
-parameter_list|()
+parameter_list|(
+name|boolean
+name|interrupt
+parameter_list|)
 block|{
 return|return
 name|complete
@@ -760,11 +814,15 @@ literal|null
 argument_list|,
 literal|null
 argument_list|,
+name|interrupt
+condition|?
+name|INTERRUPTED
+else|:
 name|CANCELLED
 argument_list|)
 return|;
 block|}
-comment|/**      * Implementation of completing a task.  Either {@code v} or {@code t} will      * be set but not both.  The {@code finalState} is the state to change to      * from {@link #RUNNING}.  If the state is not in the RUNNING state we      * return {@code false} after waiting for the state to be set to a valid      * final state ({@link #COMPLETED} or {@link #CANCELLED}).      *      * @param v the value to set as the result of the computation.      * @param t the exception to set as the result of the computation.      * @param finalState the state to transition to.      */
+comment|/**      * Implementation of completing a task.  Either {@code v} or {@code t} will      * be set but not both.  The {@code finalState} is the state to change to      * from {@link #RUNNING}.  If the state is not in the RUNNING state we      * return {@code false} after waiting for the state to be set to a valid      * final state ({@link #COMPLETED}, {@link #CANCELLED}, or {@link      * #INTERRUPTED}).      *      * @param v the value to set as the result of the computation.      * @param t the exception to set as the result of the computation.      * @param finalState the state to transition to.      */
 DECL|method|complete (@ullable V v, @Nullable Throwable t, int finalState)
 specifier|private
 name|boolean
