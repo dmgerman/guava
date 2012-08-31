@@ -325,9 +325,6 @@ decl_stmt|;
 name|ImmutableList
 argument_list|<
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 argument_list|>
 name|parameters
 init|=
@@ -640,9 +637,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -691,9 +688,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -736,9 +733,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -802,9 +799,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -826,9 +823,6 @@ decl_stmt|;
 name|ImmutableList
 argument_list|<
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 argument_list|>
 name|parameters
 init|=
@@ -963,9 +957,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -1052,7 +1046,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|Iterable
 argument_list|<
@@ -1171,7 +1165,7 @@ argument_list|)
 comment|// the purpose is to test raw type
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|Iterable
 argument_list|>
@@ -1280,7 +1274,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|Object
 argument_list|>
@@ -1340,9 +1334,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -1387,9 +1381,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -1446,9 +1440,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -1486,9 +1480,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -1506,9 +1500,6 @@ decl_stmt|;
 name|ImmutableList
 argument_list|<
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 argument_list|>
 name|parameters
 init|=
@@ -1596,9 +1587,9 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|Prepender
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|delegate
 init|=
@@ -1687,7 +1678,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|Prepender
 argument_list|,
 name|Iterable
 argument_list|<
@@ -1808,7 +1799,7 @@ argument_list|)
 comment|// the purpose is to test raw type
 name|Invokable
 argument_list|<
-name|Object
+name|Prepender
 argument_list|,
 name|Iterable
 argument_list|>
@@ -1919,7 +1910,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|Object
 argument_list|>
@@ -1975,7 +1966,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|?
 argument_list|>
@@ -2015,7 +2006,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|?
 argument_list|>
@@ -2063,7 +2054,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|?
 argument_list|>
@@ -2103,7 +2094,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|?
 argument_list|>
@@ -2212,7 +2203,7 @@ name|Exception
 block|{
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|?
 argument_list|>
@@ -2549,7 +2540,7 @@ DECL|method|method (String name, Class<?>... parameterTypes)
 specifier|static
 name|Invokable
 argument_list|<
-name|Object
+name|Prepender
 argument_list|,
 name|Object
 argument_list|>
@@ -2582,13 +2573,37 @@ argument_list|,
 name|parameterTypes
 argument_list|)
 decl_stmt|;
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// The method is from Prepender.
+name|Invokable
+argument_list|<
+name|Prepender
+argument_list|,
+name|Object
+argument_list|>
+name|invokable
+init|=
+operator|(
+name|Invokable
+argument_list|<
+name|Prepender
+argument_list|,
+name|Object
+argument_list|>
+operator|)
 name|Invokable
 operator|.
 name|from
 argument_list|(
 name|method
 argument_list|)
+decl_stmt|;
+return|return
+name|invokable
 return|;
 block|}
 catch|catch

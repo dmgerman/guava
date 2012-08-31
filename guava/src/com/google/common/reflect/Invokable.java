@@ -246,13 +246,13 @@ name|member
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns {@link Invokable} of {@code method}. Note that even though the returned type is    * {@code Invokable<Object, Object>}, it's not statically type safe to pass any arbitrary {@code    * Object} to the {@link #invoke} method. Runtime type check will be performed by the underlying    * {@code method}.    */
+comment|/** Returns {@link Invokable} of {@code method}. */
 DECL|method|from (Method method)
 specifier|public
 specifier|static
 name|Invokable
 argument_list|<
-name|Object
+name|?
 argument_list|,
 name|Object
 argument_list|>
@@ -400,9 +400,6 @@ specifier|final
 name|ImmutableList
 argument_list|<
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 argument_list|>
 name|getParameters
 parameter_list|()
@@ -427,9 +424,6 @@ operator|.
 name|Builder
 argument_list|<
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 argument_list|>
 name|builder
 init|=
@@ -461,9 +455,6 @@ name|add
 argument_list|(
 operator|new
 name|Parameter
-argument_list|<
-name|Object
-argument_list|>
 argument_list|(
 name|this
 argument_list|,
@@ -696,6 +687,41 @@ return|return
 name|specialized
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// The declaring class is T's raw class, or one of its supertypes.
+DECL|method|getDeclaringClass ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|Class
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|getDeclaringClass
+parameter_list|()
+block|{
+return|return
+operator|(
+name|Class
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+operator|)
+name|super
+operator|.
+name|getDeclaringClass
+argument_list|()
+return|;
+block|}
 DECL|method|invokeInternal (Object receiver, Object[] args)
 specifier|abstract
 name|Object
@@ -743,7 +769,6 @@ name|getGenericReturnType
 parameter_list|()
 function_decl|;
 DECL|class|MethodInvokable
-specifier|private
 specifier|static
 class|class
 name|MethodInvokable
@@ -786,6 +811,7 @@ block|}
 DECL|method|invokeInternal (Object receiver, Object[] args)
 annotation|@
 name|Override
+specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
@@ -859,6 +885,7 @@ block|}
 DECL|method|getParameterAnnotations ()
 annotation|@
 name|Override
+specifier|final
 name|Annotation
 index|[]
 index|[]
@@ -928,7 +955,6 @@ return|;
 block|}
 block|}
 DECL|class|ConstructorInvokable
-specifier|private
 specifier|static
 class|class
 name|ConstructorInvokable
@@ -977,6 +1003,7 @@ block|}
 DECL|method|invokeInternal (Object receiver, Object[] args)
 annotation|@
 name|Override
+specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
@@ -1065,6 +1092,7 @@ block|}
 DECL|method|getParameterAnnotations ()
 annotation|@
 name|Override
+specifier|final
 name|Annotation
 index|[]
 index|[]

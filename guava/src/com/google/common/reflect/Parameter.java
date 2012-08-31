@@ -104,9 +104,6 @@ specifier|public
 specifier|final
 class|class
 name|Parameter
-parameter_list|<
-name|T
-parameter_list|>
 implements|implements
 name|AnnotatedElement
 block|{
@@ -133,8 +130,6 @@ specifier|final
 name|TypeToken
 argument_list|<
 name|?
-extends|extends
-name|T
 argument_list|>
 name|type
 decl_stmt|;
@@ -147,7 +142,7 @@ name|Annotation
 argument_list|>
 name|annotations
 decl_stmt|;
-DECL|method|Parameter ( Invokable<?, ?> declaration, int position, TypeToken<? extends T> type, Annotation[] annotations)
+DECL|method|Parameter ( Invokable<?, ?> declaration, int position, TypeToken<?> type, Annotation[] annotations)
 name|Parameter
 parameter_list|(
 name|Invokable
@@ -164,8 +159,6 @@ parameter_list|,
 name|TypeToken
 argument_list|<
 name|?
-extends|extends
-name|T
 argument_list|>
 name|type
 parameter_list|,
@@ -210,8 +203,6 @@ specifier|public
 name|TypeToken
 argument_list|<
 name|?
-extends|extends
-name|T
 argument_list|>
 name|getType
 parameter_list|()
@@ -356,16 +347,10 @@ name|Parameter
 condition|)
 block|{
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 name|that
 init|=
 operator|(
 name|Parameter
-argument_list|<
-name|?
-argument_list|>
 operator|)
 name|obj
 decl_stmt|;

@@ -314,7 +314,6 @@ DECL|method|getDeclaringClass ()
 annotation|@
 name|Override
 specifier|public
-specifier|final
 name|Class
 argument_list|<
 name|?
