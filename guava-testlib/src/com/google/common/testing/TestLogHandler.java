@@ -84,6 +84,16 @@ name|LogRecord
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests may use this to intercept messages that are logged by the code under  * test.  Example:  *<pre>  *   TestLogHandler handler;  *  *   protected void setUp() throws Exception {  *     super.setUp();  *     handler = new TestLogHandler();  *     SomeClass.logger.addHandler(handler);  *     addTearDown(new TearDown() {  *       public void tearDown() throws Exception {  *         SomeClass.logger.removeHandler(handler);  *       }  *     });  *   }  *  *   public void test() {  *     SomeClass.foo();  *     LogRecord firstRecord = handler.getStoredLogRecords().get(0);  *     assertEquals("some message", firstRecord.getMessage());  *   }  *</pre>  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
@@ -123,11 +133,13 @@ decl_stmt|;
 comment|/**    * Adds the most recently logged record to our list.    */
 annotation|@
 name|Override
-DECL|method|publish (LogRecord record)
+DECL|method|publish (@ullable LogRecord record)
 specifier|public
 name|void
 name|publish
 parameter_list|(
+annotation|@
+name|Nullable
 name|LogRecord
 name|record
 parameter_list|)

@@ -86,6 +86,16 @@ name|TypeVariable
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Captures a free type variable that can be used in {@link TypeToken#where}.  * For example:<pre>   {@code  *  *   static<T> TypeToken<List<T>> listOf(Class<T> elementType) {  *     return new TypeToken<List<T>>() {}  *         .where(new TypeParameter<T>() {}, elementType);  *   }  * }</pre>  *  * @author Ben Yu  * @since 12.0  */
 end_comment
@@ -187,7 +197,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object o)
+DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
 specifier|public
@@ -195,6 +205,8 @@ specifier|final
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)

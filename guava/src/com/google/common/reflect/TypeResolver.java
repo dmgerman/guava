@@ -344,9 +344,15 @@ name|populateTypeMappings
 argument_list|(
 name|mappings
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|formal
+argument_list|)
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|actual
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -873,6 +879,11 @@ name|Type
 name|type
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|type
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|type

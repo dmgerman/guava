@@ -1040,6 +1040,10 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
+name|constructor
+operator|+
+literal|" failed."
+argument_list|,
 name|e
 argument_list|)
 throw|;

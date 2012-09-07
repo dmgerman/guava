@@ -34,6 +34,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
 name|junit
 operator|.
 name|framework
@@ -693,6 +709,11 @@ argument_list|>
 name|wrapperFunction
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|wrapperFunction
+argument_list|)
+expr_stmt|;
 name|checkArgument
 argument_list|(
 name|interfaceType
