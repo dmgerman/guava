@@ -56,6 +56,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Proxy
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -89,7 +101,7 @@ name|NO_ARGS
 init|=
 block|{}
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *     *<p>{@link Object#equals}, {@link Object#hashCode} are implemented according to referential    * equality (the default behavior of {@link Object}). {@link Object#toString} delegates to    * {@link #toString} that can be overridden by subclasses.    */
+comment|/**    * {@inheritDoc}    *    *<p><ul>    *<li>{@code proxy.hashCode()} delegates to {@link AbstractInvocationHandler#hashCode}    *<li>{@code proxy.toString()} delegates to {@link AbstractInvocationHandler#toString}    *<li>{@code proxy.equals(argument)} returns true if:<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and {@link AbstractInvocationHandler#equals} returns true for the {@link    *       InvocationHandler} of {@code argument}    *</ul>    *<li>other method calls are dispatched to {@link #handleInvocation}.    *</ul>    */
 DECL|method|invoke (Object proxy, Method method, @Nullable Object[] args)
 annotation|@
 name|Override
@@ -145,12 +157,8 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|System
-operator|.
-name|identityHashCode
-argument_list|(
-name|proxy
-argument_list|)
+name|hashCode
+argument_list|()
 return|;
 block|}
 if|if
@@ -184,13 +192,34 @@ operator|.
 name|class
 condition|)
 block|{
-return|return
-name|proxy
-operator|==
+name|Object
+name|arg
+init|=
 name|args
 index|[
 literal|0
 index|]
+decl_stmt|;
+return|return
+name|proxy
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|isInstance
+argument_list|(
+name|arg
+argument_list|)
+operator|&&
+name|equals
+argument_list|(
+name|Proxy
+operator|.
+name|getInvocationHandler
+argument_list|(
+name|arg
+argument_list|)
+argument_list|)
 return|;
 block|}
 if|if
@@ -248,7 +277,44 @@ parameter_list|)
 throws|throws
 name|Throwable
 function_decl|;
-comment|/**    * The dynamic proxies' {@link Object#toString} will delegate to this method. Subclasses can    * override this to provide custom string representation of the proxies.    */
+comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    * Subclasses can override this method to provide custom equality.    */
+DECL|method|equals (Object obj)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|obj
+parameter_list|)
+block|{
+return|return
+name|super
+operator|.
+name|equals
+argument_list|(
+name|obj
+argument_list|)
+return|;
+block|}
+comment|/**    * By default delegates to {@link Object#hashCode}. The dynamic proxies' {@code hashCode()} will    * delegate to this method. Subclasses can override this method to provide custom equality.    */
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+comment|/**    * By default delegates to {@link Object#toString}. The dynamic proxies' {@code toString()} will    * delegate to this method. Subclasses can override this method to provide custom string    * representation for the proxies.    */
 DECL|method|toString ()
 annotation|@
 name|Override
