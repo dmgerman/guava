@@ -211,6 +211,22 @@ return|return
 name|type
 return|;
 block|}
+comment|/** Returns the {@link Invokable} that declares this parameter. */
+DECL|method|getInvokable ()
+specifier|public
+name|Invokable
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|getInvokable
+parameter_list|()
+block|{
+return|return
+name|declaration
+return|;
+block|}
 DECL|method|isAnnotationPresent (Class<? extends Annotation> annotationType)
 annotation|@
 name|Override
