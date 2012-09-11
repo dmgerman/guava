@@ -1477,7 +1477,7 @@ return|return
 name|maxSoFar
 return|;
 block|}
-comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    *<p>The implementation requires that all elements of the underlying iterator    * fit into memory at once. If this is not possible, consider using a    * {@link java.util.PriorityQueue} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|leastOf (Iterable<E> iterable, int k)
@@ -1621,6 +1621,7 @@ name|k
 argument_list|)
 expr_stmt|;
 block|}
+comment|// We can't use ImmutableList since we want to support null elements.
 return|return
 name|Collections
 operator|.
@@ -1635,7 +1636,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    *<p>The implementation requires that all elements of the underlying iterator    * fit into memory at once. If this is not possible, consider using a    * {@link java.util.PriorityQueue} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|greatestOf (Iterable<E> iterable, int k)
