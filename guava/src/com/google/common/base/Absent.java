@@ -127,7 +127,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"value is absent"
+literal|"Optional.get() cannot be called on an absent value"
 argument_list|)
 throw|;
 block|}
@@ -147,7 +147,7 @@ name|checkNotNull
 argument_list|(
 name|defaultValue
 argument_list|,
-literal|"use orNull() instead of or(null)"
+literal|"use Optional.orNull() instead of Optional.or(null)"
 argument_list|)
 return|;
 block|}
@@ -206,7 +206,7 @@ operator|.
 name|get
 argument_list|()
 argument_list|,
-literal|"use orNull() instead of a Supplier that returns null"
+literal|"use Optional.orNull() instead of a Supplier that returns null"
 argument_list|)
 return|;
 block|}

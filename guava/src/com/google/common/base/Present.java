@@ -155,7 +155,7 @@ name|checkNotNull
 argument_list|(
 name|defaultValue
 argument_list|,
-literal|"use orNull() instead of or(null)"
+literal|"use Optional.orNull() instead of Optional.or(null)"
 argument_list|)
 expr_stmt|;
 return|return
@@ -287,7 +287,7 @@ argument_list|(
 name|reference
 argument_list|)
 argument_list|,
-literal|"Transformation function cannot return null."
+literal|"the Function passed to Optional.transform() must not return null."
 argument_list|)
 argument_list|)
 return|;
