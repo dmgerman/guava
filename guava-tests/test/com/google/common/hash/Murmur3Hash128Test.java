@@ -40,6 +40,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Charsets
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|hash
 operator|.
 name|Funnels
@@ -196,6 +210,34 @@ argument_list|,
 literal|0x43fee3eaa68e5c3eL
 argument_list|,
 literal|"The quick brown fox jumps over the lazy cog"
+argument_list|)
+expr_stmt|;
+comment|// Known output from Python smhasher
+name|HashCode
+name|foxHash
+init|=
+name|murmur3_128
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|hashString
+argument_list|(
+literal|"The quick brown fox jumps over the lazy dog"
+argument_list|,
+name|Charsets
+operator|.
+name|UTF_8
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"6c1b07bc7bbc4be347939ac4a93c437a"
+argument_list|,
+name|foxHash
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
