@@ -112,7 +112,35 @@ name|common
 operator|.
 name|collect
 operator|.
+name|ImmutableSortedSet
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|Maps
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Ordering
 import|;
 end_import
 
@@ -363,7 +391,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ImmutableSet
+name|ImmutableSortedSet
 operator|.
 name|Builder
 argument_list|<
@@ -371,10 +399,19 @@ name|ClassInfo
 argument_list|>
 name|builder
 init|=
-name|ImmutableSet
+operator|new
+name|ImmutableSortedSet
 operator|.
-name|builder
+name|Builder
+argument_list|<
+name|ClassInfo
+argument_list|>
+argument_list|(
+name|Ordering
+operator|.
+name|usingToString
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -428,13 +465,13 @@ argument_list|)
 return|;
 block|}
 comment|/** Returns all top level classes loadable from the current class path. */
-DECL|method|getClasses ()
+DECL|method|getTopLevelClasses ()
 specifier|public
 name|ImmutableSet
 argument_list|<
 name|ClassInfo
 argument_list|>
-name|getClasses
+name|getTopLevelClasses
 parameter_list|()
 block|{
 return|return
@@ -442,13 +479,13 @@ name|classes
 return|;
 block|}
 comment|/** Returns all top level classes whose package name is {@code packageName}. */
-DECL|method|getClasses (String packageName)
+DECL|method|getTopLevelClasses (String packageName)
 specifier|public
 name|ImmutableSet
 argument_list|<
 name|ClassInfo
 argument_list|>
-name|getClasses
+name|getTopLevelClasses
 parameter_list|(
 name|String
 name|packageName
@@ -510,13 +547,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns all top level classes whose package name is {@code packageName} or starts with    * {@code packageName} followed by a '.'.    */
-DECL|method|getClassesRecursive (String packageName)
+DECL|method|getTopLevelClassesRecursive (String packageName)
 specifier|public
 name|ImmutableSet
 argument_list|<
 name|ClassInfo
 argument_list|>
-name|getClassesRecursive
+name|getTopLevelClassesRecursive
 parameter_list|(
 name|String
 name|packageName

@@ -344,7 +344,7 @@ name|classInfo
 range|:
 name|classpath
 operator|.
-name|getClasses
+name|getTopLevelClasses
 argument_list|(
 name|ClassPathTest
 operator|.
@@ -542,7 +542,7 @@ name|classInfo
 range|:
 name|classpath
 operator|.
-name|getClassesRecursive
+name|getTopLevelClassesRecursive
 argument_list|(
 name|ClassPathTest
 operator|.
@@ -635,7 +635,7 @@ argument_list|(
 name|sub1
 argument_list|)
 operator|.
-name|getClasses
+name|getTopLevelClasses
 argument_list|()
 argument_list|,
 name|ClassPathTest
@@ -652,7 +652,7 @@ argument_list|(
 name|sub2
 argument_list|)
 operator|.
-name|getClasses
+name|getTopLevelClasses
 argument_list|()
 argument_list|,
 name|ClassPathTest

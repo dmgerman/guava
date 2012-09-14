@@ -2006,7 +2006,7 @@ name|getClassLoader
 argument_list|()
 argument_list|)
 operator|.
-name|getClasses
+name|getTopLevelClasses
 argument_list|(
 name|packageName
 argument_list|)
