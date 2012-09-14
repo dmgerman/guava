@@ -42,7 +42,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Function
+name|Predicate
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Predicate
+name|Supplier
 import|;
 end_import
 
@@ -909,6 +909,19 @@ argument_list|>
 block|{}
 end_interface
 
+begin_interface
+DECL|interface|IntegerSupplier
+specifier|private
+interface|interface
+name|IntegerSupplier
+extends|extends
+name|Supplier
+argument_list|<
+name|Integer
+argument_list|>
+block|{}
+end_interface
+
 begin_comment
 comment|// Intentionally duplicate the Predicate interface to test that it won't cause
 end_comment
@@ -923,12 +936,7 @@ specifier|private
 interface|interface
 name|IntegerStringFunction
 extends|extends
-name|Function
-argument_list|<
-name|Integer
-argument_list|,
-name|Boolean
-argument_list|>
+name|IntegerSupplier
 extends|,
 name|Predicate
 argument_list|<
@@ -953,7 +961,7 @@ comment|// test the 1st generic interface on the class
 name|Type
 name|fType
 init|=
-name|Function
+name|Supplier
 operator|.
 name|class
 operator|.
