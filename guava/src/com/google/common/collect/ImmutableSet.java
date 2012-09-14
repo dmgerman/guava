@@ -1882,25 +1882,18 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**      * Expand capacity to allow the specified number of elements to be added.      */
-DECL|method|expandFor (int count)
+comment|/**      * Expand the absolute capacity of the builder so it can accept at least      * the specified number of elements without being resized.      */
+DECL|method|ensureCapacity (int minCapacity)
 name|Builder
 argument_list|<
 name|E
 argument_list|>
-name|expandFor
+name|ensureCapacity
 parameter_list|(
 name|int
-name|count
+name|minCapacity
 parameter_list|)
 block|{
-name|int
-name|minCapacity
-init|=
-name|size
-operator|+
-name|count
-decl_stmt|;
 if|if
 condition|(
 name|contents
@@ -1948,8 +1941,10 @@ name|E
 name|element
 parameter_list|)
 block|{
-name|expandFor
+name|ensureCapacity
 argument_list|(
+name|size
+operator|+
 literal|1
 argument_list|)
 expr_stmt|;
@@ -2014,8 +2009,10 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|expandFor
+name|ensureCapacity
 argument_list|(
+name|size
+operator|+
 name|elements
 operator|.
 name|length
@@ -2089,8 +2086,10 @@ argument_list|>
 operator|)
 name|elements
 decl_stmt|;
-name|expandFor
+name|ensureCapacity
 argument_list|(
+name|size
+operator|+
 name|collection
 operator|.
 name|size
