@@ -240,20 +240,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Sets
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -4197,6 +4183,14 @@ argument_list|,
 literal|"Tried to set value from future which is not done"
 argument_list|)
 expr_stmt|;
+name|V
+name|returnValue
+init|=
+name|getUninterruptibly
+argument_list|(
+name|future
+argument_list|)
+decl_stmt|;
 name|localValues
 operator|.
 name|set
@@ -4207,10 +4201,7 @@ name|Optional
 operator|.
 name|fromNullable
 argument_list|(
-name|getUninterruptibly
-argument_list|(
-name|future
-argument_list|)
+name|returnValue
 argument_list|)
 argument_list|)
 expr_stmt|;
