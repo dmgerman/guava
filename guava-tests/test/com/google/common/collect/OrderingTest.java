@@ -5290,7 +5290,6 @@ operator|+
 literal|"requires at least 3 elements"
 argument_list|)
 expr_stmt|;
-comment|// shoot me, but I didn't want to deal with wildcards through the whole test
 name|List
 argument_list|<
 name|T
@@ -5318,6 +5317,7 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// shoot me, but I didn't want to deal with wildcards through the whole test
 annotation|@
 name|SuppressWarnings
 argument_list|(
