@@ -251,6 +251,18 @@ return|return
 name|INSTANCE
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"DiscreteDomains.integers()"
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -466,6 +478,18 @@ return|return
 name|INSTANCE
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"DiscreteDomains.longs()"
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -638,6 +662,18 @@ parameter_list|()
 block|{
 return|return
 name|INSTANCE
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"DiscreteDomains.bigIntegers()"
 return|;
 block|}
 DECL|field|serialVersionUID
