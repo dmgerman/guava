@@ -127,12 +127,6 @@ DECL|method|ImmutableMap ()
 name|ImmutableMap
 parameter_list|()
 block|{}
-comment|// Casting to any type is safe because the set will never hold any elements.
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
@@ -151,17 +145,10 @@ name|of
 parameter_list|()
 block|{
 return|return
-operator|(
-name|ImmutableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-operator|)
-name|EmptyImmutableMap
+name|ImmutableBiMap
 operator|.
-name|INSTANCE
+name|of
+argument_list|()
 return|;
 block|}
 DECL|method|of (K k1, V v1)

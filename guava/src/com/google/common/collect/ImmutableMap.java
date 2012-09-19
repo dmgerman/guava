@@ -175,12 +175,6 @@ implements|,
 name|Serializable
 block|{
 comment|/**    * Returns the empty map. This map behaves and performs comparably to    * {@link Collections#emptyMap}, and is preferable mainly for consistency    * and maintainability of your code.    */
-comment|// Casting to any type is safe because the set will never hold any elements.
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
@@ -199,17 +193,10 @@ name|of
 parameter_list|()
 block|{
 return|return
-operator|(
-name|ImmutableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-operator|)
-name|EmptyImmutableMap
+name|ImmutableBiMap
 operator|.
-name|INSTANCE
+name|of
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable map containing a single entry. This map behaves and    * performs comparably to {@link Collections#singletonMap} but will not accept    * a null key or value. It is preferable mainly for consistency and    * maintainability of your code.    */
