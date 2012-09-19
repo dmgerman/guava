@@ -128,7 +128,7 @@ extends|extends
 name|Comparable
 parameter_list|>
 extends|extends
-name|RangeSet
+name|AbstractRangeSet
 argument_list|<
 name|C
 argument_list|>
