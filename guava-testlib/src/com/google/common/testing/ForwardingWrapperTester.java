@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tester to ensure forwarding wrapper works by delegating calls to the corresponding method  * with the same parameters forwarded and return value forwarded back or exception propagated as is.  *  *<p>For example:<pre>   {@code  *   new ForwardingWrapperTester().testForwarding(Foo.class, new Function<Foo, Foo>() {  *     public Foo apply(Foo foo) {  *       return ForwardingFoo(foo);  *     }  *   });}</pre>  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Tester to ensure forwarding wrapper works by delegating calls to the corresponding method  * with the same parameters forwarded and return value forwarded back or exception propagated as is.  *  *<p>For example:<pre>   {@code  *   new ForwardingWrapperTester().testForwarding(Foo.class, new Function<Foo, Foo>() {  *     public Foo apply(Foo foo) {  *       return new ForwardingFoo(foo);  *     }  *   });}</pre>  *  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
