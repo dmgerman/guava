@@ -850,11 +850,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (T t)
+DECL|method|apply (@ullable T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1037,11 +1039,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (T t)
+DECL|method|apply (@ullable T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1248,11 +1252,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (T t)
+DECL|method|apply (@ullable T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1595,11 +1601,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (T t)
+DECL|method|apply (@ullable T t)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1807,11 +1815,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (A a)
+DECL|method|apply (@ullable A a)
 specifier|public
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|A
 name|a
 parameter_list|)

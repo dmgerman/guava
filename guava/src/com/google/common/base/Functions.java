@@ -249,11 +249,15 @@ name|INSTANCE
 block|;
 annotation|@
 name|Override
-DECL|method|apply (Object o)
+annotation|@
+name|Nullable
+DECL|method|apply (@ullable Object o)
 specifier|public
 name|Object
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)
@@ -368,11 +372,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (K key)
+DECL|method|apply (@ullable K key)
 specifier|public
 name|V
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -625,11 +631,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (K key)
+DECL|method|apply (@ullable K key)
 specifier|public
 name|V
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|)
@@ -921,11 +929,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (A a)
+DECL|method|apply (@ullable A a)
 specifier|public
 name|C
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|A
 name|a
 parameter_list|)
@@ -1148,11 +1158,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|apply (T t)
+DECL|method|apply (@ullable T t)
 specifier|public
 name|Boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|T
 name|t
 parameter_list|)

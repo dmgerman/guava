@@ -394,7 +394,7 @@ parameter_list|)
 block|{
 name|defaults
 operator|.
-name|put
+name|putInstance
 argument_list|(
 name|type
 argument_list|,

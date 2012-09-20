@@ -1175,6 +1175,11 @@ name|TypeResolver
 name|guardedResolver
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|guardedResolver
+argument_list|)
+expr_stmt|;
 name|Type
 name|type
 init|=

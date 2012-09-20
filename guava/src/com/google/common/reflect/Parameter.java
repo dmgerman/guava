@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -41,20 +57,6 @@ operator|.
 name|collect
 operator|.
 name|ImmutableList
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|reflect
-operator|.
-name|TypeToken
 import|;
 end_import
 
@@ -212,7 +214,7 @@ name|type
 return|;
 block|}
 comment|/** Returns the {@link Invokable} that declares this parameter. */
-DECL|method|getInvokable ()
+DECL|method|getDeclaringInvokable ()
 specifier|public
 name|Invokable
 argument_list|<
@@ -220,7 +222,7 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|getInvokable
+name|getDeclaringInvokable
 parameter_list|()
 block|{
 return|return
@@ -273,6 +275,11 @@ argument_list|>
 name|annotationType
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|annotationType
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Annotation
@@ -344,13 +351,15 @@ index|]
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object obj)
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|obj
 parameter_list|)

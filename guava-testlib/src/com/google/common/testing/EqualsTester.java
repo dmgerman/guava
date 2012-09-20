@@ -207,6 +207,19 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
+DECL|field|itemReporter
+specifier|private
+name|RelationshipTester
+operator|.
+name|ItemReporter
+name|itemReporter
+init|=
+operator|new
+name|RelationshipTester
+operator|.
+name|ItemReporter
+argument_list|()
+decl_stmt|;
 comment|/**    * Constructs an empty EqualsTester instance    */
 DECL|method|EqualsTester ()
 specifier|public
@@ -359,6 +372,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+argument_list|,
+name|itemReporter
 argument_list|)
 decl_stmt|;
 for|for
@@ -404,6 +419,29 @@ name|test
 argument_list|()
 expr_stmt|;
 block|}
+return|return
+name|this
+return|;
+block|}
+DECL|method|setItemReporter (RelationshipTester.ItemReporter reporter)
+name|EqualsTester
+name|setItemReporter
+parameter_list|(
+name|RelationshipTester
+operator|.
+name|ItemReporter
+name|reporter
+parameter_list|)
+block|{
+name|this
+operator|.
+name|itemReporter
+operator|=
+name|checkNotNull
+argument_list|(
+name|reporter
+argument_list|)
+expr_stmt|;
 return|return
 name|this
 return|;
