@@ -2005,7 +2005,7 @@ return|return
 name|storeIndex
 return|;
 block|}
-comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    *<p>The implementation requires that all elements of the underlying iterator    * fit into memory at once. If this is not possible, consider using a    * {@link java.util.PriorityQueue} instead.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
+comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
 annotation|@
 name|Beta
 DECL|method|greatestOf (Iterable<E> iterable, int k)
@@ -2040,6 +2040,44 @@ operator|.
 name|leastOf
 argument_list|(
 name|iterable
+argument_list|,
+name|k
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the {@code k} greatest elements from the given iterator according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
+annotation|@
+name|Beta
+DECL|method|greatestOf (Iterator<E> iterator, int k)
+specifier|public
+parameter_list|<
+name|E
+extends|extends
+name|T
+parameter_list|>
+name|List
+argument_list|<
+name|E
+argument_list|>
+name|greatestOf
+parameter_list|(
+name|Iterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|,
+name|int
+name|k
+parameter_list|)
+block|{
+return|return
+name|reverse
+argument_list|()
+operator|.
+name|leastOf
+argument_list|(
+name|iterator
 argument_list|,
 name|k
 argument_list|)
