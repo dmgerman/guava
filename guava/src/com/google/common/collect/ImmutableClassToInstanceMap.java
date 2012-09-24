@@ -40,6 +40,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class-to-instance map backed by an {@link ImmutableMap}. See also {@link  * MutableClassToInstanceMap}.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
@@ -476,7 +486,10 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// value could not get in if not a T
-DECL|method|getInstance (Class<T> type)
+annotation|@
+name|Nullable
+comment|// TODO: remove @Nullable on parameter and add checkNotNull()
+DECL|method|getInstance (@ullable Class<T> type)
 specifier|public
 parameter_list|<
 name|T
@@ -486,6 +499,8 @@ parameter_list|>
 name|T
 name|getInstance
 parameter_list|(
+annotation|@
+name|Nullable
 name|Class
 argument_list|<
 name|T

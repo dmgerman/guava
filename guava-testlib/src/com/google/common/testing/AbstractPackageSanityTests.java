@@ -176,6 +176,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|testing
+operator|.
+name|NullPointerTester
+operator|.
+name|Visibility
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -313,7 +329,11 @@ literal|"testNulls"
 argument_list|,
 literal|"testNull"
 argument_list|,
+literal|"testNullPointers"
+argument_list|,
 literal|"testNullPointer"
+argument_list|,
+literal|"testNullPointerExceptions"
 argument_list|,
 literal|"testNullPointerException"
 argument_list|)
@@ -429,6 +449,30 @@ operator|new
 name|ClassSanityTester
 argument_list|()
 decl_stmt|;
+DECL|field|visibility
+specifier|private
+name|Visibility
+name|visibility
+init|=
+name|Visibility
+operator|.
+name|PACKAGE
+decl_stmt|;
+comment|/**    * Restricts the sanity tests for public API only. By default, package-private API are also    * covered.    */
+DECL|method|publicApiOnly ()
+specifier|protected
+specifier|final
+name|void
+name|publicApiOnly
+parameter_list|()
+block|{
+name|visibility
+operator|=
+name|Visibility
+operator|.
+name|PUBLIC
+expr_stmt|;
+block|}
 comment|/**    * Tests all top-level public {@link Serializable} classes in the package. For a serializable    * Class {@code C}:    *<ul>    *<li>If {@code C} explicitly implements {@link Object#equals}, the deserialized instance will be    *     checked to be equal to the instance before serialization.    *<li>If {@code C} doesn't explicitly implement {@code equals} but instead inherits it from a    *     superclass, no equality check is done on the deserialized instance because it's not clear    *     whether the author intended for the class to be a value type.    *<li>If a constructor or factory method takes a parameter whose type is interface, a dynamic    *     proxy will be passed to the method. It's possible that the method body expects an instance    *     method of the passed-in proxy to be of a certain value yet the proxy isn't aware of the    *     assumption, in which case the equality check before and after serialization will fail.    *<li>If the constructor or factory method takes a parameter that {@link    *     AbstractPackageSanityTests} doesn't know how to construct, the test will fail.    *<li>If there is no public constructor or public static factory method declared by {@code C},    *     {@code C} is skipped for serialization test, even if it implements {@link Serializable}.    *<li>Serialization test is not performed on method return values unless the method is a public    *     static factory method whose return type is {@code C} or {@code C}'s subtype.    *</ul>    *    * In all cases, if {@code C} needs custom logic for testing serialization, you can add an    * explicit {@code testSerializable()} test in the corresponding {@code CTest} class, and {@code    * C} will be excluded from automated serialization test performed by this method.    */
 annotation|@
 name|Test
@@ -574,6 +618,8 @@ operator|.
 name|doTestNulls
 argument_list|(
 name|classToTest
+argument_list|,
+name|visibility
 argument_list|)
 expr_stmt|;
 block|}
@@ -779,7 +825,6 @@ comment|/**    * Finds the classes not ending with a test suffix and not covered
 DECL|method|findClassesToTest ( Iterable<? extends Class<?>> classes, Iterable<String> explicitTestNames)
 annotation|@
 name|VisibleForTesting
-specifier|static
 name|List
 argument_list|<
 name|Class
@@ -994,6 +1039,22 @@ range|:
 name|nonTestClasses
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|visibility
+operator|.
+name|isVisible
+argument_list|(
+name|cls
+operator|.
+name|getModifiers
+argument_list|()
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 for|for
 control|(
 name|Class

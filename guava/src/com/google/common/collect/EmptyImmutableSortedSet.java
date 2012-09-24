@@ -156,13 +156,15 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|contains (Object target)
+DECL|method|contains (@ullable Object target)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|target
 parameter_list|)

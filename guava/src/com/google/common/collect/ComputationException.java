@@ -30,6 +30,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Wraps an exception that occurred during a computation.  *  * @author Bob Lee  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
@@ -45,10 +55,12 @@ extends|extends
 name|RuntimeException
 block|{
 comment|/**    * Creates a new instance with the given cause.    */
-DECL|method|ComputationException (Throwable cause)
+DECL|method|ComputationException (@ullable Throwable cause)
 specifier|public
 name|ComputationException
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

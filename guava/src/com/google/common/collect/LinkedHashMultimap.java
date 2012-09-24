@@ -1107,7 +1107,7 @@ block|}
 comment|/**    * {@inheritDoc}    *    *<p>If {@code values} is not empty and the multimap already contains a    * mapping for {@code key}, the {@code keySet()} ordering is unchanged.    * However, the provided values always come last in the {@link #entries()} and    * {@link #values()} iteration orderings.    */
 annotation|@
 name|Override
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -1115,6 +1115,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,

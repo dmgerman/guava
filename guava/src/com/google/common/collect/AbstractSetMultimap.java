@@ -306,16 +306,20 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair    */
-DECL|method|put (K key, V value)
+DECL|method|put (@ullable K key, @Nullable V value)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|put
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)

@@ -402,13 +402,15 @@ name|inverse
 expr_stmt|;
 block|}
 comment|// Query Operations (optimizations)
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@ullable Object value)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -423,16 +425,20 @@ argument_list|)
 return|;
 block|}
 comment|// Modification Operations
-DECL|method|put (K key, V value)
+DECL|method|put (@ullable K key, @Nullable V value)
 annotation|@
 name|Override
 specifier|public
 name|V
 name|put
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -450,14 +456,18 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|forcePut (K key, V value)
+DECL|method|forcePut (@ullable K key, @Nullable V value)
 specifier|public
 name|V
 name|forcePut
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -629,13 +639,15 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|remove (Object key)
+DECL|method|remove (@ullable Object key)
 annotation|@
 name|Override
 specifier|public
 name|V
 name|remove
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)

@@ -226,11 +226,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsKey (Object key)
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)
@@ -247,11 +249,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|containsValue (Object value)
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|value
 parameter_list|)
@@ -268,11 +272,13 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|get (Object key)
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)

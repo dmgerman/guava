@@ -201,7 +201,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Stores a collection of values with the same key, replacing any existing    * values for that key. The returned collection is immutable.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given    * key, this method returns a {@link SortedSet}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
+DECL|method|replaceValues ( @ullable K key, Iterable<? extends V> values)
 annotation|@
 name|Override
 specifier|public
@@ -211,6 +211,8 @@ name|V
 argument_list|>
 name|replaceValues
 parameter_list|(
+annotation|@
+name|Nullable
 name|K
 name|key
 parameter_list|,

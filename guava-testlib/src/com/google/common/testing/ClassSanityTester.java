@@ -956,6 +956,10 @@ block|{
 name|doTestNulls
 argument_list|(
 name|cls
+argument_list|,
+name|Visibility
+operator|.
+name|PACKAGE
 argument_list|)
 expr_stmt|;
 block|}
@@ -975,7 +979,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|doTestNulls (Class<?> cls)
+DECL|method|doTestNulls (Class<?> cls, Visibility visibility)
 name|void
 name|doTestNulls
 parameter_list|(
@@ -984,6 +988,9 @@ argument_list|<
 name|?
 argument_list|>
 name|cls
+parameter_list|,
+name|Visibility
+name|visibility
 parameter_list|)
 throws|throws
 name|ParameterNotInstantiableException
@@ -1014,9 +1021,7 @@ name|testConstructors
 argument_list|(
 name|cls
 argument_list|,
-name|Visibility
-operator|.
-name|PACKAGE
+name|visibility
 argument_list|)
 expr_stmt|;
 block|}
@@ -1026,9 +1031,7 @@ name|testStaticMethods
 argument_list|(
 name|cls
 argument_list|,
-name|Visibility
-operator|.
-name|PACKAGE
+name|visibility
 argument_list|)
 expr_stmt|;
 name|Object
@@ -1052,9 +1055,7 @@ name|testInstanceMethods
 argument_list|(
 name|instance
 argument_list|,
-name|Visibility
-operator|.
-name|PACKAGE
+name|visibility
 argument_list|)
 expr_stmt|;
 block|}
@@ -3188,47 +3189,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|class|AbstractSerializableDummyProxy
-specifier|private
-specifier|static
-specifier|abstract
-class|class
-name|AbstractSerializableDummyProxy
-extends|extends
-name|DummyProxy
-implements|implements
-name|Serializable
-block|{
-DECL|method|equals (Object obj)
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|obj
-parameter_list|)
-block|{
-return|return
-name|obj
-operator|instanceof
-name|AbstractSerializableDummyProxy
-return|;
-block|}
-DECL|method|hashCode ()
-annotation|@
-name|Override
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-block|}
 DECL|class|SerializableDummyProxy
 specifier|private
 specifier|static
@@ -3236,7 +3196,9 @@ specifier|final
 class|class
 name|SerializableDummyProxy
 extends|extends
-name|AbstractSerializableDummyProxy
+name|DummyProxy
+implements|implements
+name|Serializable
 block|{
 DECL|field|tester
 specifier|private
@@ -3282,6 +3244,35 @@ name|getDummyValue
 argument_list|(
 name|returnType
 argument_list|)
+return|;
+block|}
+DECL|method|equals (Object obj)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|obj
+parameter_list|)
+block|{
+return|return
+name|obj
+operator|instanceof
+name|SerializableDummyProxy
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+literal|0
 return|;
 block|}
 block|}

@@ -620,13 +620,15 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|contains (Object object)
+DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -946,13 +948,15 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object object)
+DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
