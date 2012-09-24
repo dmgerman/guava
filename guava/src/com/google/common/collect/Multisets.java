@@ -2078,7 +2078,7 @@ literal|11
 return|;
 comment|// initial capacity will be rounded up to 16
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the union of two multisets.    * An element's count in the multiset is the greater of its counts in the two    * backing multisets. The iteration order of the returned multiset matches    * the element set of {@code multiset1} followed by the members of the    * element set of {@code multiset2} that are not contained in    * {@code multiset1}, with repeated occurrences of the same element    * appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+comment|/**    * Returns an unmodifiable view of the union of two multisets.    * In the returned multiset, the count of each element is the<i>maximum</i>    * of its counts in the two backing multisets. The iteration order of the    * returned multiset matches that of the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that are    * not contained in {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
 annotation|@
 name|Beta
 DECL|method|union ( final Multiset<? extends E> multiset1, final Multiset<? extends E> multiset2)
@@ -2445,7 +2445,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two multisets.    * An element's count in the multiset is the smaller of its counts in the two    * backing multisets. The iteration order of the returned multiset matches the    * element set of {@code multiset1}, with repeated occurrences of the same    * element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 2.0    */
+comment|/**    * Returns an unmodifiable view of the intersection of two multisets.    * In the returned multiset, the count of each element is the<i>minimum</i>    * of its counts in the two backing multisets, with elements that would have    * a count of 0 not included. The iteration order of the returned multiset    * matches that of the element set of {@code multiset1}, with repeated    * occurrences of the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 2.0    */
 DECL|method|intersection ( final Multiset<E> multiset1, final Multiset<?> multiset2)
 specifier|public
 specifier|static
@@ -2701,7 +2701,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the sum of two multisets.    * An element's count in the multiset is the element's count in the first    * multiset plus its count in the second multiset. The iteration order of    * the returned multiset matches the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that    * that are not contained in {@code multiset1}, with repeated occurrences of    * the same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+comment|/**    * Returns an unmodifiable view of the sum of two multisets.    * In the returned multiset, the count of each element is the<i>sum</i> of    * its counts in the two backing multisets. The iteration order of the    * returned multiset matches that of the element set of {@code multiset1}    * followed by the members of the element set of {@code multiset2} that that    * are not contained in {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
 annotation|@
 name|Beta
 DECL|method|sum ( final Multiset<? extends E> multiset1, final Multiset<? extends E> multiset2)
@@ -3079,7 +3079,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an unmodifiable<b>view</b> of the difference of two multisets.    * An element's count in the multiset is the element's count in the first    * multiset minus its count in the second multiset, or 0 if that count    * would be negative. The iteration order of the returned multiset matches    * the element set of {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
+comment|/**    * Returns an unmodifiable view of the difference of two multisets.    * In the returned multiset, the count of each element is the result of the    *<i>zero-truncated subtraction</i> of its count in the second multiset from    * its count in the first multiset, with elements that would have a count of    * 0 not included. The iteration order of the returned multiset matches that    * of the element set of {@code multiset1}, with repeated occurrences of the    * same element appearing consecutively.    *    *<p>Results are undefined if {@code multiset1} and {@code multiset2} are    * based on different equivalence relations (as {@code HashMultiset} and    * {@code TreeMultiset} are).    *    * @since 14.0    */
 annotation|@
 name|Beta
 DECL|method|difference ( final Multiset<E> multiset1, final Multiset<?> multiset2)
@@ -3370,12 +3370,6 @@ decl_stmt|;
 name|int
 name|count
 init|=
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|0
-argument_list|,
 name|entry1
 operator|.
 name|getCount
@@ -3386,7 +3380,6 @@ operator|.
 name|count
 argument_list|(
 name|element
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
