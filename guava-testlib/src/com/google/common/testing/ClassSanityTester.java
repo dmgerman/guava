@@ -808,6 +808,17 @@ argument_list|,
 literal|1D
 argument_list|)
 expr_stmt|;
+name|setDefault
+argument_list|(
+name|Class
+operator|.
+name|class
+argument_list|,
+name|Class
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**     * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality.    * To set sample instances for equality testing, use {@link #setSampleInstances} instead.    */
 DECL|method|setDefault (Class<T> type, T value)
@@ -983,6 +994,20 @@ name|InvocationTargetException
 throws|,
 name|FactoryMethodReturnsNullException
 block|{
+if|if
+condition|(
+operator|!
+name|Modifier
+operator|.
+name|isAbstract
+argument_list|(
+name|cls
+operator|.
+name|getModifiers
+argument_list|()
+argument_list|)
+condition|)
+block|{
 name|nullPointerTester
 operator|.
 name|testConstructors
@@ -994,6 +1019,7 @@ operator|.
 name|PACKAGE
 argument_list|)
 expr_stmt|;
+block|}
 name|nullPointerTester
 operator|.
 name|testStaticMethods
@@ -2426,9 +2452,6 @@ argument_list|(
 name|param
 operator|.
 name|getType
-argument_list|()
-operator|.
-name|getRawType
 argument_list|()
 argument_list|)
 decl_stmt|;

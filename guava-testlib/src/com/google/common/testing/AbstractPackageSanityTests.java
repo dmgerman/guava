@@ -736,7 +736,7 @@ name|format
 argument_list|(
 literal|"Error in automated %s of %s\n"
 operator|+
-literal|"If the class is better tested explicitly, please add %s() to %sTest"
+literal|"If the class is better tested explicitly, you can add %s() to %sTest"
 argument_list|,
 name|description
 argument_list|,
@@ -1234,6 +1234,8 @@ parameter_list|)
 block|{
 try|try
 block|{
+return|return
+operator|!
 name|cls
 operator|.
 name|getDeclaredMethod
@@ -1244,9 +1246,9 @@ name|Object
 operator|.
 name|class
 argument_list|)
-expr_stmt|;
-return|return
-literal|true
+operator|.
+name|isSynthetic
+argument_list|()
 return|;
 block|}
 catch|catch
