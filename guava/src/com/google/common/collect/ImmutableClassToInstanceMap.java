@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -488,8 +504,7 @@ argument_list|)
 comment|// value could not get in if not a T
 annotation|@
 name|Nullable
-comment|// TODO: remove @Nullable on parameter and add checkNotNull()
-DECL|method|getInstance (@ullable Class<T> type)
+DECL|method|getInstance (Class<T> type)
 specifier|public
 parameter_list|<
 name|T
@@ -499,8 +514,6 @@ parameter_list|>
 name|T
 name|getInstance
 parameter_list|(
-annotation|@
-name|Nullable
 name|Class
 argument_list|<
 name|T
@@ -516,7 +529,10 @@ name|delegate
 operator|.
 name|get
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|type
+argument_list|)
 argument_list|)
 return|;
 block|}
