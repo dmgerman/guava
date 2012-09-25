@@ -94,6 +94,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Strings
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -512,9 +526,13 @@ name|NO_PORT
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|Strings
+operator|.
+name|isNullOrEmpty
+argument_list|(
 name|portString
-operator|!=
-literal|null
+argument_list|)
 condition|)
 block|{
 comment|// Try to parse the whole port string as a number.
