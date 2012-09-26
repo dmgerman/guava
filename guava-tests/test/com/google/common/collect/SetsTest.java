@@ -4565,7 +4565,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|hasContentsInOrder
 argument_list|(
 name|list
 argument_list|(
@@ -4610,7 +4610,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|hasContentsInOrder
 argument_list|(
 name|list
 argument_list|(
@@ -4664,7 +4664,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|hasContentsInOrder
 argument_list|(
 name|list
 argument_list|(
@@ -4739,7 +4739,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|hasContentsInOrder
 argument_list|(
 name|list
 argument_list|(
@@ -5050,7 +5050,7 @@ name|y
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|hasContentsInOrder
 argument_list|(
 name|exp1
 argument_list|,

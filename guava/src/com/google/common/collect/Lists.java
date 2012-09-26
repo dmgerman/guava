@@ -1269,6 +1269,81 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given lists in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the lists. For example:<pre>   {@code    *    *   Lists.cartesianProduct(ImmutableList.of(    *       ImmutableList.of(1, 2),    *       ImmutableList.of("A", "B", "C")))}</pre>    *    * returns a list containing six lists in the following order:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    * The result is guaranteed to be be in the "traditional", lexicographical    * order for Cartesian products that you would get from nesting for loops:    *<pre>   {@code    *    *   for (B b0 : lists.get(0)) {    *     for (B b1 : lists.get(1)) {    *       ...    *       ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *       // operate on tuple    *     }    *   }}</pre>    *    * Note that if any input list is empty, the Cartesian product will also be    * empty. If no lists at all are provided (an empty list), the resulting    * Cartesian product has one element, an empty list (counter-intuitive, but    * mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of lists of size    * {@code m, n, p} is a list of size {@code m x n x p}, its actual memory    * consumption is much smaller. When the cartesian product is constructed, the    * input lists are merely copied. Only as the resulting list is iterated are    * the individual lists created, and these are not retained after iteration.    *    * @param lists the lists to choose elements from, in the order that    *     the elements chosen from those lists should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable list containing immutable    *     lists    * @throws IllegalArgumentException if the size of the cartesian product would    *     be greater than {@link Integer#MAX_VALUE}    * @throws NullPointerException if {@code lists}, any one of the {@code lists},    *     or any element of a provided list is null    */
+DECL|method|cartesianProduct ( List<? extends List<? extends B>> lists)
+specifier|static
+parameter_list|<
+name|B
+parameter_list|>
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|B
+argument_list|>
+argument_list|>
+name|cartesianProduct
+parameter_list|(
+name|List
+argument_list|<
+name|?
+extends|extends
+name|List
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+argument_list|>
+name|lists
+parameter_list|)
+block|{
+return|return
+name|CartesianList
+operator|.
+name|create
+argument_list|(
+name|lists
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given lists in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the lists. For example:<pre>   {@code    *    *   Lists.cartesianProduct(ImmutableList.of(    *       ImmutableList.of(1, 2),    *       ImmutableList.of("A", "B", "C")))}</pre>    *    * returns a list containing six lists in the following order:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    * The result is guaranteed to be be in the "traditional", lexicographical    * order for Cartesian products that you would get from nesting for loops:    *<pre>   {@code    *    *   for (B b0 : lists.get(0)) {    *     for (B b1 : lists.get(1)) {    *       ...    *       ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *       // operate on tuple    *     }    *   }}</pre>    *    * Note that if any input list is empty, the Cartesian product will also be    * empty. If no lists at all are provided (an empty list), the resulting    * Cartesian product has one element, an empty list (counter-intuitive, but    * mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of lists of size    * {@code m, n, p} is a list of size {@code m x n x p}, its actual memory    * consumption is much smaller. When the cartesian product is constructed, the    * input lists are merely copied. Only as the resulting list is iterated are    * the individual lists created, and these are not retained after iteration.    *    * @param lists the lists to choose elements from, in the order that    *     the elements chosen from those lists should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable list containing immutable    *     lists    * @throws IllegalArgumentException if the size of the cartesian product would    *     be greater than {@link Integer#MAX_VALUE}    * @throws NullPointerException if {@code lists}, any one of the    *     {@code lists}, or any element of a provided list is null    */
+DECL|method|cartesianProduct (List<? extends B>.... lists)
+specifier|static
+parameter_list|<
+name|B
+parameter_list|>
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|B
+argument_list|>
+argument_list|>
+name|cartesianProduct
+parameter_list|(
+name|List
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+modifier|...
+name|lists
+parameter_list|)
+block|{
+return|return
+name|cartesianProduct
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|lists
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a list that applies {@code function} to each element of {@code    * fromList}. The returned list is a transformed view of {@code fromList};    * changes to {@code fromList} will be reflected in the returned list and vice    * versa.    *    *<p>Since functions are not reversible, the transform is one-way and new    * items cannot be stored in the returned list. The {@code add},    * {@code addAll} and {@code set} methods are unsupported in the returned    * list.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned list to be a view, but it means that the function will be    * applied many times for bulk operations like {@link List#contains} and    * {@link List#hashCode}. For this to perform well, {@code function} should be    * fast. To avoid lazy evaluation when the returned list doesn't need to be a    * view, copy the returned list into a new list of your choosing.    *    *<p>If {@code fromList} implements {@link RandomAccess}, so will the    * returned list. The returned list is threadsafe if the supplied list and    * function are.    *    *<p>If only a {@code Collection} or {@code Iterable} input is available, use    * {@link Collections2#transform} or {@link Iterables#transform}.    *    *<p><b>Note:</b> serializing the returned list is implemented by serializing    * {@code fromList}, its contents, and {@code function} --<i>not</i> by    * serializing the transformed values. This can lead to surprising behavior,    * so serializing the returned list is<b>not recommended</b>. Instead,    * copy the list using {@link ImmutableList#copyOf(Collection)} (for example),    * then serialize the copy. Other methods similar to this do not implement    * serialization at all for this reason.    */
 DECL|method|transform ( List<F> fromList, Function<? super F, ? extends T> function)
 specifier|public
@@ -3920,6 +3995,13 @@ name|hashCode
 argument_list|()
 operator|)
 expr_stmt|;
+name|hashCode
+operator|=
+operator|~
+operator|~
+name|hashCode
+expr_stmt|;
+comment|// needed to deal with GWT integer overflow
 block|}
 return|return
 name|hashCode
