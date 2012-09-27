@@ -96,7 +96,6 @@ name|V
 argument_list|>
 block|{
 DECL|field|delegate
-specifier|private
 specifier|final
 specifier|transient
 name|Map
