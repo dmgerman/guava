@@ -1519,6 +1519,15 @@ comment|// primitives
 operator|.
 name|put
 argument_list|(
+name|Object
+operator|.
+name|class
+argument_list|,
+literal|""
+argument_list|)
+operator|.
+name|put
+argument_list|(
 name|Number
 operator|.
 name|class

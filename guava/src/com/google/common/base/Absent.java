@@ -103,6 +103,11 @@ operator|new
 name|Absent
 argument_list|()
 decl_stmt|;
+DECL|method|Absent ()
+specifier|private
+name|Absent
+parameter_list|()
+block|{}
 DECL|method|isPresent ()
 annotation|@
 name|Override
