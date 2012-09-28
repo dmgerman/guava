@@ -869,9 +869,6 @@ name|file
 argument_list|)
 argument_list|,
 name|charset
-operator|.
-name|name
-argument_list|()
 argument_list|)
 return|;
 block|}
