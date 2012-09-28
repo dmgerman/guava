@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GWt emulation of {@link ImmutableEnumMap}.  *  * @author Hayward Chan  */
+comment|/**  * GWT emulation of {@link ImmutableEnumMap}. The type parameter is not bounded  * by {@code Enum<E>} to avoid code-size bloat.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
@@ -37,11 +37,6 @@ class|class
 name|ImmutableEnumMap
 parameter_list|<
 name|K
-extends|extends
-name|Enum
-parameter_list|<
-name|K
-parameter_list|>
 parameter_list|,
 name|V
 parameter_list|>
