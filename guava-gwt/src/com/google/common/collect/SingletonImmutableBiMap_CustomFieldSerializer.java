@@ -87,16 +87,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link SingletonImmutableMap}.  *  * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of {@link SingletonImmutableBiMap}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
-DECL|class|SingletonImmutableMap_CustomFieldSerializer
+DECL|class|SingletonImmutableBiMap_CustomFieldSerializer
 specifier|public
 class|class
-name|SingletonImmutableMap_CustomFieldSerializer
+name|SingletonImmutableBiMap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, SingletonImmutableMap<?, ?> instance)
+DECL|method|deserialize (SerializationStreamReader reader, SingletonImmutableBiMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -105,7 +105,7 @@ parameter_list|(
 name|SerializationStreamReader
 name|reader
 parameter_list|,
-name|SingletonImmutableMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|?
 argument_list|,
@@ -117,7 +117,7 @@ block|{   }
 DECL|method|instantiate ( SerializationStreamReader reader)
 specifier|public
 specifier|static
-name|SingletonImmutableMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|Object
 argument_list|,
@@ -155,7 +155,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|SingletonImmutableMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|Object
 argument_list|,
@@ -168,7 +168,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, SingletonImmutableMap<?, ?> instance)
+DECL|method|serialize (SerializationStreamWriter writer, SingletonImmutableBiMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -177,7 +177,7 @@ parameter_list|(
 name|SerializationStreamWriter
 name|writer
 parameter_list|,
-name|SingletonImmutableMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|?
 argument_list|,

@@ -224,31 +224,13 @@ name|v1
 parameter_list|)
 block|{
 return|return
-operator|new
-name|SingletonImmutableMap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|(
-name|checkNotNull
+name|ImmutableBiMap
+operator|.
+name|of
 argument_list|(
 name|k1
 argument_list|,
-literal|"null key in entry: null=%s"
-argument_list|,
 name|v1
-argument_list|)
-argument_list|,
-name|checkNotNull
-argument_list|(
-name|v1
-argument_list|,
-literal|"null value in entry: %s=null"
-argument_list|,
-name|k1
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -962,7 +944,7 @@ literal|1
 case|:
 return|return
 operator|new
-name|SingletonImmutableMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|K
 argument_list|,
@@ -1153,7 +1135,7 @@ literal|1
 case|:
 return|return
 operator|new
-name|SingletonImmutableMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|K
 argument_list|,

@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -118,19 +134,20 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|RegularImmutableBiMap
+name|SingletonImmutableBiMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|ImmutableMap
-operator|.
-name|of
+name|checkNotNull
 argument_list|(
 name|k1
+argument_list|)
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|v1
 argument_list|)
 argument_list|)

@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -41,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Bimap with one or more mappings.  *   * @author Jared Levy  */
+comment|/**  * Bimap with two or more mappings.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -112,6 +128,16 @@ argument_list|>
 name|delegate
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|delegate
+operator|.
+name|size
+argument_list|()
+operator|>=
+literal|2
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|delegate
