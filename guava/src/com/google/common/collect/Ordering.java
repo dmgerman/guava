@@ -1923,6 +1923,13 @@ name|bufferCap
 operator|-
 literal|1
 decl_stmt|;
+name|int
+name|minThresholdPosition
+init|=
+literal|0
+decl_stmt|;
+comment|// The leftmost position at which the greatest of the k lower elements
+comment|// -- the new value of threshold -- might be found.
 while|while
 condition|(
 name|left
@@ -1992,6 +1999,10 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|minThresholdPosition
+operator|=
+name|pivotNewIndex
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -2006,7 +2017,7 @@ name|threshold
 operator|=
 name|buffer
 index|[
-literal|0
+name|minThresholdPosition
 index|]
 expr_stmt|;
 for|for
@@ -2014,6 +2025,8 @@ control|(
 name|int
 name|i
 init|=
+name|minThresholdPosition
+operator|+
 literal|1
 init|;
 name|i
