@@ -1208,10 +1208,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"too slow"
 argument_list|)
-DECL|method|testEqualsAndValueOf ()
+DECL|method|testEquals ()
 specifier|public
 name|void
-name|testEqualsAndValueOf
+name|testEquals
 parameter_list|()
 block|{
 name|EqualsTester
