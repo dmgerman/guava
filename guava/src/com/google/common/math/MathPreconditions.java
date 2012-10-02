@@ -17,22 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -56,6 +40,16 @@ name|BigInteger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A collection of preconditions for math functions.  *  * @author Louis Wasserman  */
 end_comment
@@ -68,11 +62,13 @@ specifier|final
 class|class
 name|MathPreconditions
 block|{
-DECL|method|checkPositive (String role, int x)
+DECL|method|checkPositive (@ullable String role, int x)
 specifier|static
 name|int
 name|checkPositive
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -105,11 +101,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkPositive (String role, long x)
+DECL|method|checkPositive (@ullable String role, long x)
 specifier|static
 name|long
 name|checkPositive
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -142,11 +140,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkPositive (String role, BigInteger x)
+DECL|method|checkPositive (@ullable String role, BigInteger x)
 specifier|static
 name|BigInteger
 name|checkPositive
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -182,11 +182,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (String role, int x)
+DECL|method|checkNonNegative (@ullable String role, int x)
 specifier|static
 name|int
 name|checkNonNegative
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -219,11 +221,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (String role, long x)
+DECL|method|checkNonNegative (@ullable String role, long x)
 specifier|static
 name|long
 name|checkNonNegative
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -256,11 +260,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (String role, BigInteger x)
+DECL|method|checkNonNegative (@ullable String role, BigInteger x)
 specifier|static
 name|BigInteger
 name|checkNonNegative
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -270,10 +276,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|checkNotNull
-argument_list|(
 name|x
-argument_list|)
 operator|.
 name|signum
 argument_list|()
@@ -299,11 +302,13 @@ return|return
 name|x
 return|;
 block|}
-DECL|method|checkNonNegative (String role, double x)
+DECL|method|checkNonNegative (@ullable String role, double x)
 specifier|static
 name|double
 name|checkNonNegative
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|role
 parameter_list|,
@@ -321,6 +326,7 @@ literal|0
 operator|)
 condition|)
 block|{
+comment|// not x< 0, to work with NaN.
 throw|throw
 operator|new
 name|IllegalArgumentException
