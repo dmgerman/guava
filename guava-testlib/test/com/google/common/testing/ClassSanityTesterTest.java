@@ -110,6 +110,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|testing
+operator|.
+name|NullPointerTester
+operator|.
+name|Visibility
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -403,10 +419,10 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|testNullsonReturnValues_good ()
+DECL|method|testNullsOnReturnValues_good ()
 specifier|public
 name|void
-name|testNullsonReturnValues_good
+name|testNullsOnReturnValues_good
 parameter_list|()
 throws|throws
 name|Exception
@@ -449,10 +465,10 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|testNullsonReturnValues_bad ()
+DECL|method|testNullsOnReturnValues_bad ()
 specifier|public
 name|void
-name|testNullsonReturnValues_bad
+name|testNullsOnReturnValues_bad
 parameter_list|()
 throws|throws
 name|Exception
@@ -1395,6 +1411,28 @@ argument_list|(
 name|GoodNulls
 operator|.
 name|class
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testNoNullCheckNeededDespitNotInstantiable ()
+specifier|public
+name|void
+name|testNoNullCheckNeededDespitNotInstantiable
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|tester
+operator|.
+name|doTestNulls
+argument_list|(
+name|NoNullCheckNeededDespitNotInstantiable
+operator|.
+name|class
+argument_list|,
+name|Visibility
+operator|.
+name|PACKAGE
 argument_list|)
 expr_stmt|;
 block|}
@@ -2871,6 +2909,82 @@ literal|"unused"
 argument_list|)
 name|String
 name|s
+parameter_list|)
+block|{}
+block|}
+DECL|class|NoNullCheckNeededDespitNotInstantiable
+specifier|public
+specifier|static
+class|class
+name|NoNullCheckNeededDespitNotInstantiable
+block|{
+DECL|method|NoNullCheckNeededDespitNotInstantiable (NotInstantiable x)
+specifier|public
+name|NoNullCheckNeededDespitNotInstantiable
+parameter_list|(
+name|NotInstantiable
+name|x
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|x
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// reflected
+DECL|method|primitiveOnly (int i)
+name|void
+name|primitiveOnly
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|//reflected
+DECL|method|nullableOnly (@ullable String s)
+name|void
+name|nullableOnly
+parameter_list|(
+annotation|@
+name|Nullable
+name|String
+name|s
+parameter_list|)
+block|{}
+DECL|method|noParameter ()
+specifier|public
+name|void
+name|noParameter
+parameter_list|()
+block|{}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|//reflected
+DECL|method|primitiveAndNullable (@ullable String s, int i)
+name|void
+name|primitiveAndNullable
+parameter_list|(
+annotation|@
+name|Nullable
+name|String
+name|s
+parameter_list|,
+name|int
+name|i
 parameter_list|)
 block|{}
 block|}

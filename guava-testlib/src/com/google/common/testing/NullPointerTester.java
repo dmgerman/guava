@@ -581,7 +581,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Runs {@link #testMethod} on every instance method of the class of    * {@code instance} with at least {@code minimalVisibility}, including those    * inherited from superclasses of the same package.    */
-DECL|method|testInstanceMethods ( Object instance, Visibility minimalVisibility)
+DECL|method|testInstanceMethods (Object instance, Visibility minimalVisibility)
 specifier|public
 name|void
 name|testInstanceMethods
@@ -593,15 +593,59 @@ name|Visibility
 name|minimalVisibility
 parameter_list|)
 block|{
+for|for
+control|(
+name|Method
+name|method
+range|:
+name|getInstanceMethodsToTest
+argument_list|(
+name|instance
+operator|.
+name|getClass
+argument_list|()
+argument_list|,
+name|minimalVisibility
+argument_list|)
+control|)
+block|{
+name|testMethod
+argument_list|(
+name|instance
+argument_list|,
+name|method
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|getInstanceMethodsToTest (Class<?> c, Visibility minimalVisibility)
+name|ImmutableList
+argument_list|<
+name|Method
+argument_list|>
+name|getInstanceMethodsToTest
+parameter_list|(
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|c
-init|=
-name|instance
+parameter_list|,
+name|Visibility
+name|minimalVisibility
+parameter_list|)
+block|{
+name|ImmutableList
 operator|.
-name|getClass
+name|Builder
+argument_list|<
+name|Method
+argument_list|>
+name|builder
+init|=
+name|ImmutableList
+operator|.
+name|builder
 argument_list|()
 decl_stmt|;
 for|for
@@ -626,15 +670,21 @@ name|method
 argument_list|)
 condition|)
 block|{
-name|testMethod
+name|builder
+operator|.
+name|add
 argument_list|(
-name|instance
-argument_list|,
 name|method
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+return|return
+name|builder
+operator|.
+name|build
+argument_list|()
+return|;
 block|}
 comment|/**    * Runs {@link #testMethod} on every public instance method of the class of    * {@code instance}, including those inherited from superclasses of the same    * package.    */
 DECL|method|testAllPublicInstanceMethods (Object instance)
@@ -810,12 +860,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Verifies that {@code ctor} produces a {@link NullPointerException} or    * {@link UnsupportedOperationException} when the parameter in position {@code    * paramIndex} is null.  If this parameter is marked {@link Nullable}, this    * method does nothing.    */
-DECL|method|testConstructorParameter ( final Constructor<?> ctor, int paramIndex)
+DECL|method|testConstructorParameter (Constructor<?> ctor, int paramIndex)
 specifier|public
 name|void
 name|testConstructorParameter
 parameter_list|(
-specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -2032,7 +2081,6 @@ return|;
 block|}
 block|}
 DECL|method|isPrimitiveOrNullable (Parameter param)
-specifier|private
 specifier|static
 name|boolean
 name|isPrimitiveOrNullable

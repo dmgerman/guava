@@ -384,6 +384,8 @@ argument_list|,
 literal|"testEqualsAndSerializable"
 argument_list|,
 literal|"testEqualsAndSerialization"
+argument_list|,
+literal|"testEquality"
 argument_list|)
 decl_stmt|;
 DECL|field|TEST_SUFFIX
