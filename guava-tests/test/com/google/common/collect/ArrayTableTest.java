@@ -54,6 +54,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -155,6 +169,13 @@ comment|/**  * Test cases for {@link ArrayTable}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|ArrayTableTest
 specifier|public
 class|class
@@ -1917,6 +1938,11 @@ name|table
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testNullPointerStatic ()
 specifier|public
 name|void
@@ -3092,6 +3118,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"ArrayTable.toArray(Class)"
+argument_list|)
 DECL|method|testToArray ()
 specifier|public
 name|void
