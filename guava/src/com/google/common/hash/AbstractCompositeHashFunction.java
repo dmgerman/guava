@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -54,6 +70,20 @@ modifier|...
 name|functions
 parameter_list|)
 block|{
+for|for
+control|(
+name|HashFunction
+name|function
+range|:
+name|functions
+control|)
+block|{
+name|checkNotNull
+argument_list|(
+name|function
+argument_list|)
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|functions

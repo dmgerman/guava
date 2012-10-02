@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -484,7 +500,10 @@ name|this
 operator|.
 name|bytes
 operator|=
+name|checkNotNull
+argument_list|(
 name|bytes
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|bits ()
