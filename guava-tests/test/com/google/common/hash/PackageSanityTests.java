@@ -99,6 +99,15 @@ argument_list|,
 literal|"MD5"
 argument_list|)
 expr_stmt|;
+name|setDefault
+argument_list|(
+name|int
+operator|.
+name|class
+argument_list|,
+literal|32
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

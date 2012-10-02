@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Charsets
+operator|.
+name|UTF_16LE
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -169,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for AbstractHashSink.  *  * @author Dimitris Andreou  */
+comment|/**  * Tests for AbstractStreamingHasher.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class
@@ -533,8 +549,6 @@ specifier|public
 name|void
 name|testString
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|Random
 name|random
@@ -583,7 +597,7 @@ name|String
 argument_list|(
 name|bytes
 argument_list|,
-literal|"UTF-16LE"
+name|UTF_16LE
 argument_list|)
 decl_stmt|;
 comment|// so all random strings are valid
@@ -615,8 +629,41 @@ name|s
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-16LE"
+name|UTF_16LE
 argument_list|)
+argument_list|)
+operator|.
+name|hash
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|Sink
+argument_list|(
+literal|4
+argument_list|)
+operator|.
+name|putString
+argument_list|(
+name|s
+argument_list|)
+operator|.
+name|hash
+argument_list|()
+argument_list|,
+operator|new
+name|Sink
+argument_list|(
+literal|4
+argument_list|)
+operator|.
+name|putString
+argument_list|(
+name|s
+argument_list|,
+name|UTF_16LE
 argument_list|)
 operator|.
 name|hash

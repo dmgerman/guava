@@ -356,6 +356,40 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testCrc32 ()
+specifier|public
+name|void
+name|testCrc32
+parameter_list|()
+block|{
+name|HashTestUtils
+operator|.
+name|assertInvariants
+argument_list|(
+name|Hashing
+operator|.
+name|crc32
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testAdler32 ()
+specifier|public
+name|void
+name|testAdler32
+parameter_list|()
+block|{
+name|HashTestUtils
+operator|.
+name|assertInvariants
+argument_list|(
+name|Hashing
+operator|.
+name|adler32
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testMurmur3_128 ()
 specifier|public
 name|void

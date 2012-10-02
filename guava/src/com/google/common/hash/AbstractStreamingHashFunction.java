@@ -530,7 +530,6 @@ return|;
 block|}
 DECL|method|putBytes (ByteBuffer readBuffer)
 specifier|private
-specifier|final
 name|Hasher
 name|putBytes
 parameter_list|(
