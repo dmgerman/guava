@@ -1066,6 +1066,30 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a {@code MapSplitter} which splits entries based on this splitter,    * and splits entries into keys and values using the specified separator.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
+annotation|@
+name|Beta
+DECL|method|withKeyValueSeparator (char separator)
+specifier|public
+name|MapSplitter
+name|withKeyValueSeparator
+parameter_list|(
+name|char
+name|separator
+parameter_list|)
+block|{
+return|return
+name|withKeyValueSeparator
+argument_list|(
+name|on
+argument_list|(
+name|separator
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a {@code MapSplitter} which splits entries based on this splitter,    * and splits entries into keys and values using the specified key-value    * splitter.    *    * @since 10.0    */
 annotation|@
 name|CheckReturnValue
