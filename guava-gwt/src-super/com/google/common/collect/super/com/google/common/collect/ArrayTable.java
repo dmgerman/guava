@@ -216,10 +216,6 @@ name|Beta
 annotation|@
 name|GwtCompatible
 argument_list|(
-name|serializable
-operator|=
-literal|true
-argument_list|,
 name|emulated
 operator|=
 literal|true
