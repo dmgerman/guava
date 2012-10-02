@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -70,13 +86,19 @@ name|this
 operator|.
 name|source
 operator|=
+name|checkNotNull
+argument_list|(
 name|source
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|event
 operator|=
+name|checkNotNull
+argument_list|(
 name|event
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the object that originated this event (<em>not</em> the object that    * originated the wrapped event).  This is generally an {@link EventBus}.    *    * @return the source of this event.    */

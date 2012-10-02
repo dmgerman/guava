@@ -50,6 +50,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A simple EventHandler mock that records Strings.  *  * For testing fun, also includes a landmine method that EventBus tests are  * required<em>not</em> to call ({@link #methodWithoutAnnotation(String)}).  *  * @author Cliff Biffle  */
 end_comment
@@ -75,11 +85,13 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Subscribe
-DECL|method|hereHaveAString (String string)
+DECL|method|hereHaveAString (@ullable String string)
 specifier|public
 name|void
 name|hereHaveAString
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|string
 parameter_list|)
@@ -92,11 +104,13 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|methodWithoutAnnotation (String string)
+DECL|method|methodWithoutAnnotation (@ullable String string)
 specifier|public
 name|void
 name|methodWithoutAnnotation
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|string
 parameter_list|)

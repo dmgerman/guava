@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -112,7 +128,10 @@ name|this
 operator|.
 name|executor
 operator|=
+name|checkNotNull
+argument_list|(
 name|executor
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch    * events.    *    * @param executor Executor to use to dispatch events. It is the caller's    *        responsibility to shut down the executor after the last event has    *        been posted to this event bus.    */
@@ -128,7 +147,10 @@ name|this
 operator|.
 name|executor
 operator|=
+name|checkNotNull
+argument_list|(
 name|executor
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -224,6 +246,16 @@ name|EventHandler
 name|handler
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|event
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|handler
+argument_list|)
+expr_stmt|;
 name|executor
 operator|.
 name|execute
@@ -234,11 +266,6 @@ argument_list|()
 block|{
 annotation|@
 name|Override
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"synthetic-access"
-argument_list|)
 specifier|public
 name|void
 name|run

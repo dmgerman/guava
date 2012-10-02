@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -603,7 +619,10 @@ argument_list|()
 operator|+
 literal|"."
 operator|+
+name|checkNotNull
+argument_list|(
 name|identifier
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1232,13 +1251,19 @@ name|this
 operator|.
 name|event
 operator|=
+name|checkNotNull
+argument_list|(
 name|event
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|handler
 operator|=
+name|checkNotNull
+argument_list|(
 name|handler
+argument_list|)
 expr_stmt|;
 block|}
 block|}
