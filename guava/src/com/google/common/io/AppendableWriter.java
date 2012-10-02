@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -56,6 +72,16 @@ name|Writer
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Writer that places all output on an {@link Appendable} target. If the target  * is {@link Flushable} or {@link Closeable}, flush()es and close()s will also  * be delegated to the target.  *  * @author Alan Green  * @author Sebastian Kanthak  * @since 1.0  */
 end_comment
@@ -90,7 +116,10 @@ name|this
 operator|.
 name|target
 operator|=
+name|checkNotNull
+argument_list|(
 name|target
+argument_list|)
 expr_stmt|;
 block|}
 comment|/*    * Abstract methods from Writer    */
@@ -230,13 +259,15 @@ name|c
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (String str)
+DECL|method|write (@ullable String str)
 annotation|@
 name|Override
 specifier|public
 name|void
 name|write
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|str
 parameter_list|)
@@ -254,13 +285,15 @@ name|str
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (String str, int off, int len)
+DECL|method|write (@ullable String str, int off, int len)
 annotation|@
 name|Override
 specifier|public
 name|void
 name|write
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|str
 parameter_list|,
@@ -318,13 +351,15 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|append (CharSequence charSeq)
+DECL|method|append (@ullable CharSequence charSeq)
 annotation|@
 name|Override
 specifier|public
 name|Writer
 name|append
 parameter_list|(
+annotation|@
+name|Nullable
 name|CharSequence
 name|charSeq
 parameter_list|)
@@ -345,13 +380,15 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|append (CharSequence charSeq, int start, int end)
+DECL|method|append (@ullable CharSequence charSeq, int start, int end)
 annotation|@
 name|Override
 specifier|public
 name|Writer
 name|append
 parameter_list|(
+annotation|@
+name|Nullable
 name|CharSequence
 name|charSeq
 parameter_list|,

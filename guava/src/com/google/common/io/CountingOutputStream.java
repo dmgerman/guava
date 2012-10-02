@@ -60,6 +60,16 @@ name|OutputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An OutputStream that counts the number of bytes written.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
@@ -81,10 +91,12 @@ name|long
 name|count
 decl_stmt|;
 comment|/**    * Wraps another output stream, counting the number of bytes written.    *    * @param out the output stream to be wrapped    */
-DECL|method|CountingOutputStream (OutputStream out)
+DECL|method|CountingOutputStream (@ullable OutputStream out)
 specifier|public
 name|CountingOutputStream
 parameter_list|(
+annotation|@
+name|Nullable
 name|OutputStream
 name|out
 parameter_list|)

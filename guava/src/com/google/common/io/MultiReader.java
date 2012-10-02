@@ -60,6 +60,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Reader} that concatenates multiple readers.  *  * @author Bin Zhu  * @since 1.0  */
 end_comment
@@ -153,13 +163,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|read (char cbuf[], int off, int len)
+DECL|method|read (@ullable char cbuf[], int off, int len)
 annotation|@
 name|Override
 specifier|public
 name|int
 name|read
 parameter_list|(
+annotation|@
+name|Nullable
 name|char
 name|cbuf
 index|[]

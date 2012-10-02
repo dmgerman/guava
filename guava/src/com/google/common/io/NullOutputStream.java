@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -87,7 +103,13 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
-block|{   }
+block|{
+name|checkNotNull
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -17,6 +17,38 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -346,6 +378,11 @@ name|int
 name|len
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|InputSupplier
@@ -398,11 +435,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|from
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|to
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -471,6 +511,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|from
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|to
+argument_list|)
+expr_stmt|;
 name|int
 name|successfulOps
 init|=
@@ -567,6 +617,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|from
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|to
+argument_list|)
+expr_stmt|;
 name|boolean
 name|threw
 init|=
@@ -634,6 +694,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|from
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|to
+argument_list|)
+expr_stmt|;
 name|boolean
 name|threw
 init|=
@@ -696,6 +766,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|from
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|to
+argument_list|)
+expr_stmt|;
 name|byte
 index|[]
 name|buf
@@ -772,6 +852,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|from
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|to
+argument_list|)
+expr_stmt|;
 name|ByteBuffer
 name|buf
 init|=
@@ -1603,8 +1693,6 @@ name|int
 name|size
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|size
@@ -2265,7 +2353,13 @@ name|byte
 index|[]
 name|b
 parameter_list|)
-block|{         }
+block|{
+name|checkNotNull
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Discards the specified byte array. */
 annotation|@
 name|Override
@@ -2283,7 +2377,13 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
-block|{         }
+block|{
+name|checkNotNull
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 decl_stmt|;
 comment|/**    * Returns a {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com.google.common.io.NullOutputStream)    */
@@ -2359,15 +2459,11 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|limit
@@ -3364,6 +3460,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|len
@@ -3456,15 +3562,11 @@ name|long
 name|length
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|supplier
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|offset
@@ -3474,8 +3576,6 @@ argument_list|,
 literal|"offset is negative"
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|length
@@ -3558,7 +3658,7 @@ block|}
 return|;
 block|}
 comment|/**    * Joins multiple {@link InputStream} suppliers into a single supplier.    * Streams returned from the supplier will contain the concatenated data from    * the streams of the underlying suppliers.    *    *<p>Only one underlying input stream will be open at a time. Closing the    * joined stream will close the open underlying stream.    *    *<p>Reading from the joined stream will throw a {@link NullPointerException}    * if any of the suppliers are null or return null.    *    * @param suppliers the suppliers to concatenate    * @return a supplier that will return a stream containing the concatenated    *     stream data    */
-DECL|method|join (final Iterable<? extends InputSupplier<? extends InputStream>> suppliers)
+DECL|method|join ( final Iterable<? extends InputSupplier<? extends InputStream>> suppliers)
 specifier|public
 specifier|static
 name|InputSupplier
@@ -3582,6 +3682,11 @@ argument_list|>
 name|suppliers
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|suppliers
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|InputSupplier

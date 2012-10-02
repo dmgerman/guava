@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -43,6 +59,16 @@ operator|.
 name|util
 operator|.
 name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -103,7 +129,10 @@ name|this
 operator|.
 name|it
 operator|=
+name|checkNotNull
+argument_list|(
 name|it
+argument_list|)
 expr_stmt|;
 name|advance
 argument_list|()
@@ -265,13 +294,15 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|read (byte[] b, int off, int len)
+DECL|method|read (@ullable byte[] b, int off, int len)
 annotation|@
 name|Override
 specifier|public
 name|int
 name|read
 parameter_list|(
+annotation|@
+name|Nullable
 name|byte
 index|[]
 name|b
