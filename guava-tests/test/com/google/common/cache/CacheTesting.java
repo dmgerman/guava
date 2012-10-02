@@ -18,6 +18,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
 name|junit
 operator|.
 name|framework
@@ -608,6 +624,16 @@ name|K
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|cache
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 name|LocalCache
 argument_list|<
 name|K
@@ -653,6 +679,16 @@ name|K
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|cache
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 name|LocalCache
 argument_list|<
 name|K
@@ -777,7 +813,10 @@ parameter_list|)
 block|{
 return|return
 operator|(
+name|checkNotNull
+argument_list|(
 name|cache
+argument_list|)
 operator|instanceof
 name|LocalLoadingCache
 operator|)
@@ -2290,6 +2329,11 @@ argument_list|>
 name|operation
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|operation
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|hasLocalCache
@@ -2455,6 +2499,11 @@ name|int
 name|end
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|map
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -2499,6 +2548,11 @@ name|FakeTicker
 name|ticker
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|ticker
+argument_list|)
+expr_stmt|;
 name|expireEntries
 argument_list|(
 name|toLocalCache

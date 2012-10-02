@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -91,6 +107,16 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|executor
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|RemovalListener

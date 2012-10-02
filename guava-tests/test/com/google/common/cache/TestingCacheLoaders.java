@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -114,6 +130,16 @@ name|AtomicInteger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility {@link CacheLoader} implementations intended for use in testing.  *  * @author mike nonemacher  */
 end_comment
@@ -156,6 +182,11 @@ argument_list|>
 name|loader
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|loader
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|CacheLoader
@@ -252,7 +283,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a {@link CacheLoader} that returns the given {@code constant} for every request.    */
-DECL|method|constantLoader (V constant)
+DECL|method|constantLoader (@ullable V constant)
 specifier|static
 parameter_list|<
 name|K
@@ -267,6 +298,8 @@ name|V
 argument_list|>
 name|constantLoader
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|constant
 parameter_list|)
@@ -318,6 +351,11 @@ name|Error
 name|e
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|CacheLoader
@@ -366,6 +404,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|CacheLoader

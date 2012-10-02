@@ -292,7 +292,10 @@ name|computingFunction
 operator|.
 name|apply
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|key
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -401,6 +404,11 @@ name|Object
 name|key
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|key
+argument_list|)
+expr_stmt|;
 return|return
 name|computingSupplier
 operator|.
