@@ -337,10 +337,6 @@ literal|3
 argument_list|,
 literal|4
 argument_list|,
-literal|5
-argument_list|,
-literal|6
-argument_list|,
 literal|7
 argument_list|,
 literal|10
@@ -350,8 +346,6 @@ argument_list|,
 literal|20
 argument_list|,
 literal|25
-argument_list|,
-literal|30
 argument_list|,
 literal|40
 argument_list|,
@@ -628,7 +622,7 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 expr_stmt|;
-comment|// Add values up to 64. This covers cases like "square of a prime" and such.
+comment|// Add values up to 40. This covers cases like "square of a prime" and such.
 for|for
 control|(
 name|int
@@ -638,7 +632,7 @@ literal|1
 init|;
 name|i
 operator|<=
-literal|64
+literal|40
 condition|;
 name|i
 operator|++
@@ -666,14 +660,6 @@ literal|3
 argument_list|,
 literal|4
 argument_list|,
-literal|5
-argument_list|,
-literal|6
-argument_list|,
-literal|7
-argument_list|,
-literal|8
-argument_list|,
 literal|9
 argument_list|,
 literal|15
@@ -681,8 +667,6 @@ argument_list|,
 literal|16
 argument_list|,
 literal|17
-argument_list|,
-literal|23
 argument_list|,
 literal|24
 argument_list|,
@@ -760,6 +744,10 @@ argument_list|()
 expr_stmt|;
 name|NEGATIVE_INTEGER_CANDIDATES
 operator|=
+name|ImmutableList
+operator|.
+name|copyOf
+argument_list|(
 name|Iterables
 operator|.
 name|concat
@@ -782,9 +770,14 @@ operator|.
 name|MIN_VALUE
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|NONZERO_INTEGER_CANDIDATES
 operator|=
+name|ImmutableList
+operator|.
+name|copyOf
+argument_list|(
 name|Iterables
 operator|.
 name|concat
@@ -792,6 +785,7 @@ argument_list|(
 name|POSITIVE_INTEGER_CANDIDATES
 argument_list|,
 name|NEGATIVE_INTEGER_CANDIDATES
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|ALL_INTEGER_CANDIDATES
