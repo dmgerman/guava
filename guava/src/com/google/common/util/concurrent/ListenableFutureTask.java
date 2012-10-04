@@ -71,7 +71,6 @@ end_comment
 begin_class
 DECL|class|ListenableFutureTask
 specifier|public
-specifier|final
 class|class
 name|ListenableFutureTask
 parameter_list|<
@@ -88,6 +87,9 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+comment|// TODO(cpovirk): explore ways of making ListenableFutureTask final. There are
+comment|// some valid reasons such as BoundedQueueExecutorService to allow extends but it
+comment|// would be nice to make it final to avoid unintended usage.
 comment|// The execution list to hold our listeners.
 DECL|field|executionList
 specifier|private
@@ -166,7 +168,6 @@ argument_list|)
 return|;
 block|}
 DECL|method|ListenableFutureTask (Callable<V> callable)
-specifier|private
 name|ListenableFutureTask
 parameter_list|(
 name|Callable
@@ -183,7 +184,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|ListenableFutureTask (Runnable runnable, @Nullable V result)
-specifier|private
 name|ListenableFutureTask
 parameter_list|(
 name|Runnable
