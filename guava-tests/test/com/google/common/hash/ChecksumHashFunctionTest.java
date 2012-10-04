@@ -413,12 +413,10 @@ name|assertEquals
 argument_list|(
 name|value
 argument_list|,
-name|Hashing
+name|hashCode
 operator|.
 name|padToLong
-argument_list|(
-name|hashCode
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

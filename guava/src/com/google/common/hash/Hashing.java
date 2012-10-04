@@ -76,20 +76,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|primitives
-operator|.
-name|UnsignedInts
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|nio
@@ -516,7 +502,7 @@ argument_list|(
 literal|"SHA-512"
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use    * {@link #padToLong(HashCode) Hashing.padToLong(HashCode)}.    *    * @since 14.0    */
+comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
 DECL|method|crc32 ()
 specifier|public
 specifier|static
@@ -542,7 +528,7 @@ operator|.
 name|CRC_32
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits) by    * delegating to the {@link Adler32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use    * {@link #padToLong(HashCode) Hashing.padToLong(HashCode)}.    *    * @since 14.0    */
+comment|/**    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits) by    * delegating to the {@link Adler32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
 DECL|method|adler32 ()
 specifier|public
 specifier|static
@@ -684,28 +670,9 @@ name|hashCode
 parameter_list|)
 block|{
 return|return
-operator|(
 name|hashCode
 operator|.
-name|bits
-argument_list|()
-operator|<
-literal|64
-operator|)
-condition|?
-name|UnsignedInts
-operator|.
-name|toLong
-argument_list|(
-name|hashCode
-operator|.
-name|asInt
-argument_list|()
-argument_list|)
-else|:
-name|hashCode
-operator|.
-name|asLong
+name|padToLong
 argument_list|()
 return|;
 block|}
@@ -726,10 +693,10 @@ block|{
 return|return
 name|consistentHash
 argument_list|(
-name|padToLong
-argument_list|(
 name|hashCode
-argument_list|)
+operator|.
+name|padToLong
+argument_list|()
 argument_list|,
 name|buckets
 argument_list|)

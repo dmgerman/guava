@@ -101,6 +101,14 @@ name|long
 name|asLong
 parameter_list|()
 function_decl|;
+comment|/**    * If this hashcode has enough bits, returns {@code asLong()}, otherwise returns a {@code long}    * value with {@code asInt()} as the least-significant four bytes and {@code 0x00} as    * each of the most-significant four bytes.    *    * @since 14.0 (since 11.0 as {@code Hashing.padToLong(HashCode)})    */
+DECL|method|padToLong ()
+specifier|public
+specifier|abstract
+name|long
+name|padToLong
+parameter_list|()
+function_decl|;
 comment|/**    * Returns the value of this hash code as a byte array. The caller may modify the byte array;    * changes to it will<i>not</i> be reflected in this {@code HashCode} object or any other arrays    * returned by this method.    */
 comment|// TODO(user): consider ByteString here, when that is available
 DECL|method|asBytes ()
