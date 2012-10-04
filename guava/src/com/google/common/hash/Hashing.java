@@ -658,7 +658,9 @@ parameter_list|()
 function_decl|;
 block|}
 comment|// Lazy initialization holder class idiom.
-comment|/**    * If {@code hashCode} has enough bits, returns {@code hashCode.asLong()}, otherwise    * returns a {@code long} value with {@code hashCode.asInt()} as the least-significant    * four bytes and {@code 0x00} as each of the most-significant four bytes.    */
+comment|/**    * If {@code hashCode} has enough bits, returns {@code hashCode.asLong()}, otherwise    * returns a {@code long} value with {@code hashCode.asInt()} as the least-significant    * four bytes and {@code 0x00} as each of the most-significant four bytes.    *    * @deprecated Use {@code HashCode.padToLong()} instead. This method is scheduled to be    *     removed in Guava 15.0.    */
+annotation|@
+name|Deprecated
 DECL|method|padToLong (HashCode hashCode)
 specifier|public
 specifier|static
