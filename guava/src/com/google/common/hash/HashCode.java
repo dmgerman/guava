@@ -68,6 +68,16 @@ name|MessageDigest
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * An immutable hash code of arbitrary bit length.  *  * @author Dimitris Andreou  * @since 11.0  */
 end_comment
@@ -198,13 +208,15 @@ name|int
 name|bits
 parameter_list|()
 function_decl|;
-DECL|method|equals (Object object)
+DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
