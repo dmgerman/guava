@@ -240,9 +240,9 @@ operator|=
 name|supplier
 expr_stmt|;
 block|}
+DECL|method|get ()
 annotation|@
 name|Override
-DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -260,9 +260,90 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|SupplierComposition
+condition|)
+block|{
+name|SupplierComposition
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|that
+init|=
+operator|(
+name|SupplierComposition
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+operator|)
+name|obj
+decl_stmt|;
+return|return
+name|function
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|function
+argument_list|)
+operator|&&
+name|supplier
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|supplier
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|Objects
+operator|.
+name|hashCode
+argument_list|(
+name|function
+argument_list|,
+name|supplier
+argument_list|)
+return|;
+block|}
 DECL|method|toString ()
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -389,9 +470,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+DECL|method|get ()
 annotation|@
 name|Override
-DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -441,9 +522,9 @@ return|return
 name|value
 return|;
 block|}
+DECL|method|toString ()
 annotation|@
 name|Override
-DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -599,9 +680,9 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|get ()
 annotation|@
 name|Override
-DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -694,9 +775,9 @@ return|return
 name|value
 return|;
 block|}
+DECL|method|toString ()
 annotation|@
 name|Override
-DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -793,9 +874,9 @@ operator|=
 name|instance
 expr_stmt|;
 block|}
+DECL|method|get ()
 annotation|@
 name|Override
-DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -805,9 +886,77 @@ return|return
 name|instance
 return|;
 block|}
+DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|SupplierOfInstance
+condition|)
+block|{
+name|SupplierOfInstance
+argument_list|<
+name|?
+argument_list|>
+name|that
+init|=
+operator|(
+name|SupplierOfInstance
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|obj
+decl_stmt|;
+return|return
+name|Objects
+operator|.
+name|equal
+argument_list|(
+name|instance
+argument_list|,
+name|that
+operator|.
+name|instance
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|Objects
+operator|.
+name|hashCode
+argument_list|(
+name|instance
+argument_list|)
+return|;
+block|}
 DECL|method|toString ()
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -908,9 +1057,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
+DECL|method|get ()
 annotation|@
 name|Override
-DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -929,9 +1078,9 @@ argument_list|()
 return|;
 block|}
 block|}
+DECL|method|toString ()
 annotation|@
 name|Override
-DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -958,12 +1107,16 @@ block|}
 comment|/**    * Returns a function that accepts a supplier and returns the result of    * invoking {@link Supplier#get} on that supplier.    *    * @since 8.0    */
 annotation|@
 name|Beta
+comment|//SupplierFunction works for any T.
 annotation|@
 name|SuppressWarnings
 argument_list|(
+block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
+block|}
 argument_list|)
-comment|// SupplierFunction works for any T.
 DECL|method|supplierFunction ()
 specifier|public
 specifier|static
@@ -1009,9 +1162,9 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
+DECL|method|apply (Supplier<?> input)
 annotation|@
 name|Override
-DECL|method|apply (Supplier<?> input)
 specifier|public
 name|Object
 name|apply
@@ -1030,9 +1183,9 @@ name|get
 argument_list|()
 return|;
 block|}
+DECL|method|toString ()
 annotation|@
 name|Override
-DECL|method|toString ()
 specifier|public
 name|String
 name|toString
