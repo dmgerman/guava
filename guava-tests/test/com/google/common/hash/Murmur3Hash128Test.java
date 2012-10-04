@@ -446,8 +446,8 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// Murmur3A, MurmurHash3 for x86, 128-bit (MurmurHash3_x86_128)
-comment|// http://code.google.com/p/smhasher/source/browse/trunk/main.cpp
+comment|// Murmur3F, MurmurHash3 for x64, 128-bit (MurmurHash3_x64_128)
+comment|// From http://code.google.com/p/smhasher/source/browse/trunk/main.cpp
 name|HashTestUtils
 operator|.
 name|verifyHashFunction
