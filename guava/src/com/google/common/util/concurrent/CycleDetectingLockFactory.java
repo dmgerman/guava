@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -614,6 +630,16 @@ parameter_list|)
 block|{
 comment|// OrderedLockGraphNodesCreator maps each enumClass to a Map with the
 comment|// corresponding enum key type.
+name|checkNotNull
+argument_list|(
+name|enumClass
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|policy
+argument_list|)
+expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1167,7 +1193,10 @@ name|this
 operator|.
 name|policy
 operator|=
+name|checkNotNull
+argument_list|(
 name|policy
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Tracks the currently acquired locks for each Thread, kept up to date by    * calls to {@link #aboutToAcquire(CycleDetectingLock)} and    * {@link #lockStateChanged(CycleDetectingLock)}.    */

@@ -20,6 +20,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -263,6 +279,11 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Thread
 name|interruptee

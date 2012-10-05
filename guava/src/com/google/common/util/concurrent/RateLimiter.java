@@ -597,11 +597,6 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|checkPermits
-argument_list|(
-name|permits
-argument_list|)
-expr_stmt|;
 name|long
 name|timeoutMicros
 init|=
@@ -612,6 +607,11 @@ argument_list|(
 name|timeout
 argument_list|)
 decl_stmt|;
+name|checkPermits
+argument_list|(
+name|permits
+argument_list|)
+expr_stmt|;
 name|long
 name|microsToWait
 decl_stmt|;

@@ -921,15 +921,19 @@ name|doCompletion
 return|;
 block|}
 block|}
-DECL|method|cancellationExceptionWithCause ( String message, Throwable cause)
+DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
 specifier|static
 specifier|final
 name|CancellationException
 name|cancellationExceptionWithCause
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|message
 parameter_list|,
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

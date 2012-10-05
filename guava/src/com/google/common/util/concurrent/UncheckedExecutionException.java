@@ -46,6 +46,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unchecked variant of {@link java.util.concurrent.ExecutionException}. As with  * {@code ExecutionException}, the exception's {@linkplain #getCause() cause}  * comes from a failed task, possibly run in another thread.  *  *<p>{@code UncheckedExecutionException} is intended as an alternative to  * {@code ExecutionException} when the exception thrown by a task is an  * unchecked exception. However, it may also wrap a checked exception in some  * cases.  *  *<p>When wrapping an {@code Error} from another thread, prefer {@link  * ExecutionError}. When wrapping a checked exception, prefer {@code  * ExecutionException}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
@@ -69,10 +79,12 @@ name|UncheckedExecutionException
 parameter_list|()
 block|{}
 comment|/**    * Creates a new instance with the given detail message.    */
-DECL|method|UncheckedExecutionException (String message)
+DECL|method|UncheckedExecutionException (@ullable String message)
 specifier|protected
 name|UncheckedExecutionException
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|message
 parameter_list|)
@@ -84,13 +96,17 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with the given detail message and cause.    */
-DECL|method|UncheckedExecutionException (String message, Throwable cause)
+DECL|method|UncheckedExecutionException (@ullable String message, @Nullable Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|message
 parameter_list|,
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)
@@ -104,10 +120,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance with the given cause.    */
-DECL|method|UncheckedExecutionException (Throwable cause)
+DECL|method|UncheckedExecutionException (@ullable Throwable cause)
 specifier|public
 name|UncheckedExecutionException
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

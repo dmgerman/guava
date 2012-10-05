@@ -18,6 +18,16 @@ name|concurrent
 package|;
 end_package
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException}.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
@@ -35,10 +45,12 @@ specifier|public
 name|UncheckedTimeoutException
 parameter_list|()
 block|{}
-DECL|method|UncheckedTimeoutException (String message)
+DECL|method|UncheckedTimeoutException (@ullable String message)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|message
 parameter_list|)
@@ -49,10 +61,12 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (Throwable cause)
+DECL|method|UncheckedTimeoutException (@ullable Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)
@@ -63,13 +77,17 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|UncheckedTimeoutException (String message, Throwable cause)
+DECL|method|UncheckedTimeoutException (@ullable String message, @Nullable Throwable cause)
 specifier|public
 name|UncheckedTimeoutException
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|message
 parameter_list|,
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)

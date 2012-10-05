@@ -20,6 +20,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
 name|junit
 operator|.
 name|framework
@@ -138,6 +154,16 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Used to test listenable future implementations.  *  * @author Sven Mawson  */
 end_comment
@@ -193,7 +219,10 @@ name|this
 operator|.
 name|future
 operator|=
+name|checkNotNull
+argument_list|(
 name|future
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -277,11 +306,13 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCompletedFuture (Object expectedValue)
+DECL|method|testCompletedFuture (@ullable Object expectedValue)
 specifier|public
 name|void
 name|testCompletedFuture
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|expectedValue
 parameter_list|)
@@ -423,11 +454,13 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-DECL|method|testFailedFuture (String message)
+DECL|method|testFailedFuture (@ullable String message)
 specifier|public
 name|void
 name|testFailedFuture
 parameter_list|(
+annotation|@
+name|Nullable
 name|String
 name|message
 parameter_list|)
