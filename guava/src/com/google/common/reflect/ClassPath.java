@@ -688,6 +688,46 @@ name|className
 argument_list|)
 return|;
 block|}
+comment|/** Returns the simple name of the underlying class as given in the source code. */
+DECL|method|getSimpleName ()
+specifier|public
+name|String
+name|getSimpleName
+parameter_list|()
+block|{
+name|String
+name|packageName
+init|=
+name|getPackageName
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|packageName
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+return|return
+name|className
+return|;
+block|}
+comment|// Since this is a top level class, its simple name is always the part after package name.
+return|return
+name|className
+operator|.
+name|substring
+argument_list|(
+name|packageName
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|1
+argument_list|)
+return|;
+block|}
 comment|/** Returns the fully qualified name of the class. */
 DECL|method|getName ()
 specifier|public
