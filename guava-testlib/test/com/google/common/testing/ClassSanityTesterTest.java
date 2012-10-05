@@ -220,10 +220,10 @@ operator|new
 name|ClassSanityTester
 argument_list|()
 decl_stmt|;
-DECL|method|testEqualsonReturnValues_good ()
+DECL|method|testEqualsOnReturnValues_good ()
 specifier|public
 name|void
-name|testEqualsonReturnValues_good
+name|testEqualsOnReturnValues_good
 parameter_list|()
 throws|throws
 name|Exception
@@ -343,10 +343,10 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|testEqualsonReturnValues_bad ()
+DECL|method|testEqualsOnReturnValues_bad ()
 specifier|public
 name|void
-name|testEqualsonReturnValues_bad
+name|testEqualsOnReturnValues_bad
 parameter_list|()
 throws|throws
 name|Exception
@@ -484,6 +484,13 @@ operator|.
 name|class
 argument_list|)
 operator|.
+name|thatReturn
+argument_list|(
+name|Object
+operator|.
+name|class
+argument_list|)
+operator|.
 name|testNulls
 argument_list|()
 expr_stmt|;
@@ -497,6 +504,34 @@ block|{
 return|return;
 block|}
 name|fail
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testNullsOnReturnValues_returnTypeFiltered ()
+specifier|public
+name|void
+name|testNullsOnReturnValues_returnTypeFiltered
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|tester
+operator|.
+name|forAllPublicStaticMethods
+argument_list|(
+name|BadNullsFactory
+operator|.
+name|class
+argument_list|)
+operator|.
+name|thatReturn
+argument_list|(
+name|Iterable
+operator|.
+name|class
+argument_list|)
+operator|.
+name|testNulls
 argument_list|()
 expr_stmt|;
 block|}
@@ -2789,12 +2824,12 @@ specifier|static
 class|class
 name|BadEqualsWithParameterizedType
 block|{
+comment|// ignored by testEquals() since it has less parameters.
 DECL|method|BadEqualsWithParameterizedType ()
 specifier|public
 name|BadEqualsWithParameterizedType
 parameter_list|()
 block|{}
-comment|// ignored by testEquals() since it has less parameters.
 DECL|method|create ( @uppressWarningsR) ImmutableList<Iterable<? extends String>> s)
 specifier|public
 specifier|static
