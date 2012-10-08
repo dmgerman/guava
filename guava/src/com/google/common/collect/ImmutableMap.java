@@ -1539,10 +1539,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-argument_list|(
-name|entrySet
 argument_list|()
-argument_list|)
 block|{
 annotation|@
 name|Override
