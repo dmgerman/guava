@@ -1347,6 +1347,9 @@ parameter_list|<
 name|C
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|Builder
 argument_list|<
@@ -1374,6 +1377,9 @@ parameter_list|<
 name|C
 extends|extends
 name|Comparable
+parameter_list|<
+name|?
+parameter_list|>
 parameter_list|>
 block|{
 DECL|field|rangeSet
