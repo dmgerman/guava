@@ -2296,9 +2296,9 @@ name|e
 parameter_list|)
 block|{
 return|return
-name|Iterables
+name|Iterators
 operator|.
-name|getFirst
+name|getNext
 argument_list|(
 name|headSet
 argument_list|(
@@ -2307,7 +2307,7 @@ argument_list|,
 literal|false
 argument_list|)
 operator|.
-name|descendingSet
+name|descendingIterator
 argument_list|()
 argument_list|,
 literal|null
@@ -2332,9 +2332,9 @@ name|e
 parameter_list|)
 block|{
 return|return
-name|Iterables
+name|Iterators
 operator|.
-name|getFirst
+name|getNext
 argument_list|(
 name|headSet
 argument_list|(
@@ -2343,7 +2343,7 @@ argument_list|,
 literal|true
 argument_list|)
 operator|.
-name|descendingSet
+name|descendingIterator
 argument_list|()
 argument_list|,
 literal|null
@@ -2414,6 +2414,38 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|first ()
+specifier|public
+name|E
+name|first
+parameter_list|()
+block|{
+return|return
+name|iterator
+argument_list|()
+operator|.
+name|next
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|last ()
+specifier|public
+name|E
+name|last
+parameter_list|()
+block|{
+return|return
+name|descendingIterator
+argument_list|()
+operator|.
+name|next
+argument_list|()
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the set unmodified.    *    * @since 12.0    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
@@ -2492,6 +2524,7 @@ argument_list|>
 name|descendingSet
 parameter_list|()
 block|{
+comment|// racy single-check idiom
 name|ImmutableSortedSet
 argument_list|<
 name|E
@@ -2531,14 +2564,24 @@ argument_list|(
 literal|"NavigableSet"
 argument_list|)
 DECL|method|createDescendingSet ()
-specifier|abstract
 name|ImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
 name|createDescendingSet
 parameter_list|()
-function_decl|;
+block|{
+return|return
+operator|new
+name|DescendingImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
@@ -2549,21 +2592,14 @@ annotation|@
 name|Override
 DECL|method|descendingIterator ()
 specifier|public
+specifier|abstract
 name|UnmodifiableIterator
 argument_list|<
 name|E
 argument_list|>
 name|descendingIterator
 parameter_list|()
-block|{
-return|return
-name|descendingSet
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-return|;
-block|}
+function_decl|;
 comment|/**    * Returns the position of an element within the set, or -1 if not present.    */
 DECL|method|indexOf (@ullable Object target)
 specifier|abstract

@@ -338,6 +338,29 @@ name|emptyIterator
 argument_list|()
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
+DECL|method|descendingIterator ()
+annotation|@
+name|Override
+specifier|public
+name|UnmodifiableIterator
+argument_list|<
+name|C
+argument_list|>
+name|descendingIterator
+parameter_list|()
+block|{
+return|return
+name|Iterators
+operator|.
+name|emptyIterator
+argument_list|()
+return|;
+block|}
 DECL|method|isPartialView ()
 annotation|@
 name|Override
