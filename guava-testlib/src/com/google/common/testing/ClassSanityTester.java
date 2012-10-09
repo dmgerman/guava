@@ -1765,7 +1765,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Tests null checks against the instance methods of the return values, if any.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @returns this tester      */
+comment|/**      * Tests null checks against the instance methods of the return values, if any.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testNulls ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -1816,7 +1816,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Tests {@link Object#equals} and {@link Object#hashCode} against the return values of the      * static methods, by asserting that when equal parameters are passed to the same static method,      * the return value should also be equal; and vice versa.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @returns this tester      */
+comment|/**      * Tests {@link Object#equals} and {@link Object#hashCode} against the return values of the      * static methods, by asserting that when equal parameters are passed to the same static method,      * the return value should also be equal; and vice versa.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testEquals ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -1860,7 +1860,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Runs serialization test on the return values of the static methods.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @returns this tester      */
+comment|/**      * Runs serialization test on the return values of the static methods.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testSerializable ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -1911,7 +1911,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Runs equals and serialization test on the return values.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @returns this tester      */
+comment|/**      * Runs equals and serialization test on the return values.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testEqualsAndSerializable ()
 specifier|public
 name|FactoryMethodReturnValueTester

@@ -4134,6 +4134,18 @@ operator|.
 name|A
 argument_list|)
 operator|.
+name|setDefault
+argument_list|(
+name|Class
+operator|.
+name|class
+argument_list|,
+name|SomeEnum
+operator|.
+name|class
+argument_list|)
+comment|// for newEnumSet
+operator|.
 name|testAllPublicStaticMethods
 argument_list|(
 name|Sets

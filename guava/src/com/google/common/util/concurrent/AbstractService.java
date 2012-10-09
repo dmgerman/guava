@@ -394,6 +394,7 @@ operator|.
 name|NEW
 argument_list|)
 decl_stmt|;
+comment|/** Constructor for use by subclasses. */
 DECL|method|AbstractService ()
 specifier|protected
 name|AbstractService

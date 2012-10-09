@@ -685,6 +685,12 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
+comment|/** Constructor for use by subclasses. */
+DECL|method|AbstractScheduledService ()
+specifier|protected
+name|AbstractScheduledService
+parameter_list|()
+block|{}
 comment|/**    * Run one iteration of the scheduled task. If any invocation of this method throws an exception,    * the service will transition to the {@link Service.State#FAILED} state and this method will no    * longer be called.    */
 DECL|method|runOneIteration ()
 specifier|protected

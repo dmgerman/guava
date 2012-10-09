@@ -376,7 +376,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    * To get uninterruptibility and remove checked exceptions, see    * {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#get(Future, Class) Futures.get}    * or {@link Futures#makeChecked}.    */
+comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    * To get uninterruptibility and remove checked exceptions, see    * {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#get(Future, Class) Futures.get}    * or {@link Futures#makeChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
 DECL|method|getUninterruptibly (Future<V> future)
 specifier|public
 specifier|static
@@ -447,7 +447,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#get(Future, Class) Futures.get}    * or {@link Futures#makeChecked}.    */
+comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#get(Future, Class) Futures.get}    * or {@link Futures#makeChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
 DECL|method|getUninterruptibly ( Future<V> future, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -739,7 +739,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code queue.}{@link BlockingQueue#put(Object) put(element)}    * uninterruptibly.    */
+comment|/**    * Invokes {@code queue.}{@link BlockingQueue#put(Object) put(element)}    * uninterruptibly.    *    * @throws ClassCastException if the class of the specified element prevents    *     it from being added to the given queue    * @throws IllegalArgumentException if some property of the specified element    *     prevents it from being added to the given queue    */
 DECL|method|putUninterruptibly (BlockingQueue<E> queue, E element)
 specifier|public
 specifier|static

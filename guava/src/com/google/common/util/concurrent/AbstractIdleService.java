@@ -210,6 +210,12 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
+comment|/** Constructor for use by subclasses. */
+DECL|method|AbstractIdleService ()
+specifier|protected
+name|AbstractIdleService
+parameter_list|()
+block|{}
 comment|/** Start the service. */
 DECL|method|startUp ()
 specifier|protected

@@ -782,7 +782,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code long} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *         value    */
+comment|/**    * Returns the unsigned {@code long} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code long}    *         value    * @throws NullPointerException if {@code s} is null     *         (in contrast to {@link Long#parseLong(String)})    */
 DECL|method|parseUnsignedLong (String s)
 specifier|public
 specifier|static

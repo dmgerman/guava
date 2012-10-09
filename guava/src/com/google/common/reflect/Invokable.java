@@ -722,11 +722,13 @@ name|getDeclaringClass
 argument_list|()
 return|;
 block|}
-DECL|method|invokeInternal (Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 specifier|abstract
 name|Object
 name|invokeInternal
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|receiver
 parameter_list|,
@@ -808,13 +810,15 @@ operator|=
 name|method
 expr_stmt|;
 block|}
-DECL|method|invokeInternal (Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 annotation|@
 name|Override
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|receiver
 parameter_list|,
@@ -1000,13 +1004,15 @@ operator|=
 name|constructor
 expr_stmt|;
 block|}
-DECL|method|invokeInternal (Object receiver, Object[] args)
+DECL|method|invokeInternal (@ullable Object receiver, Object[] args)
 annotation|@
 name|Override
 specifier|final
 name|Object
 name|invokeInternal
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|receiver
 parameter_list|,
