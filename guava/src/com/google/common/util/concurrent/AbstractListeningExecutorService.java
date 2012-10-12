@@ -148,6 +148,16 @@ name|TimeoutException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements {@link ListeningExecutorService} execution methods atop the abstract {@link #execute}  * method. More concretely, the {@code submit}, {@code invokeAny} and {@code invokeAll} methods  * create {@link ListenableFutureTask} instances and pass them to {@link #execute}.  *  *<p>In addition to {@link #execute}, subclasses must implement all methods related to shutdown and  * termination.  *  * @author Doug Lea  */
 end_comment
@@ -198,7 +208,7 @@ return|return
 name|ftask
 return|;
 block|}
-DECL|method|submit (Runnable task, T result)
+DECL|method|submit (Runnable task, @Nullable T result)
 annotation|@
 name|Override
 specifier|public
@@ -214,6 +224,8 @@ parameter_list|(
 name|Runnable
 name|task
 parameter_list|,
+annotation|@
+name|Nullable
 name|T
 name|result
 parameter_list|)

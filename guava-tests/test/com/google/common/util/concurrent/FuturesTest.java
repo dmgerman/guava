@@ -320,7 +320,7 @@ name|common
 operator|.
 name|testing
 operator|.
-name|NullPointerTester
+name|ClassSanityTester
 import|;
 end_import
 
@@ -12503,24 +12503,34 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|testNullArguments ()
+DECL|method|testFutures_nullChecks ()
 specifier|public
 name|void
-name|testNullArguments
+name|testFutures_nullChecks
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 operator|new
-name|NullPointerTester
+name|ClassSanityTester
 argument_list|()
 operator|.
-name|testAllPublicStaticMethods
+name|forAllPublicStaticMethods
 argument_list|(
 name|Futures
 operator|.
 name|class
 argument_list|)
+operator|.
+name|thatReturn
+argument_list|(
+name|Future
+operator|.
+name|class
+argument_list|)
+operator|.
+name|testNulls
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|failWithCause (Throwable cause, String message)

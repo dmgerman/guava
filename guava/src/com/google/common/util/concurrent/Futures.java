@@ -639,6 +639,11 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 block|{
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
 return|return
 name|get
 argument_list|()
@@ -807,6 +812,11 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
 return|return
 name|value
 return|;
@@ -1025,6 +1035,11 @@ parameter_list|)
 throws|throws
 name|X
 block|{
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
 throw|throw
 name|thrown
 throw|;

@@ -126,7 +126,7 @@ name|common
 operator|.
 name|testing
 operator|.
-name|NullPointerTester
+name|ClassSanityTester
 import|;
 end_import
 
@@ -937,24 +937,34 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testNullArguments ()
+DECL|method|testAdapters_nullChecks ()
 specifier|public
 name|void
-name|testNullArguments
+name|testAdapters_nullChecks
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 operator|new
-name|NullPointerTester
+name|ClassSanityTester
 argument_list|()
 operator|.
-name|testAllPublicStaticMethods
+name|forAllPublicStaticMethods
 argument_list|(
 name|JdkFutureAdapters
 operator|.
 name|class
 argument_list|)
+operator|.
+name|thatReturn
+argument_list|(
+name|Future
+operator|.
+name|class
+argument_list|)
+operator|.
+name|testNulls
+argument_list|()
 expr_stmt|;
 block|}
 block|}
