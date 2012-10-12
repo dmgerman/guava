@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -61,17 +47,10 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link BiMap} backed by two {@link HashMap} instances. This implementation  * allows null keys and values. A {@code HashBiMap} and its inverse are both  * serializable.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * GWT emulation of {@code HashBiMap} that just delegates to two HashMaps.  *  * @author Mike Bostock  */
 end_comment
 
 begin_class
-annotation|@
-name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|HashBiMap
 specifier|public
 specifier|final
