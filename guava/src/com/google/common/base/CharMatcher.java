@@ -4793,7 +4793,7 @@ argument_list|()
 return|;
 block|}
 comment|// Predicate interface
-comment|/**    * Returns {@code true} if this matcher matches the given character.    *    * @throws NullPointerException if {@code character} is null    */
+comment|/**    * Equivalent to {@link #matches}; provided only to satisfy the {@link Predicate} interface. When    * using a reference of type {@code CharMatcher}, invoke {@link #matches} directly instead.    */
 DECL|method|apply (Character character)
 annotation|@
 name|Override
