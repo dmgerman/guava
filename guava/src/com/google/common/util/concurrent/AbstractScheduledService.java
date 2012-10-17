@@ -727,7 +727,7 @@ name|Scheduler
 name|scheduler
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the {@link ScheduledExecutorService} that will be used to execute the {@link #startUp},    * {@link #runOneIteration} and {@link #shutDown} methods.  If this method is overridden the    * executor will not be {@linkplain ScheduledExecutorService#shutdown shutdown} when this    * service {@linkplain Service.State#TERMINATED terminates} or    * {@linkplain Service.State#TERMINATED fails}. Subclasses may override this method to supply a    * custom {@link ScheduledExecutorService} instance. This method is guaranteed to only be called    * once.    *    *<p>By default this returns a new {@link ScheduledExecutorService} with a single thread thread    * pool that will be shut down when the service {@linkplain Service.State#TERMINATED terminates}    * or {@linkplain Service.State#TERMINATED fails}.    */
+comment|/**    * Returns the {@link ScheduledExecutorService} that will be used to execute the {@link #startUp},    * {@link #runOneIteration} and {@link #shutDown} methods.  If this method is overridden the    * executor will not be {@linkplain ScheduledExecutorService#shutdown shutdown} when this    * service {@linkplain Service.State#TERMINATED terminates} or    * {@linkplain Service.State#TERMINATED fails}. Subclasses may override this method to supply a    * custom {@link ScheduledExecutorService} instance. This method is guaranteed to only be called    * once.    *    *<p>By default this returns a new {@link ScheduledExecutorService} with a single thread thread    * pool that sets the name of the thread to the {@linkplain #serviceName() service name}.    * Also, the pool will be {@linkplain ScheduledExecutorService#shutdown() shut down} when the    * service {@linkplain Service.State#TERMINATED terminates} or    * {@linkplain Service.State#TERMINATED fails}.    */
 DECL|method|executor ()
 specifier|protected
 name|ScheduledExecutorService
@@ -741,7 +741,20 @@ init|=
 name|Executors
 operator|.
 name|newSingleThreadScheduledExecutor
+argument_list|(
+operator|new
+name|ThreadFactoryBuilder
 argument_list|()
+operator|.
+name|setNameFormat
+argument_list|(
+name|serviceName
+argument_list|()
+argument_list|)
+operator|.
+name|build
+argument_list|()
+argument_list|)
 decl_stmt|;
 comment|// Add a listener to shutdown the executor after the service is stopped.  This ensures that the
 comment|// JVM shutdown will not be prevented from exiting after this service has stopped or failed.
@@ -825,6 +838,21 @@ return|return
 name|executor
 return|;
 block|}
+comment|/**    * Returns the name of this service. {@link AbstractScheduledService} may include the name in    * debugging output.    *    * @since 14.0    */
+DECL|method|serviceName ()
+specifier|protected
+name|String
+name|serviceName
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+return|;
+block|}
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -834,10 +862,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
+name|serviceName
 argument_list|()
 operator|+
 literal|" ["
