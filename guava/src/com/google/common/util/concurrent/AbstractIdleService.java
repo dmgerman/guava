@@ -267,7 +267,7 @@ name|Thread
 argument_list|(
 name|command
 argument_list|,
-name|getServiceName
+name|serviceName
 argument_list|()
 operator|+
 literal|" "
@@ -291,7 +291,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|getServiceName
+name|serviceName
 argument_list|()
 operator|+
 literal|" ["
@@ -430,10 +430,11 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getServiceName ()
-specifier|private
+comment|/**    * Returns the name of this service. {@link AbstractIdleService} may include the name in debugging    * output.    *    * @since 14.0    */
+DECL|method|serviceName ()
+specifier|protected
 name|String
-name|getServiceName
+name|serviceName
 parameter_list|()
 block|{
 return|return
