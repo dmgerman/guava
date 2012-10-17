@@ -262,18 +262,17 @@ name|Runnable
 name|command
 parameter_list|)
 block|{
-name|MoreExecutors
-operator|.
-name|newThread
+operator|new
+name|Thread
 argument_list|(
+name|command
+argument_list|,
 name|getServiceName
 argument_list|()
 operator|+
 literal|" "
 operator|+
 name|state
-argument_list|,
-name|command
 argument_list|)
 operator|.
 name|start
