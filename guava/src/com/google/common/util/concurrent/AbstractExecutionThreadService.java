@@ -301,7 +301,7 @@ name|void
 name|triggerShutdown
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    *    *<p>The default implementation returns a new {@link Executor} that sets the    * name of its threads to the string returned by {@link #getServiceName}    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    *    *<p>The default implementation returns a new {@link Executor} that sets the    * name of its threads to the string returned by {@link #serviceName}    */
 DECL|method|executor ()
 specifier|protected
 name|Executor
@@ -328,7 +328,7 @@ name|Thread
 argument_list|(
 name|command
 argument_list|,
-name|getServiceName
+name|serviceName
 argument_list|()
 argument_list|)
 operator|.
@@ -348,7 +348,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|getServiceName
+name|serviceName
 argument_list|()
 operator|+
 literal|" ["
@@ -487,11 +487,11 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService}    * may include the name in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 10.0    */
-DECL|method|getServiceName ()
+comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService}    * may include the name in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 14.0 (present in 10.0 as getServiceName)    */
+DECL|method|serviceName ()
 specifier|protected
 name|String
-name|getServiceName
+name|serviceName
 parameter_list|()
 block|{
 return|return
