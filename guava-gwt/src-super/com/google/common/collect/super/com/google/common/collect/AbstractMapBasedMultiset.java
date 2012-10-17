@@ -1255,51 +1255,6 @@ name|count
 argument_list|)
 return|;
 block|}
-comment|// Views
-DECL|method|createElementSet ()
-annotation|@
-name|Override
-name|Set
-argument_list|<
-name|E
-argument_list|>
-name|createElementSet
-parameter_list|()
-block|{
-return|return
-operator|new
-name|MapBasedElementSet
-argument_list|()
-return|;
-block|}
-DECL|class|MapBasedElementSet
-class|class
-name|MapBasedElementSet
-extends|extends
-name|Multisets
-operator|.
-name|ElementSet
-argument_list|<
-name|E
-argument_list|>
-block|{
-annotation|@
-name|Override
-DECL|method|multiset ()
-name|Multiset
-argument_list|<
-name|E
-argument_list|>
-name|multiset
-parameter_list|()
-block|{
-return|return
-name|AbstractMapBasedMultiset
-operator|.
-name|this
-return|;
-block|}
-block|}
 comment|// Don't allow default serialization.
 block|}
 end_class
