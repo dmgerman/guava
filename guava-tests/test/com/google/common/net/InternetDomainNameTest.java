@@ -1669,7 +1669,7 @@ name|InternetDomainName
 operator|.
 name|from
 argument_list|(
-literal|"foo.nhs.uk"
+literal|"foo.nic.uk"
 argument_list|)
 decl_stmt|;
 name|assertTrue
