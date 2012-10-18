@@ -270,6 +270,13 @@ argument_list|<
 name|K
 argument_list|,
 name|V
+argument_list|,
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|>
 block|{
 DECL|method|testGetEmpty ()

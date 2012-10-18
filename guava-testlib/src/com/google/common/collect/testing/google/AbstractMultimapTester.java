@@ -170,16 +170,20 @@ parameter_list|<
 name|K
 parameter_list|,
 name|V
+parameter_list|,
+name|M
+extends|extends
+name|Multimap
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 parameter_list|>
 extends|extends
 name|AbstractContainerTester
 argument_list|<
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|M
 argument_list|,
 name|Map
 operator|.
@@ -193,22 +197,12 @@ argument_list|>
 block|{
 DECL|field|multimap
 specifier|private
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|M
 name|multimap
 decl_stmt|;
 DECL|method|multimap ()
 specifier|protected
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|M
 name|multimap
 parameter_list|()
 block|{
@@ -662,22 +656,12 @@ block|}
 comment|// TODO: dispose of this once collection is encapsulated.
 annotation|@
 name|Override
-DECL|method|resetContainer (Multimap<K, V> newContents)
+DECL|method|resetContainer (M newContents)
 specifier|protected
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|M
 name|resetContainer
 parameter_list|(
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|M
 name|newContents
 parameter_list|)
 block|{

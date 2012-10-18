@@ -662,6 +662,10 @@ name|MultimapPutIterableTester
 operator|.
 name|class
 argument_list|,
+name|MultimapReplaceValuesTester
+operator|.
+name|class
+argument_list|,
 name|MultimapRemoveEntryTester
 operator|.
 name|class
