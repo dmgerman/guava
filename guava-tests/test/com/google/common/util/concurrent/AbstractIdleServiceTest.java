@@ -977,12 +977,7 @@ name|Override
 specifier|protected
 name|Executor
 name|executor
-parameter_list|(
-name|Service
-operator|.
-name|State
-name|state
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 operator|new
@@ -1165,24 +1160,20 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|executor (Service.State state)
+DECL|method|executor ()
 annotation|@
 name|Override
 specifier|protected
 name|Executor
 name|executor
-parameter_list|(
-name|Service
-operator|.
-name|State
-name|state
-parameter_list|)
+parameter_list|()
 block|{
 name|transitionStates
 operator|.
 name|add
 argument_list|(
 name|state
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

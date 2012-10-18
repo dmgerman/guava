@@ -93,11 +93,7 @@ name|doStart
 parameter_list|()
 block|{
 name|executor
-argument_list|(
-name|State
-operator|.
-name|STARTING
-argument_list|)
+argument_list|()
 operator|.
 name|execute
 argument_list|(
@@ -155,11 +151,7 @@ name|doStop
 parameter_list|()
 block|{
 name|executor
-argument_list|(
-name|State
-operator|.
-name|STOPPING
-argument_list|)
+argument_list|()
 operator|.
 name|execute
 argument_list|(
@@ -236,17 +228,20 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    *    * @param state {@link Service.State#STARTING} or    *     {@link Service.State#STOPPING}, used by the default implementation for    *     naming the thread    */
-DECL|method|executor (final State state)
+comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    */
+DECL|method|executor ()
 specifier|protected
 name|Executor
 name|executor
-parameter_list|(
+parameter_list|()
+block|{
 specifier|final
 name|State
 name|state
-parameter_list|)
-block|{
+init|=
+name|state
+argument_list|()
+decl_stmt|;
 return|return
 operator|new
 name|Executor
