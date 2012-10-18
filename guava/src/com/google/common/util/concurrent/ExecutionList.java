@@ -26,6 +26,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -105,7 +119,8 @@ name|ExecutionList
 block|{
 comment|// Logger to log exceptions caught when running runnables.
 DECL|field|log
-specifier|private
+annotation|@
+name|VisibleForTesting
 specifier|static
 specifier|final
 name|Logger

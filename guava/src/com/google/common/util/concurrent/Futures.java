@@ -4176,10 +4176,13 @@ condition|)
 block|{
 comment|// Some other future failed or has been cancelled, causing this one to
 comment|// also be cancelled or have an exception set. This should only happen
-comment|// if allMustSucceed is true.
+comment|// if allMustSucceed is true or if the output itself has been cancelled.
 name|checkState
 argument_list|(
 name|allMustSucceed
+operator|||
+name|isCancelled
+argument_list|()
 argument_list|,
 literal|"Future was done before all dependencies completed"
 argument_list|)
