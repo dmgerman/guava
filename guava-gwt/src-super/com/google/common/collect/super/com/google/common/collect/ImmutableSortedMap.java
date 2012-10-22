@@ -1263,7 +1263,7 @@ name|K
 extends|extends
 name|Comparable
 argument_list|<
-name|K
+name|?
 argument_list|>
 parameter_list|,
 name|V
@@ -1337,7 +1337,7 @@ name|K
 extends|extends
 name|Comparable
 argument_list|<
-name|K
+name|?
 argument_list|>
 parameter_list|,
 name|V

@@ -1666,7 +1666,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by their natural ordering. The sorted maps use {@link    * Ordering#natural()} as the comparator.    *    *<p>Note: the type parameter {@code K} extends {@code Comparable<K>} rather    * than {@code Comparable<? super K>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug    * 6468354</a>.    */
+comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by their natural ordering. The sorted maps use {@link    * Ordering#natural()} as the comparator.    */
 DECL|method|naturalOrder ()
 specifier|public
 specifier|static
@@ -1675,7 +1675,7 @@ name|K
 extends|extends
 name|Comparable
 argument_list|<
-name|K
+name|?
 argument_list|>
 parameter_list|,
 name|V
@@ -1742,7 +1742,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by the reverse of their natural ordering.    *    *<p>Note: the type parameter {@code K} extends {@code Comparable<K>} rather    * than {@code Comparable<? super K>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug    * 6468354</a>.    */
+comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by the reverse of their natural ordering.    */
 DECL|method|reverseOrder ()
 specifier|public
 specifier|static
@@ -1751,7 +1751,7 @@ name|K
 extends|extends
 name|Comparable
 argument_list|<
-name|K
+name|?
 argument_list|>
 parameter_list|,
 name|V
