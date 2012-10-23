@@ -2506,7 +2506,7 @@ argument_list|)
 return|;
 block|}
 comment|// it's okay to mark even if mark isn't supported, as reset won't work
-DECL|method|mark (int readlimit)
+DECL|method|mark (int readLimit)
 annotation|@
 name|Override
 specifier|public
@@ -2515,14 +2515,14 @@ name|void
 name|mark
 parameter_list|(
 name|int
-name|readlimit
+name|readLimit
 parameter_list|)
 block|{
 name|in
 operator|.
 name|mark
 argument_list|(
-name|readlimit
+name|readLimit
 argument_list|)
 expr_stmt|;
 name|mark
@@ -3086,8 +3086,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
+name|int
+name|read
+init|=
 name|read
 argument_list|(
 name|in
@@ -3098,6 +3099,10 @@ name|off
 argument_list|,
 name|len
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|read
 operator|!=
 name|len
 condition|)
@@ -3105,7 +3110,17 @@ block|{
 throw|throw
 operator|new
 name|EOFException
-argument_list|()
+argument_list|(
+literal|"reached end of stream after reading "
+operator|+
+name|read
+operator|+
+literal|" bytes; "
+operator|+
+name|len
+operator|+
+literal|" bytes expected"
+argument_list|)
 throw|;
 block|}
 block|}
@@ -3125,6 +3140,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|long
+name|toSkip
+init|=
+name|n
+decl_stmt|;
 while|while
 condition|(
 name|n
@@ -3161,10 +3181,27 @@ operator|-
 literal|1
 condition|)
 block|{
+name|long
+name|skipped
+init|=
+name|toSkip
+operator|-
+name|n
+decl_stmt|;
 throw|throw
 operator|new
 name|EOFException
-argument_list|()
+argument_list|(
+literal|"reached end of stream after skipping "
+operator|+
+name|skipped
+operator|+
+literal|" bytes; "
+operator|+
+name|toSkip
+operator|+
+literal|" bytes expected"
+argument_list|)
 throw|;
 block|}
 name|n
