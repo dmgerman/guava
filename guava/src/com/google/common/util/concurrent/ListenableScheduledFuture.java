@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**u  * Helper interface to implement both {@link ListenableFuture} and  * {@link ScheduledFuture}.  *  * @author Anthony Zana  *  * @since 14.0  */
+comment|/**  * Helper interface to implement both {@link ListenableFuture} and  * {@link ScheduledFuture}.  *  * @author Anthony Zana  *  * @since 14.0  */
 end_comment
 
 begin_interface
