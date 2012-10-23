@@ -1096,10 +1096,8 @@ finally|finally
 block|{
 name|isDispatching
 operator|.
-name|set
-argument_list|(
-literal|false
-argument_list|)
+name|remove
+argument_list|()
 expr_stmt|;
 block|}
 block|}
