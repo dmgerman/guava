@@ -1560,11 +1560,11 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|ImmutableSortedsetSubsetAsListSubListGenerator
+DECL|class|ImmutableSortedSetSubsetAsListSubListGenerator
 specifier|public
 specifier|static
 class|class
-name|ImmutableSortedsetSubsetAsListSubListGenerator
+name|ImmutableSortedSetSubsetAsListSubListGenerator
 extends|extends
 name|TestStringListGenerator
 block|{
