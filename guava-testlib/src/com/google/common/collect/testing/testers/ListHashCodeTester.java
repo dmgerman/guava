@@ -117,7 +117,7 @@ control|(
 name|E
 name|element
 range|:
-name|getSampleElements
+name|getOrderedElements
 argument_list|()
 control|)
 block|{

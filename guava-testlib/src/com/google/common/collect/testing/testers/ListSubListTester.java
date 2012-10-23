@@ -1187,9 +1187,13 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
-name|samples
+name|getOrderedElements
+argument_list|()
 operator|.
-name|e1
+name|get
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 argument_list|,
 name|subList

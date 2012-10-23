@@ -192,9 +192,13 @@ literal|0
 argument_list|,
 name|find
 argument_list|(
-name|samples
+name|getOrderedElements
+argument_list|()
 operator|.
-name|e0
+name|get
+argument_list|(
+literal|0
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

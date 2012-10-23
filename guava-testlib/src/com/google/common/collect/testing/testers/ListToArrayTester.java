@@ -123,7 +123,7 @@ name|assertArrayEquals
 argument_list|(
 literal|"toArray() order should match list"
 argument_list|,
-name|createSamplesArray
+name|createOrderedArray
 argument_list|()
 argument_list|,
 name|actual
@@ -165,7 +165,7 @@ name|assertArrayEquals
 argument_list|(
 literal|"toArray(tooSmall) order should match list"
 argument_list|,
-name|createSamplesArray
+name|createOrderedArray
 argument_list|()
 argument_list|,
 name|actual
@@ -199,7 +199,7 @@ name|assertArrayEquals
 argument_list|(
 literal|"toArray(largeEnough) order should match list"
 argument_list|,
-name|createSamplesArray
+name|createOrderedArray
 argument_list|()
 argument_list|,
 name|actual

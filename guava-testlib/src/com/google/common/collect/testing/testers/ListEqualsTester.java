@@ -177,7 +177,7 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|(
-name|getSampleElements
+name|getOrderedElements
 argument_list|()
 argument_list|)
 argument_list|)

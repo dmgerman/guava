@@ -63,7 +63,7 @@ block|{
 comment|// This calls get() on each index and checks the result:
 name|expectContents
 argument_list|(
-name|createSamplesArray
+name|createOrderedArray
 argument_list|()
 argument_list|)
 expr_stmt|;
