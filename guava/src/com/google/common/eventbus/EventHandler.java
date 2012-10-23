@@ -152,7 +152,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Invokes the wrapped handler method to handle {@code event}.    *    * @param event  event to handle    * @throws InvocationTargetException  if the wrapped method throws any    *     {@link Throwable} that is not an {@link Error} ({@code Error}s are    *     propagated as-is).    */
+comment|/**    * Invokes the wrapped handler method to handle {@code event}.    *    * @param event  event to handle    * @throws InvocationTargetException  if the wrapped method throws any    *     {@link Throwable} that is not an {@link Error} ({@code Error} instances are    *     propagated as-is).    */
 DECL|method|handleEvent (Object event)
 specifier|public
 name|void

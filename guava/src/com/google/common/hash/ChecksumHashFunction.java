@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link HashFunction} adapter for {@link Checksum}s.  *  * @author Colin Decker  */
+comment|/**  * {@link HashFunction} adapter for {@link Checksum} instances.  *  * @author Colin Decker  */
 end_comment
 
 begin_class

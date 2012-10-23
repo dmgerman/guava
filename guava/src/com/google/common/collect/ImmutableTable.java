@@ -1034,7 +1034,7 @@ argument_list|>
 name|columnKeySet
 parameter_list|()
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<R, V>}s in the returned map are    * {@link ImmutableMap}s as well.    */
+comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<R, V>} instances in the returned map are    * {@link ImmutableMap} instances as well.    */
 DECL|method|columnMap ()
 annotation|@
 name|Override
@@ -1084,7 +1084,7 @@ argument_list|>
 name|rowKeySet
 parameter_list|()
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<C, V>}s in the returned map are    * {@link ImmutableMap}s as well.    */
+comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<C, V>} instances in the returned map are    * {@link ImmutableMap} instances as well.    */
 DECL|method|rowMap ()
 annotation|@
 name|Override

@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link HashFunction} adapter for {@link MessageDigest}s.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  */
+comment|/**  * {@link HashFunction} adapter for {@link MessageDigest} instances.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  */
 end_comment
 
 begin_class

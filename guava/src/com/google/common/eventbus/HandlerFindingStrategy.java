@@ -39,7 +39,7 @@ DECL|interface|HandlerFindingStrategy
 interface|interface
 name|HandlerFindingStrategy
 block|{
-comment|/**    * Finds all suitable event handler methods in {@code source}, organizes them    * by the type of event they handle, and wraps them in {@link EventHandler}s.    *    * @param source  object whose handlers are desired.    * @return EventHandler objects for each handler method, organized by event    *         type.    *    * @throws IllegalArgumentException if {@code source} is not appropriate for    *         this strategy (in ways that this interface does not define).    */
+comment|/**    * Finds all suitable event handler methods in {@code source}, organizes them    * by the type of event they handle, and wraps them in {@link EventHandler} instances.    *    * @param source  object whose handlers are desired.    * @return EventHandler objects for each handler method, organized by event    *         type.    *    * @throws IllegalArgumentException if {@code source} is not appropriate for    *         this strategy (in ways that this interface does not define).    */
 DECL|method|findAllHandlers (Object source)
 name|Multimap
 argument_list|<
