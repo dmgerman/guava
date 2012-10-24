@@ -1676,7 +1676,7 @@ name|k
 operator|>=
 literal|0
 argument_list|,
-literal|"k (%d) must be nonnegative"
+literal|"k (%s) must be nonnegative"
 argument_list|,
 name|k
 argument_list|)
