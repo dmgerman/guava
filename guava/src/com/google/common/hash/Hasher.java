@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes  * in little-endian order.  *  *<p>The result of calling any methods after calling {@link #hash} is undefined.  *  * @author Kevin Bourrillion  * @since 11.0  */
+comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes  * in little-endian order.  *  *<p>The result of calling any methods after calling {@link #hash} is undefined.  *  *<p><b>Warning:</b> Chunks of data that are put into the {@link Hasher} are not delimited.  * The resulting {@link HashCode} is dependent only on the bytes inserted, and the order in which  * they were inserted, not how those bytes were chunked into discrete put() operations. For example,  * the following three expressions all generate colliding hash codes:<pre>   {@code  *  *   newHasher().putString("ab").putString("c").hash()  *   newHasher().putString("a").putString("bc").hash()  *   newHasher().putChar('a').putChar('b').putChar('c').hash()}</pre>  *  * If you wish to avoid this, you must explicitly delimit your data chunks. For example:  *<pre>   {@code  *  *   newHasher().putString("ab").putByte(DELIM).putString("c").hash()}</pre>  *  * @author Kevin Bourrillion  * @since 11.0  */
 end_comment
 
 begin_interface
