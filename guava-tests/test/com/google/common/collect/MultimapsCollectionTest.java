@@ -798,7 +798,15 @@ block|,
 name|ALLOWS_NULL_VALUES
 block|,
 name|SUPPORTS_REMOVE
-block|,   }
+block|,
+name|MultisetTestSuiteBuilder
+operator|.
+name|NoRecurse
+operator|.
+name|NO_ENTRY_SET
+block|,
+comment|// Cannot create entries with count> 1
+block|}
 decl_stmt|;
 DECL|field|STRING_TREESET_FACTORY
 specifier|static
