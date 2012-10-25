@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes  * in little-endian order.  *  * @author Kevin Bourrillion  * @since 11.0  */
+comment|/**  * A {@link PrimitiveSink} that can compute a hash code after reading the input. Each hasher should  * translate all multibyte values ({@link #putInt(int)}, {@link #putLong(long)}, etc) to bytes  * in little-endian order.  *  *<p>The result of calling any methods after calling {@link #hash} is undefined.  *  * @author Kevin Bourrillion  * @since 11.0  */
 end_comment
 
 begin_interface
