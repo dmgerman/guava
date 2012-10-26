@@ -395,6 +395,13 @@ name|TestSuite
 name|createTestSuite
 parameter_list|()
 block|{
+name|withFeatures
+argument_list|(
+name|CollectionFeature
+operator|.
+name|KNOWN_ORDER
+argument_list|)
+expr_stmt|;
 name|TestSuite
 name|suite
 init|=
