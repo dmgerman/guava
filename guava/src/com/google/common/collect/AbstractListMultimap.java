@@ -135,6 +135,23 @@ argument_list|>
 name|createCollection
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
+DECL|method|createUnmodifiableEmptyCollection ()
+name|List
+argument_list|<
+name|V
+argument_list|>
+name|createUnmodifiableEmptyCollection
+parameter_list|()
+block|{
+return|return
+name|ImmutableList
+operator|.
+name|of
+argument_list|()
+return|;
+block|}
 comment|// Following Javadoc copied from ListMultimap.
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 DECL|method|get (@ullable K key)

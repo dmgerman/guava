@@ -135,6 +135,23 @@ argument_list|>
 name|createCollection
 parameter_list|()
 function_decl|;
+DECL|method|createUnmodifiableEmptyCollection ()
+annotation|@
+name|Override
+name|Set
+argument_list|<
+name|V
+argument_list|>
+name|createUnmodifiableEmptyCollection
+parameter_list|()
+block|{
+return|return
+name|ImmutableSet
+operator|.
+name|of
+argument_list|()
+return|;
+block|}
 comment|// Following Javadoc copied from SetMultimap.
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
 DECL|method|get (@ullable K key)

@@ -373,6 +373,23 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Creates an unmodifiable, empty collection of values.    *    *<p>This is used in {@link #removeAll} on an empty key.    */
+DECL|method|createUnmodifiableEmptyCollection ()
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+name|createUnmodifiableEmptyCollection
+parameter_list|()
+block|{
+return|return
+name|unmodifiableCollectionSubclass
+argument_list|(
+name|createCollection
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/**    * Creates the collection of values for a single key.    *    *<p>Collections with weak, soft, or phantom references are not supported.    * Each call to {@code createCollection} should create a new instance.    *    *<p>The returned collection class determines whether duplicate key-value    * pairs are allowed.    *    * @return an empty collection of values    */
 DECL|method|createCollection ()
 specifier|abstract
@@ -1157,6 +1174,18 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|createUnmodifiableEmptyCollection
+argument_list|()
+return|;
+block|}
 name|Collection
 argument_list|<
 name|V
@@ -1166,13 +1195,6 @@ init|=
 name|createCollection
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
 name|output
 operator|.
 name|addAll
@@ -1192,7 +1214,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 name|unmodifiableCollectionSubclass
 argument_list|(

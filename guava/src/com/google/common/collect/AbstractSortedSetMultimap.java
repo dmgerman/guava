@@ -46,6 +46,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -124,9 +144,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 specifier|abstract
 name|SortedSet
 argument_list|<
@@ -135,6 +155,57 @@ argument_list|>
 name|createCollection
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
+DECL|method|createUnmodifiableEmptyCollection ()
+name|SortedSet
+argument_list|<
+name|V
+argument_list|>
+name|createUnmodifiableEmptyCollection
+parameter_list|()
+block|{
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|V
+argument_list|>
+name|comparator
+init|=
+name|valueComparator
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|comparator
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|Collections
+operator|.
+name|unmodifiableSortedSet
+argument_list|(
+name|createCollection
+argument_list|()
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+name|ImmutableSortedSet
+operator|.
+name|emptySet
+argument_list|(
+name|valueComparator
+argument_list|()
+argument_list|)
+return|;
+block|}
+block|}
 comment|// Following Javadoc copied from Multimap and SortedSetMultimap.
 comment|/**    * Returns a collection view of all values associated with a key. If no    * mappings in the multimap have the provided key, an empty collection is    * returned.    *    *<p>Changes to the returned collection will update the underlying multimap,    * and vice versa.    *    *<p>Because a {@code SortedSetMultimap} has unique sorted values for a given    * key, this method returns a {@link SortedSet}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
 DECL|method|get (@ullable K key)
