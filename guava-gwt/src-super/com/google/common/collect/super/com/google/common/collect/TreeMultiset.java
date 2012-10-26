@@ -465,6 +465,8 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+comment|// GWT inherits the default, SortedSet-returning AbstractSortedMultiset impl
+comment|// GWT inherits the default, SortedSet-returning AbstractSortedMultiset impl
 comment|/**    * A function which can be summed across a subtree.    */
 DECL|enum|Aggregate
 specifier|private
