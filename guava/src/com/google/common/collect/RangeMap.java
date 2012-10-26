@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -37,10 +51,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A mapping from disjoint nonempty ranges to non-null values. Queries look up the value  * associated with the range (if any) that contains a specified key.  *  *<p>In contrast to {@link RangeSet}, no "coalescing" is done of {@linkplain  * Range#isConnected(Range) connected} ranges, even if they are mapped to the same value.  *  * @author Louis Wasserman  */
+comment|/**  * A mapping from disjoint nonempty ranges to non-null values. Queries look up the value  * associated with the range (if any) that contains a specified key.  *  *<p>In contrast to {@link RangeSet}, no "coalescing" is done of {@linkplain  * Range#isConnected(Range) connected} ranges, even if they are mapped to the same value.  *  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|RangeMap
 specifier|public
 interface|interface
@@ -59,6 +75,27 @@ name|Nullable
 DECL|method|get (K key)
 name|V
 name|get
+parameter_list|(
+name|K
+name|key
+parameter_list|)
+function_decl|;
+comment|/**    * Returns the range containing this key and its associated value, if such a range is present    * in the range map, or {@code null} otherwise.    */
+annotation|@
+name|Nullable
+DECL|method|getEntry (K key)
+name|Map
+operator|.
+name|Entry
+argument_list|<
+name|Range
+argument_list|<
+name|K
+argument_list|>
+argument_list|,
+name|V
+argument_list|>
+name|getEntry
 parameter_list|(
 name|K
 name|key
