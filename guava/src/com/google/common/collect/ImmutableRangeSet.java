@@ -211,7 +211,6 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 DECL|method|all ()
-specifier|public
 specifier|static
 parameter_list|<
 name|C
