@@ -3183,10 +3183,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSimpleSplit ()
+DECL|method|testFixedLengthSimpleSplit ()
 specifier|public
 name|void
-name|testAtEachSimpleSplit
+name|testFixedLengthSimpleSplit
 parameter_list|()
 block|{
 name|String
@@ -3229,10 +3229,10 @@ literal|"e"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitEqualChunkLength ()
+DECL|method|testFixedLengthSplitEqualChunkLength ()
 specifier|public
 name|void
-name|testAtEachSplitEqualChunkLength
+name|testFixedLengthSplitEqualChunkLength
 parameter_list|()
 block|{
 name|String
@@ -3275,10 +3275,10 @@ literal|"ef"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitOnlyOneChunk ()
+DECL|method|testFixedLengthSplitOnlyOneChunk ()
 specifier|public
 name|void
-name|testAtEachSplitOnlyOneChunk
+name|testFixedLengthSplitOnlyOneChunk
 parameter_list|()
 block|{
 name|String
@@ -3317,10 +3317,10 @@ literal|"abc"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitSmallerString ()
+DECL|method|testFixedLengthSplitSmallerString ()
 specifier|public
 name|void
-name|testAtEachSplitSmallerString
+name|testFixedLengthSplitSmallerString
 parameter_list|()
 block|{
 name|String
@@ -3359,10 +3359,10 @@ literal|"ab"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitEmptyString ()
+DECL|method|testFixedLengthSplitEmptyString ()
 specifier|public
 name|void
-name|testAtEachSplitEmptyString
+name|testFixedLengthSplitEmptyString
 parameter_list|()
 block|{
 name|String
@@ -3401,10 +3401,10 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitEmptyStringWithOmitEmptyStrings ()
+DECL|method|testFixedLengthSplitEmptyStringWithOmitEmptyStrings ()
 specifier|public
 name|void
-name|testAtEachSplitEmptyStringWithOmitEmptyStrings
+name|testFixedLengthSplitEmptyStringWithOmitEmptyStrings
 parameter_list|()
 block|{
 name|ASSERT
@@ -3431,10 +3431,10 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitIntoChars ()
+DECL|method|testFixedLengthSplitIntoChars ()
 specifier|public
 name|void
-name|testAtEachSplitIntoChars
+name|testFixedLengthSplitIntoChars
 parameter_list|()
 block|{
 name|String
@@ -3479,10 +3479,10 @@ literal|"d"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testAtEachSplitZeroChunkLen ()
+DECL|method|testFixedLengthSplitZeroChunkLen ()
 specifier|public
 name|void
-name|testAtEachSplitZeroChunkLen
+name|testFixedLengthSplitZeroChunkLen
 parameter_list|()
 block|{
 try|try
@@ -3505,10 +3505,10 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testAtEachSplitNegativeChunkLen ()
+DECL|method|testFixedLengthSplitNegativeChunkLen ()
 specifier|public
 name|void
-name|testAtEachSplitNegativeChunkLen
+name|testFixedLengthSplitNegativeChunkLen
 parameter_list|()
 block|{
 try|try
