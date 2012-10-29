@@ -28,6 +28,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkNotNull
 import|;
 end_import
@@ -560,7 +576,7 @@ name|create
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Associates the specified range with the specified value.      *      * @throws IllegalArgumentException if {@code range} overlaps with any other ranges inserted      *         into this builder      */
+comment|/**      * Associates the specified range with the specified value.      *      * @throws IllegalArgumentException if {@code range} overlaps with any other ranges inserted      *         into this builder, or if {@code range} is empty      */
 DECL|method|put (Range<K> range, V value)
 specifier|public
 name|Builder
@@ -589,6 +605,19 @@ expr_stmt|;
 name|checkNotNull
 argument_list|(
 name|value
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+operator|!
+name|range
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|,
+literal|"Range must not be empty, but was %s"
+argument_list|,
+name|range
 argument_list|)
 expr_stmt|;
 if|if
@@ -675,18 +704,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-block|}
-if|if
-condition|(
-name|range
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-return|return
-name|this
-return|;
 block|}
 name|keyRanges
 operator|.
