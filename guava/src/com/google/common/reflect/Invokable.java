@@ -306,7 +306,7 @@ name|constructor
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if this is an overridable method; {@code false} if either it's not    * overridable, or if it's a constructor.    */
+comment|/**    * Returns {@code true} if this is an overridable method. Constructors, private, static or final    * methods, or methods declared by final classes are not overridable.    */
 DECL|method|isOverridable ()
 specifier|public
 specifier|abstract
@@ -314,7 +314,7 @@ name|boolean
 name|isOverridable
 parameter_list|()
 function_decl|;
-comment|/**    * Invokes with {@code receiver} as the 'this' and {@code args} passed to the underlying method    * and returns the return value; or calls the underlying constructor with {@code args} and returns    * the constructed instance.    *    * @throws IllegalAccessException if this {@code Constructor} object enforces Java language    *         access control and the underlying method or constructor is inaccessible.    * @throws IllegalArgumentException if the number of actual and formal parameters differ;    *         if an unwrapping conversion for primitive arguments fails; or if, after possible    *         unwrapping, a parameter value cannot be converted to the corresponding formal    *         parameter type by a method invocation conversion.    * @throws InvocationTargetException if the underlying method or constructor throws an exception.    */
+comment|/**    * Invokes with {@code receiver} as 'this' and {@code args} passed to the underlying method    * and returns the return value; or calls the underlying constructor with {@code args} and returns    * the constructed instance.    *    * @throws IllegalAccessException if this {@code Constructor} object enforces Java language    *         access control and the underlying method or constructor is inaccessible.    * @throws IllegalArgumentException if the number of actual and formal parameters differ;    *         if an unwrapping conversion for primitive arguments fails; or if, after possible    *         unwrapping, a parameter value cannot be converted to the corresponding formal    *         parameter type by a method invocation conversion.    * @throws InvocationTargetException if the underlying method or constructor throws an exception.    */
 comment|// All subclasses are owned by us and we'll make sure to get the R type right.
 annotation|@
 name|SuppressWarnings
@@ -356,7 +356,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Returns the return type of this delegate. */
+comment|/** Returns the return type of this {@code Invokable}. */
 comment|// All subclasses are owned by us and we'll make sure to get the R type right.
 annotation|@
 name|SuppressWarnings
@@ -393,7 +393,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Returns all declared parameters of this delegate. */
+comment|/** Returns all declared parameters of this {@code Invokable}. */
 DECL|method|getParameters ()
 specifier|public
 specifier|final
@@ -485,7 +485,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/** Returns all declared exception types of this delegate. */
+comment|/** Returns all declared exception types of this {@code Invokable}. */
 DECL|method|getExceptionTypes ()
 specifier|public
 specifier|final
@@ -572,7 +572,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Explicitly specifies the {@code returnType return type} of the functor. For example:    *<pre>   {@code    *   Method factoryMethod = Person.class.getMethod("create");    *   Invokable<?, Person> factory = Invokable.of(getNameMethod).returning(Person.class);    * }</pre>    */
+comment|/**    * Explicitly specifies the return type of this {@code Invokable}. For example:    *<pre>   {@code    *   Method factoryMethod = Person.class.getMethod("create");    *   Invokable<?, Person> factory = Invokable.of(getNameMethod).returning(Person.class);    * }</pre>    */
 DECL|method|returning (Class<R1> returnType)
 specifier|public
 specifier|final
@@ -608,7 +608,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Explicitly specifies the {@code returnType return type} of the functor. */
+comment|/** Explicitly specifies the return type of this {@code Invokable}. */
 DECL|method|returning (TypeToken<R1> returnType)
 specifier|public
 specifier|final

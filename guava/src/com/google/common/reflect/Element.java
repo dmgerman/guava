@@ -452,7 +452,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Returns true if the field or method is static. */
+comment|/** Returns true if the element is static. */
 DECL|method|isStatic ()
 specifier|public
 specifier|final
