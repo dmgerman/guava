@@ -1558,7 +1558,7 @@ operator|new
 name|TestLogHandler
 argument_list|()
 decl_stmt|;
-name|Closer
+name|Closeables
 operator|.
 name|logger
 operator|.
@@ -1722,7 +1722,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|Closer
+name|Closeables
 operator|.
 name|logger
 operator|.
@@ -1940,7 +1940,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getSuppressed (Throwable throwable)
-specifier|private
 specifier|static
 name|Throwable
 index|[]
