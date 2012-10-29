@@ -3535,6 +3535,56 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Deletes and returns the next value from the iterator, or returns    * {@code defaultValue} if there is no such value.    */
+annotation|@
+name|Nullable
+DECL|method|pollNext (Iterator<T> iterator)
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|pollNext
+parameter_list|(
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|)
+block|{
+if|if
+condition|(
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|T
+name|result
+init|=
+name|iterator
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+return|return
+name|result
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|null
+return|;
+block|}
+block|}
 comment|// Methods only in Iterators, not in Iterables
 comment|/**    * Clears the iterator using its remove method.    */
 DECL|method|clear (Iterator<?> iterator)
