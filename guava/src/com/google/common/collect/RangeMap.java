@@ -101,6 +101,15 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
+comment|/**    * Returns the minimal range {@linkplain Range#encloses(Range) enclosing} the ranges    * in this {@code RangeMap}.    *    * @throws NoSuchElementException if this range map is empty    */
+DECL|method|span ()
+name|Range
+argument_list|<
+name|K
+argument_list|>
+name|span
+parameter_list|()
+function_decl|;
 comment|/**    * Maps a range to a specified value (optional operation).    *    *<p>Specifically, after a call to {@code put(range, value)}, if    * {@link Range#contains(Comparable) range.contains(k)}, then {@link #get(Comparable) get(k)}    * will return {@code value}.    *    *<p>If {@code range} {@linkplain Range#isEmpty() is empty}, then this is a no-op.    */
 DECL|method|put (Range<K> range, V value)
 name|void
