@@ -236,6 +236,7 @@ name|int
 name|value
 parameter_list|)
 block|{
+comment|// GWT doesn't consistently overflow values to make them 32-bit, so we need to force it.
 name|this
 operator|.
 name|value
