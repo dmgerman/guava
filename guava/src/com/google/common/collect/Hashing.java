@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods for implementing hash-based collections.  *  * @author Kevin Bourrillion  * @author Jesse Wilson  */
+comment|/**  * Static methods for implementing hash-based collections.  *  * @author Kevin Bourrillion  * @author Jesse Wilson  * @author Austin Appleby  */
 end_comment
 
 begin_class
@@ -47,7 +47,25 @@ specifier|private
 name|Hashing
 parameter_list|()
 block|{}
-comment|/*    * This method was written by Doug Lea with assistance from members of JCP    * JSR-166 Expert Group and released to the public domain, as explained at    * http://creativecommons.org/licenses/publicdomain    *     * As of 2010/06/11, this method is identical to the (package private) hash    * method in OpenJDK 7's java.util.HashMap class.    */
+DECL|field|C1
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|C1
+init|=
+literal|0xcc9e2d51
+decl_stmt|;
+DECL|field|C2
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|C2
+init|=
+literal|0x1b873593
+decl_stmt|;
+comment|/*    * This method was rewritten in Java from an intermediate step of the Murmur hash function in    * http://code.google.com/p/smhasher/source/browse/trunk/MurmurHash3.cpp, which contained the    * following header:    *    * MurmurHash3 was written by Austin Appleby, and is placed in the public domain. The author    * hereby disclaims copyright to this source code.    */
 DECL|method|smear (int hashCode)
 specifier|static
 name|int
@@ -57,34 +75,19 @@ name|int
 name|hashCode
 parameter_list|)
 block|{
-name|hashCode
-operator|^=
-operator|(
-name|hashCode
-operator|>>>
-literal|20
-operator|)
-operator|^
-operator|(
-name|hashCode
-operator|>>>
-literal|12
-operator|)
-expr_stmt|;
 return|return
+name|C2
+operator|*
+name|Integer
+operator|.
+name|rotateLeft
+argument_list|(
 name|hashCode
-operator|^
-operator|(
-name|hashCode
-operator|>>>
-literal|7
-operator|)
-operator|^
-operator|(
-name|hashCode
-operator|>>>
-literal|4
-operator|)
+operator|*
+name|C1
+argument_list|,
+literal|15
+argument_list|)
 return|;
 block|}
 block|}
