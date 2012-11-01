@@ -38,6 +38,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -159,11 +173,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements {@link ListeningExecutorService} execution methods atop the abstract {@link #execute}  * method. More concretely, the {@code submit}, {@code invokeAny} and {@code invokeAll} methods  * create {@link ListenableFutureTask} instances and pass them to {@link #execute}.  *  *<p>In addition to {@link #execute}, subclasses must implement all methods related to shutdown and  * termination.  *  * @author Doug Lea  */
+comment|/**  * Implements {@link ListeningExecutorService} execution methods atop the abstract {@link #execute}  * method. More concretely, the {@code submit}, {@code invokeAny} and {@code invokeAll} methods  * create {@link ListenableFutureTask} instances and pass them to {@link #execute}.  *  *<p>In addition to {@link #execute}, subclasses must implement all methods related to shutdown and  * termination.  *  * @author Doug Lea  * @since 14.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|AbstractListeningExecutorService
+specifier|public
 specifier|abstract
 class|class
 name|AbstractListeningExecutorService
