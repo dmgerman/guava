@@ -22,6 +22,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|NoSuchElementException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -81,6 +91,15 @@ name|C
 argument_list|>
 argument_list|>
 name|asRanges
+parameter_list|()
+function_decl|;
+comment|/**    * Returns the minimal range which {@linkplain Range#encloses(Range) encloses} all ranges    * in this range set.    *    * @throws NoSuchElementException if this range set is {@linkplain #isEmpty() empty}    */
+DECL|method|span ()
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|span
 parameter_list|()
 function_decl|;
 comment|/**    * Returns {@code true} if this range set contains no ranges.    */

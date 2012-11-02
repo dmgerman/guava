@@ -487,6 +487,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|testInvariantsEmpty ()
+specifier|public
+name|void
+name|testInvariantsEmpty
+parameter_list|()
+block|{
+name|testInvariants
+argument_list|(
+name|TreeRangeSet
+operator|.
+name|create
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testAllSingleRangesEnclosing ()
 specifier|public
 name|void
