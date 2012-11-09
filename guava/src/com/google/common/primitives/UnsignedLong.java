@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -102,12 +102,22 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *   *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *   * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
+comment|/**  * A wrapper class for unsigned {@code long} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code long} values as unsigned, using the methods from {@link UnsignedLongs}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *  * @author Louis Wasserman  * @author Colin Evans  * @since 11.0  */
 end_comment
 
 begin_class
@@ -205,7 +215,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *     *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    */
+comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *    *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    */
 DECL|method|asUnsigned (long value)
 specifier|public
 specifier|static
@@ -216,15 +226,35 @@ name|long
 name|value
 parameter_list|)
 block|{
+comment|// TODO(user): deprecate this
 return|return
-operator|new
-name|UnsignedLong
+name|fromLongBits
 argument_list|(
 name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code UnsignedLong} representing the same value as the specified {@code BigInteger}    * . This is the inverse operation of {@link #bigIntegerValue()}.    *     * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^64}    */
+comment|/**    * Returns an {@code UnsignedLong} corresponding to a given bit representation.    * The argument is interpreted as an unsigned 64-bit value.    *    * @since 14.0    */
+DECL|method|fromLongBits (long bits)
+specifier|public
+specifier|static
+name|UnsignedLong
+name|fromLongBits
+parameter_list|(
+name|long
+name|bits
+parameter_list|)
+block|{
+comment|// TODO(user): consider caching small values, like Long.valueOf
+return|return
+operator|new
+name|UnsignedLong
+argument_list|(
+name|bits
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a {@code UnsignedLong} representing the same value as the specified    * {@code BigInteger}. This is the inverse operation of {@link #bigIntegerValue()}.    *    * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^64}    */
 DECL|method|valueOf (BigInteger value)
 specifier|public
 specifier|static
@@ -273,7 +303,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *     * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value    */
 DECL|method|valueOf (String string)
 specifier|public
 specifier|static
@@ -293,7 +323,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *     * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *         {@link Character#MAX_RADIX}    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *         {@link Character#MAX_RADIX}    */
 DECL|method|valueOf (String string, int radix)
 specifier|public
 specifier|static
@@ -331,19 +361,35 @@ name|UnsignedLong
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|plus
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @since 14.0    */
+DECL|method|plus (UnsignedLong val)
+specifier|public
+name|UnsignedLong
+name|plus
+parameter_list|(
+name|UnsignedLong
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromLongBits
 argument_list|(
 name|this
 operator|.
 name|value
 operator|+
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
@@ -359,19 +405,35 @@ name|UnsignedLong
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|minus
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns the result of subtracting this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @since 14.0    */
+DECL|method|minus (UnsignedLong val)
+specifier|public
+name|UnsignedLong
+name|minus
+parameter_list|(
+name|UnsignedLong
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromLongBits
 argument_list|(
 name|this
 operator|.
 name|value
 operator|-
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
@@ -387,17 +449,35 @@ name|UnsignedLong
 name|val
 parameter_list|)
 block|{
+comment|// TODO(user): deprecate this
+return|return
+name|times
+argument_list|(
+name|val
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
+DECL|method|times (UnsignedLong val)
+specifier|public
+name|UnsignedLong
+name|times
+parameter_list|(
+name|UnsignedLong
+name|val
+parameter_list|)
+block|{
+return|return
+name|fromLongBits
+argument_list|(
+name|value
+operator|*
 name|checkNotNull
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
-return|return
-name|asUnsigned
-argument_list|(
-name|value
-operator|*
-name|val
 operator|.
 name|value
 argument_list|)
@@ -413,13 +493,28 @@ name|UnsignedLong
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|dividedBy
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns the result of dividing this by {@code val}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
+DECL|method|dividedBy (UnsignedLong val)
+specifier|public
+name|UnsignedLong
+name|dividedBy
+parameter_list|(
+name|UnsignedLong
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromLongBits
 argument_list|(
 name|UnsignedLongs
 operator|.
@@ -427,7 +522,10 @@ name|divide
 argument_list|(
 name|value
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
@@ -444,13 +542,28 @@ name|UnsignedLong
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|mod
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns this modulo {@code val}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
+DECL|method|mod (UnsignedLong val)
+specifier|public
+name|UnsignedLong
+name|mod
+parameter_list|(
+name|UnsignedLong
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromLongBits
 argument_list|(
 name|UnsignedLongs
 operator|.
@@ -458,7 +571,10 @@ name|remainder
 argument_list|(
 name|value
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
@@ -481,7 +597,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedLong} as a {@code long}. This is an inverse operation    * to {@link #asUnsigned}.    *     *<p>Note that if this {@code UnsignedLong} holds a value {@code>= 2^63}, the returned value    * will be equal to {@code this - 2^64}.    */
+comment|/**    * Returns the value of this {@code UnsignedLong} as a {@code long}. This is an inverse operation    * to {@link #asUnsigned}.    *    *<p>Note that if this {@code UnsignedLong} holds a value {@code>= 2^63}, the returned value    * will be equal to {@code this - 2^64}.    */
 annotation|@
 name|Override
 DECL|method|longValue ()
