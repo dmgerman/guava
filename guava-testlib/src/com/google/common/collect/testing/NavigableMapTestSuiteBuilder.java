@@ -214,7 +214,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|using ( TestMapGenerator<K, V> generator)
+DECL|method|using ( TestSortedMapGenerator<K, V> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -230,7 +230,7 @@ name|V
 argument_list|>
 name|using
 parameter_list|(
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,
@@ -550,11 +550,11 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|NavigableMapSubmapTestMapGenerator ( TestMapGenerator<K, V> delegate, Bound to, Bound from)
+DECL|method|NavigableMapSubmapTestMapGenerator ( TestSortedMapGenerator<K, V> delegate, Bound to, Bound from)
 specifier|public
 name|NavigableMapSubmapTestMapGenerator
 parameter_list|(
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,
@@ -796,7 +796,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|newBuilderUsing ( TestMapGenerator<K, V> delegate, Bound to, Bound from)
+DECL|method|newBuilderUsing ( TestSortedMapGenerator<K, V> delegate, Bound to, Bound from)
 specifier|public
 name|NavigableMapTestSuiteBuilder
 argument_list|<
@@ -806,7 +806,7 @@ name|V
 argument_list|>
 name|newBuilderUsing
 parameter_list|(
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,

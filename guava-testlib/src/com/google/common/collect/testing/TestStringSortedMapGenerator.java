@@ -72,6 +72,16 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|SortedMap
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation helper for {@link TestMapGenerator} for use with sorted maps of strings.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  */
 end_comment
@@ -86,7 +96,110 @@ class|class
 name|TestStringSortedMapGenerator
 extends|extends
 name|TestStringMapGenerator
+implements|implements
+name|TestSortedMapGenerator
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 block|{
+annotation|@
+name|Override
+DECL|method|belowSamplesLesser ()
+specifier|public
+name|Entry
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|belowSamplesLesser
+parameter_list|()
+block|{
+return|return
+name|Helpers
+operator|.
+name|mapEntry
+argument_list|(
+literal|"!! a"
+argument_list|,
+literal|"below view"
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|belowSamplesGreater ()
+specifier|public
+name|Entry
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|belowSamplesGreater
+parameter_list|()
+block|{
+return|return
+name|Helpers
+operator|.
+name|mapEntry
+argument_list|(
+literal|"!! b"
+argument_list|,
+literal|"below view"
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|aboveSamplesLesser ()
+specifier|public
+name|Entry
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|aboveSamplesLesser
+parameter_list|()
+block|{
+return|return
+name|Helpers
+operator|.
+name|mapEntry
+argument_list|(
+literal|"~~ a"
+argument_list|,
+literal|"above view"
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|aboveSamplesGreater ()
+specifier|public
+name|Entry
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|aboveSamplesGreater
+parameter_list|()
+block|{
+return|return
+name|Helpers
+operator|.
+name|mapEntry
+argument_list|(
+literal|"~~ b"
+argument_list|,
+literal|"above view"
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|order (List<Entry<String, String>> insertionOrder)
@@ -118,6 +231,63 @@ return|return
 name|orderEntriesByKey
 argument_list|(
 name|insertionOrder
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|create (Entry<String, String>[] entries)
+specifier|protected
+specifier|abstract
+name|SortedMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|create
+parameter_list|(
+name|Entry
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+index|[]
+name|entries
+parameter_list|)
+function_decl|;
+annotation|@
+name|Override
+DECL|method|create (Object... entries)
+specifier|public
+name|SortedMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|create
+parameter_list|(
+name|Object
+modifier|...
+name|entries
+parameter_list|)
+block|{
+return|return
+operator|(
+name|SortedMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+operator|)
+name|super
+operator|.
+name|create
+argument_list|(
+name|entries
 argument_list|)
 return|;
 block|}

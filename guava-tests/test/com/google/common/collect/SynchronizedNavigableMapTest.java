@@ -217,16 +217,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 operator|.
 name|Entry
 import|;
@@ -1517,7 +1507,7 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,

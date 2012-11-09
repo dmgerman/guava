@@ -167,7 +167,6 @@ annotation|@
 name|Override
 DECL|method|create (Object... entries)
 specifier|public
-specifier|final
 name|Map
 argument_list|<
 name|String

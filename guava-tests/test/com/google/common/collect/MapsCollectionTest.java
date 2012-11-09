@@ -451,7 +451,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,
@@ -562,7 +562,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,

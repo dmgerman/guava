@@ -186,16 +186,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|SortedMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|SortedSet
 import|;
 end_import
@@ -222,7 +212,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|using ( TestMapGenerator<K, V> generator)
+DECL|method|using ( TestSortedMapGenerator<K, V> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -238,7 +228,7 @@ name|V
 argument_list|>
 name|using
 parameter_list|(
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,
@@ -635,7 +625,7 @@ name|to
 parameter_list|)
 block|{
 specifier|final
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,
@@ -644,7 +634,7 @@ argument_list|>
 name|delegate
 init|=
 operator|(
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,
@@ -741,7 +731,7 @@ argument_list|()
 return|;
 block|}
 comment|/** Like using() but overrideable by NavigableMapTestSuiteBuilder. */
-DECL|method|newBuilderUsing ( TestMapGenerator<K, V> delegate, Bound to, Bound from)
+DECL|method|newBuilderUsing ( TestSortedMapGenerator<K, V> delegate, Bound to, Bound from)
 name|SortedMapTestSuiteBuilder
 argument_list|<
 name|K
@@ -750,7 +740,7 @@ name|V
 argument_list|>
 name|newBuilderUsing
 parameter_list|(
-name|TestMapGenerator
+name|TestSortedMapGenerator
 argument_list|<
 name|K
 argument_list|,

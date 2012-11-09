@@ -202,6 +202,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|SortedMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|TreeMap
 import|;
 end_import
@@ -874,7 +884,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,
@@ -972,7 +982,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,
@@ -1171,7 +1181,7 @@ operator|.
 name|using
 argument_list|(
 operator|new
-name|TestStringSortedMapGenerator
+name|TestStringMapGenerator
 argument_list|()
 block|{
 annotation|@
@@ -1262,7 +1272,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,
@@ -1351,7 +1361,7 @@ block|{
 annotation|@
 name|Override
 specifier|protected
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,
@@ -1465,26 +1475,25 @@ return|;
 block|}
 comment|// TODO: call conversion constructors or factory methods instead of using
 comment|// populate() on an empty map
-DECL|method|populate ( Map<T, String> map, Entry<T, String>[] entries)
+DECL|method|populate ( M map, Entry<T, String>[] entries)
 specifier|private
 specifier|static
 parameter_list|<
 name|T
-parameter_list|>
+parameter_list|,
+name|M
+extends|extends
 name|Map
 argument_list|<
 name|T
 argument_list|,
 name|String
 argument_list|>
+parameter_list|>
+name|M
 name|populate
 parameter_list|(
-name|Map
-argument_list|<
-name|T
-argument_list|,
-name|String
-argument_list|>
+name|M
 name|map
 parameter_list|,
 name|Entry

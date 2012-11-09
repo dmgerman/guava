@@ -177,6 +177,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -186,9 +188,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-operator|.
-name|Entry
+name|SortedMap
 import|;
 end_import
 
@@ -216,7 +216,7 @@ DECL|method|create (Entry<String, String>[] entries)
 annotation|@
 name|Override
 specifier|public
-name|Map
+name|SortedMap
 argument_list|<
 name|String
 argument_list|,
