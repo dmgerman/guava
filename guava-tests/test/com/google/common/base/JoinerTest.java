@@ -1787,6 +1787,8 @@ decl_stmt|;
 try|try
 block|{
 name|j
+operator|=
+name|j
 operator|.
 name|skipNulls
 argument_list|()
@@ -1823,6 +1825,8 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|j
+operator|=
 name|j
 operator|.
 name|useForNull
@@ -1864,6 +1868,8 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|j
+operator|=
 name|j
 operator|.
 name|useForNull
@@ -2443,6 +2449,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|test_skipNulls_onMap ()
 specifier|public
 name|void

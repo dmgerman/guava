@@ -4145,6 +4145,11 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testInvalidZeroLimit ()
 specifier|public
 name|void
@@ -4840,6 +4845,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testMapSplitter_emptySeparator ()
 specifier|public
 name|void
