@@ -486,7 +486,7 @@ decl_stmt|;
 name|int
 name|floorPow
 init|=
-name|POWERS_OF_10
+name|powersOf10
 index|[
 name|logFloor
 index|]
@@ -549,7 +549,7 @@ return|return
 operator|(
 name|x
 operator|<=
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 index|[
 name|logFloor
 index|]
@@ -583,7 +583,7 @@ comment|/*      * Based on Hacker's Delight Fig. 11-5, the two-table-lookup, bra
 name|int
 name|y
 init|=
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 index|[
 name|Integer
 operator|.
@@ -600,7 +600,7 @@ init|=
 operator|(
 name|x
 operator|-
-name|POWERS_OF_10
+name|powersOf10
 index|[
 name|y
 index|]
@@ -621,15 +621,15 @@ operator|-
 name|sgn
 return|;
 block|}
-comment|// MAX_LOG10_FOR_LEADING_ZEROS[i] == floor(log10(2^(Long.SIZE - i)))
-DECL|field|MAX_LOG10_FOR_LEADING_ZEROS
+comment|// maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))
+DECL|field|maxLog10ForLeadingZeros
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|byte
 index|[]
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 init|=
 block|{
 literal|9
@@ -699,14 +699,14 @@ block|,
 literal|0
 block|}
 decl_stmt|;
-DECL|field|POWERS_OF_10
+DECL|field|powersOf10
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|int
 index|[]
-name|POWERS_OF_10
+name|powersOf10
 init|=
 block|{
 literal|1
@@ -730,15 +730,15 @@ block|,
 literal|1000000000
 block|}
 decl_stmt|;
-comment|// HALF_POWERS_OF_10[i] = largest int less than 10^(i + 0.5)
-DECL|field|HALF_POWERS_OF_10
+comment|// halfPowersOf10[i] = largest int less than 10^(i + 0.5)
+DECL|field|halfPowersOf10
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|int
 index|[]
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 init|=
 block|{
 literal|3
@@ -1934,12 +1934,12 @@ return|return
 operator|(
 name|n
 operator|<
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 operator|)
 condition|?
-name|FACTORIALS
+name|factorials
 index|[
 name|n
 index|]
@@ -1949,12 +1949,13 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-DECL|field|FACTORIALS
+DECL|field|factorials
+specifier|private
 specifier|static
 specifier|final
 name|int
 index|[]
-name|FACTORIALS
+name|factorials
 init|=
 block|{
 literal|1
@@ -2184,13 +2185,13 @@ if|if
 condition|(
 name|k
 operator|>=
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 operator|||
 name|n
 operator|>
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -2261,14 +2262,14 @@ name|result
 return|;
 block|}
 block|}
-comment|// binomial(BIGGEST_BINOMIALS[k], k) fits in an int, but not binomial(BIGGEST_BINOMIALS[k]+1,k).
-DECL|field|BIGGEST_BINOMIALS
+comment|// binomial(biggestBinomials[k], k) fits in an int, but not binomial(biggestBinomials[k]+1,k).
+DECL|field|biggestBinomials
 annotation|@
 name|VisibleForTesting
 specifier|static
 name|int
 index|[]
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 init|=
 block|{
 name|Integer

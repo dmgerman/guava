@@ -410,7 +410,7 @@ argument_list|)
 argument_list|,
 name|LongMath
 operator|.
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 index|[
 name|i
 index|]
@@ -440,7 +440,7 @@ name|i
 operator|<
 name|LongMath
 operator|.
-name|POWERS_OF_10
+name|powersOf10
 operator|.
 name|length
 condition|;
@@ -461,7 +461,7 @@ argument_list|)
 argument_list|,
 name|LongMath
 operator|.
-name|POWERS_OF_10
+name|powersOf10
 index|[
 name|i
 index|]
@@ -478,7 +478,7 @@ literal|10
 argument_list|,
 name|LongMath
 operator|.
-name|POWERS_OF_10
+name|powersOf10
 operator|.
 name|length
 argument_list|)
@@ -518,7 +518,7 @@ name|i
 operator|<
 name|LongMath
 operator|.
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 operator|.
 name|length
 condition|;
@@ -554,7 +554,7 @@ name|valueOf
 argument_list|(
 name|LongMath
 operator|.
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 index|[
 name|i
 index|]
@@ -579,7 +579,7 @@ literal|2
 operator|*
 name|LongMath
 operator|.
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 operator|.
 name|length
 operator|+
@@ -666,7 +666,7 @@ name|i
 operator|<
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 condition|;
@@ -684,7 +684,7 @@ name|expected
 argument_list|,
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 index|[
 name|i
 index|]
@@ -699,11 +699,11 @@ name|checkedMultiply
 argument_list|(
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 index|[
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 operator|-
@@ -712,7 +712,7 @@ index|]
 argument_list|,
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 argument_list|)
@@ -752,7 +752,7 @@ name|k
 operator|<
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 condition|;
@@ -770,7 +770,7 @@ name|binomial
 argument_list|(
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -784,7 +784,7 @@ name|assertTrue
 argument_list|(
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -802,7 +802,7 @@ name|binomial
 argument_list|(
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -822,7 +822,7 @@ name|k
 init|=
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 decl_stmt|;
@@ -867,7 +867,7 @@ name|k
 operator|<
 name|LongMath
 operator|.
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 operator|.
 name|length
 condition|;
@@ -879,14 +879,14 @@ name|assertTrue
 argument_list|(
 name|LongMath
 operator|.
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 index|[
 name|k
 index|]
 operator|<=
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -896,7 +896,7 @@ name|simpleBinomial
 argument_list|(
 name|LongMath
 operator|.
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 index|[
 name|k
 index|]
@@ -909,7 +909,7 @@ if|if
 condition|(
 name|LongMath
 operator|.
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 index|[
 name|k
 index|]
@@ -926,7 +926,7 @@ name|simpleBinomial
 argument_list|(
 name|LongMath
 operator|.
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 index|[
 name|k
 index|]
@@ -957,7 +957,7 @@ name|k
 init|=
 name|LongMath
 operator|.
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 operator|.
 name|length
 decl_stmt|;

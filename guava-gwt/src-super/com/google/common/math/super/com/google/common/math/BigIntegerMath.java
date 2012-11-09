@@ -533,7 +533,7 @@ name|n
 operator|<
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 condition|)
@@ -545,7 +545,7 @@ name|valueOf
 argument_list|(
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 index|[
 name|n
 index|]
@@ -599,7 +599,7 @@ name|startingNumber
 init|=
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 decl_stmt|;
@@ -608,7 +608,7 @@ name|product
 init|=
 name|LongMath
 operator|.
-name|FACTORIALS
+name|factorials
 index|[
 name|startingNumber
 operator|-
@@ -1052,7 +1052,7 @@ name|k
 operator|<
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 operator|&&
@@ -1060,7 +1060,7 @@ name|n
 operator|<=
 name|LongMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]

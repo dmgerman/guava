@@ -82,13 +82,13 @@ name|MAX_EXPONENT
 init|=
 literal|100
 decl_stmt|;
-comment|/*    * Duplicated from LongMath.    * binomial(BIGGEST_BINOMIALS[k], k) fits in a long, but not    * binomial(BIGGEST_BINOMIALS[k] + 1, k).    */
-DECL|field|BIGGEST_BINOMIALS
+comment|/*    * Duplicated from LongMath.    * binomial(biggestBinomials[k], k) fits in a long, but not    * binomial(biggestBinomials[k] + 1, k).    */
+DECL|field|biggestBinomials
 specifier|static
 specifier|final
 name|int
 index|[]
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 init|=
 block|{
 name|Integer

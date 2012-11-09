@@ -366,15 +366,15 @@ name|MAX_POWER_OF_SQRT2_UNSIGNED
 init|=
 literal|0xB504F333F9DE6484L
 decl_stmt|;
-comment|// MAX_LOG10_FOR_LEADING_ZEROS[i] == floor(log10(2^(Long.SIZE - i)))
-DECL|field|MAX_LOG10_FOR_LEADING_ZEROS
+comment|// maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))
+DECL|field|maxLog10ForLeadingZeros
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|byte
 index|[]
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 init|=
 block|{
 literal|19
@@ -506,13 +506,13 @@ block|,
 literal|0
 block|}
 decl_stmt|;
-comment|// HALF_POWERS_OF_10[i] = largest long less than 10^(i + 0.5)
-DECL|field|FACTORIALS
+comment|// halfPowersOf10[i] = largest long less than 10^(i + 0.5)
+DECL|field|factorials
 specifier|static
 specifier|final
 name|long
 index|[]
-name|FACTORIALS
+name|factorials
 init|=
 block|{
 literal|1L
@@ -1001,13 +1001,13 @@ if|if
 condition|(
 name|k
 operator|>=
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 operator|||
 name|n
 operator|>
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -1028,13 +1028,13 @@ if|if
 condition|(
 name|k
 operator|<
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 operator|.
 name|length
 operator|&&
 name|n
 operator|<=
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 index|[
 name|k
 index|]
@@ -1123,13 +1123,13 @@ return|return
 name|result
 return|;
 block|}
-comment|/*    * binomial(BIGGEST_BINOMIALS[k], k) fits in a long, but not    * binomial(BIGGEST_BINOMIALS[k] + 1, k).    */
-DECL|field|BIGGEST_BINOMIALS
+comment|/*    * binomial(biggestBinomials[k], k) fits in a long, but not    * binomial(biggestBinomials[k] + 1, k).    */
+DECL|field|biggestBinomials
 specifier|static
 specifier|final
 name|int
 index|[]
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 init|=
 block|{
 name|Integer
@@ -1207,15 +1207,15 @@ block|,
 literal|66
 block|}
 decl_stmt|;
-comment|/*    * binomial(BIGGEST_SIMPLE_BINOMIALS[k], k) doesn't need to use the slower GCD-based impl,    * but binomial(BIGGEST_SIMPLE_BINOMIALS[k] + 1, k) does.    */
-DECL|field|BIGGEST_SIMPLE_BINOMIALS
+comment|/*    * binomial(biggestSimpleBinomials[k], k) doesn't need to use the slower GCD-based impl,    * but binomial(biggestSimpleBinomials[k] + 1, k) does.    */
+DECL|field|biggestSimpleBinomials
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|int
 index|[]
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 init|=
 block|{
 name|Integer

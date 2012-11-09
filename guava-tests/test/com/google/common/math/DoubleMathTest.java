@@ -567,7 +567,7 @@ argument_list|()
 argument_list|,
 name|DoubleMath
 operator|.
-name|EVERY_SIXTEENTH_FACTORIAL
+name|everySixteenthFactorial
 index|[
 name|i
 index|]

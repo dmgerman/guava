@@ -510,7 +510,7 @@ decl_stmt|;
 name|long
 name|floorPow
 init|=
-name|POWERS_OF_10
+name|powersOf10
 index|[
 name|logFloor
 index|]
@@ -573,7 +573,7 @@ return|return
 operator|(
 name|x
 operator|<=
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 index|[
 name|logFloor
 index|]
@@ -611,7 +611,7 @@ comment|/*      * Based on Hacker's Delight Fig. 11-5, the two-table-lookup, bra
 name|int
 name|y
 init|=
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 index|[
 name|Long
 operator|.
@@ -628,7 +628,7 @@ init|=
 operator|(
 name|x
 operator|-
-name|POWERS_OF_10
+name|powersOf10
 index|[
 name|y
 index|]
@@ -652,15 +652,15 @@ operator|)
 name|sgn
 return|;
 block|}
-comment|// MAX_LOG10_FOR_LEADING_ZEROS[i] == floor(log10(2^(Long.SIZE - i)))
-DECL|field|MAX_LOG10_FOR_LEADING_ZEROS
+comment|// maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))
+DECL|field|maxLog10ForLeadingZeros
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|byte
 index|[]
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 init|=
 block|{
 literal|19
@@ -799,12 +799,12 @@ literal|"TODO"
 argument_list|)
 annotation|@
 name|VisibleForTesting
-DECL|field|POWERS_OF_10
+DECL|field|powersOf10
 specifier|static
 specifier|final
 name|long
 index|[]
-name|POWERS_OF_10
+name|powersOf10
 init|=
 block|{
 literal|1L
@@ -846,7 +846,7 @@ block|,
 literal|1000000000000000000L
 block|}
 decl_stmt|;
-comment|// HALF_POWERS_OF_10[i] = largest long less than 10^(i + 0.5)
+comment|// halfPowersOf10[i] = largest long less than 10^(i + 0.5)
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -854,12 +854,12 @@ literal|"TODO"
 argument_list|)
 annotation|@
 name|VisibleForTesting
-DECL|field|HALF_POWERS_OF_10
+DECL|field|halfPowersOf10
 specifier|static
 specifier|final
 name|long
 index|[]
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 init|=
 block|{
 literal|3L
@@ -2329,12 +2329,12 @@ return|return
 operator|(
 name|n
 operator|<
-name|FACTORIALS
+name|factorials
 operator|.
 name|length
 operator|)
 condition|?
-name|FACTORIALS
+name|factorials
 index|[
 name|n
 index|]
@@ -2344,12 +2344,12 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-DECL|field|FACTORIALS
+DECL|field|factorials
 specifier|static
 specifier|final
 name|long
 index|[]
-name|FACTORIALS
+name|factorials
 init|=
 block|{
 literal|1L
@@ -2838,13 +2838,13 @@ if|if
 condition|(
 name|k
 operator|>=
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 operator|||
 name|n
 operator|>
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -2865,13 +2865,13 @@ if|if
 condition|(
 name|k
 operator|<
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 operator|.
 name|length
 operator|&&
 name|n
 operator|<=
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 index|[
 name|k
 index|]
@@ -2960,13 +2960,13 @@ return|return
 name|result
 return|;
 block|}
-comment|/*    * binomial(BIGGEST_BINOMIALS[k], k) fits in a long, but not    * binomial(BIGGEST_BINOMIALS[k] + 1, k).    */
-DECL|field|BIGGEST_BINOMIALS
+comment|/*    * binomial(biggestBinomials[k], k) fits in a long, but not    * binomial(biggestBinomials[k] + 1, k).    */
+DECL|field|biggestBinomials
 specifier|static
 specifier|final
 name|int
 index|[]
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 init|=
 block|{
 name|Integer
@@ -3044,15 +3044,15 @@ block|,
 literal|66
 block|}
 decl_stmt|;
-comment|/*    * binomial(BIGGEST_SIMPLE_BINOMIALS[k], k) doesn't need to use the slower GCD-based impl,    * but binomial(BIGGEST_SIMPLE_BINOMIALS[k] + 1, k) does.    */
-DECL|field|BIGGEST_SIMPLE_BINOMIALS
+comment|/*    * binomial(biggestSimpleBinomials[k], k) doesn't need to use the slower GCD-based impl,    * but binomial(biggestSimpleBinomials[k] + 1, k) does.    */
+DECL|field|biggestSimpleBinomials
 annotation|@
 name|VisibleForTesting
 specifier|static
 specifier|final
 name|int
 index|[]
-name|BIGGEST_SIMPLE_BINOMIALS
+name|biggestSimpleBinomials
 init|=
 block|{
 name|Integer

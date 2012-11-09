@@ -348,7 +348,7 @@ name|i
 operator|<
 name|IntMath
 operator|.
-name|POWERS_OF_10
+name|powersOf10
 operator|.
 name|length
 operator|-
@@ -371,7 +371,7 @@ argument_list|)
 argument_list|,
 name|IntMath
 operator|.
-name|POWERS_OF_10
+name|powersOf10
 index|[
 name|i
 index|]
@@ -432,7 +432,7 @@ argument_list|)
 argument_list|,
 name|IntMath
 operator|.
-name|MAX_LOG10_FOR_LEADING_ZEROS
+name|maxLog10ForLeadingZeros
 index|[
 name|i
 index|]
@@ -463,7 +463,7 @@ name|i
 operator|<
 name|IntMath
 operator|.
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 operator|.
 name|length
 condition|;
@@ -474,7 +474,7 @@ block|{
 assert|assert
 name|IntMath
 operator|.
-name|HALF_POWERS_OF_10
+name|halfPowersOf10
 index|[
 name|i
 index|]
@@ -536,7 +536,7 @@ name|k
 operator|<
 name|IntMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 condition|;
@@ -554,7 +554,7 @@ name|binomial
 argument_list|(
 name|IntMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -568,7 +568,7 @@ name|assertTrue
 argument_list|(
 name|IntMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -586,7 +586,7 @@ name|binomial
 argument_list|(
 name|IntMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
@@ -613,13 +613,13 @@ literal|2
 operator|*
 name|IntMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 argument_list|,
 name|IntMath
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 argument_list|)

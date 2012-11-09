@@ -1095,7 +1095,7 @@ block|}
 else|else
 block|{
 comment|// Multiplying the last (n& 0xf) values into their own accumulator gives a more accurate
-comment|// result than multiplying by EVERY_SIXTEENTH_FACTORIAL[n>> 4] directly.
+comment|// result than multiplying by everySixteenthFactorial[n>> 4] directly.
 name|double
 name|accum
 init|=
@@ -1131,7 +1131,7 @@ block|}
 return|return
 name|accum
 operator|*
-name|EVERY_SIXTEENTH_FACTORIAL
+name|everySixteenthFactorial
 index|[
 name|n
 operator|>>
@@ -1152,12 +1152,12 @@ literal|170
 decl_stmt|;
 annotation|@
 name|VisibleForTesting
-DECL|field|EVERY_SIXTEENTH_FACTORIAL
+DECL|field|everySixteenthFactorial
 specifier|static
 specifier|final
 name|double
 index|[]
-name|EVERY_SIXTEENTH_FACTORIAL
+name|everySixteenthFactorial
 init|=
 block|{
 literal|0x1

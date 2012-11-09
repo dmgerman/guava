@@ -351,7 +351,7 @@ name|nextInt
 argument_list|(
 name|MathBenchmarking
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 operator|.
 name|length
 argument_list|)
@@ -381,7 +381,7 @@ name|nextInt
 argument_list|(
 name|MathBenchmarking
 operator|.
-name|BIGGEST_BINOMIALS
+name|biggestBinomials
 index|[
 name|k
 index|]
