@@ -1245,14 +1245,10 @@ argument_list|(
 name|sortedSet
 argument_list|)
 decl_stmt|;
-name|E
+name|Object
 index|[]
 name|elements
 init|=
-operator|(
-name|E
-index|[]
-operator|)
 name|sortedSet
 operator|.
 name|toArray
