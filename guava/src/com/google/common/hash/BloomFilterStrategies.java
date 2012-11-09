@@ -126,7 +126,6 @@ name|BitArray
 name|bits
 parameter_list|)
 block|{
-comment|// TODO(user): when the murmur's shortcuts are implemented, update this code
 name|long
 name|hash64
 init|=
@@ -135,18 +134,12 @@ operator|.
 name|murmur3_128
 argument_list|()
 operator|.
-name|newHasher
-argument_list|()
-operator|.
-name|putObject
+name|hashObject
 argument_list|(
 name|object
 argument_list|,
 name|funnel
 argument_list|)
-operator|.
-name|hash
-argument_list|()
 operator|.
 name|asLong
 argument_list|()
@@ -267,18 +260,12 @@ operator|.
 name|murmur3_128
 argument_list|()
 operator|.
-name|newHasher
-argument_list|()
-operator|.
-name|putObject
+name|hashObject
 argument_list|(
 name|object
 argument_list|,
 name|funnel
 argument_list|)
-operator|.
-name|hash
-argument_list|()
 operator|.
 name|asLong
 argument_list|()
