@@ -374,7 +374,6 @@ literal|1.2
 decl_stmt|;
 comment|/**    * Give a good hash table size for the given number of keys.    *    * @param size The number of keys to be inserted. Must be greater than or equal to 2.    */
 DECL|method|chooseTableSize (int size)
-specifier|private
 specifier|static
 name|int
 name|chooseTableSize

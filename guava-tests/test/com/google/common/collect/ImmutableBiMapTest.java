@@ -1807,14 +1807,17 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"duplicate key: one"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"one"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2298,14 +2301,17 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"duplicate key: one"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"one"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2865,14 +2871,17 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"duplicate key: 1"
-argument_list|,
 name|expected
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"1"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
