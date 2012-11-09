@@ -148,6 +148,26 @@ name|Charset
 name|charset
 parameter_list|)
 function_decl|;
+comment|/**    * Shortcut for {@code newHasher().putObject(instance, funnel).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse.    *    * @since 14.0    */
+DECL|method|hashObject (T instance, Funnel<? super T> funnel)
+parameter_list|<
+name|T
+parameter_list|>
+name|HashCode
+name|hashObject
+parameter_list|(
+name|T
+name|instance
+parameter_list|,
+name|Funnel
+argument_list|<
+name|?
+super|super
+name|T
+argument_list|>
+name|funnel
+parameter_list|)
+function_decl|;
 comment|/**    * Returns the number of bits (a multiple of 32) that each hash code produced by this    * hash function has.    */
 DECL|method|bits ()
 name|int
