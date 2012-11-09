@@ -193,7 +193,6 @@ block|}
 comment|/**    * Updates this hasher with {@code len} bytes starting at {@code off} in the given buffer.    */
 DECL|method|update (byte[] b, int off, int len)
 specifier|protected
-specifier|abstract
 name|void
 name|update
 parameter_list|(
@@ -207,7 +206,34 @@ parameter_list|,
 name|int
 name|len
 parameter_list|)
-function_decl|;
+block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+name|off
+init|;
+name|i
+operator|<
+name|off
+operator|+
+name|len
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|update
+argument_list|(
+name|b
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|Override
 DECL|method|putByte (byte b)

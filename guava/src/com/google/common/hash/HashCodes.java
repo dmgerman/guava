@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkState
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -462,7 +478,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Creates a {@code HashCode} from a byte array. The array is defensively copied to preserve    * the immutability contract of {@code HashCode}. The array must be at least of length 4.    */
+comment|/**    * Creates a {@code HashCode} from a byte array. The array is defensively copied to preserve    * the immutability contract of {@code HashCode}. The array cannot be empty.    */
 DECL|method|fromBytes (byte[] bytes)
 specifier|public
 specifier|static
@@ -480,9 +496,9 @@ name|bytes
 operator|.
 name|length
 operator|>=
-literal|4
+literal|1
 argument_list|,
-literal|"A HashCode must contain at least 4 bytes."
+literal|"A HashCode must contain at least 1 byte."
 argument_list|)
 expr_stmt|;
 return|return
@@ -495,7 +511,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    * The array must be at least of length 4 (not checked).    */
+comment|/**    * Creates a {@code HashCode} from a byte array. The array is<i>not</i> copied defensively,     * so it must be handed-off so as to preserve the immutability contract of {@code HashCode}.    */
 DECL|method|fromBytesNoCopy (byte[] bytes)
 specifier|static
 name|HashCode
@@ -589,6 +605,21 @@ name|int
 name|asInt
 parameter_list|()
 block|{
+name|checkState
+argument_list|(
+name|bytes
+operator|.
+name|length
+operator|>=
+literal|4
+argument_list|,
+literal|"HashCode#asInt() requires>= 4 bytes (it only has %s bytes)."
+argument_list|,
+name|bytes
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|bytes
@@ -647,24 +678,21 @@ name|long
 name|asLong
 parameter_list|()
 block|{
-if|if
-condition|(
+name|checkState
+argument_list|(
 name|bytes
 operator|.
 name|length
-operator|<
+operator|>=
 literal|8
-condition|)
-block|{
-comment|// Checking this to throw the correct type of exception
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"Not enough bytes"
+argument_list|,
+literal|"HashCode#asInt() requires>= 8 bytes (it only has %s bytes)."
+argument_list|,
+name|bytes
+operator|.
+name|length
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 return|return
 operator|(
 name|bytes
@@ -795,6 +823,83 @@ else|:
 name|asLong
 argument_list|()
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|padToInt ()
+name|int
+name|padToInt
+parameter_list|()
+block|{
+if|if
+condition|(
+name|bytes
+operator|.
+name|length
+operator|>=
+literal|4
+condition|)
+block|{
+return|return
+name|asInt
+argument_list|()
+return|;
+block|}
+else|else
+block|{
+name|int
+name|val
+init|=
+operator|(
+name|bytes
+index|[
+literal|0
+index|]
+operator|&
+literal|0xFF
+operator|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+name|bytes
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|val
+operator||=
+operator|(
+operator|(
+name|bytes
+index|[
+name|i
+index|]
+operator|&
+literal|0xFF
+operator|)
+operator|<<
+operator|(
+name|i
+operator|*
+literal|8
+operator|)
+operator|)
+expr_stmt|;
+block|}
+return|return
+name|val
+return|;
+block|}
 block|}
 DECL|field|serialVersionUID
 specifier|private

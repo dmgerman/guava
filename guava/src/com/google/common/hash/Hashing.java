@@ -502,6 +502,29 @@ argument_list|(
 literal|"SHA-512"
 argument_list|)
 decl_stmt|;
+comment|/**    * Returns a hash function implementing the CRC-8 checksum algorithm (4 hash bits).    *    * @since 14.0    */
+DECL|method|crc8 ()
+specifier|public
+specifier|static
+name|HashFunction
+name|crc8
+parameter_list|()
+block|{
+return|return
+name|CRC_8
+return|;
+block|}
+DECL|field|CRC_8
+specifier|private
+specifier|static
+specifier|final
+name|HashFunction
+name|CRC_8
+init|=
+operator|new
+name|Crc8HashFunction
+argument_list|()
+decl_stmt|;
 comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
 DECL|method|crc32 ()
 specifier|public
