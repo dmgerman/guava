@@ -3631,7 +3631,6 @@ name|result
 return|;
 block|}
 DECL|method|createKeySet ()
-specifier|private
 name|Set
 argument_list|<
 name|K
@@ -3639,6 +3638,8 @@ argument_list|>
 name|createKeySet
 parameter_list|()
 block|{
+comment|// TreeMultimap uses NavigableKeySet explicitly, but we don't handle that here for GWT
+comment|// compatibility reasons
 return|return
 operator|(
 name|map
@@ -3754,14 +3755,6 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-return|return
-operator|new
-name|Iterator
-argument_list|<
-name|K
-argument_list|>
-argument_list|()
-block|{
 specifier|final
 name|Iterator
 argument_list|<
@@ -3787,6 +3780,14 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+return|return
+operator|new
+name|Iterator
+argument_list|<
+name|K
+argument_list|>
+argument_list|()
+block|{
 name|Map
 operator|.
 name|Entry
@@ -4971,7 +4972,6 @@ name|result
 return|;
 block|}
 DECL|method|createAsMap ()
-specifier|private
 name|Map
 argument_list|<
 name|K
@@ -4984,6 +4984,8 @@ argument_list|>
 name|createAsMap
 parameter_list|()
 block|{
+comment|// TreeMultimap uses NavigableAsMap explicitly, but we don't handle that here for GWT
+comment|// compatibility reasons
 return|return
 operator|(
 name|map
@@ -5422,6 +5424,57 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|wrapEntry (Entry<K, Collection<V>> entry)
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|wrapEntry
+parameter_list|(
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+argument_list|>
+name|entry
+parameter_list|)
+block|{
+name|K
+name|key
+init|=
+name|entry
+operator|.
+name|getKey
+argument_list|()
+decl_stmt|;
+return|return
+name|Maps
+operator|.
+name|immutableEntry
+argument_list|(
+name|key
+argument_list|,
+name|wrapCollection
+argument_list|(
+name|key
+argument_list|,
+name|entry
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+argument_list|)
+return|;
+block|}
 DECL|class|AsMapEntries
 class|class
 name|AsMapEntries
@@ -5675,14 +5728,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|K
-name|key
-init|=
-name|entry
-operator|.
-name|getKey
-argument_list|()
-decl_stmt|;
 name|collection
 operator|=
 name|entry
@@ -5691,18 +5736,9 @@ name|getValue
 argument_list|()
 expr_stmt|;
 return|return
-name|Maps
-operator|.
-name|immutableEntry
+name|wrapEntry
 argument_list|(
-name|key
-argument_list|,
-name|wrapCollection
-argument_list|(
-name|key
-argument_list|,
-name|collection
-argument_list|)
+name|entry
 argument_list|)
 return|;
 block|}
@@ -5994,14 +6030,27 @@ operator|)
 condition|?
 name|sortedKeySet
 operator|=
+name|createKeySet
+argument_list|()
+else|:
+name|result
+return|;
+block|}
+DECL|method|createKeySet ()
+name|SortedSet
+argument_list|<
+name|K
+argument_list|>
+name|createKeySet
+parameter_list|()
+block|{
+return|return
 operator|new
 name|SortedKeySet
 argument_list|(
 name|sortedMap
 argument_list|()
 argument_list|)
-else|:
-name|result
 return|;
 block|}
 block|}
