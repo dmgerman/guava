@@ -49,16 +49,18 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|annotations
+name|base
 operator|.
-name|Beta
+name|Preconditions
+operator|.
+name|checkPositionIndex
 import|;
 end_import
 
@@ -70,9 +72,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
+name|Beta
 import|;
 end_import
 
@@ -299,7 +301,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * Provides utility methods for working with byte arrays and I/O streams.  *  * @author Chris Nokleberg  * @author Colin Decker  * @since 1.0  */
 end_comment
 
 begin_class
@@ -412,6 +414,187 @@ return|;
 block|}
 block|}
 return|;
+block|}
+comment|/**    * Returns a new {@link ByteSource} that reads bytes from the given byte array.    *    * @since 14.0    */
+DECL|method|asByteSource (byte[] b)
+specifier|public
+specifier|static
+name|ByteSource
+name|asByteSource
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ByteArrayByteSource
+argument_list|(
+name|b
+argument_list|)
+return|;
+block|}
+DECL|class|ByteArrayByteSource
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|ByteArrayByteSource
+extends|extends
+name|ByteSource
+block|{
+DECL|field|bytes
+specifier|private
+specifier|final
+name|byte
+index|[]
+name|bytes
+decl_stmt|;
+DECL|method|ByteArrayByteSource (byte[] bytes)
+specifier|private
+name|ByteArrayByteSource
+parameter_list|(
+name|byte
+index|[]
+name|bytes
+parameter_list|)
+block|{
+name|this
+operator|.
+name|bytes
+operator|=
+name|checkNotNull
+argument_list|(
+name|bytes
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|openStream ()
+specifier|public
+name|InputStream
+name|openStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+operator|new
+name|ByteArrayInputStream
+argument_list|(
+name|bytes
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|size ()
+specifier|public
+name|long
+name|size
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|bytes
+operator|.
+name|length
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|read ()
+specifier|public
+name|byte
+index|[]
+name|read
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|bytes
+operator|.
+name|clone
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|copyTo (OutputStream output)
+specifier|public
+name|long
+name|copyTo
+parameter_list|(
+name|OutputStream
+name|output
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|output
+operator|.
+name|write
+argument_list|(
+name|bytes
+argument_list|)
+expr_stmt|;
+return|return
+name|bytes
+operator|.
+name|length
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hash (HashFunction hashFunction)
+specifier|public
+name|HashCode
+name|hash
+parameter_list|(
+name|HashFunction
+name|hashFunction
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|hashFunction
+operator|.
+name|hashBytes
+argument_list|(
+name|bytes
+argument_list|)
+return|;
+block|}
+comment|// TODO(user): Possibly override slice()
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"ByteStreams.newByteSource("
+operator|+
+name|BaseEncoding
+operator|.
+name|base16
+argument_list|()
+operator|.
+name|encode
+argument_list|(
+name|bytes
+argument_list|)
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 comment|/**    * Writes a byte array to an output stream from the given supplier.    *    * @param from the bytes to write    * @param to the output supplier    * @throws IOException if an I/O error occurs    */
 DECL|method|write (byte[] from, OutputSupplier<? extends OutputStream> to)
@@ -1120,8 +1303,6 @@ name|int
 name|start
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkPositionIndex
 argument_list|(
 name|start
@@ -2447,9 +2628,20 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"ByteStreams.nullOutputStream()"
+return|;
+block|}
 block|}
 decl_stmt|;
-comment|/**    * Returns a {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com.google.common.io.NullOutputStream)    */
+comment|/**    * Returns an {@link OutputStream} that simply discards written bytes.    *    * @since 14.0 (since 1.0 as com.google.common.io.NullOutputStream)    */
 DECL|method|nullOutputStream ()
 specifier|public
 specifier|static

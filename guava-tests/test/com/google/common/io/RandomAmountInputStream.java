@@ -72,16 +72,6 @@ name|Random
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/** Returns a random portion of the requested bytes on each call. */
 end_comment
@@ -99,12 +89,10 @@ specifier|final
 name|Random
 name|random
 decl_stmt|;
-DECL|method|RandomAmountInputStream (@ullable InputStream in, Random random)
+DECL|method|RandomAmountInputStream (InputStream in, Random random)
 specifier|public
 name|RandomAmountInputStream
 parameter_list|(
-annotation|@
-name|Nullable
 name|InputStream
 name|in
 parameter_list|,
@@ -114,7 +102,10 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|in
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|this

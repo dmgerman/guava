@@ -30,6 +30,18 @@ name|AbstractPackageSanityTests
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Method
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic sanity tests for the entire package.  *  * @author Ben Yu  */
 end_comment
@@ -75,6 +87,23 @@ operator|.
 name|class
 argument_list|,
 literal|"abcd"
+argument_list|)
+expr_stmt|;
+name|setDefault
+argument_list|(
+name|Method
+operator|.
+name|class
+argument_list|,
+name|AbstractPackageSanityTests
+operator|.
+name|class
+operator|.
+name|getDeclaredMethods
+argument_list|()
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 block|}

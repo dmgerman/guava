@@ -149,7 +149,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even though these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @since 1.0  */
+comment|/**  * Provides utility methods for working with resources in the classpath.  * Note that even though these methods use {@link URL} parameters, they  * are usually not appropriate for HTTP or other non-classpath resources.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Ben Yu  * @author Colin Decker  * @since 1.0  */
 end_comment
 
 begin_class
@@ -213,6 +213,93 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Returns a {@link ByteSource} that reads from the given URL.    *    * @since 14.0    */
+DECL|method|asByteSource (URL url)
+specifier|public
+specifier|static
+name|ByteSource
+name|asByteSource
+parameter_list|(
+name|URL
+name|url
+parameter_list|)
+block|{
+return|return
+operator|new
+name|UrlByteSource
+argument_list|(
+name|url
+argument_list|)
+return|;
+block|}
+comment|/**    * A byte source that reads from a URL using {@link URL#openStream()}.    */
+DECL|class|UrlByteSource
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|UrlByteSource
+extends|extends
+name|ByteSource
+block|{
+DECL|field|url
+specifier|private
+specifier|final
+name|URL
+name|url
+decl_stmt|;
+DECL|method|UrlByteSource (URL url)
+specifier|private
+name|UrlByteSource
+parameter_list|(
+name|URL
+name|url
+parameter_list|)
+block|{
+name|this
+operator|.
+name|url
+operator|=
+name|checkNotNull
+argument_list|(
+name|url
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|openStream ()
+specifier|public
+name|InputStream
+name|openStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|url
+operator|.
+name|openStream
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Resources.newByteSource("
+operator|+
+name|url
+operator|+
+literal|")"
+return|;
+block|}
+block|}
 comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a URL using the given character set.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newReaderSupplier ( URL url, Charset charset)
 specifier|public
@@ -240,6 +327,32 @@ argument_list|(
 name|url
 argument_list|)
 argument_list|,
+name|charset
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a {@link CharSource} that reads from the given URL using the given character set.    *    * @since 14.0    */
+DECL|method|asCharSource (URL url, Charset charset)
+specifier|public
+specifier|static
+name|CharSource
+name|asCharSource
+parameter_list|(
+name|URL
+name|url
+parameter_list|,
+name|Charset
+name|charset
+parameter_list|)
+block|{
+return|return
+name|asByteSource
+argument_list|(
+name|url
+argument_list|)
+operator|.
+name|asCharSource
+argument_list|(
 name|charset
 argument_list|)
 return|;
