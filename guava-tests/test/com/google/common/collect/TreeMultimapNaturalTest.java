@@ -330,9 +330,6 @@ DECL|class|TreeMultimapNaturalTest
 specifier|public
 class|class
 name|TreeMultimapNaturalTest
-parameter_list|<
-name|E
-parameter_list|>
 extends|extends
 name|AbstractSetMultimapTest
 block|{
@@ -1566,7 +1563,7 @@ name|Double
 argument_list|>
 name|hash
 init|=
-name|HashMultimap
+name|TreeMultimap
 operator|.
 name|create
 argument_list|()
