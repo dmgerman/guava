@@ -162,6 +162,11 @@ return|return
 name|reps
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|timeStringIntern (int reps)
 specifier|public
 name|int
