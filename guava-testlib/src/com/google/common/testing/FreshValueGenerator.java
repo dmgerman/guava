@@ -2290,7 +2290,7 @@ block|{
 return|return
 name|UnsignedLong
 operator|.
-name|asUnsigned
+name|fromLongBits
 argument_list|(
 name|freshLong
 argument_list|()
