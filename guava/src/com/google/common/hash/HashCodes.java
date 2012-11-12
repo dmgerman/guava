@@ -686,7 +686,7 @@ name|length
 operator|>=
 literal|8
 argument_list|,
-literal|"HashCode#asInt() requires>= 8 bytes (it only has %s bytes)."
+literal|"HashCode#asLong() requires>= 8 bytes (it only has %s bytes)."
 argument_list|,
 name|bytes
 operator|.
@@ -826,9 +826,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|padToInt ()
+DECL|method|hashCode ()
+specifier|public
 name|int
-name|padToInt
+name|hashCode
 parameter_list|()
 block|{
 if|if

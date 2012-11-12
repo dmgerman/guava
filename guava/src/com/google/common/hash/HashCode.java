@@ -103,17 +103,6 @@ name|int
 name|asInt
 parameter_list|()
 function_decl|;
-comment|/**    * By default, returns {@code asInt()}. Implementations can override this method in case the    * {@code HashCode} has less than four bytes.    */
-DECL|method|padToInt ()
-name|int
-name|padToInt
-parameter_list|()
-block|{
-return|return
-name|asInt
-argument_list|()
-return|;
-block|}
 comment|/**    * Returns the first eight bytes of {@linkplain #asBytes() this hashcode's bytes}, converted to    * a {@code long} value in little-endian order.    *    * @throws IllegalStateException if {@code bits()< 64}    */
 DECL|method|asLong ()
 specifier|public
@@ -281,7 +270,7 @@ parameter_list|()
 block|{
 comment|/*      * As long as the hash function that produced this isn't of horrible quality, this      * won't be of horrible quality either.      */
 return|return
-name|padToInt
+name|asInt
 argument_list|()
 return|;
 block|}
