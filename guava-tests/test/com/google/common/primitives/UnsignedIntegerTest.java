@@ -233,10 +233,10 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testAsUnsignedAndIntValueAreInverses ()
+DECL|method|testFromIntBitsAndIntValueAreInverses ()
 specifier|public
 name|void
-name|testAsUnsignedAndIntValueAreInverses
+name|testFromIntBitsAndIntValueAreInverses
 parameter_list|()
 block|{
 for|for
@@ -260,7 +260,7 @@ name|value
 argument_list|,
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|value
 argument_list|)
@@ -271,10 +271,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testAsUnsignedLongValue ()
+DECL|method|testFromIntBitsLongValue ()
 specifier|public
 name|void
-name|testAsUnsignedLongValue
+name|testFromIntBitsLongValue
 parameter_list|()
 block|{
 for|for
@@ -305,7 +305,7 @@ name|expected
 argument_list|,
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|value
 argument_list|)
@@ -335,7 +335,7 @@ name|unsignedValue
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|value
 argument_list|)
@@ -401,7 +401,7 @@ name|value
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|l
 argument_list|)
@@ -482,7 +482,7 @@ name|value
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|l
 argument_list|)
@@ -529,7 +529,7 @@ name|unsignedValue
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|value
 argument_list|)
@@ -571,7 +571,7 @@ name|unsignedValue
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|value
 argument_list|)
@@ -594,10 +594,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testAdd ()
+DECL|method|testPlus ()
 specifier|public
 name|void
-name|testAdd
+name|testPlus
 parameter_list|()
 block|{
 for|for
@@ -621,7 +621,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -631,7 +631,7 @@ name|bUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|b
 argument_list|)
@@ -660,7 +660,7 @@ name|unsignedSum
 init|=
 name|aUnsigned
 operator|.
-name|add
+name|plus
 argument_list|(
 name|bUnsigned
 argument_list|)
@@ -678,10 +678,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testSubtract ()
+DECL|method|testMinus ()
 specifier|public
 name|void
-name|testSubtract
+name|testMinus
 parameter_list|()
 block|{
 for|for
@@ -705,7 +705,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -715,7 +715,7 @@ name|bUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|b
 argument_list|)
@@ -747,7 +747,7 @@ name|unsignedSub
 init|=
 name|aUnsigned
 operator|.
-name|subtract
+name|minus
 argument_list|(
 name|bUnsigned
 argument_list|)
@@ -770,10 +770,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"multiply"
 argument_list|)
-DECL|method|testMultiply ()
+DECL|method|testTimes ()
 specifier|public
 name|void
-name|testMultiply
+name|testTimes
 parameter_list|()
 block|{
 for|for
@@ -797,7 +797,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -807,7 +807,7 @@ name|bUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|b
 argument_list|)
@@ -839,7 +839,7 @@ name|unsignedMul
 init|=
 name|aUnsigned
 operator|.
-name|multiply
+name|times
 argument_list|(
 name|bUnsigned
 argument_list|)
@@ -863,10 +863,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testDivide ()
+DECL|method|testDividedBy ()
 specifier|public
 name|void
-name|testDivide
+name|testDividedBy
 parameter_list|()
 block|{
 for|for
@@ -897,7 +897,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -907,7 +907,7 @@ name|bUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|b
 argument_list|)
@@ -936,7 +936,7 @@ name|unsignedDiv
 init|=
 name|aUnsigned
 operator|.
-name|divide
+name|dividedBy
 argument_list|(
 name|bUnsigned
 argument_list|)
@@ -973,7 +973,7 @@ try|try
 block|{
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -999,10 +999,10 @@ parameter_list|)
 block|{}
 block|}
 block|}
-DECL|method|testRemainder ()
+DECL|method|testMod ()
 specifier|public
 name|void
-name|testRemainder
+name|testMod
 parameter_list|()
 block|{
 for|for
@@ -1033,7 +1033,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -1043,7 +1043,7 @@ name|bUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|b
 argument_list|)
@@ -1056,7 +1056,7 @@ operator|.
 name|bigIntegerValue
 argument_list|()
 operator|.
-name|remainder
+name|mod
 argument_list|(
 name|bUnsigned
 operator|.
@@ -1072,7 +1072,7 @@ name|unsignedRem
 init|=
 name|aUnsigned
 operator|.
-name|remainder
+name|mod
 argument_list|(
 name|bUnsigned
 argument_list|)
@@ -1091,10 +1091,10 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|testRemainderByZero ()
+DECL|method|testModByZero ()
 specifier|public
 name|void
-name|testRemainderByZero
+name|testModByZero
 parameter_list|()
 block|{
 for|for
@@ -1109,12 +1109,12 @@ try|try
 block|{
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
 operator|.
-name|remainder
+name|mod
 argument_list|(
 name|UnsignedInteger
 operator|.
@@ -1162,7 +1162,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -1172,7 +1172,7 @@ name|bUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|b
 argument_list|)
@@ -1242,7 +1242,7 @@ name|addEqualityGroup
 argument_list|(
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -1309,7 +1309,7 @@ name|aUnsigned
 init|=
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
@@ -1362,7 +1362,7 @@ name|reserializeAndAssert
 argument_list|(
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|a
 argument_list|)

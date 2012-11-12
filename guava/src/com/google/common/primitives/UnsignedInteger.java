@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *   * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either  * express or implied. See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class for unsigned {@code int} values, supporting arithmetic operations.  *   *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code int} values as unsigned, using the methods from {@link UnsignedInts}.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *   * @author Louis Wasserman  * @since 11.0  */
+comment|/**  * A wrapper class for unsigned {@code int} values, supporting arithmetic operations.  *  *<p>In some cases, when speed is more important than code readability, it may be faster simply to  * treat primitive {@code int} values as unsigned, using the methods from {@link UnsignedInts}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained#Unsigned_support">  * unsigned primitive utilities</a>.  *  * @author Louis Wasserman  * @since 11.0  */
 end_comment
 
 begin_class
@@ -257,11 +257,30 @@ name|int
 name|value
 parameter_list|)
 block|{
+comment|// TODO(user): deprecate this
+return|return
+name|fromIntBits
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an {@code UnsignedInteger} corresponding to a given bit representation.    * The argument is interpreted as an unsigned 32-bit value.    *    * @since 14.0    */
+DECL|method|fromIntBits (int bits)
+specifier|public
+specifier|static
+name|UnsignedInteger
+name|fromIntBits
+parameter_list|(
+name|int
+name|bits
+parameter_list|)
+block|{
 return|return
 operator|new
 name|UnsignedInteger
 argument_list|(
-name|value
+name|bits
 argument_list|)
 return|;
 block|}
@@ -292,7 +311,7 @@ name|value
 argument_list|)
 expr_stmt|;
 return|return
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 operator|(
 name|int
@@ -301,7 +320,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code UnsignedInteger} representing the same value as the specified    * {@link BigInteger}. This is the inverse operation of {@link #bigIntegerValue()}.    *     * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^32}    */
+comment|/**    * Returns a {@code UnsignedInteger} representing the same value as the specified    * {@link BigInteger}. This is the inverse operation of {@link #bigIntegerValue()}.    *    * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^32}    */
 DECL|method|valueOf (BigInteger value)
 specifier|public
 specifier|static
@@ -341,7 +360,7 @@ name|value
 argument_list|)
 expr_stmt|;
 return|return
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|value
 operator|.
@@ -350,7 +369,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedInteger} holding the value of the specified {@code String}, parsed    * as an unsigned {@code int} value.    *     * @throws NumberFormatException if the string does not contain a parsable unsigned {@code int}    *         value    */
+comment|/**    * Returns an {@code UnsignedInteger} holding the value of the specified {@code String}, parsed    * as an unsigned {@code int} value.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code int}    *         value    */
 DECL|method|valueOf (String string)
 specifier|public
 specifier|static
@@ -370,7 +389,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedInteger} holding the value of the specified {@code String}, parsed    * as an unsigned {@code int} value in the specified radix.    *     * @throws NumberFormatException if the string does not contain a parsable unsigned {@code int}    *         value    */
+comment|/**    * Returns an {@code UnsignedInteger} holding the value of the specified {@code String}, parsed    * as an unsigned {@code int} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code int}    *         value    */
 DECL|method|valueOf (String string, int radix)
 specifier|public
 specifier|static
@@ -385,7 +404,7 @@ name|radix
 parameter_list|)
 block|{
 return|return
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|UnsignedInts
 operator|.
@@ -408,19 +427,35 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|plus
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *    * @since 14.0    */
+DECL|method|plus (UnsignedInteger val)
+specifier|public
+name|UnsignedInteger
+name|plus
+parameter_list|(
+name|UnsignedInteger
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|this
 operator|.
 name|value
 operator|+
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
@@ -436,30 +471,39 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
+comment|// TODO(user): deprecate this
+return|return
+name|minus
+argument_list|(
+name|val
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *    * @since 14.0    */
+DECL|method|minus (UnsignedInteger val)
+specifier|public
+name|UnsignedInteger
+name|minus
+parameter_list|(
+name|UnsignedInteger
+name|val
+parameter_list|)
+block|{
+return|return
+name|fromIntBits
+argument_list|(
+name|value
+operator|-
 name|checkNotNull
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
-return|return
-name|asUnsigned
-argument_list|(
-name|this
-operator|.
-name|value
-operator|-
-name|val
 operator|.
 name|value
 argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 32    * bits, returns the low 32 bits of the result.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Does not truncate correctly"
-argument_list|)
 DECL|method|multiply (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -469,17 +513,39 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
+comment|// TODO(user): deprecate this
+return|return
+name|times
+argument_list|(
+name|val
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 32    * bits, returns the low 32 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Does not truncate correctly"
+argument_list|)
+DECL|method|times (UnsignedInteger val)
+specifier|public
+name|UnsignedInteger
+name|times
+parameter_list|(
+name|UnsignedInteger
+name|val
+parameter_list|)
+block|{
+comment|// TODO(user): make this GWT-compatible
+return|return
+name|fromIntBits
+argument_list|(
+name|value
+operator|*
 name|checkNotNull
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
-return|return
-name|asUnsigned
-argument_list|(
-name|value
-operator|*
-name|val
 operator|.
 name|value
 argument_list|)
@@ -495,13 +561,26 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|dividedBy
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns the result of dividing this by {@code val}.    *    * @throws ArithmeticException if {@code val} is zero    * @since 14.0    */
+DECL|method|dividedBy (UnsignedInteger val)
+specifier|public
+name|UnsignedInteger
+name|dividedBy
+parameter_list|(
+name|UnsignedInteger
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|UnsignedInts
 operator|.
@@ -509,7 +588,10 @@ name|divide
 argument_list|(
 name|value
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
@@ -526,13 +608,26 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-name|checkNotNull
+comment|// TODO(user): deprecate this
+return|return
+name|mod
 argument_list|(
 name|val
 argument_list|)
-expr_stmt|;
+return|;
+block|}
+comment|/**    * Returns this mod {@code val}.    *    * @throws ArithmeticException if {@code val} is zero    * @since 14.0    */
+DECL|method|mod (UnsignedInteger val)
+specifier|public
+name|UnsignedInteger
+name|mod
+parameter_list|(
+name|UnsignedInteger
+name|val
+parameter_list|)
+block|{
 return|return
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|UnsignedInts
 operator|.
@@ -540,14 +635,17 @@ name|remainder
 argument_list|(
 name|value
 argument_list|,
+name|checkNotNull
+argument_list|(
 name|val
+argument_list|)
 operator|.
 name|value
 argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedInteger} as an {@code int}. This is an inverse    * operation to {@link #asUnsigned}.    *     *<p>Note that if this {@code UnsignedInteger} holds a value {@code>= 2^31}, the returned value    * will be equal to {@code this - 2^32}.    */
+comment|/**    * Returns the value of this {@code UnsignedInteger} as an {@code int}. This is an inverse    * operation to {@link #fromIntBits}.    *    *<p>Note that if this {@code UnsignedInteger} holds a value {@code>= 2^31}, the returned value    * will be equal to {@code this - 2^32}.    */
 annotation|@
 name|Override
 DECL|method|intValue ()
