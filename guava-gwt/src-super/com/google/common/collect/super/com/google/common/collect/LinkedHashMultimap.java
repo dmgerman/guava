@@ -2383,7 +2383,7 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|createEntryIterator ()
+DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
 name|Map
@@ -2395,7 +2395,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-name|createEntryIterator
+name|entryIterator
 parameter_list|()
 block|{
 return|return

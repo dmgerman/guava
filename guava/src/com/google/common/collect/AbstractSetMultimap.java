@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Basic implementation of the {@link SetMultimap} interface. It's a wrapper  * around {@link AbstractMultimap} that converts the returned collections into  * {@code Sets}. The {@link #createCollection} method must return a {@code Set}.  *  * @author Jared Levy  */
+comment|/**  * Basic implementation of the {@link SetMultimap} interface. It's a wrapper  * around {@link AbstractMapBasedMultimap} that converts the returned collections into  * {@code Sets}. The {@link #createCollection} method must return a {@code Set}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class
@@ -87,7 +87,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|AbstractMultimap
+name|AbstractMapBasedMultimap
 argument_list|<
 name|K
 argument_list|,
