@@ -2845,7 +2845,7 @@ name|create
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Add the specified range to this builder.  {@linkplain Range#isConnected Connected} ranges      * will be {@linkplain Range#span(Range) coalesced}.      *      * @throws IllegalArgumentException if {@code range} is empty or overlaps any ranges already      *         added to the builder      */
+comment|/**      * Add the specified range to this builder.  Adjacent/abutting ranges are permitted, but      * empty ranges, or ranges with nonempty overlap, are forbidden.      *      * @throws IllegalArgumentException if {@code range} is empty or has nonempty intersection with      *         any ranges already added to the builder      */
 DECL|method|add (Range<C> range)
 specifier|public
 name|Builder
