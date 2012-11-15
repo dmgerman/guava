@@ -1198,6 +1198,10 @@ decl_stmt|;
 if|if
 condition|(
 name|rangeMapEntry
+operator|!=
+literal|null
+operator|&&
+name|rangeMapEntry
 operator|.
 name|getKey
 argument_list|()
