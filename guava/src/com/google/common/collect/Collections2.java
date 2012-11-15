@@ -594,6 +594,8 @@ parameter_list|)
 block|{
 try|try
 block|{
+comment|// TODO(user): consider doing the predicate after unfiltered.contains,
+comment|// which would reduce the risk of CCE here
 comment|// unsafe cast can result in a CCE from predicate.apply(), which we
 comment|// will catch
 annotation|@
@@ -748,6 +750,8 @@ parameter_list|)
 block|{
 try|try
 block|{
+comment|// TODO(user): consider doing the predicate after unfiltered.contains,
+comment|// which would reduce the risk of CCE here
 comment|// unsafe cast can result in a CCE from predicate.apply(), which we
 comment|// will catch
 annotation|@
