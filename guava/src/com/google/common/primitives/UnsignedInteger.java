@@ -154,6 +154,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -246,7 +256,9 @@ operator|&
 literal|0xffffffff
 expr_stmt|;
 block|}
-comment|/**    * Returns an {@code UnsignedInteger} that, when treated as signed, is    * equal to {@code value}.    */
+comment|/**    * Returns an {@code UnsignedInteger} that, when treated as signed, is    * equal to {@code value}.    *    * @deprecated Use {@link #fromIntBits(int)}. This method is scheduled for deletion in January    *             2013.    */
+annotation|@
+name|Deprecated
 DECL|method|asUnsigned (int value)
 specifier|public
 specifier|static
@@ -417,7 +429,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    */
+comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *    * @deprecated Use {@link #plus(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
+annotation|@
+name|Deprecated
 DECL|method|add (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -427,7 +441,6 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-comment|// TODO(user): deprecate this
 return|return
 name|plus
 argument_list|(
@@ -436,6 +449,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|plus (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -461,7 +476,9 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    */
+comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *    * @deprecated Use {@link #minus(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
+annotation|@
+name|Deprecated
 DECL|method|subtract (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -471,7 +488,6 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-comment|// TODO(user): deprecate this
 return|return
 name|minus
 argument_list|(
@@ -480,6 +496,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|minus (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -503,7 +521,9 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 32    * bits, returns the low 32 bits of the result.    */
+comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 32    * bits, returns the low 32 bits of the result.    *    * @deprecated Use {@link #times(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
+annotation|@
+name|Deprecated
 DECL|method|multiply (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -513,7 +533,6 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-comment|// TODO(user): deprecate this
 return|return
 name|times
 argument_list|(
@@ -522,6 +541,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 32    * bits, returns the low 32 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -551,7 +572,9 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of dividing this by {@code val}.    */
+comment|/**    * Returns the result of dividing this by {@code val}.    *    * @deprecated Use {@link #dividedBy(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
+annotation|@
+name|Deprecated
 DECL|method|divide (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -561,7 +584,6 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-comment|// TODO(user): deprecate this
 return|return
 name|dividedBy
 argument_list|(
@@ -570,6 +592,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of dividing this by {@code val}.    *    * @throws ArithmeticException if {@code val} is zero    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|dividedBy (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -598,7 +622,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the remainder of dividing this by {@code val}.    */
+comment|/**    * Returns the remainder of dividing this by {@code val}.    *    * @deprecated Use {@link #mod(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
+annotation|@
+name|Deprecated
 DECL|method|remainder (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -608,7 +634,6 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-comment|// TODO(user): deprecate this
 return|return
 name|mod
 argument_list|(
@@ -617,6 +642,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns this mod {@code val}.    *    * @throws ArithmeticException if {@code val} is zero    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|mod (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
