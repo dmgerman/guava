@@ -2272,7 +2272,7 @@ block|{
 return|return
 name|UnsignedInteger
 operator|.
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 name|freshInt
 argument_list|()
