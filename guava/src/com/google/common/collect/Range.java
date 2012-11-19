@@ -1430,7 +1430,7 @@ name|typeAsUpperBound
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if this range is of the form {@code [v..v)} or {@code (v..v]}. (This does    * not encompass ranges of the form {@code (v..v)}, because such ranges are<i>invalid</i> and    * can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code (3..4)} are<b>not</b>    * considered empty, even though they contain no actual values.    */
+comment|/**    * Returns {@code true} if this range is of the form {@code [v..v)} or {@code (v..v]}. (This does    * not encompass ranges of the form {@code (v..v)}, because such ranges are<i>invalid</i> and    * can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code (3..4)} are<b>not</b>    * considered empty, even though they contain no actual values.  In these cases, it may be     * helpful to preprocess ranges with {@link #canonical(DiscreteDomain)}.    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1658,7 +1658,7 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is {@linkplain #encloses    * enclosed} by both this range and {@code other}.    *    *<p>For example,    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose the empty range    *     {@code [4, 4)}    *</ul>    *    *<p>Note that this range and {@code other} have a well-defined {@linkplain #span union} and    * {@linkplain #intersection intersection} (as a single, possibly-empty range) if and only if this    * method returns {@code true}.    *    *<p>The connectedness relation is both reflexive and symmetric, but does not form an {@linkplain    * Equivalence equivalence relation} as it is not transitive.    */
+comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is {@linkplain #encloses    * enclosed} by both this range and {@code other}.    *    *<p>For example,    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose the empty range    *     {@code [4, 4)}    *</ul>    *    *<p>Note that this range and {@code other} have a well-defined {@linkplain #span union} and    * {@linkplain #intersection intersection} (as a single, possibly-empty range) if and only if this    * method returns {@code true}.    *    *<p>The connectedness relation is both reflexive and symmetric, but does not form an {@linkplain    * Equivalence equivalence relation} as it is not transitive.    *     *<p>Note that certain discrete ranges are not considered connected, even though there are no    * elements "between them."  For example, {@code [3, 5]} is not considered connected to {@code     * [6, 10]}.  In these cases, it may be desirable for both input ranges to be preprocessed with    * {@link #canonical(DiscreteDomain)} before testing for connectedness.    */
 DECL|method|isConnected (Range<C> other)
 specifier|public
 name|boolean
