@@ -2859,23 +2859,19 @@ name|void
 name|run
 parameter_list|()
 block|{
+specifier|final
+name|V
+name|value
+decl_stmt|;
 try|try
 block|{
 comment|// TODO(user): (Before Guava release), validate that this
 comment|// is the thing for IE.
-name|V
 name|value
-init|=
+operator|=
 name|getUninterruptibly
 argument_list|(
 name|future
-argument_list|)
-decl_stmt|;
-name|callback
-operator|.
-name|onSuccess
-argument_list|(
-name|value
 argument_list|)
 expr_stmt|;
 block|}
@@ -2895,6 +2891,7 @@ name|getCause
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -2909,6 +2906,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -2923,7 +2921,15 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
+name|callback
+operator|.
+name|onSuccess
+argument_list|(
+name|value
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
