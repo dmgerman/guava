@@ -1269,8 +1269,8 @@ end_class
 
 begin_class
 DECL|class|TestEntriesGenerator
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestEntriesGenerator
 implements|implements
@@ -1536,8 +1536,8 @@ end_class
 begin_class
 DECL|class|TestEntriesListGenerator
 specifier|public
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|TestEntriesListGenerator
 extends|extends
@@ -2342,7 +2342,7 @@ name|createTestSuite
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: use collection testers on Multimaps.forMap.values
+comment|// TODO(user): use collection testers on Multimaps.forMap.values
 name|suite
 operator|.
 name|addTest
@@ -3701,7 +3701,7 @@ name|createTestSuite
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: use collection testers on Multimaps.forMap.entries
+comment|// TODO(user): use collection testers on Multimaps.forMap.entries
 return|return
 name|suite
 return|;
