@@ -76,6 +76,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Callable
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -85,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Statistics about the performance of a {@link Cache}. Instances of this class are immutable.  *  *<p>Cache statistics are incremented according to the following rules:  *  *<ul>  *<li>When a cache lookup encounters an existing cache entry {@code hitCount} is incremented.  *<li>When a cache lookup first encounters a missing cache entry, a new entry is loaded.  *<ul>  *<li>After successfully loading an entry {@code missCount} and {@code loadSuccessCount} are  *     incremented, and the total loading time, in nanoseconds, is added to  *     {@code totalLoadTime}.  *<li>When an exception is thrown while loading an entry, {@code missCount} and {@code  *     loadExceptionCount} are incremented, and the total loading time, in nanoseconds, is  *     added to {@code totalLoadTime}.  *<li>Cache lookups that encounter a missing cache entry that is still loading will wait  *     for loading to complete (whether successful or not) and then increment {@code missCount}.  *</ul>  *<li>When an entry is evicted from the cache, {@code evictionCount} is incremented.  *<li>No stats are modified when a cache entry is invalidated or manually removed.  *<li>No stats are modified by operations invoked on the {@linkplain Cache#asMap asMap} view of  *     the cache.  *</ul>  *  * @author Charles Fry  * @since 10.0  */
+comment|/**  * Statistics about the performance of a {@link Cache}. Instances of this class are immutable.  *  *<p>Cache statistics are incremented according to the following rules:  *  *<ul>  *<li>When a cache lookup encounters an existing cache entry {@code hitCount} is incremented.  *<li>When a cache lookup first encounters a missing cache entry, a new entry is loaded.  *<ul>  *<li>After successfully loading an entry {@code missCount} and {@code loadSuccessCount} are  *     incremented, and the total loading time, in nanoseconds, is added to  *     {@code totalLoadTime}.  *<li>When an exception is thrown while loading an entry, {@code missCount} and {@code  *     loadExceptionCount} are incremented, and the total loading time, in nanoseconds, is  *     added to {@code totalLoadTime}.  *<li>Cache lookups that encounter a missing cache entry that is still loading will wait  *     for loading to complete (whether successful or not) and then increment {@code missCount}.  *</ul>  *<li>When an entry is evicted from the cache, {@code evictionCount} is incremented.  *<li>No stats are modified when a cache entry is invalidated or manually removed.  *<li>No stats are modified on a query to {@link Cache#getIfPresent}.  *<li>No stats are modified by operations invoked on the {@linkplain Cache#asMap asMap} view of  *     the cache.  *</ul>  *   *<p>A lookup is specifically defined as an invocation of one of the methods   * {@link LoadingCache#get(Object)}, {@link LoadingCache#getUnchecked(Object)},   * {@link Cache#get(Object, Callable)}, or {@link LoadingCache#getAll(Iterable)}.  *  * @author Charles Fry  * @since 10.0  */
 end_comment
 
 begin_class
