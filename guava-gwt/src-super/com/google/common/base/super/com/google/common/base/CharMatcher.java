@@ -794,15 +794,6 @@ block|,
 literal|'\0'
 block|}
 decl_stmt|;
-name|StringBuilder
-name|result
-init|=
-operator|new
-name|StringBuilder
-argument_list|(
-literal|6
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|int
