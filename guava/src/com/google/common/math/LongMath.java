@@ -218,20 +218,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|primitives
-operator|.
-name|UnsignedLongs
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|math
@@ -1294,21 +1280,17 @@ block|{
 name|long
 name|guess
 init|=
-call|(
+operator|(
 name|long
-call|)
-argument_list|(
+operator|)
 name|Math
 operator|.
 name|sqrt
 argument_list|(
 name|x
 argument_list|)
-operator|+
-literal|0.5
-argument_list|)
 decl_stmt|;
-comment|/*      * Theorem: |sqrt(x) - guess|<= 1.      *      * Proof:      * Recall that the maximum error introduced by rounding a real number between      * 0 and 2^32 to a double is 2^32 * 2^-52 = 2^-20.  Therefore the maximum error introduced by      * rounding a real number between 0 and 2^32 to a double, adding 0.5, and truncating is      * 0.5 + 2^-20< 0.6.      *      * We consider two cases: x<= 2^53 and x> 2^53.      *      * If x<= 2^53, then x is exactly representable as a double, and Math.sqrt(x) is the exact      * sqrt(x) rounded to a double. Therefore, the maximum error of (long) (Math.sqrt(x) + 0.5) is      * 0.6< 1.      *      * Otherwise, x> 2^53.  Note that |(double) x - x|<= 2^63/2^52 = 2^11, and      * guess>= sqrt(2^53)> 2^26.      * Since guess is obtained by rounding sqrt((double) x) to a double, adding 0.5, and      * truncating,      *      *         sqrt((double) x) - 0.6<=  guess<= sqrt((double) x) + 0.6      *           sqrt(x - 2^11) - 0.6<=  guess<= sqrt(x + 2^11) + 0.6      * (x - 2^11) - 1.2sqrt(x - 2^11)<= guess^2<= (x + 2^11) + 1.2sqrt(x + 2^11) + 0.36      * Recalling that for nonnegative a, b, sqrt(a + b)<= sqrt(a) + sqrt(b),      *          x - 2^11 - 1.2sqrt(x)<= guess^2<= x + 2^11 + 1.2sqrt(x) + 1.2sqrt(2^11) + 0.36      *<= x + 2^12 + 1.2sqrt(x)      *      * With these inequalities, we can show that      *      * (guess + 1)^2  = guess^2 + 2guess + 1      *>= x - 2^11 - 1.2sqrt(x) + 2sqrt(x - 2^11) - 0.2      *>= x - 2^11 - 1.2sqrt(x) + 2sqrt(x) - 2^7      *>= x - 2^12 + 0.8sqrt(x)      *>= x - 2^12 + 0.8 * 2^26      *>= x      *      * (guess - 1)^2  = guess^2 - 2guess + 1      *<= x + 2^12 + 1.2sqrt(x) - 2sqrt(x - 2^11) + 2.2      *<= x + 2^12 + 1.2sqrt(x) - 2sqrt(x) + 2^7      *<= x + 2^13 - 0.8sqrt(x)      *<= x + 2^13 - 0.8 * 2^26      *<= x      * so (guess - 1)^2<=     x<= (guess + 1)^2      *        guess - 1<= sqrt(x)<= guess + 1 as desired.      */
+comment|/*      * Lemma: For all a, b, if |a - b|<= 1, then |floor(a) - floor(b)|<= 1.      *      * Proof:      *           -1<=        a - b<= 1      *        b - 1<=          a<= b + 1      * floor(b - 1)<=       floor(a)<= floor(b + 1)      * floor(b) - 1<=       floor(a)<= floor(b) + 1      *           -1<= floor(a) - floor(b)<= 1      *      * Theorem: |floor(sqrt(x)) - guess|<= 1.      *      * Proof:  By the lemma, it suffices to show that |sqrt(x) - Math.sqrt(x)|<= 1.      * We consider two cases: x<= 2^53 and x> 2^53.      *      * If x<= 2^53, then x is exactly representable as a double, so the only error is in rounding      * sqrt(x) to a double, which introduces at most 2^-52 relative error.  Since sqrt(x)< 2^27,      * the absolute error is at most 2^(27-52) = 2^-25< 1.      *      * Otherwise, x> 2^53.  The rounding error introduced by casting x to a double is at most      * 2^63 * 2^-52 = 2^11.  Noting that sqrt(x)> 2^26,      *      * sqrt(x) - 0.5 =  sqrt((sqrt(x) - 0.5)^2)      *               =  sqrt(x - sqrt(x) + 0.25)      *<  sqrt(x - 2^26 + 0.25)      *<  sqrt(x - 2^11)      *<= sqrt((double) x)      * sqrt(x) + 0.5 =  sqrt((sqrt(x) + 0.5)^2)      *               =  sqrt(x + sqrt(x) + 0.25)      *>  sqrt(x + 2^26 + 0.25)      *>  sqrt(x + 2^11)      *>= sqrt((double) x)      * sqrt(x) - 0.5< sqrt((double) x)< sqrt(x) + 0.5      *      * Math.sqrt((double) x) is obtained by rounding sqrt((double) x) to a double, increasing the      * error by at most 2^-52 * sqrt(x)<= 2^(32 - 52)<= 2^-20, so clearly      *      * sqrt(x) - 0.5 - 2^-20<= Math.sqrt((double) x)<= sqrt(x) + 0.5 + 2^-20      *      * Therefore, |sqrt(x) - Math.sqrt((double) x)|<= 1, so      *            |floor(sqrt(x)) - (long) Math.sqrt((double) x)|<= 1      *            as desired.      */
 name|long
 name|guessSquared
 init|=
@@ -1316,7 +1298,6 @@ name|guess
 operator|*
 name|guess
 decl_stmt|;
-comment|// guessSquared may overflow a signed long, but may safely be treated as unsigned.
 if|if
 condition|(
 name|x
@@ -1338,16 +1319,9 @@ block|}
 elseif|else
 if|if
 condition|(
-name|UnsignedLongs
-operator|.
-name|compare
-argument_list|(
 name|x
-argument_list|,
-name|guessSquared
-argument_list|)
 operator|<
-literal|0
+name|guessSquared
 condition|)
 block|{
 name|guess
