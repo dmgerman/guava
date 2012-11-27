@@ -235,7 +235,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} corresponding to a given bit representation.    * The argument is interpreted as an unsigned 64-bit value.    *    * @since 14.0    */
+comment|/**    * Returns an {@code UnsignedLong} corresponding to a given bit representation.    * The argument is interpreted as an unsigned 64-bit value. Specifically, the sign bit    * of {@code bits} is interpreted as a normal bit, and all other bits are treated as usual.    *    *<p>If the argument is nonnegative, the returned result will be equal to {@code bits},    * otherwise, the result will be equal to {@code 2^64 + bits}.    *    *<p>To represent decimal constants less than {@code 2^63}, consider {@link #valueOf(long)}    * instead.    *    * @since 14.0    */
 DECL|method|fromLongBits (long bits)
 specifier|public
 specifier|static
@@ -252,6 +252,35 @@ operator|new
 name|UnsignedLong
 argument_list|(
 name|bits
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an {@code UnsignedLong} representing the same value as the specified {@code long}.    *    * @throws IllegalArgumentException if {@code value} is negative    * @since 14.0    */
+DECL|method|valueOf (long value)
+specifier|public
+specifier|static
+name|UnsignedLong
+name|valueOf
+parameter_list|(
+name|long
+name|value
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|value
+operator|>=
+literal|0
+argument_list|,
+literal|"value (%s) is outside the range for an unsigned long value"
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+return|return
+name|fromLongBits
+argument_list|(
+name|value
 argument_list|)
 return|;
 block|}
