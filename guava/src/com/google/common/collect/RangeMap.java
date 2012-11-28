@@ -171,6 +171,23 @@ argument_list|>
 name|asMapOfRanges
 parameter_list|()
 function_decl|;
+comment|/**    * Returns a view of the part of this range map that intersects with {@code range}.    *     *<p>For example, if {@code rangeMap} had the entries     * {@code [1, 5] => "foo", (6, 8) => "bar", (10, \u2025) => "baz"}    * then {@code rangeMap.subRangeMap(Range.open(3, 12))} would return a range map    * with the entries {@code (3, 5) => "foo", (6, 8) => "bar", (10, 12) => "baz"}.    *     *<p>The returned range map supports all optional operations that this range map supports,    * except for {@code asMapOfRanges().iterator().remove()}.    *     *<p>The returned range map will throw an {@link IllegalArgumentException} on an attempt to     * insert a range not {@linkplain Range#encloses(Range) enclosed} by {@code range}.     */
+DECL|method|subRangeMap (Range<K> range)
+name|RangeMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|subRangeMap
+parameter_list|(
+name|Range
+argument_list|<
+name|K
+argument_list|>
+name|range
+parameter_list|)
+function_decl|;
 comment|/**    * Returns {@code true} if {@code obj} is another {@code RangeMap} that has an equivalent    * {@link #asMapOfRanges()}.    */
 annotation|@
 name|Override

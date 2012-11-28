@@ -1432,6 +1432,8 @@ name|values
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|subRangeMap (final Range<K> range)
 specifier|public
 name|ImmutableRangeMap
@@ -1466,6 +1468,27 @@ name|ImmutableRangeMap
 operator|.
 name|of
 argument_list|()
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|ranges
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
+name|range
+operator|.
+name|encloses
+argument_list|(
+name|span
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return
+name|this
 return|;
 block|}
 name|int
