@@ -752,6 +752,32 @@ literal|"testRemovingIteratorKnownOrder"
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the {@link Method} instance for the test that assumes the multiset iterator supports     * {@code remove()} so that the test for {@code Multisets.filter} can suppress it.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
+DECL|method|getIteratorUnknownOrderRemoveSupportedMethod ()
+specifier|public
+specifier|static
+name|Method
+name|getIteratorUnknownOrderRemoveSupportedMethod
+parameter_list|()
+block|{
+return|return
+name|Helpers
+operator|.
+name|getMethod
+argument_list|(
+name|MultisetIteratorTester
+operator|.
+name|class
+argument_list|,
+literal|"testRemovingIteratorUnknownOrder"
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
