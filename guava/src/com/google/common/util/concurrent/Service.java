@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and {@link #stop()}  * lifecycle methods to transition between states. Example services include webservers, RPC servers  * and timers.  *  *<p>The normal lifecycle of a service is:  *<ul>  *<li>{@linkplain State#NEW NEW} -&gt;  *<li>{@linkplain State#STARTING STARTING} -&gt;  *<li>{@linkplain State#RUNNING RUNNING} -&gt;  *<li>{@linkplain State#STOPPING STOPPING} -&gt;  *<li>{@linkplain State#TERMINATED TERMINATED}  *</ul>  *  *<p>There are deviations from this if there are failures or if {@link Service#stop} is called  * before the {@link Service} reaches the {@linkplain State#RUNNING RUNNING} state. The set of legal  * transitions form a<a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>,  * therefore every method of the listener will be called at most once. N.B. The {@link State#FAILED}  * and {@link State#TERMINATED} states are terminal states, once a service enters either of these  * states it cannot ever leave them.  *  *<p>Implementors of this interface are strongly encouraged to extend one of the abstract classes  * in this package which implement this interface and make the threading and state management  * easier.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 9.0 (in 1.0 as {@code com.google.common.base.Service})  */
+comment|/**  * An object with an operational state, plus asynchronous {@link #start()} and {@link #stop()}  * lifecycle methods to transition between states. Example services include webservers, RPC servers  * and timers.  *  *<p>The normal lifecycle of a service is:  *<ul>  *<li>{@linkplain State#NEW NEW} -&gt;  *<li>{@linkplain State#STARTING STARTING} -&gt;  *<li>{@linkplain State#RUNNING RUNNING} -&gt;  *<li>{@linkplain State#STOPPING STOPPING} -&gt;  *<li>{@linkplain State#TERMINATED TERMINATED}  *</ul>  *  *<p>There are deviations from this if there are failures or if {@link Service#stop} is called   * before the {@link Service} reaches the {@linkplain State#RUNNING RUNNING} state. The set of legal  * transitions form a<a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>,   * therefore every method of the listener will be called at most once. N.B. The {@link State#FAILED}  * and {@link State#TERMINATED} states are terminal states, once a service enters either of these  * states it cannot ever leave them.  *  *<p>Implementors of this interface are strongly encouraged to extend one of the abstract classes   * in this package which implement this interface and make the threading and state management   * easier.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 9.0 (in 1.0 as {@code com.google.common.base.Service})  */
 end_comment
 
 begin_interface
@@ -110,7 +110,13 @@ name|State
 name|stopAndWait
 parameter_list|()
 function_decl|;
-comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given    * executor.  The listener will have the corresponding transition method called whenever the    * service changes state. The listener will not have previous state changes replayed, so it is    * suggested that listeners are added before the service starts.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through    * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown    * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception    * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *    * @param listener the listener to run when the service changes state is complete    * @param executor the executor in which the the listeners callback methods will be run. For fast,    *     lightweight listeners that would be safe to execute in any thread, consider    *     {@link MoreExecutors#sameThreadExecutor}.    * @since 13.0    */
+comment|/**    * Returns the {@link Throwable} that caused this service to fail.    *     * @throws IllegalStateException if this service's state isn't {@linkplain State#FAILED FAILED}.    *    * @since 14.0    */
+DECL|method|failureCause ()
+name|Throwable
+name|failureCause
+parameter_list|()
+function_decl|;
+comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given     * executor.  The listener will have the corresponding transition method called whenever the     * service changes state. The listener will not have previous state changes replayed, so it is     * suggested that listeners are added before the service starts.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown     * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception     * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *     * @param listener the listener to run when the service changes state is complete    * @param executor the executor in which the the listeners callback methods will be run. For fast,    *     lightweight listeners that would be safe to execute in any thread, consider     *     {@link MoreExecutors#sameThreadExecutor}.    * @since 13.0    */
 DECL|method|addListener (Listener listener, Executor executor)
 name|void
 name|addListener
@@ -162,19 +168,19 @@ DECL|interface|Listener
 interface|interface
 name|Listener
 block|{
-comment|/**      * Called when the service transitions from {@linkplain State#NEW NEW} to      * {@linkplain State#STARTING STARTING}. This occurs when {@link Service#start} or      * {@link Service#startAndWait} is called the first time.      */
+comment|/**      * Called when the service transitions from {@linkplain State#NEW NEW} to       * {@linkplain State#STARTING STARTING}. This occurs when {@link Service#start} or       * {@link Service#startAndWait} is called the first time.      */
 DECL|method|starting ()
 name|void
 name|starting
 parameter_list|()
 function_decl|;
-comment|/**      * Called when the service transitions from {@linkplain State#STARTING STARTING} to      * {@linkplain State#RUNNING RUNNING}. This occurs when a service has successfully started.      */
+comment|/**      * Called when the service transitions from {@linkplain State#STARTING STARTING} to       * {@linkplain State#RUNNING RUNNING}. This occurs when a service has successfully started.      */
 DECL|method|running ()
 name|void
 name|running
 parameter_list|()
 function_decl|;
-comment|/**      * Called when the service transitions to the {@linkplain State#STOPPING STOPPING} state. The      * only valid values for {@code from} are {@linkplain State#STARTING STARTING} or      * {@linkplain State#RUNNING RUNNING}.  This occurs when {@link Service#stop} is called.      *      * @param from The previous state that is being transitioned from.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#STOPPING STOPPING} state. The       * only valid values for {@code from} are {@linkplain State#STARTING STARTING} or       * {@linkplain State#RUNNING RUNNING}.  This occurs when {@link Service#stop} is called.      *       * @param from The previous state that is being transitioned from.        */
 DECL|method|stopping (State from)
 name|void
 name|stopping
@@ -183,7 +189,7 @@ name|State
 name|from
 parameter_list|)
 function_decl|;
-comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.      * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram.  Therefore, if this method is called, no other methods will be called on the      * {@link Listener}.      *      * @param from The previous state that is being transitioned from.  The only valid values for      *     this are {@linkplain State#NEW NEW}, {@linkplain State#RUNNING RUNNING} or      *     {@linkplain State#STOPPING STOPPING}.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.       * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram.  Therefore, if this method is called, no other methods will be called on the       * {@link Listener}.      *       * @param from The previous state that is being transitioned from.  The only valid values for       *     this are {@linkplain State#NEW NEW}, {@linkplain State#RUNNING RUNNING} or       *     {@linkplain State#STOPPING STOPPING}.      */
 DECL|method|terminated (State from)
 name|void
 name|terminated
@@ -192,7 +198,7 @@ name|State
 name|from
 parameter_list|)
 function_decl|;
-comment|/**      * Called when the service transitions to the {@linkplain State#FAILED FAILED} state. The      * {@linkplain State#FAILED FAILED} state is a terminal state in the transition diagram.      * Therefore, if this method is called, no other methods will be called on the {@link Listener}.      *      * @param from The previous state that is being transitioned from.  Failure can occur in any      *     state with the exception of {@linkplain State#NEW NEW} or      *     {@linkplain State#TERMINATED TERMINATED}.      * @param failure The exception that caused the failure.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#FAILED FAILED} state. The       * {@linkplain State#FAILED FAILED} state is a terminal state in the transition diagram.        * Therefore, if this method is called, no other methods will be called on the {@link Listener}.      *       * @param from The previous state that is being transitioned from.  Failure can occur in any       *     state with the exception of {@linkplain State#NEW NEW} or       *     {@linkplain State#TERMINATED TERMINATED}.      * @param failure The exception that caused the failure.      */
 DECL|method|failed (State from, Throwable failure)
 name|void
 name|failed

@@ -401,6 +401,7 @@ name|stopAndWait
 argument_list|()
 return|;
 block|}
+comment|/**    * @since 13.0    */
 DECL|method|addListener (Listener listener, Executor executor)
 annotation|@
 name|Override
@@ -425,6 +426,23 @@ argument_list|,
 name|executor
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * @since 14.0    */
+DECL|method|failureCause ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|Throwable
+name|failureCause
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|failureCause
+argument_list|()
+return|;
 block|}
 comment|/**    * Returns the name of this service. {@link AbstractIdleService} may include the name in debugging    * output.    *    * @since 14.0    */
 DECL|method|serviceName ()

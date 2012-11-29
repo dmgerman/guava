@@ -374,7 +374,7 @@ operator|.
 name|newConcurrentLinkedQueue
 argument_list|()
 decl_stmt|;
-comment|/**    * The current state of the service.  This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field.  This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.    *    *<p>To update this field correctly the lock must be held to guarantee that the state is    * consistent.    */
+comment|/**    * The current state of the service.  This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field.  This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.      *     *<p>To update this field correctly the lock must be held to guarantee that the state is     * consistent.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -1222,6 +1222,24 @@ name|externalState
 argument_list|()
 return|;
 block|}
+comment|/**    * @since 14.0    */
+annotation|@
+name|Override
+DECL|method|failureCause ()
+specifier|public
+specifier|final
+name|Throwable
+name|failureCause
+parameter_list|()
+block|{
+return|return
+name|snapshot
+operator|.
+name|failureCause
+argument_list|()
+return|;
+block|}
+comment|/**    * @since 13.0    */
 annotation|@
 name|Override
 DECL|method|addListener (Listener listener, Executor executor)
@@ -1389,7 +1407,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Attempts to execute all the listeners in {@link #queuedListeners} while not holding the    * {@link #lock}.    */
+comment|/**     * Attempts to execute all the listeners in {@link #queuedListeners} while not holding the    * {@link #lock}.    */
 DECL|method|executeListeners ()
 specifier|private
 name|void
@@ -1847,7 +1865,7 @@ operator|=
 name|executor
 expr_stmt|;
 block|}
-comment|/**      * Executes the given {@link Runnable} on {@link #executor} logging and swallowing all      * exceptions      */
+comment|/**      * Executes the given {@link Runnable} on {@link #executor} logging and swallowing all       * exceptions      */
 DECL|method|execute (Runnable runnable)
 name|void
 name|execute
