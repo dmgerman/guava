@@ -152,7 +152,7 @@ specifier|public
 name|ThreadFactoryBuilder
 parameter_list|()
 block|{}
-comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName})    * which are created with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible    *     format String, to which a unique integer (0, 1, etc.) will be supplied    *     as the single parameter. This integer will be unique to the built    *     instance of the ThreadFactory and will be assigned sequentially.    * @return this for the builder pattern    */
+comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName})    * which are created with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible    *     format String, to which a unique integer (0, 1, etc.) will be supplied    *     as the single parameter. This integer will be unique to the built    *     instance of the ThreadFactory and will be assigned sequentially. For    *     example, {@code "rpc-pool-%d"} will generate thread names like    *     {@code "rpc-pool-0"}, {@code "rpc-pool-1"}, {@code "rpc-pool-2"}, etc.    * @return this for the builder pattern    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
