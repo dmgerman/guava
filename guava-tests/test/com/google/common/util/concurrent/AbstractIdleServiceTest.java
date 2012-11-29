@@ -22,11 +22,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -458,7 +454,10 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Service
 operator|.
@@ -466,6 +465,9 @@ name|State
 operator|.
 name|STARTING
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStart_failed ()
@@ -580,7 +582,10 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Service
 operator|.
@@ -588,6 +593,9 @@ name|State
 operator|.
 name|STARTING
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStop_withoutStart ()
@@ -735,7 +743,10 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Service
 operator|.
@@ -749,6 +760,9 @@ name|State
 operator|.
 name|STOPPING
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStop_failed ()
@@ -886,7 +900,10 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Service
 operator|.
@@ -900,6 +917,9 @@ name|State
 operator|.
 name|STOPPING
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testServiceToString ()

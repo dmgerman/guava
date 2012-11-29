@@ -109,6 +109,18 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|truth0
+operator|.
+name|Truth
+operator|.
+name|ASSERT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1392,14 +1404,19 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|ASSERT
+operator|.
+name|that
 argument_list|(
 name|permutationSet
+argument_list|)
 operator|.
-name|contains
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|list
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|Iterator

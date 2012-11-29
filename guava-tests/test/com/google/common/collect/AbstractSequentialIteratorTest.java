@@ -38,11 +38,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -262,7 +258,7 @@ argument_list|(
 name|doubled
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|2
 argument_list|,
@@ -359,7 +355,7 @@ argument_list|(
 name|actual
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|1
 argument_list|,

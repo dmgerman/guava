@@ -48,11 +48,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -3080,7 +3076,10 @@ argument_list|(
 name|copy
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3088,6 +3087,9 @@ literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -3141,12 +3143,18 @@ argument_list|(
 name|copy
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -3316,7 +3324,10 @@ argument_list|(
 name|c
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3324,6 +3335,9 @@ literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testMultisetWrites ()

@@ -134,11 +134,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1578,7 +1574,10 @@ argument_list|(
 name|values
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1586,6 +1585,9 @@ literal|2
 argument_list|,
 literal|3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|map
 operator|.
@@ -1609,7 +1611,7 @@ argument_list|(
 name|values
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|isEmpty
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -1799,7 +1801,10 @@ name|keys
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"bar"
 argument_list|,
@@ -1809,6 +1814,9 @@ literal|"bar"
 argument_list|,
 literal|"bar"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|map
 operator|.
@@ -2222,12 +2230,18 @@ name|getValue
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
 literal|3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -2289,7 +2303,10 @@ name|getValue
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|2
 argument_list|)

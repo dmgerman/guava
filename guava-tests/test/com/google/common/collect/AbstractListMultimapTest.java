@@ -50,11 +50,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1287,7 +1283,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1297,6 +1296,9 @@ literal|3
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|list
 operator|.
@@ -1334,7 +1336,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1348,6 +1353,9 @@ literal|8
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1417,7 +1425,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1429,6 +1440,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|list
 operator|.
@@ -1461,7 +1475,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1473,6 +1490,9 @@ literal|4
 argument_list|,
 literal|10
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testListMethodsIncludingSublist ()
@@ -1572,7 +1592,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -1580,6 +1603,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|list
 operator|.
@@ -1602,7 +1628,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1614,6 +1643,9 @@ literal|6
 argument_list|,
 literal|10
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test sublist of List returned by get() after the original list is updated.    */
@@ -1714,7 +1746,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -1722,6 +1757,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|list
 operator|.
@@ -1744,7 +1782,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -1756,6 +1797,9 @@ literal|6
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -1764,7 +1808,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -1772,6 +1819,9 @@ literal|3
 argument_list|,
 literal|6
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test ListIterator methods that don't change the multimap.    */
@@ -2041,7 +2091,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -2049,6 +2102,9 @@ literal|3
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -2080,12 +2136,18 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test calling toString() on the multimap, which does not have a    * deterministic iteration order for keys but does for values.    */
@@ -2185,7 +2247,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2197,6 +2262,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|List
 argument_list|<
@@ -2220,7 +2288,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -2228,6 +2299,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2250,7 +2324,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2262,6 +2339,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test removing elements from a sublist.    */
@@ -2327,7 +2407,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2339,6 +2422,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|List
 argument_list|<
@@ -2362,7 +2448,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -2370,6 +2459,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2400,7 +2492,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2410,6 +2505,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2445,7 +2543,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2453,6 +2554,9 @@ literal|2
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2483,12 +2587,18 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test adding elements to a sublist.    */
@@ -2554,7 +2664,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2566,6 +2679,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|List
 argument_list|<
@@ -2589,7 +2705,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -2597,6 +2716,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2627,7 +2749,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2641,6 +2766,9 @@ literal|6
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2673,7 +2801,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2689,6 +2820,9 @@ literal|6
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test clearing a sublist.    */
@@ -2754,7 +2888,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2766,6 +2903,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|List
 argument_list|<
@@ -2789,7 +2929,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -2797,6 +2940,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -2825,12 +2971,18 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Test adding elements to an empty sublist with an empty ancestor.    */
@@ -2896,7 +3048,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2908,6 +3063,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|List
 argument_list|<
@@ -2931,7 +3089,10 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2943,6 +3104,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|sublist
 operator|.
@@ -3079,7 +3243,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -3091,6 +3258,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -3130,7 +3300,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -3140,6 +3313,9 @@ literal|4
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -3831,7 +4007,10 @@ literal|"bar"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|13
 argument_list|,
@@ -3839,6 +4018,9 @@ literal|11
 argument_list|,
 literal|12
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * According to the AbstractCollection.retainAll() implementation,    * {@code A.retainAll(B)} should keep all occurrences of each object in B,    * so even though the collection that this test passes to retainAll() has    * fewer occurrences of 2 than the multimap has, all of the 2s should be    * retained.    */
@@ -3913,7 +4095,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -3921,6 +4106,9 @@ literal|2
 argument_list|,
 literal|2
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * According to the AbstractCollection.removeAll() implementation,    * {@code A.removeAll(B)} should remove all occurrences of each object in B,    * so even though the collection that this test passes to removeAll() has    * fewer occurrences of 2 and 3 than the multimap has, there should be no    * 2s or 3s remaining in the collection.    */
@@ -3997,7 +4185,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|1
 argument_list|)

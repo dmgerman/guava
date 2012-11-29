@@ -20,11 +20,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -743,7 +739,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"blah"
 argument_list|)

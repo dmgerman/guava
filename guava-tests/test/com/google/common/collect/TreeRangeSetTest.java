@@ -52,11 +52,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -474,16 +470,19 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|complement
 operator|.
 name|asRanges
 argument_list|()
-operator|.
-name|toArray
-argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -749,7 +748,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -774,7 +776,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -790,6 +795,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testMergesConnectedDisjoint ()
@@ -852,7 +860,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -877,7 +888,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -893,6 +907,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testIgnoresSmallerSharingNoBound ()
@@ -955,7 +972,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -980,7 +1000,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -996,6 +1019,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testIgnoresSmallerSharingLowerBound ()
@@ -1058,7 +1084,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1083,7 +1112,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1099,6 +1131,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testIgnoresSmallerSharingUpperBound ()
@@ -1161,7 +1196,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1186,7 +1224,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1202,6 +1243,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testIgnoresEqual ()
@@ -1264,7 +1308,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1289,7 +1336,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1305,6 +1355,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testExtendSameLowerBound ()
@@ -1367,7 +1420,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1392,7 +1448,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1408,6 +1467,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testExtendSameUpperBound ()
@@ -1470,7 +1532,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1495,7 +1560,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1511,6 +1579,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testExtendBothDirections ()
@@ -1573,7 +1644,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1598,7 +1672,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1614,6 +1691,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAddEmpty ()
@@ -1678,7 +1758,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1688,6 +1771,9 @@ operator|>
 name|all
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFillHoleExactly ()
@@ -1764,7 +1850,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1789,7 +1878,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1805,6 +1897,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFillHoleWithOverlap ()
@@ -1881,7 +1976,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -1906,7 +2004,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -1922,6 +2023,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAddManyPairs ()
@@ -2204,7 +2308,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|b
 argument_list|)
@@ -2229,7 +2336,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|a
 argument_list|)
@@ -2256,7 +2366,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|a
 operator|.
@@ -2265,6 +2378,9 @@ argument_list|(
 name|b
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -2292,12 +2408,18 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|a
 argument_list|,
 name|b
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -2312,12 +2434,18 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|b
 argument_list|,
 name|a
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2382,7 +2510,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -2407,7 +2538,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2423,6 +2557,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemovePartSharingLowerBound ()
@@ -2485,7 +2622,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -2508,7 +2648,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2524,6 +2667,9 @@ argument_list|(
 literal|5
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemovePartSharingUpperBound ()
@@ -2586,7 +2732,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|Range
 operator|.
@@ -2609,7 +2758,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2625,6 +2777,9 @@ argument_list|(
 literal|3
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemoveMiddle ()
@@ -2685,7 +2840,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2703,6 +2861,9 @@ argument_list|,
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2717,7 +2878,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2735,6 +2899,9 @@ argument_list|(
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemoveNoOverlap ()
@@ -2797,7 +2964,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2808,6 +2978,9 @@ argument_list|,
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemovePartFromBelowLowerBound ()
@@ -2870,7 +3043,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2881,6 +3057,9 @@ argument_list|,
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemovePartFromAboveUpperBound ()
@@ -2943,7 +3122,10 @@ name|asRanges
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Range
 operator|.
@@ -2954,6 +3136,9 @@ argument_list|,
 literal|6
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemoveExact ()

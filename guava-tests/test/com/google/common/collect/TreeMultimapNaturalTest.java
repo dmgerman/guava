@@ -36,11 +36,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -2020,7 +2016,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2028,6 +2027,9 @@ literal|3
 argument_list|,
 literal|7
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2041,12 +2043,18 @@ literal|"google"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
 literal|6
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2060,12 +2068,18 @@ literal|"tree"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|0
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testOrderedKeySet ()
@@ -2095,7 +2109,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -2103,6 +2120,9 @@ literal|"google"
 argument_list|,
 literal|"tree"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testOrderedAsMapEntries ()
@@ -2187,7 +2207,10 @@ name|getValue
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2223,7 +2246,10 @@ name|getValue
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|2
 argument_list|,
@@ -2257,7 +2283,10 @@ name|getValue
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|0
 argument_list|,
@@ -2292,7 +2321,10 @@ name|entries
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Maps
 operator|.
@@ -2357,6 +2389,9 @@ argument_list|,
 literal|4
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testOrderedValues ()
@@ -2386,7 +2421,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2402,6 +2440,9 @@ literal|0
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testMultimapConstructor ()
@@ -2947,7 +2988,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2963,6 +3007,9 @@ literal|0
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2974,7 +3021,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -2982,6 +3032,9 @@ literal|"google"
 argument_list|,
 literal|"tree"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -3156,7 +3209,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|DerivedComparable
@@ -3170,6 +3226,9 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3181,7 +3240,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|DerivedComparable
@@ -3213,6 +3275,9 @@ argument_list|(
 literal|"o"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -3394,7 +3459,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -3408,6 +3476,9 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3419,7 +3490,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -3451,6 +3525,9 @@ argument_list|(
 literal|"o"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(

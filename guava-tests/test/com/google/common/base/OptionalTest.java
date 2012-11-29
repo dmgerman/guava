@@ -20,11 +20,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1276,7 +1272,7 @@ name|optionals
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1386,7 +1382,7 @@ name|optionals
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1456,7 +1452,7 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1470,7 +1466,7 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1543,7 +1539,7 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|2
 argument_list|)

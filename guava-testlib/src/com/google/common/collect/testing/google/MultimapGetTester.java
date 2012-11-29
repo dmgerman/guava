@@ -162,11 +162,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -613,7 +609,10 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|v1
 argument_list|,
@@ -633,7 +632,10 @@ name|k0
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|v1
 argument_list|,
@@ -729,7 +731,10 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|getValueForNullKey
 argument_list|()
@@ -845,11 +850,11 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
-operator|(
-name|V
-operator|)
 literal|null
 argument_list|)
 expr_stmt|;

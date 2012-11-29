@@ -32,11 +32,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1201,7 +1197,7 @@ argument_list|(
 name|blist
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 name|hasBoth
 argument_list|)
@@ -3163,7 +3159,7 @@ argument_list|(
 name|tail
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|"c"
 argument_list|,
@@ -3255,7 +3251,7 @@ argument_list|(
 name|tail
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|iteratesOverSequence
 argument_list|(
 literal|"Y"
 argument_list|,
@@ -3794,7 +3790,10 @@ name|toSet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -3804,6 +3803,9 @@ literal|3
 argument_list|,
 literal|4
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testToSet_removeDuplicates ()
@@ -3831,12 +3833,18 @@ name|toSet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
 literal|2
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testToSet_empty ()
@@ -3894,7 +3902,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|4
 argument_list|,
@@ -3904,6 +3915,9 @@ literal|2
 argument_list|,
 literal|1
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testToSortedSet_removeDuplicates ()
@@ -3942,7 +3956,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|4
 argument_list|,
@@ -3950,6 +3967,9 @@ literal|3
 argument_list|,
 literal|1
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testToMap ()
@@ -3983,7 +4003,10 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Maps
 operator|.
@@ -4012,6 +4035,9 @@ argument_list|,
 literal|"3"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testToMap_nullKey ()
@@ -4570,7 +4596,10 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -4582,6 +4611,9 @@ literal|3
 argument_list|,
 literal|5
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyInto_Set ()
@@ -4616,7 +4648,10 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -4664,7 +4699,10 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -4767,7 +4805,10 @@ name|list
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -4781,6 +4822,9 @@ literal|8
 argument_list|,
 literal|7
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGet ()

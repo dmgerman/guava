@@ -20,11 +20,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1097,7 +1093,10 @@ name|rowKeySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1105,6 +1104,9 @@ literal|"cat"
 argument_list|,
 literal|"bar"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -1121,12 +1123,18 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|12
 argument_list|,
 literal|3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCreateCopy ()
@@ -1223,7 +1231,10 @@ name|rowKeySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1231,6 +1242,9 @@ literal|"cat"
 argument_list|,
 literal|"bar"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -1247,12 +1261,18 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|12
 argument_list|,
 literal|3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(

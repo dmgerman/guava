@@ -20,11 +20,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -427,7 +423,10 @@ argument_list|(
 name|names
 argument_list|)
 operator|.
-name|containsAllOf
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|ClassPath
 operator|.
@@ -451,7 +450,10 @@ argument_list|(
 name|strings
 argument_list|)
 operator|.
-name|containsAllOf
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|ClassPath
 operator|.
@@ -475,7 +477,10 @@ argument_list|(
 name|classes
 argument_list|)
 operator|.
-name|containsAllOf
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|ClassPath
 operator|.
@@ -493,7 +498,10 @@ argument_list|(
 name|packageNames
 argument_list|)
 operator|.
-name|containsAllOf
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 name|ClassPath
 operator|.
@@ -513,7 +521,10 @@ argument_list|(
 name|simpleNames
 argument_list|)
 operator|.
-name|containsAllOf
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"ClassPath"
 argument_list|,
@@ -609,7 +620,10 @@ argument_list|(
 name|classes
 argument_list|)
 operator|.
-name|containsAllOf
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|ClassPathTest
 operator|.
@@ -968,7 +982,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|url1
 operator|.
@@ -980,6 +997,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testClassPathEntries_duplicateUri_parentWins ()
@@ -1638,7 +1658,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1649,6 +1672,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_relativeJar ()
@@ -1691,7 +1717,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1702,6 +1731,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_jarInCurrentDirectory ()
@@ -1744,7 +1776,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1755,6 +1790,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_absoluteDirectory ()
@@ -1796,7 +1834,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1807,6 +1848,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_absoluteJar ()
@@ -1848,7 +1892,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1859,6 +1906,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_multiplePaths ()
@@ -1900,7 +1950,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1929,6 +1982,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_leadingBlanks ()
@@ -1970,7 +2026,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -1981,6 +2040,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_trailingBlanks ()
@@ -2022,7 +2084,10 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|File
@@ -2033,6 +2098,9 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassName ()

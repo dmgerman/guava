@@ -22,13 +22,21 @@ end_package
 
 begin_import
 import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+operator|.
+name|asList
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -109,6 +117,16 @@ operator|.
 name|testing
 operator|.
 name|SampleElements
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
 import|;
 end_import
 
@@ -728,7 +746,7 @@ name|resetContainer
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|assertGet (K key, Object... values)
+DECL|method|assertGet (K key, V... values)
 specifier|protected
 name|void
 name|assertGet
@@ -736,8 +754,36 @@ parameter_list|(
 name|K
 name|key
 parameter_list|,
-name|Object
+name|V
 modifier|...
+name|values
+parameter_list|)
+block|{
+name|assertGet
+argument_list|(
+name|key
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|values
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|assertGet (K key, Collection<V> values)
+specifier|protected
+name|void
+name|assertGet
+parameter_list|(
+name|K
+name|key
+parameter_list|,
+name|Collection
+argument_list|<
+name|V
+argument_list|>
 name|values
 parameter_list|)
 block|{
@@ -754,18 +800,21 @@ name|key
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|values
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|values
 operator|.
-name|length
-operator|>
-literal|0
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|ASSERT
@@ -784,7 +833,10 @@ name|key
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|values
 argument_list|)
@@ -821,6 +873,7 @@ name|isNull
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO(user): Add proper overrides to prevent autoboxing.
 comment|// Truth+autoboxing == compile error. Cast int to long to fix:
 name|ASSERT
 operator|.
@@ -845,14 +898,16 @@ name|long
 operator|)
 name|values
 operator|.
-name|length
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
 name|values
 operator|.
-name|length
+name|size
+argument_list|()
 operator|>
 literal|0
 argument_list|,
@@ -869,7 +924,8 @@ name|assertEquals
 argument_list|(
 name|values
 operator|.
-name|length
+name|size
+argument_list|()
 operator|>
 literal|0
 argument_list|,
@@ -889,7 +945,8 @@ name|assertEquals
 argument_list|(
 name|values
 operator|.
-name|length
+name|size
+argument_list|()
 operator|>
 literal|0
 argument_list|,

@@ -38,11 +38,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -732,7 +728,10 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Maps
 operator|.
@@ -770,6 +769,9 @@ argument_list|,
 literal|3
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testConstrainedMapIllegal ()
@@ -1138,7 +1140,10 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Maps
 operator|.
@@ -1176,6 +1181,9 @@ argument_list|,
 literal|3
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testConstrainedBiMapIllegal ()
@@ -1749,7 +1757,10 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|1
 argument_list|)
@@ -1855,7 +1866,10 @@ name|entries
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Maps
 operator|.
@@ -1965,6 +1979,9 @@ argument_list|,
 literal|11
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertFalse
 argument_list|(

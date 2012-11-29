@@ -32,11 +32,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1855,7 +1851,10 @@ literal|"g"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"e"
 argument_list|)
@@ -1928,7 +1927,10 @@ literal|"c"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"e"
 argument_list|)
@@ -1945,7 +1947,10 @@ literal|"e"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"e"
 argument_list|)
@@ -2009,7 +2014,10 @@ literal|"g"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"e"
 argument_list|)
@@ -2028,7 +2036,10 @@ literal|"g"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"e"
 argument_list|)
@@ -2218,7 +2229,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2232,6 +2246,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/*    * Tests that we workaround GWT bug #3621 (or that it is already fixed).    *    * A call to of() with a parameter that is not a plain Object[] (here,    * Interface[]) creates a RegularImmutableSortedSet backed by an array of that    * type. Later, RegularImmutableSortedSet.toArray() calls System.arraycopy()    * to copy from that array to the destination array. This would be fine, but    * GWT has a bug: It refuses to copy from an E[] to an Object[] when E is an    * interface type.    */
@@ -2385,7 +2402,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2399,6 +2419,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testOf_comparator ()
@@ -2491,7 +2514,10 @@ literal|"e"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"b"
 argument_list|,
@@ -2499,6 +2525,9 @@ literal|"c"
 argument_list|,
 literal|"d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2512,7 +2541,10 @@ literal|"g"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"b"
 argument_list|,
@@ -2524,6 +2556,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertSame
 argument_list|(
@@ -2601,12 +2636,18 @@ literal|"e"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2620,7 +2661,10 @@ literal|"a"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"b"
 argument_list|,
@@ -2632,6 +2676,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertSame
 argument_list|(
@@ -2700,12 +2747,18 @@ literal|"e"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"c"
 argument_list|,
 literal|"d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2721,7 +2774,10 @@ literal|"g"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"b"
 argument_list|,
@@ -2733,6 +2789,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertSame
 argument_list|(
@@ -3032,7 +3091,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3046,6 +3108,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testExplicit_ordering_dupes ()
@@ -3100,7 +3165,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3114,6 +3182,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testExplicit_contains ()
@@ -3373,7 +3444,10 @@ literal|"fish"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3381,6 +3455,9 @@ literal|"in"
 argument_list|,
 literal|"the"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3394,7 +3471,10 @@ literal|"california"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3408,6 +3488,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -3509,7 +3592,10 @@ literal|"fish"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"over"
 argument_list|,
@@ -3517,6 +3603,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3530,7 +3619,10 @@ literal|"a"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3544,6 +3636,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -3638,12 +3733,18 @@ literal|"quick"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"the"
 argument_list|,
 literal|"over"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3659,7 +3760,10 @@ literal|"california"
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3673,6 +3777,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -4025,7 +4132,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4039,6 +4149,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOf_ordering_dupes ()
@@ -4084,7 +4197,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4098,6 +4214,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOf_subSet ()
@@ -4360,7 +4479,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4374,6 +4496,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOf_iterator_ordering_dupes ()
@@ -4419,7 +4544,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4433,6 +4561,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOf_iterator_comparator ()
@@ -4521,7 +4652,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4535,6 +4669,9 @@ literal|"e"
 argument_list|,
 literal|"f"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOf_sortedSet_comparator ()
@@ -4615,7 +4752,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4629,6 +4769,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOfExplicit_ordering_dupes ()
@@ -4680,7 +4823,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4694,6 +4840,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOfExplicit_comparator ()
@@ -4782,7 +4931,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4796,6 +4948,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOfExplicit_iterator_ordering_dupes ()
@@ -4847,7 +5002,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4861,6 +5019,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOfExplicit_iterator_comparator ()
@@ -4964,7 +5125,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -4978,6 +5142,9 @@ literal|"quick"
 argument_list|,
 literal|"the"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOfSorted_natural_ordering ()
@@ -5032,7 +5199,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -5046,6 +5216,9 @@ literal|"quick"
 argument_list|,
 literal|"the"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCopyOfSorted_natural_comparator ()
@@ -5165,7 +5338,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -5179,6 +5355,9 @@ literal|"quick"
 argument_list|,
 literal|"jumped"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertSame
 argument_list|(
@@ -6336,7 +6515,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"c"
 argument_list|,
@@ -6344,6 +6526,9 @@ literal|"b"
 argument_list|,
 literal|"a"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -6453,7 +6638,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|101
 argument_list|,
@@ -6463,6 +6651,9 @@ literal|3
 argument_list|,
 literal|44
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSupertypeComparatorSubtypeElements ()
@@ -6509,7 +6700,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|101
 argument_list|,
@@ -6519,6 +6713,9 @@ literal|3
 argument_list|,
 literal|44
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|builder ()
@@ -7497,7 +7694,10 @@ literal|true
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -7508,6 +7708,9 @@ operator|+
 literal|1
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -7586,7 +7789,10 @@ literal|false
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -7595,6 +7801,9 @@ argument_list|,
 name|i
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -7673,7 +7882,10 @@ literal|true
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -7684,6 +7896,9 @@ operator|.
 name|length
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -7762,7 +7977,10 @@ literal|false
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -7775,6 +7993,9 @@ operator|.
 name|length
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -7877,7 +8098,10 @@ literal|false
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -7895,6 +8119,9 @@ argument_list|,
 name|j
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -7998,7 +8225,10 @@ literal|false
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -8007,6 +8237,9 @@ argument_list|,
 name|j
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -8110,7 +8343,10 @@ literal|true
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -8123,6 +8359,9 @@ operator|+
 literal|1
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -8226,7 +8465,10 @@ literal|true
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
 argument_list|(
 name|sortedNumberNames
 argument_list|(
@@ -8237,6 +8479,9 @@ operator|+
 literal|1
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -8244,8 +8489,10 @@ block|}
 DECL|method|sortedNumberNames (int i, int j)
 specifier|private
 specifier|static
+name|ImmutableList
+argument_list|<
 name|String
-index|[]
+argument_list|>
 name|sortedNumberNames
 parameter_list|(
 name|int
@@ -8256,6 +8503,10 @@ name|j
 parameter_list|)
 block|{
 return|return
+name|ImmutableList
+operator|.
+name|copyOf
+argument_list|(
 name|SORTED_NUMBER_NAMES
 operator|.
 name|subList
@@ -8264,14 +8515,6 @@ name|i
 argument_list|,
 name|j
 argument_list|)
-operator|.
-name|toArray
-argument_list|(
-operator|new
-name|String
-index|[
-literal|0
-index|]
 argument_list|)
 return|;
 block|}

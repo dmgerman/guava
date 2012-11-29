@@ -50,11 +50,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -2109,7 +2105,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2131,6 +2130,9 @@ literal|"i"
 argument_list|,
 literal|"j"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testReuseBuilderWithNonDuplicateElements ()
@@ -2175,12 +2177,18 @@ name|build
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|builder
 operator|.
@@ -2201,7 +2209,10 @@ name|build
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2211,6 +2222,9 @@ literal|"c"
 argument_list|,
 literal|"d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testBuilderWithDuplicateElements ()
@@ -2348,12 +2362,18 @@ name|build
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|builder
 operator|.
@@ -2378,7 +2398,10 @@ name|build
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2386,6 +2409,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testBuilderAddAll ()
@@ -2458,7 +2484,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2470,6 +2499,9 @@ literal|"d"
 argument_list|,
 literal|"e"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|field|LAST_COLOR_ADDED

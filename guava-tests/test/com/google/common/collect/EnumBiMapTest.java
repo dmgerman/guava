@@ -38,11 +38,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -1399,7 +1395,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Currency
 operator|.
@@ -1413,6 +1412,9 @@ name|Currency
 operator|.
 name|PESO
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// forward map ordered by currency (even for country values)
 name|ASSERT
@@ -1425,7 +1427,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Country
 operator|.
@@ -1439,6 +1444,9 @@ name|Country
 operator|.
 name|CHILE
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// backward map ordered by country
 name|ASSERT
@@ -1454,7 +1462,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Country
 operator|.
@@ -1468,6 +1479,9 @@ name|Country
 operator|.
 name|SWITZERLAND
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// backward map ordered by country (even for currency values)
 name|ASSERT
@@ -1483,7 +1497,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Currency
 operator|.
@@ -1497,6 +1514,9 @@ name|Currency
 operator|.
 name|FRANC
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testKeySetIteratorRemove ()
@@ -1601,7 +1621,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Currency
 operator|.
@@ -1611,6 +1634,9 @@ name|Currency
 operator|.
 name|PESO
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// forward map ordered by currency (even for country values)
 name|ASSERT
@@ -1623,7 +1649,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Country
 operator|.
@@ -1633,6 +1662,9 @@ name|Country
 operator|.
 name|CHILE
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// backward map ordered by country
 name|ASSERT
@@ -1648,7 +1680,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Country
 operator|.
@@ -1658,6 +1693,9 @@ name|Country
 operator|.
 name|SWITZERLAND
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// backward map ordered by country (even for currency values)
 name|ASSERT
@@ -1673,7 +1711,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Currency
 operator|.
@@ -1683,6 +1724,9 @@ name|Currency
 operator|.
 name|FRANC
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testValuesIteratorRemove ()
@@ -1799,7 +1843,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Currency
 operator|.
@@ -1809,6 +1856,9 @@ name|Currency
 operator|.
 name|PESO
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// forward map ordered by currency (even for country values)
 name|ASSERT
@@ -1821,7 +1871,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Country
 operator|.
@@ -1831,6 +1884,9 @@ name|Country
 operator|.
 name|CHILE
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// backward map ordered by country
 name|ASSERT
@@ -1846,7 +1902,10 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Country
 operator|.
@@ -1856,6 +1915,9 @@ name|Country
 operator|.
 name|CHILE
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// backward map ordered by country (even for currency values)
 name|ASSERT
@@ -1871,7 +1933,10 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Currency
 operator|.
@@ -1881,6 +1946,9 @@ name|Currency
 operator|.
 name|PESO
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testEntrySet ()

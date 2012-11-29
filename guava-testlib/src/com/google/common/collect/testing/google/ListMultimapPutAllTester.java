@@ -243,9 +243,6 @@ argument_list|(
 name|k
 argument_list|,
 name|expectedValues
-operator|.
-name|toArray
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -32,11 +32,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -2245,7 +2241,10 @@ name|rowKeyList
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -2253,6 +2252,9 @@ literal|"bar"
 argument_list|,
 literal|"cat"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testColumnKeyList ()
@@ -2302,7 +2304,10 @@ name|columnKeyList
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|1
 argument_list|,
@@ -2310,6 +2315,9 @@ literal|2
 argument_list|,
 literal|3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetMissingKeys ()
@@ -3193,7 +3201,10 @@ literal|0
 index|]
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|'a'
 argument_list|,
@@ -3201,6 +3212,9 @@ literal|null
 argument_list|,
 literal|'c'
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3212,7 +3226,10 @@ literal|1
 index|]
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|'b'
 argument_list|,
@@ -3220,6 +3237,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -3231,7 +3251,10 @@ literal|2
 index|]
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|null
 argument_list|,
@@ -3239,6 +3262,9 @@ literal|null
 argument_list|,
 literal|null
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|table
 operator|.

@@ -36,11 +36,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -509,7 +505,10 @@ name|elementSet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -526,7 +525,10 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Multisets
 operator|.
@@ -786,7 +788,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|DerivedComparable
@@ -818,6 +823,9 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testNewTreeMultisetNonGeneric ()
@@ -878,7 +886,10 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -910,6 +921,9 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testNewTreeMultisetComparator ()
@@ -959,7 +973,10 @@ argument_list|(
 name|multiset
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -971,6 +988,9 @@ literal|"bar"
 argument_list|,
 literal|"bar"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRetainOccurrencesEmpty ()
@@ -1031,7 +1051,7 @@ argument_list|(
 name|multiset
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
@@ -1161,7 +1181,10 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1401,7 +1424,7 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
@@ -1458,7 +1481,7 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
@@ -1524,7 +1547,10 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1591,7 +1617,10 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1654,7 +1683,10 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1724,7 +1756,10 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1792,7 +1827,10 @@ name|ms2
 argument_list|)
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1874,7 +1912,10 @@ argument_list|(
 name|diff
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"a"
 argument_list|)
@@ -2346,12 +2387,18 @@ argument_list|(
 name|multiset
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemoveEmptyOccurrences ()
@@ -2412,7 +2459,10 @@ argument_list|(
 name|multiset
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2420,6 +2470,9 @@ literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testRemoveOccurrences ()
@@ -2493,12 +2546,18 @@ argument_list|(
 name|multiset
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2662,7 +2721,10 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|Multisets
 operator|.
@@ -2691,6 +2753,9 @@ argument_list|,
 literal|1
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.
@@ -2699,7 +2764,10 @@ argument_list|(
 name|sortedMultiset
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2713,6 +2781,9 @@ literal|"c"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|ASSERT
 operator|.

@@ -20,11 +20,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -597,12 +593,18 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -664,12 +666,18 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -734,7 +742,10 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"a"
 argument_list|,
@@ -744,6 +755,9 @@ literal|"c"
 argument_list|,
 literal|"d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1240,7 +1254,10 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"foo"
 argument_list|)
@@ -1277,12 +1294,18 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
 literal|"bar"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testPrependTwoElements ()
@@ -1318,7 +1341,10 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1326,6 +1352,9 @@ literal|"bar"
 argument_list|,
 literal|"baz"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAppendZeroElements ()
@@ -1357,7 +1386,10 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|item
 argument_list|(
 literal|"foo"
 argument_list|)
@@ -1394,12 +1426,18 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
 literal|"bar"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAppendTwoElements ()
@@ -1435,7 +1473,10 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1443,6 +1484,9 @@ literal|"bar"
 argument_list|,
 literal|"baz"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testEmptyArrayToEmpty ()

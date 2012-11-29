@@ -218,11 +218,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -5101,7 +5097,10 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|DATA1
 argument_list|,
@@ -5109,6 +5108,9 @@ name|DATA2
 argument_list|,
 name|DATA3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testAllAsList_emptyList ()
@@ -6225,7 +6227,10 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|DATA1
 argument_list|,
@@ -6233,6 +6238,9 @@ name|DATA2
 argument_list|,
 name|DATA3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|createCombinedResult (Integer i, Boolean b)
@@ -8412,7 +8420,10 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|DATA1
 argument_list|,
@@ -8420,6 +8431,9 @@ name|DATA2
 argument_list|,
 name|DATA3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSuccessfulAsList_emptyList ()
@@ -8738,12 +8752,18 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|null
 argument_list|,
 name|DATA2
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSuccessfulAsList_totalFailure ()
@@ -8896,12 +8916,18 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|null
 argument_list|,
 literal|null
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSuccessfulAsList_cancelled ()
@@ -9046,12 +9072,18 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|null
 argument_list|,
 name|DATA2
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSuccessfulAsList_resultCancelled ()
@@ -9712,7 +9744,10 @@ argument_list|(
 name|results
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 literal|null
 argument_list|,
@@ -9720,6 +9755,9 @@ literal|null
 argument_list|,
 name|DATA3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|class|TestException

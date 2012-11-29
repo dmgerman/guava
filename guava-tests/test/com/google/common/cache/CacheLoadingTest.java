@@ -142,11 +142,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -3505,9 +3501,15 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
+argument_list|(
+name|asList
 argument_list|(
 name|lookupKeys
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for
@@ -3826,9 +3828,15 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|hasContentsAnyOrder
+name|has
+argument_list|()
+operator|.
+name|allFrom
+argument_list|(
+name|asList
 argument_list|(
 name|lookupKeys
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for

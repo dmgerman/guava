@@ -100,11 +100,7 @@ begin_import
 import|import static
 name|org
 operator|.
-name|junit
-operator|.
-name|contrib
-operator|.
-name|truth
+name|truth0
 operator|.
 name|Truth
 operator|.
@@ -344,12 +340,18 @@ argument_list|(
 name|list
 argument_list|)
 operator|.
-name|hasContentsInOrder
+name|has
+argument_list|()
+operator|.
+name|allOf
 argument_list|(
 name|v1
 argument_list|,
 name|v0
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -493,9 +495,6 @@ argument_list|(
 name|k
 argument_list|,
 name|expectedValues
-operator|.
-name|toArray
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -658,9 +657,6 @@ argument_list|(
 name|k
 argument_list|,
 name|expectedValues
-operator|.
-name|toArray
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -845,9 +841,6 @@ argument_list|(
 name|k
 argument_list|,
 name|expectedValues
-operator|.
-name|toArray
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
