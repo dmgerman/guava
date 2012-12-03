@@ -168,8 +168,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -913,6 +911,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}.  To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+annotation|@
+name|Beta
 DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final

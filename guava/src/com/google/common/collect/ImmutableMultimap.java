@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -944,8 +930,6 @@ name|this
 return|;
 block|}
 comment|/**      * Specifies the ordering of the generated multimap's keys.      *      * @since 8.0      */
-annotation|@
-name|Beta
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
 specifier|public
 name|Builder
@@ -979,8 +963,6 @@ name|this
 return|;
 block|}
 comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *      * @since 8.0      */
-annotation|@
-name|Beta
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
 specifier|public
 name|Builder
@@ -1521,8 +1503,6 @@ name|key
 parameter_list|)
 function_decl|;
 comment|/**    * Returns an immutable multimap which is the inverse of this one. For every    * key-value mapping in the original, the result will have a mapping with    * key and value reversed.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|inverse ()
 specifier|public
 specifier|abstract

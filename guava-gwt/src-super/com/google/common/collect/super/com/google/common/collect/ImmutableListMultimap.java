@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -824,8 +810,6 @@ return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 8.0      */
 annotation|@
-name|Beta
-annotation|@
 name|Override
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
 specifier|public
@@ -858,8 +842,6 @@ name|this
 return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 8.0      */
-annotation|@
-name|Beta
 annotation|@
 name|Override
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
@@ -1220,8 +1202,6 @@ argument_list|>
 name|inverse
 decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a list multimap can contain multiple pairs with    * the same key and value, this method returns an {@code    * ImmutableListMultimap} rather than the {@code ImmutableMultimap} specified    * in the {@code ImmutableMultimap} class.    *    * @since 11.0    */
-annotation|@
-name|Beta
 annotation|@
 name|Override
 DECL|method|inverse ()

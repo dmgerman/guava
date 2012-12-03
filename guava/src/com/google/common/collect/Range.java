@@ -188,8 +188,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 annotation|@
 name|SuppressWarnings
@@ -1827,6 +1825,8 @@ return|;
 block|}
 comment|/**    * Returns an {@link ContiguousSet} containing the same values in the given domain    * {@linkplain Range#contains contained} by this range.    *    *<p><b>Note:</b> {@code a.asSet(d).equals(b.asSet(d))} does not imply {@code a.equals(b)}! For    * example, {@code a} and {@code b} could be {@code [2..4]} and {@code (1..5)}, or the empty    * ranges {@code [3..3)} and {@code [4..4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet} view of a large    * range (such as {@code Range.greaterThan(0)}). Certain operations on such a set can be    * performed efficiently, but others (such as {@link Set#hashCode} or {@link    * Collections#frequency}) can cause major performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand form of the set's    * contents, such as {@code "[1..100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a lower bound, or if    *     neither has an upper bound    */
 comment|// TODO(kevinb): commit in spec to which methods are efficient?
+annotation|@
+name|Beta
 annotation|@
 name|GwtCompatible
 argument_list|(

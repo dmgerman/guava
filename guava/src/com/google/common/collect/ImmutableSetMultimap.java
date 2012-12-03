@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1119,8 +1105,6 @@ return|;
 block|}
 comment|/**      * {@inheritDoc}      *      * @since 8.0      */
 annotation|@
-name|Beta
-annotation|@
 name|Override
 DECL|method|orderKeysBy (Comparator<? super K> keyComparator)
 specifier|public
@@ -1156,8 +1140,6 @@ return|;
 block|}
 comment|/**      * Specifies the ordering of the generated multimap's values for each key.      *      *<p>If this method is called, the sets returned by the {@code get()}      * method of the generated multimap and its {@link Multimap#asMap()} view      * are {@link ImmutableSortedSet} instances. However, serialization does not      * preserve that property, though it does maintain the key and value      * ordering.      *      * @since 8.0      */
 comment|// TODO: Make serialization behavior consistent.
-annotation|@
-name|Beta
 annotation|@
 name|Override
 DECL|method|orderValuesBy (Comparator<? super V> valueComparator)
@@ -1813,8 +1795,6 @@ argument_list|>
 name|inverse
 decl_stmt|;
 comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a set multimap cannot contain multiple pairs with    * the same key and value, this method returns an {@code ImmutableSetMultimap}    * rather than the {@code ImmutableMultimap} specified in the {@code    * ImmutableMultimap} class.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|inverse ()
 specifier|public
 name|ImmutableSetMultimap
