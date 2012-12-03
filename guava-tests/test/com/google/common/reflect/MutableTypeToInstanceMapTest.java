@@ -207,7 +207,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test of {@link MutableTypeToInstanceMap}.  *  * @author Ben Yu  * @since 13  */
+comment|/**  * Unit test of {@link MutableTypeToInstanceMap}.  *  * @author Ben Yu  */
 end_comment
 
 begin_class

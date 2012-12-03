@@ -1273,7 +1273,7 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a list multimap can contain multiple pairs with    * the same key and value, this method returns an {@code    * ImmutableListMultimap} rather than the {@code ImmutableMultimap} specified    * in the {@code ImmutableMultimap} class.    *    * @since 11    */
+comment|/**    * {@inheritDoc}    *    *<p>Because an inverse of a list multimap can contain multiple pairs with    * the same key and value, this method returns an {@code    * ImmutableListMultimap} rather than the {@code ImmutableMultimap} specified    * in the {@code ImmutableMultimap} class.    *    * @since 11.0    */
 annotation|@
 name|Beta
 annotation|@

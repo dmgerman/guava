@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit test for {@link ImmutableTypeToInstanceMap}.  *  * @author Ben Yu  * @since 13  */
+comment|/**  * Unit test for {@link ImmutableTypeToInstanceMap}.  *  * @author Ben Yu  */
 end_comment
 
 begin_class
