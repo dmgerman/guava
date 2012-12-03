@@ -65,8 +65,6 @@ comment|/**  * A navigable set which forwards all its method calls to another na
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|ForwardingNavigableSet
 specifier|public
 specifier|abstract
@@ -126,6 +124,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lower} in terms of the {@code descendingIterator} method of    * {@link #headSet(Object, boolean)}. If you override {@link #headSet(Object, boolean)}, you may    * wish to override {@link #lower} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardLower (E e)
 specifier|protected
 name|E
@@ -176,6 +176,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #floor} in terms of the {@code descendingIterator} method of    * {@link #headSet(Object, boolean)}. If you override {@link #headSet(Object, boolean)}, you may    * wish to override {@link #floor} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardFloor (E e)
 specifier|protected
 name|E
@@ -226,6 +228,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #ceiling} in terms of the {@code iterator} method of    * {@link #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may    * wish to override {@link #ceiling} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardCeiling (E e)
 specifier|protected
 name|E
@@ -276,6 +280,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #higher} in terms of the {@code iterator} method of    * {@link #tailSet(Object, boolean)}. If you override {@link #tailSet(Object, boolean)}, you may    * wish to override {@link #higher} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardHigher (E e)
 specifier|protected
 name|E
@@ -321,6 +327,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #pollFirst} in terms of the {@code iterator} method. If you    * override {@link #iterator} you may wish to override {@link #pollFirst} to forward to this    * implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardPollFirst ()
 specifier|protected
 name|E
@@ -354,6 +362,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #pollLast} in terms of the {@code descendingIterator} method.    * If you override {@link #descendingIterator} you may wish to override {@link #pollLast} to    * forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardPollLast ()
 specifier|protected
 name|E
@@ -373,6 +383,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Beta
 DECL|method|standardFirst ()
 specifier|protected
 name|E
@@ -387,6 +399,8 @@ name|next
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Beta
 DECL|method|standardLast ()
 specifier|protected
 name|E
@@ -509,6 +523,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #subSet(Object, boolean, Object, boolean)} in terms of the    * {@code headSet} and {@code tailSet} methods. In many cases, you may wish to override    * {@link #subSet(Object, boolean, Object, boolean)} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardSubSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 specifier|protected
 name|NavigableSet
@@ -547,6 +563,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #subSet(Object, Object)} in terms of the    * {@link #subSet(Object, boolean, Object, boolean)} method. If you override    * {@link #subSet(Object, boolean, Object, boolean)}, you may wish to override    * {@link #subSet(Object, Object)} to forward to this implementation.    */
+annotation|@
+name|Beta
 annotation|@
 name|Override
 DECL|method|standardSubSet (E fromElement, E toElement)
@@ -607,6 +625,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #headSet(Object)} in terms of the    * {@link #headSet(Object, boolean)} method. If you override    * {@link #headSet(Object, boolean)}, you may wish to override    * {@link #headSet(Object)} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardHeadSet (E toElement)
 specifier|protected
 name|SortedSet
@@ -658,6 +678,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #tailSet(Object)} in terms of the    * {@link #tailSet(Object, boolean)} method. If you override    * {@link #tailSet(Object, boolean)}, you may wish to override    * {@link #tailSet(Object)} to forward to this implementation.    */
+annotation|@
+name|Beta
 DECL|method|standardTailSet (E fromElement)
 specifier|protected
 name|SortedSet
