@@ -200,7 +200,7 @@ return|return
 name|maxLength
 return|;
 block|}
-comment|/**    * Returns the number of bits in this hash code; a positive multiple of 32.    */
+comment|/**    * Returns the number of bits in this hash code; a positive multiple of 8.    */
 DECL|method|bits ()
 specifier|public
 specifier|abstract
