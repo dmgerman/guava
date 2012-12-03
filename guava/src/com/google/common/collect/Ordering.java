@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1124,8 +1110,6 @@ name|right
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned. The    * iterator will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @param iterator the iterator whose minimum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|min (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1313,8 +1297,6 @@ name|minSoFar
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned. The    * iterator will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @param iterator the iterator whose maximum element is to be determined    * @throws NoSuchElementException if {@code iterator} is empty    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    *    * @since 11.0    */
-annotation|@
-name|Beta
 DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
@@ -1502,8 +1484,6 @@ name|maxSoFar
 return|;
 block|}
 comment|/**    * Returns the {@code k} least elements of the given iterable according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
-annotation|@
-name|Beta
 DECL|method|leastOf (Iterable<E> iterable, int k)
 specifier|public
 parameter_list|<
@@ -1640,8 +1620,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the {@code k} least elements from the given iterator according to    * this ordering, in order from least to greatest.  If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} least    *     elements in ascending order    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
-annotation|@
-name|Beta
 DECL|method|leastOf (Iterator<E> elements, int k)
 specifier|public
 parameter_list|<
@@ -2214,8 +2192,6 @@ name|storeIndex
 return|;
 block|}
 comment|/**    * Returns the {@code k} greatest elements of the given iterable according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 8.0    */
-annotation|@
-name|Beta
 DECL|method|greatestOf (Iterable<E> iterable, int k)
 specifier|public
 parameter_list|<
@@ -2254,8 +2230,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the {@code k} greatest elements from the given iterator according to    * this ordering, in order from greatest to least. If there are fewer than    * {@code k} elements present, all will be included.    *    *<p>The implementation does not necessarily use a<i>stable</i> sorting    * algorithm; when multiple elements are equivalent, it is undefined which    * will come first.    *    * @return an immutable {@code RandomAccess} list of the {@code k} greatest    *     elements in<i>descending order</i>    * @throws IllegalArgumentException if {@code k} is negative    * @since 14.0    */
-annotation|@
-name|Beta
 DECL|method|greatestOf (Iterator<E> iterator, int k)
 specifier|public
 parameter_list|<
