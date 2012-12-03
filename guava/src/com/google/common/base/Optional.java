@@ -261,8 +261,6 @@ name|defaultValue
 parameter_list|)
 function_decl|;
 comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
-annotation|@
-name|Beta
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 specifier|abstract
@@ -321,8 +319,6 @@ name|asSet
 parameter_list|()
 function_decl|;
 comment|/**    * If the instance is present, it is transformed with the given {@link Function}; otherwise,    * {@link Optional#absent} is returned. If the function returns {@code null}, a    * {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the function returns {@code null}    *    * @since 12.0    */
-annotation|@
-name|Beta
 DECL|method|transform (Function<? super T, V> function)
 specifier|public
 specifier|abstract
