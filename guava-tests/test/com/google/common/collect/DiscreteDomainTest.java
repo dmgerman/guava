@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@link DiscreteDomains}.  *  * @author Chris Povirk  */
+comment|/**  * Tests for {@link DiscreteDomain}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -66,10 +66,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"SerializableTester"
 argument_list|)
-DECL|class|DiscreteDomainsTest
+DECL|class|DiscreteDomainTest
 specifier|public
 class|class
-name|DiscreteDomainsTest
+name|DiscreteDomainTest
 extends|extends
 name|TestCase
 block|{
@@ -81,7 +81,7 @@ parameter_list|()
 block|{
 name|reserializeAndAssert
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
@@ -89,17 +89,9 @@ argument_list|)
 expr_stmt|;
 name|reserializeAndAssert
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|longs
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|reserializeAndAssert
-argument_list|(
-name|DiscreteDomains
-operator|.
-name|bigIntegers
 argument_list|()
 argument_list|)
 expr_stmt|;
