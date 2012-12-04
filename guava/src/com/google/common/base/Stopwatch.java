@@ -352,11 +352,11 @@ else|:
 name|elapsedNanos
 return|;
 block|}
-comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    */
-DECL|method|elapsedTime (TimeUnit desiredUnit)
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    *    * @since 14.0 (since 10.0 as {@code elapsedTime()})    */
+DECL|method|elapsed (TimeUnit desiredUnit)
 specifier|public
 name|long
-name|elapsedTime
+name|elapsed
 parameter_list|(
 name|TimeUnit
 name|desiredUnit
@@ -374,7 +374,27 @@ name|NANOSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in milliseconds, with any fraction rounded down. This is identical to    * {@code elapsedTime(TimeUnit.MILLISECONDS)}.    */
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    */
+comment|// TODO(user): @deprecated Use {@link Stopwatch#elapsed(TimeUnit)} instead.
+DECL|method|elapsedTime (TimeUnit desiredUnit)
+specifier|public
+name|long
+name|elapsedTime
+parameter_list|(
+name|TimeUnit
+name|desiredUnit
+parameter_list|)
+block|{
+return|return
+name|elapsed
+argument_list|(
+name|desiredUnit
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in milliseconds, with any fraction rounded down. This is identical to    * {@code elapsed(TimeUnit.MILLISECONDS)}.    */
+comment|// TODO(user): @deprecated Pass {@link TimeUnit#MILLISECONDS} to
+comment|// {@link Stopwatch#elapsed(TimeUnit)} instead.
 DECL|method|elapsedMillis ()
 specifier|public
 name|long
@@ -382,7 +402,7 @@ name|elapsedMillis
 parameter_list|()
 block|{
 return|return
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|MILLISECONDS
 argument_list|)
@@ -409,7 +429,7 @@ literal|4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of the current elapsed time, choosing an    * appropriate unit and using the specified number of significant figures.    * For example, at the instant when {@code elapsedTime(NANOSECONDS)} would    * return {1234567}, {@code toString(4)} returns {@code "1.235 ms"}.    *    * @deprecated Use {@link #toString()} instead. This method is scheduled    *     to be removed in Guava release 15.0.    */
+comment|/**    * Returns a string representation of the current elapsed time, choosing an    * appropriate unit and using the specified number of significant figures.    * For example, at the instant when {@code elapsed(NANOSECONDS)} would    * return {1234567}, {@code toString(4)} returns {@code "1.235 ms"}.    *    * @deprecated Use {@link #toString()} instead. This method is scheduled    *     to be removed in Guava release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@

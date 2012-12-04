@@ -171,7 +171,7 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -383,7 +383,7 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -407,7 +407,7 @@ literal|3
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -438,7 +438,7 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -457,7 +457,7 @@ literal|2
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -489,17 +489,17 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testElapsedTime_whileRunning ()
+DECL|method|testElapsed_whileRunning ()
 specifier|public
 name|void
-name|testElapsedTime_whileRunning
+name|testElapsed_whileRunning
 parameter_list|()
 block|{
 name|ticker
@@ -520,7 +520,7 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -539,17 +539,17 @@ literal|345
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testElapsedTime_notRunning ()
+DECL|method|testElapsed_notRunning ()
 specifier|public
 name|void
-name|testElapsedTime_notRunning
+name|testElapsed_notRunning
 parameter_list|()
 block|{
 name|ticker
@@ -589,17 +589,17 @@ literal|4
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testElapsedTime_multipleSegments ()
+DECL|method|testElapsed_multipleSegments ()
 specifier|public
 name|void
-name|testElapsedTime_multipleSegments
+name|testElapsed_multipleSegments
 parameter_list|()
 block|{
 name|stopwatch
@@ -637,7 +637,7 @@ literal|9
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -656,7 +656,7 @@ literal|34
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -680,17 +680,17 @@ literal|34
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testElapsedTime_micros ()
+DECL|method|testElapsed_micros ()
 specifier|public
 name|void
-name|testElapsedTime_micros
+name|testElapsed_micros
 parameter_list|()
 block|{
 name|stopwatch
@@ -711,7 +711,7 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|MICROSECONDS
 argument_list|)
@@ -730,17 +730,17 @@ literal|1
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|MICROSECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testElapsedTime_millis ()
+DECL|method|testElapsed_millis ()
 specifier|public
 name|void
-name|testElapsedTime_millis
+name|testElapsed_millis
 parameter_list|()
 block|{
 name|stopwatch
@@ -761,7 +761,7 @@ literal|0
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|MILLISECONDS
 argument_list|)
@@ -780,7 +780,7 @@ literal|1
 argument_list|,
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|MILLISECONDS
 argument_list|)
