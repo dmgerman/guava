@@ -173,8 +173,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lowerEntry} in terms of the {@code lastEntry()} of    * {@link #headMap(Object, boolean)}. If you override {@code headMap}, you may wish to override    * {@code lowerEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardLowerEntry (K key)
 specifier|protected
 name|Entry
@@ -223,8 +221,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lowerKey} in terms of {@code lowerEntry}. If you override    * {@link #lowerEntry}, you may wish to override {@code lowerKey} to forward to this    * implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardLowerKey (K key)
 specifier|protected
 name|K
@@ -271,8 +267,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #floorEntry} in terms of the {@code lastEntry()} of    * {@link #headMap(Object, boolean)}. If you override {@code headMap}, you may wish to override    * {@code floorEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardFloorEntry (K key)
 specifier|protected
 name|Entry
@@ -321,8 +315,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #floorKey} in terms of {@code floorEntry}. If you override    * {@code floorEntry}, you may wish to override {@code floorKey} to forward to this    * implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardFloorKey (K key)
 specifier|protected
 name|K
@@ -369,8 +361,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #ceilingEntry} in terms of the {@code firstEntry()} of    * {@link #tailMap(Object, boolean)}. If you override {@code tailMap}, you may wish to override    * {@code ceilingEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardCeilingEntry (K key)
 specifier|protected
 name|Entry
@@ -419,8 +409,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #ceilingKey} in terms of {@code ceilingEntry}. If you override    * {@code ceilingEntry}, you may wish to override {@code ceilingKey} to forward to this    * implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardCeilingKey (K key)
 specifier|protected
 name|K
@@ -467,8 +455,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #higherEntry} in terms of the {@code firstEntry()} of    * {@link #tailMap(Object, boolean)}. If you override {@code tailMap}, you may wish to override    * {@code higherEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardHigherEntry (K key)
 specifier|protected
 name|Entry
@@ -517,8 +503,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #higherKey} in terms of {@code higherEntry}. If you override    * {@code higherEntry}, you may wish to override {@code higherKey} to forward to this    * implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardHigherKey (K key)
 specifier|protected
 name|K
@@ -560,8 +544,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #firstEntry} in terms of the {@code iterator()} of    * {@link #entrySet}. If you override {@code entrySet}, you may wish to override    * {@code firstEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardFirstEntry ()
 specifier|protected
 name|Entry
@@ -586,8 +568,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #firstKey} in terms of {@code firstEntry}. If you override    * {@code firstEntry}, you may wish to override {@code firstKey} to forward to this    * implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardFirstKey ()
 specifier|protected
 name|K
@@ -650,8 +630,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lastEntry} in terms of the {@code iterator()} of the    * {@link #entrySet} of {@link #descendingMap}. If you override {@code descendingMap}, you may    * wish to override {@code lastEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardLastEntry ()
 specifier|protected
 name|Entry
@@ -679,8 +657,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #lastKey} in terms of {@code lastEntry}. If you override    * {@code lastEntry}, you may wish to override {@code lastKey} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardLastKey ()
 specifier|protected
 name|K
@@ -743,8 +719,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #pollFirstEntry} in terms of the {@code iterator} of    * {@code entrySet}. If you override {@code entrySet}, you may wish to override    * {@code pollFirstEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardPollFirstEntry ()
 specifier|protected
 name|Entry
@@ -791,8 +765,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #pollFirstEntry} in terms of the {@code iterator} of the    * {@code entrySet} of {@code descendingMap}. If you override {@code descendingMap}, you may wish    * to override {@code pollFirstEntry} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardPollLastEntry ()
 specifier|protected
 name|Entry
@@ -1136,8 +1108,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #subMap(Object, Object)} in terms of    * {@link #subMap(Object, boolean, Object, boolean)}. If you override    * {@code subMap(K, boolean, K, boolean)}, you may wish to override {@code subMap} to forward to    * this implementation.    */
 annotation|@
-name|Beta
-annotation|@
 name|Override
 DECL|method|standardSubMap (K fromKey, K toKey)
 specifier|protected
@@ -1273,8 +1243,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #headMap(Object)} in terms of    * {@link #headMap(Object, boolean)}. If you override {@code headMap(K, boolean)}, you may wish    * to override {@code headMap} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardHeadMap (K toKey)
 specifier|protected
 name|SortedMap
@@ -1299,8 +1267,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #tailMap(Object)} in terms of    * {@link #tailMap(Object, boolean)}. If you override {@code tailMap(K, boolean)}, you may wish    * to override {@code tailMap} to forward to this implementation.    */
-annotation|@
-name|Beta
 DECL|method|standardTailMap (K fromKey)
 specifier|protected
 name|SortedMap

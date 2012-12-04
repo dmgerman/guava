@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -210,8 +196,6 @@ comment|// for GWT
 block|}
 comment|/**    * A sensible definition of {@link #equals} in terms of {@link #size} and    * {@link #containsAll}. If you override either of those methods, you may wish    * to override {@link #equals} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardEquals (@ullable Object object)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardEquals
@@ -235,8 +219,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #hashCode} in terms of {@link #iterator}.    * If you override {@link #iterator}, you may wish to override {@link #equals}    * to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardHashCode ()
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardHashCode

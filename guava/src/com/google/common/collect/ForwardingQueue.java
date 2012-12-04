@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -195,8 +181,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #offer} in terms of {@link #add}. If you    * override {@link #add}, you may wish to override {@link #offer} to forward    * to this implementation.    *     * @since 7.0    */
 DECL|method|standardOffer (E e)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardOffer
@@ -227,8 +211,6 @@ block|}
 block|}
 comment|/**    * A sensible definition of {@link #peek} in terms of {@link #element}. If you    * override {@link #element}, you may wish to override {@link #peek} to    * forward to this implementation.    *     * @since 7.0    */
 DECL|method|standardPeek ()
-annotation|@
-name|Beta
 specifier|protected
 name|E
 name|standardPeek
@@ -254,8 +236,6 @@ block|}
 block|}
 comment|/**    * A sensible definition of {@link #poll} in terms of {@link #remove}. If you    * override {@link #remove}, you may wish to override {@link #poll} to forward    * to this implementation.    *     * @since 7.0    */
 DECL|method|standardPoll ()
-annotation|@
-name|Beta
 specifier|protected
 name|E
 name|standardPoll

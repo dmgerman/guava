@@ -360,8 +360,6 @@ comment|/**    * A sensible definition of {@link #contains} in terms of {@link #
 DECL|method|standardContains (@ullable Object object)
 annotation|@
 name|Override
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardContains
@@ -385,47 +383,22 @@ comment|/**    * A sensible definition of {@link #clear} in terms of the {@code 
 DECL|method|standardClear ()
 annotation|@
 name|Override
-annotation|@
-name|Beta
 specifier|protected
 name|void
 name|standardClear
 parameter_list|()
 block|{
-name|Iterator
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|entryIterator
-init|=
+name|Iterators
+operator|.
+name|clear
+argument_list|(
 name|entrySet
 argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|entryIterator
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|entryIterator
-operator|.
-name|next
-argument_list|()
+argument_list|)
 expr_stmt|;
-name|entryIterator
-operator|.
-name|remove
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #count} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #count} to forward to this implementation.    *     * @since 7.0    */
 DECL|method|standardCount (@ullable Object object)
@@ -484,8 +457,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #add(Object)} in terms of {@link    * #add(Object, int)}. If you override {@link #add(Object, int)}, you may    * wish to override {@link #add(Object)} to forward to this implementation.    *     * @since 7.0    */
 DECL|method|standardAdd (E element)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardAdd
@@ -538,8 +509,6 @@ block|}
 comment|/**    * A sensible definition of {@link #remove(Object)} in terms of {@link    * #remove(Object, int)}. If you override {@link #remove(Object, int)}, you    * may wish to override {@link #remove(Object)} to forward to this    * implementation.    *     * @since 7.0    */
 DECL|method|standardRemove (Object element)
 annotation|@
-name|Beta
-annotation|@
 name|Override
 specifier|protected
 name|boolean
@@ -562,8 +531,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #removeAll} in terms of the {@code    * removeAll} method of {@link #elementSet}. If you override {@link    * #elementSet}, you may wish to override {@link #removeAll} to forward to    * this implementation.    *    * @since 7.0    */
 DECL|method|standardRemoveAll ( Collection<?> elementsToRemove)
-annotation|@
-name|Beta
 annotation|@
 name|Override
 specifier|protected
@@ -591,8 +558,6 @@ block|}
 comment|/**    * A sensible definition of {@link #retainAll} in terms of the {@code    * retainAll} method of {@link #elementSet}. If you override {@link    * #elementSet}, you may wish to override {@link #retainAll} to forward to    * this implementation.    *    * @since 7.0    */
 DECL|method|standardRetainAll ( Collection<?> elementsToRetain)
 annotation|@
-name|Beta
-annotation|@
 name|Override
 specifier|protected
 name|boolean
@@ -618,8 +583,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #setCount(Object, int)} in terms of {@link    * #count(Object)}, {@link #add(Object, int)}, and {@link #remove(Object,    * int)}. {@link #entrySet()}. If you override any of these methods, you may    * wish to override {@link #setCount(Object, int)} to forward to this    * implementation.    *     * @since 7.0    */
 DECL|method|standardSetCount (E element, int count)
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardSetCount
@@ -645,9 +608,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #setCount(Object, int, int)} in terms of    * {@link #count(Object)} and {@link #setCount(Object, int)}. If you override    * either of these methods, you may wish to override {@link #setCount(Object,    * int, int)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardSetCount ( E element, int oldCount, int newCount)
-annotation|@
-name|Beta
+DECL|method|standardSetCount (E element, int oldCount, int newCount)
 specifier|protected
 name|boolean
 name|standardSetCount
@@ -717,8 +678,6 @@ block|}
 block|}
 comment|/**    * A sensible definition of {@link #iterator} in terms of {@link #entrySet}    * and {@link #remove(Object)}. If you override either of these methods, you    * may wish to override {@link #iterator} to forward to this implementation.    *     * @since 7.0    */
 DECL|method|standardIterator ()
-annotation|@
-name|Beta
 specifier|protected
 name|Iterator
 argument_list|<
@@ -738,8 +697,6 @@ return|;
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #size} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #size} to forward to this implementation.    *     * @since 7.0    */
 DECL|method|standardSize ()
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardSize
@@ -756,8 +713,6 @@ return|;
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #size} in terms of    * {@code entrySet().size()} and {@link #count}. If you override either of    * these methods, you may wish to override {@link #size} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardEquals (@ullable Object object)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardEquals
@@ -781,8 +736,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #hashCode} as {@code entrySet().hashCode()}    * . If you override {@link #entrySet}, you may wish to override {@link    * #hashCode} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardHashCode ()
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardHashCode
@@ -798,8 +751,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #toString} as {@code entrySet().toString()}    * . If you override {@link #entrySet}, you may wish to override {@link    * #toString} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardToString ()
-annotation|@
-name|Beta
 annotation|@
 name|Override
 specifier|protected

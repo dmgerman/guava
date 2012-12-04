@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -402,8 +388,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #contains} in terms of {@link #iterator}.    * If you override {@link #iterator}, you may wish to override {@link    * #contains} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardContains (@ullable Object object)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardContains
@@ -428,8 +412,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #containsAll} in terms of {@link #contains}    * . If you override {@link #contains}, you may wish to override {@link    * #containsAll} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardContainsAll (Collection<?> collection)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardContainsAll
@@ -469,8 +451,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #addAll} in terms of {@link #add}. If you    * override {@link #add}, you may wish to override {@link #addAll} to forward    * to this implementation.    *    * @since 7.0    */
 DECL|method|standardAddAll (Collection<? extends E> collection)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardAddAll
@@ -500,8 +480,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #remove} in terms of {@link #iterator},    * using the iterator's {@code remove} method. If you override {@link    * #iterator}, you may wish to override {@link #remove} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardRemove (@ullable Object object)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardRemove
@@ -560,8 +538,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #removeAll} in terms of {@link #iterator},    * using the iterator's {@code remove} method. If you override {@link    * #iterator}, you may wish to override {@link #removeAll} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardRemoveAll (Collection<?> collection)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardRemoveAll
@@ -587,8 +563,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #retainAll} in terms of {@link #iterator},    * using the iterator's {@code remove} method. If you override {@link    * #iterator}, you may wish to override {@link #retainAll} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardRetainAll (Collection<?> collection)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardRetainAll
@@ -614,46 +588,22 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #clear} in terms of {@link #iterator},    * using the iterator's {@code remove} method. If you override {@link    * #iterator}, you may wish to override {@link #clear} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardClear ()
-annotation|@
-name|Beta
 specifier|protected
 name|void
 name|standardClear
 parameter_list|()
 block|{
-name|Iterator
-argument_list|<
-name|E
-argument_list|>
-name|iterator
-init|=
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|iterator
+name|Iterators
 operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
+name|clear
+argument_list|(
 name|iterator
-operator|.
-name|next
 argument_list|()
+argument_list|)
 expr_stmt|;
-name|iterator
-operator|.
-name|remove
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|/**    * A sensible definition of {@link #isEmpty} as {@code !iterator().hasNext}.    * If you override {@link #isEmpty}, you may wish to override {@link #isEmpty}    * to forward to this implementation. Alternately, it may be more efficient to    * implement {@code isEmpty} as {@code size() == 0}.    *    * @since 7.0    */
 DECL|method|standardIsEmpty ()
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardIsEmpty
@@ -670,8 +620,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #toString} in terms of {@link #iterator}.    * If you override {@link #iterator}, you may wish to override {@link    * #toString} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardToString ()
-annotation|@
-name|Beta
 specifier|protected
 name|String
 name|standardToString
@@ -688,8 +636,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #toArray()} in terms of {@link    * #toArray(Object[])}. If you override {@link #toArray(Object[])}, you may    * wish to override {@link #toArray} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardToArray ()
-annotation|@
-name|Beta
 specifier|protected
 name|Object
 index|[]
@@ -716,8 +662,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #toArray(Object[])} in terms of {@link    * #size} and {@link #iterator}. If you override either of these methods, you    * may wish to override {@link #toArray} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardToArray (T[] array)
-annotation|@
-name|Beta
 specifier|protected
 parameter_list|<
 name|T

@@ -455,8 +455,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #putAll(Map)} in terms of {@link    * #put(Object, Object)}. If you override {@link #put(Object, Object)}, you    * may wish to override {@link #putAll(Map)} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardPutAll (Map<? extends K, ? extends V> map)
-annotation|@
-name|Beta
 specifier|protected
 name|void
 name|standardPutAll
@@ -575,49 +573,22 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #clear} in terms of the {@code iterator}    * method of {@link #entrySet}. In many cases, you may wish to override    * {@link #clear} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardClear ()
-annotation|@
-name|Beta
 specifier|protected
 name|void
 name|standardClear
 parameter_list|()
 block|{
-name|Iterator
-argument_list|<
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|entryIterator
-init|=
+name|Iterators
+operator|.
+name|clear
+argument_list|(
 name|entrySet
 argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|entryIterator
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|entryIterator
-operator|.
-name|next
-argument_list|()
+argument_list|)
 expr_stmt|;
-name|entryIterator
-operator|.
-name|remove
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|/**    * A sensible implementation of {@link Map#keySet} in terms of the following    * methods: {@link ForwardingMap#clear}, {@link ForwardingMap#containsKey},    * {@link ForwardingMap#isEmpty}, {@link ForwardingMap#remove}, {@link    * ForwardingMap#size}, and the {@link Set#iterator} method of {@link    * ForwardingMap#entrySet}. In many cases, you may wish to override {@link    * ForwardingMap#keySet} to forward to this implementation or a subclass    * thereof.    *    * @since 10.0    */
 annotation|@
@@ -730,8 +701,6 @@ block|}
 block|}
 comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet},    * you may wish to override {@link #containsValue} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardContainsValue (@ullable Object value)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardContainsValue
@@ -798,8 +767,6 @@ block|}
 block|}
 comment|/**    * A sensible definition of {@link #isEmpty} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #isEmpty} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardIsEmpty ()
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardIsEmpty
@@ -819,8 +786,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #equals} in terms of the {@code equals}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #equals} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardEquals (@ullable Object object)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardEquals
@@ -844,8 +809,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #hashCode} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #hashCode} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardHashCode ()
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardHashCode
@@ -863,8 +826,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #toString} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #toString} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardToString ()
-annotation|@
-name|Beta
 specifier|protected
 name|String
 name|standardToString

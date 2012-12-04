@@ -422,8 +422,6 @@ return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #add(Object)}, in terms of    * {@link #add(int, Object)}. If you override {@link #add(int, Object)}, you    * may wish to override {@link #add(Object)} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardAdd (E element)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardAdd
@@ -446,8 +444,6 @@ return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #addAll(int, Collection)}, in    * terms of the {@code add} method of {@link #listIterator(int)}. If you    * override {@link #listIterator(int)}, you may wish to override {@link    * #addAll(int, Collection)} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardAddAll ( int index, Iterable<? extends E> elements)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardAddAll
@@ -479,8 +475,6 @@ return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #indexOf}, in terms of {@link    * #listIterator()}. If you override {@link #listIterator()}, you may wish to    * override {@link #indexOf} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardIndexOf (@ullable Object element)
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardIndexOf
@@ -504,8 +498,6 @@ return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #lastIndexOf}, in terms of    * {@link #listIterator(int)}. If you override {@link #listIterator(int)}, you    * may wish to override {@link #lastIndexOf} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardLastIndexOf (@ullable Object element)
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardLastIndexOf
@@ -529,8 +521,6 @@ return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #iterator}, in terms of    * {@link #listIterator()}. If you override {@link #listIterator()}, you may    * wish to override {@link #iterator} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardIterator ()
-annotation|@
-name|Beta
 specifier|protected
 name|Iterator
 argument_list|<
@@ -546,8 +536,6 @@ return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #listIterator()}, in terms of    * {@link #listIterator(int)}. If you override {@link #listIterator(int)}, you    * may wish to override {@link #listIterator()} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardListIterator ()
-annotation|@
-name|Beta
 specifier|protected
 name|ListIterator
 argument_list|<

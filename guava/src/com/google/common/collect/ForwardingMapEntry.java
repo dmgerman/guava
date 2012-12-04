@@ -236,8 +236,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link    * #getKey()} and {@link #getValue()}. If you override either of these    * methods, you may wish to override {@link #equals(Object)} to forward to    * this implementation.    *    * @since 7.0    */
 DECL|method|standardEquals (@ullable Object object)
-annotation|@
-name|Beta
 specifier|protected
 name|boolean
 name|standardEquals
@@ -311,8 +309,6 @@ return|;
 block|}
 comment|/**    * A sensible definition of {@link #hashCode()} in terms of {@link #getKey()}    * and {@link #getValue()}. If you override either of these methods, you may    * wish to override {@link #hashCode()} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardHashCode ()
-annotation|@
-name|Beta
 specifier|protected
 name|int
 name|standardHashCode
