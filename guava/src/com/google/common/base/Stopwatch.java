@@ -230,6 +230,8 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|ticker
+argument_list|,
+literal|"ticker"
 argument_list|)
 expr_stmt|;
 block|}
@@ -255,6 +257,8 @@ name|checkState
 argument_list|(
 operator|!
 name|isRunning
+argument_list|,
+literal|"This stopwatch is already running; it cannot be started more than once."
 argument_list|)
 expr_stmt|;
 name|isRunning
@@ -290,6 +294,8 @@ decl_stmt|;
 name|checkState
 argument_list|(
 name|isRunning
+argument_list|,
+literal|"This stopwatch is already stopped; it cannot be stopped more than once."
 argument_list|)
 expr_stmt|;
 name|isRunning
