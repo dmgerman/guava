@@ -74,6 +74,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
@@ -381,10 +395,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A manager for monitoring and controlling a set of {@link Service services}. This class provides  * methods for {@linkplain #startAsync() starting}, {@linkplain #stopAsync() stopping} and  * {@linkplain #servicesByState inspecting} a collection of {@linkplain Service services}.  * Additionally, users can monitor state transitions with the {@link Listener listener} mechanism.  *  *<p>While it is recommended that service lifecycles be managed via this class, state transitions  * initiated via other mechanisms do not impact the correctness of its methods. For example, if the  * services are started by some mechanism besides {@link #startAsync}, the listeners will be invoked  * when appropriate and {@link #awaitHealthy} will still work as expected.  *  *<p>Here is a simple example of how to use a {@link ServiceManager} to start a server.  *<pre>   {@code  * class Server {  *   public static void main(String[] args) {  *     Set<Service> services = ...;  *     ServiceManager manager = new ServiceManager(services);  *     manager.addListener(new Listener() {  *         public void stopped() {}  *         public void healthy() {}  *         public void failure(Service service) {  *           // Something failed, at this point we could log it, notify a load balancer, or take  *           // some other action.  For now we will just exit.  *           System.exit(1);  *         }  *       },  *       MoreExecutors.sameThreadExecutor());  *  *     Runtime.getRuntime().addShutdownHook(new Thread() {  *       public void run() {  *         // Give the services 5 seconds to stop to ensure that we are responsive to shutdown   *         // requests.  *         try {  *           manager.stopAsync().awaitStopped(5, TimeUnit.SECONDS);  *         } catch (TimeoutException timeout) {  *           // stopping timed out  *         }  *       }  *     });  *     manager.startAsync().awaitHealthy();  *     // Services have been initialized and are healthy, start accepting requests...  *   }  * }}</pre>  *  * This class uses the ServiceManager's methods to start all of its services, to respond to service  * failure and to ensure that when the JVM is shutting down all the services are stopped.  *  * @author Luke Sandberg  * @since 14.0  */
+comment|/**  * A manager for monitoring and controlling a set of {@link Service services}. This class provides  * methods for {@linkplain #startAsync() starting}, {@linkplain #stopAsync() stopping} and  * {@linkplain #servicesByState inspecting} a collection of {@linkplain Service services}.  * Additionally, users can monitor state transitions with the {@link Listener listener} mechanism.  *  *<p>While it is recommended that service lifecycles be managed via this class, state transitions  * initiated via other mechanisms do not impact the correctness of its methods. For example, if the  * services are started by some mechanism besides {@link #startAsync}, the listeners will be invoked  * when appropriate and {@link #awaitHealthy} will still work as expected.  *  *<p>Here is a simple example of how to use a {@link ServiceManager} to start a server.  *<pre>   {@code  * class Server {  *   public static void main(String[] args) {  *     Set<Service> services = ...;  *     ServiceManager manager = new ServiceManager(services);  *     manager.addListener(new Listener() {  *         public void stopped() {}  *         public void healthy() {  *           // Services have been initialized and are healthy, start accepting requests...  *         }  *         public void failure(Service service) {  *           // Something failed, at this point we could log it, notify a load balancer, or take  *           // some other action.  For now we will just exit.  *           System.exit(1);  *         }  *       },  *       MoreExecutors.sameThreadExecutor());  *  *     Runtime.getRuntime().addShutdownHook(new Thread() {  *       public void run() {  *         // Give the services 5 seconds to stop to ensure that we are responsive to shutdown   *         // requests.  *         try {  *           manager.stopAsync().awaitStopped(5, TimeUnit.SECONDS);  *         } catch (TimeoutException timeout) {  *           // stopping timed out  *         }  *       }  *     });  *     manager.startAsync();  // start all the services asynchronously  *   }  * }}</pre>  *  * This class uses the ServiceManager's methods to start all of its services, to respond to service  * failure and to ensure that when the JVM is shutting down all the services are stopped.  *  * @author Luke Sandberg  * @since 14.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 annotation|@
 name|Singleton
 DECL|class|ServiceManager
@@ -413,6 +429,9 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular    * {@link Service service} starts, or terminates), should attach {@link Service.Listener service    * listeners} to each individual service.    *     * @author Luke Sandberg    * @since 14.0    */
+annotation|@
+name|Beta
+comment|// Should come out of Beta when ServiceManager does
 DECL|interface|Listener
 specifier|public
 specifier|static
@@ -441,7 +460,7 @@ name|service
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener     * service listeners}.  This is extracted into its own object so that listeners could be safely    * constructed and added in the {@link ServiceManager} constructor without having to close over    * the partially constructed {@link ServiceManager} instance (i.e. avoid leaking a pointer to     * 'this').    */
+comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener     * service listeners}.  This is extracted into its own object so that {@link ServiceListener}     * could be made {@code static} and its instances can be safely constructed and added in the     * {@link ServiceManager} constructor without having to close over the partially constructed     * {@link ServiceManager} instance (i.e. avoid leaking a pointer to {@code this}).    */
 DECL|field|state
 specifier|private
 specifier|final
@@ -588,7 +607,7 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new instance for managing the given services. This constructor is provided so that    * Guice can create a JIT binding for {@link ServiceManager}.    *     * @param services The services to manage    *     * @throws IllegalStateException if not all services are {@link State#NEW new}.    */
+comment|/**    * Constructs a new instance for managing the given services. This constructor is provided so that    * dependency injection frameworks inject instances of {@link ServiceManager}.    *     * @param services The services to manage    *     * @throws IllegalStateException if not all services are {@link State#NEW new}.    */
 DECL|method|ServiceManager (Set<Service> services)
 annotation|@
 name|Inject
@@ -613,7 +632,7 @@ name|services
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given     * executor. The listener will not have previous state changes replayed, so it is     * suggested that listeners are added before the service manager is {@linkplain #startAsync     * started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown     * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception     * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *     * @param listener the listener to run when the manager changes state    * @param executor the executor in which the the listeners callback methods will be run. For fast,    *     lightweight listeners that would be safe to execute in any thread, consider     *     {@link MoreExecutors#sameThreadExecutor}.    */
+comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given     * executor. The listener will not have previous state changes replayed, so it is     * suggested that listeners are added before any of the managed services are     * {@linkplain Service#start started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown     * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception     * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *     * @param listener the listener to run when the manager changes state    * @param executor the executor in which the the listeners callback methods will be run. For fast,    *     lightweight listeners that would be safe to execute in any thread, consider     *     {@link MoreExecutors#sameThreadExecutor}.    */
 DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
 name|void
@@ -766,7 +785,9 @@ block|{
 comment|// It would be nice to tell the caller who we are still waiting on, and this information is
 comment|// likely to be in servicesByState(), however due to race conditions we can't actually tell
 comment|// which services are holding up healthiness. The current set of NEW or STARTING services is
-comment|// likely to point out the culprit, but may not.
+comment|// likely to point out the culprit, but may not.  If we really wanted to solve this we could
+comment|// change state to track exactly which services have started and then we could accurately
+comment|// report on this. But it is only for logging so we likely don't care.
 throw|throw
 operator|new
 name|TimeoutException
@@ -2477,9 +2498,9 @@ block|}
 block|}
 block|}
 comment|/** Simple value object binding a listener to its executor. */
+DECL|class|ListenerExecutorPair
 annotation|@
 name|Immutable
-DECL|class|ListenerExecutorPair
 specifier|private
 specifier|static
 specifier|final
