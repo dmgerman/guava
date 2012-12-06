@@ -301,6 +301,35 @@ argument_list|)
 return|;
 block|}
 block|}
+block|,
+DECL|enumConstant|ImmutableSorted
+name|ImmutableSorted
+block|{
+annotation|@
+name|Override
+name|Set
+argument_list|<
+name|Element
+argument_list|>
+name|create
+parameter_list|(
+name|Collection
+argument_list|<
+name|Element
+argument_list|>
+name|contents
+parameter_list|)
+block|{
+return|return
+name|ImmutableSortedSet
+operator|.
+name|copyOf
+argument_list|(
+name|contents
+argument_list|)
+return|;
+block|}
+block|}
 block|,     ;
 DECL|method|create (Collection<Element> contents)
 specifier|abstract
