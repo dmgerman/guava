@@ -1854,6 +1854,64 @@ name|GwtIncompatible
 argument_list|(
 literal|"Class names are obfuscated in GWT"
 argument_list|)
+DECL|method|testToStringOmitNullValues_manyFieldsOmitAfterNull ()
+specifier|public
+name|void
+name|testToStringOmitNullValues_manyFieldsOmitAfterNull
+parameter_list|()
+block|{
+name|String
+name|toTest
+init|=
+name|Objects
+operator|.
+name|toStringHelper
+argument_list|(
+operator|new
+name|TestClass
+argument_list|()
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"field1"
+argument_list|,
+literal|null
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"field2"
+argument_list|,
+literal|"Googley"
+argument_list|)
+operator|.
+name|add
+argument_list|(
+literal|"field3"
+argument_list|,
+literal|"World"
+argument_list|)
+operator|.
+name|omitNullValues
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"TestClass{field2=Googley, field3=World}"
+argument_list|,
+name|toTest
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Class names are obfuscated in GWT"
+argument_list|)
 DECL|method|testToStringOmitNullValues_manyFieldsLastNull ()
 specifier|public
 name|void
