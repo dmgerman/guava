@@ -125,6 +125,27 @@ name|Element
 index|[]
 name|queries
 decl_stmt|;
+DECL|method|CollectionBenchmarkSampleData (int size)
+name|CollectionBenchmarkSampleData
+parameter_list|(
+name|int
+name|size
+parameter_list|)
+block|{
+name|this
+argument_list|(
+literal|true
+argument_list|,
+operator|new
+name|SpecialRandom
+argument_list|()
+argument_list|,
+literal|1.0
+argument_list|,
+name|size
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|CollectionBenchmarkSampleData ( boolean isUserTypeFast, SpecialRandom random, double hitRate, int size)
 name|CollectionBenchmarkSampleData
 parameter_list|(
