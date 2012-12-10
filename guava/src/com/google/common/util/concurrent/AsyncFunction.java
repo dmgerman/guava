@@ -20,20 +20,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -49,8 +35,6 @@ comment|/**  * Transforms a value, possibly asynchronously. For an example usage
 end_comment
 
 begin_interface
-annotation|@
-name|Beta
 DECL|interface|AsyncFunction
 specifier|public
 interface|interface

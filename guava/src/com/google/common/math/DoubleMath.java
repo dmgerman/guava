@@ -246,20 +246,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -303,8 +289,6 @@ comment|/**  * A class for arithmetic on doubles that is not covered by {@link j
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|DoubleMath
 specifier|public
 specifier|final
@@ -1198,8 +1182,6 @@ literal|.95d5f3d928edep945
 block|}
 decl_stmt|;
 comment|/**    * Returns {@code true} if {@code a} and {@code b} are within {@code tolerance} of each other.    *    *<p>Technically speaking, this is equivalent to    * {@code Math.abs(a - b)<= tolerance || Double.valueOf(a).equals(Double.valueOf(b))}.    *    *<p>Notable special cases include:    *<ul>    *<li>All NaNs are fuzzily equal.    *<li>If {@code a == b}, then {@code a} and {@code b} are always fuzzily equal.    *<li>Positive and negative zero are always fuzzily equal.    *<li>If {@code tolerance} is zero, and neither {@code a} nor {@code b} is NaN, then    * {@code a} and {@code b} are fuzzily equal if and only if {@code a == b}.    *<li>With {@link Double#POSITIVE_INFINITY} tolerance, all non-NaN values are fuzzily equal.    *<li>With finite tolerance, {@code Double.POSITIVE_INFINITY} and {@code    * Double.NEGATIVE_INFINITY} are fuzzily equal only to themselves.    *</li>    *    *<p>This is reflexive and symmetric, but<em>not</em> transitive, so it is<em>not</em> an    * equivalence relation and<em>not</em> suitable for use in {@link Object#equals}    * implementations.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
-annotation|@
-name|Beta
 DECL|method|fuzzyEquals (double a, double b, double tolerance)
 specifier|public
 specifier|static
@@ -1264,8 +1246,6 @@ return|;
 comment|// x != x is equivalent to Double.isNaN(x), but faster
 block|}
 comment|/**    * Compares {@code a} and {@code b} "fuzzily," with a tolerance for nearly-equal values.    *    *<p>This method is equivalent to    * {@code fuzzyEquals(a, b, tolerance) ? 0 : Double.compare(a, b)}. In particular, like    * {@link Double#compare(double, double)}, it treats all NaN values as equal and greater than all    * other values (including {@link Double#POSITIVE_INFINITY}).    *    *<p>This is<em>not</em> a total ordering and is<em>not</em> suitable for use in    * {@link Comparable#compareTo} implementations.  In particular, it is not transitive.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
-annotation|@
-name|Beta
 DECL|method|fuzzyCompare (double a, double b, double tolerance)
 specifier|public
 specifier|static
