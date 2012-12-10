@@ -72,7 +72,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|NavigableSet
+name|SortedSet
 import|;
 end_import
 
@@ -176,7 +176,7 @@ annotation|@
 name|Override
 DECL|method|elementSet ()
 specifier|public
-name|NavigableSet
+name|SortedSet
 argument_list|<
 name|E
 argument_list|>
@@ -185,7 +185,7 @@ parameter_list|()
 block|{
 return|return
 operator|(
-name|NavigableSet
+name|SortedSet
 argument_list|<
 name|E
 argument_list|>
@@ -199,7 +199,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|createElementSet ()
-name|NavigableSet
+name|SortedSet
 argument_list|<
 name|E
 argument_list|>
@@ -210,7 +210,7 @@ return|return
 operator|new
 name|SortedMultisets
 operator|.
-name|NavigableElementSet
+name|ElementSet
 argument_list|<
 name|E
 argument_list|>

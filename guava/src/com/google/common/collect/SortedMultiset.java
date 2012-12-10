@@ -80,7 +80,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|SortedSet
+name|NavigableSet
 import|;
 end_import
 
@@ -93,6 +93,11 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|interface|SortedMultiset
 specifier|public
 interface|interface
@@ -101,7 +106,7 @@ parameter_list|<
 name|E
 parameter_list|>
 extends|extends
-name|Multiset
+name|SortedMultisetBridge
 argument_list|<
 name|E
 argument_list|>
@@ -158,11 +163,11 @@ argument_list|>
 name|pollLastEntry
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a {@link SortedSet} view of the distinct elements in this multiset.    */
+comment|/**    * Returns a {@link NavigableSet} view of the distinct elements in this multiset.    *     * @since 14.0 (present with return type {@code SortedSet} since 11.0)    */
 DECL|method|elementSet ()
 annotation|@
 name|Override
-name|SortedSet
+name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
