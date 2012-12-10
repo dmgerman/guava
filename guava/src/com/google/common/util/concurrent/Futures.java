@@ -431,8 +431,6 @@ comment|/**  * Static utility methods pertaining to the {@link Future} interface
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|Futures
 specifier|public
 specifier|final
@@ -445,6 +443,8 @@ name|Futures
 parameter_list|()
 block|{}
 comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture}    * and a {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException}.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @since 9.0 (source-compatible since 1.0)    */
+annotation|@
+name|Beta
 DECL|method|makeChecked ( ListenableFuture<V> future, Function<Exception, X> mapper)
 specifier|public
 specifier|static
@@ -1076,6 +1076,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} or {@code    * checkedGet()} will immediately return the provided value.    */
+annotation|@
+name|Beta
 specifier|public
 specifier|static
 parameter_list|<
@@ -1147,6 +1149,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which is cancelled immediately upon    * construction, so that {@code isCancelled()} always returns {@code true}.    *    * @since 14.0    */
+annotation|@
+name|Beta
 DECL|method|immediateCancelledFuture ()
 specifier|public
 specifier|static
@@ -1170,6 +1174,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Exception} wrapped in an {@code    * ExecutionException}, and calling {@code checkedGet()} will throw the    * provided exception itself.    */
+annotation|@
+name|Beta
 specifier|public
 specifier|static
 parameter_list|<
@@ -1211,6 +1217,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       });    * }</pre>    *    * The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       });    * }</pre>    *    * Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #withFallback(ListenableFuture,    * FutureFallback, Executor) supplying an executor}. If you do not supply an    * executor, {@code withFallback} will use {@link    * MoreExecutors#sameThreadExecutor sameThreadExecutor}, which carries some    * caveats for heavier operations. For example, the call to {@code    * fallback.create} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code withFallback}    * is called, {@code withFallback} will call {@code fallback.create} inline.    *<li>If the input {@code Future} is not yet done, {@code withFallback} will    * schedule {@code fallback.create} to be run by the thread that completes    * the input {@code Future}, which may be an internal system thread such as    * an RPC network thread.    *</ul>    *    * Also note that, regardless of which thread executes {@code    * fallback.create}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @since 14.0    */
+annotation|@
+name|Beta
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback)
 specifier|public
 specifier|static
@@ -1253,6 +1261,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       }, sameThreadExecutor());    * }</pre>    *    * The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       }, sameThreadExecutor());    * }</pre>    *    * When the execution of {@code fallback.create} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #withFallback(ListenableFuture, FutureFallback)    * omitting the executor} or explicitly specifying {@code    * sameThreadExecutor}. However, be aware of the caveats documented in the    * link above.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @param executor the executor that runs {@code fallback} if {@code input}    *     fails    * @since 14.0    */
+annotation|@
+name|Beta
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
