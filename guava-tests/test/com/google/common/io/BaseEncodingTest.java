@@ -368,6 +368,11 @@ literal|"MZXW*6YTB*OI==*===="
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testSeparatorSameAsPadChar ()
 specifier|public
 name|void
@@ -428,6 +433,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testAtMostOneSeparator ()
 specifier|public
 name|void
@@ -734,6 +744,11 @@ literal|"12345"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testBase64CannotUpperCase ()
 specifier|public
 name|void
@@ -761,6 +776,11 @@ block|{
 comment|// success
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testBase64CannotLowerCase ()
 specifier|public
 name|void
