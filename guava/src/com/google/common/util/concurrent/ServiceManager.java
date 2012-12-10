@@ -607,7 +607,7 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new instance for managing the given services. This constructor is provided so that    * dependency injection frameworks inject instances of {@link ServiceManager}.    *     * @param services The services to manage    *     * @throws IllegalStateException if not all services are {@link State#NEW new}.    */
+comment|/**    * Constructs a new instance for managing the given services. This constructor is provided so that    * dependency injection frameworks can inject instances of {@link ServiceManager}.    *     * @param services The services to manage    *     * @throws IllegalStateException if not all services are {@link State#NEW new}.    */
 DECL|method|ServiceManager (Set<Service> services)
 annotation|@
 name|Inject
@@ -883,18 +883,13 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns true if all services are currently in the {@linkplain State#RUNNING running} state.      *     *<p>This will also log which services have stopped {@linkplain State#RUNNING running} and if the    * service has {@linkplain State#FAILED failed} it will log the  exception that caused the service    * to fail. Users who want more detailed information should use the {@link #servicesByState}     * method to inspect everything.    */
+comment|/**    * Returns true if all services are currently in the {@linkplain State#RUNNING running} state.      *     *<p>Users who want more detailed information should use the {@link #servicesByState} method to     * get detailed information about which services are not running.    */
 DECL|method|isHealthy ()
 specifier|public
 name|boolean
 name|isHealthy
 parameter_list|()
 block|{
-name|boolean
-name|result
-init|=
-literal|true
-decl_stmt|;
 for|for
 control|(
 name|Service
@@ -915,68 +910,13 @@ name|isRunning
 argument_list|()
 condition|)
 block|{
-name|State
-name|state
-init|=
-name|service
-operator|.
-name|state
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|state
-operator|==
-name|State
-operator|.
-name|FAILED
-condition|)
-block|{
-name|logger
-operator|.
-name|log
-argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
-literal|"Service "
-operator|+
-name|service
-operator|+
-literal|" has failed"
-argument_list|,
-name|service
-operator|.
-name|failureCause
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|logger
-operator|.
-name|severe
-argument_list|(
-literal|"Failing health check because service: "
-operator|+
-name|service
-operator|+
-literal|" is "
-operator|+
-name|state
-argument_list|)
-expr_stmt|;
-block|}
-name|result
-operator|=
+return|return
 literal|false
-expr_stmt|;
+return|;
 block|}
 block|}
 return|return
-name|result
+literal|true
 return|;
 block|}
 comment|/**    * Provides a snapshot of the current state of all the services under management.    *     *<p>N.B. This snapshot it not guaranteed to be consistent, i.e. the set of states returned may    * not correspond to any particular point in time view of the services.     */
