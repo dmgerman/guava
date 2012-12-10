@@ -464,10 +464,31 @@ name|String
 name|string
 parameter_list|)
 block|{
+return|return
+name|toLowerCase
+argument_list|(
+operator|(
+name|CharSequence
+operator|)
+name|string
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a copy of the input character sequence in which all {@linkplain #isUpperCase(char)    * uppercase ASCII characters} have been converted to lowercase. All other characters are copied    * without modification.    *     * @since 14.0    */
+DECL|method|toLowerCase (CharSequence chars)
+specifier|public
+specifier|static
+name|String
+name|toLowerCase
+parameter_list|(
+name|CharSequence
+name|chars
+parameter_list|)
+block|{
 name|int
 name|length
 init|=
-name|string
+name|chars
 operator|.
 name|length
 argument_list|()
@@ -502,7 +523,7 @@ name|append
 argument_list|(
 name|toLowerCase
 argument_list|(
-name|string
+name|chars
 operator|.
 name|charAt
 argument_list|(
@@ -559,10 +580,31 @@ name|String
 name|string
 parameter_list|)
 block|{
+return|return
+name|toUpperCase
+argument_list|(
+operator|(
+name|CharSequence
+operator|)
+name|string
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a copy of the input character sequence in which all {@linkplain #isLowerCase(char)    * lowercase ASCII characters} have been converted to uppercase. All other characters are copied    * without modification.    *     * @since 14.0    */
+DECL|method|toUpperCase (CharSequence chars)
+specifier|public
+specifier|static
+name|String
+name|toUpperCase
+parameter_list|(
+name|CharSequence
+name|chars
+parameter_list|)
+block|{
 name|int
 name|length
 init|=
-name|string
+name|chars
 operator|.
 name|length
 argument_list|()
@@ -597,7 +639,7 @@ name|append
 argument_list|(
 name|toUpperCase
 argument_list|(
-name|string
+name|chars
 operator|.
 name|charAt
 argument_list|(
