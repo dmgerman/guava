@@ -212,7 +212,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|DiscreteDomains
+name|DiscreteDomain
 import|;
 end_import
 
@@ -2071,7 +2071,7 @@ argument_list|)
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
@@ -2331,7 +2331,7 @@ name|range
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
