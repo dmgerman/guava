@@ -174,8 +174,6 @@ end_comment
 
 begin_class
 annotation|@
-name|Beta
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -259,6 +257,8 @@ block|}
 comment|/**    * Returns an {@code UnsignedInteger} that, when treated as signed, is    * equal to {@code value}.    *    * @deprecated Use {@link #fromIntBits(int)}. This method is scheduled for deletion in January    *             2013.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|Beta
 DECL|method|asUnsigned (int value)
 specifier|public
 specifier|static
@@ -269,7 +269,6 @@ name|int
 name|value
 parameter_list|)
 block|{
-comment|// TODO(user): deprecate this
 return|return
 name|fromIntBits
 argument_list|(
@@ -432,6 +431,8 @@ block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *    * @deprecated Use {@link #plus(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|Beta
 DECL|method|add (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -479,6 +480,8 @@ block|}
 comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *    * @deprecated Use {@link #minus(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|Beta
 DECL|method|subtract (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -524,6 +527,8 @@ block|}
 comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 32    * bits, returns the low 32 bits of the result.    *    * @deprecated Use {@link #times(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|Beta
 DECL|method|multiply (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -575,6 +580,8 @@ block|}
 comment|/**    * Returns the result of dividing this by {@code val}.    *    * @deprecated Use {@link #dividedBy(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|Beta
 DECL|method|divide (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -625,6 +632,8 @@ block|}
 comment|/**    * Returns the remainder of dividing this by {@code val}.    *    * @deprecated Use {@link #mod(UnsignedInteger)}. This method is scheduled for deletion in    *             January 2013.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|Beta
 DECL|method|remainder (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
