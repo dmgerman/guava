@@ -5310,7 +5310,7 @@ argument_list|)
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()

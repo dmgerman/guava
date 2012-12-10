@@ -57,7 +57,7 @@ name|DiscreteDomain
 operator|.
 name|class
 argument_list|,
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()

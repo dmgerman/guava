@@ -58,7 +58,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 import|;
@@ -4258,8 +4258,6 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|DiscreteDomains
-operator|.
 name|integers
 argument_list|()
 operator|.
@@ -4280,8 +4278,6 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|DiscreteDomains
-operator|.
 name|integers
 argument_list|()
 operator|.
@@ -4305,8 +4301,6 @@ name|end
 parameter_list|)
 block|{
 return|return
-name|DiscreteDomains
-operator|.
 name|integers
 argument_list|()
 operator|.

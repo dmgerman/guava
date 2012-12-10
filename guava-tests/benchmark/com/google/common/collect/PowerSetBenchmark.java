@@ -26,7 +26,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 import|;
