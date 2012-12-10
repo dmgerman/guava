@@ -1261,6 +1261,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testDivideByZeroThrows ()
 specifier|public
 name|void
@@ -1397,6 +1402,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testModByZero ()
 specifier|public
 name|void
