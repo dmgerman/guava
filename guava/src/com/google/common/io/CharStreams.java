@@ -430,7 +430,7 @@ return|return
 name|string
 return|;
 block|}
-comment|/**      * Returns an iterable over the lines in the string. If the string ends in a newline, a final      * empty string is not included to match the behavior of BufferedReader/LineReader.readLine().      */
+comment|/**      * Returns an iterable over the lines in the string. If the string ends in      * a newline, a final empty string is not included to match the behavior of      * BufferedReader/LineReader.readLine().      */
 DECL|method|lines ()
 specifier|private
 name|Iterable
@@ -1198,7 +1198,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Streams lines from a {@link Readable} object, stopping when the processor    * returns {@code false} or all lines have been read and returning the result    * produced by the processor. Does not close {@code readable}. Note that this    * method may not fully consume the contents of {@code readable} if the    * processor stops processing early.    *    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a {@link Readable} object, stopping when the processor    * returns {@code false} or all lines have been read and returning the result    * produced by the processor. Does not close {@code readable}. Note that this    * method may not fully consume the contents of {@code readable} if the    * processor stops processing early.    *    * @throws IOException if an I/O error occurs    * @since 14.0    */
 DECL|method|readLines ( Readable readable, LineProcessor<T> processor)
 specifier|public
 specifier|static
@@ -1308,6 +1308,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|checkNotNull
+argument_list|(
+name|supplier
+argument_list|)
+expr_stmt|;
 name|checkNotNull
 argument_list|(
 name|callback
