@@ -110,6 +110,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtIncompatible
 import|;
 end_import
@@ -221,10 +235,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An efficient immutable implementation of a {@link RangeSet}.  *  * @author Louis Wasserman  */
+comment|/**  * An efficient immutable implementation of a {@link RangeSet}.  *  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|ImmutableRangeSet
 specifier|public
 specifier|final

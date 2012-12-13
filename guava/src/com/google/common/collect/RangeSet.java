@@ -18,6 +18,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -47,10 +61,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A set comprising zero or more {@linkplain Range#isEmpty nonempty},   * {@linkplain Range#isConnected(Range) disconnected} ranges of type {@code C}.  *   *<p>Implementations that choose to support the {@link #add(Range)} operation are required to  * ignore empty ranges and coalesce connected ranges.  For example:<pre>   {@code  *  *   RangeSet<Integer> rangeSet = TreeRangeSet.create();  *   rangeSet.add(Range.closed(1, 10)); // {[1, 10]}  *   rangeSet.add(Range.closedOpen(11, 15)); // {[1, 10], [11, 15)}   *   rangeSet.add(Range.open(15, 20)); // disconnected range; {[1, 10], [11, 20)}  *   rangeSet.add(Range.openClosed(0, 0)); // empty range; {[1, 10], [11, 20)}  *   rangeSet.remove(Range.open(5, 10)); // splits [1, 10]; {[1, 5], [10, 10], [11, 20)}}</pre>  *     *<p>Note that the behavior of {@link Range#isEmpty()} and {@link Range#isConnected(Range)} may  * not be as expected on discrete ranges.  See the Javadoc of those methods for details.  *  *<p>For a {@link Set} whose contents are specified by a {@link Range}, see {@link ContiguousSet}.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
+comment|/**  * A set comprising zero or more {@linkplain Range#isEmpty nonempty},   * {@linkplain Range#isConnected(Range) disconnected} ranges of type {@code C}.  *   *<p>Implementations that choose to support the {@link #add(Range)} operation are required to  * ignore empty ranges and coalesce connected ranges.  For example:<pre>   {@code  *  *   RangeSet<Integer> rangeSet = TreeRangeSet.create();  *   rangeSet.add(Range.closed(1, 10)); // {[1, 10]}  *   rangeSet.add(Range.closedOpen(11, 15)); // {[1, 10], [11, 15)}   *   rangeSet.add(Range.open(15, 20)); // disconnected range; {[1, 10], [11, 20)}  *   rangeSet.add(Range.openClosed(0, 0)); // empty range; {[1, 10], [11, 20)}  *   rangeSet.remove(Range.open(5, 10)); // splits [1, 10]; {[1, 5], [10, 10], [11, 20)}}</pre>  *     *<p>Note that the behavior of {@link Range#isEmpty()} and {@link Range#isConnected(Range)} may  * not be as expected on discrete ranges.  See the Javadoc of those methods for details.  *  *<p>For a {@link Set} whose contents are specified by a {@link Range}, see {@link ContiguousSet}.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_interface
+annotation|@
+name|Beta
 DECL|interface|RangeSet
 specifier|public
 interface|interface
@@ -168,6 +184,12 @@ name|C
 argument_list|>
 name|range
 parameter_list|)
+function_decl|;
+comment|/**    * Removes all ranges from this {@code RangeSet} (optional operation).  After this operation,    * {@code this.contains(c)} will return false for all {@code c}.    *     *<p>This is equivalent to {@code remove(Range.all())}.    *     * @throws UnsupportedOperationException if this range set does not support the {@code clear}    *         operation    */
+DECL|method|clear ()
+name|void
+name|clear
+parameter_list|()
 function_decl|;
 comment|/**    * Adds all of the ranges from the specified range set to this range set (optional operation).    * After this operation, this range set is the minimal range set that    * {@linkplain #enclosesAll(RangeSet) encloses} both the original range set and {@code other}.    *    *<p>This is equivalent to calling {@link #add} on each of the ranges in {@code other} in turn.    *    * @throws UnsupportedOperationException if this range set does not support the {@code addAll}    *         operation    */
 DECL|method|addAll (RangeSet<C> other)
