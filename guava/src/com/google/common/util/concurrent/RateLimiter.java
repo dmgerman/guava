@@ -327,6 +327,16 @@ DECL|field|stableIntervalMicros
 name|double
 name|stableIntervalMicros
 decl_stmt|;
+DECL|field|mutex
+specifier|private
+specifier|final
+name|Object
+name|mutex
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 comment|/**    * The time when the next request (no matter its size) will be granted. After granting a request,    * this is pushed further in the future. Large requests push this further than small requests.    */
 DECL|field|nextFreeTicketMicros
 specifier|private
@@ -364,13 +374,17 @@ comment|/**    * Updates the stable rate of this {@code RateLimiter}, that is, t
 DECL|method|setRate (double permitsPerSecond)
 specifier|public
 specifier|final
-specifier|synchronized
 name|void
 name|setRate
 parameter_list|(
 name|double
 name|permitsPerSecond
 parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|mutex
+init|)
 block|{
 name|Preconditions
 operator|.
@@ -425,6 +439,7 @@ name|stableIntervalMicros
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 DECL|method|doSetRate (double permitsPerSecond, double stableIntervalMicros)
 specifier|abstract
 name|void
@@ -441,10 +456,14 @@ comment|/**    * Returns the stable rate (as {@code permits per seconds}) with w
 DECL|method|getRate ()
 specifier|public
 specifier|final
-specifier|synchronized
 name|double
 name|getRate
 parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|mutex
+init|)
 block|{
 return|return
 name|TimeUnit
@@ -458,6 +477,7 @@ argument_list|)
 operator|/
 name|stableIntervalMicros
 return|;
+block|}
 block|}
 comment|/**    * Acquires a permit from this {@code RateLimiter}, blocking until the request can be granted.    *    *<p>This method is equivalent to {@code acquire(1)}.    */
 DECL|method|acquire ()
@@ -492,7 +512,7 @@ name|microsToWait
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|this
+name|mutex
 init|)
 block|{
 name|microsToWait
@@ -617,7 +637,7 @@ name|microsToWait
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|this
+name|mutex
 init|)
 block|{
 name|long
