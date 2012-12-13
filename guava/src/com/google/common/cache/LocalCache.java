@@ -16734,7 +16734,7 @@ block|{
 return|return
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -19081,7 +19081,7 @@ name|recordLoadException
 argument_list|(
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -19102,7 +19102,7 @@ name|recordLoadException
 argument_list|(
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -19202,7 +19202,7 @@ name|recordLoadException
 argument_list|(
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)
@@ -19225,7 +19225,7 @@ name|recordLoadSuccess
 argument_list|(
 name|stopwatch
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|NANOSECONDS
 argument_list|)

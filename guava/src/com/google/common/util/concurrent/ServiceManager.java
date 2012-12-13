@@ -67,6 +67,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -2431,8 +2445,10 @@ block|{
 return|return
 name|watch
 operator|.
-name|elapsedMillis
-argument_list|()
+name|elapsed
+argument_list|(
+name|MILLISECONDS
+argument_list|)
 return|;
 block|}
 block|}

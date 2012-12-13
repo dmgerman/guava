@@ -1774,7 +1774,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/*    * All the ContiguousSet generators below manually reject nulls here. In principle, we'd like to    * defer that to Range, since it's Range.asSet() that's used to create the sets. However, that    * gets messy here, and we already have null tests for Range.    */
+comment|/*    * All the ContiguousSet generators below manually reject nulls here. In principle, we'd like to    * defer that to Range, since it's ContiguousSet.create() that's used to create the sets. However,    * that gets messy here, and we already have null tests for Range.    */
 comment|/*    * These generators also rely on consecutive integer inputs (not necessarily in order, but no    * holes).    */
 comment|// SetCreationTester has some tests that pass in duplicates. Dedup them.
 DECL|method|nullCheckedTreeSet (E[] elements)
@@ -2060,6 +2060,10 @@ condition|)
 block|{
 comment|/*          * The (tooLow + 1, tooHigh) arguments below would be invalid because tooLow would be          * greater than tooHigh.          */
 return|return
+name|ContiguousSet
+operator|.
+name|create
+argument_list|(
 name|Range
 operator|.
 name|openClosed
@@ -2068,9 +2072,7 @@ literal|0
 argument_list|,
 literal|1
 argument_list|)
-operator|.
-name|asSet
-argument_list|(
+argument_list|,
 name|DiscreteDomain
 operator|.
 name|integers
@@ -2327,10 +2329,12 @@ name|elements
 argument_list|)
 decl_stmt|;
 return|return
-name|range
+name|ContiguousSet
 operator|.
-name|asSet
+name|create
 argument_list|(
+name|range
+argument_list|,
 name|DiscreteDomain
 operator|.
 name|integers
