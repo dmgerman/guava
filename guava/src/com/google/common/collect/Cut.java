@@ -785,6 +785,18 @@ operator|-
 literal|1
 return|;
 block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"-\u221e"
+return|;
+block|}
 DECL|method|readResolve ()
 specifier|private
 name|Object
@@ -1113,6 +1125,18 @@ condition|?
 literal|0
 else|:
 literal|1
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"+\u221e"
 return|;
 block|}
 DECL|method|readResolve ()
@@ -1497,6 +1521,22 @@ name|endpoint
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"\\"
+operator|+
+name|endpoint
+operator|+
+literal|"/"
 return|;
 block|}
 DECL|field|serialVersionUID
@@ -1909,6 +1949,22 @@ name|endpoint
 operator|.
 name|hashCode
 argument_list|()
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"/"
+operator|+
+name|endpoint
+operator|+
+literal|"\\"
 return|;
 block|}
 DECL|field|serialVersionUID

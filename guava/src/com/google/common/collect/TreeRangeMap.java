@@ -430,11 +430,9 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-operator|new
 name|Range
-argument_list|<
-name|K
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|lowerBound
 argument_list|,

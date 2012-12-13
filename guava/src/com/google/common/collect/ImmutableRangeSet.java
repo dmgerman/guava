@@ -1209,11 +1209,9 @@ name|lowerBound
 expr_stmt|;
 block|}
 return|return
-operator|new
 name|Range
-argument_list|<
-name|C
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|lowerBound
 argument_list|,
@@ -1627,6 +1625,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a view of the intersection of this range set with the given range.    */
+annotation|@
+name|Override
 DECL|method|subRangeSet (Range<C> range)
 specifier|public
 name|ImmutableRangeSet

@@ -1285,6 +1285,7 @@ argument_list|>
 name|upperBound
 decl_stmt|;
 DECL|method|Range (Cut<C> lowerBound, Cut<C> upperBound)
+specifier|private
 name|Range
 parameter_list|(
 name|Cut
@@ -1310,6 +1311,26 @@ name|upperBound
 argument_list|)
 operator|>
 literal|0
+operator|||
+name|lowerBound
+operator|==
+name|Cut
+operator|.
+expr|<
+name|C
+operator|>
+name|aboveAll
+argument_list|()
+operator|||
+name|upperBound
+operator|==
+name|Cut
+operator|.
+expr|<
+name|C
+operator|>
+name|belowAll
+argument_list|()
 condition|)
 block|{
 throw|throw
