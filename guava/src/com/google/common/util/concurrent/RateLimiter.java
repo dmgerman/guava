@@ -324,6 +324,7 @@ name|maxPermits
 decl_stmt|;
 comment|/**    * The interval between two unit requests, at our stable rate. E.g., a stable rate of 5 permits    * per second has a stable interval of 200ms.    */
 DECL|field|stableIntervalMicros
+specifier|volatile
 name|double
 name|stableIntervalMicros
 decl_stmt|;
@@ -381,11 +382,6 @@ name|double
 name|permitsPerSecond
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|mutex
-init|)
-block|{
 name|Preconditions
 operator|.
 name|checkArgument
@@ -405,6 +401,11 @@ argument_list|,
 literal|"rate must be positive"
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|mutex
+init|)
+block|{
 name|resync
 argument_list|(
 name|readSafeMicros
@@ -460,11 +461,6 @@ name|double
 name|getRate
 parameter_list|()
 block|{
-synchronized|synchronized
-init|(
-name|mutex
-init|)
-block|{
 return|return
 name|TimeUnit
 operator|.
@@ -477,7 +473,6 @@ argument_list|)
 operator|/
 name|stableIntervalMicros
 return|;
-block|}
 block|}
 comment|/**    * Acquires a permit from this {@code RateLimiter}, blocking until the request can be granted.    *    *<p>This method is equivalent to {@code acquire(1)}.    */
 DECL|method|acquire ()
