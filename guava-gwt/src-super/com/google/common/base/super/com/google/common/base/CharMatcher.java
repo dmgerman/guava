@@ -839,7 +839,7 @@ name|tmp
 argument_list|)
 return|;
 block|}
-comment|/**    * Determines whether a character is single-width (not double-width). When in doubt, this config    * errs on the side of returning {@code false} (that is, it tends to assume a character is    * double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to keep it up to    * date.    */
+comment|/**    * Determines whether a character is single-width (not double-width). When in doubt, this matcher    * errs on the side of returning {@code false} (that is, it tends to assume a character is    * double-width).    *    *<p><b>Note:</b> as the reference file evolves, we will modify this constant to keep it up to    * date.    */
 DECL|field|SINGLE_WIDTH
 specifier|public
 specifier|static
@@ -1569,7 +1569,7 @@ block|}
 block|}
 decl_stmt|;
 comment|// Static factories
-comment|/**    * Returns a {@code char} config that matches only one specified character.    */
+comment|/**    * Returns a {@code char} matcher that matches only one specified character.    */
 DECL|method|is (final char match)
 specifier|public
 specifier|static
@@ -1711,7 +1711,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@code char} config that matches any character except the one specified.    *    *<p>To negate another {@code CharMatcher}, use {@link #negate()}.    */
+comment|/**    * Returns a {@code char} matcher that matches any character except the one specified.    *    *<p>To negate another {@code CharMatcher}, use {@link #negate()}.    */
 DECL|method|isNot (final char match)
 specifier|public
 specifier|static
@@ -1828,7 +1828,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@code char} config that matches any character present in the given character    * sequence.    */
+comment|/**    * Returns a {@code char} matcher that matches any character present in the given character    * sequence.    */
 DECL|method|anyOf (final CharSequence sequence)
 specifier|public
 specifier|static
@@ -1890,7 +1890,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): is it potentially worth just going ahead and building a precomputed config?
+comment|// TODO(user): is it potentially worth just going ahead and building a precomputed matcher?
 specifier|final
 name|char
 index|[]
@@ -2044,7 +2044,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a {@code char} config that matches any character not present in the given character    * sequence.    */
+comment|/**    * Returns a {@code char} matcher that matches any character not present in the given character    * sequence.    */
 DECL|method|noneOf (CharSequence sequence)
 specifier|public
 specifier|static
@@ -2065,7 +2065,7 @@ name|negate
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a {@code char} config that matches any character in a given range (both endpoints are    * inclusive). For example, to match any lowercase letter of the English alphabet, use {@code    * CharMatcher.inRange('a', 'z')}.    *    * @throws IllegalArgumentException if {@code endInclusive< startInclusive}    */
+comment|/**    * Returns a {@code char} matcher that matches any character in a given range (both endpoints are    * inclusive). For example, to match any lowercase letter of the English alphabet, use {@code    * CharMatcher.inRange('a', 'z')}.    *    * @throws IllegalArgumentException if {@code endInclusive< startInclusive}    */
 DECL|method|inRange (final char startInclusive, final char endInclusive)
 specifier|public
 specifier|static
@@ -2165,7 +2165,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a config with identical behavior to the given {@link Character}-based predicate, but    * which operates on primitive {@code char} instances instead.    */
+comment|/**    * Returns a matcher with identical behavior to the given {@link Character}-based predicate, but    * which operates on primitive {@code char} instances instead.    */
 DECL|method|forPredicate (final Predicate<? super Character> predicate)
 specifier|public
 specifier|static
@@ -2310,7 +2310,7 @@ name|c
 parameter_list|)
 function_decl|;
 comment|// Non-static factories
-comment|/**    * Returns a config that matches any character not matched by this config.    */
+comment|/**    * Returns a matcher that matches any character not matched by this matcher.    */
 DECL|method|negate ()
 specifier|public
 name|CharMatcher
@@ -2496,7 +2496,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a config that matches any character matched by both this config and {@code other}.    */
+comment|/**    * Returns a matcher that matches any character matched by both this matcher and {@code other}.    */
 DECL|method|and (CharMatcher other)
 specifier|public
 name|CharMatcher
@@ -2648,7 +2648,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a config that matches any character matched by either this config or {@code other}.    */
+comment|/**    * Returns a matcher that matches any character matched by either this matcher or {@code other}.    */
 DECL|method|or (CharMatcher other)
 specifier|public
 name|CharMatcher
@@ -2800,7 +2800,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a {@code char} config functionally equivalent to this one, but which may be faster to    * query than the original; your mileage may vary. Precomputation takes time and is likely to be    * worthwhile only if the precomputed config is queried many thousands of times.    *    *<p>This method has no effect (returns {@code this}) when called in GWT: it's unclear whether a    * precomputed config is faster, but it certainly consumes more memory, which doesn't seem like a    * worthwhile tradeoff in a browser.    */
+comment|/**    * Returns a {@code char} matcher functionally equivalent to this one, but which may be faster to    * query than the original; your mileage may vary. Precomputation takes time and is likely to be    * worthwhile only if the precomputed matcher is queried many thousands of times.    *    *<p>This method has no effect (returns {@code this}) when called in GWT: it's unclear whether a    * precomputed matcher is faster, but it certainly consumes more memory, which doesn't seem like a    * worthwhile tradeoff in a browser.    */
 DECL|method|precomputed ()
 specifier|public
 name|CharMatcher
@@ -2848,7 +2848,7 @@ name|MIN_VALUE
 operator|+
 literal|1
 decl_stmt|;
-comment|/**    * A config for which precomputation will not yield any significant benefit.    */
+comment|/**    * A matcher for which precomputation will not yield any significant benefit.    */
 DECL|class|FastMatcher
 specifier|abstract
 specifier|static
@@ -2982,7 +2982,7 @@ return|;
 block|}
 block|}
 comment|// Text processing routines
-comment|/**    * Returns {@code true} if a character sequence contains at least one matching character.    * Equivalent to {@code !matchesNoneOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code true} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this config matches at least one character in the sequence    * @since 8.0    */
+comment|/**    * Returns {@code true} if a character sequence contains at least one matching character.    * Equivalent to {@code !matchesNoneOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code true} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches at least one character in the sequence    * @since 8.0    */
 DECL|method|matchesAnyOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -3000,7 +3000,7 @@ name|sequence
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains only matching characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this config matches every character in the sequence, including when    *         the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains only matching characters.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
 DECL|method|matchesAllOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -3053,7 +3053,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns {@code true} if a character sequence contains no matching characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this config matches every character in the sequence, including when    *         the sequence is empty    */
+comment|/**    * Returns {@code true} if a character sequence contains no matching characters. Equivalent to    * {@code !matchesAnyOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code false} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches every character in the sequence, including when    *         the sequence is empty    */
 DECL|method|matchesNoneOf (CharSequence sequence)
 specifier|public
 name|boolean
@@ -3457,7 +3457,7 @@ name|sequence
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * config replaced by a given replacement character. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("radar", 'o')}</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement character. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("radar", 'o')}</pre>    *    * ... returns {@code "rodor"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the character to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
 annotation|@
 name|CheckReturnValue
 DECL|method|replaceFrom (CharSequence sequence, char replacement)
@@ -3563,7 +3563,7 @@ name|chars
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * config replaced by a given replacement sequence. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each character that matches this    * matcher replaced by a given replacement sequence. For example:<pre>   {@code    *    *   CharMatcher.is('a').replaceFrom("yaha", "oo")}</pre>    *    * ... returns {@code "yoohoo"}.    *    *<p><b>Note:</b> If the replacement is a fixed string with only one character, you are better    * off calling {@link #replaceFrom(CharSequence, char)} directly.    *    * @param sequence the character sequence to replace matching characters in    * @param replacement the characters to append to the result string in place of each matching    *        character in {@code sequence}    * @return the new string    */
 annotation|@
 name|CheckReturnValue
 DECL|method|replaceFrom (CharSequence sequence, CharSequence replacement)
@@ -3741,7 +3741,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a substring of the input character sequence that omits all characters this config    * matches from the beginning and from the end of the string. For example:<pre>   {@code    *    *   CharMatcher.anyOf("ab").trimFrom("abacatbab")}</pre>    *    * ... returns {@code "cat"}.    *    *<p>Note that:<pre>   {@code    *    *   CharMatcher.inRange('\0', ' ').trimFrom(str)}</pre>    *    * ... is equivalent to {@link String#trim()}.    */
+comment|/**    * Returns a substring of the input character sequence that omits all characters this matcher    * matches from the beginning and from the end of the string. For example:<pre>   {@code    *    *   CharMatcher.anyOf("ab").trimFrom("abacatbab")}</pre>    *    * ... returns {@code "cat"}.    *    *<p>Note that:<pre>   {@code    *    *   CharMatcher.inRange('\0', ' ').trimFrom(str)}</pre>    *    * ... is equivalent to {@link String#trim()}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|trimFrom (CharSequence sequence)
@@ -3847,7 +3847,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a substring of the input character sequence that omits all characters this config    * matches from the beginning of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimLeadingFrom("abacatbab")}</pre>    *    * ... returns {@code "catbab"}.    */
+comment|/**    * Returns a substring of the input character sequence that omits all characters this matcher    * matches from the beginning of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimLeadingFrom("abacatbab")}</pre>    *    * ... returns {@code "catbab"}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|trimLeadingFrom (CharSequence sequence)
@@ -3915,7 +3915,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a substring of the input character sequence that omits all characters this config    * matches from the end of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimTrailingFrom("abacatbab")}</pre>    *    * ... returns {@code "abacat"}.    */
+comment|/**    * Returns a substring of the input character sequence that omits all characters this matcher    * matches from the end of the string. For example:<pre> {@code    *    *   CharMatcher.anyOf("ab").trimTrailingFrom("abacatbab")}</pre>    *    * ... returns {@code "abacat"}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|trimTrailingFrom (CharSequence sequence)
@@ -3987,7 +3987,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive    * characters that match this config replaced by a single replacement character. For example:    *<pre>   {@code    *    *   CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')}</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *        matching characters in {@code sequence}    * @return the new string    */
+comment|/**    * Returns a string copy of the input character sequence, with each group of consecutive    * characters that match this matcher replaced by a single replacement character. For example:    *<pre>   {@code    *    *   CharMatcher.anyOf("eko").collapseFrom("bookkeeper", '-')}</pre>    *    * ... returns {@code "b-p-r"}.    *    *<p>The default implementation uses {@link #indexIn(CharSequence)} to find the first matching    * character, then iterates the remainder of the sequence calling {@link #matches(char)} for each    * character.    *    * @param sequence the character sequence to replace matching groups of characters in    * @param replacement the character to append to the result string in place of each group of    *        matching characters in {@code sequence}    * @return the new string    */
 annotation|@
 name|CheckReturnValue
 DECL|method|collapseFrom (CharSequence sequence, char replacement)

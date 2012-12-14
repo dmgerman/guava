@@ -295,7 +295,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a splitter that considers any single character matched by the    * given {@code CharMatcher} to be a separator. For example, {@code    * Splitter.on(CharMatcher.anyOf(";,")).split("foo,;bar,quux")} returns an    * iterable containing {@code ["foo", "", "bar", "quux"]}.    *    * @param separatorMatcher a {@link CharMatcher} that determines whether a    *     character is a separator    * @return a splitter, with default settings, that uses this config    */
+comment|/**    * Returns a splitter that considers any single character matched by the    * given {@code CharMatcher} to be a separator. For example, {@code    * Splitter.on(CharMatcher.anyOf(";,")).split("foo,;bar,quux")} returns an    * iterable containing {@code ["foo", "", "bar", "quux"]}.    *    * @param separatorMatcher a {@link CharMatcher} that determines whether a    *     character is a separator    * @return a splitter, with default settings, that uses this matcher    */
 DECL|method|on (final CharMatcher separatorMatcher)
 specifier|public
 specifier|static
