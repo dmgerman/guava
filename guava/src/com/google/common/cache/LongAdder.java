@@ -87,6 +87,8 @@ extends|extends
 name|Striped64
 implements|implements
 name|Serializable
+implements|,
+name|LongAddable
 block|{
 DECL|field|serialVersionUID
 specifier|private
@@ -528,15 +530,11 @@ name|sum
 argument_list|()
 return|;
 block|}
-DECL|method|writeObject (java.io.ObjectOutputStream s)
+DECL|method|writeObject (ObjectOutputStream s)
 specifier|private
 name|void
 name|writeObject
 parameter_list|(
-name|java
-operator|.
-name|io
-operator|.
 name|ObjectOutputStream
 name|s
 parameter_list|)

@@ -16,58 +16,51 @@ name|cache
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
 begin_comment
-comment|/**  * GWT emulated version of LongAdder.  *  * @author Charles Fry  */
+comment|/**  * Abstract interface for objects that can concurrently add longs.  *   * @author Louis Wasserman  */
 end_comment
 
-begin_class
-DECL|class|LongAdder
-class|class
-name|LongAdder
-implements|implements
+begin_interface
+annotation|@
+name|GwtCompatible
+DECL|interface|LongAddable
+interface|interface
 name|LongAddable
 block|{
-DECL|field|value
-specifier|private
-name|long
-name|value
-decl_stmt|;
 DECL|method|increment ()
-specifier|public
 name|void
 name|increment
 parameter_list|()
-block|{
-name|value
-operator|++
-expr_stmt|;
-block|}
+function_decl|;
 DECL|method|add (long x)
-specifier|public
 name|void
 name|add
 parameter_list|(
 name|long
 name|x
 parameter_list|)
-block|{
-name|value
-operator|+=
-name|x
-expr_stmt|;
-block|}
+function_decl|;
 DECL|method|sum ()
-specifier|public
 name|long
 name|sum
 parameter_list|()
-block|{
-return|return
-name|value
-return|;
+function_decl|;
 block|}
-block|}
-end_class
+end_interface
 
 end_unit
 

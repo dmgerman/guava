@@ -17,53 +17,26 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GWT emulated version of LongAdder.  *  * @author Charles Fry  */
+comment|/**  * GWT emulation for LongAddables.  *   * @author Louis Wasserman  */
 end_comment
 
 begin_class
-DECL|class|LongAdder
+DECL|class|LongAddables
+specifier|final
 class|class
-name|LongAdder
-implements|implements
+name|LongAddables
+block|{
+DECL|method|create ()
+specifier|public
+specifier|static
 name|LongAddable
-block|{
-DECL|field|value
-specifier|private
-name|long
-name|value
-decl_stmt|;
-DECL|method|increment ()
-specifier|public
-name|void
-name|increment
-parameter_list|()
-block|{
-name|value
-operator|++
-expr_stmt|;
-block|}
-DECL|method|add (long x)
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|long
-name|x
-parameter_list|)
-block|{
-name|value
-operator|+=
-name|x
-expr_stmt|;
-block|}
-DECL|method|sum ()
-specifier|public
-name|long
-name|sum
+name|create
 parameter_list|()
 block|{
 return|return
-name|value
+operator|new
+name|LongAdder
+argument_list|()
 return|;
 block|}
 block|}
