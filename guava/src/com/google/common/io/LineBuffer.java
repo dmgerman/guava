@@ -218,6 +218,8 @@ operator|+
 literal|1
 expr_stmt|;
 break|break;
+default|default:
+comment|// do nothing
 block|}
 block|}
 name|line

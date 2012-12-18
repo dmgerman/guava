@@ -1035,6 +1035,12 @@ return|return
 literal|0
 return|;
 block|}
+default|default:
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
 block|}
 block|}
 for|for
@@ -2166,6 +2172,12 @@ operator|<<
 name|k
 operator|)
 return|;
+default|default:
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
 block|}
 block|}
 name|long
