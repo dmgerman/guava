@@ -887,6 +887,8 @@ return|return
 literal|0
 return|;
 block|}
+default|default:
+comment|// continue below to handle the general case
 block|}
 for|for
 control|(
@@ -1800,6 +1802,8 @@ literal|1
 operator|<<
 name|k
 return|;
+default|default:
+comment|// continue below to handle the general case
 block|}
 name|int
 name|accum

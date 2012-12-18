@@ -1308,6 +1308,8 @@ literal|1
 operator|<<
 name|k
 return|;
+default|default:
+comment|// continue below to handle the general case
 block|}
 name|int
 name|accum

@@ -599,7 +599,6 @@ return|;
 case|case
 literal|1
 case|:
-block|{
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -623,7 +622,8 @@ argument_list|(
 name|elem
 argument_list|)
 return|;
-block|}
+default|default:
+comment|// continue below to handle the general case
 block|}
 name|int
 name|tableSize
