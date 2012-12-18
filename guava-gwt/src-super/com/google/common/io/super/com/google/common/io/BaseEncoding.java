@@ -577,6 +577,16 @@ name|CharSequence
 name|chars
 parameter_list|)
 block|{
+name|chars
+operator|=
+name|padding
+argument_list|()
+operator|.
+name|trimTrailingFrom
+argument_list|(
+name|chars
+argument_list|)
+expr_stmt|;
 name|ByteInput
 name|decodedInput
 init|=
@@ -706,6 +716,12 @@ parameter_list|(
 name|CharInput
 name|charInput
 parameter_list|)
+function_decl|;
+DECL|method|padding ()
+specifier|abstract
+name|CharMatcher
+name|padding
+parameter_list|()
 function_decl|;
 comment|// Modified encoding generators
 comment|/**    * Returns an encoding that behaves equivalently to this encoding, but omits any padding    * characters as specified by<a href="http://tools.ietf.org/html/rfc4648#section-3.2">RFC 4648    * section 3.2</a>, Padding of Encoded Data.    */
@@ -1682,10 +1698,11 @@ operator|=
 name|paddingChar
 expr_stmt|;
 block|}
-DECL|method|paddingMatcher ()
-specifier|private
+annotation|@
+name|Override
+DECL|method|padding ()
 name|CharMatcher
-name|paddingMatcher
+name|padding
 parameter_list|()
 block|{
 return|return
@@ -1969,19 +1986,24 @@ name|chars
 parameter_list|)
 block|{
 return|return
-name|alphabet
-operator|.
-name|bytesPerChunk
-operator|*
-name|divide
+call|(
+name|int
+call|)
 argument_list|(
-name|chars
-argument_list|,
+operator|(
 name|alphabet
 operator|.
-name|charsPerChunk
-argument_list|,
-name|CEILING
+name|bitsPerChar
+operator|*
+operator|(
+name|long
+operator|)
+name|chars
+operator|+
+literal|7L
+operator|)
+operator|/
+literal|8L
 argument_list|)
 return|;
 block|}
@@ -2030,7 +2052,7 @@ specifier|final
 name|CharMatcher
 name|paddingMatcher
 init|=
-name|paddingMatcher
+name|padding
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -2334,7 +2356,7 @@ argument_list|)
 expr_stmt|;
 name|checkArgument
 argument_list|(
-name|paddingMatcher
+name|padding
 argument_list|()
 operator|.
 name|or
@@ -2891,6 +2913,20 @@ operator|.
 name|precomputed
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|padding ()
+name|CharMatcher
+name|padding
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|padding
+argument_list|()
+return|;
 block|}
 annotation|@
 name|Override
