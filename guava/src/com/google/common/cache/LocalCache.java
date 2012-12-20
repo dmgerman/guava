@@ -10597,6 +10597,15 @@ name|map
 operator|.
 name|refreshNanos
 operator|)
+operator|&&
+operator|!
+name|entry
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|isLoading
+argument_list|()
 condition|)
 block|{
 name|V
@@ -10609,6 +10618,8 @@ argument_list|,
 name|hash
 argument_list|,
 name|loader
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 if|if
@@ -10630,7 +10641,7 @@ block|}
 comment|/**      * Refreshes the value associated with {@code key}, unless another thread is already doing so.      * Returns the newly refreshed value associated with {@code key} if it was refreshed inline, or      * {@code null} if another thread is performing the refresh or if an error occurs during      * refresh.      */
 annotation|@
 name|Nullable
-DECL|method|refresh (K key, int hash, CacheLoader<? super K, V> loader)
+DECL|method|refresh (K key, int hash, CacheLoader<? super K, V> loader, boolean checkTime)
 name|V
 name|refresh
 parameter_list|(
@@ -10649,6 +10660,9 @@ argument_list|,
 name|V
 argument_list|>
 name|loader
+parameter_list|,
+name|boolean
+name|checkTime
 parameter_list|)
 block|{
 specifier|final
@@ -10665,6 +10679,8 @@ argument_list|(
 name|key
 argument_list|,
 name|hash
+argument_list|,
+name|checkTime
 argument_list|)
 decl_stmt|;
 if|if
@@ -10730,7 +10746,7 @@ block|}
 comment|/**      * Returns a newly inserted {@code LoadingValueReference}, or null if the live value reference      * is already loading.      */
 annotation|@
 name|Nullable
-DECL|method|insertLoadingValueReference (final K key, final int hash)
+DECL|method|insertLoadingValueReference (final K key, final int hash, boolean checkTime)
 name|LoadingValueReference
 argument_list|<
 name|K
@@ -10746,6 +10762,9 @@ parameter_list|,
 specifier|final
 name|int
 name|hash
+parameter_list|,
+name|boolean
+name|checkTime
 parameter_list|)
 block|{
 name|ReferenceEntry
@@ -10894,9 +10913,28 @@ name|valueReference
 operator|.
 name|isLoading
 argument_list|()
+operator|||
+operator|(
+name|checkTime
+operator|&&
+operator|(
+name|now
+operator|-
+name|e
+operator|.
+name|getWriteTime
+argument_list|()
+operator|<
+name|map
+operator|.
+name|refreshNanos
+operator|)
+operator|)
 condition|)
 block|{
 comment|// refresh is a no-op if loading is pending
+comment|// if checkTime, we want to check *after* acquiring the lock if refresh still needs
+comment|// to be scheduled
 return|return
 literal|null
 return|;
@@ -19316,6 +19354,8 @@ argument_list|,
 name|hash
 argument_list|,
 name|defaultLoader
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

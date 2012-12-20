@@ -235,18 +235,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|createMock
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -5129,6 +5117,8 @@ name|hash
 argument_list|,
 name|identityLoader
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
