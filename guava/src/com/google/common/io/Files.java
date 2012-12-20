@@ -703,7 +703,7 @@ name|in
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -888,10 +888,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -2521,7 +2517,7 @@ name|raf
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 operator|new
 name|RandomAccessFile
@@ -2563,10 +2559,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -2612,7 +2604,7 @@ name|channel
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|raf
 operator|.
@@ -2645,10 +2637,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}

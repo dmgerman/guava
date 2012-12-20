@@ -1088,7 +1088,7 @@ name|r
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|supplier
 operator|.
@@ -1115,10 +1115,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -1333,7 +1329,7 @@ name|r
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|supplier
 operator|.
@@ -1362,10 +1358,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}

@@ -316,7 +316,7 @@ name|in
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -359,7 +359,7 @@ name|in
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -384,10 +384,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -572,7 +568,7 @@ name|in
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -601,10 +597,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -649,7 +641,7 @@ name|in
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -660,7 +652,7 @@ name|out
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|sink
 operator|.
@@ -691,10 +683,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -732,7 +720,7 @@ name|in
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -759,10 +747,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -864,7 +848,7 @@ name|in1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -875,7 +859,7 @@ name|in2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|other
 operator|.
@@ -967,10 +951,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -1187,7 +1167,7 @@ argument_list|()
 decl_stmt|;
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|in
 argument_list|)
@@ -1200,10 +1180,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}

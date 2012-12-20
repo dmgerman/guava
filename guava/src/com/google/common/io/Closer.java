@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -125,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Closeable} that collects {@code Closeable} resources and closes them all when it is  * closed. This is intended to approximately emulate the behavior of Java 7's  *<a href="http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">  * try-with-resources</a> statement in a JDK6-compatible library. Running on Java 7, code using this  * should be approximately equivalent in behavior to the same code written with try-with-resources.  * Running on Java 6, exceptions that cannot be thrown must be logged rather than being added to the  * thrown exception as a suppressed exception.  *  *<p>This class is intended to to be used in the following pattern:  *  *<pre>{@code  * Closer closer = Closer.create();  * try {  *   InputStream in = closer.add(openInputStream());  *   OutputStream out = closer.add(openOutputStream());  *   // do stuff  * } catch (Throwable e) {  *   // ensure that any checked exception types that could be thrown are provided here!  *   throw closer.rethrow(e, IOException.class);  * } finally {  *   closer.close();  * }  * }</pre>  *  * This pattern ensures the following:  *<ul>  *<li>Each {@code Closeable} resource that is successfully opened will be closed later.</li>  *<li>If a {@code Throwable} is thrown in the try block, no exceptions that occur when attempting  *   to close resources will be thrown from the finally block. The throwable from the try block will  *   be thrown.</li>  *<li>If no exceptions or errors were thrown in the try block, the<i>first</i> exception thrown  *   by an attempt to close a resource will be thrown.</li>  *<li>Any exception caught when attempting to close a resource that is<i>not</i> thrown  *   (because another exception is already being thrown) is<i>suppressed</i>.</li>  *</ul>  *  * An exception that is suppressed is not thrown. The method of suppression used depends on the  * JDK version in use:  *  *<ul>  *<li><b>JDK7+:</b> Exceptions are suppressed by adding them to the exception that<i>will</i>  *   be thrown using {@code Throwable.addSuppressed(Throwable)}.</li>  *<li><b>JDK6:</b> Exceptions are suppressed by logging them instead.</li>  *</ul>  *  * @author Colin Decker  */
+comment|/**  * A {@link Closeable} that collects {@code Closeable} resources and closes them all when it is  * {@linkplain #close closed}. This is intended to approximately emulate the behavior of Java 7's  *<a href="http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">  * try-with-resources</a> statement in JDK6-compatible code. Running on Java 7, code using this  * should be approximately equivalent in behavior to the same code written with try-with-resources.  * Running on Java 6, exceptions that cannot be thrown must be logged rather than being added to the  * thrown exception as a suppressed exception.  *  *<p>This class is intended to to be used in the following pattern:  *  *<pre>{@code  * Closer closer = Closer.create();  * try {  *   InputStream in = closer.register(openInputStream());  *   OutputStream out = closer.register(openOutputStream());  *   // do stuff  * } catch (Throwable e) {  *   // ensure that any checked exception types other than IOException that could be thrown are  *   // provided here, e.g. throw closer.rethrow(e, CheckedException.class);  *   throw closer.rethrow(e);  * } finally {  *   closer.close();  * }  * }</pre>  *  *<p>Note that this try-catch-finally block is not equivalent to a try-catch-finally block using  * try-with-resources. To get the equivalent of that, you must wrap the above code in<i>another</i>  * try block in order to catch any exception that may be thrown (including from the call to  * {@code close()}).  *  *<p>This pattern ensures the following:  *<ul>  *<li>Each {@code Closeable} resource that is successfully registered will be closed later.</li>  *<li>If a {@code Throwable} is thrown in the try block, no exceptions that occur when attempting  *   to close resources will be thrown from the finally block. The throwable from the try block will  *   be thrown.</li>  *<li>If no exceptions or errors were thrown in the try block, the<i>first</i> exception thrown  *   by an attempt to close a resource will be thrown.</li>  *<li>Any exception caught when attempting to close a resource that is<i>not</i> thrown  *   (because another exception is already being thrown) is<i>suppressed</i>.</li>  *</ul>  *  * An exception that is suppressed is not thrown. The method of suppression used depends on the  * version of Java the code is running on:  *  *<ul>  *<li><b>Java 7+:</b> Exceptions are suppressed by adding them to the exception that<i>will</i>  *   be thrown using {@code Throwable.addSuppressed(Throwable)}.</li>  *<li><b>Java 6:</b> Exceptions are suppressed by logging them instead.</li>  *</ul>  *  * @author Colin Decker  * @since 14.0  */
 end_comment
 
 begin_comment
@@ -133,7 +147,10 @@ comment|// Coffee's for {@link Closer closers} only.
 end_comment
 
 begin_class
+annotation|@
+name|Beta
 DECL|class|Closer
+specifier|public
 specifier|final
 class|class
 name|Closer
@@ -228,8 +245,9 @@ argument_list|)
 expr_stmt|;
 comment|// checkNotNull to satisfy null tests
 block|}
-comment|/**    * Adds the given closeable to be closed when this {@code Closer} is closed.    *    * @return the given {@code closeable}    */
-DECL|method|add (C closeable)
+comment|/**    * Registers the given {@code closeable} to be closed when this {@code Closer} is    * {@linkplain #close closed}.    *    * @return the given {@code closeable}    */
+comment|// close. this word no longer has any meaning to me.
+DECL|method|register (C closeable)
 specifier|public
 parameter_list|<
 name|C
@@ -237,7 +255,7 @@ extends|extends
 name|Closeable
 parameter_list|>
 name|C
-name|add
+name|register
 parameter_list|(
 name|C
 name|closeable
@@ -254,7 +272,7 @@ return|return
 name|closeable
 return|;
 block|}
-comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is a    * {@code RuntimeException} or {@code Error}. Otherwise, it will be rethrown wrapped in a    * {@code RuntimeException}.<b>Note:</b> Be sure to declare all of the checked exception types    * your try block can throw when calling an overload of this method so as to avoid losing the    * original exception type.    *    *<p>This method always throws, and as such should be called as    * {@code throw closer.rethrow(e);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    */
+comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is an    * {@code IOException}, {@code RuntimeException} or {@code Error}. Otherwise, it will be rethrown    * wrapped in a {@code RuntimeException}.<b>Note:</b> Be sure to declare all of the checked    * exception types your try block can throw when calling an overload of this method so as to avoid    * losing the original exception type.    *    *<p>This method always throws, and as such should be called as    * {@code throw closer.rethrow(e);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws IOException when the given throwable is an IOException    */
 DECL|method|rethrow (Throwable e)
 specifier|public
 name|RuntimeException
@@ -263,10 +281,23 @@ parameter_list|(
 name|Throwable
 name|e
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|thrown
 operator|=
 name|e
+expr_stmt|;
+name|Throwables
+operator|.
+name|propagateIfPossible
+argument_list|(
+name|e
+argument_list|,
+name|IOException
+operator|.
+name|class
+argument_list|)
 expr_stmt|;
 throw|throw
 name|Throwables
@@ -277,7 +308,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is a    * {@code RuntimeException}, {@code Error} or a checked exception of the given type. Otherwise,    * it will be rethrown wrapped in a {@code RuntimeException}.<b>Note:</b> Be sure to declare all    * of the checked exception types your try block can throw when calling an overload of this method    * so as to avoid losing the original exception type.    *    *<p>This method always throws, and as such should be called as    * {@code throw closer.rethrow(e, ...);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws X when the given throwable is of the declared type X    */
+comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is an    * {@code IOException}, {@code RuntimeException}, {@code Error} or a checked exception of the    * given type. Otherwise, it will be rethrown wrapped in a {@code RuntimeException}.<b>Note:</b>    * Be sure to declare all of the checked exception types your try block can throw when calling an    * overload of this method so as to avoid losing the original exception type.    *    *<p>This method always throws, and as such should be called as    * {@code throw closer.rethrow(e, ...);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws IOException when the given throwable is an IOException    * @throws X when the given throwable is of the declared type X    */
 DECL|method|rethrow (Throwable e, Class<X> declaredType)
 specifier|public
 parameter_list|<
@@ -298,11 +329,24 @@ argument_list|>
 name|declaredType
 parameter_list|)
 throws|throws
+name|IOException
+throws|,
 name|X
 block|{
 name|thrown
 operator|=
 name|e
+expr_stmt|;
+name|Throwables
+operator|.
+name|propagateIfPossible
+argument_list|(
+name|e
+argument_list|,
+name|IOException
+operator|.
+name|class
+argument_list|)
 expr_stmt|;
 name|Throwables
 operator|.
@@ -322,7 +366,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is a    * {@code RuntimeException}, {@code Error} or a checked exception of either of the given types.    * Otherwise, it will be rethrown wrapped in a {@code RuntimeException}.<b>Note:</b> Be sure to    * declare all of the checked exception types your try block can throw when calling an overload of    * this method so as to avoid losing the original exception type.    *    *<p>This method always throws, and as such should be called as    * {@code throw closer.rethrow(e, ...);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws X1 when the given throwable is of the declared type X1    * @throws X2 when the given throwable is of the declared type X2    */
+comment|/**    * Stores the given throwable and rethrows it. It will be rethrown as is if it is an    * {@code IOException}, {@code RuntimeException}, {@code Error} or a checked exception of either    * of the given types. Otherwise, it will be rethrown wrapped in a {@code RuntimeException}.    *<b>Note:</b> Be sure to declare all of the checked exception types your try block can throw    * when calling an overload of this method so as to avoid losing the original exception type.    *    *<p>This method always throws, and as such should be called as    * {@code throw closer.rethrow(e, ...);} to ensure the compiler knows that it will throw.    *    * @return this method does not return; it always throws    * @throws IOException when the given throwable is an IOException    * @throws X1 when the given throwable is of the declared type X1    * @throws X2 when the given throwable is of the declared type X2    */
 DECL|method|rethrow ( Throwable e, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 parameter_list|<
@@ -353,6 +397,8 @@ argument_list|>
 name|declaredType2
 parameter_list|)
 throws|throws
+name|IOException
+throws|,
 name|X1
 throws|,
 name|X2
@@ -360,6 +406,17 @@ block|{
 name|thrown
 operator|=
 name|e
+expr_stmt|;
+name|Throwables
+operator|.
+name|propagateIfPossible
+argument_list|(
+name|e
+argument_list|,
+name|IOException
+operator|.
+name|class
+argument_list|)
 expr_stmt|;
 name|Throwables
 operator|.

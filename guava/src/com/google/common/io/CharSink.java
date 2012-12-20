@@ -171,7 +171,7 @@ name|out
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -197,10 +197,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -288,7 +284,7 @@ name|out
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openBufferedStream
 argument_list|()
@@ -328,10 +324,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -376,7 +368,7 @@ name|out
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|openStream
 argument_list|()
@@ -405,10 +397,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}

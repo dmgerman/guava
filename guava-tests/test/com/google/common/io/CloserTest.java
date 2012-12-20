@@ -348,7 +348,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -361,7 +361,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -374,7 +374,7 @@ name|c3
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -468,7 +468,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -481,7 +481,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -516,10 +516,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -613,7 +609,7 @@ name|c1
 operator|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -625,7 +621,7 @@ name|c2
 operator|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -637,7 +633,7 @@ name|c3
 operator|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -658,10 +654,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -750,7 +742,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -765,7 +757,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -852,7 +844,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -865,7 +857,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -967,7 +959,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -982,7 +974,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1012,10 +1004,6 @@ operator|.
 name|rethrow
 argument_list|(
 name|e
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 throw|;
 block|}
@@ -1125,7 +1113,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1140,7 +1128,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1155,7 +1143,7 @@ name|c3
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1278,7 +1266,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1293,7 +1281,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1432,7 +1420,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1447,7 +1435,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1462,7 +1450,7 @@ name|c3
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1587,7 +1575,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1604,7 +1592,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1795,7 +1783,7 @@ name|c1
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
@@ -1810,7 +1798,7 @@ name|c2
 init|=
 name|closer
 operator|.
-name|add
+name|register
 argument_list|(
 name|TestCloseable
 operator|.
