@@ -513,7 +513,6 @@ block|}
 block|}
 return|;
 block|}
-empty_stmt|;
 block|}
 return|;
 block|}
