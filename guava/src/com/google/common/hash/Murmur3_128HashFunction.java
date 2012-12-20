@@ -133,6 +133,22 @@ name|seed
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Hashing.murmur3_128("
+operator|+
+name|seed
+operator|+
+literal|")"
+return|;
+block|}
 DECL|class|Murmur3_128Hasher
 specifier|private
 specifier|static

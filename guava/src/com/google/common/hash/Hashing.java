@@ -425,6 +425,8 @@ operator|new
 name|MessageDigestHashFunction
 argument_list|(
 literal|"MD5"
+argument_list|,
+literal|"Hashing.md5()"
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits) by delegating to the    * SHA-1 {@link MessageDigest}.    */
@@ -450,6 +452,8 @@ operator|new
 name|MessageDigestHashFunction
 argument_list|(
 literal|"SHA-1"
+argument_list|,
+literal|"Hashing.sha1()"
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns a hash function implementing the SHA-256 algorithm (256 hash bits) by delegating to    * the SHA-256 {@link MessageDigest}.    */
@@ -475,6 +479,8 @@ operator|new
 name|MessageDigestHashFunction
 argument_list|(
 literal|"SHA-256"
+argument_list|,
+literal|"Hashing.sha256()"
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns a hash function implementing the SHA-512 algorithm (512 hash bits) by delegating to the    * SHA-512 {@link MessageDigest}.    */
@@ -500,6 +506,8 @@ operator|new
 name|MessageDigestHashFunction
 argument_list|(
 literal|"SHA-512"
+argument_list|,
+literal|"Hashing.sha512()"
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
@@ -526,6 +534,8 @@ argument_list|(
 name|ChecksumType
 operator|.
 name|CRC_32
+argument_list|,
+literal|"Hashing.crc32()"
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits) by    * delegating to the {@link Adler32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
@@ -552,9 +562,11 @@ argument_list|(
 name|ChecksumType
 operator|.
 name|ADLER_32
+argument_list|,
+literal|"Hashing.adler32()"
 argument_list|)
 decl_stmt|;
-DECL|method|checksumHashFunction (ChecksumType type)
+DECL|method|checksumHashFunction (ChecksumType type, String toString)
 specifier|private
 specifier|static
 name|HashFunction
@@ -562,6 +574,9 @@ name|checksumHashFunction
 parameter_list|(
 name|ChecksumType
 name|type
+parameter_list|,
+name|String
+name|toString
 parameter_list|)
 block|{
 return|return
@@ -573,6 +588,8 @@ argument_list|,
 name|type
 operator|.
 name|bits
+argument_list|,
+name|toString
 argument_list|)
 return|;
 block|}

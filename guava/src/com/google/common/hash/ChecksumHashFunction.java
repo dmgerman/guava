@@ -115,7 +115,13 @@ specifier|final
 name|int
 name|bits
 decl_stmt|;
-DECL|method|ChecksumHashFunction (Supplier<? extends Checksum> checksumSupplier, int bits)
+DECL|field|toString
+specifier|private
+specifier|final
+name|String
+name|toString
+decl_stmt|;
+DECL|method|ChecksumHashFunction (Supplier<? extends Checksum> checksumSupplier, int bits, String toString)
 name|ChecksumHashFunction
 parameter_list|(
 name|Supplier
@@ -128,6 +134,9 @@ name|checksumSupplier
 parameter_list|,
 name|int
 name|bits
+parameter_list|,
+name|String
+name|toString
 parameter_list|)
 block|{
 name|this
@@ -160,6 +169,15 @@ name|bits
 operator|=
 name|bits
 expr_stmt|;
+name|this
+operator|.
+name|toString
+operator|=
+name|checkNotNull
+argument_list|(
+name|toString
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -190,6 +208,18 @@ operator|.
 name|get
 argument_list|()
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|toString
 return|;
 block|}
 comment|/**    * Hasher that updates a checksum.    */

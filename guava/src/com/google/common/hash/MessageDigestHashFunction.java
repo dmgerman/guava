@@ -44,6 +44,22 @@ name|base
 operator|.
 name|Preconditions
 operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
 name|checkState
 import|;
 end_import
@@ -120,11 +136,20 @@ specifier|final
 name|boolean
 name|supportsClone
 decl_stmt|;
-DECL|method|MessageDigestHashFunction (String algorithmName)
+DECL|field|toString
+specifier|private
+specifier|final
+name|String
+name|toString
+decl_stmt|;
+DECL|method|MessageDigestHashFunction (String algorithmName, String toString)
 name|MessageDigestHashFunction
 parameter_list|(
 name|String
 name|algorithmName
+parameter_list|,
+name|String
+name|toString
 parameter_list|)
 block|{
 name|this
@@ -147,13 +172,22 @@ argument_list|()
 expr_stmt|;
 name|this
 operator|.
+name|toString
+operator|=
+name|checkNotNull
+argument_list|(
+name|toString
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
 name|supportsClone
 operator|=
 name|supportsClone
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|MessageDigestHashFunction (String algorithmName, int bytes)
+DECL|method|MessageDigestHashFunction (String algorithmName, int bytes, String toString)
 name|MessageDigestHashFunction
 parameter_list|(
 name|String
@@ -161,8 +195,20 @@ name|algorithmName
 parameter_list|,
 name|int
 name|bytes
+parameter_list|,
+name|String
+name|toString
 parameter_list|)
 block|{
+name|this
+operator|.
+name|toString
+operator|=
+name|checkNotNull
+argument_list|(
+name|toString
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|prototype
@@ -253,6 +299,18 @@ operator|*
 name|Byte
 operator|.
 name|SIZE
+return|;
+block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|toString
 return|;
 block|}
 DECL|method|getMessageDigest (String algorithmName)
@@ -368,7 +426,13 @@ specifier|final
 name|int
 name|bytes
 decl_stmt|;
-DECL|method|SerializedForm (String algorithmName, int bytes)
+DECL|field|toString
+specifier|private
+specifier|final
+name|String
+name|toString
+decl_stmt|;
+DECL|method|SerializedForm (String algorithmName, int bytes, String toString)
 specifier|private
 name|SerializedForm
 parameter_list|(
@@ -377,6 +441,9 @@ name|algorithmName
 parameter_list|,
 name|int
 name|bytes
+parameter_list|,
+name|String
+name|toString
 parameter_list|)
 block|{
 name|this
@@ -390,6 +457,12 @@ operator|.
 name|bytes
 operator|=
 name|bytes
+expr_stmt|;
+name|this
+operator|.
+name|toString
+operator|=
+name|toString
 expr_stmt|;
 block|}
 DECL|method|readResolve ()
@@ -405,6 +478,8 @@ argument_list|(
 name|algorithmName
 argument_list|,
 name|bytes
+argument_list|,
+name|toString
 argument_list|)
 return|;
 block|}
@@ -433,6 +508,8 @@ name|getAlgorithm
 argument_list|()
 argument_list|,
 name|bytes
+argument_list|,
+name|toString
 argument_list|)
 return|;
 block|}
