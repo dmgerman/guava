@@ -606,7 +606,7 @@ name|MapBasedMultisetIterator
 argument_list|()
 return|;
 block|}
-comment|/*    * Not subclassing AbstractMultiset$MultisetIterator because next() needs to    * retrieve the Map.Entry<E, AtomicInteger> entry, which can then be used for    * a more efficient remove() call.    */
+comment|/*    * Not subclassing AbstractMultiset$MultisetIterator because next() needs to    * retrieve the Map.Entry<E, Count> entry, which can then be used for    * a more efficient remove() call.    */
 DECL|class|MapBasedMultisetIterator
 specifier|private
 class|class
