@@ -122,7 +122,7 @@ name|total
 operator|+=
 name|s
 operator|.
-name|elapsedTime
+name|elapsed
 argument_list|(
 name|TimeUnit
 operator|.
