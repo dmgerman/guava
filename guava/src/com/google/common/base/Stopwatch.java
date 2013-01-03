@@ -374,7 +374,7 @@ name|NANOSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    *    * @deprecated Use {@link Stopwatch#elapsed(TimeUnit)} instead.    */
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    *    * @deprecated Use {@link Stopwatch#elapsed(TimeUnit)} instead. This method is    *     scheduled to be removed in Guava release 16.0.    */
 annotation|@
 name|Deprecated
 DECL|method|elapsedTime (TimeUnit desiredUnit)
@@ -393,7 +393,7 @@ name|desiredUnit
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in milliseconds, with any fraction rounded down. This is identical to    * {@code elapsed(TimeUnit.MILLISECONDS)}.    *    * @deprecated Use {@code stopwatch.elapsed(MILLISECONDS)} instead.    */
+comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in milliseconds, with any fraction rounded down. This is identical to    * {@code elapsed(TimeUnit.MILLISECONDS)}.    *    * @deprecated Use {@code stopwatch.elapsed(MILLISECONDS)} instead. This    *     method is scheduled to be removed in Guava release 16.0.    */
 annotation|@
 name|Deprecated
 DECL|method|elapsedMillis ()
