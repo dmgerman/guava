@@ -837,6 +837,7 @@ argument_list|,
 literal|"vnd.wap.wml"
 argument_list|)
 decl_stmt|;
+comment|/**    * As described in<a href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023</a>, this constant    * ({@code text/xml}) is used for XML documents that are "readable by casual users."    * {@link #APPLICATION_XML_UTF_8} is provided for documents that are intended for applications.    */
 DECL|field|XML_UTF_8
 specifier|public
 specifier|static
@@ -1107,6 +1108,21 @@ literal|"x-ms-wmv"
 argument_list|)
 decl_stmt|;
 comment|/* application types */
+comment|/**    * As described in<a href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023</a>, this constant    * ({@code application/xml}) is used for XML documents that are "unreadable by casual users."    * {@link #XML_UTF_8} is provided for documents that may be read by users.    */
+DECL|field|APPLICATION_XML_UTF_8
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|APPLICATION_XML_UTF_8
+init|=
+name|createConstantUtf8
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"xml"
+argument_list|)
+decl_stmt|;
 DECL|field|ATOM_UTF_8
 specifier|public
 specifier|static
@@ -1779,6 +1795,13 @@ argument_list|,
 name|WMV
 argument_list|)
 comment|/* application types */
+operator|.
+name|put
+argument_list|(
+name|APPLICATION_XML_UTF_8
+argument_list|,
+name|APPLICATION_XML_UTF_8
+argument_list|)
 operator|.
 name|put
 argument_list|(
