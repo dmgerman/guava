@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for the HttpHeaders class.  *  * @author Kurt Aflred Kluever  */
+comment|/**  * Tests for the HttpHeaders class.  *  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class
