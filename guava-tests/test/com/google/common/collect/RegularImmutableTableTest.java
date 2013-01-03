@@ -222,6 +222,9 @@ name|String
 argument_list|>
 argument_list|(
 name|CELLS
+operator|.
+name|asList
+argument_list|()
 argument_list|,
 name|ROW_SPACE
 argument_list|,
@@ -253,6 +256,9 @@ name|String
 argument_list|>
 argument_list|(
 name|CELLS
+operator|.
+name|asList
+argument_list|()
 argument_list|,
 name|ROW_SPACE
 argument_list|,
