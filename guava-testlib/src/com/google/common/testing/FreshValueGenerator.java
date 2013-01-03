@@ -630,20 +630,6 @@ name|common
 operator|.
 name|primitives
 operator|.
-name|Primitives
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|primitives
-operator|.
 name|UnsignedInteger
 import|;
 end_import
@@ -1606,12 +1592,7 @@ name|GENERATORS
 operator|.
 name|get
 argument_list|(
-name|Primitives
-operator|.
-name|unwrap
-argument_list|(
 name|rawType
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -1840,13 +1821,6 @@ argument_list|>
 name|interfaceType
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|identity
-init|=
-name|freshInt
-argument_list|()
-decl_stmt|;
 return|return
 name|Reflection
 operator|.
@@ -1855,9 +1829,57 @@ argument_list|(
 name|interfaceType
 argument_list|,
 operator|new
+name|FreshInvocationHandler
+argument_list|(
+name|interfaceType
+argument_list|)
+argument_list|)
+return|;
+block|}
+DECL|class|FreshInvocationHandler
+specifier|private
+specifier|final
+class|class
+name|FreshInvocationHandler
+extends|extends
 name|AbstractInvocationHandler
-argument_list|()
 block|{
+DECL|field|identity
+specifier|private
+specifier|final
+name|int
+name|identity
+init|=
+name|freshInt
+argument_list|()
+decl_stmt|;
+DECL|field|interfaceType
+specifier|private
+specifier|final
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|interfaceType
+decl_stmt|;
+DECL|method|FreshInvocationHandler (Class<?> interfaceType)
+name|FreshInvocationHandler
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|interfaceType
+parameter_list|)
+block|{
+name|this
+operator|.
+name|interfaceType
+operator|=
+name|interfaceType
+expr_stmt|;
+block|}
+DECL|method|handleInvocation (Object proxy, Method method, Object[] args)
 annotation|@
 name|Override
 specifier|protected
@@ -1884,6 +1906,59 @@ name|method
 argument_list|)
 return|;
 block|}
+DECL|method|hashCode ()
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|identity
+return|;
+block|}
+DECL|method|equals (@ullable Object obj)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|obj
+parameter_list|)
+block|{
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|FreshInvocationHandler
+condition|)
+block|{
+name|FreshInvocationHandler
+name|that
+init|=
+operator|(
+name|FreshInvocationHandler
+operator|)
+name|obj
+decl_stmt|;
+return|return
+name|identity
+operator|==
+name|that
+operator|.
+name|identity
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+DECL|method|toString ()
 annotation|@
 name|Override
 specifier|public
@@ -1900,9 +1975,6 @@ name|identity
 argument_list|)
 return|;
 block|}
-block|}
-argument_list|)
-return|;
 block|}
 comment|/** Subclasses can override to provide different return value for proxied interface methods. */
 DECL|method|interfaceMethodCalled ( @uppressWarningsR) Class<?> interfaceType, @SuppressWarnings(R) Method method)
@@ -2155,6 +2227,23 @@ name|getAndIncrement
 argument_list|()
 return|;
 block|}
+DECL|method|freshInteger ()
+annotation|@
+name|Generates
+specifier|private
+name|Integer
+name|freshInteger
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Integer
+argument_list|(
+name|freshInt
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|freshLong ()
 annotation|@
 name|Generates
@@ -2166,6 +2255,23 @@ block|{
 return|return
 name|freshInt
 argument_list|()
+return|;
+block|}
+DECL|method|freshLongObject ()
+annotation|@
+name|Generates
+specifier|private
+name|Long
+name|freshLongObject
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Long
+argument_list|(
+name|freshLong
+argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|method|freshFloat ()
@@ -2181,6 +2287,23 @@ name|freshInt
 argument_list|()
 return|;
 block|}
+DECL|method|freshFloatObject ()
+annotation|@
+name|Generates
+specifier|private
+name|Float
+name|freshFloatObject
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Float
+argument_list|(
+name|freshFloat
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|freshDouble ()
 annotation|@
 name|Generates
@@ -2192,6 +2315,23 @@ block|{
 return|return
 name|freshInt
 argument_list|()
+return|;
+block|}
+DECL|method|freshDoubleObject ()
+annotation|@
+name|Generates
+specifier|private
+name|Double
+name|freshDoubleObject
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Double
+argument_list|(
+name|freshDouble
+argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|method|freshShort ()
@@ -2210,6 +2350,23 @@ name|freshInt
 argument_list|()
 return|;
 block|}
+DECL|method|freshShortObject ()
+annotation|@
+name|Generates
+specifier|private
+name|Short
+name|freshShortObject
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Short
+argument_list|(
+name|freshShort
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|freshByte ()
 annotation|@
 name|Generates
@@ -2224,6 +2381,23 @@ name|byte
 operator|)
 name|freshInt
 argument_list|()
+return|;
+block|}
+DECL|method|freshByteObject ()
+annotation|@
+name|Generates
+specifier|private
+name|Byte
+name|freshByteObject
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Byte
+argument_list|(
+name|freshByte
+argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|method|freshChar ()
@@ -2244,6 +2418,23 @@ literal|0
 argument_list|)
 return|;
 block|}
+DECL|method|freshCharacter ()
+annotation|@
+name|Generates
+specifier|private
+name|Character
+name|freshCharacter
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Character
+argument_list|(
+name|freshChar
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|freshBoolean ()
 annotation|@
 name|Generates
@@ -2259,6 +2450,23 @@ operator|%
 literal|2
 operator|==
 literal|0
+return|;
+block|}
+DECL|method|freshBooleanObject ()
+annotation|@
+name|Generates
+specifier|private
+name|Boolean
+name|freshBooleanObject
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Boolean
+argument_list|(
+name|freshBoolean
+argument_list|()
+argument_list|)
 return|;
 block|}
 DECL|method|freshUnsignedInteger ()
