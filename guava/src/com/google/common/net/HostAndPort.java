@@ -244,7 +244,7 @@ operator|=
 name|hasBracketlessColons
 expr_stmt|;
 block|}
-comment|/**    * Returns the portion of this {@code HostAndPort} instance that should    * represent the hostname or IPv4/IPv6 literal.    *    * A successful parse does not imply any degree of sanity in this field.    * For additional validation, see the {@link HostSpecifier} class.    */
+comment|/**    * Returns the portion of this {@code HostAndPort} instance that should    * represent the hostname or IPv4/IPv6 literal.    *    *<p>A successful parse does not imply any degree of sanity in this field.    * For additional validation, see the {@link HostSpecifier} class.    */
 DECL|method|getHostText ()
 specifier|public
 name|String
