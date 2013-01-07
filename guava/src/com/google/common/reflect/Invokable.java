@@ -310,6 +310,14 @@ name|boolean
 name|isOverridable
 parameter_list|()
 function_decl|;
+comment|/** Returns {@code true} if this was declared to take a variable number of arguments. */
+DECL|method|isVarArgs ()
+specifier|public
+specifier|abstract
+name|boolean
+name|isVarArgs
+parameter_list|()
+function_decl|;
 comment|/**    * Invokes with {@code receiver} as 'this' and {@code args} passed to the underlying method    * and returns the return value; or calls the underlying constructor with {@code args} and returns    * the constructed instance.    *    * @throws IllegalAccessException if this {@code Constructor} object enforces Java language    *         access control and the underlying method or constructor is inaccessible.    * @throws IllegalArgumentException if the number of actual and formal parameters differ;    *         if an unwrapping conversion for primitive arguments fails; or if, after possible    *         unwrapping, a parameter value cannot be converted to the corresponding formal    *         parameter type by a method invocation conversion.    * @throws InvocationTargetException if the underlying method or constructor throws an exception.    */
 comment|// All subclasses are owned by us and we'll make sure to get the R type right.
 annotation|@
@@ -953,6 +961,22 @@ argument_list|)
 operator|)
 return|;
 block|}
+DECL|method|isVarArgs ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|boolean
+name|isVarArgs
+parameter_list|()
+block|{
+return|return
+name|method
+operator|.
+name|isVarArgs
+argument_list|()
+return|;
+block|}
 block|}
 DECL|class|ConstructorInvokable
 specifier|static
@@ -1212,6 +1236,22 @@ parameter_list|()
 block|{
 return|return
 literal|false
+return|;
+block|}
+DECL|method|isVarArgs ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|boolean
+name|isVarArgs
+parameter_list|()
+block|{
+return|return
+name|constructor
+operator|.
+name|isVarArgs
+argument_list|()
 return|;
 block|}
 block|}
