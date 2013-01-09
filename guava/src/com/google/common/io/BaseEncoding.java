@@ -641,7 +641,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"Writer,OutputStream"
 argument_list|)
-DECL|method|encodingStream ( final OutputSupplier<Writer> writerSupplier)
+DECL|method|encodingStream ( final OutputSupplier<? extends Writer> writerSupplier)
 specifier|public
 specifier|final
 name|OutputSupplier
@@ -653,6 +653,8 @@ parameter_list|(
 specifier|final
 name|OutputSupplier
 argument_list|<
+name|?
+extends|extends
 name|Writer
 argument_list|>
 name|writerSupplier
@@ -953,7 +955,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"Reader,InputStream"
 argument_list|)
-DECL|method|decodingStream ( final InputSupplier<Reader> readerSupplier)
+DECL|method|decodingStream ( final InputSupplier<? extends Reader> readerSupplier)
 specifier|public
 specifier|final
 name|InputSupplier
@@ -965,6 +967,8 @@ parameter_list|(
 specifier|final
 name|InputSupplier
 argument_list|<
+name|?
+extends|extends
 name|Reader
 argument_list|>
 name|readerSupplier
