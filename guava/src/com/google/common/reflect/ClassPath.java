@@ -1543,6 +1543,16 @@ name|entry
 operator|.
 name|isDirectory
 argument_list|()
+operator|||
+name|entry
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"META-INF/"
+argument_list|)
 condition|)
 block|{
 continue|continue;
