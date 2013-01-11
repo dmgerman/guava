@@ -33,22 +33,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -125,27 +109,6 @@ name|?
 argument_list|>
 name|typeVariable
 decl_stmt|;
-DECL|method|TypeParameter (TypeVariable<?> typeVariable)
-specifier|private
-name|TypeParameter
-parameter_list|(
-name|TypeVariable
-argument_list|<
-name|?
-argument_list|>
-name|typeVariable
-parameter_list|)
-block|{
-name|this
-operator|.
-name|typeVariable
-operator|=
-name|checkNotNull
-argument_list|(
-name|typeVariable
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|TypeParameter ()
 specifier|protected
 name|TypeParameter
