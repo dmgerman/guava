@@ -30,24 +30,6 @@ name|MapMakerInternalMap
 operator|.
 name|Strength
 operator|.
-name|SOFT
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|MapMakerInternalMap
-operator|.
-name|Strength
-operator|.
 name|STRONG
 import|;
 end_import
@@ -2244,18 +2226,6 @@ name|STRONG
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testIdentityKeyEquality_softKeys ()
-specifier|public
-name|void
-name|testIdentityKeyEquality_softKeys
-parameter_list|()
-block|{
-name|testIdentityKeyEquality
-argument_list|(
-name|SOFT
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testIdentityKeyEquality_weakKeys ()
 specifier|public
 name|void
@@ -2478,18 +2448,6 @@ block|{
 name|testLogicalKeyEquality
 argument_list|(
 name|STRONG
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|testLogicalKeyEquality_softKeys ()
-specifier|public
-name|void
-name|testLogicalKeyEquality_softKeys
-parameter_list|()
-block|{
-name|testLogicalKeyEquality
-argument_list|(
-name|SOFT
 argument_list|)
 expr_stmt|;
 block|}

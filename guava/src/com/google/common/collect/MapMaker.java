@@ -81,6 +81,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|MapMakerInternalMap
+operator|.
+name|Strength
+operator|.
+name|SOFT
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -351,7 +369,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A builder of {@link ConcurrentMap} instances having any combination of the following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>notification of evicted (or otherwise removed) entries  *<li>on-demand computation of values for keys not already present  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  * These features are all optional; {@code new MapMaker().makeMap()} returns a valid concurrent map  * that behaves similarly to a {@link ConcurrentHashMap}.  *  *<p>The returned map is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It supports all optional operations of the {@code ConcurrentMap}  * interface. It does not permit null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons (the {@link Object#equals  * equals} method) to determine equality for keys or values. However, if {@link #weakKeys} or {@link  * #softKeys} was specified, the map uses identity ({@code ==}) comparisons instead for keys.  * Likewise, if {@link #weakValues} or {@link #softValues} was specified, the map uses identity  * comparisons for values.  *  *<p>The view collections of the returned map have<i>weakly consistent iterators</i>. This means  * that they are safe for concurrent use, but if other threads modify the map after the iterator is  * created, it is undefined which of these changes, if any, are reflected in that iterator. These  * iterators never throw {@link ConcurrentModificationException}.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the map to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the map. A partially-reclaimed entry is never exposed to the user. Any {@link  * java.util.Map.Entry} instance retrieved from the map's {@linkplain Map#entrySet entry set} is a  * snapshot of that entry's state at the time of retrieval; such entries do, however, support {@link  * java.util.Map.Entry#setValue}, which simply calls {@link Map#put} on the entry's key.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the deserialized maps retain all  * the configuration properties of the original map. During deserialization, if the original map had  * used soft or weak references, the entries are reconstructed as they were, but it's not unlikely  * they'll be quickly garbage-collected before they are ever accessed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} is a recommended replacement for {@link  * java.util.WeakHashMap}, but note that it compares keys using object identity whereas {@code  * WeakHashMap} uses {@link Object#equals}.  *  * @author Bob Lee  * @author Charles Fry  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  *<p>A builder of {@link ConcurrentMap} instances having any combination of the following features:  *  *<ul>  *<li>keys or values automatically wrapped in {@linkplain WeakReference weak} or {@linkplain  *     SoftReference soft} references  *<li>notification of evicted (or otherwise removed) entries  *<li>on-demand computation of values for keys not already present  *</ul>  *  *<p>Usage example:<pre>   {@code  *  *   ConcurrentMap<Key, Graph> graphs = new MapMaker()  *       .concurrencyLevel(4)  *       .weakKeys()  *       .makeComputingMap(  *           new Function<Key, Graph>() {  *             public Graph apply(Key key) {  *               return createExpensiveGraph(key);  *             }  *           });}</pre>  *  * These features are all optional; {@code new MapMaker().makeMap()} returns a valid concurrent map  * that behaves similarly to a {@link ConcurrentHashMap}.  *  *<p>The returned map is implemented as a hash table with similar performance characteristics to  * {@link ConcurrentHashMap}. It supports all optional operations of the {@code ConcurrentMap}  * interface. It does not permit null keys or values.  *  *<p><b>Note:</b> by default, the returned map uses equality comparisons (the {@link Object#equals  * equals} method) to determine equality for keys or values. However, if {@link #weakKeys} was  * specified, the map uses identity ({@code ==}) comparisons instead for keys. Likewise, if {@link  * #weakValues} or {@link #softValues} was specified, the map uses identity comparisons for values.  *  *<p>The view collections of the returned map have<i>weakly consistent iterators</i>. This means  * that they are safe for concurrent use, but if other threads modify the map after the iterator is  * created, it is undefined which of these changes, if any, are reflected in that iterator. These  * iterators never throw {@link ConcurrentModificationException}.  *  *<p>If soft or weak references were requested, it is possible for a key or value present in the  * the map to be reclaimed by the garbage collector. If this happens, the entry automatically  * disappears from the map. A partially-reclaimed entry is never exposed to the user. Any {@link  * java.util.Map.Entry} instance retrieved from the map's {@linkplain Map#entrySet entry set} is a  * snapshot of that entry's state at the time of retrieval; such entries do, however, support {@link  * java.util.Map.Entry#setValue}, which simply calls {@link Map#put} on the entry's key.  *  *<p>The maps produced by {@code MapMaker} are serializable, and the deserialized maps retain all  * the configuration properties of the original map. During deserialization, if the original map had  * used soft or weak references, the entries are reconstructed as they were, but it's not unlikely  * they'll be quickly garbage-collected before they are ever accessed.  *  *<p>{@code new MapMaker().weakKeys().makeMap()} is a recommended replacement for {@link  * java.util.WeakHashMap}, but note that it compares keys using object identity whereas {@code  * WeakHashMap} uses {@link Object#equals}.  *  * @author Bob Lee  * @author Charles Fry  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -475,7 +493,7 @@ specifier|public
 name|MapMaker
 parameter_list|()
 block|{}
-comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} or {@link #softKeys} is specified, and {@link Equivalence#equals()}    * otherwise. The only place this is used is in {@link Interners.WeakInterner}.    */
+comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when {@link    * #weakKeys} is specified, and {@link Equivalence#equals()} otherwise. The only place this is    * used is in {@link Interners.WeakInterner}.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -758,31 +776,6 @@ name|WEAK
 argument_list|)
 return|;
 block|}
-comment|/**    *<b>This method is broken.</b> Maps with soft keys offer no functional advantage over maps with    * weak keys, and they waste memory by keeping unreachable elements in the map. If your goal is to    * create a memory-sensitive map, then consider using soft values instead.    *    *<p>Specifies that each key (not value) stored in the map should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of keys, which is a technical violation of the {@link Map}    * specification, and may not be what you expect.    *    * @throws IllegalStateException if the key strength was already set    * @see SoftReference    * @deprecated use {@link #softValues} to create a memory-sensitive map, or {@link #weakKeys} to    *     create a map that doesn't hold strong references to the keys.    *<b>This method is scheduled for deletion in January 2013.</b>    */
-annotation|@
-name|Deprecated
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.SoftReference"
-argument_list|)
-annotation|@
-name|Override
-DECL|method|softKeys ()
-specifier|public
-name|MapMaker
-name|softKeys
-parameter_list|()
-block|{
-return|return
-name|setKeyStrength
-argument_list|(
-name|Strength
-operator|.
-name|SOFT
-argument_list|)
-return|;
-block|}
 DECL|method|setKeyStrength (Strength strength)
 name|MapMaker
 name|setKeyStrength
@@ -807,6 +800,15 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|strength
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|keyStrength
+operator|!=
+name|SOFT
+argument_list|,
+literal|"Soft keys are not supported"
 argument_list|)
 expr_stmt|;
 if|if
@@ -1795,7 +1797,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/**      * The entry was removed automatically because its key or value was garbage-collected. This      * can occur when using {@link #softKeys}, {@link #softValues}, {@link #weakKeys}, or {@link      * #weakValues}.      */
+comment|/**      * The entry was removed automatically because its key or value was garbage-collected. This can      * occur when using {@link #softValues}, {@link #weakKeys}, or {@link #weakValues}.      */
 DECL|enumConstant|COLLECTED
 name|COLLECTED
 block|{

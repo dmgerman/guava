@@ -1599,59 +1599,6 @@ name|entryFactory
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
-DECL|method|testSetSoftKeys ()
-specifier|public
-name|void
-name|testSetSoftKeys
-parameter_list|()
-block|{
-name|MapMakerInternalMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
-name|map
-init|=
-name|makeMap
-argument_list|(
-name|createMapMaker
-argument_list|()
-operator|.
-name|softKeys
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|checkStrength
-argument_list|(
-name|map
-argument_list|,
-name|Strength
-operator|.
-name|SOFT
-argument_list|,
-name|Strength
-operator|.
-name|STRONG
-argument_list|)
-expr_stmt|;
-name|assertSame
-argument_list|(
-name|EntryFactory
-operator|.
-name|SOFT
-argument_list|,
-name|map
-operator|.
-name|entryFactory
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testSetWeakValues ()
 specifier|public
 name|void
@@ -12138,7 +12085,7 @@ block|}
 block|}
 block|}
 comment|// utility methods
-comment|/**    * Returns an iterable containing all combinations of maximumSize, expireAfterAccess/Write,    * weak/softKeys and weak/softValues.    */
+comment|/**    * Returns an iterable containing all combinations of maximumSize, expireAfterAccess/Write,    * weakKeys and weak/softValues.    */
 DECL|method|allEntryTypeMakers ()
 specifier|private
 specifier|static
@@ -12372,12 +12319,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an iterable containing all combinations weak/softKeys and weak/softValues.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"deprecation"
-argument_list|)
+comment|/**    * Returns an iterable containing all combinations weakKeys and weak/softValues.    */
 DECL|method|allKeyValueStrengthMakers ()
 specifier|private
 specifier|static
@@ -12427,30 +12369,6 @@ name|createMapMaker
 argument_list|()
 operator|.
 name|weakKeys
-argument_list|()
-operator|.
-name|softValues
-argument_list|()
-argument_list|,
-name|createMapMaker
-argument_list|()
-operator|.
-name|softKeys
-argument_list|()
-argument_list|,
-name|createMapMaker
-argument_list|()
-operator|.
-name|softKeys
-argument_list|()
-operator|.
-name|weakValues
-argument_list|()
-argument_list|,
-name|createMapMaker
-argument_list|()
-operator|.
-name|softKeys
 argument_list|()
 operator|.
 name|softValues

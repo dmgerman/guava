@@ -213,7 +213,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *    *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    *    * @deprecated Use {@link #fromLongBits(long)}. This method is scheduled for deletion in January    *             2013.    */
+comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *    *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    *    * @deprecated Use {@link #fromLongBits(long)}. This method is scheduled to be removed in Guava    *             release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -381,7 +381,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @deprecated Use {@link #plus(UnsignedLong)}.  This method is scheduled for deletion in January    *             2013.    */
+comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @deprecated Use {@link #plus(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -428,7 +428,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 64 bits of the result.    *    * @deprecated Use {@link #minus(UnsignedLong)}.  This method is scheduled for deletion in    *             January 2013.    */
+comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 64 bits of the result.    *    * @deprecated Use {@link #minus(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -475,7 +475,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @deprecated Use {@link #times(UnsignedLong)}.  This method is scheduled for deletion in    *             January 2013.    */
+comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @deprecated Use {@link #times(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -522,7 +522,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of dividing this by {@code val}.    *    * @deprecated Use {@link #dividedBy(UnsignedLong)}.  This method is scheduled for deletion in    *             January 2013.    */
+comment|/**    * Returns the result of dividing this by {@code val}.    *    * @deprecated Use {@link #dividedBy(UnsignedLong)}.  This method is scheduled to be removed in    *             Guava release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -574,7 +574,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the remainder of dividing this by {@code val}.    *    * @deprecated Use {@link #mod(UnsignedLong)}.  This method is scheduled for deletion in January    *             2013.    */
+comment|/**    * Returns the remainder of dividing this by {@code val}.    *    * @deprecated Use {@link #mod(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
 annotation|@
 name|Deprecated
 annotation|@

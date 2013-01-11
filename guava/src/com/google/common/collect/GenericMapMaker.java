@@ -325,26 +325,6 @@ argument_list|>
 name|weakKeys
 parameter_list|()
 function_decl|;
-comment|/**    * See {@link MapMaker#softKeys}.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.SoftReference"
-argument_list|)
-DECL|method|softKeys ()
-specifier|public
-specifier|abstract
-name|GenericMapMaker
-argument_list|<
-name|K0
-argument_list|,
-name|V0
-argument_list|>
-name|softKeys
-parameter_list|()
-function_decl|;
 comment|/**    * See {@link MapMaker#weakValues}.    */
 annotation|@
 name|GwtIncompatible
