@@ -208,6 +208,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
 argument_list|)
+comment|// TODO(kevinb): remove after this warning is disabled globally
 DECL|method|log2 (long x, RoundingMode mode)
 specifier|public
 specifier|static

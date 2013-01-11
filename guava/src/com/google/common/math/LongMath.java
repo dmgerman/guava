@@ -276,6 +276,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
 argument_list|)
+comment|// TODO(kevinb): remove after this warning is disabled globally
 DECL|method|log2 (long x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -441,6 +442,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"fallthrough"
 argument_list|)
+comment|// TODO(kevinb): remove after this warning is disabled globally
 DECL|method|log10 (long x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -1280,7 +1282,7 @@ argument_list|(
 name|x
 argument_list|)
 decl_stmt|;
-comment|/*      * Lemma: For all a, b, if |a - b|<= 1, then |floor(a) - floor(b)|<= 1.      *      * Proof:      *           -1<=        a - b<= 1      *        b - 1<=          a<= b + 1      * floor(b - 1)<=       floor(a)<= floor(b + 1)      * floor(b) - 1<=       floor(a)<= floor(b) + 1      *           -1<= floor(a) - floor(b)<= 1      *      * Theorem: |floor(sqrt(x)) - guess|<= 1.      *      * Proof:  By the lemma, it suffices to show that |sqrt(x) - Math.sqrt(x)|<= 1.      * We consider two cases: x<= 2^53 and x> 2^53.      *      * If x<= 2^53, then x is exactly representable as a double, so the only error is in rounding      * sqrt(x) to a double, which introduces at most 2^-52 relative error.  Since sqrt(x)< 2^27,      * the absolute error is at most 2^(27-52) = 2^-25< 1.      *      * Otherwise, x> 2^53.  The rounding error introduced by casting x to a double is at most      * 2^63 * 2^-52 = 2^11.  Noting that sqrt(x)> 2^26,      *      * sqrt(x) - 0.5 =  sqrt((sqrt(x) - 0.5)^2)      *               =  sqrt(x - sqrt(x) + 0.25)      *<  sqrt(x - 2^26 + 0.25)      *<  sqrt(x - 2^11)      *<= sqrt((double) x)      * sqrt(x) + 0.5 =  sqrt((sqrt(x) + 0.5)^2)      *               =  sqrt(x + sqrt(x) + 0.25)      *>  sqrt(x + 2^26 + 0.25)      *>  sqrt(x + 2^11)      *>= sqrt((double) x)      * sqrt(x) - 0.5< sqrt((double) x)< sqrt(x) + 0.5      *      * Math.sqrt((double) x) is obtained by rounding sqrt((double) x) to a double, increasing the      * error by at most 2^-52 * sqrt(x)<= 2^(32 - 52)<= 2^-20, so clearly      *      * sqrt(x) - 0.5 - 2^-20<= Math.sqrt((double) x)<= sqrt(x) + 0.5 + 2^-20      *      * Therefore, |sqrt(x) - Math.sqrt((double) x)|<= 1, so      *            |floor(sqrt(x)) - (long) Math.sqrt((double) x)|<= 1      *            as desired.      */
+comment|/*      * Lemma: For all a, b, if |a - b|<= 1, then |floor(a) - floor(b)|<= 1.      *       * Proof:       *           -1<=        a - b<= 1      *        b - 1<=          a<= b + 1      * floor(b - 1)<=       floor(a)<= floor(b + 1)      * floor(b) - 1<=       floor(a)<= floor(b) + 1      *           -1<= floor(a) - floor(b)<= 1      *       * Theorem: |floor(sqrt(x)) - guess|<= 1.      *       * Proof:  By the lemma, it suffices to show that |sqrt(x) - Math.sqrt(x)|<= 1.      * We consider two cases: x<= 2^53 and x> 2^53.      *       * If x<= 2^53, then x is exactly representable as a double, so the only error is in rounding      * sqrt(x) to a double, which introduces at most 2^-52 relative error.  Since sqrt(x)< 2^27,      * the absolute error is at most 2^(27-52) = 2^-25< 1.      *       * Otherwise, x> 2^53.  The rounding error introduced by casting x to a double is at most      * 2^63 * 2^-52 = 2^11.  Noting that sqrt(x)> 2^26,      *       * sqrt(x) - 0.5 =  sqrt((sqrt(x) - 0.5)^2)      *               =  sqrt(x - sqrt(x) + 0.25)      *<  sqrt(x - 2^26 + 0.25)      *<  sqrt(x - 2^11)      *<= sqrt((double) x)      * sqrt(x) + 0.5 =  sqrt((sqrt(x) + 0.5)^2)      *               =  sqrt(x + sqrt(x) + 0.25)      *>  sqrt(x + 2^26 + 0.25)      *>  sqrt(x + 2^11)      *>= sqrt((double) x)           * sqrt(x) - 0.5< sqrt((double) x)< sqrt(x) + 0.5      *       * Math.sqrt((double) x) is obtained by rounding sqrt((double) x) to a double, increasing the      * error by at most 2^-52 * sqrt(x)<= 2^(32 - 52)<= 2^-20, so clearly      *       * sqrt(x) - 0.5 - 2^-20<= Math.sqrt((double) x)<= sqrt(x) + 0.5 + 2^-20       *       * Therefore, |sqrt(x) - Math.sqrt((double) x)|<= 1, so      *            |floor(sqrt(x)) - (long) Math.sqrt((double) x)|<= 1      *            as desired.      */
 name|long
 name|guessSquared
 init|=

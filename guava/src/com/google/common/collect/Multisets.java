@@ -4151,6 +4151,7 @@ operator|instanceof
 name|Entry
 condition|)
 block|{
+comment|/*          * The GWT compiler wrongly issues a warning here.          */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4211,6 +4212,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|// GWT compiler warning; see contains().
 annotation|@
 name|SuppressWarnings
 argument_list|(

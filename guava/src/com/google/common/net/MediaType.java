@@ -1165,6 +1165,7 @@ argument_list|,
 literal|"x-www-form-urlencoded"
 argument_list|)
 decl_stmt|;
+comment|/**    * This is a non-standard media type, but is commonly used in serving hosted binary files as it is    *<a href="http://code.google.com/p/browsersec/wiki/Part2#Survey_of_content_sniffing_behaviors">    * known not to trigger content sniffing in current browsers</a>. It<i>should not</i> be used in    * other situations as it is not specified by any RFC and does not appear in the<a href=    * "http://www.iana.org/assignments/media-types">/IANA MIME Media Types</a> list. Consider    * {@link #OCTET_STREAM} for binary data that is not being served to a browser.    *    *    * @since 14.0    */
 DECL|field|APPLICATION_BINARY
 specifier|public
 specifier|static

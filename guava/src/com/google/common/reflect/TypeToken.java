@@ -4000,7 +4000,7 @@ name|ParameterizedType
 operator|)
 name|type
 decl_stmt|;
-comment|// JDK implementation declares getRawType() to return Class<?>
+comment|// JDK implementation declares getRawType() to return Class<?>: http://goo.gl/YzaEd
 return|return
 name|ImmutableSet
 operator|.
@@ -5421,8 +5421,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(benyu): should we include Object for interface?
-comment|// Also, CharSequence[] and Object[] for String[]?
+comment|/*        * TODO(benyu): should we include Object for interface?        * Also, CharSequence[] and Object[] for String[]?        *        */
 name|map
 operator|.
 name|put

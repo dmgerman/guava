@@ -1236,6 +1236,7 @@ name|bits
 return|;
 block|}
 block|}
+comment|/**    * Linear CongruentialGenerator to use for consistent hashing.    * See http://en.wikipedia.org/wiki/Linear_congruential_generator    */
 DECL|class|LinearCongruentialGenerator
 specifier|private
 specifier|static
