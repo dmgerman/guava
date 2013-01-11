@@ -90,6 +90,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -149,6 +159,18 @@ parameter_list|()
 block|{
 return|return
 literal|0
+return|;
+block|}
+DECL|method|isEmpty ()
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+literal|true
 return|;
 block|}
 DECL|method|isPartialView ()
@@ -418,6 +440,51 @@ return|return
 name|Iterators
 operator|.
 name|EMPTY_LIST_ITERATOR
+return|;
+block|}
+DECL|method|equals (@ullable Object object)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+if|if
+condition|(
+name|object
+operator|instanceof
+name|List
+condition|)
+block|{
+name|List
+argument_list|<
+name|?
+argument_list|>
+name|that
+init|=
+operator|(
+name|List
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|object
+decl_stmt|;
+return|return
+name|that
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+return|return
+literal|false
 return|;
 block|}
 DECL|method|hashCode ()
