@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** An ordering that uses the reverse of the natural order of the values. */
+comment|/**  * An ordering that uses the natural order of the string representation of the  * values.  */
 end_comment
 
 begin_class
