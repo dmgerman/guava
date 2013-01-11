@@ -421,18 +421,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|isEmpty ()
-specifier|public
-name|boolean
-name|isEmpty
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|createEntrySet ()
 name|ImmutableSet
 argument_list|<
