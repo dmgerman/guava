@@ -4857,14 +4857,17 @@ name|keys
 parameter_list|()
 block|{
 return|return
-name|Multisets
+operator|new
+name|Multimaps
 operator|.
-name|forSet
+name|Keys
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|(
-name|map
-operator|.
-name|keySet
-argument_list|()
+name|this
 argument_list|)
 return|;
 block|}
@@ -7240,7 +7243,6 @@ return|;
 block|}
 DECL|class|Keys
 specifier|static
-specifier|abstract
 class|class
 name|Keys
 parameter_list|<
@@ -7254,8 +7256,8 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-DECL|method|multimap ()
-specifier|abstract
+DECL|field|multimap
+specifier|final
 name|Multimap
 argument_list|<
 name|K
@@ -7263,8 +7265,26 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|()
-function_decl|;
+decl_stmt|;
+DECL|method|Keys (Multimap<K, V> multimap)
+name|Keys
+parameter_list|(
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|multimap
+parameter_list|)
+block|{
+name|this
+operator|.
+name|multimap
+operator|=
+name|multimap
+expr_stmt|;
+block|}
 DECL|method|entryIterator ()
 annotation|@
 name|Override
@@ -7305,7 +7325,6 @@ argument_list|>
 argument_list|>
 argument_list|(
 name|multimap
-argument_list|()
 operator|.
 name|asMap
 argument_list|()
@@ -7398,7 +7417,6 @@ parameter_list|()
 block|{
 return|return
 name|multimap
-argument_list|()
 operator|.
 name|asMap
 argument_list|()
@@ -7499,7 +7517,6 @@ parameter_list|()
 block|{
 return|return
 name|multimap
-argument_list|()
 operator|.
 name|isEmpty
 argument_list|()
@@ -7552,7 +7569,6 @@ argument_list|>
 name|collection
 init|=
 name|multimap
-argument_list|()
 operator|.
 name|asMap
 argument_list|()
@@ -7632,7 +7648,6 @@ argument_list|>
 name|collection
 init|=
 name|multimap
-argument_list|()
 operator|.
 name|asMap
 argument_list|()
@@ -7692,7 +7707,6 @@ parameter_list|)
 block|{
 return|return
 name|multimap
-argument_list|()
 operator|.
 name|containsKey
 argument_list|(
@@ -7717,7 +7731,6 @@ operator|.
 name|keyIterator
 argument_list|(
 name|multimap
-argument_list|()
 operator|.
 name|entries
 argument_list|()
@@ -7742,17 +7755,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-name|multimap
-argument_list|()
-operator|.
-name|containsKey
-argument_list|(
-name|element
-argument_list|)
-condition|)
-block|{
 name|Collection
 argument_list|<
 name|V
@@ -7760,7 +7762,6 @@ argument_list|>
 name|values
 init|=
 name|multimap
-argument_list|()
 operator|.
 name|asMap
 argument_list|()
@@ -7783,10 +7784,6 @@ name|values
 operator|.
 name|size
 argument_list|()
-return|;
-block|}
-return|return
-literal|0
 return|;
 block|}
 catch|catch
@@ -7858,7 +7855,6 @@ block|{
 name|values
 operator|=
 name|multimap
-argument_list|()
 operator|.
 name|asMap
 argument_list|()
@@ -7974,7 +7970,6 @@ name|clear
 parameter_list|()
 block|{
 name|multimap
-argument_list|()
 operator|.
 name|clear
 argument_list|()
@@ -7993,7 +7988,6 @@ parameter_list|()
 block|{
 return|return
 name|multimap
-argument_list|()
 operator|.
 name|keySet
 argument_list|()
@@ -8002,7 +7996,6 @@ block|}
 block|}
 DECL|class|Values
 specifier|static
-specifier|abstract
 class|class
 name|Values
 parameter_list|<
@@ -8016,8 +8009,8 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|multimap ()
-specifier|abstract
+DECL|field|multimap
+specifier|final
 name|Multimap
 argument_list|<
 name|K
@@ -8025,8 +8018,26 @@ argument_list|,
 name|V
 argument_list|>
 name|multimap
-parameter_list|()
-function_decl|;
+decl_stmt|;
+DECL|method|Values (Multimap<K, V> multimap)
+name|Values
+parameter_list|(
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|multimap
+parameter_list|)
+block|{
+name|this
+operator|.
+name|multimap
+operator|=
+name|multimap
+expr_stmt|;
+block|}
 DECL|method|iterator ()
 annotation|@
 name|Override
@@ -8044,7 +8055,6 @@ operator|.
 name|valueIterator
 argument_list|(
 name|multimap
-argument_list|()
 operator|.
 name|entries
 argument_list|()
@@ -8064,7 +8074,6 @@ parameter_list|()
 block|{
 return|return
 name|multimap
-argument_list|()
 operator|.
 name|size
 argument_list|()
@@ -8085,7 +8094,6 @@ parameter_list|)
 block|{
 return|return
 name|multimap
-argument_list|()
 operator|.
 name|containsValue
 argument_list|(
@@ -8102,7 +8110,6 @@ name|clear
 parameter_list|()
 block|{
 name|multimap
-argument_list|()
 operator|.
 name|clear
 argument_list|()

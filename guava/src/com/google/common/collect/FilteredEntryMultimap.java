@@ -1946,23 +1946,17 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-annotation|@
-name|Override
-DECL|method|multimap ()
-name|Multimap
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|multimap
+DECL|method|Keys ()
+name|Keys
 parameter_list|()
 block|{
-return|return
+name|super
+argument_list|(
 name|FilteredEntryMultimap
 operator|.
 name|this
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
