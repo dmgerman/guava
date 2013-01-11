@@ -349,7 +349,7 @@ DECL|field|MURMUR3_32
 specifier|private
 specifier|static
 specifier|final
-name|Murmur3_32HashFunction
+name|HashFunction
 name|MURMUR3_32
 init|=
 operator|new
@@ -393,7 +393,7 @@ DECL|field|MURMUR3_128
 specifier|private
 specifier|static
 specifier|final
-name|Murmur3_128HashFunction
+name|HashFunction
 name|MURMUR3_128
 init|=
 operator|new

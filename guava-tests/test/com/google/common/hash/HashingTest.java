@@ -2381,6 +2381,33 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+DECL|field|EMPTY_STRING
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|EMPTY_STRING
+init|=
+literal|""
+decl_stmt|;
+DECL|field|TQBFJOTLD
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TQBFJOTLD
+init|=
+literal|"The quick brown fox jumps over the lazy dog"
+decl_stmt|;
+DECL|field|TQBFJOTLDP
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TQBFJOTLDP
+init|=
+literal|"The quick brown fox jumps over the lazy dog."
+decl_stmt|;
 DECL|field|KNOWN_HASHES
 specifier|private
 specifier|static
@@ -2414,7 +2441,7 @@ operator|.
 name|adler32
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"01000000"
 argument_list|)
@@ -2426,7 +2453,7 @@ operator|.
 name|adler32
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"da0fdc5b"
 argument_list|)
@@ -2438,7 +2465,7 @@ operator|.
 name|adler32
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"0810e46b"
 argument_list|)
@@ -2450,7 +2477,7 @@ operator|.
 name|md5
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"d41d8cd98f00b204e9800998ecf8427e"
 argument_list|)
@@ -2462,7 +2489,7 @@ operator|.
 name|md5
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"9e107d9d372bb6826bd81d3542a419d6"
 argument_list|)
@@ -2474,7 +2501,7 @@ operator|.
 name|md5
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"e4d909c290d0fb1ca068ffaddf22cbd0"
 argument_list|)
@@ -2486,7 +2513,7 @@ operator|.
 name|murmur3_128
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"00000000000000000000000000000000"
 argument_list|)
@@ -2498,7 +2525,7 @@ operator|.
 name|murmur3_128
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"6c1b07bc7bbc4be347939ac4a93c437a"
 argument_list|)
@@ -2510,7 +2537,7 @@ operator|.
 name|murmur3_128
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"c902e99e1f4899cde7b68789a3a15d69"
 argument_list|)
@@ -2522,7 +2549,7 @@ operator|.
 name|murmur3_32
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"00000000"
 argument_list|)
@@ -2534,7 +2561,7 @@ operator|.
 name|murmur3_32
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"23f74f2e"
 argument_list|)
@@ -2546,7 +2573,7 @@ operator|.
 name|murmur3_32
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"fc8bc4d5"
 argument_list|)
@@ -2558,7 +2585,7 @@ operator|.
 name|sha1
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"da39a3ee5e6b4b0d3255bfef95601890afd80709"
 argument_list|)
@@ -2570,7 +2597,7 @@ operator|.
 name|sha1
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"
 argument_list|)
@@ -2582,7 +2609,7 @@ operator|.
 name|sha1
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"408d94384216f890ff7a0c3528e8bed1e0b01621"
 argument_list|)
@@ -2594,7 +2621,7 @@ operator|.
 name|sha256
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 argument_list|)
@@ -2606,7 +2633,7 @@ operator|.
 name|sha256
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
 argument_list|)
@@ -2618,7 +2645,7 @@ operator|.
 name|sha256
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"ef537f25c895bfa782526529a9b63d97aa631564d5d789c2b765448c8635fb6c"
 argument_list|)
@@ -2630,7 +2657,7 @@ operator|.
 name|sha512
 argument_list|()
 argument_list|,
-literal|""
+name|EMPTY_STRING
 argument_list|,
 literal|"cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce"
 operator|+
@@ -2644,7 +2671,7 @@ operator|.
 name|sha512
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog"
+name|TQBFJOTLD
 argument_list|,
 literal|"07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a309d785436bbb64"
 operator|+
@@ -2658,7 +2685,7 @@ operator|.
 name|sha512
 argument_list|()
 argument_list|,
-literal|"The quick brown fox jumps over the lazy dog."
+name|TQBFJOTLDP
 argument_list|,
 literal|"91ea1245f20d46ae9a037a989f54f1f790f0a47607eeb8a14d12890cea77a1bb"
 operator|+
