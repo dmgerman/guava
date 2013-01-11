@@ -395,13 +395,19 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|class|BadEqualsFactory
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|BadEqualsFactory
 block|{
 comment|/** oneConstantOnly matters now since it can be either null or the constant. */
-DECL|method|bad (String a, int b, @SuppressWarnings(R) @Nullable OneConstantEnum oneConstantOnly)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
+DECL|method|bad (String a, int b, @Nullable OneConstantEnum oneConstantOnly)
 specifier|public
 specifier|static
 name|Object
@@ -413,11 +419,6 @@ parameter_list|,
 name|int
 name|b
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 annotation|@
 name|Nullable
 name|OneConstantEnum
@@ -457,11 +458,17 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|class|GoodNullsFactory
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|GoodNullsFactory
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
 DECL|method|good (String s)
 specifier|public
 specifier|static
@@ -2473,11 +2480,17 @@ expr_stmt|;
 block|}
 comment|/** String doesn't check nulls as we expect. But the framework should ignore. */
 DECL|class|JdkObjectFactory
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|JdkObjectFactory
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// Called by reflection
 DECL|method|create ()
 specifier|public
 specifier|static
