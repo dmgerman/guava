@@ -535,7 +535,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"ByteStreams.newByteSource("
+literal|"ByteStreams.asByteSource("
 operator|+
 name|BaseEncoding
 operator|.

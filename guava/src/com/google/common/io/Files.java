@@ -909,7 +909,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Files.newByteSource("
+literal|"Files.asByteSource("
 operator|+
 name|file
 operator|+
@@ -1033,7 +1033,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Files.newByteSink("
+literal|"Files.asByteSink("
 operator|+
 name|file
 operator|+

@@ -625,7 +625,7 @@ operator|+
 literal|"..."
 decl_stmt|;
 return|return
-literal|"CharStreams.newCharSource("
+literal|"CharStreams.asCharSource("
 operator|+
 name|limited
 operator|+
