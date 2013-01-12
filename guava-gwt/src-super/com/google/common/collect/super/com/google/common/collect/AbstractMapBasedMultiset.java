@@ -817,15 +817,15 @@ name|Object
 name|element
 parameter_list|)
 block|{
-try|try
-block|{
 name|Count
 name|frequency
 init|=
-name|backingMap
+name|Maps
 operator|.
-name|get
+name|safeGet
 argument_list|(
+name|backingMap
+argument_list|,
 name|element
 argument_list|)
 decl_stmt|;
@@ -843,27 +843,6 @@ operator|.
 name|get
 argument_list|()
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|NullPointerException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|0
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|0
-return|;
-block|}
 block|}
 comment|// Optional Operations - Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than    *     {@link Integer#MAX_VALUE} occurrences of {@code element} in this    *     multiset.    */

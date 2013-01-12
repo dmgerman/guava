@@ -169,9 +169,13 @@ expr_stmt|;
 name|int
 name|tableSize
 init|=
-name|chooseTableSize
+name|Hashing
+operator|.
+name|closedTableSize
 argument_list|(
 name|size
+argument_list|,
+name|MAX_LOAD_FACTOR
 argument_list|)
 decl_stmt|;
 name|table
@@ -352,61 +356,6 @@ name|MAX_LOAD_FACTOR
 init|=
 literal|1.2
 decl_stmt|;
-comment|/**    * Give a good hash table size for the given number of keys.    *    * @param size The number of keys to be inserted. Must be greater than or equal to 2.    */
-DECL|method|chooseTableSize (int size)
-specifier|static
-name|int
-name|chooseTableSize
-parameter_list|(
-name|int
-name|size
-parameter_list|)
-block|{
-comment|// Get the recommended table size.
-comment|// Round down to the nearest power of 2.
-name|int
-name|tableSize
-init|=
-name|Integer
-operator|.
-name|highestOneBit
-argument_list|(
-name|size
-argument_list|)
-decl_stmt|;
-comment|// Check to make sure that we will not exceed the maximum load factor.
-if|if
-condition|(
-operator|(
-name|double
-operator|)
-name|size
-operator|/
-name|tableSize
-operator|>
-name|MAX_LOAD_FACTOR
-condition|)
-block|{
-name|tableSize
-operator|<<=
-literal|1
-expr_stmt|;
-name|checkArgument
-argument_list|(
-name|tableSize
-operator|>
-literal|0
-argument_list|,
-literal|"table too large: %s"
-argument_list|,
-name|size
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|tableSize
-return|;
-block|}
 comment|/**    * Creates a {@link LinkedEntry} array to hold parameterized entries. The    * result must never be upcast back to LinkedEntry[] (or Object[], etc.), or    * allowed to escape the class.    */
 annotation|@
 name|SuppressWarnings

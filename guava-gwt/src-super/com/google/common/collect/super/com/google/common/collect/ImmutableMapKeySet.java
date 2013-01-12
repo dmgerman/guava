@@ -65,7 +65,7 @@ operator|=
 literal|true
 argument_list|)
 DECL|class|ImmutableMapKeySet
-specifier|abstract
+specifier|final
 class|class
 name|ImmutableMapKeySet
 parameter_list|<
@@ -79,8 +79,9 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-DECL|method|map ()
-specifier|abstract
+DECL|field|map
+specifier|private
+specifier|final
 name|ImmutableMap
 argument_list|<
 name|K
@@ -88,8 +89,26 @@ argument_list|,
 name|V
 argument_list|>
 name|map
-parameter_list|()
-function_decl|;
+decl_stmt|;
+DECL|method|ImmutableMapKeySet (ImmutableMap<K, V> map)
+name|ImmutableMapKeySet
+parameter_list|(
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|map
+parameter_list|)
+block|{
+name|this
+operator|.
+name|map
+operator|=
+name|map
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|size ()
@@ -100,7 +119,6 @@ parameter_list|()
 block|{
 return|return
 name|map
-argument_list|()
 operator|.
 name|size
 argument_list|()
@@ -140,7 +158,6 @@ parameter_list|)
 block|{
 return|return
 name|map
-argument_list|()
 operator|.
 name|containsKey
 argument_list|(
@@ -171,7 +188,6 @@ argument_list|>
 name|entryList
 init|=
 name|map
-argument_list|()
 operator|.
 name|entrySet
 argument_list|()
