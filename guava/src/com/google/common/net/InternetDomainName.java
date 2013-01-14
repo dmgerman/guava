@@ -205,11 +205,6 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|InternetDomainName
 specifier|public
 specifier|final
