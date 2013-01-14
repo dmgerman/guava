@@ -1740,6 +1740,8 @@ name|builder
 operator|.
 name|build
 argument_list|()
+argument_list|,
+literal|"public static methods"
 argument_list|)
 return|;
 block|}
@@ -1764,6 +1766,15 @@ operator|.
 name|newHashSet
 argument_list|()
 decl_stmt|;
+DECL|field|declaringClass
+specifier|private
+specifier|final
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|declaringClass
+decl_stmt|;
 DECL|field|factories
 specifier|private
 specifier|final
@@ -1778,6 +1789,12 @@ argument_list|>
 argument_list|>
 name|factories
 decl_stmt|;
+DECL|field|factoryMethodsDescription
+specifier|private
+specifier|final
+name|String
+name|factoryMethodsDescription
+decl_stmt|;
 DECL|field|returnTypeToTest
 specifier|private
 name|Class
@@ -1790,7 +1807,7 @@ name|Object
 operator|.
 name|class
 decl_stmt|;
-DECL|method|FactoryMethodReturnValueTester ( Class<?> declaringClass, ImmutableList<Invokable<?, ?>> factories)
+DECL|method|FactoryMethodReturnValueTester ( Class<?> declaringClass, ImmutableList<Invokable<?, ?>> factories, String factoryMethodsDescription)
 specifier|private
 name|FactoryMethodReturnValueTester
 parameter_list|(
@@ -1810,8 +1827,29 @@ name|?
 argument_list|>
 argument_list|>
 name|factories
+parameter_list|,
+name|String
+name|factoryMethodsDescription
 parameter_list|)
 block|{
+name|this
+operator|.
+name|declaringClass
+operator|=
+name|declaringClass
+expr_stmt|;
+name|this
+operator|.
+name|factories
+operator|=
+name|factories
+expr_stmt|;
+name|this
+operator|.
+name|factoryMethodsDescription
+operator|=
+name|factoryMethodsDescription
+expr_stmt|;
 name|packagesToTest
 operator|.
 name|add
@@ -1823,12 +1861,6 @@ argument_list|(
 name|declaringClass
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|factories
-operator|=
-name|factories
 expr_stmt|;
 block|}
 comment|/**      * Specifies that only the methods that are declared to return {@code returnType} or its subtype      * are tested.      *      * @return this tester object      */
@@ -2281,11 +2313,51 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-return|return
+name|ImmutableList
+argument_list|<
+name|Invokable
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+argument_list|>
+name|factoriesToTest
+init|=
 name|builder
 operator|.
 name|build
 argument_list|()
+decl_stmt|;
+name|Assert
+operator|.
+name|assertFalse
+argument_list|(
+literal|"No "
+operator|+
+name|factoryMethodsDescription
+operator|+
+literal|" that return "
+operator|+
+name|returnTypeToTest
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" or subtype are found in "
+operator|+
+name|declaringClass
+operator|+
+literal|"."
+argument_list|,
+name|factoriesToTest
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|factoriesToTest
 return|;
 block|}
 block|}
