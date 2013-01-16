@@ -2097,23 +2097,17 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-annotation|@
-name|Override
-DECL|method|map ()
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
+DECL|method|KeySet ()
+name|KeySet
 parameter_list|()
 block|{
-return|return
+name|super
+argument_list|(
 name|HashBiMap
 operator|.
 name|this
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -2872,23 +2866,17 @@ argument_list|,
 name|K
 argument_list|>
 block|{
-annotation|@
-name|Override
-DECL|method|map ()
-name|Map
-argument_list|<
-name|V
-argument_list|,
-name|K
-argument_list|>
-name|map
+DECL|method|InverseKeySet ()
+name|InverseKeySet
 parameter_list|()
 block|{
-return|return
+name|super
+argument_list|(
 name|Inverse
 operator|.
 name|this
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

@@ -612,24 +612,14 @@ DECL|method|StandardKeySet ()
 specifier|public
 name|StandardKeySet
 parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|map ()
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|()
 block|{
-return|return
+name|super
+argument_list|(
 name|ForwardingMap
 operator|.
 name|this
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms    * of the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #containsKey} to forward to    * this implementation.    *    * @since 7.0    */
@@ -679,24 +669,14 @@ DECL|method|StandardValues ()
 specifier|public
 name|StandardValues
 parameter_list|()
-block|{}
-annotation|@
-name|Override
-DECL|method|map ()
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|()
 block|{
-return|return
+name|super
+argument_list|(
 name|ForwardingMap
 operator|.
 name|this
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * A sensible definition of {@link #containsValue} in terms of the {@code    * iterator} method of {@link #entrySet}. If you override {@link #entrySet},    * you may wish to override {@link #containsValue} to forward to this    * implementation.    *    * @since 7.0    */

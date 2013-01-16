@@ -3665,20 +3665,6 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-comment|/**      * This is usually the same as map, except when someone requests a      * subcollection of a {@link SortedKeySet}.      */
-DECL|field|subMap
-specifier|final
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
-name|subMap
-decl_stmt|;
 DECL|method|KeySet (final Map<K, Collection<V>> subMap)
 name|KeySet
 parameter_list|(
@@ -3695,31 +3681,11 @@ argument_list|>
 name|subMap
 parameter_list|)
 block|{
-name|this
-operator|.
+name|super
+argument_list|(
 name|subMap
-operator|=
-name|subMap
+argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|map ()
-name|Map
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
-name|map
-parameter_list|()
-block|{
-return|return
-name|subMap
-return|;
 block|}
 DECL|method|iterator ()
 annotation|@
@@ -3749,7 +3715,8 @@ argument_list|>
 argument_list|>
 name|entryIterator
 init|=
-name|subMap
+name|map
+argument_list|()
 operator|.
 name|entrySet
 argument_list|()
@@ -3884,7 +3851,8 @@ name|V
 argument_list|>
 name|collection
 init|=
-name|subMap
+name|map
+argument_list|()
 operator|.
 name|remove
 argument_list|(
@@ -3953,7 +3921,8 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|subMap
+name|map
+argument_list|()
 operator|.
 name|keySet
 argument_list|()
@@ -3984,7 +3953,8 @@ name|object
 operator|||
 name|this
 operator|.
-name|subMap
+name|map
+argument_list|()
 operator|.
 name|keySet
 argument_list|()
@@ -4004,7 +3974,8 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-name|subMap
+name|map
+argument_list|()
 operator|.
 name|keySet
 argument_list|()
@@ -4072,7 +4043,10 @@ name|V
 argument_list|>
 argument_list|>
 operator|)
-name|subMap
+name|super
+operator|.
+name|map
+argument_list|()
 return|;
 block|}
 annotation|@
