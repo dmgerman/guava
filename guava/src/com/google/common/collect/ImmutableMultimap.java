@@ -1618,6 +1618,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Returns {@code true} if this immutable multimap's implementation contains references to    * user-created objects that aren't accessible via this multimap's methods. This is generally    * used to determine whether {@code copyOf} implementations should make an explicit copy to avoid    * memory leaks.    */
 DECL|method|isPartialView ()
 name|boolean
 name|isPartialView

@@ -2176,6 +2176,7 @@ name|object
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns {@code true} if this immutable map's implementation contains references to    * user-created objects that aren't accessible via this map's methods. This is generally    * used to determine whether {@code copyOf} implementations should make an explicit copy to avoid    * memory leaks.    */
 DECL|method|isPartialView ()
 specifier|abstract
 name|boolean
