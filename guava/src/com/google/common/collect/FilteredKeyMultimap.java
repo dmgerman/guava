@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -188,6 +188,13 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
+name|AbstractMultimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+implements|implements
 name|FilteredMultimap
 argument_list|<
 name|K
@@ -195,6 +202,16 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|unfiltered
+specifier|final
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|unfiltered
+decl_stmt|;
 DECL|field|keyPredicate
 specifier|final
 name|Predicate
@@ -225,7 +242,11 @@ argument_list|>
 name|keyPredicate
 parameter_list|)
 block|{
-name|super
+name|this
+operator|.
+name|unfiltered
+operator|=
+name|checkNotNull
 argument_list|(
 name|unfiltered
 argument_list|)
@@ -242,7 +263,25 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|unfiltered ()
+specifier|public
+name|Multimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|unfiltered
+parameter_list|()
+block|{
+return|return
+name|unfiltered
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|entryPredicate ()
+specifier|public
 name|Predicate
 argument_list|<
 name|?
@@ -877,6 +916,14 @@ parameter_list|()
 block|{
 return|return
 operator|new
+name|Entries
+argument_list|()
+return|;
+block|}
+DECL|class|Entries
+class|class
+name|Entries
+extends|extends
 name|Multimaps
 operator|.
 name|Entries
@@ -885,10 +932,10 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-argument_list|()
 block|{
 annotation|@
 name|Override
+DECL|method|multimap ()
 name|Multimap
 argument_list|<
 name|K
@@ -906,6 +953,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -931,6 +979,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+DECL|method|remove (@ullable Object o)
 specifier|public
 name|boolean
 name|remove
@@ -1021,6 +1070,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -1089,6 +1139,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
@@ -1160,8 +1211,6 @@ name|combinedPredicate
 argument_list|)
 return|;
 block|}
-block|}
-return|;
 block|}
 annotation|@
 name|Override
