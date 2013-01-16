@@ -613,7 +613,7 @@ literal|true
 argument_list|)
 annotation|@
 name|Beta
-DECL|method|immutableEnumMap ( Map<K, V> map)
+DECL|method|immutableEnumMap ( Map<K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -638,6 +638,8 @@ name|Map
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|map
@@ -650,7 +652,20 @@ operator|instanceof
 name|ImmutableEnumMap
 condition|)
 block|{
-return|return
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe covariant cast
+name|ImmutableEnumMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|result
+init|=
 operator|(
 name|ImmutableEnumMap
 argument_list|<
@@ -660,6 +675,9 @@ name|V
 argument_list|>
 operator|)
 name|map
+decl_stmt|;
+return|return
+name|result
 return|;
 block|}
 elseif|else
@@ -688,6 +706,8 @@ name|Entry
 argument_list|<
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|entry
