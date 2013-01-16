@@ -1728,28 +1728,25 @@ name|this
 operator|.
 name|lock
 decl_stmt|;
+try|try
+block|{
+comment|// No need to signal if we will still be holding the lock when we return
 if|if
 condition|(
-operator|!
 name|lock
 operator|.
-name|isHeldByCurrentThread
+name|getHoldCount
 argument_list|()
+operator|==
+literal|1
 condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalMonitorStateException
-argument_list|()
-throw|;
-block|}
-try|try
 block|{
 name|signalConditionsOfSatisfiedGuards
 argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -1758,6 +1755,7 @@ operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
+comment|// Will throw IllegalMonitorStateException if not held
 block|}
 block|}
 comment|/**    * Returns whether this monitor is using a fair ordering policy.    */
