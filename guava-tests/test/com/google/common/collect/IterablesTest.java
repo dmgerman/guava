@@ -5834,45 +5834,6 @@ argument_list|()
 throw|;
 block|}
 block|}
-DECL|method|testGetLast_withDefault_not_empty_sortedSet ()
-specifier|public
-name|void
-name|testGetLast_withDefault_not_empty_sortedSet
-parameter_list|()
-block|{
-comment|// TODO: verify that this is the best testing strategy.
-name|SortedSet
-argument_list|<
-name|String
-argument_list|>
-name|diesOnIteratorSortedSet
-init|=
-operator|new
-name|DiesOnIteratorTreeSet
-argument_list|()
-decl_stmt|;
-name|diesOnIteratorSortedSet
-operator|.
-name|add
-argument_list|(
-literal|"bar"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"bar"
-argument_list|,
-name|Iterables
-operator|.
-name|getLast
-argument_list|(
-name|diesOnIteratorSortedSet
-argument_list|,
-literal|"qux"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testGetLast_emptySortedSet ()
 specifier|public
 name|void
