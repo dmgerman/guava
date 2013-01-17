@@ -1235,6 +1235,11 @@ argument_list|(
 name|addTo
 argument_list|)
 expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|iterator
+argument_list|)
+expr_stmt|;
 name|boolean
 name|wasModified
 init|=
@@ -1471,13 +1476,11 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkState
+name|checkRemove
 argument_list|(
 name|removeFrom
 operator|!=
 literal|null
-argument_list|,
-literal|"no calls to next() since last call to remove()"
 argument_list|)
 expr_stmt|;
 name|removeFrom
@@ -1524,11 +1527,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines two iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|concat (Iterator<? extends T> a, Iterator<? extends T> b)
 specifier|public
 specifier|static
@@ -1558,22 +1556,12 @@ argument_list|>
 name|b
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|a
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|b
-argument_list|)
-expr_stmt|;
 return|return
 name|concat
 argument_list|(
-name|Arrays
+name|ImmutableList
 operator|.
-name|asList
+name|of
 argument_list|(
 name|a
 argument_list|,
@@ -1586,11 +1574,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines three iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}. The source iterators    * are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|concat (Iterator<? extends T> a, Iterator<? extends T> b, Iterator<? extends T> c)
 specifier|public
 specifier|static
@@ -1628,27 +1611,12 @@ argument_list|>
 name|c
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|a
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|b
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
 return|return
 name|concat
 argument_list|(
-name|Arrays
+name|ImmutableList
 operator|.
-name|asList
+name|of
 argument_list|(
 name|a
 argument_list|,
@@ -1663,11 +1631,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines four iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}, followed by the elements    * in {@code d}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|concat (Iterator<? extends T> a, Iterator<? extends T> b, Iterator<? extends T> c, Iterator<? extends T> d)
 specifier|public
 specifier|static
@@ -1713,32 +1676,12 @@ argument_list|>
 name|d
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|a
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|b
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|d
-argument_list|)
-expr_stmt|;
 return|return
 name|concat
 argument_list|(
-name|Arrays
+name|ImmutableList
 operator|.
-name|asList
+name|of
 argument_list|(
 name|a
 argument_list|,
@@ -1940,13 +1883,11 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkState
+name|checkRemove
 argument_list|(
 name|removeFrom
 operator|!=
 literal|null
-argument_list|,
-literal|"no calls to next() since last call to remove()"
 argument_list|)
 expr_stmt|;
 name|removeFrom
