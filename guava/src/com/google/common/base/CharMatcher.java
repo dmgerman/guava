@@ -3571,11 +3571,14 @@ operator|>
 operator|(
 name|totalCharacters
 operator|*
+literal|4
+operator|*
 name|Character
 operator|.
 name|SIZE
 operator|)
 return|;
+comment|// err on the side of BitSetMatcher
 block|}
 annotation|@
 name|GwtIncompatible

@@ -3042,11 +3042,14 @@ operator|>
 operator|(
 name|totalCharacters
 operator|*
+literal|4
+operator|*
 name|Character
 operator|.
 name|SIZE
 operator|)
 return|;
+comment|// err on the side of BitSetMatcher
 block|}
 comment|// Text processing routines
 comment|/**    * Returns {@code true} if a character sequence contains at least one matching character.    * Equivalent to {@code !matchesNoneOf(sequence)}.    *    *<p>The default implementation iterates over the sequence, invoking {@link #matches} for each    * character, until this returns {@code true} or the end is reached.    *    * @param sequence the character sequence to examine, possibly empty    * @return {@code true} if this matcher matches at least one character in the sequence    * @since 8.0    */
