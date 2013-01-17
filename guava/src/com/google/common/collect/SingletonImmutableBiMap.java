@@ -101,6 +101,13 @@ name|V
 name|singleValue
 parameter_list|)
 block|{
+name|checkEntryNotNull
+argument_list|(
+name|singleKey
+argument_list|,
+name|singleValue
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|singleKey

@@ -258,6 +258,22 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+name|V
+name|value
+init|=
+name|entry
+operator|.
+name|getValue
+argument_list|()
+decl_stmt|;
+comment|/*        * TODO(user): figure out a way to avoid the redundant check for        * ImmutableMap.of(), Builder constructors without introducing race        * conditions or redundant copies for the copyOf constructor.        */
+name|checkEntryNotNull
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 name|int
 name|keyHashCode
 init|=
@@ -306,10 +322,7 @@ name|newLinkedEntry
 argument_list|(
 name|key
 argument_list|,
-name|entry
-operator|.
-name|getValue
-argument_list|()
+name|value
 argument_list|,
 name|existing
 argument_list|)
@@ -436,14 +449,6 @@ argument_list|>
 name|next
 parameter_list|)
 block|{
-comment|/*      * TODO(user): figure out a way to avoid the redundant check for      * ImmutableMap.of(), Builder constructors without introducing race      * conditions or redundant copies for the copyOf constructor.      */
-name|checkEntryNotNull
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
 return|return
 operator|(
 name|next
