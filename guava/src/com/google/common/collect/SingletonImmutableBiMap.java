@@ -152,13 +152,17 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|SingletonImmutableBiMap (Entry<K, V> entry)
+DECL|method|SingletonImmutableBiMap (Entry<? extends K, ? extends V> entry)
 name|SingletonImmutableBiMap
 parameter_list|(
 name|Entry
 argument_list|<
+name|?
+extends|extends
 name|K
 argument_list|,
+name|?
+extends|extends
 name|V
 argument_list|>
 name|entry

@@ -137,9 +137,7 @@ specifier|transient
 name|int
 name|mask
 decl_stmt|;
-comment|// TODO(gak): investigate avoiding the creation of ImmutableEntries since we
-comment|// re-copy them anyway.
-DECL|method|RegularImmutableMap (Entry<?, ?>.... immutableEntries)
+DECL|method|RegularImmutableMap (Entry<?, ?>.... theEntries)
 name|RegularImmutableMap
 parameter_list|(
 name|Entry
@@ -149,16 +147,35 @@ argument_list|,
 name|?
 argument_list|>
 modifier|...
-name|immutableEntries
+name|theEntries
 parameter_list|)
 block|{
-name|int
-name|size
-init|=
-name|immutableEntries
+name|this
+argument_list|(
+name|theEntries
 operator|.
 name|length
-decl_stmt|;
+argument_list|,
+name|theEntries
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|RegularImmutableMap (int size, Entry<?, ?>[] theEntries)
+name|RegularImmutableMap
+parameter_list|(
+name|int
+name|size
+parameter_list|,
+name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+index|[]
+name|theEntries
+parameter_list|)
+block|{
 name|entries
 operator|=
 name|createEntryArray
@@ -228,7 +245,7 @@ argument_list|,
 name|V
 argument_list|>
 operator|)
-name|immutableEntries
+name|theEntries
 index|[
 name|entryIndex
 index|]
@@ -419,6 +436,14 @@ argument_list|>
 name|next
 parameter_list|)
 block|{
+comment|/*      * TODO(user): figure out a way to avoid the redundant check for      * ImmutableMap.of(), Builder constructors without introducing race      * conditions or redundant copies for the copyOf constructor.      */
+name|checkEntryNotNull
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|next

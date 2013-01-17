@@ -80,20 +80,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|VisibleForTesting
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -590,8 +576,6 @@ name|DEFAULT_INITIAL_CAPACITY
 init|=
 literal|4
 decl_stmt|;
-annotation|@
-name|VisibleForTesting
 DECL|method|expandedCapacity (int oldCapacity, int minCapacity)
 specifier|static
 name|int
