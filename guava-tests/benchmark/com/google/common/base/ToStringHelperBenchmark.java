@@ -24,6 +24,18 @@ name|google
 operator|.
 name|caliper
 operator|.
+name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
 name|Param
 import|;
 end_import
@@ -40,18 +52,6 @@ name|Runner
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|SimpleBenchmark
-import|;
-end_import
-
 begin_comment
 comment|/**  * Some microbenchmarks for the {@link Objects.ToStringHelper} class.  *  * @author Osvaldo Doederlein  */
 end_comment
@@ -62,7 +62,7 @@ specifier|public
 class|class
 name|ToStringHelperBenchmark
 extends|extends
-name|SimpleBenchmark
+name|Benchmark
 block|{
 DECL|field|dataSize
 annotation|@

@@ -24,6 +24,18 @@ name|google
 operator|.
 name|caliper
 operator|.
+name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
 name|Param
 import|;
 end_import
@@ -37,18 +49,6 @@ operator|.
 name|caliper
 operator|.
 name|Runner
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|SimpleBenchmark
 import|;
 end_import
 
@@ -104,7 +104,7 @@ specifier|public
 class|class
 name|SetContainsBenchmark
 extends|extends
-name|SimpleBenchmark
+name|Benchmark
 block|{
 comment|// Start at 4.88 then multiply by 2*2^phi<evil cackle> - The goal is be uniform
 comment|// yet visit a variety of "values-relative-to-the-next-power-of-2"

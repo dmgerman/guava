@@ -104,6 +104,18 @@ name|google
 operator|.
 name|caliper
 operator|.
+name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
 name|Param
 import|;
 end_import
@@ -117,18 +129,6 @@ operator|.
 name|caliper
 operator|.
 name|Runner
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|SimpleBenchmark
 import|;
 end_import
 
@@ -166,7 +166,7 @@ specifier|public
 class|class
 name|IntMathRoundingBenchmark
 extends|extends
-name|SimpleBenchmark
+name|Benchmark
 block|{
 DECL|field|positive
 specifier|private
