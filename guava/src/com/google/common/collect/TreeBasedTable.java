@@ -748,6 +748,32 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|keySet ()
+annotation|@
+name|Override
+specifier|public
+name|SortedSet
+argument_list|<
+name|C
+argument_list|>
+name|keySet
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Maps
+operator|.
+name|SortedKeySet
+argument_list|<
+name|C
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 DECL|method|comparator ()
 annotation|@
 name|Override

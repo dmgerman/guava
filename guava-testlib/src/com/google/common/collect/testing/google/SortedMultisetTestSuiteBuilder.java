@@ -182,7 +182,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|SortedSetTestSuiteBuilder
+name|SetTestSuiteBuilder
 import|;
 end_import
 
@@ -508,8 +508,9 @@ argument_list|>
 name|parentBuilder
 parameter_list|)
 block|{
+comment|// TODO(user): make a SortedElementSetGenerator
 return|return
-name|SortedSetTestSuiteBuilder
+name|SetTestSuiteBuilder
 operator|.
 name|using
 argument_list|(

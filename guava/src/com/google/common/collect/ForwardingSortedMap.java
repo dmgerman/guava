@@ -283,6 +283,38 @@ name|fromKey
 argument_list|)
 return|;
 block|}
+comment|/**    * A sensible implementation of {@link SortedMap#keySet} in terms of the methods of    * {@code ForwardingSortedMap}. In many cases, you may wish to override    * {@link ForwardingSortedMap#keySet} to forward to this implementation or a subclass thereof.    *    * @since 15.0    */
+annotation|@
+name|Beta
+DECL|class|StandardKeySet
+specifier|protected
+class|class
+name|StandardKeySet
+extends|extends
+name|Maps
+operator|.
+name|SortedKeySet
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|StandardKeySet ()
+specifier|public
+name|StandardKeySet
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|ForwardingSortedMap
+operator|.
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// unsafe, but worst case is a CCE is thrown, which callers will be expecting
 annotation|@
 name|SuppressWarnings

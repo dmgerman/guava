@@ -527,6 +527,12 @@ name|NavigableSetTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
+operator|(
+name|TestSortedSetGenerator
+argument_list|<
+name|K
+argument_list|>
+operator|)
 name|keySetGenerator
 argument_list|)
 return|;

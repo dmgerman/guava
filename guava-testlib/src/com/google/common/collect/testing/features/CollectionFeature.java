@@ -210,10 +210,15 @@ argument_list|(
 name|SERIALIZABLE
 argument_list|)
 operator|,
+DECL|enumConstant|SUBSET_VIEW
+name|SUBSET_VIEW
+operator|,
+DECL|enumConstant|DESCENDING_VIEW
+name|DESCENDING_VIEW
+operator|,
 comment|/**    * For documenting collections that support no optional features, such as    * {@link java.util.Collections#emptySet}    */
 DECL|enumConstant|NONE
 name|NONE
-argument_list|()
 enum|;
 end_enum
 

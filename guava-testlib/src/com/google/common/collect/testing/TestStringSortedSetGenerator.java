@@ -76,7 +76,42 @@ class|class
 name|TestStringSortedSetGenerator
 extends|extends
 name|TestStringSetGenerator
+implements|implements
+name|TestSortedSetGenerator
+argument_list|<
+name|String
+argument_list|>
 block|{
+annotation|@
+name|Override
+DECL|method|create (Object... elements)
+specifier|public
+name|SortedSet
+argument_list|<
+name|String
+argument_list|>
+name|create
+parameter_list|(
+name|Object
+modifier|...
+name|elements
+parameter_list|)
+block|{
+return|return
+operator|(
+name|SortedSet
+argument_list|<
+name|String
+argument_list|>
+operator|)
+name|super
+operator|.
+name|create
+argument_list|(
+name|elements
+argument_list|)
+return|;
+block|}
 DECL|method|create (String[] elements)
 annotation|@
 name|Override
@@ -120,6 +155,54 @@ argument_list|)
 expr_stmt|;
 return|return
 name|insertionOrder
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|belowSamplesLesser ()
+specifier|public
+name|String
+name|belowSamplesLesser
+parameter_list|()
+block|{
+return|return
+literal|"!! a"
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|belowSamplesGreater ()
+specifier|public
+name|String
+name|belowSamplesGreater
+parameter_list|()
+block|{
+return|return
+literal|"!! b"
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|aboveSamplesLesser ()
+specifier|public
+name|String
+name|aboveSamplesLesser
+parameter_list|()
+block|{
+return|return
+literal|"~~ a"
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|aboveSamplesGreater ()
+specifier|public
+name|String
+name|aboveSamplesGreater
+parameter_list|()
+block|{
+return|return
+literal|"~~ b"
 return|;
 block|}
 block|}

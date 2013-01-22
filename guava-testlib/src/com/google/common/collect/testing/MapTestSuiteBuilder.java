@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
@@ -32,7 +32,7 @@ name|testing
 operator|.
 name|DerivedCollectionGenerators
 operator|.
-name|MapEntrySetGenerator
+name|keySetGenerator
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|testing
 operator|.
 name|DerivedCollectionGenerators
 operator|.
-name|MapKeySetGenerator
+name|MapEntrySetGenerator
 import|;
 end_import
 
@@ -818,13 +818,7 @@ name|add
 argument_list|(
 name|createDerivedKeySetSuite
 argument_list|(
-operator|new
-name|MapKeySetGenerator
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|keySetGenerator
 argument_list|(
 name|parentBuilder
 operator|.
@@ -1095,6 +1089,17 @@ argument_list|(
 name|mapFeatures
 argument_list|)
 decl_stmt|;
+comment|// TODO(user): make this trigger only if the map is a submap
+comment|// currently, the KeySetGenerator won't work properly for a subset of a keyset of a submap
+name|keySetFeatures
+operator|.
+name|add
+argument_list|(
+name|CollectionFeature
+operator|.
+name|SUBSET_VIEW
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|mapFeatures

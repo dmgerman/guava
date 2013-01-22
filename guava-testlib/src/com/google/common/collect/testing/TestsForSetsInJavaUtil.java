@@ -1059,7 +1059,7 @@ name|testsForTreeSetNatural
 parameter_list|()
 block|{
 return|return
-name|SetTestSuiteBuilder
+name|NavigableSetTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
@@ -1145,7 +1145,7 @@ name|testsForTreeSetWithComparator
 parameter_list|()
 block|{
 return|return
-name|SetTestSuiteBuilder
+name|NavigableSetTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
