@@ -794,24 +794,41 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|entries
-index|[
-name|size
-operator|++
-index|]
-operator|=
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|entry
+init|=
 name|entryOf
 argument_list|(
 name|key
 argument_list|,
 name|value
 argument_list|)
+decl_stmt|;
+comment|// don't inline this: we want to fail atomically if key or value is null
+name|entries
+index|[
+name|size
+operator|++
+index|]
+operator|=
+name|entry
 expr_stmt|;
 return|return
 name|this
 return|;
 block|}
 comment|/**      * Adds the given {@code entry} to the map, making it immutable if      * necessary. Duplicate keys are not allowed, and will cause {@link #build}      * to fail.      *      * @since 11.0      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// all supported methods are covariant in the unchecked case
 DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
@@ -858,6 +875,14 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|immutableEntry
+decl_stmt|;
 if|if
 condition|(
 name|entry
@@ -872,20 +897,8 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// all supported methods are covariant
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
 name|immutableEntry
-init|=
+operator|=
 operator|(
 name|Entry
 argument_list|<
@@ -895,25 +908,13 @@ name|V
 argument_list|>
 operator|)
 name|entry
-decl_stmt|;
-name|entries
-index|[
-name|size
-operator|++
-index|]
-operator|=
-name|immutableEntry
 expr_stmt|;
 block|}
 else|else
 block|{
 comment|// Directly calling entryOf(entry.getKey(), entry.getValue()) can cause
 comment|// compilation error in Eclipse.
-name|entries
-index|[
-name|size
-operator|++
-index|]
+name|immutableEntry
 operator|=
 name|entryOf
 argument_list|(
@@ -923,6 +924,14 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+name|entries
+index|[
+name|size
+operator|++
+index|]
+operator|=
+name|immutableEntry
+expr_stmt|;
 return|return
 name|this
 return|;
