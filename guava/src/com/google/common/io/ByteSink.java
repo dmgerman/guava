@@ -114,6 +114,11 @@ specifier|public
 specifier|abstract
 class|class
 name|ByteSink
+implements|implements
+name|OutputSupplier
+argument_list|<
+name|OutputStream
+argument_list|>
 block|{
 comment|/**    * Returns a {@link CharSink} view of this {@code ByteSink} that writes characters to this sink    * as bytes encoded with the given {@link Charset charset}.    */
 DECL|method|asCharSink (Charset charset)
@@ -143,6 +148,25 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link OutputSupplier} interface and should not be called directly. Use {@link #openStream}    *     instead.    */
+annotation|@
+name|Override
+annotation|@
+name|Deprecated
+DECL|method|getOutput ()
+specifier|public
+specifier|final
+name|OutputStream
+name|getOutput
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|openStream
+argument_list|()
+return|;
+block|}
 comment|/**    * Opens a new {@link BufferedOutputStream} for writing to this sink. This method should return a    * new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    */
 DECL|method|openBufferedStream ()
 specifier|public

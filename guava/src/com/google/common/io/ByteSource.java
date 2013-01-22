@@ -196,6 +196,11 @@ specifier|public
 specifier|abstract
 class|class
 name|ByteSource
+implements|implements
+name|InputSupplier
+argument_list|<
+name|InputStream
+argument_list|>
 block|{
 DECL|field|BUF_SIZE
 specifier|private
@@ -235,6 +240,25 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link InputSupplier} interface and should not be called directly. Use {@link #openStream}    *     instead.    */
+annotation|@
+name|Override
+annotation|@
+name|Deprecated
+DECL|method|getInput ()
+specifier|public
+specifier|final
+name|InputStream
+name|getInput
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|openStream
+argument_list|()
+return|;
+block|}
 comment|/**    * Opens a new {@link BufferedInputStream} for reading from this source. This method should return    * a new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    */
 DECL|method|openBufferedStream ()
 specifier|public

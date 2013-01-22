@@ -142,6 +142,11 @@ specifier|public
 specifier|abstract
 class|class
 name|CharSource
+implements|implements
+name|InputSupplier
+argument_list|<
+name|Reader
+argument_list|>
 block|{
 comment|/**    * Opens a new {@link Reader} for reading from this source. This method should return a new,    * independent reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the reader    */
 DECL|method|openStream ()
@@ -153,6 +158,25 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link InputSupplier} interface and should not be called directly. Use {@link #openStream}    *     instead.    */
+annotation|@
+name|Override
+annotation|@
+name|Deprecated
+DECL|method|getInput ()
+specifier|public
+specifier|final
+name|Reader
+name|getInput
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|openStream
+argument_list|()
+return|;
+block|}
 comment|/**    * Opens a new {@link BufferedReader} for reading from this source. This method should return a    * new, independent reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the reader    */
 DECL|method|openBufferedStream ()
 specifier|public
