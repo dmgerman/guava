@@ -635,6 +635,59 @@ argument_list|)
 throw|;
 block|}
 block|}
+DECL|method|checkNoConflict (boolean safe, String conflictDescription, Entry<?, ?> entry1, Entry<?, ?> entry2)
+specifier|static
+name|void
+name|checkNoConflict
+parameter_list|(
+name|boolean
+name|safe
+parameter_list|,
+name|String
+name|conflictDescription
+parameter_list|,
+name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|entry1
+parameter_list|,
+name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|entry2
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|safe
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Multiple entries with same "
+operator|+
+name|conflictDescription
+operator|+
+literal|": "
+operator|+
+name|entry1
+operator|+
+literal|" and "
+operator|+
+name|entry2
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/**    * A builder for creating immutable map instances, especially {@code public    * static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableMap<String, Integer> WORD_TO_INT =    *       new ImmutableMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    * For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are    * even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
