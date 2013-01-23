@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -80,28 +80,6 @@ name|Comparator
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-operator|.
-name|Entry
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class implements the GWT serialization of {@link TreeBasedTable}.  *  * @author Hayward Chan  */
 end_comment
@@ -112,7 +90,7 @@ specifier|public
 class|class
 name|TreeBasedTable_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, TreeBasedTable<?, ?, ?> instance)
+DECL|method|deserialize (SerializationStreamReader reader, TreeBasedTable<?, ?, ?> table)
 specifier|public
 specifier|static
 name|void
@@ -129,10 +107,10 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|instance
+name|table
 parameter_list|)
 block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|TreeBasedTable
@@ -197,27 +175,6 @@ operator|.
 name|readObject
 argument_list|()
 decl_stmt|;
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|backingMap
-init|=
-operator|(
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-operator|)
-name|reader
-operator|.
-name|readObject
-argument_list|()
-decl_stmt|;
 name|TreeBasedTable
 argument_list|<
 name|Object
@@ -237,54 +194,18 @@ argument_list|,
 name|columnComparator
 argument_list|)
 decl_stmt|;
-for|for
-control|(
-name|Entry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|row
-range|:
-name|backingMap
-operator|.
-name|entrySet
-argument_list|()
-control|)
-block|{
-name|table
-operator|.
-name|row
-argument_list|(
-name|row
-operator|.
-name|getKey
-argument_list|()
-argument_list|)
-operator|.
-name|putAll
-argument_list|(
-operator|(
-name|Map
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-operator|)
-name|row
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 return|return
+name|Table_CustomFieldSerializerBase
+operator|.
+name|populate
+argument_list|(
+name|reader
+argument_list|,
 name|table
+argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, TreeBasedTable<?, ?, ?> instance)
+DECL|method|serialize (SerializationStreamWriter writer, TreeBasedTable<?, ?, ?> table)
 specifier|public
 specifier|static
 name|void
@@ -301,17 +222,16 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|instance
+name|table
 parameter_list|)
 throws|throws
 name|SerializationException
 block|{
-comment|/*      * The backing map of a TreeBasedTable is a tree map of tree map.      * Therefore, the backing map is GWT serializable (assuming the row,      * column, value, the row comparator and column comparator are all      * serializable).      */
 name|writer
 operator|.
 name|writeObject
 argument_list|(
-name|instance
+name|table
 operator|.
 name|rowComparator
 argument_list|()
@@ -321,19 +241,19 @@ name|writer
 operator|.
 name|writeObject
 argument_list|(
-name|instance
+name|table
 operator|.
 name|columnComparator
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|writer
+name|Table_CustomFieldSerializerBase
 operator|.
-name|writeObject
+name|serialize
 argument_list|(
-name|instance
-operator|.
-name|backingMap
+name|writer
+argument_list|,
+name|table
 argument_list|)
 expr_stmt|;
 block|}

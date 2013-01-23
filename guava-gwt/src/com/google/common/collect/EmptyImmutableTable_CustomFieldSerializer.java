@@ -30,24 +30,6 @@ name|client
 operator|.
 name|rpc
 operator|.
-name|SerializationException
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|gwt
-operator|.
-name|user
-operator|.
-name|client
-operator|.
-name|rpc
-operator|.
 name|SerializationStreamReader
 import|;
 end_import
@@ -71,16 +53,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link HashBasedTable}.  *  * @author Hayward Chan  */
+comment|/**  * This class implements the GWT serialization of {@link EmptyImmutableTable}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
-DECL|class|HashBasedTable_CustomFieldSerializer
+DECL|class|EmptyImmutableTable_CustomFieldSerializer
 specifier|public
 class|class
-name|HashBasedTable_CustomFieldSerializer
+name|EmptyImmutableTable_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, HashBasedTable<?, ?, ?> table)
+DECL|method|deserialize (SerializationStreamReader reader, EmptyImmutableTable instance)
 specifier|public
 specifier|static
 name|void
@@ -89,51 +71,27 @@ parameter_list|(
 name|SerializationStreamReader
 name|reader
 parameter_list|,
-name|HashBasedTable
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|table
+name|EmptyImmutableTable
+name|instance
 parameter_list|)
 block|{   }
 DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
-name|HashBasedTable
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+name|EmptyImmutableTable
 name|instantiate
 parameter_list|(
 name|SerializationStreamReader
 name|reader
 parameter_list|)
-throws|throws
-name|SerializationException
 block|{
 return|return
-name|Table_CustomFieldSerializerBase
+name|EmptyImmutableTable
 operator|.
-name|populate
-argument_list|(
-name|reader
-argument_list|,
-name|HashBasedTable
-operator|.
-name|create
-argument_list|()
-argument_list|)
+name|INSTANCE
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, HashBasedTable<?, ?, ?> table)
+DECL|method|serialize (SerializationStreamWriter writer, EmptyImmutableTable instance)
 specifier|public
 specifier|static
 name|void
@@ -142,29 +100,10 @@ parameter_list|(
 name|SerializationStreamWriter
 name|writer
 parameter_list|,
-name|HashBasedTable
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|,
-name|?
-argument_list|>
-name|table
+name|EmptyImmutableTable
+name|instance
 parameter_list|)
-throws|throws
-name|SerializationException
-block|{
-name|Table_CustomFieldSerializerBase
-operator|.
-name|serialize
-argument_list|(
-name|writer
-argument_list|,
-name|table
-argument_list|)
-expr_stmt|;
-block|}
+block|{   }
 block|}
 end_class
 

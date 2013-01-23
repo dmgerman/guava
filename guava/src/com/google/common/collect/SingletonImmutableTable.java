@@ -88,7 +88,6 @@ begin_class
 annotation|@
 name|GwtCompatible
 DECL|class|SingletonImmutableTable
-specifier|final
 class|class
 name|SingletonImmutableTable
 parameter_list|<
@@ -109,19 +108,16 @@ name|V
 argument_list|>
 block|{
 DECL|field|singleRowKey
-specifier|private
 specifier|final
 name|R
 name|singleRowKey
 decl_stmt|;
 DECL|field|singleColumnKey
-specifier|private
 specifier|final
 name|C
 name|singleColumnKey
 decl_stmt|;
 DECL|field|singleValue
-specifier|private
 specifier|final
 name|V
 name|singleValue

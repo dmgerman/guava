@@ -71,16 +71,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link HashBasedTable}.  *  * @author Hayward Chan  */
+comment|/**  * This class implements the GWT serialization of {@link SingletonImmutableTable}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
-DECL|class|HashBasedTable_CustomFieldSerializer
+DECL|class|SingletonImmutableTable_CustomFieldSerializer
 specifier|public
 class|class
-name|HashBasedTable_CustomFieldSerializer
+name|SingletonImmutableTable_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, HashBasedTable<?, ?, ?> table)
+DECL|method|deserialize ( SerializationStreamReader reader, SingletonImmutableTable<?, ?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -89,7 +89,7 @@ parameter_list|(
 name|SerializationStreamReader
 name|reader
 parameter_list|,
-name|HashBasedTable
+name|SingletonImmutableTable
 argument_list|<
 name|?
 argument_list|,
@@ -97,13 +97,13 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|table
+name|instance
 parameter_list|)
 block|{   }
-DECL|method|instantiate (SerializationStreamReader reader)
+DECL|method|instantiate ( SerializationStreamReader reader)
 specifier|public
 specifier|static
-name|HashBasedTable
+name|SingletonImmutableTable
 argument_list|<
 name|Object
 argument_list|,
@@ -119,21 +119,50 @@ parameter_list|)
 throws|throws
 name|SerializationException
 block|{
-return|return
-name|Table_CustomFieldSerializerBase
-operator|.
-name|populate
-argument_list|(
+name|Object
+name|rowKey
+init|=
 name|reader
-argument_list|,
-name|HashBasedTable
 operator|.
-name|create
+name|readObject
 argument_list|()
+decl_stmt|;
+name|Object
+name|columnKey
+init|=
+name|reader
+operator|.
+name|readObject
+argument_list|()
+decl_stmt|;
+name|Object
+name|value
+init|=
+name|reader
+operator|.
+name|readObject
+argument_list|()
+decl_stmt|;
+return|return
+operator|new
+name|SingletonImmutableTable
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+argument_list|(
+name|rowKey
+argument_list|,
+name|columnKey
+argument_list|,
+name|value
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, HashBasedTable<?, ?, ?> table)
+DECL|method|serialize ( SerializationStreamWriter writer, SingletonImmutableTable<?, ?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -142,7 +171,7 @@ parameter_list|(
 name|SerializationStreamWriter
 name|writer
 parameter_list|,
-name|HashBasedTable
+name|SingletonImmutableTable
 argument_list|<
 name|?
 argument_list|,
@@ -150,18 +179,36 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|table
+name|instance
 parameter_list|)
 throws|throws
 name|SerializationException
 block|{
-name|Table_CustomFieldSerializerBase
-operator|.
-name|serialize
-argument_list|(
 name|writer
-argument_list|,
-name|table
+operator|.
+name|writeObject
+argument_list|(
+name|instance
+operator|.
+name|singleRowKey
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|writeObject
+argument_list|(
+name|instance
+operator|.
+name|singleColumnKey
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|writeObject
+argument_list|(
+name|instance
+operator|.
+name|singleValue
 argument_list|)
 expr_stmt|;
 block|}

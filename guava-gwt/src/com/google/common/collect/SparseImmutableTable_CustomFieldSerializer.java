@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
+comment|/*  * Copyright (C) 2012 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -71,16 +71,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link HashBasedTable}.  *  * @author Hayward Chan  */
+comment|/**  * This class implements the GWT serialization of {@link SparseImmutableTable}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
-DECL|class|HashBasedTable_CustomFieldSerializer
+DECL|class|SparseImmutableTable_CustomFieldSerializer
 specifier|public
 class|class
-name|HashBasedTable_CustomFieldSerializer
+name|SparseImmutableTable_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, HashBasedTable<?, ?, ?> table)
+DECL|method|deserialize ( SerializationStreamReader reader, SparseImmutableTable<?, ?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -89,7 +89,7 @@ parameter_list|(
 name|SerializationStreamReader
 name|reader
 parameter_list|,
-name|HashBasedTable
+name|SparseImmutableTable
 argument_list|<
 name|?
 argument_list|,
@@ -97,13 +97,13 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|table
+name|instance
 parameter_list|)
 block|{   }
-DECL|method|instantiate (SerializationStreamReader reader)
+DECL|method|instantiate ( SerializationStreamReader reader)
 specifier|public
 specifier|static
-name|HashBasedTable
+name|SparseImmutableTable
 argument_list|<
 name|Object
 argument_list|,
@@ -120,20 +120,25 @@ throws|throws
 name|SerializationException
 block|{
 return|return
-name|Table_CustomFieldSerializerBase
+operator|(
+name|SparseImmutableTable
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+operator|)
+name|ImmutableTable_CustomFieldSerializerBase
 operator|.
-name|populate
+name|instantiate
 argument_list|(
 name|reader
-argument_list|,
-name|HashBasedTable
-operator|.
-name|create
-argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, HashBasedTable<?, ?, ?> table)
+DECL|method|serialize ( SerializationStreamWriter writer, SparseImmutableTable<Object, Object, Object> table)
 specifier|public
 specifier|static
 name|void
@@ -142,20 +147,20 @@ parameter_list|(
 name|SerializationStreamWriter
 name|writer
 parameter_list|,
-name|HashBasedTable
+name|SparseImmutableTable
 argument_list|<
-name|?
+name|Object
 argument_list|,
-name|?
+name|Object
 argument_list|,
-name|?
+name|Object
 argument_list|>
 name|table
 parameter_list|)
 throws|throws
 name|SerializationException
 block|{
-name|Table_CustomFieldSerializerBase
+name|ImmutableTable_CustomFieldSerializerBase
 operator|.
 name|serialize
 argument_list|(
