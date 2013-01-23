@@ -144,20 +144,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Objects
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Splitter
 import|;
 end_import
@@ -846,7 +832,9 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Returns the domain name, normalized to all lower case.    */
+comment|/**    * A deprecated synonym for {@link #toString()}.    *    * @since 15.0    * @deprecated Use {@link #toString()}    */
+annotation|@
+name|Deprecated
 DECL|method|name ()
 specifier|public
 name|String
@@ -854,7 +842,8 @@ name|name
 parameter_list|()
 block|{
 return|return
-name|name
+name|toString
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns the individual components of this domain name, normalized to all    * lower case. For example, for the domain name {@code mail.google.com}, this    * method returns the list {@code ["mail", "google", "com"]}.    */
@@ -1172,7 +1161,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|// TODO: specify this to return the same as name(); remove name()
+comment|/**    * Returns the domain name, normalized to all lower case.    */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -1182,22 +1171,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|Objects
-operator|.
-name|toStringHelper
-argument_list|(
-name|this
-argument_list|)
-operator|.
-name|add
-argument_list|(
-literal|"name"
-argument_list|,
 name|name
-argument_list|)
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 comment|/**    * Equality testing is based on the text supplied by the caller,    * after normalization as described in the class documentation. For    * example, a non-ASCII Unicode domain name and the Punycode version    * of the same domain name would not be considered equal.    *    */

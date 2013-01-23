@@ -1569,10 +1569,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"String.toLowerCase(Locale)"
 argument_list|)
-DECL|method|testName ()
+DECL|method|testToString ()
 specifier|public
 name|void
-name|testName
+name|testToString
 parameter_list|()
 block|{
 for|for
