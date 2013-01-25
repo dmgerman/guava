@@ -40,12 +40,36 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Callable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ScheduledExecutorService
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
 begin_comment
-comment|/**  * A {@link ScheduledExecutorService} that returns {@link ListenableFuture}  * instances from its {@code ExecutorService} methods.  Futures returned by the  * {@code schedule*} methods, by contrast, need not implement {@code  * ListenableFuture}.  (To create an instance from an existing {@link  * ScheduledExecutorService}, call {@link  * MoreExecutors#listeningDecorator(ScheduledExecutorService)}.  *  *<p>TODO(cpovirk): make at least the one-time schedule() methods return a  * ListenableFuture, too? But then we'll need ListenableScheduledFuture...  *  * @author Chris Povirk  * @since 10.0  */
+comment|/**  * A {@link ScheduledExecutorService} that returns {@link ListenableFuture}  * instances from its {@code ExecutorService} methods. To create an instance  * from an existing {@link ScheduledExecutorService}, call  * {@link MoreExecutors#listeningDecorator(ScheduledExecutorService)}.  *  * @author Chris Povirk  * @since 10.0  */
 end_comment
 
 begin_interface
@@ -59,7 +83,100 @@ extends|extends
 name|ScheduledExecutorService
 extends|,
 name|ListeningExecutorService
-block|{ }
+block|{
+comment|/** @since 15.0 (previously returned ScheduledFuture) */
+annotation|@
+name|Override
+DECL|method|schedule ( Runnable command, long delay, TimeUnit unit)
+name|ListenableScheduledFuture
+argument_list|<
+name|?
+argument_list|>
+name|schedule
+parameter_list|(
+name|Runnable
+name|command
+parameter_list|,
+name|long
+name|delay
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+function_decl|;
+comment|/** @since 15.0 (previously returned ScheduledFuture) */
+annotation|@
+name|Override
+DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
+argument_list|<
+name|V
+argument_list|>
+name|ListenableScheduledFuture
+argument_list|<
+name|V
+argument_list|>
+name|schedule
+parameter_list|(
+name|Callable
+argument_list|<
+name|V
+argument_list|>
+name|callable
+parameter_list|,
+name|long
+name|delay
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+function_decl|;
+comment|/** @since 15.0 (previously returned ScheduledFuture) */
+annotation|@
+name|Override
+DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long period, TimeUnit unit)
+name|ListenableScheduledFuture
+argument_list|<
+name|?
+argument_list|>
+name|scheduleAtFixedRate
+parameter_list|(
+name|Runnable
+name|command
+parameter_list|,
+name|long
+name|initialDelay
+parameter_list|,
+name|long
+name|period
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+function_decl|;
+comment|/** @since 15.0 (previously returned ScheduledFuture) */
+annotation|@
+name|Override
+DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long delay, TimeUnit unit)
+name|ListenableScheduledFuture
+argument_list|<
+name|?
+argument_list|>
+name|scheduleWithFixedDelay
+parameter_list|(
+name|Runnable
+name|command
+parameter_list|,
+name|long
+name|initialDelay
+parameter_list|,
+name|long
+name|delay
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+function_decl|;
+block|}
 end_interface
 
 end_unit

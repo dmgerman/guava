@@ -106,6 +106,22 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ListenableScheduledFuture
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ListeningScheduledExecutorService
 import|;
 end_import
@@ -311,7 +327,7 @@ specifier|public
 parameter_list|<
 name|V
 parameter_list|>
-name|ScheduledFuture
+name|ListenableScheduledFuture
 argument_list|<
 name|V
 argument_list|>
@@ -337,11 +353,11 @@ name|create
 argument_list|()
 return|;
 block|}
-DECL|method|schedule (Runnable command, long delay, TimeUnit unit)
+DECL|method|schedule ( Runnable command, long delay, TimeUnit unit)
 annotation|@
 name|Override
 specifier|public
-name|ScheduledFuture
+name|ListenableScheduledFuture
 argument_list|<
 name|?
 argument_list|>
@@ -368,7 +384,7 @@ DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long peri
 annotation|@
 name|Override
 specifier|public
-name|ScheduledFuture
+name|ListenableScheduledFuture
 argument_list|<
 name|?
 argument_list|>
@@ -398,7 +414,7 @@ DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long d
 annotation|@
 name|Override
 specifier|public
-name|ScheduledFuture
+name|ListenableScheduledFuture
 argument_list|<
 name|?
 argument_list|>
@@ -438,7 +454,7 @@ argument_list|<
 name|V
 argument_list|>
 implements|implements
-name|ScheduledFuture
+name|ListenableScheduledFuture
 argument_list|<
 name|V
 argument_list|>
