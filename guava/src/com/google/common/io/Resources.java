@@ -271,7 +271,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Resources.newByteSource("
+literal|"Resources.asByteSource("
 operator|+
 name|url
 operator|+
