@@ -48,7 +48,9 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Runner
+name|runner
+operator|.
+name|CaliperMain
 import|;
 end_import
 
@@ -474,7 +476,7 @@ name|args
 parameter_list|)
 block|{
 comment|/*     try {       UnsignedBytesBenchmark bench = new UnsignedBytesBenchmark();       bench.length = 1024;       bench.setUp();       bench.timeUnsafe(100000);     } catch (Exception e) {     }*/
-name|Runner
+name|CaliperMain
 operator|.
 name|main
 argument_list|(

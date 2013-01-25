@@ -80,7 +80,9 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Runner
+name|runner
+operator|.
+name|CaliperMain
 import|;
 end_import
 
@@ -812,7 +814,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
-name|Runner
+name|CaliperMain
 operator|.
 name|main
 argument_list|(

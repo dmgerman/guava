@@ -48,7 +48,9 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Runner
+name|runner
+operator|.
+name|CaliperMain
 import|;
 end_import
 
@@ -1195,7 +1197,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|Runner
+name|CaliperMain
 operator|.
 name|main
 argument_list|(
