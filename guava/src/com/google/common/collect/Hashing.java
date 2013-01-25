@@ -44,16 +44,6 @@ name|Ints
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Static methods for implementing hash-based collections.  *  * @author Kevin Bourrillion  * @author Jesse Wilson  * @author Austin Appleby  */
 end_comment
@@ -114,37 +104,7 @@ literal|15
 argument_list|)
 return|;
 block|}
-DECL|method|smearedHash (@ullable Object o)
-specifier|static
-name|int
-name|smearedHash
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|o
-parameter_list|)
-block|{
-return|return
-name|smear
-argument_list|(
-operator|(
-name|o
-operator|==
-literal|null
-operator|)
-condition|?
-literal|0
-else|:
-name|o
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-return|;
-block|}
 DECL|field|MAX_TABLE_SIZE
-specifier|private
 specifier|static
 name|int
 name|MAX_TABLE_SIZE
@@ -191,16 +151,14 @@ decl_stmt|;
 comment|// Check to make sure that we will not exceed the maximum load factor.
 if|if
 condition|(
+operator|(
+name|double
+operator|)
 name|expectedEntries
-operator|>
-call|(
-name|int
-call|)
-argument_list|(
-name|loadFactor
-operator|*
+operator|/
 name|tableSize
-argument_list|)
+operator|>
+name|loadFactor
 condition|)
 block|{
 name|tableSize
