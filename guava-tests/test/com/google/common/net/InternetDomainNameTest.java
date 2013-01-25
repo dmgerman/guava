@@ -1712,7 +1712,7 @@ name|void
 name|testMultipleUnders
 parameter_list|()
 block|{
-comment|// PSL has both *.uk and *.police.uk; the latter should win.
+comment|// PSL has both *.uk and *.sch.uk; the latter should win.
 comment|// See http://code.google.com/p/guava-libraries/issues/detail?id=1176
 name|InternetDomainName
 name|domain
@@ -1721,7 +1721,7 @@ name|InternetDomainName
 operator|.
 name|from
 argument_list|(
-literal|"www.essex.police.uk"
+literal|"www.essex.sch.uk"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1734,7 +1734,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"essex.police.uk"
+literal|"essex.sch.uk"
 argument_list|,
 name|domain
 operator|.
@@ -1747,7 +1747,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"www.essex.police.uk"
+literal|"www.essex.sch.uk"
 argument_list|,
 name|domain
 operator|.
