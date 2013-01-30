@@ -1099,6 +1099,11 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+name|eventsToDispatch
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_function
