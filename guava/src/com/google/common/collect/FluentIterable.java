@@ -616,8 +616,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Applies {@code function} to each element of this fluent iterable and returns    * a fluent iterable with the concatenated combination of results.  {@code function}    * returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this    * function-returned iterables' iterator does. After a successful {@code remove()} call,    * the returned fluent iterable no longer contains the corresponding element.    *    * @since 13.0    */
-DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<T>> function)
+comment|/**    * Applies {@code function} to each element of this fluent iterable and returns    * a fluent iterable with the concatenated combination of results.  {@code function}    * returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this    * function-returned iterables' iterator does. After a successful {@code remove()} call,    * the returned fluent iterable no longer contains the corresponding element.    *    * @since 13.0 (required {@code Function<E, Iterable<T>>} until 14.0)    */
+DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<? extends T>> function)
 specifier|public
 parameter_list|<
 name|T
@@ -638,6 +638,8 @@ name|?
 extends|extends
 name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|T
 argument_list|>
 argument_list|>
