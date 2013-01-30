@@ -1634,8 +1634,8 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
+name|checkNoConflict
+argument_list|(
 name|comparator
 operator|.
 name|compare
@@ -1658,32 +1658,24 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|)
-operator|==
+operator|!=
 literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Duplicate keys in mappings "
-operator|+
+argument_list|,
+literal|"key"
+argument_list|,
 name|entries
 index|[
 name|i
 operator|-
 literal|1
 index|]
-operator|+
-literal|" and "
-operator|+
+argument_list|,
 name|entries
 index|[
 name|i
 index|]
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a builder that creates immutable sorted maps whose keys are    * ordered by their natural ordering. The sorted maps use {@link    * Ordering#natural()} as the comparator.    */

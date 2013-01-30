@@ -2958,18 +2958,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-name|assertEquals
-argument_list|(
-literal|"duplicate key: one"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{       }
 block|}
 DECL|method|testOf ()
 specifier|public
@@ -3274,18 +3263,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{
-name|assertEquals
-argument_list|(
-literal|"duplicate key: one"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+block|{       }
 block|}
 DECL|method|testCopyOfEmptyMap ()
 specifier|public

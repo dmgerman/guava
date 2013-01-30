@@ -616,8 +616,9 @@ name|getNextInKToVBucket
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
+name|checkNoConflict
+argument_list|(
+operator|!
 name|key
 operator|.
 name|equals
@@ -627,22 +628,14 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Multiple entries with same key: "
-operator|+
+argument_list|,
+literal|"key"
+argument_list|,
 name|entry
-operator|+
-literal|" and "
-operator|+
+argument_list|,
 name|kToVEntry
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 block|}
 name|BiMapEntry
 argument_list|<
@@ -681,8 +674,9 @@ name|getNextInVToKBucket
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
+name|checkNoConflict
+argument_list|(
+operator|!
 name|value
 operator|.
 name|equals
@@ -692,22 +686,14 @@ operator|.
 name|getValue
 argument_list|()
 argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Multiple entries with same value: "
-operator|+
+argument_list|,
+literal|"value"
+argument_list|,
 name|entry
-operator|+
-literal|" and "
-operator|+
+argument_list|,
 name|vToKEntry
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 block|}
 name|BiMapEntry
 argument_list|<
