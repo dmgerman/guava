@@ -230,6 +230,41 @@ operator|==
 literal|0
 return|;
 block|}
+comment|/**    * Returns 1 if {@code x< y} as unsigned integers, and 0 otherwise. Assumes that x - y fits into    * a signed int. The implementation is branch-free, and benchmarks suggest it is measurably (if    * narrowly) faster than the straightforward ternary expression.    */
+annotation|@
+name|VisibleForTesting
+DECL|method|lessThanBranchFree (int x, int y)
+specifier|static
+name|int
+name|lessThanBranchFree
+parameter_list|(
+name|int
+name|x
+parameter_list|,
+name|int
+name|y
+parameter_list|)
+block|{
+comment|// The double negation is optimized away by normal Java, but is necessary for GWT
+comment|// to make sure bit twiddling works as expected.
+return|return
+operator|~
+operator|~
+operator|(
+name|x
+operator|-
+name|y
+operator|)
+operator|>>>
+operator|(
+name|Integer
+operator|.
+name|SIZE
+operator|-
+literal|1
+operator|)
+return|;
+block|}
 comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of two    */
 annotation|@
 name|SuppressWarnings
@@ -358,17 +393,14 @@ operator|-
 name|leadingZeros
 decl_stmt|;
 return|return
-operator|(
-name|x
-operator|<=
-name|cmp
-operator|)
-condition|?
-name|logFloor
-else|:
 name|logFloor
 operator|+
-literal|1
+name|lessThanBranchFree
+argument_list|(
+name|cmp
+argument_list|,
+name|x
+argument_list|)
 return|;
 default|default:
 throw|throw
@@ -413,32 +445,19 @@ name|x
 argument_list|)
 index|]
 decl_stmt|;
-comment|// y is the higher of the two possible values of floor(log10(x))
-name|int
-name|sgn
-init|=
-operator|(
-name|x
+comment|/*      * y is the higher of the two possible values of floor(log10(x)). If x< 10^y, then we want the      * lower of the two possible values, or y - 1, otherwise, we want y.      */
+return|return
+name|y
 operator|-
+name|lessThanBranchFree
+argument_list|(
+name|x
+argument_list|,
 name|powersOf10
 index|[
 name|y
 index|]
-operator|)
-operator|>>>
-operator|(
-name|Integer
-operator|.
-name|SIZE
-operator|-
-literal|1
-operator|)
-decl_stmt|;
-comment|/*      * sgn is the sign bit of x - 10^y; it is 1 if x< 10^y, and 0 otherwise. If x< 10^y, then we      * want the lower of the two possible values, or y - 1, otherwise, we want y.      */
-return|return
-name|y
-operator|-
-name|sgn
+argument_list|)
 return|;
 block|}
 comment|// maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))

@@ -270,6 +270,45 @@ operator|==
 literal|0
 return|;
 block|}
+comment|/**    * Returns 1 if {@code x< y} as unsigned longs, and 0 otherwise.  Assumes that x - y fits into a    * signed long.  The implementation is branch-free, and benchmarks suggest it is measurably    * faster than the straightforward ternary expression.    */
+annotation|@
+name|VisibleForTesting
+DECL|method|lessThanBranchFree (long x, long y)
+specifier|static
+name|int
+name|lessThanBranchFree
+parameter_list|(
+name|long
+name|x
+parameter_list|,
+name|long
+name|y
+parameter_list|)
+block|{
+comment|// Returns the sign bit of x - y.
+return|return
+call|(
+name|int
+call|)
+argument_list|(
+operator|~
+operator|~
+operator|(
+name|x
+operator|-
+name|y
+operator|)
+operator|>>>
+operator|(
+name|Long
+operator|.
+name|SIZE
+operator|-
+literal|1
+operator|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the base-2 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of two    */
 annotation|@
 name|SuppressWarnings
@@ -398,17 +437,14 @@ operator|-
 name|leadingZeros
 decl_stmt|;
 return|return
-operator|(
-name|x
-operator|<=
-name|cmp
-operator|)
-condition|?
-name|logFloor
-else|:
 name|logFloor
 operator|+
-literal|1
+name|lessThanBranchFree
+argument_list|(
+name|cmp
+argument_list|,
+name|x
+argument_list|)
 return|;
 default|default:
 throw|throw
@@ -463,28 +499,6 @@ argument_list|,
 name|x
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|fitsInInt
-argument_list|(
-name|x
-argument_list|)
-condition|)
-block|{
-return|return
-name|IntMath
-operator|.
-name|log10
-argument_list|(
-operator|(
-name|int
-operator|)
-name|x
-argument_list|,
-name|mode
-argument_list|)
-return|;
-block|}
 name|int
 name|logFloor
 init|=
@@ -533,17 +547,14 @@ case|case
 name|UP
 case|:
 return|return
-operator|(
-name|x
-operator|==
-name|floorPow
-operator|)
-condition|?
-name|logFloor
-else|:
 name|logFloor
 operator|+
-literal|1
+name|lessThanBranchFree
+argument_list|(
+name|floorPow
+argument_list|,
+name|x
+argument_list|)
 return|;
 case|case
 name|HALF_DOWN
@@ -556,20 +567,17 @@ name|HALF_EVEN
 case|:
 comment|// sqrt(10) is irrational, so log10(x)-logFloor is never exactly 0.5
 return|return
-operator|(
-name|x
-operator|<=
+name|logFloor
+operator|+
+name|lessThanBranchFree
+argument_list|(
 name|halfPowersOf10
 index|[
 name|logFloor
 index|]
-operator|)
-condition|?
-name|logFloor
-else|:
-name|logFloor
-operator|+
-literal|1
+argument_list|,
+name|x
+argument_list|)
 return|;
 default|default:
 throw|throw
@@ -607,35 +615,19 @@ name|x
 argument_list|)
 index|]
 decl_stmt|;
-comment|// y is the higher of the two possible values of floor(log10(x))
-name|long
-name|sgn
-init|=
-operator|(
-name|x
+comment|/*      * y is the higher of the two possible values of floor(log10(x)). If x< 10^y, then we want the      * lower of the two possible values, or y - 1, otherwise, we want y.      */
+return|return
+name|y
 operator|-
+name|lessThanBranchFree
+argument_list|(
+name|x
+argument_list|,
 name|powersOf10
 index|[
 name|y
 index|]
-operator|)
-operator|>>>
-operator|(
-name|Long
-operator|.
-name|SIZE
-operator|-
-literal|1
-operator|)
-decl_stmt|;
-comment|/*      * sgn is the sign bit of x - 10^y; it is 1 if x< 10^y, and 0 otherwise. If x< 10^y, then we      * want the lower of the two possible values, or y - 1, otherwise, we want y.      */
-return|return
-name|y
-operator|-
-operator|(
-name|int
-operator|)
-name|sgn
+argument_list|)
 return|;
 block|}
 comment|// maxLog10ForLeadingZeros[i] == floor(log10(2^(Long.SIZE - i)))
@@ -1196,19 +1188,16 @@ case|case
 name|UP
 case|:
 return|return
-operator|(
+name|sqrtFloor
+operator|+
+name|lessThanBranchFree
+argument_list|(
 name|sqrtFloor
 operator|*
 name|sqrtFloor
-operator|==
+argument_list|,
 name|x
-operator|)
-condition|?
-name|sqrtFloor
-else|:
-name|sqrtFloor
-operator|+
-literal|1
+argument_list|)
 return|;
 case|case
 name|HALF_DOWN
@@ -1228,23 +1217,16 @@ name|sqrtFloor
 operator|+
 name|sqrtFloor
 decl_stmt|;
-comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both          * x and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare. (We have to deal with overflow, though.)          */
+comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both          * x and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare. (We have to deal with overflow, though.)          *           * If we treat halfSquare as an unsigned long, we know that          *            sqrtFloor^2<= x< (sqrtFloor + 1)^2          * halfSquare - sqrtFloor<= x< halfSquare + sqrtFloor + 1          * so |x - halfSquare|<= sqrtFloor.  Therefore, it's safe to treat x - halfSquare as a          * signed long, so lessThanBranchFree is safe for use.          */
 return|return
-operator|(
-name|halfSquare
-operator|>=
-name|x
-operator||
-name|halfSquare
-operator|<
-literal|0
-operator|)
-condition|?
-name|sqrtFloor
-else|:
 name|sqrtFloor
 operator|+
-literal|1
+name|lessThanBranchFree
+argument_list|(
+name|halfSquare
+argument_list|,
+name|x
+argument_list|)
 return|;
 default|default:
 throw|throw
@@ -1622,11 +1604,7 @@ throw|throw
 operator|new
 name|ArithmeticException
 argument_list|(
-literal|"Modulus "
-operator|+
-name|m
-operator|+
-literal|" must be> 0"
+literal|"Modulus must be positive"
 argument_list|)
 throw|;
 block|}
@@ -3286,11 +3264,6 @@ block|}
 decl_stmt|;
 comment|// These values were generated by using checkedMultiply to see when the simple multiply/divide
 comment|// algorithm would lead to an overflow.
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|fitsInInt (long x)
 specifier|static
 name|boolean
