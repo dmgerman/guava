@@ -2340,9 +2340,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|// Here it would have been nice to have had an
-comment|// UninterruptibleListenableFuture, but we don't want to start a
-comment|// combinatorial explosion of interfaces, so we have to make do.
 name|set
 argument_list|(
 name|getUninterruptibly

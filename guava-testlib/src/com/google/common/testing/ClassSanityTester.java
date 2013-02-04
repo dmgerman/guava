@@ -3007,7 +3007,7 @@ argument_list|()
 return|;
 block|}
 comment|// sampleInstances is a type-safe class-values mapping, but we don't have a type-safe data
-comment|// data structure to hold the mappings.
+comment|// structure to hold the mappings.
 annotation|@
 name|SuppressWarnings
 argument_list|(

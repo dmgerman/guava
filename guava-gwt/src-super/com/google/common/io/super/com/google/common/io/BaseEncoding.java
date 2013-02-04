@@ -1653,12 +1653,14 @@ name|paddingChar
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|StandardBaseEncoding (Alphabet alphabet, Character paddingChar)
+DECL|method|StandardBaseEncoding (Alphabet alphabet, @Nullable Character paddingChar)
 name|StandardBaseEncoding
 parameter_list|(
 name|Alphabet
 name|alphabet
 parameter_list|,
+annotation|@
+name|Nullable
 name|Character
 name|paddingChar
 parameter_list|)

@@ -463,7 +463,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Returns the result of {@link Equivalence#hash(Object)} applied to the the wrapped reference.      */
+comment|/**      * Returns the result of {@link Equivalence#hash(Object)} applied to the wrapped reference.      */
 DECL|method|hashCode ()
 annotation|@
 name|Override

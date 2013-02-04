@@ -2596,7 +2596,7 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@link Optional} containing the first element in {@code    * iterator} that satisfies the given predicate, if such an element exists. If    * no such element is found, an empty {@link Optional} will be returned from    * this method and the the iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code    * null}. If {@code null} is matched in {@code iterator}, a    * NullPointerException will be thrown.    *    * @since 11.0    */
+comment|/**    * Returns an {@link Optional} containing the first element in {@code    * iterator} that satisfies the given predicate, if such an element exists. If    * no such element is found, an empty {@link Optional} will be returned from    * this method and the iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code    * null}. If {@code null} is matched in {@code iterator}, a    * NullPointerException will be thrown.    *    * @since 11.0    */
 DECL|method|tryFind ( Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static

@@ -244,7 +244,7 @@ argument_list|(
 operator|!
 name|isRunning
 argument_list|,
-literal|"This stopwatch is already running; it cannot be started more than once."
+literal|"This stopwatch is already running."
 argument_list|)
 expr_stmt|;
 name|isRunning
@@ -281,7 +281,7 @@ name|checkState
 argument_list|(
 name|isRunning
 argument_list|,
-literal|"This stopwatch is already stopped; it cannot be stopped more than once."
+literal|"This stopwatch is already stopped."
 argument_list|)
 expr_stmt|;
 name|isRunning
