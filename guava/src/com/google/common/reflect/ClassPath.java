@@ -84,6 +84,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|FluentIterable
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|ImmutableMap
 import|;
 end_import
@@ -293,7 +307,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Scans the source of a {@link ClassLoader} and finds all the classes loadable.  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Scans the source of a {@link ClassLoader} and finds all loadable classes and resources.  *  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -461,7 +475,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns all resources loadable from the current class path, including the class files of all    * loadable classes.    */
+comment|/**    * Returns all resources loadable from the current class path, including the class files of all    * loadable classes but excluding the "META-INF/MANIFEST.MF" file.    */
 DECL|method|getResources ()
 specifier|public
 name|ImmutableSet
@@ -485,50 +499,22 @@ argument_list|>
 name|getTopLevelClasses
 parameter_list|()
 block|{
-name|ImmutableSet
-operator|.
-name|Builder
-argument_list|<
-name|ClassInfo
-argument_list|>
-name|builder
-init|=
-name|ImmutableSet
-operator|.
-name|builder
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|ResourceInfo
-name|resource
-range|:
-name|resources
-control|)
-block|{
-if|if
-condition|(
-name|resource
-operator|instanceof
-name|ClassInfo
-condition|)
-block|{
-name|builder
-operator|.
-name|add
-argument_list|(
-operator|(
-name|ClassInfo
-operator|)
-name|resource
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 return|return
-name|builder
+name|FluentIterable
 operator|.
-name|build
+name|from
+argument_list|(
+name|resources
+argument_list|)
+operator|.
+name|filter
+argument_list|(
+name|ClassInfo
+operator|.
+name|class
+argument_list|)
+operator|.
+name|toSet
 argument_list|()
 return|;
 block|}
@@ -1002,7 +988,7 @@ return|return
 name|className
 return|;
 block|}
-comment|/** Loads (but doesn't link or initialize) the class. */
+comment|/**      * Loads (but doesn't link or initialize) the class.      *      * @throws LinkageError when there were errors in loading classes that this class depends on.      *         For example, {@link NoClassDefFoundError}.      */
 DECL|method|load ()
 specifier|public
 name|Class
@@ -1419,6 +1405,19 @@ name|packagePrefix
 operator|+
 name|name
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|resourceName
+operator|.
+name|equals
+argument_list|(
+name|JarFile
+operator|.
+name|MANIFEST_NAME
+argument_list|)
+condition|)
+block|{
 name|resources
 operator|.
 name|add
@@ -1433,6 +1432,7 @@ name|classloader
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1549,9 +1549,11 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|startsWith
+name|equals
 argument_list|(
-literal|"META-INF/"
+name|JarFile
+operator|.
+name|MANIFEST_NAME
 argument_list|)
 condition|)
 block|{
