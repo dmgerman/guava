@@ -669,7 +669,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initiates service {@linkplain Service#start startup} on all the services being managed.  It is    * only valid to call this method if all of the services are {@linkplain State#NEW new}.    *     * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the     *     method is called, {@link State#TERMINATED terminated} or {@link State#FAILED failed}.    */
+comment|/**    * Initiates service {@linkplain Service#start startup} on all the services being managed.  It is    * only valid to call this method if all of the services are {@linkplain State#NEW new}.    *     * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the     *     method is called.    */
 DECL|method|startAsync ()
 specifier|public
 name|ServiceManager
@@ -1522,8 +1522,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
+return|return
 name|monitor
 operator|.
 name|waitForUninterruptibly
@@ -1534,14 +1533,6 @@ name|timeout
 argument_list|,
 name|unit
 argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
 return|;
 block|}
 finally|finally
@@ -2170,17 +2161,22 @@ parameter_list|)
 block|{
 name|logger
 operator|.
-name|info
+name|log
 argument_list|(
-literal|"Service "
-operator|+
+name|Level
+operator|.
+name|FINE
+argument_list|,
+literal|"Service {0} has terminated. Previous state was: {1}"
+argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|service
-operator|+
-literal|" has terminated. Previous state was "
-operator|+
+block|,
 name|from
-operator|+
-literal|" state."
+block|}
 argument_list|)
 expr_stmt|;
 name|state
@@ -2349,18 +2345,19 @@ name|log
 argument_list|(
 name|Level
 operator|.
-name|INFO
+name|FINE
 argument_list|,
-literal|"Started "
-operator|+
+literal|"Started {0} in {1} ms."
+argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
 name|service
-operator|+
-literal|" in "
-operator|+
+block|,
 name|startupTimeMillis
 argument_list|()
-operator|+
-literal|" ms."
+block|}
 argument_list|)
 expr_stmt|;
 block|}
@@ -2420,9 +2417,9 @@ name|log
 argument_list|(
 name|Level
 operator|.
-name|INFO
+name|FINE
 argument_list|,
-literal|"Starting {0}"
+literal|"Starting {0}."
 argument_list|,
 name|service
 argument_list|)
