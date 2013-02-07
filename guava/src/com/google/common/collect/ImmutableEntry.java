@@ -125,6 +125,7 @@ name|Nullable
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|K
 name|getKey
 parameter_list|()
@@ -139,6 +140,7 @@ name|Nullable
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|V
 name|getValue
 parameter_list|()
