@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not  * use this file except in compliance with the License. You may obtain a copy of  * the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -42,16 +42,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -61,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An empty immutable set.  *  * @author Kevin Bourrillion  */
+comment|/**  * An empty immutable multiset.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -76,12 +66,12 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-DECL|class|EmptyImmutableSet
+DECL|class|EmptyImmutableMultiset
 specifier|final
 class|class
-name|EmptyImmutableSet
+name|EmptyImmutableMultiset
 extends|extends
-name|ImmutableSet
+name|ImmutableMultiset
 argument_list|<
 name|Object
 argument_list|>
@@ -89,45 +79,33 @@ block|{
 DECL|field|INSTANCE
 specifier|static
 specifier|final
-name|EmptyImmutableSet
+name|EmptyImmutableMultiset
 name|INSTANCE
 init|=
 operator|new
-name|EmptyImmutableSet
+name|EmptyImmutableMultiset
 argument_list|()
 decl_stmt|;
-DECL|method|EmptyImmutableSet ()
-specifier|private
-name|EmptyImmutableSet
-parameter_list|()
-block|{}
 annotation|@
 name|Override
-DECL|method|size ()
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
-name|size
-parameter_list|()
+name|count
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|element
+parameter_list|)
 block|{
 return|return
 literal|0
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
-specifier|public
-name|boolean
-name|isEmpty
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-DECL|method|contains (@ullable Object target)
-annotation|@
-name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -135,16 +113,16 @@ parameter_list|(
 annotation|@
 name|Nullable
 name|Object
-name|target
+name|object
 parameter_list|)
 block|{
 return|return
 literal|false
 return|;
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -163,9 +141,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -181,33 +159,144 @@ name|emptyIterator
 argument_list|()
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
+specifier|public
 name|boolean
-name|isPartialView
-parameter_list|()
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
 block|{
+if|if
+condition|(
+name|object
+operator|instanceof
+name|Multiset
+condition|)
+block|{
+name|Multiset
+argument_list|<
+name|?
+argument_list|>
+name|other
+init|=
+operator|(
+name|Multiset
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|object
+decl_stmt|;
+return|return
+name|other
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
 return|return
 literal|false
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
+DECL|method|hashCode ()
+specifier|public
 name|int
-name|copyIntoArray
-parameter_list|(
-name|Object
-index|[]
-name|dst
-parameter_list|,
-name|int
-name|offset
-parameter_list|)
+name|hashCode
+parameter_list|()
 block|{
 return|return
-name|offset
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|elementSet ()
+specifier|public
+name|ImmutableSet
+argument_list|<
+name|Object
+argument_list|>
+name|elementSet
+parameter_list|()
+block|{
+return|return
+name|ImmutableSet
+operator|.
+name|of
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|entrySet ()
+specifier|public
+name|ImmutableSet
+argument_list|<
+name|Entry
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+name|entrySet
+parameter_list|()
+block|{
+return|return
+name|ImmutableSet
+operator|.
+name|of
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|createEntrySet ()
+name|ImmutableSet
+argument_list|<
+name|Entry
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+name|createEntrySet
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"should never be called"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|size ()
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|isPartialView ()
+name|boolean
+name|isPartialView
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 annotation|@
@@ -226,87 +315,6 @@ name|ImmutableList
 operator|.
 name|of
 argument_list|()
-return|;
-block|}
-DECL|method|equals (@ullable Object object)
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|object
-parameter_list|)
-block|{
-if|if
-condition|(
-name|object
-operator|instanceof
-name|Set
-condition|)
-block|{
-name|Set
-argument_list|<
-name|?
-argument_list|>
-name|that
-init|=
-operator|(
-name|Set
-argument_list|<
-name|?
-argument_list|>
-operator|)
-name|object
-decl_stmt|;
-return|return
-name|that
-operator|.
-name|isEmpty
-argument_list|()
-return|;
-block|}
-return|return
-literal|false
-return|;
-block|}
-DECL|method|hashCode ()
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-DECL|method|isHashCodeFast ()
-annotation|@
-name|Override
-name|boolean
-name|isHashCodeFast
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"[]"
 return|;
 block|}
 DECL|method|readResolve ()

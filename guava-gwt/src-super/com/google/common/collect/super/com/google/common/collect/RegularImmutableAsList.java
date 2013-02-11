@@ -30,20 +30,6 @@ name|GwtCompatible
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
 begin_comment
 comment|/**  * An {@link ImmutableAsList} implementation specialized for when the delegate collection is  * already backed by an {@code ImmutableList} or array.  *  * @author Louis Wasserman  */
 end_comment
@@ -215,36 +201,6 @@ operator|.
 name|listIterator
 argument_list|(
 name|index
-argument_list|)
-return|;
-block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"not present in emulated superclass"
-argument_list|)
-annotation|@
-name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
-name|int
-name|copyIntoArray
-parameter_list|(
-name|Object
-index|[]
-name|dst
-parameter_list|,
-name|int
-name|offset
-parameter_list|)
-block|{
-return|return
-name|delegateList
-operator|.
-name|copyIntoArray
-argument_list|(
-name|dst
-argument_list|,
-name|offset
 argument_list|)
 return|;
 block|}

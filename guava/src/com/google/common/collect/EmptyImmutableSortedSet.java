@@ -278,45 +278,22 @@ name|of
 argument_list|()
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
-specifier|public
+DECL|method|copyIntoArray (Object[] dst, int offset)
+name|int
+name|copyIntoArray
+parameter_list|(
 name|Object
 index|[]
-name|toArray
-parameter_list|()
-block|{
-return|return
-name|ObjectArrays
-operator|.
-name|EMPTY_ARRAY
-return|;
-block|}
-DECL|method|toArray (T[] a)
-annotation|@
-name|Override
-specifier|public
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|toArray
-parameter_list|(
-name|T
-index|[]
-name|a
+name|dst
+parameter_list|,
+name|int
+name|offset
 parameter_list|)
 block|{
 return|return
-name|asList
-argument_list|()
-operator|.
-name|toArray
-argument_list|(
-name|a
-argument_list|)
+name|offset
 return|;
 block|}
 DECL|method|equals (@ullable Object object)

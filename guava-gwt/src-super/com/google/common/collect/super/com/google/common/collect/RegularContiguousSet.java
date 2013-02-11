@@ -643,53 +643,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|// copied to make sure not to use the GWT-emulated version
-DECL|method|toArray ()
-annotation|@
-name|Override
-specifier|public
-name|Object
-index|[]
-name|toArray
-parameter_list|()
-block|{
-return|return
-name|ObjectArrays
-operator|.
-name|toArrayImpl
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
-comment|// copied to make sure not to use the GWT-emulated version
-DECL|method|toArray (T[] other)
-annotation|@
-name|Override
-specifier|public
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|toArray
-parameter_list|(
-name|T
-index|[]
-name|other
-parameter_list|)
-block|{
-return|return
-name|ObjectArrays
-operator|.
-name|toArrayImpl
-argument_list|(
-name|this
-argument_list|,
-name|other
-argument_list|)
-return|;
-block|}
 DECL|method|intersection (ContiguousSet<C> other)
 annotation|@
 name|Override

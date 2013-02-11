@@ -305,47 +305,6 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|toArray ()
-annotation|@
-name|Override
-specifier|public
-name|Object
-index|[]
-name|toArray
-parameter_list|()
-block|{
-return|return
-name|delegate
-operator|.
-name|toArray
-argument_list|()
-return|;
-block|}
-DECL|method|toArray (T[] array)
-annotation|@
-name|Override
-specifier|public
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|toArray
-parameter_list|(
-name|T
-index|[]
-name|array
-parameter_list|)
-block|{
-return|return
-name|delegate
-operator|.
-name|toArray
-argument_list|(
-name|array
-argument_list|)
-return|;
-block|}
 DECL|method|equals (Object object)
 annotation|@
 name|Override
