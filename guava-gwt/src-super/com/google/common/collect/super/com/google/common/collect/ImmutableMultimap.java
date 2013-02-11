@@ -1587,6 +1587,32 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|containsValue (@ullable Object value)
+specifier|public
+name|boolean
+name|containsValue
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|value
+parameter_list|)
+block|{
+return|return
+name|value
+operator|!=
+literal|null
+operator|&&
+name|super
+operator|.
+name|containsValue
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -2518,6 +2544,28 @@ name|multimap
 operator|=
 name|multimap
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|contains (@ullable Object object)
+specifier|public
+name|boolean
+name|contains
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|multimap
+operator|.
+name|containsValue
+argument_list|(
+name|object
+argument_list|)
+return|;
 block|}
 DECL|method|iterator ()
 annotation|@
