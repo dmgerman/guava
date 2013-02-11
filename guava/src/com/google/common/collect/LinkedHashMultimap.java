@@ -2333,6 +2333,26 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|valueIterator ()
+name|Iterator
+argument_list|<
+name|V
+argument_list|>
+name|valueIterator
+parameter_list|()
+block|{
+return|return
+name|Maps
+operator|.
+name|valueIterator
+argument_list|(
+name|entryIterator
+argument_list|()
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|clear ()
 specifier|public
 name|void
