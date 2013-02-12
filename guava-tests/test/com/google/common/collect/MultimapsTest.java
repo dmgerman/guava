@@ -2163,19 +2163,6 @@ operator|instanceof
 name|Serializable
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-name|unmodifiable
-operator|.
-name|asMap
-argument_list|()
-operator|.
-name|values
-argument_list|()
-operator|instanceof
-name|Serializable
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Prepares the multimap for unmodifiable tests, returning an unmodifiable view    * of the map.    */
 DECL|method|prepareUnmodifiableTests ( Multimap<String, Integer> multimap, boolean permitsDuplicates, @Nullable String nullKey, @Nullable Integer nullValue)
