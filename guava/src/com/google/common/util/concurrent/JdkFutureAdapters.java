@@ -35,6 +35,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Uninterruptibles
+operator|.
+name|getUninterruptibly
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -464,10 +482,11 @@ parameter_list|()
 block|{
 try|try
 block|{
+comment|/*                * Threads from our private pool are never interrupted. Threads                * from a user-supplied executor might be, but... what can we do?                * This is another reason to return a proper ListenableFuture                * instead of using listenInPoolThread.                */
+name|getUninterruptibly
+argument_list|(
 name|delegate
-operator|.
-name|get
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -478,29 +497,6 @@ parameter_list|)
 block|{
 throw|throw
 name|e
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-comment|// Threads from our private pool are never interrupted.
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-name|e
-argument_list|)
 throw|;
 block|}
 catch|catch
