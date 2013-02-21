@@ -430,9 +430,8 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-name|Throwables
-operator|.
-name|propagate
+operator|new
+name|RuntimeException
 argument_list|(
 name|e
 argument_list|)
