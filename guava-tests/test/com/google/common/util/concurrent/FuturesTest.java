@@ -2072,11 +2072,15 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+comment|// We need to test with two input futures since ExecutionList.execute
+comment|// doesn't catch Errors and we cannot depend on the order that our
+comment|// transformations run. (So it is possible that the Error being thrown
+comment|// could prevent our second transformations from running).
 name|SettableFuture
 argument_list|<
 name|Integer
 argument_list|>
-name|input
+name|exceptionInput
 init|=
 name|SettableFuture
 operator|.
@@ -2093,11 +2097,38 @@ name|Futures
 operator|.
 name|transform
 argument_list|(
-name|input
+name|exceptionInput
 argument_list|,
 name|newOneTimeExceptionThrower
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|exceptionInput
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|runGetIdempotencyTest
+argument_list|(
+name|exceptionComposedFuture
+argument_list|,
+name|MyRuntimeException
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|SettableFuture
+argument_list|<
+name|Integer
+argument_list|>
+name|errorInput
+init|=
+name|SettableFuture
+operator|.
+name|create
+argument_list|()
 decl_stmt|;
 name|ListenableFuture
 argument_list|<
@@ -2109,7 +2140,7 @@ name|Futures
 operator|.
 name|transform
 argument_list|(
-name|input
+name|errorInput
 argument_list|,
 name|newOneTimeErrorThrower
 argument_list|()
@@ -2117,7 +2148,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|input
+name|errorInput
 operator|.
 name|set
 argument_list|(
@@ -2138,15 +2169,6 @@ comment|/*        * The ListenableFuture variant rethrows errors from execute() 
 block|}
 name|runGetIdempotencyTest
 argument_list|(
-name|exceptionComposedFuture
-argument_list|,
-name|MyRuntimeException
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|runGetIdempotencyTest
-argument_list|(
 name|errorComposedFuture
 argument_list|,
 name|MyError
@@ -2161,7 +2183,7 @@ name|Futures
 operator|.
 name|transform
 argument_list|(
-name|input
+name|exceptionInput
 argument_list|,
 name|newOneTimeExceptionThrower
 argument_list|()
@@ -2182,7 +2204,7 @@ name|Futures
 operator|.
 name|transform
 argument_list|(
-name|input
+name|errorInput
 argument_list|,
 name|newOneTimeErrorThrower
 argument_list|()
@@ -2197,7 +2219,18 @@ parameter_list|(
 name|MyError
 name|expected
 parameter_list|)
-block|{     }
+block|{
+comment|// Again, errors are rethrown from execute.
+block|}
+name|runGetIdempotencyTest
+argument_list|(
+name|errorComposedFuture
+argument_list|,
+name|MyError
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|runGetIdempotencyTest (Future<Integer> transformedFuture, Class<? extends Throwable> expectedExceptionClass)
 specifier|private
