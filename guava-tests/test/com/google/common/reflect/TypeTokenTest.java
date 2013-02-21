@@ -3942,6 +3942,9 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
+operator|(
+name|List
+operator|)
 name|TypeToken
 operator|.
 name|of
@@ -3962,7 +3965,7 @@ name|getGenericInterfaces
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 operator|new
 name|TypeToken
@@ -4009,6 +4012,9 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
+operator|(
+name|List
+operator|)
 name|TypeToken
 operator|.
 name|of
@@ -4029,7 +4035,7 @@ name|getGenericInterfaces
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|TypeToken
 operator|.
@@ -4085,6 +4091,9 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
+operator|(
+name|List
+operator|)
 name|TypeToken
 operator|.
 name|of
@@ -4105,7 +4114,7 @@ name|getGenericInterfaces
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|TypeToken
 operator|.
@@ -4161,6 +4170,9 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
+operator|(
+name|List
+operator|)
 name|TypeToken
 operator|.
 name|of
@@ -4181,7 +4193,7 @@ name|getGenericInterfaces
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 operator|new
 name|TypeToken
@@ -4293,6 +4305,9 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
+operator|(
+name|List
+operator|)
 name|TypeToken
 operator|.
 name|of
@@ -4313,7 +4328,7 @@ name|getGenericInterfaces
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|TypeToken
 operator|.
@@ -4491,6 +4506,9 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
+operator|(
+name|List
+operator|)
 name|TypeToken
 operator|.
 name|of
@@ -4510,7 +4528,7 @@ name|getGenericInterfaces
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|interfaceType
 argument_list|)
