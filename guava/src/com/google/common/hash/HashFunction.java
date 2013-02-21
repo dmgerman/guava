@@ -127,7 +127,7 @@ name|int
 name|len
 parameter_list|)
 function_decl|;
-comment|/**    * Shortcut for {@code newHasher().putString(input).hash()}. The implementation<i>might</i>    * perform better than its longhand equivalent, but should not perform worse. Note that no    * character encoding is performed; the low byte and high byte of each character are hashed    * directly (in that order). This is equivalent to using    * {@code hashString(input, Charsets.UTF_16LE)}.    */
+comment|/**    * Shortcut for {@code newHasher().putString(input).hash()}. The implementation<i>might</i>    * perform better than its longhand equivalent, but should not perform worse. Note that no    * character encoding is performed; the low byte and high byte of each character are hashed    * directly (in that order).    */
 DECL|method|hashString (CharSequence input)
 name|HashCode
 name|hashString
