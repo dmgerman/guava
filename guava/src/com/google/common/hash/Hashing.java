@@ -675,26 +675,6 @@ parameter_list|()
 function_decl|;
 block|}
 comment|// Lazy initialization holder class idiom.
-comment|/**    * If {@code hashCode} has enough bits, returns {@code hashCode.asLong()}, otherwise    * returns a {@code long} value with {@code hashCode.asInt()} as the least-significant    * four bytes and {@code 0x00} as each of the most-significant four bytes.    *    * @deprecated Use {@code HashCode.padToLong()} instead. This method is scheduled to be    *     removed in Guava 15.0.    */
-annotation|@
-name|Deprecated
-DECL|method|padToLong (HashCode hashCode)
-specifier|public
-specifier|static
-name|long
-name|padToLong
-parameter_list|(
-name|HashCode
-name|hashCode
-parameter_list|)
-block|{
-return|return
-name|hashCode
-operator|.
-name|padToLong
-argument_list|()
-return|;
-block|}
 comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    *<p>    * If you might want to have weights for the buckets in the future, take a look at    * {@code weightedConsistentHash}.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public

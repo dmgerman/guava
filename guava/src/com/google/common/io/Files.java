@@ -380,18 +380,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|zip
-operator|.
-name|Checksum
-import|;
-end_import
-
 begin_comment
 comment|/**  * Provides utility methods for working with files.  *  *<p>All method parameters must be non-null unless documented otherwise.  *  * @author Chris Nokleberg  * @author Colin Decker  * @since 1.0  */
 end_comment
@@ -2319,38 +2307,6 @@ name|file
 argument_list|)
 argument_list|,
 name|processor
-argument_list|)
-return|;
-block|}
-comment|/**    * Computes and returns the checksum value for a file.    * The checksum object is reset when this method returns successfully.    *    * @param file the file to read    * @param checksum the checksum object    * @return the result of {@link Checksum#getValue} after updating the    *     checksum object with all of the bytes in the file    * @throws IOException if an I/O error occurs    * @deprecated Use {@code hash} with the {@code Hashing.crc32()} or    *     {@code Hashing.adler32()} hash functions. This method is scheduled    *     to be removed in Guava 15.0.    */
-annotation|@
-name|Deprecated
-DECL|method|getChecksum (File file, Checksum checksum)
-specifier|public
-specifier|static
-name|long
-name|getChecksum
-parameter_list|(
-name|File
-name|file
-parameter_list|,
-name|Checksum
-name|checksum
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|ByteStreams
-operator|.
-name|getChecksum
-argument_list|(
-name|newInputStreamSupplier
-argument_list|(
-name|file
-argument_list|)
-argument_list|,
-name|checksum
 argument_list|)
 return|;
 block|}
