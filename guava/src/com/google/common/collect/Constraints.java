@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -121,12 +135,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factories and utilities pertaining to the {@link Constraint} interface.  *  * @see MapConstraints  * @author Mike Bostock  * @author Jared Levy  * @since 3.0  */
+comment|/**  * Factories and utilities pertaining to the {@link Constraint} interface.  *  * @see MapConstraints  * @author Mike Bostock  * @author Jared Levy  * @since 3.0  * @deprecated Use {@link Preconditions} for basic checks. In place of  *     constrained collections, we encourage you to check your preconditions  *     explicitly instead of leaving that work to the collection implementation.  *     For the specific case of rejecting null, consider the immutable  *     collections.  *     This class is scheduled for removal in Guava 16.0.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtCompatible
 DECL|class|Constraints
