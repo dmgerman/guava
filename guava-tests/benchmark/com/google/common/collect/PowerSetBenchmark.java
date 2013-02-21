@@ -133,6 +133,10 @@ name|Integer
 argument_list|>
 name|set
 init|=
+name|ContiguousSet
+operator|.
+name|create
+argument_list|(
 name|Range
 operator|.
 name|closed
@@ -141,9 +145,7 @@ literal|1
 argument_list|,
 name|elements
 argument_list|)
-operator|.
-name|asSet
-argument_list|(
+argument_list|,
 name|integers
 argument_list|()
 argument_list|)

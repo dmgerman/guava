@@ -5299,6 +5299,10 @@ name|Integer
 argument_list|>
 name|set
 init|=
+name|ContiguousSet
+operator|.
+name|create
+argument_list|(
 name|Range
 operator|.
 name|closed
@@ -5307,9 +5311,7 @@ literal|0
 argument_list|,
 literal|10000
 argument_list|)
-operator|.
-name|asSet
-argument_list|(
+argument_list|,
 name|DiscreteDomain
 operator|.
 name|integers
