@@ -3036,12 +3036,7 @@ argument_list|(
 literal|"deprecation"
 argument_list|)
 comment|// TODO(kevinb): what to do?
-name|GenericMapMaker
-argument_list|<
-name|String
-argument_list|,
-name|Number
-argument_list|>
+name|MapMaker
 name|mapMaker
 init|=
 operator|new
@@ -3057,12 +3052,15 @@ name|maximumSize
 argument_list|(
 literal|1
 argument_list|)
+decl_stmt|;
+comment|/*      * Cleverly ignore the return type now that ConcurrentHashMultiset accepts only MapMaker and not      * the deprecated GenericMapMaker. We know that a RemovalListener<String, Number> is a type that      * will work with ConcurrentHashMultiset.      */
+name|mapMaker
 operator|.
 name|removalListener
 argument_list|(
 name|removalListener
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|ConcurrentHashMultiset
 argument_list|<
 name|String

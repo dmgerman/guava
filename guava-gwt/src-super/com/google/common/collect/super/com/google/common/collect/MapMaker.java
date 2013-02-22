@@ -109,6 +109,7 @@ end_comment
 begin_class
 DECL|class|MapMaker
 specifier|public
+specifier|final
 class|class
 name|MapMaker
 extends|extends
@@ -174,7 +175,7 @@ specifier|final
 name|int
 name|maximumSize
 decl_stmt|;
-DECL|method|ExpiringComputingMap ( long expirationMillis, int maximumSize, int initialCapacity, float loadFactor)
+DECL|method|ExpiringComputingMap ( long expirationMillis, int maximumSize, int initialCapacity)
 name|ExpiringComputingMap
 parameter_list|(
 name|long
@@ -185,9 +186,6 @@ name|maximumSize
 parameter_list|,
 name|int
 name|initialCapacity
-parameter_list|,
-name|float
-name|loadFactor
 parameter_list|)
 block|{
 name|this
@@ -199,12 +197,10 @@ argument_list|,
 name|maximumSize
 argument_list|,
 name|initialCapacity
-argument_list|,
-name|loadFactor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ExpiringComputingMap (long expirationMillis, Function<? super K, ? extends V> computer, int maximumSize, int initialCapacity, float loadFactor)
+DECL|method|ExpiringComputingMap (long expirationMillis, Function<? super K, ? extends V> computer, int maximumSize, int initialCapacity)
 name|ExpiringComputingMap
 parameter_list|(
 name|long
@@ -227,16 +223,14 @@ name|maximumSize
 parameter_list|,
 name|int
 name|initialCapacity
-parameter_list|,
-name|float
-name|loadFactor
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|initialCapacity
 argument_list|,
-name|loadFactor
+comment|/* ignored loadFactor */
+literal|0.75f
 argument_list|,
 operator|(
 name|maximumSize
@@ -705,13 +699,6 @@ name|initialCapacity
 init|=
 literal|16
 decl_stmt|;
-DECL|field|loadFactor
-specifier|private
-name|float
-name|loadFactor
-init|=
-literal|0.75f
-decl_stmt|;
 DECL|field|expirationMillis
 specifier|private
 name|long
@@ -766,38 +753,6 @@ operator|.
 name|initialCapacity
 operator|=
 name|initialCapacity
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-DECL|method|loadFactor (float loadFactor)
-specifier|public
-name|MapMaker
-name|loadFactor
-parameter_list|(
-name|float
-name|loadFactor
-parameter_list|)
-block|{
-if|if
-condition|(
-name|loadFactor
-operator|<=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|()
-throw|;
-block|}
-name|this
-operator|.
-name|loadFactor
-operator|=
-name|loadFactor
 expr_stmt|;
 return|return
 name|this
@@ -1002,8 +957,6 @@ argument_list|,
 name|maximumSize
 argument_list|,
 name|initialCapacity
-argument_list|,
-name|loadFactor
 argument_list|)
 else|:
 operator|new
@@ -1015,8 +968,6 @@ name|V
 argument_list|>
 argument_list|(
 name|initialCapacity
-argument_list|,
-name|loadFactor
 argument_list|)
 return|;
 block|}
@@ -1066,8 +1017,6 @@ argument_list|,
 name|maximumSize
 argument_list|,
 name|initialCapacity
-argument_list|,
-name|loadFactor
 argument_list|)
 return|;
 block|}
