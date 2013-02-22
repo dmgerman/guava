@@ -170,13 +170,13 @@ name|this
 operator|.
 name|singleKey
 operator|=
-name|singleKey
+name|key
 expr_stmt|;
 name|this
 operator|.
 name|singleValue
 operator|=
-name|singleValue
+name|value
 expr_stmt|;
 name|this
 operator|.
