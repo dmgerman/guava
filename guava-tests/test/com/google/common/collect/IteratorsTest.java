@@ -788,6 +788,70 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+DECL|method|testEmptyModifiableIterator ()
+specifier|public
+name|void
+name|testEmptyModifiableIterator
+parameter_list|()
+block|{
+name|Iterator
+argument_list|<
+name|String
+argument_list|>
+name|iterator
+init|=
+name|Iterators
+operator|.
+name|emptyModifiableIterator
+argument_list|()
+decl_stmt|;
+name|assertFalse
+argument_list|(
+name|iterator
+operator|.
+name|hasNext
+argument_list|()
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|iterator
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected NoSuchElementException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchElementException
+name|expected
+parameter_list|)
+block|{     }
+try|try
+block|{
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected IllegalStateException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalStateException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 DECL|method|testSize0 ()
 specifier|public
 name|void
