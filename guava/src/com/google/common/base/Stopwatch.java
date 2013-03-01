@@ -423,30 +423,6 @@ name|String
 name|toString
 parameter_list|()
 block|{
-return|return
-name|toString
-argument_list|(
-literal|4
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns a string representation of the current elapsed time, choosing an    * appropriate unit and using the specified number of significant figures.    * For example, at the instant when {@code elapsed(NANOSECONDS)} would    * return {1234567}, {@code toString(4)} returns {@code "1.235 ms"}.    *    * @deprecated Use {@link #toString()} instead. This method is scheduled    *     to be removed in Guava release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"String.format()"
-argument_list|)
-DECL|method|toString (int significantDigits)
-specifier|public
-name|String
-name|toString
-parameter_list|(
-name|int
-name|significantDigits
-parameter_list|)
-block|{
 name|long
 name|nanos
 init|=
@@ -484,11 +460,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"%."
-operator|+
-name|significantDigits
-operator|+
-literal|"g %s"
+literal|"%.4g %s"
 argument_list|,
 name|value
 argument_list|,
