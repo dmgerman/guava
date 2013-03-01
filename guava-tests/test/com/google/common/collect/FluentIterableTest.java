@@ -3500,6 +3500,11 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testSkip_illegalArgument ()
 specifier|public
 name|void
@@ -3617,6 +3622,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"ReturnValueIgnored"
+argument_list|)
 DECL|method|testLimit_illegalArgument ()
 specifier|public
 name|void

@@ -158,6 +158,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -386,6 +396,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a fluent iterable whose {@code Iterator} cycles indefinitely over the elements of    * this fluent iterable.    *    *<p>That iterator supports {@code remove()} if {@code iterable.iterator()} does. After    * {@code remove()} is called, subsequent cycles omit the removed element, which is no longer in    * this fluent iterable. The iterator's {@code hasNext()} method returns {@code true} until    * this fluent iterable is empty.    *    *<p><b>Warning:</b> Typical uses of the resulting iterator may produce an infinite loop. You    * should use an explicit {@code break} or be certain that you will eventually remove all the    * elements.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|cycle ()
 specifier|public
 specifier|final
@@ -409,6 +421,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the elements from this fluent iterable that satisfy a predicate. The    * resulting fluent iterable's iterator does not support {@code remove()}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filter (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -818,6 +832,8 @@ block|}
 block|}
 block|}
 comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip}    * elements. If this fluent iterable contains fewer than {@code numberToSkip} elements,    * the returned fluent iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are    * reflected in the returned fluent iterable. That is, the its iterator skips the first    * {@code numberToSkip} elements that exist when the iterator is created, not when {@code skip()}    * is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the    * {@code Iterator} of this fluent iterable supports it. Note that it is<i>not</i>    * possible to delete the last skipped element by immediately calling {@code remove()} on the    * returned fluent iterable's iterator, as the {@code Iterator} contract states that a call    * to {@code * remove()} before a call to {@code next()} will throw an    * {@link IllegalStateException}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|skip (int numberToSkip)
 specifier|public
 specifier|final
@@ -846,6 +862,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a fluent iterable with the first {@code size} elements of this    * fluent iterable. If this fluent iterable does not contain that many elements,    * the returned fluent iterable will have the same behavior as this fluent iterable.    * The returned fluent iterable's iterator supports {@code remove()} if this    * fluent iterable's iterator does.    *    * @param size the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
+annotation|@
+name|CheckReturnValue
 DECL|method|limit (int size)
 specifier|public
 specifier|final
