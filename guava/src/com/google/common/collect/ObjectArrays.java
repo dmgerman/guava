@@ -693,6 +693,17 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+name|EMPTY_ARRAY
+return|;
+block|}
 name|Object
 index|[]
 name|result

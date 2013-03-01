@@ -3389,6 +3389,27 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|Preconditions
+operator|.
+name|checkPositionIndex
+argument_list|(
+name|index
+argument_list|,
+name|length
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+name|emptyListIterator
+argument_list|()
+return|;
+block|}
 comment|/*      * We can't use call the two-arg constructor with arguments (offset, end)      * because the returned Iterator is a ListIterator that may be moved back      * past the beginning of the iteration.      */
 return|return
 operator|new

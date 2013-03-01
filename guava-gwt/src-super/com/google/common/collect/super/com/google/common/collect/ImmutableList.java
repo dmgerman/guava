@@ -158,6 +158,27 @@ argument_list|>
 implements|,
 name|RandomAccess
 block|{
+DECL|field|EMPTY
+specifier|static
+specifier|final
+name|ImmutableList
+argument_list|<
+name|Object
+argument_list|>
+name|EMPTY
+init|=
+operator|new
+name|RegularImmutableList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|(
+name|Collections
+operator|.
+name|emptyList
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|method|ImmutableList ()
 name|ImmutableList
 parameter_list|()
@@ -188,9 +209,7 @@ argument_list|<
 name|E
 argument_list|>
 operator|)
-name|EmptyImmutableList
-operator|.
-name|INSTANCE
+name|EMPTY
 return|;
 block|}
 DECL|method|of (E element)
