@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableMultiset} with one or more elements.  *  * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@link ImmutableMultiset} with zero or more elements.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -282,6 +282,22 @@ name|createEntrySet
 parameter_list|()
 block|{
 return|return
+name|map
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+name|ImmutableSet
+operator|.
+expr|<
+name|Entry
+argument_list|<
+name|E
+argument_list|>
+operator|>
+name|of
+argument_list|()
+else|:
 operator|new
 name|EntrySet
 argument_list|()
