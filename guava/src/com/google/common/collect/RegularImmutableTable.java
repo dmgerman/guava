@@ -385,19 +385,6 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|isEmpty ()
-annotation|@
-name|Override
-specifier|public
-specifier|final
-name|boolean
-name|isEmpty
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 DECL|method|forCells ( List<Cell<R, C, V>> cells, @Nullable final Comparator<? super R> rowComparator, @Nullable final Comparator<? super C> columnComparator)
 specifier|static
 specifier|final

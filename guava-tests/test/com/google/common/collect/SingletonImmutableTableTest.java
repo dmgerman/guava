@@ -402,9 +402,10 @@ argument_list|)
 operator|.
 name|addEqualityGroup
 argument_list|(
-name|EmptyImmutableTable
+name|ImmutableTable
 operator|.
-name|INSTANCE
+name|of
+argument_list|()
 argument_list|,
 name|HashBasedTable
 operator|.
