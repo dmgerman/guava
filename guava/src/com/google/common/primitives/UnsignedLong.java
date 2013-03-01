@@ -381,27 +381,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @deprecated Use {@link #plus(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|add (UnsignedLong val)
-specifier|public
-name|UnsignedLong
-name|add
-parameter_list|(
-name|UnsignedLong
-name|val
-parameter_list|)
-block|{
-return|return
-name|plus
-argument_list|(
-name|val
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @since 14.0    */
 DECL|method|plus (UnsignedLong val)
 specifier|public
@@ -425,27 +404,6 @@ name|val
 argument_list|)
 operator|.
 name|value
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 64 bits of the result.    *    * @deprecated Use {@link #minus(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|subtract (UnsignedLong val)
-specifier|public
-name|UnsignedLong
-name|subtract
-parameter_list|(
-name|UnsignedLong
-name|val
-parameter_list|)
-block|{
-return|return
-name|minus
-argument_list|(
-name|val
 argument_list|)
 return|;
 block|}
@@ -475,27 +433,6 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @deprecated Use {@link #times(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|multiply (UnsignedLong val)
-specifier|public
-name|UnsignedLong
-name|multiply
-parameter_list|(
-name|UnsignedLong
-name|val
-parameter_list|)
-block|{
-return|return
-name|times
-argument_list|(
-name|val
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @since 14.0    */
 annotation|@
 name|CheckReturnValue
@@ -519,27 +456,6 @@ name|val
 argument_list|)
 operator|.
 name|value
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the result of dividing this by {@code val}.    *    * @deprecated Use {@link #dividedBy(UnsignedLong)}.  This method is scheduled to be removed in    *             Guava release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|divide (UnsignedLong val)
-specifier|public
-name|UnsignedLong
-name|divide
-parameter_list|(
-name|UnsignedLong
-name|val
-parameter_list|)
-block|{
-return|return
-name|dividedBy
-argument_list|(
-name|val
 argument_list|)
 return|;
 block|}
@@ -571,27 +487,6 @@ argument_list|)
 operator|.
 name|value
 argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the remainder of dividing this by {@code val}.    *    * @deprecated Use {@link #mod(UnsignedLong)}.  This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|remainder (UnsignedLong val)
-specifier|public
-name|UnsignedLong
-name|remainder
-parameter_list|(
-name|UnsignedLong
-name|val
-parameter_list|)
-block|{
-return|return
-name|mod
-argument_list|(
-name|val
 argument_list|)
 return|;
 block|}

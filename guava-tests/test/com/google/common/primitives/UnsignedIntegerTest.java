@@ -1212,19 +1212,22 @@ block|{
 try|try
 block|{
 name|UnsignedInteger
+name|ignored
+init|=
+name|UnsignedInteger
 operator|.
 name|fromIntBits
 argument_list|(
 name|a
 argument_list|)
 operator|.
-name|divide
+name|dividedBy
 argument_list|(
 name|UnsignedInteger
 operator|.
 name|ZERO
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"

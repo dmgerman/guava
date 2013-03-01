@@ -414,27 +414,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *     * @deprecated Use {@link #plus(UnsignedInteger)}. This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|add (UnsignedInteger val)
-specifier|public
-name|UnsignedInteger
-name|add
-parameter_list|(
-name|UnsignedInteger
-name|val
-parameter_list|)
-block|{
-return|return
-name|plus
-argument_list|(
-name|val
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *     * @since 14.0    */
 annotation|@
 name|CheckReturnValue
@@ -463,27 +442,6 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *     * @deprecated Use {@link #minus(UnsignedInteger)}. This method is scheduled to be removed in    *             Guava release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|subtract (UnsignedInteger val)
-specifier|public
-name|UnsignedInteger
-name|subtract
-parameter_list|(
-name|UnsignedInteger
-name|val
-parameter_list|)
-block|{
-return|return
-name|minus
-argument_list|(
-name|val
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *     * @since 14.0    */
 annotation|@
 name|CheckReturnValue
@@ -507,27 +465,6 @@ name|val
 argument_list|)
 operator|.
 name|value
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the result of dividing this by {@code val}.    *     * @deprecated Use {@link #dividedBy(UnsignedInteger)}. This method is scheduled to be removed in    *             Guava release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|divide (UnsignedInteger val)
-specifier|public
-name|UnsignedInteger
-name|divide
-parameter_list|(
-name|UnsignedInteger
-name|val
-parameter_list|)
-block|{
-return|return
-name|dividedBy
-argument_list|(
-name|val
 argument_list|)
 return|;
 block|}
@@ -559,27 +496,6 @@ argument_list|)
 operator|.
 name|value
 argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the remainder of dividing this by {@code val}.    *     * @deprecated Use {@link #mod(UnsignedInteger)}. This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|remainder (UnsignedInteger val)
-specifier|public
-name|UnsignedInteger
-name|remainder
-parameter_list|(
-name|UnsignedInteger
-name|val
-parameter_list|)
-block|{
-return|return
-name|mod
-argument_list|(
-name|val
 argument_list|)
 return|;
 block|}
