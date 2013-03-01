@@ -641,9 +641,8 @@ try|try
 block|{
 if|if
 condition|(
-name|snapshot
-operator|.
 name|state
+argument_list|()
 operator|==
 name|State
 operator|.
@@ -714,11 +713,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|State
+name|previous
+init|=
+name|state
+argument_list|()
+decl_stmt|;
 switch|switch
 condition|(
-name|snapshot
-operator|.
-name|state
+name|previous
 condition|)
 block|{
 case|case
@@ -809,9 +812,7 @@ name|AssertionError
 argument_list|(
 literal|"Unexpected state: "
 operator|+
-name|snapshot
-operator|.
-name|state
+name|previous
 argument_list|)
 throw|;
 block|}
@@ -894,6 +895,8 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|// We have to examine the internal state of the snapshot here to properly handle the stop
+comment|// while starting case.
 if|if
 condition|(
 name|snapshot
@@ -994,19 +997,24 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
+comment|// We check the internal state of the snapshot instead of state() directly so we don't allow
+comment|// notifyStopped() to be called while STARTING, even if stop() has already been called.
+name|State
+name|previous
+init|=
 name|snapshot
 operator|.
 name|state
+decl_stmt|;
+if|if
+condition|(
+name|previous
 operator|!=
 name|State
 operator|.
 name|STOPPING
 operator|&&
-name|snapshot
-operator|.
-name|state
+name|previous
 operator|!=
 name|State
 operator|.
@@ -1021,9 +1029,7 @@ name|IllegalStateException
 argument_list|(
 literal|"Cannot notifyStopped() when the service is "
 operator|+
-name|snapshot
-operator|.
-name|state
+name|previous
 argument_list|)
 decl_stmt|;
 name|notifyFailed
@@ -1035,13 +1041,6 @@ throw|throw
 name|failure
 throw|;
 block|}
-name|State
-name|previous
-init|=
-name|snapshot
-operator|.
-name|state
-decl_stmt|;
 name|snapshot
 operator|=
 operator|new
@@ -1093,11 +1092,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|State
+name|previous
+init|=
+name|state
+argument_list|()
+decl_stmt|;
 switch|switch
 condition|(
-name|snapshot
-operator|.
-name|state
+name|previous
 condition|)
 block|{
 case|case
@@ -1112,9 +1115,7 @@ name|IllegalStateException
 argument_list|(
 literal|"Failed while in state:"
 operator|+
-name|snapshot
-operator|.
-name|state
+name|previous
 argument_list|,
 name|cause
 argument_list|)
@@ -1128,13 +1129,6 @@ case|:
 case|case
 name|STOPPING
 case|:
-name|State
-name|previous
-init|=
-name|snapshot
-operator|.
-name|state
-decl_stmt|;
 name|snapshot
 operator|=
 operator|new
@@ -1169,9 +1163,7 @@ name|AssertionError
 argument_list|(
 literal|"Unexpected state: "
 operator|+
-name|snapshot
-operator|.
-name|state
+name|previous
 argument_list|)
 throw|;
 block|}
@@ -1276,19 +1268,21 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|State
+name|currentState
+init|=
+name|state
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-name|snapshot
-operator|.
-name|state
+name|currentState
 operator|!=
 name|State
 operator|.
 name|TERMINATED
 operator|&&
-name|snapshot
-operator|.
-name|state
+name|currentState
 operator|!=
 name|State
 operator|.
