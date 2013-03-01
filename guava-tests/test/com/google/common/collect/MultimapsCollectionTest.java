@@ -4425,7 +4425,7 @@ argument_list|)
 operator|.
 name|named
 argument_list|(
-literal|"Multimaps.filterEntries[Maps.filterKeys[SetMultimap]]"
+literal|"Multimaps.filterEntries[Multimaps.filterKeys[SetMultimap]]"
 argument_list|)
 operator|.
 name|withFeatures
@@ -4591,7 +4591,7 @@ argument_list|)
 operator|.
 name|named
 argument_list|(
-literal|"Multimaps.filterKeys[Maps.filterEntries[SetMultimap]]"
+literal|"Multimaps.filterKeys[Multimaps.filterEntries[SetMultimap]]"
 argument_list|)
 operator|.
 name|withFeatures
@@ -4732,7 +4732,7 @@ argument_list|)
 operator|.
 name|named
 argument_list|(
-literal|"Multimaps.filterKeys[Maps.filterKeys[SetMultimap]]"
+literal|"Multimaps.filterKeys[Multimaps.filterKeys[SetMultimap]]"
 argument_list|)
 operator|.
 name|withFeatures

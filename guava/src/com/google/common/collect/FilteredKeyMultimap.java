@@ -283,15 +283,9 @@ name|entryPredicate
 parameter_list|()
 block|{
 return|return
-operator|new
 name|Maps
 operator|.
-name|KeyPredicate
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+name|keyPredicateOnEntries
 argument_list|(
 name|keyPredicate
 argument_list|)

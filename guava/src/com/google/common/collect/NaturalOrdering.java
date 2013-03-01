@@ -121,17 +121,6 @@ argument_list|(
 name|right
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|left
-operator|==
-name|right
-condition|)
-block|{
-return|return
-literal|0
-return|;
-block|}
 return|return
 name|left
 operator|.

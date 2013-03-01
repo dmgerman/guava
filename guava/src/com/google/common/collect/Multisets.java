@@ -4785,7 +4785,7 @@ name|Multisets
 operator|.
 name|DECREASING_COUNT_ORDERING
 operator|.
-name|sortedCopy
+name|immutableSortedCopy
 argument_list|(
 name|multiset
 operator|.
