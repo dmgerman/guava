@@ -166,6 +166,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|io
+operator|.
+name|BaseEncoding
+operator|.
+name|DecodingException
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -2271,6 +2287,29 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{
+comment|// success
+block|}
+try|try
+block|{
+name|encoding
+operator|.
+name|decodeChecked
+argument_list|(
+name|cannotDecode
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected DecodingException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DecodingException
 name|expected
 parameter_list|)
 block|{

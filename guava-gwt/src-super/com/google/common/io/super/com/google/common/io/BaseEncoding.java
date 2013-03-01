@@ -365,6 +365,43 @@ DECL|method|BaseEncoding ()
 name|BaseEncoding
 parameter_list|()
 block|{}
+comment|/**    * Exception indicating invalid base-encoded input encountered while decoding.    *    * @author Louis Wasserman    */
+DECL|class|DecodingException
+specifier|public
+specifier|static
+specifier|final
+class|class
+name|DecodingException
+extends|extends
+name|IOException
+block|{
+DECL|method|DecodingException (String message)
+name|DecodingException
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|DecodingException (Throwable cause)
+name|DecodingException
+parameter_list|(
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Encodes the specified byte array, and returns the encoded {@code String}.    */
 DECL|method|encode (byte[] bytes)
 specifier|public
@@ -577,6 +614,43 @@ name|CharSequence
 name|chars
 parameter_list|)
 block|{
+try|try
+block|{
+return|return
+name|decodeChecked
+argument_list|(
+name|chars
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|DecodingException
+name|badInput
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|badInput
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/**    * Decodes the specified character sequence, and returns the resulting {@code byte[]}.    * This is the inverse operation to {@link #encode(byte[])}.    *    * @throws DecodingException if the input is not a valid encoded string according to this    *         encoding.    */
+DECL|method|decodeChecked (CharSequence chars)
+specifier|final
+name|byte
+index|[]
+name|decodeChecked
+parameter_list|(
+name|CharSequence
+name|chars
+parameter_list|)
+throws|throws
+name|DecodingException
+block|{
 name|chars
 operator|=
 name|padding
@@ -659,15 +733,25 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|DecodingException
 name|badInput
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
 name|badInput
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|impossible
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+name|impossible
 argument_list|)
 throw|;
 block|}
@@ -1304,7 +1388,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|DecodingException
 argument_list|(
 literal|"Unrecognized character: "
 operator|+
@@ -2103,7 +2187,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|DecodingException
 argument_list|(
 literal|"Invalid input length "
 operator|+
@@ -2161,7 +2245,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|DecodingException
 argument_list|(
 literal|"Padding cannot start at index "
 operator|+
@@ -2182,7 +2266,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|DecodingException
 argument_list|(
 literal|"Expected padding character but found '"
 operator|+
