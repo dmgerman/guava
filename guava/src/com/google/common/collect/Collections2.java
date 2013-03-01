@@ -709,26 +709,33 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object element)
+DECL|method|contains (@ullable Object element)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|element
 parameter_list|)
 block|{
-try|try
+if|if
+condition|(
+name|safeContains
+argument_list|(
+name|unfiltered
+argument_list|,
+name|element
+argument_list|)
+condition|)
 block|{
-comment|// TODO(user): consider doing the predicate after unfiltered.contains,
-comment|// which would reduce the risk of CCE here
-comment|// unsafe cast can result in a CCE from predicate.apply(), which we
-comment|// will catch
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// element is in unfiltered, so it must be an E
 name|E
 name|e
 init|=
@@ -737,7 +744,6 @@ name|E
 operator|)
 name|element
 decl_stmt|;
-comment|/*          * We check whether e satisfies the predicate, when we really mean to          * check whether the element contained in the set does. This is ok as          * long as the predicate is consistent with equals, as required.          */
 return|return
 name|predicate
 operator|.
@@ -745,35 +751,11 @@ name|apply
 argument_list|(
 name|e
 argument_list|)
-operator|&&
-name|unfiltered
-operator|.
-name|contains
-argument_list|(
-name|element
-argument_list|)
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|NullPointerException
-name|e
-parameter_list|)
-block|{
 return|return
 literal|false
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -854,32 +836,10 @@ name|Object
 name|element
 parameter_list|)
 block|{
-try|try
-block|{
-comment|// TODO(user): consider doing the predicate after unfiltered.contains,
-comment|// which would reduce the risk of CCE here
-comment|// unsafe cast can result in a CCE from predicate.apply(), which we
-comment|// will catch
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-name|E
-name|e
-init|=
-operator|(
-name|E
-operator|)
-name|element
-decl_stmt|;
-comment|// See comment in contains() concerning predicate.apply(e)
 return|return
-name|predicate
-operator|.
-name|apply
+name|contains
 argument_list|(
-name|e
+name|element
 argument_list|)
 operator|&&
 name|unfiltered
@@ -889,27 +849,6 @@ argument_list|(
 name|element
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|NullPointerException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 annotation|@
 name|Override

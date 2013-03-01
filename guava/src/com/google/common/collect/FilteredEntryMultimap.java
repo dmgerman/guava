@@ -108,11 +108,17 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|AbstractMap
+name|common
+operator|.
+name|collect
+operator|.
+name|Maps
+operator|.
+name|ImprovedAbstractMap
 import|;
 end_import
 
@@ -897,7 +903,7 @@ DECL|class|AsMap
 class|class
 name|AsMap
 extends|extends
-name|AbstractMap
+name|ImprovedAbstractMap
 argument_list|<
 name|K
 argument_list|,
@@ -1191,43 +1197,17 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|field|keySet
-specifier|private
-name|Set
-argument_list|<
-name|K
-argument_list|>
-name|keySet
-decl_stmt|;
 annotation|@
 name|Override
-DECL|method|keySet ()
-specifier|public
+DECL|method|createKeySet ()
 name|Set
 argument_list|<
 name|K
 argument_list|>
-name|keySet
+name|createKeySet
 parameter_list|()
 block|{
-name|Set
-argument_list|<
-name|K
-argument_list|>
-name|result
-init|=
-name|keySet
-decl_stmt|;
-if|if
-condition|(
-name|result
-operator|==
-literal|null
-condition|)
-block|{
 return|return
-name|keySet
-operator|=
 operator|new
 name|Maps
 operator|.
@@ -1337,14 +1317,9 @@ block|}
 block|}
 return|;
 block|}
-return|return
-name|result
-return|;
-block|}
 annotation|@
 name|Override
-DECL|method|entrySet ()
-specifier|public
+DECL|method|createEntrySet ()
 name|Set
 argument_list|<
 name|Entry
@@ -1357,7 +1332,7 @@ name|V
 argument_list|>
 argument_list|>
 argument_list|>
-name|entrySet
+name|createEntrySet
 parameter_list|()
 block|{
 return|return
@@ -1622,8 +1597,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|values ()
-specifier|public
+DECL|method|createValues ()
 name|Collection
 argument_list|<
 name|Collection
@@ -1631,7 +1605,7 @@ argument_list|<
 name|V
 argument_list|>
 argument_list|>
-name|values
+name|createValues
 parameter_list|()
 block|{
 return|return
