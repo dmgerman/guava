@@ -317,6 +317,26 @@ throw|;
 block|}
 annotation|@
 name|Override
+DECL|method|asMultimap ()
+specifier|public
+name|ImmutableSetMultimap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|asMultimap
+parameter_list|()
+block|{
+return|return
+name|ImmutableSetMultimap
+operator|.
+name|of
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|headMap (K toKey, boolean inclusive)
 specifier|public
 name|ImmutableSortedMap

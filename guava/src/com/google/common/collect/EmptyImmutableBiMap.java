@@ -191,6 +191,26 @@ throw|;
 block|}
 annotation|@
 name|Override
+DECL|method|asMultimap ()
+specifier|public
+name|ImmutableSetMultimap
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|asMultimap
+parameter_list|()
+block|{
+return|return
+name|ImmutableSetMultimap
+operator|.
+name|of
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|keySet ()
 specifier|public
 name|ImmutableSet

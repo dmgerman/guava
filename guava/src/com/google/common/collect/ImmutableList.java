@@ -1977,6 +1977,7 @@ DECL|method|asList ()
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|ImmutableList
 argument_list|<
 name|E

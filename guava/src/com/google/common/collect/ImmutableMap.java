@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1868,8 +1884,30 @@ argument_list|>
 name|viewMapValuesAsSingletonSets
 parameter_list|()
 block|{
+return|return
+operator|new
+name|MapViewOfValuesAsSingletonSets
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+DECL|class|MapViewOfValuesAsSingletonSets
+specifier|private
+specifier|static
+specifier|final
 class|class
 name|MapViewOfValuesAsSingletonSets
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 extends|extends
 name|ImmutableMap
 argument_list|<
@@ -1881,6 +1919,40 @@ name|V
 argument_list|>
 argument_list|>
 block|{
+DECL|field|delegate
+specifier|private
+specifier|final
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|delegate
+decl_stmt|;
+DECL|method|MapViewOfValuesAsSingletonSets (ImmutableMap<K, V> delegate)
+name|MapViewOfValuesAsSingletonSets
+parameter_list|(
+name|ImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|delegate
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delegate
+operator|=
+name|checkNotNull
+argument_list|(
+name|delegate
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|size ()
 annotation|@
 name|Override
 specifier|public
@@ -1889,14 +1961,13 @@ name|size
 parameter_list|()
 block|{
 return|return
-name|ImmutableMap
-operator|.
-name|this
+name|delegate
 operator|.
 name|size
 argument_list|()
 return|;
 block|}
+DECL|method|containsKey (@ullable Object key)
 annotation|@
 name|Override
 specifier|public
@@ -1910,9 +1981,7 @@ name|key
 parameter_list|)
 block|{
 return|return
-name|ImmutableMap
-operator|.
-name|this
+name|delegate
 operator|.
 name|containsKey
 argument_list|(
@@ -1920,6 +1989,7 @@ name|key
 argument_list|)
 return|;
 block|}
+DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
 specifier|public
@@ -1938,9 +2008,7 @@ block|{
 name|V
 name|outerValue
 init|=
-name|ImmutableMap
-operator|.
-name|this
+name|delegate
 operator|.
 name|get
 argument_list|(
@@ -1964,6 +2032,7 @@ name|outerValue
 argument_list|)
 return|;
 block|}
+DECL|method|isPartialView ()
 annotation|@
 name|Override
 name|boolean
@@ -1974,6 +2043,7 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|createEntrySet ()
 annotation|@
 name|Override
 name|ImmutableSet
@@ -2054,9 +2124,7 @@ argument_list|>
 argument_list|>
 name|backingIterator
 init|=
-name|ImmutableMap
-operator|.
-name|this
+name|delegate
 operator|.
 name|entrySet
 argument_list|()
@@ -2181,12 +2249,6 @@ block|}
 block|}
 return|;
 block|}
-block|}
-return|return
-operator|new
-name|MapViewOfValuesAsSingletonSets
-argument_list|()
-return|;
 block|}
 DECL|method|equals (@ullable Object object)
 annotation|@
