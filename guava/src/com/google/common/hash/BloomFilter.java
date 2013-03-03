@@ -461,8 +461,6 @@ operator|.
 name|bitCount
 argument_list|()
 operator|/
-name|bits
-operator|.
 name|size
 argument_list|()
 argument_list|,
@@ -470,17 +468,17 @@ name|numHashFunctions
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Use {@link #expectedFpp} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|expectedFalsePositiveProbability ()
+comment|/**    * Returns the size of the underlying bit array.    *    * @since 15.0    */
+DECL|method|size ()
 specifier|public
-name|double
-name|expectedFalsePositiveProbability
+name|long
+name|size
 parameter_list|()
 block|{
 return|return
-name|expectedFpp
+name|bits
+operator|.
+name|size
 argument_list|()
 return|;
 block|}
@@ -648,14 +646,10 @@ name|checkArgument
 argument_list|(
 name|this
 operator|.
-name|bits
-operator|.
 name|size
 argument_list|()
 operator|==
 name|that
-operator|.
-name|bits
 operator|.
 name|size
 argument_list|()
@@ -664,14 +658,10 @@ literal|"BloomFilters must have the same size underlying bit arrays (%s != %s)"
 argument_list|,
 name|this
 operator|.
-name|bits
-operator|.
 name|size
 argument_list|()
 argument_list|,
 name|that
-operator|.
-name|bits
 operator|.
 name|size
 argument_list|()
