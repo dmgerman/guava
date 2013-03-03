@@ -58,20 +58,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -212,28 +198,6 @@ name|value
 operator|=
 name|value
 expr_stmt|;
-block|}
-comment|/**    * Returns an {@code UnsignedLong} that, when treated as signed, is equal to {@code value}. The    * inverse operation is {@link #longValue()}.    *    *<p>Put another way, if {@code value} is negative, the returned result will be equal to    * {@code 2^64 + value}; otherwise, the returned result will be equal to {@code value}.    *    * @deprecated Use {@link #fromLongBits(long)}. This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|asUnsigned (long value)
-specifier|public
-specifier|static
-name|UnsignedLong
-name|asUnsigned
-parameter_list|(
-name|long
-name|value
-parameter_list|)
-block|{
-return|return
-name|fromLongBits
-argument_list|(
-name|value
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns an {@code UnsignedLong} corresponding to a given bit representation.    * The argument is interpreted as an unsigned 64-bit value. Specifically, the sign bit    * of {@code bits} is interpreted as a normal bit, and all other bits are treated as usual.    *    *<p>If the argument is nonnegative, the returned result will be equal to {@code bits},    * otherwise, the result will be equal to {@code 2^64 + bits}.    *    *<p>To represent decimal constants less than {@code 2^63}, consider {@link #valueOf(long)}    * instead.    *    * @since 14.0    */
 DECL|method|fromLongBits (long bits)
@@ -537,7 +501,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/**    * Returns the value of this {@code UnsignedLong} as a {@code long}. This is an inverse operation    * to {@link #asUnsigned}.    *    *<p>Note that if this {@code UnsignedLong} holds a value {@code>= 2^63}, the returned value    * will be equal to {@code this - 2^64}.    */
+comment|/**    * Returns the value of this {@code UnsignedLong} as a {@code long}. This is an inverse operation    * to {@link #fromLongBits}.    *    *<p>Note that if this {@code UnsignedLong} holds a value {@code>= 2^63}, the returned value    * will be equal to {@code this - 2^64}.    */
 annotation|@
 name|Override
 DECL|method|longValue ()

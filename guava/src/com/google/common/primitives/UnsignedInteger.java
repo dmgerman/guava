@@ -106,20 +106,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -200,7 +186,7 @@ specifier|final
 name|UnsignedInteger
 name|ZERO
 init|=
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 literal|0
 argument_list|)
@@ -212,7 +198,7 @@ specifier|final
 name|UnsignedInteger
 name|ONE
 init|=
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 literal|1
 argument_list|)
@@ -224,7 +210,7 @@ specifier|final
 name|UnsignedInteger
 name|MAX_VALUE
 init|=
-name|asUnsigned
+name|fromIntBits
 argument_list|(
 operator|-
 literal|1
@@ -253,28 +239,6 @@ name|value
 operator|&
 literal|0xffffffff
 expr_stmt|;
-block|}
-comment|/**    * Returns an {@code UnsignedInteger} that, when treated as signed, is    * equal to {@code value}.    *    * @deprecated Use {@link #fromIntBits(int)}. This method is scheduled to be removed in Guava    *             release 15.0.    */
-annotation|@
-name|Deprecated
-annotation|@
-name|Beta
-DECL|method|asUnsigned (int value)
-specifier|public
-specifier|static
-name|UnsignedInteger
-name|asUnsigned
-parameter_list|(
-name|int
-name|value
-parameter_list|)
-block|{
-return|return
-name|fromIntBits
-argument_list|(
-name|value
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns an {@code UnsignedInteger} corresponding to a given bit representation.    * The argument is interpreted as an unsigned 32-bit value. Specifically, the sign bit    * of {@code bits} is interpreted as a normal bit, and all other bits are treated as usual.    *    *<p>If the argument is nonnegative, the returned result will be equal to {@code bits},    * otherwise, the result will be equal to {@code 2^32 + bits}.    *    *<p>To represent unsigned decimal constants, consider {@link #valueOf(long)} instead.    *    * @since 14.0    */
 DECL|method|fromIntBits (int bits)
