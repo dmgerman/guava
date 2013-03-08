@@ -702,6 +702,16 @@ name|bTwos
 argument_list|)
 return|;
 block|}
+DECL|field|FLOOR_SQRT_MAX_LONG
+annotation|@
+name|VisibleForTesting
+specifier|static
+specifier|final
+name|long
+name|FLOOR_SQRT_MAX_LONG
+init|=
+literal|3037000499L
+decl_stmt|;
 DECL|field|factorials
 specifier|static
 specifier|final
