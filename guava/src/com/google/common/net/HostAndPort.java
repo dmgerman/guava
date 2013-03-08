@@ -324,6 +324,10 @@ name|isValidPort
 argument_list|(
 name|port
 argument_list|)
+argument_list|,
+literal|"Port out of range: %s"
+argument_list|,
+name|port
 argument_list|)
 expr_stmt|;
 name|HostAndPort
@@ -341,6 +345,10 @@ name|parsedHost
 operator|.
 name|hasPort
 argument_list|()
+argument_list|,
+literal|"Host has a port: %s"
+argument_list|,
+name|host
 argument_list|)
 expr_stmt|;
 return|return
