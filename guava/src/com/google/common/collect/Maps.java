@@ -3684,7 +3684,7 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-name|asSetEntryIterator
+name|asMapEntryIterator
 argument_list|(
 name|backingSet
 argument_list|()
@@ -3697,8 +3697,7 @@ block|}
 return|;
 block|}
 block|}
-DECL|method|asSetEntryIterator ( Set<K> set, final Function<? super K, V> function)
-specifier|private
+DECL|method|asMapEntryIterator ( Set<K> set, final Function<? super K, V> function)
 specifier|static
 parameter_list|<
 name|K
@@ -3714,7 +3713,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-name|asSetEntryIterator
+name|asMapEntryIterator
 parameter_list|(
 name|Set
 argument_list|<
@@ -3764,13 +3763,12 @@ name|V
 argument_list|>
 name|transform
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
 block|{
 return|return
-name|Maps
-operator|.
 name|immutableEntry
 argument_list|(
 name|key
@@ -4340,7 +4338,7 @@ name|entryIterator
 parameter_list|()
 block|{
 return|return
-name|asSetEntryIterator
+name|asMapEntryIterator
 argument_list|(
 name|set
 argument_list|,
