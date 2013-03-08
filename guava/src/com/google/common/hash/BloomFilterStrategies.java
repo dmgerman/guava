@@ -216,7 +216,7 @@ name|nextHash
 operator|%
 name|bits
 operator|.
-name|size
+name|bitSize
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -338,7 +338,7 @@ name|nextHash
 operator|%
 name|bits
 operator|.
-name|size
+name|bitSize
 argument_list|()
 argument_list|)
 condition|)
@@ -529,9 +529,9 @@ literal|0
 return|;
 block|}
 comment|/** Number of bits */
-DECL|method|size ()
+DECL|method|bitSize ()
 name|int
-name|size
+name|bitSize
 parameter_list|()
 block|{
 return|return
@@ -570,10 +570,10 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Merge two BitArrays using bitwise OR. */
-DECL|method|mergeWith (BitArray array)
+comment|/** Combines the two BitArrays using bitwise OR. */
+DECL|method|putAll (BitArray array)
 name|void
-name|mergeWith
+name|putAll
 parameter_list|(
 name|BitArray
 name|array

@@ -461,32 +461,33 @@ operator|.
 name|bitCount
 argument_list|()
 operator|/
-name|size
+name|bitSize
 argument_list|()
 argument_list|,
 name|numHashFunctions
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of bits in the underlying bit array.    *    * @since 15.0    */
-DECL|method|size ()
-specifier|public
+comment|/**    * Returns the number of bits in the underlying bit array.    */
+DECL|method|bitSize ()
+annotation|@
+name|VisibleForTesting
 name|long
-name|size
+name|bitSize
 parameter_list|()
 block|{
 return|return
 name|bits
 operator|.
-name|size
+name|bitSize
 argument_list|()
 return|;
 block|}
-comment|/**    * Determines whether a given bloom filter is able to be merged with this bloom filter. For two    * bloom filters to be compatible, they must:    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for merge compatibility.    *    * @since 15.0    */
-DECL|method|canMergeWith (BloomFilter that)
+comment|/**    * Determines whether a given bloom filter is compatible with this bloom filter. For two    * bloom filters to be compatible, they must:    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same bit size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for compatibility.    *    * @since 15.0    */
+DECL|method|isCompatible (BloomFilter that)
 specifier|public
 name|boolean
-name|canMergeWith
+name|isCompatible
 parameter_list|(
 name|BloomFilter
 name|that
@@ -517,12 +518,12 @@ operator|&&
 operator|(
 name|this
 operator|.
-name|size
+name|bitSize
 argument_list|()
 operator|==
 name|that
 operator|.
-name|size
+name|bitSize
 argument_list|()
 operator|)
 operator|&&
@@ -553,11 +554,11 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Merges this bloom filter with another bloom filter by performing a bitwise OR of the underlying    * data. The mutations happen to<b>this</b> instance. Callers must ensure the bloom filters are    * appropriately sized to avoid saturating them.    *    * @param that The bloom filter to merge into this bloom filter. It is not mutated.    * @throws IllegalArgumentException if {@code canMergeWith(that) == false}    *    * @since 15.0    */
-DECL|method|mergeWith (BloomFilter that)
+comment|/**    * Combines this bloom filter with another bloom filter by performing a bitwise OR of the    * underlying data. The mutations happen to<b>this</b> instance. Callers must ensure the    * bloom filters are appropriately sized to avoid saturating them.    *    * @param that The bloom filter to combine this bloom filter with. It is not mutated.    * @throws IllegalArgumentException if {@code isCompatible(that) == false}    *    * @since 15.0    */
+DECL|method|putAll (BloomFilter that)
 specifier|public
 name|void
-name|mergeWith
+name|putAll
 parameter_list|(
 name|BloomFilter
 name|that
@@ -574,7 +575,7 @@ name|this
 operator|!=
 name|that
 argument_list|,
-literal|"Cannot merge a BloomFilter with itself."
+literal|"Cannot combine a BloomFilter with itself."
 argument_list|)
 expr_stmt|;
 name|checkArgument
@@ -602,24 +603,24 @@ name|checkArgument
 argument_list|(
 name|this
 operator|.
-name|size
+name|bitSize
 argument_list|()
 operator|==
 name|that
 operator|.
-name|size
+name|bitSize
 argument_list|()
 argument_list|,
 literal|"BloomFilters must have the same size underlying bit arrays (%s != %s)"
 argument_list|,
 name|this
 operator|.
-name|size
+name|bitSize
 argument_list|()
 argument_list|,
 name|that
 operator|.
-name|size
+name|bitSize
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -675,7 +676,7 @@ name|this
 operator|.
 name|bits
 operator|.
-name|mergeWith
+name|putAll
 argument_list|(
 name|that
 operator|.

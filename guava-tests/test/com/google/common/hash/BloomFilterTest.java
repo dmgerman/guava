@@ -1125,10 +1125,10 @@ name|newFpp
 expr_stmt|;
 block|}
 block|}
-DECL|method|testSize ()
+DECL|method|testBitSize ()
 specifier|public
 name|void
-name|testSize
+name|testBitSize
 parameter_list|()
 block|{
 name|double
@@ -1206,7 +1206,7 @@ argument_list|,
 name|fpp
 argument_list|)
 operator|.
-name|size
+name|bitSize
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1704,10 +1704,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|testMergeWith ()
+DECL|method|testPutAll ()
 specifier|public
 name|void
-name|testMergeWith
+name|testPutAll
 parameter_list|()
 block|{
 name|int
@@ -1814,7 +1814,7 @@ name|assertTrue
 argument_list|(
 name|bf1
 operator|.
-name|canMergeWith
+name|isCompatible
 argument_list|(
 name|bf2
 argument_list|)
@@ -1822,7 +1822,7 @@ argument_list|)
 expr_stmt|;
 name|bf1
 operator|.
-name|mergeWith
+name|putAll
 argument_list|(
 name|bf2
 argument_list|)
@@ -1868,10 +1868,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testMergeWithDifferentSizes ()
+DECL|method|testPutAllDifferentSizes ()
 specifier|public
 name|void
-name|testMergeWithDifferentSizes
+name|testPutAllDifferentSizes
 parameter_list|()
 block|{
 name|BloomFilter
@@ -1916,7 +1916,7 @@ name|assertFalse
 argument_list|(
 name|bf1
 operator|.
-name|canMergeWith
+name|isCompatible
 argument_list|(
 name|bf2
 argument_list|)
@@ -1924,7 +1924,7 @@ argument_list|)
 expr_stmt|;
 name|bf1
 operator|.
-name|mergeWith
+name|putAll
 argument_list|(
 name|bf2
 argument_list|)
@@ -1945,7 +1945,7 @@ name|assertFalse
 argument_list|(
 name|bf2
 operator|.
-name|canMergeWith
+name|isCompatible
 argument_list|(
 name|bf1
 argument_list|)
@@ -1953,7 +1953,7 @@ argument_list|)
 expr_stmt|;
 name|bf2
 operator|.
-name|mergeWith
+name|putAll
 argument_list|(
 name|bf1
 argument_list|)
@@ -1969,10 +1969,10 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testMergeWithWithSelf ()
+DECL|method|testPutAllWithSelf ()
 specifier|public
 name|void
-name|testMergeWithWithSelf
+name|testPutAllWithSelf
 parameter_list|()
 block|{
 name|BloomFilter
@@ -1999,7 +1999,7 @@ name|assertFalse
 argument_list|(
 name|bf1
 operator|.
-name|canMergeWith
+name|isCompatible
 argument_list|(
 name|bf1
 argument_list|)
@@ -2007,7 +2007,7 @@ argument_list|)
 expr_stmt|;
 name|bf1
 operator|.
-name|mergeWith
+name|putAll
 argument_list|(
 name|bf1
 argument_list|)
