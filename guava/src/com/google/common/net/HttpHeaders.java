@@ -49,7 +49,7 @@ name|HttpHeaders
 parameter_list|()
 block|{}
 comment|// HTTP Request and Response header fields
-comment|/** The HTTP Cache-Control header field name. */
+comment|/** The HTTP {@code Cache-Control} header field name. */
 DECL|field|CACHE_CONTROL
 specifier|public
 specifier|static
@@ -59,7 +59,7 @@ name|CACHE_CONTROL
 init|=
 literal|"Cache-Control"
 decl_stmt|;
-comment|/** The HTTP Content-Length header field name. */
+comment|/** The HTTP {@code Content-Length} header field name. */
 DECL|field|CONTENT_LENGTH
 specifier|public
 specifier|static
@@ -69,7 +69,7 @@ name|CONTENT_LENGTH
 init|=
 literal|"Content-Length"
 decl_stmt|;
-comment|/** The HTTP Content-Type header field name. */
+comment|/** The HTTP {@code Content-Type} header field name. */
 DECL|field|CONTENT_TYPE
 specifier|public
 specifier|static
@@ -79,7 +79,7 @@ name|CONTENT_TYPE
 init|=
 literal|"Content-Type"
 decl_stmt|;
-comment|/** The HTTP Date header field name. */
+comment|/** The HTTP {@code Date} header field name. */
 DECL|field|DATE
 specifier|public
 specifier|static
@@ -89,7 +89,7 @@ name|DATE
 init|=
 literal|"Date"
 decl_stmt|;
-comment|/** The HTTP Pragma header field name. */
+comment|/** The HTTP {@code Pragma} header field name. */
 DECL|field|PRAGMA
 specifier|public
 specifier|static
@@ -99,7 +99,7 @@ name|PRAGMA
 init|=
 literal|"Pragma"
 decl_stmt|;
-comment|/** The HTTP Via header field name. */
+comment|/** The HTTP {@code Via} header field name. */
 DECL|field|VIA
 specifier|public
 specifier|static
@@ -109,7 +109,7 @@ name|VIA
 init|=
 literal|"Via"
 decl_stmt|;
-comment|/** The HTTP Warning header field name. */
+comment|/** The HTTP {@code Warning} header field name. */
 DECL|field|WARNING
 specifier|public
 specifier|static
@@ -120,7 +120,7 @@ init|=
 literal|"Warning"
 decl_stmt|;
 comment|// HTTP Request header fields
-comment|/** The HTTP Accept header field name. */
+comment|/** The HTTP {@code Accept} header field name. */
 DECL|field|ACCEPT
 specifier|public
 specifier|static
@@ -130,7 +130,7 @@ name|ACCEPT
 init|=
 literal|"Accept"
 decl_stmt|;
-comment|/** The HTTP Accept-Charset header field name. */
+comment|/** The HTTP {@code Accept-Charset} header field name. */
 DECL|field|ACCEPT_CHARSET
 specifier|public
 specifier|static
@@ -140,7 +140,7 @@ name|ACCEPT_CHARSET
 init|=
 literal|"Accept-Charset"
 decl_stmt|;
-comment|/** The HTTP Accept-Encoding header field name. */
+comment|/** The HTTP {@code Accept-Encoding} header field name. */
 DECL|field|ACCEPT_ENCODING
 specifier|public
 specifier|static
@@ -150,7 +150,7 @@ name|ACCEPT_ENCODING
 init|=
 literal|"Accept-Encoding"
 decl_stmt|;
-comment|/** The HTTP Accept-Language header field name. */
+comment|/** The HTTP {@code Accept-Language} header field name. */
 DECL|field|ACCEPT_LANGUAGE
 specifier|public
 specifier|static
@@ -160,7 +160,7 @@ name|ACCEPT_LANGUAGE
 init|=
 literal|"Accept-Language"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Request-Headers header field name. */
+comment|/** The HTTP {@code Access-Control-Request-Headers} header field name. */
 DECL|field|ACCESS_CONTROL_REQUEST_HEADERS
 specifier|public
 specifier|static
@@ -170,7 +170,7 @@ name|ACCESS_CONTROL_REQUEST_HEADERS
 init|=
 literal|"Access-Control-Request-Headers"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Request-Method header field name. */
+comment|/** The HTTP {@code Access-Control-Request-Method} header field name. */
 DECL|field|ACCESS_CONTROL_REQUEST_METHOD
 specifier|public
 specifier|static
@@ -180,7 +180,7 @@ name|ACCESS_CONTROL_REQUEST_METHOD
 init|=
 literal|"Access-Control-Request-Method"
 decl_stmt|;
-comment|/** The HTTP Authorization header field name. */
+comment|/** The HTTP {@code Authorization} header field name. */
 DECL|field|AUTHORIZATION
 specifier|public
 specifier|static
@@ -190,7 +190,7 @@ name|AUTHORIZATION
 init|=
 literal|"Authorization"
 decl_stmt|;
-comment|/** The HTTP Connection header field name. */
+comment|/** The HTTP {@code Connection} header field name. */
 DECL|field|CONNECTION
 specifier|public
 specifier|static
@@ -200,7 +200,7 @@ name|CONNECTION
 init|=
 literal|"Connection"
 decl_stmt|;
-comment|/** The HTTP Cookie header field name. */
+comment|/** The HTTP {@code Cookie} header field name. */
 DECL|field|COOKIE
 specifier|public
 specifier|static
@@ -210,7 +210,7 @@ name|COOKIE
 init|=
 literal|"Cookie"
 decl_stmt|;
-comment|/** The HTTP Expect header field name. */
+comment|/** The HTTP {@code Expect} header field name. */
 DECL|field|EXPECT
 specifier|public
 specifier|static
@@ -220,7 +220,7 @@ name|EXPECT
 init|=
 literal|"Expect"
 decl_stmt|;
-comment|/** The HTTP From header field name. */
+comment|/** The HTTP {@code From} header field name. */
 DECL|field|FROM
 specifier|public
 specifier|static
@@ -230,7 +230,7 @@ name|FROM
 init|=
 literal|"From"
 decl_stmt|;
-comment|/** The HTTP Host header field name. */
+comment|/** The HTTP {@code Host} header field name. */
 DECL|field|HOST
 specifier|public
 specifier|static
@@ -240,7 +240,7 @@ name|HOST
 init|=
 literal|"Host"
 decl_stmt|;
-comment|/** The HTTP If-Match header field name. */
+comment|/** The HTTP {@code If-Match} header field name. */
 DECL|field|IF_MATCH
 specifier|public
 specifier|static
@@ -250,7 +250,7 @@ name|IF_MATCH
 init|=
 literal|"If-Match"
 decl_stmt|;
-comment|/** The HTTP If-Modified-Since header field name. */
+comment|/** The HTTP {@code If-Modified-Since} header field name. */
 DECL|field|IF_MODIFIED_SINCE
 specifier|public
 specifier|static
@@ -260,7 +260,7 @@ name|IF_MODIFIED_SINCE
 init|=
 literal|"If-Modified-Since"
 decl_stmt|;
-comment|/** The HTTP If-None-Match header field name. */
+comment|/** The HTTP {@code If-None-Match} header field name. */
 DECL|field|IF_NONE_MATCH
 specifier|public
 specifier|static
@@ -270,7 +270,7 @@ name|IF_NONE_MATCH
 init|=
 literal|"If-None-Match"
 decl_stmt|;
-comment|/** The HTTP If-Range header field name. */
+comment|/** The HTTP {@code If-Range} header field name. */
 DECL|field|IF_RANGE
 specifier|public
 specifier|static
@@ -280,7 +280,7 @@ name|IF_RANGE
 init|=
 literal|"If-Range"
 decl_stmt|;
-comment|/** The HTTP If-Unmodified-Since header field name. */
+comment|/** The HTTP {@code If-Unmodified-Since} header field name. */
 DECL|field|IF_UNMODIFIED_SINCE
 specifier|public
 specifier|static
@@ -290,7 +290,7 @@ name|IF_UNMODIFIED_SINCE
 init|=
 literal|"If-Unmodified-Since"
 decl_stmt|;
-comment|/** The HTTP Last-Event-ID header field name. */
+comment|/** The HTTP {@code Last-Event-ID} header field name. */
 DECL|field|LAST_EVENT_ID
 specifier|public
 specifier|static
@@ -300,7 +300,7 @@ name|LAST_EVENT_ID
 init|=
 literal|"Last-Event-ID"
 decl_stmt|;
-comment|/** The HTTP Max-Forwards header field name. */
+comment|/** The HTTP {@code Max-Forwards} header field name. */
 DECL|field|MAX_FORWARDS
 specifier|public
 specifier|static
@@ -310,7 +310,7 @@ name|MAX_FORWARDS
 init|=
 literal|"Max-Forwards"
 decl_stmt|;
-comment|/** The HTTP Origin header field name. */
+comment|/** The HTTP {@code Origin} header field name. */
 DECL|field|ORIGIN
 specifier|public
 specifier|static
@@ -320,7 +320,7 @@ name|ORIGIN
 init|=
 literal|"Origin"
 decl_stmt|;
-comment|/** The HTTP Proxy-Authorization header field name. */
+comment|/** The HTTP {@code Proxy-Authorization} header field name. */
 DECL|field|PROXY_AUTHORIZATION
 specifier|public
 specifier|static
@@ -330,7 +330,7 @@ name|PROXY_AUTHORIZATION
 init|=
 literal|"Proxy-Authorization"
 decl_stmt|;
-comment|/** The HTTP Range header field name. */
+comment|/** The HTTP {@code Range} header field name. */
 DECL|field|RANGE
 specifier|public
 specifier|static
@@ -340,7 +340,7 @@ name|RANGE
 init|=
 literal|"Range"
 decl_stmt|;
-comment|/** The HTTP Referer header field name. */
+comment|/** The HTTP {@code Referer} header field name. */
 DECL|field|REFERER
 specifier|public
 specifier|static
@@ -350,7 +350,7 @@ name|REFERER
 init|=
 literal|"Referer"
 decl_stmt|;
-comment|/** The HTTP TE header field name. */
+comment|/** The HTTP {@code TE} header field name. */
 DECL|field|TE
 specifier|public
 specifier|static
@@ -360,7 +360,7 @@ name|TE
 init|=
 literal|"TE"
 decl_stmt|;
-comment|/** The HTTP Upgrade header field name. */
+comment|/** The HTTP {@code Upgrade} header field name. */
 DECL|field|UPGRADE
 specifier|public
 specifier|static
@@ -370,7 +370,7 @@ name|UPGRADE
 init|=
 literal|"Upgrade"
 decl_stmt|;
-comment|/** The HTTP User-Agent header field name. */
+comment|/** The HTTP {@code User-Agent} header field name. */
 DECL|field|USER_AGENT
 specifier|public
 specifier|static
@@ -381,7 +381,7 @@ init|=
 literal|"User-Agent"
 decl_stmt|;
 comment|// HTTP Response header fields
-comment|/** The HTTP Accept-Ranges header field name. */
+comment|/** The HTTP {@code Accept-Ranges} header field name. */
 DECL|field|ACCEPT_RANGES
 specifier|public
 specifier|static
@@ -391,7 +391,7 @@ name|ACCEPT_RANGES
 init|=
 literal|"Accept-Ranges"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Allow-Headers header field name. */
+comment|/** The HTTP {@code Access-Control-Allow-Headers} header field name. */
 DECL|field|ACCESS_CONTROL_ALLOW_HEADERS
 specifier|public
 specifier|static
@@ -401,7 +401,7 @@ name|ACCESS_CONTROL_ALLOW_HEADERS
 init|=
 literal|"Access-Control-Allow-Headers"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Allow-Methods header field name. */
+comment|/** The HTTP {@code Access-Control-Allow-Methods} header field name. */
 DECL|field|ACCESS_CONTROL_ALLOW_METHODS
 specifier|public
 specifier|static
@@ -411,7 +411,7 @@ name|ACCESS_CONTROL_ALLOW_METHODS
 init|=
 literal|"Access-Control-Allow-Methods"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Allow-Origin header field name. */
+comment|/** The HTTP {@code Access-Control-Allow-Origin} header field name. */
 DECL|field|ACCESS_CONTROL_ALLOW_ORIGIN
 specifier|public
 specifier|static
@@ -421,7 +421,7 @@ name|ACCESS_CONTROL_ALLOW_ORIGIN
 init|=
 literal|"Access-Control-Allow-Origin"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Allow-Credentials header field name. */
+comment|/** The HTTP {@code Access-Control-Allow-Credentials} header field name. */
 DECL|field|ACCESS_CONTROL_ALLOW_CREDENTIALS
 specifier|public
 specifier|static
@@ -431,7 +431,7 @@ name|ACCESS_CONTROL_ALLOW_CREDENTIALS
 init|=
 literal|"Access-Control-Allow-Credentials"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Expose-Headers header field name. */
+comment|/** The HTTP {@code Access-Control-Expose-Headers} header field name. */
 DECL|field|ACCESS_CONTROL_EXPOSE_HEADERS
 specifier|public
 specifier|static
@@ -441,7 +441,7 @@ name|ACCESS_CONTROL_EXPOSE_HEADERS
 init|=
 literal|"Access-Control-Expose-Headers"
 decl_stmt|;
-comment|/** The HTTP Access-Control-Max-Age header field name. */
+comment|/** The HTTP {@code Access-Control-Max-Age} header field name. */
 DECL|field|ACCESS_CONTROL_MAX_AGE
 specifier|public
 specifier|static
@@ -451,7 +451,7 @@ name|ACCESS_CONTROL_MAX_AGE
 init|=
 literal|"Access-Control-Max-Age"
 decl_stmt|;
-comment|/** The HTTP Age header field name. */
+comment|/** The HTTP {@code Age} header field name. */
 DECL|field|AGE
 specifier|public
 specifier|static
@@ -461,7 +461,7 @@ name|AGE
 init|=
 literal|"Age"
 decl_stmt|;
-comment|/** The HTTP Allow header field name. */
+comment|/** The HTTP {@code Allow} header field name. */
 DECL|field|ALLOW
 specifier|public
 specifier|static
@@ -471,7 +471,7 @@ name|ALLOW
 init|=
 literal|"Allow"
 decl_stmt|;
-comment|/** The HTTP Content-Disposition header field name. */
+comment|/** The HTTP {@code Content-Disposition} header field name. */
 DECL|field|CONTENT_DISPOSITION
 specifier|public
 specifier|static
@@ -481,7 +481,7 @@ name|CONTENT_DISPOSITION
 init|=
 literal|"Content-Disposition"
 decl_stmt|;
-comment|/** The HTTP Content-Encoding header field name. */
+comment|/** The HTTP {@code Content-Encoding} header field name. */
 DECL|field|CONTENT_ENCODING
 specifier|public
 specifier|static
@@ -491,7 +491,7 @@ name|CONTENT_ENCODING
 init|=
 literal|"Content-Encoding"
 decl_stmt|;
-comment|/** The HTTP Content-Language header field name. */
+comment|/** The HTTP {@code Content-Language} header field name. */
 DECL|field|CONTENT_LANGUAGE
 specifier|public
 specifier|static
@@ -501,7 +501,7 @@ name|CONTENT_LANGUAGE
 init|=
 literal|"Content-Language"
 decl_stmt|;
-comment|/** The HTTP Content-Location header field name. */
+comment|/** The HTTP {@code Content-Location} header field name. */
 DECL|field|CONTENT_LOCATION
 specifier|public
 specifier|static
@@ -511,7 +511,7 @@ name|CONTENT_LOCATION
 init|=
 literal|"Content-Location"
 decl_stmt|;
-comment|/** The HTTP Content-MD5 header field name. */
+comment|/** The HTTP {@code Content-MD5} header field name. */
 DECL|field|CONTENT_MD5
 specifier|public
 specifier|static
@@ -521,7 +521,7 @@ name|CONTENT_MD5
 init|=
 literal|"Content-MD5"
 decl_stmt|;
-comment|/** The HTTP Content-Range header field name. */
+comment|/** The HTTP {@code Content-Range} header field name. */
 DECL|field|CONTENT_RANGE
 specifier|public
 specifier|static
@@ -531,7 +531,17 @@ name|CONTENT_RANGE
 init|=
 literal|"Content-Range"
 decl_stmt|;
-comment|/** The HTTP ETag header field name. */
+comment|/**    * The HTTP<a href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">    * {@code Content-Security-Policy}</a> header field name.    */
+DECL|field|CONTENT_SECURITY_POLICY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONTENT_SECURITY_POLICY
+init|=
+literal|"Content-Security-Policy"
+decl_stmt|;
+comment|/** The HTTP {@code ETag} header field name. */
 DECL|field|ETAG
 specifier|public
 specifier|static
@@ -541,7 +551,7 @@ name|ETAG
 init|=
 literal|"ETag"
 decl_stmt|;
-comment|/** The HTTP Expires header field name. */
+comment|/** The HTTP {@code Expires} header field name. */
 DECL|field|EXPIRES
 specifier|public
 specifier|static
@@ -551,7 +561,7 @@ name|EXPIRES
 init|=
 literal|"Expires"
 decl_stmt|;
-comment|/** The HTTP Last-Modified header field name. */
+comment|/** The HTTP {@code Last-Modified} header field name. */
 DECL|field|LAST_MODIFIED
 specifier|public
 specifier|static
@@ -561,7 +571,7 @@ name|LAST_MODIFIED
 init|=
 literal|"Last-Modified"
 decl_stmt|;
-comment|/** The HTTP Link header field name. */
+comment|/** The HTTP {@code Link} header field name. */
 DECL|field|LINK
 specifier|public
 specifier|static
@@ -571,7 +581,7 @@ name|LINK
 init|=
 literal|"Link"
 decl_stmt|;
-comment|/** The HTTP Location header field name. */
+comment|/** The HTTP {@code Location} header field name. */
 DECL|field|LOCATION
 specifier|public
 specifier|static
@@ -581,7 +591,7 @@ name|LOCATION
 init|=
 literal|"Location"
 decl_stmt|;
-comment|/** The HTTP P3P header field name. Limited browser support. */
+comment|/** The HTTP {@code P3P} header field name. Limited browser support. */
 DECL|field|P3P
 specifier|public
 specifier|static
@@ -591,7 +601,7 @@ name|P3P
 init|=
 literal|"P3P"
 decl_stmt|;
-comment|/** The HTTP Proxy-Authenticate header field name. */
+comment|/** The HTTP {@code Proxy-Authenticate} header field name. */
 DECL|field|PROXY_AUTHENTICATE
 specifier|public
 specifier|static
@@ -601,7 +611,7 @@ name|PROXY_AUTHENTICATE
 init|=
 literal|"Proxy-Authenticate"
 decl_stmt|;
-comment|/** The HTTP Refresh header field name. Non-standard header supported by most browsers. */
+comment|/** The HTTP {@code Refresh} header field name. Non-standard header supported by most browsers. */
 DECL|field|REFRESH
 specifier|public
 specifier|static
@@ -611,7 +621,7 @@ name|REFRESH
 init|=
 literal|"Refresh"
 decl_stmt|;
-comment|/** The HTTP Retry-After header field name. */
+comment|/** The HTTP {@code Retry-After} header field name. */
 DECL|field|RETRY_AFTER
 specifier|public
 specifier|static
@@ -621,7 +631,7 @@ name|RETRY_AFTER
 init|=
 literal|"Retry-After"
 decl_stmt|;
-comment|/** The HTTP Server header field name. */
+comment|/** The HTTP {@code Server} header field name. */
 DECL|field|SERVER
 specifier|public
 specifier|static
@@ -631,7 +641,7 @@ name|SERVER
 init|=
 literal|"Server"
 decl_stmt|;
-comment|/** The HTTP Set-Cookie header field name. */
+comment|/** The HTTP {@code Set-Cookie} header field name. */
 DECL|field|SET_COOKIE
 specifier|public
 specifier|static
@@ -641,7 +651,7 @@ name|SET_COOKIE
 init|=
 literal|"Set-Cookie"
 decl_stmt|;
-comment|/** The HTTP Set-Cookie2 header field name. */
+comment|/** The HTTP {@code Set-Cookie2} header field name. */
 DECL|field|SET_COOKIE2
 specifier|public
 specifier|static
@@ -651,7 +661,7 @@ name|SET_COOKIE2
 init|=
 literal|"Set-Cookie2"
 decl_stmt|;
-comment|/** The HTTP Trailer header field name. */
+comment|/** The HTTP {@code Trailer} header field name. */
 DECL|field|TRAILER
 specifier|public
 specifier|static
@@ -661,7 +671,7 @@ name|TRAILER
 init|=
 literal|"Trailer"
 decl_stmt|;
-comment|/** The HTTP Transfer-Encoding header field name. */
+comment|/** The HTTP {@code Transfer-Encoding} header field name. */
 DECL|field|TRANSFER_ENCODING
 specifier|public
 specifier|static
@@ -671,7 +681,7 @@ name|TRANSFER_ENCODING
 init|=
 literal|"Transfer-Encoding"
 decl_stmt|;
-comment|/** The HTTP Vary header field name. */
+comment|/** The HTTP {@code Vary} header field name. */
 DECL|field|VARY
 specifier|public
 specifier|static
@@ -681,7 +691,7 @@ name|VARY
 init|=
 literal|"Vary"
 decl_stmt|;
-comment|/** The HTTP WWW-Authenticate header field name. */
+comment|/** The HTTP {@code WWW-Authenticate} header field name. */
 DECL|field|WWW_AUTHENTICATE
 specifier|public
 specifier|static
@@ -692,7 +702,7 @@ init|=
 literal|"WWW-Authenticate"
 decl_stmt|;
 comment|// Common, non-standard HTTP header fields
-comment|/** The HTTP DNT header field name. */
+comment|/** The HTTP {@code DNT} header field name. */
 DECL|field|DNT
 specifier|public
 specifier|static
@@ -702,7 +712,7 @@ name|DNT
 init|=
 literal|"DNT"
 decl_stmt|;
-comment|/** The HTTP X-Content-Type-Options header field name. */
+comment|/** The HTTP {@code X-Content-Type-Options} header field name. */
 DECL|field|X_CONTENT_TYPE_OPTIONS
 specifier|public
 specifier|static
@@ -712,7 +722,7 @@ name|X_CONTENT_TYPE_OPTIONS
 init|=
 literal|"X-Content-Type-Options"
 decl_stmt|;
-comment|/** The HTTP X-Do-Not-Track header field name. */
+comment|/** The HTTP {@code X-Do-Not-Track} header field name. */
 DECL|field|X_DO_NOT_TRACK
 specifier|public
 specifier|static
@@ -722,7 +732,7 @@ name|X_DO_NOT_TRACK
 init|=
 literal|"X-Do-Not-Track"
 decl_stmt|;
-comment|/** The HTTP X-Forwarded-For header field name. */
+comment|/** The HTTP {@code X-Forwarded-For} header field name. */
 DECL|field|X_FORWARDED_FOR
 specifier|public
 specifier|static
@@ -732,7 +742,7 @@ name|X_FORWARDED_FOR
 init|=
 literal|"X-Forwarded-For"
 decl_stmt|;
-comment|/** The HTTP X-Forwarded-Proto header field name. */
+comment|/** The HTTP {@code X-Forwarded-Proto} header field name. */
 DECL|field|X_FORWARDED_PROTO
 specifier|public
 specifier|static
@@ -742,7 +752,7 @@ name|X_FORWARDED_PROTO
 init|=
 literal|"X-Forwarded-Proto"
 decl_stmt|;
-comment|/** The HTTP X-Frame-Options header field name. */
+comment|/** The HTTP {@code X-Frame-Options} header field name. */
 DECL|field|X_FRAME_OPTIONS
 specifier|public
 specifier|static
@@ -752,7 +762,7 @@ name|X_FRAME_OPTIONS
 init|=
 literal|"X-Frame-Options"
 decl_stmt|;
-comment|/** The HTTP X-Powered-By header field name. */
+comment|/** The HTTP {@code X-Powered-By} header field name. */
 DECL|field|X_POWERED_BY
 specifier|public
 specifier|static
@@ -762,7 +772,7 @@ name|X_POWERED_BY
 init|=
 literal|"X-Powered-By"
 decl_stmt|;
-comment|/** The HTTP X-Requested-With header field name. */
+comment|/** The HTTP {@code X-Requested-With} header field name. */
 DECL|field|X_REQUESTED_WITH
 specifier|public
 specifier|static
@@ -772,7 +782,7 @@ name|X_REQUESTED_WITH
 init|=
 literal|"X-Requested-With"
 decl_stmt|;
-comment|/** The HTTP X-User-IP header field name. */
+comment|/** The HTTP {@code X-User-IP} header field name. */
 DECL|field|X_USER_IP
 specifier|public
 specifier|static
@@ -782,7 +792,7 @@ name|X_USER_IP
 init|=
 literal|"X-User-IP"
 decl_stmt|;
-comment|/** The HTTP X-XSS-Protection header field name. */
+comment|/** The HTTP {@code X-XSS-Protection} header field name. */
 DECL|field|X_XSS_PROTECTION
 specifier|public
 specifier|static
