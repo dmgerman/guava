@@ -32,6 +32,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMapEntry
+operator|.
+name|TerminalEntry
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -109,10 +125,10 @@ specifier|transient
 name|int
 name|mask
 decl_stmt|;
-DECL|method|RegularImmutableMap (TerminalMapEntry<?, ?>.... theEntries)
+DECL|method|RegularImmutableMap (TerminalEntry<?, ?>.... theEntries)
 name|RegularImmutableMap
 parameter_list|(
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|?
 argument_list|,
@@ -132,14 +148,14 @@ name|theEntries
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor for RegularImmutableMap.  Assumes all elements from {@code theEntries}    * are {@code ImmutableMapEntry} instances and not {@code NonTerminalMapEntry} instances,    * although it is not feasible to force this type on the array.    *     *<p>This allows reuse of the entry objects from the array in the actual implementation.    */
-DECL|method|RegularImmutableMap (int size, TerminalMapEntry<?, ?>[] theEntries)
+comment|/**    * Constructor for RegularImmutableMap that takes as input an array of {@code TerminalEntry}    * entries.  Assumes that these entries have already been checked for null.    *     *<p>This allows reuse of the entry objects from the array in the actual implementation.    */
+DECL|method|RegularImmutableMap (int size, TerminalEntry<?, ?>[] theEntries)
 name|RegularImmutableMap
 parameter_list|(
 name|int
 name|size
 parameter_list|,
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|?
 argument_list|,
@@ -201,7 +217,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -210,7 +226,7 @@ argument_list|>
 name|entry
 init|=
 operator|(
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -426,6 +442,13 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+name|checkEntryNotNull
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 name|int
 name|tableIndex
 init|=
@@ -472,7 +495,7 @@ literal|null
 operator|)
 condition|?
 operator|new
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -560,7 +583,7 @@ name|bucketHead
 operator|=
 name|bucketHead
 operator|.
-name|getNextInBucket
+name|getNextInKeyBucket
 argument_list|()
 control|)
 block|{
@@ -586,165 +609,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|class|ImmutableMapEntry
-specifier|private
-specifier|static
-specifier|abstract
-class|class
-name|ImmutableMapEntry
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-extends|extends
-name|ImmutableEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-block|{
-DECL|method|ImmutableMapEntry (K key, V value)
-name|ImmutableMapEntry
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|V
-name|value
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-name|checkEntryNotNull
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|ImmutableMapEntry (ImmutableMapEntry<K, V> entry)
-name|ImmutableMapEntry
-parameter_list|(
-name|ImmutableMapEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-argument_list|,
-name|entry
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// omit the null check
-block|}
-annotation|@
-name|Nullable
-DECL|method|getNextInBucket ()
-specifier|abstract
-name|ImmutableMapEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|getNextInBucket
-parameter_list|()
-function_decl|;
-block|}
-DECL|class|TerminalMapEntry
-specifier|static
-specifier|final
-class|class
-name|TerminalMapEntry
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-extends|extends
-name|ImmutableMapEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-block|{
-DECL|method|TerminalMapEntry (ImmutableMapEntry<K, V> entry)
-specifier|private
-name|TerminalMapEntry
-parameter_list|(
-name|ImmutableMapEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|entry
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|TerminalMapEntry (K key, V value)
-name|TerminalMapEntry
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|V
-name|value
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-annotation|@
-name|Nullable
-DECL|method|getNextInBucket ()
-name|ImmutableMapEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|getNextInBucket
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-block|}
 DECL|class|NonTerminalMapEntry
 specifier|private
 specifier|static
@@ -764,7 +628,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|field|nextInBucket
+DECL|field|nextInKeyBucket
 specifier|private
 specifier|final
 name|ImmutableMapEntry
@@ -773,9 +637,9 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|nextInBucket
+name|nextInKeyBucket
 decl_stmt|;
-DECL|method|NonTerminalMapEntry (K key, V value, ImmutableMapEntry<K, V> nextInBucket)
+DECL|method|NonTerminalMapEntry (K key, V value, ImmutableMapEntry<K, V> nextInKeyBucket)
 name|NonTerminalMapEntry
 parameter_list|(
 name|K
@@ -790,7 +654,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|nextInBucket
+name|nextInKeyBucket
 parameter_list|)
 block|{
 name|super
@@ -802,13 +666,12 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|nextInBucket
+name|nextInKeyBucket
 operator|=
-name|nextInBucket
+name|nextInKeyBucket
 expr_stmt|;
 block|}
-comment|// overload omitting the null check
-DECL|method|NonTerminalMapEntry (ImmutableMapEntry<K, V> contents, ImmutableMapEntry<K, V> nextInBucket)
+DECL|method|NonTerminalMapEntry (ImmutableMapEntry<K, V> contents, ImmutableMapEntry<K, V> nextInKeyBucket)
 name|NonTerminalMapEntry
 parameter_list|(
 name|ImmutableMapEntry
@@ -825,7 +688,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|nextInBucket
+name|nextInKeyBucket
 parameter_list|)
 block|{
 name|super
@@ -835,25 +698,43 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|nextInBucket
+name|nextInKeyBucket
 operator|=
-name|nextInBucket
+name|nextInKeyBucket
 expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getNextInBucket ()
+DECL|method|getNextInKeyBucket ()
 name|ImmutableMapEntry
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
-name|getNextInBucket
+name|getNextInKeyBucket
 parameter_list|()
 block|{
 return|return
-name|nextInBucket
+name|nextInKeyBucket
+return|;
+block|}
+annotation|@
+name|Override
+annotation|@
+name|Nullable
+DECL|method|getNextInValueBucket ()
+name|ImmutableMapEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|getNextInValueBucket
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}
@@ -959,7 +840,7 @@ name|entry
 operator|=
 name|entry
 operator|.
-name|getNextInBucket
+name|getNextInKeyBucket
 argument_list|()
 control|)
 block|{

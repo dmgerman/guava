@@ -70,9 +70,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|RegularImmutableMap
+name|ImmutableMapEntry
 operator|.
-name|TerminalMapEntry
+name|TerminalEntry
 import|;
 end_import
 
@@ -549,14 +549,13 @@ block|}
 comment|// looking for of() with> 5 entries? Use the builder instead.
 comment|/**    * Verifies that {@code key} and {@code value} are non-null, and returns a new    * immutable entry with those values.    *    *<p>A call to {@link Map.Entry#setValue} on the returned entry will always    * throw {@link UnsupportedOperationException}.    */
 DECL|method|entryOf (K key, V value)
-specifier|private
 specifier|static
 parameter_list|<
 name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -571,9 +570,16 @@ name|V
 name|value
 parameter_list|)
 block|{
+name|checkEntryNotNull
+argument_list|(
+name|key
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
-name|TerminalMapEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -584,35 +590,6 @@ name|key
 argument_list|,
 name|value
 argument_list|)
-return|;
-block|}
-comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
-DECL|method|builder ()
-specifier|public
-specifier|static
-parameter_list|<
-name|K
-parameter_list|,
-name|V
-parameter_list|>
-name|Builder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|builder
-parameter_list|()
-block|{
-return|return
-operator|new
-name|Builder
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-argument_list|()
 return|;
 block|}
 DECL|method|checkEntryNotNull (Object key, Object value)
@@ -664,6 +641,35 @@ literal|"=null"
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
+DECL|method|builder ()
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|builder
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|()
+return|;
 block|}
 DECL|method|checkNoConflict (boolean safe, String conflictDescription, Entry<?, ?> entry1, Entry<?, ?> entry2)
 specifier|static
@@ -731,7 +737,7 @@ name|V
 parameter_list|>
 block|{
 DECL|field|entries
-name|ImmutableEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -760,32 +766,6 @@ name|DEFAULT_INITIAL_CAPACITY
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|Builder (ImmutableEntry<K, V>[] entries)
-name|Builder
-parameter_list|(
-name|ImmutableEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-index|[]
-name|entries
-parameter_list|)
-block|{
-name|this
-operator|.
-name|entries
-operator|=
-name|entries
-expr_stmt|;
-name|this
-operator|.
-name|size
-operator|=
-literal|0
-expr_stmt|;
-block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -799,13 +779,14 @@ name|initialCapacity
 parameter_list|)
 block|{
 name|this
-argument_list|(
+operator|.
+name|entries
+operator|=
 operator|new
-name|TerminalMapEntry
+name|TerminalEntry
 index|[
 name|initialCapacity
 index|]
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -856,33 +837,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|entryOf (K key, V value)
-name|ImmutableEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|entryOf
-parameter_list|(
-name|K
-name|key
-parameter_list|,
-name|V
-name|value
-parameter_list|)
-block|{
-return|return
-name|ImmutableMap
-operator|.
-name|entryOf
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-return|;
-block|}
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys are not allowed, and will cause {@link #build} to fail.      */
 DECL|method|put (K key, V value)
 specifier|public
@@ -908,7 +862,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|ImmutableEntry
+name|TerminalEntry
 argument_list|<
 name|K
 argument_list|,
@@ -1101,15 +1055,6 @@ argument_list|>
 argument_list|(
 name|size
 argument_list|,
-operator|(
-name|TerminalMapEntry
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
-index|[]
-operator|)
 name|entries
 argument_list|)
 return|;
