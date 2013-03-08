@@ -1841,8 +1841,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Like {@link #transform(ListenableFuture, Function)} except that the    * transformation {@code function} is invoked on each call to    * {@link Future#get() get()} on the returned future.    *    *<p>The returned {@code Future} reflects the input's cancellation    * state directly, and any attempt to cancel the returned Future is likewise    * passed through to the input Future.    *    *<p>Note that calls to {@linkplain Future#get(long, TimeUnit) timed get}    * only apply the timeout to the execution of the underlying {@code Future},    *<em>not</em> to the execution of the transformation function.    *    *<p>The primary audience of this method is callers of {@code transform}    * who don't have a {@code ListenableFuture} available and    * do not mind repeated, lazy function evaluation.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.    * @return A future that returns the result of the transformation.    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|lazyTransform (final Future<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -2468,8 +2466,6 @@ block|}
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * calling {@code get()} on the {@code Future} nested within the given {@code    * Future}, effectively chaining the futures one after the other.  Example:    *    *<pre>   {@code    *   SettableFuture<ListenableFuture<String>> nested = SettableFuture.create();    *   ListenableFuture<String> dereferenced = dereference(nested);    * }</pre>    *    *<p>This call has the same cancellation and execution semantics as {@link    * #transform(ListenableFuture, AsyncFunction)}, in that the returned {@code    * Future} attempts to keep its cancellation state in sync with both the    * input {@code Future} and the nested {@code Future}.  The transformation    * is very lightweight and therefore takes place in the thread that called    * {@code dereference}.    *    * @param nested The nested future to transform.    * @return A future that holds result of the inner future.    * @since 13.0    */
 annotation|@
-name|Beta
-annotation|@
 name|SuppressWarnings
 argument_list|(
 block|{
@@ -2572,8 +2568,6 @@ block|}
 block|}
 decl_stmt|;
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|allAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -2619,8 +2613,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|allAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
 specifier|public
 specifier|static
@@ -2669,9 +2661,137 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its successful input futures. The list of results is in the    * same order as the input list, and if any of the provided futures fails or    * is canceled, its corresponding position will contain {@code null} (which is    * indistinguishable from the future having a successful value of    * {@code null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the    * supplied future when it completes.  Cancelling the supplied future    * will also cancel the returned future, but cancelling the returned    * future will have no effect on the supplied future.    */
+DECL|method|nonCancellationPropagating ( ListenableFuture<V> future)
+specifier|public
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|nonCancellationPropagating
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|future
+parameter_list|)
+block|{
+return|return
+operator|new
+name|NonCancellationPropagatingFuture
+argument_list|<
+name|V
+argument_list|>
+argument_list|(
+name|future
+argument_list|)
+return|;
+block|}
+comment|/**    * A wrapped future that does not propagate cancellation to its delegate.    */
+DECL|class|NonCancellationPropagatingFuture
+specifier|private
+specifier|static
+class|class
+name|NonCancellationPropagatingFuture
+parameter_list|<
+name|V
+parameter_list|>
+extends|extends
+name|AbstractFuture
+argument_list|<
+name|V
+argument_list|>
+block|{
+DECL|method|NonCancellationPropagatingFuture (final ListenableFuture<V> delegate)
+name|NonCancellationPropagatingFuture
+parameter_list|(
+specifier|final
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|delegate
+argument_list|)
+expr_stmt|;
+name|addCallback
+argument_list|(
+name|delegate
+argument_list|,
+operator|new
+name|FutureCallback
+argument_list|<
+name|V
+argument_list|>
+argument_list|()
+block|{
 annotation|@
-name|Beta
+name|Override
+specifier|public
+name|void
+name|onSuccess
+parameter_list|(
+name|V
+name|result
+parameter_list|)
+block|{
+name|set
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|onFailure
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|delegate
+operator|.
+name|isCancelled
+argument_list|()
+condition|)
+block|{
+name|cancel
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|setException
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+argument_list|,
+name|sameThreadExecutor
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its successful input futures. The list of results is in the    * same order as the input list, and if any of the provided futures fails or    * is canceled, its corresponding position will contain {@code null} (which is    * indistinguishable from the future having a successful value of    * {@code null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 DECL|method|successfulAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -2717,8 +2837,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its successful input futures. The list of results is in the    * same order as the input list, and if any of the provided futures fails or    * is canceled, its corresponding position will contain {@code null} (which is    * indistinguishable from the future having a successful value of    * {@code null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|successfulAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
 specifier|public
 specifier|static
@@ -2941,8 +3059,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the result of {@link Future#get()}, converting most exceptions to a    * new instance of the given checked exception type. This reduces boilerplate    * for a common use of {@code Future} in which it is unnecessary to    * programmatically distinguish between exception types or to extract other    * information from the exception instance.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@code X} if the cause is a checked exception, an {@link    *     UncheckedExecutionException} if the cause is a {@code    *     RuntimeException}, or an {@link ExecutionError} if the cause is an    *     {@code Error}.    *<li>Any {@link InterruptedException} is wrapped in an {@code X} (after    *     restoring the interrupt).    *<li>Any {@link CancellationException} is propagated untouched, as is any    *     other {@link RuntimeException} (though {@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    * The overall principle is to continue to treat every checked exception as a    * checked exception, every unchecked exception as an unchecked exception, and    * every error as an error. In addition, the cause of any {@code    * ExecutionException} is wrapped in order to ensure that the new stack trace    * matches that of the current thread.    *    *<p>Instances of {@code exceptionClass} are created by choosing an arbitrary    * public constructor that accepts zero or more arguments, all of type {@code    * String} or {@code Throwable} (preferring constructors with at least one    * {@code String}) and calling the constructor via reflection. If the    * exception did not already have a cause, one is set by calling {@link    * Throwable#initCause(Throwable)} on it. If no such constructor exists, an    * {@code IllegalArgumentException} is thrown.    *    * @throws X if {@code get} throws any checked exception except for an {@code    *         ExecutionException} whose cause is not itself a checked exception    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with a {@code RuntimeException} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @throws IllegalArgumentException if {@code exceptionClass} extends {@code    *         RuntimeException} or does not have a suitable constructor    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|get ( Future<V> future, Class<X> exceptionClass)
 specifier|public
 specifier|static
@@ -3047,8 +3163,6 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns the result of {@link Future#get(long, TimeUnit)}, converting most    * exceptions to a new instance of the given checked exception type. This    * reduces boilerplate for a common use of {@code Future} in which it is    * unnecessary to programmatically distinguish between exception types or to    * extract other information from the exception instance.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@code X} if the cause is a checked exception, an {@link    *     UncheckedExecutionException} if the cause is a {@code    *     RuntimeException}, or an {@link ExecutionError} if the cause is an    *     {@code Error}.    *<li>Any {@link InterruptedException} is wrapped in an {@code X} (after    *     restoring the interrupt).    *<li>Any {@link TimeoutException} is wrapped in an {@code X}.    *<li>Any {@link CancellationException} is propagated untouched, as is any    *     other {@link RuntimeException} (though {@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    * The overall principle is to continue to treat every checked exception as a    * checked exception, every unchecked exception as an unchecked exception, and    * every error as an error. In addition, the cause of any {@code    * ExecutionException} is wrapped in order to ensure that the new stack trace    * matches that of the current thread.    *    *<p>Instances of {@code exceptionClass} are created by choosing an arbitrary    * public constructor that accepts zero or more arguments, all of type {@code    * String} or {@code Throwable} (preferring constructors with at least one    * {@code String}) and calling the constructor via reflection. If the    * exception did not already have a cause, one is set by calling {@link    * Throwable#initCause(Throwable)} on it. If no such constructor exists, an    * {@code IllegalArgumentException} is thrown.    *    * @throws X if {@code get} throws any checked exception except for an {@code    *         ExecutionException} whose cause is not itself a checked exception    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with a {@code RuntimeException} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @throws IllegalArgumentException if {@code exceptionClass} extends {@code    *         RuntimeException} or does not have a suitable constructor    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|get ( Future<V> future, long timeout, TimeUnit unit, Class<X> exceptionClass)
 specifier|public
 specifier|static
@@ -3248,8 +3362,6 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the result of calling {@link Future#get()} uninterruptibly on a    * task known not to throw a checked exception. This makes {@code Future} more    * suitable for lightweight, fast-running tasks that, barring bugs in the    * code, will not fail. This gives it exception-handling behavior similar to    * that of {@code ForkJoinTask.join}.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@link UncheckedExecutionException} (if the cause is an {@code    *     Exception}) or {@link ExecutionError} (if the cause is an {@code    *     Error}).    *<li>Any {@link InterruptedException} causes a retry of the {@code get}    *     call. The interrupt is restored before {@code getUnchecked} returns.    *<li>Any {@link CancellationException} is propagated untouched. So is any    *     other {@link RuntimeException} ({@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    * The overall principle is to eliminate all checked exceptions: to loop to    * avoid {@code InterruptedException}, to pass through {@code    * CancellationException}, and to wrap any exception from the underlying    * computation in an {@code UncheckedExecutionException} or {@code    * ExecutionError}.    *    *<p>For an uninterruptible {@code get} that preserves other exceptions, see    * {@link Uninterruptibles#getUninterruptibly(Future)}.    *    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with an {@code Exception} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|method|getUnchecked (Future<V> future)
 specifier|public
 specifier|static
