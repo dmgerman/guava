@@ -168,23 +168,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (@ullable Object object)
-specifier|public
-name|boolean
-name|contains
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|object
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
@@ -233,37 +216,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|entrySet ()
-specifier|public
-name|ImmutableSet
-argument_list|<
+DECL|method|getEntry (int index)
 name|Entry
 argument_list|<
 name|E
 argument_list|>
-argument_list|>
-name|entrySet
-parameter_list|()
-block|{
-return|return
-name|ImmutableSet
-operator|.
-name|of
-argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|createEntrySet ()
-name|ImmutableSet
-argument_list|<
-name|Entry
-argument_list|<
-name|E
-argument_list|>
-argument_list|>
-name|createEntrySet
-parameter_list|()
+name|getEntry
+parameter_list|(
+name|int
+name|index
+parameter_list|)
 block|{
 throw|throw
 operator|new
@@ -396,30 +358,6 @@ return|;
 block|}
 return|return
 literal|false
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hashCode ()
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString ()
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"[]"
 return|;
 block|}
 annotation|@
