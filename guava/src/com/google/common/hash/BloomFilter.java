@@ -468,7 +468,7 @@ name|numHashFunctions
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the size of the underlying bit array.    *    * @since 15.0    */
+comment|/**    * Returns the number of bits in the underlying bit array.    *    * @since 15.0    */
 DECL|method|size ()
 specifier|public
 name|long
@@ -482,7 +482,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * Determines whether a given bloom filter is able to be merged with this bloom filter. For two    * bloom filters to be compatible, they must:    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for merge compatability.    *    * @since 15.0    */
+comment|/**    * Determines whether a given bloom filter is able to be merged with this bloom filter. For two    * bloom filters to be compatible, they must:    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for merge compatibility.    *    * @since 15.0    */
 DECL|method|canMergeWith (BloomFilter that)
 specifier|public
 name|boolean
@@ -798,7 +798,7 @@ name|bits
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended the funnel is implemented as a Java enum. This has the benefit of ensuring    * proper serialization and deserialization, which is important since {@link #equals} also relies    * on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
+comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
 DECL|method|create ( Funnel<T> funnel, int expectedInsertions , double fpp)
 specifier|public
 specifier|static
@@ -942,7 +942,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Creates a {@code Builder} of a {@link BloomFilter BloomFilter<T>}, with the expected number    * of insertions, and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
+comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
 DECL|method|create (Funnel<T> funnel, int expectedInsertions )
 specifier|public
 specifier|static
