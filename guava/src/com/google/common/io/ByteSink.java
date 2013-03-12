@@ -247,6 +247,12 @@ argument_list|(
 name|bytes
 argument_list|)
 expr_stmt|;
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1330
 block|}
 catch|catch
 parameter_list|(
@@ -310,7 +316,9 @@ name|openStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-return|return
+name|long
+name|written
+init|=
 name|ByteStreams
 operator|.
 name|copy
@@ -319,6 +327,15 @@ name|input
 argument_list|,
 name|out
 argument_list|)
+decl_stmt|;
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1330
+return|return
+name|written
 return|;
 block|}
 catch|catch

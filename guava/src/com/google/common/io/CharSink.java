@@ -208,6 +208,12 @@ argument_list|(
 name|charSequence
 argument_list|)
 expr_stmt|;
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1330
 block|}
 catch|catch
 parameter_list|(
@@ -335,6 +341,12 @@ name|lineSeparator
 argument_list|)
 expr_stmt|;
 block|}
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1330
 block|}
 catch|catch
 parameter_list|(
@@ -398,7 +410,9 @@ name|openStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-return|return
+name|long
+name|written
+init|=
 name|CharStreams
 operator|.
 name|copy
@@ -407,6 +421,15 @@ name|readable
 argument_list|,
 name|out
 argument_list|)
+decl_stmt|;
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1330
+return|return
+name|written
 return|;
 block|}
 catch|catch
