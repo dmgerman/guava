@@ -201,7 +201,7 @@ literal|"Funnels.stringFunnel()"
 return|;
 block|}
 block|}
-comment|/**    * Returns a funnel for integers.    *     * @since 13.0    */
+comment|/**    * Returns a funnel for integers.    *    * @since 13.0    */
 DECL|method|integerFunnel ()
 specifier|public
 specifier|static
@@ -264,7 +264,7 @@ literal|"Funnels.integerFunnel()"
 return|;
 block|}
 block|}
-comment|/**    * Returns a funnel for longs.    *     * @since 13.0    */
+comment|/**    * Returns a funnel for longs.    *    * @since 13.0    */
 DECL|method|longFunnel ()
 specifier|public
 specifier|static
@@ -327,7 +327,7 @@ literal|"Funnels.longFunnel()"
 return|;
 block|}
 block|}
-comment|/**    * Wraps a {@code PrimitiveSink} as an {@link OutputStream}, so it is easy to    * {@link Funnel#funnel funnel} an object to a {@code PrimitiveSink}    * if there is already a way to write the contents of the object to an {@code OutputStream}.      *     *<p>The {@code close} and {@code flush} methods of the returned {@code OutputStream}    * do nothing, and no method throws {@code IOException}.    *     * @since 13.0    */
+comment|/**    * Wraps a {@code PrimitiveSink} as an {@link OutputStream}, so it is easy to    * {@link Funnel#funnel funnel} an object to a {@code PrimitiveSink}    * if there is already a way to write the contents of the object to an {@code OutputStream}.    *    *<p>The {@code close} and {@code flush} methods of the returned {@code OutputStream}    * do nothing, and no method throws {@code IOException}.    *    * @since 13.0    */
 DECL|method|asOutputStream (PrimitiveSink sink)
 specifier|public
 specifier|static
