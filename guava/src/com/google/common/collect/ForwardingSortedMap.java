@@ -487,7 +487,9 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #remove} in terms of the {@code    * iterator()} of the {@code entrySet()} of {@link #tailMap}. If you override    * {@link #tailMap}, you may wish to override {@link #remove} to forward    * to this implementation.    *    * @since 7.0    */
+comment|/**    * A sensible definition of {@link #remove} in terms of the {@code    * iterator()} of the {@code entrySet()} of {@link #tailMap}. If you override    * {@link #tailMap}, you may wish to override {@link #remove} to forward    * to this implementation.    *    * @since 7.0    * @deprecated This implementation is extremely awkward, is rarely worthwhile,    * and has been discovered to interact badly with    * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6467933 in Java 6    * when used with certain null-friendly comparators.  It is scheduled for    * deletion in Guava 16.0.    */
+annotation|@
+name|Deprecated
 DECL|method|standardRemove (@ullable Object key)
 annotation|@
 name|Override
