@@ -32,29 +32,11 @@ name|GwtCompatible
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|gwt
-operator|.
-name|core
-operator|.
-name|client
-operator|.
-name|GwtScriptOnly
-import|;
-end_import
-
 begin_comment
-comment|/**  * Version of {@link GwtPlatform} used in hosted-mode.  It includes methods in  * {@link Platform} that requires different implementions in web mode and  * hosted mode.  It is factored out from {@link Platform} because<code>  * {@literal @}GwtScriptOnly</code> only supports public classes and methods.  *  * @author Hayward Chan  */
+comment|/**  * Version of {@link GwtPlatform} used in hosted-mode.  It includes methods in  * {@link Platform} that requires different implementions in web mode and  * hosted mode.  It is factored out from {@link Platform} because<code>  * {@literal @}GwtScriptOnly</code> (which is applied to the emul version)  * supports only public classes and methods.  *  * @author Hayward Chan  */
 end_comment
 
 begin_class
-annotation|@
-name|GwtScriptOnly
 annotation|@
 name|GwtCompatible
 DECL|class|GwtPlatform
