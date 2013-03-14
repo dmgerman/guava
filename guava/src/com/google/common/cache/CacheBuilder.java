@@ -2100,6 +2100,17 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|isRecordingStats ()
+name|boolean
+name|isRecordingStats
+parameter_list|()
+block|{
+return|return
+name|statsCounterSupplier
+operator|==
+name|CACHE_STATS_COUNTER
+return|;
+block|}
 DECL|method|getStatsCounterSupplier ()
 name|Supplier
 argument_list|<
