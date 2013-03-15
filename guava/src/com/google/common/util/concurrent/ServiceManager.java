@@ -2582,7 +2582,6 @@ block|}
 block|}
 comment|/** Returns the amount of time it took for the service to finish starting in milliseconds. */
 DECL|method|startupTimeMillis ()
-specifier|synchronized
 name|long
 name|startupTimeMillis
 parameter_list|()
