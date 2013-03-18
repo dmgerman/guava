@@ -68,7 +68,7 @@ specifier|public
 interface|interface
 name|HashFunction
 block|{
-comment|/**    * Begins a new hash code computation by returning an initialized, stateful {@code    * Hasher} instance that is ready to receive data. Example:<pre>   {@code    *    *   HashFunction hf = Hashing.md5();    *   HashCode hc = hf.newHasher()    *       .putLong(id)    *       .putString(name)    *       .hash();}</pre>    */
+comment|/**    * Begins a new hash code computation by returning an initialized, stateful {@code    * Hasher} instance that is ready to receive data. Example:<pre>   {@code    *    *   HashFunction hf = Hashing.md5();    *   HashCode hc = hf.newHasher()    *       .putLong(id)    *       .putBoolean(isActive)    *       .hash();}</pre>    */
 DECL|method|newHasher ()
 name|Hasher
 name|newHasher
@@ -127,7 +127,18 @@ name|int
 name|len
 parameter_list|)
 function_decl|;
-comment|/**    * Shortcut for {@code newHasher().putString(input).hash()}. The implementation<i>might</i>    * perform better than its longhand equivalent, but should not perform worse. Note that no    * character encoding is performed; the low byte and high byte of each character are hashed    * directly (in that order).    */
+comment|/**    * Shortcut for {@code newHasher().putUnencodedChars(input).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse.    * Note that no character encoding is performed; the low byte and high byte of each {@code char}    * are hashed directly (in that order).    *    * @since 15.0 (since 11.0 as hashString(CharSequence)).    */
+DECL|method|hashUnencodedChars (CharSequence input)
+name|HashCode
+name|hashUnencodedChars
+parameter_list|(
+name|CharSequence
+name|input
+parameter_list|)
+function_decl|;
+comment|/**    * Shortcut for {@code newHasher().putUnencodedChars(input).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse.    * Note that no character encoding is performed; the low byte and high byte of each {@code char}    * are hashed directly (in that order).    *    * @deprecated Use {@link HashFunction#hashUnencodedChars} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|hashString (CharSequence input)
 name|HashCode
 name|hashString

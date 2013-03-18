@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract hasher, implementing {@link #putBoolean(boolean)}, {@link #putDouble(double)},  * {@link #putFloat(float)}, {@link #putString(CharSequence)}, and  * {@link #putString(CharSequence, Charset)} as prescribed by {@link Hasher}.  *  * @author Dimitris Andreou  */
+comment|/**  * An abstract hasher, implementing {@link #putBoolean(boolean)}, {@link #putDouble(double)},  * {@link #putFloat(float)}, {@link #putUnencodedChars(CharSequence)}, and  * {@link #putString(CharSequence, Charset)} as prescribed by {@link Hasher}.  *  * @author Dimitris Andreou  */
 end_comment
 
 begin_class
@@ -117,12 +117,33 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link AbstractHasher#putUnencodedChars} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|putString (CharSequence charSequence)
 annotation|@
 name|Override
 specifier|public
 name|Hasher
 name|putString
+parameter_list|(
+name|CharSequence
+name|charSequence
+parameter_list|)
+block|{
+return|return
+name|putUnencodedChars
+argument_list|(
+name|charSequence
+argument_list|)
+return|;
+block|}
+DECL|method|putUnencodedChars (CharSequence charSequence)
+annotation|@
+name|Override
+specifier|public
+name|Hasher
+name|putUnencodedChars
 parameter_list|(
 name|CharSequence
 name|charSequence

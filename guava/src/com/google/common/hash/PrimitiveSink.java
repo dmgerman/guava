@@ -152,10 +152,21 @@ name|char
 name|c
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a string into this sink.    */
+comment|/**    * Puts a string into this sink.    *    * @deprecated Use {PrimitiveSink#putUnencodedChars} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|putString (CharSequence charSequence)
 name|PrimitiveSink
 name|putString
+parameter_list|(
+name|CharSequence
+name|charSequence
+parameter_list|)
+function_decl|;
+comment|/**    * Puts each 16-bit code unit from the {@link CharSequence} into this sink.    *    * @since 15.0 (since 11.0 as putString(CharSequence))    */
+DECL|method|putUnencodedChars (CharSequence charSequence)
+name|PrimitiveSink
+name|putUnencodedChars
 parameter_list|(
 name|CharSequence
 name|charSequence

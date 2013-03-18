@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Throwables
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -169,12 +155,33 @@ name|hash
 argument_list|()
 return|;
 block|}
+comment|/**    * @deprecated Use {@link AbstractNonStreamingHashFunction#hashUnencodedChars} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|hashString (CharSequence input)
 annotation|@
 name|Override
 specifier|public
 name|HashCode
 name|hashString
+parameter_list|(
+name|CharSequence
+name|input
+parameter_list|)
+block|{
+return|return
+name|hashUnencodedChars
+argument_list|(
+name|input
+argument_list|)
+return|;
+block|}
+DECL|method|hashUnencodedChars (CharSequence input)
+annotation|@
+name|Override
+specifier|public
+name|HashCode
+name|hashUnencodedChars
 parameter_list|(
 name|CharSequence
 name|input
