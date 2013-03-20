@@ -661,6 +661,16 @@ name|SET_COOKIE2
 init|=
 literal|"Set-Cookie2"
 decl_stmt|;
+comment|/**    * The HTTP<a href="http://www.w3.org/TR/resource-timing/#cross-origin-resources">    * {@code Timing-Allow-Origin}</a> header field name.    */
+DECL|field|TIMING_ALLOW_ORIGIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TIMING_ALLOW_ORIGIN
+init|=
+literal|"Timing-Allow-Origin"
+decl_stmt|;
 comment|/** The HTTP {@code Trailer} header field name. */
 DECL|field|TRAILER
 specifier|public
