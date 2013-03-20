@@ -876,7 +876,7 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
-comment|/*      * TODO(user): Put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less that 10kb. Who cares!      */
+comment|/*      * TODO(user): Put a warning in the javadoc about tiny fpp values,      * since the resulting size is proportional to -log(p), but there is not      * much of a point after all, e.g. optimalM(1000, 0.0000000000000001) = 76680      * which is less than 10kb. Who cares!      */
 name|long
 name|numBits
 init|=
@@ -979,7 +979,7 @@ argument_list|)
 return|;
 comment|// FYI, for 3%, we always get 5 hash functions
 block|}
-comment|/*    * Cheat sheet:    *    * m: total bits    * n: expected insertions    * b: m/n, bits per insertion     * p: expected false positive probability    *    * 1) Optimal k = b * ln2    * 2) p = (1 - e ^ (-kn/m))^k    * 3) For optimal k: p = 2 ^ (-k) ~= 0.6185^b    * 4) For optimal k: m = -nlnp / ((ln2) ^ 2)    */
+comment|/*    * Cheat sheet:    *    * m: total bits    * n: expected insertions    * b: m/n, bits per insertion    * p: expected false positive probability    *    * 1) Optimal k = b * ln2    * 2) p = (1 - e ^ (-kn/m))^k    * 3) For optimal k: p = 2 ^ (-k) ~= 0.6185^b    * 4) For optimal k: m = -nlnp / ((ln2) ^ 2)    */
 comment|/**    * Computes the optimal k (number of hashes per element inserted in Bloom filter), given the    * expected insertions and total number of bits in the Bloom filter.    *    * See http://en.wikipedia.org/wiki/File:Bloom_filter_fp_probability.svg for the formula.    *    * @param n expected insertions (must be positive)    * @param m total number of bits in Bloom filter (must be positive)    */
 annotation|@
 name|VisibleForTesting
