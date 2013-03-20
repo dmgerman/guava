@@ -257,7 +257,7 @@ argument_list|,
 name|murmur3_32
 argument_list|()
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 literal|""
 argument_list|)
@@ -270,7 +270,7 @@ argument_list|,
 name|murmur3_32
 argument_list|()
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 literal|"k"
 argument_list|)
@@ -283,7 +283,7 @@ argument_list|,
 name|murmur3_32
 argument_list|()
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 literal|"hell"
 argument_list|)
@@ -297,7 +297,7 @@ argument_list|,
 name|murmur3_32
 argument_list|()
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 literal|"hello"
 argument_list|)
@@ -310,7 +310,7 @@ argument_list|,
 name|murmur3_32
 argument_list|()
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 literal|"http://www.google.com/"
 argument_list|)
@@ -324,7 +324,7 @@ argument_list|,
 name|murmur3_32
 argument_list|()
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 literal|"The quick brown fox jumps over the lazy dog"
 argument_list|)

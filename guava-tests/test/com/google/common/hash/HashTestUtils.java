@@ -3454,7 +3454,7 @@ name|assertEquals
 argument_list|(
 name|hashFunction
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 name|string
 argument_list|)
@@ -3602,7 +3602,7 @@ name|assertEquals
 argument_list|(
 name|hashFunction
 operator|.
-name|hashString
+name|hashUnencodedChars
 argument_list|(
 name|string
 argument_list|)
