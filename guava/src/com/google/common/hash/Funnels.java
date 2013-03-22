@@ -214,7 +214,7 @@ parameter_list|)
 block|{
 name|into
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|from
 argument_list|)

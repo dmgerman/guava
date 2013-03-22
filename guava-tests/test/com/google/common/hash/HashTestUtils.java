@@ -1129,7 +1129,7 @@ control|)
 block|{
 name|sink
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -1187,7 +1187,7 @@ control|)
 block|{
 name|sink
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -1245,7 +1245,7 @@ control|)
 block|{
 name|sink
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -1308,7 +1308,7 @@ control|)
 block|{
 name|sink
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -1371,7 +1371,7 @@ control|)
 block|{
 name|sink
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -3284,7 +3284,7 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"abc"
 argument_list|)
@@ -3297,12 +3297,12 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"ab"
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"c"
 argument_list|)
@@ -3315,12 +3315,12 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"a"
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"bc"
 argument_list|)
@@ -3333,17 +3333,17 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"a"
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"b"
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"c"
 argument_list|)
@@ -3361,7 +3361,7 @@ argument_list|(
 literal|'a'
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"bc"
 argument_list|)
@@ -3374,7 +3374,7 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 literal|"ab"
 argument_list|)
@@ -3464,7 +3464,7 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|string
 argument_list|)
@@ -3474,10 +3474,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// These assertions causes failures when testing with mvn. See b/6657789
-comment|// assertEquals(hashFunction.hashString(string),
+comment|// assertEquals(hashFunction.hashUnencodedChars(string),
 comment|//     hashFunction.hashString(string, Charsets.UTF_16LE));
-comment|// assertEquals(hashFunction.hashString(string),
-comment|//     hashFunction.newHasher().putString(string, Charsets.UTF_16LE).hash());
+comment|// assertEquals(hashFunction.hashUnencodedChars(string),
+comment|//     hashFunction.newHasher().putUnencodedChars(string, Charsets.UTF_16LE).hash());
 for|for
 control|(
 name|Charset
@@ -3515,7 +3515,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This verifies that putString(String) and hashString(String) are equivalent, even for    * funny strings composed by (possibly unmatched, and mostly illegal) surrogate characters.    * (But doesn't test that they do the right thing - just their consistency).    */
+comment|/**    * This verifies that putUnencodedChars(String) and hashUnencodedChars(String) are equivalent,    * even for funny strings composed by (possibly unmatched, and mostly illegal) surrogate    * characters. (But doesn't test that they do the right thing - just their consistency).    */
 DECL|method|assertHashStringWithSurrogatesEquivalence ( HashFunction hashFunction, Random random)
 specifier|private
 specifier|static
@@ -3612,7 +3612,7 @@ operator|.
 name|newHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|string
 argument_list|)

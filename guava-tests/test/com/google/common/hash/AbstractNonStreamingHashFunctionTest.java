@@ -496,7 +496,7 @@ expr_stmt|;
 block|}
 name|h2
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
