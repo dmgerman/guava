@@ -290,6 +290,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -4610,9 +4620,13 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(user): This should ultimately return an unmodifiableList
 return|return
+name|Collections
+operator|.
+name|unmodifiableList
+argument_list|(
 name|result
+argument_list|)
 return|;
 block|}
 block|}
