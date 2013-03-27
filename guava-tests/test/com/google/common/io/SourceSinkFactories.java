@@ -794,9 +794,9 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|CharStreams
+name|CharSource
 operator|.
-name|asCharSource
+name|wrap
 argument_list|(
 name|data
 argument_list|)
@@ -851,9 +851,9 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|ByteStreams
+name|ByteSource
 operator|.
-name|asByteSource
+name|wrap
 argument_list|(
 name|bytes
 argument_list|)
