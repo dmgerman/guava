@@ -7655,13 +7655,17 @@ operator|=
 name|predicate
 expr_stmt|;
 block|}
-DECL|method|apply (Object key, V value)
+DECL|method|apply (@ullable Object key, @Nullable V value)
 name|boolean
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|,
+annotation|@
+name|Nullable
 name|V
 name|value
 parameter_list|)
@@ -10156,7 +10160,7 @@ return|;
 block|}
 block|}
 comment|/**    * Delegates to {@link Map#get}. Returns {@code null} on {@code    * ClassCastException} and {@code NullPointerException}.    */
-DECL|method|safeGet (Map<?, V> map, Object key)
+DECL|method|safeGet (Map<?, V> map, @Nullable Object key)
 specifier|static
 parameter_list|<
 name|V
@@ -10172,6 +10176,8 @@ name|V
 argument_list|>
 name|map
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|key
 parameter_list|)

@@ -1027,7 +1027,7 @@ name|V
 argument_list|>
 name|nextInValueBucket
 decl_stmt|;
-DECL|method|NonTerminalBiMapEntry (K key, V value, ImmutableMapEntry<K, V> nextInKeyBucket, ImmutableMapEntry<K, V> nextInValueBucket)
+DECL|method|NonTerminalBiMapEntry (K key, V value, @Nullable ImmutableMapEntry<K, V> nextInKeyBucket, @Nullable ImmutableMapEntry<K, V> nextInValueBucket)
 name|NonTerminalBiMapEntry
 parameter_list|(
 name|K
@@ -1036,6 +1036,8 @@ parameter_list|,
 name|V
 name|value
 parameter_list|,
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -1044,6 +1046,8 @@ name|V
 argument_list|>
 name|nextInKeyBucket
 parameter_list|,
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -1073,7 +1077,7 @@ operator|=
 name|nextInValueBucket
 expr_stmt|;
 block|}
-DECL|method|NonTerminalBiMapEntry (ImmutableMapEntry<K, V> contents, ImmutableMapEntry<K, V> nextInKeyBucket, ImmutableMapEntry<K, V> nextInValueBucket)
+DECL|method|NonTerminalBiMapEntry (ImmutableMapEntry<K, V> contents, @Nullable ImmutableMapEntry<K, V> nextInKeyBucket, @Nullable ImmutableMapEntry<K, V> nextInValueBucket)
 name|NonTerminalBiMapEntry
 parameter_list|(
 name|ImmutableMapEntry
@@ -1084,6 +1088,8 @@ name|V
 argument_list|>
 name|contents
 parameter_list|,
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
@@ -1092,6 +1098,8 @@ name|V
 argument_list|>
 name|nextInKeyBucket
 parameter_list|,
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
 name|K
