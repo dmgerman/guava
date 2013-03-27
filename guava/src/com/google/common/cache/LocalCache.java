@@ -19012,11 +19012,9 @@ expr_stmt|;
 name|Stopwatch
 name|stopwatch
 init|=
-operator|new
 name|Stopwatch
-argument_list|()
 operator|.
-name|start
+name|createStarted
 argument_list|()
 decl_stmt|;
 name|Map

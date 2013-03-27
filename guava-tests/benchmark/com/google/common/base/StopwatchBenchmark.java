@@ -112,11 +112,9 @@ block|{
 name|Stopwatch
 name|s
 init|=
-operator|new
 name|Stopwatch
-argument_list|()
 operator|.
-name|start
+name|createStarted
 argument_list|()
 decl_stmt|;
 comment|// here is where you would do something
