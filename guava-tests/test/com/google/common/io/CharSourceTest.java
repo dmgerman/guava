@@ -832,9 +832,9 @@ block|{
 name|CharSource
 name|c1
 init|=
-name|CharStreams
+name|CharSource
 operator|.
-name|asCharSource
+name|wrap
 argument_list|(
 literal|"abc"
 argument_list|)
@@ -842,9 +842,9 @@ decl_stmt|;
 name|CharSource
 name|c2
 init|=
-name|CharStreams
+name|CharSource
 operator|.
-name|asCharSource
+name|wrap
 argument_list|(
 literal|""
 argument_list|)
@@ -852,9 +852,9 @@ decl_stmt|;
 name|CharSource
 name|c3
 init|=
-name|CharStreams
+name|CharSource
 operator|.
-name|asCharSource
+name|wrap
 argument_list|(
 literal|"de"
 argument_list|)

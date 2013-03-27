@@ -1292,9 +1292,9 @@ block|{
 name|ByteSource
 name|b1
 init|=
-name|ByteStreams
+name|ByteSource
 operator|.
-name|asByteSource
+name|wrap
 argument_list|(
 operator|new
 name|byte
@@ -1313,9 +1313,9 @@ decl_stmt|;
 name|ByteSource
 name|b2
 init|=
-name|ByteStreams
+name|ByteSource
 operator|.
-name|asByteSource
+name|wrap
 argument_list|(
 operator|new
 name|byte
@@ -1327,9 +1327,9 @@ decl_stmt|;
 name|ByteSource
 name|b3
 init|=
-name|ByteStreams
+name|ByteSource
 operator|.
-name|asByteSource
+name|wrap
 argument_list|(
 operator|new
 name|byte
