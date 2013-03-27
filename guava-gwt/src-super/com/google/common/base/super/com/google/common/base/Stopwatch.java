@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure  * elapsed time using this class instead of direct calls to {@link  * System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance  *     reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute  *     meaning, and can only be interpreted as relative to another timestamp  *     returned by {@code nanoTime} at a different time. {@code Stopwatch} is a  *     more effective abstraction because it exposes only these relative values,  *     not the absolute ones.  *</ul>  *  *<p>Basic usage:  *<pre>  *   Stopwatch stopwatch = new Stopwatch().{@link #start start}();  *   doSomething();  *   stopwatch.{@link #stop stop}(); // optional  *  *   long millis = stopwatch.elapsed(MILLISECONDS);  *  *   log.info("that took: " + stopwatch); // formatted string like "12.3 ms"  *</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a  * stopwatch that is already in the desired state.  *  *<p>When testing code that uses this class, use the {@linkplain  * #Stopwatch(Ticker) alternate constructor} to supply a fake or mock ticker.  *<!-- TODO(kevinb): restore the "such as" --> This allows you to  * simulate any valid behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure  * elapsed time using this class instead of direct calls to {@link  * System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance  *     reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute  *     meaning, and can only be interpreted as relative to another timestamp  *     returned by {@code nanoTime} at a different time. {@code Stopwatch} is a  *     more effective abstraction because it exposes only these relative values,  *     not the absolute ones.  *</ul>  *  *<p>Basic usage:  *<pre>  *   Stopwatch stopwatch = Stopwatch.{@link #createStarted createStarted}();  *   doSomething();  *   stopwatch.{@link #stop stop}(); // optional  *  *   long millis = stopwatch.elapsed(MILLISECONDS);  *  *   log.info("that took: " + stopwatch); // formatted string like "12.3 ms"  *</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a  * stopwatch that is already in the desired state.  *  *<p>When testing code that uses this class, use the {@linkplain  * #Stopwatch(Ticker) alternate constructor} to supply a fake or mock ticker.  *<!-- TODO(kevinb): restore the "such as" --> This allows you to  * simulate any valid behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -185,7 +185,80 @@ specifier|private
 name|long
 name|startTick
 decl_stmt|;
+comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @since 15.0    */
+DECL|method|createUnstarted ()
+specifier|public
+specifier|static
+name|Stopwatch
+name|createUnstarted
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Stopwatch
+argument_list|()
+return|;
+block|}
+comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @since 15.0    */
+DECL|method|createUnstarted (Ticker ticker)
+specifier|public
+specifier|static
+name|Stopwatch
+name|createUnstarted
+parameter_list|(
+name|Ticker
+name|ticker
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Stopwatch
+argument_list|(
+name|ticker
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates (and starts) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @since 15.0    */
+DECL|method|createStarted ()
+specifier|public
+specifier|static
+name|Stopwatch
+name|createStarted
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Stopwatch
+argument_list|()
+operator|.
+name|start
+argument_list|()
+return|;
+block|}
+comment|/**    * Creates (and starts) a new stopwatch, using the specified time    * source.    *    * @since 15.0    */
+DECL|method|createStarted (Ticker ticker)
+specifier|public
+specifier|static
+name|Stopwatch
+name|createStarted
+parameter_list|(
+name|Ticker
+name|ticker
+parameter_list|)
+block|{
+return|return
+operator|new
+name|Stopwatch
+argument_list|(
+name|ticker
+argument_list|)
+operator|.
+name|start
+argument_list|()
+return|;
+block|}
 comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    */
+comment|// TODO(user): @deprecated Use {@link Stopwatch#createUnstarted()} instead.
 DECL|method|Stopwatch ()
 specifier|public
 name|Stopwatch
@@ -201,6 +274,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    */
+comment|// TODO(user): @deprecated Use {@link Stopwatch#createUnstarted(Ticker)} instead.
 DECL|method|Stopwatch (Ticker ticker)
 specifier|public
 name|Stopwatch
