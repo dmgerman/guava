@@ -2825,16 +2825,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"There should be 3 entries in KNOWN_HASHES for "
+literal|"There should be at least 3 entries in KNOWN_HASHES for "
 operator|+
 name|hashFunction
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|3
 argument_list|,
 name|KNOWN_HASHES
 operator|.
@@ -2845,6 +2843,8 @@ argument_list|)
 operator|.
 name|size
 argument_list|()
+operator|>=
+literal|3
 argument_list|)
 expr_stmt|;
 block|}

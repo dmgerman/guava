@@ -152,7 +152,10 @@ operator|.
 name|sha512
 argument_list|()
 argument_list|)
-block|,   ;
+block|,
+comment|// Hash functions found in //javatests for comparing against current implementation of CityHash.
+comment|// These can probably be removed sooner or later.
+block|;
 DECL|field|hashFunction
 specifier|private
 specifier|final

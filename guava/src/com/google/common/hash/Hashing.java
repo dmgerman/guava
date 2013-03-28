@@ -675,6 +675,8 @@ parameter_list|()
 function_decl|;
 block|}
 comment|// Lazy initialization holder class idiom.
+comment|// TODO(user): Investigate whether we need to still use this idiom now that we have a fallback
+comment|// option for our use of Unsafe.
 comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    *<p>    * If you might want to have weights for the buckets in the future, take a look at    * {@code weightedConsistentHash}.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public
