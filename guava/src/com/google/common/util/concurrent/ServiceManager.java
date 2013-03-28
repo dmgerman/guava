@@ -2125,8 +2125,9 @@ specifier|final
 name|Stopwatch
 name|watch
 init|=
-operator|new
 name|Stopwatch
+operator|.
+name|createUnstarted
 argument_list|()
 decl_stmt|;
 DECL|field|service

@@ -16390,8 +16390,9 @@ specifier|final
 name|Stopwatch
 name|stopwatch
 init|=
-operator|new
 name|Stopwatch
+operator|.
+name|createUnstarted
 argument_list|()
 decl_stmt|;
 DECL|method|LoadingValueReference ()
