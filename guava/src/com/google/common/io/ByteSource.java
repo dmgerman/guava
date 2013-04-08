@@ -522,6 +522,29 @@ return|return
 name|count
 return|;
 block|}
+elseif|else
+if|if
+condition|(
+name|count
+operator|==
+literal|0
+operator|&&
+name|in
+operator|.
+name|available
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// if available is still zero after reading a single byte, it
+comment|// will probably always be zero, so we should countByReading
+throw|throw
+operator|new
+name|IOException
+argument_list|()
+throw|;
+block|}
 name|count
 operator|++
 expr_stmt|;

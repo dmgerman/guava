@@ -40,6 +40,9 @@ name|WRITE_THROWS
 block|,
 DECL|enumConstant|CLOSE_THROWS
 name|CLOSE_THROWS
+block|,
+DECL|enumConstant|AVAILABLE_ALWAYS_ZERO
+name|AVAILABLE_ALWAYS_ZERO
 block|}
 end_enum
 
