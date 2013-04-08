@@ -536,9 +536,18 @@ argument_list|(
 name|bytes
 argument_list|)
 decl_stmt|;
+comment|// if expected.length == 0, off has to be 0 but length doesn't matter--result will be empty
 name|int
 name|off
 init|=
+name|expected
+operator|.
+name|length
+operator|==
+literal|0
+condition|?
+literal|0
+else|:
 name|random
 operator|.
 name|nextInt
@@ -551,6 +560,14 @@ decl_stmt|;
 name|int
 name|len
 init|=
+name|expected
+operator|.
+name|length
+operator|==
+literal|0
+condition|?
+literal|4
+else|:
 name|random
 operator|.
 name|nextInt

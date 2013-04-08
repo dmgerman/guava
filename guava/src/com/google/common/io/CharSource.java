@@ -754,10 +754,23 @@ name|charSequence
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an immutable {@link CharSource} that contains no characters.    *    * @since 15.0    */
+DECL|method|empty ()
+specifier|public
+specifier|static
+name|CharSource
+name|empty
+parameter_list|()
+block|{
+return|return
+name|EmptyCharSource
+operator|.
+name|INSTANCE
+return|;
+block|}
 DECL|class|CharSequenceCharSource
 specifier|private
 specifier|static
-specifier|final
 class|class
 name|CharSequenceCharSource
 extends|extends
@@ -789,7 +802,7 @@ name|CharSequence
 name|seq
 decl_stmt|;
 DECL|method|CharSequenceCharSource (CharSequence seq)
-specifier|private
+specifier|protected
 name|CharSequenceCharSource
 parameter_list|(
 name|CharSequence
@@ -1037,6 +1050,50 @@ operator|+
 name|shortened
 operator|+
 literal|")"
+return|;
+block|}
+block|}
+DECL|class|EmptyCharSource
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|EmptyCharSource
+extends|extends
+name|CharSequenceCharSource
+block|{
+DECL|field|INSTANCE
+specifier|private
+specifier|static
+specifier|final
+name|EmptyCharSource
+name|INSTANCE
+init|=
+operator|new
+name|EmptyCharSource
+argument_list|()
+decl_stmt|;
+DECL|method|EmptyCharSource ()
+specifier|private
+name|EmptyCharSource
+parameter_list|()
+block|{
+name|super
+argument_list|(
+literal|""
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"CharSource.empty()"
 return|;
 block|}
 block|}
