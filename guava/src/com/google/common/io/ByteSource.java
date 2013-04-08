@@ -1131,7 +1131,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of the given byte array as a {@link ByteSource}.    *    * @since 15.0 (since 14.0 as {@code ByteStreams.asByteSource(byte[])}).    */
+comment|/**    * Returns a view of the given byte array as a {@link ByteSource}. To view only a specific range    * in the array, use {@code ByteSource.wrap(b).slice(offset, length)}.    *    * @since 15.0 (since 14.0 as {@code ByteStreams.asByteSource(byte[])}).    */
 DECL|method|wrap (byte[] b)
 specifier|public
 specifier|static
