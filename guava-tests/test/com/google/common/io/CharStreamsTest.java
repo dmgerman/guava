@@ -2194,6 +2194,69 @@ name|copied
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNullWriter ()
+specifier|public
+name|void
+name|testNullWriter
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// create a null writer
+name|Writer
+name|nullWriter
+init|=
+name|CharStreams
+operator|.
+name|nullWriter
+argument_list|()
+decl_stmt|;
+comment|// write to the writer
+name|nullWriter
+operator|.
+name|write
+argument_list|(
+literal|'n'
+argument_list|)
+expr_stmt|;
+name|String
+name|test
+init|=
+literal|"Test string for NullWriter"
+decl_stmt|;
+name|nullWriter
+operator|.
+name|write
+argument_list|(
+name|test
+argument_list|)
+expr_stmt|;
+name|nullWriter
+operator|.
+name|write
+argument_list|(
+name|test
+argument_list|,
+literal|2
+argument_list|,
+literal|10
+argument_list|)
+expr_stmt|;
+comment|// nothing really to assert?
+name|assertSame
+argument_list|(
+name|CharStreams
+operator|.
+name|nullWriter
+argument_list|()
+argument_list|,
+name|CharStreams
+operator|.
+name|nullWriter
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|newCheckReader ( InputSupplier<? extends Reader> delegate)
 specifier|private
 specifier|static
