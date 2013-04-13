@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.net
+DECL|package|com.google.common.math
 package|package
 name|com
 operator|.
@@ -12,7 +12,7 @@ name|google
 operator|.
 name|common
 operator|.
-name|net
+name|math
 package|;
 end_package
 
@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Hayward Chan  */
+comment|/**  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -45,7 +45,18 @@ argument_list|)
 DECL|class|TestPlatform
 class|class
 name|TestPlatform
-block|{ }
+block|{
+DECL|method|intsCanGoOutOfRange ()
+specifier|static
+name|boolean
+name|intsCanGoOutOfRange
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
 end_class
 
 end_unit
