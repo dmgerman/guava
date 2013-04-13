@@ -1927,6 +1927,35 @@ name|suppressed
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNullCloseable ()
+specifier|public
+name|void
+name|testNullCloseable
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|Closer
+name|closer
+init|=
+name|Closer
+operator|.
+name|create
+argument_list|()
+decl_stmt|;
+name|closer
+operator|.
+name|register
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|closer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|getSuppressed (Throwable throwable)
 specifier|static
 name|Throwable
