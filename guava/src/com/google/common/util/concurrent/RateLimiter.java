@@ -123,6 +123,8 @@ name|RateLimiter
 block|{
 comment|/*    * How is the RateLimiter designed, and why?    *    * The primary feature of a RateLimiter is its "stable rate", the maximum rate that    * is should allow at normal conditions. This is enforced by "throttling" incoming    * requests as needed, i.e. compute, for an incoming request, the appropriate throttle time,    * and make the calling thread wait as much.    *    * The simplest way to maintain a rate of QPS is to keep the timestamp of the last    * granted request, and ensure that (1/QPS) seconds have elapsed since then. For example,    * for a rate of QPS=5 (5 tokens per second), if we ensure that a request isn't granted    * earlier than 200ms after the the last one, then we achieve the intended rate.    * If a request comes and the last request was granted only 100ms ago, then we wait for    * another 100ms. At this rate, serving 15 fresh permits (i.e. for an acquire(15) request)    * naturally takes 3 seconds.    *    * It is important to realize that such a RateLimiter has a very superficial memory    * of the past: it only remembers the last request. What if the RateLimiter was unused for    * a long period of time, then a request arrived and was immediately granted?    * This RateLimiter would immediately forget about that past underutilization. This may    * result in either underutilization or overflow, depending on the real world consequences    * of not using the expected rate.    *    * Past underutilization could mean that excess resources are available. Then, the RateLimiter    * should speed up for a while, to take advantage of these resources. This is important    * when the rate is applied to networking (limiting bandwidth), where past underutilization    * typically translates to "almost empty buffers", which can be filled immediately.    *    * On the other hand, past underutilization could mean that "the server responsible for    * handling the request has become less ready for future requests", i.e. its caches become    * stale, and requests become more likely to trigger expensive operations (a more extreme    * case of this example is when a server has just booted, and it is mostly busy with getting    * itself up to speed).    *    * To deal with such scenarios, we add an extra dimension, that of "past underutilization",    * modeled by "storedPermits" variable. This variable is zero when there is no    * underutilization, and it can grow up to maxStoredPermits, for sufficiently large    * underutilization. So, the requested permits, by an invocation acquire(permits),    * are served from:    * - stored permits (if available)    * - fresh permits (for any remaining permits)    *    * How this works is best explained with an example:    *    * For a RateLimiter that produces 1 token per second, every second    * that goes by with the RateLimiter being unused, we increase storedPermits by 1.    * Say we leave the RateLimiter unused for 10 seconds (i.e., we expected a request at time    * X, but we are at time X + 10 seconds before a request actually arrives; this is    * also related to the point made in the last paragraph), thus storedPermits    * becomes 10.0 (assuming maxStoredPermits>= 10.0). At that point, a request of acquire(3)    * arrives. We serve this request out of storedPermits, and reduce that to 7.0 (how this is    * translated to throttling time is discussed later). Immediately after, assume that an    * acquire(10) request arriving. We serve the request partly from storedPermits,    * using all the remaining 7.0 permits, and the remaining 3.0, we serve them by fresh permits    * produced by the rate limiter.    *    * We already know how much time it takes to serve 3 fresh permits: if the rate is    * "1 token per second", then this will take 3 seconds. But what does it mean to serve 7    * stored permits? As explained above, there is no unique answer. If we are primarily    * interested to deal with underutilization, then we want stored permits to be given out    * /faster/ than fresh ones, because underutilization = free resources for the taking.    * If we are primarily interested to deal with overflow, then stored permits could    * be given out /slower/ than fresh ones. Thus, we require a (different in each case)    * function that translates storedPermits to throtting time.    *    * This role is played by storedPermitsToWaitTime(double storedPermits, double permitsToTake).    * The underlying model is a continuous function mapping storedPermits    * (from 0.0 to maxStoredPermits) onto the 1/rate (i.e. intervals) that is effective at the given    * storedPermits. "storedPermits" essentially measure unused time; we spend unused time    * buying/storing permits. Rate is "permits / time", thus "1 / rate = time / permits".    * Thus, "1/rate" (time / permits) times "permits" gives time, i.e., integrals on this    * function (which is what storedPermitsToWaitTime() computes) correspond to minimum intervals    * between subsequent requests, for the specified number of requested permits.    *    * Here is an example of storedPermitsToWaitTime:    * If storedPermits == 10.0, and we want 3 permits, we take them from storedPermits,    * reducing them to 7.0, and compute the throttling for these as a call to    * storedPermitsToWaitTime(storedPermits = 10.0, permitsToTake = 3.0), which will    * evaluate the integral of the function from 7.0 to 10.0.    *    * Using integrals guarantees that the effect of a single acquire(3) is equivalent    * to { acquire(1); acquire(1); acquire(1); }, or { acquire(2); acquire(1); }, etc,    * since the integral of the function in [7.0, 10.0] is equivalent to the sum of the    * integrals of [7.0, 8.0], [8.0, 9.0], [9.0, 10.0] (and so on), no matter    * what the function is. This guarantees that we handle correctly requests of varying weight    * (permits), /no matter/ what the actual function is - so we can tweak the latter freely.    * (The only requirement, obviously, is that we can compute its integrals).    *    * Note well that if, for this function, we chose a horizontal line, at height of exactly    * (1/QPS), then the effect of the function is non-existent: we serve storedPermits at    * exactly the same cost as fresh ones (1/QPS is the cost for each). We use this trick later.    *    * If we pick a function that goes /below/ that horizontal line, it means that we reduce    * the area of the function, thus time. Thus, the RateLimiter becomes /faster/ after a    * period of underutilization. If, on the other hand, we pick a function that    * goes /above/ that horizontal line, then it means that the area (time) is increased,    * thus storedPermits are more costly than fresh permits, thus the RateLimiter becomes    * /slower/ after a period of underutilization.    *    * Last, but not least: consider a RateLimiter with rate of 1 permit per second, currently    * completely unused, and an expensive acquire(100) request comes. It would be nonsensical    * to just wait for 100 seconds, and /then/ start the actual task. Why wait without doing    * anything? A much better approach is to /allow/ the request right away (as if it was an    * acquire(1) request instead), and postpone /subsequent/ requests as needed. In this version,    * we allow starting the task immediately, and postpone by 100 seconds future requests,    * thus we allow for work to get done in the meantime instead of waiting idly.    *    * This has important consequences: it means that the RateLimiter doesn't remember the time    * of the _last_ request, but it remembers the (expected) time of the _next_ request. This    * also enables us to tell immediately (see tryAcquire(timeout)) whether a particular    * timeout is enough to get us to the point of the next scheduling time, since we always    * maintain that. And what we mean by "an unused RateLimiter" is also defined by that    * notion: when we observe that the "expected arrival time of the next request" is actually    * in the past, then the difference (now - past) is the amount of time that the RateLimiter    * was formally unused, and it is that amount of time which we translate to storedPermits.    * (We increase storedPermits with the amount of permits that would have been produced    * in that idle time). So, if rate == 1 permit per second, and arrivals come exactly    * one second after the previous, then storedPermits is _never_ increased -- we would only    * increase it for arrivals _later_ than the expected one second.    */
 comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second).    *    *<p>The returned {@code RateLimiter} ensures that on average no more than {@code    * permitsPerSecond} are issued during any given second, with sustained requests    * being smoothly spread over each second. When the incoming request rate exceeds    * {@code permitsPerSecond} the rate limiter will release one permit every {@code    * (1.0 / permitsPerSecond)} seconds. When the rate limiter is unused,    * bursts of up to {@code permitsPerSecond} permits will be allowed, with subsequent    * requests being smoothly limited at the stable rate of {@code permitsPerSecond}.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second.    */
+comment|// TODO(user): "This is equivalent to
+comment|//                 {@code createBursty(permitsPerSecond, 1, TimeUnit.SECONDS)}".
 DECL|method|create (double permitsPerSecond)
 specifier|public
 specifier|static
@@ -133,6 +135,7 @@ name|double
 name|permitsPerSecond
 parameter_list|)
 block|{
+comment|/*        * The default RateLimiter configuration can save the unused permits of up to one second.        * This is to avoid unnecessary stalls in situations like this: A RateLimiter of 1qps,        * and 4 threads, all calling acquire() at these moments:        *        * T0 at 0 seconds        * T1 at 1.05 seconds        * T2 at 2 seconds        * T3 at 3 seconds        *        * Due to the slight delay of T1, T2 would have to sleep till 2.05 seconds,        * and T3 would also have to sleep till 3.05 seconds.      */
 return|return
 name|create
 argument_list|(
@@ -165,6 +168,9 @@ operator|new
 name|Bursty
 argument_list|(
 name|ticker
+argument_list|,
+literal|1.0
+comment|/* maxBurstSeconds */
 argument_list|)
 decl_stmt|;
 name|rateLimiter
@@ -178,8 +184,7 @@ return|return
 name|rateLimiter
 return|;
 block|}
-comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second), and a    *<i>warmup period</i>, during which the {@code RateLimiter} smoothly ramps up its rate,    * until it reaches its maximum rate at the end of the period (as long as there are enough    * requests to saturate it). Similarly, if the {@code RateLimiter} is left<i>unused</i> for    * a duration of {@code warmupPeriod}, it will gradually return to its "cold" state,    * i.e. it will go through the same warming up process as when it was first created.    *    *<p>The returned {@code RateLimiter} is intended for cases where the resource that actually    * fulfils the requests (e.g., a remote server) needs "warmup" time, rather than    * being immediately accessed at the stable (maximum) rate.    *    *<p>The returned {@code RateLimiter} starts in a "cold" state (i.e. the warmup period    * will follow), and if it is left unused for long enough, it will return to that state.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second    * @param warmupPeriod the duration of the period where the {@code RateLimiter} ramps up its    *        rate, before reaching its stable (maximum) rate    * @param unit the time unit of the warmupPeriod argument    */
-comment|// TODO(user): add a burst size of 1-second-worth of permits, as in the metronome?
+comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second), and a    *<i>warmup period</i>, during which the {@code RateLimiter} smoothly ramps up its rate,    * until it reaches its maximum rate at the end of the period (as long as there are enough    * requests to saturate it). Similarly, if the {@code RateLimiter} is left<i>unused</i> for    * a duration of {@code warmupPeriod}, it will gradually return to its "cold" state,    * i.e. it will go through the same warming up process as when it was first created.    *    *<p>The returned {@code RateLimiter} is intended for cases where the resource that actually    * fulfills the requests (e.g., a remote server) needs "warmup" time, rather than    * being immediately accessed at the stable (maximum) rate.    *    *<p>The returned {@code RateLimiter} starts in a "cold" state (i.e. the warmup period    * will follow), and if it is left unused for long enough, it will return to that state.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second    * @param warmupPeriod the duration of the period where the {@code RateLimiter} ramps up its    *        rate, before reaching its stable (maximum) rate    * @param unit the time unit of the warmupPeriod argument    */
 DECL|method|create (double permitsPerSecond, long warmupPeriod, TimeUnit unit)
 specifier|public
 specifier|static
@@ -213,7 +218,7 @@ return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|create ( SleepingTicker ticker, double permitsPerSecond, long warmupPeriod, TimeUnit timeUnit)
+DECL|method|create ( SleepingTicker ticker, double permitsPerSecond, long warmupPeriod, TimeUnit unit)
 specifier|static
 name|RateLimiter
 name|create
@@ -228,7 +233,7 @@ name|long
 name|warmupPeriod
 parameter_list|,
 name|TimeUnit
-name|timeUnit
+name|unit
 parameter_list|)
 block|{
 name|RateLimiter
@@ -241,7 +246,7 @@ name|ticker
 argument_list|,
 name|warmupPeriod
 argument_list|,
-name|timeUnit
+name|unit
 argument_list|)
 decl_stmt|;
 name|rateLimiter
@@ -255,9 +260,41 @@ return|return
 name|rateLimiter
 return|;
 block|}
+comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second),    * and the specified bursty behavior.    *    *<p>The returned {@code RateLimiter} ensures that on average no more than {@code    * permitsPerSecond} are issued during any given second, with sustained requests    * being smoothly spread over each second. When the incoming request rate exceeds    * {@code permitsPerSecond} the rate limiter will release one permit every {@code    * (1.0 / permitsPerSecond)} seconds.    *    *<p>When the rate limiter is unused, permits of up to {@code maxBurstBuildup} time    * period can be accumulated, and then produced upon request with no wait (in a burst).    * For example, {@code createBursty(2.0, 30, TimeUnit.SECONDS)} constructs a {@code RateLimiter}    * with a max rate of 2 qps, but if it is unused, it can save up permits that would have been    * produced in 30 seconds (at 2 qps rate, that's 60 permits), and give them to callers with no    * throttling. If the rate is changed to, say, 4 qps, then similarly the max saved permits    * will be {@code 4 * 30 = 120}.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second.    * @param maxBurstBuildup    * @param unit    */
+DECL|method|createBursty ( double permitsPerSecond, long maxBurstBuildup, TimeUnit unit)
+comment|/* public */
+specifier|static
+name|RateLimiter
+name|createBursty
+parameter_list|(
+name|double
+name|permitsPerSecond
+parameter_list|,
+name|long
+name|maxBurstBuildup
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+block|{
+return|return
+name|createBursty
+argument_list|(
+name|SleepingTicker
+operator|.
+name|SYSTEM_TICKER
+argument_list|,
+name|permitsPerSecond
+argument_list|,
+name|maxBurstBuildup
+argument_list|,
+name|unit
+argument_list|)
+return|;
+block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|createBursty ( SleepingTicker ticker, double permitsPerSecond, int maxBurstSize)
+DECL|method|createBursty ( SleepingTicker ticker, double permitsPerSecond, long maxBurstBuildup, TimeUnit unit)
 specifier|static
 name|RateLimiter
 name|createBursty
@@ -268,10 +305,27 @@ parameter_list|,
 name|double
 name|permitsPerSecond
 parameter_list|,
-name|int
-name|maxBurstSize
+name|long
+name|maxBurstBuildup
+parameter_list|,
+name|TimeUnit
+name|unit
 parameter_list|)
 block|{
+name|double
+name|maxBurstSeconds
+init|=
+name|unit
+operator|.
+name|toNanos
+argument_list|(
+name|maxBurstBuildup
+argument_list|)
+operator|/
+literal|1E
+operator|+
+literal|9
+decl_stmt|;
 name|Bursty
 name|rateLimiter
 init|=
@@ -279,6 +333,8 @@ operator|new
 name|Bursty
 argument_list|(
 name|ticker
+argument_list|,
+name|maxBurstSeconds
 argument_list|)
 decl_stmt|;
 name|rateLimiter
@@ -287,12 +343,6 @@ name|setRate
 argument_list|(
 name|permitsPerSecond
 argument_list|)
-expr_stmt|;
-name|rateLimiter
-operator|.
-name|maxPermits
-operator|=
-name|maxBurstSize
 expr_stmt|;
 return|return
 name|rateLimiter
@@ -1128,7 +1178,7 @@ name|slope
 return|;
 block|}
 block|}
-comment|/**    * This implements a trivial function, where storedPermits are translated to    * zero throttling - thus, a client gets an infinite speedup for permits acquired out    * of the storedPermits pool. This is also used for the special case of the "metronome",    * where the width of the function is also zero; maxStoredPermits is zero, thus    * storedPermits and permitsToTake are always zero as well. Such a RateLimiter can    * not save permits when unused, thus all permits it serves are fresh, using the    * designated rate.    */
+comment|/**    * This implements a "bursty" RateLimiter, where storedPermits are translated to    * zero throttling. The maximum number of permits that can be saved (when the RateLimiter is    * unused) is defined in terms of time, in this sense: if a RateLimiter is 2qps, and this    * time is specified as 10 seconds, we can save up to 2 * 10 = 20 permits.    */
 DECL|class|Bursty
 specifier|private
 specifier|static
@@ -1137,17 +1187,32 @@ name|Bursty
 extends|extends
 name|RateLimiter
 block|{
-DECL|method|Bursty (SleepingTicker ticker)
+comment|/** The work (permits) of how many seconds can be saved up if this RateLimiter is unused? */
+DECL|field|maxBurstSeconds
+specifier|final
+name|double
+name|maxBurstSeconds
+decl_stmt|;
+DECL|method|Bursty (SleepingTicker ticker, double maxBurstSeconds)
 name|Bursty
 parameter_list|(
 name|SleepingTicker
 name|ticker
+parameter_list|,
+name|double
+name|maxBurstSeconds
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|ticker
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|maxBurstSeconds
+operator|=
+name|maxBurstSeconds
 expr_stmt|;
 block|}
 annotation|@
@@ -1170,12 +1235,12 @@ name|this
 operator|.
 name|maxPermits
 decl_stmt|;
-comment|/*        * We allow the equivalent work of up to one second to be granted with zero waiting, if the        * rate limiter has been unused for as much. This is to avoid potentially producing tiny        * wait interval between subsequent requests for sufficiently large rates, which would        * unnecessarily overconstrain the thread scheduler.        */
 name|maxPermits
 operator|=
+name|maxBurstSeconds
+operator|*
 name|permitsPerSecond
 expr_stmt|;
-comment|// one second worth of permits
 name|storedPermits
 operator|=
 operator|(

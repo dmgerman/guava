@@ -793,6 +793,10 @@ argument_list|,
 literal|1.0
 argument_list|,
 literal|10
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
 argument_list|)
 decl_stmt|;
 name|ticker
