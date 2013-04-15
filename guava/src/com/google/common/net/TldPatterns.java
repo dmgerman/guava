@@ -12540,6 +12540,8 @@ argument_list|,
 literal|"xn--80ao21a"
 argument_list|,
 literal|"cw"
+argument_list|,
+literal|"csiro.au"
 argument_list|)
 decl_stmt|;
 comment|/**    * If a hostname is not in the EXCLUDE set, and if removing its    * leftmost component results in a name which is contained in this    * set, it is a TLD.    */
