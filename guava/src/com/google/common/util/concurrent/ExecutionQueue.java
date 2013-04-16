@@ -275,7 +275,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * The listener object for the queue.  Subclasses override the {@link #execute} method to    * implement their listening logic.  Each instance can only be {@link ExecutionQueue#add added} to    * a {@link ExecutionQueue} at most once.    */
+comment|/**    * The listener object for the queue.    *    *<p>This ensures that:    *<ol>    *<li>{@link #executor executor}.{@link Executor#execute execute} is called at most once    *<li>{@link #runnable executor}.{@link Runnable#run run} is called at most once by the    *        executor    *<li>{@link #lock lock} is not held when {@link #runnable executor}.{@link Runnable#run run}    *       is called    *<li>no thread calling {@link #submit} can return until the task has been accepted by the    *       executor    *</ol>    */
 DECL|class|RunnableExecutorPair
 specifier|private
 specifier|final
@@ -394,10 +394,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|hasBeenExecuted
-operator|=
-literal|true
-expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -412,6 +408,10 @@ name|isHeldByCurrentThread
 argument_list|()
 condition|)
 block|{
+name|hasBeenExecuted
+operator|=
+literal|true
+expr_stmt|;
 name|lock
 operator|.
 name|unlock
