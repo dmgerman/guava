@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract implementation of {@link InvocationHandler} that handles {@link Object#equals},  * {@link Object#hashCode} and {@link Object#toString}.  *  * @author Ben Yu  * @since 12.0  */
+comment|/**  * Abstract implementation of {@link InvocationHandler} that handles {@link Object#equals},  * {@link Object#hashCode} and {@link Object#toString}. For example:<pre>  * class Unsupported extends AbstractInvocationHandler {  *   @Override protected Object handleInvocation(Object proxy, Method method, Object[] args) {  *     throw new UnsupportedOperationException();  *   }  * }  *  * CharSequence unsupported = Reflection.newProxy(CharSequence.class, new Unsupported());  *</pre>  *  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
