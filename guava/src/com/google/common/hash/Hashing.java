@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static methods to obtain {@link HashFunction} instances, and other static hashing-related  * utilities.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  * @since 11.0  */
+comment|/**  * Static methods to obtain {@link HashFunction} instances, and other static hashing-related  * utilities.  *  *<p>A comparison of the various hash functions can be found  *<a href="http://goo.gl/jS7HH">here</a>.  *  * @author Kevin Bourrillion  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  * @since 11.0  */
 end_comment
 
 begin_class
