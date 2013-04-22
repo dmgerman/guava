@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Extra assert methods for testing Escaper implementations.  *  * @author David Beaumont  * @since 11.0  */
+comment|/**  * Extra assert methods for testing Escaper implementations.  *  * @author David Beaumont  * @since 15.0  */
 end_comment
 
 begin_class
