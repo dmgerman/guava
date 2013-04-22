@@ -3143,6 +3143,14 @@ name|getActualTypeArguments
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|visit
+argument_list|(
+name|type
+operator|.
+name|getOwnerType
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
