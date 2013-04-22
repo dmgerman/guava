@@ -4382,7 +4382,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// These tests are quick and basic and don't actually show unmodifiability...
 block|}
 end_class
 
