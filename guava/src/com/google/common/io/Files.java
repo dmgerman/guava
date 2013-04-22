@@ -783,12 +783,6 @@ operator|+=
 name|read
 expr_stmt|;
 block|}
-name|byte
-index|[]
-name|result
-init|=
-name|bytes
-decl_stmt|;
 if|if
 condition|(
 name|off
@@ -797,8 +791,7 @@ name|size
 condition|)
 block|{
 comment|// encountered EOF early; truncate the result
-name|result
-operator|=
+return|return
 name|Arrays
 operator|.
 name|copyOf
@@ -807,26 +800,47 @@ name|bytes
 argument_list|,
 name|off
 argument_list|)
-expr_stmt|;
+return|;
 block|}
-elseif|else
+comment|// otherwise, exactly size bytes were read
+name|int
+name|b
+init|=
+name|in
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
+comment|// check for EOF
 if|if
 condition|(
-name|read
-operator|!=
+name|b
+operator|==
 operator|-
 literal|1
 condition|)
 block|{
-comment|// we read size bytes... if the last read didn't return -1, the file got larger
-comment|// so we just read the rest normally and then create a new array
-name|ByteArrayOutputStream
+comment|// EOF; the file did not change size, so return the original array
+return|return
+name|bytes
+return|;
+block|}
+comment|// the file got larger, so read the rest normally
+name|InternalByteArrayOutputStream
 name|out
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|InternalByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+name|out
+operator|.
+name|write
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
+comment|// write the byte we read when testing for EOF
 name|ByteStreams
 operator|.
 name|copy
@@ -838,15 +852,8 @@ argument_list|)
 expr_stmt|;
 name|byte
 index|[]
-name|moreBytes
-init|=
-name|out
-operator|.
-name|toByteArray
-argument_list|()
-decl_stmt|;
 name|result
-operator|=
+init|=
 operator|new
 name|byte
 index|[
@@ -854,11 +861,12 @@ name|bytes
 operator|.
 name|length
 operator|+
-name|moreBytes
+name|out
 operator|.
-name|length
+name|size
+argument_list|()
 index|]
-expr_stmt|;
+decl_stmt|;
 name|System
 operator|.
 name|arraycopy
@@ -876,28 +884,17 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|System
+name|out
 operator|.
-name|arraycopy
+name|writeTo
 argument_list|(
-name|moreBytes
-argument_list|,
-literal|0
-argument_list|,
 name|result
 argument_list|,
 name|bytes
 operator|.
 name|length
-argument_list|,
-name|moreBytes
-operator|.
-name|length
 argument_list|)
 expr_stmt|;
-block|}
-comment|// normally, off should == size and read should == -1
-comment|// in that case, the array is just returned as is
 return|return
 name|result
 return|;
@@ -941,6 +938,46 @@ name|file
 operator|+
 literal|")"
 return|;
+block|}
+block|}
+comment|/**    * BAOS subclass for direct access to its internal buffer.    */
+DECL|class|InternalByteArrayOutputStream
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|InternalByteArrayOutputStream
+extends|extends
+name|ByteArrayOutputStream
+block|{
+comment|/**      * Writes the contents of the internal buffer to the given array starting      * at the given offset. Assumes the array has space to hold count bytes.      */
+DECL|method|writeTo (byte[] b, int off)
+name|void
+name|writeTo
+parameter_list|(
+name|byte
+index|[]
+name|b
+parameter_list|,
+name|int
+name|off
+parameter_list|)
+block|{
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|buf
+argument_list|,
+literal|0
+argument_list|,
+name|b
+argument_list|,
+name|off
+argument_list|,
+name|count
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a new {@link ByteSink} for writing bytes to the given file. The    * given {@code modes} control how the file is opened for writing. When no    * mode is provided, the file will be truncated before writing. When the    * {@link FileWriteMode#APPEND APPEND} mode is provided, writes will    * append to the end of the file without truncating it.    *    * @since 14.0    */
