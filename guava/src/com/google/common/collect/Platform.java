@@ -172,28 +172,6 @@ DECL|class|Platform
 class|class
 name|Platform
 block|{
-comment|/**    * Clone the given array using {@link Object#clone()}.  It is factored out so    * that it can be emulated in GWT.    */
-DECL|method|clone (T[] array)
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|clone
-parameter_list|(
-name|T
-index|[]
-name|array
-parameter_list|)
-block|{
-return|return
-name|array
-operator|.
-name|clone
-argument_list|()
-return|;
-block|}
 comment|/**    * Returns a new array of the given length with the same type as a reference    * array.    *    * @param reference any array of the desired type    * @param length the length of the new array    */
 DECL|method|newArray (T[] reference, int length)
 specifier|static

@@ -175,29 +175,6 @@ DECL|class|Platform
 class|class
 name|Platform
 block|{
-DECL|method|clone (T[] array)
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|clone
-parameter_list|(
-name|T
-index|[]
-name|array
-parameter_list|)
-block|{
-return|return
-name|GwtPlatform
-operator|.
-name|clone
-argument_list|(
-name|array
-argument_list|)
-return|;
-block|}
 DECL|method|newArray (T[] reference, int length)
 specifier|static
 parameter_list|<

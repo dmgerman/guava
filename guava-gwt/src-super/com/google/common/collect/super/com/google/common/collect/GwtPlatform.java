@@ -80,34 +80,6 @@ specifier|private
 name|GwtPlatform
 parameter_list|()
 block|{}
-DECL|method|clone (T[] array)
-specifier|public
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-index|[]
-name|clone
-parameter_list|(
-name|T
-index|[]
-name|array
-parameter_list|)
-block|{
-return|return
-operator|(
-name|T
-index|[]
-operator|)
-name|Array
-operator|.
-name|clone
-argument_list|(
-name|array
-argument_list|)
-return|;
-block|}
 DECL|method|newArray (T[] reference, int length)
 specifier|public
 specifier|static
