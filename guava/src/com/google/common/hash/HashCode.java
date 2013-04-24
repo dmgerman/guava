@@ -111,7 +111,7 @@ name|long
 name|asLong
 parameter_list|()
 function_decl|;
-comment|/**    * If this hashcode has enough bits, returns {@code asLong()}, otherwise returns a {@code long}    * value with {@code asInt()} as the least-significant four bytes and {@code 0x00} as    * each of the most-significant four bytes.    *    * @since 14.0 (since 11.0 as {@code Hashing.padToLong(HashCode)})    */
+comment|/**    * If this hashcode has enough bits, returns {@code asLong()}, otherwise returns a {@code long}    * value with {@code asBytes()} as the least-significant bytes and {@code 0x00} as the remaining    * most-significant bytes.    *    * @since 14.0 (since 11.0 as {@code Hashing.padToLong(HashCode)})    */
 DECL|method|padToLong ()
 specifier|public
 specifier|abstract
