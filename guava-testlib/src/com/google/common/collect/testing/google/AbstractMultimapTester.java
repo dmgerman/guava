@@ -22,18 +22,6 @@ end_package
 
 begin_import
 import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-operator|.
-name|asList
-import|;
-end_import
-
-begin_import
-import|import static
 name|org
 operator|.
 name|truth0

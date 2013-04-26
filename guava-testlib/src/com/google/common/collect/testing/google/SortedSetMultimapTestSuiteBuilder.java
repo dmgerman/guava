@@ -146,9 +146,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-operator|.
-name|Entry
+name|List
 import|;
 end_import
 
@@ -158,7 +156,9 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
