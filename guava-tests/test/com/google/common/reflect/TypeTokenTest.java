@@ -12139,7 +12139,7 @@ name|T
 argument_list|,
 name|String
 argument_list|>
-name|Invokable
+name|invokable
 init|=
 operator|new
 name|TypeToken
@@ -12175,7 +12175,7 @@ operator|.
 name|class
 argument_list|)
 argument_list|,
-name|Invokable
+name|invokable
 operator|.
 name|getReturnType
 argument_list|()
