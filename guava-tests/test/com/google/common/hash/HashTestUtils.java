@@ -52,20 +52,6 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ImmutableList
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
 name|ImmutableSet
 import|;
 end_import
@@ -3224,13 +3210,13 @@ DECL|field|CHARSETS
 specifier|private
 specifier|static
 specifier|final
-name|ImmutableList
+name|ImmutableSet
 argument_list|<
 name|Charset
 argument_list|>
 name|CHARSETS
 init|=
-name|ImmutableList
+name|ImmutableSet
 operator|.
 name|of
 argument_list|(
@@ -3473,11 +3459,6 @@ name|hash
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// These assertions causes failures when testing with mvn. See b/6657789
-comment|// assertEquals(hashFunction.hashUnencodedChars(string),
-comment|//     hashFunction.hashString(string, Charsets.UTF_16LE));
-comment|// assertEquals(hashFunction.hashUnencodedChars(string),
-comment|//     hashFunction.newHasher().putUnencodedChars(string, Charsets.UTF_16LE).hash());
 for|for
 control|(
 name|Charset
