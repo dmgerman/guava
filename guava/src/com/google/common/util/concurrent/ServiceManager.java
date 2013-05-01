@@ -2012,7 +2012,7 @@ specifier|static
 specifier|final
 class|class
 name|ServiceListener
-implements|implements
+extends|extends
 name|Service
 operator|.
 name|Listener

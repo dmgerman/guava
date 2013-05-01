@@ -1283,20 +1283,6 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|starting
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|running
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-specifier|public
-name|void
 name|stopping
 parameter_list|(
 name|State
@@ -1309,29 +1295,6 @@ name|incrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|terminated
-parameter_list|(
-name|State
-name|from
-parameter_list|)
-block|{}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|failed
-parameter_list|(
-name|State
-name|from
-parameter_list|,
-name|Throwable
-name|failure
-parameter_list|)
-block|{}
 block|}
 argument_list|,
 name|MoreExecutors
@@ -3307,13 +3270,6 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|starting
-parameter_list|()
-block|{ }
-annotation|@
-name|Override
-specifier|public
-name|void
 name|running
 parameter_list|()
 block|{
@@ -3323,39 +3279,6 @@ name|startAndWait
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|stopping
-parameter_list|(
-name|State
-name|from
-parameter_list|)
-block|{ }
-annotation|@
-name|Override
-specifier|public
-name|void
-name|terminated
-parameter_list|(
-name|State
-name|from
-parameter_list|)
-block|{ }
-annotation|@
-name|Override
-specifier|public
-name|void
-name|failed
-parameter_list|(
-name|State
-name|from
-parameter_list|,
-name|Throwable
-name|failure
-parameter_list|)
-block|{ }
 block|}
 argument_list|,
 name|MoreExecutors
@@ -3412,30 +3335,6 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|starting
-parameter_list|()
-block|{ }
-annotation|@
-name|Override
-specifier|public
-name|void
-name|running
-parameter_list|()
-block|{ }
-annotation|@
-name|Override
-specifier|public
-name|void
-name|stopping
-parameter_list|(
-name|State
-name|from
-parameter_list|)
-block|{ }
-annotation|@
-name|Override
-specifier|public
-name|void
 name|terminated
 parameter_list|(
 name|State
@@ -3448,19 +3347,6 @@ name|stopAndWait
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|failed
-parameter_list|(
-name|State
-name|from
-parameter_list|,
-name|Throwable
-name|failure
-parameter_list|)
-block|{ }
 block|}
 argument_list|,
 name|MoreExecutors
@@ -3788,7 +3674,7 @@ specifier|private
 specifier|static
 class|class
 name|RecordingListener
-implements|implements
+extends|extends
 name|Listener
 block|{
 DECL|method|record (Service service)

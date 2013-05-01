@@ -160,46 +160,52 @@ comment|/**      * A service in this state has encountered a problem and may not
 DECL|enumConstant|FAILED
 name|FAILED
 block|}
-comment|/**    * A listener for the various state changes that a {@link Service} goes through in its lifecycle.    *    * @author Luke Sandberg    * @since 13.0    */
+comment|/**    * A listener for the various state changes that a {@link Service} goes through in its lifecycle.    *    *<p>All methods are no-ops by default, implementors should override the ones they care about.    *    * @author Luke Sandberg    * @since 15.0 (present as an interface in 13.0)    */
 annotation|@
 name|Beta
 comment|// should come out of Beta when Service does
-DECL|interface|Listener
-interface|interface
+DECL|class|Listener
+specifier|abstract
+class|class
 name|Listener
 block|{
 comment|/**      * Called when the service transitions from {@linkplain State#NEW NEW} to       * {@linkplain State#STARTING STARTING}. This occurs when {@link Service#start} or       * {@link Service#startAndWait} is called the first time.      */
 DECL|method|starting ()
+specifier|public
 name|void
 name|starting
 parameter_list|()
-function_decl|;
+block|{}
 comment|/**      * Called when the service transitions from {@linkplain State#STARTING STARTING} to       * {@linkplain State#RUNNING RUNNING}. This occurs when a service has successfully started.      */
 DECL|method|running ()
+specifier|public
 name|void
 name|running
 parameter_list|()
-function_decl|;
+block|{}
 comment|/**      * Called when the service transitions to the {@linkplain State#STOPPING STOPPING} state. The       * only valid values for {@code from} are {@linkplain State#STARTING STARTING} or       * {@linkplain State#RUNNING RUNNING}.  This occurs when {@link Service#stop} is called.      *       * @param from The previous state that is being transitioned from.        */
 DECL|method|stopping (State from)
+specifier|public
 name|void
 name|stopping
 parameter_list|(
 name|State
 name|from
 parameter_list|)
-function_decl|;
+block|{}
 comment|/**      * Called when the service transitions to the {@linkplain State#TERMINATED TERMINATED} state.       * The {@linkplain State#TERMINATED TERMINATED} state is a terminal state in the transition      * diagram.  Therefore, if this method is called, no other methods will be called on the       * {@link Listener}.      *       * @param from The previous state that is being transitioned from.  The only valid values for       *     this are {@linkplain State#NEW NEW}, {@linkplain State#RUNNING RUNNING} or       *     {@linkplain State#STOPPING STOPPING}.      */
 DECL|method|terminated (State from)
+specifier|public
 name|void
 name|terminated
 parameter_list|(
 name|State
 name|from
 parameter_list|)
-function_decl|;
+block|{}
 comment|/**      * Called when the service transitions to the {@linkplain State#FAILED FAILED} state. The       * {@linkplain State#FAILED FAILED} state is a terminal state in the transition diagram.        * Therefore, if this method is called, no other methods will be called on the {@link Listener}.      *       * @param from The previous state that is being transitioned from.  Failure can occur in any       *     state with the exception of {@linkplain State#NEW NEW} or       *     {@linkplain State#TERMINATED TERMINATED}.      * @param failure The exception that caused the failure.      */
 DECL|method|failed (State from, Throwable failure)
+specifier|public
 name|void
 name|failed
 parameter_list|(
@@ -209,7 +215,7 @@ parameter_list|,
 name|Throwable
 name|failure
 parameter_list|)
-function_decl|;
+block|{}
 block|}
 block|}
 end_interface

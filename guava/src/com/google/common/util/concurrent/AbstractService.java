@@ -336,13 +336,6 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|starting
-parameter_list|()
-block|{}
-annotation|@
-name|Override
-specifier|public
-name|void
 name|running
 parameter_list|()
 block|{
