@@ -158,10 +158,10 @@ block|{
 name|checkArgument
 argument_list|(
 name|maxSize
-operator|>
+operator|>=
 literal|0
 argument_list|,
-literal|"maxSize (%s) must be positive"
+literal|"maxSize (%s) must>= 0"
 argument_list|,
 name|maxSize
 argument_list|)
@@ -186,7 +186,7 @@ operator|=
 name|maxSize
 expr_stmt|;
 block|}
-comment|/**    * Creates and returns a new evicting queue that will hold up to {@code maxSize} elements.    */
+comment|/**    * Creates and returns a new evicting queue that will hold up to {@code maxSize} elements.    *    *<p>When {@code maxSize} is zero, elements will be evicted immediately after being added to the    * queue.    */
 DECL|method|create (int maxSize)
 specifier|public
 specifier|static
@@ -266,6 +266,17 @@ name|e
 argument_list|)
 expr_stmt|;
 comment|// check before removing
+if|if
+condition|(
+name|maxSize
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 if|if
 condition|(
 name|size
