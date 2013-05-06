@@ -819,7 +819,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an immutable map instance containing the given entries.    * Internally, the returned set will be backed by an {@link EnumMap}.    *    *<p>The iteration order of the returned map follows the enum's iteration    * order, not the order in which the elements appear in the given map.    *    * @param map the map to make an immutable copy of    * @return an immutable map containing those entries    * @since 14.0    */
+comment|/**    * Returns an immutable map instance containing the given entries.    * Internally, the returned map will be backed by an {@link EnumMap}.    *    *<p>The iteration order of the returned map follows the enum's iteration    * order, not the order in which the elements appear in the given map.    *    * @param map the map to make an immutable copy of    * @return an immutable map containing those entries    * @since 14.0    */
 annotation|@
 name|GwtCompatible
 argument_list|(
