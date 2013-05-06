@@ -1009,6 +1009,9 @@ argument_list|()
 operator|>
 operator|(
 operator|(
+operator|(
+name|long
+operator|)
 name|rowSpace
 operator|.
 name|size
