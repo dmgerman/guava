@@ -474,37 +474,41 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular    * {@link Service service} starts, or terminates), should attach {@link Service.Listener service    * listeners} to each individual service.    *     * @author Luke Sandberg    * @since 14.0    */
+comment|/**    * A listener for the aggregate state changes of the services that are under management. Users    * that need to listen to more fine-grained events (such as when each particular    * {@link Service service} starts, or terminates), should attach {@link Service.Listener service    * listeners} to each individual service.    *     * @author Luke Sandberg    * @since 15.0 (present as an interface in 14.0)    */
 annotation|@
 name|Beta
 comment|// Should come out of Beta when ServiceManager does
-DECL|interface|Listener
+DECL|class|Listener
 specifier|public
+specifier|abstract
 specifier|static
-interface|interface
+class|class
 name|Listener
 block|{
 comment|/**       * Called when the service initially becomes healthy.      *       *<p>This will be called at most once after all the services have entered the       * {@linkplain State#RUNNING running} state. If any services fail during start up or       * {@linkplain State#FAILED fail}/{@linkplain State#TERMINATED terminate} before all other       * services have started {@linkplain State#RUNNING running} then this method will not be called.      */
 DECL|method|healthy ()
+specifier|public
 name|void
 name|healthy
 parameter_list|()
-function_decl|;
+block|{}
 comment|/**       * Called when the all of the component services have reached a terminal state, either       * {@linkplain State#TERMINATED terminated} or {@linkplain State#FAILED failed}.      */
 DECL|method|stopped ()
+specifier|public
 name|void
 name|stopped
 parameter_list|()
-function_decl|;
+block|{}
 comment|/**       * Called when a component service has {@linkplain State#FAILED failed}.      *       * @param service The service that failed.      */
 DECL|method|failure (Service service)
+specifier|public
 name|void
 name|failure
 parameter_list|(
 name|Service
 name|service
 parameter_list|)
-function_decl|;
+block|{}
 block|}
 comment|/**    * An encapsulation of all of the state that is accessed by the {@linkplain ServiceListener     * service listeners}.  This is extracted into its own object so that {@link ServiceListener}     * could be made {@code static} and its instances can be safely constructed and added in the     * {@link ServiceManager} constructor without having to close over the partially constructed     * {@link ServiceManager} instance (i.e. avoid leaking a pointer to {@code this}).    */
 DECL|field|state
