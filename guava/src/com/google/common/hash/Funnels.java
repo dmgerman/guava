@@ -170,7 +170,26 @@ literal|"Funnels.byteArrayFunnel()"
 return|;
 block|}
 block|}
-comment|/**    * Returns a funnel that extracts the characters from a {@code CharSequence}.    */
+comment|/**    * Returns a funnel that extracts the characters from a {@code CharSequence}, a character at a    * time, without performing any encoding. If you need to use a specific encoding, use    * {@link Funnels#stringFunnel(Charset)} instead.    *    * @since 15.0 (since 11.0 as {@code Funnels.stringFunnel()}.    */
+DECL|method|unencodedCharsFunnel ()
+specifier|public
+specifier|static
+name|Funnel
+argument_list|<
+name|CharSequence
+argument_list|>
+name|unencodedCharsFunnel
+parameter_list|()
+block|{
+return|return
+name|UnencodedCharsFunnel
+operator|.
+name|INSTANCE
+return|;
+block|}
+comment|/**    * Returns a funnel that extracts the characters from a {@code CharSequence}.    *    * @deprecated Use {@link Funnels#unencodedCharsFunnel} instead. This method is scheduled for    *     removal in Guava 16.0.    */
+annotation|@
+name|Deprecated
 DECL|method|stringFunnel ()
 specifier|public
 specifier|static
@@ -182,15 +201,14 @@ name|stringFunnel
 parameter_list|()
 block|{
 return|return
-name|StringFunnel
-operator|.
-name|INSTANCE
+name|unencodedCharsFunnel
+argument_list|()
 return|;
 block|}
-DECL|enum|StringFunnel
+DECL|enum|UnencodedCharsFunnel
 specifier|private
 enum|enum
-name|StringFunnel
+name|UnencodedCharsFunnel
 implements|implements
 name|Funnel
 argument_list|<
@@ -229,7 +247,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Funnels.stringFunnel()"
+literal|"Funnels.unencodedCharsFunnel()"
 return|;
 block|}
 block|}

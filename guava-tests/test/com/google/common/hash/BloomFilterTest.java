@@ -175,7 +175,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 name|numInsertions
@@ -498,7 +498,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 operator|-
@@ -523,7 +523,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 operator|-
@@ -550,7 +550,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|1
@@ -576,7 +576,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|1
@@ -619,7 +619,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 name|n
@@ -661,7 +661,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
@@ -1005,7 +1005,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
@@ -1198,7 +1198,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 name|i
@@ -1298,7 +1298,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
@@ -1315,7 +1315,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
@@ -1332,7 +1332,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|200
@@ -1349,7 +1349,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|200
@@ -1380,7 +1380,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
@@ -1412,7 +1412,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
@@ -1643,7 +1643,7 @@ name|create
 argument_list|(
 name|Funnels
 operator|.
-name|stringFunnel
+name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 literal|100
