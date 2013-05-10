@@ -386,7 +386,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Subclasses should invoke this method to set the result of the computation    * to an error, {@code throwable}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and invoke the listeners if the    * state was successfully changed.    *    * @param throwable the exception that the task failed with.    * @return true if the state was successfully changed.    * @throws Error if the throwable was an {@link Error}.    */
+comment|/**    * Subclasses should invoke this method to set the result of the computation    * to an error, {@code throwable}.  This will set the state of the future to    * {@link AbstractFuture.Sync#COMPLETED} and invoke the listeners if the    * state was successfully changed.    *    * @param throwable the exception that the task failed with.    * @return true if the state was successfully changed.    */
 DECL|method|setException (Throwable throwable)
 specifier|protected
 name|boolean
@@ -419,22 +419,6 @@ operator|.
 name|execute
 argument_list|()
 expr_stmt|;
-block|}
-comment|// If it's an Error, we want to make sure it reaches the top of the
-comment|// call stack, so we rethrow it.
-if|if
-condition|(
-name|throwable
-operator|instanceof
-name|Error
-condition|)
-block|{
-throw|throw
-operator|(
-name|Error
-operator|)
-name|throwable
-throw|;
 block|}
 return|return
 name|result

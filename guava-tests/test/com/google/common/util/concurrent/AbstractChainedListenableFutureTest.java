@@ -250,8 +250,6 @@ operator|new
 name|Error
 argument_list|()
 decl_stmt|;
-try|try
-block|{
 name|inputFuture
 operator|.
 name|setException
@@ -259,27 +257,6 @@ argument_list|(
 name|error
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expected an Error to be thrown"
-argument_list|)
-expr_stmt|;
-comment|// COV_NF_LINE
-block|}
-catch|catch
-parameter_list|(
-name|Error
-name|expected
-parameter_list|)
-block|{
-name|assertSame
-argument_list|(
-name|error
-argument_list|,
-name|expected
-argument_list|)
-expr_stmt|;
-block|}
 comment|// Verify that get throws an ExecutionException, caused by an Error, when
 comment|// the callback is called.
 name|listener

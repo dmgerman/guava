@@ -1512,7 +1512,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|Throwable
 name|e
 parameter_list|)
 block|{
@@ -1521,19 +1521,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Error
-name|e
-parameter_list|)
-block|{
-name|setException
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-comment|// note: rethrows
 block|}
 block|}
 block|}
@@ -2429,28 +2416,15 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
 comment|// This exception is irrelevant in this thread, but useful for the
 comment|// client
 name|setException
 argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Error
-name|e
-parameter_list|)
-block|{
-comment|// Propagate errors up ASAP - our superclass will rethrow the error
-name|setException
-argument_list|(
-name|e
+name|t
 argument_list|)
 expr_stmt|;
 block|}
@@ -3911,6 +3885,25 @@ argument_list|<
 name|C
 argument_list|>
 block|{
+DECL|field|logger
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|CombinedFuture
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|field|futures
 name|ImmutableCollection
 argument_list|<
@@ -4260,6 +4253,61 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is true      * otherwise log it.      */
+DECL|method|setExceptionOrLog (Throwable throwable)
+specifier|private
+name|void
+name|setExceptionOrLog
+parameter_list|(
+name|Throwable
+name|throwable
+parameter_list|)
+block|{
+name|boolean
+name|result
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|allMustSucceed
+condition|)
+block|{
+comment|// As soon as the first one fails, throw the exception up.
+comment|// The result of all other inputs is then ignored.
+name|result
+operator|=
+name|super
+operator|.
+name|setException
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|result
+condition|)
+block|{
+comment|// This means that the throwable is not being saved and will likely not be inspected by
+comment|// anything.  log it.
+name|logger
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|SEVERE
+argument_list|,
+literal|"ignoring failure from input future."
+argument_list|,
+name|throwable
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**      * Sets the value at the given index to that of the given future.      */
 DECL|method|setOneValue (int index, Future<? extends V> future)
 specifier|private
@@ -4377,14 +4425,7 @@ name|ExecutionException
 name|e
 parameter_list|)
 block|{
-if|if
-condition|(
-name|allMustSucceed
-condition|)
-block|{
-comment|// As soon as the first one fails, throw the exception up.
-comment|// The result of all other inputs is then ignored.
-name|setException
+name|setExceptionOrLog
 argument_list|(
 name|e
 operator|.
@@ -4393,35 +4434,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
-name|e
+name|Throwable
+name|t
 parameter_list|)
 block|{
-if|if
-condition|(
-name|allMustSucceed
-condition|)
-block|{
-name|setException
+name|setExceptionOrLog
 argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Error
-name|e
-parameter_list|)
-block|{
-comment|// Propagate errors up ASAP - our superclass will rethrow the error
-name|setException
-argument_list|(
-name|e
+name|t
 argument_list|)
 expr_stmt|;
 block|}
