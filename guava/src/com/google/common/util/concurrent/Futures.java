@@ -4094,8 +4094,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// By now the values array has either been set as the Future's value,
-comment|// or (in case of failure) is no longer useful.
+comment|// Let go of the memory held by other futures
 name|CombinedFuture
 operator|.
 name|this
@@ -4104,7 +4103,8 @@ name|futures
 operator|=
 literal|null
 expr_stmt|;
-comment|// Let go of the memory held by other futures
+comment|// By now the values array has either been set as the Future's value,
+comment|// or (in case of failure) is no longer useful.
 name|CombinedFuture
 operator|.
 name|this
@@ -4253,11 +4253,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is true      * otherwise log it.      */
-DECL|method|setExceptionOrLog (Throwable throwable)
+comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is      * true. Also, logs the throwable if it is an {@link Error} or if      * {@link #allMustSucceed} is {@code true} and the throwable did not cause      * this future to fail.      */
+DECL|method|setExceptionAndMaybeLog (Throwable throwable)
 specifier|private
 name|void
-name|setExceptionOrLog
+name|setExceptionAndMaybeLog
 parameter_list|(
 name|Throwable
 name|throwable
@@ -4287,12 +4287,18 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|throwable
+operator|instanceof
+name|Error
+operator|||
+operator|(
+name|allMustSucceed
+operator|&&
 operator|!
 name|result
+operator|)
 condition|)
 block|{
-comment|// This means that the throwable is not being saved and will likely not be inspected by
-comment|// anything.  log it.
 name|logger
 operator|.
 name|log
@@ -4301,7 +4307,7 @@ name|Level
 operator|.
 name|SEVERE
 argument_list|,
-literal|"ignoring failure from input future."
+literal|"input future failed."
 argument_list|,
 name|throwable
 argument_list|)
@@ -4337,6 +4343,13 @@ name|localValues
 init|=
 name|values
 decl_stmt|;
+comment|// TODO(user): This check appears to be redundant since values is
+comment|// assigned null only after the future completes.  However, values
+comment|// is not volatile so it may be possible for us to observe the changes
+comment|// to these two values in a different order... which I think is why
+comment|// we need to check both.  Clear up this craziness either by making
+comment|// values volatile or proving that it doesn't need to be for some other
+comment|// reason.
 if|if
 condition|(
 name|isDone
@@ -4349,7 +4362,8 @@ condition|)
 block|{
 comment|// Some other future failed or has been cancelled, causing this one to
 comment|// also be cancelled or have an exception set. This should only happen
-comment|// if allMustSucceed is true or if the output itself has been cancelled.
+comment|// if allMustSucceed is true or if the output itself has been
+comment|// cancelled.
 name|checkState
 argument_list|(
 name|allMustSucceed
@@ -4360,7 +4374,6 @@ argument_list|,
 literal|"Future was done before all dependencies completed"
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
 try|try
 block|{
@@ -4382,6 +4395,13 @@ argument_list|(
 name|future
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|localValues
+operator|!=
+literal|null
+condition|)
+block|{
 name|localValues
 operator|.
 name|set
@@ -4397,6 +4417,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|CancellationException
@@ -4410,8 +4431,6 @@ condition|)
 block|{
 comment|// Set ourselves as cancelled. Let the input futures keep running
 comment|// as some of them may be used elsewhere.
-comment|// (Currently we don't override interruptTask, so
-comment|// mayInterruptIfRunning==false isn't technically necessary.)
 name|cancel
 argument_list|(
 literal|false
@@ -4425,7 +4444,7 @@ name|ExecutionException
 name|e
 parameter_list|)
 block|{
-name|setExceptionOrLog
+name|setExceptionAndMaybeLog
 argument_list|(
 name|e
 operator|.
@@ -4440,7 +4459,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-name|setExceptionOrLog
+name|setExceptionAndMaybeLog
 argument_list|(
 name|t
 argument_list|)
@@ -4485,6 +4504,10 @@ decl_stmt|;
 if|if
 condition|(
 name|localCombiner
+operator|!=
+literal|null
+operator|&&
+name|localValues
 operator|!=
 literal|null
 condition|)
