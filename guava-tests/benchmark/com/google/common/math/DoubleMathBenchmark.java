@@ -104,6 +104,8 @@ name|google
 operator|.
 name|caliper
 operator|.
+name|legacy
+operator|.
 name|Benchmark
 import|;
 end_import

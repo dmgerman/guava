@@ -84,7 +84,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Benchmark
+name|Param
 import|;
 end_import
 
@@ -96,7 +96,9 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|legacy
+operator|.
+name|Benchmark
 import|;
 end_import
 
