@@ -136,7 +136,7 @@ name|CharSequence
 name|input
 parameter_list|)
 function_decl|;
-comment|/**    * Shortcut for {@code newHasher().putUnencodedChars(input).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse.    * Note that no character encoding is performed; the low byte and high byte of each {@code char}    * are hashed directly (in that order).    *    * @deprecated Use {@link HashFunction#hashUnencodedChars} instead.    */
+comment|/**    * Shortcut for {@code newHasher().putUnencodedChars(input).hash()}. The implementation    *<i>might</i> perform better than its longhand equivalent, but should not perform worse.    * Note that no character encoding is performed; the low byte and high byte of each {@code char}    * are hashed directly (in that order).    *    * @deprecated Use {@link HashFunction#hashUnencodedChars} instead. This method is scheduled for    *     removal in Guava 16.0.    */
 annotation|@
 name|Deprecated
 DECL|method|hashString (CharSequence input)
