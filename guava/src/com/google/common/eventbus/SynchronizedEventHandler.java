@@ -46,6 +46,7 @@ end_comment
 
 begin_class
 DECL|class|SynchronizedEventHandler
+specifier|final
 class|class
 name|SynchronizedEventHandler
 extends|extends
@@ -71,11 +72,10 @@ name|method
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|handleEvent (Object event)
 annotation|@
 name|Override
+DECL|method|handleEvent (Object event)
 specifier|public
-specifier|synchronized
 name|void
 name|handleEvent
 parameter_list|(
@@ -85,6 +85,12 @@ parameter_list|)
 throws|throws
 name|InvocationTargetException
 block|{
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1403
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|super
 operator|.
 name|handleEvent
@@ -92,6 +98,7 @@ argument_list|(
 name|event
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class
