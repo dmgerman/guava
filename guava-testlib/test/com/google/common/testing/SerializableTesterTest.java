@@ -135,7 +135,7 @@ block|{
 comment|// expected
 name|assertContains
 argument_list|(
-literal|"must be equal to"
+literal|"must be Object#equals to"
 argument_list|,
 name|error
 operator|.
@@ -191,7 +191,7 @@ block|{
 comment|// expected
 name|assertContains
 argument_list|(
-literal|"must be equal to the hash"
+literal|"must be equal to the Object#hashCode"
 argument_list|,
 name|error
 operator|.

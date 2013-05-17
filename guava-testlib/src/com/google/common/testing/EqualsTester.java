@@ -299,7 +299,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"$ITEM must be equal to $RELATED"
+literal|"$ITEM must be Object#equals to $RELATED"
 argument_list|,
 name|item
 argument_list|,
@@ -324,11 +324,13 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"the hash ("
+literal|"the Object#hashCode ("
 operator|+
 name|itemHash
 operator|+
-literal|") of $ITEM must be equal to the hash ("
+literal|") of $ITEM must be equal to the "
+operator|+
+literal|"Object#hashCode ("
 operator|+
 name|relatedHash
 operator|+
@@ -357,7 +359,7 @@ comment|// TODO(cpovirk): should this implementation (and
 comment|// RelationshipAssertions in general) accept null inputs?
 name|assertTrue
 argument_list|(
-literal|"$ITEM must be unequal to $UNRELATED"
+literal|"$ITEM must not be Object#equals to $UNRELATED"
 argument_list|,
 operator|!
 name|Objects
@@ -469,7 +471,7 @@ name|assertTrue
 argument_list|(
 name|item
 operator|+
-literal|" must be unequal to null"
+literal|" must not be Object#equals to null"
 argument_list|,
 operator|!
 name|item
@@ -484,7 +486,7 @@ name|assertTrue
 argument_list|(
 name|item
 operator|+
-literal|" must be unequal to an arbitrary object of another class"
+literal|" must not be Object#equals to an arbitrary object of another class"
 argument_list|,
 operator|!
 name|item
@@ -501,7 +503,7 @@ name|assertEquals
 argument_list|(
 name|item
 operator|+
-literal|" must be equal to itself"
+literal|" must be Object#equals to itself"
 argument_list|,
 name|item
 argument_list|,
@@ -510,7 +512,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"the hash of "
+literal|"the Object#hashCode of "
 operator|+
 name|item
 operator|+

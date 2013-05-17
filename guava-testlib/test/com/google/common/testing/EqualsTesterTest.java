@@ -354,7 +354,7 @@ name|e
 argument_list|,
 name|equalObject1
 operator|+
-literal|" [group 1, item 1] must be equal to "
+literal|" [group 1, item 1] must be Object#equals to "
 operator|+
 name|notEqualObject1
 operator|+
@@ -454,7 +454,7 @@ name|e
 argument_list|,
 name|obj
 operator|+
-literal|" must be equal to itself"
+literal|" must be Object#equals to itself"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -506,7 +506,7 @@ name|e
 argument_list|,
 name|obj
 operator|+
-literal|" must be unequal to null"
+literal|" must not be Object#equals to null"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -558,7 +558,7 @@ name|e
 argument_list|,
 name|obj
 operator|+
-literal|" must be unequal to an arbitrary object of another class"
+literal|" must not be Object#equals to an arbitrary object of another class"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -687,7 +687,7 @@ name|assertErrorMessage
 argument_list|(
 name|e
 argument_list|,
-literal|"the hash ("
+literal|"the Object#hashCode ("
 operator|+
 name|a
 operator|.
@@ -698,7 +698,7 @@ literal|") of "
 operator|+
 name|a
 operator|+
-literal|" [group 1, item 1] must be equal to the hash ("
+literal|" [group 1, item 1] must be equal to the Object#hashCode ("
 operator|+
 name|b
 operator|.
@@ -849,7 +849,7 @@ name|assertErrorMessage
 argument_list|(
 name|e
 argument_list|,
-literal|"bar [group 1, item 2] must be equal to foo [group 1, item 1]"
+literal|"bar [group 1, item 2] must be Object#equals to foo [group 1, item 1]"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -926,7 +926,7 @@ name|assertErrorMessage
 argument_list|(
 name|e
 argument_list|,
-literal|"bar [group 1, item 2] must be equal to baz [group 1, item 3]"
+literal|"bar [group 1, item 2] must be Object#equals to baz [group 1, item 3]"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -981,7 +981,7 @@ name|assertErrorMessage
 argument_list|(
 name|e
 argument_list|,
-literal|"foo [group 1, item 1] must be equal to bar [group 1, item 2]"
+literal|"foo [group 1, item 1] must be Object#equals to bar [group 1, item 2]"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1073,7 +1073,7 @@ name|assertErrorMessage
 argument_list|(
 name|e
 argument_list|,
-literal|"bar [group 1, item 2] must be unequal to x [group 2, item 2]"
+literal|"bar [group 1, item 2] must not be Object#equals to x [group 2, item 2]"
 argument_list|)
 expr_stmt|;
 return|return;
