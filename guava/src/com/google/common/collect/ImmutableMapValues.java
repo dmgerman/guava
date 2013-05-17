@@ -66,6 +66,16 @@ name|Entry
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * {@code values()} implementation for {@link ImmutableMap}.  *  * @author Jesse Wilson  * @author Kevin Bourrillion  */
 end_comment
@@ -166,20 +176,29 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains (Object object)
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
 block|{
 return|return
-name|map
+name|object
+operator|!=
+literal|null
+operator|&&
+name|Iterators
 operator|.
-name|containsValue
+name|contains
 argument_list|(
+name|iterator
+argument_list|()
+argument_list|,
 name|object
 argument_list|)
 return|;
