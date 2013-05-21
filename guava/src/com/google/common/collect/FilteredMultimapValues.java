@@ -130,6 +130,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -273,8 +285,6 @@ name|Predicate
 argument_list|<
 name|?
 super|super
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -293,8 +303,6 @@ for|for
 control|(
 name|Iterator
 argument_list|<
-name|Map
-operator|.
 name|Entry
 argument_list|<
 name|K
@@ -400,8 +408,17 @@ operator|.
 name|entries
 argument_list|()
 argument_list|,
+comment|// explicit<Entry<K, V>> is required to build with JDK6
 name|Predicates
 operator|.
+expr|<
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|>
 name|and
 argument_list|(
 name|multimap
@@ -454,8 +471,17 @@ operator|.
 name|entries
 argument_list|()
 argument_list|,
+comment|// explicit<Entry<K, V>> is required to build with JDK6
 name|Predicates
 operator|.
+expr|<
+name|Entry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+operator|>
 name|and
 argument_list|(
 name|multimap
