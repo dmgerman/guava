@@ -110,7 +110,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link OutputSupplier} interface and should not be called directly. Use {@link #openStream}    *     instead.    */
+comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link OutputSupplier} interface and should not be called directly. Use    *     {@link #openStream} instead.    */
 annotation|@
 name|Override
 annotation|@
@@ -129,10 +129,10 @@ name|openStream
 argument_list|()
 return|;
 block|}
-comment|/**    * Opens a new {@link BufferedWriter} for writing to this sink. This method should return a new,    * independent writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    */
+comment|/**    * Opens a new buffered {@link Writer} for writing to this sink. The returned stream is not    * required to be a {@link BufferedWriter} in order to allow implementations to simply delegate    * to {@link #openStream()} when the stream returned by that method does not benefit from    * additional buffering. This method should return a new, independent writer each time it is    * called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    * @since 15.0 (in 14.0 with return type {@link BufferedWriter})    */
 DECL|method|openBufferedStream ()
 specifier|public
-name|BufferedWriter
+name|Writer
 name|openBufferedStream
 parameter_list|()
 throws|throws
@@ -309,7 +309,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|BufferedWriter
+name|Writer
 name|out
 init|=
 name|closer

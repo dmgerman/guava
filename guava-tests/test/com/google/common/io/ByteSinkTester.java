@@ -104,16 +104,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|BufferedOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|ByteArrayInputStream
 import|;
 end_import
@@ -530,7 +520,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|BufferedOutputStream
+name|OutputStream
 name|out
 init|=
 name|sink

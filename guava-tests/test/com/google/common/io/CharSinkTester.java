@@ -76,16 +76,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|BufferedWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -441,7 +431,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|BufferedWriter
+name|Writer
 name|writer
 init|=
 name|sink

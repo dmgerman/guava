@@ -293,10 +293,10 @@ name|openStream
 argument_list|()
 return|;
 block|}
-comment|/**    * Opens a new {@link BufferedInputStream} for reading from this source. This method should return    * a new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    */
+comment|/**    * Opens a new buffered {@link InputStream} for reading from this source. The returned stream is    * not required to be a {@link BufferedInputStream} in order to allow implementations to simply    * delegate to {@link #openStream()} when the stream returned by that method does not benefit    * from additional buffering (for example, a {@code ByteArrayInputStream}). This method should    * return a new, independent stream each time it is called.    *    *<p>The caller is responsible for ensuring that the returned stream is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the stream    * @since 15.0 (in 14.0 with return type {@link BufferedInputStream})    */
 DECL|method|openBufferedStream ()
 specifier|public
-name|BufferedInputStream
+name|InputStream
 name|openBufferedStream
 parameter_list|()
 throws|throws
@@ -1324,16 +1324,51 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|InputStream
-name|in
-init|=
+return|return
+name|sliceStream
+argument_list|(
 name|ByteSource
 operator|.
 name|this
 operator|.
 name|openStream
 argument_list|()
-decl_stmt|;
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|openBufferedStream ()
+specifier|public
+name|InputStream
+name|openBufferedStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|sliceStream
+argument_list|(
+name|ByteSource
+operator|.
+name|this
+operator|.
+name|openBufferedStream
+argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|method|sliceStream (InputStream in)
+specifier|private
+name|InputStream
+name|sliceStream
+parameter_list|(
+name|InputStream
+name|in
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 if|if
 condition|(
 name|offset
@@ -1553,6 +1588,21 @@ name|ByteArrayInputStream
 argument_list|(
 name|bytes
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|openBufferedStream ()
+specifier|public
+name|InputStream
+name|openBufferedStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|openStream
+argument_list|()
 return|;
 block|}
 annotation|@
