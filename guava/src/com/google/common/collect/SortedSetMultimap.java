@@ -169,10 +169,10 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a map view that associates each key with the corresponding values    * in the multimap. Changes to the returned map, such as element removal, will    * update the underlying multimap. The map does not support {@code setValue()}    * on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code    * asMap().get(Object)} has the same behavior as {@link #get}, returning a    * live collection. When passed a key that is not present, however, {@code    * asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link SortedSet} values.    */
+comment|/**    * Returns a map view that associates each key with the corresponding values    * in the multimap. Changes to the returned map, such as element removal, will    * update the underlying multimap. The map does not support {@code setValue()}    * on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code    * asMap().get(Object)} has the same behavior as {@link #get}, returning a    * live collection. When passed a key that is not present, however, {@code    * asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type    * {@link SortedSet}. To obtain this map with the more specific generic type    * {@code Map<K, SortedSet<V>>}, call    * {@link Multimaps#asMap(SortedSetMultimap)} instead.    */
+DECL|method|asMap ()
 annotation|@
 name|Override
-DECL|method|asMap ()
 name|Map
 argument_list|<
 name|K

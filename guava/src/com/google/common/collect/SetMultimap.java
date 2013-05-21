@@ -166,7 +166,7 @@ argument_list|>
 name|entries
 parameter_list|()
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link Set} values.    */
+comment|/**    * {@inheritDoc}    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type    * {@link Set}. To obtain this map with the more specific generic type    * {@code Map<K, Set<V>>}, call {@link Multimaps#asMap(SetMultimap)} instead.    */
 annotation|@
 name|Override
 DECL|method|asMap ()
