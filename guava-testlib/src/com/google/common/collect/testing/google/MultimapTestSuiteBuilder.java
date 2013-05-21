@@ -658,6 +658,10 @@ name|MultimapPutTester
 operator|.
 name|class
 argument_list|,
+name|MultimapPutAllMultimapTester
+operator|.
+name|class
+argument_list|,
 name|MultimapPutIterableTester
 operator|.
 name|class
