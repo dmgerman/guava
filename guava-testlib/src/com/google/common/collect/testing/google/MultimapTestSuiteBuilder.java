@@ -887,6 +887,16 @@ name|parentBuilder
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|derivedSuites
+operator|.
+name|add
+argument_list|(
+name|computeValuesTestSuite
+argument_list|(
+name|parentBuilder
+argument_list|)
+argument_list|)
+expr_stmt|;
 return|return
 name|derivedSuites
 return|;
@@ -958,7 +968,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|".entries"
+literal|".values"
 argument_list|)
 operator|.
 name|suppressing

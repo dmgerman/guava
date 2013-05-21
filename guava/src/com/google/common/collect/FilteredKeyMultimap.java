@@ -1016,6 +1016,29 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|createValues ()
+name|Collection
+argument_list|<
+name|V
+argument_list|>
+name|createValues
+parameter_list|()
+block|{
+return|return
+operator|new
+name|FilteredMultimapValues
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createAsMap ()
 name|Map
 argument_list|<
