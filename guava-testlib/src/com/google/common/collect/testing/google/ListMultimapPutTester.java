@@ -266,6 +266,8 @@ argument_list|(
 name|values
 argument_list|)
 decl_stmt|;
+name|assertTrue
+argument_list|(
 name|multimap
 argument_list|()
 operator|.
@@ -274,6 +276,7 @@ argument_list|(
 name|key
 argument_list|,
 name|value
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|expectedValues
