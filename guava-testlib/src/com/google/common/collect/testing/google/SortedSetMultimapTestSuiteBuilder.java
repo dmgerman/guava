@@ -322,6 +322,15 @@ name|testers
 operator|.
 name|add
 argument_list|(
+name|SortedSetMultimapAsMapTester
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|testers
+operator|.
+name|add
+argument_list|(
 name|SortedSetMultimapGetTester
 operator|.
 name|class
