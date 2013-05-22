@@ -314,6 +314,15 @@ name|testers
 operator|.
 name|add
 argument_list|(
+name|SetMultimapEqualsTester
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|testers
+operator|.
+name|add
+argument_list|(
 name|SetMultimapPutTester
 operator|.
 name|class

@@ -358,6 +358,15 @@ name|testers
 operator|.
 name|add
 argument_list|(
+name|ListMultimapEqualsTester
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|testers
+operator|.
+name|add
+argument_list|(
 name|ListMultimapPutTester
 operator|.
 name|class

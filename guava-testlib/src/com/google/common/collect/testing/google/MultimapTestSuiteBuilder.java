@@ -654,6 +654,10 @@ name|MultimapContainsEntryTester
 operator|.
 name|class
 argument_list|,
+name|MultimapEqualsTester
+operator|.
+name|class
+argument_list|,
 name|MultimapGetTester
 operator|.
 name|class
