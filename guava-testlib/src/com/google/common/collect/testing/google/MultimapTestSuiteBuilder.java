@@ -677,6 +677,10 @@ argument_list|,
 name|MultimapRemoveAllTester
 operator|.
 name|class
+argument_list|,
+name|MultimapToStringTester
+operator|.
+name|class
 argument_list|)
 return|;
 block|}
