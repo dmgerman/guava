@@ -638,6 +638,10 @@ name|MultimapSizeTester
 operator|.
 name|class
 argument_list|,
+name|MultimapClearTester
+operator|.
+name|class
+argument_list|,
 name|MultimapContainsKeyTester
 operator|.
 name|class
