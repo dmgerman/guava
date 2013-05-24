@@ -1491,6 +1491,21 @@ argument_list|,
 literal|"postscript"
 argument_list|)
 decl_stmt|;
+comment|/**    *<a href="http://tools.ietf.org/html/draft-rfernando-protocol-buffers-00">Protocol buffers</a>    */
+DECL|field|PROTOBUF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|PROTOBUF
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"protobuf"
+argument_list|)
+decl_stmt|;
 DECL|field|RDF_XML_UTF_8
 specifier|public
 specifier|static
@@ -2057,6 +2072,13 @@ argument_list|(
 name|POSTSCRIPT
 argument_list|,
 name|POSTSCRIPT
+argument_list|)
+operator|.
+name|put
+argument_list|(
+name|PROTOBUF
+argument_list|,
+name|PROTOBUF
 argument_list|)
 operator|.
 name|put
