@@ -251,7 +251,7 @@ argument_list|()
 return|;
 comment|// TODO(kevinb): do it this way when we can (GWT problem):
 comment|// long bits = Double.doubleToLongBits(value);
-comment|// return (int)(bits ^ (bits>>> 32));
+comment|// return (int) (bits ^ (bits>>> 32));
 block|}
 comment|/**    * Compares the two specified {@code double} values. The sign of the value    * returned is the same as that of<code>((Double) a).{@linkplain    * Double#compareTo compareTo}(b)</code>. As with that method, {@code NaN} is    * treated as greater than all other values, and {@code 0.0> -0.0}.    *    * @param a the first {@code double} to compare    * @param b the second {@code double} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
 DECL|method|compare (double a, double b)

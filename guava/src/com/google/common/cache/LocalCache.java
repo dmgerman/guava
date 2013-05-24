@@ -8803,7 +8803,7 @@ DECL|field|modCount
 name|int
 name|modCount
 decl_stmt|;
-comment|/**      * The table is expanded when its size exceeds this threshold. (The value of this field is      * always {@code (int)(capacity * 0.75)}.)      */
+comment|/**      * The table is expanded when its size exceeds this threshold. (The value of this field is      * always {@code (int) (capacity * 0.75)}.)      */
 DECL|field|threshold
 name|int
 name|threshold

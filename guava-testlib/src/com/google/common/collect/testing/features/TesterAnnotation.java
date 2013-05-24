@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this to meta-annotate XxxFeature.Require annotations, so that those  * annotations can be used to decide whether to apply a test to a given  * class-under-test.  *<br>  * This is needed because annotations can't implement interfaces, which is also  * why reflection is used to extract values from the properties of the various  * annotations.  *  *<p>This class is GWT compatible.  *  * @see CollectionFeature.Require  *  * @author George van den Driessche  */
+comment|/**  * Use this to meta-annotate XxxFeature.Require annotations, so that those  * annotations can be used to decide whether to apply a test to a given  * class-under-test.  *<br>  * This is needed because annotations can't implement interfaces, which is also  * why reflection is used to extract values from the properties of the various  * annotations.  *  * @see CollectionFeature.Require  *  * @author George van den Driessche  */
 end_comment
 
 begin_annotation_defn

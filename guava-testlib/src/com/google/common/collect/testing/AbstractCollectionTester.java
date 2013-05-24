@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for collection testers.  *  *<p>This class is GWT compatible.  *  * @param<E> the element type of the collection to be tested.  *  * @author Kevin Bourrillion  */
+comment|/**  * Base class for collection testers.  *  * @param<E> the element type of the collection to be tested.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

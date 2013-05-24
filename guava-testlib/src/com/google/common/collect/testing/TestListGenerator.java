@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates sets, containing sample elements, to be tested.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * Creates sets, containing sample elements, to be tested.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_interface

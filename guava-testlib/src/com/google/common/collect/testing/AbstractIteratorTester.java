@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Most of the logic for {@link IteratorTester} and {@link ListIteratorTester}.  *  *<p>This class is GWT compatible.  *  * @param<E> the type of element returned by the iterator  * @param<I> the type of the iterator ({@link Iterator} or  *     {@link ListIterator})  *  * @author Kevin Bourrillion  * @author Chris Povirk  */
+comment|/**  * Most of the logic for {@link IteratorTester} and {@link ListIteratorTester}.  *  * @param<E> the type of element returned by the iterator  * @param<I> the type of the iterator ({@link Iterator} or  *     {@link ListIterator})  *  * @author Kevin Bourrillion  * @author Chris Povirk  */
 end_comment
 
 begin_class

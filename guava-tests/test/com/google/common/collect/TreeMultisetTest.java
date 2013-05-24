@@ -1020,7 +1020,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testIteratorBashing ()
 specifier|public

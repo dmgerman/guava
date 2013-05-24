@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract TestSetGenerator for generating sets containing enum values.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * An abstract TestSetGenerator for generating sets containing enum values.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for queue collection tests.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * Base class for queue collection tests.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

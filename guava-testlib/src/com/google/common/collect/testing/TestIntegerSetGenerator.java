@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create integer sets for collection tests.  *  *<p>This class is GWT compatible.  *  * @author Gregory Kick  */
+comment|/**  * Create integer sets for collection tests.  *  * @author Gregory Kick  */
 end_comment
 
 begin_class

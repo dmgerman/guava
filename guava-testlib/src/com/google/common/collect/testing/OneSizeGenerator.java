@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generator for collection of a particular size.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Generator for collection of a particular size.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

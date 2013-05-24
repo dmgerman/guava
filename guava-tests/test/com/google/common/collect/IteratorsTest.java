@@ -2032,7 +2032,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testFilterUsingIteratorTester ()
 specifier|public
@@ -4305,7 +4305,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testCycleUsingIteratorTester ()
 specifier|public
@@ -7265,7 +7265,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testForArrayUsingTester ()
 specifier|public
@@ -7331,7 +7331,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testForArrayWithOffsetUsingTester ()
 specifier|public

@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * To be implemented by test generators that can produce test subjects without  * requiring any parameters.  *  *<p>This class is GWT compatible.  *  * @param<T> the type created by this generator.  *  * @author George van den Driessche  */
+comment|/**  * To be implemented by test generators that can produce test subjects without  * requiring any parameters.  *  * @param<T> the type created by this generator.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface

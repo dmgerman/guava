@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for list testers.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Base class for list testers.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

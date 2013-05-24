@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Optional features of classes derived from {@code Collection}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Optional features of classes derived from {@code Collection}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_comment

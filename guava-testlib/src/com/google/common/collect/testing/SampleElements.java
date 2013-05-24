@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A container class for the five sample elements we need for testing.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * A container class for the five sample elements we need for testing.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

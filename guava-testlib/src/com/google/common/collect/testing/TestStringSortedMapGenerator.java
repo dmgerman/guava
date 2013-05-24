@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation helper for {@link TestMapGenerator} for use with sorted maps of strings.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  */
+comment|/**  * Implementation helper for {@link TestMapGenerator} for use with sorted maps of strings.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

@@ -261,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests creation (typically through a constructor or  * static factory method) of a map. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
+comment|/**  * A generic JUnit test which tests creation (typically through a constructor or  * static factory method) of a map. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

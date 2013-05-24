@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code poll()} operations on a queue.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * A generic JUnit test which tests {@code poll()} operations on a queue.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

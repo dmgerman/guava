@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A non-empty tester for {@link java.util.Iterator}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * A non-empty tester for {@link java.util.Iterator}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

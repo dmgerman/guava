@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for testers of classes (including {@link Collection}  * and {@link java.util.Map Map}) that contain elements.  *  *<p>This class is GWT compatible.  *  * @param<C> the type of the container  * @param<E> the type of the container's contents  *  * @author George van den Driessche  */
+comment|/**  * Base class for testers of classes (including {@link Collection}  * and {@link java.util.Map Map}) that contain elements.  *  * @param<C> the type of the container  * @param<E> the type of the container's contents  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

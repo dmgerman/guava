@@ -185,7 +185,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link java.util.Map#equals}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  * @author Chris Povirk  */
+comment|/**  * Tests {@link java.util.Map#equals}.  *  * @author George van den Driessche  * @author Chris Povirk  */
 end_comment
 
 begin_class

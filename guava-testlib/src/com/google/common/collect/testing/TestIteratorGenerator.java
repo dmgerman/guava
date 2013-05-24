@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates iterators to be tested.  *  * @param<E> the element type of the iterator.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Creates iterators to be tested.  *  * @param<E> the element type of the iterator.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface

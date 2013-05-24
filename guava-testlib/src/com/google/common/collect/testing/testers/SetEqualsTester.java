@@ -143,7 +143,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link java.util.Set#equals}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Tests {@link java.util.Set#equals}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

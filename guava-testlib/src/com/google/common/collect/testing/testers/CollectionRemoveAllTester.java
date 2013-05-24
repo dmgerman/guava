@@ -269,7 +269,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code removeAll} operations on a  * collection. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests {@code removeAll} operations on a  * collection. Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author George van den Driessche  * @author Chris Povirk  */
 end_comment
 
 begin_class

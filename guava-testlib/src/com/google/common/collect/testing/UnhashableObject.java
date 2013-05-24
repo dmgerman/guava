@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An unhashable object to be used in testing as values in our collections.  *  *<p>This class is GWT compatible.  *  * @author Regina O'Dell  */
+comment|/**  * An unhashable object to be used in testing as values in our collections.  *  * @author Regina O'Dell  */
 end_comment
 
 begin_class

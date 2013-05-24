@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create string sets for testing collections that are sorted by natural  * ordering.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * Create string sets for testing collections that are sorted by natural  * ordering.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

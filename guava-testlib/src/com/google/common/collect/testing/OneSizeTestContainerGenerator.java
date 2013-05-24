@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The subject-generator interface accepted by Collection testers, for testing  * a Collection at one particular {@link CollectionSize}.  *  *<p>This interface should not be implemented outside this package;  * {@link PerCollectionSizeTestSuiteBuilder} constructs instances of it from  * a more general {@link TestCollectionGenerator}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * The subject-generator interface accepted by Collection testers, for testing  * a Collection at one particular {@link CollectionSize}.  *  *<p>This interface should not be implemented outside this package;  * {@link PerCollectionSizeTestSuiteBuilder} constructs instances of it from  * a more general {@link TestCollectionGenerator}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface

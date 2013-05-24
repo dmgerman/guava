@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation helper for {@link TestMapGenerator} for use with enum maps.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * Implementation helper for {@link TestMapGenerator} for use with enum maps.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

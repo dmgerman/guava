@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO: javadoc.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * TODO: javadoc.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

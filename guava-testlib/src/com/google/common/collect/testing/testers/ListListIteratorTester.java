@@ -315,7 +315,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code listIterator} operations on a list.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
+comment|/**  * A generic JUnit test which tests {@code listIterator} operations on a list.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.ListTestSuiteBuilder}.  *  * @author Chris Povirk  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

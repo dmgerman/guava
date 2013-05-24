@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code size()} operations on a map.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * A generic JUnit test which tests {@code size()} operations on a map.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

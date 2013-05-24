@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates collections containing unhashable sample elements, to be tested.  *  *<p>This class is GWT compatible.  *  * @author Regina O'Dell  */
+comment|/**  * Creates collections containing unhashable sample elements, to be tested.  *  * @author Regina O'Dell  */
 end_comment
 
 begin_class

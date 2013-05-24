@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates queues, containing sample elements, to be tested.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * Creates queues, containing sample elements, to be tested.  *  * @author Jared Levy  */
 end_comment
 
 begin_interface

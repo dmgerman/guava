@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests representing the contract of {@link SortedMap}. Concrete subclasses of  * this base class test conformance of concrete {@link SortedMap} subclasses to  * that contract.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * Tests representing the contract of {@link SortedMap}. Concrete subclasses of  * this base class test conformance of concrete {@link SortedMap} subclasses to  * that contract.  *  * @author Jared Levy  */
 end_comment
 
 begin_comment

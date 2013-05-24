@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates sorted maps, containing sample elements, to be tested.  *  *<p>This class is GWT compatible.  *   * @author Louis Wasserman  */
+comment|/**  * Creates sorted maps, containing sample elements, to be tested.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_interface

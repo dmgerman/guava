@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation helper for {@link TestMapGenerator} for use with maps of  * strings.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  * @author Jared Levy  * @author George van den Driessche  */
+comment|/**  * Implementation helper for {@link TestMapGenerator} for use with maps of  * strings.  *  * @author Chris Povirk  * @author Jared Levy  * @author George van den Driessche  */
 end_comment
 
 begin_class

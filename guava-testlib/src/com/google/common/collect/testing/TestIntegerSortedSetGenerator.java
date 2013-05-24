@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create integer sets for testing collections that are sorted by natural  * ordering.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  * @author Jared Levy  */
+comment|/**  * Create integer sets for testing collections that are sorted by natural  * ordering.  *  * @author Chris Povirk  * @author Jared Levy  */
 end_comment
 
 begin_class

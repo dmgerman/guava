@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates map entries using sample keys and sample values.  *  *<p>This class is GWT compatible.  *  * @author Jesse Wilson  */
+comment|/**  * Creates map entries using sample keys and sample values.  *  * @author Jesse Wilson  */
 end_comment
 
 begin_class

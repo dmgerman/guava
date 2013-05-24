@@ -147,7 +147,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link java.util.Map#hashCode}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  * @author Chris Povirk  */
+comment|/**  * Tests {@link java.util.Map#hashCode}.  *  * @author George van den Driessche  * @author Chris Povirk  */
 end_comment
 
 begin_class

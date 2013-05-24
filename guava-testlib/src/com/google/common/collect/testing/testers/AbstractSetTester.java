@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * @author George van den Driessche  */
 end_comment
 
 begin_class

@@ -255,7 +255,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code remove} operations on a map. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  * @author Chris Povirk  */
+comment|/**  * A generic JUnit test which tests {@code remove} operations on a map. Can't be  * invoked directly; please see  * {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author George van den Driessche  * @author Chris Povirk  */
 end_comment
 
 begin_class

@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * String creation for testing arbitrary collections.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * String creation for testing arbitrary collections.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

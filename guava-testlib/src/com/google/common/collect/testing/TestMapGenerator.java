@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates maps, containing sample elements, to be tested.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Creates maps, containing sample elements, to be tested.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface

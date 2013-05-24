@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generates {@code List<Character>} instances for test suites.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
+comment|/**  * Generates {@code List<Character>} instances for test suites.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
 end_comment
 
 begin_class

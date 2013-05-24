@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Common parent class for {@link ListIndexOfTester} and  * {@link ListLastIndexOfTester}.  *  *<p>This class is GWT compatible.  *  * @author Chris Povirk  */
+comment|/**  * Common parent class for {@link ListIndexOfTester} and  * {@link ListLastIndexOfTester}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class

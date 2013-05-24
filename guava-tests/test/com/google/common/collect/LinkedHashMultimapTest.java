@@ -2080,7 +2080,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testGetIteration ()
 specifier|public
@@ -2239,7 +2239,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testEntriesIteration ()
 specifier|public
@@ -2460,7 +2460,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testKeysIteration ()
 specifier|public
@@ -2610,7 +2610,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testValuesIteration ()
 specifier|public
@@ -2760,7 +2760,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testKeySetIteration ()
 specifier|public
@@ -2967,7 +2967,7 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"unreasonable slow"
+literal|"unreasonably slow"
 argument_list|)
 DECL|method|testAsSetIteration ()
 specifier|public

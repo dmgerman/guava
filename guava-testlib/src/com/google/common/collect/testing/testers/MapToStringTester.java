@@ -209,7 +209,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generic JUnit test which tests {@code toString()} operations on a map. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  *<p>  * This class is GWT compatible.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
+comment|/**  * A generic JUnit test which tests {@code toString()} operations on a map. Can't be invoked  * directly; please see {@link com.google.common.collect.testing.MapTestSuiteBuilder}.  *  * @author Kevin Bourrillion  * @author Louis Wasserman  */
 end_comment
 
 begin_class

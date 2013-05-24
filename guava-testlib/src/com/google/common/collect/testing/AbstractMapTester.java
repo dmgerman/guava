@@ -95,7 +95,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for map testers.  *  *<p>This class is GWT compatible.  *  * TODO: see how much of this is actually needed once Map testers are written.  * (It was cloned from AbstractCollectionTester.)  *  * @param<K> the key type of the map to be tested.  * @param<V> the value type of the map to be tested.  *  * @author George van den Driessche  */
+comment|/**  * Base class for map testers.  *  * TODO: see how much of this is actually needed once Map testers are written.  * (It was cloned from AbstractCollectionTester.)  *  * @param<K> the key type of the map to be tested.  * @param<V> the value type of the map to be tested.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

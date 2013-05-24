@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A generator using sample elements whose hash codes all collide badly.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * A generator using sample elements whose hash codes all collide badly.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

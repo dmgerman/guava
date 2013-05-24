@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * To be implemented by test generators of things that can contain  * elements. Such things include both {@link Collection} and {@link Map}; since  * there isn't an established collective noun that encompasses both of these,  * 'container' is used.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * To be implemented by test generators of things that can contain  * elements. Such things include both {@link Collection} and {@link Map}; since  * there isn't an established collective noun that encompasses both of these,  * 'container' is used.  *  * @author George van den Driessche  */
 end_comment
 
 begin_interface

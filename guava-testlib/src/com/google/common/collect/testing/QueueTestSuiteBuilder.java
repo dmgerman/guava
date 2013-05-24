@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a queue implementation.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * Creates, based on your criteria, a JUnit test suite that exhaustively tests  * a queue implementation.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

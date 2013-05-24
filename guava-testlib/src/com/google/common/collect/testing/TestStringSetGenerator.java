@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create string sets for collection tests.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * Create string sets for collection tests.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class

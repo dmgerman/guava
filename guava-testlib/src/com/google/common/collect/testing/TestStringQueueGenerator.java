@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Create queue of strings for tests.  *  *<p>This class is GWT compatible.  *  * @author Jared Levy  */
+comment|/**  * Create queue of strings for tests.  *  * @author Jared Levy  */
 end_comment
 
 begin_class

@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link java.util.Set#hashCode}.  *  *<p>This class is GWT compatible.  *  * @author George van den Driessche  */
+comment|/**  * Tests {@link java.util.Set#hashCode}.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class

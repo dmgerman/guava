@@ -33,7 +33,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sample enumerated type we use for testing.  *  *<p>This class is GWT compatible.  *  * @author Kevin Bourrillion  */
+comment|/**  * A sample enumerated type we use for testing.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_enum
