@@ -554,6 +554,30 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Not supported. {@code ContiguousSet} instances are constructed with {@link #create}. This    * method exists only to hide {@link ImmutableSet#builder} from consumers of {@code    * ContiguousSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #create}.    */
+DECL|method|builder ()
+annotation|@
+name|Deprecated
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSortedSet
+operator|.
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+name|builder
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 

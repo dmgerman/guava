@@ -2089,13 +2089,6 @@ name|E
 argument_list|>
 name|forwardList
 decl_stmt|;
-DECL|field|size
-specifier|private
-specifier|final
-specifier|transient
-name|int
-name|size
-decl_stmt|;
 DECL|method|ReverseImmutableList (ImmutableList<E> backingList)
 name|ReverseImmutableList
 parameter_list|(
@@ -2112,15 +2105,6 @@ name|forwardList
 operator|=
 name|backingList
 expr_stmt|;
-name|this
-operator|.
-name|size
-operator|=
-name|backingList
-operator|.
-name|size
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|reverseIndex (int index)
 specifier|private
@@ -2134,6 +2118,7 @@ block|{
 return|return
 operator|(
 name|size
+argument_list|()
 operator|-
 literal|1
 operator|)
@@ -2152,6 +2137,7 @@ parameter_list|)
 block|{
 return|return
 name|size
+argument_list|()
 operator|-
 name|index
 return|;
@@ -2295,6 +2281,7 @@ argument_list|,
 name|toIndex
 argument_list|,
 name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -2333,6 +2320,7 @@ argument_list|(
 name|index
 argument_list|,
 name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -2356,7 +2344,10 @@ name|size
 parameter_list|()
 block|{
 return|return
+name|forwardList
+operator|.
 name|size
+argument_list|()
 return|;
 block|}
 DECL|method|isPartialView ()
