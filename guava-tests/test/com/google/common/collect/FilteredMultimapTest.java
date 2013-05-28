@@ -235,22 +235,6 @@ name|void
 name|testKeysEntrySetIterator
 parameter_list|()
 block|{}
-DECL|method|testEntriesUpdate ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntriesUpdate
-parameter_list|()
-block|{}
-DECL|method|testEntriesIterator ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntriesIterator
-parameter_list|()
-block|{}
 DECL|method|testKeySetIterator ()
 annotation|@
 name|Override
