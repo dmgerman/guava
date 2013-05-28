@@ -390,6 +390,10 @@ name|CollectionFeature
 operator|.
 name|KNOWN_ORDER
 argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
+argument_list|,
 name|MapFeature
 operator|.
 name|ALLOWS_NULL_VALUES
@@ -568,6 +572,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE
 argument_list|)
 operator|.
 name|named

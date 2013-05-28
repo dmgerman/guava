@@ -357,29 +357,6 @@ name|tolerated
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testEntrySetContainsEntryIncompatibleComparableKey ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntrySetContainsEntryIncompatibleComparableKey
-parameter_list|()
-block|{
-try|try
-block|{
-name|super
-operator|.
-name|testEntrySetContainsEntryIncompatibleComparableKey
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ClassCastException
-name|tolerated
-parameter_list|)
-block|{     }
-block|}
 DECL|method|testEntrySetRemoveAllNullFromEmpty ()
 annotation|@
 name|Override

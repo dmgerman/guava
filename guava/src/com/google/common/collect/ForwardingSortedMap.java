@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -654,6 +670,20 @@ name|K
 name|toKey
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|unsafeCompare
+argument_list|(
+name|fromKey
+argument_list|,
+name|toKey
+argument_list|)
+operator|<=
+literal|0
+argument_list|,
+literal|"fromKey must be<= toKey"
+argument_list|)
+expr_stmt|;
 return|return
 name|tailMap
 argument_list|(

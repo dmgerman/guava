@@ -72,6 +72,46 @@ name|testing
 operator|.
 name|testers
 operator|.
+name|MapEntrySetTester
+operator|.
+name|getContainsEntryWithIncomparableKeyMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|MapEntrySetTester
+operator|.
+name|getContainsEntryWithIncomparableValueMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
 name|MapPutAllTester
 operator|.
 name|getPutAllNullKeyUnsupportedMethod
@@ -215,9 +255,39 @@ argument_list|()
 argument_list|,
 name|getCreateWithNullUnsupportedMethod
 argument_list|()
+argument_list|,
+comment|// for keySet
+name|getContainsEntryWithIncomparableKeyMethod
+argument_list|()
+argument_list|,
+name|getContainsEntryWithIncomparableValueMethod
+argument_list|()
 argument_list|)
 return|;
-comment|// for keySet
+block|}
+annotation|@
+name|Override
+DECL|method|suppressForConcurrentSkipListMap ()
+specifier|protected
+name|Collection
+argument_list|<
+name|Method
+argument_list|>
+name|suppressForConcurrentSkipListMap
+parameter_list|()
+block|{
+return|return
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|getContainsEntryWithIncomparableKeyMethod
+argument_list|()
+argument_list|,
+name|getContainsEntryWithIncomparableValueMethod
+argument_list|()
+argument_list|)
+return|;
 block|}
 DECL|method|testsForEnumMap ()
 annotation|@
