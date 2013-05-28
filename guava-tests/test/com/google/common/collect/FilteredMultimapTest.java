@@ -251,14 +251,6 @@ name|void
 name|testValuesIteratorRemove
 parameter_list|()
 block|{}
-DECL|method|testAsMapEntriesUpdate ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testAsMapEntriesUpdate
-parameter_list|()
-block|{}
 comment|// not serializable
 DECL|method|testSerializable ()
 annotation|@
