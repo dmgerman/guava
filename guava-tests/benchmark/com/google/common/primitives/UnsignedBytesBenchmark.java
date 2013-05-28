@@ -44,20 +44,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|runner
-operator|.
-name|CaliperMain
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -466,30 +452,7 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|main (String[] args)
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-comment|/*     try {       UnsignedBytesBenchmark bench = new UnsignedBytesBenchmark();       bench.length = 1024;       bench.setUp();       bench.timeUnsafe(100000);     } catch (Exception e) {     }*/
-name|CaliperMain
-operator|.
-name|main
-argument_list|(
-name|UnsignedBytesBenchmark
-operator|.
-name|class
-argument_list|,
-name|args
-argument_list|)
-expr_stmt|;
-block|}
+comment|/*   try {     UnsignedBytesBenchmark bench = new UnsignedBytesBenchmark();     bench.length = 1024;     bench.setUp();     bench.timeUnsafe(100000);   } catch (Exception e) {   }*/
 block|}
 end_class
 

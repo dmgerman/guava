@@ -30,20 +30,6 @@ name|Benchmark
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|runner
-operator|.
-name|CaliperMain
-import|;
-end_import
-
 begin_comment
 comment|/**  * Benchmark for {@link EventBus}.  *  * @author Eric Fellheimer  */
 end_comment
@@ -130,29 +116,6 @@ name|string
 parameter_list|)
 block|{
 comment|// Nothing to do here.
-block|}
-DECL|method|main (String[] args)
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|CaliperMain
-operator|.
-name|main
-argument_list|(
-name|EventBusBenchmark
-operator|.
-name|class
-argument_list|,
-name|args
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

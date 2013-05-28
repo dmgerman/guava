@@ -30,20 +30,6 @@ name|Benchmark
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|runner
-operator|.
-name|CaliperMain
-import|;
-end_import
-
 begin_comment
 comment|/**  * Benchmarking interners.  *   * @author Dimitris Andreou  */
 end_comment
@@ -212,29 +198,6 @@ block|}
 return|return
 name|reps
 return|;
-block|}
-DECL|method|main (String[] args)
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|CaliperMain
-operator|.
-name|main
-argument_list|(
-name|InternersBenchmark
-operator|.
-name|class
-argument_list|,
-name|args
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
