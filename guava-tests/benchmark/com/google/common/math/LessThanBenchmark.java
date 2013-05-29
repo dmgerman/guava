@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -61,8 +71,6 @@ DECL|class|LessThanBenchmark
 specifier|public
 class|class
 name|LessThanBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|SAMPLE_SIZE
 specifier|static
@@ -124,9 +132,8 @@ init|=
 literal|0x7FFFFFFFFFFFFFFFL
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -259,10 +266,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeBranchFreeLtIntInlined (int reps)
-specifier|public
+DECL|method|branchFreeLtIntInlined (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBranchFreeLtIntInlined
+name|branchFreeLtIntInlined
 parameter_list|(
 name|int
 name|reps
@@ -344,10 +352,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeBranchFreeLtInt (int reps)
-specifier|public
+DECL|method|branchFreeLtInt (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBranchFreeLtInt
+name|branchFreeLtInt
 parameter_list|(
 name|int
 name|reps
@@ -422,10 +431,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeTernaryLtIntAddOutsideTernary (int reps)
-specifier|public
+DECL|method|ternaryLtIntAddOutsideTernary (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTernaryLtIntAddOutsideTernary
+name|ternaryLtIntAddOutsideTernary
 parameter_list|(
 name|int
 name|reps
@@ -503,10 +513,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeTernaryLtIntAddInsideTernary (int reps)
-specifier|public
+DECL|method|ternaryLtIntAddInsideTernary (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTernaryLtIntAddInsideTernary
+name|ternaryLtIntAddInsideTernary
 parameter_list|(
 name|int
 name|reps
@@ -582,10 +593,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeBranchFreeLtLongInlined (int reps)
-specifier|public
+DECL|method|branchFreeLtLongInlined (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBranchFreeLtLongInlined
+name|branchFreeLtLongInlined
 parameter_list|(
 name|int
 name|reps
@@ -670,10 +682,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeBranchFreeLtLong (int reps)
-specifier|public
+DECL|method|branchFreeLtLong (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBranchFreeLtLong
+name|branchFreeLtLong
 parameter_list|(
 name|int
 name|reps
@@ -748,10 +761,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeTernaryLtLongAddOutsideTernary (int reps)
-specifier|public
+DECL|method|ternaryLtLongAddOutsideTernary (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTernaryLtLongAddOutsideTernary
+name|ternaryLtLongAddOutsideTernary
 parameter_list|(
 name|int
 name|reps
@@ -829,10 +843,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeTernaryLtLongAddInsideTernary (int reps)
-specifier|public
+DECL|method|ternaryLtLongAddInsideTernary (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTernaryLtLongAddInsideTernary
+name|ternaryLtLongAddInsideTernary
 parameter_list|(
 name|int
 name|reps

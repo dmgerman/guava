@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -109,8 +119,6 @@ DECL|class|MessageDigestAlgorithmBenchmark
 specifier|public
 class|class
 name|MessageDigestAlgorithmBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|size
 annotation|@
@@ -393,8 +401,7 @@ name|testBytes
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|public
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -419,10 +426,11 @@ name|testBytes
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeHashing (int reps)
-specifier|public
+DECL|method|hashing (int reps)
+annotation|@
+name|Benchmark
 name|byte
-name|timeHashing
+name|hashing
 parameter_list|(
 name|int
 name|reps

@@ -24,8 +24,6 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
 import|;
 end_import
@@ -39,13 +37,12 @@ DECL|class|InternersBenchmark
 specifier|public
 class|class
 name|InternersBenchmark
-extends|extends
-name|Benchmark
 block|{
-DECL|method|timeWeakInterner (int reps)
-specifier|public
+DECL|method|weakInterner (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeWeakInterner
+name|weakInterner
 parameter_list|(
 name|int
 name|reps
@@ -97,10 +94,11 @@ return|return
 name|reps
 return|;
 block|}
-DECL|method|timeStrongInterner (int reps)
-specifier|public
+DECL|method|strongInterner (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeStrongInterner
+name|strongInterner
 parameter_list|(
 name|int
 name|reps
@@ -157,10 +155,11 @@ name|SuppressWarnings
 argument_list|(
 literal|"ReturnValueIgnored"
 argument_list|)
-DECL|method|timeStringIntern (int reps)
-specifier|public
+DECL|method|stringIntern (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeStringIntern
+name|stringIntern
 parameter_list|(
 name|int
 name|reps

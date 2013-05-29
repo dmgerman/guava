@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -93,8 +103,6 @@ DECL|class|SetIterationBenchmark
 specifier|public
 class|class
 name|SetIterationBenchmark
-extends|extends
-name|Benchmark
 block|{
 annotation|@
 name|Param
@@ -186,8 +194,7 @@ name|setToTest
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|public
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -220,10 +227,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeIteration (int reps)
-specifier|public
+DECL|method|iteration (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeIteration
+name|iteration
 parameter_list|(
 name|int
 name|reps

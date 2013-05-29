@@ -24,7 +24,17 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
 operator|.
 name|Benchmark
 import|;
@@ -97,8 +107,6 @@ DECL|class|HashMultisetAddPresentBenchmark
 specifier|public
 class|class
 name|HashMultisetAddPresentBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|ARRAY_MASK
 specifier|private
@@ -152,9 +160,8 @@ name|ARRAY_SIZE
 index|]
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -229,10 +236,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeAdd (int reps)
-specifier|public
+DECL|method|add (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeAdd
+name|add
 parameter_list|(
 name|int
 name|reps

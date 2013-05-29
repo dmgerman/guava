@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -83,8 +93,6 @@ DECL|class|ChainBenchmark
 specifier|public
 class|class
 name|ChainBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|length
 annotation|@
@@ -138,9 +146,8 @@ argument_list|>
 name|chain
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -242,7 +249,8 @@ block|}
 block|}
 block|}
 DECL|method|time (int reps)
-specifier|public
+annotation|@
+name|Benchmark
 name|int
 name|time
 parameter_list|(

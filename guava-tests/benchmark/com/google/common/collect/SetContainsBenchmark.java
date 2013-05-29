@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -93,8 +103,6 @@ DECL|class|SetContainsBenchmark
 specifier|public
 class|class
 name|SetContainsBenchmark
-extends|extends
-name|Benchmark
 block|{
 comment|// Start at 4.88 then multiply by 2*2^phi<evil cackle> - The goal is be uniform
 comment|// yet visit a variety of "values-relative-to-the-next-power-of-2"
@@ -190,8 +198,7 @@ name|setToTest
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|public
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -235,10 +242,11 @@ name|getQueries
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|timeContains (int reps)
-specifier|public
+DECL|method|contains (int reps)
+annotation|@
+name|Benchmark
 name|boolean
-name|timeContains
+name|contains
 parameter_list|(
 name|int
 name|reps

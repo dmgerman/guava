@@ -56,7 +56,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -68,9 +68,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -271,8 +281,6 @@ DECL|class|ConcurrentHashMultisetBenchmark
 specifier|public
 class|class
 name|ConcurrentHashMultisetBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|threads
 annotation|@
@@ -335,19 +343,13 @@ name|threadPool
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
 name|multiset
 operator|=
 name|implSupplier
@@ -420,10 +422,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeAdd (final int reps)
-specifier|public
+DECL|method|add (final int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeAdd
+name|add
 parameter_list|(
 specifier|final
 name|int
@@ -462,10 +465,11 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|timeAddRemove (final int reps)
-specifier|public
+DECL|method|addRemove (final int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeAddRemove
+name|addRemove
 parameter_list|(
 specifier|final
 name|int

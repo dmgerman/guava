@@ -24,7 +24,17 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
 operator|.
 name|Benchmark
 import|;
@@ -39,8 +49,6 @@ DECL|class|EventBusBenchmark
 specifier|public
 class|class
 name|EventBusBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|eventBus
 specifier|private
@@ -48,9 +56,8 @@ name|EventBus
 name|eventBus
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -71,10 +78,11 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timePostStrings (int reps)
-specifier|public
+DECL|method|postStrings (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timePostStrings
+name|postStrings
 parameter_list|(
 name|int
 name|reps

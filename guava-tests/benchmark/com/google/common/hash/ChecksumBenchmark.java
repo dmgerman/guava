@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -97,8 +107,6 @@ DECL|class|ChecksumBenchmark
 specifier|public
 class|class
 name|ChecksumBenchmark
-extends|extends
-name|Benchmark
 block|{
 comment|// Use a constant seed for all of the benchmarks to ensure apples to apples comparisons.
 DECL|field|RANDOM_SEED
@@ -140,9 +148,8 @@ index|[]
 name|testBytes
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -168,10 +175,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// CRC32
-DECL|method|timeCrc32HashFunction (int reps)
-specifier|public
+DECL|method|crc32HashFunction (int reps)
+annotation|@
+name|Benchmark
 name|byte
-name|timeCrc32HashFunction
+name|crc32HashFunction
 parameter_list|(
 name|int
 name|reps
@@ -189,10 +197,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|timeCrc32Checksum (int reps)
-specifier|public
+DECL|method|crc32Checksum (int reps)
+annotation|@
+name|Benchmark
 name|byte
-name|timeCrc32Checksum
+name|crc32Checksum
 parameter_list|(
 name|int
 name|reps
@@ -247,10 +256,11 @@ name|result
 return|;
 block|}
 comment|// Adler32
-DECL|method|timeAdler32HashFunction (int reps)
-specifier|public
+DECL|method|adler32HashFunction (int reps)
+annotation|@
+name|Benchmark
 name|byte
-name|timeAdler32HashFunction
+name|adler32HashFunction
 parameter_list|(
 name|int
 name|reps
@@ -268,10 +278,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|timeAdler32Checksum (int reps)
-specifier|public
+DECL|method|adler32Checksum (int reps)
+annotation|@
+name|Benchmark
 name|byte
-name|timeAdler32Checksum
+name|adler32Checksum
 parameter_list|(
 name|int
 name|reps

@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -75,8 +85,6 @@ DECL|class|HashFunctionBenchmark
 specifier|public
 class|class
 name|HashFunctionBenchmark
-extends|extends
-name|Benchmark
 block|{
 comment|// Use a statically configured random instance for all of the benchmarks
 DECL|field|random
@@ -124,8 +132,7 @@ name|testBytes
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|public
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -146,10 +153,11 @@ name|testBytes
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeHashFunction (int reps)
-specifier|public
+DECL|method|hashFunction (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashFunction
+name|hashFunction
 parameter_list|(
 name|int
 name|reps

@@ -24,6 +24,30 @@ name|google
 operator|.
 name|caliper
 operator|.
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
 name|Param
 import|;
 end_import
@@ -39,20 +63,6 @@ operator|.
 name|api
 operator|.
 name|SkipThisScenarioException
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|legacy
-operator|.
-name|Benchmark
 import|;
 end_import
 
@@ -89,8 +99,6 @@ DECL|class|StatsBenchmark
 specifier|public
 class|class
 name|StatsBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|enum|MeanAlgorithm
 enum|enum
@@ -734,9 +742,8 @@ index|]
 index|[]
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -805,10 +812,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|timeMeanAndVariance (int reps)
-specifier|public
+DECL|method|meanAndVariance (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeMeanAndVariance
+name|meanAndVariance
 parameter_list|(
 name|int
 name|reps

@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|Benchmark
 import|;
 end_import
 
@@ -36,9 +36,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
-name|Benchmark
+name|Param
 import|;
 end_import
 
@@ -61,8 +59,6 @@ DECL|class|ImmutableListCreationBenchmark
 specifier|public
 class|class
 name|ImmutableListCreationBenchmark
-extends|extends
-name|Benchmark
 block|{
 annotation|@
 name|Param
@@ -90,10 +86,11 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-DECL|method|timeBuilderAdd (int reps)
-specifier|public
+DECL|method|builderAdd (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBuilderAdd
+name|builderAdd
 parameter_list|(
 name|int
 name|reps
@@ -177,10 +174,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timePreSizedBuilderAdd (int reps)
-specifier|public
+DECL|method|preSizedBuilderAdd (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timePreSizedBuilderAdd
+name|preSizedBuilderAdd
 parameter_list|(
 name|int
 name|reps
@@ -270,10 +268,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeCopyArrayList (int reps)
-specifier|public
+DECL|method|copyArrayList (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeCopyArrayList
+name|copyArrayList
 parameter_list|(
 name|int
 name|reps
@@ -357,10 +356,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeCopyPreSizedArrayList (int reps)
-specifier|public
+DECL|method|copyPreSizedArrayList (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeCopyPreSizedArrayList
+name|copyPreSizedArrayList
 parameter_list|(
 name|int
 name|reps

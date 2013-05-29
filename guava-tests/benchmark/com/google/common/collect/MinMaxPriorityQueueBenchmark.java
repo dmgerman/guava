@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -157,8 +167,6 @@ DECL|class|MinMaxPriorityQueueBenchmark
 specifier|public
 class|class
 name|MinMaxPriorityQueueBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|comparator
 annotation|@
@@ -210,8 +218,7 @@ argument_list|()
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|public
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -255,10 +262,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timePollAndAdd (int reps)
-specifier|public
+DECL|method|pollAndAdd (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timePollAndAdd
+name|pollAndAdd
 parameter_list|(
 name|int
 name|reps
@@ -297,10 +305,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timePopulate (int reps)
-specifier|public
+DECL|method|populate (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timePopulate
+name|populate
 parameter_list|(
 name|int
 name|reps

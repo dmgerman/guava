@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -133,8 +143,6 @@ DECL|class|AsciiBenchmark
 specifier|public
 class|class
 name|AsciiBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|ALPHA
 specifier|private
@@ -195,8 +203,7 @@ name|testString
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -359,10 +366,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|timeAsciiToUpperCase (int reps)
-specifier|public
+DECL|method|asciiToUpperCase (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeAsciiToUpperCase
+name|asciiToUpperCase
 parameter_list|(
 name|int
 name|reps
@@ -419,10 +427,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeStringToUpperCase1 (int reps)
-specifier|public
+DECL|method|stringToUpperCase1 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeStringToUpperCase1
+name|stringToUpperCase1
 parameter_list|(
 name|int
 name|reps
@@ -475,10 +484,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeStringToUpperCase2 (int reps)
-specifier|public
+DECL|method|stringToUpperCase2 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeStringToUpperCase2
+name|stringToUpperCase2
 parameter_list|(
 name|int
 name|reps

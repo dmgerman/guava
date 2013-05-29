@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -81,8 +91,6 @@ DECL|class|SortedCopyBenchmark
 specifier|public
 class|class
 name|SortedCopyBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|inputArrays
 specifier|private
@@ -111,9 +119,8 @@ name|int
 name|n
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -187,10 +194,11 @@ name|array
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeArraysSortNoComparator (int reps)
-specifier|public
+DECL|method|arraysSortNoComparator (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArraysSortNoComparator
+name|arraysSortNoComparator
 parameter_list|(
 name|int
 name|reps
@@ -249,10 +257,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeArraysSortOrderingNatural (int reps)
-specifier|public
+DECL|method|arraysSortOrderingNatural (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArraysSortOrderingNatural
+name|arraysSortOrderingNatural
 parameter_list|(
 name|int
 name|reps
@@ -357,10 +366,11 @@ return|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|timeArraysSortOrderingFromNatural (int reps)
-specifier|public
+DECL|method|arraysSortOrderingFromNatural (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArraysSortOrderingFromNatural
+name|arraysSortOrderingFromNatural
 parameter_list|(
 name|int
 name|reps

@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -75,8 +85,6 @@ DECL|class|MultisetIteratorBenchmark
 specifier|public
 class|class
 name|MultisetIteratorBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|size
 annotation|@
@@ -123,8 +131,7 @@ name|treeMultiset
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -260,10 +267,11 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeHashMultiset (int reps)
-specifier|public
+DECL|method|hashMultiset (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashMultiset
+name|hashMultiset
 parameter_list|(
 name|int
 name|reps
@@ -310,10 +318,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeLinkedHashMultiset (int reps)
-specifier|public
+DECL|method|linkedHashMultiset (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLinkedHashMultiset
+name|linkedHashMultiset
 parameter_list|(
 name|int
 name|reps
@@ -360,10 +369,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeTreeMultiset (int reps)
-specifier|public
+DECL|method|treeMultiset (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTreeMultiset
+name|treeMultiset
 parameter_list|(
 name|int
 name|reps

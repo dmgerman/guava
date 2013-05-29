@@ -24,7 +24,17 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
 operator|.
 name|Benchmark
 import|;
@@ -91,8 +101,6 @@ DECL|class|MapMakerComparisonBenchmark
 specifier|public
 class|class
 name|MapMakerComparisonBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|TEST_KEY
 specifier|private
@@ -267,9 +275,8 @@ name|build
 argument_list|()
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -302,10 +309,11 @@ name|TEST_VALUE
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeComputingMapMaker (int rep)
-specifier|public
+DECL|method|computingMapMaker (int rep)
+annotation|@
+name|Benchmark
 name|void
-name|timeComputingMapMaker
+name|computingMapMaker
 parameter_list|(
 name|int
 name|rep
@@ -335,10 +343,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeLoadingCacheBuilder_stats (int rep)
-specifier|public
+DECL|method|loadingCacheBuilder_stats (int rep)
+annotation|@
+name|Benchmark
 name|void
-name|timeLoadingCacheBuilder_stats
+name|loadingCacheBuilder_stats
 parameter_list|(
 name|int
 name|rep
@@ -368,10 +377,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeLoadingCacheBuilder (int rep)
-specifier|public
+DECL|method|loadingCacheBuilder (int rep)
+annotation|@
+name|Benchmark
 name|void
-name|timeLoadingCacheBuilder
+name|loadingCacheBuilder
 parameter_list|(
 name|int
 name|rep
@@ -401,10 +411,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeConcurrentHashMap (int rep)
-specifier|public
+DECL|method|concurrentHashMap (int rep)
+annotation|@
+name|Benchmark
 name|void
-name|timeConcurrentHashMap
+name|concurrentHashMap
 parameter_list|(
 name|int
 name|rep
@@ -434,10 +445,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeCacheBuilder_stats (int rep)
-specifier|public
+DECL|method|cacheBuilder_stats (int rep)
+annotation|@
+name|Benchmark
 name|void
-name|timeCacheBuilder_stats
+name|cacheBuilder_stats
 parameter_list|(
 name|int
 name|rep
@@ -467,10 +479,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeCacheBuilder (int rep)
-specifier|public
+DECL|method|cacheBuilder (int rep)
+annotation|@
+name|Benchmark
 name|void
-name|timeCacheBuilder
+name|cacheBuilder
 parameter_list|(
 name|int
 name|rep

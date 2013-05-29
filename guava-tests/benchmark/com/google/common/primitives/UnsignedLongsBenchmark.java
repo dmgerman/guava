@@ -24,7 +24,17 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
 operator|.
 name|Benchmark
 import|;
@@ -49,8 +59,6 @@ DECL|class|UnsignedLongsBenchmark
 specifier|public
 class|class
 name|UnsignedLongsBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|ARRAY_SIZE
 specifier|private
@@ -168,9 +176,8 @@ name|ARRAY_SIZE
 index|]
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -274,10 +281,11 @@ index|]
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeDivide (int reps)
-specifier|public
+DECL|method|divide (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeDivide
+name|divide
 parameter_list|(
 name|int
 name|reps
@@ -332,10 +340,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeRemainder (int reps)
-specifier|public
+DECL|method|remainder (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeRemainder
+name|remainder
 parameter_list|(
 name|int
 name|reps
@@ -390,10 +399,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeParseUnsignedLong (int reps)
-specifier|public
+DECL|method|parseUnsignedLong (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeParseUnsignedLong
+name|parseUnsignedLong
 parameter_list|(
 name|int
 name|reps
@@ -482,10 +492,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeParseDecode10 (int reps)
-specifier|public
+DECL|method|parseDecode10 (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeParseDecode10
+name|parseDecode10
 parameter_list|(
 name|int
 name|reps
@@ -535,10 +546,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeParseDecode16 (int reps)
-specifier|public
+DECL|method|parseDecode16 (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeParseDecode16
+name|parseDecode16
 parameter_list|(
 name|int
 name|reps
@@ -588,10 +600,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeToString (int reps)
-specifier|public
+DECL|method|toString (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeToString
+name|toString
 parameter_list|(
 name|int
 name|reps

@@ -88,7 +88,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -100,9 +100,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -149,8 +159,6 @@ DECL|class|BigIntegerMathRoundingBenchmark
 specifier|public
 class|class
 name|BigIntegerMathRoundingBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|nonzero1
 specifier|private
@@ -218,9 +226,8 @@ name|RoundingMode
 name|mode
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -272,10 +279,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeLog2 (int reps)
-specifier|public
+DECL|method|log2 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLog2
+name|log2
 parameter_list|(
 name|int
 name|reps
@@ -327,10 +335,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeLog10 (int reps)
-specifier|public
+DECL|method|log10 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLog10
+name|log10
 parameter_list|(
 name|int
 name|reps
@@ -382,10 +391,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeSqrt (int reps)
-specifier|public
+DECL|method|sqrt (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeSqrt
+name|sqrt
 parameter_list|(
 name|int
 name|reps
@@ -440,10 +450,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeDivide (int reps)
-specifier|public
+DECL|method|divide (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeDivide
+name|divide
 parameter_list|(
 name|int
 name|reps

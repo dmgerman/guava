@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -99,8 +109,6 @@ DECL|class|BinaryTreeTraverserBenchmark
 specifier|public
 class|class
 name|BinaryTreeTraverserBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|class|BinaryNode
 specifier|private
@@ -921,9 +929,8 @@ name|SpecialRandom
 name|rng
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -956,10 +963,11 @@ name|VIEWER
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeTraversal (int reps)
-specifier|public
+DECL|method|traversal (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTraversal
+name|traversal
 parameter_list|(
 name|int
 name|reps

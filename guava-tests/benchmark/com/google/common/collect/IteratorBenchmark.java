@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -71,8 +81,6 @@ DECL|class|IteratorBenchmark
 specifier|public
 class|class
 name|IteratorBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|size
 annotation|@
@@ -117,8 +125,7 @@ name|linkedList
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -192,10 +199,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeArrayIndexed (int reps)
-specifier|public
+DECL|method|arrayIndexed (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayIndexed
+name|arrayIndexed
 parameter_list|(
 name|int
 name|reps
@@ -252,10 +260,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeArrayIndexedLength (int reps)
-specifier|public
+DECL|method|arrayIndexedLength (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayIndexedLength
+name|arrayIndexedLength
 parameter_list|(
 name|int
 name|reps
@@ -314,10 +323,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeArrayFor (int reps)
-specifier|public
+DECL|method|arrayFor (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayFor
+name|arrayFor
 parameter_list|(
 name|int
 name|reps
@@ -364,10 +374,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeArrayListIndexed (int reps)
-specifier|public
+DECL|method|arrayListIndexed (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayListIndexed
+name|arrayListIndexed
 parameter_list|(
 name|int
 name|reps
@@ -426,10 +437,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeArrayListIndexedLength (int reps)
-specifier|public
+DECL|method|arrayListIndexedLength (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayListIndexedLength
+name|arrayListIndexedLength
 parameter_list|(
 name|int
 name|reps
@@ -491,10 +503,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeArrayListFor (int reps)
-specifier|public
+DECL|method|arrayListFor (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayListFor
+name|arrayListFor
 parameter_list|(
 name|int
 name|reps
@@ -541,10 +554,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeArrayListToArrayFor (int reps)
-specifier|public
+DECL|method|arrayListToArrayFor (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeArrayListToArrayFor
+name|arrayListToArrayFor
 parameter_list|(
 name|int
 name|reps
@@ -594,10 +608,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeLinkedListFor (int reps)
-specifier|public
+DECL|method|linkedListFor (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLinkedListFor
+name|linkedListFor
 parameter_list|(
 name|int
 name|reps
@@ -644,10 +659,11 @@ return|return
 name|sum
 return|;
 block|}
-DECL|method|timeLinkedListToArrayFor (int reps)
-specifier|public
+DECL|method|linkedListToArrayFor (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLinkedListToArrayFor
+name|linkedListToArrayFor
 parameter_list|(
 name|int
 name|reps

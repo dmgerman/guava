@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|AfterExperiment
 import|;
 end_import
 
@@ -36,9 +36,31 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
 operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -127,8 +149,6 @@ DECL|class|MapMakerSingleThreadBenchmark
 specifier|public
 class|class
 name|MapMakerSingleThreadBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|maximumSize
 annotation|@
@@ -217,8 +237,7 @@ argument_list|)
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -327,7 +346,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|time (int reps)
-specifier|public
+annotation|@
+name|Benchmark
 name|int
 name|time
 parameter_list|(
@@ -412,8 +432,7 @@ return|;
 block|}
 DECL|method|tearDown ()
 annotation|@
-name|Override
-specifier|protected
+name|AfterExperiment
 name|void
 name|tearDown
 parameter_list|()

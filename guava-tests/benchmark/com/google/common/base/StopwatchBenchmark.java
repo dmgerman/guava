@@ -24,8 +24,6 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
 import|;
 end_import
@@ -65,13 +63,12 @@ DECL|class|StopwatchBenchmark
 specifier|public
 class|class
 name|StopwatchBenchmark
-extends|extends
-name|Benchmark
 block|{
-DECL|method|timeStopwatch (int reps)
-specifier|public
+DECL|method|stopwatch (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeStopwatch
+name|stopwatch
 parameter_list|(
 name|int
 name|reps
@@ -122,10 +119,11 @@ return|return
 name|total
 return|;
 block|}
-DECL|method|timeManual (int reps)
-specifier|public
+DECL|method|manual (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeManual
+name|manual
 parameter_list|(
 name|int
 name|reps

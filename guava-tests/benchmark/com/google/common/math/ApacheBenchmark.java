@@ -104,7 +104,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -116,9 +116,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -173,8 +183,6 @@ DECL|class|ApacheBenchmark
 specifier|public
 class|class
 name|ApacheBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|enum|Impl
 specifier|private
@@ -681,9 +689,8 @@ name|Impl
 name|impl
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -1083,10 +1090,11 @@ name|k
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeFactorialDouble (int reps)
-specifier|public
+DECL|method|factorialDouble (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeFactorialDouble
+name|factorialDouble
 parameter_list|(
 name|int
 name|reps
@@ -1141,10 +1149,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeIntGCD (int reps)
-specifier|public
+DECL|method|intGCD (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeIntGCD
+name|intGCD
 parameter_list|(
 name|int
 name|reps
@@ -1205,10 +1214,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeLongGCD (int reps)
-specifier|public
+DECL|method|longGCD (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeLongGCD
+name|longGCD
 parameter_list|(
 name|int
 name|reps
@@ -1269,10 +1279,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeBinomialCoefficient (int reps)
-specifier|public
+DECL|method|binomialCoefficient (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeBinomialCoefficient
+name|binomialCoefficient
 parameter_list|(
 name|int
 name|reps
@@ -1333,10 +1344,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeIntAddOverflow (int reps)
-specifier|public
+DECL|method|intAddOverflow (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeIntAddOverflow
+name|intAddOverflow
 parameter_list|(
 name|int
 name|reps
@@ -1402,10 +1414,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeLongAddOverflow (int reps)
-specifier|public
+DECL|method|longAddOverflow (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLongAddOverflow
+name|longAddOverflow
 parameter_list|(
 name|int
 name|reps
@@ -1471,10 +1484,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeIntMulOverflow (int reps)
-specifier|public
+DECL|method|intMulOverflow (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeIntMulOverflow
+name|intMulOverflow
 parameter_list|(
 name|int
 name|reps
@@ -1540,10 +1554,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeLongMulOverflow (int reps)
-specifier|public
+DECL|method|longMulOverflow (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLongMulOverflow
+name|longMulOverflow
 parameter_list|(
 name|int
 name|reps

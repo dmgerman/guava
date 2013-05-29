@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -81,8 +91,6 @@ DECL|class|UnsignedBytesBenchmark
 specifier|public
 class|class
 name|UnsignedBytesBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|ba1
 specifier|private
@@ -147,9 +155,8 @@ name|int
 name|length
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -264,10 +271,11 @@ operator|.
 name|INSTANCE
 expr_stmt|;
 block|}
-DECL|method|timeLongEqualJava (int reps)
-specifier|public
+DECL|method|longEqualJava (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeLongEqualJava
+name|longEqualJava
 parameter_list|(
 name|int
 name|reps
@@ -311,10 +319,11 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|timeLongEqualUnsafe (int reps)
-specifier|public
+DECL|method|longEqualUnsafe (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeLongEqualUnsafe
+name|longEqualUnsafe
 parameter_list|(
 name|int
 name|reps
@@ -358,10 +367,11 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|timeDiffLastJava (int reps)
-specifier|public
+DECL|method|diffLastJava (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeDiffLastJava
+name|diffLastJava
 parameter_list|(
 name|int
 name|reps
@@ -405,10 +415,11 @@ comment|// deoptimization
 block|}
 block|}
 block|}
-DECL|method|timeDiffLastUnsafe (int reps)
-specifier|public
+DECL|method|diffLastUnsafe (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeDiffLastUnsafe
+name|diffLastUnsafe
 parameter_list|(
 name|int
 name|reps

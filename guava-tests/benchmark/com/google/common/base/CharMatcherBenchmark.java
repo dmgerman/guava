@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -121,8 +131,6 @@ DECL|class|CharMatcherBenchmark
 specifier|public
 class|class
 name|CharMatcherBenchmark
-extends|extends
-name|Benchmark
 block|{
 comment|// Caliper injects params automatically
 comment|// Overall configuration
@@ -224,8 +232,7 @@ decl_stmt|;
 comment|// Caliper invokes setUp() after injecting params
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -317,10 +324,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Caliper recognizes int-parameter methods beginning with "time"
-DECL|method|timeTrimAndCollapseFromString (int reps)
-specifier|public
+DECL|method|trimAndCollapseFromString (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeTrimAndCollapseFromString
+name|trimAndCollapseFromString
 parameter_list|(
 name|int
 name|reps
@@ -365,10 +373,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeMatches (int reps)
-specifier|public
+DECL|method|matches (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeMatches
+name|matches
 parameter_list|(
 name|int
 name|reps

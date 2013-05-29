@@ -40,7 +40,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -52,9 +52,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -113,8 +123,6 @@ DECL|class|SegmentBenchmark
 specifier|public
 class|class
 name|SegmentBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|capacity
 annotation|@
@@ -156,9 +164,8 @@ argument_list|>
 name|segment
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -274,7 +281,8 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|time (int reps)
-specifier|public
+annotation|@
+name|Benchmark
 name|int
 name|time
 parameter_list|(

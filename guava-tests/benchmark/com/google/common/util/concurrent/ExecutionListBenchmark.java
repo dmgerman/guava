@@ -26,6 +26,42 @@ name|google
 operator|.
 name|caliper
 operator|.
+name|AfterExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
 name|Param
 import|;
 end_import
@@ -55,20 +91,6 @@ operator|.
 name|api
 operator|.
 name|VmOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|caliper
-operator|.
-name|legacy
-operator|.
-name|Benchmark
 import|;
 end_import
 
@@ -260,8 +282,6 @@ DECL|class|ExecutionListBenchmark
 specifier|public
 class|class
 name|ExecutionListBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|NUM_THREADS
 specifier|private
@@ -759,8 +779,7 @@ block|}
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -848,8 +867,7 @@ block|}
 block|}
 DECL|method|tearDown ()
 annotation|@
-name|Override
-specifier|protected
+name|AfterExperiment
 name|void
 name|tearDown
 parameter_list|()
@@ -922,10 +940,11 @@ name|getImpl
 argument_list|()
 return|;
 block|}
-DECL|method|timeAddThenExecute_singleThreaded (int reps)
-specifier|public
+DECL|method|addThenExecute_singleThreaded (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeAddThenExecute_singleThreaded
+name|addThenExecute_singleThreaded
 parameter_list|(
 name|int
 name|reps
@@ -1015,10 +1034,11 @@ return|return
 name|returnValue
 return|;
 block|}
-DECL|method|timeExecuteThenAdd_singleThreaded (int reps)
-specifier|public
+DECL|method|executeThenAdd_singleThreaded (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeExecuteThenAdd_singleThreaded
+name|executeThenAdd_singleThreaded
 parameter_list|(
 name|int
 name|reps
@@ -1133,10 +1153,11 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-DECL|method|timeAddThenExecute_multiThreaded (final int reps)
-specifier|public
+DECL|method|addThenExecute_multiThreaded (final int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeAddThenExecute_multiThreaded
+name|addThenExecute_multiThreaded
 parameter_list|(
 specifier|final
 name|int
@@ -1274,10 +1295,11 @@ return|return
 name|returnValue
 return|;
 block|}
-DECL|method|timeExecuteThenAdd_multiThreaded (final int reps)
-specifier|public
+DECL|method|executeThenAdd_multiThreaded (final int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeExecuteThenAdd_multiThreaded
+name|executeThenAdd_multiThreaded
 parameter_list|(
 specifier|final
 name|int

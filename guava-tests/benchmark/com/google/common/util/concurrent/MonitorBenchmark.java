@@ -26,7 +26,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -38,9 +38,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -77,8 +87,6 @@ DECL|class|MonitorBenchmark
 specifier|public
 class|class
 name|MonitorBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|capacity
 annotation|@
@@ -129,14 +137,13 @@ index|[]
 name|strings
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -238,10 +245,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeAddsAndRemoves (int reps)
-specifier|public
+DECL|method|addsAndRemoves (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeAddsAndRemoves
+name|addsAndRemoves
 parameter_list|(
 name|int
 name|reps

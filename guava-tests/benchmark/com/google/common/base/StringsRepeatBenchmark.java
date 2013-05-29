@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -65,8 +75,6 @@ DECL|class|StringsRepeatBenchmark
 specifier|public
 class|class
 name|StringsRepeatBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|count
 annotation|@
@@ -105,8 +113,7 @@ name|originalString
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -123,10 +130,11 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeOldRepeat (int reps)
-specifier|public
+DECL|method|oldRepeat (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeOldRepeat
+name|oldRepeat
 parameter_list|(
 name|int
 name|reps
@@ -186,10 +194,11 @@ throw|;
 block|}
 block|}
 block|}
-DECL|method|timeMikeRepeat (int reps)
-specifier|public
+DECL|method|mikeRepeat (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeMikeRepeat
+name|mikeRepeat
 parameter_list|(
 name|int
 name|reps
@@ -249,10 +258,11 @@ throw|;
 block|}
 block|}
 block|}
-DECL|method|timeMartinRepeat (int reps)
-specifier|public
+DECL|method|martinRepeat (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeMartinRepeat
+name|martinRepeat
 parameter_list|(
 name|int
 name|reps

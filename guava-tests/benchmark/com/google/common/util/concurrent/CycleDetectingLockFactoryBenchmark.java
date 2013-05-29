@@ -26,7 +26,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -38,9 +38,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -81,8 +91,6 @@ DECL|class|CycleDetectingLockFactoryBenchmark
 specifier|public
 class|class
 name|CycleDetectingLockFactoryBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|lockNestingDepth
 annotation|@
@@ -120,20 +128,14 @@ index|[]
 name|detectingLocks
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|factory
@@ -225,10 +227,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeUnorderedPlainLocks (int reps)
-specifier|public
+DECL|method|unorderedPlainLocks (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeUnorderedPlainLocks
+name|unorderedPlainLocks
 parameter_list|(
 name|int
 name|reps
@@ -244,10 +247,11 @@ name|reps
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeUnorderedCycleDetectingLocks (int reps)
-specifier|public
+DECL|method|unorderedCycleDetectingLocks (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeUnorderedCycleDetectingLocks
+name|unorderedCycleDetectingLocks
 parameter_list|(
 name|int
 name|reps
@@ -305,10 +309,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeOrderedPlainLocks (int reps)
-specifier|public
+DECL|method|orderedPlainLocks (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeOrderedPlainLocks
+name|orderedPlainLocks
 parameter_list|(
 name|int
 name|reps
@@ -322,10 +327,11 @@ name|reps
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeOrderedCycleDetectingLocks (int reps)
-specifier|public
+DECL|method|orderedCycleDetectingLocks (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeOrderedCycleDetectingLocks
+name|orderedCycleDetectingLocks
 parameter_list|(
 name|int
 name|reps

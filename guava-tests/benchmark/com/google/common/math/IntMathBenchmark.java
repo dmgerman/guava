@@ -120,7 +120,17 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
+name|BeforeExperiment
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
 operator|.
 name|Benchmark
 import|;
@@ -149,8 +159,6 @@ DECL|class|IntMathBenchmark
 specifier|public
 class|class
 name|IntMathBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|exponent
 specifier|private
@@ -234,9 +242,8 @@ name|ARRAY_SIZE
 index|]
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -339,10 +346,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|timePow (int reps)
-specifier|public
+DECL|method|pow (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timePow
+name|pow
 parameter_list|(
 name|int
 name|reps
@@ -397,10 +405,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeMod (int reps)
-specifier|public
+DECL|method|mod (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeMod
+name|mod
 parameter_list|(
 name|int
 name|reps
@@ -455,10 +464,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeGCD (int reps)
-specifier|public
+DECL|method|gCD (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeGCD
+name|gCD
 parameter_list|(
 name|int
 name|reps
@@ -513,10 +523,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeFactorial (int reps)
-specifier|public
+DECL|method|factorial (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeFactorial
+name|factorial
 parameter_list|(
 name|int
 name|reps
@@ -566,10 +577,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeBinomial (int reps)
-specifier|public
+DECL|method|binomial (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBinomial
+name|binomial
 parameter_list|(
 name|int
 name|reps

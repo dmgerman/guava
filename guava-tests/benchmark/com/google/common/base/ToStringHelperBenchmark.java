@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|Benchmark
 import|;
 end_import
 
@@ -36,9 +36,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
-name|Benchmark
+name|Param
 import|;
 end_import
 
@@ -51,8 +49,6 @@ DECL|class|ToStringHelperBenchmark
 specifier|public
 class|class
 name|ToStringHelperBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|dataSize
 annotation|@
@@ -156,10 +152,11 @@ literal|'x'
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeToString (int reps)
-specifier|public
+DECL|method|toString (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeToString
+name|toString
 parameter_list|(
 name|int
 name|reps

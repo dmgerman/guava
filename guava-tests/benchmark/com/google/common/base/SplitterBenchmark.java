@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -65,8 +75,6 @@ DECL|class|SplitterBenchmark
 specifier|public
 class|class
 name|SplitterBenchmark
-extends|extends
-name|Benchmark
 block|{
 comment|// overall size of string
 DECL|field|length
@@ -139,8 +147,7 @@ argument_list|)
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|protected
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -157,10 +164,11 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|timeCharSplitter (int reps)
-specifier|public
+DECL|method|charSplitter (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeCharSplitter
+name|charSplitter
 parameter_list|(
 name|int
 name|reps
@@ -202,10 +210,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeStringSplitter (int reps)
-specifier|public
+DECL|method|stringSplitter (int reps)
+annotation|@
+name|Benchmark
 name|void
-name|timeStringSplitter
+name|stringSplitter
 parameter_list|(
 name|int
 name|reps

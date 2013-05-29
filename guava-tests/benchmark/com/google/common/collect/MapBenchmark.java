@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -131,8 +141,6 @@ DECL|class|MapBenchmark
 specifier|public
 class|class
 name|MapBenchmark
-extends|extends
-name|Benchmark
 block|{
 annotation|@
 name|Param
@@ -960,8 +968,7 @@ name|values
 decl_stmt|;
 DECL|method|setUp ()
 annotation|@
-name|Override
-specifier|public
+name|BeforeExperiment
 name|void
 name|setUp
 parameter_list|()
@@ -1045,10 +1052,11 @@ name|getQueries
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|timeGet (int reps)
-specifier|public
+DECL|method|get (int reps)
+annotation|@
+name|Benchmark
 name|boolean
-name|timeGet
+name|get
 parameter_list|(
 name|int
 name|reps
@@ -1126,10 +1134,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeCreateAndPopulate (int reps)
-specifier|public
+DECL|method|createAndPopulate (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeCreateAndPopulate
+name|createAndPopulate
 parameter_list|(
 name|int
 name|reps

@@ -24,8 +24,6 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
 import|;
 end_import
@@ -53,8 +51,6 @@ DECL|class|ObjectsBenchmark
 specifier|public
 class|class
 name|ObjectsBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|I0
 specifier|private
@@ -149,10 +145,11 @@ init|=
 operator|-
 literal|1.2e55
 decl_stmt|;
-DECL|method|timeHashString_2 (int reps)
-specifier|public
+DECL|method|hashString_2 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashString_2
+name|hashString_2
 parameter_list|(
 name|int
 name|reps
@@ -194,10 +191,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeHashString_3 (int reps)
-specifier|public
+DECL|method|hashString_3 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashString_3
+name|hashString_3
 parameter_list|(
 name|int
 name|reps
@@ -241,10 +239,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeHashString_4 (int reps)
-specifier|public
+DECL|method|hashString_4 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashString_4
+name|hashString_4
 parameter_list|(
 name|int
 name|reps
@@ -290,10 +289,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeHashString_5 (int reps)
-specifier|public
+DECL|method|hashString_5 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashString_5
+name|hashString_5
 parameter_list|(
 name|int
 name|reps
@@ -341,10 +341,11 @@ return|return
 name|dummy
 return|;
 block|}
-DECL|method|timeHashMixed_5 (int reps)
-specifier|public
+DECL|method|hashMixed_5 (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeHashMixed_5
+name|hashMixed_5
 parameter_list|(
 name|int
 name|reps

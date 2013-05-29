@@ -24,7 +24,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -36,9 +36,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -71,8 +81,6 @@ DECL|class|JoinerBenchmark
 specifier|public
 class|class
 name|JoinerBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|DELIMITER_STRING
 specifier|private
@@ -163,9 +171,8 @@ argument_list|>
 name|components
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -212,10 +219,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * {@link Joiner} with a string delimiter.    */
-DECL|method|timeJoinerWithStringDelimiter (int reps)
-specifier|public
+DECL|method|joinerWithStringDelimiter (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeJoinerWithStringDelimiter
+name|joinerWithStringDelimiter
 parameter_list|(
 name|int
 name|reps
@@ -259,10 +267,11 @@ name|dummy
 return|;
 block|}
 comment|/**    * {@link Joiner} with a character delimiter.    */
-DECL|method|timeJoinerWithCharacterDelimiter (int reps)
-specifier|public
+DECL|method|joinerWithCharacterDelimiter (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeJoinerWithCharacterDelimiter
+name|joinerWithCharacterDelimiter
 parameter_list|(
 name|int
 name|reps
@@ -306,10 +315,11 @@ name|dummy
 return|;
 block|}
 comment|/**    * Mimics what the {@link Joiner} class does internally when no extra options like    * ignoring {@code null} values are used.    */
-DECL|method|timeJoinerInlined (int reps)
-specifier|public
+DECL|method|joinerInlined (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeJoinerInlined
+name|joinerInlined
 parameter_list|(
 name|int
 name|reps
@@ -417,10 +427,11 @@ name|dummy
 return|;
 block|}
 comment|/**    * Only appends delimiter if the accumulated string is non-empty.    * Note: this isn't a candidate implementation for Joiner since it fails on leading    * empty components.    */
-DECL|method|timeStringBuilderIsEmpty (int reps)
-specifier|public
+DECL|method|stringBuilderIsEmpty (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeStringBuilderIsEmpty
+name|stringBuilderIsEmpty
 parameter_list|(
 name|int
 name|reps
@@ -503,10 +514,11 @@ name|dummy
 return|;
 block|}
 comment|/**    * Similar to the above, but keeps a boolean flag rather than checking for the string    * accumulated so far being empty. As a result, it does not have the above-mentioned bug.    */
-DECL|method|timeBooleanIfFirst (int reps)
-specifier|public
+DECL|method|booleanIfFirst (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBooleanIfFirst
+name|booleanIfFirst
 parameter_list|(
 name|int
 name|reps
@@ -593,10 +605,11 @@ name|dummy
 return|;
 block|}
 comment|/**    * Starts with an empty delimiter and changes to the desired value at the end of the    * iteration.    */
-DECL|method|timeAssignDelimiter (int reps)
-specifier|public
+DECL|method|assignDelimiter (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeAssignDelimiter
+name|assignDelimiter
 parameter_list|(
 name|int
 name|reps
@@ -677,10 +690,11 @@ name|dummy
 return|;
 block|}
 comment|/**    * Always append the delimiter after the component, and in the very end shortens the buffer    * to get rid of the extra trailing delimiter.    */
-DECL|method|timeAlwaysAppendThenBackUp (int reps)
-specifier|public
+DECL|method|alwaysAppendThenBackUp (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeAlwaysAppendThenBackUp
+name|alwaysAppendThenBackUp
 parameter_list|(
 name|int
 name|reps

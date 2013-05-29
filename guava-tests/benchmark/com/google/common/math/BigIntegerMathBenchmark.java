@@ -84,7 +84,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -96,9 +96,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -163,8 +173,6 @@ DECL|class|BigIntegerMathBenchmark
 specifier|public
 class|class
 name|BigIntegerMathBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|factorials
 specifier|private
@@ -224,9 +232,8 @@ name|int
 name|factorialBound
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -290,11 +297,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Previous version of BigIntegerMath.factorial, kept for timing purposes.    */
-DECL|method|slowFactorial (int n)
+DECL|method|oldSlowFactorial (int n)
 specifier|private
 specifier|static
 name|BigInteger
-name|slowFactorial
+name|oldSlowFactorial
 parameter_list|(
 name|int
 name|n
@@ -343,7 +350,7 @@ argument_list|)
 operator|.
 name|multiply
 argument_list|(
-name|slowFactorial
+name|oldSlowFactorial
 argument_list|(
 name|k
 argument_list|,
@@ -354,11 +361,11 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the product of {@code n1} exclusive through {@code n2} inclusive.    */
-DECL|method|slowFactorial (int n1, int n2)
+DECL|method|oldSlowFactorial (int n1, int n2)
 specifier|private
 specifier|static
 name|BigInteger
-name|slowFactorial
+name|oldSlowFactorial
 parameter_list|(
 name|int
 name|n1
@@ -446,7 +453,7 @@ operator|>>>
 literal|1
 decl_stmt|;
 return|return
-name|slowFactorial
+name|oldSlowFactorial
 argument_list|(
 name|n1
 argument_list|,
@@ -455,7 +462,7 @@ argument_list|)
 operator|.
 name|multiply
 argument_list|(
-name|slowFactorial
+name|oldSlowFactorial
 argument_list|(
 name|mid
 argument_list|,
@@ -464,10 +471,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|timeSlowFactorial (int reps)
-specifier|public
+DECL|method|slowFactorial (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeSlowFactorial
+name|slowFactorial
 parameter_list|(
 name|int
 name|reps
@@ -502,7 +510,7 @@ name|ARRAY_MASK
 decl_stmt|;
 name|tmp
 operator|+=
-name|slowFactorial
+name|oldSlowFactorial
 argument_list|(
 name|slowFactorials
 index|[
@@ -518,10 +526,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeFactorial (int reps)
-specifier|public
+DECL|method|factorial (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeFactorial
+name|factorial
 parameter_list|(
 name|int
 name|reps
@@ -574,10 +583,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeBinomial (int reps)
-specifier|public
+DECL|method|binomial (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeBinomial
+name|binomial
 parameter_list|(
 name|int
 name|reps

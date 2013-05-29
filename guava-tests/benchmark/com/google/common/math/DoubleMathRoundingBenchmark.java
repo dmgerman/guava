@@ -88,7 +88,7 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|Param
+name|BeforeExperiment
 import|;
 end_import
 
@@ -100,9 +100,19 @@ name|google
 operator|.
 name|caliper
 operator|.
-name|legacy
-operator|.
 name|Benchmark
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|caliper
+operator|.
+name|Param
 import|;
 end_import
 
@@ -139,8 +149,6 @@ DECL|class|DoubleMathRoundingBenchmark
 specifier|public
 class|class
 name|DoubleMathRoundingBenchmark
-extends|extends
-name|Benchmark
 block|{
 DECL|field|doubleInIntRange
 specifier|private
@@ -208,9 +216,8 @@ name|RoundingMode
 name|mode
 decl_stmt|;
 annotation|@
-name|Override
+name|BeforeExperiment
 DECL|method|setUp ()
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -268,10 +275,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|timeRoundToInt (int reps)
-specifier|public
+DECL|method|roundToInt (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeRoundToInt
+name|roundToInt
 parameter_list|(
 name|int
 name|reps
@@ -323,10 +331,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeRoundToLong (int reps)
-specifier|public
+DECL|method|roundToLong (int reps)
+annotation|@
+name|Benchmark
 name|long
-name|timeRoundToLong
+name|roundToLong
 parameter_list|(
 name|int
 name|reps
@@ -378,10 +387,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeRoundToBigInteger (int reps)
-specifier|public
+DECL|method|roundToBigInteger (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeRoundToBigInteger
+name|roundToBigInteger
 parameter_list|(
 name|int
 name|reps
@@ -436,10 +446,11 @@ return|return
 name|tmp
 return|;
 block|}
-DECL|method|timeLog2Round (int reps)
-specifier|public
+DECL|method|log2Round (int reps)
+annotation|@
+name|Benchmark
 name|int
-name|timeLog2Round
+name|log2Round
 parameter_list|(
 name|int
 name|reps
