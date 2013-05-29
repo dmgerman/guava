@@ -720,6 +720,10 @@ name|MultimapGetTester
 operator|.
 name|class
 argument_list|,
+name|MultimapKeysTester
+operator|.
+name|class
+argument_list|,
 name|MultimapPutTester
 operator|.
 name|class

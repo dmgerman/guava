@@ -227,14 +227,6 @@ return|;
 block|}
 comment|// iterators don't support remove()
 comment|// TODO(jlevy): Test logic that doesn't involve iterator.remove()
-DECL|method|testKeysEntrySetIterator ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testKeysEntrySetIterator
-parameter_list|()
-block|{}
 DECL|method|testKeySetIterator ()
 annotation|@
 name|Override
