@@ -92,7 +92,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 import|;
 end_import
 
@@ -278,30 +278,6 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|CopyOnWriteArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|CopyOnWriteArraySet
-import|;
-end_import
-
 begin_comment
 comment|/**  * A generic JUnit test which tests {@code iterator} operations on a collection.  * Can't be invoked directly; please see  * {@link com.google.common.collect.testing.CollectionTestSuiteBuilder}.  *  * @author Chris Povirk  */
 end_comment
@@ -455,7 +431,7 @@ argument_list|(
 block|{
 name|KNOWN_ORDER
 block|,
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 block|}
 argument_list|)
 DECL|method|testIterator_knownOrderRemoveSupported ()
@@ -490,7 +466,7 @@ name|KNOWN_ORDER
 argument_list|,
 name|absent
 operator|=
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 DECL|method|testIterator_knownOrderRemoveUnsupported ()
 specifier|public
@@ -524,7 +500,7 @@ name|KNOWN_ORDER
 argument_list|,
 name|value
 operator|=
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 DECL|method|testIterator_unknownOrderRemoveSupported ()
 specifier|public
@@ -557,7 +533,7 @@ operator|=
 block|{
 name|KNOWN_ORDER
 block|,
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 block|}
 argument_list|)
 DECL|method|testIterator_unknownOrderRemoveUnsupported ()
@@ -672,58 +648,6 @@ operator|.
 name|test
 argument_list|()
 expr_stmt|;
-block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testIterator_knownOrderRemoveSupported()} so that tests of    * {@link CopyOnWriteArraySet} and {@link CopyOnWriteArrayList} can suppress    * it with {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug    * 6570575</a> is fixed.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|getIteratorKnownOrderRemoveSupportedMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getIteratorKnownOrderRemoveSupportedMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|CollectionIteratorTester
-operator|.
-name|class
-argument_list|,
-literal|"testIterator_knownOrderRemoveSupported"
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the {@link Method} instance for    * {@link #testIterator_unknownOrderRemoveSupported()} so that tests of    * classes with unmodifiable iterators can suppress it.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|getIteratorUnknownOrderRemoveSupportedMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getIteratorUnknownOrderRemoveSupportedMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|CollectionIteratorTester
-operator|.
-name|class
-argument_list|,
-literal|"testIterator_unknownOrderRemoveSupported"
-argument_list|)
-return|;
 block|}
 DECL|method|testIteratorNoSuchElementException ()
 specifier|public

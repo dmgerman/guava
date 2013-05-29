@@ -312,6 +312,10 @@ name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|ALLOWS_NULL_QUERIES
 argument_list|)
 operator|.

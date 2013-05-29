@@ -1137,6 +1137,31 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|iterator ()
+specifier|public
+name|UnmodifiableIterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|Iterators
+operator|.
+name|filter
+argument_list|(
+name|unfiltered
+operator|.
+name|iterator
+argument_list|()
+argument_list|,
+name|predicate
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|createElementSet ()
 name|Set
 argument_list|<

@@ -499,6 +499,10 @@ name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|KNOWN_ORDER
 argument_list|,
 name|CollectionFeature

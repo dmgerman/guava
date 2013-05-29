@@ -350,6 +350,10 @@ name|CollectionFeature
 operator|.
 name|SERIALIZABLE
 argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
 name|MapFeature
 operator|.
 name|ALLOWS_NULL_KEYS

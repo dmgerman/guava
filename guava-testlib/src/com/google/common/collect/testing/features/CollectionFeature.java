@@ -184,6 +184,9 @@ operator|,
 DECL|enumConstant|SUPPORTS_REMOVE
 constructor|SUPPORTS_REMOVE
 operator|,
+DECL|enumConstant|SUPPORTS_ITERATOR_REMOVE
+constructor|SUPPORTS_ITERATOR_REMOVE
+operator|,
 DECL|enumConstant|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 constructor|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 operator|,
@@ -192,6 +195,8 @@ DECL|enumConstant|GENERAL_PURPOSE
 constructor|GENERAL_PURPOSE(       SUPPORTS_ADD
 operator|,
 constructor|SUPPORTS_REMOVE
+operator|,
+constructor|SUPPORTS_ITERATOR_REMOVE
 block|)
 enum|,
 comment|/** Features supported by collections where only removal is allowed. */
@@ -199,6 +204,8 @@ DECL|enumConstant|REMOVE_OPERATIONS
 name|REMOVE_OPERATIONS
 argument_list|(
 name|SUPPORTS_REMOVE
+argument_list|,
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 operator|,
 DECL|enumConstant|SERIALIZABLE

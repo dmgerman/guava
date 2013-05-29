@@ -258,6 +258,10 @@ name|CollectionSize
 operator|.
 name|ANY
 argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
 name|MapFeature
 operator|.
 name|ALLOWS_NULL_KEYS
@@ -302,6 +306,10 @@ argument_list|(
 name|CollectionSize
 operator|.
 name|ANY
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|MapFeature
 operator|.

@@ -742,6 +742,10 @@ name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|KNOWN_ORDER
 argument_list|,
 name|CollectionFeature
@@ -893,7 +897,7 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE
+name|REMOVE_OPERATIONS
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -1511,6 +1515,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|REJECTS_DUPLICATES_AT_CREATION
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.

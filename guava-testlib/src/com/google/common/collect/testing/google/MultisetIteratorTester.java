@@ -56,7 +56,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 import|;
 end_import
 
@@ -232,7 +232,7 @@ operator|.
 name|Require
 argument_list|(
 block|{
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 block|,
 name|KNOWN_ORDER
 block|}
@@ -344,7 +344,7 @@ name|Require
 argument_list|(
 name|value
 operator|=
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|absent
 operator|=
@@ -455,7 +455,7 @@ name|KNOWN_ORDER
 argument_list|,
 name|absent
 operator|=
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 DECL|method|testIteratorKnownOrder ()
 specifier|public
@@ -565,7 +565,7 @@ argument_list|(
 name|absent
 operator|=
 block|{
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 block|,
 name|KNOWN_ORDER
 block|}
@@ -723,58 +723,6 @@ name|class
 argument_list|,
 literal|"testRemovingIteratorUnknownOrder"
 argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the {@link Method} instance for the test that assumes the multiset iterator supports     * {@code remove()} so that the test for {@code Multisets.filter} can suppress it.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|getIteratorKnownOrderRemoveSupportedMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getIteratorKnownOrderRemoveSupportedMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|MultisetIteratorTester
-operator|.
-name|class
-argument_list|,
-literal|"testRemovingIteratorKnownOrder"
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the {@link Method} instance for the test that assumes the multiset iterator supports     * {@code remove()} so that the test for {@code Multisets.filter} can suppress it.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|getIteratorUnknownOrderRemoveSupportedMethod ()
-specifier|public
-specifier|static
-name|Method
-name|getIteratorUnknownOrderRemoveSupportedMethod
-parameter_list|()
-block|{
-return|return
-name|Helpers
-operator|.
-name|getMethod
-argument_list|(
-name|MultisetIteratorTester
-operator|.
-name|class
-argument_list|,
-literal|"testRemovingIteratorUnknownOrder"
 argument_list|)
 return|;
 block|}

@@ -398,6 +398,10 @@ name|MapFeature
 operator|.
 name|ALLOWS_NULL_VALUES
 argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
@@ -575,6 +579,10 @@ name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|SERIALIZABLE
 argument_list|)
 operator|.
@@ -695,6 +703,7 @@ name|Integer
 argument_list|>
 block|{
 DECL|method|ReserializedMapTests ()
+specifier|public
 name|ReserializedMapTests
 parameter_list|()
 block|{

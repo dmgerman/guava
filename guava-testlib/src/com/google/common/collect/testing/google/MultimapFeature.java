@@ -1,10 +1,10 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2013 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
-DECL|package|com.google.common.collect.testing.features
+DECL|package|com.google.common.collect.testing.google
 package|package
 name|com
 operator|.
@@ -16,7 +16,7 @@ name|collect
 operator|.
 name|testing
 operator|.
-name|features
+name|google
 package|;
 end_package
 
@@ -44,9 +44,59 @@ name|common
 operator|.
 name|collect
 operator|.
+name|Multimap
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|testing
 operator|.
 name|Helpers
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|Feature
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|TesterAnnotation
 import|;
 end_import
 
@@ -92,22 +142,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
 
 begin_comment
-comment|/**  * Optional features of classes derived from {@code List}.  *  * @author George van den Driessche  */
+comment|/**  * Optional features of classes derived from {@code Multimap}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_comment
@@ -122,59 +162,19 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|GwtCompatible
-DECL|enum|ListFeature
+DECL|enum|MultimapFeature
 specifier|public
 enum|enum
-name|ListFeature
+name|MultimapFeature
 implements|implements
 name|Feature
 argument_list|<
-name|List
+name|Multimap
 argument_list|>
 block|{
-DECL|enumConstant|SUPPORTS_SET
-name|SUPPORTS_SET
-block|,
-DECL|enumConstant|SUPPORTS_ADD_WITH_INDEX
-name|SUPPORTS_ADD_WITH_INDEX
-parameter_list|(
-name|CollectionFeature
-operator|.
-name|SUPPORTS_ADD
-parameter_list|)
-operator|,
-DECL|enumConstant|SUPPORTS_REMOVE_WITH_INDEX
-constructor|SUPPORTS_REMOVE_WITH_INDEX(CollectionFeature.SUPPORTS_REMOVE
-block|)
-enum|,
-DECL|enumConstant|GENERAL_PURPOSE
-name|GENERAL_PURPOSE
-argument_list|(
-name|CollectionFeature
-operator|.
-name|GENERAL_PURPOSE
-argument_list|,
-name|SUPPORTS_SET
-argument_list|,
-name|SUPPORTS_ADD_WITH_INDEX
-argument_list|,
-name|SUPPORTS_REMOVE_WITH_INDEX
-argument_list|)
-operator|,
-comment|/** Features supported by lists where only removal is allowed. */
-DECL|enumConstant|REMOVE_OPERATIONS
-name|REMOVE_OPERATIONS
-argument_list|(
-name|CollectionFeature
-operator|.
-name|REMOVE_OPERATIONS
-argument_list|,
-name|SUPPORTS_REMOVE_WITH_INDEX
-argument_list|)
-enum|;
-end_enum
-
-begin_decl_stmt
+DECL|enumConstant|VALUE_COLLECTIONS_SUPPORT_ITERATOR_REMOVE
+name|VALUE_COLLECTIONS_SUPPORT_ITERATOR_REMOVE
+block|;
 DECL|field|implied
 specifier|private
 specifier|final
@@ -184,26 +184,23 @@ name|Feature
 argument_list|<
 name|?
 super|super
-name|List
+name|Multimap
 argument_list|>
 argument_list|>
 name|implied
 decl_stmt|;
-end_decl_stmt
-
-begin_expr_stmt
-DECL|method|ListFeature (Feature<? super List> .... implied)
-name|ListFeature
-argument_list|(
+DECL|method|MultimapFeature (Feature<? super Multimap> .... implied)
+name|MultimapFeature
+parameter_list|(
 name|Feature
 argument_list|<
 name|?
 super|super
-name|List
+name|Multimap
 argument_list|>
-operator|...
+modifier|...
 name|implied
-argument_list|)
+parameter_list|)
 block|{
 name|this
 operator|.
@@ -215,8 +212,9 @@ name|copyToSet
 argument_list|(
 name|implied
 argument_list|)
-block|;   }
-expr|@
+expr_stmt|;
+block|}
+annotation|@
 name|Override
 DECL|method|getImpliedFeatures ()
 specifier|public
@@ -226,19 +224,16 @@ name|Feature
 argument_list|<
 name|?
 super|super
-name|List
+name|Multimap
 argument_list|>
 argument_list|>
 name|getImpliedFeatures
-argument_list|()
+parameter_list|()
 block|{
 return|return
 name|implied
 return|;
 block|}
-end_expr_stmt
-
-begin_annotation_defn
 annotation|@
 name|Retention
 argument_list|(
@@ -256,24 +251,27 @@ annotation_defn|@interface
 name|Require
 block|{
 DECL|method|value ()
-name|ListFeature
+specifier|public
+specifier|abstract
+name|MultimapFeature
 index|[]
 name|value
 argument_list|()
 expr|default
 block|{}
-expr_stmt|;
+block|;
 DECL|method|absent ()
-name|ListFeature
+specifier|public
+specifier|abstract
+name|MultimapFeature
 index|[]
 name|absent
 argument_list|()
 expr|default
 block|{}
-expr_stmt|;
+block|;   }
 block|}
-end_annotation_defn
+end_enum
 
-unit|}
 end_unit
 

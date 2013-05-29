@@ -707,6 +707,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite
@@ -850,6 +854,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 operator|.
 name|createTestSuite

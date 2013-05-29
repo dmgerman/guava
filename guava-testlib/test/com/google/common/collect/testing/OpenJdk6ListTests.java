@@ -32,26 +32,6 @@ name|testing
 operator|.
 name|testers
 operator|.
-name|CollectionIteratorTester
-operator|.
-name|getIteratorKnownOrderRemoveSupportedMethod
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|testers
-operator|.
 name|CollectionToArrayTester
 operator|.
 name|getToArrayIsPlainObjectArrayMethod
@@ -338,9 +318,6 @@ name|getSubListOriginalListSetAffectsSubListLargeListMethod
 argument_list|()
 argument_list|,
 name|getSubListSubListRemoveAffectsOriginalLargeListMethod
-argument_list|()
-argument_list|,
-name|getIteratorKnownOrderRemoveSupportedMethod
 argument_list|()
 argument_list|,
 name|getListIteratorFullyModifiableMethod

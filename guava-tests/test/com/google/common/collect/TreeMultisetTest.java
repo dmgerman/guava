@@ -709,7 +709,7 @@ name|ANY
 argument_list|,
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE
+name|REMOVE_OPERATIONS
 argument_list|,
 name|CollectionFeature
 operator|.

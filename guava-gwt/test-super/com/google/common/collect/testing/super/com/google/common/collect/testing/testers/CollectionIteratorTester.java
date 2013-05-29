@@ -92,7 +92,7 @@ name|features
 operator|.
 name|CollectionFeature
 operator|.
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 import|;
 end_import
 
@@ -405,7 +405,7 @@ argument_list|(
 block|{
 name|KNOWN_ORDER
 block|,
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 block|}
 argument_list|)
 DECL|method|testIterator_knownOrderRemoveSupported ()
@@ -440,7 +440,7 @@ name|KNOWN_ORDER
 argument_list|,
 name|absent
 operator|=
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 DECL|method|testIterator_knownOrderRemoveUnsupported ()
 specifier|public
@@ -474,7 +474,7 @@ name|KNOWN_ORDER
 argument_list|,
 name|value
 operator|=
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|)
 DECL|method|testIterator_unknownOrderRemoveSupported ()
 specifier|public
@@ -507,7 +507,7 @@ operator|=
 block|{
 name|KNOWN_ORDER
 block|,
-name|SUPPORTS_REMOVE
+name|SUPPORTS_ITERATOR_REMOVE
 block|}
 argument_list|)
 DECL|method|testIterator_unknownOrderRemoveUnsupported ()

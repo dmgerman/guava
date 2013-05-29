@@ -748,6 +748,10 @@ name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|SERIALIZABLE
 argument_list|,
 name|CollectionSize
@@ -842,6 +846,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -940,6 +948,10 @@ argument_list|,
 name|MapFeature
 operator|.
 name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -1047,6 +1059,10 @@ name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|KNOWN_ORDER
 argument_list|,
 name|CollectionFeature
@@ -1148,6 +1164,10 @@ name|RESTRICTS_KEYS
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|KNOWN_ORDER
 argument_list|,
 name|CollectionFeature
@@ -1237,6 +1257,10 @@ name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
 operator|.
+name|SUPPORTS_ITERATOR_REMOVE
+argument_list|,
+name|CollectionFeature
+operator|.
 name|SERIALIZABLE
 argument_list|,
 name|CollectionSize
@@ -1319,6 +1343,10 @@ argument_list|(
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
@@ -1411,6 +1439,10 @@ argument_list|(
 name|MapFeature
 operator|.
 name|GENERAL_PURPOSE
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_ITERATOR_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.

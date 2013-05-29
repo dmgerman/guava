@@ -74,24 +74,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|testers
-operator|.
-name|CollectionIteratorTester
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -547,13 +529,8 @@ block|{
 return|return
 name|Collections
 operator|.
-name|singleton
-argument_list|(
-name|CollectionIteratorTester
-operator|.
-name|getIteratorKnownOrderRemoveSupportedMethod
+name|emptySet
 argument_list|()
-argument_list|)
 return|;
 block|}
 DECL|method|suppressForUnmodifiableSet ()
@@ -1296,9 +1273,13 @@ argument_list|)
 operator|.
 name|withFeatures
 argument_list|(
-name|SetFeature
+name|CollectionFeature
 operator|.
-name|GENERAL_PURPOSE
+name|SUPPORTS_ADD
+argument_list|,
+name|CollectionFeature
+operator|.
+name|SUPPORTS_REMOVE
 argument_list|,
 name|CollectionFeature
 operator|.
