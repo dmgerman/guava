@@ -172,10 +172,10 @@ name|Require
 argument_list|(
 name|SUPPORTS_PUT
 argument_list|)
-DECL|method|testReplaceValuesHandlesDuplicates ()
+DECL|method|testPutAllHandlesDuplicates ()
 specifier|public
 name|void
-name|testReplaceValuesHandlesDuplicates
+name|testPutAllHandlesDuplicates
 parameter_list|()
 block|{
 name|V
