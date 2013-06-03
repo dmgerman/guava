@@ -856,10 +856,10 @@ argument_list|(
 name|a
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertNotSame
 argument_list|(
 name|a
-operator|!=
+argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
@@ -879,6 +879,13 @@ argument_list|(
 name|a
 argument_list|)
 decl_stmt|;
+name|assertNotSame
+argument_list|(
+name|b
+argument_list|,
+name|c
+argument_list|)
+expr_stmt|;
 name|assertBitEquals
 argument_list|(
 operator|-
