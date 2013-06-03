@@ -672,7 +672,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code OutputSupplier} that supplies streams that encode bytes using this encoding    * into writers from the specified {@code OutputSupplier}.    */
+comment|/**    * Returns an {@code OutputSupplier} that supplies streams that encode bytes using this encoding    * into writers from the specified {@code OutputSupplier}.    *    * @deprecated Use {@link #encodingSink(CharSink)} instead. This method is scheduled to be    *     removed in Guava 16.0.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1033,7 +1035,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code InputSupplier} that supplies input streams that decode base-encoded input    * from readers from the specified supplier.    */
+comment|/**    * Returns an {@code InputSupplier} that supplies input streams that decode base-encoded input    * from readers from the specified supplier.    *    * @deprecated Use {@link #decodingSource(CharSource)} instead. This method is scheduled to be    *     removed in Guava 16.0.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtIncompatible
 argument_list|(
