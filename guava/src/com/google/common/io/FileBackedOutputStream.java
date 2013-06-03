@@ -151,14 +151,11 @@ specifier|final
 name|boolean
 name|resetOnFinalize
 decl_stmt|;
-DECL|field|supplier
+DECL|field|source
 specifier|private
 specifier|final
-name|InputSupplier
-argument_list|<
-name|InputStream
-argument_list|>
-name|supplier
+name|ByteSource
+name|source
 decl_stmt|;
 DECL|field|out
 specifier|private
@@ -217,7 +214,7 @@ return|return
 name|file
 return|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and does    * not reset the data when the {@link InputSupplier} returned by    * {@link #getSupplier} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    */
+comment|/**    * Creates a new instance that uses the given file threshold, and does    * not reset the data when the {@link ByteSource} returned by    * {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    */
 DECL|method|FileBackedOutputStream (int fileThreshold)
 specifier|public
 name|FileBackedOutputStream
@@ -234,7 +231,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new instance that uses the given file threshold, and    * optionally resets the data when the {@link InputSupplier} returned    * by {@link #getSupplier} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will    *     be called when the {@link InputSupplier} returned by {@link    *     #getSupplier} is finalized    */
+comment|/**    * Creates a new instance that uses the given file threshold, and    * optionally resets the data when the {@link ByteSource} returned    * by {@link #asByteSource} is finalized.    *    * @param fileThreshold the number of bytes before the stream should    *     switch to buffering to a file    * @param resetOnFinalize if true, the {@link #reset} method will    *     be called when the {@link ByteSource} returned by {@link    *     #asByteSource} is finalized    */
 DECL|method|FileBackedOutputStream (int fileThreshold, boolean resetOnFinalize)
 specifier|public
 name|FileBackedOutputStream
@@ -273,26 +270,23 @@ condition|(
 name|resetOnFinalize
 condition|)
 block|{
-name|supplier
+name|source
 operator|=
 operator|new
-name|InputSupplier
-argument_list|<
-name|InputStream
-argument_list|>
+name|ByteSource
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
 name|InputStream
-name|getInput
+name|openStream
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 return|return
-name|openStream
+name|openInputStream
 argument_list|()
 return|;
 block|}
@@ -331,26 +325,23 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|supplier
+name|source
 operator|=
 operator|new
-name|InputSupplier
-argument_list|<
-name|InputStream
-argument_list|>
+name|ByteSource
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
 name|InputStream
-name|getInput
+name|openStream
 parameter_list|()
 throws|throws
 name|IOException
 block|{
 return|return
-name|openStream
+name|openInputStream
 argument_list|()
 return|;
 block|}
@@ -358,7 +349,9 @@ block|}
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a supplier that may be used to retrieve the data buffered    * by this stream.    */
+comment|/**    * Returns a supplier that may be used to retrieve the data buffered    * by this stream. This method returns the same object as    * {@link #asByteSource()}.    *    * @deprecated Use {@link #asByteSource()} instead. This method is scheduled    *     to be removed in Guava 16.0.    */
+annotation|@
+name|Deprecated
 DECL|method|getSupplier ()
 specifier|public
 name|InputSupplier
@@ -369,14 +362,26 @@ name|getSupplier
 parameter_list|()
 block|{
 return|return
-name|supplier
+name|asByteSource
+argument_list|()
 return|;
 block|}
-DECL|method|openStream ()
+comment|/**    * Returns a readable {@link ByteSource} view of the data that has been    * written to this stream.    *    * @since 15.0    */
+DECL|method|asByteSource ()
+specifier|public
+name|ByteSource
+name|asByteSource
+parameter_list|()
+block|{
+return|return
+name|source
+return|;
+block|}
+DECL|method|openInputStream ()
 specifier|private
 specifier|synchronized
 name|InputStream
-name|openStream
+name|openInputStream
 parameter_list|()
 throws|throws
 name|IOException
