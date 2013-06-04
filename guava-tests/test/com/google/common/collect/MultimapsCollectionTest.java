@@ -124,9 +124,9 @@ name|testing
 operator|.
 name|google
 operator|.
-name|MultisetIteratorTester
+name|MultisetCountTester
 operator|.
-name|getIteratorDuplicateInitializingMethods
+name|getCountDuplicateInitializingMethods
 import|;
 end_import
 
@@ -144,9 +144,9 @@ name|testing
 operator|.
 name|google
 operator|.
-name|MultisetReadsTester
+name|MultisetIteratorTester
 operator|.
-name|getReadsDuplicateInitializingMethods
+name|getIteratorDuplicateInitializingMethods
 import|;
 end_import
 
@@ -2097,7 +2097,7 @@ argument_list|)
 operator|.
 name|suppressing
 argument_list|(
-name|getReadsDuplicateInitializingMethods
+name|getCountDuplicateInitializingMethods
 argument_list|()
 argument_list|)
 operator|.
