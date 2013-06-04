@@ -152,6 +152,26 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|google
+operator|.
+name|MultisetRemoveTester
+operator|.
+name|getRemoveDuplicateInitializingMethods
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -2110,6 +2130,12 @@ operator|.
 name|suppressing
 argument_list|(
 name|getIteratorDuplicateInitializingMethods
+argument_list|()
+argument_list|)
+operator|.
+name|suppressing
+argument_list|(
+name|getRemoveDuplicateInitializingMethods
 argument_list|()
 argument_list|)
 operator|.

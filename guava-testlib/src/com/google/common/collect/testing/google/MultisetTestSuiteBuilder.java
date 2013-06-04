@@ -555,6 +555,15 @@ name|testers
 operator|.
 name|add
 argument_list|(
+name|MultisetRemoveTester
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|testers
+operator|.
+name|add
+argument_list|(
 name|MultisetWritesTester
 operator|.
 name|class
