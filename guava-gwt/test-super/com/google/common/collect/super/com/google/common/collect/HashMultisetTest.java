@@ -87,7 +87,7 @@ specifier|public
 class|class
 name|HashMultisetTest
 extends|extends
-name|AbstractMultisetTest
+name|AbstractCollectionTest
 block|{
 DECL|method|hashMultisetGenerator ()
 specifier|private

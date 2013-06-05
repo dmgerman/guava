@@ -118,7 +118,7 @@ specifier|public
 class|class
 name|SimpleAbstractMultisetTest
 extends|extends
-name|AbstractMultisetTest
+name|AbstractCollectionTest
 block|{
 DECL|method|create ()
 annotation|@

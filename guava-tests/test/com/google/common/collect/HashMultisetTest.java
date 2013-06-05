@@ -217,7 +217,7 @@ specifier|public
 class|class
 name|HashMultisetTest
 extends|extends
-name|AbstractMultisetTest
+name|AbstractCollectionTest
 block|{
 annotation|@
 name|GwtIncompatible

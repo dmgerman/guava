@@ -1714,6 +1714,31 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testToString ()
+specifier|public
+name|void
+name|testToString
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+name|getMultiset
+argument_list|()
+operator|.
+name|entrySet
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|getMultiset
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
