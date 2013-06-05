@@ -1717,6 +1717,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+comment|// TODO(user): consider making the entries live views
 return|return
 operator|new
 name|AbstractIterator
@@ -2020,6 +2021,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+comment|// TODO(user): consider making the entries live views
 return|return
 operator|new
 name|AbstractIterator
@@ -2174,6 +2176,7 @@ argument_list|(
 name|multiset2
 argument_list|)
 expr_stmt|;
+comment|// TODO(user): consider making the entries live views
 return|return
 operator|new
 name|AbstractMultiset
@@ -2548,6 +2551,7 @@ argument_list|(
 name|multiset2
 argument_list|)
 expr_stmt|;
+comment|// TODO(user): consider making the entries live views
 return|return
 operator|new
 name|AbstractMultiset

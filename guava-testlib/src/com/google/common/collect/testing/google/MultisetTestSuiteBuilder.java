@@ -591,7 +591,7 @@ name|testers
 operator|.
 name|add
 argument_list|(
-name|MultisetWritesTester
+name|MultisetEntrySetTester
 operator|.
 name|class
 argument_list|)

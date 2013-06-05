@@ -50,47 +50,6 @@ name|void
 name|testToStringNull
 parameter_list|()
 block|{}
-comment|// our entries are snapshots, not live views. at least for now.
-DECL|method|testEntryAfterRemove ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntryAfterRemove
-parameter_list|()
-block|{}
-DECL|method|testEntryAfterClear ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntryAfterClear
-parameter_list|()
-block|{}
-DECL|method|testEntryAfterEntrySetClear ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntryAfterEntrySetClear
-parameter_list|()
-block|{}
-DECL|method|testEntryAfterEntrySetIteratorRemove ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntryAfterEntrySetIteratorRemove
-parameter_list|()
-block|{}
-DECL|method|testEntryAfterElementSetIteratorRemove ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testEntryAfterElementSetIteratorRemove
-parameter_list|()
-block|{}
 DECL|method|testCopyConstructor ()
 specifier|public
 name|void
