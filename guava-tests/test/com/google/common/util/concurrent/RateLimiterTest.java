@@ -786,7 +786,7 @@ name|limiter
 init|=
 name|RateLimiter
 operator|.
-name|createBursty
+name|createWithCapacity
 argument_list|(
 name|ticker
 argument_list|,
