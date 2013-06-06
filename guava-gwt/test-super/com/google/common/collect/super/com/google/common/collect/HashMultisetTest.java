@@ -62,6 +62,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -87,7 +97,7 @@ specifier|public
 class|class
 name|HashMultisetTest
 extends|extends
-name|AbstractCollectionTest
+name|TestCase
 block|{
 DECL|method|hashMultisetGenerator ()
 specifier|private
@@ -128,27 +138,6 @@ argument_list|)
 return|;
 block|}
 block|}
-return|;
-block|}
-DECL|method|create ()
-annotation|@
-name|Override
-specifier|protected
-parameter_list|<
-name|E
-parameter_list|>
-name|Multiset
-argument_list|<
-name|E
-argument_list|>
-name|create
-parameter_list|()
-block|{
-return|return
-name|HashMultiset
-operator|.
-name|create
-argument_list|()
 return|;
 block|}
 DECL|method|testCreate ()
