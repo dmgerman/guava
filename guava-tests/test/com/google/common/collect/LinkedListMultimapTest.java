@@ -445,7 +445,7 @@ specifier|public
 class|class
 name|LinkedListMultimapTest
 extends|extends
-name|AbstractListMultimapTest
+name|AbstractMultimapTest
 block|{
 annotation|@
 name|GwtIncompatible

@@ -155,7 +155,7 @@ specifier|public
 class|class
 name|LinkedListMultimapTest
 extends|extends
-name|AbstractListMultimapTest
+name|AbstractMultimapTest
 block|{
 DECL|method|create ()
 annotation|@

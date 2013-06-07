@@ -237,7 +237,7 @@ specifier|public
 class|class
 name|ArrayListMultimapTest
 extends|extends
-name|AbstractListMultimapTest
+name|AbstractMultimapTest
 block|{
 annotation|@
 name|GwtIncompatible

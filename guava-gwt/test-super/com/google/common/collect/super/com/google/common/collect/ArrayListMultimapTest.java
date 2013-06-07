@@ -101,7 +101,7 @@ specifier|public
 class|class
 name|ArrayListMultimapTest
 extends|extends
-name|AbstractListMultimapTest
+name|AbstractMultimapTest
 block|{
 DECL|method|create ()
 annotation|@
