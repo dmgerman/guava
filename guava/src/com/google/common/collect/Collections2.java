@@ -408,7 +408,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Delegates to {@link Collection#contains}. Returns {@code false} if the    * {@code contains} method throws a {@code ClassCastException} or    * {@code NullPointerException}.    */
-DECL|method|safeContains (Collection<?> collection, Object object)
+DECL|method|safeContains ( Collection<?> collection, @Nullable Object object)
 specifier|static
 name|boolean
 name|safeContains
@@ -419,6 +419,8 @@ name|?
 argument_list|>
 name|collection
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -461,7 +463,7 @@ return|;
 block|}
 block|}
 comment|/**    * Delegates to {@link Collection#remove}. Returns {@code false} if the    * {@code remove} method throws a {@code ClassCastException} or    * {@code NullPointerException}.    */
-DECL|method|safeRemove (Collection<?> collection, Object object)
+DECL|method|safeRemove (Collection<?> collection, @Nullable Object object)
 specifier|static
 name|boolean
 name|safeRemove
@@ -472,6 +474,8 @@ name|?
 argument_list|>
 name|collection
 parameter_list|,
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
