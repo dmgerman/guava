@@ -1195,6 +1195,21 @@ argument_list|,
 literal|"x-www-form-urlencoded"
 argument_list|)
 decl_stmt|;
+comment|/**    * As described in<a href="https://www.rsa.com/rsalabs/node.asp?id=2138">PKCS #12: Personal    * Information Exchange Syntax Standard</a>, PKCS #12 defines an archive file format for storing    * many cryptography objects as a single file.    */
+DECL|field|KEY_ARCHIVE
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|KEY_ARCHIVE
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"pkcs12"
+argument_list|)
+decl_stmt|;
 comment|/**    * This is a non-standard media type, but is commonly used in serving hosted binary files as it is    *<a href="http://code.google.com/p/browsersec/wiki/Part2#Survey_of_content_sniffing_behaviors">    * known not to trigger content sniffing in current browsers</a>. It<i>should not</i> be used in    * other situations as it is not specified by any RFC and does not appear in the<a href=    * "http://www.iana.org/assignments/media-types">/IANA MIME Media Types</a> list. Consider    * {@link #OCTET_STREAM} for binary data that is not being served to a browser.    *    *    * @since 14.0    */
 DECL|field|APPLICATION_BINARY
 specifier|public
@@ -1925,6 +1940,13 @@ argument_list|(
 name|FORM_DATA
 argument_list|,
 name|FORM_DATA
+argument_list|)
+operator|.
+name|put
+argument_list|(
+name|KEY_ARCHIVE
+argument_list|,
+name|KEY_ARCHIVE
 argument_list|)
 operator|.
 name|put
