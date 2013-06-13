@@ -1230,20 +1230,21 @@ operator|)
 comment|// needed to ensure that infinities equal themselves
 operator|||
 operator|(
-operator|(
+name|Double
+operator|.
+name|isNaN
+argument_list|(
 name|a
-operator|!=
-name|a
-operator|)
+argument_list|)
 operator|&&
-operator|(
+name|Double
+operator|.
+name|isNaN
+argument_list|(
 name|b
-operator|!=
-name|b
-operator|)
+argument_list|)
 operator|)
 return|;
-comment|// x != x is equivalent to Double.isNaN(x), but faster
 block|}
 comment|/**    * Compares {@code a} and {@code b} "fuzzily," with a tolerance for nearly-equal values.    *    *<p>This method is equivalent to    * {@code fuzzyEquals(a, b, tolerance) ? 0 : Double.compare(a, b)}. In particular, like    * {@link Double#compare(double, double)}, it treats all NaN values as equal and greater than all    * other values (including {@link Double#POSITIVE_INFINITY}).    *    *<p>This is<em>not</em> a total ordering and is<em>not</em> suitable for use in    * {@link Comparable#compareTo} implementations.  In particular, it is not transitive.    *    * @throws IllegalArgumentException if {@code tolerance} is {@code< 0} or NaN    * @since 13.0    */
 DECL|method|fuzzyCompare (double a, double b, double tolerance)
