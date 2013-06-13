@@ -42,6 +42,16 @@ name|Future
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A callback for accepting the results of a {@link java.util.concurrent.Future}  * computation asynchronously.  *  *<p>To attach to a {@link ListenableFuture} use {@link Futures#addCallback}.  *  * @author Anthony Zana  * @since 10.0  */
 end_comment
@@ -56,10 +66,12 @@ name|V
 parameter_list|>
 block|{
 comment|/**    * Invoked with the result of the {@code Future} computation when it is    * successful.    */
-DECL|method|onSuccess (V result)
+DECL|method|onSuccess (@ullable V result)
 name|void
 name|onSuccess
 parameter_list|(
+annotation|@
+name|Nullable
 name|V
 name|result
 parameter_list|)
