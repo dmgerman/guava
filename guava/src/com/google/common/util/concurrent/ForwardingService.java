@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @deprecated Instead of using a {@link ForwardingService}, consider using the   * {@link Service.Listener} functionality to hook into the {@link Service}   * lifecycle, or if you really do need to provide access to some Service   * methods, consider just providing the few that you actually need (e.g. just   * {@link #startAndWait()}) and not implementing Service.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @deprecated Instead of using a {@link ForwardingService}, consider using the  * {@link Service.Listener} functionality to hook into the {@link Service}  * lifecycle, or if you really do need to provide access to some Service  * methods, consider just providing the few that you actually need (e.g. just  * {@link #startAndWait()}) and not implementing Service.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
