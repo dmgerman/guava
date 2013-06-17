@@ -531,7 +531,7 @@ name|CONTENT_RANGE
 init|=
 literal|"Content-Range"
 decl_stmt|;
-comment|/**    * The HTTP<a href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">    * {@code Content-Security-Policy}</a> header field name.    */
+comment|/**    * The HTTP<a href="http://w3.org/TR/CSP/#content-security-policy-header-field">    * {@code Content-Security-Policy}</a> header field name.    */
 DECL|field|CONTENT_SECURITY_POLICY
 specifier|public
 specifier|static
@@ -540,6 +540,16 @@ name|String
 name|CONTENT_SECURITY_POLICY
 init|=
 literal|"Content-Security-Policy"
+decl_stmt|;
+comment|/**    * The HTTP<a href="http://w3.org/TR/CSP/#content-security-policy-report-only-header-field">    * {@code Content-Security-Policy-Report-Only}</a> header field name.    */
+DECL|field|CONTENT_SECURITY_POLICY_REPORT_ONLY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONTENT_SECURITY_POLICY_REPORT_ONLY
+init|=
+literal|"Content-Security-Policy-Report-Only"
 decl_stmt|;
 comment|/** The HTTP {@code ETag} header field name. */
 DECL|field|ETAG
