@@ -88,12 +88,7 @@ name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|InputSupplier
-argument_list|<
-name|?
-extends|extends
-name|Reader
-argument_list|>
+name|CharSource
 argument_list|>
 name|it
 decl_stmt|;
@@ -102,19 +97,14 @@ specifier|private
 name|Reader
 name|current
 decl_stmt|;
-DECL|method|MultiReader (Iterator<? extends InputSupplier<? extends Reader>> readers)
+DECL|method|MultiReader (Iterator<? extends CharSource> readers)
 name|MultiReader
 parameter_list|(
 name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|InputSupplier
-argument_list|<
-name|?
-extends|extends
-name|Reader
-argument_list|>
+name|CharSource
 argument_list|>
 name|readers
 parameter_list|)
@@ -158,7 +148,7 @@ operator|.
 name|next
 argument_list|()
 operator|.
-name|getInput
+name|openStream
 argument_list|()
 expr_stmt|;
 block|}

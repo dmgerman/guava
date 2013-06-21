@@ -78,6 +78,34 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Function
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Iterables
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1068,38 +1096,76 @@ argument_list|(
 name|suppliers
 argument_list|)
 expr_stmt|;
-return|return
+name|Iterable
+argument_list|<
+name|CharSource
+argument_list|>
+name|sources
+init|=
+name|Iterables
+operator|.
+name|transform
+argument_list|(
+name|suppliers
+argument_list|,
 operator|new
+name|Function
+argument_list|<
 name|InputSupplier
 argument_list|<
+name|?
+extends|extends
 name|Reader
+argument_list|>
+argument_list|,
+name|CharSource
 argument_list|>
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
+name|CharSource
+name|apply
+parameter_list|(
+name|InputSupplier
+argument_list|<
+name|?
+extends|extends
 name|Reader
-name|getInput
-parameter_list|()
-throws|throws
-name|IOException
+argument_list|>
+name|input
+parameter_list|)
 block|{
 return|return
-operator|new
-name|MultiReader
+name|asCharSource
 argument_list|(
-name|suppliers
-operator|.
-name|iterator
-argument_list|()
+name|input
 argument_list|)
 return|;
 block|}
 block|}
+block|)
+function|;
+return|return
+name|asInputSupplier
+argument_list|(
+name|CharSource
+operator|.
+name|concat
+argument_list|(
+name|sources
+argument_list|)
+argument_list|)
 return|;
 block|}
+end_class
+
+begin_comment
 comment|/** Varargs form of {@link #join(Iterable)}. */
+end_comment
+
+begin_function
 DECL|method|join ( InputSupplier<? extends Reader>.... suppliers)
 specifier|public
 specifier|static
@@ -1131,7 +1197,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Discards {@code n} characters of data from the reader. This method    * will block until the full amount has been skipped. Does not close the    * reader.    *    * @param reader the reader to read from    * @param n the number of characters to skip    * @throws EOFException if this stream reaches the end before skipping all    *     the characters    * @throws IOException if an I/O error occurs    */
+end_comment
+
+begin_function
 DECL|method|skipFully (Reader reader, long n)
 specifier|public
 specifier|static
@@ -1207,7 +1279,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a {@link Writer} that simply discards written chars.    *    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|nullWriter ()
 specifier|public
 specifier|static
@@ -1221,6 +1299,9 @@ operator|.
 name|INSTANCE
 return|;
 block|}
+end_function
+
+begin_class
 DECL|class|NullWriter
 specifier|private
 specifier|static
@@ -1448,7 +1529,13 @@ literal|"CharStreams.nullWriter()"
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Returns a Writer that sends all output to the given {@link Appendable}    * target. Closing the writer will close the target if it is {@link    * Closeable}, and flushing the writer will flush the target if it is {@link    * java.io.Flushable}.    *    * @param target the object to which output will be sent    * @return a new Writer object, unless target is a Writer, in which case the    *     target is returned    */
+end_comment
+
+begin_function
 DECL|method|asWriter (Appendable target)
 specifier|public
 specifier|static
@@ -1481,7 +1568,13 @@ name|target
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// TODO(user): Remove these once Input/OutputSupplier methods are removed
+end_comment
+
+begin_function
 DECL|method|asReader (final Readable readable)
 specifier|static
 name|Reader
@@ -1603,7 +1696,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of the given {@code Readable} supplier as a    * {@code CharSource}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|asCharSource ( final InputSupplier<? extends Readable> supplier)
 specifier|public
 specifier|static
@@ -1667,7 +1766,13 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns a view of the given {@code Appendable} supplier as a    * {@code CharSink}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    */
+end_comment
+
+begin_function
 DECL|method|asCharSink ( final OutputSupplier<? extends Appendable> supplier)
 specifier|public
 specifier|static
@@ -1731,6 +1836,9 @@ block|}
 block|}
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1764,6 +1872,9 @@ name|source
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1797,8 +1908,8 @@ name|sink
 argument_list|)
 return|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

@@ -90,12 +90,7 @@ name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|InputSupplier
-argument_list|<
-name|?
-extends|extends
-name|InputStream
-argument_list|>
+name|ByteSource
 argument_list|>
 name|it
 decl_stmt|;
@@ -105,7 +100,7 @@ name|InputStream
 name|in
 decl_stmt|;
 comment|/**    * Creates a new instance.    *    * @param it an iterator of I/O suppliers that will provide each substream    */
-DECL|method|MultiInputStream ( Iterator<? extends InputSupplier<? extends InputStream>> it)
+DECL|method|MultiInputStream ( Iterator<? extends ByteSource> it)
 specifier|public
 name|MultiInputStream
 parameter_list|(
@@ -113,12 +108,7 @@ name|Iterator
 argument_list|<
 name|?
 extends|extends
-name|InputSupplier
-argument_list|<
-name|?
-extends|extends
-name|InputStream
-argument_list|>
+name|ByteSource
 argument_list|>
 name|it
 parameter_list|)
@@ -199,7 +189,7 @@ operator|.
 name|next
 argument_list|()
 operator|.
-name|getInput
+name|openStream
 argument_list|()
 expr_stmt|;
 block|}
