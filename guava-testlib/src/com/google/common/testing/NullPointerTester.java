@@ -1766,26 +1766,18 @@ name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|isPrimitiveOrNullable
-argument_list|(
-name|param
-argument_list|)
-condition|)
-block|{
 name|Assert
 operator|.
 name|assertTrue
 argument_list|(
-literal|"No default value found for "
+literal|"Can't find or create a sample instance for type '"
 operator|+
 name|param
+operator|.
+name|getType
+argument_list|()
 operator|+
-literal|" of "
-operator|+
-name|invokable
+literal|"'; please provide one using NullPointerTester.setDefault()"
 argument_list|,
 name|args
 index|[
@@ -1793,9 +1785,13 @@ name|i
 index|]
 operator|!=
 literal|null
+operator|||
+name|isNullable
+argument_list|(
+name|param
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 return|return
@@ -1856,9 +1852,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// All null values are generics-safe
+comment|// All arbitrary instances are generics-safe
 name|T
-name|nullValue
+name|arbitrary
 init|=
 operator|(
 name|T
@@ -1875,13 +1871,13 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|nullValue
+name|arbitrary
 operator|!=
 literal|null
 condition|)
 block|{
 return|return
-name|nullValue
+name|arbitrary
 return|;
 block|}
 if|if
@@ -2163,6 +2159,23 @@ operator|.
 name|isPrimitive
 argument_list|()
 operator|||
+name|isNullable
+argument_list|(
+name|param
+argument_list|)
+return|;
+block|}
+DECL|method|isNullable (Parameter param)
+specifier|private
+specifier|static
+name|boolean
+name|isNullable
+parameter_list|(
+name|Parameter
+name|param
+parameter_list|)
+block|{
+return|return
 name|param
 operator|.
 name|isAnnotationPresent
