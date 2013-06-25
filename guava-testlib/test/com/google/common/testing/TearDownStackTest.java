@@ -64,16 +64,6 @@ name|TestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Test
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Luiz-Otavio "Z" Zorzella  */
 end_comment
@@ -97,8 +87,6 @@ operator|new
 name|TearDownStack
 argument_list|()
 decl_stmt|;
-annotation|@
-name|Test
 DECL|method|testSingleTearDown ()
 specifier|public
 name|void
@@ -155,8 +143,6 @@ name|ran
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Test
 DECL|method|testMultipleTearDownsHappenInOrder ()
 specifier|public
 name|void
@@ -279,8 +265,6 @@ name|ran
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Test
 DECL|method|testThrowingTearDown ()
 specifier|public
 name|void
