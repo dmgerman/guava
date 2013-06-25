@@ -1230,12 +1230,12 @@ argument_list|)
 expr_stmt|;
 comment|//TODO(user): Confirm with fry@ that this is a reasonable substitute.
 comment|//Set<Map.Entry<Object, Object>> entries = map.entrySet();
-comment|//ASSERT.that(entries).has().allOf(
+comment|//ASSERT.that(entries).has().exactly(
 comment|//    Maps.immutableEntry(three, one), Maps.immutableEntry(one, two));
 comment|//Set<Object> keys = map.keySet();
-comment|//ASSERT.that(keys).has().allOf(one, three);
+comment|//ASSERT.that(keys).has().exactly(one, three);
 comment|//Collection<Object> values = map.values();
-comment|//ASSERT.that(values).has().allOf(one, two);
+comment|//ASSERT.that(values).has().exactly(one, two);
 name|map
 operator|.
 name|clear

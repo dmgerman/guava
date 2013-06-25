@@ -2142,7 +2142,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|SomeEnum
 operator|.
@@ -2243,7 +2243,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|SomeEnum
 operator|.
@@ -2384,7 +2384,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|SomeEnum
 operator|.
@@ -3359,7 +3359,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|Derived
@@ -3435,7 +3435,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -3564,7 +3564,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|Derived
@@ -3635,7 +3635,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -4404,7 +4404,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|0
 argument_list|,
@@ -4495,7 +4495,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|list
 argument_list|()
@@ -4535,7 +4535,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|list
 argument_list|(
@@ -4788,7 +4788,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|list
 argument_list|(
@@ -4848,7 +4848,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|list
 argument_list|(
@@ -4929,7 +4929,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|list
 argument_list|(
@@ -5246,7 +5246,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|exp1
 argument_list|,

@@ -1013,7 +1013,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|3
 argument_list|,
@@ -1064,7 +1064,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|1
 argument_list|,
@@ -1093,7 +1093,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|6
 argument_list|,
@@ -1191,7 +1191,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|-
 literal|1
@@ -1242,7 +1242,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|1
 argument_list|,
@@ -1269,7 +1269,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|5
 argument_list|,

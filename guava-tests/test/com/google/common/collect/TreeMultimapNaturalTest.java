@@ -2027,7 +2027,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|1
 argument_list|,
@@ -2054,7 +2054,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|2
 argument_list|,
@@ -2079,7 +2079,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|0
 argument_list|,
@@ -2120,7 +2120,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -2218,7 +2218,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|1
 argument_list|,
@@ -2257,7 +2257,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|2
 argument_list|,
@@ -2294,7 +2294,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|0
 argument_list|,
@@ -2332,7 +2332,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Maps
 operator|.
@@ -2432,7 +2432,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|1
 argument_list|,
@@ -2999,7 +2999,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|1
 argument_list|,
@@ -3032,7 +3032,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -3220,7 +3220,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|DerivedComparable
@@ -3251,7 +3251,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|DerivedComparable
@@ -3470,7 +3470,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -3501,7 +3501,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|LegacyComparable

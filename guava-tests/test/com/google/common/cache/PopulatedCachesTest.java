@@ -1637,7 +1637,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expected
 argument_list|)
@@ -1655,7 +1655,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expected
 argument_list|)
@@ -1679,7 +1679,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expected
 argument_list|)
@@ -1884,7 +1884,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expected
 argument_list|)
@@ -1902,7 +1902,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expected
 argument_list|)
@@ -1926,7 +1926,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expected
 argument_list|)
@@ -2118,7 +2118,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 operator|(
 name|Collection
@@ -2147,7 +2147,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 operator|(
 name|Collection
@@ -2177,7 +2177,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 operator|(
 name|Collection

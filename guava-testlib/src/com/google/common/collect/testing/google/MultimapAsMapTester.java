@@ -492,7 +492,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expectedValues
 argument_list|)
@@ -544,7 +544,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|getValueForNullKey
 argument_list|()
@@ -799,7 +799,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|sampleValues
 argument_list|()
@@ -841,7 +841,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|sampleValues
 argument_list|()

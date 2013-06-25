@@ -3483,7 +3483,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"already"
 argument_list|,
@@ -7812,7 +7812,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -7840,7 +7840,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,

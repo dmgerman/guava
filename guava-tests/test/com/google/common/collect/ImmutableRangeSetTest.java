@@ -1555,7 +1555,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Range
 operator|.
@@ -1763,7 +1763,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Range
 operator|.
@@ -1959,7 +1959,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Range
 operator|.
@@ -2904,7 +2904,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expectedSet
 argument_list|)

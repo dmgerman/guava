@@ -169,7 +169,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|DerivedComparable
@@ -267,7 +267,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|LegacyComparable
@@ -354,7 +354,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -562,7 +562,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -928,7 +928,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -998,7 +998,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1064,7 +1064,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1137,7 +1137,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1208,7 +1208,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1768,7 +1768,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1840,7 +1840,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1927,7 +1927,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2102,7 +2102,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Multisets
 operator|.
@@ -2145,7 +2145,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 literal|"a"
 argument_list|,

@@ -1726,7 +1726,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|TypeToken
@@ -1827,7 +1827,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|TypeToken
@@ -1890,7 +1890,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|TypeToken
@@ -2001,7 +2001,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Class3
 operator|.
@@ -2054,7 +2054,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Interface3
 operator|.
@@ -2091,7 +2091,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Class3
 operator|.
@@ -2168,7 +2168,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -2214,7 +2214,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -2240,7 +2240,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -2320,7 +2320,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Interface1
 operator|.
@@ -2349,7 +2349,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Interface1
 operator|.
@@ -2373,7 +2373,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Class1
 operator|.
@@ -2444,7 +2444,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|Interface1
 operator|.
@@ -3998,7 +3998,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|TypeToken
@@ -4066,7 +4066,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -4143,7 +4143,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -4220,7 +4220,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 operator|new
 name|TypeToken
@@ -4353,7 +4353,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -4551,7 +4551,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allOf
+name|exactly
 argument_list|(
 name|interfaceType
 argument_list|)

@@ -353,7 +353,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|getSampleElements
 argument_list|()

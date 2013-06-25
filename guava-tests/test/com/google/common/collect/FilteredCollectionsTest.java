@@ -581,7 +581,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|addThenFilter
 argument_list|)
@@ -955,7 +955,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|filtered
 argument_list|)
@@ -1143,7 +1143,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|inverseFiltered
 argument_list|)
@@ -2076,7 +2076,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|unfiltered
 operator|.

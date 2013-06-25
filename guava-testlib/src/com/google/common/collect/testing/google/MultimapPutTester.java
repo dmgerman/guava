@@ -1183,7 +1183,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expectedCollection
 argument_list|)
@@ -1327,7 +1327,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expectedCollection
 argument_list|)
@@ -1535,7 +1535,7 @@ operator|.
 name|has
 argument_list|()
 operator|.
-name|allFrom
+name|exactlyAs
 argument_list|(
 name|expectedCollection
 argument_list|)
