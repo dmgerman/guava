@@ -46,6 +46,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -91,7 +101,7 @@ specifier|public
 class|class
 name|FilteredMultimapTest
 extends|extends
-name|AbstractMultimapTest
+name|TestCase
 block|{
 DECL|field|ENTRY_PREDICATE
 specifier|private
@@ -171,8 +181,6 @@ block|}
 block|}
 decl_stmt|;
 DECL|method|create ()
-annotation|@
-name|Override
 specifier|protected
 name|Multimap
 argument_list|<
@@ -225,25 +233,6 @@ name|ENTRY_PREDICATE
 argument_list|)
 return|;
 block|}
-comment|// iterators don't support remove()
-comment|// TODO(jlevy): Test logic that doesn't involve iterator.remove()
-DECL|method|testValuesIteratorRemove ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testValuesIteratorRemove
-parameter_list|()
-block|{}
-comment|// not serializable
-DECL|method|testSerializable ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testSerializable
-parameter_list|()
-block|{}
 DECL|field|KEY_PREDICATE
 specifier|private
 specifier|static

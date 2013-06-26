@@ -70,6 +70,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -155,11 +165,9 @@ specifier|public
 class|class
 name|LinkedListMultimapTest
 extends|extends
-name|AbstractMultimapTest
+name|TestCase
 block|{
 DECL|method|create ()
-annotation|@
-name|Override
 specifier|protected
 name|LinkedListMultimap
 argument_list|<
@@ -392,9 +400,38 @@ name|Integer
 argument_list|>
 name|multimap
 init|=
-name|createSample
+name|LinkedListMultimap
+operator|.
+name|create
 argument_list|()
 decl_stmt|;
+name|multimap
+operator|.
+name|put
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|multimap
+operator|.
+name|put
+argument_list|(
+literal|"bar"
+argument_list|,
+literal|3
+argument_list|)
+expr_stmt|;
+name|multimap
+operator|.
+name|put
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
 name|LinkedListMultimap
 argument_list|<
 name|String
@@ -416,6 +453,30 @@ name|multimap
 argument_list|,
 name|copy
 argument_list|)
+expr_stmt|;
+name|ASSERT
+operator|.
+name|that
+argument_list|(
+name|copy
+operator|.
+name|entries
+argument_list|()
+argument_list|)
+operator|.
+name|has
+argument_list|()
+operator|.
+name|exactlyAs
+argument_list|(
+name|multimap
+operator|.
+name|entries
+argument_list|()
+argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCreateFromSize ()
@@ -512,25 +573,6 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{}
-block|}
-comment|/* "Linked" prefix avoids collision with AbstractMultimapTest. */
-DECL|method|testLinkedToString ()
-specifier|public
-name|void
-name|testLinkedToString
-parameter_list|()
-block|{
-name|assertEquals
-argument_list|(
-literal|"{foo=[3, -1, 2, 4, 1], bar=[1, 2, 3, 1]}"
-argument_list|,
-name|createSample
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testLinkedGetAdd ()
 specifier|public

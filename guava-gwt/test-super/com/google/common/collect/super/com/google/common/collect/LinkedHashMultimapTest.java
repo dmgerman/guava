@@ -107,7 +107,7 @@ DECL|method|create ()
 annotation|@
 name|Override
 specifier|protected
-name|Multimap
+name|SetMultimap
 argument_list|<
 name|String
 argument_list|,
@@ -251,7 +251,7 @@ name|Integer
 argument_list|>
 name|multimap
 init|=
-name|getMultimap
+name|create
 argument_list|()
 decl_stmt|;
 name|multimap
@@ -1032,7 +1032,7 @@ name|Integer
 argument_list|>
 name|multimap
 init|=
-name|getMultimap
+name|create
 argument_list|()
 decl_stmt|;
 name|multimap

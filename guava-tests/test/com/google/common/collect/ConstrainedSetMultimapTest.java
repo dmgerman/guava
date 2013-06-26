@@ -30,20 +30,6 @@ name|GwtCompatible
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for {@link MapConstraints#constrainedSetMultimap}.  *  * @author Jared Levy  */
 end_comment
@@ -51,11 +37,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|ConstrainedSetMultimapTest
 specifier|public
 class|class
@@ -102,21 +83,6 @@ name|TEST_CONSTRAINT
 argument_list|)
 return|;
 block|}
-comment|// an override of a GwtIncompatible method
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
-comment|// not serializable
-DECL|method|testSerializable ()
-annotation|@
-name|Override
-specifier|public
-name|void
-name|testSerializable
-parameter_list|()
-block|{}
 block|}
 end_class
 

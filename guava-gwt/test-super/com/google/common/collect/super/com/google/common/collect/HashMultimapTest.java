@@ -53,7 +53,7 @@ DECL|method|create ()
 annotation|@
 name|Override
 specifier|protected
-name|Multimap
+name|SetMultimap
 argument_list|<
 name|String
 argument_list|,
