@@ -1181,6 +1181,21 @@ argument_list|,
 literal|"x-bzip2"
 argument_list|)
 decl_stmt|;
+comment|/**    * As described in the<a href="http://idpf.org/epub">International Digital Publishing Forum</a>    * EPUB is the distribution and interchange format standard for digital publications and    * documents. This media type is defined in the    *<a href="http://www.idpf.org/epub/30/spec/epub30-ocf.html">EPUB Open Container Format</a>    * specification.    */
+DECL|field|EPUB
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|EPUB
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"epub+zip"
+argument_list|)
+decl_stmt|;
 DECL|field|FORM_DATA
 specifier|public
 specifier|static
@@ -1933,6 +1948,13 @@ argument_list|(
 name|BZIP2
 argument_list|,
 name|BZIP2
+argument_list|)
+operator|.
+name|put
+argument_list|(
+name|EPUB
+argument_list|,
+name|EPUB
 argument_list|)
 operator|.
 name|put
