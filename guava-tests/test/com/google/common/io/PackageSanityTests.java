@@ -42,6 +42,20 @@ name|Method
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|channels
+operator|.
+name|FileChannel
+operator|.
+name|MapMode
+import|;
+end_import
+
 begin_comment
 comment|/**  * Basic sanity tests for the entire package.  *  * @author Ben Yu  */
 end_comment
@@ -104,6 +118,17 @@ argument_list|()
 index|[
 literal|0
 index|]
+argument_list|)
+expr_stmt|;
+name|setDefault
+argument_list|(
+name|MapMode
+operator|.
+name|class
+argument_list|,
+name|MapMode
+operator|.
+name|READ_ONLY
 argument_list|)
 expr_stmt|;
 block|}
