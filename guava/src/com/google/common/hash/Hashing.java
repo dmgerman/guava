@@ -163,54 +163,7 @@ specifier|final
 class|class
 name|Hashing
 block|{
-DECL|method|Hashing ()
-specifier|private
-name|Hashing
-parameter_list|()
-block|{}
-comment|/**    * Used to randomize {@link #goodFastHash} instances, so that programs which persist anything    * dependent on hashcodes of those, will fail sooner than later.    */
-DECL|field|GOOD_FAST_HASH_SEED
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|GOOD_FAST_HASH_SEED
-init|=
-operator|(
-name|int
-operator|)
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-comment|// Used by goodFastHash when minimumBits == 32.
-DECL|field|GOOD_FAST_HASH_FUNCTION_32
-specifier|private
-specifier|static
-specifier|final
-name|HashFunction
-name|GOOD_FAST_HASH_FUNCTION_32
-init|=
-name|murmur3_32
-argument_list|(
-name|GOOD_FAST_HASH_SEED
-argument_list|)
-decl_stmt|;
-comment|// Used by goodFastHash when 32< minimumBits<= 128.
-DECL|field|GOOD_FAST_HASH_FUNCTION_128
-specifier|private
-specifier|static
-specifier|final
-name|HashFunction
-name|GOOD_FAST_HASH_FUNCTION_128
-init|=
-name|murmur3_128
-argument_list|(
-name|GOOD_FAST_HASH_SEED
-argument_list|)
-decl_stmt|;
-comment|/**    * Returns a general-purpose,<b>non-cryptographic-strength</b>, streaming hash function that    * produces hash codes of length at least {@code minimumBits}. Users without specific    * compatibility requirements and who do not persist the hash codes are encouraged to    * choose this hash function.    *    *<p>Repeated calls to {@link #goodFastHash} with the same {@code minimumBits} value will    * return {@link HashFunction} instances with identical behavior (but not necessarily the    * same instance) for the duration of the current virtual machine.    *    *<p><b>Warning: the implementation is unspecified and is subject to change.</b>    *    * @throws IllegalArgumentException if {@code minimumBits} is not positive    */
+comment|/**    * Returns a general-purpose,<b>temporary-use</b>, non-cryptographic hash function. The algorithm    * the returned function implements is unspecified and subject to change without notice.    *    *<p><b>Warning:</b> a new random seed for these functions is chosen each time the {@code    * Hashing} class is loaded.<b>Do not use this method</b> if hash codes may escape the current    * process in any way, for example being sent over RPC, or saved to disk.    *    *<p>Repeated calls to this method on the same loaded {@code Hashing} class, using the same value    * for {@code minimumBits}, will return identically-behaving {@link HashFunction} instances.    *    * @param minimumBits a positive integer (can be arbitrarily large)    * @return a hash function, described above, that produces hash codes of length {@code    *     minimumBits} or greater    */
 DECL|method|goodFastHash (int minimumBits)
 specifier|public
 specifier|static
@@ -324,6 +277,48 @@ name|hashFunctions
 argument_list|)
 return|;
 block|}
+comment|/**    * Used to randomize {@link #goodFastHash} instances, so that programs which persist anything    * dependent on the hash codes they produce will fail sooner.    */
+DECL|field|GOOD_FAST_HASH_SEED
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|GOOD_FAST_HASH_SEED
+init|=
+operator|(
+name|int
+operator|)
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
+comment|/** Returned by {@link #goodFastHash} when {@code minimumBits<= 32}. */
+DECL|field|GOOD_FAST_HASH_FUNCTION_32
+specifier|private
+specifier|static
+specifier|final
+name|HashFunction
+name|GOOD_FAST_HASH_FUNCTION_32
+init|=
+name|murmur3_32
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
+decl_stmt|;
+comment|/** Returned by {@link #goodFastHash} when {@code 32< minimumBits<= 128}. */
+DECL|field|GOOD_FAST_HASH_FUNCTION_128
+specifier|private
+specifier|static
+specifier|final
+name|HashFunction
+name|GOOD_FAST_HASH_FUNCTION_128
+init|=
+name|murmur3_128
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
+decl_stmt|;
 comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 32-bit murmur3 algorithm, x86 variant</a> (little-endian variant),    * using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 (int seed)
 specifier|public
@@ -1429,6 +1424,11 @@ operator|)
 return|;
 block|}
 block|}
+DECL|method|Hashing ()
+specifier|private
+name|Hashing
+parameter_list|()
+block|{}
 block|}
 end_class
 
