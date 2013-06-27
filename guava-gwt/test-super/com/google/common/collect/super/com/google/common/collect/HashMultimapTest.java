@@ -30,6 +30,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit tests for {@link HashMultimap}.  *  * @author Jared Levy  */
 end_comment
@@ -47,28 +57,8 @@ specifier|public
 class|class
 name|HashMultimapTest
 extends|extends
-name|AbstractSetMultimapTest
+name|TestCase
 block|{
-DECL|method|create ()
-annotation|@
-name|Override
-specifier|protected
-name|SetMultimap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
-name|create
-parameter_list|()
-block|{
-return|return
-name|HashMultimap
-operator|.
-name|create
-argument_list|()
-return|;
-block|}
 comment|/*    * The behavior of toString() is tested by TreeMultimap, which shares a    * lot of code with HashMultimap and has deterministic iteration order.    */
 DECL|method|testCreate ()
 specifier|public
@@ -151,7 +141,7 @@ name|void
 name|testCreateFromMultimap
 parameter_list|()
 block|{
-name|Multimap
+name|HashMultimap
 argument_list|<
 name|String
 argument_list|,
@@ -159,9 +149,38 @@ name|Integer
 argument_list|>
 name|multimap
 init|=
-name|createSample
+name|HashMultimap
+operator|.
+name|create
 argument_list|()
 decl_stmt|;
+name|multimap
+operator|.
+name|put
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+name|multimap
+operator|.
+name|put
+argument_list|(
+literal|"bar"
+argument_list|,
+literal|2
+argument_list|)
+expr_stmt|;
+name|multimap
+operator|.
+name|put
+argument_list|(
+literal|"foo"
+argument_list|,
+literal|3
+argument_list|)
+expr_stmt|;
 name|HashMultimap
 argument_list|<
 name|String
