@@ -483,13 +483,16 @@ name|bitSize
 argument_list|()
 return|;
 block|}
-comment|/**    * Determines whether a given bloom filter is compatible with this bloom filter. For two    * bloom filters to be compatible, they must:    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same bit size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for compatibility.    *    * @since 15.0    */
-DECL|method|isCompatible (BloomFilter that)
+comment|/**    * Determines whether a given bloom filter is compatible with this bloom filter. For two    * bloom filters to be compatible, they must:    *    *<ul>    *<li>not be the same instance    *<li>have the same number of hash functions    *<li>have the same bit size    *<li>have the same strategy    *<li>have equal funnels    *<ul>    *    * @param that The bloom filter to check for compatibility.    * @since 15.0    */
+DECL|method|isCompatible (BloomFilter<T> that)
 specifier|public
 name|boolean
 name|isCompatible
 parameter_list|(
 name|BloomFilter
+argument_list|<
+name|T
+argument_list|>
 name|that
 parameter_list|)
 block|{
@@ -555,12 +558,15 @@ operator|)
 return|;
 block|}
 comment|/**    * Combines this bloom filter with another bloom filter by performing a bitwise OR of the    * underlying data. The mutations happen to<b>this</b> instance. Callers must ensure the    * bloom filters are appropriately sized to avoid saturating them.    *    * @param that The bloom filter to combine this bloom filter with. It is not mutated.    * @throws IllegalArgumentException if {@code isCompatible(that) == false}    *    * @since 15.0    */
-DECL|method|putAll (BloomFilter that)
+DECL|method|putAll (BloomFilter<T> that)
 specifier|public
 name|void
 name|putAll
 parameter_list|(
 name|BloomFilter
+argument_list|<
+name|T
+argument_list|>
 name|that
 parameter_list|)
 block|{
