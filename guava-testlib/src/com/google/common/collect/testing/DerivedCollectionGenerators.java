@@ -3055,6 +3055,11 @@ name|toArray
 argument_list|(
 operator|new
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 index|[
 name|allEntries
 operator|.

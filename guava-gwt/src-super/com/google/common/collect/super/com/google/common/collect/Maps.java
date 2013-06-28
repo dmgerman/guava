@@ -495,6 +495,11 @@ implements|implements
 name|Function
 argument_list|<
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 argument_list|,
 name|Object
 argument_list|>
@@ -511,6 +516,11 @@ name|Object
 name|apply
 parameter_list|(
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|entry
 parameter_list|)
 block|{
@@ -535,6 +545,11 @@ name|Object
 name|apply
 parameter_list|(
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|entry
 parameter_list|)
 block|{
