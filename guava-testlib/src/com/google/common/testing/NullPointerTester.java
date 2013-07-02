@@ -1593,7 +1593,11 @@ name|Assert
 operator|.
 name|fail
 argument_list|(
-literal|"No exception thrown from "
+literal|"No exception thrown for parameter at index "
+operator|+
+name|paramIndex
+operator|+
+literal|" from "
 operator|+
 name|invokable
 operator|+
