@@ -84,6 +84,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Lists
@@ -559,7 +573,7 @@ name|to
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@code URL} pointing to {@code resourceName} if the resource is    * found in the class path. {@code Resources.class.getClassLoader()} is used    * to locate the resource.    *     * @throws IllegalArgumentException if resource is not found    */
+comment|/**    * Returns a {@code URL} pointing to {@code resourceName} if the resource is    * found using the {@linkplain Thread#getContextClassLoader() context class    * loader}. In simple environments, the context class loader will find    * resources from the class path. In environments where different threads can    * have different class loaders, for example app servers, the context class    * loader will typically have been set to an appropriate loader for the    * current thread.    *    *<p>In the unusual case where the context class loader is null, the class    * loader that loaded this class ({@code Resources}) will be used instead.    *     * @throws IllegalArgumentException if the resource is not found    */
 DECL|method|getResource (String resourceName)
 specifier|public
 specifier|static
@@ -570,15 +584,33 @@ name|String
 name|resourceName
 parameter_list|)
 block|{
-name|URL
-name|url
+name|ClassLoader
+name|loader
 init|=
+name|Objects
+operator|.
+name|firstNonNull
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getContextClassLoader
+argument_list|()
+argument_list|,
 name|Resources
 operator|.
 name|class
 operator|.
 name|getClassLoader
 argument_list|()
+argument_list|)
+decl_stmt|;
+name|URL
+name|url
+init|=
+name|loader
 operator|.
 name|getResource
 argument_list|(
@@ -600,7 +632,7 @@ return|return
 name|url
 return|;
 block|}
-comment|/**    * Returns a {@code URL} pointing to {@code resourceName} that is relative to    * {@code contextClass}, if the resource is found in the class path.     *     * @throws IllegalArgumentException if resource is not found    */
+comment|/**    * Given a {@code resourceName} that is relative to {@code contextClass},    * returns a {@code URL} pointing to the named resource.    *     * @throws IllegalArgumentException if the resource is not found    */
 DECL|method|getResource (Class<?> contextClass, String resourceName)
 specifier|public
 specifier|static
