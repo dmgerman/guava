@@ -407,6 +407,65 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/**    * Returns a hash function implementing the    *<a href="https://131002.net/siphash/">64-bit SipHash-2-4 algorithm</a>    * using a seed value of {@code k = 00 01 02 ...}.    *    * @since 15.0    */
+DECL|method|sipHash24 ()
+specifier|public
+specifier|static
+name|HashFunction
+name|sipHash24
+parameter_list|()
+block|{
+return|return
+name|SIP_HASH_24
+return|;
+block|}
+DECL|field|SIP_HASH_24
+specifier|private
+specifier|static
+specifier|final
+name|HashFunction
+name|SIP_HASH_24
+init|=
+operator|new
+name|SipHashFunction
+argument_list|(
+literal|2
+argument_list|,
+literal|4
+argument_list|,
+literal|0x0706050403020100L
+argument_list|,
+literal|0x0f0e0d0c0b0a0908L
+argument_list|)
+decl_stmt|;
+comment|/**    * Returns a hash function implementing the    *<a href="https://131002.net/siphash/">64-bit SipHash-2-4 algorithm</a>    * using the given seed.    *    * @since 15.0    */
+DECL|method|sipHash24 (long k0, long k1)
+specifier|public
+specifier|static
+name|HashFunction
+name|sipHash24
+parameter_list|(
+name|long
+name|k0
+parameter_list|,
+name|long
+name|k1
+parameter_list|)
+block|{
+return|return
+operator|new
+name|SipHashFunction
+argument_list|(
+literal|2
+argument_list|,
+literal|4
+argument_list|,
+name|k0
+argument_list|,
+name|k1
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    */
 DECL|method|md5 ()
 specifier|public
