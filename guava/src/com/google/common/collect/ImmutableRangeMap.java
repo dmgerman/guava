@@ -235,7 +235,6 @@ argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|K
 extends|extends
@@ -263,7 +262,6 @@ comment|/**    * Returns an immutable range map mapping a single range to a sing
 DECL|method|of ( Range<K> range, V value)
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|K
 extends|extends
@@ -325,7 +323,6 @@ argument_list|)
 DECL|method|copyOf ( RangeMap<K, ? extends V> rangeMap)
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|K
 extends|extends

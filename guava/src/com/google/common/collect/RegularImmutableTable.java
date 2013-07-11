@@ -505,7 +505,6 @@ block|}
 block|}
 DECL|method|forCells ( List<Cell<R, C, V>> cells, @Nullable final Comparator<? super R> rowComparator, @Nullable final Comparator<? super C> columnComparator)
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,
@@ -717,7 +716,6 @@ return|;
 block|}
 DECL|method|forCells ( Iterable<Cell<R, C, V>> cells)
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,

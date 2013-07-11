@@ -7346,7 +7346,6 @@ block|}
 DECL|method|asIterator (E... elements)
 specifier|private
 specifier|static
-specifier|final
 parameter_list|<
 name|E
 parameter_list|>

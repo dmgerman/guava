@@ -3447,7 +3447,6 @@ function_decl|;
 block|}
 DECL|method|add (final int element)
 specifier|static
-specifier|final
 name|ListFrobber
 name|add
 parameter_list|(
@@ -3489,7 +3488,6 @@ return|;
 block|}
 DECL|method|remove ()
 specifier|static
-specifier|final
 name|ListFrobber
 name|remove
 parameter_list|()
@@ -3525,7 +3523,6 @@ return|;
 block|}
 DECL|method|nop ()
 specifier|static
-specifier|final
 name|ListFrobber
 name|nop
 parameter_list|()

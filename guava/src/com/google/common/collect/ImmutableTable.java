@@ -199,7 +199,6 @@ argument_list|)
 DECL|method|of ()
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,
@@ -236,7 +235,6 @@ comment|/** Returns an immutable table containing a single cell. */
 DECL|method|of (R rowKey, C columnKey, V value)
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,
@@ -287,7 +285,6 @@ comment|/**    * Returns an immutable copy of the provided table.    *    *<p>Th
 DECL|method|copyOf ( Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,
@@ -536,7 +533,6 @@ comment|/**    * Returns a new builder. The generated builder is equivalent to t
 DECL|method|builder ()
 specifier|public
 specifier|static
-specifier|final
 parameter_list|<
 name|R
 parameter_list|,

@@ -325,7 +325,6 @@ block|}
 DECL|method|mikeRepeat (String string, int count)
 specifier|private
 specifier|static
-specifier|final
 name|String
 name|mikeRepeat
 parameter_list|(
@@ -478,7 +477,6 @@ block|}
 DECL|method|oldRepeat (String string, int count)
 specifier|private
 specifier|static
-specifier|final
 name|String
 name|oldRepeat
 parameter_list|(
@@ -559,7 +557,6 @@ block|}
 DECL|method|martinRepeat (String string, int count)
 specifier|private
 specifier|static
-specifier|final
 name|String
 name|martinRepeat
 parameter_list|(
