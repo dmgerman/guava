@@ -363,7 +363,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Type} with generics.  *  *<p>Operations that are otherwise only available in {@link Class} are implemented to support  * {@code Type}, for example {@link #isAssignableFrom}, {@link #isArray} and {@link  * #getComponentType}. It also provides additional utilities such as {@link #getTypes} and {@link  * #resolveType} etc.  *  *<p>There are three ways to get a {@code TypeToken} instance:<ul>  *<li>Wrap a {@code Type} obtained via reflection. For example: {@code  * TypeToken.of(method.getGenericReturnType())}.  *<li>Capture a generic type with a (usually anonymous) subclass. For example:<pre>   {@code  *  *   new TypeToken<List<String>>() {}  * }</pre>  *<p>Note that it's critical that the actual type argument is carried by a subclass.  * The following code is wrong because it only captures the {@code<T>} type variable  * of the {@code listType()} method signature; while {@code<String>} is lost in erasure:  *<pre>   {@code  *  *   class Util {  *     static<T> TypeToken<List<T>> listType() {  *       return new TypeToken<List<T>>() {};  *     }  *   }  *  *   TypeToken<List<String>> stringListType = Util.<String>listType();  * }</pre>  *<li>Capture a generic type with a (usually anonymous) subclass and resolve it against  * a context class that knows what the type parameters are. For example:<pre>   {@code  *   abstract class IKnowMyType<T> {  *     TypeToken<T> type = new TypeToken<T>(getClass()) {};  *   }  *   new IKnowMyType<String>() {}.type => String  * }</pre>  *</ul>  *  *<p>{@code TypeToken} is serializable when no type variable is contained in the type.  *  *<p>Note to Guice users: {@code} TypeToken is similar to Guice's {@code TypeLiteral} class  * except that it is serializable and offers numerous additional utility methods.  *  * @author Bob Lee  * @author Sven Mawson  * @author Ben Yu  * @since 12.0  */
+comment|/**  * A {@link Type} with generics.  *  *<p>Operations that are otherwise only available in {@link Class} are implemented to support  * {@code Type}, for example {@link #isAssignableFrom}, {@link #isArray} and {@link  * #getComponentType}. It also provides additional utilities such as {@link #getTypes} and {@link  * #resolveType} etc.  *  *<p>There are three ways to get a {@code TypeToken} instance:<ul>  *<li>Wrap a {@code Type} obtained via reflection. For example: {@code  * TypeToken.of(method.getGenericReturnType())}.  *<li>Capture a generic type with a (usually anonymous) subclass. For example:<pre>   {@code  *   new TypeToken<List<String>>() {}}</pre>  *<p>Note that it's critical that the actual type argument is carried by a subclass.  * The following code is wrong because it only captures the {@code<T>} type variable  * of the {@code listType()} method signature; while {@code<String>} is lost in erasure:  *<pre>   {@code  *   class Util {  *     static<T> TypeToken<List<T>> listType() {  *       return new TypeToken<List<T>>() {};  *     }  *   }  *  *   TypeToken<List<String>> stringListType = Util.<String>listType();}</pre>  *<li>Capture a generic type with a (usually anonymous) subclass and resolve it against  * a context class that knows what the type parameters are. For example:<pre>   {@code  *   abstract class IKnowMyType<T> {  *     TypeToken<T> type = new TypeToken<T>(getClass()) {};  *   }  *   new IKnowMyType<String>() {}.type => String}</pre>  *</ul>  *  *<p>{@code TypeToken} is serializable when no type variable is contained in the type.  *  *<p>Note to Guice users: {@code} TypeToken is similar to Guice's {@code TypeLiteral} class  * except that it is serializable and offers numerous additional utility methods.  *  * @author Bob Lee  * @author Sven Mawson  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -404,7 +404,7 @@ specifier|transient
 name|TypeResolver
 name|typeResolver
 decl_stmt|;
-comment|/**    * Constructs a new type token of {@code T}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *    *   TypeToken<List<String>> t = new TypeToken<List<String>>() {};    * }</pre>    */
+comment|/**    * Constructs a new type token of {@code T}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *   TypeToken<List<String>> t = new TypeToken<List<String>>() {};}</pre>    */
 DECL|method|TypeToken ()
 specifier|protected
 name|TypeToken
@@ -440,7 +440,7 @@ name|runtimeType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new type token of {@code T} while resolving free type variables in the context of    * {@code declaringClass}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *    *   abstract class IKnowMyType<T> {    *     TypeToken<T> getMyType() {    *       return new TypeToken<T>(getClass()) {};    *     }    *   }    *    *   new IKnowMyType<String>() {}.getMyType() => String    * }</pre>    */
+comment|/**    * Constructs a new type token of {@code T} while resolving free type variables in the context of    * {@code declaringClass}.    *    *<p>Clients create an empty anonymous subclass. Doing so embeds the type    * parameter in the anonymous class's type hierarchy so we can reconstitute    * it at runtime despite erasure.    *    *<p>For example:<pre>   {@code    *   abstract class IKnowMyType<T> {    *     TypeToken<T> getMyType() {    *       return new TypeToken<T>(getClass()) {};    *     }    *   }    *    *   new IKnowMyType<String>() {}.getMyType() => String}</pre>    */
 DECL|method|TypeToken (Class<?> declaringClass)
 specifier|protected
 name|TypeToken
@@ -680,7 +680,7 @@ return|return
 name|runtimeType
 return|;
 block|}
-comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       TypeToken<K> keyType, TypeToken<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/**    *<p>Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       TypeToken<K> keyType, TypeToken<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }}</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
 DECL|method|where (TypeParameter<X> typeParam, TypeToken<X> typeArg)
 specifier|public
 specifier|final
@@ -746,7 +746,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       Class<K> keyType, Class<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }    * }</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
+comment|/**    *<p>Returns a new {@code TypeToken} where type variables represented by {@code typeParam}    * are substituted by {@code typeArg}. For example, it can be used to construct    * {@code Map<K, V>} for any {@code K} and {@code V} type:<pre>   {@code    *   static<K, V> TypeToken<Map<K, V>> mapOf(    *       Class<K> keyType, Class<V> valueType) {    *     return new TypeToken<Map<K, V>>() {}    *         .where(new TypeParameter<K>() {}, keyType)    *         .where(new TypeParameter<V>() {}, valueType);    *   }}</pre>    *    * @param<X> The parameter type    * @param typeParam the parameter type variable    * @param typeArg the actual type to substitute    */
 DECL|method|where (TypeParameter<X> typeParam, Class<X> typeArg)
 specifier|public
 specifier|final
@@ -784,7 +784,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Resolves the given {@code type} against the type context represented by this type.    * For example:<pre>   {@code    *    *   new TypeToken<List<String>>() {}.resolveType(    *       List.class.getMethod("get", int.class).getGenericReturnType())    *   => String.class    * }</pre>    */
+comment|/**    *<p>Resolves the given {@code type} against the type context represented by this type.    * For example:<pre>   {@code    *   new TypeToken<List<String>>() {}.resolveType(    *       List.class.getMethod("get", int.class).getGenericReturnType())    *   => String.class}</pre>    */
 DECL|method|resolveType (Type type)
 specifier|public
 specifier|final

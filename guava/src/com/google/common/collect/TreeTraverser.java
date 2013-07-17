@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree<pre>          {@code  *  *          h  *        / | \  *       /  e  \  *      d       g  *     /|\      |  *    / | \     f  *   a  b  c  *   }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabc).  *  *<p>Null nodes are strictly forbidden.  *  * @author Louis Wasserman  * @since 15.0  */
+comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree<pre>          {@code  *  *          h  *        / | \  *       /  e  \  *      d       g  *     /|\      |  *    / | \     f  *   a  b  c}</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabc).  *  *<p>Null nodes are strictly forbidden.  *  * @author Louis Wasserman  * @since 15.0  */
 end_comment
 
 begin_class
