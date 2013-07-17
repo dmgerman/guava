@@ -277,7 +277,7 @@ parameter_list|)
 throws|throws
 name|Throwable
 function_decl|;
-comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    * Subclasses can override this method to provide custom equality.    */
+comment|/**    * By default delegates to {@link Object#equals} so instances are only equal if they are    * identical. {@code proxy.equals(argument)} returns true if:<ul>    *<li>{@code proxy} and {@code argument} are of the same type    *<li>and this method returns true for the {@link InvocationHandler} of {@code argument}    *</ul>    *<p>Subclasses can override this method to provide custom equality.    */
 DECL|method|equals (Object obj)
 annotation|@
 name|Override
