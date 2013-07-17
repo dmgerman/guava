@@ -3068,7 +3068,7 @@ name|natural
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a view of the set as a map, mapping keys from the set according to    * the specified function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map    * does not support put operations.    *    *<p><b>Warning</b>: If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also    * of type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
+comment|/**    * Returns a live {@link Map} view whose keys are the contents of {@code set}    * and whose values are computed on demand using {@code function}. To get an    * immutable<i>copy</i> instead, use {@link #toMap(Iterable, Function)}.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map    * does not support put operations.    *    *<p><b>Warning</b>: If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also    * of type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
 annotation|@
 name|Beta
 DECL|method|asMap ( Set<K> set, Function<? super K, V> function)
@@ -4183,7 +4183,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns an immutable map for which the given {@code keys} are mapped to    * values by the given function in the order they appear in the original    * iterable. If {@code keys} contains duplicate elements, the returned map    * will contain each distinct key once in the order it first appears in    * {@code keys}.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code    * keys} and whose value for each key was computed by {@code valueFunction}.    * The map's iteration order is the order of the first appearance of each key    * in {@code keys}.    *    *<p>If {@code keys} is a {@link Set}, a live view can be obtained instead of    * a copy using {@link Maps#asMap(Set, Function)}.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
 annotation|@
 name|Beta
 DECL|method|toMap (Iterable<K> keys, Function<? super K, V> valueFunction)
@@ -4231,7 +4231,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map for which the given {@code keys} are mapped to    * values by the given function in the order they appear in the original    * iterator. If {@code keys} contains duplicate elements, the returned map    * will contain each distinct key once in the order it first appears in    * {@code keys}.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code    * keys} and whose value for each key was computed by {@code valueFunction}.    * The map's iteration order is the order of the first appearance of each key    * in {@code keys}.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
 annotation|@
 name|Beta
 DECL|method|toMap (Iterator<K> keys, Function<? super K, V> valueFunction)
