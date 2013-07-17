@@ -703,6 +703,28 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testIsEmpty ()
+specifier|public
+name|void
+name|testIsEmpty
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|assertEquals
+argument_list|(
+name|expected
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|,
+name|source
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|assertExpectedString (String string)
 specifier|private
 name|void
