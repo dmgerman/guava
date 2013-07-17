@@ -2558,7 +2558,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    * Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

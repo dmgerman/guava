@@ -1742,7 +1742,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable sorted map instances, especially {@code    * public static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableSortedMap<Integer, String> INT_TO_WORD =    *       new ImmutableSortedMap.Builder<Integer, String>(Ordering.natural())    *           .put(1, "one")    *           .put(2, "two")    *           .put(3, "three")    *           .build();}</pre>    *    * For<i>small</i> immutable sorted maps, the {@code ImmutableSortedMap.of()}    * methods are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable sorted map instances, especially {@code    * public static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableSortedMap<Integer, String> INT_TO_WORD =    *       new ImmutableSortedMap.Builder<Integer, String>(Ordering.natural())    *           .put(1, "one")    *           .put(2, "two")    *           .put(3, "three")    *           .build();}</pre>    *    *<p>For<i>small</i> immutable sorted maps, the {@code ImmutableSortedMap.of()}    * methods are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

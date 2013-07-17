@@ -182,7 +182,7 @@ name|value
 parameter_list|)
 function_decl|;
 comment|// Bulk Operations
-comment|/**    * Stores key-value pairs in this multimap with one key and multiple values.    *     *<p>This is equivalent to<pre>   {@code    *     *   for (V value : values) {    *     put(key, value);    *   } }</pre>    *     * In particular, this is a no-op if {@code values} is empty.    *    * @param key key to store in the multimap    * @param values values to store in the multimap    * @return {@code true} if the multimap changed    */
+comment|/**    * Stores key-value pairs in this multimap with one key and multiple values.    *     *<p>This is equivalent to<pre>   {@code    *     *   for (V value : values) {    *     put(key, value);    *   } }</pre>    *     *<p>In particular, this is a no-op if {@code values} is empty.    *    * @param key key to store in the multimap    * @param values values to store in the multimap    * @return {@code true} if the multimap changed    */
 DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 name|boolean
 name|putAll

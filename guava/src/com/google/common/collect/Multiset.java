@@ -264,7 +264,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the hash code for this multiset. This is defined as the sum of    *<pre>   {@code    *    *   ((element == null) ? 0 : element.hashCode()) ^ count(element)}</pre>    *    * over all distinct elements in the multiset. It follows that a multiset and    * its entry set always have the same hash code.    */
+comment|/**    * Returns the hash code for this multiset. This is defined as the sum of    *<pre>   {@code    *    *   ((element == null) ? 0 : element.hashCode()) ^ count(element)}</pre>    *    *<p>over all distinct elements in the multiset. It follows that a multiset and    * its entry set always have the same hash code.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()

@@ -724,7 +724,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * A builder for creating immutable map instances, especially {@code public    * static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableMap<String, Integer> WORD_TO_INT =    *       new ImmutableMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    * For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are    * even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable map instances, especially {@code public    * static final} maps ("constant maps"). Example:<pre>   {@code    *    *   static final ImmutableMap<String, Integer> WORD_TO_INT =    *       new ImmutableMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    *<p>For<i>small</i> immutable maps, the {@code ImmutableMap.of()} methods are    * even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple maps in series. Each map is a superset of    * the maps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Produces proxies that impose a time limit on method  * calls to the proxied object.  For example, to return the value of  * {@code target.someMethod()}, but substitute {@code DEFAULT_VALUE} if this  * method call takes over 50 ms, you can use this code:  *<pre>  *   TimeLimiter limiter = . . .;  *   TargetType proxy = limiter.newProxy(  *       target, TargetType.class, 50, TimeUnit.MILLISECONDS);  *   try {  *     return proxy.someMethod();  *   } catch (UncheckedTimeoutException e) {  *     return DEFAULT_VALUE;  *   }  *</pre>  * Please see {@code SimpleTimeLimiterTest} for more usage examples.  *  * @author Kevin Bourrillion  * @since 1.0  */
+comment|/**  * Produces proxies that impose a time limit on method  * calls to the proxied object.  For example, to return the value of  * {@code target.someMethod()}, but substitute {@code DEFAULT_VALUE} if this  * method call takes over 50 ms, you can use this code:  *<pre>  *   TimeLimiter limiter = . . .;  *   TargetType proxy = limiter.newProxy(  *       target, TargetType.class, 50, TimeUnit.MILLISECONDS);  *   try {  *     return proxy.someMethod();  *   } catch (UncheckedTimeoutException e) {  *     return DEFAULT_VALUE;  *   }  *</pre>  *<p>Please see {@code SimpleTimeLimiterTest} for more usage examples.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_interface

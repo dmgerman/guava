@@ -486,7 +486,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable bimap instances, especially {@code public    * static final} bimaps ("constant bimaps"). Example:<pre>   {@code    *    *   static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *       new ImmutableBiMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    * For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods    * are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple bimaps in series. Each bimap is a superset    * of the bimaps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable bimap instances, especially {@code public    * static final} bimaps ("constant bimaps"). Example:<pre>   {@code    *    *   static final ImmutableBiMap<String, Integer> WORD_TO_INT =    *       new ImmutableBiMap.Builder<String, Integer>()    *           .put("one", 1)    *           .put("two", 2)    *           .put("three", 3)    *           .build();}</pre>    *    *<p>For<i>small</i> immutable bimaps, the {@code ImmutableBiMap.of()} methods    * are even more convenient.    *    *<p>Builder instances can be reused - it is safe to call {@link #build}    * multiple times to build multiple bimaps in series. Each bimap is a superset    * of the bimaps created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|Builder
 specifier|public
 specifier|static
