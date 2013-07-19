@@ -832,7 +832,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * A deprecated synonym for {@link #toString()}.    *    * @since 15.0    * @deprecated Use {@link #toString()}    */
+comment|/**    * A deprecated synonym for {@link #toString()}.    *    * @deprecated Use {@link #toString()}    */
 annotation|@
 name|Deprecated
 DECL|method|name ()

@@ -474,7 +474,7 @@ argument_list|()
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
@@ -717,7 +717,7 @@ argument_list|)
 operator|.
 name|named
 argument_list|(
-literal|"ImmutableRangeSet.asSet[DiscreteDomains.integers[]]"
+literal|"ImmutableRangeSet.asSet[DiscreteDomain.integers[]]"
 argument_list|)
 operator|.
 name|withFeatures
@@ -766,7 +766,7 @@ argument_list|)
 operator|.
 name|named
 argument_list|(
-literal|"ImmutableRangeSet.asSet[DiscreteDomains.bigIntegers[]]"
+literal|"ImmutableRangeSet.asSet[DiscreteDomain.bigIntegers[]]"
 argument_list|)
 operator|.
 name|withFeatures
@@ -2881,7 +2881,7 @@ name|rangeSet
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
@@ -3036,7 +3036,7 @@ name|rangeSet
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
@@ -3207,7 +3207,7 @@ name|rangeSet
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
@@ -3378,7 +3378,7 @@ name|rangeSet
 operator|.
 name|asSet
 argument_list|(
-name|DiscreteDomains
+name|DiscreteDomain
 operator|.
 name|integers
 argument_list|()
