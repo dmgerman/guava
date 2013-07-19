@@ -41,7 +41,22 @@ class|class
 name|PackageSanityTests
 extends|extends
 name|AbstractPackageSanityTests
-block|{}
+block|{
+annotation|@
+name|Override
+DECL|method|setUp ()
+specifier|protected
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|publicApiOnly
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 end_class
 
 end_unit
