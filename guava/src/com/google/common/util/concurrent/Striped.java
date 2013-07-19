@@ -463,7 +463,7 @@ argument_list|)
 return|;
 block|}
 comment|// Static factories
-comment|/**    * Creates a {@code Striped<Lock>} with eagerly initialized, strongly referenced locks, with the    * specified fairness. Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<Lock>}    */
+comment|/**    * Creates a {@code Striped<Lock>} with eagerly initialized, strongly referenced locks.    * Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<Lock>}    */
 DECL|method|lock (int stripes)
 specifier|public
 specifier|static
@@ -508,7 +508,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Striped<Lock>} with lazily initialized, weakly referenced locks, with the    * specified fairness. Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<Lock>}    */
+comment|/**    * Creates a {@code Striped<Lock>} with lazily initialized, weakly referenced locks.    * Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<Lock>}    */
 DECL|method|lazyWeakLock (int stripes)
 specifier|public
 specifier|static
@@ -555,7 +555,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Striped<Semaphore>} with eagerly initialized, strongly referenced semaphores,    * with the specified number of permits and fairness.    *    * @param stripes the minimum number of stripes (semaphores) required    * @param permits the number of permits in each semaphore    * @return a new {@code Striped<Semaphore>}    */
+comment|/**    * Creates a {@code Striped<Semaphore>} with eagerly initialized, strongly referenced semaphores,    * with the specified number of permits.    *    * @param stripes the minimum number of stripes (semaphores) required    * @param permits the number of permits in each semaphore    * @return a new {@code Striped<Semaphore>}    */
 DECL|method|semaphore (int stripes, final int permits)
 specifier|public
 specifier|static
@@ -606,7 +606,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Striped<Semaphore>} with lazily initialized, weakly referenced semaphores,    * with the specified number of permits and fairness.    *    * @param stripes the minimum number of stripes (semaphores) required    * @param permits the number of permits in each semaphore    * @return a new {@code Striped<Semaphore>}    */
+comment|/**    * Creates a {@code Striped<Semaphore>} with lazily initialized, weakly referenced semaphores,    * with the specified number of permits.    *    * @param stripes the minimum number of stripes (semaphores) required    * @param permits the number of permits in each semaphore    * @return a new {@code Striped<Semaphore>}    */
 DECL|method|lazyWeakSemaphore (int stripes, final int permits)
 specifier|public
 specifier|static
@@ -659,7 +659,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Striped<ReadWriteLock>} with eagerly initialized, strongly referenced    * read-write locks, with the specified fairness. Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<ReadWriteLock>}    */
+comment|/**    * Creates a {@code Striped<ReadWriteLock>} with eagerly initialized, strongly referenced    * read-write locks. Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<ReadWriteLock>}    */
 DECL|method|readWriteLock (int stripes)
 specifier|public
 specifier|static
@@ -686,7 +686,7 @@ name|READ_WRITE_LOCK_SUPPLIER
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code Striped<ReadWriteLock>} with lazily initialized, weakly referenced    * read-write locks, with the specified fairness. Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<ReadWriteLock>}    */
+comment|/**    * Creates a {@code Striped<ReadWriteLock>} with lazily initialized, weakly referenced    * read-write locks. Every lock is reentrant.    *    * @param stripes the minimum number of stripes (locks) required    * @return a new {@code Striped<ReadWriteLock>}    */
 DECL|method|lazyWeakReadWriteLock (int stripes)
 specifier|public
 specifier|static
@@ -1098,6 +1098,15 @@ name|int
 name|index
 parameter_list|)
 block|{
+if|if
+condition|(
+name|size
+operator|!=
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
 name|Preconditions
 operator|.
 name|checkElementIndex
@@ -1108,6 +1117,8 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|// else no check necessary, all index values are valid
 name|L
 name|existing
 init|=
