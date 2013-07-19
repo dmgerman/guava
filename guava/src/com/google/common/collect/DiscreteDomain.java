@@ -270,7 +270,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DiscreteDomains.integers()"
+literal|"DiscreteDomain.integers()"
 return|;
 block|}
 DECL|field|serialVersionUID
@@ -497,7 +497,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DiscreteDomains.longs()"
+literal|"DiscreteDomain.longs()"
 return|;
 block|}
 DECL|field|serialVersionUID
@@ -510,9 +510,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns the discrete domain for values of type {@code BigInteger}.    */
-comment|// TODO(kevinb): make sure it's tested, and make it public
+comment|/**    * Returns the discrete domain for values of type {@code BigInteger}.    *    * @since 15.0    */
 DECL|method|bigIntegers ()
+specifier|public
 specifier|static
 name|DiscreteDomain
 argument_list|<
@@ -683,7 +683,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DiscreteDomains.bigIntegers()"
+literal|"DiscreteDomain.bigIntegers()"
 return|;
 block|}
 DECL|field|serialVersionUID

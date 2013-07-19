@@ -95,6 +95,14 @@ name|longs
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|reserializeAndAssert
+argument_list|(
+name|DiscreteDomain
+operator|.
+name|bigIntegers
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
