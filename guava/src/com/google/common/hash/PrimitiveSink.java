@@ -152,7 +152,7 @@ name|char
 name|c
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a string into this sink.    *    * @deprecated Use {PrimitiveSink#putUnencodedChars} instead.    */
+comment|/**    * Puts a string into this sink.    *    * @deprecated Use {PrimitiveSink#putUnencodedChars} instead. This method is scheduled for    *     removal in Guava 16.0.    */
 annotation|@
 name|Deprecated
 DECL|method|putString (CharSequence charSequence)
