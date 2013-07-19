@@ -1271,7 +1271,7 @@ argument_list|,
 literal|"x-bzip2"
 argument_list|)
 decl_stmt|;
-comment|/**    * As described in the<a href="http://idpf.org/epub">International Digital Publishing Forum</a>    * EPUB is the distribution and interchange format standard for digital publications and    * documents. This media type is defined in the    *<a href="http://www.idpf.org/epub/30/spec/epub30-ocf.html">EPUB Open Container Format</a>    * specification.    */
+comment|/**    * As described in the<a href="http://idpf.org/epub">International Digital Publishing Forum</a>    * EPUB is the distribution and interchange format standard for digital publications and    * documents. This media type is defined in the    *<a href="http://www.idpf.org/epub/30/spec/epub30-ocf.html">EPUB Open Container Format</a>    * specification.    *    * @since 15.0    */
 DECL|field|EPUB
 specifier|public
 specifier|static
@@ -1611,7 +1611,7 @@ argument_list|,
 literal|"postscript"
 argument_list|)
 decl_stmt|;
-comment|/**    *<a href="http://tools.ietf.org/html/draft-rfernando-protocol-buffers-00">Protocol buffers</a>    */
+comment|/**    *<a href="http://tools.ietf.org/html/draft-rfernando-protocol-buffers-00">Protocol buffers</a>    *    * @since 15.0    */
 DECL|field|PROTOBUF
 specifier|public
 specifier|static

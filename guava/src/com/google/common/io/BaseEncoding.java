@@ -467,7 +467,7 @@ DECL|method|BaseEncoding ()
 name|BaseEncoding
 parameter_list|()
 block|{}
-comment|/**    * Exception indicating invalid base-encoded input encountered while decoding.    *    * @author Louis Wasserman    */
+comment|/**    * Exception indicating invalid base-encoded input encountered while decoding.    *    * @author Louis Wasserman    * @since 15.0    */
 DECL|class|DecodingException
 specifier|public
 specifier|static

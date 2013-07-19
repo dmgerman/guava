@@ -2645,7 +2645,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the    * supplied future when it completes.  Cancelling the supplied future    * will also cancel the returned future, but cancelling the returned    * future will have no effect on the supplied future.    */
+comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the    * supplied future when it completes.  Cancelling the supplied future    * will also cancel the returned future, but cancelling the returned    * future will have no effect on the supplied future.    *    * @since 15.0    */
 DECL|method|nonCancellationPropagating ( ListenableFuture<V> future)
 specifier|public
 specifier|static
