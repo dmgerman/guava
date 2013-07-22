@@ -42,6 +42,20 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests common methods in {@link ImmutableTable}  *  * @author Gregory Kick  */
 end_comment
@@ -3030,6 +3044,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Mind-bogglingly slow in GWT"
+argument_list|)
 DECL|method|testOverflowCondition ()
 specifier|public
 name|void
