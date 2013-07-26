@@ -671,6 +671,16 @@ name|SET_COOKIE2
 init|=
 literal|"Set-Cookie2"
 decl_stmt|;
+comment|/**    * The HTTP<a href="http://tools.ietf.org/html/rfc6797#section-6.1">    * {@code Strict-Transport-Security}</a> header field name.    *    * @since 15.0    */
+DECL|field|STRICT_TRANSPORT_SECURITY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STRICT_TRANSPORT_SECURITY
+init|=
+literal|"Strict-Transport-Security"
+decl_stmt|;
 comment|/**    * The HTTP<a href="http://www.w3.org/TR/resource-timing/#cross-origin-resources">    * {@code Timing-Allow-Origin}</a> header field name.    *    * @since 15.0    */
 DECL|field|TIMING_ALLOW_ORIGIN
 specifier|public
