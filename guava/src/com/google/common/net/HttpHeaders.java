@@ -26,6 +26,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -801,6 +815,30 @@ name|String
 name|X_POWERED_BY
 init|=
 literal|"X-Powered-By"
+decl_stmt|;
+comment|/**    * The HTTP<a href="http://tools.ietf.org/html/draft-evans-palmer-key-pinning">    * {@code Public-Key-Pins}</a> header field name.    *    * @since 15.0    */
+annotation|@
+name|Beta
+DECL|field|PUBLIC_KEY_PINS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PUBLIC_KEY_PINS
+init|=
+literal|"Public-Key-Pins"
+decl_stmt|;
+comment|/**    * The HTTP<a href="http://tools.ietf.org/html/draft-evans-palmer-key-pinning">    * {@code Public-Key-Pins-Report-Only}</a> header field name.    *    * @since 15.0    */
+annotation|@
+name|Beta
+DECL|field|PUBLIC_KEY_PINS_REPORT_ONLY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PUBLIC_KEY_PINS_REPORT_ONLY
+init|=
+literal|"Public-Key-Pins-Report-Only"
 decl_stmt|;
 comment|/** The HTTP {@code X-Requested-With} header field name. */
 DECL|field|X_REQUESTED_WITH
