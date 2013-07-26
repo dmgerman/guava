@@ -207,6 +207,7 @@ name|TestCase
 block|{
 DECL|method|assertEquals (byte[] expected, byte[] actual)
 specifier|public
+specifier|static
 name|void
 name|assertEquals
 parameter_list|(
@@ -1449,9 +1450,6 @@ name|assertSame
 argument_list|(
 name|base16
 argument_list|()
-operator|.
-name|upperCase
-argument_list|()
 argument_list|,
 name|base16
 argument_list|()
@@ -1461,8 +1459,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testEncodingWithCasing (BaseEncoding encoding, String decoded, String encoded)
+DECL|method|testEncodingWithCasing ( BaseEncoding encoding, String decoded, String encoded)
 specifier|private
+specifier|static
 name|void
 name|testEncodingWithCasing
 parameter_list|(
@@ -1520,8 +1519,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testEncodingWithSeparators (BaseEncoding encoding, String decoded, String encoded)
+DECL|method|testEncodingWithSeparators ( BaseEncoding encoding, String decoded, String encoded)
 specifier|private
+specifier|static
 name|void
 name|testEncodingWithSeparators
 parameter_list|(
@@ -1620,6 +1620,7 @@ block|}
 block|}
 DECL|method|testEncoding (BaseEncoding encoding, String decoded, String encoded)
 specifier|private
+specifier|static
 name|void
 name|testEncoding
 parameter_list|(
@@ -1654,6 +1655,7 @@ expr_stmt|;
 block|}
 DECL|method|testEncodes (BaseEncoding encoding, String decoded, String encoded)
 specifier|private
+specifier|static
 name|void
 name|testEncodes
 parameter_list|(
@@ -1673,6 +1675,7 @@ name|bytes
 decl_stmt|;
 try|try
 block|{
+comment|// GWT does not support String.getBytes(Charset)
 name|bytes
 operator|=
 name|decoded
@@ -1710,6 +1713,7 @@ expr_stmt|;
 block|}
 DECL|method|testDecodes (BaseEncoding encoding, String encoded, String decoded)
 specifier|private
+specifier|static
 name|void
 name|testDecodes
 parameter_list|(
@@ -1729,6 +1733,7 @@ name|bytes
 decl_stmt|;
 try|try
 block|{
+comment|// GWT does not support String.getBytes(Charset)
 name|bytes
 operator|=
 name|decoded
@@ -1766,6 +1771,7 @@ expr_stmt|;
 block|}
 DECL|method|assertFailsToDecode (BaseEncoding encoding, String cannotDecode)
 specifier|private
+specifier|static
 name|void
 name|assertFailsToDecode
 parameter_list|(
