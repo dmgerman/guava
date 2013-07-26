@@ -673,13 +673,14 @@ return|;
 block|}
 comment|// LinkedList: see {@link com.google.common.collect.Lists}
 comment|// PriorityBlockingQueue
-comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its    * elements' natural ordering.    */
-comment|// TODO(user): These should be<E extends Comparable>
+comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its    * elements' natural ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 DECL|method|newPriorityBlockingQueue ()
 specifier|public
 specifier|static
 parameter_list|<
 name|E
+extends|extends
+name|Comparable
 parameter_list|>
 name|PriorityBlockingQueue
 argument_list|<
@@ -697,12 +698,14 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    */
+comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 DECL|method|newPriorityBlockingQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
 name|E
+extends|extends
+name|Comparable
 parameter_list|>
 name|PriorityBlockingQueue
 argument_list|<
@@ -769,12 +772,14 @@ name|queue
 return|;
 block|}
 comment|// PriorityQueue
-comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its    * elements' natural ordering.    */
+comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its    * elements' natural ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
 DECL|method|newPriorityQueue ()
 specifier|public
 specifier|static
 parameter_list|<
 name|E
+extends|extends
+name|Comparable
 parameter_list|>
 name|PriorityQueue
 argument_list|<
@@ -792,12 +797,14 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    */
-DECL|method|newPriorityQueue (Iterable<? extends E> elements)
+comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    *    * @since 11.0 (requires that {@code E} be {@code Comparable} since 15.0).    */
+DECL|method|newPriorityQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
 name|E
+extends|extends
+name|Comparable
 parameter_list|>
 name|PriorityQueue
 argument_list|<
@@ -1028,7 +1035,7 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},    * but with a different behavior in case it is interrupted while waiting. In that case, the    * operation will continue as usual, and in the end the thread's interruption status will be set    * (no {@code InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},     * but with a different behavior in case it is interrupted while waiting. In that case, the     * operation will continue as usual, and in the end the thread's interruption status will be set     * (no {@code InterruptedException} is thrown).     *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
 annotation|@
 name|Beta
 DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
