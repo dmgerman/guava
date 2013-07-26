@@ -207,7 +207,7 @@ name|Queues
 parameter_list|()
 block|{}
 comment|// ArrayBlockingQueue
-comment|/**    * Creates an empty {@code ArrayBlockingQueue} instance.    *    * @return a new, empty {@code ArrayBlockingQueue}    */
+comment|/**    * Creates an empty {@code ArrayBlockingQueue} with the given (fixed) capacity    * and nonfair access policy.    */
 DECL|method|newArrayBlockingQueue (int capacity)
 specifier|public
 specifier|static
@@ -236,7 +236,7 @@ argument_list|)
 return|;
 block|}
 comment|// ArrayDeque
-comment|/**    * Creates an empty {@code ArrayDeque} instance.    *    * @return a new, empty {@code ArrayDeque}    * @since 12.0    */
+comment|/**    * Creates an empty {@code ArrayDeque}.    *    * @since 12.0    */
 DECL|method|newArrayDeque ()
 specifier|public
 specifier|static
@@ -259,7 +259,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code ArrayDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code ArrayDeque} containing those elements    * @since 12.0    */
+comment|/**    * Creates an {@code ArrayDeque} containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @since 12.0    */
 DECL|method|newArrayDeque (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -331,7 +331,7 @@ name|deque
 return|;
 block|}
 comment|// ConcurrentLinkedQueue
-comment|/**    * Creates an empty {@code ConcurrentLinkedQueue} instance.    *    * @return a new, empty {@code ConcurrentLinkedQueue}    */
+comment|/**    * Creates an empty {@code ConcurrentLinkedQueue}.    */
 DECL|method|newConcurrentLinkedQueue ()
 specifier|public
 specifier|static
@@ -354,7 +354,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code ConcurrentLinkedQueue} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code ConcurrentLinkedQueue} containing those elements    */
+comment|/**    * Creates a {@code ConcurrentLinkedQueue} containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    */
 DECL|method|newConcurrentLinkedQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -426,7 +426,7 @@ name|queue
 return|;
 block|}
 comment|// LinkedBlockingDeque
-comment|/**    * Creates an empty {@code LinkedBlockingDeque} instance.    *    * @return a new, empty {@code LinkedBlockingDeque}    * @since 12.0    */
+comment|/**    * Creates an empty {@code LinkedBlockingDeque} with a capacity of {@link Integer#MAX_VALUE}.    *    * @since 12.0    */
 DECL|method|newLinkedBlockingDeque ()
 specifier|public
 specifier|static
@@ -449,7 +449,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedBlockingDeque} with the given (fixed) capacity.    *    * @param capacity the capacity of this deque    * @return a new, empty {@code LinkedBlockingDeque}    * @throws IllegalArgumentException if {@code capacity} is less than 1    * @since 12.0    */
+comment|/**    * Creates an empty {@code LinkedBlockingDeque} with the given (fixed) capacity.    *    * @throws IllegalArgumentException if {@code capacity} is less than 1    * @since 12.0    */
 DECL|method|newLinkedBlockingDeque (int capacity)
 specifier|public
 specifier|static
@@ -477,7 +477,7 @@ name|capacity
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code LinkedBlockingDeque} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingDeque} containing those elements    * @since 12.0    */
+comment|/**    * Creates a {@code LinkedBlockingDeque} with a capacity of {@link Integer#MAX_VALUE},    * containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @since 12.0    */
 DECL|method|newLinkedBlockingDeque (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -549,7 +549,7 @@ name|deque
 return|;
 block|}
 comment|// LinkedBlockingQueue
-comment|/**    * Creates an empty {@code LinkedBlockingQueue} instance.    *    * @return a new, empty {@code LinkedBlockingQueue}    */
+comment|/**    * Creates an empty {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE}.    */
 DECL|method|newLinkedBlockingQueue ()
 specifier|public
 specifier|static
@@ -572,7 +572,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedBlockingQueue} with the given (fixed) capacity.    *    * @param capacity the capacity of this queue    * @return a new, empty {@code LinkedBlockingQueue}    * @throws IllegalArgumentException if {@code capacity} is less than 1    */
+comment|/**    * Creates an empty {@code LinkedBlockingQueue} with the given (fixed) capacity.    *    * @throws IllegalArgumentException if {@code capacity} is less than 1    */
 DECL|method|newLinkedBlockingQueue (int capacity)
 specifier|public
 specifier|static
@@ -600,7 +600,7 @@ name|capacity
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code LinkedBlockingQueue} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingQueue} containing those elements    */
+comment|/**    * Creates a {@code LinkedBlockingQueue} with a capacity of {@link Integer#MAX_VALUE},    * containing the elements of the specified iterable,    * in the order they are returned by the iterable's iterator.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code LinkedBlockingQueue} containing those elements    */
 DECL|method|newLinkedBlockingQueue (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -673,7 +673,8 @@ return|;
 block|}
 comment|// LinkedList: see {@link com.google.common.collect.Lists}
 comment|// PriorityBlockingQueue
-comment|/**    * Creates an empty {@code PriorityBlockingQueue} instance.    *    * @return a new, empty {@code PriorityBlockingQueue}    */
+comment|/**    * Creates an empty {@code PriorityBlockingQueue} with the ordering given by its    * elements' natural ordering.    */
+comment|// TODO(user): These should be<E extends Comparable>
 DECL|method|newPriorityBlockingQueue ()
 specifier|public
 specifier|static
@@ -696,7 +697,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code PriorityBlockingQueue} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code PriorityBlockingQueue} containing those elements    */
+comment|/**    * Creates a {@code PriorityBlockingQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    */
 DECL|method|newPriorityBlockingQueue ( Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -768,7 +769,7 @@ name|queue
 return|;
 block|}
 comment|// PriorityQueue
-comment|/**    * Creates an empty {@code PriorityQueue} instance.    *    * @return a new, empty {@code PriorityQueue}    */
+comment|/**    * Creates an empty {@code PriorityQueue} with the ordering given by its    * elements' natural ordering.    */
 DECL|method|newPriorityQueue ()
 specifier|public
 specifier|static
@@ -791,7 +792,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an {@code PriorityQueue} instance containing the given elements.    *    * @param elements the elements that the queue should contain, in order    * @return a new {@code PriorityQueue} containing those elements    */
+comment|/**    * Creates a {@code PriorityQueue} containing the given elements.    *    *<b>Note:</b> If the specified iterable is a {@code SortedSet} or a {@code PriorityQueue},    * this priority queue will be ordered according to the same ordering.    */
 DECL|method|newPriorityQueue (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -863,7 +864,7 @@ name|queue
 return|;
 block|}
 comment|// SynchronousQueue
-comment|/**    * Creates an empty {@code SynchronousQueue} instance.    *    * @return a new, empty {@code SynchronousQueue}    */
+comment|/**    * Creates an empty {@code SynchronousQueue} with nonfair access policy.    */
 DECL|method|newSynchronousQueue ()
 specifier|public
 specifier|static
@@ -886,7 +887,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested     * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
+comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested    * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
 annotation|@
 name|Beta
 DECL|method|drain (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
@@ -1027,7 +1028,7 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},     * but with a different behavior in case it is interrupted while waiting. In that case, the     * operation will continue as usual, and in the end the thread's interruption status will be set     * (no {@code InterruptedException} is thrown).     *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},    * but with a different behavior in case it is interrupted while waiting. In that case, the    * operation will continue as usual, and in the end the thread's interruption status will be set    * (no {@code InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
 annotation|@
 name|Beta
 DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
