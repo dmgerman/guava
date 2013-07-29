@@ -81,13 +81,11 @@ implements|implements
 name|Serializable
 block|{
 DECL|field|key
-specifier|private
 specifier|final
 name|K
 name|key
 decl_stmt|;
 DECL|field|value
-specifier|private
 specifier|final
 name|V
 name|value
