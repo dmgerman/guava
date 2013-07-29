@@ -86,7 +86,7 @@ specifier|private
 name|UncaughtExceptionHandlers
 parameter_list|()
 block|{}
-comment|/**    * Returns an exception handler that exits the system. This is particularly useful for the main    * thread, which may start up other, non-daemon threads, but fail to fully initialize the    * application successfully.    *    *<p>Example usage:    *<pre>public static void main(String[] args) {    *   Thread.currentThread().setUncaughtExceptionHandler(UncaughtExceptionHandlers.systemExit());    *   ...    *</pre>    */
+comment|/**    * Returns an exception handler that exits the system. This is particularly useful for the main    * thread, which may start up other, non-daemon threads, but fail to fully initialize the    * application successfully.    *    *<p>Example usage:    *<pre>public static void main(String[] args) {    *   Thread.currentThread().setUncaughtExceptionHandler(UncaughtExceptionHandlers.systemExit());    *   ...    *</pre>    *    *<p>The returned handler logs any exception at severity {@code SEVERE} and then shuts down the    * process with an exit status of 1, indicating abnormal termination.    */
 DECL|method|systemExit ()
 specifier|public
 specifier|static
