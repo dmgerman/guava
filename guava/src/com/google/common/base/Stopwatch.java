@@ -201,7 +201,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure  * elapsed time using this class instead of direct calls to {@link  * System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance  *     reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute  *     meaning, and can only be interpreted as relative to another timestamp  *     returned by {@code nanoTime} at a different time. {@code Stopwatch} is a  *     more effective abstraction because it exposes only these relative values,  *     not the absolute ones.  *</ul>  *  *<p>Basic usage:  *<pre>  *   Stopwatch stopwatch = Stopwatch.{@link #createStarted createStarted}();  *   doSomething();  *   stopwatch.{@link #stop stop}(); // optional  *  *   long millis = stopwatch.elapsed(MILLISECONDS);  *  *   log.info("that took: " + stopwatch); // formatted string like "12.3 ms"  *</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a  * stopwatch that is already in the desired state.  *  *<p>When testing code that uses this class, use the {@linkplain  * #Stopwatch(Ticker) alternate constructor} to supply a fake or mock ticker.  *<!-- TODO(kevinb): restore the "such as" --> This allows you to  * simulate any valid behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure  * elapsed time using this class instead of direct calls to {@link  * System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance  *     reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute  *     meaning, and can only be interpreted as relative to another timestamp  *     returned by {@code nanoTime} at a different time. {@code Stopwatch} is a  *     more effective abstraction because it exposes only these relative values,  *     not the absolute ones.  *</ul>  *  *<p>Basic usage:  *<pre>  *   Stopwatch stopwatch = Stopwatch.{@link #createStarted createStarted}();  *   doSomething();  *   stopwatch.{@link #stop stop}(); // optional  *  *   long millis = stopwatch.elapsed(MILLISECONDS);  *  *   log.info("time: " + stopwatch); // formatted string like "12.3 ms"</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a  * stopwatch that is already in the desired state.  *  *<p>When testing code that uses this class, use  * {@link #createUnstarted(Ticker)} or {@link #createStarted(Ticker)} to  * supply a fake or mock ticker.  *<!-- TODO(kevinb): restore the "such as" --> This allows you to  * simulate any valid behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -313,7 +313,7 @@ name|start
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @deprecated Use {@link Stopwatch#createUnstarted()} instead. This    *     constructor is scheduled to be remove in Guava release 17.0.    */
+comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @deprecated Use {@link Stopwatch#createUnstarted()} instead. This    *     constructor is scheduled to be removed in Guava release 17.0.    */
 annotation|@
 name|Deprecated
 DECL|method|Stopwatch ()
@@ -330,7 +330,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @deprecated Use {@link Stopwatch#createUnstarted(Ticker)} instead. This    *     constructor is scheduled to be remove in Guava release 17.0.    */
+comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @deprecated Use {@link Stopwatch#createUnstarted(Ticker)} instead. This    *     constructor is scheduled to be removed in Guava release 17.0.    */
 annotation|@
 name|Deprecated
 DECL|method|Stopwatch (Ticker ticker)
