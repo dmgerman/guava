@@ -82,7 +82,7 @@ name|HashCode
 operator|.
 name|class
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(

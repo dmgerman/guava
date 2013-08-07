@@ -679,7 +679,7 @@ name|getDigestLength
 argument_list|()
 operator|)
 condition|?
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -689,7 +689,7 @@ name|digest
 argument_list|()
 argument_list|)
 else|:
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(

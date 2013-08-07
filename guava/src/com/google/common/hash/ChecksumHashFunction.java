@@ -329,7 +329,7 @@ condition|)
 block|{
 comment|/*          * The long returned from a 32-bit Checksum will have all 0s for its second word, so the          * cast won't lose any information and is necessary to return a HashCode of the correct          * size.          */
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -343,7 +343,7 @@ block|}
 else|else
 block|{
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(

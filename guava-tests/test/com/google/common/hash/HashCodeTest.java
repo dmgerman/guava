@@ -95,14 +95,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for HashCodes, especially making sure that their endianness promises (big-endian)  * are upheld.  *  * @author Dimitris Andreou  */
+comment|/**  * Unit tests for {@link HashCode}.  *  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
 end_comment
 
 begin_class
-DECL|class|HashCodesTest
+DECL|class|HashCodeTest
 specifier|public
 class|class
-name|HashCodesTest
+name|HashCodeTest
 extends|extends
 name|TestCase
 block|{
@@ -428,7 +428,7 @@ block|{
 name|HashCode
 name|fromInt
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -476,7 +476,7 @@ block|{
 name|HashCode
 name|fromLong
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -512,7 +512,7 @@ block|{
 name|HashCode
 name|fromBytes
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -568,7 +568,7 @@ decl_stmt|;
 name|HashCode
 name|hashCode
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -674,7 +674,7 @@ decl_stmt|;
 name|HashCode
 name|hashCode
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -742,7 +742,7 @@ name|assertEquals
 argument_list|(
 literal|0x1111111111111111L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -757,7 +757,7 @@ name|assertEquals
 argument_list|(
 literal|0x9999999999999999L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -772,7 +772,7 @@ name|assertEquals
 argument_list|(
 literal|0x0000000011111111L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -787,7 +787,7 @@ name|assertEquals
 argument_list|(
 literal|0x0000000099999999L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -809,7 +809,7 @@ name|assertEquals
 argument_list|(
 literal|0x0000000099999999L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -834,7 +834,7 @@ name|assertEquals
 argument_list|(
 literal|0x0000999999999999L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -859,7 +859,7 @@ name|assertEquals
 argument_list|(
 literal|0x9999999999999999L
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -942,7 +942,7 @@ name|assertEquals
 argument_list|(
 literal|"7f8005ff0e"
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -970,10 +970,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testHashCodes_nulls ()
+DECL|method|testHashCode_nulls ()
 specifier|public
 name|void
-name|testHashCodes_nulls
+name|testHashCode_nulls
 parameter_list|()
 throws|throws
 name|Exception
@@ -985,10 +985,10 @@ name|testNulls
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testHashCodes_equalsAndSerializable ()
+DECL|method|testHashCode_equalsAndSerializable ()
 specifier|public
 name|void
-name|testHashCodes_equalsAndSerializable
+name|testHashCode_equalsAndSerializable
 parameter_list|()
 throws|throws
 name|Exception
@@ -1022,7 +1022,7 @@ decl_stmt|;
 name|HashCode
 name|hash2
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1060,7 +1060,7 @@ block|{
 name|HashCode
 name|hashCode42
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -1130,7 +1130,7 @@ expr_stmt|;
 name|HashCode
 name|hashCodeA
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1140,7 +1140,7 @@ decl_stmt|;
 name|HashCode
 name|hashCodeB
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1250,20 +1250,20 @@ argument_list|)
 operator|.
 name|forAllPublicStaticMethods
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|class
 argument_list|)
 return|;
 block|}
-DECL|method|assertExpectedHashCode (ExpectedHashCode expected, HashCode hash)
+DECL|method|assertExpectedHashCode (ExpectedHashCode expectedHashCode, HashCode hash)
 specifier|private
 specifier|static
 name|void
 name|assertExpectedHashCode
 parameter_list|(
 name|ExpectedHashCode
-name|expected
+name|expectedHashCode
 parameter_list|,
 name|HashCode
 name|hash
@@ -1275,7 +1275,7 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
-name|expected
+name|expectedHashCode
 operator|.
 name|bytes
 argument_list|,
@@ -1320,7 +1320,7 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
-name|expected
+name|expectedHashCode
 operator|.
 name|bytes
 argument_list|,
@@ -1330,7 +1330,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|expected
+name|expectedHashCode
 operator|.
 name|asInt
 argument_list|,
@@ -1342,7 +1342,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|expected
+name|expectedHashCode
 operator|.
 name|asLong
 operator|==
@@ -1363,7 +1363,7 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalStateException
-name|ok
+name|expected
 parameter_list|)
 block|{}
 block|}
@@ -1371,7 +1371,7 @@ else|else
 block|{
 name|assertEquals
 argument_list|(
-name|expected
+name|expectedHashCode
 operator|.
 name|asLong
 operator|.
@@ -1387,7 +1387,7 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-name|expected
+name|expectedHashCode
 operator|.
 name|toString
 argument_list|,

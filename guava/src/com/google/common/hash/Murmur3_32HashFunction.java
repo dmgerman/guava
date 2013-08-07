@@ -635,7 +635,7 @@ operator|>>>
 literal|16
 expr_stmt|;
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(

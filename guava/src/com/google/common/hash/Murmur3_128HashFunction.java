@@ -819,7 +819,7 @@ operator|+=
 name|h1
 expr_stmt|;
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(

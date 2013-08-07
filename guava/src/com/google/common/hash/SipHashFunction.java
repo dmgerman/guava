@@ -573,7 +573,7 @@ name|d
 argument_list|)
 expr_stmt|;
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(

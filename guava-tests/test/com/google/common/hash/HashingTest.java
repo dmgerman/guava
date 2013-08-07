@@ -1428,7 +1428,7 @@ parameter_list|()
 block|{
 name|checkSameResult
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -1440,7 +1440,7 @@ argument_list|)
 expr_stmt|;
 name|checkSameResult
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -1452,7 +1452,7 @@ argument_list|)
 expr_stmt|;
 name|checkSameResult
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -1736,14 +1736,14 @@ name|ImmutableList
 operator|.
 name|of
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
 literal|32
 argument_list|)
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -1772,7 +1772,7 @@ block|{
 name|HashCode
 name|hash31
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -1782,7 +1782,7 @@ decl_stmt|;
 name|HashCode
 name|hash32
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -1808,7 +1808,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1846,7 +1846,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1964,7 +1964,7 @@ name|hashCodes
 operator|.
 name|add
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -2064,14 +2064,14 @@ name|ImmutableList
 operator|.
 name|of
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
 literal|32
 argument_list|)
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -2100,7 +2100,7 @@ block|{
 name|HashCode
 name|hash31
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -2110,7 +2110,7 @@ decl_stmt|;
 name|HashCode
 name|hash32
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -2136,7 +2136,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -2160,7 +2160,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -2261,7 +2261,7 @@ name|hashCodes
 operator|.
 name|add
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -2564,7 +2564,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -3300,7 +3300,7 @@ name|HashCode
 operator|.
 name|class
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(

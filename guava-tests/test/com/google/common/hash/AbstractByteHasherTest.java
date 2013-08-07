@@ -773,7 +773,7 @@ name|hash
 parameter_list|()
 block|{
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(

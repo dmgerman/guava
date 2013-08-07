@@ -1240,7 +1240,7 @@ name|makeHash
 parameter_list|()
 block|{
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1554,7 +1554,7 @@ name|input
 parameter_list|)
 block|{
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(

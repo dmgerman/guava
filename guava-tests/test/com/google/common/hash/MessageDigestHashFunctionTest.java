@@ -348,7 +348,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -393,7 +393,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(

@@ -987,7 +987,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -1108,7 +1108,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
@@ -1261,7 +1261,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytesNoCopy
 argument_list|(
