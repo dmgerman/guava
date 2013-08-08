@@ -159,6 +159,35 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+comment|/**    * Returns an {@link Escaper} instance that escapes strings so they can be    * safely included in a<a href="http://goo.gl/xXEq4p">URL fragment</a>. The    * returned escaper escapes all non-ASCII characters, even though<a    * href="http://goo.gl/xIJWe">many of these are accepted in modern URLs</a>.    * (<a href="http://goo.gl/WMGvZ">If the escaper were to leave these    * characters unescaped, they would be escaped by the consumer at parse time,    * anyway.</a>)    *    *<p>When escaping a String, the following rules apply:    *<ul>    *<li>The alphanumeric characters "a" through "z", "A" through "Z" and "0"    *     through "9" remain the same.    *<li>The unreserved characters ".", "-", "~", and "_" remain the same.    *<li>The general delimiters "@" and ":" remain the same.    *<li>The subdelimiters "!", "$", "&amp;", "'", "(", ")", "*", "+", ",", ";",    *     and "=" remain the same.    *<li>The space character " " is converted into %20.    *<li>Fragments allow unescaped "/" and "?", so they remain the same.    *<li>All other characters are converted into one or more bytes using UTF-8    *     encoding and each byte is then represented by the 3-character string    *     "%XY", where "XY" is the two-digit, uppercase, hexadecimal    *     representation of the byte value.    *</ul>    *    *<p><b>Note</b>: Unlike other escapers, URL escapers produce uppercase    * hexadecimal sequences. From<a href="http://www.ietf.org/rfc/rfc3986.txt">    * RFC 3986</a>:<br>    *<i>"URI producers and normalizers should use uppercase hexadecimal digits    * for all percent-encodings."</i>    */
+DECL|method|urlFragmentEscaper ()
+specifier|public
+specifier|static
+name|Escaper
+name|urlFragmentEscaper
+parameter_list|()
+block|{
+return|return
+name|URL_FRAGMENT_ESCAPER
+return|;
+block|}
+DECL|field|URL_FRAGMENT_ESCAPER
+specifier|private
+specifier|static
+specifier|final
+name|Escaper
+name|URL_FRAGMENT_ESCAPER
+init|=
+operator|new
+name|PercentEscaper
+argument_list|(
+name|URL_PATH_OTHER_SAFE_CHARS_LACKING_PLUS
+operator|+
+literal|"+/?"
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
 block|}
 end_class
 
