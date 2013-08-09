@@ -15603,7 +15603,7 @@ name|expectedEntries
 operator|.
 name|get
 argument_list|(
-literal|0
+name|i
 argument_list|)
 decl_stmt|;
 name|ReferenceEntry
@@ -15618,7 +15618,7 @@ name|actualEntries
 operator|.
 name|get
 argument_list|(
-literal|0
+name|i
 argument_list|)
 decl_stmt|;
 name|assertSame
