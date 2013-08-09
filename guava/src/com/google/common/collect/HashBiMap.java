@@ -40,11 +40,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkState
+name|checkRemove
 import|;
 end_import
 
@@ -2019,13 +2019,11 @@ block|{
 name|checkForConcurrentModification
 argument_list|()
 expr_stmt|;
-name|checkState
+name|checkRemove
 argument_list|(
 name|toRemove
 operator|!=
 literal|null
-argument_list|,
-literal|"Only one remove() call allowed per call to next"
 argument_list|)
 expr_stmt|;
 name|delete

@@ -24,11 +24,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkNotNull
+name|checkEntryNotNull
 import|;
 end_import
 
@@ -132,6 +132,13 @@ name|V
 name|v1
 parameter_list|)
 block|{
+name|checkEntryNotNull
+argument_list|(
+name|k1
+argument_list|,
+name|v1
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|SingletonImmutableBiMap
@@ -141,15 +148,9 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
-name|checkNotNull
-argument_list|(
 name|k1
-argument_list|)
 argument_list|,
-name|checkNotNull
-argument_list|(
 name|v1
-argument_list|)
 argument_list|)
 return|;
 block|}

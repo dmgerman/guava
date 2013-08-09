@@ -56,11 +56,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkState
+name|checkNonnegative
 import|;
 end_import
 
@@ -74,9 +74,9 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Multisets
+name|CollectPreconditions
 operator|.
-name|checkNonnegative
+name|checkRemove
 import|;
 end_import
 
@@ -500,8 +500,6 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|Iterators
-operator|.
 name|checkRemove
 argument_list|(
 name|toRemove
@@ -756,11 +754,9 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkState
+name|checkRemove
 argument_list|(
 name|canRemove
-argument_list|,
-literal|"no calls to next() since the last call to remove()"
 argument_list|)
 expr_stmt|;
 name|int

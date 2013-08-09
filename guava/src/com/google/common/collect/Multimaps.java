@@ -56,11 +56,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkState
+name|checkRemove
 import|;
 end_import
 
@@ -3908,7 +3908,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkState
+name|checkRemove
 argument_list|(
 name|i
 operator|==

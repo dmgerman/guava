@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkRemove
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1625,7 +1641,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|checkState
+name|checkRemove
 argument_list|(
 name|entry
 operator|!=

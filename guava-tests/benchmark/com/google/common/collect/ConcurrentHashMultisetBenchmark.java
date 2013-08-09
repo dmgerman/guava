@@ -42,7 +42,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Multisets
+name|CollectPreconditions
 operator|.
 name|checkNonnegative
 import|;

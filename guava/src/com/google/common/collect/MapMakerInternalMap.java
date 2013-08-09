@@ -40,11 +40,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkState
+name|checkRemove
 import|;
 end_import
 
@@ -16331,6 +16331,8 @@ name|advance
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|next ()
 specifier|public
 specifier|abstract
@@ -16587,6 +16589,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|hasNext ()
 specifier|public
 name|boolean
@@ -16628,13 +16632,15 @@ return|return
 name|lastReturned
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove ()
 specifier|public
 name|void
 name|remove
 parameter_list|()
 block|{
-name|checkState
+name|checkRemove
 argument_list|(
 name|lastReturned
 operator|!=

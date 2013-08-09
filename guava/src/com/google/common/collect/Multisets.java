@@ -49,6 +49,38 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkRemove
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1402,8 +1434,6 @@ name|int
 name|occurrences
 parameter_list|)
 block|{
-name|Multisets
-operator|.
 name|checkNonnegative
 argument_list|(
 name|occurrences
@@ -4502,8 +4532,6 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|Iterators
-operator|.
 name|checkRemove
 argument_list|(
 name|canRemove
@@ -4592,32 +4620,6 @@ argument_list|(
 name|size
 argument_list|)
 return|;
-block|}
-DECL|method|checkNonnegative (int count, String name)
-specifier|static
-name|void
-name|checkNonnegative
-parameter_list|(
-name|int
-name|count
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-block|{
-name|checkArgument
-argument_list|(
-name|count
-operator|>=
-literal|0
-argument_list|,
-literal|"%s cannot be negative: %s"
-argument_list|,
-name|name
-argument_list|,
-name|count
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
 DECL|method|cast (Iterable<T> iterable)

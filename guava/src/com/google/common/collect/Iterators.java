@@ -129,6 +129,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkRemove
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -568,11 +584,11 @@ name|void
 name|remove
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|()
-throw|;
+name|checkRemove
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
@@ -4261,24 +4277,6 @@ return|return
 name|next
 return|;
 block|}
-block|}
-comment|/**    * Precondition tester for {@code Iterator.remove()} that throws an exception with a consistent    * error message.    */
-DECL|method|checkRemove (boolean canRemove)
-specifier|static
-name|void
-name|checkRemove
-parameter_list|(
-name|boolean
-name|canRemove
-parameter_list|)
-block|{
-name|checkState
-argument_list|(
-name|canRemove
-argument_list|,
-literal|"no calls to next() since the last call to remove()"
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Used to avoid http://bugs.sun.com/view_bug.do?bug_id=6558557    */
 DECL|method|cast (Iterator<T> iterator)
