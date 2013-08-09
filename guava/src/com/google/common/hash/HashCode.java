@@ -201,77 +201,6 @@ index|[]
 name|asBytes
 parameter_list|()
 function_decl|;
-comment|/**    * Copies bytes from this hash code into {@code dest}.    *    * @param dest the byte array into which the hash code will be written    * @param offset the start offset in the data    * @param maxLength the maximum number of bytes to write    * @return the number of bytes written to {@code dest}    * @throws IndexOutOfBoundsException if there is not enough room in {@code dest}    */
-DECL|method|writeBytesTo (byte[] dest, int offset, int maxLength)
-specifier|public
-name|int
-name|writeBytesTo
-parameter_list|(
-name|byte
-index|[]
-name|dest
-parameter_list|,
-name|int
-name|offset
-parameter_list|,
-name|int
-name|maxLength
-parameter_list|)
-block|{
-name|byte
-index|[]
-name|hash
-init|=
-name|asBytes
-argument_list|()
-decl_stmt|;
-name|maxLength
-operator|=
-name|Ints
-operator|.
-name|min
-argument_list|(
-name|maxLength
-argument_list|,
-name|hash
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|Preconditions
-operator|.
-name|checkPositionIndexes
-argument_list|(
-name|offset
-argument_list|,
-name|offset
-operator|+
-name|maxLength
-argument_list|,
-name|dest
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|hash
-argument_list|,
-literal|0
-argument_list|,
-name|dest
-argument_list|,
-name|offset
-argument_list|,
-name|maxLength
-argument_list|)
-expr_stmt|;
-return|return
-name|maxLength
-return|;
-block|}
 comment|/**    * Creates a 32-bit {@code HashCode} representation of the given int value. The underlying bytes    * are interpreted in little endian order.    *    * @since 15.0 (since 12.0 in HashCodes)    */
 DECL|method|fromInt (int hash)
 specifier|public
@@ -321,9 +250,9 @@ operator|=
 name|hash
 expr_stmt|;
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -333,9 +262,9 @@ return|return
 literal|32
 return|;
 block|}
-DECL|method|asBytes ()
 annotation|@
 name|Override
+DECL|method|asBytes ()
 specifier|public
 name|byte
 index|[]
@@ -381,9 +310,9 @@ argument_list|)
 block|}
 return|;
 block|}
-DECL|method|asInt ()
 annotation|@
 name|Override
+DECL|method|asInt ()
 specifier|public
 name|int
 name|asInt
@@ -393,9 +322,9 @@ return|return
 name|hash
 return|;
 block|}
-DECL|method|asLong ()
 annotation|@
 name|Override
+DECL|method|asLong ()
 specifier|public
 name|long
 name|asLong
@@ -485,9 +414,9 @@ operator|=
 name|hash
 expr_stmt|;
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -497,9 +426,9 @@ return|return
 literal|64
 return|;
 block|}
-DECL|method|asBytes ()
 annotation|@
 name|Override
+DECL|method|asBytes ()
 specifier|public
 name|byte
 index|[]
@@ -581,9 +510,9 @@ argument_list|)
 block|}
 return|;
 block|}
-DECL|method|asInt ()
 annotation|@
 name|Override
+DECL|method|asInt ()
 specifier|public
 name|int
 name|asInt
@@ -596,9 +525,9 @@ operator|)
 name|hash
 return|;
 block|}
-DECL|method|asLong ()
 annotation|@
 name|Override
+DECL|method|asLong ()
 specifier|public
 name|long
 name|asLong
@@ -717,9 +646,9 @@ name|bytes
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -733,9 +662,9 @@ operator|*
 literal|8
 return|;
 block|}
-DECL|method|asBytes ()
 annotation|@
 name|Override
+DECL|method|asBytes ()
 specifier|public
 name|byte
 index|[]
@@ -749,9 +678,9 @@ name|clone
 argument_list|()
 return|;
 block|}
-DECL|method|asInt ()
 annotation|@
 name|Override
+DECL|method|asInt ()
 specifier|public
 name|int
 name|asInt
@@ -822,9 +751,9 @@ literal|24
 operator|)
 return|;
 block|}
-DECL|method|asLong ()
 annotation|@
 name|Override
+DECL|method|asLong ()
 specifier|public
 name|long
 name|asLong
@@ -915,91 +844,6 @@ block|}
 return|return
 name|retVal
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|hashCode ()
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-if|if
-condition|(
-name|bytes
-operator|.
-name|length
-operator|>=
-literal|4
-condition|)
-block|{
-return|return
-name|asInt
-argument_list|()
-return|;
-block|}
-else|else
-block|{
-name|int
-name|val
-init|=
-operator|(
-name|bytes
-index|[
-literal|0
-index|]
-operator|&
-literal|0xFF
-operator|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|1
-init|;
-name|i
-operator|<
-name|Math
-operator|.
-name|min
-argument_list|(
-name|bytes
-operator|.
-name|length
-argument_list|,
-literal|4
-argument_list|)
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|val
-operator||=
-operator|(
-operator|(
-name|bytes
-index|[
-name|i
-index|]
-operator|&
-literal|0xFF
-operator|)
-operator|<<
-operator|(
-name|i
-operator|*
-literal|8
-operator|)
-operator|)
-expr_stmt|;
-block|}
-return|return
-name|val
-return|;
-block|}
 block|}
 DECL|field|serialVersionUID
 specifier|private
@@ -1204,10 +1048,86 @@ name|ch
 argument_list|)
 throw|;
 block|}
-DECL|method|equals (@ullable Object object)
+comment|/**    * Copies bytes from this hash code into {@code dest}.    *    * @param dest the byte array into which the hash code will be written    * @param offset the start offset in the data    * @param maxLength the maximum number of bytes to write    * @return the number of bytes written to {@code dest}    * @throws IndexOutOfBoundsException if there is not enough room in {@code dest}    */
+DECL|method|writeBytesTo (byte[] dest, int offset, int maxLength)
+specifier|public
+specifier|final
+name|int
+name|writeBytesTo
+parameter_list|(
+name|byte
+index|[]
+name|dest
+parameter_list|,
+name|int
+name|offset
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|)
+block|{
+name|maxLength
+operator|=
+name|Ints
+operator|.
+name|min
+argument_list|(
+name|maxLength
+argument_list|,
+name|bits
+argument_list|()
+operator|*
+literal|8
+argument_list|)
+expr_stmt|;
+name|Preconditions
+operator|.
+name|checkPositionIndexes
+argument_list|(
+name|offset
+argument_list|,
+name|offset
+operator|+
+name|maxLength
+argument_list|,
+name|dest
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
+comment|// TODO(user): Consider avoiding the array creation in asBytes() by stepping through
+comment|// the bytes individually.
+name|byte
+index|[]
+name|hash
+init|=
+name|asBytes
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|arraycopy
+argument_list|(
+name|hash
+argument_list|,
+literal|0
+argument_list|,
+name|dest
+argument_list|,
+name|offset
+argument_list|,
+name|maxLength
+argument_list|)
+expr_stmt|;
+return|return
+name|maxLength
+return|;
+block|}
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
+specifier|final
 name|boolean
 name|equals
 parameter_list|(
@@ -1256,25 +1176,97 @@ literal|false
 return|;
 block|}
 comment|/**    * Returns a "Java hash code" for this {@code HashCode} instance; this is well-defined    * (so, for example, you can safely put {@code HashCode} instances into a {@code    * HashSet}) but is otherwise probably not what you want to use.    */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
+specifier|final
 name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|/*      * As long as the hash function that produced this isn't of horrible quality, this      * won't be of horrible quality either.      */
+comment|// If we have at least 4 bytes (32 bits), just take the first 4 bytes. Since this is
+comment|// already a (presumably) high-quality hash code, any four bytes of it will do.
+if|if
+condition|(
+name|bits
+argument_list|()
+operator|>=
+literal|32
+condition|)
+block|{
 return|return
 name|asInt
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string containing each byte of {@link #asBytes}, in order, as a two-digit unsigned    * hexadecimal number in lower case.    *    *<p>Note that if the output is considered to be a single hexadecimal number, this hash code's    * bytes are the<i>big-endian</i> representation of that number. This may be surprising since    * everything else in the hashing API uniformly treats multibyte values as little-endian. But    * this format conveniently matches that of utilities such as the UNIX {@code md5sum} command.    */
-DECL|method|toString ()
+comment|// If we have less than 4 bytes, use them all.
+name|byte
+index|[]
+name|bytes
+init|=
+name|asBytes
+argument_list|()
+decl_stmt|;
+name|int
+name|val
+init|=
+operator|(
+name|bytes
+index|[
+literal|0
+index|]
+operator|&
+literal|0xFF
+operator|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+name|bytes
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|val
+operator||=
+operator|(
+operator|(
+name|bytes
+index|[
+name|i
+index|]
+operator|&
+literal|0xFF
+operator|)
+operator|<<
+operator|(
+name|i
+operator|*
+literal|8
+operator|)
+operator|)
+expr_stmt|;
+block|}
+return|return
+name|val
+return|;
+block|}
+comment|/**    * Returns a string containing each byte of {@link #asBytes}, in order, as a two-digit unsigned    * hexadecimal number in lower case.    *    *<p>Note that if the output is considered to be a single hexadecimal number, this hash code's    * bytes are the<i>big-endian</i> representation of that number. This may be surprising since    * everything else in the hashing API uniformly treats multibyte values as little-endian. But    * this format conveniently matches that of utilities such as the UNIX {@code md5sum} command.    *    *<p>To create a {@code HashCode} from its string representation, see {@link #fromString}.    */
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
+specifier|final
 name|String
 name|toString
 parameter_list|()
