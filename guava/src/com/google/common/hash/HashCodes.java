@@ -41,12 +41,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static factories for creating {@link HashCode} instances; most users should never have to use  * this. All returned instances are {@link Serializable}.  *  * @author Dimitris Andreou  * @since 12.0  */
+comment|/**  * Static factories for creating {@link HashCode} instances; most users should never have to use  * this. All returned instances are {@link Serializable}.  *  * @author Dimitris Andreou  * @since 12.0  * @deprecated Use the duplicated methods in {@link HashCode} instead. This class is scheduled  *     to be removed in Guava 16.0.  */
 end_comment
 
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 DECL|class|HashCodes
 specifier|public
 specifier|final
