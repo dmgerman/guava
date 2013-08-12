@@ -166,6 +166,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|TimeoutException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|locks
 operator|.
 name|ReentrantLock
@@ -922,9 +934,11 @@ literal|"]"
 return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
-DECL|method|start ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|start ()
 specifier|public
 specifier|final
 name|ListenableFuture
@@ -941,9 +955,11 @@ name|start
 argument_list|()
 return|;
 block|}
-DECL|method|startAndWait ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|startAndWait ()
 specifier|public
 specifier|final
 name|State
@@ -989,9 +1005,11 @@ name|state
 argument_list|()
 return|;
 block|}
-DECL|method|stop ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|stop ()
 specifier|public
 specifier|final
 name|ListenableFuture
@@ -1008,9 +1026,11 @@ name|stop
 argument_list|()
 return|;
 block|}
-DECL|method|stopAndWait ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|stopAndWait ()
 specifier|public
 specifier|final
 name|State
@@ -1066,6 +1086,126 @@ operator|.
 name|failureCause
 argument_list|()
 return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|startAsync ()
+annotation|@
+name|Override
+specifier|public
+name|Service
+name|startAsync
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|startAsync
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|stopAsync ()
+annotation|@
+name|Override
+specifier|public
+name|Service
+name|stopAsync
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|stopAsync
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitRunning ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitRunning
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|awaitRunning
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitRunning (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitRunning
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|delegate
+operator|.
+name|awaitRunning
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitTerminated ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitTerminated
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|awaitTerminated
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitTerminated (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitTerminated
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|delegate
+operator|.
+name|awaitTerminated
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to     * use a dynamically changing schedule.  After every execution of the task, assuming it hasn't     * been cancelled, the {@link #getNextSchedule} method will be called.    *     * @author Luke Sandberg    * @since 11.0    */
 annotation|@

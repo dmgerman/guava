@@ -78,6 +78,30 @@ name|java
 operator|.
 name|util
 operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeoutException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|logging
 operator|.
 name|Level
@@ -406,9 +430,11 @@ literal|"]"
 return|;
 block|}
 comment|// We override instead of using ForwardingService so that these can be final.
-DECL|method|start ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|start ()
 specifier|public
 specifier|final
 name|ListenableFuture
@@ -425,9 +451,11 @@ name|start
 argument_list|()
 return|;
 block|}
-DECL|method|startAndWait ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|startAndWait ()
 specifier|public
 specifier|final
 name|State
@@ -473,9 +501,11 @@ name|state
 argument_list|()
 return|;
 block|}
-DECL|method|stop ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|stop ()
 specifier|public
 specifier|final
 name|ListenableFuture
@@ -492,9 +522,11 @@ name|stop
 argument_list|()
 return|;
 block|}
-DECL|method|stopAndWait ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|stopAndWait ()
 specifier|public
 specifier|final
 name|State
@@ -550,6 +582,126 @@ operator|.
 name|failureCause
 argument_list|()
 return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|startAsync ()
+annotation|@
+name|Override
+specifier|public
+name|Service
+name|startAsync
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|startAsync
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|stopAsync ()
+annotation|@
+name|Override
+specifier|public
+name|Service
+name|stopAsync
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|stopAsync
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitRunning ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitRunning
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|awaitRunning
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitRunning (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitRunning
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|delegate
+operator|.
+name|awaitRunning
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitTerminated ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitTerminated
+parameter_list|()
+block|{
+name|delegate
+operator|.
+name|awaitTerminated
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitTerminated (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitTerminated
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|delegate
+operator|.
+name|awaitTerminated
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService}    * may include the name in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 14.0 (present in 10.0 as getServiceName)    */
 DECL|method|serviceName ()

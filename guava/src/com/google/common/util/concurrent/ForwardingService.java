@@ -58,6 +58,30 @@ name|Executor
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeoutException
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link Service} that forwards all method calls to another service.  *  * @deprecated Instead of using a {@link ForwardingService}, consider using the  * {@link Service.Listener} functionality to hook into the {@link Service}  * lifecycle, or if you really do need to provide access to some Service  * methods, consider just providing the few that you actually need (e.g. just  * {@link #startAndWait()}) and not implementing Service.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
@@ -92,9 +116,11 @@ name|Service
 name|delegate
 parameter_list|()
 function_decl|;
-DECL|method|start ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|start ()
 specifier|public
 name|ListenableFuture
 argument_list|<
@@ -127,9 +153,11 @@ name|state
 argument_list|()
 return|;
 block|}
-DECL|method|stop ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|stop ()
 specifier|public
 name|ListenableFuture
 argument_list|<
@@ -146,9 +174,11 @@ name|stop
 argument_list|()
 return|;
 block|}
-DECL|method|startAndWait ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|startAndWait ()
 specifier|public
 name|State
 name|startAndWait
@@ -162,9 +192,11 @@ name|startAndWait
 argument_list|()
 return|;
 block|}
-DECL|method|stopAndWait ()
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|stopAndWait ()
 specifier|public
 name|State
 name|stopAndWait
@@ -236,6 +268,132 @@ operator|.
 name|failureCause
 argument_list|()
 return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|startAsync ()
+annotation|@
+name|Override
+specifier|public
+name|Service
+name|startAsync
+parameter_list|()
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|startAsync
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|stopAsync ()
+annotation|@
+name|Override
+specifier|public
+name|Service
+name|stopAsync
+parameter_list|()
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|stopAsync
+argument_list|()
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitRunning ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitRunning
+parameter_list|()
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|awaitRunning
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitRunning (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitRunning
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|awaitRunning
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitTerminated ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitTerminated
+parameter_list|()
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|awaitTerminated
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * @since 15.0    */
+DECL|method|awaitTerminated (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|awaitTerminated
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|TimeoutException
+block|{
+name|delegate
+argument_list|()
+operator|.
+name|awaitTerminated
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * A sensible default implementation of {@link #startAndWait()}, in terms of    * {@link #start}. If you override {@link #start}, you may wish to override    * {@link #startAndWait()} to forward to this implementation.    * @since 9.0    */
 DECL|method|standardStartAndWait ()

@@ -836,11 +836,42 @@ name|values
 argument_list|()
 control|)
 block|{
+try|try
+block|{
 name|service
 operator|.
 name|start
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalStateException
+name|e
+parameter_list|)
+block|{
+comment|// This can happen if the service has already been started or stopped (e.g. by another
+comment|// service or listener). Our contract says it is safe to call this method if
+comment|// all services were NEW when it was called, and this has already been verified above, so we
+comment|// don't propagate the exception.
+name|logger
+operator|.
+name|log
+argument_list|(
+name|Level
+operator|.
+name|WARNING
+argument_list|,
+literal|"Unable to start Service "
+operator|+
+name|service
+operator|.
+name|service
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 name|this
@@ -2431,7 +2462,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|start
+name|startAsync
 argument_list|()
 expr_stmt|;
 block|}
