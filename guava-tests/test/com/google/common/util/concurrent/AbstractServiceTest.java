@@ -3839,6 +3839,17 @@ name|NoOpThreadedService
 extends|extends
 name|AbstractExecutionThreadService
 block|{
+DECL|field|latch
+specifier|final
+name|CountDownLatch
+name|latch
+init|=
+operator|new
+name|CountDownLatch
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
 DECL|method|run ()
 annotation|@
 name|Override
@@ -3848,7 +3859,27 @@ name|run
 parameter_list|()
 throws|throws
 name|Exception
-block|{}
+block|{
+name|latch
+operator|.
+name|await
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|triggerShutdown ()
+annotation|@
+name|Override
+specifier|protected
+name|void
+name|triggerShutdown
+parameter_list|()
+block|{
+name|latch
+operator|.
+name|countDown
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|class|StartFailingService
 specifier|private
