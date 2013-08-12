@@ -1076,7 +1076,7 @@ name|maxLength
 argument_list|,
 name|bits
 argument_list|()
-operator|*
+operator|/
 literal|8
 argument_list|)
 expr_stmt|;
