@@ -118,7 +118,7 @@ block|{
 if|if
 condition|(
 name|failure
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
@@ -244,7 +244,7 @@ block|{
 if|if
 condition|(
 name|failure
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
@@ -370,7 +370,7 @@ block|{
 if|if
 condition|(
 name|failure
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
