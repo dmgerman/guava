@@ -899,6 +899,21 @@ argument_list|,
 literal|"javascript"
 argument_list|)
 decl_stmt|;
+comment|/**    *<a href="http://www.iana.org/assignments/media-types/text/tab-separated-values">    * Tab separated values</a>.    *    * @since 15.0    */
+DECL|field|TSV_UTF_8
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|TSV_UTF_8
+init|=
+name|createConstantUtf8
+argument_list|(
+name|TEXT_TYPE
+argument_list|,
+literal|"tab-separated-values"
+argument_list|)
+decl_stmt|;
 DECL|field|VCARD_UTF_8
 specifier|public
 specifier|static
