@@ -100,6 +100,26 @@ name|URLClassLoader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit test for {@link FinalizableReferenceQueue}.  *  * @author Bob Lee  */
 end_comment
@@ -511,6 +531,37 @@ operator|.
 name|getResource
 argument_list|(
 literal|"internal/Finalizer.class"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testFinalizeClassHasNoNestedClases ()
+specifier|public
+name|void
+name|testFinalizeClassHasNoNestedClases
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// Ensure that the Finalizer class has no nested classes.
+comment|// See https://code.google.com/p/guava-libraries/issues/detail?id=1505
+name|assertEquals
+argument_list|(
+name|Collections
+operator|.
+name|emptyList
+argument_list|()
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|Finalizer
+operator|.
+name|class
+operator|.
+name|getDeclaredClasses
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -405,8 +405,6 @@ name|void
 name|run
 parameter_list|()
 block|{
-try|try
-block|{
 while|while
 condition|(
 literal|true
@@ -414,6 +412,9 @@ condition|)
 block|{
 try|try
 block|{
+if|if
+condition|(
+operator|!
 name|cleanUp
 argument_list|(
 name|queue
@@ -421,7 +422,10 @@ operator|.
 name|remove
 argument_list|()
 argument_list|)
-expr_stmt|;
+condition|)
+block|{
+break|break;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -433,19 +437,10 @@ comment|/* ignore */
 block|}
 block|}
 block|}
-catch|catch
-parameter_list|(
-name|ShutDown
-name|shutDown
-parameter_list|)
-block|{
-comment|/* ignore */
-block|}
-block|}
-comment|/**    * Cleans up a single reference. Catches and logs all throwables.    */
+comment|/**    * Cleans up a single reference. Catches and logs all throwables.    * @return true if the caller should continue, false if the associated FinalizableReferenceQueue    * is no longer referenced.    */
 DECL|method|cleanUp (Reference<?> reference)
 specifier|private
-name|void
+name|boolean
 name|cleanUp
 parameter_list|(
 name|Reference
@@ -454,8 +449,6 @@ name|?
 argument_list|>
 name|reference
 parameter_list|)
-throws|throws
-name|ShutDown
 block|{
 name|Method
 name|finalizeReferentMethod
@@ -463,6 +456,17 @@ init|=
 name|getFinalizeReferentMethod
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|finalizeReferentMethod
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 do|do
 block|{
 comment|/*        * This is for the benefit of phantom references. Weak and soft        * references will have already been cleared by this point.        */
@@ -479,11 +483,9 @@ name|frqReference
 condition|)
 block|{
 comment|/*          * The client no longer has a reference to the          * FinalizableReferenceQueue. We can stop.          */
-throw|throw
-operator|new
-name|ShutDown
-argument_list|()
-throw|;
+return|return
+literal|false
+return|;
 block|}
 try|try
 block|{
@@ -531,6 +533,9 @@ operator|!=
 literal|null
 condition|)
 do|;
+return|return
+literal|true
+return|;
 block|}
 comment|/**    * Looks up FinalizableReference.finalizeReferent() method.    */
 DECL|method|getFinalizeReferentMethod ()
@@ -538,8 +543,6 @@ specifier|private
 name|Method
 name|getFinalizeReferentMethod
 parameter_list|()
-throws|throws
-name|ShutDown
 block|{
 name|Class
 argument_list|<
@@ -560,11 +563,9 @@ literal|null
 condition|)
 block|{
 comment|/*        * FinalizableReference's class loader was reclaimed. While there's a        * chance that other finalizable references could be enqueued        * subsequently (at which point the class loader would be resurrected        * by virtue of us having a strong reference to it), we should pretty        * much just shut down and make sure we don't keep it alive any longer        * than necessary.        */
-throw|throw
-operator|new
-name|ShutDown
-argument_list|()
-throw|;
+return|return
+literal|null
+return|;
 block|}
 try|try
 block|{
@@ -650,21 +651,6 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** Indicates that it's time to shut down the Finalizer. */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
-comment|// Never serialized or thrown out of this class.
-DECL|class|ShutDown
-specifier|private
-specifier|static
-class|class
-name|ShutDown
-extends|extends
-name|Exception
-block|{}
 block|}
 end_class
 
