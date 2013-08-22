@@ -3208,9 +3208,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"NumericEquality"
+argument_list|)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3291,9 +3296,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"NumericEquality"
+argument_list|)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3374,9 +3384,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"NumericEquality"
+argument_list|)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3457,9 +3472,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"NumericEquality"
+argument_list|)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3540,9 +3560,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"NumericEquality"
+argument_list|)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -3623,9 +3648,14 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"NumericEquality"
+argument_list|)
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
