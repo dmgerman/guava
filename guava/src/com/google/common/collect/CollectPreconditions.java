@@ -28,22 +28,6 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkArgument
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
 name|checkState
 import|;
 end_import
@@ -126,7 +110,7 @@ block|}
 block|}
 DECL|method|checkNonnegative (int value, String name)
 specifier|static
-name|void
+name|int
 name|checkNonnegative
 parameter_list|(
 name|int
@@ -136,19 +120,28 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|checkArgument
-argument_list|(
+if|if
+condition|(
 name|value
-operator|>=
+operator|<
 literal|0
-argument_list|,
-literal|"%s cannot be negative: %s"
-argument_list|,
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
 name|name
-argument_list|,
+operator|+
+literal|" cannot be negative but was: "
+operator|+
 name|value
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
+return|return
+name|value
+return|;
 block|}
 comment|/**    * Precondition tester for {@code Iterator.remove()} that throws an exception with a consistent    * error message.    */
 DECL|method|checkRemove (boolean canRemove)
