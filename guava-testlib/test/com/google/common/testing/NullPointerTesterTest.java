@@ -5593,10 +5593,10 @@ block|}
 end_class
 
 begin_function
-DECL|method|tesGenericInterfaceReturnedByGenericMethod ()
+DECL|method|testGenericInterfaceReturnedByGenericMethod ()
 specifier|public
 name|void
-name|tesGenericInterfaceReturnedByGenericMethod
+name|testGenericInterfaceReturnedByGenericMethod
 parameter_list|()
 block|{
 operator|new
