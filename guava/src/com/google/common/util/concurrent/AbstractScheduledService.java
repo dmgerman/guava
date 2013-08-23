@@ -1092,6 +1092,7 @@ DECL|method|startAsync ()
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|Service
 name|startAsync
 parameter_list|()
@@ -1110,6 +1111,7 @@ DECL|method|stopAsync ()
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|Service
 name|stopAsync
 parameter_list|()
@@ -1128,6 +1130,7 @@ DECL|method|awaitRunning ()
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|awaitRunning
 parameter_list|()
@@ -1143,6 +1146,7 @@ DECL|method|awaitRunning (long timeout, TimeUnit unit)
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|awaitRunning
 parameter_list|(
@@ -1170,6 +1174,7 @@ DECL|method|awaitTerminated ()
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|awaitTerminated
 parameter_list|()
@@ -1185,6 +1190,7 @@ DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|awaitTerminated
 parameter_list|(
