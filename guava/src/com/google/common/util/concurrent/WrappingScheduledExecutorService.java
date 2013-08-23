@@ -86,6 +86,7 @@ name|ScheduledExecutorService
 name|delegate
 decl_stmt|;
 DECL|method|WrappingScheduledExecutorService (ScheduledExecutorService delegate)
+specifier|protected
 name|WrappingScheduledExecutorService
 parameter_list|(
 name|ScheduledExecutorService
