@@ -1096,7 +1096,6 @@ annotation|@
 name|Override
 DECL|method|startAndWait ()
 specifier|public
-specifier|final
 name|State
 name|startAndWait
 parameter_list|()
@@ -1117,7 +1116,6 @@ annotation|@
 name|Override
 DECL|method|stopAndWait ()
 specifier|public
-specifier|final
 name|State
 name|stopAndWait
 parameter_list|()
