@@ -633,6 +633,13 @@ argument_list|)
 expr_stmt|;
 name|doTestSetBits
 argument_list|(
+name|CharMatcher
+operator|.
+name|WHITESPACE
+argument_list|)
+expr_stmt|;
+name|doTestSetBits
+argument_list|(
 name|inRange
 argument_list|(
 literal|'A'
