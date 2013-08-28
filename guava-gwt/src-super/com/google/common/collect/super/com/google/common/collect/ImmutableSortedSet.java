@@ -172,6 +172,8 @@ comment|// In the non-emulated source, this is in ImmutableSortedSetFauxverideSh
 comment|// which overrides ImmutableSet& which ImmutableSortedSet extends.
 comment|// It is necessary here because otherwise the builder() method
 comment|// would be inherited from the emulated ImmutableSet.
+comment|// TODO(cpovirk): should we be including other methods from the shim here and
+comment|// in ImmutableSortedMap?
 DECL|method|builder ()
 annotation|@
 name|Deprecated

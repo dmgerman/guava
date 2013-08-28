@@ -16,27 +16,11 @@ name|collect
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtCompatible
-import|;
-end_import
-
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableMap} static methods that lack  * {@link ImmutableSortedMap} equivalents with deprecated, exception-throwing  * versions. See {@link ImmutableSortedSetFauxverideShim} for details.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
-annotation|@
-name|GwtCompatible
 DECL|class|ImmutableSortedMapFauxverideShim
 specifier|abstract
 class|class
