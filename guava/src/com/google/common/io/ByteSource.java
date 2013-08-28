@@ -1108,7 +1108,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source.    * Streams returned from the source will contain the concatenated data from    * the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the    * concatenated stream will close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @since 15.0    */
 DECL|method|concat (Iterable<? extends ByteSource> sources)
 specifier|public
 specifier|static
@@ -1132,7 +1132,7 @@ name|sources
 argument_list|)
 return|;
 block|}
-comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source.    * Streams returned from the source will contain the concatenated data from    * the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the    * concatenated stream will close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    *<p>Note: The input {@code Iterator} will be copied to an {@code ImmutableList} when this    * method is called. This will fail if the iterator is infinite and may cause problems if the    * iterator eagerly fetches data for each source when iterated (rather than producing sources    * that only load data through their streams). Prefer using the {@link #concat(Iterable)}    * overload if possible.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
 DECL|method|concat (Iterator<? extends ByteSource> sources)
 specifier|public
 specifier|static
@@ -1160,7 +1160,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source.    * Streams returned from the source will contain the concatenated data from    * the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the    * concatenated stream will close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
+comment|/**    * Concatenates multiple {@link ByteSource} instances into a single source. Streams returned from    * the source will contain the concatenated data from the streams of the underlying sources.    *    *<p>Only one underlying stream will be open at a time. Closing the concatenated stream will    * close the open underlying stream.    *    * @param sources the sources to concatenate    * @return a {@code ByteSource} containing the concatenated data    * @throws NullPointerException if any of {@code sources} is {@code null}    * @since 15.0    */
 DECL|method|concat (ByteSource... sources)
 specifier|public
 specifier|static
@@ -1894,8 +1894,10 @@ block|{
 DECL|field|sources
 specifier|private
 specifier|final
-name|ImmutableList
+name|Iterable
 argument_list|<
+name|?
+extends|extends
 name|ByteSource
 argument_list|>
 name|sources
@@ -1916,9 +1918,7 @@ name|this
 operator|.
 name|sources
 operator|=
-name|ImmutableList
-operator|.
-name|copyOf
+name|checkNotNull
 argument_list|(
 name|sources
 argument_list|)

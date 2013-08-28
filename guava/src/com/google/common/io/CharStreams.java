@@ -1166,6 +1166,12 @@ comment|/** Varargs form of {@link #join(Iterable)}. */
 end_comment
 
 begin_function
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// suppress "possible heap pollution" warning in JDK7
 DECL|method|join ( InputSupplier<? extends Reader>.... suppliers)
 specifier|public
 specifier|static
