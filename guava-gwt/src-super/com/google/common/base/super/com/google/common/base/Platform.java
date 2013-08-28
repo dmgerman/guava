@@ -34,6 +34,7 @@ end_comment
 
 begin_class
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{
@@ -105,6 +106,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+DECL|method|Platform ()
+specifier|private
+name|Platform
+parameter_list|()
+block|{}
 block|}
 end_class
 

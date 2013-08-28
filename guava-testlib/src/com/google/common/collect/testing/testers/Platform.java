@@ -42,6 +42,7 @@ begin_class
 annotation|@
 name|GwtCompatible
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{
@@ -92,6 +93,11 @@ return|return
 literal|5
 return|;
 block|}
+DECL|method|Platform ()
+specifier|private
+name|Platform
+parameter_list|()
+block|{}
 block|}
 end_class
 

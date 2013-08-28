@@ -169,6 +169,7 @@ operator|=
 literal|true
 argument_list|)
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{

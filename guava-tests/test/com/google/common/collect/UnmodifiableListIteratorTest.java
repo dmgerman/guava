@@ -393,11 +393,13 @@ operator|!
 name|hasPrevious
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|NoSuchElementException
 argument_list|()
 throw|;
+block|}
 return|return
 name|array
 index|[

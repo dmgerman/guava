@@ -172,6 +172,7 @@ end_comment
 
 begin_class
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{
@@ -805,6 +806,11 @@ name|predicate
 argument_list|)
 return|;
 block|}
+DECL|method|Platform ()
+specifier|private
+name|Platform
+parameter_list|()
+block|{}
 block|}
 end_class
 

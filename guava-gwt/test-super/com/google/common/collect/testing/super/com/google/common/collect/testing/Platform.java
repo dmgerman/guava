@@ -24,6 +24,7 @@ end_comment
 
 begin_class
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{
@@ -295,6 +296,11 @@ literal|"Shouldn't be called in GWT."
 argument_list|)
 throw|;
 block|}
+DECL|method|Platform ()
+specifier|private
+name|Platform
+parameter_list|()
+block|{}
 block|}
 end_class
 

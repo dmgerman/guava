@@ -40,6 +40,7 @@ begin_class
 annotation|@
 name|GwtCompatible
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{

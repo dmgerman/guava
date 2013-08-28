@@ -63,6 +63,7 @@ operator|=
 literal|true
 argument_list|)
 DECL|class|Platform
+specifier|final
 class|class
 name|Platform
 block|{
@@ -294,6 +295,11 @@ name|toString
 argument_list|()
 return|;
 block|}
+DECL|method|Platform ()
+specifier|private
+name|Platform
+parameter_list|()
+block|{}
 block|}
 end_class
 
