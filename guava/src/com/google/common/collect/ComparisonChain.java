@@ -768,31 +768,6 @@ name|boolean
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Old name of {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed    *     are being either negated or reversed, undo the negation or reversal and    *     use {@link #compareTrueFirst}.<b>This method is scheduled for deletion    *     in September 2013.</b>    */
-annotation|@
-name|Deprecated
-DECL|method|compare (boolean left, boolean right)
-specifier|public
-specifier|final
-name|ComparisonChain
-name|compare
-parameter_list|(
-name|boolean
-name|left
-parameter_list|,
-name|boolean
-name|right
-parameter_list|)
-block|{
-return|return
-name|compareFalseFirst
-argument_list|(
-name|left
-argument_list|,
-name|right
-argument_list|)
-return|;
-block|}
 comment|/**    * Ends this comparison chain and returns its result: a value having the    * same sign as the first nonzero comparison result in the chain, or zero if    * every result was zero.    */
 DECL|method|result ()
 specifier|public
