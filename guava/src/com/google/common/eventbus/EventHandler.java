@@ -355,6 +355,24 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|getSubscriber ()
+name|Object
+name|getSubscriber
+parameter_list|()
+block|{
+return|return
+name|target
+return|;
+block|}
+DECL|method|getMethod ()
+name|Method
+name|getMethod
+parameter_list|()
+block|{
+return|return
+name|method
+return|;
+block|}
 block|}
 end_class
 

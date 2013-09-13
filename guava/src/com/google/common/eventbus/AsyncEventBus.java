@@ -134,6 +134,33 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch    * events.    *    * @param executor Executor to use to dispatch events. It is the caller's    *        responsibility to shut down the executor after the last event has    *        been posted to this event bus.    * @param subscriberExceptionHandler Handler used to handle exceptions thrown from subscribers.    *    See {@link SubscriberExceptionHandler} for more information.    */
+DECL|method|AsyncEventBus (Executor executor, SubscriberExceptionHandler subscriberExceptionHandler)
+specifier|public
+name|AsyncEventBus
+parameter_list|(
+name|Executor
+name|executor
+parameter_list|,
+name|SubscriberExceptionHandler
+name|subscriberExceptionHandler
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|subscriberExceptionHandler
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|executor
+operator|=
+name|checkNotNull
+argument_list|(
+name|executor
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch    * events.    *    * @param executor Executor to use to dispatch events. It is the caller's    *        responsibility to shut down the executor after the last event has    *        been posted to this event bus.    */
 DECL|method|AsyncEventBus (Executor executor)
 specifier|public
@@ -143,6 +170,11 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"default"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|executor
