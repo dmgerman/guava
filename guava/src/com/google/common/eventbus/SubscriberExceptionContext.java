@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Context for an exception thrown by a subscriber.  */
+comment|/**  * Context for an exception thrown by a subscriber.  *  * @since 16.0  */
 end_comment
 
 begin_class
@@ -78,7 +78,7 @@ specifier|final
 name|Method
 name|subscriberMethod
 decl_stmt|;
-comment|/**    * @param eventBus The {@link EventBus} that handled the event and the    *        subscriber. Useful for broadcasting a a new event based on the    *        error.    * @param event The event object that caused the subscriber to throw.    * @param subscriber The source subscriber context.    * @param subscriberMethod the subscribed method.    */
+comment|/**    * @param eventBus The {@link EventBus} that handled the event and the    *     subscriber. Useful for broadcasting a a new event based on the error.    * @param event The event object that caused the subscriber to throw.    * @param subscriber The source subscriber context.    * @param subscriberMethod the subscribed method.    */
 DECL|method|SubscriberExceptionContext (EventBus eventBus, Object event, Object subscriber, Method subscriberMethod)
 name|SubscriberExceptionContext
 parameter_list|(
@@ -132,7 +132,7 @@ name|subscriberMethod
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @return The {@link EventBus} that handled the event and the    *        subscriber. Useful for broadcasting a a new event based on the    *        error.    */
+comment|/**    * @return The {@link EventBus} that handled the event and the subscriber.    *     Useful for broadcasting a a new event based on the error.    */
 DECL|method|getEventBus ()
 specifier|public
 name|EventBus

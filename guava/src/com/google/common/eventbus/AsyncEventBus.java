@@ -134,7 +134,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch    * events.    *    * @param executor Executor to use to dispatch events. It is the caller's    *        responsibility to shut down the executor after the last event has    *        been posted to this event bus.    * @param subscriberExceptionHandler Handler used to handle exceptions thrown from subscribers.    *    See {@link SubscriberExceptionHandler} for more information.    */
+comment|/**    * Creates a new AsyncEventBus that will use {@code executor} to dispatch    * events.    *    * @param executor Executor to use to dispatch events. It is the caller's    *        responsibility to shut down the executor after the last event has    *        been posted to this event bus.    * @param subscriberExceptionHandler Handler used to handle exceptions thrown from subscribers.    *    See {@link SubscriberExceptionHandler} for more information.    * @since 16.0    */
 DECL|method|AsyncEventBus (Executor executor, SubscriberExceptionHandler subscriberExceptionHandler)
 specifier|public
 name|AsyncEventBus

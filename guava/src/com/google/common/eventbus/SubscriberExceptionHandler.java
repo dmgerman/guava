@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Handler for exceptions thrown by event subscribers.  */
+comment|/**  * Handler for exceptions thrown by event subscribers.  *  * @since 16.0  */
 end_comment
 
 begin_interface
