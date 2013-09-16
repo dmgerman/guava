@@ -1902,15 +1902,23 @@ specifier|static
 specifier|final
 class|class
 name|SerializedForm
+parameter_list|<
+name|E
+parameter_list|>
 implements|implements
 name|Serializable
 block|{
 DECL|field|comparator
 name|Comparator
+argument_list|<
+name|?
+super|super
+name|E
+argument_list|>
 name|comparator
 decl_stmt|;
 DECL|field|elements
-name|Object
+name|E
 index|[]
 name|elements
 decl_stmt|;
@@ -1919,12 +1927,17 @@ name|int
 index|[]
 name|counts
 decl_stmt|;
-DECL|method|SerializedForm (SortedMultiset<?> multiset)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+DECL|method|SerializedForm (SortedMultiset<E> multiset)
 name|SerializedForm
 parameter_list|(
 name|SortedMultiset
 argument_list|<
-name|?
+name|E
 argument_list|>
 name|multiset
 parameter_list|)
@@ -1951,6 +1964,10 @@ argument_list|()
 decl_stmt|;
 name|elements
 operator|=
+operator|(
+name|E
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -1974,7 +1991,7 @@ for|for
 control|(
 name|Entry
 argument_list|<
-name|?
+name|E
 argument_list|>
 name|entry
 range|:
@@ -2009,11 +2026,6 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|readResolve ()
 name|Object
 name|readResolve
@@ -2028,11 +2040,15 @@ name|length
 decl_stmt|;
 name|Builder
 argument_list|<
-name|Object
+name|E
 argument_list|>
 name|builder
 init|=
-name|orderedBy
+operator|new
+name|Builder
+argument_list|<
+name|E
+argument_list|>
 argument_list|(
 name|comparator
 argument_list|)
@@ -2086,6 +2102,9 @@ block|{
 return|return
 operator|new
 name|SerializedForm
+argument_list|<
+name|E
+argument_list|>
 argument_list|(
 name|this
 argument_list|)
