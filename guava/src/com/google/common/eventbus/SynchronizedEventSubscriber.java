@@ -41,21 +41,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps a single-argument 'handler' method on a specific object, and ensures  * that only one thread may enter the method at a time.  *  *<p>Beyond synchronization, this class behaves identically to  * {@link EventHandler}.  *  * @author Cliff Biffle  */
+comment|/**  * Wraps a single-argument subscriber method on a specific object, and ensures  * that only one thread may enter the method at a time.  *  *<p>Beyond synchronization, this class behaves identically to  * {@link EventSubscriber}.  *  * @author Cliff Biffle  */
 end_comment
 
 begin_class
-DECL|class|SynchronizedEventHandler
+DECL|class|SynchronizedEventSubscriber
 specifier|final
 class|class
-name|SynchronizedEventHandler
+name|SynchronizedEventSubscriber
 extends|extends
-name|EventHandler
+name|EventSubscriber
 block|{
-comment|/**    * Creates a new SynchronizedEventHandler to wrap {@code method} on    * {@code target}.    *    * @param target  object to which the method applies.    * @param method  handler method.    */
-DECL|method|SynchronizedEventHandler (Object target, Method method)
+comment|/**    * Creates a new SynchronizedEventSubscriber to wrap {@code method} on    * {@code target}.    *    * @param target  object to which the method applies.    * @param method  subscriber method.    */
+DECL|method|SynchronizedEventSubscriber (Object target, Method method)
 specifier|public
-name|SynchronizedEventHandler
+name|SynchronizedEventSubscriber
 parameter_list|(
 name|Object
 name|target

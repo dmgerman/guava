@@ -81,31 +81,31 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps a single-argument 'handler' method on a specific object.  *  *<p>This class only verifies the suitability of the method and event type if  * something fails.  Callers are expected to verify their uses of this class.  *  *<p>Two EventHandlers are equivalent when they refer to the same method on the  * same object (not class).   This property is used to ensure that no handler  * method is registered more than once.  *  * @author Cliff Biffle  */
+comment|/**  * Wraps a single-argument subscriber method on a specific object.  *  *<p>This class only verifies the suitability of the method and event type if  * something fails.  Callers are expected to verify their uses of this class.  *  *<p>Two EventSubscribers are equivalent when they refer to the same method on the  * same object (not class).   This property is used to ensure that no subscriber  * method is registered more than once.  *  * @author Cliff Biffle  */
 end_comment
 
 begin_class
-DECL|class|EventHandler
+DECL|class|EventSubscriber
 class|class
-name|EventHandler
+name|EventSubscriber
 block|{
-comment|/** Object sporting the handler method. */
+comment|/** Object sporting the subscriber method. */
 DECL|field|target
 specifier|private
 specifier|final
 name|Object
 name|target
 decl_stmt|;
-comment|/** Handler method. */
+comment|/** Subscriber method. */
 DECL|field|method
 specifier|private
 specifier|final
 name|Method
 name|method
 decl_stmt|;
-comment|/**    * Creates a new EventHandler to wrap {@code method} on @{code target}.    *    * @param target  object to which the method applies.    * @param method  handler method.    */
-DECL|method|EventHandler (Object target, Method method)
-name|EventHandler
+comment|/**    * Creates a new EventSubscriber to wrap {@code method} on @{code target}.    *    * @param target  object to which the method applies.    * @param method  subscriber method.    */
+DECL|method|EventSubscriber (Object target, Method method)
+name|EventSubscriber
 parameter_list|(
 name|Object
 name|target
@@ -120,7 +120,7 @@ name|checkNotNull
 argument_list|(
 name|target
 argument_list|,
-literal|"EventHandler target cannot be null."
+literal|"EventSubscriber target cannot be null."
 argument_list|)
 expr_stmt|;
 name|Preconditions
@@ -129,7 +129,7 @@ name|checkNotNull
 argument_list|(
 name|method
 argument_list|,
-literal|"EventHandler method cannot be null."
+literal|"EventSubscriber method cannot be null."
 argument_list|)
 expr_stmt|;
 name|this
@@ -152,7 +152,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Invokes the wrapped handler method to handle {@code event}.    *    * @param event  event to handle    * @throws InvocationTargetException  if the wrapped method throws any    *     {@link Throwable} that is not an {@link Error} ({@code Error} instances are    *     propagated as-is).    */
+comment|/**    * Invokes the wrapped subscriber method to handle {@code event}.    *    * @param event  event to handle    * @throws InvocationTargetException  if the wrapped method throws any    *     {@link Throwable} that is not an {@link Error} ({@code Error} instances are    *     propagated as-is).    */
 DECL|method|handleEvent (Object event)
 specifier|public
 name|void
@@ -320,14 +320,14 @@ if|if
 condition|(
 name|obj
 operator|instanceof
-name|EventHandler
+name|EventSubscriber
 condition|)
 block|{
-name|EventHandler
+name|EventSubscriber
 name|that
 init|=
 operator|(
-name|EventHandler
+name|EventSubscriber
 operator|)
 name|obj
 decl_stmt|;
@@ -356,6 +356,7 @@ literal|false
 return|;
 block|}
 DECL|method|getSubscriber ()
+specifier|public
 name|Object
 name|getSubscriber
 parameter_list|()
@@ -365,6 +366,7 @@ name|target
 return|;
 block|}
 DECL|method|getMethod ()
+specifier|public
 name|Method
 name|getMethod
 parameter_list|()

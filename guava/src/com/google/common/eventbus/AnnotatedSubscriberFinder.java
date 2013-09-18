@@ -235,18 +235,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link HandlerFindingStrategy} for collecting all event handler methods that are marked with  * the {@link Subscribe} annotation.  *  * @author Cliff Biffle  * @author Louis Wasserman  */
+comment|/**  * A {@link SubscriberFindingStrategy} for collecting all event subscriber methods that are marked  * with the {@link Subscribe} annotation.  *  * @author Cliff Biffle  * @author Louis Wasserman  */
 end_comment
 
 begin_class
-DECL|class|AnnotatedHandlerFinder
+DECL|class|AnnotatedSubscriberFinder
 class|class
-name|AnnotatedHandlerFinder
+name|AnnotatedSubscriberFinder
 implements|implements
-name|HandlerFindingStrategy
+name|SubscriberFindingStrategy
 block|{
 comment|/**    * A thread-safe cache that contains the mapping from each class to all methods in that class and    * all super-classes, that are annotated with {@code @Subscribe}. The cache is shared across all    * instances of this class; this greatly improves performance if multiple EventBus instances are    * created and objects of the same class are registered on all of them.    */
-DECL|field|handlerMethodsCache
+DECL|field|subscriberMethodsCache
 specifier|private
 specifier|static
 specifier|final
@@ -262,7 +262,7 @@ argument_list|<
 name|Method
 argument_list|>
 argument_list|>
-name|handlerMethodsCache
+name|subscriberMethodsCache
 init|=
 name|CacheBuilder
 operator|.
@@ -326,7 +326,7 @@ end_comment
 begin_function
 annotation|@
 name|Override
-DECL|method|findAllHandlers (Object listener)
+DECL|method|findAllSubscribers (Object listener)
 specifier|public
 name|Multimap
 argument_list|<
@@ -335,9 +335,9 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|,
-name|EventHandler
+name|EventSubscriber
 argument_list|>
-name|findAllHandlers
+name|findAllSubscribers
 parameter_list|(
 name|Object
 name|listener
@@ -350,7 +350,7 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|,
-name|EventHandler
+name|EventSubscriber
 argument_list|>
 name|methodsInListener
 init|=
@@ -404,10 +404,10 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 init|=
-name|makeHandler
+name|makeSubscriber
 argument_list|(
 name|listener
 argument_list|,
@@ -420,7 +420,7 @@ name|put
 argument_list|(
 name|eventType
 argument_list|,
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 block|}
@@ -450,7 +450,7 @@ block|{
 try|try
 block|{
 return|return
-name|handlerMethodsCache
+name|subscriberMethodsCache
 operator|.
 name|getUnchecked
 argument_list|(
@@ -733,7 +733,7 @@ name|parameterTypes
 operator|.
 name|length
 operator|+
-literal|" arguments.  Event handler methods must require a single argument."
+literal|" arguments.  Event subscriber methods must require a single argument."
 argument_list|)
 throw|;
 block|}
@@ -785,15 +785,15 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Creates an {@code EventHandler} for subsequently calling {@code method} on    * {@code listener}.    * Selects an EventHandler implementation based on the annotations on    * {@code method}.    *    * @param listener  object bearing the event handler method.    * @param method  the event handler method to wrap in an EventHandler.    * @return an EventHandler that will call {@code method} on {@code listener}    *         when invoked.    */
+comment|/**    * Creates an {@code EventSubscriber} for subsequently calling {@code method} on    * {@code listener}.    * Selects an EventSubscriber implementation based on the annotations on    * {@code method}.    *    * @param listener  object bearing the event subscriber method.    * @param method  the event subscriber method to wrap in an EventSubscriber.    * @return an EventSubscriber that will call {@code method} on {@code listener}    *         when invoked.    */
 end_comment
 
 begin_function
-DECL|method|makeHandler (Object listener, Method method)
+DECL|method|makeSubscriber (Object listener, Method method)
 specifier|private
 specifier|static
-name|EventHandler
-name|makeHandler
+name|EventSubscriber
+name|makeSubscriber
 parameter_list|(
 name|Object
 name|listener
@@ -802,7 +802,7 @@ name|Method
 name|method
 parameter_list|)
 block|{
-name|EventHandler
+name|EventSubscriber
 name|wrapper
 decl_stmt|;
 if|if
@@ -816,7 +816,7 @@ block|{
 name|wrapper
 operator|=
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 name|listener
 argument_list|,
@@ -829,7 +829,7 @@ block|{
 name|wrapper
 operator|=
 operator|new
-name|SynchronizedEventHandler
+name|SynchronizedEventSubscriber
 argument_list|(
 name|listener
 argument_list|,
@@ -844,7 +844,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Checks whether {@code method} is thread-safe, as indicated by the    * {@link AllowConcurrentEvents} annotation.    *    * @param method  handler method to check.    * @return {@code true} if {@code handler} is marked as thread-safe,    *         {@code false} otherwise.    */
+comment|/**    * Checks whether {@code method} is thread-safe, as indicated by the    * {@link AllowConcurrentEvents} annotation.    *    * @param method  subscriber method to check.    * @return {@code true} if {@code subscriber} is marked as thread-safe,    *         {@code false} otherwise.    */
 end_comment
 
 begin_function

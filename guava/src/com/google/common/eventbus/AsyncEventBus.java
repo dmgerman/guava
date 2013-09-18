@@ -96,14 +96,14 @@ specifier|private
 specifier|final
 name|ConcurrentLinkedQueue
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 name|eventsToDispatch
 init|=
 operator|new
 name|ConcurrentLinkedQueue
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -187,15 +187,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|enqueueEvent (Object event, EventHandler handler)
+DECL|method|enqueueEvent (Object event, EventSubscriber subscriber)
 name|void
 name|enqueueEvent
 parameter_list|(
 name|Object
 name|event
 parameter_list|,
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 parameter_list|)
 block|{
 name|eventsToDispatch
@@ -203,11 +203,11 @@ operator|.
 name|offer
 argument_list|(
 operator|new
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|(
 name|event
 argument_list|,
-name|handler
+name|subscriber
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -232,8 +232,8 @@ condition|(
 literal|true
 condition|)
 block|{
-name|EventWithHandler
-name|eventWithHandler
+name|EventWithSubscriber
+name|eventWithSubscriber
 init|=
 name|eventsToDispatch
 operator|.
@@ -242,7 +242,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|eventWithHandler
+name|eventWithSubscriber
 operator|==
 literal|null
 condition|)
@@ -251,21 +251,21 @@ break|break;
 block|}
 name|dispatch
 argument_list|(
-name|eventWithHandler
+name|eventWithSubscriber
 operator|.
 name|event
 argument_list|,
-name|eventWithHandler
+name|eventWithSubscriber
 operator|.
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Calls the {@link #executor} to dispatch {@code event} to {@code handler}.    */
+comment|/**    * Calls the {@link #executor} to dispatch {@code event} to {@code subscriber}.    */
 annotation|@
 name|Override
-DECL|method|dispatch (final Object event, final EventHandler handler)
+DECL|method|dispatch (final Object event, final EventSubscriber subscriber)
 name|void
 name|dispatch
 parameter_list|(
@@ -274,8 +274,8 @@ name|Object
 name|event
 parameter_list|,
 specifier|final
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 parameter_list|)
 block|{
 name|checkNotNull
@@ -285,7 +285,7 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 name|executor
@@ -311,7 +311,7 @@ name|dispatch
 argument_list|(
 name|event
 argument_list|,
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 block|}

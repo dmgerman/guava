@@ -65,14 +65,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for {@link EventHandler}.  *  * @author Cliff Biffle  */
+comment|/**  * Test case for {@link EventSubscriber}.  *  * @author Cliff Biffle  */
 end_comment
 
 begin_class
-DECL|class|EventHandlerTest
+DECL|class|EventSubscriberTest
 specifier|public
 class|class
-name|EventHandlerTest
+name|EventSubscriberTest
 extends|extends
 name|TestCase
 block|{
@@ -136,18 +136,18 @@ init|=
 name|getRecordingMethod
 argument_list|()
 decl_stmt|;
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 init|=
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 name|this
 argument_list|,
 name|method
 argument_list|)
 decl_stmt|;
-name|handler
+name|subscriber
 operator|.
 name|handleEvent
 argument_list|(
@@ -156,14 +156,14 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Handler must call provided method."
+literal|"Subscriber must call provided method."
 argument_list|,
 name|methodCalled
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Handler argument must be *exactly* the provided object."
+literal|"Subscriber argument must be *exactly* the provided object."
 argument_list|,
 name|methodArgument
 operator|==
@@ -183,11 +183,11 @@ init|=
 name|getExceptionThrowingMethod
 argument_list|()
 decl_stmt|;
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 init|=
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 name|this
 argument_list|,
@@ -196,7 +196,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|handler
+name|subscriber
 operator|.
 name|handleEvent
 argument_list|(
@@ -207,7 +207,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Handlers whose methods throw must throw InvocationTargetException"
+literal|"Subscribers whose methods throw must throw InvocationTargetException"
 argument_list|)
 expr_stmt|;
 block|}
@@ -245,11 +245,11 @@ init|=
 name|getErrorThrowingMethod
 argument_list|()
 decl_stmt|;
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 init|=
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 name|this
 argument_list|,
@@ -258,7 +258,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|handler
+name|subscriber
 operator|.
 name|handleEvent
 argument_list|(
@@ -269,7 +269,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Handlers whose methods throw Errors must rethrow them"
+literal|"Subscribers whose methods throw Errors must rethrow them"
 argument_list|)
 expr_stmt|;
 block|}
@@ -329,7 +329,7 @@ operator|.
 name|addEqualityGroup
 argument_list|(
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -337,7 +337,7 @@ name|charAt
 argument_list|)
 argument_list|,
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -348,7 +348,7 @@ operator|.
 name|addEqualityGroup
 argument_list|(
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 literal|"bar"
 argument_list|,
@@ -359,7 +359,7 @@ operator|.
 name|addEqualityGroup
 argument_list|(
 operator|new
-name|EventHandler
+name|EventSubscriber
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -422,7 +422,7 @@ throw|throw
 operator|new
 name|AssertionError
 argument_list|(
-literal|"Someone changed EventHandlerTest#recordingMethod's visibility, "
+literal|"Someone changed EventSubscriberTest#recordingMethod's visibility, "
 operator|+
 literal|"signature, or removed it entirely.  (Must be public.)"
 argument_list|)
@@ -483,7 +483,7 @@ throw|throw
 operator|new
 name|AssertionError
 argument_list|(
-literal|"Someone changed EventHandlerTest#exceptionThrowingMethod's "
+literal|"Someone changed EventSubscriberTest#exceptionThrowingMethod's "
 operator|+
 literal|"visibility, signature, or removed it entirely.  (Must be public.)"
 argument_list|)
@@ -544,7 +544,7 @@ throw|throw
 operator|new
 name|AssertionError
 argument_list|(
-literal|"Someone changed EventHandlerTest#errorThrowingMethod's "
+literal|"Someone changed EventSubscriberTest#errorThrowingMethod's "
 operator|+
 literal|"visibility, signature, or removed it entirely.  (Must be public.)"
 argument_list|)
@@ -554,7 +554,7 @@ return|return
 name|method
 return|;
 block|}
-comment|/**    * Records the provided object in {@link #methodArgument} and sets    * {@link #methodCalled}.  This method is called reflectively by EventHandler    * during tests, and must remain public.    *    * @param arg  argument to record.    */
+comment|/**    * Records the provided object in {@link #methodArgument} and sets    * {@link #methodCalled}.  This method is called reflectively by EventSubscriber    * during tests, and must remain public.    *    * @param arg  argument to record.    */
 DECL|method|recordingMethod (Object arg)
 specifier|public
 name|void

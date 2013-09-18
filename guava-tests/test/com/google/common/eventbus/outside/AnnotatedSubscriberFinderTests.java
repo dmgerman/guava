@@ -93,14 +93,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test that EventBus finds the correct handlers.  *  * This test must be outside the c.g.c.eventbus package to test correctly.  * @author Louis Wasserman  */
+comment|/**  * Test that EventBus finds the correct subscribers.  *  * This test must be outside the c.g.c.eventbus package to test correctly.  * @author Louis Wasserman  */
 end_comment
 
 begin_class
-DECL|class|AnnotatedHandlerFinderTests
+DECL|class|AnnotatedSubscriberFinderTests
 specifier|public
 class|class
-name|AnnotatedHandlerFinderTests
+name|AnnotatedSubscriberFinderTests
 block|{
 DECL|field|EVENT
 specifier|private
@@ -124,24 +124,24 @@ parameter_list|>
 extends|extends
 name|TestCase
 block|{
-DECL|method|createHandler ()
+DECL|method|createSubscriber ()
 specifier|abstract
 name|H
-name|createHandler
+name|createSubscriber
 parameter_list|()
 function_decl|;
-DECL|field|handler
+DECL|field|subscriber
 specifier|private
 name|H
-name|handler
+name|subscriber
 decl_stmt|;
-DECL|method|getHandler ()
+DECL|method|getSubscriber ()
 name|H
-name|getHandler
+name|getSubscriber
 parameter_list|()
 block|{
 return|return
-name|handler
+name|subscriber
 return|;
 block|}
 annotation|@
@@ -154,9 +154,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|handler
+name|subscriber
 operator|=
-name|createHandler
+name|createSubscriber
 argument_list|()
 expr_stmt|;
 name|EventBus
@@ -170,7 +170,7 @@ name|bus
 operator|.
 name|register
 argument_list|(
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 name|bus
@@ -191,30 +191,30 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|handler
+name|subscriber
 operator|=
 literal|null
 expr_stmt|;
 block|}
 block|}
 comment|/*    * We break the tests up based on whether they are annotated or abstract in the superclass.    */
-DECL|class|BaseHandlerFinderTest
+DECL|class|BaseSubscriberFinderTest
 specifier|public
 specifier|static
 class|class
-name|BaseHandlerFinderTest
+name|BaseSubscriberFinderTest
 extends|extends
 name|AbstractEventBusTest
 argument_list|<
-name|BaseHandlerFinderTest
+name|BaseSubscriberFinderTest
 operator|.
-name|Handler
+name|Subscriber
 argument_list|>
 block|{
-DECL|class|Handler
+DECL|class|Subscriber
 specifier|static
 class|class
-name|Handler
+name|Subscriber
 block|{
 DECL|field|nonSubscriberEvents
 specifier|final
@@ -289,7 +289,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|nonSubscriberEvents
@@ -309,7 +309,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|subscriberEvents
@@ -326,14 +326,14 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createHandler ()
-name|Handler
-name|createHandler
+DECL|method|createSubscriber ()
+name|Subscriber
+name|createSubscriber
 parameter_list|()
 block|{
 return|return
 operator|new
-name|Handler
+name|Subscriber
 argument_list|()
 return|;
 block|}
@@ -466,7 +466,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenAndAnnotatedInSubclassEvents
@@ -491,7 +491,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenInSubclassEvents
@@ -508,9 +508,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createHandler ()
+DECL|method|createSubscriber ()
 name|SubClass
-name|createHandler
+name|createSubscriber
 parameter_list|()
 block|{
 return|return
@@ -825,7 +825,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|notOverriddenInSubclassEvents
@@ -850,7 +850,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenNotAnnotatedInSubclassEvents
@@ -875,7 +875,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|differentlyOverriddenNotAnnotatedInSubclassGoodEvents
@@ -893,7 +893,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|differentlyOverriddenNotAnnotatedInSubclassBadEvents
@@ -913,7 +913,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenAndAnnotatedInSubclassEvents
@@ -938,7 +938,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|differentlyOverriddenAnnotatedInSubclassGoodEvents
@@ -956,7 +956,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|differentlyOverriddenAnnotatedInSubclassBadEvents
@@ -968,9 +968,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createHandler ()
+DECL|method|createSubscriber ()
 name|SubClass
-name|createHandler
+name|createSubscriber
 parameter_list|()
 block|{
 return|return
@@ -1104,7 +1104,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenAndAnnotatedInSubclassEvents
@@ -1129,7 +1129,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenInSubclassNowhereAnnotatedEvents
@@ -1141,9 +1141,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createHandler ()
+DECL|method|createSubscriber ()
 name|SubClass
-name|createHandler
+name|createSubscriber
 parameter_list|()
 block|{
 return|return
@@ -1320,7 +1320,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|neitherOverriddenNorAnnotatedEvents
@@ -1340,7 +1340,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenInSubclassNowhereAnnotatedEvents
@@ -1360,7 +1360,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|overriddenAndAnnotatedInSubclassEvents
@@ -1377,9 +1377,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createHandler ()
+DECL|method|createSubscriber ()
 name|SubClass
-name|createHandler
+name|createSubscriber
 parameter_list|()
 block|{
 return|return
@@ -1399,7 +1399,7 @@ name|AbstractEventBusTest
 argument_list|<
 name|DeepInterfaceTest
 operator|.
-name|HandlerClass
+name|SubscriberClass
 argument_list|>
 block|{
 DECL|interface|Interface1
@@ -1522,10 +1522,10 @@ name|o
 parameter_list|)
 function_decl|;
 block|}
-DECL|class|HandlerClass
+DECL|class|SubscriberClass
 specifier|static
 class|class
-name|HandlerClass
+name|SubscriberClass
 implements|implements
 name|Interface2
 block|{
@@ -1802,7 +1802,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|annotatedIn1Events
@@ -1827,7 +1827,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|annotatedIn2Events
@@ -1852,7 +1852,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|annotatedIn1And2Events
@@ -1877,7 +1877,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|annotatedIn1And2AndClassEvents
@@ -1902,7 +1902,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|declaredIn1AnnotatedIn2Events
@@ -1927,7 +1927,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|declaredIn1AnnotatedInClassEvents
@@ -1952,7 +1952,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|declaredIn2AnnotatedInClassEvents
@@ -1977,7 +1977,7 @@ name|ASSERT
 operator|.
 name|that
 argument_list|(
-name|getHandler
+name|getSubscriber
 argument_list|()
 operator|.
 name|nowhereAnnotatedEvents
@@ -1989,14 +1989,14 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createHandler ()
-name|HandlerClass
-name|createHandler
+DECL|method|createSubscriber ()
+name|SubscriberClass
+name|createSubscriber
 parameter_list|()
 block|{
 return|return
 operator|new
-name|HandlerClass
+name|SubscriberClass
 argument_list|()
 return|;
 block|}

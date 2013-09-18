@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps an event that was posted, but which had no subscribers and thus could  * not be delivered.  *  *<p>Subscribing a DeadEvent handler is useful for debugging or logging, as it  * can detect misconfigurations in a system's event distribution.  *  * @author Cliff Biffle  * @since 10.0  */
+comment|/**  * Wraps an event that was posted, but which had no subscribers and thus could  * not be delivered.  *  *<p>Registering a DeadEvent subscriber is useful for debugging or logging, as  * it can detect misconfigurations in a system's event distribution.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_class
@@ -112,7 +112,7 @@ return|return
 name|source
 return|;
 block|}
-comment|/**    * Returns the wrapped, 'dead' event, which the system was unable to deliver    * to any registered handler.    *    * @return the 'dead' event that could not be delivered.    */
+comment|/**    * Returns the wrapped, 'dead' event, which the system was unable to deliver    * to any registered subscriber.    *    * @return the 'dead' event that could not be delivered.    */
 DECL|method|getEvent ()
 specifier|public
 name|Object

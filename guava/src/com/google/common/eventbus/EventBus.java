@@ -305,7 +305,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dispatches events to listeners, and provides ways for listeners to register  * themselves.  *  *<p>The EventBus allows publish-subscribe-style communication between  * components without requiring the components to explicitly register with one  * another (and thus be aware of each other). It is designed exclusively to  * replace traditional Java in-process event distribution using explicit  * registration. It is<em>not</em> a general-purpose publish-subscribe system,  * nor is it intended for interprocess communication.  *  *<h2>Receiving Events</h2>  *<p>To receive events, an object should:  *<ol>  *<li>Expose a public method, known as the<i>event handler</i>, which accepts  * a single argument of the type of event desired;</li>  *<li>Mark it with a {@link Subscribe} annotation;</li>  *<li>Pass itself to an EventBus instance's {@link #register(Object)} method.  *</li>  *</ol>  *  *<h2>Posting Events</h2>  *<p>To post an event, simply provide the event object to the {@link  * #post(Object)} method. The EventBus instance will determine the type of event  * and route it to all registered listeners.  *  *<p>Events are routed based on their type&mdash; an event will be delivered  * to any handler for any type to which the event is<em>assignable.</em> This  * includes implemented interfaces, all superclasses, and all interfaces  * implemented by superclasses.  *  *<p>When {@code post} is called, all registered handlers for an event are run  * in sequence, so handlers should be reasonably quick. If an event may trigger  * an extended process (such as a database load), spawn a thread or queue it for  * later. (For a convenient way to do this, use an {@link AsyncEventBus}.)  *  *<h2>Handler Methods</h2>  *<p>Event handler methods must accept only one argument: the event.  *  *<p>The EventBus guarantees that it will not call a handler method from  * multiple threads simultaneously, unless the method explicitly allows it by  * bearing the {@link AllowConcurrentEvents} annotation. If this annotation is  * not present, handler methods need not worry about being reentrant, unless  * also called from outside the EventBus.  *  *<h2>Dead Events</h2>  *<p>If an event is posted, but no registered handlers can accept it, it is  * considered "dead." To give the system a second chance to handle dead events,  * they are wrapped in an instance of {@link DeadEvent} and reposted.  *  *<p>If a handler for a supertype of all events (such as Object) is registered,  * no event will ever be considered dead, and no DeadEvents will be generated.  * Accordingly, while DeadEvent extends {@link Object}, a handler registered to  * receive any Object will never receive a DeadEvent.  *  *<h2>Exception Handling</h2>  *  *<p>When a subscriber throws an exception while handling event, the {@link  * SubscriberExceptionHandler} is called.  *  *<p>This class is safe for concurrent use.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/EventBusExplained">{@code  * EventBus}</a>.  *  * @author Cliff Biffle  * @since 10.0  */
+comment|/**  * Dispatches events to listeners, and provides ways for listeners to register  * themselves.  *  *<p>The EventBus allows publish-subscribe-style communication between  * components without requiring the components to explicitly register with one  * another (and thus be aware of each other).  It is designed exclusively to  * replace traditional Java in-process event distribution using explicit  * registration. It is<em>not</em> a general-purpose publish-subscribe system,  * nor is it intended for interprocess communication.  *  *<h2>Receiving Events</h2>  *<p>To receive events, an object should:  *<ol>  *<li>Expose a public method, known as the<i>event subscriber</i>, which accepts  *     a single argument of the type of event desired;</li>  *<li>Mark it with a {@link Subscribe} annotation;</li>  *<li>Pass itself to an EventBus instance's {@link #register(Object)} method.  *</li>  *</ol>  *  *<h2>Posting Events</h2>  *<p>To post an event, simply provide the event object to the  * {@link #post(Object)} method.  The EventBus instance will determine the type  * of event and route it to all registered listeners.  *  *<p>Events are routed based on their type&mdash; an event will be delivered  * to any subscriber for any type to which the event is<em>assignable.</em>  This  * includes implemented interfaces, all superclasses, and all interfaces  * implemented by superclasses.  *  *<p>When {@code post} is called, all registered subscribers for an event are run  * in sequence, so subscribers should be reasonably quick.  If an event may trigger  * an extended process (such as a database load), spawn a thread or queue it for  * later.  (For a convenient way to do this, use an {@link AsyncEventBus}.)  *  *<h2>Subscriber Methods</h2>  *<p>Event subscriber methods must accept only one argument: the event.  *  *<p>Subscribers should not, in general, throw.  If they do, the EventBus will  * catch and log the exception.  This is rarely the right solution for error  * handling and should not be relied upon; it is intended solely to help find  * problems during development.  *  *<p>The EventBus guarantees that it will not call a subscriber method from  * multiple threads simultaneously, unless the method explicitly allows it by  * bearing the {@link AllowConcurrentEvents} annotation.  If this annotation is  * not present, subscriber methods need not worry about being reentrant, unless  * also called from outside the EventBus.  *  *<h2>Dead Events</h2>  *<p>If an event is posted, but no registered subscribers can accept it, it is  * considered "dead."  To give the system a second chance to handle dead events,  * they are wrapped in an instance of {@link DeadEvent} and reposted.  *  *<p>If a subscriber for a supertype of all events (such as Object) is registered,  * no event will ever be considered dead, and no DeadEvents will be generated.  * Accordingly, while DeadEvent extends {@link Object}, a subscriber registered to  * receive any Object will never receive a DeadEvent.  *  *<p>This class is safe for concurrent use.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/EventBusExplained">  * {@code EventBus}</a>.  *  * @author Cliff Biffle  * @since 10.0  */
 end_comment
 
 begin_class
@@ -419,11 +419,11 @@ class|;
 end_class
 
 begin_comment
-comment|/**    * All registered event handlers, indexed by event type.    *    *<p>This SetMultimap is NOT safe for concurrent use; all access should be    * made after acquiring a read or write lock via {@link #handlersByTypeLock}.    */
+comment|/**    * All registered event subscribers, indexed by event type.    *    *<p>This SetMultimap is NOT safe for concurrent use; all access should be    * made after acquiring a read or write lock via {@link #subscribersByTypeLock}.    */
 end_comment
 
 begin_decl_stmt
-DECL|field|handlersByType
+DECL|field|subscribersByType
 specifier|private
 specifier|final
 name|SetMultimap
@@ -433,9 +433,9 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|,
-name|EventHandler
+name|EventSubscriber
 argument_list|>
-name|handlersByType
+name|subscribersByType
 init|=
 name|HashMultimap
 operator|.
@@ -445,11 +445,11 @@ decl_stmt|;
 end_decl_stmt
 
 begin_decl_stmt
-DECL|field|handlersByTypeLock
+DECL|field|subscribersByTypeLock
 specifier|private
 specifier|final
 name|ReadWriteLock
-name|handlersByTypeLock
+name|subscribersByTypeLock
 init|=
 operator|new
 name|ReentrantReadWriteLock
@@ -458,18 +458,18 @@ decl_stmt|;
 end_decl_stmt
 
 begin_comment
-comment|/**    * Strategy for finding handler methods in registered objects.  Currently,    * only the {@link AnnotatedHandlerFinder} is supported, but this is    * encapsulated for future expansion.    */
+comment|/**    * Strategy for finding subscriber methods in registered objects.  Currently,    * only the {@link AnnotatedSubscriberFinder} is supported, but this is    * encapsulated for future expansion.    */
 end_comment
 
 begin_decl_stmt
 DECL|field|finder
 specifier|private
 specifier|final
-name|HandlerFindingStrategy
+name|SubscriberFindingStrategy
 name|finder
 init|=
 operator|new
-name|AnnotatedHandlerFinder
+name|AnnotatedSubscriberFinder
 argument_list|()
 decl_stmt|;
 end_decl_stmt
@@ -486,7 +486,7 @@ name|ThreadLocal
 argument_list|<
 name|Queue
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 argument_list|>
 name|eventsToDispatch
@@ -496,7 +496,7 @@ name|ThreadLocal
 argument_list|<
 name|Queue
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 argument_list|>
 argument_list|()
@@ -506,7 +506,7 @@ name|Override
 specifier|protected
 name|Queue
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 name|initialValue
 parameter_list|()
@@ -515,7 +515,7 @@ return|return
 operator|new
 name|LinkedList
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 argument_list|()
 return|;
@@ -637,7 +637,7 @@ block|}
 end_constructor
 
 begin_comment
-comment|/**    * Registers all handler methods on {@code object} to receive events.    * Handler methods are selected and classified using this EventBus's    * {@link HandlerFindingStrategy}; the default strategy is the    * {@link AnnotatedHandlerFinder}.    *    * @param object  object whose handler methods should be registered.    */
+comment|/**    * Registers all subscriber methods on {@code object} to receive events.    * Subscriber methods are selected and classified using this EventBus's    * {@link SubscriberFindingStrategy}; the default strategy is the    * {@link AnnotatedSubscriberFinder}.    *    * @param object  object whose subscriber methods should be registered.    */
 end_comment
 
 begin_function
@@ -657,18 +657,18 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|,
-name|EventHandler
+name|EventSubscriber
 argument_list|>
 name|methodsInListener
 init|=
 name|finder
 operator|.
-name|findAllHandlers
+name|findAllSubscribers
 argument_list|(
 name|object
 argument_list|)
 decl_stmt|;
-name|handlersByTypeLock
+name|subscribersByTypeLock
 operator|.
 name|writeLock
 argument_list|()
@@ -678,7 +678,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|handlersByType
+name|subscribersByType
 operator|.
 name|putAll
 argument_list|(
@@ -688,7 +688,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|handlersByTypeLock
+name|subscribersByTypeLock
 operator|.
 name|writeLock
 argument_list|()
@@ -701,7 +701,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Unregisters all handler methods on a registered {@code object}.    *    * @param object object whose handler methods should be unregistered.    * @throws IllegalArgumentException if the object was not previously    *         registered.    */
+comment|/**    * Unregisters all subscriber methods on a registered {@code object}.    *    * @param object  object whose subscriber methods should be unregistered.    * @throws IllegalArgumentException if the object was not previously registered.    */
 end_comment
 
 begin_function
@@ -721,13 +721,13 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|,
-name|EventHandler
+name|EventSubscriber
 argument_list|>
 name|methodsInListener
 init|=
 name|finder
 operator|.
-name|findAllHandlers
+name|findAllSubscribers
 argument_list|(
 name|object
 argument_list|)
@@ -743,7 +743,7 @@ argument_list|>
 argument_list|,
 name|Collection
 argument_list|<
-name|EventHandler
+name|EventSubscriber
 argument_list|>
 argument_list|>
 name|entry
@@ -770,7 +770,7 @@ argument_list|()
 decl_stmt|;
 name|Collection
 argument_list|<
-name|EventHandler
+name|EventSubscriber
 argument_list|>
 name|eventMethodsInListener
 init|=
@@ -779,7 +779,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|handlersByTypeLock
+name|subscribersByTypeLock
 operator|.
 name|writeLock
 argument_list|()
@@ -791,11 +791,11 @@ try|try
 block|{
 name|Set
 argument_list|<
-name|EventHandler
+name|EventSubscriber
 argument_list|>
-name|currentHandlers
+name|currentSubscribers
 init|=
-name|handlersByType
+name|subscribersByType
 operator|.
 name|get
 argument_list|(
@@ -805,7 +805,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|currentHandlers
+name|currentSubscribers
 operator|.
 name|containsAll
 argument_list|(
@@ -817,7 +817,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"missing event handler for an annotated method. Is "
+literal|"missing event subscriber for an annotated method. Is "
 operator|+
 name|object
 operator|+
@@ -825,7 +825,7 @@ literal|" registered?"
 argument_list|)
 throw|;
 block|}
-name|currentHandlers
+name|currentSubscribers
 operator|.
 name|removeAll
 argument_list|(
@@ -835,7 +835,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|handlersByTypeLock
+name|subscribersByTypeLock
 operator|.
 name|writeLock
 argument_list|()
@@ -849,7 +849,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Posts an event to all registered handlers.  This method will return    * successfully after the event has been posted to all handlers, and    * regardless of any exceptions thrown by handlers.    *    *<p>If no handlers have been subscribed for {@code event}'s class, and    * {@code event} is not already a {@link DeadEvent}, it will be wrapped in a    * DeadEvent and reposted.    *    * @param event  event to post.    */
+comment|/**    * Posts an event to all registered subscribers.  This method will return    * successfully after the event has been posted to all subscribers, and    * regardless of any exceptions thrown by subscribers.    *    *<p>If no subscribers have been subscribed for {@code event}'s class, and    * {@code event} is not already a {@link DeadEvent}, it will be wrapped in a    * DeadEvent and reposted.    *    * @param event  event to post.    */
 end_comment
 
 begin_function
@@ -895,7 +895,7 @@ range|:
 name|dispatchTypes
 control|)
 block|{
-name|handlersByTypeLock
+name|subscribersByTypeLock
 operator|.
 name|readLock
 argument_list|()
@@ -907,11 +907,11 @@ try|try
 block|{
 name|Set
 argument_list|<
-name|EventHandler
+name|EventSubscriber
 argument_list|>
 name|wrappers
 init|=
-name|handlersByType
+name|subscribersByType
 operator|.
 name|get
 argument_list|(
@@ -933,7 +933,7 @@ literal|true
 expr_stmt|;
 for|for
 control|(
-name|EventHandler
+name|EventSubscriber
 name|wrapper
 range|:
 name|wrappers
@@ -951,7 +951,7 @@ block|}
 block|}
 finally|finally
 block|{
-name|handlersByTypeLock
+name|subscribersByTypeLock
 operator|.
 name|readLock
 argument_list|()
@@ -997,15 +997,15 @@ comment|/**    * Queue the {@code event} for dispatch during    * {@link #dispat
 end_comment
 
 begin_function
-DECL|method|enqueueEvent (Object event, EventHandler handler)
+DECL|method|enqueueEvent (Object event, EventSubscriber subscriber)
 name|void
 name|enqueueEvent
 parameter_list|(
 name|Object
 name|event
 parameter_list|,
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 parameter_list|)
 block|{
 name|eventsToDispatch
@@ -1016,11 +1016,11 @@ operator|.
 name|offer
 argument_list|(
 operator|new
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|(
 name|event
 argument_list|,
-name|handler
+name|subscriber
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1061,7 +1061,7 @@ try|try
 block|{
 name|Queue
 argument_list|<
-name|EventWithHandler
+name|EventWithSubscriber
 argument_list|>
 name|events
 init|=
@@ -1070,13 +1070,13 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
-name|EventWithHandler
-name|eventWithHandler
+name|EventWithSubscriber
+name|eventWithSubscriber
 decl_stmt|;
 while|while
 condition|(
 operator|(
-name|eventWithHandler
+name|eventWithSubscriber
 operator|=
 name|events
 operator|.
@@ -1089,13 +1089,13 @@ condition|)
 block|{
 name|dispatch
 argument_list|(
-name|eventWithHandler
+name|eventWithSubscriber
 operator|.
 name|event
 argument_list|,
-name|eventWithHandler
+name|eventWithSubscriber
 operator|.
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 block|}
@@ -1117,18 +1117,18 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Dispatches {@code event} to the handler in {@code wrapper}.  This method    * is an appropriate override point for subclasses that wish to make    * event delivery asynchronous.    *    * @param event  event to dispatch.    * @param wrapper  wrapper that will call the handler.    */
+comment|/**    * Dispatches {@code event} to the subscriber in {@code wrapper}.  This method    * is an appropriate override point for subclasses that wish to make    * event delivery asynchronous.    *    * @param event  event to dispatch.    * @param wrapper  wrapper that will call the subscriber.    */
 end_comment
 
 begin_function
-DECL|method|dispatch (Object event, EventHandler wrapper)
+DECL|method|dispatch (Object event, EventSubscriber wrapper)
 name|void
 name|dispatch
 parameter_list|(
 name|Object
 name|event
 parameter_list|,
-name|EventHandler
+name|EventSubscriber
 name|wrapper
 parameter_list|)
 block|{
@@ -1381,34 +1381,34 @@ block|}
 end_class
 
 begin_comment
-comment|/** simple struct representing an event and it's handler */
+comment|/** simple struct representing an event and it's subscriber */
 end_comment
 
 begin_class
-DECL|class|EventWithHandler
+DECL|class|EventWithSubscriber
 specifier|static
 class|class
-name|EventWithHandler
+name|EventWithSubscriber
 block|{
 DECL|field|event
 specifier|final
 name|Object
 name|event
 decl_stmt|;
-DECL|field|handler
+DECL|field|subscriber
 specifier|final
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 decl_stmt|;
-DECL|method|EventWithHandler (Object event, EventHandler handler)
+DECL|method|EventWithSubscriber (Object event, EventSubscriber subscriber)
 specifier|public
-name|EventWithHandler
+name|EventWithSubscriber
 parameter_list|(
 name|Object
 name|event
 parameter_list|,
-name|EventHandler
-name|handler
+name|EventSubscriber
+name|subscriber
 parameter_list|)
 block|{
 name|this
@@ -1422,11 +1422,11 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|handler
+name|subscriber
 operator|=
 name|checkNotNull
 argument_list|(
-name|handler
+name|subscriber
 argument_list|)
 expr_stmt|;
 block|}

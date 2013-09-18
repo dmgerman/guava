@@ -31,16 +31,16 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A method for finding event handler methods in objects, for use by  * {@link EventBus}.  *  * @author Cliff Biffle  */
+comment|/**  * A method for finding event subscriber methods in objects, for use by  * {@link EventBus}.  *  * @author Cliff Biffle  */
 end_comment
 
 begin_interface
-DECL|interface|HandlerFindingStrategy
+DECL|interface|SubscriberFindingStrategy
 interface|interface
-name|HandlerFindingStrategy
+name|SubscriberFindingStrategy
 block|{
-comment|/**    * Finds all suitable event handler methods in {@code source}, organizes them    * by the type of event they handle, and wraps them in {@link EventHandler} instances.    *    * @param source  object whose handlers are desired.    * @return EventHandler objects for each handler method, organized by event    *         type.    *    * @throws IllegalArgumentException if {@code source} is not appropriate for    *         this strategy (in ways that this interface does not define).    */
-DECL|method|findAllHandlers (Object source)
+comment|/**    * Finds all suitable event subscriber methods in {@code source}, organizes them    * by the type of event they handle, and wraps them in {@link EventSubscriber} instances.    *    * @param source  object whose subscribers are desired.    * @return EventSubscriber objects for each subscriber method, organized by event    *         type.    *    * @throws IllegalArgumentException if {@code source} is not appropriate for    *         this strategy (in ways that this interface does not define).    */
+DECL|method|findAllSubscribers (Object source)
 name|Multimap
 argument_list|<
 name|Class
@@ -48,9 +48,9 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|,
-name|EventHandler
+name|EventSubscriber
 argument_list|>
-name|findAllHandlers
+name|findAllSubscribers
 parameter_list|(
 name|Object
 name|source
