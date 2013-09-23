@@ -78,6 +78,30 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -131,6 +155,8 @@ name|ForwardingQueue
 argument_list|<
 name|E
 argument_list|>
+implements|implements
+name|Serializable
 block|{
 DECL|field|delegate
 specifier|private
@@ -141,8 +167,9 @@ name|E
 argument_list|>
 name|delegate
 decl_stmt|;
+annotation|@
+name|VisibleForTesting
 DECL|field|maxSize
-specifier|private
 specifier|final
 name|int
 name|maxSize
@@ -375,6 +402,15 @@ return|;
 block|}
 comment|// TODO(user): Do we want to checkNotNull each element in containsAll, removeAll, and retainAll?
 comment|// TODO(user): Do we want to add EvictingQueue#isFull()?
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0L
+decl_stmt|;
 block|}
 end_class
 
