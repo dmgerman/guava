@@ -1040,7 +1040,7 @@ name|resourceName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns the package name of the class, without attempting to load the class. */
+comment|/**       * Returns the package name of the class, without attempting to load the class.      *       *<p>Behaves identically to {@link Package#getName()} but does not require the class (or       * package) to be loaded.      */
 DECL|method|getPackageName ()
 specifier|public
 name|String
@@ -1056,7 +1056,7 @@ name|className
 argument_list|)
 return|;
 block|}
-comment|/** Returns the simple name of the underlying class as given in the source code. */
+comment|/**       * Returns the simple name of the underlying class as given in the source code.      *       *<p>Behaves identically to {@link Class#getSimpleName()} but does not require the class to be      * loaded.      */
 DECL|method|getSimpleName ()
 specifier|public
 name|String
@@ -1139,7 +1139,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** Returns the fully qualified name of the class. */
+comment|/**       * Returns the fully qualified name of the class.       *       *<p>Behaves identically to {@link Class#getName()} but does not require the class to be      * loaded.      */
 DECL|method|getName ()
 specifier|public
 name|String
