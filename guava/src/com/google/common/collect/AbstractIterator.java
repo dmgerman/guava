@@ -263,8 +263,17 @@ name|State
 operator|.
 name|NOT_READY
 expr_stmt|;
-return|return
+name|T
+name|result
+init|=
 name|next
+decl_stmt|;
+name|next
+operator|=
+literal|null
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|/**    * Returns the next element in the iteration without advancing the iteration,    * according to the contract of {@link PeekingIterator#peek()}.    *    *<p>Implementations of {@code AbstractIterator} that wish to expose this    * functionality should implement {@code PeekingIterator}.    */

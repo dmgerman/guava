@@ -257,8 +257,17 @@ name|State
 operator|.
 name|NOT_READY
 expr_stmt|;
-return|return
+name|T
+name|result
+init|=
 name|next
+decl_stmt|;
+name|next
+operator|=
+literal|null
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 DECL|method|remove ()
