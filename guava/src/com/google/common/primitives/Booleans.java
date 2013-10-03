@@ -1831,6 +1831,45 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+comment|/**    * Returns the number of {@code values} that are {@code true}.    */
+DECL|method|countTrue (boolean... values)
+specifier|public
+specifier|static
+name|int
+name|countTrue
+parameter_list|(
+name|boolean
+modifier|...
+name|values
+parameter_list|)
+block|{
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+for|for
+control|(
+name|boolean
+name|value
+range|:
+name|values
+control|)
+block|{
+if|if
+condition|(
+name|value
+condition|)
+block|{
+name|count
+operator|++
+expr_stmt|;
+block|}
+block|}
+return|return
+name|count
+return|;
+block|}
 block|}
 end_class
 
