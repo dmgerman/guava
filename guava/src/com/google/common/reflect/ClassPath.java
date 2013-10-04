@@ -581,7 +581,7 @@ return|return
 name|resources
 return|;
 block|}
-comment|/** Returns all classes loadable from the current class path. */
+comment|/**    * Returns all classes loadable from the current class path.    *    * @since 16.0    */
 DECL|method|getAllClasses ()
 specifier|public
 name|ImmutableSet

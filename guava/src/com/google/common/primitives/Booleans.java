@@ -90,6 +90,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -1831,7 +1845,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns the number of {@code values} that are {@code true}.    */
+comment|/**    * Returns the number of {@code values} that are {@code true}.    *    * @since 16.0    */
+annotation|@
+name|Beta
 DECL|method|countTrue (boolean... values)
 specifier|public
 specifier|static
