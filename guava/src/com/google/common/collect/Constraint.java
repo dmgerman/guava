@@ -26,50 +26,17 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
 begin_comment
-comment|/**  * A constraint that an element must satisfy in order to be added to a  * collection. For example, {@link Constraints#notNull()}, which prevents a  * collection from including any null elements, could be implemented like this:  *<pre>   {@code  *  *   public Object checkElement(Object element) {  *     if (element == null) {  *       throw new NullPointerException();  *     }  *     return element;  *   }}</pre>  *  *<p>In order to be effective, constraints should be deterministic; that is,  * they should not depend on state that can change (such as external state,  * random variables, and time) and should only depend on the value of the  * passed-in element. A non-deterministic constraint cannot reliably enforce  * that all the collection's elements meet the constraint, since the constraint  * is only enforced when elements are added.  *  * @see Constraints  * @see MapConstraint  * @author Mike Bostock  * @since 3.0  * @deprecated Use {@link Preconditions} for basic checks. In place of  *     constrained collections, we encourage you to check your preconditions  *     explicitly instead of leaving that work to the collection implementation.  *     For the specific case of rejecting null, consider the immutable  *     collections.  *     This interface is scheduled for removal in Guava 16.0.  */
+comment|/**  * A constraint that an element must satisfy in order to be added to a  * collection. For example, {@link Constraints#notNull()}, which prevents a  * collection from including any null elements, could be implemented like this:  *<pre>   {@code  *  *   public Object checkElement(Object element) {  *     if (element == null) {  *       throw new NullPointerException();  *     }  *     return element;  *   }}</pre>  *  *<p>In order to be effective, constraints should be deterministic; that is,  * they should not depend on state that can change (such as external state,  * random variables, and time) and should only depend on the value of the  * passed-in element. A non-deterministic constraint cannot reliably enforce  * that all the collection's elements meet the constraint, since the constraint  * is only enforced when elements are added.  *  * @author Mike Bostock  */
 end_comment
 
 begin_interface
 annotation|@
-name|Beta
-annotation|@
-name|Deprecated
-annotation|@
 name|GwtCompatible
-specifier|public
 DECL|interface|Constraint
 interface|interface
 name|Constraint

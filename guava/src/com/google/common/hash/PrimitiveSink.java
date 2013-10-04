@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object which can receive a stream of primitive values.  *   * @author Kevin Bourrillion  * @since 12.0 (in 11.0 as {@code Sink})  */
+comment|/**  * An object which can receive a stream of primitive values.  *  * @author Kevin Bourrillion  * @since 12.0 (in 11.0 as {@code Sink})  */
 end_comment
 
 begin_interface
@@ -73,7 +73,7 @@ index|[]
 name|bytes
 parameter_list|)
 function_decl|;
-comment|/**    * Puts a chunk of an array of bytes into this sink. {@code bytes[off]} is the first byte written,    * {@code bytes[off + len - 1]} is the last.     *     * @param bytes a byte array    * @param off the start offset in the array    * @param len the number of bytes to write    * @return this instance     * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length} or    *   {@code len< 0}    */
+comment|/**    * Puts a chunk of an array of bytes into this sink. {@code bytes[off]} is the first byte written,    * {@code bytes[off + len - 1]} is the last.    *    * @param bytes a byte array    * @param off the start offset in the array    * @param len the number of bytes to write    * @return this instance    * @throws IndexOutOfBoundsException if {@code off< 0} or {@code off + len> bytes.length} or    *   {@code len< 0}    */
 DECL|method|putBytes (byte[] bytes, int off, int len)
 name|PrimitiveSink
 name|putBytes
@@ -150,17 +150,6 @@ name|putChar
 parameter_list|(
 name|char
 name|c
-parameter_list|)
-function_decl|;
-comment|/**    * Puts a string into this sink.    *    * @deprecated Use {PrimitiveSink#putUnencodedChars} instead. This method is scheduled for    *     removal in Guava 16.0.    */
-annotation|@
-name|Deprecated
-DECL|method|putString (CharSequence charSequence)
-name|PrimitiveSink
-name|putString
-parameter_list|(
-name|CharSequence
-name|charSequence
 parameter_list|)
 function_decl|;
 comment|/**    * Puts each 16-bit code unit from the {@link CharSequence} into this sink.    *    * @since 15.0 (since 11.0 as putString(CharSequence))    */

@@ -127,27 +127,6 @@ name|hash
 argument_list|()
 return|;
 block|}
-comment|/**    * @deprecated Use {@link AbstractStreamingHashFunction#hashUnencodedChars} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|hashString (CharSequence input)
-annotation|@
-name|Override
-specifier|public
-name|HashCode
-name|hashString
-parameter_list|(
-name|CharSequence
-name|input
-parameter_list|)
-block|{
-return|return
-name|hashUnencodedChars
-argument_list|(
-name|input
-argument_list|)
-return|;
-block|}
 DECL|method|hashUnencodedChars (CharSequence input)
 annotation|@
 name|Override
@@ -691,28 +670,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|this
-return|;
-block|}
-comment|/**      * @deprecated Use {@link AbstractStreamingHasher#putUnencodedChars} instead.      */
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-DECL|method|putString (CharSequence charSequence)
-specifier|public
-specifier|final
-name|Hasher
-name|putString
-parameter_list|(
-name|CharSequence
-name|charSequence
-parameter_list|)
-block|{
-return|return
-name|putUnencodedChars
-argument_list|(
-name|charSequence
-argument_list|)
 return|;
 block|}
 annotation|@

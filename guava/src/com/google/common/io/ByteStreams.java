@@ -386,29 +386,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a new {@link ByteSource} that reads bytes from the given byte array.    *    * @since 14.0    * @deprecated Use {@link ByteSource#wrap(byte[])} instead. This method is    *     scheduled to be removed in Guava 16.0.    */
-annotation|@
-name|Deprecated
-DECL|method|asByteSource (byte[] b)
-specifier|public
-specifier|static
-name|ByteSource
-name|asByteSource
-parameter_list|(
-name|byte
-index|[]
-name|b
-parameter_list|)
-block|{
-return|return
-name|ByteSource
-operator|.
-name|wrap
-argument_list|(
-name|b
-argument_list|)
-return|;
-block|}
 comment|/**    * Writes a byte array to an output stream from the given supplier.    *    * @param from the bytes to write    * @param to the output supplier    * @throws IOException if an I/O error occurs    */
 DECL|method|write (byte[] from, OutputSupplier<? extends OutputStream> to)
 specifier|public

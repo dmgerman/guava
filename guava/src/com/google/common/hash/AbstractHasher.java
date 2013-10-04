@@ -117,27 +117,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * @deprecated Use {@link AbstractHasher#putUnencodedChars} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|putString (CharSequence charSequence)
-annotation|@
-name|Override
-specifier|public
-name|Hasher
-name|putString
-parameter_list|(
-name|CharSequence
-name|charSequence
-parameter_list|)
-block|{
-return|return
-name|putUnencodedChars
-argument_list|(
-name|charSequence
-argument_list|)
-return|;
-block|}
 DECL|method|putUnencodedChars (CharSequence charSequence)
 annotation|@
 name|Override

@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -118,16 +104,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Comparator
 import|;
 end_import
@@ -149,16 +125,6 @@ operator|.
 name|util
 operator|.
 name|NoSuchElementException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -1455,7 +1421,7 @@ name|typeAsUpperBound
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns {@code true} if this range is of the form {@code [v..v)} or {@code (v..v]}. (This does    * not encompass ranges of the form {@code (v..v)}, because such ranges are<i>invalid</i> and    * can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code (3..4)} are<b>not</b>    * considered empty, even though they contain no actual values.  In these cases, it may be    * helpful to preprocess ranges with {@link #canonical(DiscreteDomain)}.    */
+comment|/**    * Returns {@code true} if this range is of the form {@code [v..v)} or {@code (v..v]}. (This does    * not encompass ranges of the form {@code (v..v)}, because such ranges are<i>invalid</i> and    * can't be constructed at all.)    *    *<p>Note that certain discrete ranges such as the integer range {@code (3..4)} are<b>not</b>    * considered empty, even though they contain no actual values.  In these cases, it may be     * helpful to preprocess ranges with {@link #canonical(DiscreteDomain)}.    */
 DECL|method|isEmpty ()
 specifier|public
 name|boolean
@@ -1683,7 +1649,7 @@ operator|>=
 literal|0
 return|;
 block|}
-comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is {@linkplain #encloses    * enclosed} by both this range and {@code other}.    *    *<p>For example,    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose the empty range    *     {@code [4, 4)}    *</ul>    *    *<p>Note that this range and {@code other} have a well-defined {@linkplain #span union} and    * {@linkplain #intersection intersection} (as a single, possibly-empty range) if and only if this    * method returns {@code true}.    *    *<p>The connectedness relation is both reflexive and symmetric, but does not form an {@linkplain    * Equivalence equivalence relation} as it is not transitive.    *    *<p>Note that certain discrete ranges are not considered connected, even though there are no    * elements "between them."  For example, {@code [3, 5]} is not considered connected to {@code    * [6, 10]}.  In these cases, it may be desirable for both input ranges to be preprocessed with    * {@link #canonical(DiscreteDomain)} before testing for connectedness.    */
+comment|/**    * Returns {@code true} if there exists a (possibly empty) range which is {@linkplain #encloses    * enclosed} by both this range and {@code other}.    *    *<p>For example,    *<ul>    *<li>{@code [2, 4)} and {@code [5, 7)} are not connected    *<li>{@code [2, 4)} and {@code [3, 5)} are connected, because both enclose {@code [3, 4)}    *<li>{@code [2, 4)} and {@code [4, 6)} are connected, because both enclose the empty range    *     {@code [4, 4)}    *</ul>    *    *<p>Note that this range and {@code other} have a well-defined {@linkplain #span union} and    * {@linkplain #intersection intersection} (as a single, possibly-empty range) if and only if this    * method returns {@code true}.    *    *<p>The connectedness relation is both reflexive and symmetric, but does not form an {@linkplain    * Equivalence equivalence relation} as it is not transitive.    *     *<p>Note that certain discrete ranges are not considered connected, even though there are no    * elements "between them."  For example, {@code [3, 5]} is not considered connected to {@code     * [6, 10]}.  In these cases, it may be desirable for both input ranges to be preprocessed with    * {@link #canonical(DiscreteDomain)} before testing for connectedness.    */
 DECL|method|isConnected (Range<C> other)
 specifier|public
 name|boolean
@@ -1957,44 +1923,6 @@ name|newUpper
 argument_list|)
 return|;
 block|}
-block|}
-comment|/**    * Returns an {@link ContiguousSet} containing the same values in the given domain    * {@linkplain Range#contains contained} by this range.    *    *<p><b>Note:</b> {@code a.asSet(d).equals(b.asSet(d))} does not imply {@code a.equals(b)}! For    * example, {@code a} and {@code b} could be {@code [2..4]} and {@code (1..5)}, or the empty    * ranges {@code [3..3)} and {@code [4..4)}.    *    *<p><b>Warning:</b> Be extremely careful what you do with the {@code asSet} view of a large    * range (such as {@code Range.greaterThan(0)}). Certain operations on such a set can be    * performed efficiently, but others (such as {@link Set#hashCode} or {@link    * Collections#frequency}) can cause major performance problems.    *    *<p>The returned set's {@link Object#toString} method returns a short-hand form of the set's    * contents, such as {@code "[1..100]}"}.    *    * @throws IllegalArgumentException if neither this range nor the domain has a lower bound, or if    *     neither has an upper bound    * @deprecated Use {@code ContiguousSet.create(range, domain)}. To be removed in Guava 16.0.    */
-annotation|@
-name|Beta
-annotation|@
-name|GwtCompatible
-argument_list|(
-name|serializable
-operator|=
-literal|false
-argument_list|)
-annotation|@
-name|Deprecated
-DECL|method|asSet (DiscreteDomain<C> domain)
-specifier|public
-name|ContiguousSet
-argument_list|<
-name|C
-argument_list|>
-name|asSet
-parameter_list|(
-name|DiscreteDomain
-argument_list|<
-name|C
-argument_list|>
-name|domain
-parameter_list|)
-block|{
-return|return
-name|ContiguousSet
-operator|.
-name|create
-argument_list|(
-name|this
-argument_list|,
-name|domain
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns the canonical form of this range in the given domain. The canonical form has the    * following properties:    *    *<ul>    *<li>equivalence: {@code a.canonical().contains(v) == a.contains(v)} for all {@code v} (in other    *     words, {@code ContiguousSet.create(a.canonical(domain), domain).equals(    *     ContiguousSet.create(a, domain))}    *<li>uniqueness: unless {@code a.isEmpty()},    *     {@code ContiguousSet.create(a, domain).equals(ContiguousSet.create(b, domain))} implies    *     {@code a.canonical(domain).equals(b.canonical(domain))}    *<li>idempotence: {@code a.canonical(domain).canonical(domain).equals(a.canonical(domain))}    *</ul>    *    *<p>Furthermore, this method guarantees that the range returned will be one of the following    * canonical forms:    *    *<ul>    *<li>[start..end)    *<li>[start..+â)    *<li>(-â..end) (only if type {@code C} is unbounded below)    *<li>(-â..+â) (only if type {@code C} is unbounded below)    *</ul>    */
 DECL|method|canonical (DiscreteDomain<C> domain)

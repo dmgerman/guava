@@ -178,19 +178,6 @@ name|CharSequence
 name|charSequence
 parameter_list|)
 function_decl|;
-comment|/**    * Equivalent to processing each {@code char} value in the {@code CharSequence}, in order.    * The input must not be updated while this method is in progress.    *    * @deprecated Use {@link Hasher#putUnencodedChars} instead. This method is scheduled for    *     removal in Guava 16.0.    */
-annotation|@
-name|Deprecated
-DECL|method|putString (CharSequence charSequence)
-annotation|@
-name|Override
-name|Hasher
-name|putString
-parameter_list|(
-name|CharSequence
-name|charSequence
-parameter_list|)
-function_decl|;
 comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(charset))}.    */
 DECL|method|putString (CharSequence charSequence, Charset charset)
 annotation|@

@@ -473,26 +473,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**        * @deprecated Use {@link Hasher#putUnencodedChars} instead.        */
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-specifier|public
-name|Hasher
-name|putString
-parameter_list|(
-name|CharSequence
-name|chars
-parameter_list|)
-block|{
-return|return
-name|putUnencodedChars
-argument_list|(
-name|chars
-argument_list|)
-return|;
-block|}
 annotation|@
 name|Override
 specifier|public

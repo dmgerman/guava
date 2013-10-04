@@ -383,12 +383,12 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(user): Maybe implement #hashBytes instead?
-DECL|method|hashString (CharSequence input)
+DECL|method|hashUnencodedChars (CharSequence input)
 annotation|@
 name|Override
 specifier|public
 name|HashCode
-name|hashString
+name|hashUnencodedChars
 parameter_list|(
 name|CharSequence
 name|input

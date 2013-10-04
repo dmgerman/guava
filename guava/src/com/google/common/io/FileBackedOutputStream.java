@@ -349,23 +349,6 @@ block|}
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns a supplier that may be used to retrieve the data buffered    * by this stream. This method returns the same object as    * {@link #asByteSource()}.    *    * @deprecated Use {@link #asByteSource()} instead. This method is scheduled    *     to be removed in Guava 16.0.    */
-annotation|@
-name|Deprecated
-DECL|method|getSupplier ()
-specifier|public
-name|InputSupplier
-argument_list|<
-name|InputStream
-argument_list|>
-name|getSupplier
-parameter_list|()
-block|{
-return|return
-name|asByteSource
-argument_list|()
-return|;
-block|}
 comment|/**    * Returns a readable {@link ByteSource} view of the data that has been    * written to this stream.    *    * @since 15.0    */
 DECL|method|asByteSource ()
 specifier|public

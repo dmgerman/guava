@@ -417,7 +417,7 @@ operator|new
 name|TestHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -449,7 +449,7 @@ operator|new
 name|TestHasher
 argument_list|()
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)

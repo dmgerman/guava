@@ -609,7 +609,7 @@ argument_list|(
 literal|4
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -645,7 +645,7 @@ argument_list|(
 literal|4
 argument_list|)
 operator|.
-name|putString
+name|putUnencodedChars
 argument_list|(
 name|s
 argument_list|)
@@ -1605,23 +1605,6 @@ specifier|public
 name|int
 name|bits
 parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Override
-DECL|method|hashString (CharSequence input)
-specifier|public
-name|HashCode
-name|hashString
-parameter_list|(
-name|CharSequence
-name|input
-parameter_list|)
 block|{
 throw|throw
 operator|new

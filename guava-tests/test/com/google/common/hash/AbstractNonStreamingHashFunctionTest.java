@@ -721,23 +721,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|hashString (CharSequence input)
-specifier|public
-name|HashCode
-name|hashString
-parameter_list|(
-name|CharSequence
-name|input
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-annotation|@
-name|Override
 DECL|method|hashString (CharSequence input, Charset charset)
 specifier|public
 name|HashCode

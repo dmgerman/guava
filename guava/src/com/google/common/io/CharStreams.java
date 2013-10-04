@@ -311,28 +311,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@link CharSource} that reads the given string value.    *    * @since 14.0    * @deprecated Use {@link CharSource#wrap(CharSequence)} instead. This method    *     is scheduled to be removed in Guava 16.0.    */
-annotation|@
-name|Deprecated
-DECL|method|asCharSource (String string)
-specifier|public
-specifier|static
-name|CharSource
-name|asCharSource
-parameter_list|(
-name|String
-name|string
-parameter_list|)
-block|{
-return|return
-name|CharSource
-operator|.
-name|wrap
-argument_list|(
-name|string
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a factory that will supply instances of {@link InputStreamReader},    * using the given {@link InputStream} factory and character set.    *    * @param in the factory that will be used to open input streams    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
 DECL|method|newReaderSupplier ( final InputSupplier<? extends InputStream> in, final Charset charset)
 specifier|public

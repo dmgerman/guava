@@ -40,6 +40,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Charsets
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ImmutableList
@@ -1017,6 +1031,10 @@ operator|.
 name|hashString
 argument_list|(
 literal|"foo"
+argument_list|,
+name|Charsets
+operator|.
+name|US_ASCII
 argument_list|)
 decl_stmt|;
 name|HashCode
@@ -1191,6 +1209,10 @@ operator|.
 name|hashString
 argument_list|(
 literal|"foo"
+argument_list|,
+name|Charsets
+operator|.
+name|US_ASCII
 argument_list|)
 decl_stmt|;
 name|HashCode
@@ -1231,7 +1253,7 @@ block|{
 name|String
 name|string
 init|=
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1258,7 +1280,7 @@ name|expected
 operator|.
 name|toString
 argument_list|,
-name|HashCodes
+name|HashCode
 operator|.
 name|fromBytes
 argument_list|(
@@ -1325,6 +1347,10 @@ operator|.
 name|hashString
 argument_list|(
 literal|"foo"
+argument_list|,
+name|Charsets
+operator|.
+name|US_ASCII
 argument_list|)
 operator|.
 name|toString
@@ -1447,7 +1473,7 @@ index|[
 literal|4
 index|]
 decl_stmt|;
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -1469,7 +1495,7 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromInt
 argument_list|(
@@ -1500,7 +1526,7 @@ index|[
 literal|8
 index|]
 decl_stmt|;
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
@@ -1522,7 +1548,7 @@ name|Arrays
 operator|.
 name|equals
 argument_list|(
-name|HashCodes
+name|HashCode
 operator|.
 name|fromLong
 argument_list|(
