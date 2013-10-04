@@ -131,6 +131,9 @@ class|class
 name|MyAbstractTester
 extends|extends
 name|AbstractTester
+argument_list|<
+name|Void
+argument_list|>
 block|{
 DECL|method|testNothing ()
 specifier|public

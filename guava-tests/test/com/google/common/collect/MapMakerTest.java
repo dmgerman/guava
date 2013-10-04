@@ -324,6 +324,9 @@ name|computingFunction
 init|=
 operator|new
 name|DelayingIdentityLoader
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 name|computingLatch
 argument_list|)

@@ -2136,6 +2136,11 @@ name|accessExpirationDuration
 argument_list|)
 expr_stmt|;
 name|CacheBuilder
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|expected
 init|=
 name|CacheBuilder
@@ -2299,6 +2304,11 @@ name|accessExpirationTimeUnit
 argument_list|)
 expr_stmt|;
 name|CacheBuilder
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|expected
 init|=
 name|CacheBuilder
@@ -2981,6 +2991,11 @@ name|testCacheBuilderFrom_string
 parameter_list|()
 block|{
 name|CacheBuilder
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|fromString
 init|=
 name|CacheBuilder
@@ -2993,6 +3008,11 @@ literal|"weakKeys,weakValues,expireAfterAccess=10m"
 argument_list|)
 decl_stmt|;
 name|CacheBuilder
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|expected
 init|=
 name|CacheBuilder
@@ -3038,16 +3058,26 @@ name|fromString
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertCacheBuilderEquivalence (CacheBuilder a, CacheBuilder b)
+DECL|method|assertCacheBuilderEquivalence (CacheBuilder<?, ?> a, CacheBuilder<?, ?> b)
 specifier|private
 specifier|static
 name|void
 name|assertCacheBuilderEquivalence
 parameter_list|(
 name|CacheBuilder
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|a
 parameter_list|,
 name|CacheBuilder
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|b
 parameter_list|)
 block|{
