@@ -9999,6 +9999,11 @@ name|SortedMap
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 DECL|method|testTransformEntriesGenerics ()
 specifier|public
 name|void

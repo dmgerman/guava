@@ -787,7 +787,7 @@ name|ex
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * Tests that nHMWES makes hash maps large enough that adding the expected    * number of elements won't cause a rehash.    *    * This test may fail miserably on non-OpenJDK environments...    */
+comment|/**    * Tests that nHMWES makes hash maps large enough that adding the expected    * number of elements won't cause a rehash.    *    * As of jdk7u40, HashMap has an empty-map optimization.  The argument to    * new HashMap(int) is noted, but the initial table is a zero-length array.    *    * This test may fail miserably on non-OpenJDK environments...    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -801,12 +801,29 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// before jdk7u40: creates one-bucket table
+comment|// after  jdk7u40: creates empty table
+name|assertTrue
+argument_list|(
+name|bucketsOf
+argument_list|(
+name|Maps
+operator|.
+name|newHashMapWithExpectedSize
+argument_list|(
+literal|0
+argument_list|)
+argument_list|)
+operator|<=
+literal|1
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
 name|size
 init|=
-literal|0
+literal|1
 init|;
 name|size
 operator|<
@@ -831,10 +848,21 @@ argument_list|(
 name|size
 argument_list|)
 decl_stmt|;
+comment|// Only start measuring table size after the first element inserted, to
+comment|// deal with empty-map optimization.
+name|map1
+operator|.
+name|put
+argument_list|(
+literal|0
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|int
-name|startSize
+name|initialBuckets
 init|=
-name|sizeOf
+name|bucketsOf
 argument_list|(
 name|map1
 argument_list|)
@@ -844,7 +872,7 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|1
 init|;
 name|i
 operator|<
@@ -870,11 +898,11 @@ literal|"table size after adding "
 operator|+
 name|size
 operator|+
-literal|"elements"
+literal|" elements"
 argument_list|,
-name|startSize
+name|initialBuckets
 argument_list|,
-name|sizeOf
+name|bucketsOf
 argument_list|(
 name|map1
 argument_list|)
@@ -911,9 +939,9 @@ name|size
 operator|+
 literal|"elements"
 argument_list|,
-name|startSize
+name|initialBuckets
 argument_list|,
-name|sizeOf
+name|bucketsOf
 argument_list|(
 name|map2
 argument_list|)
@@ -926,11 +954,11 @@ name|GwtIncompatible
 argument_list|(
 literal|"reflection"
 argument_list|)
-DECL|method|sizeOf (HashMap<?, ?> hashMap)
+DECL|method|bucketsOf (HashMap<?, ?> hashMap)
 specifier|private
 specifier|static
 name|int
-name|sizeOf
+name|bucketsOf
 parameter_list|(
 name|HashMap
 argument_list|<
@@ -12656,6 +12684,11 @@ name|NavigableMap
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 DECL|method|testTransformEntriesGenerics ()
 specifier|public
 name|void
