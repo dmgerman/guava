@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A set of low-level, high-performance static utility methods related to the UTF-8 character  * encoding.  *  *<p>There are several variants of UTF-8. The one implemented by this class is the restricted  * definition of UTF-8 introduced in Unicode 3.1, which mandates the rejection of overlong byte  * sequences as well as rejection of 3-byte surrogate codepoint byte sequences. Note that the UTF-8  * decoder included in Oracle's JDK has been modified to also reject "overlong" byte sequences, but  * (as of 2011) still accepts 3-byte surrogate codepoint byte sequences.  *  *<p>The byte sequences considered valid by this class are exactly those that can be roundtrip  * converted to Strings and back to bytes using the UTF-8 charset, without loss:  *  *<pre>{@code Arrays.equals(bytes, new String(bytes, "UTF-8").getBytes("UTF-8"))}</pre>  *  *<p>See the Unicode Standard,</br> Table 3-6.<em>UTF-8 Bit Distribution</em>,</br> Table 3-7.  *<em>Well Formed UTF-8 Byte Sequences</em>.  *  * @author Martin Buchholz  * @author ClÃ©ment Roux  * @since 16.0  */
+comment|/**  * Low-level, high-performance utility methods related to the {@linkplain Charsets#UTF_8 UTF-8}  * character encoding. UTF-8 is defined in section D92 of  *<a href="http://www.unicode.org/versions/Unicode6.2.0/ch03.pdf">The Unicode Standard Core  * Specification, Chapter 3</a>.  *  *<p>The variant of UTF-8 implemented by this class is the restricted definition of UTF-8  * introduced in Unicode 3.1. One implication of this is that it rejects  *<a href="http://www.unicode.org/versions/corrigendum1.html">"non-shortest form"</a> byte  * sequences, even though the JDK decoder may accept them.  *  * @author Martin Buchholz  * @author ClÃ©ment Roux  * @since 16.0  */
 end_comment
 
 begin_class
@@ -75,17 +75,12 @@ specifier|final
 class|class
 name|Utf8
 block|{
-DECL|method|Utf8 ()
-specifier|private
-name|Utf8
-parameter_list|()
-block|{}
-comment|/**    * Returns the number of bytes in the UTF-8 encoded form of {@code sequence}. Assuming that    * {@code sequence} is a string that contains valid code points, this method is faster and more    * memory efficient than {@code string.getBytes(Charsets.UTF_8).length}.    *    * @throws IllegalArgumentException if {@code sequence} contains unpaired surrogates    */
-DECL|method|utf8Length (CharSequence sequence)
+comment|/**    * Returns the number of bytes in the UTF-8 encoded form of {@code sequence}. For a string,    * this method is equivalent to {@code string.getBytes(UTF_8).length}, but is more efficient in    * both time and space.    *    * @throws IllegalArgumentException if {@code sequence} contains ill-formed UTF-16 (unpaired    *     surrogates)    */
+DECL|method|length (CharSequence sequence)
 specifier|public
 specifier|static
 name|int
-name|utf8Length
+name|length
 parameter_list|(
 name|CharSequence
 name|sequence
@@ -96,25 +91,23 @@ name|utf8Length
 init|=
 literal|0
 decl_stmt|;
+for|for
+control|(
 name|int
 name|charIndex
 init|=
 literal|0
-decl_stmt|;
-name|int
-name|charLength
-init|=
+init|;
+name|charIndex
+operator|<
 name|sequence
 operator|.
 name|length
 argument_list|()
-decl_stmt|;
-while|while
-condition|(
+condition|;
 name|charIndex
-operator|<
-name|charLength
-condition|)
+operator|++
+control|)
 block|{
 name|char
 name|c
@@ -197,24 +190,14 @@ operator|.
 name|MIN_SUPPLEMENTARY_CODE_POINT
 condition|)
 block|{
-comment|// The pair starts with a low surrogate, or no character follows the
-comment|// high surrogate.
-comment|// We throw an IllegalArgumentException instead of a
-comment|// CharacterCodingException because CharacterCodingException is a
-comment|// checked exception.
+comment|// The pair starts with a low surrogate, or no character follows the high surrogate.
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Unpaired surrogate at "
+literal|"Unpaired surrogate at index "
 operator|+
 name|charIndex
-operator|+
-literal|" ("
-operator|+
-name|sequence
-operator|+
-literal|")"
 argument_list|)
 throw|;
 block|}
@@ -226,10 +209,8 @@ name|charIndex
 operator|++
 expr_stmt|;
 block|}
-name|charIndex
-operator|++
-expr_stmt|;
 block|}
+comment|// return Ints.checkedCast(utf8Length);
 name|int
 name|result
 init|=
@@ -259,12 +240,12 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns whether the given byte array is a well-formed UTF-8 byte sequence.    */
-DECL|method|isValidUtf8 (byte[] bytes)
+comment|/**    * Returns {@code true} if {@code bytes} is a<i>well-formed</i> UTF-8 byte sequence according to    * Unicode 6.0. Note that this is a stronger criterion than simply whether the bytes can be    * decoded. For example, some versions of the JDK decoder will accept "non-shortest form" byte    * sequences, but encoding never reproduces these. Such byte sequences are<i>not</i> considered    * well-formed.    *    *<p>This method returns {@code true} if and only if {@code Arrays.equals(bytes, new    * String(bytes, UTF_8).getBytes(UTF_8))} does, but is more efficient in both time and space.    */
+DECL|method|isWellFormed (byte[] bytes)
 specifier|public
 specifier|static
 name|boolean
-name|isValidUtf8
+name|isWellFormed
 parameter_list|(
 name|byte
 index|[]
@@ -272,7 +253,7 @@ name|bytes
 parameter_list|)
 block|{
 return|return
-name|isValidUtf8
+name|isWellFormed
 argument_list|(
 name|bytes
 argument_list|,
@@ -284,12 +265,12 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns whether the given byte array slice is a well-formed UTF-8 byte sequence.    *    * @param bytes the input buffer    * @param off the offset in the buffer of the first byte to read    * @param len the maximum number of bytes to read from the buffer    */
-DECL|method|isValidUtf8 (byte[] bytes, int off, int len)
+comment|/**    * Returns whether the given byte array slice is a well-formed UTF-8 byte sequence, as defined by    * {@link #isWellFormed(byte[]). Note that this can be false even when {@code isWellFormed(bytes)}    * is true.    *    * @param bytes the input buffer    * @param off the offset in the buffer of the first byte to read    * @param len the number of bytes to read from the buffer    */
+DECL|method|isWellFormed (byte[] bytes, int off, int len)
 specifier|public
 specifier|static
 name|boolean
-name|isValidUtf8
+name|isWellFormed
 parameter_list|(
 name|byte
 index|[]
@@ -347,7 +328,7 @@ literal|0
 condition|)
 block|{
 return|return
-name|isValidUtf8NonAscii
+name|isWellFormedSlowPath
 argument_list|(
 name|bytes
 argument_list|,
@@ -362,11 +343,11 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|isValidUtf8NonAscii (byte[] bytes, int off, int end)
+DECL|method|isWellFormedSlowPath (byte[] bytes, int off, int end)
 specifier|private
 specifier|static
 name|boolean
-name|isValidUtf8NonAscii
+name|isWellFormedSlowPath
 parameter_list|(
 name|byte
 index|[]
@@ -660,6 +641,11 @@ block|}
 block|}
 block|}
 block|}
+DECL|method|Utf8 ()
+specifier|private
+name|Utf8
+parameter_list|()
+block|{}
 block|}
 end_class
 

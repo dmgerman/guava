@@ -83,10 +83,10 @@ name|Utf8Test
 extends|extends
 name|TestCase
 block|{
-DECL|method|testUtf8Length_validStrings ()
+DECL|method|testLength_validStrings ()
 specifier|public
 name|void
-name|testUtf8Length_validStrings
+name|testLength_validStrings
 parameter_list|()
 block|{
 name|assertEquals
@@ -95,7 +95,7 @@ literal|0
 argument_list|,
 name|Utf8
 operator|.
-name|utf8Length
+name|length
 argument_list|(
 literal|""
 argument_list|)
@@ -107,7 +107,7 @@ literal|11
 argument_list|,
 name|Utf8
 operator|.
-name|utf8Length
+name|length
 argument_list|(
 literal|"Hello world"
 argument_list|)
@@ -119,7 +119,7 @@ literal|8
 argument_list|,
 name|Utf8
 operator|.
-name|utf8Length
+name|length
 argument_list|(
 literal|"RÃ©sumÃ©"
 argument_list|)
@@ -131,7 +131,7 @@ literal|461
 argument_list|,
 name|Utf8
 operator|.
-name|utf8Length
+name|length
 argument_list|(
 literal|"å¨å»Â·èå£«æ¯äºï¼William Shakespeareï¼"
 operator|+
@@ -154,7 +154,7 @@ literal|4
 argument_list|,
 name|Utf8
 operator|.
-name|utf8Length
+name|length
 argument_list|(
 name|newString
 argument_list|(
@@ -170,13 +170,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testUtf8Length_invalidStrings ()
+DECL|method|testLength_invalidStrings ()
 specifier|public
 name|void
-name|testUtf8Length_invalidStrings
+name|testLength_invalidStrings
 parameter_list|()
 block|{
-name|testUtf8LengthFails
+name|testLengthFails
 argument_list|(
 name|newString
 argument_list|(
@@ -188,7 +188,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|testUtf8LengthFails
+name|testLengthFails
 argument_list|(
 literal|"foobar"
 operator|+
@@ -202,7 +202,7 @@ argument_list|,
 literal|6
 argument_list|)
 expr_stmt|;
-name|testUtf8LengthFails
+name|testLengthFails
 argument_list|(
 name|newString
 argument_list|(
@@ -214,7 +214,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|testUtf8LengthFails
+name|testLengthFails
 argument_list|(
 literal|"foobar"
 operator|+
@@ -228,7 +228,7 @@ argument_list|,
 literal|6
 argument_list|)
 expr_stmt|;
-name|testUtf8LengthFails
+name|testLengthFails
 argument_list|(
 name|newString
 argument_list|(
@@ -245,11 +245,11 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testUtf8LengthFails (String invalidString, int invalidCodePointIndex)
+DECL|method|testLengthFails (String invalidString, int invalidCodePointIndex)
 specifier|private
 specifier|static
 name|void
-name|testUtf8LengthFails
+name|testLengthFails
 parameter_list|(
 name|String
 name|invalidString
@@ -262,7 +262,7 @@ try|try
 block|{
 name|Utf8
 operator|.
-name|utf8Length
+name|length
 argument_list|(
 name|invalidString
 argument_list|)
@@ -274,36 +274,19 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|ex
+name|expected
 parameter_list|)
 block|{
-comment|// Expected
-name|String
-name|message
-init|=
-name|ex
+name|assertEquals
+argument_list|(
+literal|"Unpaired surrogate at index "
+operator|+
+name|invalidCodePointIndex
+argument_list|,
+name|expected
 operator|.
 name|getMessage
 argument_list|()
-decl_stmt|;
-name|String
-name|expected
-init|=
-literal|"Unpaired surrogate at "
-operator|+
-name|invalidCodePointIndex
-operator|+
-literal|" ("
-operator|+
-name|invalidString
-operator|+
-literal|")"
-decl_stmt|;
-name|assertEquals
-argument_list|(
-name|expected
-argument_list|,
-name|message
 argument_list|)
 expr_stmt|;
 block|}
@@ -494,10 +477,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"java.nio.charset.Charset"
 argument_list|)
-DECL|method|testIsValidUtf8_1Byte ()
+DECL|method|testIsWellFormed_1Byte ()
 specifier|public
 name|void
-name|testIsValidUtf8_1Byte
+name|testIsWellFormed_1Byte
 parameter_list|()
 block|{
 name|testBytes
@@ -514,10 +497,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"java.nio.charset.Charset"
 argument_list|)
-DECL|method|testIsValidUtf8_2Bytes ()
+DECL|method|testIsWellFormed_2Bytes ()
 specifier|public
 name|void
-name|testIsValidUtf8_2Bytes
+name|testIsWellFormed_2Bytes
 parameter_list|()
 block|{
 name|testBytes
@@ -534,10 +517,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"java.nio.charset.Charset"
 argument_list|)
-DECL|method|testIsValidUtf8_3Bytes ()
+DECL|method|testIsWellFormed_3Bytes ()
 specifier|public
 name|void
-name|testIsValidUtf8_3Bytes
+name|testIsWellFormed_3Bytes
 parameter_list|()
 block|{
 name|testBytes
@@ -549,14 +532,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Tests that round tripping of a sample of four byte permutations work.    * All permutations are prohibitively expensive to test for automated runs.    * This method tests specific four-byte cases.    */
-DECL|method|testIsValidUtf8_4BytesSamples ()
+DECL|method|testIsWellFormed_4BytesSamples ()
 specifier|public
 name|void
-name|testIsValidUtf8_4BytesSamples
+name|testIsWellFormed_4BytesSamples
 parameter_list|()
 block|{
 comment|// Valid 4 byte.
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|(
 literal|0xF0
 argument_list|,
@@ -568,7 +551,7 @@ literal|0xA2
 argument_list|)
 expr_stmt|;
 comment|// Bad trailing bytes
-name|assertInvalidUtf8
+name|assertNotWellFormed
 argument_list|(
 literal|0xF0
 argument_list|,
@@ -579,7 +562,7 @@ argument_list|,
 literal|0x7F
 argument_list|)
 expr_stmt|;
-name|assertInvalidUtf8
+name|assertNotWellFormed
 argument_list|(
 literal|0xF0
 argument_list|,
@@ -591,7 +574,7 @@ literal|0xC0
 argument_list|)
 expr_stmt|;
 comment|// Special cases for byte2
-name|assertInvalidUtf8
+name|assertNotWellFormed
 argument_list|(
 literal|0xF0
 argument_list|,
@@ -602,7 +585,7 @@ argument_list|,
 literal|0xA2
 argument_list|)
 expr_stmt|;
-name|assertInvalidUtf8
+name|assertNotWellFormed
 argument_list|(
 literal|0xF4
 argument_list|,
@@ -622,11 +605,11 @@ name|testSomeSequences
 parameter_list|()
 block|{
 comment|// Empty
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|()
 expr_stmt|;
 comment|// One-byte characters, including control characters
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|(
 literal|0x00
 argument_list|,
@@ -641,7 +624,7 @@ argument_list|)
 expr_stmt|;
 comment|// "\u0000abc\u007f"
 comment|// Two-byte characters
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|(
 literal|0xC2
 argument_list|,
@@ -654,7 +637,7 @@ argument_list|)
 expr_stmt|;
 comment|// "\u00a2\u00a2"
 comment|// Three-byte characters
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|(
 literal|0xc8
 argument_list|,
@@ -672,7 +655,7 @@ expr_stmt|;
 comment|// "\u020ac\u020ac"
 comment|// Four-byte characters
 comment|// "\u024B62\u024B62"
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|(
 literal|0xc9
 argument_list|,
@@ -693,7 +676,7 @@ argument_list|)
 expr_stmt|;
 comment|// Mixed string
 comment|// "a\u020ac\u00a2b\\u024B62u020acc\u00a2de\u024B62"
-name|assertValidUtf8
+name|assertWellFormed
 argument_list|(
 literal|0x61
 argument_list|,
@@ -757,7 +740,7 @@ literal|0x32
 argument_list|)
 expr_stmt|;
 comment|// Not a valid string
-name|assertInvalidUtf8
+name|assertNotWellFormed
 argument_list|(
 operator|-
 literal|1
@@ -881,124 +864,50 @@ return|return
 name|realBytes
 return|;
 block|}
-DECL|method|assertValidUtf8 (int... bytes)
+DECL|method|assertWellFormed (int... bytes)
 specifier|private
 name|void
-name|assertValidUtf8
+name|assertWellFormed
 parameter_list|(
 name|int
 modifier|...
 name|bytes
 parameter_list|)
 block|{
-name|assertValidOrInvalidUtf8
+name|assertTrue
 argument_list|(
-name|bytes
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|assertValidUtf8 (byte[] bytes)
-specifier|private
-name|void
-name|assertValidUtf8
-parameter_list|(
-name|byte
-index|[]
-name|bytes
-parameter_list|)
-block|{
-name|assertValidOrInvalidUtf8
-argument_list|(
-name|bytes
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|assertInvalidUtf8 (int... bytes)
-specifier|private
-name|void
-name|assertInvalidUtf8
-parameter_list|(
-name|int
-modifier|...
-name|bytes
-parameter_list|)
-block|{
-name|assertValidOrInvalidUtf8
-argument_list|(
-name|bytes
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|assertValidOrInvalidUtf8 (int[] bytes, boolean not)
-specifier|private
-name|void
-name|assertValidOrInvalidUtf8
-parameter_list|(
-name|int
-index|[]
-name|bytes
-parameter_list|,
-name|boolean
-name|not
-parameter_list|)
-block|{
-name|assertValidOrInvalidUtf8
+name|Utf8
+operator|.
+name|isWellFormed
 argument_list|(
 name|toByteArray
 argument_list|(
 name|bytes
 argument_list|)
-argument_list|,
-name|not
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|assertValidOrInvalidUtf8 (byte[] bytes, boolean not)
+DECL|method|assertNotWellFormed (int... bytes)
 specifier|private
 name|void
-name|assertValidOrInvalidUtf8
+name|assertNotWellFormed
 parameter_list|(
-name|byte
-index|[]
+name|int
+modifier|...
 name|bytes
-parameter_list|,
-name|boolean
-name|not
 parameter_list|)
 block|{
-name|assertTrue
+name|assertFalse
 argument_list|(
-name|not
-operator|^
 name|Utf8
 operator|.
-name|isValidUtf8
+name|isWellFormed
+argument_list|(
+name|toByteArray
 argument_list|(
 name|bytes
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|not
-operator|^
-name|Utf8
-operator|.
-name|isValidUtf8
-argument_list|(
-name|bytes
-argument_list|,
-literal|0
-argument_list|,
-name|bytes
-operator|.
-name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1295,7 +1204,7 @@ name|isRoundTrippable
 init|=
 name|Utf8
 operator|.
-name|isValidUtf8
+name|isWellFormed
 argument_list|(
 name|bytes
 argument_list|)
@@ -1306,7 +1215,7 @@ name|isRoundTrippable
 argument_list|,
 name|Utf8
 operator|.
-name|isValidUtf8
+name|isWellFormed
 argument_list|(
 name|bytes
 argument_list|,
