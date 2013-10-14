@@ -192,7 +192,9 @@ operator|)
 name|value
 return|;
 block|}
-comment|/**    * Compares the two specified {@code byte} values. The sign of the value    * returned is the same as that of {@code ((Byte) a).compareTo(b)}.    *    * @param a the first {@code byte} to compare    * @param b the second {@code byte} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
+comment|/**    * Compares the two specified {@code byte} values. The sign of the value    * returned is the same as that of {@code ((Byte) a).compareTo(b)}.    *    *<p><b>Note:</b> this method behaves identically to the JDK 7 method {@link    * Byte#compare}.    *    * @param a the first {@code byte} to compare    * @param b the second {@code byte} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
+comment|// TODO(kevinb): if Ints.compare etc. are ever removed, *maybe* remove this
+comment|// one too, which would leave compare methods only on the Unsigned* classes.
 DECL|method|compare (byte a, byte b)
 specifier|public
 specifier|static

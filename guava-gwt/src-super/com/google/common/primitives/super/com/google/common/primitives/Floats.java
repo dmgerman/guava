@@ -251,7 +251,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/**    * Compares the two specified {@code float} values using {@link    * Float#compare(float, float)}. You may prefer to invoke that method    * directly; this method exists only for consistency with the other utilities    * in this package.    *    * @param a the first {@code float} to compare    * @param b the second {@code float} to compare    * @return the result of invoking {@link Float#compare(float, float)}    */
+comment|/**    * Compares the two specified {@code float} values using {@link    * Float#compare(float, float)}. You may prefer to invoke that method    * directly; this method exists only for consistency with the other utilities    * in this package.    *    *<p><b>Note:</b> this method simply delegates to the JDK method {@link    * Float#compare}. It is provided for consistency with the other primitive    * types, whose compare methods were not added to the JDK until JDK 7.    *    * @param a the first {@code float} to compare    * @param b the second {@code float} to compare    * @return the result of invoking {@link Float#compare(float, float)}    */
+comment|// TODO(kevinb): if Ints.compare etc. are ever removed, remove this one too
 DECL|method|compare (float a, float b)
 specifier|public
 specifier|static
