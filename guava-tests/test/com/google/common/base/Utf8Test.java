@@ -83,10 +83,10 @@ name|Utf8Test
 extends|extends
 name|TestCase
 block|{
-DECL|method|testLength_validStrings ()
+DECL|method|testEncodedLength_validStrings ()
 specifier|public
 name|void
-name|testLength_validStrings
+name|testEncodedLength_validStrings
 parameter_list|()
 block|{
 name|assertEquals
@@ -95,7 +95,7 @@ literal|0
 argument_list|,
 name|Utf8
 operator|.
-name|length
+name|encodedLength
 argument_list|(
 literal|""
 argument_list|)
@@ -107,7 +107,7 @@ literal|11
 argument_list|,
 name|Utf8
 operator|.
-name|length
+name|encodedLength
 argument_list|(
 literal|"Hello world"
 argument_list|)
@@ -119,7 +119,7 @@ literal|8
 argument_list|,
 name|Utf8
 operator|.
-name|length
+name|encodedLength
 argument_list|(
 literal|"RÃ©sumÃ©"
 argument_list|)
@@ -131,7 +131,7 @@ literal|461
 argument_list|,
 name|Utf8
 operator|.
-name|length
+name|encodedLength
 argument_list|(
 literal|"å¨å»Â·èå£«æ¯äºï¼William Shakespeareï¼"
 operator|+
@@ -154,7 +154,7 @@ literal|4
 argument_list|,
 name|Utf8
 operator|.
-name|length
+name|encodedLength
 argument_list|(
 name|newString
 argument_list|(
@@ -170,13 +170,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testLength_invalidStrings ()
+DECL|method|testEncodedLength_invalidStrings ()
 specifier|public
 name|void
-name|testLength_invalidStrings
+name|testEncodedLength_invalidStrings
 parameter_list|()
 block|{
-name|testLengthFails
+name|testEncodedLengthFails
 argument_list|(
 name|newString
 argument_list|(
@@ -188,7 +188,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|testLengthFails
+name|testEncodedLengthFails
 argument_list|(
 literal|"foobar"
 operator|+
@@ -202,7 +202,7 @@ argument_list|,
 literal|6
 argument_list|)
 expr_stmt|;
-name|testLengthFails
+name|testEncodedLengthFails
 argument_list|(
 name|newString
 argument_list|(
@@ -214,7 +214,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|testLengthFails
+name|testEncodedLengthFails
 argument_list|(
 literal|"foobar"
 operator|+
@@ -228,7 +228,7 @@ argument_list|,
 literal|6
 argument_list|)
 expr_stmt|;
-name|testLengthFails
+name|testEncodedLengthFails
 argument_list|(
 name|newString
 argument_list|(
@@ -245,11 +245,11 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testLengthFails (String invalidString, int invalidCodePointIndex)
+DECL|method|testEncodedLengthFails (String invalidString, int invalidCodePointIndex)
 specifier|private
 specifier|static
 name|void
-name|testLengthFails
+name|testEncodedLengthFails
 parameter_list|(
 name|String
 name|invalidString
@@ -262,7 +262,7 @@ try|try
 block|{
 name|Utf8
 operator|.
-name|length
+name|encodedLength
 argument_list|(
 name|invalidString
 argument_list|)
