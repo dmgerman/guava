@@ -330,7 +330,10 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|assertFalse
@@ -343,7 +346,10 @@ argument_list|)
 expr_stmt|;
 name|service
 operator|.
-name|stopAndWait
+name|stopAsync
+argument_list|()
+operator|.
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 name|assertTrue
@@ -422,7 +428,10 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|service
@@ -514,7 +523,10 @@ try|try
 block|{
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|fail
@@ -523,7 +535,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|UncheckedExecutionException
+name|IllegalStateException
 name|e
 parameter_list|)
 block|{
@@ -592,7 +604,10 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|service
@@ -602,19 +617,11 @@ operator|.
 name|await
 argument_list|()
 expr_stmt|;
-name|ListenableFuture
-argument_list|<
-name|Service
-operator|.
-name|State
-argument_list|>
-name|stopHandle
-init|=
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|service
 operator|.
 name|runSecondBarrier
@@ -624,9 +631,9 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|stopHandle
+name|service
 operator|.
-name|get
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 name|fail
@@ -635,7 +642,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ExecutionException
+name|IllegalStateException
 name|e
 parameter_list|)
 block|{
@@ -684,7 +691,10 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 for|for
@@ -738,7 +748,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 expr_stmt|;
 name|service
@@ -750,7 +760,10 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stopAndWait
+name|stopAsync
+argument_list|()
+operator|.
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 block|}
@@ -771,7 +784,10 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 comment|// It should be called once during startup.
@@ -838,7 +854,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 expr_stmt|;
 name|service
@@ -850,7 +866,10 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stopAndWait
+name|stopAsync
+argument_list|()
+operator|.
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 comment|// Only called once overall.
@@ -988,7 +1007,7 @@ block|}
 decl_stmt|;
 name|service
 operator|.
-name|start
+name|startAsync
 argument_list|()
 expr_stmt|;
 name|assertFalse
@@ -1004,12 +1023,12 @@ argument_list|)
 expr_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 expr_stmt|;
 name|terminationLatch
@@ -1189,7 +1208,10 @@ try|try
 block|{
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|fail
@@ -1200,12 +1222,10 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|UncheckedExecutionException
-name|e
+name|IllegalStateException
+name|expected
 parameter_list|)
-block|{
-comment|// expected
-block|}
+block|{}
 name|failureLatch
 operator|.
 name|await
@@ -1257,7 +1277,10 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 comment|// It should be called once during startup.
@@ -1324,7 +1347,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 expr_stmt|;
 name|service
@@ -1336,7 +1359,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stopAndWait
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 comment|// Only called once overall.
@@ -2150,7 +2173,10 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|service
@@ -2174,7 +2200,7 @@ argument_list|)
 expr_stmt|;
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 expr_stmt|;
 name|service
@@ -2186,7 +2212,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stopAndWait
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 comment|// Sleep for a while just to ensure that our task wasn't called again.
@@ -2286,7 +2312,10 @@ literal|false
 expr_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 name|Thread
@@ -2321,7 +2350,7 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 expr_stmt|;
 name|service
@@ -2333,7 +2362,7 @@ argument_list|()
 expr_stmt|;
 name|service
 operator|.
-name|stopAndWait
+name|awaitTerminated
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -2520,7 +2549,10 @@ argument_list|()
 decl_stmt|;
 name|service
 operator|.
-name|startAndWait
+name|startAsync
+argument_list|()
+operator|.
+name|awaitRunning
 argument_list|()
 expr_stmt|;
 for|for
@@ -2576,10 +2608,10 @@ try|try
 block|{
 name|service
 operator|.
-name|stop
+name|stopAsync
 argument_list|()
 operator|.
-name|get
+name|awaitTerminated
 argument_list|(
 literal|100
 argument_list|,
@@ -2594,7 +2626,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ExecutionException
+name|IllegalStateException
 name|e
 parameter_list|)
 block|{
