@@ -92,6 +92,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|RandomAccess
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -122,6 +132,8 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
+implements|implements
+name|RandomAccess
 block|{
 DECL|field|axes
 specifier|private
