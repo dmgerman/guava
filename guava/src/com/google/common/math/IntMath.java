@@ -1345,7 +1345,7 @@ else|:
 name|div
 return|;
 block|}
-comment|/**    * Returns {@code x mod m}. This differs from {@code x % m} in that it always returns a    * non-negative result.    *    *<p>For example:<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    */
+comment|/**    * Returns {@code x mod m}. This differs from {@code x % m} in that it always returns a    * non-negative result less than m.    *    *<p>For example:<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    */
 DECL|method|mod (int x, int m)
 specifier|public
 specifier|static
