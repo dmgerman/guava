@@ -1519,7 +1519,7 @@ else|:
 name|div
 return|;
 block|}
-comment|/**    * Returns {@code x mod m}. This differs from {@code x % m} in that it always returns a    * non-negative result less than m.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    */
+comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}.    * This differs from {@code x % m}, which might be negative.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *      Remainder Operator</a>    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1554,7 +1554,7 @@ name|m
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code x mod m}. This differs from {@code x % m} in that it always returns a    * non-negative result less than m.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    */
+comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}.    * This differs from {@code x % m}, which might be negative.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *      Remainder Operator</a>    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
