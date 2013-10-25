@@ -228,7 +228,7 @@ name|HostSpecifier
 argument_list|(
 name|domain
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 return|;

@@ -1187,7 +1187,7 @@ operator|.
 name|parent
 argument_list|()
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1205,7 +1205,7 @@ operator|.
 name|parent
 argument_list|()
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1223,7 +1223,7 @@ operator|.
 name|parent
 argument_list|()
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1279,7 +1279,7 @@ argument_list|(
 literal|"www"
 argument_list|)
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1337,7 +1337,7 @@ literal|"com"
 argument_list|,
 name|parent
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1650,7 +1650,7 @@ name|expectedName
 argument_list|,
 name|domain
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1689,7 +1689,7 @@ operator|.
 name|publicSuffix
 argument_list|()
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1741,7 +1741,7 @@ operator|.
 name|publicSuffix
 argument_list|()
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1754,7 +1754,7 @@ operator|.
 name|topPrivateDomain
 argument_list|()
 operator|.
-name|name
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
