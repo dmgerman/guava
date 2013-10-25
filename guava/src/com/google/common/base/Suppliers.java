@@ -1107,16 +1107,6 @@ block|}
 comment|/**    * Returns a function that accepts a supplier and returns the result of    * invoking {@link Supplier#get} on that supplier.    *    * @since 8.0    */
 annotation|@
 name|Beta
-comment|//SupplierFunction works for any T.
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"unchecked"
-block|,
-literal|"rawtypes"
-block|}
-argument_list|)
 DECL|method|supplierFunction ()
 specifier|public
 specifier|static
@@ -1135,34 +1125,65 @@ argument_list|>
 name|supplierFunction
 parameter_list|()
 block|{
-return|return
-operator|(
-name|Function
-operator|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// implementation is "fully variant"
 name|SupplierFunction
+argument_list|<
+name|T
+argument_list|>
+name|sf
+init|=
+operator|(
+name|SupplierFunction
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|SupplierFunctionImpl
 operator|.
 name|INSTANCE
+decl_stmt|;
+return|return
+name|sf
 return|;
 block|}
-DECL|enum|SupplierFunction
+DECL|interface|SupplierFunction
 specifier|private
-enum|enum
+interface|interface
 name|SupplierFunction
-implements|implements
+parameter_list|<
+name|T
+parameter_list|>
+extends|extends
 name|Function
 argument_list|<
 name|Supplier
 argument_list|<
-name|?
+name|T
 argument_list|>
 argument_list|,
+name|T
+argument_list|>
+block|{}
+DECL|enum|SupplierFunctionImpl
+specifier|private
+enum|enum
+name|SupplierFunctionImpl
+implements|implements
+name|SupplierFunction
+argument_list|<
 name|Object
 argument_list|>
 block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|apply (Supplier<?> input)
+comment|// Note: This makes T a "pass-through type"
+DECL|method|apply (Supplier<Object> input)
 annotation|@
 name|Override
 specifier|public
@@ -1171,7 +1192,7 @@ name|apply
 parameter_list|(
 name|Supplier
 argument_list|<
-name|?
+name|Object
 argument_list|>
 name|input
 parameter_list|)

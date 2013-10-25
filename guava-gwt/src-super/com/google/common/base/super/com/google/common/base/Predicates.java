@@ -780,7 +780,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// these Object predicates work for any T
+comment|// safe contravariant cast
 DECL|method|withNarrowedType ()
 parameter_list|<
 name|T
@@ -1956,11 +1956,6 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|asList ( Predicate<? super T> first, Predicate<? super T> second)
 specifier|private
 specifier|static
@@ -1995,6 +1990,7 @@ argument_list|>
 name|second
 parameter_list|)
 block|{
+comment|// TODO(kevinb): understand why we still get a warning despite @SafeVarargs!
 return|return
 name|Arrays
 operator|.

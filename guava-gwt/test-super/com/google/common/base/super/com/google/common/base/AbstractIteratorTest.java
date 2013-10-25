@@ -66,12 +66,6 @@ end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
-comment|// No serialization is used in this test
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -658,7 +652,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// not really safe, but that's the point
+comment|// intentionally unsafe for test
 name|void
 name|throwIt
 parameter_list|(

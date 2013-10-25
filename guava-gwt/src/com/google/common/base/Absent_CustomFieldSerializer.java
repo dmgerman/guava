@@ -78,7 +78,7 @@ specifier|public
 class|class
 name|Absent_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, Absent instance)
+DECL|method|deserialize (SerializationStreamReader reader, Absent<?> instance)
 specifier|public
 specifier|static
 name|void
@@ -88,6 +88,9 @@ name|SerializationStreamReader
 name|reader
 parameter_list|,
 name|Absent
+argument_list|<
+name|?
+argument_list|>
 name|instance
 parameter_list|)
 block|{}
@@ -95,6 +98,9 @@ DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|Absent
+argument_list|<
+name|?
+argument_list|>
 name|instantiate
 parameter_list|(
 name|SerializationStreamReader
@@ -107,7 +113,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, Absent instance)
+DECL|method|serialize (SerializationStreamWriter writer, Absent<?> instance)
 specifier|public
 specifier|static
 name|void
@@ -117,6 +123,9 @@ name|SerializationStreamWriter
 name|writer
 parameter_list|,
 name|Absent
+argument_list|<
+name|?
+argument_list|>
 name|instance
 parameter_list|)
 block|{}

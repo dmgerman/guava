@@ -197,6 +197,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the identity function.    */
+comment|// implementation is "fully variant"; E has become a "pass-through" type
 annotation|@
 name|SuppressWarnings
 argument_list|(

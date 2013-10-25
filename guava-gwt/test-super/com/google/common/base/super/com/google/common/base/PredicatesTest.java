@@ -725,6 +725,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_applyNoArgs ()
 specifier|public
 name|void
@@ -745,6 +746,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_equalityNoArgs ()
 specifier|public
 name|void
@@ -795,6 +797,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_applyOneArg ()
 specifier|public
 name|void
@@ -818,6 +821,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_equalityOneArg ()
 specifier|public
 name|void
@@ -948,6 +952,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_equalityBinary ()
 specifier|public
 name|void
@@ -1022,6 +1027,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_applyTernary ()
 specifier|public
 name|void
@@ -1093,6 +1099,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_equalityTernary ()
 specifier|public
 name|void
@@ -1179,6 +1186,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_applyIterable ()
 specifier|public
 name|void
@@ -1266,6 +1274,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_equalityIterable ()
 specifier|public
 name|void
@@ -1349,6 +1358,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testAnd_arrayDefensivelyCopied ()
 specifier|public
 name|void
@@ -1582,6 +1592,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_applyNoArgs ()
 specifier|public
 name|void
@@ -1602,6 +1613,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_equalityNoArgs ()
 specifier|public
 name|void
@@ -1652,6 +1664,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_applyOneArg ()
 specifier|public
 name|void
@@ -1684,6 +1697,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_equalityOneArg ()
 specifier|public
 name|void
@@ -1827,6 +1841,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_equalityBinary ()
 specifier|public
 name|void
@@ -1901,6 +1916,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_applyTernary ()
 specifier|public
 name|void
@@ -1972,6 +1988,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_equalityTernary ()
 specifier|public
 name|void
@@ -2054,6 +2071,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_applyIterable ()
 specifier|public
 name|void
@@ -2142,6 +2160,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_equalityIterable ()
 specifier|public
 name|void
@@ -2225,6 +2244,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+comment|// varargs
 DECL|method|testOr_arrayDefensivelyCopied ()
 specifier|public
 name|void
@@ -3167,6 +3187,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
+comment|// compilation test
 DECL|method|testIn_compilesWithExplicitSupertype ()
 specifier|public
 name|void

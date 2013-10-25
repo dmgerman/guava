@@ -121,12 +121,6 @@ comment|/**  * Unit test for {@link Throwables}.  *  * @author Kevin Bourrillion
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
-comment|// this warning is silly for exceptions in tests
 DECL|class|ThrowablesTest
 specifier|public
 class|class
@@ -1744,12 +1738,6 @@ name|void
 name|noneDeclared
 parameter_list|()
 block|{}
-comment|/*      * Subclasses of Sample will define methods with these signatures that throw      * these exceptions, so we must declare them in the throws clause here.      * Eclipse doesn't think being thrown from a subclass's non-public,      * non-protected method with the same signature counts as being "used."      */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 DECL|method|oneDeclared ()
 name|void
 name|oneDeclared
@@ -1757,11 +1745,6 @@ parameter_list|()
 throws|throws
 name|SomeCheckedException
 block|{}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 DECL|method|twoDeclared ()
 name|void
 name|twoDeclared

@@ -124,11 +124,6 @@ implements|implements
 name|Serializable
 block|{
 comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|absent ()
 specifier|public
 specifier|static
@@ -143,15 +138,10 @@ name|absent
 parameter_list|()
 block|{
 return|return
-operator|(
-name|Optional
-argument_list|<
-name|T
-argument_list|>
-operator|)
 name|Absent
 operator|.
-name|INSTANCE
+name|withType
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns an {@code Optional} instance containing the given non-null reference.    */

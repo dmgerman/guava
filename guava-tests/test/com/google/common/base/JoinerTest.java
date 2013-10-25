@@ -2145,6 +2145,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"ReturnValueIgnored"
 argument_list|)
+comment|// testing for exception
 DECL|method|test_skipNulls_onMap ()
 specifier|public
 name|void

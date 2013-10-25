@@ -1550,6 +1550,12 @@ argument_list|)
 return|;
 block|}
 comment|/*    * The following tests demonstrate the shortcomings of or() and test that the casting workaround    * mentioned in the method Javadoc does in fact compile.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// compilation test
 DECL|method|testSampleCodeError1 ()
 specifier|public
 name|void
@@ -1567,6 +1573,12 @@ argument_list|()
 decl_stmt|;
 comment|// Number value = optionalInt.or(0.5); // error
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// compilation test
 DECL|method|testSampleCodeError2 ()
 specifier|public
 name|void
@@ -1602,9 +1614,9 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"unchecked"
+literal|"unused"
 argument_list|)
-comment|// safe covariant cast
+comment|// compilation test
 DECL|method|testSampleCodeFine1 ()
 specifier|public
 name|void
@@ -1617,11 +1629,15 @@ name|Number
 argument_list|>
 name|optionalInt
 init|=
-operator|(
 name|Optional
+operator|.
+name|of
+argument_list|(
+operator|(
+name|Number
 operator|)
-name|getSomeOptionalInt
-argument_list|()
+literal|1
+argument_list|)
 decl_stmt|;
 name|Number
 name|value
@@ -1638,9 +1654,9 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"unchecked"
+literal|"unused"
 argument_list|)
-comment|// safe covariant cast
+comment|// compilation test
 DECL|method|testSampleCodeFine2 ()
 specifier|public
 name|void
@@ -1658,6 +1674,13 @@ init|=
 name|getSomeNumbers
 argument_list|()
 decl_stmt|;
+comment|// Sadly, the following is what users will have to do in some circumstances.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// safe covariant cast
 name|Optional
 argument_list|<
 name|Number

@@ -388,7 +388,6 @@ return|return
 literal|true
 return|;
 block|}
-elseif|else
 if|if
 condition|(
 name|obj
@@ -410,7 +409,22 @@ argument_list|>
 operator|)
 name|obj
 decl_stmt|;
-comment|/*          * We cast to Equivalence<Object> here because we can't check the type of the reference held          * by the other wrapper.  But, by checking that the Equivalences are equal, we know that          * whatever type it is, it is assignable to the type handled by this wrapper's equivalence.          */
+comment|// note: not necessarily a Wrapper<T>
+if|if
+condition|(
+name|this
+operator|.
+name|equivalence
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|equivalence
+argument_list|)
+condition|)
+block|{
+comment|/*            * We'll accept that as sufficient "proof" that either equivalence should be able to            * handle either reference, so it's safe to circumvent compile-time type checking.            */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -435,15 +449,6 @@ decl_stmt|;
 return|return
 name|equivalence
 operator|.
-name|equals
-argument_list|(
-name|that
-operator|.
-name|equivalence
-argument_list|)
-operator|&&
-name|equivalence
-operator|.
 name|equivalent
 argument_list|(
 name|this
@@ -456,12 +461,10 @@ name|reference
 argument_list|)
 return|;
 block|}
-else|else
-block|{
+block|}
 return|return
 literal|false
 return|;
-block|}
 block|}
 comment|/**      * Returns the result of {@link Equivalence#hash(Object)} applied to the wrapped reference.      */
 DECL|method|hashCode ()

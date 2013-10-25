@@ -95,6 +95,7 @@ name|DEFAULTS
 decl_stmt|;
 static|static
 block|{
+comment|// Only add to this map via put(Map, Class<T>, T)
 name|Map
 argument_list|<
 name|Class
@@ -263,11 +264,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the default value of {@code type} as defined by JLS --- {@code 0} for numbers, {@code    * false} for {@code boolean} and {@code '\0'} for {@code char}. For non-primitive types and    * {@code void}, null is returned.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|defaultValue (Class<T> type)
 specifier|public
 specifier|static
@@ -284,7 +280,16 @@ argument_list|>
 name|type
 parameter_list|)
 block|{
-return|return
+comment|// Primitives.wrap(type).cast(...) would avoid the warning, but we can't use that from here
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// the put method enforces this key-value relationship
+name|T
+name|t
+init|=
 operator|(
 name|T
 operator|)
@@ -297,6 +302,9 @@ argument_list|(
 name|type
 argument_list|)
 argument_list|)
+decl_stmt|;
+return|return
+name|t
 return|;
 block|}
 block|}

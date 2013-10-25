@@ -57,12 +57,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-comment|// None of these classes are instantiated, let alone serialized:
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"serial"
-argument_list|)
 DECL|class|GwtSerializationDependencies
 specifier|final
 class|class

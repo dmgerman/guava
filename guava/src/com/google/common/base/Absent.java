@@ -87,22 +87,59 @@ DECL|class|Absent
 specifier|final
 class|class
 name|Absent
+parameter_list|<
+name|T
+parameter_list|>
 extends|extends
 name|Optional
 argument_list|<
-name|Object
+name|T
 argument_list|>
 block|{
 DECL|field|INSTANCE
 specifier|static
 specifier|final
 name|Absent
+argument_list|<
+name|Object
+argument_list|>
 name|INSTANCE
 init|=
 operator|new
 name|Absent
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// implementation is "fully variant"
+DECL|method|withType ()
+specifier|static
+parameter_list|<
+name|T
+parameter_list|>
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|withType
+parameter_list|()
+block|{
+return|return
+operator|(
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+operator|)
+name|INSTANCE
+return|;
+block|}
 DECL|method|Absent ()
 specifier|private
 name|Absent
@@ -124,7 +161,7 @@ DECL|method|get ()
 annotation|@
 name|Override
 specifier|public
-name|Object
+name|T
 name|get
 parameter_list|()
 block|{
@@ -136,14 +173,14 @@ literal|"Optional.get() cannot be called on an absent value"
 argument_list|)
 throw|;
 block|}
-DECL|method|or (Object defaultValue)
+DECL|method|or (T defaultValue)
 annotation|@
 name|Override
 specifier|public
-name|Object
+name|T
 name|or
 parameter_list|(
-name|Object
+name|T
 name|defaultValue
 parameter_list|)
 block|{
@@ -162,19 +199,21 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// safe covariant cast
-DECL|method|or (Optional<?> secondChoice)
+DECL|method|or (Optional<? extends T> secondChoice)
 annotation|@
 name|Override
 specifier|public
 name|Optional
 argument_list|<
-name|Object
+name|T
 argument_list|>
 name|or
 parameter_list|(
 name|Optional
 argument_list|<
 name|?
+extends|extends
+name|T
 argument_list|>
 name|secondChoice
 parameter_list|)
@@ -182,6 +221,9 @@ block|{
 return|return
 operator|(
 name|Optional
+argument_list|<
+name|T
+argument_list|>
 operator|)
 name|checkNotNull
 argument_list|(
@@ -189,16 +231,18 @@ name|secondChoice
 argument_list|)
 return|;
 block|}
-DECL|method|or (Supplier<?> supplier)
+DECL|method|or (Supplier<? extends T> supplier)
 annotation|@
 name|Override
 specifier|public
-name|Object
+name|T
 name|or
 parameter_list|(
 name|Supplier
 argument_list|<
 name|?
+extends|extends
+name|T
 argument_list|>
 name|supplier
 parameter_list|)
@@ -221,7 +265,7 @@ name|Override
 annotation|@
 name|Nullable
 specifier|public
-name|Object
+name|T
 name|orNull
 parameter_list|()
 block|{
@@ -235,7 +279,7 @@ name|Override
 specifier|public
 name|Set
 argument_list|<
-name|Object
+name|T
 argument_list|>
 name|asSet
 parameter_list|()
@@ -247,7 +291,7 @@ name|emptySet
 argument_list|()
 return|;
 block|}
-DECL|method|transform (Function<Object, V> function)
+DECL|method|transform (Function<? super T, V> function)
 annotation|@
 name|Override
 specifier|public
@@ -262,7 +306,9 @@ name|transform
 parameter_list|(
 name|Function
 argument_list|<
-name|Object
+name|?
+super|super
+name|T
 argument_list|,
 name|V
 argument_list|>

@@ -256,11 +256,6 @@ name|boolean
 name|threadStarted
 decl_stmt|;
 comment|/**    * Constructs a new queue.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|FinalizableReferenceQueue ()
 specifier|public
 name|FinalizableReferenceQueue

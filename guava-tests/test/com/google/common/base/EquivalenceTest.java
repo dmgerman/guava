@@ -164,7 +164,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// Iterable<String>...
+comment|// varargs
 DECL|method|testPairwiseEquivalent ()
 specifier|public
 name|void

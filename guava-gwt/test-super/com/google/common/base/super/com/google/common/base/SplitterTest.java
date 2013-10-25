@@ -3051,6 +3051,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"ReturnValueIgnored"
 argument_list|)
+comment|// testing for exception
 DECL|method|testInvalidZeroLimit ()
 specifier|public
 name|void
@@ -3696,6 +3697,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"ReturnValueIgnored"
 argument_list|)
+comment|// testing for exception
 DECL|method|testMapSplitter_emptySeparator ()
 specifier|public
 name|void
