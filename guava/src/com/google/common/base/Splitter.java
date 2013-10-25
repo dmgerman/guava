@@ -470,7 +470,7 @@ name|start
 parameter_list|)
 block|{
 name|int
-name|delimeterLength
+name|separatorLength
 init|=
 name|separator
 operator|.
@@ -493,7 +493,7 @@ operator|.
 name|length
 argument_list|()
 operator|-
-name|delimeterLength
+name|separatorLength
 init|;
 name|p
 operator|<=
@@ -512,7 +512,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|delimeterLength
+name|separatorLength
 condition|;
 name|i
 operator|++
