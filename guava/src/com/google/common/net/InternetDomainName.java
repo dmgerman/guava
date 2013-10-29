@@ -183,7 +183,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable well-formed internet domain name, such as {@code com} or {@code  * foo.co.uk}. Only syntactic analysis is performed; no DNS lookups or other  * network interactions take place. Thus there is no guarantee that the domain  * actually exists on the internet.  *  *<p>One common use of this class is to determine whether a given string is  * likely to represent an addressable domain on the web -- that is, for a  * candidate string {@code "xxx"}, might browsing to {@code "http://xxx/"}  * result in a webpage being displayed? In the past, this test was frequently  * done by determining whether the domain ended with a {@linkplain  * #isPublicSuffix() public suffix} but was not itself a public suffix. However,  * this test is no longer accurate. There are many domains which are both public  * suffixes and addressable as hosts; {@code "uk.com"} is one example. As a  * result, the only useful test to determine if a domain is a plausible web host  * is {@link #hasPublicSuffix()}. This will return {@code true} for many domains  * which (currently) are not hosts, such as {@code "com"}, but given that any  * public suffix may become a host without warning, it is better to err on the  * side of permissiveness and thus avoid spurious rejection of valid sites.  *  *<p>During construction, names are normalized in two ways:  *<ol>  *<li>ASCII uppercase characters are converted to lowercase.  *<li>Unicode dot separators other than the ASCII period ({@code '.'}) are  * converted to the ASCII period.  *</ol>  *<p>The normalized values will be returned from {@link #name()} and  * {@link #parts()}, and will be reflected in the result of  * {@link #equals(Object)}.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * Internationalized domain names</a> such as {@code ç½ç».cn} are supported, as  * are the equivalent<a  * href="http://en.wikipedia.org/wiki/Internationalized_domain_name">IDNA  * Punycode-encoded</a> versions.  *  * @author Craig Berry  * @since 5.0  */
+comment|/**  * An immutable well-formed internet domain name, such as {@code com} or {@code  * foo.co.uk}. Only syntactic analysis is performed; no DNS lookups or other  * network interactions take place. Thus there is no guarantee that the domain  * actually exists on the internet.  *  *<p>One common use of this class is to determine whether a given string is  * likely to represent an addressable domain on the web -- that is, for a  * candidate string {@code "xxx"}, might browsing to {@code "http://xxx/"}  * result in a webpage being displayed? In the past, this test was frequently  * done by determining whether the domain ended with a {@linkplain  * #isPublicSuffix() public suffix} but was not itself a public suffix. However,  * this test is no longer accurate. There are many domains which are both public  * suffixes and addressable as hosts; {@code "uk.com"} is one example. As a  * result, the only useful test to determine if a domain is a plausible web host  * is {@link #hasPublicSuffix()}. This will return {@code true} for many domains  * which (currently) are not hosts, such as {@code "com"}, but given that any  * public suffix may become a host without warning, it is better to err on the  * side of permissiveness and thus avoid spurious rejection of valid sites.  *  *<p>During construction, names are normalized in two ways:  *<ol>  *<li>ASCII uppercase characters are converted to lowercase.  *<li>Unicode dot separators other than the ASCII period ({@code '.'}) are  * converted to the ASCII period.  *</ol>  *<p>The normalized values will be returned from {@link #toString()} and  * {@link #parts()}, and will be reflected in the result of  * {@link #equals(Object)}.  *  *<p><a href="http://en.wikipedia.org/wiki/Internationalized_domain_name">  * Internationalized domain names</a> such as {@code ç½ç».cn} are supported, as  * are the equivalent<a  * href="http://en.wikipedia.org/wiki/Internationalized_domain_name">IDNA  * Punycode-encoded</a> versions.  *  * @author Craig Berry  * @since 5.0  */
 end_comment
 
 begin_class
@@ -539,26 +539,6 @@ return|return
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * A deprecated synonym for {@link #from(String)}.    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValid}    * @since 8.0 (previously named {@code from})    * @deprecated Use {@link #from(String)}    */
-annotation|@
-name|Deprecated
-DECL|method|fromLenient (String domain)
-specifier|public
-specifier|static
-name|InternetDomainName
-name|fromLenient
-parameter_list|(
-name|String
-name|domain
-parameter_list|)
-block|{
-return|return
-name|from
-argument_list|(
-name|domain
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit.    *</ul>    *    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValid}    * @since 10.0 (previously named {@code fromLenient})    */
 DECL|method|from (String domain)
 specifier|public
@@ -830,20 +810,6 @@ return|;
 block|}
 return|return
 literal|true
-return|;
-block|}
-comment|/**    * A deprecated synonym for {@link #toString()}.    *    * @deprecated Use {@link #toString()}    */
-annotation|@
-name|Deprecated
-DECL|method|name ()
-specifier|public
-name|String
-name|name
-parameter_list|()
-block|{
-return|return
-name|toString
-argument_list|()
 return|;
 block|}
 comment|/**    * Returns the individual components of this domain name, normalized to all    * lower case. For example, for the domain name {@code mail.google.com}, this    * method returns the list {@code ["mail", "google", "com"]}.    */

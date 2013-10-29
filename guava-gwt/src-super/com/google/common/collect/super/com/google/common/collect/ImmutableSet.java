@@ -450,33 +450,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** @deprecated */
-DECL|method|of (E[] elements)
-annotation|@
-name|Deprecated
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
-name|of
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-return|return
-name|copyOf
-argument_list|(
-name|elements
-argument_list|)
-return|;
-block|}
 DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
