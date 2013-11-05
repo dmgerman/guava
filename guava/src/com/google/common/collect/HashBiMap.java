@@ -44,6 +44,22 @@ name|collect
 operator|.
 name|CollectPreconditions
 operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
 name|checkRemove
 import|;
 end_import
@@ -527,15 +543,11 @@ name|int
 name|expectedSize
 parameter_list|)
 block|{
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|expectedSize
-operator|>=
-literal|0
 argument_list|,
-literal|"expectedSize must be>= 0 but was %s"
-argument_list|,
-name|expectedSize
+literal|"expectedSize"
 argument_list|)
 expr_stmt|;
 name|int

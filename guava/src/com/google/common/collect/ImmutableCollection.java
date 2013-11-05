@@ -28,7 +28,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkArgument
+name|checkNotNull
 import|;
 end_import
 
@@ -40,11 +40,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkNotNull
+name|checkNonnegative
 import|;
 end_import
 
@@ -894,15 +894,11 @@ name|int
 name|initialCapacity
 parameter_list|)
 block|{
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|initialCapacity
-operator|>=
-literal|0
 argument_list|,
-literal|"capacity must be>= 0 but was %s"
-argument_list|,
-name|initialCapacity
+literal|"initialCapacity"
 argument_list|)
 expr_stmt|;
 name|this

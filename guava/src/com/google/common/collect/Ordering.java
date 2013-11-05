@@ -28,7 +28,7 @@ name|base
 operator|.
 name|Preconditions
 operator|.
-name|checkArgument
+name|checkNotNull
 import|;
 end_import
 
@@ -40,11 +40,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkNotNull
+name|checkNonnegative
 import|;
 end_import
 
@@ -1681,15 +1681,11 @@ argument_list|(
 name|elements
 argument_list|)
 expr_stmt|;
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|k
-operator|>=
-literal|0
 argument_list|,
-literal|"k (%s) must be nonnegative"
-argument_list|,
-name|k
+literal|"k"
 argument_list|)
 expr_stmt|;
 if|if

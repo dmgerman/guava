@@ -952,11 +952,11 @@ name|count
 operator|=
 name|count
 expr_stmt|;
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|count
-operator|>=
-literal|0
+argument_list|,
+literal|"count"
 argument_list|)
 expr_stmt|;
 block|}

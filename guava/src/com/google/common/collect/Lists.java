@@ -124,6 +124,22 @@ name|collect
 operator|.
 name|CollectPreconditions
 operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
 name|checkRemove
 import|;
 end_import
@@ -537,11 +553,11 @@ name|int
 name|arraySize
 parameter_list|)
 block|{
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|arraySize
-operator|>=
-literal|0
+argument_list|,
+literal|"arraySize"
 argument_list|)
 expr_stmt|;
 comment|// TODO(kevinb): Figure out the right behavior, and document it
@@ -703,11 +719,11 @@ name|int
 name|initialArraySize
 parameter_list|)
 block|{
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|initialArraySize
-operator|>=
-literal|0
+argument_list|,
+literal|"initialArraySize"
 argument_list|)
 expr_stmt|;
 comment|// for GWT.

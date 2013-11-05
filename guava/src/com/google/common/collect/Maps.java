@@ -113,6 +113,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|CollectPreconditions
+operator|.
+name|checkNonnegative
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1068,11 +1084,11 @@ operator|<
 literal|3
 condition|)
 block|{
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|expectedSize
-operator|>=
-literal|0
+argument_list|,
+literal|"expectedSize"
 argument_list|)
 expr_stmt|;
 return|return

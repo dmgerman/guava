@@ -24,11 +24,11 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|collect
 operator|.
-name|Preconditions
+name|CollectPreconditions
 operator|.
-name|checkArgument
+name|checkNonnegative
 import|;
 end_import
 
@@ -316,11 +316,11 @@ name|expectedKeys
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|checkArgument
+name|checkNonnegative
 argument_list|(
 name|expectedValuesPerKey
-operator|>=
-literal|0
+argument_list|,
+literal|"expectedValuesPerKey"
 argument_list|)
 expr_stmt|;
 name|this
