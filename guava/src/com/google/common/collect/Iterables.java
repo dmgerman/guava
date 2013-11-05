@@ -3292,7 +3292,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterator will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
+comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterable will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
 DECL|method|limit ( final Iterable<T> iterable, final int limitSize)
 specifier|public
 specifier|static
