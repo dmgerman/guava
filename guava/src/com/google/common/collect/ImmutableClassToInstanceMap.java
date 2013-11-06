@@ -50,6 +50,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -96,6 +106,8 @@ name|ClassToInstanceMap
 argument_list|<
 name|B
 argument_list|>
+implements|,
+name|Serializable
 block|{
 comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@link Builder} constructor.    */
 DECL|method|builder ()
