@@ -190,6 +190,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"StringBuilder.appendCodePoint()"
+argument_list|)
 DECL|method|testEncodedLength_validStrings2 ()
 specifier|public
 name|void
