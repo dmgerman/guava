@@ -190,6 +190,8 @@ literal|32
 condition|)
 block|{
 return|return
+name|Murmur3_32Holder
+operator|.
 name|GOOD_FAST_HASH_FUNCTION_32
 return|;
 block|}
@@ -201,6 +203,8 @@ literal|128
 condition|)
 block|{
 return|return
+name|Murmur3_128Holder
+operator|.
 name|GOOD_FAST_HASH_FUNCTION_128
 return|;
 block|}
@@ -231,6 +235,8 @@ index|[
 literal|0
 index|]
 operator|=
+name|Murmur3_128Holder
+operator|.
 name|GOOD_FAST_HASH_FUNCTION_128
 expr_stmt|;
 name|int
@@ -293,32 +299,6 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|/** Returned by {@link #goodFastHash} when {@code minimumBits<= 32}. */
-DECL|field|GOOD_FAST_HASH_FUNCTION_32
-specifier|private
-specifier|static
-specifier|final
-name|HashFunction
-name|GOOD_FAST_HASH_FUNCTION_32
-init|=
-name|murmur3_32
-argument_list|(
-name|GOOD_FAST_HASH_SEED
-argument_list|)
-decl_stmt|;
-comment|/** Returned by {@link #goodFastHash} when {@code 32< minimumBits<= 128}. */
-DECL|field|GOOD_FAST_HASH_FUNCTION_128
-specifier|private
-specifier|static
-specifier|final
-name|HashFunction
-name|GOOD_FAST_HASH_FUNCTION_128
-init|=
-name|murmur3_128
-argument_list|(
-name|GOOD_FAST_HASH_SEED
-argument_list|)
-decl_stmt|;
 comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 32-bit murmur3 algorithm, x86 variant</a> (little-endian variant),    * using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x86_32 function (Murmur3A).    */
 DECL|method|murmur3_32 (int seed)
 specifier|public
@@ -347,11 +327,18 @@ name|murmur3_32
 parameter_list|()
 block|{
 return|return
+name|Murmur3_32Holder
+operator|.
 name|MURMUR3_32
 return|;
 block|}
-DECL|field|MURMUR3_32
+DECL|class|Murmur3_32Holder
 specifier|private
+specifier|static
+class|class
+name|Murmur3_32Holder
+block|{
+DECL|field|MURMUR3_32
 specifier|static
 specifier|final
 name|HashFunction
@@ -363,6 +350,19 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/** Returned by {@link #goodFastHash} when {@code minimumBits<= 32}. */
+DECL|field|GOOD_FAST_HASH_FUNCTION_32
+specifier|static
+specifier|final
+name|HashFunction
+name|GOOD_FAST_HASH_FUNCTION_32
+init|=
+name|murmur3_32
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
+decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the    *<a href="http://smhasher.googlecode.com/svn/trunk/MurmurHash3.cpp">    * 128-bit murmur3 algorithm, x64 variant</a> (little-endian variant),    * using the given seed value.    *    *<p>The exact C++ equivalent is the MurmurHash3_x64_128 function (Murmur3F).    */
 DECL|method|murmur3_128 (int seed)
 specifier|public
@@ -391,11 +391,18 @@ name|murmur3_128
 parameter_list|()
 block|{
 return|return
+name|Murmur3_128Holder
+operator|.
 name|MURMUR3_128
 return|;
 block|}
-DECL|field|MURMUR3_128
+DECL|class|Murmur3_128Holder
 specifier|private
+specifier|static
+class|class
+name|Murmur3_128Holder
+block|{
+DECL|field|MURMUR3_128
 specifier|static
 specifier|final
 name|HashFunction
@@ -407,6 +414,19 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/** Returned by {@link #goodFastHash} when {@code 32< minimumBits<= 128}. */
+DECL|field|GOOD_FAST_HASH_FUNCTION_128
+specifier|static
+specifier|final
+name|HashFunction
+name|GOOD_FAST_HASH_FUNCTION_128
+init|=
+name|murmur3_128
+argument_list|(
+name|GOOD_FAST_HASH_SEED
+argument_list|)
+decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the    *<a href="https://131002.net/siphash/">64-bit SipHash-2-4 algorithm</a>    * using a seed value of {@code k = 00 01 02 ...}.    *    * @since 15.0    */
 DECL|method|sipHash24 ()
 specifier|public
@@ -416,11 +436,18 @@ name|sipHash24
 parameter_list|()
 block|{
 return|return
+name|SipHash24Holder
+operator|.
 name|SIP_HASH_24
 return|;
 block|}
-DECL|field|SIP_HASH_24
+DECL|class|SipHash24Holder
 specifier|private
+specifier|static
+class|class
+name|SipHash24Holder
+block|{
+DECL|field|SIP_HASH_24
 specifier|static
 specifier|final
 name|HashFunction
@@ -438,6 +465,7 @@ argument_list|,
 literal|0x0f0e0d0c0b0a0908L
 argument_list|)
 decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the    *<a href="https://131002.net/siphash/">64-bit SipHash-2-4 algorithm</a>    * using the given seed.    *    * @since 15.0    */
 DECL|method|sipHash24 (long k0, long k1)
 specifier|public
@@ -475,11 +503,18 @@ name|md5
 parameter_list|()
 block|{
 return|return
+name|Md5Holder
+operator|.
 name|MD5
 return|;
 block|}
-DECL|field|MD5
+DECL|class|Md5Holder
 specifier|private
+specifier|static
+class|class
+name|Md5Holder
+block|{
+DECL|field|MD5
 specifier|static
 specifier|final
 name|HashFunction
@@ -493,6 +528,7 @@ argument_list|,
 literal|"Hashing.md5()"
 argument_list|)
 decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits) by delegating to the    * SHA-1 {@link MessageDigest}.    */
 DECL|method|sha1 ()
 specifier|public
@@ -502,11 +538,18 @@ name|sha1
 parameter_list|()
 block|{
 return|return
+name|Sha1Holder
+operator|.
 name|SHA_1
 return|;
 block|}
-DECL|field|SHA_1
+DECL|class|Sha1Holder
 specifier|private
+specifier|static
+class|class
+name|Sha1Holder
+block|{
+DECL|field|SHA_1
 specifier|static
 specifier|final
 name|HashFunction
@@ -520,6 +563,7 @@ argument_list|,
 literal|"Hashing.sha1()"
 argument_list|)
 decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the SHA-256 algorithm (256 hash bits) by delegating to    * the SHA-256 {@link MessageDigest}.    */
 DECL|method|sha256 ()
 specifier|public
@@ -529,11 +573,18 @@ name|sha256
 parameter_list|()
 block|{
 return|return
+name|Sha256Holder
+operator|.
 name|SHA_256
 return|;
 block|}
-DECL|field|SHA_256
+DECL|class|Sha256Holder
 specifier|private
+specifier|static
+class|class
+name|Sha256Holder
+block|{
+DECL|field|SHA_256
 specifier|static
 specifier|final
 name|HashFunction
@@ -547,6 +598,7 @@ argument_list|,
 literal|"Hashing.sha256()"
 argument_list|)
 decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the SHA-512 algorithm (512 hash bits) by delegating to the    * SHA-512 {@link MessageDigest}.    */
 DECL|method|sha512 ()
 specifier|public
@@ -556,11 +608,18 @@ name|sha512
 parameter_list|()
 block|{
 return|return
+name|Sha512Holder
+operator|.
 name|SHA_512
 return|;
 block|}
-DECL|field|SHA_512
+DECL|class|Sha512Holder
 specifier|private
+specifier|static
+class|class
+name|Sha512Holder
+block|{
+DECL|field|SHA_512
 specifier|static
 specifier|final
 name|HashFunction
@@ -574,6 +633,7 @@ argument_list|,
 literal|"Hashing.sha512()"
 argument_list|)
 decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
 DECL|method|crc32 ()
 specifier|public
@@ -583,11 +643,18 @@ name|crc32
 parameter_list|()
 block|{
 return|return
+name|Crc32Holder
+operator|.
 name|CRC_32
 return|;
 block|}
-DECL|field|CRC_32
+DECL|class|Crc32Holder
 specifier|private
+specifier|static
+class|class
+name|Crc32Holder
+block|{
+DECL|field|CRC_32
 specifier|static
 specifier|final
 name|HashFunction
@@ -602,6 +669,7 @@ argument_list|,
 literal|"Hashing.crc32()"
 argument_list|)
 decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the Adler-32 checksum algorithm (32 hash bits) by    * delegating to the {@link Adler32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
 DECL|method|adler32 ()
 specifier|public
@@ -611,11 +679,18 @@ name|adler32
 parameter_list|()
 block|{
 return|return
+name|Adler32Holder
+operator|.
 name|ADLER_32
 return|;
 block|}
-DECL|field|ADLER_32
+DECL|class|Adler32Holder
 specifier|private
+specifier|static
+class|class
+name|Adler32Holder
+block|{
+DECL|field|ADLER_32
 specifier|static
 specifier|final
 name|HashFunction
@@ -630,6 +705,7 @@ argument_list|,
 literal|"Hashing.adler32()"
 argument_list|)
 decl_stmt|;
+block|}
 DECL|method|checksumHashFunction (ChecksumType type, String toString)
 specifier|private
 specifier|static
@@ -738,9 +814,6 @@ name|get
 parameter_list|()
 function_decl|;
 block|}
-comment|// Lazy initialization holder class idiom.
-comment|// TODO(user): Investigate whether we need to still use this idiom now that we have a fallback
-comment|// option for our use of Unsafe.
 comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform    * manner that minimizes the need for remapping as {@code buckets} grows. That is,    * {@code consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">wikipedia    * article on consistent hashing</a> for more information.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public
