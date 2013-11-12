@@ -241,6 +241,20 @@ name|maxSize
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the number of additional elements that this queue can accept without evicting;    * zero if the queue is currently full.    *    * @since 16.0    */
+DECL|method|remainingCapacity ()
+specifier|public
+name|int
+name|remainingCapacity
+parameter_list|()
+block|{
+return|return
+name|maxSize
+operator|-
+name|size
+argument_list|()
+return|;
+block|}
 DECL|method|delegate ()
 annotation|@
 name|Override
@@ -401,7 +415,6 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(user): Do we want to checkNotNull each element in containsAll, removeAll, and retainAll?
-comment|// TODO(user): Do we want to add EvictingQueue#isFull()?
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
