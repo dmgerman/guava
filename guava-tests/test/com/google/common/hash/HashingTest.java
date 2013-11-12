@@ -3183,9 +3183,6 @@ argument_list|(
 literal|"There should be at least 3 entries in KNOWN_HASHES for "
 operator|+
 name|hashFunction
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|KNOWN_HASHES
 operator|.

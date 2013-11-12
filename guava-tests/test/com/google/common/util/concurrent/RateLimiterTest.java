@@ -1840,13 +1840,10 @@ name|assertEquals
 argument_list|(
 name|Arrays
 operator|.
-name|asList
+name|toString
 argument_list|(
 name|events
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|ticker
 operator|.

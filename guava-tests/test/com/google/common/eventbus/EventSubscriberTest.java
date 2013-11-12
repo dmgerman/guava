@@ -564,21 +564,11 @@ name|Object
 name|arg
 parameter_list|)
 block|{
-if|if
-condition|(
-name|methodCalled
-operator|==
-literal|true
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
+name|assertFalse
 argument_list|(
-literal|"Method called more than once."
+name|methodCalled
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|methodCalled
 operator|=
 literal|true

@@ -3679,9 +3679,6 @@ argument_list|(
 literal|"Invalid MinMaxHeap: "
 operator|+
 name|mmHeap
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|mmHeap
 operator|.

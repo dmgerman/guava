@@ -1962,9 +1962,8 @@ literal|false
 decl_stmt|;
 while|while
 condition|(
+operator|!
 name|diff
-operator|==
-literal|false
 condition|)
 block|{
 name|int

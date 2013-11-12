@@ -158,7 +158,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
+name|Collections
 import|;
 end_import
 
@@ -957,16 +957,13 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|innermost
+name|Collections
 operator|.
 name|addAll
 argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
+name|innermost
+argument_list|,
 name|elements
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|TestSet

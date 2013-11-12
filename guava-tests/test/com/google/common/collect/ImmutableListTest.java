@@ -3098,7 +3098,7 @@ name|copyOfIterable
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Check that it's a RegularImmutableList iff it is nonempty:
+comment|// Check that we didn't end up with a RegularImmutableList of size 1.
 name|assertEquals
 argument_list|(
 name|copyOfIterable
@@ -3106,12 +3106,11 @@ operator|.
 name|size
 argument_list|()
 operator|==
-literal|0
+literal|1
 argument_list|,
 name|copyOfIterable
-operator|.
-name|isEmpty
-argument_list|()
+operator|instanceof
+name|SingletonImmutableList
 argument_list|)
 expr_stmt|;
 block|}

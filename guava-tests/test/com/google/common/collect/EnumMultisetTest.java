@@ -696,12 +696,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|Multiset
-argument_list|<
-name|Color
-argument_list|>
-name|ms
-init|=
 name|EnumMultiset
 operator|.
 name|create
@@ -714,7 +708,7 @@ operator|>
 name|of
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -968,14 +962,13 @@ name|Enum
 operator|.
 name|class
 argument_list|,
-name|ImmutableList
+name|EnumSet
 operator|.
-name|copyOf
+name|allOf
 argument_list|(
 name|Color
 operator|.
-name|values
-argument_list|()
+name|class
 argument_list|)
 argument_list|)
 operator|.
@@ -1054,14 +1047,13 @@ name|Iterable
 operator|.
 name|class
 argument_list|,
-name|ImmutableList
+name|EnumSet
 operator|.
-name|copyOf
+name|allOf
 argument_list|(
 name|Color
 operator|.
-name|values
-argument_list|()
+name|class
 argument_list|)
 argument_list|)
 operator|.

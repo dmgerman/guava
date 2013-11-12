@@ -5210,16 +5210,10 @@ block|{
 name|assertEquals
 argument_list|(
 name|actual
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|" should hash like "
 operator|+
 name|expected
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|expected
 operator|.

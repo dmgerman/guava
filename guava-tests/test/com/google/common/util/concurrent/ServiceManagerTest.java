@@ -1766,9 +1766,6 @@ operator|+
 literal|" should contain "
 operator|+
 name|service
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|managerServices
 operator|.

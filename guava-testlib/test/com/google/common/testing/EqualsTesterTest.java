@@ -604,9 +604,6 @@ argument_list|(
 name|e
 argument_list|,
 name|reference
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|" [group 1, item 1]"
 argument_list|)
@@ -616,9 +613,6 @@ argument_list|(
 name|e
 argument_list|,
 name|notEqualObject1
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|" [group 1, item 2]"
 argument_list|)

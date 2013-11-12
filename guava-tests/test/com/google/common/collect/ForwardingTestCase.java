@@ -745,9 +745,6 @@ argument_list|(
 name|cause
 argument_list|,
 name|method
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|" with args: "
 operator|+

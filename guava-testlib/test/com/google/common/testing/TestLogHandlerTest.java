@@ -201,11 +201,10 @@ operator|.
 name|getStoredLogRecords
 argument_list|()
 operator|.
-name|iterator
-argument_list|()
-operator|.
-name|next
-argument_list|()
+name|get
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -274,7 +273,7 @@ expr_stmt|;
 for|for
 control|(
 name|LogRecord
-name|record
+name|unused
 range|:
 name|handler
 operator|.
