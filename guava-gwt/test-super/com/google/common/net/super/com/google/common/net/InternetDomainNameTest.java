@@ -350,9 +350,9 @@ literal|"com"
 argument_list|,
 literal|"co.uk"
 argument_list|,
-literal|"foo.ar"
+literal|"foo.bd"
 argument_list|,
-literal|"xxxxxx.ar"
+literal|"xxxxxx.bd"
 argument_list|,
 literal|"org.mK"
 argument_list|,
