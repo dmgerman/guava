@@ -3299,7 +3299,7 @@ name|class
 argument_list|,
 name|HashCode
 operator|.
-name|fromInt
+name|fromLong
 argument_list|(
 literal|0
 argument_list|)
