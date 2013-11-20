@@ -129,12 +129,40 @@ name|Monitor
 block|{
 comment|// TODO(user): Use raw LockSupport or AbstractQueuedSynchronizer instead of ReentrantLock.
 comment|// TODO(user): "Port" jsr166 tests for ReentrantLock.
+comment|//
 comment|// TODO(user): Change API to make it impossible to use a Guard with the "wrong" monitor,
 comment|//    by making the monitor implicit, and to eliminate other sources of IMSE.
 comment|//    Imagine:
 comment|//    guard.lock();
 comment|//    try { /* monitor locked and guard satisfied here */ }
 comment|//    finally { guard.unlock(); }
+comment|// Here are Justin's design notes about this:
+comment|//
+comment|// This idea has come up from time to time, and I think one of my
+comment|// earlier versions of Monitor even did something like this. I ended
+comment|// up strongly favoring the current interface.
+comment|//
+comment|// I probably can't remember all the reasons (it's possible you
+comment|// could find them in the code review archives), but here are a few:
+comment|//
+comment|// 1. What about leaving/unlocking? Are you going to do
+comment|//    guard.enter() paired with monitor.leave()? That might get
+comment|//    confusing. It's nice for the finally block to look as close as
+comment|//    possible to the thing right before the try. You could have
+comment|//    guard.leave(), but that's a little odd as well because the
+comment|//    guard doesn't have anything to do with leaving. You can't
+comment|//    really enforce that the guard you're leaving is the same one
+comment|//    you entered with, and it doesn't actually matter.
+comment|//
+comment|// 2. Since you can enter the monitor without a guard at all, some
+comment|//    places you'll have monitor.enter()/monitor.leave() and other
+comment|//    places you'll have guard.enter()/guard.leave() even though
+comment|//    it's the same lock being acquired underneath. Always using
+comment|//    monitor.enterXXX()/monitor.leave() will make it really clear
+comment|//    which lock is held at any point in the code.
+comment|//
+comment|// 3. I think "enterWhen(notEmpty)" reads better than "notEmpty.enter()".
+comment|//
 comment|// TODO(user): Implement ReentrantLock features:
 comment|//    - toString() method
 comment|//    - getOwner() method
