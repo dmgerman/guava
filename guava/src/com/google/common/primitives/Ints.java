@@ -303,17 +303,24 @@ name|int
 operator|)
 name|value
 decl_stmt|;
-name|checkArgument
-argument_list|(
+if|if
+condition|(
 name|result
-operator|==
+operator|!=
 name|value
-argument_list|,
-literal|"Out of range: %s"
-argument_list|,
+condition|)
+block|{
+comment|// don't use checkArgument here, to avoid boxing
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Out of range: "
+operator|+
 name|value
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 return|return
 name|result
 return|;
