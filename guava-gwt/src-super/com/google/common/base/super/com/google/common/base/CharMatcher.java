@@ -500,7 +500,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>.    */
+comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>.    * If you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    */
 DECL|field|DIGIT
 specifier|public
 specifier|static
