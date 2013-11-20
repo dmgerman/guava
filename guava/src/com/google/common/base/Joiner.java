@@ -764,12 +764,6 @@ name|String
 name|nullText
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|nullText
-argument_list|)
-expr_stmt|;
-comment|// weird: just to satisfy NullPointerTester.
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -949,12 +943,6 @@ name|String
 name|nullText
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|nullText
-argument_list|)
-expr_stmt|;
-comment|// weird: just to satisfy NullPointerTester.
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -973,12 +961,6 @@ name|String
 name|kvs
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|kvs
-argument_list|)
-expr_stmt|;
-comment|// weird: just to satisfy NullPointerTester.
 throw|throw
 operator|new
 name|UnsupportedOperationException
@@ -1015,8 +997,8 @@ block|}
 comment|/**    * An object that joins map entries in the same manner as {@code Joiner} joins iterables and    * arrays. Like {@code Joiner}, it is thread-safe and immutable.    *    *<p>In addition to operating on {@code Map} instances, {@code MapJoiner} can operate on {@code    * Multimap} entries in two distinct modes:    *    *<ul>    *<li>To output a separate entry for each key-value pair, pass {@code multimap.entries()} to a    *     {@code MapJoiner} method that accepts entries as input, and receive output of the form    *     {@code key1=A&key1=B&key2=C}.    *<li>To output a single entry for each key, pass {@code multimap.asMap()} to a {@code MapJoiner}    *     method that accepts a map as input, and receive output of the form {@code    *     key1=[A, B]&key2=C}.    *</ul>    *    * @since 2.0 (imported from Google Collections Library)    */
 DECL|class|MapJoiner
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|MapJoiner
 block|{
