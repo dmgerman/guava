@@ -131,7 +131,7 @@ implements|implements
 name|TearDownAccepter
 block|{
 DECL|field|logger
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|Logger
@@ -268,8 +268,6 @@ condition|(
 name|suppressThrows
 condition|)
 block|{
-name|TearDownStack
-operator|.
 name|logger
 operator|.
 name|log
@@ -278,12 +276,7 @@ name|Level
 operator|.
 name|INFO
 argument_list|,
-literal|"exception thrown during tearDown: "
-operator|+
-name|t
-operator|.
-name|getMessage
-argument_list|()
+literal|"exception thrown during tearDown"
 argument_list|,
 name|t
 argument_list|)
