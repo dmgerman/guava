@@ -17,6 +17,52 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -566,7 +612,7 @@ return|return
 name|string
 return|;
 block|}
-comment|/**    * Returns a copy of the input character sequence in which all {@linkplain #isUpperCase(char)    * uppercase ASCII characters} have been converted to lowercase. All other characters are copied    * without modification.    *     * @since 14.0    */
+comment|/**    * Returns a copy of the input character sequence in which all {@linkplain #isUpperCase(char)    * uppercase ASCII characters} have been converted to lowercase. All other characters are copied    * without modification.    *    * @since 14.0    */
 DECL|method|toLowerCase (CharSequence chars)
 specifier|public
 specifier|static
@@ -791,7 +837,7 @@ return|return
 name|string
 return|;
 block|}
-comment|/**    * Returns a copy of the input character sequence in which all {@linkplain #isLowerCase(char)    * lowercase ASCII characters} have been converted to uppercase. All other characters are copied    * without modification.    *     * @since 14.0    */
+comment|/**    * Returns a copy of the input character sequence in which all {@linkplain #isLowerCase(char)    * lowercase ASCII characters} have been converted to uppercase. All other characters are copied    * without modification.    *    * @since 14.0    */
 DECL|method|toUpperCase (CharSequence chars)
 specifier|public
 specifier|static
@@ -951,6 +997,135 @@ name|c
 operator|<=
 literal|'Z'
 operator|)
+return|;
+block|}
+comment|/**    * Truncates the given character sequence to the given maximum length. If the length of the    * sequence is not greater than {@code maxLength}, the sequence will be returned as a string    * with no changes. Otherwise, the returned string will be exactly {@code maxLength} chars in    * length and will end with "..." as an indicator that it was truncated.    *    *<p>Examples:    *    *<pre>    {@code    *   Ascii.truncate("foobar", 7); // returns "foobar"    *   Ascii.truncate("foobar", 5); // returns "fo..." }</pre>    *    *<p><b>Note:</b> This method<i>may</i> work with certain non-ASCII text but is not safe for    * use with Unicode text in general for many reasons, including but not limited to:    *    *<ul>    *<li>it may split surrogate pairs</li>    *<li>it may split characters and combining characters</li>    *<li>it does not consider word boundaries</li>    *<li>if truncating for display to users, there are other considerations that must be taken    *   into account</li>    *</ul>    *    * @throws IllegalArgumentException if {@code maxLength} is less than 3    * @since 16.0    */
+annotation|@
+name|Beta
+DECL|method|truncate (CharSequence seq, int maxLength)
+specifier|public
+specifier|static
+name|String
+name|truncate
+parameter_list|(
+name|CharSequence
+name|seq
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|)
+block|{
+return|return
+name|truncate
+argument_list|(
+name|seq
+argument_list|,
+name|maxLength
+argument_list|,
+literal|"..."
+argument_list|)
+return|;
+block|}
+comment|/**    * Truncates the given character sequence to the given maximum length. If the length of the    * sequence is not greater than {@code maxLength}, the sequence will be returned as a string    * with no changes. Otherwise, the returned string will be exactly {@code maxLength} chars in    * length and will end with the given {@code truncationIndicator} string.    *    *<p>Examples:    *    *<pre>    {@code    *   Ascii.truncate("foobar", 7, "..."); // returns "foobar"    *   Ascii.truncate("foobar", 5, "..."); // returns "fo..." }</pre>    *    *<p><b>Note:</b> This method<i>may</i> work with certain non-ASCII text but is not safe for    * use with Unicode text in general for many reasons, including but not limited to:    *    *<ul>    *<li>it may split surrogate pairs</li>    *<li>it may split characters and combining characters</li>    *<li>it does not consider word boundaries</li>    *<li>if truncating for display to users, there are other considerations that must be taken    *   into account</li>    *</ul>    *    *<p>Using non-ASCII characters for the truncation indicator is not a problem, however.    *    * @throws IllegalArgumentException if {@code maxLength} is less than the length of    *     {@code truncationIndicator}    * @since 16.0    */
+annotation|@
+name|Beta
+DECL|method|truncate (CharSequence seq, int maxLength, String truncationIndicator)
+specifier|public
+specifier|static
+name|String
+name|truncate
+parameter_list|(
+name|CharSequence
+name|seq
+parameter_list|,
+name|int
+name|maxLength
+parameter_list|,
+name|String
+name|truncationIndicator
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+comment|// length to truncate the sequence to, not including the truncation indicator
+name|int
+name|truncationLength
+init|=
+name|maxLength
+operator|-
+name|truncationIndicator
+operator|.
+name|length
+argument_list|()
+decl_stmt|;
+name|checkArgument
+argument_list|(
+name|truncationLength
+operator|>=
+literal|0
+argument_list|,
+literal|"maxLength (%s) must be>= length of the truncation indicator (%s)"
+argument_list|,
+name|maxLength
+argument_list|,
+name|truncationIndicator
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|seq
+operator|.
+name|length
+argument_list|()
+operator|<=
+name|maxLength
+condition|)
+block|{
+name|String
+name|string
+init|=
+name|seq
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|string
+operator|.
+name|length
+argument_list|()
+operator|<=
+name|maxLength
+condition|)
+block|{
+return|return
+name|string
+return|;
+block|}
+comment|// if the length of the toString() result was> maxLength for some reason, truncate that
+name|seq
+operator|=
+name|string
+expr_stmt|;
+block|}
+return|return
+name|seq
+operator|.
+name|subSequence
+argument_list|(
+literal|0
+argument_list|,
+name|truncationLength
+argument_list|)
+operator|+
+name|truncationIndicator
 return|;
 block|}
 block|}
