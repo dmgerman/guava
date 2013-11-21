@@ -17,16 +17,18 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|annotations
+name|base
 operator|.
-name|Beta
+name|Preconditions
+operator|.
+name|checkNotNull
 import|;
 end_import
 
@@ -38,9 +40,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
+name|Beta
 import|;
 end_import
 
@@ -204,18 +206,14 @@ name|Readable
 name|readable
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
-name|readable
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|readable
 operator|=
+name|checkNotNull
+argument_list|(
 name|readable
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
