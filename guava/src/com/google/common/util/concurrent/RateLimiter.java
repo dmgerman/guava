@@ -492,23 +492,24 @@ operator|/
 name|stableIntervalMicros
 return|;
 block|}
-comment|/**    * Acquires a permit from this {@code RateLimiter}, blocking until the request can be granted.    *    *<p>This method is equivalent to {@code acquire(1)}.    */
+comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    *<p>This method is equivalent to {@code acquire(1)}.    *    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
 DECL|method|acquire ()
 specifier|public
-name|void
+name|double
 name|acquire
 parameter_list|()
 block|{
+return|return
 name|acquire
 argument_list|(
 literal|1
 argument_list|)
-expr_stmt|;
+return|;
 block|}
-comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request be granted.    *    * @param permits the number of permits to acquire    */
+comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    * @param permits the number of permits to acquire    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
 DECL|method|acquire (int permits)
 specifier|public
-name|void
+name|double
 name|acquire
 parameter_list|(
 name|int
@@ -546,6 +547,20 @@ argument_list|(
 name|microsToWait
 argument_list|)
 expr_stmt|;
+return|return
+literal|1.0
+operator|*
+name|microsToWait
+operator|/
+name|TimeUnit
+operator|.
+name|SECONDS
+operator|.
+name|toMicros
+argument_list|(
+literal|1L
+argument_list|)
+return|;
 block|}
 comment|/**    * Acquires a permit from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permit would not have been granted    * before the timeout expired.    *    *<p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.    *    * @param timeout the maximum time to wait for the permit    * @param unit the time unit of the timeout argument    * @return {@code true} if the permit was acquired, {@code false} otherwise    */
 DECL|method|tryAcquire (long timeout, TimeUnit unit)
