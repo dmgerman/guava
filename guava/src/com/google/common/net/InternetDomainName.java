@@ -492,7 +492,7 @@ name|TldPatterns
 operator|.
 name|EXACT
 operator|.
-name|containsKey
+name|contains
 argument_list|(
 name|ancestorName
 argument_list|)
@@ -510,7 +510,7 @@ name|TldPatterns
 operator|.
 name|EXCLUDED
 operator|.
-name|containsKey
+name|contains
 argument_list|(
 name|ancestorName
 argument_list|)
@@ -1098,7 +1098,7 @@ name|TldPatterns
 operator|.
 name|UNDER
 operator|.
-name|containsKey
+name|contains
 argument_list|(
 name|pieces
 index|[

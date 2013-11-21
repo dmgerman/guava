@@ -54,7 +54,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|ImmutableMap
+name|ImmutableSet
 import|;
 end_import
 
@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parser for a map of reversed domain names stored as a serialized radix tree.  */
+comment|/**  * Parser for a set of reversed domain names stored as a serialized radix tree.  */
 end_comment
 
 begin_class
@@ -107,14 +107,12 @@ argument_list|(
 literal|""
 argument_list|)
 decl_stmt|;
-comment|/**    * Parses a serialized trie representation of a map of reversed TLDs into an immutable map    * of TLDs.    */
+comment|/**    * Parses a serialized trie representation of a set of reversed TLDs into an immutable set    * of TLDs.    */
 DECL|method|parseTrie (CharSequence encoded)
 specifier|static
-name|ImmutableMap
+name|ImmutableSet
 argument_list|<
 name|String
-argument_list|,
-name|TldType
 argument_list|>
 name|parseTrie
 parameter_list|(
@@ -122,17 +120,15 @@ name|CharSequence
 name|encoded
 parameter_list|)
 block|{
-name|ImmutableMap
+name|ImmutableSet
 operator|.
 name|Builder
 argument_list|<
 name|String
-argument_list|,
-name|TldType
 argument_list|>
 name|builder
 init|=
-name|ImmutableMap
+name|ImmutableSet
 operator|.
 name|builder
 argument_list|()
@@ -189,8 +185,8 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this node. Each entry    * of the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
-DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableMap.Builder<String, TldType> builder)
+comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this node. Each entry    * of the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A set builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
+DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableSet.Builder<String> builder)
 specifier|private
 specifier|static
 name|int
@@ -205,13 +201,11 @@ parameter_list|,
 name|CharSequence
 name|encoded
 parameter_list|,
-name|ImmutableMap
+name|ImmutableSet
 operator|.
 name|Builder
 argument_list|<
 name|String
-argument_list|,
-name|TldType
 argument_list|>
 name|builder
 parameter_list|)
@@ -268,14 +262,6 @@ operator|||
 name|c
 operator|==
 literal|'!'
-operator|||
-name|c
-operator|==
-literal|':'
-operator|||
-name|c
-operator|==
-literal|','
 condition|)
 block|{
 break|break;
@@ -309,20 +295,10 @@ operator|||
 name|c
 operator|==
 literal|'?'
-operator|||
-name|c
-operator|==
-literal|':'
-operator|||
-name|c
-operator|==
-literal|','
 condition|)
 block|{
-comment|// '!' represents an interior node that represents an ICANN entry in the map.
-comment|// '?' represents a leaf node, which represents an ICANN entry in map.
-comment|// ':' represents an interior node that represents a private entry in the map
-comment|// ',' represents a leaf node, which represents a private entry in the map.
+comment|// '!' represents an interior node that represents an entry in the set.
+comment|// '?' represents a leaf node, which always represents an entry in set.
 name|String
 name|domain
 init|=
@@ -345,16 +321,9 @@ condition|)
 block|{
 name|builder
 operator|.
-name|put
+name|add
 argument_list|(
 name|domain
-argument_list|,
-name|TldType
-operator|.
-name|fromCode
-argument_list|(
-name|c
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -367,10 +336,6 @@ condition|(
 name|c
 operator|!=
 literal|'?'
-operator|&&
-name|c
-operator|!=
-literal|','
 condition|)
 block|{
 while|while
@@ -409,18 +374,9 @@ name|idx
 argument_list|)
 operator|==
 literal|'?'
-operator|||
-name|encoded
-operator|.
-name|charAt
-argument_list|(
-name|idx
-argument_list|)
-operator|==
-literal|','
 condition|)
 block|{
-comment|// An extra '?' or ',' after a child node indicates the end of all children of this node.
+comment|// An extra '?' after a child node indicates the end of all children of this node.
 name|idx
 operator|++
 expr_stmt|;
