@@ -100,6 +100,12 @@ argument_list|<
 name|Writer
 argument_list|>
 block|{
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|CharSink ()
+specifier|protected
+name|CharSink
+parameter_list|()
+block|{}
 comment|/**    * Opens a new {@link Writer} for writing to this sink. This method should return a new,    * independent writer each time it is called.    *    *<p>The caller is responsible for ensuring that the returned writer is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the writer    */
 DECL|method|openStream ()
 specifier|public

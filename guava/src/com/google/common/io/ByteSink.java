@@ -120,6 +120,12 @@ argument_list|<
 name|OutputStream
 argument_list|>
 block|{
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|ByteSink ()
+specifier|protected
+name|ByteSink
+parameter_list|()
+block|{}
 comment|/**    * Returns a {@link CharSink} view of this {@code ByteSink} that writes characters to this sink    * as bytes encoded with the given {@link Charset charset}.    */
 DECL|method|asCharSink (Charset charset)
 specifier|public

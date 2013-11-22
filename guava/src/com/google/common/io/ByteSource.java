@@ -246,6 +246,12 @@ init|=
 literal|0x1000
 decl_stmt|;
 comment|// 4K
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|ByteSource ()
+specifier|protected
+name|ByteSource
+parameter_list|()
+block|{}
 comment|/**    * Returns a {@link CharSource} view of this byte source that decodes bytes read from this source    * as characters using the given {@link Charset}.    */
 DECL|method|asCharSource (Charset charset)
 specifier|public

@@ -198,6 +198,12 @@ argument_list|<
 name|Reader
 argument_list|>
 block|{
+comment|/**    * Constructor for use by subclasses.    */
+DECL|method|CharSource ()
+specifier|protected
+name|CharSource
+parameter_list|()
+block|{}
 comment|/**    * Opens a new {@link Reader} for reading from this source. This method should return a new,    * independent reader each time it is called.    *    *<p>The caller is responsible for ensuring that the returned reader is closed.    *    * @throws IOException if an I/O error occurs in the process of opening the reader    */
 DECL|method|openStream ()
 specifier|public
