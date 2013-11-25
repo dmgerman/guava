@@ -958,29 +958,6 @@ name|markReady
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new instance for managing the given services. This constructor is provided so that    * dependency injection frameworks can inject instances of {@link ServiceManager}.    *    * @param services The services to manage    *    * @throws IllegalStateException if not all services are {@link State#NEW new}.    */
-DECL|method|ServiceManager (Set<Service> services)
-name|ServiceManager
-parameter_list|(
-name|Set
-argument_list|<
-name|Service
-argument_list|>
-name|services
-parameter_list|)
-block|{
-name|this
-argument_list|(
-operator|(
-name|Iterable
-argument_list|<
-name|Service
-argument_list|>
-operator|)
-name|services
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given    * executor. The listener will not have previous state changes replayed, so it is    * suggested that listeners are added before any of the managed services are    * {@linkplain Service#start started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through    * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown    * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception    * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *    *<p> For fast, lightweight listeners that would be safe to execute in any thread, consider    * calling {@link #addListener(Listener)}.    *    * @param listener the listener to run when the manager changes state    * @param executor the executor in which the listeners callback methods will be run.    */
 DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
