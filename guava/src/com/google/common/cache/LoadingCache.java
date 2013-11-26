@@ -202,7 +202,9 @@ parameter_list|)
 throws|throws
 name|ExecutionException
 function_decl|;
-comment|/**    * Discouraged. Provided to satisfy the {@code Function} interface; use {@link #get} or    * {@link #getUnchecked} instead.    *    * @throws UncheckedExecutionException if an exception was thrown while loading the value. (As    *     described in the documentation for {@link #getUnchecked}, {@code LoadingCache} should be    *     used as a {@code Function} only with cache loaders that throw only unchecked exceptions.)    */
+comment|/**    * @deprecated Provided to satisfy the {@code Function} interface; use {@link #get} or    *     {@link #getUnchecked} instead.    * @throws UncheckedExecutionException if an exception was thrown while loading the value. (As    *     described in the documentation for {@link #getUnchecked}, {@code LoadingCache} should be    *     used as a {@code Function} only with cache loaders that throw only unchecked exceptions.)    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|apply (K key)
