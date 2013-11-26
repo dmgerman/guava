@@ -1271,6 +1271,11 @@ block|{
 name|EnumSet
 argument_list|<
 name|?
+extends|extends
+name|Enum
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 name|enumSet
 init|=
@@ -1282,6 +1287,11 @@ operator|(
 name|EnumSet
 argument_list|<
 name|?
+extends|extends
+name|Enum
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 operator|)
 name|elements
