@@ -164,6 +164,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|thirdparty
+operator|.
+name|publicsuffix
+operator|.
+name|PublicSuffixPatterns
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -488,7 +502,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|TldPatterns
+name|PublicSuffixPatterns
 operator|.
 name|EXACT
 operator|.
@@ -506,7 +520,7 @@ comment|// Excluded domains (e.g. !nhs.uk) use the next highest
 comment|// domain as the effective public suffix (e.g. uk).
 if|if
 condition|(
-name|TldPatterns
+name|PublicSuffixPatterns
 operator|.
 name|EXCLUDED
 operator|.
@@ -1094,7 +1108,7 @@ name|length
 operator|==
 literal|2
 operator|&&
-name|TldPatterns
+name|PublicSuffixPatterns
 operator|.
 name|UNDER
 operator|.

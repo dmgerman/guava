@@ -4,15 +4,15 @@ comment|/*  * Copyright (C) 2013 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.net
+DECL|package|com.google.thirdparty.publicsuffix
 package|package
 name|com
 operator|.
 name|google
 operator|.
-name|common
+name|thirdparty
 operator|.
-name|net
+name|publicsuffix
 package|;
 end_package
 
@@ -37,9 +37,9 @@ end_comment
 begin_enum
 annotation|@
 name|GwtCompatible
-DECL|enum|TldType
+DECL|enum|PublicSuffixType
 enum|enum
-name|TldType
+name|PublicSuffixType
 block|{
 comment|/** private definition of a top-level domain */
 DECL|enumConstant|PRIVATE
@@ -73,9 +73,9 @@ specifier|final
 name|char
 name|leafNodeCode
 decl_stmt|;
-DECL|method|TldType (char innerNodeCode, char leafNodeCode)
+DECL|method|PublicSuffixType (char innerNodeCode, char leafNodeCode)
 specifier|private
-name|TldType
+name|PublicSuffixType
 parameter_list|(
 name|char
 name|innerNodeCode
@@ -98,7 +98,6 @@ name|leafNodeCode
 expr_stmt|;
 block|}
 DECL|method|getLeafNodeCode ()
-specifier|public
 name|char
 name|getLeafNodeCode
 parameter_list|()
@@ -108,7 +107,6 @@ name|leafNodeCode
 return|;
 block|}
 DECL|method|getInnerNodeCode ()
-specifier|public
 name|char
 name|getInnerNodeCode
 parameter_list|()
@@ -117,11 +115,10 @@ return|return
 name|innerNodeCode
 return|;
 block|}
-comment|/** Returns a TldType of the right type according to the given code */
+comment|/** Returns a PublicSuffixType of the right type according to the given code */
 DECL|method|fromCode (char code)
-specifier|public
 specifier|static
-name|TldType
+name|PublicSuffixType
 name|fromCode
 parameter_list|(
 name|char
@@ -130,7 +127,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|TldType
+name|PublicSuffixType
 name|value
 range|:
 name|values
@@ -170,9 +167,8 @@ argument_list|)
 throw|;
 block|}
 DECL|method|fromIsPrivate (boolean isPrivate)
-specifier|public
 specifier|static
-name|TldType
+name|PublicSuffixType
 name|fromIsPrivate
 parameter_list|(
 name|boolean

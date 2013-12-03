@@ -4,15 +4,15 @@ comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.net
+DECL|package|com.google.thirdparty.publicsuffix
 package|package
 name|com
 operator|.
 name|google
 operator|.
-name|common
+name|thirdparty
 operator|.
-name|net
+name|publicsuffix
 package|;
 end_package
 
@@ -107,14 +107,14 @@ argument_list|(
 literal|""
 argument_list|)
 decl_stmt|;
-comment|/**    * Parses a serialized trie representation of a map of reversed TLDs into an immutable map    * of TLDs.    */
+comment|/**    * Parses a serialized trie representation of a map of reversed public    * suffixes into an immutable map of public suffixes.    */
 DECL|method|parseTrie (CharSequence encoded)
 specifier|static
 name|ImmutableMap
 argument_list|<
 name|String
 argument_list|,
-name|TldType
+name|PublicSuffixType
 argument_list|>
 name|parseTrie
 parameter_list|(
@@ -128,7 +128,7 @@ name|Builder
 argument_list|<
 name|String
 argument_list|,
-name|TldType
+name|PublicSuffixType
 argument_list|>
 name|builder
 init|=
@@ -189,8 +189,8 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this node. Each entry    * of the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
-DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableMap.Builder<String, TldType> builder)
+comment|/**    * Parses a trie node and returns the number of characters consumed.    *    * @param stack The prefixes that preceed the characters represented by this    *     node. Each entry of the stack is in reverse order.    * @param encoded The serialized trie.    * @param builder A map builder to which all entries will be added.    * @return The number of characters consumed from {@code encoded}.    */
+DECL|method|doParseTrieToBuilder ( List<CharSequence> stack, CharSequence encoded, ImmutableMap.Builder<String, PublicSuffixType> builder)
 specifier|private
 specifier|static
 name|int
@@ -211,7 +211,7 @@ name|Builder
 argument_list|<
 name|String
 argument_list|,
-name|TldType
+name|PublicSuffixType
 argument_list|>
 name|builder
 parameter_list|)
@@ -349,7 +349,7 @@ name|put
 argument_list|(
 name|domain
 argument_list|,
-name|TldType
+name|PublicSuffixType
 operator|.
 name|fromCode
 argument_list|(
