@@ -240,6 +240,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Sets
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -301,6 +315,16 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -3955,6 +3979,22 @@ argument_list|>
 argument_list|>
 name|values
 decl_stmt|;
+DECL|field|seenExceptionsLock
+specifier|final
+name|Object
+name|seenExceptionsLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+DECL|field|seenExceptions
+name|Set
+argument_list|<
+name|Throwable
+argument_list|>
+name|seenExceptions
+decl_stmt|;
 DECL|method|CombinedFuture ( ImmutableCollection<? extends ListenableFuture<? extends V>> futures, boolean allMustSucceed, Executor listenerExecutor, FutureCombiner<V, C> combiner)
 name|CombinedFuture
 parameter_list|(
@@ -4261,7 +4301,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is      * true. Also, logs the throwable if it is an {@link Error} or if      * {@link #allMustSucceed} is {@code true} and the throwable did not cause      * this future to fail.      */
+comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is      * true. Also, logs the throwable if it is an {@link Error} or if      * {@link #allMustSucceed} is {@code true}, the throwable did not cause      * this future to fail, and it is the first time we've seen that particular Throwable.      */
 DECL|method|setExceptionAndMaybeLog (Throwable throwable)
 specifier|private
 name|void
@@ -4272,9 +4312,14 @@ name|throwable
 parameter_list|)
 block|{
 name|boolean
-name|result
+name|visibleFromOutputFuture
 init|=
 literal|false
+decl_stmt|;
+name|boolean
+name|firstTimeSeeingThisException
+init|=
+literal|true
 decl_stmt|;
 if|if
 condition|(
@@ -4283,7 +4328,7 @@ condition|)
 block|{
 comment|// As soon as the first one fails, throw the exception up.
 comment|// The result of all other inputs is then ignored.
-name|result
+name|visibleFromOutputFuture
 operator|=
 name|super
 operator|.
@@ -4292,6 +4337,36 @@ argument_list|(
 name|throwable
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|seenExceptionsLock
+init|)
+block|{
+if|if
+condition|(
+name|seenExceptions
+operator|==
+literal|null
+condition|)
+block|{
+name|seenExceptions
+operator|=
+name|Sets
+operator|.
+name|newHashSet
+argument_list|()
+expr_stmt|;
+block|}
+name|firstTimeSeeingThisException
+operator|=
+name|seenExceptions
+operator|.
+name|add
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -4303,7 +4378,9 @@ operator|(
 name|allMustSucceed
 operator|&&
 operator|!
-name|result
+name|visibleFromOutputFuture
+operator|&&
+name|firstTimeSeeingThisException
 operator|)
 condition|)
 block|{
