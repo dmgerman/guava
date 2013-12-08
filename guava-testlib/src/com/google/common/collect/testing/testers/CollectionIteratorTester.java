@@ -598,12 +598,6 @@ argument_list|,
 name|knownOrder
 argument_list|)
 block|{
-block|{
-comment|// TODO: don't set this universally
-name|ignoreSunJavaBug6529795
-parameter_list|()
-constructor_decl|;
-block|}
 annotation|@
 name|Override
 specifier|protected

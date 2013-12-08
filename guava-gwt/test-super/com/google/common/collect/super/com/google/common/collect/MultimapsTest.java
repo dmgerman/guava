@@ -3520,11 +3520,6 @@ block|}
 decl_stmt|;
 name|tester
 operator|.
-name|ignoreSunJavaBug6529795
-argument_list|()
-expr_stmt|;
-name|tester
-operator|.
 name|test
 argument_list|()
 expr_stmt|;
