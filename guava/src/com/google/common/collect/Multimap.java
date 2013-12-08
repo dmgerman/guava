@@ -98,19 +98,19 @@ name|V
 parameter_list|>
 block|{
 comment|// Query Operations
-comment|/** Returns the number of key-value pairs in the multimap. */
+comment|/**    * Returns the number of key-value pairs in this multimap.    *    *<p><b>Note:</b> this method does not return the number of<i>distinct    * keys</i> in the multimap, which is given by {@code keySet().size()} or    * {@code asMap().size()}. See the opening section of the {@link Multimap}    * class documentation for clarification.    */
 DECL|method|size ()
 name|int
 name|size
 parameter_list|()
 function_decl|;
-comment|/** Returns {@code true} if the multimap contains no key-value pairs. */
+comment|/**    * Returns {@code true} if this multimap contains no key-value pairs.    * Equivalent to {@code size() == 0}, but can in some cases be more efficient.    */
 DECL|method|isEmpty ()
 name|boolean
 name|isEmpty
 parameter_list|()
 function_decl|;
-comment|/**    * Returns {@code true} if the multimap contains any values for the specified    * key.    *    * @param key key to search for in multimap    */
+comment|/**    * Returns {@code true} if this multimap contains at least one key-value pair    * with the key {@code key}.    */
 DECL|method|containsKey (@ullable Object key)
 name|boolean
 name|containsKey
@@ -121,7 +121,7 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} if the multimap contains the specified value for any    * key.    *    * @param value value to search for in multimap    */
+comment|/**    * Returns {@code true} if this multimap contains at least one key-value pair    * with the value {@code value}.    */
 DECL|method|containsValue (@ullable Object value)
 name|boolean
 name|containsValue
@@ -132,7 +132,7 @@ name|Object
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} if the multimap contains the specified key-value pair.    *    * @param key key to search for in multimap    * @param value value to search for in multimap    */
+comment|/**    * Returns {@code true} if this multimap contains at least one key-value pair    * with the key {@code key} and the value {@code value}.    */
 DECL|method|containsEntry (@ullable Object key, @Nullable Object value)
 name|boolean
 name|containsEntry
@@ -149,7 +149,7 @@ name|value
 parameter_list|)
 function_decl|;
 comment|// Modification Operations
-comment|/**    * Stores a key-value pair in the multimap.    *    *<p>Some multimap implementations allow duplicate key-value pairs, in which    * case {@code put} always adds a new key-value pair and increases the    * multimap size by 1. Other implementations prohibit duplicates, and storing    * a key-value pair that's already in the multimap has no effect.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair and    *     doesn't allow duplicates    */
+comment|/**    * Stores a key-value pair in this multimap.    *    *<p>Some multimap implementations allow duplicate key-value pairs, in which    * case {@code put} always adds a new key-value pair and increases the    * multimap size by 1. Other implementations prohibit duplicates, and storing    * a key-value pair that's already in the multimap has no effect.    *    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair and    *     doesn't allow duplicates    */
 DECL|method|put (@ullable K key, @Nullable V value)
 name|boolean
 name|put
@@ -165,7 +165,7 @@ name|V
 name|value
 parameter_list|)
 function_decl|;
-comment|/**    * Removes a single key-value pair from the multimap.    *    * @param key key of entry to remove from the multimap    * @param value value of entry to remove the multimap    * @return {@code true} if the multimap changed    */
+comment|/**    * Removes a single key-value pair with the key {@code key} and the value    * {@code value} from this multimap, if such exists. If multiple key-value    * pairs in the multimap fit this description, which one is removed is    * unspecified.    *    * @return {@code true} if the multimap changed    */
 DECL|method|remove (@ullable Object key, @Nullable Object value)
 name|boolean
 name|remove
@@ -182,7 +182,7 @@ name|value
 parameter_list|)
 function_decl|;
 comment|// Bulk Operations
-comment|/**    * Stores key-value pairs in this multimap with one key and multiple values.    *     *<p>This is equivalent to<pre>   {@code    *     *   for (V value : values) {    *     put(key, value);    *   } }</pre>    *     *<p>In particular, this is a no-op if {@code values} is empty.    *    * @param key key to store in the multimap    * @param values values to store in the multimap    * @return {@code true} if the multimap changed    */
+comment|/**    * Stores a key-value pair in this multimap for each of {@code values}, all    * using the same key, {@code key}. Equivalent to (but expected to be more    * efficient than):<pre>   {@code    *     *   for (V value : values) {    *     put(key, value);    *   }}</pre>    *     *<p>In particular, this is a no-op if {@code values} is empty.    *    * @return {@code true} if the multimap changed    */
 DECL|method|putAll (@ullable K key, Iterable<? extends V> values)
 name|boolean
 name|putAll
@@ -201,7 +201,7 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-comment|/**    * Copies all of another multimap's key-value pairs into this multimap. The    * order in which the mappings are added is determined by    * {@code multimap.entries()}.    *    * @param multimap mappings to store in this multimap    * @return {@code true} if the multimap changed    */
+comment|/**    * Stores all key-value pairs of {@code multimap} in this multimap, in the    * order returned by {@code multimap.entries()}.    *    * @return {@code true} if the multimap changed    */
 DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 name|boolean
 name|putAll
@@ -219,7 +219,7 @@ argument_list|>
 name|multimap
 parameter_list|)
 function_decl|;
-comment|/**    * Stores a collection of values with the same key, replacing any existing    * values for that key.    *     *<p>If {@code values} is empty, this is equivalent to     * {@link #removeAll(Object) removeAll(key)}.    *    * @param key key to store in the multimap    * @param values values to store in the multimap    * @return the collection of replaced values, or an empty collection if no    *     values were previously associated with the key. The collection    *<i>may</i> be modifiable, but updating it will have no effect on the    *     multimap.    */
+comment|/**    * Stores a collection of values with the same key, replacing any existing    * values for that key.    *     *<p>If {@code values} is empty, this is equivalent to     * {@link #removeAll(Object) removeAll(key)}.    *    * @return the collection of replaced values, or an empty collection if no    *     values were previously associated with the key. The collection    *<i>may</i> be modifiable, but updating it will have no effect on the    *     multimap.    */
 DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 name|Collection
 argument_list|<
@@ -241,7 +241,7 @@ argument_list|>
 name|values
 parameter_list|)
 function_decl|;
-comment|/**    * Removes all values associated with a given key.    *     *<p>Once this method returns, {@code key} will not be mapped to any values,    * so it will not appear in {@link #keySet()}, {@link #asMap()}, or any other    * views.     *    * @param key key of entries to remove from the multimap    * @return the collection of removed values, or an empty collection if no    *     values were associated with the provided key. The collection    *<i>may</i> be modifiable, but updating it will have no effect on the    *     multimap.    */
+comment|/**    * Removes all values associated with the key {@code key}.    *     *<p>Once this method returns, {@code key} will not be mapped to any values,    * so it will not appear in {@link #keySet()}, {@link #asMap()}, or any other    * views.     *    * @return the values that were removed (possibly empty). The returned    *     collection<i>may</i> be modifiable, but updating it will have no    *     effect on the multimap.    */
 DECL|method|removeAll (@ullable Object key)
 name|Collection
 argument_list|<
@@ -255,14 +255,14 @@ name|Object
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Removes all key-value pairs from the multimap.    */
+comment|/**    * Removes all key-value pairs from the multimap, leaving it {@linkplain    * #isEmpty empty}.    */
 DECL|method|clear ()
 name|void
 name|clear
 parameter_list|()
 function_decl|;
 comment|// Views
-comment|/**    * Returns a collection view containing the values associated with {@code key}    * in this multimap, if any. Note that even when ({@code containsKey(key)} is    * false, {@code get(key)} still returns an empty collection, not {@code    * null}.    *    *<p>Changes to the returned collection will update the underlying multimap,    * and vice versa.    *    * @param key key to search for in multimap    * @return a view collection containing the zero or more values that the key    *     maps to    */
+comment|/**    * Returns a view collection of the values associated with {@code key} in this    * multimap, if any. Note that when {@code containsKey(key)} is false, this     * returns an empty collection, not {@code null}.    *    *<p>Changes to the returned collection will update the underlying multimap,    * and vice versa.    */
 DECL|method|get (@ullable K key)
 name|Collection
 argument_list|<
@@ -276,7 +276,7 @@ name|K
 name|key
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the set of all keys, each appearing once in the returned set.    * Changes to the returned set will update the underlying multimap, and vice    * versa.    *     *<p>Note that the key set contains a key if and only if this multimap maps    * that key to at least one value.    *    * @return the collection of distinct keys    */
+comment|/**    * Returns a view collection of all<i>distinct</i> keys contained in this    * multimap. Note that the key set contains a key if and only if this multimap    * maps that key to at least one value.    *    *<p>Changes to the returned set will update the underlying multimap, and    * vice versa. However,<i>adding</i> to the returned set is not possible.    */
 DECL|method|keySet ()
 name|Set
 argument_list|<
@@ -285,7 +285,7 @@ argument_list|>
 name|keySet
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a collection, which may contain duplicates, of all keys. The number    * of times of key appears in the returned multiset equals the number of    * mappings the key has in the multimap. Changes to the returned multiset will    * update the underlying multimap, and vice versa.    *    * @return a multiset with keys corresponding to the distinct keys of the    *     multimap and frequencies corresponding to the number of values that    *     each key maps to    */
+comment|/**    * Returns a view collection containing the key from each key-value pair in    * this multimap,<i>without</i> collapsing duplicates. This collection has    * the same size as this multimap, and {@code keys().count(k) ==    * get(k).size()} for all {@code k}.    *    *<p>Changes to the returned multiset will update the underlying multimap,    * and vice versa. However,<i>adding</i> to the returned collection is not    * possible.    */
 DECL|method|keys ()
 name|Multiset
 argument_list|<
@@ -294,7 +294,7 @@ argument_list|>
 name|keys
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a collection of all values in the multimap. Changes to the returned    * collection will update the underlying multimap, and vice versa.    *    * @return collection of values, which may include the same value multiple    *     times if it occurs in multiple mappings    */
+comment|/**    * Returns a view collection containing the<i>value</i> from each key-value    * pair contained in this multimap, without collapsing duplicates (so {@code    * values().size() == size()}).    *    *<p>Changes to the returned collection will update the underlying multimap,    * and vice versa. However,<i>adding</i> to the returned collection is not    * possible.    */
 DECL|method|values ()
 name|Collection
 argument_list|<
@@ -303,7 +303,7 @@ argument_list|>
 name|values
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a collection of all key-value pairs. Changes to the returned    * collection will update the underlying multimap, and vice versa. The entries    * collection does not support the {@code add} or {@code addAll} operations.    *    * @return collection of map entries consisting of key-value pairs    */
+comment|/**    * Returns a view collection of all key-value pairs contained in this    * multimap, as {@link Map.Entry} instances.    *    *<p>Changes to the returned collection or the entries it contains will    * update the underlying multimap, and vice versa. However,<i>adding</i> to    * the returned collection is not possible.    */
 DECL|method|entries ()
 name|Collection
 argument_list|<
@@ -319,7 +319,7 @@ argument_list|>
 name|entries
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a map view that associates each key with the corresponding values    * in the multimap. Changes to the returned map, such as element removal, will    * update the underlying multimap. The map does not support {@code setValue()}    * on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code    * asMap().get(Object)} has the same behavior as {@link #get}, returning a    * live collection. When passed a key that is not present, however, {@code    * asMap().get(Object)} returns {@code null} instead of an empty collection.    *    * @return a map view from a key to its collection of values    */
+comment|/**    * Returns a view of this multimap as a {@code Map} from each distinct key    * to the nonempty collection of that key's associated values. Note that    * {@code this.asMap().get(k)} is equivalent to {@code this.get(k)} only when    * {@code k} is a key contained in the multimap; otherwise it returns {@code    * null} as opposed to an empty collection.    *    *<p>Changes to the returned map or the collections that serve as its values    * will update the underlying multimap, and vice versa. The map does not    * support {@code put} or {@code putAll}, nor do its entries support {@link    * Map.Entry#setValue setValue}.    */
 DECL|method|asMap ()
 name|Map
 argument_list|<
