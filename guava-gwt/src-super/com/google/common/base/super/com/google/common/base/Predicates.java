@@ -687,6 +687,7 @@ argument_list|<
 name|Object
 argument_list|>
 block|{
+comment|/** @see Predicates#alwaysTrue() */
 DECL|enumConstant|ALWAYS_TRUE
 name|ALWAYS_TRUE
 block|{
@@ -706,8 +707,20 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Predicates.alwaysTrue()"
+return|;
+block|}
 block|}
 block|,
+comment|/** @see Predicates#alwaysFalse() */
 DECL|enumConstant|ALWAYS_FALSE
 name|ALWAYS_FALSE
 block|{
@@ -727,8 +740,20 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Predicates.alwaysFalse()"
+return|;
+block|}
 block|}
 block|,
+comment|/** @see Predicates#isNull() */
 DECL|enumConstant|IS_NULL
 name|IS_NULL
 block|{
@@ -750,8 +775,20 @@ operator|==
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Predicates.isNull()"
+return|;
+block|}
 block|}
 block|,
+comment|/** @see Predicates#notNull() */
 DECL|enumConstant|NOT_NULL
 name|NOT_NULL
 block|{
@@ -771,6 +808,17 @@ return|return
 name|o
 operator|!=
 literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Predicates.notNull()"
 return|;
 block|}
 block|}
@@ -945,7 +993,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Not("
+literal|"Predicates.not("
 operator|+
 name|predicate
 operator|.
@@ -1170,7 +1218,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"And("
+literal|"Predicates.and("
 operator|+
 name|COMMA_JOINER
 operator|.
@@ -1382,7 +1430,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Or("
+literal|"Predicates.or("
 operator|+
 name|COMMA_JOINER
 operator|.
@@ -1535,7 +1583,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"IsEqualTo("
+literal|"Predicates.equalTo("
 operator|+
 name|target
 operator|+
@@ -1717,7 +1765,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"In("
+literal|"Predicates.in("
 operator|+
 name|target
 operator|+
