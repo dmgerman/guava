@@ -804,7 +804,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|ContainsPatternFromStringPredicate
+name|ContainsPatternPredicate
 argument_list|(
 name|pattern
 argument_list|)
@@ -850,7 +850,6 @@ argument_list|<
 name|Object
 argument_list|>
 block|{
-comment|/** @see Predicates#alwaysTrue() */
 DECL|enumConstant|ALWAYS_TRUE
 name|ALWAYS_TRUE
 block|{
@@ -870,20 +869,8 @@ return|return
 literal|true
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"Predicates.alwaysTrue()"
-return|;
-block|}
 block|}
 block|,
-comment|/** @see Predicates#alwaysFalse() */
 DECL|enumConstant|ALWAYS_FALSE
 name|ALWAYS_FALSE
 block|{
@@ -903,20 +890,8 @@ return|return
 literal|false
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"Predicates.alwaysFalse()"
-return|;
-block|}
 block|}
 block|,
-comment|/** @see Predicates#isNull() */
 DECL|enumConstant|IS_NULL
 name|IS_NULL
 block|{
@@ -938,20 +913,8 @@ operator|==
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"Predicates.isNull()"
-return|;
-block|}
 block|}
 block|,
-comment|/** @see Predicates#notNull() */
 DECL|enumConstant|NOT_NULL
 name|NOT_NULL
 block|{
@@ -971,17 +934,6 @@ return|return
 name|o
 operator|!=
 literal|null
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"Predicates.notNull()"
 return|;
 block|}
 block|}
@@ -1156,7 +1108,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.not("
+literal|"Not("
 operator|+
 name|predicate
 operator|.
@@ -1381,7 +1333,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.and("
+literal|"And("
 operator|+
 name|COMMA_JOINER
 operator|.
@@ -1593,7 +1545,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.or("
+literal|"Or("
 operator|+
 name|COMMA_JOINER
 operator|.
@@ -1746,7 +1698,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.equalTo("
+literal|"IsEqualTo("
 operator|+
 name|target
 operator|+
@@ -1898,7 +1850,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.instanceOf("
+literal|"IsInstanceOf("
 operator|+
 name|clazz
 operator|.
@@ -2057,7 +2009,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.assignableFrom("
+literal|"IsAssignableFrom("
 operator|+
 name|clazz
 operator|.
@@ -2242,7 +2194,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"Predicates.in("
+literal|"In("
 operator|+
 name|target
 operator|+
@@ -2481,7 +2433,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/** @see Predicates#contains(Pattern) */
+comment|/**    * @see Predicates#contains(Pattern)    * @see Predicates#containsPattern(String)    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -2519,6 +2471,24 @@ operator|=
 name|checkNotNull
 argument_list|(
 name|pattern
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|ContainsPatternPredicate (String patternStr)
+name|ContainsPatternPredicate
+parameter_list|(
+name|String
+name|patternStr
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+name|patternStr
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2650,14 +2620,12 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|String
-name|patternString
-init|=
+return|return
 name|Objects
 operator|.
 name|toStringHelper
 argument_list|(
-name|pattern
+name|this
 argument_list|)
 operator|.
 name|add
@@ -2684,74 +2652,6 @@ argument_list|)
 operator|.
 name|toString
 argument_list|()
-decl_stmt|;
-return|return
-literal|"Predicates.contains("
-operator|+
-name|patternString
-operator|+
-literal|")"
-return|;
-block|}
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|0
-decl_stmt|;
-block|}
-comment|/** @see Predicates#containsPattern(String) */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"Only used by other GWT-incompatible code."
-argument_list|)
-DECL|class|ContainsPatternFromStringPredicate
-specifier|private
-specifier|static
-class|class
-name|ContainsPatternFromStringPredicate
-extends|extends
-name|ContainsPatternPredicate
-block|{
-DECL|method|ContainsPatternFromStringPredicate (String string)
-name|ContainsPatternFromStringPredicate
-parameter_list|(
-name|String
-name|string
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|Pattern
-operator|.
-name|compile
-argument_list|(
-name|string
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"Predicates.containsPattern("
-operator|+
-name|pattern
-operator|.
-name|pattern
-argument_list|()
-operator|+
-literal|")"
 return|;
 block|}
 DECL|field|serialVersionUID
