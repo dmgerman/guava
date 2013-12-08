@@ -2693,10 +2693,10 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|removeIf (Predicate<? super Entry<Range<K>, V>> predicate)
+DECL|method|removeEntryIf (Predicate<? super Entry<Range<K>, V>> predicate)
 specifier|private
 name|boolean
-name|removeIf
+name|removeEntryIf
 parameter_list|(
 name|Predicate
 argument_list|<
@@ -2869,7 +2869,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntryIf
 argument_list|(
 name|compose
 argument_list|(
@@ -3171,7 +3171,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntryIf
 argument_list|(
 name|not
 argument_list|(
@@ -3261,7 +3261,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntryIf
 argument_list|(
 name|compose
 argument_list|(
@@ -3295,7 +3295,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntryIf
 argument_list|(
 name|compose
 argument_list|(

@@ -772,9 +772,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|removeIf (Predicate<? super Entry<K, Collection<V>>> predicate)
+DECL|method|removeEntriesIf (Predicate<? super Entry<K, Collection<V>>> predicate)
 name|boolean
-name|removeIf
+name|removeEntriesIf
 parameter_list|(
 name|Predicate
 argument_list|<
@@ -1277,7 +1277,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|Maps
 operator|.
@@ -1308,7 +1308,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|Maps
 operator|.
@@ -1579,7 +1579,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|in
 argument_list|(
@@ -1602,7 +1602,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|not
 argument_list|(
@@ -1846,7 +1846,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|Maps
 operator|.
@@ -1880,7 +1880,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|Maps
 operator|.
@@ -2176,7 +2176,7 @@ return|;
 block|}
 specifier|private
 name|boolean
-name|removeIf
+name|removeEntriesIf
 parameter_list|(
 specifier|final
 name|Predicate
@@ -2198,7 +2198,7 @@ name|FilteredEntryMultimap
 operator|.
 name|this
 operator|.
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 operator|new
 name|Predicate
@@ -2280,7 +2280,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|in
 argument_list|(
@@ -2303,7 +2303,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeEntriesIf
 argument_list|(
 name|not
 argument_list|(

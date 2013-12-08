@@ -2224,9 +2224,9 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Removes all {@code Column} mappings whose row key and value satisfy the      * given predicate.      */
-DECL|method|removeIf (Predicate<? super Entry<R, V>> predicate)
+DECL|method|removeFromColumnIf (Predicate<? super Entry<R, V>> predicate)
 name|boolean
-name|removeIf
+name|removeFromColumnIf
 parameter_list|(
 name|Predicate
 argument_list|<
@@ -2505,7 +2505,7 @@ name|void
 name|clear
 parameter_list|()
 block|{
-name|removeIf
+name|removeFromColumnIf
 argument_list|(
 name|alwaysTrue
 argument_list|()
@@ -2641,7 +2641,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeFromColumnIf
 argument_list|(
 name|not
 argument_list|(
@@ -2936,7 +2936,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeFromColumnIf
 argument_list|(
 name|Maps
 operator|.
@@ -3015,7 +3015,7 @@ name|obj
 operator|!=
 literal|null
 operator|&&
-name|removeIf
+name|removeFromColumnIf
 argument_list|(
 name|Maps
 operator|.
@@ -3048,7 +3048,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeFromColumnIf
 argument_list|(
 name|Maps
 operator|.
@@ -3081,7 +3081,7 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|removeIf
+name|removeFromColumnIf
 argument_list|(
 name|Maps
 operator|.
