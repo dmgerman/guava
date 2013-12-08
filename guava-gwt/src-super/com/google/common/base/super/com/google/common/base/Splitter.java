@@ -793,7 +793,7 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-name|spliterator
+name|splittingIterator
 argument_list|(
 name|sequence
 argument_list|)
@@ -840,13 +840,13 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|spliterator (CharSequence sequence)
+DECL|method|splittingIterator (CharSequence sequence)
 specifier|private
 name|Iterator
 argument_list|<
 name|String
 argument_list|>
-name|spliterator
+name|splittingIterator
 parameter_list|(
 name|CharSequence
 name|sequence
@@ -889,7 +889,7 @@ name|String
 argument_list|>
 name|iterator
 init|=
-name|spliterator
+name|splittingIterator
 argument_list|(
 name|sequence
 argument_list|)
@@ -1119,7 +1119,7 @@ name|entryFields
 init|=
 name|entrySplitter
 operator|.
-name|spliterator
+name|splittingIterator
 argument_list|(
 name|entry
 argument_list|)
