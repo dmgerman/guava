@@ -9917,7 +9917,9 @@ argument_list|(
 name|e
 argument_list|)
 argument_list|,
-literal|"Recursive load"
+literal|"Recursive load of: %s"
+argument_list|,
+name|key
 argument_list|)
 expr_stmt|;
 comment|// don't consider expiration as we're concurrent with loading
