@@ -5153,11 +5153,12 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// Predicate interface
-comment|/**    * Equivalent to {@link #matches}; provided only to satisfy the {@link Predicate} interface. When    * using a reference of type {@code CharMatcher}, invoke {@link #matches} directly instead.    */
-DECL|method|apply (Character character)
+comment|/**    * @deprecated Provided only to satisfy the {@link Predicate} interface; use {@link #matches}    *     instead.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|apply (Character character)
 specifier|public
 name|boolean
 name|apply

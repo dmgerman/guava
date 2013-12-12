@@ -1470,10 +1470,12 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Equivalent to {@link #contains}; provided only to satisfy the {@link Predicate} interface. When    * using a reference of type {@code Range}, always invoke {@link #contains} directly instead.    */
-DECL|method|apply (C input)
+comment|/**    * @deprecated Provided only to satisfy the {@link Predicate} interface; use {@link #contains}    *     instead.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|apply (C input)
 specifier|public
 name|boolean
 name|apply

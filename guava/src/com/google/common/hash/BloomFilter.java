@@ -396,10 +396,12 @@ name|bits
 argument_list|)
 return|;
 block|}
-comment|/**    * Equivalent to {@link #mightContain}; provided only to satisfy the {@link Predicate} interface.    * When using a reference of type {@code BloomFilter}, always invoke {@link #mightContain}    * directly instead.    */
-DECL|method|apply (T input)
+comment|/**    * @deprecated Provided only to satisfy the {@link Predicate} interface; use {@link #mightContain}    *     instead.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
+DECL|method|apply (T input)
 specifier|public
 name|boolean
 name|apply
