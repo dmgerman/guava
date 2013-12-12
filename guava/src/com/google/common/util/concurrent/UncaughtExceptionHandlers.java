@@ -168,6 +168,8 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+try|try
+block|{
 comment|// cannot use FormattingLogger due to a dependency loop
 name|logger
 operator|.
@@ -187,6 +189,42 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|errorInLogging
+parameter_list|)
+block|{
+comment|// If logging fails, e.g. due to missing memory, at least try to log the
+comment|// message and the cause for the failed logging.
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+name|errorInLogging
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
 name|runtime
 operator|.
 name|exit
@@ -194,6 +232,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
