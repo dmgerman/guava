@@ -735,6 +735,8 @@ literal|"unchecked"
 argument_list|)
 comment|// The declaring class is T.
 DECL|method|getOwnerType ()
+annotation|@
+name|Override
 specifier|public
 name|TypeToken
 argument_list|<
@@ -823,7 +825,6 @@ name|Object
 argument_list|>
 block|{
 DECL|field|method
-specifier|private
 specifier|final
 name|Method
 name|method
@@ -1027,7 +1028,6 @@ name|T
 argument_list|>
 block|{
 DECL|field|constructor
-specifier|private
 specifier|final
 name|Constructor
 argument_list|<

@@ -183,6 +183,25 @@ operator|=
 name|member
 expr_stmt|;
 block|}
+DECL|method|getOwnerType ()
+specifier|public
+name|TypeToken
+argument_list|<
+name|?
+argument_list|>
+name|getOwnerType
+parameter_list|()
+block|{
+return|return
+name|TypeToken
+operator|.
+name|of
+argument_list|(
+name|getDeclaringClass
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|method|isAnnotationPresent (Class<? extends Annotation> annotationClass)
 annotation|@
 name|Override
@@ -605,6 +624,17 @@ operator|)
 name|obj
 decl_stmt|;
 return|return
+name|getOwnerType
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|getOwnerType
+argument_list|()
+argument_list|)
+operator|&&
 name|member
 operator|.
 name|equals
