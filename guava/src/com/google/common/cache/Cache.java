@@ -275,7 +275,7 @@ name|long
 name|size
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a current snapshot of this cache's cumulative statistics. All stats are initialized    * to zero, and are monotonically increasing over the lifetime of the cache.    */
+comment|/**    * Returns a current snapshot of this cache's cumulative statistics. All stats are initialized    * to zero, and are monotonically increasing over the lifetime of the cache.    *    */
 DECL|method|stats ()
 name|CacheStats
 name|stats
