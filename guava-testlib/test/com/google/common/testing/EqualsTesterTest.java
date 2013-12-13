@@ -141,11 +141,6 @@ specifier|private
 name|ValidTestObject
 name|notEqualObject1
 decl_stmt|;
-DECL|field|notEqualObject2
-specifier|private
-name|ValidTestObject
-name|notEqualObject2
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setUp ()
@@ -205,16 +200,6 @@ argument_list|(
 literal|0
 argument_list|,
 literal|2
-argument_list|)
-expr_stmt|;
-name|notEqualObject2
-operator|=
-operator|new
-name|ValidTestObject
-argument_list|(
-literal|1
-argument_list|,
-literal|0
 argument_list|)
 expr_stmt|;
 block|}

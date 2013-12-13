@@ -2564,9 +2564,6 @@ name|tester
 init|=
 operator|new
 name|EqualsTester
-argument_list|()
-operator|.
-name|setItemReporter
 argument_list|(
 operator|new
 name|ItemReporter
@@ -2578,6 +2575,9 @@ name|String
 name|reportItem
 parameter_list|(
 name|Item
+argument_list|<
+name|?
+argument_list|>
 name|item
 parameter_list|)
 block|{

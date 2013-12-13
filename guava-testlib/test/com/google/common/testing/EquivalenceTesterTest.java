@@ -845,7 +845,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"TestObject{group=1, item=1} [group 1, item 1] must be inequivalent to "
+literal|"TestObject{group=1, item=1} [group 1, item 1] must not be equivalent to "
 operator|+
 literal|"TestObject{group=2, item=1} [group 2, item 1]"
 argument_list|)
