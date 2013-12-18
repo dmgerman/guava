@@ -131,7 +131,7 @@ specifier|private
 name|Enums
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined.    * For example, to get the {@code Description} annotation on the {@code GOLF}    * constant of enum {@code Sport}, use    * {@code Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    *    * @since 12.0    */
+comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined. For example, to get the    * {@code Description} annotation on the {@code GOLF} constant of enum {@code Sport}, use    * {@code Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    *    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -190,8 +190,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Returns a {@link Function} that maps an {@link Enum} name to the associated    * {@code Enum} constant. The {@code Function} will return {@code null} if the    * {@code Enum} constant does not exist.    *    * @param enumClass the {@link Class} of the {@code Enum} declaring the    *     constant values.    */
-comment|// TODO(user): Deprecate in favor of Enums.stringConverter()
+comment|/**    * Returns a {@link Function} that maps an {@link Enum} name to the associated {@code Enum}    * constant. The {@code Function} will return {@code null} if the {@code Enum} constant    * does not exist.    *    * @param enumClass the {@link Class} of the {@code Enum} declaring the constant values    * @deprecated Use {@link Enums#stringConverter} instead. Note that the string converter has    *     slightly different behavior: it throws {@link IllegalArgumentException} if the enum    *     constant does not exist rather than returning {@code null}. It also converts {@code null}    *     to {@code null} rather than throwing {@link NullPointerException}. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|valueOfFunction (Class<T> enumClass)
 specifier|public
 specifier|static
@@ -229,7 +230,7 @@ name|enumClass
 argument_list|)
 return|;
 block|}
-comment|/**    * A {@link Function} that maps an {@link Enum} name to the associated    * constant, or {@code null} if the constant does not exist.    */
+comment|/**    * A {@link Function} that maps an {@link Enum} name to the associated constant, or {@code null}    * if the constant does not exist.    */
 DECL|class|ValueOfFunction
 specifier|private
 specifier|static
@@ -463,9 +464,8 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns a converter that converts between strings and {@code enum} values    * of type {@code enumClass} using {@link Enum#valueOf(Class, String)} and    * {@link Enum#name()}.    * The converter will throw an {@code IllegalArgumentException} if the    * argument is not the name of any enum constant in the specified enum.    *    * @since 16.0    */
-comment|// TODO(user): Make this serializable.
-DECL|method|stringConverter ( final Class<T> enumClass)
+comment|/**    * Returns a converter that converts between strings and {@code enum} values of type    * {@code enumClass} using {@link Enum#valueOf(Class, String)} and {@link Enum#name()}. The    * converter will throw an {@code IllegalArgumentException} if the argument is not the name of    * any enum constant in the specified enum.    *    * @since 16.0    */
+DECL|method|stringConverter (final Class<T> enumClass)
 specifier|public
 specifier|static
 parameter_list|<
@@ -492,23 +492,73 @@ argument_list|>
 name|enumClass
 parameter_list|)
 block|{
-name|checkNotNull
+return|return
+operator|new
+name|StringConverter
+argument_list|<
+name|T
+argument_list|>
 argument_list|(
 name|enumClass
 argument_list|)
-expr_stmt|;
-return|return
-operator|new
+return|;
+block|}
+DECL|class|StringConverter
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|StringConverter
+parameter_list|<
+name|T
+extends|extends
+name|Enum
+parameter_list|<
+name|T
+parameter_list|>
+parameter_list|>
+extends|extends
 name|Converter
 argument_list|<
 name|String
 argument_list|,
 name|T
 argument_list|>
-argument_list|()
+implements|implements
+name|Serializable
 block|{
+DECL|field|enumClass
+specifier|private
+specifier|final
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|enumClass
+decl_stmt|;
+DECL|method|StringConverter (Class<T> enumClass)
+name|StringConverter
+parameter_list|(
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|enumClass
+parameter_list|)
+block|{
+name|this
+operator|.
+name|enumClass
+operator|=
+name|checkNotNull
+argument_list|(
+name|enumClass
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
+DECL|method|doForward (String value)
 specifier|protected
 name|T
 name|doForward
@@ -537,6 +587,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|doBackward (T enumValue)
 specifier|protected
 name|String
 name|doBackward
@@ -545,7 +596,7 @@ name|T
 name|enumValue
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
+comment|// TODO(kevinb): remove null boilerplate once convert() does it automatically
 return|return
 name|enumValue
 operator|==
@@ -561,6 +612,73 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+if|if
+condition|(
+name|object
+operator|instanceof
+name|StringConverter
+condition|)
+block|{
+name|StringConverter
+argument_list|<
+name|?
+argument_list|>
+name|that
+init|=
+operator|(
+name|StringConverter
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|object
+decl_stmt|;
+return|return
+name|this
+operator|.
+name|enumClass
+operator|.
+name|equals
+argument_list|(
+name|that
+operator|.
+name|enumClass
+argument_list|)
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode ()
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|enumClass
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -570,12 +688,22 @@ return|return
 literal|"Enums.stringConverter("
 operator|+
 name|enumClass
+operator|.
+name|getName
+argument_list|()
 operator|+
-literal|")"
+literal|".class)"
 return|;
 block|}
-block|}
-return|;
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|0L
+decl_stmt|;
 block|}
 block|}
 end_class
