@@ -204,50 +204,6 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * Equivalent to calling {@code close(closeable, true)}, but with no IOException in the signature.    *    * @param closeable the {@code Closeable} object to be closed, or null, in which case this method    *     does nothing    */
-DECL|method|closeQuietly (@ullable Closeable closeable)
-specifier|public
-specifier|static
-name|void
-name|closeQuietly
-parameter_list|(
-annotation|@
-name|Nullable
-name|Closeable
-name|closeable
-parameter_list|)
-block|{
-try|try
-block|{
-name|close
-argument_list|(
-name|closeable
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|log
-argument_list|(
-name|Level
-operator|.
-name|SEVERE
-argument_list|,
-literal|"IOException should not have been thrown."
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 end_class
 

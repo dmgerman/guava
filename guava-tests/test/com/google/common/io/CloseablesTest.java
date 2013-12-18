@@ -208,29 +208,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testCloseQuietly_closeableWithEatenException ()
-specifier|public
-name|void
-name|testCloseQuietly_closeableWithEatenException
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|// make sure that no exception is thrown by CloseQuietly when the mock does
-comment|// throw an exception on close
-name|setupCloseable
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|Closeables
-operator|.
-name|closeQuietly
-argument_list|(
-name|mockCloseable
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testCloseNull ()
 specifier|public
 name|void
@@ -255,13 +232,6 @@ argument_list|(
 literal|null
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|Closeables
-operator|.
-name|closeQuietly
-argument_list|(
-literal|null
 argument_list|)
 expr_stmt|;
 block|}
