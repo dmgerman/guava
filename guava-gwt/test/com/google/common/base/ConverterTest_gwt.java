@@ -17,10 +17,10 @@ package|;
 end_package
 
 begin_class
-DECL|class|EnumsTest_gwt
+DECL|class|ConverterTest_gwt
 specifier|public
 class|class
-name|EnumsTest_gwt
+name|ConverterTest_gwt
 extends|extends
 name|com
 operator|.
@@ -46,10 +46,10 @@ return|return
 literal|"com.google.common.base.testModule"
 return|;
 block|}
-DECL|method|testGetIfPresent ()
+DECL|method|testAndThen ()
 specifier|public
 name|void
-name|testGetIfPresent
+name|testAndThen
 parameter_list|()
 throws|throws
 name|Exception
@@ -62,7 +62,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -74,19 +74,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testGetIfPresent
+name|testAndThen
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testGetIfPresent_caseSensitive ()
+DECL|method|testApply ()
 specifier|public
 name|void
-name|testGetIfPresent_caseSensitive
+name|testApply
 parameter_list|()
 throws|throws
 name|Exception
@@ -99,7 +99,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -111,19 +111,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testGetIfPresent_caseSensitive
+name|testApply
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testGetIfPresent_whenNoMatchingConstant ()
+DECL|method|testConvertAllIsView ()
 specifier|public
 name|void
-name|testGetIfPresent_whenNoMatchingConstant
+name|testConvertAllIsView
 parameter_list|()
 throws|throws
 name|Exception
@@ -136,7 +136,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -148,19 +148,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testGetIfPresent_whenNoMatchingConstant
+name|testConvertAllIsView
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testStringConverter_convert ()
+DECL|method|testConverter ()
 specifier|public
 name|void
-name|testStringConverter_convert
+name|testConverter
 parameter_list|()
 throws|throws
 name|Exception
@@ -173,7 +173,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -185,19 +185,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testStringConverter_convert
+name|testConverter
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testStringConverter_convertError ()
+DECL|method|testIdentityConverter ()
 specifier|public
 name|void
-name|testStringConverter_convertError
+name|testIdentityConverter
 parameter_list|()
 throws|throws
 name|Exception
@@ -210,7 +210,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -222,19 +222,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testStringConverter_convertError
+name|testIdentityConverter
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testStringConverter_nullConversions ()
+DECL|method|testNullIsNotPassedThrough ()
 specifier|public
 name|void
-name|testStringConverter_nullConversions
+name|testNullIsNotPassedThrough
 parameter_list|()
 throws|throws
 name|Exception
@@ -247,7 +247,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -259,19 +259,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testStringConverter_nullConversions
+name|testNullIsNotPassedThrough
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testStringConverter_reverse ()
+DECL|method|testNullIsPassedThrough ()
 specifier|public
 name|void
-name|testStringConverter_reverse
+name|testNullIsPassedThrough
 parameter_list|()
 throws|throws
 name|Exception
@@ -284,7 +284,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -296,19 +296,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testStringConverter_reverse
+name|testNullIsPassedThrough
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testValueOfFunction ()
+DECL|method|testReverse ()
 specifier|public
 name|void
-name|testValueOfFunction
+name|testReverse
 parameter_list|()
 throws|throws
 name|Exception
@@ -321,7 +321,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -333,19 +333,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testValueOfFunction
+name|testReverse
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testValueOfFunction_caseSensitive ()
+DECL|method|testSerialization_andThen ()
 specifier|public
 name|void
-name|testValueOfFunction_caseSensitive
+name|testSerialization_andThen
 parameter_list|()
 throws|throws
 name|Exception
@@ -358,7 +358,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -370,19 +370,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testValueOfFunction_caseSensitive
+name|testSerialization_andThen
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testValueOfFunction_equals ()
+DECL|method|testSerialization_identity ()
 specifier|public
 name|void
-name|testValueOfFunction_equals
+name|testSerialization_identity
 parameter_list|()
 throws|throws
 name|Exception
@@ -395,7 +395,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -407,19 +407,19 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testValueOfFunction_equals
+name|testSerialization_identity
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testValueOfFunction_nullWhenNoMatchingConstant ()
+DECL|method|testSerialization_reverse ()
 specifier|public
 name|void
-name|testValueOfFunction_nullWhenNoMatchingConstant
+name|testSerialization_reverse
 parameter_list|()
 throws|throws
 name|Exception
@@ -432,7 +432,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 name|testCase
 init|=
 operator|new
@@ -444,12 +444,12 @@ name|common
 operator|.
 name|base
 operator|.
-name|EnumsTest
+name|ConverterTest
 argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testValueOfFunction_nullWhenNoMatchingConstant
+name|testSerialization_reverse
 argument_list|()
 expr_stmt|;
 block|}
