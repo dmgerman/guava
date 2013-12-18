@@ -32,30 +32,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|VisibleForTesting
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|NoSuchElementException
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -65,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple static methods to be called at the start of your own methods to verify  * correct arguments and state. This allows constructs such as  *  *<pre>   {@code  *   if (count<= 0) {  *     throw new IllegalArgumentException("must be positive: " + count);  *   }}</pre>  *  *<p>to be replaced with the more compact  *<pre>   {@code  *   checkArgument(count> 0, "must be positive: %s", count);}</pre>  *  *<p>Note that the sense of the expression is inverted; with {@code Preconditions}  * you declare what you expect to be<i>true</i>, just as you do with an  *<a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/assert.html">  * {@code assert}</a> or a JUnit {@code assertTrue} call.  *  *<p><b>Warning:</b> only the {@code "%s"} specifier is recognized as a  * placeholder in these messages, not the full range of {@link  * String#format(String, Object[])} specifiers.  *  *<p>Take care not to confuse precondition checking with other similar types  * of checks! Precondition exceptions -- including those provided here, but also  * {@link IndexOutOfBoundsException}, {@link NoSuchElementException}, {@link  * UnsupportedOperationException} and others -- are used to signal that the  *<i>calling method</i> has made an error. This tells the caller that it should  * not have invoked the method when it did, with the arguments it did, or  * perhaps ever. Postcondition or other invariant failures should not throw  * these types of exceptions.  *  *<p>See the Guava User Guide on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PreconditionsExplained">  * using {@code Preconditions}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static convenience methods that help a method or constructor check whether it was invoked  * correctly (whether its<i>preconditions</i> have been met). These methods generally accept a  * {@code boolean} expression which is expected to be {@code true} (or in the case of {@code  * checkNotNull}, an object reference which is expected to be non-null). When {@code false} (or  * {@code null}) is passed instead, the {@code Preconditions} method throws an unchecked exception,  * which helps the calling method communicate to<i>its</i> caller that<i>that</i> caller has made  * a mistake. Example:<pre>   {@code  *  *   /**  *    * Returns the positive square root of the given value.  *    *  *    * @throws IllegalArgumentException if the value is negative  *    *}{@code /  *   public static double sqrt(double value) {  *     Preconditions.checkArgument(value>= 0.0, "negative value: %s", value);  *     // calculate the square root  *   }  *  *   void exampleBadCaller() {  *     double d = sqrt(-1.0);  *   }}</pre>  *  * In this example, {@code checkArgument} throws an {@code IllegalArgumentException} to indicate  * that {@code exampleBadCaller} made an error in<i>its</i> call to {@code sqrt}.  *  *<h3>Warning about performance</h3>  *  *<p>The goal of this class is to improve readability of code, but in some circumstances this may  * come at a significant performance cost. Remember that parameter values for message construction  * must all be computed eagerly, and autoboxing and varargs array creation may happen as well, even  * when the precondition check then succeeds (as it should almost always do in production). In some  * circumstances these wasted CPU cycles and allocations can add up to a real problem.  * Performance-sensitive precondition checks can always be converted to the customary form:  *<pre>   {@code  *  *   if (value< 0.0) {  *     throw new IllegalArgumentException("negative value: " + value);  *   }}</pre>  *  *<h3>Other types of preconditions</h3>  *  *<p>Not every type of precondition failure is supported by these methods. Continue to throw  * standard JDK exceptions such as {@link java.util.NoSuchElementException} or {@link  * UnsupportedOperationException} in the situations they are intended for.  *  *<h3>Non-preconditions</h3>  *  *<p>It is of course possible to use the methods of this class to check for invalid conditions  * which are<i>not the caller's fault</i>. Doing so is<b>not recommended</b> because it is  * misleading to future readers of the code and of stack traces. See  *<a href="http://code.google.com/p/guava-libraries/wiki/ConditionalFailuresExplained">Conditional  * failures explained</a> in the Guava User Guide for more advice.  *  *<h3>{@code java.util.Objects.requireNonNull()}</h3>  *  *<p>Projects which use {@code com.google.common} should generally avoid the use of {@link  * java.util.Objects#requireNonNull(Object)}. Instead, use whichever of {@link  * #checkNotNull(Object)} or {@link Verify#verifyNotNull(Object)} is appropriate to the situation.  * (The same goes for the message-accepting overloads.)  *  *<h3>Only {@code %s} is supported</h3>  *  *<p>In {@code Preconditions} error message template strings, only the {@code "%s"} specifier is  * supported, not the full range of {@link java.util.Formatter} specifiers. However, note that if  * the number of arguments does not match the number of occurrences of {@code "%s"} in the format  * string, {@code Preconditions} will still behave as expected, and will still include all argument  * values in the error message; the message will simply not be formatted exactly as intended.  *  *<h3>More information</h3>  *  *<p>See the Guava User Guide on  *<a href="http://code.google.com/p/guava-libraries/wiki/PreconditionsExplained">using {@code  * Preconditions}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -821,9 +797,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Substitutes each {@code %s} in {@code template} with an argument. These are matched by    * position: the first {@code %s} gets {@code args[0]}, etc.  If there are more arguments than    * placeholders, the unmatched arguments will be appended to the end of the formatted message in    * square braces.    *    * @param template a non-null string containing 0 or more {@code %s} placeholders.    * @param args the arguments to be substituted into the message template. Arguments are converted    *     to strings using {@link String#valueOf(Object)}. Arguments can be null.    */
+comment|// Note that this is somewhat-improperly used from Verify.java as well.
 DECL|method|format (String template, @Nullable Object... args)
-annotation|@
-name|VisibleForTesting
 specifier|static
 name|String
 name|format
