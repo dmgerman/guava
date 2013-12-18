@@ -316,7 +316,9 @@ specifier|private
 name|ByteStreams
 parameter_list|()
 block|{}
-comment|/**    * Returns a factory that will supply instances of    * {@link ByteArrayInputStream} that read from the given byte array.    *    * @param b the input buffer    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of    * {@link ByteArrayInputStream} that read from the given byte array.    *    * @param b the input buffer    * @return the factory    * @deprecated Use {@link ByteSource#wrap(byte[])} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newInputStreamSupplier ( byte[] b)
 specifier|public
 specifier|static
@@ -343,7 +345,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of    * {@link ByteArrayInputStream} that read from the given byte array.    *    * @param b the input buffer    * @param off the offset in the buffer of the first byte to read    * @param len the maximum number of bytes to read from the buffer    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of    * {@link ByteArrayInputStream} that read from the given byte array.    *    * @param b the input buffer    * @param off the offset in the buffer of the first byte to read    * @param len the maximum number of bytes to read from the buffer    * @return the factory    * @deprecated Use {@code ByteSource.wrap(b).slice(off, len)} instead. This    *     method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newInputStreamSupplier ( final byte[] b, final int off, final int len)
 specifier|public
 specifier|static
@@ -386,7 +390,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Writes a byte array to an output stream from the given supplier.    *    * @param from the bytes to write    * @param to the output supplier    * @throws IOException if an I/O error occurs    */
+comment|/**    * Writes a byte array to an output stream from the given supplier.    *    * @param from the bytes to write    * @param to the output supplier    * @throws IOException if an I/O error occurs    * @deprecated Use {@link ByteSink#write(byte[])} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|write (byte[] from, OutputSupplier<? extends OutputStream> to)
 specifier|public
 specifier|static
@@ -419,7 +425,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Opens input and output streams from the given suppliers, copies all    * bytes from the input to the output, and closes the streams.    *    * @param from the input factory    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
+comment|/**    * Opens input and output streams from the given suppliers, copies all    * bytes from the input to the output, and closes the streams.    *    * @param from the input factory    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @deprecated Use {@link ByteSource#copyTo(ByteSink)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (InputSupplier<? extends InputStream> from, OutputSupplier<? extends OutputStream> to)
 specifier|public
 specifier|static
@@ -460,7 +468,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens an input stream from the supplier, copies all bytes from the    * input to the output, and closes the input stream. Does not close    * or flush the output stream.    *    * @param from the input factory    * @param to the output stream to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    */
+comment|/**    * Opens an input stream from the supplier, copies all bytes from the    * input to the output, and closes the input stream. Does not close    * or flush the output stream.    *    * @param from the input factory    * @param to the output stream to write to    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @deprecated Use {@link ByteSource#copyTo(OutputStream)} instead. This    *      method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (InputSupplier<? extends InputStream> from, OutputStream to)
 specifier|public
 specifier|static
@@ -493,7 +503,9 @@ name|to
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens an output stream from the supplier, copies all bytes from the input    * to the output, and closes the output stream. Does not close or flush the    * input stream.    *    * @param from the input stream to read from    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @since 10.0    */
+comment|/**    * Opens an output stream from the supplier, copies all bytes from the input    * to the output, and closes the output stream. Does not close or flush the    * input stream.    *    * @param from the input stream to read from    * @param to the output factory    * @return the number of bytes copied    * @throws IOException if an I/O error occurs    * @since 10.0    * @deprecated Use {@link ByteSink#writeFrom(InputStream)} instead. This    *     method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (InputStream from, OutputSupplier<? extends OutputStream> to)
 specifier|public
 specifier|static
@@ -952,7 +964,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns the data from a {@link InputStream} factory as a byte array.    *    * @param supplier the factory    * @throws IOException if an I/O error occurs    */
+comment|/**    * Returns the data from a {@link InputStream} factory as a byte array.    *    * @param supplier the factory    * @throws IOException if an I/O error occurs    * @deprecated Use {@link ByteSource#read()} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|toByteArray ( InputSupplier<? extends InputStream> supplier)
 specifier|public
 specifier|static
@@ -2718,7 +2732,9 @@ name|skipped
 return|;
 block|}
 block|}
-comment|/** Returns the length of a supplied input stream, in bytes. */
+comment|/**    * Returns the length of a supplied input stream, in bytes.    *    * @deprecated Use {@link ByteSource#size()} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|length ( InputSupplier<? extends InputStream> supplier)
 specifier|public
 specifier|static
@@ -2746,7 +2762,9 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns true if the supplied input streams contain the same bytes.    *    * @throws IOException if an I/O error occurs    */
+comment|/**    * Returns true if the supplied input streams contain the same bytes.    *    * @throws IOException if an I/O error occurs    * @deprecated Use {@link ByteSource#contentEquals(ByteSource)} instead. This    *     method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|equal (InputSupplier<? extends InputStream> supplier1, InputSupplier<? extends InputStream> supplier2)
 specifier|public
 specifier|static
@@ -2972,7 +2990,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Process the bytes of a supplied stream    *    * @param supplier the input stream factory    * @param processor the object to which to pass the bytes of the stream    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    */
+comment|/**    * Process the bytes of a supplied stream    *    * @param supplier the input stream factory    * @param processor the object to which to pass the bytes of the stream    * @return the result of the byte processor    * @throws IOException if an I/O error occurs    * @deprecated Use {@link ByteSource#read(ByteProcessor)} instead. This    *     method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|readBytes ( InputSupplier<? extends InputStream> supplier, ByteProcessor<T> processor)
 specifier|public
 specifier|static
@@ -3148,7 +3168,9 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|/**    * Computes the hash code of the data supplied by {@code supplier} using {@code    * hashFunction}.    *    * @param supplier the input stream factory    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the input stream    * @throws IOException if an I/O error occurs    * @since 12.0    */
+comment|/**    * Computes the hash code of the data supplied by {@code supplier} using {@code    * hashFunction}.    *    * @param supplier the input stream factory    * @param hashFunction the hash function to use to hash the data    * @return the {@link HashCode} of all of the bytes in the input stream    * @throws IOException if an I/O error occurs    * @since 12.0    * @deprecated Use {@link ByteSource#hash(HashFunction)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|hash ( InputSupplier<? extends InputStream> supplier, HashFunction hashFunction)
 specifier|public
 specifier|static
@@ -3278,7 +3300,9 @@ return|return
 name|total
 return|;
 block|}
-comment|/**    * Returns an {@link InputSupplier} that returns input streams from the    * an underlying supplier, where each stream starts at the given    * offset and is limited to the specified number of bytes.    *    * @param supplier the supplier from which to get the raw streams    * @param offset the offset in bytes into the underlying stream where    *     the returned streams will start    * @param length the maximum length of the returned streams    * @throws IllegalArgumentException if offset or length are negative    */
+comment|/**    * Returns an {@link InputSupplier} that returns input streams from the    * an underlying supplier, where each stream starts at the given    * offset and is limited to the specified number of bytes.    *    * @param supplier the supplier from which to get the raw streams    * @param offset the offset in bytes into the underlying stream where    *     the returned streams will start    * @param length the maximum length of the returned streams    * @throws IllegalArgumentException if offset or length are negative    * @deprecated Use {@link ByteSource#slice(int, int)} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|slice ( final InputSupplier<? extends InputStream> supplier, final long offset, final long length)
 specifier|public
 specifier|static
@@ -3323,7 +3347,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Joins multiple {@link InputStream} suppliers into a single supplier.    * Streams returned from the supplier will contain the concatenated data from    * the streams of the underlying suppliers.    *    *<p>Only one underlying input stream will be open at a time. Closing the    * joined stream will close the open underlying stream.    *    *<p>Reading from the joined stream will throw a {@link NullPointerException}    * if any of the suppliers are null or return null.    *    * @param suppliers the suppliers to concatenate    * @return a supplier that will return a stream containing the concatenated    *     stream data    */
+comment|/**    * Joins multiple {@link InputStream} suppliers into a single supplier.    * Streams returned from the supplier will contain the concatenated data from    * the streams of the underlying suppliers.    *    *<p>Only one underlying input stream will be open at a time. Closing the    * joined stream will close the open underlying stream.    *    *<p>Reading from the joined stream will throw a {@link NullPointerException}    * if any of the suppliers are null or return null.    *    * @param suppliers the suppliers to concatenate    * @return a supplier that will return a stream containing the concatenated    *     stream data    * @deprecated Use {@link ByteSource#concat(Iterable)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|join ( final Iterable<? extends InputSupplier<? extends InputStream>> suppliers)
 specifier|public
 specifier|static
@@ -3419,10 +3445,12 @@ block|}
 end_class
 
 begin_comment
-comment|/** Varargs form of {@link #join(Iterable)}. */
+comment|/**    * Varargs form of {@link #join(Iterable)}.    *    * @deprecated Use {@link ByteSource#concat(ByteSource[])} instead. This    *     method is scheduled for removal in Guava 18.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3467,10 +3495,12 @@ comment|// TODO(user): Remove these once Input/OutputSupplier methods are remove
 end_comment
 
 begin_comment
-comment|/**    * Returns a view of the given {@code InputStream} supplier as a    * {@code ByteSource}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    */
+comment|/**    * Returns a view of the given {@code InputStream} supplier as a    * {@code ByteSource}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    * @deprecated Convert all {@code InputSupplier<? extends InputStream>}    *     implementations to extend {@link ByteSource} or provide a method for    *     viewing the object as a {@code ByteSource}. This method is scheduled    *     for removal in Guava 18.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 DECL|method|asByteSource ( final InputSupplier<? extends InputStream> supplier)
 specifier|public
 specifier|static
@@ -3534,10 +3564,12 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a view of the given {@code OutputStream} supplier as a    * {@code ByteSink}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    */
+comment|/**    * Returns a view of the given {@code OutputStream} supplier as a    * {@code ByteSink}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    * @deprecated Convert all {@code OutputSupplier<? extends OutputStream>}    *     implementations to extend {@link ByteSink} or provide a method for    *     viewing the object as a {@code ByteSink}. This method is scheduled    *     for removal in Guava 18.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 DECL|method|asByteSink ( final OutputSupplier<? extends OutputStream> supplier)
 specifier|public
 specifier|static

@@ -116,7 +116,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link OutputSupplier} interface and should not be called directly. Use    *     {@link #openStream} instead.    */
+comment|/**    * This method is a temporary method provided for easing migration from suppliers to sources and    * sinks.    *    * @since 15.0    * @deprecated This method is only provided for temporary compatibility with the    *     {@link OutputSupplier} interface and should not be called directly. Use    *     {@link #openStream} instead. This method is scheduled for removal in Guava 18.0.    */
 annotation|@
 name|Override
 annotation|@

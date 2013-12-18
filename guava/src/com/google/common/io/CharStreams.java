@@ -284,7 +284,9 @@ specifier|private
 name|CharStreams
 parameter_list|()
 block|{}
-comment|/**    * Returns a factory that will supply instances of {@link StringReader} that    * read a string value.    *    * @param value the string to read    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link StringReader} that    * read a string value.    *    * @param value the string to read    * @return the factory    * @deprecated Use {@link CharSource#wrap(CharSequence}} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newReaderSupplier ( final String value)
 specifier|public
 specifier|static
@@ -311,7 +313,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link InputStreamReader},    * using the given {@link InputStream} factory and character set.    *    * @param in the factory that will be used to open input streams    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link InputStreamReader},    * using the given {@link InputStream} factory and character set.    *    * @param in the factory that will be used to open input streams    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    * @deprecated Use {@link ByteSource#asCharSource(Charset)} instead. This    *     method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newReaderSupplier ( final InputSupplier<? extends InputStream> in, final Charset charset)
 specifier|public
 specifier|static
@@ -352,7 +356,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter},    * using the given {@link OutputStream} factory and character set.    *    * @param out the factory that will be used to open output streams    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter},    * using the given {@link OutputStream} factory and character set.    *    * @param out the factory that will be used to open output streams    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    * @deprecated Use {@link ByteSink#asCharSink(Charset)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newWriterSupplier ( final OutputSupplier<? extends OutputStream> out, final Charset charset)
 specifier|public
 specifier|static
@@ -393,7 +399,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Writes a character sequence (such as a string) to an appendable    * object from the given supplier.    *    * @param from the character sequence to write    * @param to the output supplier    * @throws IOException if an I/O error occurs    */
+comment|/**    * Writes a character sequence (such as a string) to an appendable    * object from the given supplier.    *    * @param from the character sequence to write    * @param to the output supplier    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSink#write(CharSequence)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|write (CharSequence from, OutputSupplier<W> to)
 specifier|public
 specifier|static
@@ -430,7 +438,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Opens {@link Readable} and {@link Appendable} objects from the    * given factories, copies all characters between the two, and closes    * them.    *    * @param from the input factory    * @param to the output factory    * @return the number of characters copied    * @throws IOException if an I/O error occurs    */
+comment|/**    * Opens {@link Readable} and {@link Appendable} objects from the    * given factories, copies all characters between the two, and closes    * them.    *    * @param from the input factory    * @param to the output factory    * @return the number of characters copied    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#copyTo(CharSink) instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 parameter_list|<
@@ -480,7 +490,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Opens a {@link Readable} object from the supplier, copies all characters    * to the {@link Appendable} object, and closes the input. Does not close    * or flush the output.    *    * @param from the input factory    * @param to the object to write to    * @return the number of characters copied    * @throws IOException if an I/O error occurs    */
+comment|/**    * Opens a {@link Readable} object from the supplier, copies all characters    * to the {@link Appendable} object, and closes the input. Does not close    * or flush the output.    *    * @param from the input factory    * @param to the object to write to    * @return the number of characters copied    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#copyTo(Appendable)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy ( InputSupplier<R> from, Appendable to)
 specifier|public
 specifier|static
@@ -624,7 +636,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns the characters from a {@link Readable}& {@link Closeable} object    * supplied by a factory as a {@link String}.    *    * @param supplier the factory to read from    * @return a string containing all the characters    * @throws IOException if an I/O error occurs    */
+comment|/**    * Returns the characters from a {@link Readable}& {@link Closeable} object    * supplied by a factory as a {@link String}.    *    * @param supplier the factory to read from    * @return a string containing all the characters    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#read()} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|toString ( InputSupplier<R> supplier)
 specifier|public
 specifier|static
@@ -688,7 +702,9 @@ return|return
 name|sb
 return|;
 block|}
-comment|/**    * Reads the first line from a {@link Readable}& {@link Closeable} object    * supplied by a factory. The line does not include line-termination    * characters, but does include other leading and trailing whitespace.    *    * @param supplier the factory to read from    * @return the first line, or null if the reader is empty    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads the first line from a {@link Readable}& {@link Closeable} object    * supplied by a factory. The line does not include line-termination    * characters, but does include other leading and trailing whitespace.    *    * @param supplier the factory to read from    * @return the first line, or null if the reader is empty    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#readFirstLine()} instead. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|readFirstLine ( InputSupplier<R> supplier)
 specifier|public
 specifier|static
@@ -721,7 +737,9 @@ name|readFirstLine
 argument_list|()
 return|;
 block|}
-comment|/**    * Reads all of the lines from a {@link Readable}& {@link Closeable} object    * supplied by a factory. The lines do not include line-termination    * characters, but do include other leading and trailing whitespace.    *    * @param supplier the factory to read from    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Reads all of the lines from a {@link Readable}& {@link Closeable} object    * supplied by a factory. The lines do not include line-termination    * characters, but do include other leading and trailing whitespace.    *    * @param supplier the factory to read from    * @return a mutable {@link List} containing all the lines    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#readLines()} instead, but note that it    *     returns an {@code ImmutableList}. This method is scheduled for removal    *     in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|readLines ( InputSupplier<R> supplier)
 specifier|public
 specifier|static
@@ -947,7 +965,9 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|/**    * Streams lines from a {@link Readable} and {@link Closeable} object    * supplied by a factory, stopping when our callback returns false, or we    * have read all of the lines.    *    * @param supplier the factory to read from    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    */
+comment|/**    * Streams lines from a {@link Readable} and {@link Closeable} object    * supplied by a factory, stopping when our callback returns false, or we    * have read all of the lines.    *    * @param supplier the factory to read from    * @param callback the LineProcessor to use to handle the lines    * @return the output of processing the lines    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#readLines(LineProcessor)} instead. This    *     method is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|readLines ( InputSupplier<R> supplier, LineProcessor<T> callback)
 specifier|public
 specifier|static
@@ -1044,7 +1064,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Joins multiple {@link Reader} suppliers into a single supplier.    * Reader returned from the supplier will contain the concatenated data    * from the readers of the underlying suppliers.    *    *<p>Reading from the joined reader will throw a {@link NullPointerException}    * if any of the suppliers are null or return null.    *    *<p>Only one underlying reader will be open at a time. Closing the    * joined reader will close the open underlying reader.    *    * @param suppliers the suppliers to concatenate    * @return a supplier that will return a reader containing the concatenated    *     data    */
+comment|/**    * Joins multiple {@link Reader} suppliers into a single supplier.    * Reader returned from the supplier will contain the concatenated data    * from the readers of the underlying suppliers.    *    *<p>Reading from the joined reader will throw a {@link NullPointerException}    * if any of the suppliers are null or return null.    *    *<p>Only one underlying reader will be open at a time. Closing the    * joined reader will close the open underlying reader.    *    * @param suppliers the suppliers to concatenate    * @return a supplier that will return a reader containing the concatenated    *     data    * @deprecated Use {@link CharSource#concat(Iterable)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|join ( final Iterable<? extends InputSupplier<? extends Reader>> suppliers)
 specifier|public
 specifier|static
@@ -1140,10 +1162,12 @@ block|}
 end_class
 
 begin_comment
-comment|/** Varargs form of {@link #join(Iterable)}. */
+comment|/**    * Varargs form of {@link #join(Iterable)}.    *    * @deprecated Use {@link CharSource#concat(CharSource[])} instead. This    *     method is scheduled for removal in Guava 18.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1683,10 +1707,12 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a view of the given {@code Readable} supplier as a    * {@code CharSource}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    */
+comment|/**    * Returns a view of the given {@code Readable} supplier as a    * {@code CharSource}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    * @deprecated Convert all {@code InputSupplier<? extends Readable>}    *     implementations to extend {@link CharSource} or provide a method for    *     viewing the object as a {@code CharSource}. This method is scheduled    *     for removal in Guava 18.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 DECL|method|asCharSource ( final InputSupplier<? extends Readable> supplier)
 specifier|public
 specifier|static
@@ -1753,10 +1779,12 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Returns a view of the given {@code Appendable} supplier as a    * {@code CharSink}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    */
+comment|/**    * Returns a view of the given {@code Appendable} supplier as a    * {@code CharSink}.    *    *<p>This method is a temporary method provided for easing migration from    * suppliers to sources and sinks.    *    * @since 15.0    * @deprecated Convert all {@code OutputSupplier<? extends Appendable>}    *     implementations to extend {@link CharSink} or provide a method for    *     viewing the object as a {@code CharSink}. This method is scheduled    *     for removal in Guava 18.0.    */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 DECL|method|asCharSink ( final OutputSupplier<? extends Appendable> supplier)
 specifier|public
 specifier|static

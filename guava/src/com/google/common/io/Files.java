@@ -983,7 +983,9 @@ name|charset
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link FileInputStream}    * that read from a file.    *    * @param file the file to read from    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link FileInputStream}    * that read from a file.    *    * @param file the file to read from    * @return the factory    * @deprecated Use {@link #asByteSource(File)}. This method is scheduled for    *     removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newInputStreamSupplier ( final File file)
 specifier|public
 specifier|static
@@ -1010,7 +1012,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link FileOutputStream}    * that write to a file.    *    * @param file the file to write to    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link FileOutputStream}    * that write to a file.    *    * @param file the file to write to    * @return the factory    * @deprecated Use {@link #asByteSink(File)}. This method is scheduled for    *     removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newOutputStreamSupplier ( File file)
 specifier|public
 specifier|static
@@ -1033,7 +1037,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link FileOutputStream}    * that write to or append to a file.    *    * @param file the file to write to    * @param append if true, the encoded characters will be appended to the file;    *     otherwise the file is overwritten    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link FileOutputStream}    * that write to or append to a file.    *    * @param file the file to write to    * @param append if true, the encoded characters will be appended to the file;    *     otherwise the file is overwritten    * @return the factory    * @deprecated Use {@link #asByteSink(File, FileWriteMode...)}, passing    *     {@link FileWriteMode#APPEND} for append. This method is scheduled for    *     removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newOutputStreamSupplier ( final File file, final boolean append)
 specifier|public
 specifier|static
@@ -1099,7 +1105,9 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a file using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a file using the given character set.    *    * @param file the file to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    * @deprecated Use {@link #asCharSource(File, Charset)}. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newReaderSupplier (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1130,7 +1138,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    * @deprecated Use {@link #asCharSink(File, Charset)}. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newWriterSupplier (File file, Charset charset)
 specifier|public
 specifier|static
@@ -1158,7 +1168,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to or append to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @param append if true, the encoded characters will be appended to the file;    *     otherwise the file is overwritten    * @return the factory    */
+comment|/**    * Returns a factory that will supply instances of {@link OutputStreamWriter}    * that write to or append to a file using the given character set.    *    * @param file the file to write to    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @param append if true, the encoded characters will be appended to the file;    *     otherwise the file is overwritten    * @return the factory    * @deprecated Use {@link #asCharSink(File, Charset, FileWriteMode...)},    *     passing {@link FileWriteMode#APPEND} for append. This method is    *     scheduled for removal in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|newWriterSupplier (File file, Charset charset, boolean append)
 specifier|public
 specifier|static
@@ -1249,7 +1261,9 @@ name|read
 argument_list|()
 return|;
 block|}
-comment|/**    * Copies to a file all bytes from an {@link InputStream} supplied by a    * factory.    *    * @param from the input factory    * @param to the destination file    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies to a file all bytes from an {@link InputStream} supplied by a    * factory.    *    * @param from the input factory    * @param to the destination file    * @throws IOException if an I/O error occurs    * @deprecated Use {@code from.copyTo(Files.asByteSink(to))} after changing    *     {@code from} to a {@code ByteSource} if necessary. This method is    *     scheduled to be removed in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (InputSupplier<? extends InputStream> from, File to)
 specifier|public
 specifier|static
@@ -1314,7 +1328,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all bytes from a file to an {@link OutputStream} supplied by    * a factory.    *    * @param from the source file    * @param to the output factory    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all bytes from a file to an {@link OutputStream} supplied by    * a factory.    *    * @param from the source file    * @param to the output factory    * @throws IOException if an I/O error occurs    * @deprecated Use {@code Files.asByteSource(from).copyTo(to)} after changing    *     {@code to} to a {@code ByteSink} if necessary. This method is    *     scheduled to be removed in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (File from, OutputSupplier<? extends OutputStream> to)
 specifier|public
 specifier|static
@@ -1425,7 +1441,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies to a file all characters from a {@link Readable} and    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the readable supplier    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies to a file all characters from a {@link Readable} and    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the readable supplier    * @param to the destination file    * @param charset the charset used to encode the output stream; see {@link    *     Charsets} for helpful predefined constants    * @throws IOException if an I/O error occurs    * @deprecated Use {@code from.copyTo(Files.asCharSink(to, charset))} after    *     changing {@code from} to a {@code CharSource} if necessary. This    *     method is scheduled to be removed in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy ( InputSupplier<R> from, File to, Charset charset)
 specifier|public
 specifier|static
@@ -1575,7 +1593,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Copies all characters from a file to a {@link Appendable}&    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param to the appendable supplier    * @throws IOException if an I/O error occurs    */
+comment|/**    * Copies all characters from a file to a {@link Appendable}&    * {@link Closeable} object supplied by a factory, using the given    * character set.    *    * @param from the source file    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @param to the appendable supplier    * @throws IOException if an I/O error occurs    * @deprecated Use {@code Files.asCharSource(from, charset).copyTo(to)} after    *     changing {@code to} to a {@code CharSink} if necessary. This method is    *     scheduled to be removed in Guava 18.0.    */
+annotation|@
+name|Deprecated
 DECL|method|copy (File from, Charset charset, OutputSupplier<W> to)
 specifier|public
 specifier|static
