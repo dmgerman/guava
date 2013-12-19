@@ -46,10 +46,10 @@ return|return
 literal|"com.google.common.collect.testModule"
 return|;
 block|}
-DECL|method|testGenerics ()
+DECL|method|testGenerics_gwtCompatible ()
 specifier|public
 name|void
-name|testGenerics
+name|testGenerics_gwtCompatible
 parameter_list|()
 throws|throws
 name|Exception
@@ -79,7 +79,7 @@ argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testGenerics
+name|testGenerics_gwtCompatible
 argument_list|()
 expr_stmt|;
 block|}
@@ -120,10 +120,10 @@ name|testSerialization
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testTreeKeys ()
+DECL|method|testTreeKeys_gwtCompatible ()
 specifier|public
 name|void
-name|testTreeKeys
+name|testTreeKeys_gwtCompatible
 parameter_list|()
 throws|throws
 name|Exception
@@ -153,7 +153,7 @@ argument_list|()
 decl_stmt|;
 name|testCase
 operator|.
-name|testTreeKeys
+name|testTreeKeys_gwtCompatible
 argument_list|()
 expr_stmt|;
 block|}
