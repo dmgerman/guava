@@ -1180,6 +1180,13 @@ name|int
 name|expectedValuesPerKey
 parameter_list|)
 block|{
+name|checkNonnegative
+argument_list|(
+name|expectedValuesPerKey
+argument_list|,
+literal|"expectedValuesPerKey"
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|ListMultimapBuilder
