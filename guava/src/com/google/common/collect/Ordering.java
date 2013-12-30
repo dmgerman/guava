@@ -308,7 +308,7 @@ name|INSTANCE
 return|;
 block|}
 comment|// Static factories
-comment|/**    * Returns an ordering based on an<i>existing</i> comparator instance. Note    * that there's no need to create a<i>new</i> comparator just to pass it in    * here; simply subclass {@code Ordering} and implement its {@code compare}    * method directly instead.    *    * @param comparator the comparator that defines the order    * @return comparator itself if it is already an {@code Ordering}; otherwise    *     an ordering that wraps that comparator    */
+comment|/**    * Returns an ordering based on an<i>existing</i> comparator instance. Note    * that it is unnecessary to create a<i>new</i> anonymous inner class    * implementing {@code Comparator} just to pass it in here. Instead, simply    * subclass {@code Ordering} and implement its {@code compare} method    * directly.    *    * @param comparator the comparator that defines the order    * @return comparator itself if it is already an {@code Ordering}; otherwise    *     an ordering that wraps that comparator    */
 annotation|@
 name|GwtCompatible
 argument_list|(
