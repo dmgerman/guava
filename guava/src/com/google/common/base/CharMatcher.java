@@ -3578,6 +3578,11 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"SmallCharMatcher"
+argument_list|)
 DECL|method|isSmall (int totalCharacters, int tableLength)
 specifier|private
 specifier|static
