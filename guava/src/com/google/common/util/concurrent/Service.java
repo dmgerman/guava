@@ -40,18 +40,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|Executor
 import|;
 end_import
@@ -333,7 +321,7 @@ specifier|abstract
 class|class
 name|Listener
 block|{
-comment|/**      * Called when the service transitions from {@linkplain State#NEW NEW} to      * {@linkplain State#STARTING STARTING}. This occurs when {@link Service#start} or      * {@link Service#startAndWait} is called the first time.      */
+comment|/**      * Called when the service transitions from {@linkplain State#NEW NEW} to      * {@linkplain State#STARTING STARTING}. This occurs when {@link Service#startAsync} is called      * the first time.      */
 DECL|method|starting ()
 specifier|public
 name|void
@@ -347,7 +335,7 @@ name|void
 name|running
 parameter_list|()
 block|{}
-comment|/**      * Called when the service transitions to the {@linkplain State#STOPPING STOPPING} state. The      * only valid values for {@code from} are {@linkplain State#STARTING STARTING} or      * {@linkplain State#RUNNING RUNNING}.  This occurs when {@link Service#stop} is called.      *      * @param from The previous state that is being transitioned from.      */
+comment|/**      * Called when the service transitions to the {@linkplain State#STOPPING STOPPING} state. The      * only valid values for {@code from} are {@linkplain State#STARTING STARTING} or      * {@linkplain State#RUNNING RUNNING}.  This occurs when {@link Service#stopAsync} is called.      *      * @param from The previous state that is being transitioned from.      */
 DECL|method|stopping (State from)
 specifier|public
 name|void

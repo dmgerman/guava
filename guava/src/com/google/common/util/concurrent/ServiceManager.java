@@ -958,7 +958,7 @@ name|markReady
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given     * executor. The listener will not have previous state changes replayed, so it is     * suggested that listeners are added before any of the managed services are     * {@linkplain Service#start started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown     * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception     * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *     *<p> For fast, lightweight listeners that would be safe to execute in any thread, consider     * calling {@link #addListener(Listener)}.    *     * @param listener the listener to run when the manager changes state    * @param executor the executor in which the listeners callback methods will be run.    */
+comment|/**    * Registers a {@link Listener} to be {@linkplain Executor#execute executed} on the given     * executor. The listener will not have previous state changes replayed, so it is     * suggested that listeners are added before any of the managed services are     * {@linkplain Service#startAsync started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown     * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception     * thrown by {@linkplain MoreExecutors#sameThreadExecutor inline execution}) will be caught and    * logged.    *     *<p> For fast, lightweight listeners that would be safe to execute in any thread, consider     * calling {@link #addListener(Listener)}.    *     * @param listener the listener to run when the manager changes state    * @param executor the executor in which the listeners callback methods will be run.    */
 DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
 name|void
@@ -981,7 +981,7 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Registers a {@link Listener} to be run when this {@link ServiceManager} changes state. The     * listener will not have previous state changes replayed, so it is suggested that listeners are     * added before any of the managed services are {@linkplain Service#start started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be will be caught and logged.    *     * @param listener the listener to run when the manager changes state    */
+comment|/**    * Registers a {@link Listener} to be run when this {@link ServiceManager} changes state. The     * listener will not have previous state changes replayed, so it is suggested that listeners are     * added before any of the managed services are {@linkplain Service#startAsync started}.    *    *<p>There is no guaranteed ordering of execution of listeners, but any listener added through     * this method is guaranteed to be called whenever there is a state change.    *    *<p>Exceptions thrown by a listener will be will be caught and logged.    *     * @param listener the listener to run when the manager changes state    */
 DECL|method|addListener (Listener listener)
 specifier|public
 name|void
@@ -1004,7 +1004,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initiates service {@linkplain Service#start startup} on all the services being managed.  It is    * only valid to call this method if all of the services are {@linkplain State#NEW new}.    *     * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the     *     method is called.    */
+comment|/**    * Initiates service {@linkplain Service#startAsync startup} on all the services being managed.      * It is only valid to call this method if all of the services are {@linkplain State#NEW new}.    *     * @return this    * @throws IllegalStateException if any of the Services are not {@link State#NEW new} when the     *     method is called.    */
 DECL|method|startAsync ()
 specifier|public
 name|ServiceManager
@@ -1126,7 +1126,7 @@ name|unit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initiates service {@linkplain Service#stop shutdown} if necessary on all the services being     * managed.     *        * @return this    */
+comment|/**    * Initiates service {@linkplain Service#stopAsync shutdown} if necessary on all the services    * being managed.     *        * @return this    */
 DECL|method|stopAsync ()
 specifier|public
 name|ServiceManager

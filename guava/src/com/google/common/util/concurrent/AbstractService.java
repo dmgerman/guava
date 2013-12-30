@@ -724,15 +724,15 @@ break|break;
 case|case
 name|TERMINATED
 case|:
-comment|/* fall-through */
+comment|// fall-through
 case|case
 name|FAILED
 case|:
-comment|/* fall-through */
+comment|// fall-through
 case|case
 name|NEW
 case|:
-comment|/* fall-through */
+comment|// fall-through
 default|default:
 throw|throw
 operator|new
@@ -754,7 +754,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This method is called by {@link #start} to initiate service startup. The invocation of this    * method should cause a call to {@link #notifyStarted()}, either during this method's run, or    * after it has returned. If startup fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #start} is called    * multiple times.    */
+comment|/**    * This method is called by {@link #startAsync} to initiate service startup. The invocation of    * this method should cause a call to {@link #notifyStarted()}, either during this method's run,    * or after it has returned. If startup fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #startAsync} is    * called multiple times.    */
 DECL|method|doStart ()
 specifier|protected
 specifier|abstract
@@ -762,7 +762,7 @@ name|void
 name|doStart
 parameter_list|()
 function_decl|;
-comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p> This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stop} is called    * multiple times.    */
+comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p> This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    */
 DECL|method|doStop ()
 specifier|protected
 specifier|abstract
@@ -927,27 +927,6 @@ name|Service
 name|stopAsync
 parameter_list|()
 block|{
-name|stop
-argument_list|()
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-annotation|@
-name|Deprecated
-annotation|@
-name|Override
-DECL|method|stop ()
-specifier|public
-specifier|final
-name|ListenableFuture
-argument_list|<
-name|State
-argument_list|>
-name|stop
-parameter_list|()
-block|{
 if|if
 condition|(
 name|monitor
@@ -1086,6 +1065,24 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Deprecated
+annotation|@
+name|Override
+DECL|method|stop ()
+specifier|public
+specifier|final
+name|ListenableFuture
+argument_list|<
+name|State
+argument_list|>
+name|stop
+parameter_list|()
+block|{
 return|return
 name|shutdown
 return|;
@@ -1301,12 +1298,6 @@ condition|)
 block|{
 try|try
 block|{
-name|State
-name|state
-init|=
-name|state
-argument_list|()
-decl_stmt|;
 name|checkCurrentState
 argument_list|(
 name|TERMINATED
@@ -1848,7 +1839,7 @@ operator|+
 literal|"]"
 return|;
 block|}
-comment|/**    * A change from one service state to another, plus the result of the change.    */
+comment|// A change from one service state to another, plus the result of the change.
 DECL|class|Transition
 specifier|private
 class|class

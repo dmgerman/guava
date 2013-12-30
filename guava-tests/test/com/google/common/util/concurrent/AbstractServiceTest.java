@@ -1745,7 +1745,7 @@ name|doStopCalled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The user of this service should call {@link #notifyStarted} and {@link    * #notifyStopped} after calling {@link #start} and {@link #stop}.    */
+comment|/**    * The user of this service should call {@link #notifyStarted} and {@link    * #notifyStopped} after calling {@link #startAsync} and {@link #stopAsync}.    */
 DECL|class|ManualSwitchedService
 specifier|private
 specifier|static
