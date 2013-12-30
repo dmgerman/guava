@@ -38,35 +38,6 @@ specifier|final
 class|class
 name|Platform
 block|{
-DECL|field|CHAR_BUFFER
-specifier|private
-specifier|static
-specifier|final
-name|char
-index|[]
-name|CHAR_BUFFER
-init|=
-operator|new
-name|char
-index|[
-literal|1024
-index|]
-decl_stmt|;
-DECL|method|charBufferFromThreadLocal ()
-specifier|static
-name|char
-index|[]
-name|charBufferFromThreadLocal
-parameter_list|()
-block|{
-comment|// ThreadLocal is not available to GWT, so we always reuse the same
-comment|// instance.  It is always safe to return the same instance because
-comment|// javascript is single-threaded, and only used by blocks that doesn't
-comment|// involve async callbacks.
-return|return
-name|CHAR_BUFFER
-return|;
-block|}
 DECL|method|precomputeCharMatcher (CharMatcher matcher)
 specifier|static
 name|CharMatcher
