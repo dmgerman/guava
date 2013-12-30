@@ -5122,18 +5122,6 @@ name|X
 name|input
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
-if|if
-condition|(
-name|input
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
 name|Y
 name|output
 init|=

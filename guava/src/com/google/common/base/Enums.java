@@ -567,14 +567,7 @@ name|String
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|Enum
 operator|.
 name|valueOf
@@ -596,14 +589,7 @@ name|T
 name|enumValue
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate once convert() does it automatically
 return|return
-name|enumValue
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|enumValue
 operator|.
 name|name

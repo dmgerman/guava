@@ -971,8 +971,6 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 DECL|method|doForward (String value)
 specifier|protected
 name|Integer
@@ -983,12 +981,6 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|Integer
 operator|.
 name|decode
@@ -1008,15 +1000,7 @@ name|Integer
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|value
 operator|.
 name|toString

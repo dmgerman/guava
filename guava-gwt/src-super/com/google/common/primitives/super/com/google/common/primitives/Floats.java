@@ -907,15 +907,7 @@ name|String
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|Float
 operator|.
 name|valueOf
@@ -935,15 +927,7 @@ name|Float
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|value
 operator|.
 name|toString

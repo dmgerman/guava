@@ -2126,8 +2126,6 @@ return|return
 name|doConvert
 argument_list|(
 name|convertToType
-argument_list|,
-name|a
 argument_list|)
 return|;
 block|}
@@ -2145,8 +2143,6 @@ return|return
 name|doConvert
 argument_list|(
 name|convertFromType
-argument_list|,
-name|b
 argument_list|)
 return|;
 block|}
@@ -2163,20 +2159,9 @@ argument_list|<
 name|S
 argument_list|>
 name|type
-parameter_list|,
-name|Object
-name|in
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 return|return
-name|in
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|checkNotNull
 argument_list|(
 name|getDefaultValue

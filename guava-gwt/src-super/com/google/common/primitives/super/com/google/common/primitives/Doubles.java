@@ -909,15 +909,7 @@ name|String
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|Double
 operator|.
 name|valueOf
@@ -937,15 +929,7 @@ name|Double
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it
-comment|// automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|value
 operator|.
 name|toString

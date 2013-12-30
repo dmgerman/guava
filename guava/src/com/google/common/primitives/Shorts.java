@@ -1113,14 +1113,7 @@ name|String
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|Short
 operator|.
 name|decode
@@ -1140,14 +1133,7 @@ name|Short
 name|value
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|value
 operator|.
 name|toString
