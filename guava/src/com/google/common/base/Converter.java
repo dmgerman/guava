@@ -175,9 +175,9 @@ parameter_list|)
 function_decl|;
 comment|// API (consumer-side) methods
 comment|/**    * Returns a representation of {@code a} as an instance of type {@code B}.    *    * @return the converted value; is null<i>if and only if</i> {@code a} is null    */
-DECL|method|convert (@ullable A a)
 annotation|@
 name|Nullable
+DECL|method|convert (@ullable A a)
 specifier|public
 specifier|final
 name|B
@@ -196,10 +196,14 @@ name|a
 argument_list|)
 return|;
 block|}
-DECL|method|correctedDoForward (A a)
+annotation|@
+name|Nullable
+DECL|method|correctedDoForward (@ullable A a)
 name|B
 name|correctedDoForward
 parameter_list|(
+annotation|@
+name|Nullable
 name|A
 name|a
 parameter_list|)
@@ -236,10 +240,14 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|correctedDoBackward (B b)
+annotation|@
+name|Nullable
+DECL|method|correctedDoBackward (@ullable B b)
 name|A
 name|correctedDoBackward
 parameter_list|(
+annotation|@
+name|Nullable
 name|B
 name|b
 parameter_list|)
@@ -461,13 +469,6 @@ argument_list|>
 name|original
 parameter_list|)
 block|{
-comment|// Rely on backing converter to handle null if desired, not us.
-comment|// Actually, since we override correctedDo*, nothing will use this field now anyway.
-name|super
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|original
@@ -476,15 +477,13 @@ name|original
 expr_stmt|;
 block|}
 comment|/*      * These gymnastics are a little confusing. Basically this class has neither legacy nor      * non-legacy behavior; it just needs to let the behavior of the backing converter shine      * through. So, we override the correctedDo* methods, after which the do* methods should never      * be reached.      */
-DECL|method|doForward (@ullable B b)
 annotation|@
 name|Override
+DECL|method|doForward (B b)
 specifier|protected
 name|A
 name|doForward
 parameter_list|(
-annotation|@
-name|Nullable
 name|B
 name|b
 parameter_list|)
@@ -495,15 +494,13 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|doBackward (@ullable A a)
 annotation|@
 name|Override
+DECL|method|doBackward (A a)
 specifier|protected
 name|B
 name|doBackward
 parameter_list|(
-annotation|@
-name|Nullable
 name|A
 name|a
 parameter_list|)
@@ -514,12 +511,16 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|correctedDoForward (B b)
 annotation|@
 name|Override
+annotation|@
+name|Nullable
+DECL|method|correctedDoForward (@ullable B b)
 name|A
 name|correctedDoForward
 parameter_list|(
+annotation|@
+name|Nullable
 name|B
 name|b
 parameter_list|)
@@ -533,12 +534,16 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|correctedDoBackward (A a)
 annotation|@
 name|Override
+annotation|@
+name|Nullable
+DECL|method|correctedDoBackward (@ullable A a)
 name|B
 name|correctedDoBackward
 parameter_list|(
+annotation|@
+name|Nullable
 name|A
 name|a
 parameter_list|)
@@ -552,9 +557,9 @@ name|a
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|reverse ()
-annotation|@
-name|Override
 specifier|public
 name|Converter
 argument_list|<
@@ -569,9 +574,9 @@ return|return
 name|original
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -624,9 +629,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -640,9 +645,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -766,13 +771,6 @@ argument_list|>
 name|second
 parameter_list|)
 block|{
-comment|// Rely on backing converter to handle null if desired, not us.
-comment|// Actually, since we override correctedDo*, nothing will use this field now anyway.
-name|super
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|first
@@ -787,15 +785,13 @@ name|second
 expr_stmt|;
 block|}
 comment|/*      * These gymnastics are a little confusing. Basically this class has neither legacy nor      * non-legacy behavior; it just needs to let the behaviors of the backing converters shine      * through (which might even differ from each other!). So, we override the correctedDo* methods,      * after which the do* methods should never be reached.      */
-DECL|method|doForward (@ullable A a)
 annotation|@
 name|Override
+DECL|method|doForward (A a)
 specifier|protected
 name|C
 name|doForward
 parameter_list|(
-annotation|@
-name|Nullable
 name|A
 name|a
 parameter_list|)
@@ -806,15 +802,13 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|doBackward (@ullable C c)
 annotation|@
 name|Override
+DECL|method|doBackward (C c)
 specifier|protected
 name|A
 name|doBackward
 parameter_list|(
-annotation|@
-name|Nullable
 name|C
 name|c
 parameter_list|)
@@ -825,9 +819,11 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+annotation|@
+name|Nullable
 DECL|method|correctedDoForward (@ullable A a)
-annotation|@
-name|Override
 name|C
 name|correctedDoForward
 parameter_list|(
@@ -851,9 +847,11 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+annotation|@
+name|Nullable
 DECL|method|correctedDoBackward (@ullable C c)
-annotation|@
-name|Override
 name|A
 name|correctedDoBackward
 parameter_list|(
@@ -877,9 +875,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -947,9 +945,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -969,9 +967,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1053,9 +1051,9 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|apply (@ullable A a)
 annotation|@
 name|Nullable
+DECL|method|apply (@ullable A a)
 specifier|public
 specifier|final
 name|B
@@ -1197,9 +1195,9 @@ name|backwardFunction
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doForward (A a)
 annotation|@
 name|Override
+DECL|method|doForward (A a)
 specifier|protected
 name|B
 name|doForward
@@ -1217,9 +1215,9 @@ name|a
 argument_list|)
 return|;
 block|}
-DECL|method|doBackward (B b)
 annotation|@
 name|Override
+DECL|method|doBackward (B b)
 specifier|protected
 name|A
 name|doBackward
@@ -1237,9 +1235,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1303,9 +1301,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1325,9 +1323,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1410,15 +1408,13 @@ operator|new
 name|IdentityConverter
 argument_list|()
 decl_stmt|;
-DECL|method|doForward (@ullable T t)
 annotation|@
 name|Override
+DECL|method|doForward (T t)
 specifier|protected
 name|T
 name|doForward
 parameter_list|(
-annotation|@
-name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1427,15 +1423,13 @@ return|return
 name|t
 return|;
 block|}
-DECL|method|doBackward (@ullable T t)
 annotation|@
 name|Override
+DECL|method|doBackward (T t)
 specifier|protected
 name|T
 name|doBackward
 parameter_list|(
-annotation|@
-name|Nullable
 name|T
 name|t
 parameter_list|)
@@ -1444,9 +1438,9 @@ return|return
 name|t
 return|;
 block|}
-DECL|method|reverse ()
 annotation|@
 name|Override
+DECL|method|reverse ()
 specifier|public
 name|IdentityConverter
 argument_list|<
@@ -1459,9 +1453,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|andThen (Converter<T, S> otherConverter)
 annotation|@
 name|Override
+DECL|method|andThen (Converter<T, S> otherConverter)
 specifier|public
 parameter_list|<
 name|S
@@ -1493,9 +1487,9 @@ argument_list|)
 return|;
 block|}
 comment|/*      * We *could* override convertAll() to return its input, but it's a rather pointless      * optimization and opened up a weird type-safety problem.      */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
