@@ -1139,7 +1139,7 @@ name|Joiner
 operator|.
 name|on
 argument_list|(
-literal|","
+literal|','
 argument_list|)
 decl_stmt|;
 comment|/** @see Predicates#and(Iterable) */

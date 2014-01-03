@@ -1051,16 +1051,10 @@ parameter_list|()
 block|{
 return|return
 name|g
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|"("
 operator|+
 name|f
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|")"
 return|;

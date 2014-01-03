@@ -460,12 +460,7 @@ name|ArrayIndexOutOfBoundsException
 argument_list|(
 literal|"Required array size too large: "
 operator|+
-name|String
-operator|.
-name|valueOf
-argument_list|(
 name|longSize
-argument_list|)
 argument_list|)
 throw|;
 block|}
