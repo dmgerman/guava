@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Lists
+operator|.
+name|newArrayList
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -65,16 +81,6 @@ operator|.
 name|CollectionBenchmarkSampleData
 operator|.
 name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 
@@ -1009,9 +1015,7 @@ name|Element
 argument_list|>
 name|valueList
 init|=
-operator|new
-name|ArrayList
-argument_list|<>
+name|newArrayList
 argument_list|(
 name|sampleData
 operator|.
