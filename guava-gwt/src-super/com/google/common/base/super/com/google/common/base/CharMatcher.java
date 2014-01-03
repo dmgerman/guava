@@ -524,7 +524,7 @@ name|toCharArray
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Determines whether a character is a digit according to {@link Character#isDigit(char) Java's    * definition}. If you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    */
+comment|/**    * Determines whether a character is a digit according to {@linkplain Character#isDigit(char)    * Java's definition}. If you only care to match ASCII digits, you can use {@code    * inRange('0', '9')}.    */
 DECL|field|JAVA_DIGIT
 specifier|public
 specifier|static
@@ -559,7 +559,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter according to {@link Character#isLetter(char) Java's    * definition}. If you only care to match letters of the Latin alphabet, you can use {@code    * inRange('a', 'z').or(inRange('A', 'Z'))}.    */
+comment|/**    * Determines whether a character is a letter according to {@linkplain Character#isLetter(char)    * Java's definition}. If you only care to match letters of the Latin alphabet, you can use {@code    * inRange('a', 'z').or(inRange('A', 'Z'))}.    */
 DECL|field|JAVA_LETTER
 specifier|public
 specifier|static
@@ -594,7 +594,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Determines whether a character is a letter or digit according to {@link    * Character#isLetterOrDigit(char) Java's definition}.    */
+comment|/**    * Determines whether a character is a letter or digit according to {@linkplain    * Character#isLetterOrDigit(char) Java's definition}.    */
 DECL|field|JAVA_LETTER_OR_DIGIT
 specifier|public
 specifier|static
@@ -629,7 +629,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Determines whether a character is upper case according to {@link Character#isUpperCase(char)    * Java's definition}.    */
+comment|/**    * Determines whether a character is upper case according to {@linkplain    * Character#isUpperCase(char) Java's definition}.    */
 DECL|field|JAVA_UPPER_CASE
 specifier|public
 specifier|static
@@ -664,7 +664,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Determines whether a character is lower case according to {@link Character#isLowerCase(char)    * Java's definition}.    */
+comment|/**    * Determines whether a character is lower case according to {@linkplain    * Character#isLowerCase(char) Java's definition}.    */
 DECL|field|JAVA_LOWER_CASE
 specifier|public
 specifier|static

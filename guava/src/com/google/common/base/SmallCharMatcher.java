@@ -291,11 +291,6 @@ return|return
 name|tableSize
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.util.BitSet"
-argument_list|)
 DECL|method|from (BitSet chars, String description)
 specifier|static
 name|CharMatcher
@@ -575,11 +570,6 @@ return|return
 literal|false
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"java.util.BitSet"
-argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)

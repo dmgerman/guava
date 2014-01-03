@@ -438,7 +438,7 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Opens {@link Readable} and {@link Appendable} objects from the    * given factories, copies all characters between the two, and closes    * them.    *    * @param from the input factory    * @param to the output factory    * @return the number of characters copied    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#copyTo(CharSink) instead. This method is    *     scheduled for removal in Guava 18.0.    */
+comment|/**    * Opens {@link Readable} and {@link Appendable} objects from the    * given factories, copies all characters between the two, and closes    * them.    *    * @param from the input factory    * @param to the output factory    * @return the number of characters copied    * @throws IOException if an I/O error occurs    * @deprecated Use {@link CharSource#copyTo(CharSink)} instead. This method is    *     scheduled for removal in Guava 18.0.    */
 annotation|@
 name|Deprecated
 specifier|public

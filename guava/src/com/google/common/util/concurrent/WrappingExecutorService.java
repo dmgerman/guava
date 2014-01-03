@@ -202,7 +202,7 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Wraps a task  before it is submitted to the underlying Executor.    * Though specified in terms of Callable, this method is also applied to    * Runnable tasks.    */
+comment|/**    * Wraps a task before it is submitted to the underlying executor. Though    * specified in terms of {@link Callable}, this method is also applied to    * {@link Runnable} tasks (unless {@link #wrapTest(Runnable}} is overridden    * with different behavior).    */
 DECL|method|wrapTask (Callable<T> callable)
 specifier|protected
 specifier|abstract
