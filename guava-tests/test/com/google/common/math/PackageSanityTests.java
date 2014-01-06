@@ -42,15 +42,10 @@ name|PackageSanityTests
 extends|extends
 name|AbstractPackageSanityTests
 block|{
-annotation|@
-name|Override
-DECL|method|setUp ()
-specifier|protected
-name|void
-name|setUp
+DECL|method|PackageSanityTests ()
+specifier|public
+name|PackageSanityTests
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|publicApiOnly
 argument_list|()
