@@ -946,7 +946,29 @@ case|:
 case|case
 name|UP
 case|:
-return|return
+name|int
+name|sqrtFloorInt
+init|=
+name|sqrtFloor
+operator|.
+name|intValue
+argument_list|()
+decl_stmt|;
+name|boolean
+name|sqrtFloorIsExact
+init|=
+operator|(
+name|sqrtFloorInt
+operator|*
+name|sqrtFloorInt
+operator|==
+name|x
+operator|.
+name|intValue
+argument_list|()
+operator|)
+comment|// fast check mod 2^32
+operator|&&
 name|sqrtFloor
 operator|.
 name|pow
@@ -958,6 +980,10 @@ name|equals
 argument_list|(
 name|x
 argument_list|)
+decl_stmt|;
+comment|// slow exact check
+return|return
+name|sqrtFloorIsExact
 condition|?
 name|sqrtFloor
 else|:
