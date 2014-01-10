@@ -280,7 +280,7 @@ literal|"identity"
 return|;
 block|}
 block|}
-comment|/**    * Returns a function which performs a map lookup. The returned function throws an {@link    * IllegalArgumentException} if given a key that does not exist in the map.    */
+comment|/**    * Returns a function which performs a map lookup. The returned function throws an {@link    * IllegalArgumentException} if given a key that does not exist in the map. See also {@link    * #forMap(Map, Object)}, which returns a default value in this case.    *    *<p>Note: if {@code map} is a {@link com.google.common.collect.BiMap BiMap} (or can be one), you    * can use {@link com.google.common.collect.Maps#asConverter Maps.asConverter} instead to get a    * function that also supports reverse conversion.    */
 DECL|method|forMap (Map<K, V> map)
 specifier|public
 specifier|static
@@ -510,7 +510,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *         defaultValue} otherwise    */
+comment|/**    * Returns a function which performs a map lookup with a default value. The function created by    * this method returns {@code defaultValue} for all inputs that do not belong to the map's key    * set. See also {@link #forMap(Map)}, which throws an exception in this case.    *    * @param map source map that determines the function behavior    * @param defaultValue the value to return for inputs that aren't map keys    * @return function that returns {@code map.get(a)} when {@code a} is a key, or {@code    *         defaultValue} otherwise    */
 DECL|method|forMap (Map<K, ? extends V> map, @Nullable V defaultValue)
 specifier|public
 specifier|static

@@ -4960,7 +4960,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns a {@link Converter} that converts values using {@link BiMap#get bimap.get()},    * and whose inverse view converts values using    * {@link BiMap#inverse bimap.inverse()}{@code .get()}    *    * @param bimap the bimap to view as a converter    * @return a converter that is a view of the specified bimap    * @since 16.0    */
+comment|/**    * Returns a {@link Converter} that converts values using {@link BiMap#get bimap.get()},    * and whose inverse view converts values using    * {@link BiMap#inverse bimap.inverse()}{@code .get()}.    *    *<p>To use a plain {@link Map} as a {@link Function}, see    * {@link com.google.common.base.Functions#forMap(Map)} or    * {@link com.google.common.base.Functions#forMap(Map, Object)}.    *    * @since 16.0    */
 annotation|@
 name|Beta
 DECL|method|asConverter (final BiMap<A, B> bimap)
