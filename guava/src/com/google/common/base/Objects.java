@@ -62,6 +62,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -85,6 +95,8 @@ name|Objects
 parameter_list|()
 block|{}
 comment|/**    * Determines whether two possibly-null objects are equal. Returns:    *    *<ul>    *<li>{@code true} if {@code a} and {@code b} are both null.    *<li>{@code true} if {@code a} and {@code b} are both non-null and they are    *     equal according to {@link Object#equals(Object)}.    *<li>{@code false} in all other situations.    *</ul>    *    *<p>This assumes that any non-null objects passed to this function conform    * to the {@code equals()} contract.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|equal (@ullable Object a, @Nullable Object b)
 specifier|public
 specifier|static
