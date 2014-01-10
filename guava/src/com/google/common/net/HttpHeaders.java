@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains constant definitions for the HTTP header field names. See:  *<ul>  *<li><a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a>  *<li><a href="http://www.ietf.org/rfc/rfc2183.txt">RFC 2183</a>  *<li><a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>  *<li><a href="http://www.ietf.org/rfc/rfc2965.txt">RFC 2965</a>  *<li><a href="http://www.ietf.org/rfc/rfc5988.txt">RFC 5988</a>  *</ul>  *  * @author Kurt Alfred Kluever  * @since 11.0  */
+comment|/**  * Contains constant definitions for the HTTP header field names. See:  *<ul>  *<li><a href="http://www.ietf.org/rfc/rfc2109.txt">RFC 2109</a>  *<li><a href="http://www.ietf.org/rfc/rfc2183.txt">RFC 2183</a>  *<li><a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>  *<li><a href="http://www.ietf.org/rfc/rfc2965.txt">RFC 2965</a>  *<li><a href="http://www.ietf.org/rfc/rfc5988.txt">RFC 5988</a>  *</ul>  *  *  * @author Kurt Alfred Kluever  * @since 11.0  */
 end_comment
 
 begin_class
