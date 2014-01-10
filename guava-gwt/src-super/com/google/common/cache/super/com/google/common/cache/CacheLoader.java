@@ -344,6 +344,7 @@ name|supplier
 argument_list|)
 return|;
 block|}
+comment|// TODO(user): Remove this
 DECL|class|SupplierToCacheLoader
 specifier|private
 specifier|static

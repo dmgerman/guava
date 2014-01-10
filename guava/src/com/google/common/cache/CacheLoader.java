@@ -475,6 +475,7 @@ name|supplier
 argument_list|)
 return|;
 block|}
+comment|// TODO(user): Remove this
 comment|/**    * Returns a {@code CacheLoader} which wraps {@code loader}, executing calls to    * {@link CacheLoader#reload} using {@code executor}.    *    *<p>This method is useful only when {@code loader.reload} has a synchronous implementation,    * such as {@linkplain #reload the default implementation}.    *    * @since 17.0    */
 annotation|@
 name|Beta
@@ -483,7 +484,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"Executor + Futures"
 argument_list|)
-DECL|method|asyncReload (final CacheLoader<K, V> loader, final Executor executor)
+DECL|method|asyncReloading (final CacheLoader<K, V> loader, final Executor executor)
 specifier|public
 specifier|static
 parameter_list|<
@@ -497,7 +498,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|asyncReload
+name|asyncReloading
 parameter_list|(
 specifier|final
 name|CacheLoader

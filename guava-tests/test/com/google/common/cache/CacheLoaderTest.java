@@ -463,7 +463,7 @@ name|asyncReloader
 init|=
 name|CacheLoader
 operator|.
-name|asyncReload
+name|asyncReloading
 argument_list|(
 name|baseLoader
 argument_list|,
