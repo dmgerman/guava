@@ -1516,14 +1516,13 @@ name|Foo
 name|unused
 parameter_list|)
 block|{
-name|fail
+throw|throw
+operator|new
+name|AssertionFailedError
 argument_list|(
 literal|"Unexpeted call to apply."
 argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
+throw|;
 block|}
 block|}
 decl_stmt|;
@@ -1610,14 +1609,13 @@ name|Foo
 name|unused
 parameter_list|)
 block|{
-name|fail
+throw|throw
+operator|new
+name|AssertionFailedError
 argument_list|(
 literal|"Unexpeted call to apply."
 argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
+throw|;
 block|}
 block|}
 decl_stmt|;

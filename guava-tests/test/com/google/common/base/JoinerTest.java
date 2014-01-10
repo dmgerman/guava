@@ -164,6 +164,16 @@ name|junit
 operator|.
 name|framework
 operator|.
+name|AssertionFailedError
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
 name|TestCase
 import|;
 end_import
@@ -2258,14 +2268,13 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|fail
+throw|throw
+operator|new
+name|AssertionFailedError
 argument_list|(
 literal|"shouldn't be invoked"
 argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
+throw|;
 block|}
 block|}
 comment|// Don't do this.
