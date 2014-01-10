@@ -2243,8 +2243,10 @@ name|logger
 init|=
 name|Logger
 operator|.
-name|getGlobal
-argument_list|()
+name|getLogger
+argument_list|(
+literal|"global"
+argument_list|)
 decl_stmt|;
 name|logger
 operator|.
