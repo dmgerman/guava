@@ -93,49 +93,6 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/** A key type that is not assignable to any classes but Object. */
-DECL|class|IncompatibleComparableKeyType
-specifier|private
-specifier|static
-specifier|final
-class|class
-name|IncompatibleComparableKeyType
-implements|implements
-name|Comparable
-argument_list|<
-name|IncompatibleComparableKeyType
-argument_list|>
-block|{
-DECL|method|toString ()
-annotation|@
-name|Override
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"IncompatibleComparableKeyType"
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|compareTo (IncompatibleComparableKeyType o)
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-name|IncompatibleComparableKeyType
-name|o
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ClassCastException
-argument_list|()
-throw|;
-block|}
-block|}
 DECL|method|SortedMapInterfaceTest (boolean allowsNullKeys, boolean allowsNullValues, boolean supportsPut, boolean supportsRemove, boolean supportsClear)
 specifier|protected
 name|SortedMapInterfaceTest
@@ -662,19 +619,12 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
-name|Entry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-name|firstEntry
-init|=
 name|iterator
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+comment|// advance
 name|Entry
 argument_list|<
 name|K
