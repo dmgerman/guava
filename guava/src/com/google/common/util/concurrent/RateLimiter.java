@@ -492,7 +492,7 @@ operator|/
 name|stableIntervalMicros
 return|;
 block|}
-comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    *<p>This method is equivalent to {@code acquire(1)}.    *    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
+comment|/**    * Acquires a single permit from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    *<p>This method is equivalent to {@code acquire(1)}.    *    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
 DECL|method|acquire ()
 specifier|public
 name|double
@@ -516,30 +516,14 @@ name|int
 name|permits
 parameter_list|)
 block|{
-name|checkPermits
-argument_list|(
-name|permits
-argument_list|)
-expr_stmt|;
 name|long
 name|microsToWait
-decl_stmt|;
-synchronized|synchronized
-init|(
-name|mutex
-init|)
-block|{
-name|microsToWait
-operator|=
-name|reserveNextTicket
+init|=
+name|reserve
 argument_list|(
 name|permits
-argument_list|,
-name|readSafeMicros
-argument_list|()
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|ticker
 operator|.
 name|sleepMicrosUninterruptibly
@@ -561,6 +545,49 @@ argument_list|(
 literal|1L
 argument_list|)
 return|;
+block|}
+comment|/**    * Reserves a single permit from this {@code RateLimiter} for future use, returning the number of    * microseconds until the reservation.    *    *<p>This method is equivalent to {@code reserve(1)}.    *    * @return time in microseconds to wait until the resource can be acquired.    */
+DECL|method|reserve ()
+name|long
+name|reserve
+parameter_list|()
+block|{
+return|return
+name|reserve
+argument_list|(
+literal|1
+argument_list|)
+return|;
+block|}
+comment|/**    * Reserves the given number of permits from this {@code RateLimiter} for future use, returning    * the number of microseconds until the reservation can be consumed.    *    * @return time in microseconds to wait until the resource can be acquired.    */
+DECL|method|reserve (int permits)
+name|long
+name|reserve
+parameter_list|(
+name|int
+name|permits
+parameter_list|)
+block|{
+name|checkPermits
+argument_list|(
+name|permits
+argument_list|)
+expr_stmt|;
+synchronized|synchronized
+init|(
+name|mutex
+init|)
+block|{
+return|return
+name|reserveNextTicket
+argument_list|(
+name|permits
+argument_list|,
+name|readSafeMicros
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**    * Acquires a permit from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permit would not have been granted    * before the timeout expired.    *    *<p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.    *    * @param timeout the maximum time to wait for the permit    * @param unit the time unit of the timeout argument    * @return {@code true} if the permit was acquired, {@code false} otherwise    */
 DECL|method|tryAcquire (long timeout, TimeUnit unit)
@@ -733,7 +760,7 @@ literal|"Requested permits must be positive"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Reserves next ticket and returns the wait time that the caller must wait for.    */
+comment|/**    * Reserves next ticket and returns the wait time that the caller must wait for.    *    *<p>The return value is guaranteed to be non-negative.    */
 DECL|method|reserveNextTicket (double requiredPermits, long nowMicros)
 specifier|private
 name|long
@@ -754,9 +781,16 @@ expr_stmt|;
 name|long
 name|microsToNextFreeTicket
 init|=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
 name|nextFreeTicketMicros
 operator|-
 name|nowMicros
+argument_list|)
 decl_stmt|;
 name|double
 name|storedPermitsToSpend

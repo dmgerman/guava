@@ -43,7 +43,28 @@ class|class
 name|PackageSanityTests
 extends|extends
 name|AbstractPackageSanityTests
-block|{}
+block|{
+DECL|method|PackageSanityTests ()
+specifier|public
+name|PackageSanityTests
+parameter_list|()
+block|{
+name|setDefault
+argument_list|(
+name|RateLimiter
+operator|.
+name|class
+argument_list|,
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+literal|1.0
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 end_class
 
 end_unit
