@@ -206,7 +206,7 @@ parameter_list|()
 block|{
 name|tasks
 operator|.
-name|pop
+name|removeFirst
 argument_list|()
 operator|.
 name|run

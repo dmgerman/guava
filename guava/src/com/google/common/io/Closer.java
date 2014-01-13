@@ -282,7 +282,7 @@ condition|)
 block|{
 name|stack
 operator|.
-name|push
+name|addFirst
 argument_list|(
 name|closeable
 argument_list|)
@@ -501,7 +501,7 @@ name|closeable
 init|=
 name|stack
 operator|.
-name|pop
+name|removeFirst
 argument_list|()
 decl_stmt|;
 try|try
