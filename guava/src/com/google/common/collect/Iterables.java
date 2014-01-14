@@ -1153,7 +1153,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a string representation of {@code iterable}, with the format    * {@code [e1, e2, ..., en]}.    */
+comment|/**    * Returns a string representation of {@code iterable}, with the format {@code    * [e1, e2, ..., en]} (that is, identical to {@link java.util.Arrays    * Arrays}{@code .toString(Iterables.toArray(iterable))}). Note that for    *<i>most</i> implementations of {@link Collection}, {@code    * collection.toString()} also gives the same result, but that behavior is not    * generally guaranteed.    */
 DECL|method|toString (Iterable<?> iterable)
 specifier|public
 specifier|static
