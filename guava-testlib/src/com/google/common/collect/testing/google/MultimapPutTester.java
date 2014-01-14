@@ -650,10 +650,10 @@ block|,
 name|ALLOWS_NULL_VALUES
 block|}
 argument_list|)
-DECL|method|testPutNullValue ()
+DECL|method|testPutNullValue_supported ()
 specifier|public
 name|void
-name|testPutNullValue
+name|testPutNullValue_supported
 parameter_list|()
 block|{
 name|int
@@ -706,6 +706,54 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|MapFeature
+operator|.
+name|Require
+argument_list|(
+name|value
+operator|=
+name|SUPPORTS_PUT
+argument_list|,
+name|absent
+operator|=
+name|ALLOWS_NULL_VALUES
+argument_list|)
+DECL|method|testPutNullValue_unsupported ()
+specifier|public
+name|void
+name|testPutNullValue_unsupported
+parameter_list|()
+block|{
+try|try
+block|{
+name|multimap
+argument_list|()
+operator|.
+name|put
+argument_list|(
+name|sampleKeys
+argument_list|()
+operator|.
+name|e1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|expected
+parameter_list|)
+block|{     }
+name|expectUnchanged
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
