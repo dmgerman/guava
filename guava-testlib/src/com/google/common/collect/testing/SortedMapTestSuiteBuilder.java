@@ -494,7 +494,7 @@ DECL|method|createDerivedKeySetSuite ( TestSetGenerator<K> keySetGenerator)
 annotation|@
 name|Override
 specifier|protected
-name|SortedSetTestSuiteBuilder
+name|SetTestSuiteBuilder
 argument_list|<
 name|K
 argument_list|>
@@ -508,6 +508,10 @@ name|keySetGenerator
 parameter_list|)
 block|{
 return|return
+name|keySetGenerator
+operator|instanceof
+name|TestSortedSetGenerator
+condition|?
 name|SortedSetTestSuiteBuilder
 operator|.
 name|using
@@ -518,6 +522,13 @@ argument_list|<
 name|K
 argument_list|>
 operator|)
+name|keySetGenerator
+argument_list|)
+else|:
+name|SetTestSuiteBuilder
+operator|.
+name|using
+argument_list|(
 name|keySetGenerator
 argument_list|)
 return|;
