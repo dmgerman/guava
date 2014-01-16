@@ -543,6 +543,36 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|testReverseReverse ()
+specifier|public
+name|void
+name|testReverseReverse
+parameter_list|()
+block|{
+name|Converter
+argument_list|<
+name|String
+argument_list|,
+name|Long
+argument_list|>
+name|converter
+init|=
+name|STR_TO_LONG
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|converter
+argument_list|,
+name|converter
+operator|.
+name|reverse
+argument_list|()
+operator|.
+name|reverse
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testApply ()
 specifier|public
 name|void

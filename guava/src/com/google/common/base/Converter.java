@@ -123,6 +123,18 @@ specifier|final
 name|boolean
 name|handleNullAutomatically
 decl_stmt|;
+comment|// We lazily cache the reverse view to avoid allocating on every call to reverse().
+DECL|field|reverse
+specifier|private
+specifier|transient
+name|Converter
+argument_list|<
+name|B
+argument_list|,
+name|A
+argument_list|>
+name|reverse
+decl_stmt|;
 comment|/** Constructor for use by subclasses. */
 DECL|method|Converter ()
 specifier|protected
@@ -402,6 +414,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns the reversed view of this converter, which converts {@code this.convert(a)} back to a    * value roughly equivalent to {@code a}.    *    *<p>The returned converter is serializable if {@code this} converter is.    */
+comment|// TODO(user): Make this method final
 DECL|method|reverse ()
 specifier|public
 name|Converter
@@ -413,7 +426,25 @@ argument_list|>
 name|reverse
 parameter_list|()
 block|{
+name|Converter
+argument_list|<
+name|B
+argument_list|,
+name|A
+argument_list|>
+name|result
+init|=
+name|reverse
+decl_stmt|;
 return|return
+operator|(
+name|result
+operator|==
+literal|null
+operator|)
+condition|?
+name|reverse
+operator|=
 operator|new
 name|ReverseConverter
 argument_list|<
@@ -424,6 +455,8 @@ argument_list|>
 argument_list|(
 name|this
 argument_list|)
+else|:
+name|result
 return|;
 block|}
 DECL|class|ReverseConverter
