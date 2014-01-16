@@ -6190,6 +6190,7 @@ name|void
 name|testDifferentComparator_serialization
 parameter_list|()
 block|{
+comment|// don't use Collections.reverseOrder(); it didn't reserialize to the same instance in JDK5
 name|Comparator
 argument_list|<
 name|Comparable
@@ -6199,9 +6200,12 @@ argument_list|>
 argument_list|>
 name|comparator
 init|=
-name|Collections
+name|Ordering
 operator|.
-name|reverseOrder
+name|natural
+argument_list|()
+operator|.
+name|reverse
 argument_list|()
 decl_stmt|;
 name|SortedSet
