@@ -1332,10 +1332,10 @@ name|BarChild
 extends|extends
 name|Bar
 block|{}
-DECL|method|testTransform_ListenableFuture_genericsNull ()
+DECL|method|testTransform_genericsNull ()
 specifier|public
 name|void
-name|testTransform_ListenableFuture_genericsNull
+name|testTransform_genericsNull
 parameter_list|()
 throws|throws
 name|Exception
@@ -1382,10 +1382,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTransform_ListenableFuture_genericsHierarchy ()
+DECL|method|testTransform_genericsHierarchy ()
 specifier|public
 name|void
-name|testTransform_ListenableFuture_genericsHierarchy
+name|testTransform_genericsHierarchy
 parameter_list|()
 throws|throws
 name|Exception
@@ -1467,10 +1467,10 @@ name|bar
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTransform_ListenableFuture_cancelPropagatesToInput ()
+DECL|method|testTransform_cancelPropagatesToInput ()
 specifier|public
 name|void
-name|testTransform_ListenableFuture_cancelPropagatesToInput
+name|testTransform_cancelPropagatesToInput
 parameter_list|()
 throws|throws
 name|Exception
@@ -1560,10 +1560,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTransform_ListenableFuture_interruptPropagatesToInput ()
+DECL|method|testTransform_interruptPropagatesToInput ()
 specifier|public
 name|void
-name|testTransform_ListenableFuture_interruptPropagatesToInput
+name|testTransform_interruptPropagatesToInput
 parameter_list|()
 throws|throws
 name|Exception
@@ -1653,10 +1653,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTransform_ListenableFuture_cancelPropagatesToAsyncOutput ()
+DECL|method|testTransform_cancelPropagatesToAsyncOutput ()
 specifier|public
 name|void
-name|testTransform_ListenableFuture_cancelPropagatesToAsyncOutput
+name|testTransform_cancelPropagatesToAsyncOutput
 parameter_list|()
 throws|throws
 name|Exception
@@ -1758,10 +1758,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTransform_ListenableFuture_interruptPropagatesToAsyncOutput ()
+DECL|method|testTransform_interruptPropagatesToAsyncOutput ()
 specifier|public
 name|void
-name|testTransform_ListenableFuture_interruptPropagatesToAsyncOutput
+name|testTransform_interruptPropagatesToAsyncOutput
 parameter_list|()
 throws|throws
 name|Exception
@@ -1863,11 +1863,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * {@link ListenableFuture} variant of    * {@link #testTransformValueRemainsMemoized_Future()}.    */
-DECL|method|testTransformValueRemainsMemoized_ListenableFuture ()
+comment|/**    * Tests that the function is invoked only once, even if it throws an    * exception.    */
+DECL|method|testTransformValueRemainsMemoized ()
 specifier|public
 name|void
-name|testTransformValueRemainsMemoized_ListenableFuture
+name|testTransformValueRemainsMemoized
 parameter_list|()
 throws|throws
 name|Exception
@@ -2139,11 +2139,11 @@ name|MyRuntimeException
 extends|extends
 name|RuntimeException
 block|{}
-comment|/**    * {@link ListenableFuture} variant of    * {@link #testTransformExceptionRemainsMemoized_Future()}.    */
-DECL|method|testTransformExceptionRemainsMemoized_ListenableFuture ()
+comment|/**    * Test that the function is invoked only once, even if it throws an    * exception. Also, test that that function's result is wrapped in an    * ExecutionException.    */
+DECL|method|testTransformExceptionRemainsMemoized ()
 specifier|public
 name|void
-name|testTransformExceptionRemainsMemoized_ListenableFuture
+name|testTransformExceptionRemainsMemoized
 parameter_list|()
 throws|throws
 name|Throwable
@@ -2365,71 +2365,6 @@ throw|;
 block|}
 block|}
 block|}
-block|}
-DECL|method|newOneTimeValueReturner (final O output)
-specifier|private
-specifier|static
-parameter_list|<
-name|I
-parameter_list|,
-name|O
-parameter_list|>
-name|Function
-argument_list|<
-name|I
-argument_list|,
-name|O
-argument_list|>
-name|newOneTimeValueReturner
-parameter_list|(
-specifier|final
-name|O
-name|output
-parameter_list|)
-block|{
-return|return
-operator|new
-name|Function
-argument_list|<
-name|I
-argument_list|,
-name|O
-argument_list|>
-argument_list|()
-block|{
-name|int
-name|calls
-init|=
-literal|0
-decl_stmt|;
-annotation|@
-name|Override
-specifier|public
-name|O
-name|apply
-parameter_list|(
-name|I
-name|arg0
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|++
-name|calls
-operator|>
-literal|1
-condition|)
-block|{
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|output
-return|;
-block|}
-block|}
-return|;
 block|}
 DECL|method|newOneTimeExceptionThrower ()
 specifier|private
