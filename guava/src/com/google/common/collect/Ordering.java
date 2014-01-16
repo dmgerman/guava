@@ -2294,8 +2294,8 @@ name|k
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a copy of the given iterable sorted by this ordering. The input is    * not modified. The returned list is modifiable, serializable, and has random    * access.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * resulting list in the same order they appeared in the input.    *    *<p>This implementation copies {@code iterable} to an array, sorts the     * array, and creates an {@code ArrayList} from the array, incurring two     * copies. The traditional implementation of copying to an {@code ArrayList}    * and using {@code Collections.sort} incurs three copies, as     * {@code Collections.sort} internally copies the elements to an array,    * sorts them, and dumps them back.    *    * @param iterable the elements to be copied and sorted    * @return a new list containing the given elements in sorted order    */
-DECL|method|sortedCopy (Iterable<E> iterable)
+comment|/**    * Returns a<b>mutable</b> list containing {@code elements} sorted by this    * ordering; use this only when the resulting list may need further    * modification, or may contain {@code null}. The input is not modified. The    * returned list is serializable and has random access.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, {@link #immutableSortedCopy} generally performs better (in    * both time and space) than this method, and this method in turn generally    * performs better than copying the list and calling {@link    * Collections#sort(List)}.    */
+DECL|method|sortedCopy (Iterable<E> elements)
 specifier|public
 parameter_list|<
 name|E
@@ -2312,7 +2312,7 @@ name|Iterable
 argument_list|<
 name|E
 argument_list|>
-name|iterable
+name|elements
 parameter_list|)
 block|{
 annotation|@
@@ -2333,7 +2333,7 @@ name|Iterables
 operator|.
 name|toArray
 argument_list|(
-name|iterable
+name|elements
 argument_list|)
 decl_stmt|;
 name|Arrays
@@ -2359,8 +2359,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an<i>immutable</i> copy of the given iterable sorted by this    * ordering. The input is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * resulting list in the same order they appeared in the input.    *    *<p>This implementation copies {@code iterable} to an array, sorts the     * array, and returns an {@code ImmutableList} view of the array, incurring     * one copy. In contrast, the "traditional" implementation of copying     * {@code iterable} to an {@code ArrayList}, using {@code Collections.sort},    * and using {@code ImmutableList.copyOf} would perform four copies of the     * data.    *    * @param iterable the elements to be copied and sorted    * @return a new immutable list containing the given elements in sorted order    * @throws NullPointerException if {@code iterable} or any of its elements is    *     null    * @since 3.0    */
-DECL|method|immutableSortedCopy ( Iterable<E> iterable)
+comment|/**    * Returns an<b>immutable</b> list containing {@code elements} sorted by this    * ordering. The input is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, this method is the most efficient way to make a sorted copy    * of a collection.    *    * @throws NullPointerException if any of {@code elements} (or {@code    *     elements} itself) is null    * @since 3.0    */
+DECL|method|immutableSortedCopy ( Iterable<E> elements)
 specifier|public
 parameter_list|<
 name|E
@@ -2377,7 +2377,7 @@ name|Iterable
 argument_list|<
 name|E
 argument_list|>
-name|iterable
+name|elements
 parameter_list|)
 block|{
 annotation|@
@@ -2388,7 +2388,7 @@ argument_list|)
 comment|// we'll only ever have E's in here
 name|E
 index|[]
-name|elements
+name|array
 init|=
 operator|(
 name|E
@@ -2398,7 +2398,7 @@ name|Iterables
 operator|.
 name|toArray
 argument_list|(
-name|iterable
+name|elements
 argument_list|)
 decl_stmt|;
 for|for
@@ -2406,7 +2406,7 @@ control|(
 name|E
 name|e
 range|:
-name|elements
+name|array
 control|)
 block|{
 name|checkNotNull
@@ -2419,7 +2419,7 @@ name|Arrays
 operator|.
 name|sort
 argument_list|(
-name|elements
+name|array
 argument_list|,
 name|this
 argument_list|)
@@ -2429,7 +2429,7 @@ name|ImmutableList
 operator|.
 name|asImmutableList
 argument_list|(
-name|elements
+name|array
 argument_list|)
 return|;
 block|}
