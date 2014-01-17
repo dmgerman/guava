@@ -583,7 +583,7 @@ decl_stmt|;
 name|assertTrue
 argument_list|(
 name|totalLoadTime
-operator|>
+operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
@@ -593,7 +593,7 @@ name|stats
 operator|.
 name|averageLoadPenalty
 argument_list|()
-operator|>
+operator|>=
 literal|0.0
 argument_list|)
 expr_stmt|;
@@ -786,7 +786,7 @@ name|stats
 operator|.
 name|totalLoadTime
 argument_list|()
-operator|>
+operator|>=
 name|totalLoadTime
 argument_list|)
 expr_stmt|;
@@ -803,7 +803,7 @@ name|stats
 operator|.
 name|averageLoadPenalty
 argument_list|()
-operator|>
+operator|>=
 literal|0.0
 argument_list|)
 expr_stmt|;
@@ -908,7 +908,7 @@ name|stats
 operator|.
 name|totalLoadTime
 argument_list|()
-operator|>
+operator|>=
 name|totalLoadTime
 argument_list|)
 expr_stmt|;
@@ -925,7 +925,7 @@ name|stats
 operator|.
 name|averageLoadPenalty
 argument_list|()
-operator|>
+operator|>=
 literal|0.0
 argument_list|)
 expr_stmt|;
