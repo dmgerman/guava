@@ -2317,13 +2317,11 @@ name|checkNotNull
 argument_list|(
 name|value
 argument_list|,
+literal|"%s returned null for key %s."
+argument_list|,
 name|computingFunction
-operator|+
-literal|" returned null for key "
-operator|+
+argument_list|,
 name|key
-operator|+
-literal|"."
 argument_list|)
 expr_stmt|;
 name|notifyRemoval
