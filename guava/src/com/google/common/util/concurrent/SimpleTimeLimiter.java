@@ -339,8 +339,8 @@ name|timeoutDuration
 operator|>
 literal|0
 argument_list|,
-literal|"bad timeout: "
-operator|+
+literal|"bad timeout: %s"
+argument_list|,
 name|timeoutDuration
 argument_list|)
 expr_stmt|;
