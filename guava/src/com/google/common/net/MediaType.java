@@ -1286,6 +1286,21 @@ argument_list|,
 literal|"x-bzip2"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for<a href="http://en.wikipedia.org/wiki/Embedded_OpenType">Embedded OpenType</a>    * fonts. This is    *<a href="http://www.iana.org/assignments/media-types/application/vnd.ms-fontobject">registered    *</a> with the IANA.    *    * @since 17.0    */
+DECL|field|EOT
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|EOT
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"vnd.ms-fontobject"
+argument_list|)
+decl_stmt|;
 comment|/**    * As described in the<a href="http://idpf.org/epub">International Digital Publishing Forum</a>    * EPUB is the distribution and interchange format standard for digital publications and    * documents. This media type is defined in the    *<a href="http://www.idpf.org/epub/30/spec/epub30-ocf.html">EPUB Open Container Format</a>    * specification.    *    * @since 15.0    */
 DECL|field|EPUB
 specifier|public
@@ -1669,6 +1684,21 @@ argument_list|,
 literal|"rtf"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for SFNT fonts (which includes    *<a href="http://en.wikipedia.org/wiki/TrueType/">TrueType</a> and    *<a href="http://en.wikipedia.org/wiki/OpenType/">OpenType</a> fonts). This is    *<a href="http://www.iana.org/assignments/media-types/application/font-sfnt">registered</a>    * with the IANA.    *    * @since 17.0    */
+DECL|field|SFNT
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|SFNT
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"font-sfnt"
+argument_list|)
+decl_stmt|;
 DECL|field|SHOCKWAVE_FLASH
 specifier|public
 specifier|static
@@ -1709,6 +1739,21 @@ argument_list|(
 name|APPLICATION_TYPE
 argument_list|,
 literal|"x-tar"
+argument_list|)
+decl_stmt|;
+comment|/**    * Media type for the    *<a href="http://en.wikipedia.org/wiki/Web_Open_Font_Format">Web Open Font Format</a> (WOFF)    *<a href="http://www.w3.org/TR/WOFF/">defined</a> by the W3C. This is    *<a href="http://www.iana.org/assignments/media-types/application/font-woff">registered</a>    * with the IANA.    *    * @since 17.0    */
+DECL|field|WOFF
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|WOFF
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"font-woff"
 argument_list|)
 decl_stmt|;
 DECL|field|XHTML_UTF_8
