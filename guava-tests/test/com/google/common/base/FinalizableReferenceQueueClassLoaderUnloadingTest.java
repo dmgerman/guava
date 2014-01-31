@@ -502,8 +502,15 @@ argument_list|>
 argument_list|(
 name|sepStopwatchC
 operator|.
-name|newInstance
-argument_list|()
+name|getMethod
+argument_list|(
+literal|"createUnstarted"
+argument_list|)
+operator|.
+name|invoke
+argument_list|(
+literal|null
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|AtomicReference
