@@ -299,11 +299,10 @@ name|start
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @deprecated Use {@link Stopwatch#createUnstarted()} instead. This    *     constructor is scheduled to be removed in Guava release 17.0.    */
+comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @deprecated Use {@link Stopwatch#createUnstarted()} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|Stopwatch ()
-specifier|public
 name|Stopwatch
 parameter_list|()
 block|{
@@ -316,11 +315,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @deprecated Use {@link Stopwatch#createUnstarted(Ticker)} instead. This    *     constructor is scheduled to be removed in Guava release 17.0.    */
+comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @deprecated Use {@link Stopwatch#createUnstarted(Ticker)} instead.    */
 annotation|@
 name|Deprecated
 DECL|method|Stopwatch (Ticker ticker)
-specifier|public
 name|Stopwatch
 parameter_list|(
 name|Ticker
