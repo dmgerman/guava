@@ -4169,6 +4169,16 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNull
+argument_list|(
+name|Longs
+operator|.
+name|tryParse
+argument_list|(
+literal|"\u0662\u06f3"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Applies {@link Longs#tryParse(String)} to the given string and asserts that    * the result is as expected.    */
 DECL|method|tryParseAndAssertEquals (Long expected, String value)

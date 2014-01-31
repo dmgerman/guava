@@ -4226,6 +4226,16 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNull
+argument_list|(
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+literal|"\u0662\u06f3"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Applies {@link Ints#tryParse(String)} to the given string and asserts that    * the result is as expected.    */
 annotation|@
