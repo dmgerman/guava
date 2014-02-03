@@ -733,9 +733,15 @@ name|ImmutableMap
 operator|.
 name|of
 argument_list|(
+operator|new
+name|TypeResolver
+operator|.
+name|TypeVariableKey
+argument_list|(
 name|typeParam
 operator|.
 name|typeVariable
+argument_list|)
 argument_list|,
 name|typeArg
 operator|.
