@@ -1822,6 +1822,7 @@ operator|.
 name|NATIVE_TYPE_VARIABLE_ONLY
 condition|)
 block|{
+comment|// equal only to our TypeVariable implementation with identical bounds
 if|if
 condition|(
 name|obj
@@ -1880,6 +1881,7 @@ return|;
 block|}
 else|else
 block|{
+comment|// equal to any TypeVariable implementation regardless of bounds
 if|if
 condition|(
 name|obj
@@ -2626,12 +2628,13 @@ block|}
 end_class
 
 begin_comment
-comment|/**    * Per https://code.google.com/p/guava-libraries/issues/detail?id=1635,    * In JDK 1.7.0_51-b13, TypeVariableImpl.equals() is changed to no longer be equal to custom    * TypeVariable implementations. As a result, we need to make sure our TypeVariable implementation    * respects symmetry.    * Moreoever, we don't want to reconstruct a native type variable<A> using our implementation    * unless some of its bounds have changed in resolution. This avoids creating inequal TypeVariable    * implementation unnecessarily. When the bounds do change however, it's fine for the synthetic    * TypeVariable to be unequal to any native TypeVariable anyway.    */
+comment|/**    * Per https://code.google.com/p/guava-libraries/issues/detail?id=1635,    * In JDK 1.7.0_51-b13, TypeVariableImpl.equals() is changed to no longer be equal to custom    * TypeVariable implementations. As a result, we need to make sure our TypeVariable implementation    * respects symmetry.    * Moreover, we don't want to reconstruct a native type variable<A> using our implementation    * unless some of its bounds have changed in resolution. This avoids creating unequal TypeVariable    * implementation unnecessarily. When the bounds do change, however, it's fine for the synthetic    * TypeVariable to be unequal to any native TypeVariable anyway.    */
 end_comment
 
 begin_class
 DECL|class|NativeTypeVariableEquals
 specifier|static
+specifier|final
 class|class
 name|NativeTypeVariableEquals
 parameter_list|<
