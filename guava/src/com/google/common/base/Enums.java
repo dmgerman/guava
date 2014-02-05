@@ -193,7 +193,7 @@ block|}
 comment|/**    * Returns a {@link Function} that maps an {@link Enum} name to the associated {@code Enum}    * constant. The {@code Function} will return {@code null} if the {@code Enum} constant    * does not exist.    *    * @param enumClass the {@link Class} of the {@code Enum} declaring the constant values    * @deprecated Use {@link Enums#stringConverter} instead. Note that the string converter has    *     slightly different behavior: it throws {@link IllegalArgumentException} if the enum    *     constant does not exist rather than returning {@code null}. It also converts {@code null}    *     to {@code null} rather than throwing {@link NullPointerException}. This method is    *     scheduled for removal in Guava 18.0.    */
 annotation|@
 name|Deprecated
-DECL|method|valueOfFunction (Class<T> enumClass)
+DECL|method|valueOfFunction ( Class<T> enumClass)
 specifier|public
 specifier|static
 parameter_list|<
