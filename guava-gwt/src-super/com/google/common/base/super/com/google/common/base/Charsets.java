@@ -65,7 +65,7 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * UTF-8: eight-bit UCS Transformation Format.    */
+comment|/**    * UTF-8: eight-bit UCS Transformation Format.    *    */
 DECL|field|UTF_8
 specifier|public
 specifier|static

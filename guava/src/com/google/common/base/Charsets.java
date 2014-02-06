@@ -79,7 +79,7 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    */
+comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    *    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -99,7 +99,7 @@ argument_list|(
 literal|"US-ASCII"
 argument_list|)
 decl_stmt|;
-comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    */
+comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    *    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -119,7 +119,7 @@ argument_list|(
 literal|"ISO-8859-1"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-8: eight-bit UCS Transformation Format.    */
+comment|/**    * UTF-8: eight-bit UCS Transformation Format.    *    */
 DECL|field|UTF_8
 specifier|public
 specifier|static
@@ -134,7 +134,7 @@ argument_list|(
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.    */
+comment|/**    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.    *    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -154,7 +154,7 @@ argument_list|(
 literal|"UTF-16BE"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.    */
+comment|/**    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.    *    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -174,7 +174,7 @@ argument_list|(
 literal|"UTF-16LE"
 argument_list|)
 decl_stmt|;
-comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    */
+comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    *    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
