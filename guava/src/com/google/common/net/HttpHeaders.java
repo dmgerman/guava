@@ -244,6 +244,18 @@ name|FROM
 init|=
 literal|"From"
 decl_stmt|;
+comment|/**    * The HTTP {@code Follow-Only-When-Prerender-Shown}</a> header field name.    *    * @since 17.0    */
+annotation|@
+name|Beta
+DECL|field|FOLLOW_ONLY_WHEN_PRERENDER_SHOWN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FOLLOW_ONLY_WHEN_PRERENDER_SHOWN
+init|=
+literal|"Follow-Only-When-Prerender-Shown"
+decl_stmt|;
 comment|/** The HTTP {@code Host} header field name. */
 DECL|field|HOST
 specifier|public
