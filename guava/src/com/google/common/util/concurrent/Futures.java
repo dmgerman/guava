@@ -2313,11 +2313,18 @@ name|this
 operator|.
 name|outputFuture
 operator|=
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
 name|function
 operator|.
 name|apply
 argument_list|(
 name|sourceResult
+argument_list|)
+argument_list|,
+literal|"AsyncFunction may not return null."
 argument_list|)
 decl_stmt|;
 if|if
