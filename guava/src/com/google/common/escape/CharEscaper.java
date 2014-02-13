@@ -254,7 +254,8 @@ operator|-
 name|lastEscape
 decl_stmt|;
 comment|// This is the size needed to add the replacement, not the full size
-comment|// needed by the string. We only regrow when we absolutely must.
+comment|// needed by the string. We only regrow when we absolutely must, and
+comment|// when we do grow, grow enough to avoid excessive growing. Grow.
 name|int
 name|sizeNeeded
 init|=
@@ -275,13 +276,13 @@ name|destSize
 operator|=
 name|sizeNeeded
 operator|+
+name|DEST_PAD_MULTIPLIER
+operator|*
 operator|(
 name|slen
 operator|-
 name|index
 operator|)
-operator|+
-name|DEST_PAD
 expr_stmt|;
 name|dest
 operator|=
@@ -496,15 +497,15 @@ return|return
 name|copy
 return|;
 block|}
-comment|/**    * The amount of padding to use when growing the escape buffer.    */
-DECL|field|DEST_PAD
+comment|/**    * The multiplier for padding to use when growing the escape buffer.    */
+DECL|field|DEST_PAD_MULTIPLIER
 specifier|private
 specifier|static
 specifier|final
 name|int
-name|DEST_PAD
+name|DEST_PAD_MULTIPLIER
 init|=
-literal|32
+literal|2
 decl_stmt|;
 block|}
 end_class
