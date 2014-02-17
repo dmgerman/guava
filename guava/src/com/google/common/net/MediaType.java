@@ -2964,6 +2964,12 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
+literal|"Could not parse '"
+operator|+
+name|input
+operator|+
+literal|"'"
+argument_list|,
 name|e
 argument_list|)
 throw|;
