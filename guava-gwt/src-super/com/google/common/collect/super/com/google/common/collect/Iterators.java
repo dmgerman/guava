@@ -3148,7 +3148,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Deletes and returns the next value from the iterator, or returns    * {@code defaultValue} if there is no such value.    */
+comment|/**    * Deletes and returns the next value from the iterator, or returns    * {@code null} if there is no such value.    */
 annotation|@
 name|Nullable
 DECL|method|pollNext (Iterator<T> iterator)
