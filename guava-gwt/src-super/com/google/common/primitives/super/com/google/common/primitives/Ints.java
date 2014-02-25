@@ -364,7 +364,6 @@ name|value
 return|;
 block|}
 comment|/**    * Compares the two specified {@code int} values. The sign of the value    * returned is the same as that of {@code ((Integer) a).compareTo(b)}.    *    *<p><b>Note:</b> projects using JDK 7 or later should use the equivalent    * {@link Integer#compare} method instead.    *    * @param a the first {@code int} to compare    * @param b the second {@code int} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
-comment|// TODO(kevinb): if JDK 6 ever becomes a non-concern, remove this
 DECL|method|compare (int a, int b)
 specifier|public
 specifier|static
