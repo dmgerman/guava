@@ -230,6 +230,15 @@ name|AbstractServiceTest
 extends|extends
 name|TestCase
 block|{
+DECL|field|LONG_TIMEOUT_MILLIS
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|LONG_TIMEOUT_MILLIS
+init|=
+literal|2500
+decl_stmt|;
 DECL|field|executionThread
 specifier|private
 name|Thread
@@ -1875,7 +1884,7 @@ name|waiter
 operator|.
 name|join
 argument_list|(
-literal|100
+name|LONG_TIMEOUT_MILLIS
 argument_list|)
 expr_stmt|;
 comment|// ensure that the await in the other thread is triggered
@@ -2010,7 +2019,7 @@ name|waiter
 operator|.
 name|join
 argument_list|(
-literal|100
+name|LONG_TIMEOUT_MILLIS
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -3551,7 +3560,7 @@ name|thread
 operator|.
 name|join
 argument_list|(
-literal|100
+name|LONG_TIMEOUT_MILLIS
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -3619,7 +3628,7 @@ argument_list|()
 operator|.
 name|awaitRunning
 argument_list|(
-literal|10
+name|LONG_TIMEOUT_MILLIS
 argument_list|,
 name|TimeUnit
 operator|.
@@ -3725,7 +3734,7 @@ name|thread
 operator|.
 name|join
 argument_list|(
-literal|100
+name|LONG_TIMEOUT_MILLIS
 argument_list|)
 expr_stmt|;
 name|assertFalse
