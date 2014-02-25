@@ -359,6 +359,42 @@ name|hasBracketlessColons
 argument_list|)
 return|;
 block|}
+comment|/**    * Build a HostAndPort instance from a host only.    *    *<p>Note: Non-bracketed IPv6 literals are allowed.    * Use {@link #requireBracketsForIPv6()} to prohibit these.    *    * @param host the host-only string to parse.  Must not contain a port number.    * @return if parsing was successful, a populated HostAndPort object.    * @throws IllegalArgumentException if {@code host} contains a port number.    * @since 17.0    */
+DECL|method|fromHost (String host)
+specifier|public
+specifier|static
+name|HostAndPort
+name|fromHost
+parameter_list|(
+name|String
+name|host
+parameter_list|)
+block|{
+name|HostAndPort
+name|parsedHost
+init|=
+name|fromString
+argument_list|(
+name|host
+argument_list|)
+decl_stmt|;
+name|checkArgument
+argument_list|(
+operator|!
+name|parsedHost
+operator|.
+name|hasPort
+argument_list|()
+argument_list|,
+literal|"Host has a port: %s"
+argument_list|,
+name|host
+argument_list|)
+expr_stmt|;
+return|return
+name|parsedHost
+return|;
+block|}
 comment|/**    * Split a freeform string into a host and port, without strict validation.    *    * Note that the host-only formats will leave the port field undefined.  You    * can use {@link #withDefaultPort(int)} to patch in a default value.    *    * @param hostPortString the input string to parse.    * @return if parsing was successful, a populated HostAndPort object.    * @throws IllegalArgumentException if nothing meaningful could be parsed.    */
 DECL|method|fromString (String hostPortString)
 specifier|public
@@ -942,6 +978,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+comment|// "[]:12345" requires 8 extra bytes.
 name|StringBuilder
 name|builder
 init|=
@@ -953,7 +990,7 @@ operator|.
 name|length
 argument_list|()
 operator|+
-literal|7
+literal|8
 argument_list|)
 decl_stmt|;
 if|if
