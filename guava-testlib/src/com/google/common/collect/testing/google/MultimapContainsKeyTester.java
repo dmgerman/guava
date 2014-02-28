@@ -76,7 +76,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 import|;
 end_import
 
@@ -417,7 +417,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 argument_list|)
 DECL|method|testContainsKeyNullAbsent ()
 specifier|public
@@ -444,7 +444,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 argument_list|)
 DECL|method|testContainsKeyNullDisallowed ()
 specifier|public

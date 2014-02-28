@@ -334,6 +334,10 @@ name|ALLOWS_NULL_VALUES
 argument_list|,
 name|MapFeature
 operator|.
+name|ALLOWS_ANY_NULL_QUERIES
+argument_list|,
+name|MapFeature
+operator|.
 name|GENERAL_PURPOSE
 argument_list|,
 name|MapFeature

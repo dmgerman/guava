@@ -132,43 +132,65 @@ argument_list|<
 name|Map
 argument_list|>
 block|{
-comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code containsKey(null)}, {@code get(null)}, or {@code remove(null)}.    */
-DECL|enumConstant|ALLOWS_NULL_QUERIES
-name|ALLOWS_NULL_QUERIES
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code containsKey(null)}, {@code get(null)},    * {@code keySet().contains(null)} or {@code remove(null)}.    */
+DECL|enumConstant|ALLOWS_NULL_KEY_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 block|,
 DECL|enumConstant|ALLOWS_NULL_KEYS
 name|ALLOWS_NULL_KEYS
 parameter_list|(
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 parameter_list|)
 operator|,
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code containsValue(null)}, {@code values().contains(null)} or    * {@code values().remove(null)}.    */
+DECL|enumConstant|ALLOWS_NULL_VALUE_QUERIES
+constructor|ALLOWS_NULL_VALUE_QUERIES
+operator|,
 DECL|enumConstant|ALLOWS_NULL_VALUES
-constructor|ALLOWS_NULL_VALUES
+constructor|ALLOWS_NULL_VALUES(ALLOWS_NULL_VALUE_QUERIES
+block|)
+enum|,
+comment|/**    * The map does not throw {@code NullPointerException} on calls such as    * {@code entrySet().contains(null)} or {@code entrySet().remove(null)}    */
+DECL|enumConstant|ALLOWS_NULL_ENTRY_QUERIES
+name|ALLOWS_NULL_ENTRY_QUERIES
+operator|,
+comment|/**    * The map does not throw {@code NullPointerException} on any {@code null}    * queries.    *    * @see #ALLOWS_NULL_KEY_QUERIES    * @see #ALLOWS_NULL_VALUE_QUERIES    * @see #ALLOWS_NULL_ENTRY_QUERIES    */
+DECL|enumConstant|ALLOWS_ANY_NULL_QUERIES
+name|ALLOWS_ANY_NULL_QUERIES
+argument_list|(
+name|ALLOWS_NULL_ENTRY_QUERIES
+argument_list|,
+name|ALLOWS_NULL_KEY_QUERIES
+argument_list|,
+name|ALLOWS_NULL_VALUE_QUERIES
+argument_list|)
 operator|,
 DECL|enumConstant|RESTRICTS_KEYS
-constructor|RESTRICTS_KEYS
+name|RESTRICTS_KEYS
 operator|,
 DECL|enumConstant|RESTRICTS_VALUES
-constructor|RESTRICTS_VALUES
+name|RESTRICTS_VALUES
 operator|,
 DECL|enumConstant|SUPPORTS_PUT
-constructor|SUPPORTS_PUT
+name|SUPPORTS_PUT
 operator|,
 DECL|enumConstant|SUPPORTS_REMOVE
-constructor|SUPPORTS_REMOVE
+name|SUPPORTS_REMOVE
 operator|,
 DECL|enumConstant|FAILS_FAST_ON_CONCURRENT_MODIFICATION
-constructor|FAILS_FAST_ON_CONCURRENT_MODIFICATION
+name|FAILS_FAST_ON_CONCURRENT_MODIFICATION
 operator|,
 comment|/**    * Indicates that the constructor or factory method of a map, usually an    * immutable map, throws an {@link IllegalArgumentException} when presented    * with duplicate keys instead of discarding all but one.    */
 DECL|enumConstant|REJECTS_DUPLICATES_AT_CREATION
-constructor|REJECTS_DUPLICATES_AT_CREATION
+name|REJECTS_DUPLICATES_AT_CREATION
 operator|,
 DECL|enumConstant|GENERAL_PURPOSE
-constructor|GENERAL_PURPOSE(       SUPPORTS_PUT
-operator|,
-constructor|SUPPORTS_REMOVE
-block|)
+name|GENERAL_PURPOSE
+argument_list|(
+name|SUPPORTS_PUT
+argument_list|,
+name|SUPPORTS_REMOVE
+argument_list|)
 enum|;
 end_enum
 

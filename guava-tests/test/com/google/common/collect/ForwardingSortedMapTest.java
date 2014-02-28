@@ -853,6 +853,10 @@ name|ALLOWS_NULL_KEYS
 argument_list|,
 name|MapFeature
 operator|.
+name|ALLOWS_ANY_NULL_QUERIES
+argument_list|,
+name|MapFeature
+operator|.
 name|GENERAL_PURPOSE
 argument_list|,
 name|CollectionFeature
@@ -979,7 +983,7 @@ name|REJECTS_DUPLICATES_AT_CREATION
 argument_list|,
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_ANY_NULL_QUERIES
 argument_list|)
 operator|.
 name|createTestSuite

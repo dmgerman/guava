@@ -230,7 +230,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 argument_list|)
 DECL|method|testContains_nullNotContainedButAllowed ()
 specifier|public
@@ -259,7 +259,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 argument_list|)
 DECL|method|testContains_nullNotContainedAndUnsupported ()
 specifier|public

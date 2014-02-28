@@ -76,7 +76,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 import|;
 end_import
 
@@ -97,6 +97,26 @@ operator|.
 name|MapFeature
 operator|.
 name|ALLOWS_NULL_VALUES
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|MapFeature
+operator|.
+name|ALLOWS_NULL_VALUE_QUERIES
 import|;
 end_import
 
@@ -357,7 +377,11 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|ALLOWS_NULL_QUERIES
+block|{
+name|ALLOWS_NULL_KEY_QUERIES
+block|,
+name|ALLOWS_NULL_VALUE_QUERIES
+block|}
 argument_list|)
 DECL|method|testContainsEntryNullNo ()
 specifier|public
@@ -386,12 +410,12 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 argument_list|)
-DECL|method|testContainsEntryNullDisallowed ()
+DECL|method|testContainsEntryNullDisallowedBecauseKeyQueriesDisallowed ()
 specifier|public
 name|void
-name|testContainsEntryNullDisallowed
+name|testContainsEntryNullDisallowedBecauseKeyQueriesDisallowed
 parameter_list|()
 block|{
 try|try
@@ -402,6 +426,55 @@ operator|.
 name|containsEntry
 argument_list|(
 literal|null
+argument_list|,
+name|sampleValues
+argument_list|()
+operator|.
+name|e3
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected NullPointerException"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|expected
+parameter_list|)
+block|{
+comment|// success
+block|}
+block|}
+comment|/**    * Copy of the {@link #testContainsEntryNullDisallowed} test. Needed because    * "optional" feature requirements are not supported.    */
+annotation|@
+name|MapFeature
+operator|.
+name|Require
+argument_list|(
+name|absent
+operator|=
+name|ALLOWS_NULL_VALUE_QUERIES
+argument_list|)
+DECL|method|testContainsEntryNullDisallowedBecauseValueQueriesDisallowed ()
+specifier|public
+name|void
+name|testContainsEntryNullDisallowedBecauseValueQueriesDisallowed
+parameter_list|()
+block|{
+try|try
+block|{
+name|multimap
+argument_list|()
+operator|.
+name|containsEntry
+argument_list|(
+name|sampleKeys
+argument_list|()
+operator|.
+name|e3
 argument_list|,
 literal|null
 argument_list|)

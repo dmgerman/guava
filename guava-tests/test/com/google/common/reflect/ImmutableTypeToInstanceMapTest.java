@@ -383,7 +383,7 @@ name|ANY
 argument_list|,
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_ANY_NULL_QUERIES
 argument_list|)
 operator|.
 name|createTestSuite

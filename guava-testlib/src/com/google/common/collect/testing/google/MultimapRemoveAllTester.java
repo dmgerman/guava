@@ -76,7 +76,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_KEYS
+name|ALLOWS_ANY_NULL_QUERIES
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEYS
 import|;
 end_import
 
@@ -611,7 +611,7 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_ANY_NULL_QUERIES
 block|}
 argument_list|)
 DECL|method|testRemoveAllNullKeyAbsent ()

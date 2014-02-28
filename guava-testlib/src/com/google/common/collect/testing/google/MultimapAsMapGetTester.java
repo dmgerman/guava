@@ -76,7 +76,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUES
 import|;
 end_import
 
@@ -96,7 +96,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_VALUES
+name|ALLOWS_NULL_VALUE_QUERIES
 import|;
 end_import
 
@@ -625,7 +625,7 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 block|}
 argument_list|)
 DECL|method|testRemoveNullValue ()

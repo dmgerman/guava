@@ -1084,6 +1084,18 @@ argument_list|(
 name|mapFeatures
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|mapFeatures
+operator|.
+name|contains
+argument_list|(
+name|MapFeature
+operator|.
+name|ALLOWS_NULL_ENTRY_QUERIES
+argument_list|)
+condition|)
+block|{
 name|entrySetFeatures
 operator|.
 name|add
@@ -1093,6 +1105,7 @@ operator|.
 name|ALLOWS_NULL_QUERIES
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|entrySetFeatures
 return|;
@@ -1175,7 +1188,7 @@ name|contains
 argument_list|(
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 argument_list|)
 condition|)
 block|{
@@ -1237,7 +1250,7 @@ name|contains
 argument_list|(
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 argument_list|)
 condition|)
 block|{

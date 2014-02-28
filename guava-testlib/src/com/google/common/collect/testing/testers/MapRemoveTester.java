@@ -96,7 +96,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 import|;
 end_import
 
@@ -849,7 +849,7 @@ name|SUPPORTS_REMOVE
 argument_list|,
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 argument_list|)
 DECL|method|testRemove_nullQueriesNotSupported ()
 specifier|public
@@ -893,7 +893,7 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 block|}
 argument_list|)
 DECL|method|testRemove_nullSupportedMissing ()

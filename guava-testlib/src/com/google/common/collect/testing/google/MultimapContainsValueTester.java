@@ -56,7 +56,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUES
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_VALUES
+name|ALLOWS_NULL_VALUE_QUERIES
 import|;
 end_import
 
@@ -268,7 +268,7 @@ name|MapFeature
 operator|.
 name|Require
 argument_list|(
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 argument_list|)
 DECL|method|testContainsNullValueNo ()
 specifier|public
@@ -295,7 +295,7 @@ name|Require
 argument_list|(
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 argument_list|)
 DECL|method|testContainsNullValueFails ()
 specifier|public

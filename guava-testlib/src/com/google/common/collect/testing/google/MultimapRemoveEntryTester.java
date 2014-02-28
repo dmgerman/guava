@@ -76,7 +76,7 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 import|;
 end_import
 
@@ -97,6 +97,26 @@ operator|.
 name|MapFeature
 operator|.
 name|ALLOWS_NULL_VALUES
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|MapFeature
+operator|.
+name|ALLOWS_NULL_VALUE_QUERIES
 import|;
 end_import
 
@@ -589,7 +609,7 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 block|}
 argument_list|)
 DECL|method|testRemoveNullKeyAbsent ()
@@ -626,7 +646,7 @@ argument_list|(
 block|{
 name|SUPPORTS_REMOVE
 block|,
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 block|}
 argument_list|)
 DECL|method|testRemoveNullValueAbsent ()
@@ -666,7 +686,7 @@ name|SUPPORTS_REMOVE
 argument_list|,
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_VALUE_QUERIES
 argument_list|)
 DECL|method|testRemoveNullValueForbidden ()
 specifier|public
@@ -718,7 +738,7 @@ name|SUPPORTS_REMOVE
 argument_list|,
 name|absent
 operator|=
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_NULL_KEY_QUERIES
 argument_list|)
 DECL|method|testRemoveNullKeyForbidden ()
 specifier|public

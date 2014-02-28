@@ -441,7 +441,7 @@ name|REJECTS_DUPLICATES_AT_CREATION
 argument_list|,
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_ANY_NULL_QUERIES
 argument_list|)
 operator|.
 name|suppressing
@@ -490,7 +490,7 @@ name|KNOWN_ORDER
 argument_list|,
 name|MapFeature
 operator|.
-name|ALLOWS_NULL_QUERIES
+name|ALLOWS_ANY_NULL_QUERIES
 argument_list|)
 operator|.
 name|suppressing
