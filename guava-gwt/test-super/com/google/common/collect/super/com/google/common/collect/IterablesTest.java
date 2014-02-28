@@ -7131,6 +7131,16 @@ argument_list|(
 name|list
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Iterables.consumingIterable(...)"
+argument_list|,
+name|consumingIterable
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Iterator
 argument_list|<
 name|String

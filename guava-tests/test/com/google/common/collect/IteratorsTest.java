@@ -10315,6 +10315,16 @@ name|iterator
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Iterators.consumingIterator(...)"
+argument_list|,
+name|consumingIterator
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|ASSERT
 operator|.
 name|that

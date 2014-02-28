@@ -3145,6 +3145,17 @@ return|return
 name|next
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Iterators.consumingIterator(...)"
+return|;
+block|}
 block|}
 return|;
 block|}
