@@ -4957,6 +4957,12 @@ specifier|static
 class|class
 name|NoPublicStaticMethods
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
+comment|// To test non-public factory isn't used.
 DECL|method|notPublic ()
 specifier|static
 name|String
