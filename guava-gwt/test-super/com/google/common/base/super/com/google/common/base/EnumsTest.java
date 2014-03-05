@@ -605,6 +605,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Create a second ClassLoader and use it to get a second version of the TestEnum class.
+comment|// Run Enums.getIfPresent on that other TestEnum and then return a WeakReference containing the
+comment|// new ClassLoader. If Enums.getIfPresent does caching that prevents the shadow TestEnum
+comment|// (and therefore its ClassLoader) from being unloaded, then this WeakReference will never be
+comment|// cleared.
 DECL|method|testStringConverter_convert ()
 specifier|public
 name|void
