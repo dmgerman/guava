@@ -222,6 +222,25 @@ name|hash
 argument_list|()
 return|;
 block|}
+comment|// Overriding close() because FilterOutputStream's close() method pre-JDK8 has bad behavior:
+comment|// it silently ignores any exception thrown by flush(). Instead, just close the delegate stream.
+comment|// It should flush itself if necessary.
+DECL|method|close ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|out
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
