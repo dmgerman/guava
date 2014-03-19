@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for collecting and validating tester requirements from annotations.  *  *<p>This class can be referenced in GWT tests.  *  * @author George van den Driessche  */
+comment|/**  * Utilities for collecting and validating tester requirements from annotations.  *  * @author George van den Driessche  */
 end_comment
 
 begin_class
