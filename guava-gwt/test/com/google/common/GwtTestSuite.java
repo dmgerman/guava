@@ -155,22 +155,6 @@ name|getTopLevelClasses
 argument_list|()
 control|)
 block|{
-comment|// TODO(cpovirk): why is this problematic when combined with the others but fine on its own?
-if|if
-condition|(
-name|info
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"com.google.common.util.concurrent.AtomicLongMapTest_gwt"
-argument_list|)
-condition|)
-block|{
-continue|continue;
-block|}
 if|if
 condition|(
 name|info
