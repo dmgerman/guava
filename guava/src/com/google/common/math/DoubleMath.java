@@ -246,6 +246,34 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -299,6 +327,13 @@ comment|/**  * A class for arithmetic on doubles that is not covered by {@link j
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|DoubleMath
 specifier|public
 specifier|final
@@ -306,6 +341,11 @@ class|class
 name|DoubleMath
 block|{
 comment|/*    * This method returns a value y such that rounding y DOWN (towards zero) gives the same result    * as rounding x according to the specified mode.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"#isMathematicalInteger, com.google.common.math.DoubleUtils"
+argument_list|)
 DECL|method|roundIntermediate (double x, RoundingMode mode)
 specifier|static
 name|double
@@ -539,6 +579,11 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns the {@code int} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified    *         rounding mode, is either less than {@code Integer.MIN_VALUE} or greater than {@code    *         Integer.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"#roundIntermediate"
+argument_list|)
 DECL|method|roundToInt (double x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -606,6 +651,11 @@ operator|-
 literal|1.0
 decl_stmt|;
 comment|/**    * Returns the {@code long} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified    *         rounding mode, is either less than {@code Long.MIN_VALUE} or greater than {@code    *         Long.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"#roundIntermediate"
+argument_list|)
 DECL|method|roundToLong (double x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -670,6 +720,13 @@ init|=
 literal|0x1p63
 decl_stmt|;
 comment|/**    * Returns the {@code BigInteger} value that is equal to {@code x} rounded with the specified    * rounding mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"#roundIntermediate, java.lang.Math.getExponent, "
+operator|+
+literal|"com.google.common.math.DoubleUtils"
+argument_list|)
 DECL|method|roundToBigInteger (double x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -766,6 +823,11 @@ name|result
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code x} is exactly equal to {@code 2^k} for some finite integer    * {@code k}.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"com.google.common.math.DoubleUtils"
+argument_list|)
 DECL|method|isPowerOfTwo (double x)
 specifier|public
 specifier|static
@@ -831,6 +893,11 @@ literal|2
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns the base 2 logarithm of a double value, rounded with the specified rounding mode to an    * {@code int}.    *    *<p>Regardless of the rounding mode, this is faster than {@code (int) log2(x)}.    *    * @throws IllegalArgumentException if {@code x<= 0.0}, {@code x} is NaN, or {@code x} is    *         infinite    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.Math.getExponent, com.google.common.math.DoubleUtils"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1015,6 +1082,11 @@ name|exponent
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code x} represents a mathematical integer.    *    *<p>This is equivalent to, but not necessarily implemented as, the expression {@code    * !Double.isNaN(x)&& !Double.isInfinite(x)&& x == Math.rint(x)}.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.lang.Math.getExponent, com.google.common.math.DoubleUtils"
+argument_list|)
 DECL|method|isMathematicalInteger (double x)
 specifier|public
 specifier|static
@@ -1338,6 +1410,11 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"com.google.common.math.DoubleUtils"
+argument_list|)
 DECL|class|MeanAccumulator
 specifier|private
 specifier|static
@@ -1410,6 +1487,11 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the arithmetic mean of the values. There must be at least one value, and they must all    * be finite.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"MeanAccumulator"
+argument_list|)
 DECL|method|mean (double... values)
 specifier|public
 specifier|static
@@ -1452,6 +1534,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the arithmetic mean of the values. There must be at least one value. The values will    * be converted to doubles, which does not cause any loss of precision for ints.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"MeanAccumulator"
+argument_list|)
 DECL|method|mean (int... values)
 specifier|public
 specifier|static
@@ -1494,6 +1581,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the arithmetic mean of the values. There must be at least one value. The values will    * be converted to doubles, which causes loss of precision for longs of magnitude over 2^53    * (slightly over 9e15).    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"MeanAccumulator"
+argument_list|)
 DECL|method|mean (long... values)
 specifier|public
 specifier|static
@@ -1536,6 +1628,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the arithmetic mean of the values. There must be at least one value, and they must all    * be finite. The values will be converted to doubles, which may cause loss of precision for some    * numeric types.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"MeanAccumulator"
+argument_list|)
 DECL|method|mean (Iterable<? extends Number> values)
 specifier|public
 specifier|static
@@ -1585,6 +1682,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the arithmetic mean of the values. There must be at least one value, and they must all    * be finite. The values will be converted to doubles, which may cause loss of precision for some    * numeric types.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"MeanAccumulator"
+argument_list|)
 DECL|method|mean (Iterator<? extends Number> values)
 specifier|public
 specifier|static
