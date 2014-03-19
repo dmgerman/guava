@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -63,6 +77,8 @@ comment|/**  * Unit test for {@link MinimalIterable}.  *  * @author Kevin Bourri
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
 DECL|class|MinimalIterableTest
 specifier|public
 class|class
