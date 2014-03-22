@@ -472,7 +472,6 @@ name|StatsCounter
 block|{
 comment|/**      * Records cache hits. This should be called when a cache request returns a cached value.      *      * @param count the number of hits to record      * @since 11.0      */
 DECL|method|recordHits (int count)
-specifier|public
 name|void
 name|recordHits
 parameter_list|(
@@ -482,7 +481,6 @@ parameter_list|)
 function_decl|;
 comment|/**      * Records cache misses. This should be called when a cache request returns a value that was      * not found in the cache. This method should be called by the loading thread, as well as by      * threads blocking on the load. Multiple concurrent calls to {@link Cache} lookup methods with      * the same key on an absent value should result in a single call to either      * {@code recordLoadSuccess} or {@code recordLoadException} and multiple calls to this method,      * despite all being served by the results of a single load operation.      *      * @param count the number of misses to record      * @since 11.0      */
 DECL|method|recordMisses (int count)
-specifier|public
 name|void
 name|recordMisses
 parameter_list|(
@@ -492,7 +490,6 @@ parameter_list|)
 function_decl|;
 comment|/**      * Records the successful load of a new entry. This should be called when a cache request      * causes an entry to be loaded, and the loading completes successfully. In contrast to      * {@link #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value      */
 DECL|method|recordLoadSuccess (long loadTime)
-specifier|public
 name|void
 name|recordLoadSuccess
 parameter_list|(
@@ -502,7 +499,6 @@ parameter_list|)
 function_decl|;
 comment|/**      * Records the failed load of a new entry. This should be called when a cache request causes      * an entry to be loaded, but an exception is thrown while loading the entry. In contrast to      * {@link #recordMisses}, this method should only be called by the loading thread.      *      * @param loadTime the number of nanoseconds the cache spent computing or retrieving the new      *     value prior to an exception being thrown      */
 DECL|method|recordLoadException (long loadTime)
-specifier|public
 name|void
 name|recordLoadException
 parameter_list|(
@@ -512,14 +508,12 @@ parameter_list|)
 function_decl|;
 comment|/**      * Records the eviction of an entry from the cache. This should only been called when an entry      * is evicted due to the cache's eviction strategy, and not as a result of manual {@linkplain      * Cache#invalidate invalidations}.      */
 DECL|method|recordEviction ()
-specifier|public
 name|void
 name|recordEviction
 parameter_list|()
 function_decl|;
 comment|/**      * Returns a snapshot of this counter's values. Note that this may be an inconsistent view, as      * it may be interleaved with update operations.      */
 DECL|method|snapshot ()
-specifier|public
 name|CacheStats
 name|snapshot
 parameter_list|()
