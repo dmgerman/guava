@@ -310,7 +310,7 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns an optional enum constant for the given type, using {@link Enum#valueOf}. If the    * constant does not exist, {@link Optional#absent} is returned. A common use case is for parsing    * user input or falling back to a default enum constant. For example,    * {@code Enums.getIfPresent(Country.class, countryInput).or(Country.DEFAULT);}    *    * @since 12.0    */
-DECL|method|getIfPresent (Class<T> enumClass, String value)
+DECL|method|getIfPresent ( Class<T> enumClass, String value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -347,37 +347,16 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 return|return
-name|Optional
+name|Platform
 operator|.
-name|of
-argument_list|(
-name|Enum
-operator|.
-name|valueOf
+name|getEnumIfPresent
 argument_list|(
 name|enumClass
 argument_list|,
 name|value
 argument_list|)
-argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-return|return
-name|Optional
-operator|.
-name|absent
-argument_list|()
-return|;
-block|}
 block|}
 comment|/**    * Returns a converter that converts between strings and {@code enum} values of type    * {@code enumClass} using {@link Enum#valueOf(Class, String)} and {@link Enum#name()}. The    * converter will throw an {@code IllegalArgumentException} if the argument is not the name of    * any enum constant in the specified enum.    *    * @since 16.0    */
 DECL|method|stringConverter (final Class<T> enumClass)
