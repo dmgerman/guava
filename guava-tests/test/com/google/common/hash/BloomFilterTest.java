@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|hash
+operator|.
+name|BloomFilterStrategies
+operator|.
+name|BitArray
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -152,10 +168,55 @@ name|BloomFilterTest
 extends|extends
 name|TestCase
 block|{
-DECL|method|testCreateAndCheckBloomFilterWithKnownFalsePositives ()
+DECL|method|testLargeBloomFilterDoesntOverflow ()
 specifier|public
 name|void
-name|testCreateAndCheckBloomFilterWithKnownFalsePositives
+name|testLargeBloomFilterDoesntOverflow
+parameter_list|()
+block|{
+name|long
+name|numBits
+init|=
+name|Integer
+operator|.
+name|MAX_VALUE
+decl_stmt|;
+name|numBits
+operator|++
+expr_stmt|;
+name|BitArray
+name|bitArray
+init|=
+operator|new
+name|BitArray
+argument_list|(
+name|numBits
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"BitArray.bitSize() must return a positive number, but was "
+operator|+
+name|bitArray
+operator|.
+name|bitSize
+argument_list|()
+argument_list|,
+name|bitArray
+operator|.
+name|bitSize
+argument_list|()
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+comment|// Ideally we would also test the bitSize() overflow of this BF, but it runs out of heap space
+comment|// BloomFilter.create(Funnels.unencodedCharsFunnel(), 244412641, 1e-11);
+block|}
+DECL|method|testCreateAndCheckMitz32BloomFilterWithKnownFalsePositives ()
+specifier|public
+name|void
+name|testCreateAndCheckMitz32BloomFilterWithKnownFalsePositives
 parameter_list|()
 block|{
 name|int
@@ -179,6 +240,12 @@ name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
 name|numInsertions
+argument_list|,
+literal|0.03
+argument_list|,
+name|BloomFilterStrategies
+operator|.
+name|MURMUR128_MITZ_32
 argument_list|)
 decl_stmt|;
 comment|// Insert "numInsertions" even numbers into the BF.

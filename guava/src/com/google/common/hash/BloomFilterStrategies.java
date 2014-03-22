@@ -367,7 +367,7 @@ index|[]
 name|data
 decl_stmt|;
 DECL|field|bitCount
-name|int
+name|long
 name|bitCount
 decl_stmt|;
 DECL|method|BitArray (long bits)
@@ -429,7 +429,7 @@ name|data
 operator|=
 name|data
 expr_stmt|;
-name|int
+name|long
 name|bitCount
 init|=
 literal|0
@@ -460,11 +460,11 @@ name|bitCount
 expr_stmt|;
 block|}
 comment|/** Returns true if the bit changed value. */
-DECL|method|set (int index)
+DECL|method|set (long index)
 name|boolean
 name|set
 parameter_list|(
-name|int
+name|long
 name|index
 parameter_list|)
 block|{
@@ -479,9 +479,14 @@ condition|)
 block|{
 name|data
 index|[
+call|(
+name|int
+call|)
+argument_list|(
 name|index
-operator|>>
+operator|>>>
 literal|6
+argument_list|)
 index|]
 operator||=
 operator|(
@@ -501,11 +506,11 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|get (int index)
+DECL|method|get (long index)
 name|boolean
 name|get
 parameter_list|(
-name|int
+name|long
 name|index
 parameter_list|)
 block|{
@@ -513,9 +518,14 @@ return|return
 operator|(
 name|data
 index|[
+call|(
+name|int
+call|)
+argument_list|(
 name|index
-operator|>>
+operator|>>>
 literal|6
+argument_list|)
 index|]
 operator|&
 operator|(
@@ -530,11 +540,14 @@ return|;
 block|}
 comment|/** Number of bits */
 DECL|method|bitSize ()
-name|int
+name|long
 name|bitSize
 parameter_list|()
 block|{
 return|return
+operator|(
+name|long
+operator|)
 name|data
 operator|.
 name|length
@@ -546,7 +559,7 @@ return|;
 block|}
 comment|/** Number of set bits (1s) */
 DECL|method|bitCount ()
-name|int
+name|long
 name|bitCount
 parameter_list|()
 block|{
