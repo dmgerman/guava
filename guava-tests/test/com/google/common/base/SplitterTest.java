@@ -958,6 +958,9 @@ name|that
 argument_list|(
 name|empty
 argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithTrim ()
