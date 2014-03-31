@@ -469,8 +469,6 @@ name|long
 name|combinedHash
 init|=
 name|hash1
-operator|+
-name|hash2
 decl_stmt|;
 for|for
 control|(
@@ -588,8 +586,6 @@ name|long
 name|combinedHash
 init|=
 name|hash1
-operator|+
-name|hash2
 decl_stmt|;
 for|for
 control|(
