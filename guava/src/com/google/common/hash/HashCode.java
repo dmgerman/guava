@@ -284,6 +284,18 @@ name|int
 name|maxLength
 parameter_list|)
 function_decl|;
+comment|/**    * Returns a mutable view of the underlying bytes for the given {@code HashCode} if it is a    * byte-based hashcode. Otherwise it returns {@link HashCode#asBytes}. Do<i>not</i> mutate this    * array or else you will break the immutability contract of {@code HashCode}.    */
+DECL|method|getBytesInternal ()
+name|byte
+index|[]
+name|getBytesInternal
+parameter_list|()
+block|{
+return|return
+name|asBytes
+argument_list|()
+return|;
+block|}
 comment|/**    * Creates a 32-bit {@code HashCode} representation of the given int value. The underlying bytes    * are interpreted in little endian order.    *    * @since 15.0 (since 12.0 in HashCodes)    */
 DECL|method|fromInt (int hash)
 specifier|public
@@ -1068,6 +1080,18 @@ argument_list|,
 name|maxLength
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getBytesInternal ()
+name|byte
+index|[]
+name|getBytesInternal
+parameter_list|()
+block|{
+return|return
+name|bytes
+return|;
 block|}
 DECL|field|serialVersionUID
 specifier|private
