@@ -284,7 +284,7 @@ specifier|private
 name|CharStreams
 parameter_list|()
 block|{}
-comment|/**    * Returns a factory that will supply instances of {@link StringReader} that    * read a string value.    *    * @param value the string to read    * @return the factory    * @deprecated Use {@link CharSource#wrap(CharSequence}} instead. This method    *     is scheduled for removal in Guava 18.0.    */
+comment|/**    * Returns a factory that will supply instances of {@link StringReader} that    * read a string value.    *    * @param value the string to read    * @return the factory    * @deprecated Use {@link CharSource#wrap(CharSequence)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
 annotation|@
 name|Deprecated
 DECL|method|newReaderSupplier ( final String value)
