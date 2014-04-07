@@ -858,6 +858,41 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Sets two distinct values for {@code type}. These values can be used for both null pointer    * testing and equals testing.    *    * @since 17.0    */
+DECL|method|setDistinctValues (Class<T> type, T value1, T value2)
+specifier|protected
+specifier|final
+parameter_list|<
+name|T
+parameter_list|>
+name|void
+name|setDistinctValues
+parameter_list|(
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|type
+parameter_list|,
+name|T
+name|value1
+parameter_list|,
+name|T
+name|value2
+parameter_list|)
+block|{
+name|tester
+operator|.
+name|setDistinctValues
+argument_list|(
+name|type
+argument_list|,
+name|value1
+argument_list|,
+name|value2
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Specifies that classes that satisfy the given predicate aren't tested for sanity. */
 DECL|method|ignoreClasses (Predicate<? super Class<?>> condition)
 specifier|protected
