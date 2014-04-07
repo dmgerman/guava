@@ -845,7 +845,7 @@ name|fpp
 argument_list|,
 name|BloomFilterStrategies
 operator|.
-name|MURMUR128_MITZ_64
+name|MURMUR128_MITZ_32
 argument_list|)
 return|;
 block|}
