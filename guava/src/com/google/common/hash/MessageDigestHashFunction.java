@@ -653,7 +653,7 @@ argument_list|(
 operator|!
 name|done
 argument_list|,
-literal|"Cannot use Hasher after calling #hash() on it"
+literal|"Cannot re-use a Hasher after calling hash() on it"
 argument_list|)
 expr_stmt|;
 block|}
@@ -665,6 +665,9 @@ name|HashCode
 name|hash
 parameter_list|()
 block|{
+name|checkNotDone
+argument_list|()
+expr_stmt|;
 name|done
 operator|=
 literal|true
