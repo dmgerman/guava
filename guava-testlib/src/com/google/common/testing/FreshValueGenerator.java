@@ -532,6 +532,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|Range
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|RowSortedTable
 import|;
 end_import
@@ -3044,11 +3058,40 @@ block|}
 block|}
 return|;
 block|}
+DECL|method|freshRange (C freshElement)
+annotation|@
+name|Generates
+specifier|private
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+parameter_list|>
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|freshRange
+parameter_list|(
+name|C
+name|freshElement
+parameter_list|)
+block|{
+return|return
+name|Range
+operator|.
+name|singleton
+argument_list|(
+name|freshElement
+argument_list|)
+return|;
+block|}
 DECL|method|freshIterable (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3072,8 +3115,8 @@ block|}
 DECL|method|freshCollection (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3097,8 +3140,8 @@ block|}
 DECL|method|freshList (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3122,8 +3165,8 @@ block|}
 DECL|method|freshArrayList (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3162,8 +3205,8 @@ block|}
 DECL|method|freshLinkedList (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3202,8 +3245,8 @@ block|}
 DECL|method|freshImmutableList (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3229,8 +3272,8 @@ block|}
 DECL|method|freshImmutableCollection (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3254,8 +3297,8 @@ block|}
 DECL|method|freshSet (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3279,8 +3322,8 @@ block|}
 DECL|method|freshHashSet (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3304,8 +3347,8 @@ block|}
 DECL|method|freshLinkedHashSet (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3344,8 +3387,8 @@ block|}
 DECL|method|freshImmutableSet (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3370,8 +3413,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3402,8 +3445,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3435,8 +3478,8 @@ block|}
 DECL|method|freshTreeSet ( E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3481,8 +3524,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3516,8 +3559,8 @@ block|}
 DECL|method|freshMultiset (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3541,8 +3584,8 @@ block|}
 DECL|method|freshHashMultiset (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3581,8 +3624,8 @@ block|}
 DECL|method|freshLinkedHashMultiset (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3621,8 +3664,8 @@ block|}
 DECL|method|freshImmutableMultiset (E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 parameter_list|>
@@ -3648,8 +3691,8 @@ block|}
 DECL|method|freshSortedMultiset ( E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3678,8 +3721,8 @@ block|}
 DECL|method|freshTreeMultiset ( E freshElement)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3722,8 +3765,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|E
 extends|extends
@@ -3755,8 +3798,8 @@ block|}
 DECL|method|freshMap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -3789,8 +3832,8 @@ block|}
 DECL|method|freshHashdMap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -3823,8 +3866,8 @@ block|}
 DECL|method|freshLinkedHashMap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -3874,8 +3917,8 @@ block|}
 DECL|method|freshImmutableMap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -3910,8 +3953,8 @@ block|}
 DECL|method|freshConcurrentMap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -3960,8 +4003,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 extends|extends
@@ -4001,8 +4044,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 extends|extends
@@ -4043,8 +4086,8 @@ block|}
 DECL|method|freshTreeMap ( K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 extends|extends
@@ -4100,8 +4143,8 @@ return|;
 block|}
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 extends|extends
@@ -4144,8 +4187,8 @@ block|}
 DECL|method|freshMultimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4178,8 +4221,8 @@ block|}
 DECL|method|freshImmutableMultimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4214,8 +4257,8 @@ block|}
 DECL|method|freshListMultimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4248,8 +4291,8 @@ block|}
 DECL|method|freshArrayListMultimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4299,8 +4342,8 @@ block|}
 DECL|method|freshImmutableListMultimap ( K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4335,8 +4378,8 @@ block|}
 DECL|method|freshSetMultimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4369,8 +4412,8 @@ block|}
 DECL|method|freshHashMultimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4420,8 +4463,8 @@ block|}
 DECL|method|freshLinkedHashMultimap ( K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4471,8 +4514,8 @@ block|}
 DECL|method|freshImmutableSetMultimap ( K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4507,8 +4550,8 @@ block|}
 DECL|method|freshBimap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4541,8 +4584,8 @@ block|}
 DECL|method|freshHashBiMap (K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4592,8 +4635,8 @@ block|}
 DECL|method|freshImmutableBimap ( K key, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|K
 parameter_list|,
@@ -4628,8 +4671,8 @@ block|}
 DECL|method|freshTable (R row, C column, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|R
 parameter_list|,
@@ -4671,8 +4714,8 @@ block|}
 DECL|method|freshHashBasedTable ( R row, C column, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|R
 parameter_list|,
@@ -4738,8 +4781,8 @@ argument_list|)
 comment|// TreeBasedTable.create() is defined as such
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|R
 extends|extends
@@ -4791,8 +4834,8 @@ argument_list|)
 comment|// TreeBasedTable.create() is defined as such
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|R
 extends|extends
@@ -4858,8 +4901,8 @@ block|}
 DECL|method|freshImmutableTable ( R row, C column, V value)
 annotation|@
 name|Generates
-specifier|static
 specifier|private
+specifier|static
 parameter_list|<
 name|R
 parameter_list|,
