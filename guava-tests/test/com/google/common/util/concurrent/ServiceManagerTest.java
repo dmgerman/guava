@@ -2017,7 +2017,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This is for a case where a long running Listener using the sameThreadListener could deadlock    * another thread calling stopAsync().    */
+comment|/**    * Tests that a ServiceManager can be fully shut down if one of its failure listeners is slow or    * even permanently blocked.    */
 DECL|method|testListenerDeadlock ()
 specifier|public
 name|void
@@ -2029,6 +2029,26 @@ block|{
 specifier|final
 name|CountDownLatch
 name|failEnter
+init|=
+operator|new
+name|CountDownLatch
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+specifier|final
+name|CountDownLatch
+name|failLeave
+init|=
+operator|new
+name|CountDownLatch
+argument_list|(
+literal|1
+argument_list|)
+decl_stmt|;
+specifier|final
+name|CountDownLatch
+name|afterStarted
 init|=
 operator|new
 name|CountDownLatch
@@ -2063,6 +2083,15 @@ parameter_list|()
 block|{
 name|notifyStarted
 argument_list|()
+expr_stmt|;
+comment|// We need to wait for the main thread to leave the ServiceManager.startAsync call to
+comment|// ensure that the thread running the failure callbacks is not the main thread.
+name|Uninterruptibles
+operator|.
+name|awaitUninterruptibly
+argument_list|(
+name|afterStarted
+argument_list|)
 expr_stmt|;
 name|notifyFailed
 argument_list|(
@@ -2137,16 +2166,12 @@ operator|.
 name|countDown
 argument_list|()
 expr_stmt|;
-comment|// block forever!
+comment|// block until after the service manager is shutdown
 name|Uninterruptibles
 operator|.
 name|awaitUninterruptibly
 argument_list|(
-operator|new
-name|CountDownLatch
-argument_list|(
-literal|1
-argument_list|)
+name|failLeave
 argument_list|)
 expr_stmt|;
 block|}
@@ -2158,14 +2183,19 @@ name|sameThreadExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// We do not call awaitHealthy because, due to races, that method may throw an exception.  But
-comment|// we really just want to wait for the thread to be in the failure callback so we wait for that
-comment|// explicitly instead.
 name|manager
 operator|.
 name|startAsync
 argument_list|()
 expr_stmt|;
+name|afterStarted
+operator|.
+name|countDown
+argument_list|()
+expr_stmt|;
+comment|// We do not call awaitHealthy because, due to races, that method may throw an exception.  But
+comment|// we really just want to wait for the thread to be in the failure callback so we wait for that
+comment|// explicitly instead.
 name|failEnter
 operator|.
 name|await
@@ -2230,6 +2260,12 @@ name|isAlive
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|failLeave
+operator|.
+name|countDown
+argument_list|()
+expr_stmt|;
+comment|// release the background thread
 block|}
 comment|/**    * Catches a bug where when constructing a service manager failed, later interactions with the    * service could cause IllegalStateExceptions inside the partially constructed ServiceManager.    * This ISE wouldn't actually bubble up but would get logged by ExecutionQueue.  This obfuscated    * the original error (which was not constructing ServiceManager correctly).    */
 DECL|method|testPartiallyConstructedManager ()
