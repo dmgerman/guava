@@ -2718,7 +2718,7 @@ block|}
 comment|// TODO(user): provide overloads for ListeningExecutorService? ListeningScheduledExecutorService?
 comment|// TODO(user): provide overloads that take constant strings? Function<Runnable, String>s to
 comment|// calculate names?
-comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
+comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
 DECL|method|renamingDecorator (final Executor executor, final Supplier<String> nameSupplier)
 specifier|static
 name|Executor
@@ -2790,7 +2790,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
 DECL|method|renamingDecorator (final ExecutorService service, final Supplier<String> nameSupplier)
 specifier|static
 name|ExecutorService
@@ -2890,7 +2890,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
 DECL|method|renamingDecorator (final ScheduledExecutorService service, final Supplier<String> nameSupplier)
 specifier|static
 name|ScheduledExecutorService
