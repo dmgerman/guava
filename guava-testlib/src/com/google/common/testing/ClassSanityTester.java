@@ -870,7 +870,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality.    * To set sample instances for equality testing, use {@link #setSampleInstances} instead.    */
+comment|/**    * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality.    * To set sample instances for equality testing, use {@link #setSampleInstances} instead.    */
 DECL|method|setDefault (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -911,7 +911,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets sample instances for {@code type} for purpose of {@code equals} testing, where different    * values are needed to test inequality.    *     *<p>Used for types that {@link ClassSanityTester} doesn't already know how to sample.    * It's usually necessary to add two unequal instances for each type, with the exception that if    * the sample instance is to be passed to a {@link Nullable} parameter,  one non-null sample is    * sufficient. Setting an empty list will clear sample instances for {@code type}.    */
+comment|/**    * Sets sample instances for {@code type} for purpose of {@code equals} testing, where different    * values are needed to test inequality.    *    *<p>Used for types that {@link ClassSanityTester} doesn't already know how to sample.    * It's usually necessary to add two unequal instances for each type, with the exception that if    * the sample instance is to be passed to a {@link Nullable} parameter,  one non-null sample is    * sufficient. Setting an empty list will clear sample instances for {@code type}.    */
 DECL|method|setSampleInstances (Class<T> type, Iterable<? extends T> instances)
 specifier|public
 parameter_list|<
@@ -1981,7 +1981,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Tests null checks against the instance methods of the return values, if any.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
+comment|/**      * Tests null checks against the instance methods of the return values, if any.      *      *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testNulls ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -2078,7 +2078,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Tests {@link Object#equals} and {@link Object#hashCode} against the return values of the      * static methods, by asserting that when equal parameters are passed to the same static method,      * the return value should also be equal; and vice versa.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
+comment|/**      * Tests {@link Object#equals} and {@link Object#hashCode} against the return values of the      * static methods, by asserting that when equal parameters are passed to the same static method,      * the return value should also be equal; and vice versa.      *      *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testEquals ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -2122,7 +2122,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Runs serialization test on the return values of the static methods.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
+comment|/**      * Runs serialization test on the return values of the static methods.      *      *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testSerializable ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -2207,7 +2207,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Runs equals and serialization test on the return values.      *       *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
+comment|/**      * Runs equals and serialization test on the return values.      *      *<p>Test fails if default value cannot be determined for a constructor or factory method      * parameter, or if the constructor or factory method throws exception.      *      * @return this tester      */
 DECL|method|testEqualsAndSerializable ()
 specifier|public
 name|FactoryMethodReturnValueTester
@@ -2456,7 +2456,7 @@ name|factoriesToTest
 return|;
 block|}
 block|}
-comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated with {@link Nullable} and    * returns null, null will be returned.    *     * @throws ParameterNotInstantiableException if the static methods cannot be invoked because    *         the default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *         class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
+comment|/**    * Instantiates using {@code factory}. If {@code factory} is annotated with {@link Nullable} and    * returns null, null will be returned.    *    * @throws ParameterNotInstantiableException if the static methods cannot be invoked because    *         the default value of a parameter cannot be determined.    * @throws IllegalAccessException if the class isn't public or is nested inside a non-public    *         class, preventing its methods from being accessible.    * @throws InvocationTargetException if a static method threw exception.    */
 DECL|method|instantiate (Invokable<?, ? extends T> factory)
 annotation|@
 name|Nullable
@@ -2795,11 +2795,41 @@ argument_list|)
 operator|.
 name|getType
 argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|newArg
+operator|==
+literal|null
+condition|)
+block|{
+name|newArg
+operator|=
+name|argGenerators
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|generate
+argument_list|(
+name|params
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|getType
+argument_list|()
 operator|.
 name|getRawType
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|Objects
