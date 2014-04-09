@@ -428,6 +428,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -911,7 +921,9 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets sample instances for {@code type} for purpose of {@code equals} testing, where different    * values are needed to test inequality.    *    *<p>Used for types that {@link ClassSanityTester} doesn't already know how to sample.    * It's usually necessary to add two unequal instances for each type, with the exception that if    * the sample instance is to be passed to a {@link Nullable} parameter,  one non-null sample is    * sufficient. Setting an empty list will clear sample instances for {@code type}.    */
+comment|/**    * Sets sample instances for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the sample instances can be passed to create {@code Foo} instances that are unequal.    *    *<p>Used for types where {@link ClassSanityTester} doesn't already know how to instantiate    * distinct values. It's usually necessary to add two unequal instances for each type, with the    * exception that if the sample instance is to be passed to a {@link Nullable} parameter, one    * non-null sample is sufficient. Setting an empty list will clear sample instances for {@code    * type}.     *     * @deprecated Use {@link #setDistinctValues} instead.    */
+annotation|@
+name|Deprecated
 DECL|method|setSampleInstances (Class<T> type, Iterable<? extends T> instances)
 specifier|public
 parameter_list|<
@@ -950,6 +962,42 @@ argument_list|(
 name|instances
 argument_list|)
 decl_stmt|;
+name|Set
+argument_list|<
+name|Object
+argument_list|>
+name|uniqueValues
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|Object
+argument_list|>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|T
+name|instance
+range|:
+name|instances
+control|)
+block|{
+name|checkArgument
+argument_list|(
+name|uniqueValues
+operator|.
+name|add
+argument_list|(
+name|instance
+argument_list|)
+argument_list|,
+literal|"Duplicate value: %s"
+argument_list|,
+name|instance
+argument_list|)
+expr_stmt|;
+block|}
 name|distinctValues
 operator|.
 name|putAll
@@ -988,7 +1036,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets distinct values for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the distinct values of {@code type} can be passed as parametrs to create {@code Foo}    * instances that are unequal.    *    *<p>Only necessary for types that {@link ClassSanityTester} doesn't already know how to create    * distinct values.    *    * @return this tester instance    * @since 17.0    */
+comment|/**    * Sets distinct values for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the distinct values of {@code type} can be passed as parameters to create {@code Foo}    * instances that are unequal.    *    *<p>Calling {@code setDistinctValues(type, v1, v2)} also sets the default value for {@code type}    * that's used for {@link #testNulls}.    *    *<p>Only necessary for types where {@link ClassSanityTester} doesn't already know how to create    * distinct values.    *    * @return this tester instance    * @since 17.0    */
 DECL|method|setDistinctValues (Class<T> type, T value1, T value2)
 specifier|public
 parameter_list|<
@@ -1317,6 +1365,8 @@ parameter_list|)
 throws|throws
 name|ParameterNotInstantiableException
 throws|,
+name|ParameterHasNoDistinctValueException
+throws|,
 name|IllegalAccessException
 throws|,
 name|InvocationTargetException
@@ -1400,6 +1450,17 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
+name|ParameterHasNoDistinctValueException
+argument_list|>
+name|distinctValueErrors
+init|=
+name|Lists
+operator|.
+name|newArrayList
+argument_list|()
+decl_stmt|;
+name|List
+argument_list|<
 name|InvocationTargetException
 argument_list|>
 name|instantiationExceptions
@@ -1420,7 +1481,7 @@ operator|.
 name|newArrayList
 argument_list|()
 decl_stmt|;
-comment|// Try factories with the greatest number of parameters first.
+comment|// Try factories with the greatest number of parameters.
 for|for
 control|(
 name|Invokable
@@ -1472,6 +1533,20 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|ParameterHasNoDistinctValueException
+name|e
+parameter_list|)
+block|{
+name|distinctValueErrors
+operator|.
+name|add
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
 name|InvocationTargetException
 name|e
 parameter_list|)
@@ -1503,6 +1578,11 @@ block|}
 name|throwFirst
 argument_list|(
 name|paramErrors
+argument_list|)
+expr_stmt|;
+name|throwFirst
+argument_list|(
+name|distinctValueErrors
 argument_list|)
 expr_stmt|;
 name|throwFirst
@@ -2513,6 +2593,8 @@ parameter_list|)
 throws|throws
 name|ParameterNotInstantiableException
 throws|,
+name|ParameterHasNoDistinctValueException
+throws|,
 name|IllegalAccessException
 throws|,
 name|InvocationTargetException
@@ -2802,36 +2884,7 @@ condition|(
 name|newArg
 operator|==
 literal|null
-condition|)
-block|{
-name|newArg
-operator|=
-name|argGenerators
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|generate
-argument_list|(
-name|params
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getType
-argument_list|()
-operator|.
-name|getRawType
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
+operator|||
 name|Objects
 operator|.
 name|equal
@@ -2847,8 +2900,40 @@ name|newArg
 argument_list|)
 condition|)
 block|{
-comment|// no value variance, no equality group
+if|if
+condition|(
+name|params
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|getRawType
+argument_list|()
+operator|.
+name|isEnum
+argument_list|()
+condition|)
+block|{
 continue|continue;
+comment|// Nothing better we can do if it's single-value enum
+block|}
+throw|throw
+operator|new
+name|ParameterHasNoDistinctValueException
+argument_list|(
+name|params
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+argument_list|)
+throw|;
 block|}
 name|newArgs
 operator|.
@@ -3976,6 +4061,39 @@ block|{
 name|super
 argument_list|(
 literal|"Cannot determine value for parameter "
+operator|+
+name|parameter
+operator|+
+literal|" of "
+operator|+
+name|parameter
+operator|.
+name|getDeclaringInvokable
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**    * Thrown if the test fails to generate two distinct non-null values of a constructor or factory    * parameter in order to test {@link Object#equals} and {@link Object#hashCode} of the declaring    * class.    */
+DECL|class|ParameterHasNoDistinctValueException
+annotation|@
+name|VisibleForTesting
+specifier|static
+class|class
+name|ParameterHasNoDistinctValueException
+extends|extends
+name|Exception
+block|{
+DECL|method|ParameterHasNoDistinctValueException (Parameter parameter)
+name|ParameterHasNoDistinctValueException
+parameter_list|(
+name|Parameter
+name|parameter
+parameter_list|)
+block|{
+name|super
+argument_list|(
+literal|"Cannot generate distinct value for parameter "
 operator|+
 name|parameter
 operator|+

@@ -98,6 +98,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Splitter
 import|;
 end_import
@@ -644,6 +658,20 @@ name|common
 operator|.
 name|primitives
 operator|.
+name|Primitives
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|primitives
+operator|.
 name|UnsignedInteger
 import|;
 end_import
@@ -863,6 +891,18 @@ operator|.
 name|reflect
 operator|.
 name|Method
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Type
 import|;
 end_import
 
@@ -1360,6 +1400,20 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
+DECL|field|generatedOptionalTypes
+specifier|private
+specifier|final
+name|Set
+argument_list|<
+name|Type
+argument_list|>
+name|generatedOptionalTypes
+init|=
+name|Sets
+operator|.
+name|newHashSet
+argument_list|()
+decl_stmt|;
 DECL|method|addSampleInstances (Class<T> type, Iterable<? extends T> instances)
 parameter_list|<
 name|T
@@ -1399,81 +1453,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a fresh instance for {@code type} if possible. The returned instance could be:    *<ul>    *<li>exactly of the given type, including generic type parameters, such as    *     {@code ImmutableList<String>};    *<li>of the raw type;    *<li>null if no fresh value can be generated.    *</ul>    */
-DECL|method|generate (TypeToken<T> type)
+DECL|method|generate (TypeToken<?> type)
 annotation|@
 name|Nullable
-specifier|final
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|generate
-parameter_list|(
-name|TypeToken
-argument_list|<
-name|T
-argument_list|>
-name|type
-parameter_list|)
-block|{
-comment|// Not completely safe since sample instances are registered by raw types.
-comment|// But we assume the generic type parameters are mostly unimportant for these dummy values,
-comment|// because what really matters are equals/hashCode.
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-name|T
-name|result
-init|=
-operator|(
-name|T
-operator|)
-name|generateIfPossible
-argument_list|(
-name|type
-argument_list|)
-decl_stmt|;
-return|return
-name|result
-return|;
-block|}
-DECL|method|generate (Class<T> type)
-annotation|@
-name|Nullable
-specifier|final
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|generate
-parameter_list|(
-name|Class
-argument_list|<
-name|T
-argument_list|>
-name|type
-parameter_list|)
-block|{
-return|return
-name|generate
-argument_list|(
-name|TypeToken
-operator|.
-name|of
-argument_list|(
-name|type
-argument_list|)
-argument_list|)
-return|;
-block|}
-DECL|method|generateIfPossible (TypeToken<?> type)
-annotation|@
-name|Nullable
-specifier|private
 name|Object
-name|generateIfPossible
+name|generate
 parameter_list|(
 name|TypeToken
 argument_list|<
@@ -1589,7 +1573,7 @@ name|array
 argument_list|,
 literal|0
 argument_list|,
-name|generateIfPossible
+name|generate
 argument_list|(
 name|componentType
 argument_list|)
@@ -1597,6 +1581,34 @@ argument_list|)
 expr_stmt|;
 return|return
 name|array
+return|;
+block|}
+if|if
+condition|(
+name|rawType
+operator|==
+name|Optional
+operator|.
+name|class
+operator|&&
+name|generatedOptionalTypes
+operator|.
+name|add
+argument_list|(
+name|type
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+condition|)
+block|{
+comment|// For any Optional<T>, we'll first generate absent(). The next call generates a distinct
+comment|// value of T to be wrapped in Optional.of().
+return|return
+name|Optional
+operator|.
+name|absent
+argument_list|()
 return|;
 block|}
 name|Method
@@ -1699,7 +1711,7 @@ comment|// fresh values for their generic parameter types.
 name|Object
 name|argValue
 init|=
-name|generateIfPossible
+name|generate
 argument_list|(
 name|paramType
 argument_list|)
@@ -1711,11 +1723,12 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// When a parameter of a @Generates method cannot be created,
+comment|// The type most likely is a collection.
+comment|// Our distinct proxy doesn't work for collections.
+comment|// So just refuse to generate.
 return|return
-name|defaultGenerate
-argument_list|(
-name|rawType
-argument_list|)
+literal|null
 return|;
 block|}
 name|args
@@ -1782,14 +1795,56 @@ name|rawType
 argument_list|)
 return|;
 block|}
-DECL|method|defaultGenerate (Class<?> rawType)
+DECL|method|generate (Class<T> type)
+annotation|@
+name|Nullable
+specifier|final
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|generate
+parameter_list|(
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|type
+parameter_list|)
+block|{
+return|return
+name|Primitives
+operator|.
+name|wrap
+argument_list|(
+name|type
+argument_list|)
+operator|.
+name|cast
+argument_list|(
+name|generate
+argument_list|(
+name|TypeToken
+operator|.
+name|of
+argument_list|(
+name|type
+argument_list|)
+argument_list|)
+argument_list|)
+return|;
+block|}
+DECL|method|defaultGenerate (Class<T> rawType)
 specifier|private
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|defaultGenerate
 parameter_list|(
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|rawType
 parameter_list|)
@@ -2747,6 +2802,32 @@ block|}
 block|}
 block|}
 comment|// common.base
+DECL|method|freshOptional (T value)
+annotation|@
+name|Generates
+specifier|private
+parameter_list|<
+name|T
+parameter_list|>
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|freshOptional
+parameter_list|(
+name|T
+name|value
+parameter_list|)
+block|{
+return|return
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
 DECL|method|freshJoiner ()
 annotation|@
 name|Generates
