@@ -195,7 +195,6 @@ return|;
 block|}
 DECL|enum|Color
 specifier|private
-specifier|static
 enum|enum
 name|Color
 block|{
@@ -213,6 +212,17 @@ block|,
 name|GREEN
 block|,
 name|WHITE
+block|}
+DECL|enum|Gender
+specifier|private
+enum|enum
+name|Gender
+block|{
+DECL|enumConstant|MALE
+DECL|enumConstant|FEMALE
+name|MALE
+block|,
+name|FEMALE
 block|}
 DECL|method|testClassCreate ()
 specifier|public
@@ -644,6 +654,49 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|// Wrapper of EnumMultiset factory methods, because we need to skip create(Class).
+comment|// create(Enum1.class) is equal to create(Enum2.class) but testEquals() expects otherwise.
+comment|// For the same reason, we need to skip create(Iterable, Class).
+DECL|class|EnumMultisetFactory
+specifier|private
+specifier|static
+class|class
+name|EnumMultisetFactory
+block|{
+DECL|method|create (Iterable<E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+extends|extends
+name|Enum
+argument_list|<
+name|E
+argument_list|>
+parameter_list|>
+name|EnumMultiset
+argument_list|<
+name|E
+argument_list|>
+name|create
+parameter_list|(
+name|Iterable
+argument_list|<
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+return|return
+name|EnumMultiset
+operator|.
+name|create
+argument_list|(
+name|elements
+argument_list|)
+return|;
+block|}
 block|}
 block|}
 end_class
