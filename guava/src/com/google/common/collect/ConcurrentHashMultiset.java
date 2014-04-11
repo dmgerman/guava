@@ -1776,13 +1776,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|field|entrySet
-specifier|private
-specifier|transient
-name|EntrySet
-name|entrySet
-decl_stmt|;
-DECL|method|entrySet ()
+DECL|method|createEntrySet ()
 annotation|@
 name|Override
 specifier|public
@@ -1795,32 +1789,13 @@ argument_list|<
 name|E
 argument_list|>
 argument_list|>
-name|entrySet
+name|createEntrySet
 parameter_list|()
 block|{
-name|EntrySet
-name|result
-init|=
-name|entrySet
-decl_stmt|;
-if|if
-condition|(
-name|result
-operator|==
-literal|null
-condition|)
-block|{
-name|entrySet
-operator|=
-name|result
-operator|=
+return|return
 operator|new
 name|EntrySet
 argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|result
 return|;
 block|}
 DECL|method|distinctElements ()
