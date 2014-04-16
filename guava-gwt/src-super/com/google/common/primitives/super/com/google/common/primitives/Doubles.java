@@ -1283,7 +1283,7 @@ block|{
 name|int
 name|result
 init|=
-name|Doubles
+name|Double
 operator|.
 name|compare
 argument_list|(

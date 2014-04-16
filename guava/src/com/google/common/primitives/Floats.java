@@ -1315,7 +1315,7 @@ block|{
 name|int
 name|result
 init|=
-name|Floats
+name|Float
 operator|.
 name|compare
 argument_list|(
