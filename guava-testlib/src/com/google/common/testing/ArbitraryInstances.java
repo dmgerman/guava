@@ -2043,9 +2043,12 @@ name|Iterator
 operator|.
 name|class
 argument_list|,
-name|Iterators
+name|ImmutableSet
 operator|.
-name|emptyIterator
+name|of
+argument_list|()
+operator|.
+name|iterator
 argument_list|()
 argument_list|)
 operator|.
