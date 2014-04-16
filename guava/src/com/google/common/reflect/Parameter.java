@@ -56,6 +56,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|FluentIterable
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|ImmutableList
 import|;
 end_import
@@ -326,6 +340,35 @@ name|getDeclaredAnnotations
 argument_list|()
 return|;
 block|}
+comment|/**    * @since 17.0    */
+comment|// @Override on JDK8
+DECL|method|getAnnotationsByType (Class<A> annotationType)
+specifier|public
+parameter_list|<
+name|A
+extends|extends
+name|Annotation
+parameter_list|>
+name|A
+index|[]
+name|getAnnotationsByType
+parameter_list|(
+name|Class
+argument_list|<
+name|A
+argument_list|>
+name|annotationType
+parameter_list|)
+block|{
+return|return
+name|getDeclaredAnnotationsByType
+argument_list|(
+name|annotationType
+argument_list|)
+return|;
+block|}
+comment|/**    * @since 17.0    */
+comment|// @Override on JDK8
 DECL|method|getDeclaredAnnotations ()
 annotation|@
 name|Override
@@ -348,6 +391,91 @@ operator|.
 name|size
 argument_list|()
 index|]
+argument_list|)
+return|;
+block|}
+comment|/**    * @since 17.0    */
+comment|// @Override on JDK8
+annotation|@
+name|Nullable
+DECL|method|getDeclaredAnnotation (Class<A> annotationType)
+specifier|public
+parameter_list|<
+name|A
+extends|extends
+name|Annotation
+parameter_list|>
+name|A
+name|getDeclaredAnnotation
+parameter_list|(
+name|Class
+argument_list|<
+name|A
+argument_list|>
+name|annotationType
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|annotationType
+argument_list|)
+expr_stmt|;
+return|return
+name|FluentIterable
+operator|.
+name|from
+argument_list|(
+name|annotations
+argument_list|)
+operator|.
+name|filter
+argument_list|(
+name|annotationType
+argument_list|)
+operator|.
+name|first
+argument_list|()
+operator|.
+name|orNull
+argument_list|()
+return|;
+block|}
+comment|/**    * @since 17.0    */
+comment|// @Override on JDK8
+specifier|public
+parameter_list|<
+name|A
+extends|extends
+name|Annotation
+parameter_list|>
+name|A
+index|[]
+DECL|method|getDeclaredAnnotationsByType (Class<A> annotationType)
+name|getDeclaredAnnotationsByType
+parameter_list|(
+name|Class
+argument_list|<
+name|A
+argument_list|>
+name|annotationType
+parameter_list|)
+block|{
+return|return
+name|FluentIterable
+operator|.
+name|from
+argument_list|(
+name|annotations
+argument_list|)
+operator|.
+name|filter
+argument_list|(
+name|annotationType
+argument_list|)
+operator|.
+name|toArray
+argument_list|(
+name|annotationType
 argument_list|)
 return|;
 block|}
