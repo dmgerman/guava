@@ -344,7 +344,7 @@ name|common
 operator|.
 name|collect
 operator|.
-name|Iterators
+name|ImmutableSet
 import|;
 end_import
 
@@ -4595,9 +4595,12 @@ name|iterator
 parameter_list|()
 block|{
 return|return
-name|Iterators
+name|ImmutableSet
 operator|.
-name|emptyIterator
+name|of
+argument_list|()
+operator|.
+name|iterator
 argument_list|()
 return|;
 block|}
