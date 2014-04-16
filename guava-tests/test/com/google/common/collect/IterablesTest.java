@@ -1967,7 +1967,7 @@ argument_list|(
 name|blist
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|hasBoth
 argument_list|)
@@ -2752,7 +2752,7 @@ argument_list|(
 name|repeated
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|1
 argument_list|,
@@ -4798,7 +4798,7 @@ argument_list|(
 name|tail
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"c"
 argument_list|,
@@ -4881,7 +4881,7 @@ argument_list|(
 name|tail
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"B"
 argument_list|,

@@ -434,7 +434,7 @@ name|getActualTypeArguments
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|jvmType
 operator|.
@@ -769,7 +769,7 @@ name|getActualTypeArguments
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 name|jvmType
 operator|.

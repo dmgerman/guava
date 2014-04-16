@@ -1230,7 +1230,7 @@ name|optionals
 argument_list|)
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1340,7 +1340,7 @@ name|optionals
 argument_list|)
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1410,7 +1410,7 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1424,7 +1424,7 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1497,7 +1497,7 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|2
 argument_list|)

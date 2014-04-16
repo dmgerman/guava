@@ -210,7 +210,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -252,7 +252,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -365,7 +365,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a,b,c"
 argument_list|)
@@ -402,7 +402,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -445,7 +445,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -488,7 +488,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -531,7 +531,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|,
@@ -574,7 +574,7 @@ argument_list|(
 name|testCharacteringMotto
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -619,7 +619,7 @@ argument_list|(
 name|testCharacteringMotto
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -670,7 +670,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -719,7 +719,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -771,7 +771,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -810,7 +810,7 @@ argument_list|(
 name|nothing
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|)
@@ -877,7 +877,7 @@ argument_list|(
 name|blankblank
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|,
@@ -973,7 +973,7 @@ argument_list|(
 name|family
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"(Marlon)"
 argument_list|,
@@ -1023,7 +1023,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1069,7 +1069,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a,b,c"
 argument_list|)
@@ -1111,7 +1111,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1159,7 +1159,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1207,7 +1207,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1255,7 +1255,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|,
@@ -1298,7 +1298,7 @@ argument_list|(
 name|testStringingMotto
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -1349,7 +1349,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1398,7 +1398,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1450,7 +1450,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1494,7 +1494,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1540,7 +1540,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|,
@@ -1588,7 +1588,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1636,7 +1636,7 @@ argument_list|(
 name|threeCommasThenThreeSpaces
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|",,,"
 argument_list|,
@@ -1701,7 +1701,7 @@ argument_list|(
 name|notMuch
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|)
@@ -1768,7 +1768,7 @@ argument_list|(
 name|blankblank
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|,
@@ -1869,7 +1869,7 @@ argument_list|(
 name|family
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"(Marlon)"
 argument_list|,
@@ -2123,7 +2123,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"ab"
 argument_list|,
@@ -2169,7 +2169,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"ab"
 argument_list|,
@@ -2215,7 +2215,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"abc"
 argument_list|)
@@ -2257,7 +2257,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"ab"
 argument_list|)
@@ -2299,7 +2299,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|)
@@ -2371,7 +2371,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2477,7 +2477,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2530,7 +2530,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"abcd"
 argument_list|)
@@ -2577,7 +2577,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2621,7 +2621,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2665,7 +2665,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2712,7 +2712,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2759,7 +2759,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2811,7 +2811,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2861,7 +2861,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2913,7 +2913,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"a,,  , b ,, c,d"
 argument_list|)
@@ -2958,7 +2958,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|",,a,,  , b ,, c,d"
 argument_list|)
@@ -3000,7 +3000,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|""
 argument_list|)
@@ -3799,7 +3799,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"boy"
 argument_list|,
@@ -3871,7 +3871,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesOverSequence
+name|iteratesAs
 argument_list|(
 literal|"girl"
 argument_list|,
