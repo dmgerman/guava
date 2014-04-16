@@ -2470,23 +2470,6 @@ init|=
 operator|new
 name|NullPointerTester
 argument_list|()
-comment|// This is necessary because of the generics hackery we have to temporarily support
-comment|// parameters which implement both Iterator and Iterable.;
-operator|.
-name|setDefault
-argument_list|(
-name|Object
-operator|.
-name|class
-argument_list|,
-name|ImmutableSet
-operator|.
-name|of
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-argument_list|)
 decl_stmt|;
 name|tester
 operator|.
