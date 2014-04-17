@@ -65,7 +65,7 @@ specifier|private
 name|Charsets
 parameter_list|()
 block|{}
-comment|/**    * UTF-8: eight-bit UCS Transformation Format.    *    */
+comment|/**    * UTF-8: eight-bit UCS Transformation Format.    *    *<p><b>Note:</b> projects using JDK 7 or later should use    * {@link java.nio.charset.StandardCharsets#UTF_8} instead.    *    */
 DECL|field|UTF_8
 specifier|public
 specifier|static

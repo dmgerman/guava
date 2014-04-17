@@ -87,7 +87,7 @@ specifier|final
 class|class
 name|HtmlEscapers
 block|{
-comment|/**    * Returns an {@link Escaper} instance that escapes HTML metacharacters as    * specified by<a href="http://www.w3.org/TR/html4/">HTML 4.01</a>. The    * resulting strings can be used both in attribute values and in<em>most</em>    * elements' text contents, provided that the HTML document's character    * encoding can encode any non-ASCII code points in the input (as UTF-8 and    * other Unicode encodings can).    *    *    *<p><b>Note</b>: This escaper only performs minimal escaping to make content    * structurally compatible with HTML. Specifically, it does not perform entity    * replacement (symbolic or numeric), so it does not replace non-ASCII code    * points with character references. This escaper escapes only the following    * five ASCII characters: {@code '"&<>}.    */
+comment|/**    * Returns an {@link Escaper} instance that escapes HTML metacharacters as    * specified by<a href="http://www.w3.org/TR/html4/">HTML 4.01</a>. The    * resulting strings can be used both in attribute values and in<em>most</em>    * elements' text contents, provided that the HTML document's character    * encoding can encode any non-ASCII code points in the input (as UTF-8 and    * other Unicode encodings can).    *    *    *<p><b>Note:</b> This escaper only performs minimal escaping to make content    * structurally compatible with HTML. Specifically, it does not perform entity    * replacement (symbolic or numeric), so it does not replace non-ASCII code    * points with character references. This escaper escapes only the following    * five ASCII characters: {@code '"&<>}.    */
 DECL|method|htmlEscaper ()
 specifier|public
 specifier|static
