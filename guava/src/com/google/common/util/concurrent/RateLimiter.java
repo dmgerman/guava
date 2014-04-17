@@ -19,6 +19,90 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkArgument
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Math
+operator|.
+name|max
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Math
+operator|.
+name|min
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|MICROSECONDS
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|SECONDS
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -56,21 +140,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Preconditions
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Ticker
+name|Stopwatch
 import|;
 end_import
 
@@ -139,9 +209,10 @@ comment|/*        * The default RateLimiter configuration can save the unused pe
 return|return
 name|create
 argument_list|(
-name|SleepingTicker
+name|SleepingStopwatch
 operator|.
-name|SYSTEM_TICKER
+name|createFromSystemTimer
+argument_list|()
 argument_list|,
 name|permitsPerSecond
 argument_list|)
@@ -149,13 +220,13 @@ return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|create (SleepingTicker ticker, double permitsPerSecond)
+DECL|method|create (SleepingStopwatch stopwatch, double permitsPerSecond)
 specifier|static
 name|RateLimiter
 name|create
 parameter_list|(
-name|SleepingTicker
-name|ticker
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|,
 name|double
 name|permitsPerSecond
@@ -165,9 +236,9 @@ name|RateLimiter
 name|rateLimiter
 init|=
 operator|new
-name|Bursty
+name|SmoothBursty
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|1.0
 comment|/* maxBurstSeconds */
@@ -204,9 +275,10 @@ block|{
 return|return
 name|create
 argument_list|(
-name|SleepingTicker
+name|SleepingStopwatch
 operator|.
-name|SYSTEM_TICKER
+name|createFromSystemTimer
+argument_list|()
 argument_list|,
 name|permitsPerSecond
 argument_list|,
@@ -218,13 +290,13 @@ return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|create ( SleepingTicker ticker, double permitsPerSecond, long warmupPeriod, TimeUnit unit)
+DECL|method|create ( SleepingStopwatch stopwatch, double permitsPerSecond, long warmupPeriod, TimeUnit unit)
 specifier|static
 name|RateLimiter
 name|create
 parameter_list|(
-name|SleepingTicker
-name|ticker
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|,
 name|double
 name|permitsPerSecond
@@ -240,9 +312,9 @@ name|RateLimiter
 name|rateLimiter
 init|=
 operator|new
-name|WarmingUp
+name|SmoothWarmingUp
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 name|warmupPeriod
 argument_list|,
@@ -262,13 +334,13 @@ return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|createWithCapacity ( SleepingTicker ticker, double permitsPerSecond, long maxBurstBuildup, TimeUnit unit)
+DECL|method|createWithCapacity ( SleepingStopwatch stopwatch, double permitsPerSecond, long maxBurstBuildup, TimeUnit unit)
 specifier|static
 name|RateLimiter
 name|createWithCapacity
 parameter_list|(
-name|SleepingTicker
-name|ticker
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|,
 name|double
 name|permitsPerSecond
@@ -294,13 +366,13 @@ literal|1E
 operator|+
 literal|9
 decl_stmt|;
-name|Bursty
+name|SmoothBursty
 name|rateLimiter
 init|=
 operator|new
-name|Bursty
+name|SmoothBursty
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 name|maxBurstSeconds
 argument_list|)
@@ -317,34 +389,11 @@ name|rateLimiter
 return|;
 block|}
 comment|/**    * The underlying timer; used both to measure elapsed time and sleep as necessary. A separate    * object to facilitate testing.    */
-DECL|field|ticker
+DECL|field|stopwatch
 specifier|private
 specifier|final
-name|SleepingTicker
-name|ticker
-decl_stmt|;
-comment|/**    * The timestamp when the RateLimiter was created; used to avoid possible overflow/time-wrapping    * errors.    */
-DECL|field|offsetNanos
-specifier|private
-specifier|final
-name|long
-name|offsetNanos
-decl_stmt|;
-comment|/**    * The currently stored permits.    */
-DECL|field|storedPermits
-name|double
-name|storedPermits
-decl_stmt|;
-comment|/**    * The maximum number of stored permits.    */
-DECL|field|maxPermits
-name|double
-name|maxPermits
-decl_stmt|;
-comment|/**    * The interval between two unit requests, at our stable rate. E.g., a stable rate of 5 permits    * per second has a stable interval of 200ms.    */
-DECL|field|stableIntervalMicros
-specifier|volatile
-name|double
-name|stableIntervalMicros
+name|SleepingStopwatch
+name|stopwatch
 decl_stmt|;
 DECL|field|mutex
 specifier|private
@@ -356,37 +405,22 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    * The time when the next request (no matter its size) will be granted. After granting a request,    * this is pushed further in the future. Large requests push this further than small requests.    */
-DECL|field|nextFreeTicketMicros
-specifier|private
-name|long
-name|nextFreeTicketMicros
-init|=
-literal|0L
-decl_stmt|;
-comment|// could be either in the past or future
-DECL|method|RateLimiter (SleepingTicker ticker)
+DECL|method|RateLimiter (SleepingStopwatch stopwatch)
 specifier|private
 name|RateLimiter
 parameter_list|(
-name|SleepingTicker
-name|ticker
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|)
 block|{
 name|this
 operator|.
-name|ticker
+name|stopwatch
 operator|=
-name|ticker
-expr_stmt|;
-name|this
-operator|.
-name|offsetNanos
-operator|=
-name|ticker
-operator|.
-name|read
-argument_list|()
+name|checkNotNull
+argument_list|(
+name|stopwatch
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Updates the stable rate of this {@code RateLimiter}, that is, the    * {@code permitsPerSecond} argument provided in the factory method that    * constructed the {@code RateLimiter}. Currently throttled threads will<b>not</b>    * be awakened as a result of this invocation, thus they do not observe the new rate;    * only subsequent requests will.    *    *<p>Note though that, since each request repays (by waiting, if necessary) the cost    * of the<i>previous</i> request, this means that the very next request    * after an invocation to {@code setRate} will not be affected by the new rate;    * it will pay the cost of the previous request, which is in terms of the previous rate.    *    *<p>The behavior of the {@code RateLimiter} is not modified in any other way,    * e.g. if the {@code RateLimiter} was configured with a warmup period of 20 seconds,    * it still has a warmup period of 20 seconds after this method invocation.    *    * @param permitsPerSecond the new stable rate of this {@code RateLimiter}. Must be positive    */
@@ -400,8 +434,6 @@ name|double
 name|permitsPerSecond
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
 name|checkArgument
 argument_list|(
 name|permitsPerSecond
@@ -424,42 +456,19 @@ init|(
 name|mutex
 init|)
 block|{
-name|resync
-argument_list|(
-name|readSafeMicros
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|double
-name|stableIntervalMicros
-init|=
-name|TimeUnit
-operator|.
-name|SECONDS
-operator|.
-name|toMicros
-argument_list|(
-literal|1L
-argument_list|)
-operator|/
-name|permitsPerSecond
-decl_stmt|;
-name|this
-operator|.
-name|stableIntervalMicros
-operator|=
-name|stableIntervalMicros
-expr_stmt|;
 name|doSetRate
 argument_list|(
 name|permitsPerSecond
 argument_list|,
-name|stableIntervalMicros
+name|stopwatch
+operator|.
+name|readMicros
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|doSetRate (double permitsPerSecond, double stableIntervalMicros)
+DECL|method|doSetRate (double permitsPerSecond, long nowMicros)
 specifier|abstract
 name|void
 name|doSetRate
@@ -467,31 +476,18 @@ parameter_list|(
 name|double
 name|permitsPerSecond
 parameter_list|,
-name|double
-name|stableIntervalMicros
+name|long
+name|nowMicros
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the stable rate (as {@code permits per seconds}) with which this    * {@code RateLimiter} is configured with. The initial value of this is the same as    * the {@code permitsPerSecond} argument passed in the factory method that produced    * this {@code RateLimiter}, and it is only updated after invocations    * to {@linkplain #setRate}.    */
 DECL|method|getRate ()
 specifier|public
-specifier|final
+specifier|abstract
 name|double
 name|getRate
 parameter_list|()
-block|{
-return|return
-name|TimeUnit
-operator|.
-name|SECONDS
-operator|.
-name|toMicros
-argument_list|(
-literal|1L
-argument_list|)
-operator|/
-name|stableIntervalMicros
-return|;
-block|}
+function_decl|;
 comment|/**    * Acquires a single permit from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    *<p>This method is equivalent to {@code acquire(1)}.    *    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
 DECL|method|acquire ()
 specifier|public
@@ -524,7 +520,7 @@ argument_list|(
 name|permits
 argument_list|)
 decl_stmt|;
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMicrosUninterruptibly
 argument_list|(
@@ -536,8 +532,6 @@ literal|1.0
 operator|*
 name|microsToWait
 operator|/
-name|TimeUnit
-operator|.
 name|SECONDS
 operator|.
 name|toMicros
@@ -561,6 +555,7 @@ return|;
 block|}
 comment|/**    * Reserves the given number of permits from this {@code RateLimiter} for future use, returning    * the number of microseconds until the reservation can be consumed.    *    * @return time in microseconds to wait until the resource can be acquired.    */
 DECL|method|reserve (int permits)
+specifier|final
 name|long
 name|reserve
 parameter_list|(
@@ -583,7 +578,9 @@ name|reserveNextTicket
 argument_list|(
 name|permits
 argument_list|,
-name|readSafeMicros
+name|stopwatch
+operator|.
+name|readMicros
 argument_list|()
 argument_list|)
 return|;
@@ -630,8 +627,6 @@ name|permits
 argument_list|,
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|MICROSECONDS
 argument_list|)
 return|;
@@ -650,8 +645,6 @@ literal|1
 argument_list|,
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|MICROSECONDS
 argument_list|)
 return|;
@@ -698,16 +691,22 @@ block|{
 name|long
 name|nowMicros
 init|=
-name|readSafeMicros
+name|stopwatch
+operator|.
+name|readMicros
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|nextFreeTicketMicros
-operator|>
+operator|!
+name|canAcquire
+argument_list|(
+name|nowMicros
+argument_list|,
 name|nowMicros
 operator|+
 name|timeoutMicros
+argument_list|)
 condition|)
 block|{
 return|return
@@ -727,7 +726,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMicrosUninterruptibly
 argument_list|(
@@ -738,35 +737,203 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|checkPermits (int permits)
-specifier|private
-specifier|static
-name|void
-name|checkPermits
+DECL|method|canAcquire (long nowMicros, long deadlineMicros)
+specifier|abstract
+name|boolean
+name|canAcquire
 parameter_list|(
-name|int
-name|permits
+name|long
+name|nowMicros
+parameter_list|,
+name|long
+name|deadlineMicros
 parameter_list|)
-block|{
-name|Preconditions
-operator|.
-name|checkArgument
-argument_list|(
-name|permits
-operator|>
-literal|0
-argument_list|,
-literal|"Requested permits must be positive"
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Reserves next ticket and returns the wait time that the caller must wait for.    *    *<p>The return value is guaranteed to be non-negative.    */
-DECL|method|reserveNextTicket (double requiredPermits, long nowMicros)
-specifier|private
+function_decl|;
+DECL|method|reserveNextTicket (int requiredPermits, long nowMicros)
+specifier|abstract
 name|long
 name|reserveNextTicket
 parameter_list|(
+name|int
+name|requiredPermits
+parameter_list|,
+name|long
+name|nowMicros
+parameter_list|)
+function_decl|;
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"RateLimiter[stableRate=%3.1fqps]"
+argument_list|,
+name|getRate
+argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|class|SmoothRateLimiter
+specifier|private
+specifier|abstract
+specifier|static
+class|class
+name|SmoothRateLimiter
+extends|extends
+name|RateLimiter
+block|{
+comment|/**      * The currently stored permits.      */
+DECL|field|storedPermits
 name|double
+name|storedPermits
+decl_stmt|;
+comment|/**      * The maximum number of stored permits.      */
+DECL|field|maxPermits
+name|double
+name|maxPermits
+decl_stmt|;
+comment|/**      * The interval between two unit requests, at our stable rate. E.g., a stable rate of 5 permits      * per second has a stable interval of 200ms.      */
+DECL|field|stableIntervalMicros
+specifier|volatile
+name|double
+name|stableIntervalMicros
+decl_stmt|;
+comment|/**      * The time when the next request (no matter its size) will be granted. After granting a      * request, this is pushed further in the future. Large requests push this further than small      * requests.      */
+DECL|field|nextFreeTicketMicros
+specifier|private
+name|long
+name|nextFreeTicketMicros
+init|=
+literal|0L
+decl_stmt|;
+comment|// could be either in the past or future
+DECL|method|SmoothRateLimiter (SleepingStopwatch stopwatch)
+specifier|private
+name|SmoothRateLimiter
+parameter_list|(
+name|SleepingStopwatch
+name|stopwatch
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|stopwatch
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|doSetRate (double permitsPerSecond, long nowMicros)
+specifier|final
+name|void
+name|doSetRate
+parameter_list|(
+name|double
+name|permitsPerSecond
+parameter_list|,
+name|long
+name|nowMicros
+parameter_list|)
+block|{
+name|resync
+argument_list|(
+name|nowMicros
+argument_list|)
+expr_stmt|;
+name|double
+name|stableIntervalMicros
+init|=
+name|SECONDS
+operator|.
+name|toMicros
+argument_list|(
+literal|1L
+argument_list|)
+operator|/
+name|permitsPerSecond
+decl_stmt|;
+name|this
+operator|.
+name|stableIntervalMicros
+operator|=
+name|stableIntervalMicros
+expr_stmt|;
+name|doSetRate
+argument_list|(
+name|permitsPerSecond
+argument_list|,
+name|stableIntervalMicros
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|doSetRate (double permitsPerSecond, double stableIntervalMicros)
+specifier|abstract
+name|void
+name|doSetRate
+parameter_list|(
+name|double
+name|permitsPerSecond
+parameter_list|,
+name|double
+name|stableIntervalMicros
+parameter_list|)
+function_decl|;
+annotation|@
+name|Override
+DECL|method|getRate ()
+specifier|public
+specifier|final
+name|double
+name|getRate
+parameter_list|()
+block|{
+return|return
+name|SECONDS
+operator|.
+name|toMicros
+argument_list|(
+literal|1L
+argument_list|)
+operator|/
+name|stableIntervalMicros
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|canAcquire (long nowMicros, long deadlineMicros)
+specifier|final
+name|boolean
+name|canAcquire
+parameter_list|(
+name|long
+name|nowMicros
+parameter_list|,
+name|long
+name|deadlineMicros
+parameter_list|)
+block|{
+return|return
+name|nextFreeTicketMicros
+operator|<=
+name|deadlineMicros
+return|;
+block|}
+comment|/**      * Reserves next ticket and returns the wait time that the caller must wait for.      *      *<p>The return value is guaranteed to be non-negative.      */
+annotation|@
+name|Override
+DECL|method|reserveNextTicket (int requiredPermits, long nowMicros)
+name|long
+name|reserveNextTicket
+parameter_list|(
+name|int
 name|requiredPermits
 parameter_list|,
 name|long
@@ -781,8 +948,6 @@ expr_stmt|;
 name|long
 name|microsToNextFreeTicket
 init|=
-name|Math
-operator|.
 name|max
 argument_list|(
 literal|0
@@ -795,8 +960,6 @@ decl_stmt|;
 name|double
 name|storedPermitsToSpend
 init|=
-name|Math
-operator|.
 name|min
 argument_list|(
 name|requiredPermits
@@ -852,7 +1015,7 @@ return|return
 name|microsToNextFreeTicket
 return|;
 block|}
-comment|/**    * Translates a specified portion of our currently stored permits which we want to    * spend/acquire, into a throttling time. Conceptually, this evaluates the integral    * of the underlying function we use, for the range of    * [(storedPermits - permitsToTake), storedPermits].    *    * This always holds: {@code 0<= permitsToTake<= storedPermits}    */
+comment|/**      * Translates a specified portion of our currently stored permits which we want to      * spend/acquire, into a throttling time. Conceptually, this evaluates the integral      * of the underlying function we use, for the range of      * [(storedPermits - permitsToTake), storedPermits].      *      * This always holds: {@code 0<= permitsToTake<= storedPermits}      */
 DECL|method|storedPermitsToWaitTime (double storedPermits, double permitsToTake)
 specifier|abstract
 name|long
@@ -884,8 +1047,6 @@ condition|)
 block|{
 name|storedPermits
 operator|=
-name|Math
-operator|.
 name|min
 argument_list|(
 name|maxPermits
@@ -907,57 +1068,16 @@ name|nowMicros
 expr_stmt|;
 block|}
 block|}
-DECL|method|readSafeMicros ()
-specifier|private
-name|long
-name|readSafeMicros
-parameter_list|()
-block|{
-return|return
-name|TimeUnit
-operator|.
-name|NANOSECONDS
-operator|.
-name|toMicros
-argument_list|(
-name|ticker
-operator|.
-name|read
-argument_list|()
-operator|-
-name|offsetNanos
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|toString ()
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"RateLimiter[stableRate=%3.1fqps]"
-argument_list|,
-literal|1000000.0
-operator|/
-name|stableIntervalMicros
-argument_list|)
-return|;
 block|}
 comment|/**    * This implements the following function:    *    *          ^ throttling    *          |    * 3*stable +                  /    * interval |                 /.    *  (cold)  |                / .    *          |               /  .<-- "warmup period" is the area of the trapezoid between    * 2*stable +              /   .       halfPermits and maxPermits    * interval |             /    .    *          |            /     .    *          |           /      .    *   stable +----------/  WARM . }    * interval |          .   UP  . }<-- this rectangle (from 0 to maxPermits, and    *          |          . PERIOD. }     height == stableInterval) defines the cooldown period,    *          |          .       . }     and we want cooldownPeriod == warmupPeriod    *          |---------------------------------> storedPermits    *              (halfPermits) (maxPermits)    *    * Before going into the details of this particular function, let's keep in mind the basics:    * 1) The state of the RateLimiter (storedPermits) is a vertical line in this figure.    * 2) When the RateLimiter is not used, this goes right (up to maxPermits)    * 3) When the RateLimiter is used, this goes left (down to zero), since if we have storedPermits,    *    we serve from those first    * 4) When _unused_, we go right at the same speed (rate)! I.e., if our rate is    *    2 permits per second, and 3 unused seconds pass, we will always save 6 permits    *    (no matter what our initial position was), up to maxPermits.    *    If we invert the rate, we get the "stableInterval" (interval between two requests    *    in a perfectly spaced out sequence of requests of the given rate). Thus, if you    *    want to see "how much time it will take to go from X storedPermits to X+K storedPermits?",    *    the answer is always stableInterval * K. In the same example, for 2 permits per second,    *    stableInterval is 500ms. Thus to go from X storedPermits to X+6 storedPermits, we    *    require 6 * 500ms = 3 seconds.    *    *    In short, the time it takes to move to the right (save K permits) is equal to the    *    rectangle of width == K and height == stableInterval.    * 4) When _used_, the time it takes, as explained in the introductory class note, is    *    equal to the integral of our function, between X permits and X-K permits, assuming    *    we want to spend K saved permits.    *    *    In summary, the time it takes to move to the left (spend K permits), is equal to the    *    area of the function of width == K.    *    * Let's dive into this function now:    *    * When we have storedPermits<= halfPermits (the left portion of the function), then    * we spend them at the exact same rate that    * fresh permits would be generated anyway (that rate is 1/stableInterval). We size    * this area to be equal to _half_ the specified warmup period. Why we need this?    * And why half? We'll explain shortly below (after explaining the second part).    *    * Stored permits that are beyond halfPermits, are mapped to an ascending line, that goes    * from stableInterval to 3 * stableInterval. The average height for that part is    * 2 * stableInterval, and is sized appropriately to have an area _equal_ to the    * specified warmup period. Thus, by point (4) above, it takes "warmupPeriod" amount of time    * to go from maxPermits to halfPermits.    *    * BUT, by point (3) above, it only takes "warmupPeriod / 2" amount of time to return back    * to maxPermits, from halfPermits! (Because the trapezoid has double the area of the rectangle    * of height stableInterval and equivalent width). We decided that the "cooldown period"    * time should be equivalent to "warmup period", thus a fully saturated RateLimiter    * (with zero stored permits, serving only fresh ones) can go to a fully unsaturated    * (with storedPermits == maxPermits) in the same amount of time it takes for a fully    * unsaturated RateLimiter to return to the stableInterval -- which happens in halfPermits,    * since beyond that point, we use a horizontal line of "stableInterval" height, simulating    * the regular rate.    *    * Thus, we have figured all dimensions of this shape, to give all the desired    * properties:    * - the width is warmupPeriod / stableInterval, to make cooldownPeriod == warmupPeriod    * - the slope starts at the middle, and goes from stableInterval to 3*stableInterval so    *   to have halfPermits being spend in double the usual time (half the rate), while their    *   respective rate is steadily ramping up    */
-DECL|class|WarmingUp
+DECL|class|SmoothWarmingUp
 specifier|private
 specifier|static
+specifier|final
 class|class
-name|WarmingUp
+name|SmoothWarmingUp
 extends|extends
-name|RateLimiter
+name|SmoothRateLimiter
 block|{
 DECL|field|warmupPeriodMicros
 specifier|final
@@ -975,11 +1095,11 @@ specifier|private
 name|double
 name|halfPermits
 decl_stmt|;
-DECL|method|WarmingUp (SleepingTicker ticker, long warmupPeriod, TimeUnit timeUnit)
-name|WarmingUp
+DECL|method|SmoothWarmingUp (SleepingStopwatch stopwatch, long warmupPeriod, TimeUnit timeUnit)
+name|SmoothWarmingUp
 parameter_list|(
-name|SleepingTicker
-name|ticker
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|,
 name|long
 name|warmupPeriod
@@ -990,7 +1110,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|)
 expr_stmt|;
 name|this
@@ -1125,8 +1245,6 @@ block|{
 name|double
 name|permitsAboveHalfToTake
 init|=
-name|Math
-operator|.
 name|min
 argument_list|(
 name|availablePermitsAboveHalf
@@ -1196,13 +1314,14 @@ return|;
 block|}
 block|}
 comment|/**    * This implements a "bursty" RateLimiter, where storedPermits are translated to    * zero throttling. The maximum number of permits that can be saved (when the RateLimiter is    * unused) is defined in terms of time, in this sense: if a RateLimiter is 2qps, and this    * time is specified as 10 seconds, we can save up to 2 * 10 = 20 permits.    */
-DECL|class|Bursty
+DECL|class|SmoothBursty
 specifier|private
 specifier|static
+specifier|final
 class|class
-name|Bursty
+name|SmoothBursty
 extends|extends
-name|RateLimiter
+name|SmoothRateLimiter
 block|{
 comment|/** The work (permits) of how many seconds can be saved up if this RateLimiter is unused? */
 DECL|field|maxBurstSeconds
@@ -1210,11 +1329,11 @@ specifier|final
 name|double
 name|maxBurstSeconds
 decl_stmt|;
-DECL|method|Bursty (SleepingTicker ticker, double maxBurstSeconds)
-name|Bursty
+DECL|method|SmoothBursty (SleepingStopwatch stopwatch, double maxBurstSeconds)
+name|SmoothBursty
 parameter_list|(
-name|SleepingTicker
-name|ticker
+name|SleepingStopwatch
+name|stopwatch
 parameter_list|,
 name|double
 name|maxBurstSeconds
@@ -1222,7 +1341,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|)
 expr_stmt|;
 name|this
@@ -1296,14 +1415,19 @@ block|}
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|class|SleepingTicker
-specifier|static
+DECL|class|SleepingStopwatch
 specifier|abstract
+specifier|static
 class|class
-name|SleepingTicker
-extends|extends
-name|Ticker
+name|SleepingStopwatch
 block|{
+comment|/*      * We always hold the mutex when calling this. TODO(cpovirk): Is that important? Perhaps we need      * to guarantee that each call to reserveNextTicket, etc. sees a value>= the previous? Also, is      * it OK that we don't hold the mutex when sleeping?      */
+DECL|method|readMicros ()
+specifier|abstract
+name|long
+name|readMicros
+parameter_list|()
+function_decl|;
 DECL|method|sleepMicrosUninterruptibly (long micros)
 specifier|abstract
 name|void
@@ -1313,29 +1437,40 @@ name|long
 name|micros
 parameter_list|)
 function_decl|;
-DECL|field|SYSTEM_TICKER
+DECL|method|createFromSystemTimer ()
 specifier|static
 specifier|final
-name|SleepingTicker
-name|SYSTEM_TICKER
-init|=
-operator|new
-name|SleepingTicker
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|long
-name|read
+name|SleepingStopwatch
+name|createFromSystemTimer
 parameter_list|()
 block|{
 return|return
-name|systemTicker
+operator|new
+name|SleepingStopwatch
 argument_list|()
+block|{
+specifier|final
+name|Stopwatch
+name|stopwatch
+init|=
+name|Stopwatch
 operator|.
-name|read
+name|createStarted
 argument_list|()
+decl_stmt|;
+annotation|@
+name|Override
+name|long
+name|readMicros
+parameter_list|()
+block|{
+return|return
+name|stopwatch
+operator|.
+name|elapsed
+argument_list|(
+name|MICROSECONDS
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1361,15 +1496,39 @@ name|sleepUninterruptibly
 argument_list|(
 name|micros
 argument_list|,
-name|TimeUnit
-operator|.
 name|MICROSECONDS
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
-decl_stmt|;
+return|;
+block|}
+block|}
+DECL|method|checkPermits (int permits)
+specifier|private
+specifier|static
+name|int
+name|checkPermits
+parameter_list|(
+name|int
+name|permits
+parameter_list|)
+block|{
+name|checkArgument
+argument_list|(
+name|permits
+operator|>
+literal|0
+argument_list|,
+literal|"Requested permits (%s) must be positive"
+argument_list|,
+name|permits
+argument_list|)
+expr_stmt|;
+return|return
+name|permits
+return|;
 block|}
 block|}
 end_class

@@ -19,6 +19,62 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|MICROSECONDS
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+operator|.
+name|SECONDS
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -64,6 +120,24 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|RateLimiter
+operator|.
+name|SleepingStopwatch
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -102,18 +176,6 @@ name|Random
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for RateLimiter.  *  * @author Dimitris Andreou  */
 end_comment
@@ -135,15 +197,15 @@ name|EPSILON
 init|=
 literal|1e-8
 decl_stmt|;
-comment|/**    * The ticker gathers events and presents them as strings.    * R0.6 means a delay of 0.6 seconds caused by the (R)ateLimiter    * U1.0 means the (U)ser caused the ticker to sleep for a second.    */
-DECL|field|ticker
+comment|/**    * The stopwatch gathers events and presents them as strings.    * R0.6 means a delay of 0.6 seconds caused by the (R)ateLimiter    * U1.0 means the (U)ser caused the stopwatch to sleep for a second.    */
+DECL|field|stopwatch
 specifier|private
 specifier|final
-name|FakeTicker
-name|ticker
+name|FakeStopwatch
+name|stopwatch
 init|=
 operator|new
-name|FakeTicker
+name|FakeStopwatch
 argument_list|()
 decl_stmt|;
 DECL|method|testSimple ()
@@ -159,7 +221,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|5.0
 argument_list|)
@@ -246,8 +308,6 @@ literal|5.0
 argument_list|,
 literal|5
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 decl_stmt|;
@@ -331,7 +391,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|5.0
 argument_list|)
@@ -342,7 +402,7 @@ name|acquire
 argument_list|()
 expr_stmt|;
 comment|// R0.00
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -387,7 +447,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|5.0
 argument_list|)
@@ -405,7 +465,7 @@ name|EPSILON
 argument_list|)
 expr_stmt|;
 comment|// R0.00
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -464,12 +524,12 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|5.0
 argument_list|)
 decl_stmt|;
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -477,7 +537,7 @@ literal|1000
 argument_list|)
 expr_stmt|;
 comment|// max capacity reached
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -555,14 +615,12 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|2.0
 argument_list|,
 literal|4000
 argument_list|,
-name|TimeUnit
-operator|.
 name|MILLISECONDS
 argument_list|)
 decl_stmt|;
@@ -588,7 +646,7 @@ argument_list|()
 expr_stmt|;
 comment|// #1
 block|}
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -596,7 +654,7 @@ literal|500
 argument_list|)
 expr_stmt|;
 comment|// #2: to repay for the last acquire
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -626,7 +684,7 @@ argument_list|()
 expr_stmt|;
 comment|// // #4
 block|}
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -634,7 +692,7 @@ literal|500
 argument_list|)
 expr_stmt|;
 comment|// #5: to repay for the last acquire
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -702,14 +760,12 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|2.0
 argument_list|,
 literal|4000
 argument_list|,
-name|TimeUnit
-operator|.
 name|MILLISECONDS
 argument_list|)
 decl_stmt|;
@@ -735,7 +791,7 @@ argument_list|()
 expr_stmt|;
 comment|// // #1
 block|}
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -802,7 +858,7 @@ argument_list|()
 expr_stmt|;
 comment|// #5
 block|}
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -874,18 +930,16 @@ name|RateLimiter
 operator|.
 name|createWithCapacity
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|1.0
 argument_list|,
 literal|10
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 decl_stmt|;
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -917,7 +971,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// and wait
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -976,7 +1030,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|1.0
 argument_list|)
@@ -1053,78 +1107,6 @@ literal|"R2.00"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testTimeWrapping ()
-specifier|public
-name|void
-name|testTimeWrapping
-parameter_list|()
-block|{
-name|ticker
-operator|.
-name|instant
-operator|=
-name|Long
-operator|.
-name|MAX_VALUE
-operator|-
-name|TimeUnit
-operator|.
-name|SECONDS
-operator|.
-name|toNanos
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
-comment|// 1 second before max value
-name|RateLimiter
-name|limiter
-init|=
-name|RateLimiter
-operator|.
-name|create
-argument_list|(
-name|ticker
-argument_list|,
-literal|1.0
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-literal|4
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|limiter
-operator|.
-name|acquire
-argument_list|()
-expr_stmt|;
-block|}
-comment|// Without protection from overflow, the last wait value would have been huge,
-comment|// because "now" would have wrapped into a value near MIN_VALUE, and the limiter would think
-comment|// that the next request should be admitted far into the future
-name|assertEvents
-argument_list|(
-literal|"R0.00"
-argument_list|,
-literal|"R1.00"
-argument_list|,
-literal|"R1.00"
-argument_list|,
-literal|"R1.00"
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|testTryGate ()
 specifier|public
 name|void
@@ -1138,7 +1120,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|5.0
 argument_list|)
@@ -1151,8 +1133,6 @@ name|tryAcquire
 argument_list|(
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 argument_list|)
@@ -1165,8 +1145,6 @@ name|tryAcquire
 argument_list|(
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 argument_list|)
@@ -1179,13 +1157,11 @@ name|tryAcquire
 argument_list|(
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -1200,8 +1176,6 @@ name|tryAcquire
 argument_list|(
 literal|0
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 argument_list|)
@@ -1220,7 +1194,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|1.0
 argument_list|)
@@ -1302,7 +1276,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 name|Double
 operator|.
@@ -1431,7 +1405,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 name|Double
 operator|.
@@ -1439,8 +1413,6 @@ name|POSITIVE_INFINITY
 argument_list|,
 literal|10
 argument_list|,
-name|TimeUnit
-operator|.
 name|SECONDS
 argument_list|)
 decl_stmt|;
@@ -1563,7 +1535,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|1.0
 argument_list|)
@@ -1599,7 +1571,7 @@ name|oneSecWorthOfWork
 init|=
 name|rate
 decl_stmt|;
-name|ticker
+name|stopwatch
 operator|.
 name|sleepMillis
 argument_list|(
@@ -1747,14 +1719,12 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 name|qps
 argument_list|,
 name|warmupMillis
 argument_list|,
-name|TimeUnit
-operator|.
 name|MILLISECONDS
 argument_list|)
 decl_stmt|;
@@ -1790,13 +1760,20 @@ argument_list|()
 operator|.
 name|setDefault
 argument_list|(
-name|RateLimiter
-operator|.
-name|SleepingTicker
+name|SleepingStopwatch
 operator|.
 name|class
 argument_list|,
-name|ticker
+name|stopwatch
+argument_list|)
+operator|.
+name|setDefault
+argument_list|(
+name|int
+operator|.
+name|class
+argument_list|,
+literal|1
 argument_list|)
 decl_stmt|;
 name|tester
@@ -1820,7 +1797,7 @@ name|RateLimiter
 operator|.
 name|create
 argument_list|(
-name|ticker
+name|stopwatch
 argument_list|,
 literal|5.0
 argument_list|)
@@ -1849,7 +1826,7 @@ block|{
 name|long
 name|startTime
 init|=
-name|ticker
+name|stopwatch
 operator|.
 name|instant
 decl_stmt|;
@@ -1898,13 +1875,11 @@ argument_list|)
 expr_stmt|;
 comment|// to repay for any pending debt
 return|return
-name|TimeUnit
-operator|.
 name|NANOSECONDS
 operator|.
 name|toMillis
 argument_list|(
-name|ticker
+name|stopwatch
 operator|.
 name|instant
 operator|-
@@ -1931,22 +1906,20 @@ argument_list|(
 name|events
 argument_list|)
 argument_list|,
-name|ticker
+name|stopwatch
 operator|.
 name|readEventsAndClear
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|class|FakeTicker
+DECL|class|FakeStopwatch
 specifier|private
 specifier|static
 class|class
-name|FakeTicker
+name|FakeStopwatch
 extends|extends
-name|RateLimiter
-operator|.
-name|SleepingTicker
+name|SleepingStopwatch
 block|{
 DECL|field|instant
 name|long
@@ -1969,14 +1942,19 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|read ()
+DECL|method|readMicros ()
 specifier|public
 name|long
-name|read
+name|readMicros
 parameter_list|()
 block|{
 return|return
+name|NANOSECONDS
+operator|.
+name|toMicros
+argument_list|(
 name|instant
+argument_list|)
 return|;
 block|}
 DECL|method|sleepMillis (int millis)
@@ -1991,8 +1969,6 @@ name|sleepMicros
 argument_list|(
 literal|"U"
 argument_list|,
-name|TimeUnit
-operator|.
 name|MILLISECONDS
 operator|.
 name|toMicros
@@ -2015,8 +1991,6 @@ parameter_list|)
 block|{
 name|instant
 operator|+=
-name|TimeUnit
-operator|.
 name|MICROSECONDS
 operator|.
 name|toNanos
