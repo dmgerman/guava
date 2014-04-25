@@ -483,26 +483,9 @@ function_decl|;
 comment|/**    * Returns the stable rate (as {@code permits per seconds}) with which this    * {@code RateLimiter} is configured with. The initial value of this is the same as    * the {@code permitsPerSecond} argument passed in the factory method that produced    * this {@code RateLimiter}, and it is only updated after invocations    * to {@linkplain #setRate}.    */
 DECL|method|getRate ()
 specifier|public
-specifier|final
-name|double
-name|getRate
-parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|mutex
-init|)
-block|{
-return|return
-name|doGetRate
-argument_list|()
-return|;
-block|}
-block|}
-DECL|method|doGetRate ()
 specifier|abstract
 name|double
-name|doGetRate
+name|getRate
 parameter_list|()
 function_decl|;
 comment|/**    * Acquires a single permit from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    *<p>This method is equivalent to {@code acquire(1)}.    *    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
@@ -720,6 +703,8 @@ name|canAcquire
 argument_list|(
 name|nowMicros
 argument_list|,
+name|nowMicros
+operator|+
 name|timeoutMicros
 argument_list|)
 condition|)
@@ -752,9 +737,8 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|canAcquire (long nowMicros, long timeoutMicros)
-specifier|private
-specifier|final
+DECL|method|canAcquire (long nowMicros, long deadlineMicros)
+specifier|abstract
 name|boolean
 name|canAcquire
 parameter_list|(
@@ -762,27 +746,7 @@ name|long
 name|nowMicros
 parameter_list|,
 name|long
-name|timeoutMicros
-parameter_list|)
-block|{
-return|return
-name|earliestAvailable
-argument_list|(
-name|nowMicros
-argument_list|)
-operator|<=
-name|nowMicros
-operator|+
-name|timeoutMicros
-return|;
-block|}
-DECL|method|earliestAvailable (long nowMicros)
-specifier|abstract
-name|long
-name|earliestAvailable
-parameter_list|(
-name|long
-name|nowMicros
+name|deadlineMicros
 parameter_list|)
 function_decl|;
 DECL|method|reserveNextTicket (int requiredPermits, long nowMicros)
@@ -838,6 +802,7 @@ name|maxPermits
 decl_stmt|;
 comment|/**      * The interval between two unit requests, at our stable rate. E.g., a stable rate of 5 permits      * per second has a stable interval of 200ms.      */
 DECL|field|stableIntervalMicros
+specifier|volatile
 name|double
 name|stableIntervalMicros
 decl_stmt|;
@@ -923,10 +888,11 @@ parameter_list|)
 function_decl|;
 annotation|@
 name|Override
-DECL|method|doGetRate ()
+DECL|method|getRate ()
+specifier|public
 specifier|final
 name|double
-name|doGetRate
+name|getRate
 parameter_list|()
 block|{
 return|return
@@ -942,17 +908,22 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|earliestAvailable (long nowMicros)
+DECL|method|canAcquire (long nowMicros, long deadlineMicros)
 specifier|final
-name|long
-name|earliestAvailable
+name|boolean
+name|canAcquire
 parameter_list|(
 name|long
 name|nowMicros
+parameter_list|,
+name|long
+name|deadlineMicros
 parameter_list|)
 block|{
 return|return
 name|nextFreeTicketMicros
+operator|<=
+name|deadlineMicros
 return|;
 block|}
 comment|/**      * Reserves next ticket and returns the wait time that the caller must wait for.      *      *<p>The return value is guaranteed to be non-negative.      */
@@ -1504,6 +1475,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|public
 name|void
 name|sleepMicrosUninterruptibly
 parameter_list|(
