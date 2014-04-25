@@ -340,7 +340,7 @@ name|getDeclaredAnnotations
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 17.0    */
+comment|/**    * @since 18.0    */
 comment|// @Override on JDK8
 DECL|method|getAnnotationsByType (Class<A> annotationType)
 specifier|public
@@ -367,7 +367,7 @@ name|annotationType
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 17.0    */
+comment|/**    * @since 18.0    */
 comment|// @Override on JDK8
 DECL|method|getDeclaredAnnotations ()
 annotation|@
@@ -394,7 +394,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * @since 17.0    */
+comment|/**    * @since 18.0    */
 comment|// @Override on JDK8
 annotation|@
 name|Nullable
@@ -440,7 +440,7 @@ name|orNull
 argument_list|()
 return|;
 block|}
-comment|/**    * @since 17.0    */
+comment|/**    * @since 18.0    */
 comment|// @Override on JDK8
 specifier|public
 parameter_list|<
