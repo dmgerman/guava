@@ -138,25 +138,6 @@ name|args
 argument_list|)
 return|;
 block|}
-DECL|method|classGetSimpleName (Class<?> clazz)
-specifier|static
-name|String
-name|classGetSimpleName
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|)
-block|{
-return|return
-name|clazz
-operator|.
-name|getSimpleName
-argument_list|()
-return|;
-block|}
 DECL|method|Platform ()
 specifier|private
 name|Platform

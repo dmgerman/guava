@@ -276,26 +276,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|classGetSimpleName (Class<?> clazz)
-specifier|static
-name|String
-name|classGetSimpleName
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Shouldn't be called in GWT."
-argument_list|)
-throw|;
-block|}
 DECL|method|Platform ()
 specifier|private
 name|Platform
