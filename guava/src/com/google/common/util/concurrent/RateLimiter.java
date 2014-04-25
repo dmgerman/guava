@@ -734,11 +734,16 @@ block|{
 name|long
 name|timeoutMicros
 init|=
+name|max
+argument_list|(
 name|unit
 operator|.
 name|toMicros
 argument_list|(
 name|timeout
+argument_list|)
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|checkPermits
@@ -820,10 +825,10 @@ name|earliestAvailable
 argument_list|(
 name|nowMicros
 argument_list|)
+operator|-
+name|timeoutMicros
 operator|<=
 name|nowMicros
-operator|+
-name|timeoutMicros
 return|;
 block|}
 DECL|method|earliestAvailable (long nowMicros)
