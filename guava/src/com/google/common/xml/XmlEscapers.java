@@ -111,13 +111,7 @@ literal|0x1F
 decl_stmt|;
 comment|// For each xxxEscaper() method, please add links to external reference pages
 comment|// that are considered authoritative for the behavior of that escaper.
-comment|// TODO(user): When this escaper strips \uFFFE& \uFFFF, add this doc.
-comment|//<p>This escaper also silently removes non-whitespace control characters and
-comment|// the character values {@code 0xFFFE} and {@code 0xFFFF} which are not
-comment|// permitted in XML. For more detail see section
-comment|//<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#charsets">2.2</a> of
-comment|// the XML specification.
-comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in an XML document as element content.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#syntax">2.4</a> of the    * XML specification.    *    *<p><b>Note:</b> Double and single quotes are not escaped, so it is<b>not    * safe</b> to use this escaper to escape attribute values. Use    * {@link #xmlContentEscaper} if the output can appear in element content or    * {@link #xmlAttributeEscaper} in attribute values.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). Any non-ASCII characters appearing in the input    * will be preserved in the output. Specifically "\r" (carriage return) is    * preserved in the output, which may result in it being silently converted to    * "\n" when the XML is parsed.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
+comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in an XML document as element content.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#syntax">2.4</a> of the    * XML specification.    *    *<p><b>Note:</b> Double and single quotes are not escaped, so it is<b>not    * safe</b> to use this escaper to escape attribute values. Use    * {@link #xmlContentEscaper} if the output can appear in element content or    * {@link #xmlAttributeEscaper} in attribute values.    *    *<p>This escaper substitutes {@code 0xFFFD} for non-whitespace control    * characters and the character values {@code 0xFFFE} and {@code 0xFFFF} which    * are not permitted in XML. For more detail see section<a    * href="http://www.w3.org/TR/2008/REC-xml-20081126/#charsets">2.2</a> of the    * XML specification.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). Any non-ASCII characters appearing in the input    * will be preserved in the output. Specifically "\r" (carriage return) is    * preserved in the output, which may result in it being silently converted to    * "\n" when the XML is parsed.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
 DECL|method|xmlContentEscaper ()
 specifier|public
 specifier|static
@@ -129,7 +123,7 @@ return|return
 name|XML_CONTENT_ESCAPER
 return|;
 block|}
-comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in XML document as an attribute value.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#AVNormalize">3.3.3</a>    * of the XML specification.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). However, horizontal tab {@code '\t'}, line feed    * {@code '\n'} and carriage return {@code '\r'} are escaped to a    * corresponding NCR {@code "&#x9;"}, {@code "&#xA;"}, and {@code "&#xD;"}    * respectively. Any other non-ASCII characters appearing in the input will    * be preserved in the output.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
+comment|/**    * Returns an {@link Escaper} instance that escapes special characters in a    * string so it can safely be included in XML document as an attribute value.    * See section    *<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#AVNormalize">3.3.3</a>    * of the XML specification.    *    *<p>This escaper substitutes {@code 0xFFFD} for non-whitespace control    * characters and the character values {@code 0xFFFE} and {@code 0xFFFF} which    * are not permitted in XML. For more detail see section<a    * href="http://www.w3.org/TR/2008/REC-xml-20081126/#charsets">2.2</a> of the    * XML specification.    *    *<p>This escaper does not escape non-ASCII characters to their numeric    * character references (NCR). However, horizontal tab {@code '\t'}, line feed    * {@code '\n'} and carriage return {@code '\r'} are escaped to a    * corresponding NCR {@code "&#x9;"}, {@code "&#xA;"}, and {@code "&#xD;"}    * respectively. Any other non-ASCII characters appearing in the input will    * be preserved in the output.    *    *<p>This escaper does not treat surrogate pairs specially and does not    * perform Unicode validation on its input.    */
 DECL|method|xmlAttributeEscaper ()
 specifier|public
 specifier|static
@@ -177,7 +171,6 @@ decl_stmt|;
 comment|// The char values \uFFFE and \uFFFF are explicitly not allowed in XML
 comment|// (Unicode code points above \uFFFF are represented via surrogate pairs
 comment|// which means they are treated as pairs of safe characters).
-comment|// TODO(user): When refactoring done change the \uFFFF below to \uFFFD
 name|builder
 operator|.
 name|setSafeRange
@@ -186,22 +179,18 @@ name|Character
 operator|.
 name|MIN_VALUE
 argument_list|,
-literal|'\uFFFF'
+literal|'\uFFFD'
 argument_list|)
 expr_stmt|;
-comment|// Unsafe characters are removed.
+comment|// Unsafe characters are replaced with the Unicode replacement character.
 name|builder
 operator|.
 name|setUnsafeReplacement
 argument_list|(
-literal|""
+literal|"\uFFFD"
 argument_list|)
 expr_stmt|;
-comment|// Except for '\n', '\t' and '\r' we remove all ASCII control characters.
-comment|// An alternative to this would be to make a map that simply replaces the
-comment|// allowed ASCII whitespace characters with themselves and set the minimum
-comment|// safe character to 0x20. However this would slow down the escaping of
-comment|// simple strings that contain '\t','\n' or '\r'.
+comment|/*      * Except for \n, \t, and \r, all ASCII control characters are replaced with      * the Unicode replacement character.      *      * Implementation note: An alternative to the following would be to make a      * map that simply replaces the allowed ASCII whitespace characters with      * themselves and to set the minimum safe character to 0x20. However this      * would slow down the escaping of simple strings that contain \t, \n, or      * \r.      */
 for|for
 control|(
 name|char
@@ -238,7 +227,7 @@ name|addEscape
 argument_list|(
 name|c
 argument_list|,
-literal|""
+literal|"\uFFFD"
 argument_list|)
 expr_stmt|;
 block|}

@@ -411,12 +411,12 @@ block|}
 block|}
 else|else
 block|{
-comment|// and everything else is removed.
+comment|// and everything else is replaced with FFFD.
 name|assertEscaping
 argument_list|(
 name|xmlEscaper
 argument_list|,
-literal|""
+literal|"\uFFFD"
 argument_list|,
 name|ch
 argument_list|)
@@ -577,28 +577,53 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO(user): Change once this escaper forbids \uFFFE and \uFFFF.
-name|assertUnescaped
+comment|// Test that 0xFFFE and 0xFFFF are replaced with 0xFFFD
+name|assertEscaping
 argument_list|(
 name|xmlEscaper
+argument_list|,
+literal|"\uFFFD"
 argument_list|,
 literal|'\uFFFE'
 argument_list|)
 expr_stmt|;
-name|assertUnescaped
+name|assertEscaping
 argument_list|(
 name|xmlEscaper
+argument_list|,
+literal|"\uFFFD"
 argument_list|,
 literal|'\uFFFF'
 argument_list|)
 expr_stmt|;
-comment|// Test that 0xFFFE and 0xFFFF are removed
-comment|// assertEscaping(xmlEscaper, "", '\uFFFE');
-comment|// assertEscaping(xmlEscaper, "", '\uFFFF');
-comment|// assertEquals("0xFFFE is forbidden and should be removed during escaping",
-comment|//     "[]", XmlEscapers.xmlEscaper().escape("[\ufffe]"));
-comment|// assertEquals("0xFFFF is forbidden and should be removed during escaping",
-comment|//     "[]", XmlEscapers.xmlEscaper().escape("[\uffff]"));
+name|assertEquals
+argument_list|(
+literal|"0xFFFE is forbidden and should be replaced during escaping"
+argument_list|,
+literal|"[\uFFFD]"
+argument_list|,
+name|xmlEscaper
+operator|.
+name|escape
+argument_list|(
+literal|"[\ufffe]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"0xFFFF is forbidden and should be replaced during escaping"
+argument_list|,
+literal|"[\uFFFD]"
+argument_list|,
+name|xmlEscaper
+operator|.
+name|escape
+argument_list|(
+literal|"[\uffff]"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
