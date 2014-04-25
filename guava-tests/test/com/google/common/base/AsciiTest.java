@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -890,6 +904,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"String.toUpperCase() has browser semantics"
+argument_list|)
 DECL|method|testEqualsIgnoreCaseUnicodeEquivalence ()
 specifier|public
 name|void
