@@ -218,6 +218,7 @@ name|permitsPerSecond
 argument_list|)
 return|;
 block|}
+comment|/*    * TODO(cpovirk): make SleepingStopwatch the last parameter throughout the class so that the    * overloads follow the usual convention: Foo(int), Foo(int, SleepingStopwatch)    */
 annotation|@
 name|VisibleForTesting
 DECL|method|create (SleepingStopwatch stopwatch, double permitsPerSecond)
@@ -809,7 +810,6 @@ return|;
 block|}
 DECL|method|canAcquire (long nowMicros, long timeoutMicros)
 specifier|private
-specifier|final
 name|boolean
 name|canAcquire
 parameter_list|(
