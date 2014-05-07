@@ -4059,11 +4059,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"AndroidInteger"
-argument_list|)
 DECL|method|testTryParse ()
 specifier|public
 name|void
@@ -4204,6 +4199,30 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
+literal|"Max integer * 10"
+argument_list|,
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+name|Long
+operator|.
+name|toString
+argument_list|(
+operator|(
+operator|(
+name|long
+operator|)
+name|GREATEST
+operator|)
+operator|*
+literal|10
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
 literal|"Min integer - 1"
 argument_list|,
 name|Ints
@@ -4228,6 +4247,68 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
+literal|"Min integer * 10"
+argument_list|,
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+name|Long
+operator|.
+name|toString
+argument_list|(
+operator|(
+operator|(
+name|long
+operator|)
+name|LEAST
+operator|)
+operator|*
+literal|10
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"Max long"
+argument_list|,
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"Min long"
+argument_list|,
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+name|Long
+operator|.
+name|toString
+argument_list|(
+name|Long
+operator|.
+name|MIN_VALUE
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
 name|Ints
 operator|.
 name|tryParse
@@ -4238,11 +4319,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Applies {@link Ints#tryParse(String)} to the given string and asserts that    * the result is as expected.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"AndroidInteger"
-argument_list|)
 DECL|method|tryParseAndAssertEquals (Integer expected, String value)
 specifier|private
 specifier|static

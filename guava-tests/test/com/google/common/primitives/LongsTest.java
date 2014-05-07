@@ -3996,11 +3996,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"AndroidInteger"
-argument_list|)
 DECL|method|testTryParse ()
 specifier|public
 name|void
@@ -4117,7 +4112,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-literal|"Max integer + 1"
+literal|"Max long + 1"
 argument_list|,
 name|Longs
 operator|.
@@ -4144,7 +4139,34 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-literal|"Min integer - 1"
+literal|"Max long * 10"
+argument_list|,
+name|Longs
+operator|.
+name|tryParse
+argument_list|(
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
+name|MAX_VALUE
+argument_list|)
+operator|.
+name|multiply
+argument_list|(
+name|BigInteger
+operator|.
+name|TEN
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"Min long - 1"
 argument_list|,
 name|Longs
 operator|.
@@ -4162,6 +4184,33 @@ argument_list|(
 name|BigInteger
 operator|.
 name|ONE
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"Min long * 10"
+argument_list|,
+name|Longs
+operator|.
+name|tryParse
+argument_list|(
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
+name|MIN_VALUE
+argument_list|)
+operator|.
+name|multiply
+argument_list|(
+name|BigInteger
+operator|.
+name|TEN
 argument_list|)
 operator|.
 name|toString
