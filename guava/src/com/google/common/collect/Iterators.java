@@ -488,7 +488,9 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Returns the empty iterator.    *    *<p>The {@link Iterable} equivalent of this method is {@link    * ImmutableSet#of()}.    *    *<p><b>Note:</b> projects using JDK 7 or later should use    * {@link Collections#emptyIterator} instead.    *    */
+comment|/**    * Returns the empty iterator.    *    *<p>The {@link Iterable} equivalent of this method is {@link    * ImmutableSet#of()}.    *    * @deprecated Use {@code ImmutableSet.of().iterator()} instead; or for Java    *     7 or later, {@link Collections#emptyIterator}. This method is scheduled    *     for removal in May 2016.    */
+annotation|@
+name|Deprecated
 DECL|method|emptyIterator ()
 specifier|public
 specifier|static
