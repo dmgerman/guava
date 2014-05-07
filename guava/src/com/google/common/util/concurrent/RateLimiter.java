@@ -192,7 +192,7 @@ class|class
 name|RateLimiter
 block|{
 comment|/*    * How is the RateLimiter designed, and why?    *    * The primary feature of a RateLimiter is its "stable rate", the maximum rate that    * is should allow at normal conditions. This is enforced by "throttling" incoming    * requests as needed, i.e. compute, for an incoming request, the appropriate throttle time,    * and make the calling thread wait as much.    *    * The simplest way to maintain a rate of QPS is to keep the timestamp of the last    * granted request, and ensure that (1/QPS) seconds have elapsed since then. For example,    * for a rate of QPS=5 (5 tokens per second), if we ensure that a request isn't granted    * earlier than 200ms after the last one, then we achieve the intended rate.    * If a request comes and the last request was granted only 100ms ago, then we wait for    * another 100ms. At this rate, serving 15 fresh permits (i.e. for an acquire(15) request)    * naturally takes 3 seconds.    *    * It is important to realize that such a RateLimiter has a very superficial memory    * of the past: it only remembers the last request. What if the RateLimiter was unused for    * a long period of time, then a request arrived and was immediately granted?    * This RateLimiter would immediately forget about that past underutilization. This may    * result in either underutilization or overflow, depending on the real world consequences    * of not using the expected rate.    *    * Past underutilization could mean that excess resources are available. Then, the RateLimiter    * should speed up for a while, to take advantage of these resources. This is important    * when the rate is applied to networking (limiting bandwidth), where past underutilization    * typically translates to "almost empty buffers", which can be filled immediately.    *    * On the other hand, past underutilization could mean that "the server responsible for    * handling the request has become less ready for future requests", i.e. its caches become    * stale, and requests become more likely to trigger expensive operations (a more extreme    * case of this example is when a server has just booted, and it is mostly busy with getting    * itself up to speed).    *    * To deal with such scenarios, we add an extra dimension, that of "past underutilization",    * modeled by "storedPermits" variable. This variable is zero when there is no    * underutilization, and it can grow up to maxStoredPermits, for sufficiently large    * underutilization. So, the requested permits, by an invocation acquire(permits),    * are served from:    * - stored permits (if available)    * - fresh permits (for any remaining permits)    *    * How this works is best explained with an example:    *    * For a RateLimiter that produces 1 token per second, every second    * that goes by with the RateLimiter being unused, we increase storedPermits by 1.    * Say we leave the RateLimiter unused for 10 seconds (i.e., we expected a request at time    * X, but we are at time X + 10 seconds before a request actually arrives; this is    * also related to the point made in the last paragraph), thus storedPermits    * becomes 10.0 (assuming maxStoredPermits>= 10.0). At that point, a request of acquire(3)    * arrives. We serve this request out of storedPermits, and reduce that to 7.0 (how this is    * translated to throttling time is discussed later). Immediately after, assume that an    * acquire(10) request arriving. We serve the request partly from storedPermits,    * using all the remaining 7.0 permits, and the remaining 3.0, we serve them by fresh permits    * produced by the rate limiter.    *    * We already know how much time it takes to serve 3 fresh permits: if the rate is    * "1 token per second", then this will take 3 seconds. But what does it mean to serve 7    * stored permits? As explained above, there is no unique answer. If we are primarily    * interested to deal with underutilization, then we want stored permits to be given out    * /faster/ than fresh ones, because underutilization = free resources for the taking.    * If we are primarily interested to deal with overflow, then stored permits could    * be given out /slower/ than fresh ones. Thus, we require a (different in each case)    * function that translates storedPermits to throtting time.    *    * This role is played by storedPermitsToWaitTime(double storedPermits, double permitsToTake).    * The underlying model is a continuous function mapping storedPermits    * (from 0.0 to maxStoredPermits) onto the 1/rate (i.e. intervals) that is effective at the given    * storedPermits. "storedPermits" essentially measure unused time; we spend unused time    * buying/storing permits. Rate is "permits / time", thus "1 / rate = time / permits".    * Thus, "1/rate" (time / permits) times "permits" gives time, i.e., integrals on this    * function (which is what storedPermitsToWaitTime() computes) correspond to minimum intervals    * between subsequent requests, for the specified number of requested permits.    *    * Here is an example of storedPermitsToWaitTime:    * If storedPermits == 10.0, and we want 3 permits, we take them from storedPermits,    * reducing them to 7.0, and compute the throttling for these as a call to    * storedPermitsToWaitTime(storedPermits = 10.0, permitsToTake = 3.0), which will    * evaluate the integral of the function from 7.0 to 10.0.    *    * Using integrals guarantees that the effect of a single acquire(3) is equivalent    * to { acquire(1); acquire(1); acquire(1); }, or { acquire(2); acquire(1); }, etc,    * since the integral of the function in [7.0, 10.0] is equivalent to the sum of the    * integrals of [7.0, 8.0], [8.0, 9.0], [9.0, 10.0] (and so on), no matter    * what the function is. This guarantees that we handle correctly requests of varying weight    * (permits), /no matter/ what the actual function is - so we can tweak the latter freely.    * (The only requirement, obviously, is that we can compute its integrals).    *    * Note well that if, for this function, we chose a horizontal line, at height of exactly    * (1/QPS), then the effect of the function is non-existent: we serve storedPermits at    * exactly the same cost as fresh ones (1/QPS is the cost for each). We use this trick later.    *    * If we pick a function that goes /below/ that horizontal line, it means that we reduce    * the area of the function, thus time. Thus, the RateLimiter becomes /faster/ after a    * period of underutilization. If, on the other hand, we pick a function that    * goes /above/ that horizontal line, then it means that the area (time) is increased,    * thus storedPermits are more costly than fresh permits, thus the RateLimiter becomes    * /slower/ after a period of underutilization.    *    * Last, but not least: consider a RateLimiter with rate of 1 permit per second, currently    * completely unused, and an expensive acquire(100) request comes. It would be nonsensical    * to just wait for 100 seconds, and /then/ start the actual task. Why wait without doing    * anything? A much better approach is to /allow/ the request right away (as if it was an    * acquire(1) request instead), and postpone /subsequent/ requests as needed. In this version,    * we allow starting the task immediately, and postpone by 100 seconds future requests,    * thus we allow for work to get done in the meantime instead of waiting idly.    *    * This has important consequences: it means that the RateLimiter doesn't remember the time    * of the _last_ request, but it remembers the (expected) time of the _next_ request. This    * also enables us to tell immediately (see tryAcquire(timeout)) whether a particular    * timeout is enough to get us to the point of the next scheduling time, since we always    * maintain that. And what we mean by "an unused RateLimiter" is also defined by that    * notion: when we observe that the "expected arrival time of the next request" is actually    * in the past, then the difference (now - past) is the amount of time that the RateLimiter    * was formally unused, and it is that amount of time which we translate to storedPermits.    * (We increase storedPermits with the amount of permits that would have been produced    * in that idle time). So, if rate == 1 permit per second, and arrivals come exactly    * one second after the previous, then storedPermits is _never_ increased -- we would only    * increase it for arrivals _later_ than the expected one second.    */
-comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second).    *    *<p>The returned {@code RateLimiter} ensures that on average no more than {@code    * permitsPerSecond} are issued during any given second, with sustained requests    * being smoothly spread over each second. When the incoming request rate exceeds    * {@code permitsPerSecond} the rate limiter will release one permit every {@code    * (1.0 / permitsPerSecond)} seconds. When the rate limiter is unused,    * bursts of up to {@code permitsPerSecond} permits will be allowed, with subsequent    * requests being smoothly limited at the stable rate of {@code permitsPerSecond}.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second. Must be positive    */
+comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second).    *    *<p>The returned {@code RateLimiter} ensures that on average no more than {@code    * permitsPerSecond} are issued during any given second, with sustained requests    * being smoothly spread over each second. When the incoming request rate exceeds    * {@code permitsPerSecond} the rate limiter will release one permit every {@code    * (1.0 / permitsPerSecond)} seconds. When the rate limiter is unused,    * bursts of up to {@code permitsPerSecond} permits will be allowed, with subsequent    * requests being smoothly limited at the stable rate of {@code permitsPerSecond}.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero    */
 comment|// TODO(user): "This is equivalent to
 comment|//                 {@code createWithCapacity(permitsPerSecond, 1, TimeUnit.SECONDS)}".
 DECL|method|create (double permitsPerSecond)
@@ -256,7 +256,7 @@ return|return
 name|rateLimiter
 return|;
 block|}
-comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second), and a    *<i>warmup period</i>, during which the {@code RateLimiter} smoothly ramps up its rate,    * until it reaches its maximum rate at the end of the period (as long as there are enough    * requests to saturate it). Similarly, if the {@code RateLimiter} is left<i>unused</i> for    * a duration of {@code warmupPeriod}, it will gradually return to its "cold" state,    * i.e. it will go through the same warming up process as when it was first created.    *    *<p>The returned {@code RateLimiter} is intended for cases where the resource that actually    * fulfills the requests (e.g., a remote server) needs "warmup" time, rather than    * being immediately accessed at the stable (maximum) rate.    *    *<p>The returned {@code RateLimiter} starts in a "cold" state (i.e. the warmup period    * will follow), and if it is left unused for long enough, it will return to that state.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second. Must be positive    * @param warmupPeriod the duration of the period where the {@code RateLimiter} ramps up its    *        rate, before reaching its stable (maximum) rate    * @param unit the time unit of the warmupPeriod argument    */
+comment|/**    * Creates a {@code RateLimiter} with the specified stable throughput, given as    * "permits per second" (commonly referred to as<i>QPS</i>, queries per second), and a    *<i>warmup period</i>, during which the {@code RateLimiter} smoothly ramps up its rate,    * until it reaches its maximum rate at the end of the period (as long as there are enough    * requests to saturate it). Similarly, if the {@code RateLimiter} is left<i>unused</i> for    * a duration of {@code warmupPeriod}, it will gradually return to its "cold" state,    * i.e. it will go through the same warming up process as when it was first created.    *    *<p>The returned {@code RateLimiter} is intended for cases where the resource that actually    * fulfills the requests (e.g., a remote server) needs "warmup" time, rather than    * being immediately accessed at the stable (maximum) rate.    *    *<p>The returned {@code RateLimiter} starts in a "cold" state (i.e. the warmup period    * will follow), and if it is left unused for long enough, it will return to that state.    *    * @param permitsPerSecond the rate of the returned {@code RateLimiter}, measured in    *        how many permits become available per second    * @param warmupPeriod the duration of the period where the {@code RateLimiter} ramps up its    *        rate, before reaching its stable (maximum) rate    * @param unit the time unit of the warmupPeriod argument    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero or    *     {@code warmupPeriod} is negative    */
 DECL|method|create (double permitsPerSecond, long warmupPeriod, TimeUnit unit)
 specifier|public
 specifier|static
@@ -273,6 +273,17 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
+name|checkArgument
+argument_list|(
+name|warmupPeriod
+operator|>=
+literal|0
+argument_list|,
+literal|"warmupPeriod must not be negative: %s"
+argument_list|,
+name|warmupPeriod
+argument_list|)
+expr_stmt|;
 return|return
 name|create
 argument_list|(
@@ -320,62 +331,6 @@ argument_list|,
 name|warmupPeriod
 argument_list|,
 name|unit
-argument_list|)
-decl_stmt|;
-name|rateLimiter
-operator|.
-name|setRate
-argument_list|(
-name|permitsPerSecond
-argument_list|)
-expr_stmt|;
-return|return
-name|rateLimiter
-return|;
-block|}
-annotation|@
-name|VisibleForTesting
-DECL|method|createWithCapacity ( SleepingStopwatch stopwatch, double permitsPerSecond, long maxBurstBuildup, TimeUnit unit)
-specifier|static
-name|RateLimiter
-name|createWithCapacity
-parameter_list|(
-name|SleepingStopwatch
-name|stopwatch
-parameter_list|,
-name|double
-name|permitsPerSecond
-parameter_list|,
-name|long
-name|maxBurstBuildup
-parameter_list|,
-name|TimeUnit
-name|unit
-parameter_list|)
-block|{
-name|double
-name|maxBurstSeconds
-init|=
-name|unit
-operator|.
-name|toNanos
-argument_list|(
-name|maxBurstBuildup
-argument_list|)
-operator|/
-literal|1E
-operator|+
-literal|9
-decl_stmt|;
-name|SmoothBursty
-name|rateLimiter
-init|=
-operator|new
-name|SmoothBursty
-argument_list|(
-name|stopwatch
-argument_list|,
-name|maxBurstSeconds
 argument_list|)
 decl_stmt|;
 name|rateLimiter
@@ -470,7 +425,7 @@ name|stopwatch
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Updates the stable rate of this {@code RateLimiter}, that is, the    * {@code permitsPerSecond} argument provided in the factory method that    * constructed the {@code RateLimiter}. Currently throttled threads will<b>not</b>    * be awakened as a result of this invocation, thus they do not observe the new rate;    * only subsequent requests will.    *    *<p>Note though that, since each request repays (by waiting, if necessary) the cost    * of the<i>previous</i> request, this means that the very next request    * after an invocation to {@code setRate} will not be affected by the new rate;    * it will pay the cost of the previous request, which is in terms of the previous rate.    *    *<p>The behavior of the {@code RateLimiter} is not modified in any other way,    * e.g. if the {@code RateLimiter} was configured with a warmup period of 20 seconds,    * it still has a warmup period of 20 seconds after this method invocation.    *    * @param permitsPerSecond the new stable rate of this {@code RateLimiter}. Must be positive    */
+comment|/**    * Updates the stable rate of this {@code RateLimiter}, that is, the    * {@code permitsPerSecond} argument provided in the factory method that    * constructed the {@code RateLimiter}. Currently throttled threads will<b>not</b>    * be awakened as a result of this invocation, thus they do not observe the new rate;    * only subsequent requests will.    *    *<p>Note though that, since each request repays (by waiting, if necessary) the cost    * of the<i>previous</i> request, this means that the very next request    * after an invocation to {@code setRate} will not be affected by the new rate;    * it will pay the cost of the previous request, which is in terms of the previous rate.    *    *<p>The behavior of the {@code RateLimiter} is not modified in any other way,    * e.g. if the {@code RateLimiter} was configured with a warmup period of 20 seconds,    * it still has a warmup period of 20 seconds after this method invocation.    *    * @param permitsPerSecond the new stable rate of this {@code RateLimiter}    * @throws IllegalArgumentException if {@code permitsPerSecond} is negative or zero    */
 DECL|method|setRate (double permitsPerSecond)
 specifier|public
 specifier|final
@@ -568,7 +523,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    * @param permits the number of permits to acquire    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @since 16.0 (present in 13.0 with {@code void} return type})    */
+comment|/**    * Acquires the given number of permits from this {@code RateLimiter}, blocking until the    * request can be granted. Tells the amount of time slept, if any.    *    * @param permits the number of permits to acquire    * @return time spent sleeping to enforce rate, in seconds; 0.0 if not rate-limited    * @throws IllegalArgumentException if the requested number of permits is negative or zero    * @since 16.0 (present in 13.0 with {@code void} return type})    */
 DECL|method|acquire (int permits)
 specifier|public
 name|double
@@ -653,7 +608,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Acquires a permit from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permit would not have been granted    * before the timeout expired.    *    *<p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.    *    * @param timeout the maximum time to wait for the permit    * @param unit the time unit of the timeout argument    * @return {@code true} if the permit was acquired, {@code false} otherwise    */
+comment|/**    * Acquires a permit from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permit would not have been granted    * before the timeout expired.    *    *<p>This method is equivalent to {@code tryAcquire(1, timeout, unit)}.    *    * @param timeout the maximum time to wait for the permit. Negative values are treated as zero.    * @param unit the time unit of the timeout argument    * @return {@code true} if the permit was acquired, {@code false} otherwise    * @throws IllegalArgumentException if the requested number of permits is negative or zero    */
 DECL|method|tryAcquire (long timeout, TimeUnit unit)
 specifier|public
 name|boolean
@@ -677,7 +632,7 @@ name|unit
 argument_list|)
 return|;
 block|}
-comment|/**    * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.    *    * @param permits the number of permits to acquire    * @return {@code true} if the permits were acquired, {@code false} otherwise    * @since 14.0    */
+comment|/**    * Acquires permits from this {@link RateLimiter} if it can be acquired immediately without delay.    *    *<p>    * This method is equivalent to {@code tryAcquire(permits, 0, anyUnit)}.    *    * @param permits the number of permits to acquire    * @return {@code true} if the permits were acquired, {@code false} otherwise    * @throws IllegalArgumentException if the requested number of permits is negative or zero    * @since 14.0    */
 DECL|method|tryAcquire (int permits)
 specifier|public
 name|boolean
@@ -716,7 +671,7 @@ name|MICROSECONDS
 argument_list|)
 return|;
 block|}
-comment|/**    * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permits would not have been granted    * before the timeout expired.    *    * @param permits the number of permits to acquire    * @param timeout the maximum time to wait for the permits    * @param unit the time unit of the timeout argument    * @return {@code true} if the permits were acquired, {@code false} otherwise    */
+comment|/**    * Acquires the given number of permits from this {@code RateLimiter} if it can be obtained    * without exceeding the specified {@code timeout}, or returns {@code false}    * immediately (without waiting) if the permits would not have been granted    * before the timeout expired.    *    * @param permits the number of permits to acquire    * @param timeout the maximum time to wait for the permits. Negative values are treated as zero.    * @param unit the time unit of the timeout argument    * @return {@code true} if the permits were acquired, {@code false} otherwise    * @throws IllegalArgumentException if the requested number of permits is negative or zero    */
 DECL|method|tryAcquire (int permits, long timeout, TimeUnit unit)
 specifier|public
 name|boolean
