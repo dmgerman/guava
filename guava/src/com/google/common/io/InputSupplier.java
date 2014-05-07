@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A factory for readable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 1.0  * @deprecated For {@code InputSupplier<? extends InputStream>}, use  *     {@link ByteSource} instead. For {@code InputSupplier<? extends Reader>},  *     use {@link CharSource}. Implementations of {@code InputSupplier} that  *     don't fall into one of those categories do not benefit from any of the  *     methods in {@code common.io} and should use a different interface. This  *     interface is scheduled for removal in June 2015.  */
+comment|/**  * A factory for readable streams of bytes or characters.  *  * @author Chris Nokleberg  * @since 1.0  * @deprecated For {@code InputSupplier<? extends InputStream>}, use  *     {@link ByteSource} instead. For {@code InputSupplier<? extends Reader>},  *     use {@link CharSource}. Implementations of {@code InputSupplier} that  *     don't fall into one of those categories do not benefit from any of the  *     methods in {@code common.io} and should use a different interface. This  *     interface is scheduled for removal in December 2015.  */
 end_comment
 
 begin_interface
