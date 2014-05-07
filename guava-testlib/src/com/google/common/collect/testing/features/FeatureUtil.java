@@ -713,7 +713,7 @@ name|annotationClass
 init|=
 name|testerAnnotation
 operator|.
-name|getClass
+name|annotationType
 argument_list|()
 decl_stmt|;
 specifier|final
