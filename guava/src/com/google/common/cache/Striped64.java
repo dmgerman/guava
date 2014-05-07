@@ -30,16 +30,6 @@ name|Random
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * A package-local class holding common representation and mechanics  * for classes supporting dynamic striping on 64bit values. The class  * extends Number so that concrete subclasses must publicly do so.  */
 end_comment
@@ -355,7 +345,7 @@ name|newValue
 parameter_list|)
 function_decl|;
 comment|/**      * Handles cases of updates involving initialization, resizing,      * creating new Cells, and/or contention. See above for      * explanation. This method suffers the usual non-modularity      * problems of optimistic retry code, relying on rechecked sets of      * reads.      *      * @param x the value      * @param hc the hash code holder      * @param wasUncontended false if CAS failed before call      */
-DECL|method|retryUpdate (long x, @Nullable int[] hc, boolean wasUncontended)
+DECL|method|retryUpdate (long x, int[] hc, boolean wasUncontended)
 specifier|final
 name|void
 name|retryUpdate
@@ -363,8 +353,6 @@ parameter_list|(
 name|long
 name|x
 parameter_list|,
-annotation|@
-name|Nullable
 name|int
 index|[]
 name|hc
