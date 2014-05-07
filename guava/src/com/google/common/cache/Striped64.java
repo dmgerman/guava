@@ -4,7 +4,7 @@ comment|/*  * Written by Doug Lea with assistance from members of JCP JSR-166  *
 end_comment
 
 begin_comment
-comment|/*  * Source:  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/jsr166e/Striped64.java?revision=1.7  */
+comment|/*  * Source:  * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/jsr166e/Striped64.java?revision=1.9  */
 end_comment
 
 begin_package
@@ -30,6 +30,16 @@ name|Random
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A package-local class holding common representation and mechanics  * for classes supporting dynamic striping on 64bit values. The class  * extends Number so that concrete subclasses must publicly do so.  */
 end_comment
@@ -42,7 +52,7 @@ name|Striped64
 extends|extends
 name|Number
 block|{
-comment|/*      * This class maintains a lazily-initialized table of atomically      * updated variables, plus an extra "base" field. The table size      * is a power of two. Indexing uses masked per-thread hash codes.      * Nearly all declarations in this class are package-private,      * accessed directly by subclasses.      *      * Table entries are of class Cell; a variant of AtomicLong padded      * to reduce cache contention on most processors. Padding is      * overkill for most Atomics because they are usually irregularly      * scattered in memory and thus don't interfere much with each      * other. But Atomic objects residing in arrays will tend to be      * placed adjacent to each other, and so will most often share      * cache lines (with a huge negative performance impact) without      * this precaution.      *      * In part because Cells are relatively large, we avoid creating      * them until they are needed.  When there is no contention, all      * updates are made to the base field.  Upon first contention (a      * failed CAS on base update), the table is initialized to size 2.      * The table size is doubled upon further contention until      * reaching the nearest power of two greater than or equal to the      * number of CPUS. Table slots remain empty (null) until they are      * needed.      *      * A single spinlock ("busy") is used for initializing and      * resizing the table, as well as populating slots with new Cells.      * There is no need for a blocking lock: When the lock is not      * available, threads try other slots (or the base).  During these      * retries, there is increased contention and reduced locality,      * which is still better than alternatives.      *      * Per-thread hash codes are initialized to random values.      * Contention and/or table collisions are indicated by failed      * CASes when performing an update operation (see method      * retryUpdate). Upon a collision, if the table size is less than      * the capacity, it is doubled in size unless some other thread      * holds the lock. If a hashed slot is empty, and lock is      * available, a new Cell is created. Otherwise, if the slot      * exists, a CAS is tried.  Retries proceed by "double hashing",      * using a secondary hash (Marsaglia XorShift) to try to find a      * free slot.      *      * The table size is capped because, when there are more threads      * than CPUs, supposing that each thread were bound to a CPU,      * there would exist a perfect hash function mapping threads to      * slots that eliminates collisions. When we reach capacity, we      * search for this mapping by randomly varying the hash codes of      * colliding threads.  Because search is random, and collisions      * only become known via CAS failures, convergence can be slow,      * and because threads are typically not bound to CPUS forever,      * may not occur at all. However, despite these limitations,      * observed contention rates are typically low in these cases.      *      * It is possible for a Cell to become unused when threads that      * once hashed to it terminate, as well as in the case where      * doubling the table causes no thread to hash to it under      * expanded mask.  We do not try to detect or remove such cells,      * under the assumption that for long-running instances, observed      * contention levels will recur, so the cells will eventually be      * needed again; and for short-lived ones, it does not matter.      */
+comment|/*      * This class maintains a lazily-initialized table of atomically      * updated variables, plus an extra "base" field. The table size      * is a power of two. Indexing uses masked per-thread hash codes.      * Nearly all declarations in this class are package-private,      * accessed directly by subclasses.      *      * Table entries are of class Cell; a variant of AtomicLong padded      * to reduce cache contention on most processors. Padding is      * overkill for most Atomics because they are usually irregularly      * scattered in memory and thus don't interfere much with each      * other. But Atomic objects residing in arrays will tend to be      * placed adjacent to each other, and so will most often share      * cache lines (with a huge negative performance impact) without      * this precaution.      *      * In part because Cells are relatively large, we avoid creating      * them until they are needed.  When there is no contention, all      * updates are made to the base field.  Upon first contention (a      * failed CAS on base update), the table is initialized to size 2.      * The table size is doubled upon further contention until      * reaching the nearest power of two greater than or equal to the      * number of CPUS. Table slots remain empty (null) until they are      * needed.      *      * A single spinlock ("busy") is used for initializing and      * resizing the table, as well as populating slots with new Cells.      * There is no need for a blocking lock; when the lock is not      * available, threads try other slots (or the base).  During these      * retries, there is increased contention and reduced locality,      * which is still better than alternatives.      *      * Per-thread hash codes are initialized to random values.      * Contention and/or table collisions are indicated by failed      * CASes when performing an update operation (see method      * retryUpdate). Upon a collision, if the table size is less than      * the capacity, it is doubled in size unless some other thread      * holds the lock. If a hashed slot is empty, and lock is      * available, a new Cell is created. Otherwise, if the slot      * exists, a CAS is tried.  Retries proceed by "double hashing",      * using a secondary hash (Marsaglia XorShift) to try to find a      * free slot.      *      * The table size is capped because, when there are more threads      * than CPUs, supposing that each thread were bound to a CPU,      * there would exist a perfect hash function mapping threads to      * slots that eliminates collisions. When we reach capacity, we      * search for this mapping by randomly varying the hash codes of      * colliding threads.  Because search is random, and collisions      * only become known via CAS failures, convergence can be slow,      * and because threads are typically not bound to CPUS forever,      * may not occur at all. However, despite these limitations,      * observed contention rates are typically low in these cases.      *      * It is possible for a Cell to become unused when threads that      * once hashed to it terminate, as well as in the case where      * doubling the table causes no thread to hash to it under      * expanded mask.  We do not try to detect or remove such cells,      * under the assumption that for long-running instances, observed      * contention levels will recur, so the cells will eventually be      * needed again; and for short-lived ones, it does not matter.      */
 comment|/**      * Padded variant of AtomicLong supporting only raw accesses plus CAS.      * The value field is placed between pads, hoping that the JVM doesn't      * reorder them.      *      * JVM intrinsics note: It would be possible to use a release-only      * form of CAS here, if it were provided.      */
 DECL|class|Cell
 specifier|static
@@ -209,13 +219,26 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * Holder for the thread-local hash code. The code is initially      * random, but may be set to a different value upon collisions.      */
-DECL|class|HashCode
+comment|/**      * ThreadLocal holding a single-slot int array holding hash code.      * Unlike the JDK8 version of this class, we use a suboptimal      * int[] representation to avoid introducing a new type that can      * impede class-unloading when ThreadLocals are not removed.      */
+DECL|field|threadHashCode
 specifier|static
 specifier|final
-class|class
-name|HashCode
-block|{
+name|ThreadLocal
+argument_list|<
+name|int
+index|[]
+argument_list|>
+name|threadHashCode
+init|=
+operator|new
+name|ThreadLocal
+argument_list|<
+name|int
+index|[]
+argument_list|>
+argument_list|()
+decl_stmt|;
+comment|/**      * Generator of new random hash codes      */
 DECL|field|rng
 specifier|static
 specifier|final
@@ -224,73 +247,6 @@ name|rng
 init|=
 operator|new
 name|Random
-argument_list|()
-decl_stmt|;
-DECL|field|code
-name|int
-name|code
-decl_stmt|;
-DECL|method|HashCode ()
-name|HashCode
-parameter_list|()
-block|{
-name|int
-name|h
-init|=
-name|rng
-operator|.
-name|nextInt
-argument_list|()
-decl_stmt|;
-comment|// Avoid zero to allow xorShift rehash
-name|code
-operator|=
-operator|(
-name|h
-operator|==
-literal|0
-operator|)
-condition|?
-literal|1
-else|:
-name|h
-expr_stmt|;
-block|}
-block|}
-comment|/**      * The corresponding ThreadLocal class      */
-DECL|class|ThreadHashCode
-specifier|static
-specifier|final
-class|class
-name|ThreadHashCode
-extends|extends
-name|ThreadLocal
-argument_list|<
-name|HashCode
-argument_list|>
-block|{
-DECL|method|initialValue ()
-specifier|public
-name|HashCode
-name|initialValue
-parameter_list|()
-block|{
-return|return
-operator|new
-name|HashCode
-argument_list|()
-return|;
-block|}
-block|}
-comment|/**      * Static per-thread hash codes. Shared across all instances to      * reduce ThreadLocal pollution and because adjustments due to      * collisions in one table are likely to be appropriate for      * others.      */
-DECL|field|threadHashCode
-specifier|static
-specifier|final
-name|ThreadHashCode
-name|threadHashCode
-init|=
-operator|new
-name|ThreadHashCode
 argument_list|()
 decl_stmt|;
 comment|/** Number of CPUS, to place bound on table size */
@@ -399,7 +355,7 @@ name|newValue
 parameter_list|)
 function_decl|;
 comment|/**      * Handles cases of updates involving initialization, resizing,      * creating new Cells, and/or contention. See above for      * explanation. This method suffers the usual non-modularity      * problems of optimistic retry code, relying on rechecked sets of      * reads.      *      * @param x the value      * @param hc the hash code holder      * @param wasUncontended false if CAS failed before call      */
-DECL|method|retryUpdate (long x, HashCode hc, boolean wasUncontended)
+DECL|method|retryUpdate (long x, @Nullable int[] hc, boolean wasUncontended)
 specifier|final
 name|void
 name|retryUpdate
@@ -407,7 +363,10 @@ parameter_list|(
 name|long
 name|x
 parameter_list|,
-name|HashCode
+annotation|@
+name|Nullable
+name|int
+index|[]
 name|hc
 parameter_list|,
 name|boolean
@@ -416,11 +375,63 @@ parameter_list|)
 block|{
 name|int
 name|h
-init|=
-name|hc
-operator|.
-name|code
 decl_stmt|;
+if|if
+condition|(
+name|hc
+operator|==
+literal|null
+condition|)
+block|{
+name|threadHashCode
+operator|.
+name|set
+argument_list|(
+name|hc
+operator|=
+operator|new
+name|int
+index|[
+literal|1
+index|]
+argument_list|)
+expr_stmt|;
+comment|// Initialize randomly
+name|int
+name|r
+init|=
+name|rng
+operator|.
+name|nextInt
+argument_list|()
+decl_stmt|;
+comment|// Avoid zero to allow xorShift rehash
+name|h
+operator|=
+name|hc
+index|[
+literal|0
+index|]
+operator|=
+operator|(
+name|r
+operator|==
+literal|0
+operator|)
+condition|?
+literal|1
+else|:
+name|r
+expr_stmt|;
+block|}
+else|else
+name|h
+operator|=
+name|hc
+index|[
+literal|0
+index|]
+expr_stmt|;
 name|boolean
 name|collide
 init|=
@@ -758,6 +769,14 @@ name|h
 operator|<<
 literal|5
 expr_stmt|;
+name|hc
+index|[
+literal|0
+index|]
+operator|=
+name|h
+expr_stmt|;
+comment|// Record index for next time
 block|}
 elseif|else
 if|if
@@ -855,13 +874,6 @@ condition|)
 break|break;
 comment|// Fall back on using base
 block|}
-name|hc
-operator|.
-name|code
-operator|=
-name|h
-expr_stmt|;
-comment|// Record index for next time
 block|}
 comment|/**      * Sets base and all cells to the given value.      */
 DECL|method|internalReset (long initialValue)
