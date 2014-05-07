@@ -275,7 +275,6 @@ name|EPSILON
 init|=
 literal|1e-8
 decl_stmt|;
-comment|/**    * The stopwatch gathers events and presents them as strings.    * R0.6 means a delay of 0.6 seconds caused by the (R)ateLimiter    * U1.0 means the (U)ser caused the stopwatch to sleep for a second.    */
 DECL|field|stopwatch
 specifier|private
 specifier|final
@@ -2313,8 +2312,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * The stopwatch gathers events and presents them as strings.    * R0.6 means a delay of 0.6 seconds caused by the (R)ateLimiter    * U1.0 means the (U)ser caused the stopwatch to sleep for a second.    */
 DECL|class|FakeStopwatch
-specifier|private
 specifier|static
 class|class
 name|FakeStopwatch
