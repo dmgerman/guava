@@ -331,7 +331,7 @@ operator|)
 name|value
 return|;
 block|}
-comment|/**    * Compares the two specified {@code char} values. The sign of the value    * returned is the same as that of {@code ((Character) a).compareTo(b)}.    *    *<p><b>Note:</b> projects using JDK 7 or later should use the equivalent    * {@link Character#compare} method instead.    *    * @param a the first {@code char} to compare    * @param b the second {@code char} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
+comment|/**    * Compares the two specified {@code char} values. The sign of the value    * returned is the same as that of {@code ((Character) a).compareTo(b)}.    *    *<p><b>Note for Java 7 and later:</b> this method should be treated as    * deprecated; use the equivalent {@link Character#compare} method instead.    *    * @param a the first {@code char} to compare    * @param b the second {@code char} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
 DECL|method|compare (char a, char b)
 specifier|public
 specifier|static
