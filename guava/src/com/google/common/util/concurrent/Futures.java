@@ -368,18 +368,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|CountDownLatch
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|ExecutionException
 import|;
 end_import
@@ -2380,18 +2368,6 @@ name|O
 argument_list|>
 name|outputFuture
 decl_stmt|;
-DECL|field|outputCreated
-specifier|private
-specifier|final
-name|CountDownLatch
-name|outputCreated
-init|=
-operator|new
-name|CountDownLatch
-argument_list|(
-literal|1
-argument_list|)
-decl_stmt|;
 DECL|method|ChainingListenableFuture ( AsyncFunction<? super I, ? extends O> function, ListenableFuture<? extends I> inputFuture)
 specifier|private
 name|ChainingListenableFuture
@@ -2737,12 +2713,6 @@ expr_stmt|;
 name|inputFuture
 operator|=
 literal|null
-expr_stmt|;
-comment|// Allow our get routines to examine outputFuture now.
-name|outputCreated
-operator|.
-name|countDown
-argument_list|()
 expr_stmt|;
 block|}
 block|}
