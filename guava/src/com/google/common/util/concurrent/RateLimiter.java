@@ -408,7 +408,6 @@ name|mutex
 return|;
 block|}
 DECL|method|RateLimiter (SleepingStopwatch stopwatch)
-specifier|private
 name|RateLimiter
 parameter_list|(
 name|SleepingStopwatch
@@ -817,7 +816,7 @@ name|long
 name|nowMicros
 parameter_list|)
 function_decl|;
-comment|/**    * Reserves the requested number of permits and returns the time that those permits can be used    * (with one caveat).    *    * @return the time that the permits may be used, or, if the permits may be used immediately, an    *     arbitrary past or present time    */
+comment|/**    * Reserves the requested number of permits and returns the time that those permits can be used    * (with one caveat).      *    * @return the time that the permits may be used, or, if the permits may be used immediately, an    *     arbitrary past or present time      */
 DECL|method|reserveEarliestAvailable (int permits, long nowMicros)
 specifier|abstract
 name|long
