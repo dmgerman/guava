@@ -561,20 +561,7 @@ literal|1L
 argument_list|)
 return|;
 block|}
-comment|/**    * Reserves a single permit from this {@code RateLimiter} for future use, returning the number of    * microseconds until the reservation.    *    *<p>This method is equivalent to {@code reserve(1)}.    *    * @return time in microseconds to wait until the resource can be acquired.    */
-DECL|method|reserve ()
-name|long
-name|reserve
-parameter_list|()
-block|{
-return|return
-name|reserve
-argument_list|(
-literal|1
-argument_list|)
-return|;
-block|}
-comment|/**    * Reserves the given number of permits from this {@code RateLimiter} for future use, returning    * the number of microseconds until the reservation can be consumed.    *    * @return time in microseconds to wait until the resource can be acquired.    */
+comment|/**    * Reserves the given number of permits from this {@code RateLimiter} for future use, returning    * the number of microseconds until the reservation can be consumed.    *    * @return time in microseconds to wait until the resource can be acquired, never negative    */
 DECL|method|reserve (int permits)
 specifier|final
 name|long
@@ -596,7 +583,7 @@ argument_list|()
 init|)
 block|{
 return|return
-name|reserveNextTicket
+name|reserveAndGetWaitLength
 argument_list|(
 name|permits
 argument_list|,
@@ -743,7 +730,7 @@ else|else
 block|{
 name|microsToWait
 operator|=
-name|reserveNextTicket
+name|reserveAndGetWaitLength
 argument_list|(
 name|permits
 argument_list|,
@@ -776,7 +763,7 @@ name|timeoutMicros
 parameter_list|)
 block|{
 return|return
-name|earliestAvailable
+name|queryEarliestAvailable
 argument_list|(
 name|nowMicros
 argument_list|)
@@ -786,22 +773,58 @@ operator|<=
 name|nowMicros
 return|;
 block|}
-DECL|method|earliestAvailable (long nowMicros)
+comment|/**    * Reserves next ticket and returns the wait time that the caller must wait for.    *    * @return the required wait time, never negative    */
+DECL|method|reserveAndGetWaitLength (int permits, long nowMicros)
+specifier|final
+name|long
+name|reserveAndGetWaitLength
+parameter_list|(
+name|int
+name|permits
+parameter_list|,
+name|long
+name|nowMicros
+parameter_list|)
+block|{
+name|long
+name|momentAvailable
+init|=
+name|reserveEarliestAvailable
+argument_list|(
+name|permits
+argument_list|,
+name|nowMicros
+argument_list|)
+decl_stmt|;
+return|return
+name|max
+argument_list|(
+name|momentAvailable
+operator|-
+name|nowMicros
+argument_list|,
+literal|0
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the earliest time that permits are available (with one caveat).    *    * @return the time that permits are available, or, if permits are available immediately, an    *     arbitrary past or present time    */
+DECL|method|queryEarliestAvailable (long nowMicros)
 specifier|abstract
 name|long
-name|earliestAvailable
+name|queryEarliestAvailable
 parameter_list|(
 name|long
 name|nowMicros
 parameter_list|)
 function_decl|;
-DECL|method|reserveNextTicket (int requiredPermits, long nowMicros)
+comment|/**    * Reserves the requested number of permits and returns the time that those permits can be used    * (with one caveat).    *    * @return the time that the permits may be used, or, if the permits may be used immediately, an    *     arbitrary past or present time    */
+DECL|method|reserveEarliestAvailable (int permits, long nowMicros)
 specifier|abstract
 name|long
-name|reserveNextTicket
+name|reserveEarliestAvailable
 parameter_list|(
 name|int
-name|requiredPermits
+name|permits
 parameter_list|,
 name|long
 name|nowMicros
@@ -952,10 +975,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|earliestAvailable (long nowMicros)
+DECL|method|queryEarliestAvailable (long nowMicros)
 specifier|final
 name|long
-name|earliestAvailable
+name|queryEarliestAvailable
 parameter_list|(
 name|long
 name|nowMicros
@@ -965,12 +988,12 @@ return|return
 name|nextFreeTicketMicros
 return|;
 block|}
-comment|/**      * Reserves next ticket and returns the wait time that the caller must wait for.      *      *<p>The return value is guaranteed to be non-negative.      */
 annotation|@
 name|Override
-DECL|method|reserveNextTicket (int requiredPermits, long nowMicros)
+DECL|method|reserveEarliestAvailable (int requiredPermits, long nowMicros)
+specifier|final
 name|long
-name|reserveNextTicket
+name|reserveEarliestAvailable
 parameter_list|(
 name|int
 name|requiredPermits
@@ -985,16 +1008,9 @@ name|nowMicros
 argument_list|)
 expr_stmt|;
 name|long
-name|microsToNextFreeTicket
+name|returnValue
 init|=
-name|max
-argument_list|(
-literal|0
-argument_list|,
 name|nextFreeTicketMicros
-operator|-
-name|nowMicros
-argument_list|)
 decl_stmt|;
 name|double
 name|storedPermitsToSpend
@@ -1051,7 +1067,7 @@ operator|-=
 name|storedPermitsToSpend
 expr_stmt|;
 return|return
-name|microsToNextFreeTicket
+name|returnValue
 return|;
 block|}
 comment|/**      * Translates a specified portion of our currently stored permits which we want to      * spend/acquire, into a throttling time. Conceptually, this evaluates the integral      * of the underlying function we use, for the range of      * [(storedPermits - permitsToTake), storedPermits].      *      * This always holds: {@code 0<= permitsToTake<= storedPermits}      */
@@ -1460,7 +1476,7 @@ specifier|static
 class|class
 name|SleepingStopwatch
 block|{
-comment|/*      * We always hold the mutex when calling this. TODO(cpovirk): Is that important? Perhaps we need      * to guarantee that each call to reserveNextTicket, etc. sees a value>= the previous? Also, is      * it OK that we don't hold the mutex when sleeping?      */
+comment|/*      * We always hold the mutex when calling this. TODO(cpovirk): Is that important? Perhaps we need      * to guarantee that each call to reserveEarliestAvailable, etc. sees a value>= the previous?      * Also, is it OK that we don't hold the mutex when sleeping?      */
 DECL|method|readMicros ()
 specifier|abstract
 name|long
