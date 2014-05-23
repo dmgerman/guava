@@ -3201,6 +3201,9 @@ literal|0
 index|]
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -3226,6 +3229,9 @@ literal|1
 index|]
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -3250,6 +3256,9 @@ index|[
 literal|2
 index|]
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()

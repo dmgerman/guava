@@ -879,6 +879,9 @@ name|getActualTypeArguments
 argument_list|()
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.

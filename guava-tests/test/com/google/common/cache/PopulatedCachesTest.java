@@ -1652,6 +1652,9 @@ name|toArray
 argument_list|()
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -1675,6 +1678,9 @@ literal|0
 index|]
 argument_list|)
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
@@ -1899,6 +1905,9 @@ name|toArray
 argument_list|()
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -1922,6 +1931,9 @@ literal|0
 index|]
 argument_list|)
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
@@ -2144,6 +2156,9 @@ name|toArray
 argument_list|()
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -2173,6 +2188,9 @@ literal|0
 index|]
 argument_list|)
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()

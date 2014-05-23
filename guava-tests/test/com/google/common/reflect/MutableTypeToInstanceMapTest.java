@@ -1277,10 +1277,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testGeneriArrayType ()
+DECL|method|testGenericArrayType ()
 specifier|public
 name|void
-name|testGeneriArrayType
+name|testGenericArrayType
 parameter_list|()
 block|{
 annotation|@
@@ -1360,6 +1360,9 @@ argument_list|(
 name|type
 argument_list|)
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()

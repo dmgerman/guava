@@ -593,6 +593,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -665,6 +668,9 @@ name|that
 argument_list|(
 name|result
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
@@ -741,6 +747,9 @@ name|that
 argument_list|(
 name|result
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
@@ -1262,6 +1271,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -1301,6 +1313,9 @@ name|that
 argument_list|(
 name|result
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
@@ -1349,6 +1364,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -1394,6 +1412,9 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
+name|asList
+argument_list|()
+operator|.
 name|has
 argument_list|()
 operator|.
@@ -1433,6 +1454,9 @@ name|that
 argument_list|(
 name|result
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
@@ -1480,6 +1504,9 @@ name|that
 argument_list|(
 name|result
 argument_list|)
+operator|.
+name|asList
+argument_list|()
 operator|.
 name|has
 argument_list|()
