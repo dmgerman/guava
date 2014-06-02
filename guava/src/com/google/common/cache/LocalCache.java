@@ -8551,7 +8551,7 @@ argument_list|(
 literal|"Segment.this"
 argument_list|)
 DECL|field|totalWeight
-name|int
+name|long
 name|totalWeight
 decl_stmt|;
 comment|/**      * Number of updates that alter the size of the table. This is used during bulk-read methods to      * make sure they see a consistent snapshot: If modCounts change during a traversal of segments      * loading size or checking containsValue, then we might have an inconsistent view of state      * so (usually) must retry.      */
