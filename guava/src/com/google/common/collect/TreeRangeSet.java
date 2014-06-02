@@ -3197,15 +3197,6 @@ argument_list|>
 name|descendingEntryIterator
 parameter_list|()
 block|{
-name|Iterator
-argument_list|<
-name|Range
-argument_list|<
-name|C
-argument_list|>
-argument_list|>
-name|itr
-decl_stmt|;
 comment|/*        * firstComplementRangeUpperBound is the upper bound of the last complement range with lower        * bound inside complementLowerBoundWindow.        *        * positiveItr starts at the first positive range with upper bound less than        * firstComplementRangeUpperBound. (Positive range upper bounds correspond to complement range        * lower bounds.)        */
 name|Cut
 argument_list|<
