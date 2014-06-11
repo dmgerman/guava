@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for benchmarks.  *  * @author Louis Wasserman  */
+comment|/**  * Utilities for benchmarks.  *  * In many cases, we wish to vary the order of magnitude of the input as much as we  * want to vary the input itself, so most methods which generate values use  * an exponential distribution varying the order of magnitude of the generated values  * uniformly at random.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -166,6 +166,7 @@ block|,
 literal|66
 block|}
 decl_stmt|;
+comment|/**    * Generates values in a distribution equivalent to randomNonNegativeBigInteger    * but omitting zero.    */
 DECL|method|randomPositiveBigInteger (int numBits)
 specifier|static
 name|BigInteger
@@ -175,35 +176,34 @@ name|int
 name|numBits
 parameter_list|)
 block|{
-name|int
-name|digits
-init|=
-name|RANDOM_SOURCE
-operator|.
-name|nextInt
+name|BigInteger
+name|result
+decl_stmt|;
+do|do
+block|{
+name|result
+operator|=
+name|randomNonNegativeBigInteger
 argument_list|(
 name|numBits
 argument_list|)
-operator|+
-literal|1
-decl_stmt|;
+expr_stmt|;
+block|}
+do|while
+condition|(
+name|result
+operator|.
+name|signum
+argument_list|()
+operator|==
+literal|0
+condition|)
+do|;
 return|return
-operator|new
-name|BigInteger
-argument_list|(
-name|digits
-argument_list|,
-name|RANDOM_SOURCE
-argument_list|)
-operator|.
-name|add
-argument_list|(
-name|BigInteger
-operator|.
-name|ONE
-argument_list|)
+name|result
 return|;
 block|}
+comment|/**    * Generates a number in [0, 2^numBits) with an exponential distribution.    * The floor of the log2 of the result is chosen uniformly at random in    * [0, numBits), and then the result is chosen in that range uniformly at random.    * Zero is treated as having log2 == 0.    */
 DECL|method|randomNonNegativeBigInteger (int numBits)
 specifier|static
 name|BigInteger
@@ -222,9 +222,26 @@ name|nextInt
 argument_list|(
 name|numBits
 argument_list|)
-operator|+
-literal|1
 decl_stmt|;
+if|if
+condition|(
+name|digits
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+operator|new
+name|BigInteger
+argument_list|(
+literal|1
+argument_list|,
+name|RANDOM_SOURCE
+argument_list|)
+return|;
+block|}
+else|else
+block|{
 return|return
 operator|new
 name|BigInteger
@@ -233,8 +250,15 @@ name|digits
 argument_list|,
 name|RANDOM_SOURCE
 argument_list|)
+operator|.
+name|setBit
+argument_list|(
+name|digits
+argument_list|)
 return|;
 block|}
+block|}
+comment|/**    * Equivalent to calling randomPositiveBigInteger(numBits) and then flipping    * the sign with 50% probability.    */
 DECL|method|randomNonZeroBigInteger (int numBits)
 specifier|static
 name|BigInteger
@@ -266,6 +290,7 @@ name|negate
 argument_list|()
 return|;
 block|}
+comment|/**    * Chooses a number in (-2^numBits, 2^numBits) at random, with density    * concentrated in numbers of lower magnitude.    */
 DECL|method|randomBigInteger (int numBits)
 specifier|static
 name|BigInteger
@@ -275,28 +300,54 @@ name|int
 name|numBits
 parameter_list|)
 block|{
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+if|if
+condition|(
+name|RANDOM_SOURCE
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+return|return
+name|randomNonNegativeBigInteger
+argument_list|(
+name|numBits
+argument_list|)
+return|;
+block|}
 name|BigInteger
-name|result
+name|neg
 init|=
 name|randomNonNegativeBigInteger
 argument_list|(
 name|numBits
 argument_list|)
-decl_stmt|;
-return|return
-name|RANDOM_SOURCE
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
-name|result
-else|:
-name|result
 operator|.
 name|negate
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|neg
+operator|.
+name|signum
+argument_list|()
+operator|!=
+literal|0
+condition|)
+block|{
+return|return
+name|neg
 return|;
 block|}
+block|}
+block|}
+comment|/**    * Generates a number in [0, 2^numBits) with an exponential distribution.    * The floor of the log2 of the absolute value of the result is chosen uniformly    * at random in [0, numBits), and then the result is chosen from those possibilities    * uniformly at random.    *    * Zero is treated as having log2 == 0.    */
 DECL|method|randomDouble (int maxExponent)
 specifier|static
 name|double
