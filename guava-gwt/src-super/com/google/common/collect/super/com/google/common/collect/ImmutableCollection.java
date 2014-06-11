@@ -417,7 +417,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Abstract base class for builders of {@link ImmutableCollection} types.    *    * @since 10.0    */
+comment|/**    * GWT emulated version of {@link ImmutableCollection.Builder}.    */
 DECL|class|Builder
 specifier|public
 specifier|abstract
