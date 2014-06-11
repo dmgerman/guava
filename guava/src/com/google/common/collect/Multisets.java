@@ -3018,8 +3018,8 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0    */
-DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Multiset<?> occurrencesToRemove)
+comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0    */
+DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Iterable<?> occurrencesToRemove)
 specifier|public
 specifier|static
 name|boolean
@@ -3031,12 +3031,36 @@ name|?
 argument_list|>
 name|multisetToModify
 parameter_list|,
-name|Multiset
+name|Iterable
 argument_list|<
 name|?
 argument_list|>
 name|occurrencesToRemove
 parameter_list|)
+block|{
+if|if
+condition|(
+name|occurrencesToRemove
+operator|instanceof
+name|Multiset
+condition|)
+block|{
+return|return
+name|removeOccurrencesImpl
+argument_list|(
+name|multisetToModify
+argument_list|,
+operator|(
+name|Multiset
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|occurrencesToRemove
+argument_list|)
+return|;
+block|}
+else|else
 block|{
 return|return
 name|removeOccurrencesImpl
@@ -3047,7 +3071,64 @@ name|occurrencesToRemove
 argument_list|)
 return|;
 block|}
-comment|/**    * Delegate that cares about the element types in occurrencesToRemove.    */
+block|}
+DECL|method|removeOccurrencesImpl ( Multiset<?> multisetToModify, Iterable<?> occurrencesToRemove)
+specifier|private
+specifier|static
+name|boolean
+name|removeOccurrencesImpl
+parameter_list|(
+name|Multiset
+argument_list|<
+name|?
+argument_list|>
+name|multisetToModify
+parameter_list|,
+name|Iterable
+argument_list|<
+name|?
+argument_list|>
+name|occurrencesToRemove
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|multisetToModify
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|occurrencesToRemove
+argument_list|)
+expr_stmt|;
+name|boolean
+name|changed
+init|=
+literal|false
+decl_stmt|;
+for|for
+control|(
+name|Object
+name|o
+range|:
+name|occurrencesToRemove
+control|)
+block|{
+name|changed
+operator||=
+name|multisetToModify
+operator|.
+name|remove
+argument_list|(
+name|o
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|changed
+return|;
+block|}
+comment|/**    * Delegate that cares about the element types in multisetToModify.    */
 DECL|method|removeOccurrencesImpl ( Multiset<E> multisetToModify, Multiset<?> occurrencesToRemove)
 specifier|private
 specifier|static
