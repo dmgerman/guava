@@ -1146,7 +1146,7 @@ name|mode
 argument_list|)
 return|;
 block|}
-comment|/*      * Let k be the true value of floor(sqrt(x)), so that      *       *            k * k<= x<  (k + 1) * (k + 1)      * (double) (k * k)<= (double) x<= (double) ((k + 1) * (k + 1))       *          since casting to double is nondecreasing.      *          Note that the right-hand inequality is no longer strict.      * Math.sqrt(k * k)<= Math.sqrt(x)<= Math.sqrt((k + 1) * (k + 1))      *          since Math.sqrt is monotonic.      * (long) Math.sqrt(k * k)<= (long) Math.sqrt(x)<= (long) Math.sqrt((k + 1) * (k + 1))      *          since casting to long is monotonic      * k<= (long) Math.sqrt(x)<= k + 1      *          since (long) Math.sqrt(k * k) == k, as checked exhaustively in      *          {@link LongMathTest#testSqrtOfPerfectSquareAsDoubleIsPerfect}      */
+comment|/*      * Let k be the true value of floor(sqrt(x)), so that      *      *            k * k<= x<  (k + 1) * (k + 1)      * (double) (k * k)<= (double) x<= (double) ((k + 1) * (k + 1))      *          since casting to double is nondecreasing.      *          Note that the right-hand inequality is no longer strict.      * Math.sqrt(k * k)<= Math.sqrt(x)<= Math.sqrt((k + 1) * (k + 1))      *          since Math.sqrt is monotonic.      * (long) Math.sqrt(k * k)<= (long) Math.sqrt(x)<= (long) Math.sqrt((k + 1) * (k + 1))      *          since casting to long is monotonic      * k<= (long) Math.sqrt(x)<= k + 1      *          since (long) Math.sqrt(k * k) == k, as checked exhaustively in      *          {@link LongMathTest#testSqrtOfPerfectSquareAsDoubleIsPerfect}      */
 name|long
 name|guess
 init|=
@@ -1267,7 +1267,7 @@ name|sqrtFloor
 operator|+
 name|sqrtFloor
 decl_stmt|;
-comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both          * x and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare. (We have to deal with overflow, though.)          *           * If we treat halfSquare as an unsigned long, we know that          *            sqrtFloor^2<= x< (sqrtFloor + 1)^2          * halfSquare - sqrtFloor<= x< halfSquare + sqrtFloor + 1          * so |x - halfSquare|<= sqrtFloor.  Therefore, it's safe to treat x - halfSquare as a          * signed long, so lessThanBranchFree is safe for use.          */
+comment|/*          * We wish to test whether or not x<= (sqrtFloor + 0.5)^2 = halfSquare + 0.25. Since both          * x and halfSquare are integers, this is equivalent to testing whether or not x<=          * halfSquare. (We have to deal with overflow, though.)          *          * If we treat halfSquare as an unsigned long, we know that          *            sqrtFloor^2<= x< (sqrtFloor + 1)^2          * halfSquare - sqrtFloor<= x< halfSquare + sqrtFloor + 1          * so |x - halfSquare|<= sqrtFloor.  Therefore, it's safe to treat x - halfSquare as a          * signed long, so lessThanBranchFree is safe for use.          */
 return|return
 name|sqrtFloor
 operator|+
