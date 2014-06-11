@@ -1286,20 +1286,6 @@ argument_list|,
 literal|"x-bzip2"
 argument_list|)
 decl_stmt|;
-DECL|field|X_PROTOBUF
-specifier|public
-specifier|static
-specifier|final
-name|MediaType
-name|X_PROTOBUF
-init|=
-name|createConstant
-argument_list|(
-name|APPLICATION_TYPE
-argument_list|,
-literal|"x-protobuf"
-argument_list|)
-decl_stmt|;
 comment|/**    * Media type for<a href="http://en.wikipedia.org/wiki/Embedded_OpenType">Embedded OpenType</a>    * fonts. This is    *<a href="http://www.iana.org/assignments/media-types/application/vnd.ms-fontobject">registered    *</a> with the IANA.    *    * @since 17.0    */
 DECL|field|EOT
 specifier|public
