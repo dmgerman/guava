@@ -417,7 +417,9 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * Abstract base class for builders of {@link ImmutableCollection} types.    *    * @since 10.0    */
 DECL|class|Builder
+specifier|public
 specifier|abstract
 specifier|static
 class|class
@@ -426,6 +428,10 @@ parameter_list|<
 name|E
 parameter_list|>
 block|{
+DECL|method|Builder ()
+name|Builder
+parameter_list|()
+block|{}
 DECL|method|add (E element)
 specifier|public
 specifier|abstract
