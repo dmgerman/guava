@@ -696,6 +696,12 @@ name|Subscribe
 operator|.
 name|class
 argument_list|)
+operator|&&
+operator|!
+name|superClazzMethod
+operator|.
+name|isBridge
+argument_list|()
 condition|)
 block|{
 name|Class

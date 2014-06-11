@@ -120,6 +120,20 @@ name|Future
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicInteger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test case for {@link EventBus}.  *  * @author Cliff Biffle  */
 end_comment
@@ -1439,6 +1453,71 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Tests that bridge methods are not subscribed to events. In Java 8,    * annotations are included on the bridge method in addition to the original    * method, which causes both the original and bridge methods to be subscribed    * (since both are annotated @Subscribe) without specifically checking for    * bridge methods.    */
+DECL|method|testRegistrationWithBridgeMethod ()
+specifier|public
+name|void
+name|testRegistrationWithBridgeMethod
+parameter_list|()
+block|{
+specifier|final
+name|AtomicInteger
+name|calls
+init|=
+operator|new
+name|AtomicInteger
+argument_list|()
+decl_stmt|;
+name|bus
+operator|.
+name|register
+argument_list|(
+operator|new
+name|Callback
+argument_list|<
+name|String
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Subscribe
+annotation|@
+name|Override
+specifier|public
+name|void
+name|call
+parameter_list|(
+name|String
+name|s
+parameter_list|)
+block|{
+name|calls
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+name|bus
+operator|.
+name|post
+argument_list|(
+literal|"hello"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|calls
+operator|.
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|assertContains (T element, Collection<T> collection)
 specifier|private
 parameter_list|<
@@ -1472,7 +1551,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Records a thrown exception information.    */
+comment|/**    * Records thrown exception information.    */
 DECL|class|RecordingSubscriberExceptionHandler
 specifier|private
 specifier|static
@@ -1655,14 +1734,14 @@ return|;
 block|}
 block|}
 DECL|interface|HierarchyFixtureInterface
-specifier|public
+specifier|private
 interface|interface
 name|HierarchyFixtureInterface
 block|{
 comment|// Exists only for hierarchy mapping; no members.
 block|}
 DECL|interface|HierarchyFixtureSubinterface
-specifier|public
+specifier|private
 interface|interface
 name|HierarchyFixtureSubinterface
 extends|extends
@@ -1671,7 +1750,7 @@ block|{
 comment|// Exists only for hierarchy mapping; no members.
 block|}
 DECL|class|HierarchyFixtureParent
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|HierarchyFixtureParent
@@ -1681,7 +1760,7 @@ block|{
 comment|// Exists only for hierarchy mapping; no members.
 block|}
 DECL|class|HierarchyFixture
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|HierarchyFixture
@@ -1689,6 +1768,23 @@ extends|extends
 name|HierarchyFixtureParent
 block|{
 comment|// Exists only for hierarchy mapping; no members.
+block|}
+DECL|interface|Callback
+specifier|private
+interface|interface
+name|Callback
+parameter_list|<
+name|T
+parameter_list|>
+block|{
+DECL|method|call (T t)
+name|void
+name|call
+parameter_list|(
+name|T
+name|t
+parameter_list|)
+function_decl|;
 block|}
 block|}
 end_class
