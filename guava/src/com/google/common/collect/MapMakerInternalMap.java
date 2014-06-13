@@ -2547,11 +2547,7 @@ name|next
 parameter_list|)
 function_decl|;
 comment|/**      * Copies an entry, assigning it a new {@code next} entry.      *      * @param original the entry to copy      * @param newNext entry in the same bucket      */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|copyEntry ( Segment<K, V> segment, ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 parameter_list|<
 name|K
@@ -2610,11 +2606,7 @@ name|newNext
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|copyExpirableEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
 parameter_list|<
 name|K
@@ -2679,11 +2671,7 @@ name|original
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|copyEvictableEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
 parameter_list|<
 name|K
@@ -4340,11 +4328,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextExpirable
 name|ReferenceEntry
 argument_list|<
@@ -4397,11 +4381,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousExpirable
 name|ReferenceEntry
 argument_list|<
@@ -4511,11 +4491,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each evictable entry type.
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextEvictable
 name|ReferenceEntry
 argument_list|<
@@ -4568,11 +4544,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousEvictable
 name|ReferenceEntry
 argument_list|<
@@ -4721,11 +4693,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextExpirable
 name|ReferenceEntry
 argument_list|<
@@ -4778,11 +4746,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousExpirable
 name|ReferenceEntry
 argument_list|<
@@ -4836,11 +4800,7 @@ name|previous
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each evictable entry type.
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextEvictable
 name|ReferenceEntry
 argument_list|<
@@ -4893,11 +4853,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousEvictable
 name|ReferenceEntry
 argument_list|<
@@ -5451,11 +5407,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextExpirable
 name|ReferenceEntry
 argument_list|<
@@ -5508,11 +5460,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousExpirable
 name|ReferenceEntry
 argument_list|<
@@ -5630,11 +5578,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each evictable entry type.
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextEvictable
 name|ReferenceEntry
 argument_list|<
@@ -5687,11 +5631,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousEvictable
 name|ReferenceEntry
 argument_list|<
@@ -5848,11 +5788,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextExpirable
 name|ReferenceEntry
 argument_list|<
@@ -5905,11 +5841,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousExpirable
 name|ReferenceEntry
 argument_list|<
@@ -5963,11 +5895,7 @@ name|previous
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each evictable entry type.
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextEvictable
 name|ReferenceEntry
 argument_list|<
@@ -6020,11 +5948,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousEvictable
 name|ReferenceEntry
 argument_list|<
@@ -6578,11 +6502,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextExpirable
 name|ReferenceEntry
 argument_list|<
@@ -6635,11 +6555,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousExpirable
 name|ReferenceEntry
 argument_list|<
@@ -6757,11 +6673,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each evictable entry type.
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextEvictable
 name|ReferenceEntry
 argument_list|<
@@ -6814,11 +6726,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousEvictable
 name|ReferenceEntry
 argument_list|<
@@ -6975,11 +6883,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextExpirable
 name|ReferenceEntry
 argument_list|<
@@ -7032,11 +6936,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousExpirable
 name|ReferenceEntry
 argument_list|<
@@ -7090,11 +6990,7 @@ name|previous
 expr_stmt|;
 block|}
 comment|// The code below is exactly the same for each evictable entry type.
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextEvictable
 name|ReferenceEntry
 argument_list|<
@@ -7147,11 +7043,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousEvictable
 name|ReferenceEntry
 argument_list|<
@@ -7778,11 +7670,7 @@ operator|)
 return|;
 block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#newEntry} directly.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 annotation|@
 name|VisibleForTesting
 DECL|method|newEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
@@ -7828,11 +7716,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#copyEntry} directly.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 annotation|@
 name|VisibleForTesting
 DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
@@ -7884,11 +7768,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#setValue} instead.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 annotation|@
 name|VisibleForTesting
 DECL|method|newValueReference (ReferenceEntry<K, V> entry, V value)
@@ -8266,11 +8146,7 @@ operator|>
 literal|0
 return|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|connectExpirables (ReferenceEntry<K, V> previous, ReferenceEntry<K, V> next)
 specifier|static
 parameter_list|<
@@ -8313,11 +8189,7 @@ name|previous
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|nullifyExpirable (ReferenceEntry<K, V> nulled)
 specifier|static
 parameter_list|<
@@ -8425,11 +8297,7 @@ block|}
 block|}
 block|}
 comment|/** Links the evitables together. */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|connectEvictables (ReferenceEntry<K, V> previous, ReferenceEntry<K, V> next)
 specifier|static
 parameter_list|<
@@ -8472,11 +8340,7 @@ name|previous
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|nullifyEvictable (ReferenceEntry<K, V> nulled)
 specifier|static
 parameter_list|<
