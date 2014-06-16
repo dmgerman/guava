@@ -2820,7 +2820,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails immediately.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|allAsList ( ListenableFuture<? extends V>.... futures)
@@ -2864,7 +2864,7 @@ name|INLINE_EXECUTOR
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
+comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails immediately.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|allAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
