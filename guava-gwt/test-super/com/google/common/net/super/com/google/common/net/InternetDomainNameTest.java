@@ -1626,7 +1626,7 @@ name|InternetDomainName
 operator|.
 name|from
 argument_list|(
-literal|"foo.nic.uk"
+literal|"foo.teledata.mz"
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1639,7 +1639,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"uk"
+literal|"mz"
 argument_list|,
 name|domain
 operator|.
