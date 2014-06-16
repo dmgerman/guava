@@ -1653,7 +1653,9 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-throw|throw
+name|IOException
+name|ioException
+init|=
 operator|new
 name|IOException
 argument_list|(
@@ -1670,9 +1672,17 @@ operator|+
 literal|" dataLength: "
 operator|+
 name|dataLength
-argument_list|,
+argument_list|)
+decl_stmt|;
+name|ioException
+operator|.
+name|initCause
+argument_list|(
 name|e
 argument_list|)
+expr_stmt|;
+throw|throw
+name|ioException
 throw|;
 block|}
 block|}
