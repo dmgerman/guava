@@ -1371,6 +1371,28 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// https://code.google.com/p/guava-libraries/issues/detail?id=1781
+DECL|method|testOptimalNumOfHashFunctionsRounding ()
+specifier|public
+name|void
+name|testOptimalNumOfHashFunctionsRounding
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|7
+argument_list|,
+name|BloomFilter
+operator|.
+name|optimalNumOfHashFunctions
+argument_list|(
+literal|319
+argument_list|,
+literal|3072
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**    * Tests that we always get a non-negative optimal size.    */
 DECL|method|testOptimalSize ()
 specifier|public

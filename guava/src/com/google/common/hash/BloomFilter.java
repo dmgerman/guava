@@ -1177,6 +1177,7 @@ name|long
 name|m
 parameter_list|)
 block|{
+comment|// (m / n) * log(2), but avoid truncation due to division!
 return|return
 name|Math
 operator|.
@@ -1191,6 +1192,9 @@ name|Math
 operator|.
 name|round
 argument_list|(
+operator|(
+name|double
+operator|)
 name|m
 operator|/
 name|n
