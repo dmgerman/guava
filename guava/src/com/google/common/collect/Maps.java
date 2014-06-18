@@ -12203,6 +12203,29 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|isEmpty ()
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+operator|!
+name|Iterables
+operator|.
+name|any
+argument_list|(
+name|unfiltered
+operator|.
+name|entrySet
+argument_list|()
+argument_list|,
+name|entryPredicate
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 annotation|@
 name|Nullable
 DECL|method|get (@ullable Object key)
