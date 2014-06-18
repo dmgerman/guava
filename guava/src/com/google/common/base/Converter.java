@@ -705,6 +705,7 @@ block|}
 comment|/**    * Returns a converter whose {@code convert} method applies {@code secondConverter} to the result    * of this converter. Its {@code reverse} method applies the converters in reverse order.    *    *<p>The returned converter is serializable if {@code this} converter and {@code secondConverter}    * are.    */
 DECL|method|andThen (Converter<B, C> secondConverter)
 specifier|public
+specifier|final
 parameter_list|<
 name|C
 parameter_list|>
@@ -715,6 +716,35 @@ argument_list|,
 name|C
 argument_list|>
 name|andThen
+parameter_list|(
+name|Converter
+argument_list|<
+name|B
+argument_list|,
+name|C
+argument_list|>
+name|secondConverter
+parameter_list|)
+block|{
+return|return
+name|doAndThen
+argument_list|(
+name|secondConverter
+argument_list|)
+return|;
+block|}
+comment|/**    * Package-private non-final implementation of andThen() so only we can override it.    */
+DECL|method|doAndThen (Converter<B, C> secondConverter)
+parameter_list|<
+name|C
+parameter_list|>
+name|Converter
+argument_list|<
+name|A
+argument_list|,
+name|C
+argument_list|>
+name|doAndThen
 parameter_list|(
 name|Converter
 argument_list|<
@@ -1498,18 +1528,17 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|andThen (Converter<T, S> otherConverter)
-specifier|public
-parameter_list|<
+DECL|method|doAndThen (Converter<T, S> otherConverter)
+argument_list|<
 name|S
-parameter_list|>
+argument_list|>
 name|Converter
 argument_list|<
 name|T
 argument_list|,
 name|S
 argument_list|>
-name|andThen
+name|doAndThen
 parameter_list|(
 name|Converter
 argument_list|<
