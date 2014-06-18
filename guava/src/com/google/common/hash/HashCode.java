@@ -296,6 +296,16 @@ name|asBytes
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns whether this {@code HashCode} and that {@code HashCode} have the same value, given that    * they have the same number of bits.    */
+DECL|method|equalsSameBits (HashCode that)
+specifier|abstract
+name|boolean
+name|equalsSameBits
+parameter_list|(
+name|HashCode
+name|that
+parameter_list|)
+function_decl|;
 comment|/**    * Creates a 32-bit {@code HashCode} representation of the given int value. The underlying bytes    * are interpreted in little endian order.    *    * @since 15.0 (since 12.0 in HashCodes)    */
 DECL|method|fromInt (int hash)
 specifier|public
@@ -503,6 +513,25 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+DECL|method|equalsSameBits (HashCode that)
+annotation|@
+name|Override
+name|boolean
+name|equalsSameBits
+parameter_list|(
+name|HashCode
+name|that
+parameter_list|)
+block|{
+return|return
+name|hash
+operator|==
+name|that
+operator|.
+name|asInt
+argument_list|()
+return|;
 block|}
 DECL|field|serialVersionUID
 specifier|private
@@ -751,6 +780,25 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|equalsSameBits (HashCode that)
+name|boolean
+name|equalsSameBits
+parameter_list|(
+name|HashCode
+name|that
+parameter_list|)
+block|{
+return|return
+name|hash
+operator|==
+name|that
+operator|.
+name|asLong
+argument_list|()
+return|;
 block|}
 DECL|field|serialVersionUID
 specifier|private
@@ -1093,6 +1141,30 @@ return|return
 name|bytes
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|equalsSameBits (HashCode that)
+name|boolean
+name|equalsSameBits
+parameter_list|(
+name|HashCode
+name|that
+parameter_list|)
+block|{
+return|return
+name|MessageDigest
+operator|.
+name|isEqual
+argument_list|(
+name|bytes
+argument_list|,
+name|that
+operator|.
+name|getBytesInternal
+argument_list|()
+argument_list|)
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1317,22 +1389,18 @@ name|HashCode
 operator|)
 name|object
 decl_stmt|;
-comment|// Undocumented: this is a non-short-circuiting equals(), in case this is a cryptographic
-comment|// hash code, in which case we don't want to leak timing information
 return|return
-name|MessageDigest
-operator|.
-name|isEqual
-argument_list|(
-name|this
-operator|.
-name|asBytes
+name|bits
 argument_list|()
-argument_list|,
+operator|==
 name|that
 operator|.
-name|asBytes
+name|bits
 argument_list|()
+operator|&&
+name|equalsSameBits
+argument_list|(
+name|that
 argument_list|)
 return|;
 block|}
