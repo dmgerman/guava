@@ -3212,11 +3212,7 @@ name|next
 parameter_list|)
 function_decl|;
 comment|/**      * Copies an entry, assigning it a new {@code next} entry.      *      * @param original the entry to copy      * @param newNext entry in the same bucket      */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|copyEntry ( Segment<K, V> segment, ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 parameter_list|<
 name|K
@@ -3275,11 +3271,7 @@ name|newNext
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|copyAccessEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
 parameter_list|<
 name|K
@@ -3344,11 +3336,7 @@ name|original
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|copyWriteEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newEntry)
 parameter_list|<
 name|K
@@ -4896,11 +4884,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextAccess
 name|ReferenceEntry
 argument_list|<
@@ -4953,11 +4937,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousAccess
 name|ReferenceEntry
 argument_list|<
@@ -5099,11 +5079,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextWrite
 name|ReferenceEntry
 argument_list|<
@@ -5156,11 +5132,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousWrite
 name|ReferenceEntry
 argument_list|<
@@ -5302,11 +5274,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextAccess
 name|ReferenceEntry
 argument_list|<
@@ -5359,11 +5327,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousAccess
 name|ReferenceEntry
 argument_list|<
@@ -5456,11 +5420,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextWrite
 name|ReferenceEntry
 argument_list|<
@@ -5513,11 +5473,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousWrite
 name|ReferenceEntry
 argument_list|<
@@ -6077,11 +6033,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextAccess
 name|ReferenceEntry
 argument_list|<
@@ -6134,11 +6086,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousAccess
 name|ReferenceEntry
 argument_list|<
@@ -6288,11 +6236,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextWrite
 name|ReferenceEntry
 argument_list|<
@@ -6345,11 +6289,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousWrite
 name|ReferenceEntry
 argument_list|<
@@ -6499,11 +6439,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextAccess
 name|ReferenceEntry
 argument_list|<
@@ -6556,11 +6492,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousAccess
 name|ReferenceEntry
 argument_list|<
@@ -6653,11 +6585,7 @@ operator|=
 name|time
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|nextWrite
 name|ReferenceEntry
 argument_list|<
@@ -6710,11 +6638,7 @@ operator|=
 name|next
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|field|previousWrite
 name|ReferenceEntry
 argument_list|<
@@ -7698,11 +7622,7 @@ operator|)
 return|;
 block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#newEntry} directly.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 annotation|@
 name|VisibleForTesting
 DECL|method|newEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
@@ -7748,11 +7668,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#copyEntry} directly.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 annotation|@
 name|VisibleForTesting
 DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
@@ -7804,11 +7720,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * This method is a convenience for testing. Code should call {@link Segment#setValue} instead.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 annotation|@
 name|VisibleForTesting
 DECL|method|newValueReference (ReferenceEntry<K, V> entry, V value, int weight)
@@ -8224,11 +8136,7 @@ literal|false
 return|;
 block|}
 comment|// queues
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|connectAccessOrder (ReferenceEntry<K, V> previous, ReferenceEntry<K, V> next)
 specifier|static
 parameter_list|<
@@ -8271,11 +8179,7 @@ name|previous
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|nullifyAccessOrder (ReferenceEntry<K, V> nulled)
 specifier|static
 parameter_list|<
@@ -8321,11 +8225,7 @@ name|nullEntry
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|connectWriteOrder (ReferenceEntry<K, V> previous, ReferenceEntry<K, V> next)
 specifier|static
 parameter_list|<
@@ -8368,11 +8268,7 @@ name|previous
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"Segment.this"
-argument_list|)
+comment|// Guarded By Segment.this
 DECL|method|nullifyWriteOrder (ReferenceEntry<K, V> nulled)
 specifier|static
 parameter_list|<
