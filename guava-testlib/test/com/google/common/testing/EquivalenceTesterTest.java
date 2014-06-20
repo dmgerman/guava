@@ -82,7 +82,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Objects
+name|MoreObjects
 import|;
 end_import
 
@@ -1040,7 +1040,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
