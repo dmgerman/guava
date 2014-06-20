@@ -26,22 +26,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Objects
-operator|.
-name|firstNonNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Preconditions
 operator|.
 name|checkNotNull
@@ -59,6 +43,20 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|MoreObjects
 import|;
 end_import
 
@@ -1627,6 +1625,8 @@ name|key
 argument_list|)
 decl_stmt|;
 return|return
+name|MoreObjects
+operator|.
 name|firstNonNull
 argument_list|(
 name|set

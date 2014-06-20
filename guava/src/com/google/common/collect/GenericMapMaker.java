@@ -96,7 +96,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Objects
+name|MoreObjects
 import|;
 end_import
 
@@ -445,7 +445,7 @@ argument_list|,
 name|V
 argument_list|>
 operator|)
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(

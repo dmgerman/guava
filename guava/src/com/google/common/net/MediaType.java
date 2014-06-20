@@ -222,6 +222,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|MoreObjects
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Objects
 import|;
 end_import
@@ -2220,7 +2234,7 @@ argument_list|)
 decl_stmt|;
 comment|// Return one of the constants if the media type is a known type.
 return|return
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(
@@ -2636,7 +2650,7 @@ argument_list|)
 decl_stmt|;
 comment|// Return one of the constants if the media type is a known type.
 return|return
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(

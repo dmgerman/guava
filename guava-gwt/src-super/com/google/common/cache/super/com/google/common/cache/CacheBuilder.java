@@ -26,22 +26,6 @@ name|common
 operator|.
 name|base
 operator|.
-name|Objects
-operator|.
-name|firstNonNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
 name|Preconditions
 operator|.
 name|checkArgument
@@ -119,6 +103,20 @@ operator|.
 name|base
 operator|.
 name|Equivalence
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|MoreObjects
 import|;
 end_import
 
@@ -728,6 +726,8 @@ name|getKeyEquivalence
 parameter_list|()
 block|{
 return|return
+name|MoreObjects
+operator|.
 name|firstNonNull
 argument_list|(
 name|keyEquivalence
@@ -749,6 +749,8 @@ name|getValueEquivalence
 parameter_list|()
 block|{
 return|return
+name|MoreObjects
+operator|.
 name|firstNonNull
 argument_list|(
 name|valueEquivalence
@@ -1030,7 +1032,7 @@ argument_list|,
 name|V1
 argument_list|>
 operator|)
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(
@@ -1083,6 +1085,8 @@ name|getKeyStrength
 parameter_list|()
 block|{
 return|return
+name|MoreObjects
+operator|.
 name|firstNonNull
 argument_list|(
 name|keyStrength
@@ -1134,6 +1138,8 @@ name|getValueStrength
 parameter_list|()
 block|{
 return|return
+name|MoreObjects
+operator|.
 name|firstNonNull
 argument_list|(
 name|valueStrength
@@ -1491,7 +1497,7 @@ argument_list|,
 name|V1
 argument_list|>
 operator|)
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(

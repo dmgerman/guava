@@ -56,7 +56,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|Objects
+name|MoreObjects
 import|;
 end_import
 
@@ -1212,7 +1212,7 @@ name|columnKey
 argument_list|)
 expr_stmt|;
 return|return
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(
@@ -1306,7 +1306,7 @@ name|rowKey
 argument_list|)
 expr_stmt|;
 return|return
-name|Objects
+name|MoreObjects
 operator|.
 name|firstNonNull
 argument_list|(
