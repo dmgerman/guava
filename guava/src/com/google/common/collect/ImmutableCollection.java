@@ -216,7 +216,6 @@ operator|new
 name|Object
 index|[
 name|size
-argument_list|()
 index|]
 decl_stmt|;
 name|copyIntoArray
