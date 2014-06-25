@@ -91,12 +91,14 @@ name|second
 parameter_list|)
 block|{
 return|return
-name|Objects
-operator|.
-name|firstNonNull
-argument_list|(
 name|first
-argument_list|,
+operator|!=
+literal|null
+condition|?
+name|first
+else|:
+name|checkNotNull
+argument_list|(
 name|second
 argument_list|)
 return|;
@@ -171,8 +173,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@link Class#getSimpleName()} is not GWT compatible yet, so we    * provide our own implementation.    */
+comment|// Package-private so Objects can call it.
 DECL|method|simpleName (Class<?> clazz)
-specifier|private
 specifier|static
 name|String
 name|simpleName

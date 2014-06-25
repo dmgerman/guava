@@ -173,6 +173,8 @@ return|return
 operator|new
 name|ToStringHelper
 argument_list|(
+name|MoreObjects
+operator|.
 name|simpleName
 argument_list|(
 name|self
@@ -203,6 +205,8 @@ return|return
 operator|new
 name|ToStringHelper
 argument_list|(
+name|MoreObjects
+operator|.
 name|simpleName
 argument_list|(
 name|clazz
@@ -231,83 +235,6 @@ name|className
 argument_list|)
 return|;
 block|}
-comment|/**    * {@link Class#getSimpleName()} is not GWT compatible yet, so we    * provide our own implementation.    */
-DECL|method|simpleName (Class<?> clazz)
-specifier|private
-specifier|static
-name|String
-name|simpleName
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|)
-block|{
-name|String
-name|name
-init|=
-name|clazz
-operator|.
-name|getName
-argument_list|()
-decl_stmt|;
-comment|// the nth anonymous class has a class name ending in "Outer$n"
-comment|// and local inner classes have names ending in "Outer.$1Inner"
-name|name
-operator|=
-name|name
-operator|.
-name|replaceAll
-argument_list|(
-literal|"\\$[0-9]+"
-argument_list|,
-literal|"\\$"
-argument_list|)
-expr_stmt|;
-comment|// we want the name of the inner class all by its lonesome
-name|int
-name|start
-init|=
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|'$'
-argument_list|)
-decl_stmt|;
-comment|// if this isn't an inner class, just find the start of the
-comment|// top level class name.
-if|if
-condition|(
-name|start
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-name|start
-operator|=
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|'.'
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|name
-operator|.
-name|substring
-argument_list|(
-name|start
-operator|+
-literal|1
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional},    * this can be accomplished with    * {@linkplain Optional#or(Object) first.or(second)}.    * That approach also allows for lazy evaluation of the fallback instance,    * using {@linkplain Optional#or(Supplier) first.or(Supplier)}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since 3.0    * @deprecated Use {@link MoreObjects#firstNonNull} instead. This method is    *      scheduled for removal in June 2016.    */
 annotation|@
 name|Deprecated
@@ -332,14 +259,12 @@ name|second
 parameter_list|)
 block|{
 return|return
-name|first
-operator|!=
-literal|null
-condition|?
-name|first
-else|:
-name|checkNotNull
+name|MoreObjects
+operator|.
+name|firstNonNull
 argument_list|(
+name|first
+argument_list|,
 name|second
 argument_list|)
 return|;
