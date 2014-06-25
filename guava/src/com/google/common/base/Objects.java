@@ -156,7 +156,7 @@ name|objects
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .omitNullValues()    *       .add("x", 1)    *       .add("y", null)    *       .toString();    *   }}</pre>    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since 2.0    * @deprecated Use {@link MoreObjects#toStringHelper(Object)} instead.    */
+comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   Objects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   Objects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   Objects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   Objects.toStringHelper(this)    *       .omitNullValues()    *       .add("x", 1)    *       .add("y", null)    *       .toString();    *   }}</pre>    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param self the object to generate the string for (typically {@code this}),    *        used only for its class name    * @since 2.0    * @deprecated Use {@link MoreObjects#toStringHelper(Object)} instead. This    *     method is scheduled for removal in June 2016.    */
 annotation|@
 name|Deprecated
 DECL|method|toStringHelper (Object self)
@@ -183,7 +183,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since 7.0 (source-compatible since 2.0)    * @deprecated Use {@link MoreObjects#toStringHelper(Class)} instead.    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using the name of {@code clazz}    * instead of using an instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since 7.0 (source-compatible since 2.0)    * @deprecated Use {@link MoreObjects#toStringHelper(Class)} instead. This    *     method is scheduled for removal in June 2016.    */
 annotation|@
 name|Deprecated
 DECL|method|toStringHelper (Class<?> clazz)
@@ -210,7 +210,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using {@code className} instead    * of using an instance's {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since 7.0 (source-compatible since 2.0)    * @deprecated Use {@link MoreObjects#toStringHelper(String)} instead.    */
+comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as    * {@link Objects#toStringHelper(Object)}, but using {@code className} instead    * of using an instance's {@link Object#getClass()}.    *    * @param className the name of the instance type    * @since 7.0 (source-compatible since 2.0)    * @deprecated Use {@link MoreObjects#toStringHelper(String)} instead. This    *     method is scheduled for removal in June 2016.    */
 annotation|@
 name|Deprecated
 DECL|method|toStringHelper (String className)
@@ -308,7 +308,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional},    * this can be accomplished with    * {@linkplain Optional#or(Object) first.or(second)}.    * That approach also allows for lazy evaluation of the fallback instance,    * using {@linkplain Optional#or(Supplier) first.or(Supplier)}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since 3.0    * @deprecated Use {@link MoreObjects#firstNonNull} instead.    */
+comment|/**    * Returns the first of two given parameters that is not {@code null}, if    * either is, or otherwise throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional},    * this can be accomplished with    * {@linkplain Optional#or(Object) first.or(second)}.    * That approach also allows for lazy evaluation of the fallback instance,    * using {@linkplain Optional#or(Supplier) first.or(Supplier)}.    *    * @return {@code first} if {@code first} is not {@code null}, or    *     {@code second} if {@code first} is {@code null} and {@code second} is    *     not {@code null}    * @throws NullPointerException if both {@code first} and {@code second} were    *     {@code null}    * @since 3.0    * @deprecated Use {@link MoreObjects#firstNonNull} instead. This method is    *      scheduled for removal in June 2016.    */
 annotation|@
 name|Deprecated
 DECL|method|firstNonNull (@ullable T first, @Nullable T second)
@@ -344,7 +344,7 @@ name|second
 argument_list|)
 return|;
 block|}
-comment|/**    * Support class for {@link Objects#toStringHelper}.    *    * @author Jason Lee    * @since 2.0    * @deprecated Use {@link MoreObjects.ToStringHelper} instead.    */
+comment|/**    * Support class for {@link Objects#toStringHelper}.    *    * @author Jason Lee    * @since 2.0    * @deprecated Use {@link MoreObjects.ToStringHelper} instead. This class is    *      scheduled for removal in June 2016.    */
 annotation|@
 name|Deprecated
 DECL|class|ToStringHelper
