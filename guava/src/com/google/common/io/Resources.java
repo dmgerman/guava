@@ -130,16 +130,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|OutputStream
 import|;
 end_import
@@ -194,34 +184,6 @@ specifier|private
 name|Resources
 parameter_list|()
 block|{}
-comment|/**    * Returns a factory that will supply instances of {@link InputStream} that    * read from the given URL.    *    * @param url the URL to read from    * @return the factory    * @deprecated Use {@link #asByteSource(URL)} instead. This method is    *     scheduled for removal in Guava 18.0.    */
-annotation|@
-name|Deprecated
-DECL|method|newInputStreamSupplier (URL url)
-specifier|public
-specifier|static
-name|InputSupplier
-argument_list|<
-name|InputStream
-argument_list|>
-name|newInputStreamSupplier
-parameter_list|(
-name|URL
-name|url
-parameter_list|)
-block|{
-return|return
-name|ByteStreams
-operator|.
-name|asInputSupplier
-argument_list|(
-name|asByteSource
-argument_list|(
-name|url
-argument_list|)
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a {@link ByteSource} that reads from the given URL.    *    * @since 14.0    */
 DECL|method|asByteSource (URL url)
 specifier|public
@@ -308,39 +270,6 @@ operator|+
 literal|")"
 return|;
 block|}
-block|}
-comment|/**    * Returns a factory that will supply instances of    * {@link InputStreamReader} that read a URL using the given character set.    *    * @param url the URL to read from    * @param charset the charset used to decode the input stream; see {@link    *     Charsets} for helpful predefined constants    * @return the factory    * @deprecated Use {@link #asCharSource(URL, Charset)} instead. This method    *     is scheduled for removal in Guava 18.0.    */
-annotation|@
-name|Deprecated
-DECL|method|newReaderSupplier ( URL url, Charset charset)
-specifier|public
-specifier|static
-name|InputSupplier
-argument_list|<
-name|InputStreamReader
-argument_list|>
-name|newReaderSupplier
-parameter_list|(
-name|URL
-name|url
-parameter_list|,
-name|Charset
-name|charset
-parameter_list|)
-block|{
-return|return
-name|CharStreams
-operator|.
-name|asInputSupplier
-argument_list|(
-name|asCharSource
-argument_list|(
-name|url
-argument_list|,
-name|charset
-argument_list|)
-argument_list|)
-return|;
 block|}
 comment|/**    * Returns a {@link CharSource} that reads from the given URL using the given    * character set.    *    * @since 14.0    */
 DECL|method|asCharSource (URL url, Charset charset)
@@ -446,17 +375,15 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|CharStreams
-operator|.
-name|readLines
-argument_list|(
-name|newReaderSupplier
+name|asCharSource
 argument_list|(
 name|url
 argument_list|,
 name|charset
 argument_list|)
-argument_list|,
+operator|.
+name|readLines
+argument_list|(
 name|callback
 argument_list|)
 return|;

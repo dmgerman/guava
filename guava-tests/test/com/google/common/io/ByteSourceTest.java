@@ -1273,7 +1273,7 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-comment|/**    * @param input      the size of the input source    * @param offset     the first argument to {@link ByteStreams#slice}    * @param length     the second argument to {@link ByteStreams#slice}    * @param expectRead the number of bytes we expect to read    */
+comment|/**    * @param input      the size of the input source    * @param offset     the first argument to {@link ByteSource#slice}    * @param length     the second argument to {@link ByteSource#slice}    * @param expectRead the number of bytes we expect to read    */
 DECL|method|assertCorrectSlice ( int input, int offset, long length, int expectRead)
 specifier|private
 specifier|static
