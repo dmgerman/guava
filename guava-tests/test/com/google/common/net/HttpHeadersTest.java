@@ -325,15 +325,6 @@ name|field
 operator|.
 name|isSynthetic
 argument_list|()
-operator|&&
-name|field
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|String
-operator|.
-name|class
 condition|)
 block|{
 name|builder
