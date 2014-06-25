@@ -873,7 +873,7 @@ block|}
 DECL|method|doHash (Object o)
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|int
 name|doHash
 parameter_list|(
