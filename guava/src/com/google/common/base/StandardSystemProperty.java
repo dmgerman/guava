@@ -44,6 +44,16 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a {@linkplain System#getProperties() standard system property}.  *  * @author Kurt Alfred Kluever  * @since 15.0  */
 end_comment
@@ -290,6 +300,8 @@ name|key
 return|;
 block|}
 comment|/**    * Returns the current value for this system property by delegating to    * {@link System#getProperty(String)}.    */
+annotation|@
+name|Nullable
 DECL|method|value ()
 specifier|public
 name|String

@@ -140,11 +140,11 @@ name|string
 return|;
 block|}
 comment|/**    * Returns the given string if it is nonempty; {@code null} otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is nonempty; {@code null} if it is    *     empty or null    */
+annotation|@
+name|Nullable
 DECL|method|emptyToNull (@ullable String string)
 specifier|public
 specifier|static
-annotation|@
-name|Nullable
 name|String
 name|emptyToNull
 parameter_list|(

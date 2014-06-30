@@ -62,6 +62,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class provides default values for all Java types, as defined by the JLS.  *  * @author Ben Yu  * @since 1.0  */
 end_comment
@@ -264,6 +274,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the default value of {@code type} as defined by JLS --- {@code 0} for numbers, {@code    * false} for {@code boolean} and {@code '\0'} for {@code char}. For non-primitive types and    * {@code void}, null is returned.    */
+annotation|@
+name|Nullable
 DECL|method|defaultValue (Class<T> type)
 specifier|public
 specifier|static
