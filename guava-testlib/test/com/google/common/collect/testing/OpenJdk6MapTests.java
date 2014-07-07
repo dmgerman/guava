@@ -210,16 +210,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|lang
@@ -262,6 +252,10 @@ end_import
 
 begin_comment
 comment|/**  * Tests the {@link Map} implementations of {@link java.util}, suppressing  * tests that trip known bugs in OpenJDK 6 or higher.  *  * @author Kevin Bourrillion  */
+end_comment
+
+begin_comment
+comment|/*  * TODO(cpovirk): consider renaming this class in light of our now running it  * under JDK7  */
 end_comment
 
 begin_class
@@ -375,23 +369,6 @@ argument_list|,
 name|getContainsEntryWithIncomparableValueMethod
 argument_list|()
 argument_list|)
-return|;
-block|}
-DECL|method|testsForEnumMap ()
-annotation|@
-name|Override
-specifier|public
-name|Test
-name|testsForEnumMap
-parameter_list|()
-block|{
-comment|// Do nothing.
-comment|// TODO: work around the reused-entry problem
-comment|// http://bugs.sun.com/view_bug.do?bug_id=6312706
-return|return
-operator|new
-name|TestSuite
-argument_list|()
 return|;
 block|}
 block|}
