@@ -543,7 +543,7 @@ name|Futures
 parameter_list|()
 block|{}
 comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture}    * and a {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException}.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @since 9.0 (source-compatible since 1.0)    */
-DECL|method|makeChecked ( ListenableFuture<V> future, Function<Exception, X> mapper)
+DECL|method|makeChecked ( ListenableFuture<V> future, Function<? super Exception, X> mapper)
 specifier|public
 specifier|static
 parameter_list|<
@@ -569,6 +569,8 @@ name|future
 parameter_list|,
 name|Function
 argument_list|<
+name|?
+super|super
 name|Exception
 argument_list|,
 name|X
@@ -5444,13 +5446,15 @@ DECL|field|mapper
 specifier|final
 name|Function
 argument_list|<
+name|?
+super|super
 name|Exception
 argument_list|,
 name|X
 argument_list|>
 name|mapper
 decl_stmt|;
-DECL|method|MappingCheckedFuture (ListenableFuture<V> delegate, Function<Exception, X> mapper)
+DECL|method|MappingCheckedFuture (ListenableFuture<V> delegate, Function<? super Exception, X> mapper)
 name|MappingCheckedFuture
 parameter_list|(
 name|ListenableFuture
@@ -5461,6 +5465,8 @@ name|delegate
 parameter_list|,
 name|Function
 argument_list|<
+name|?
+super|super
 name|Exception
 argument_list|,
 name|X
