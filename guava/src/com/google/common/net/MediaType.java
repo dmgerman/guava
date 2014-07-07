@@ -1459,6 +1459,21 @@ argument_list|,
 literal|"mbox"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for    *<a href="http://goo.gl/1pGBFm">Apple over-the-air mobile configuration profiles</a>.    *    * @since 18.0    */
+DECL|field|APPLE_MOBILE_CONFIG
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|APPLE_MOBILE_CONFIG
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"x-apple-aspen-config"
+argument_list|)
+decl_stmt|;
 DECL|field|MICROSOFT_EXCEL
 specifier|public
 specifier|static
