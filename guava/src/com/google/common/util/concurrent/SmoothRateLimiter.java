@@ -372,6 +372,23 @@ name|maxBurstSeconds
 operator|*
 name|permitsPerSecond
 expr_stmt|;
+if|if
+condition|(
+name|oldMaxPermits
+operator|==
+name|Double
+operator|.
+name|POSITIVE_INFINITY
+condition|)
+block|{
+comment|// if we don't special-case this, we would get storedPermits == NaN, below
+name|storedPermits
+operator|=
+name|maxPermits
+expr_stmt|;
+block|}
+else|else
+block|{
 name|storedPermits
 operator|=
 operator|(
@@ -389,6 +406,7 @@ name|maxPermits
 operator|/
 name|oldMaxPermits
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
