@@ -630,6 +630,32 @@ literal|"testAdd_nullUnsupported"
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the {@link Method} instance for {@link    * #testAdd_unsupportedNotPresent()} so that tests can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} while we figure out    * what to do with<a href="http://goo.gl/qJBruX">{@code ConcurrentHashMap}    * support for {@code entrySet().add()}</a>.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
+DECL|method|getAddUnsupportedNotPresentMethod ()
+specifier|public
+specifier|static
+name|Method
+name|getAddUnsupportedNotPresentMethod
+parameter_list|()
+block|{
+return|return
+name|Helpers
+operator|.
+name|getMethod
+argument_list|(
+name|CollectionAddTester
+operator|.
+name|class
+argument_list|,
+literal|"testAdd_unsupportedNotPresent"
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

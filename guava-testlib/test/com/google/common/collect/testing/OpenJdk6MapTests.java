@@ -32,6 +32,66 @@ name|testing
 operator|.
 name|testers
 operator|.
+name|CollectionAddAllTester
+operator|.
+name|getAddAllUnsupportedNonePresentMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|CollectionAddAllTester
+operator|.
+name|getAddAllUnsupportedSomePresentMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
+name|CollectionAddTester
+operator|.
+name|getAddUnsupportedNotPresentMethod
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|testers
+operator|.
 name|CollectionCreationTester
 operator|.
 name|getCreateWithNullUnsupportedMethod
@@ -201,7 +261,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link Map} implementations of {@link java.util}, suppressing  * tests that trip known OpenJDK 6 bugs.  *  * @author Kevin Bourrillion  */
+comment|/**  * Tests the {@link Map} implementations of {@link java.util}, suppressing  * tests that trip known bugs in OpenJDK 6 or higher.  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -261,6 +321,34 @@ name|getContainsEntryWithIncomparableKeyMethod
 argument_list|()
 argument_list|,
 name|getContainsEntryWithIncomparableValueMethod
+argument_list|()
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|suppressForConcurrentHashMap ()
+specifier|protected
+name|Collection
+argument_list|<
+name|Method
+argument_list|>
+name|suppressForConcurrentHashMap
+parameter_list|()
+block|{
+comment|/*      * The entrySet() of ConcurrentHashMap, unlike that of other Map      * implementations, supports add() under JDK8. This seems problematic, but I      * didn't see that discussed in the review, which included many other      * changes: http://goo.gl/okTTdr      *      * TODO(cpovirk): decide what the best long-term action here is: force users      * to suppress (as we do now), stop testing entrySet().add() at all, make      * entrySet().add() tests tolerant of either behavior, introduce a map      * feature for entrySet() that supports add(), or something else      */
+return|return
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|getAddUnsupportedNotPresentMethod
+argument_list|()
+argument_list|,
+name|getAddAllUnsupportedNonePresentMethod
+argument_list|()
+argument_list|,
+name|getAddAllUnsupportedSomePresentMethod
 argument_list|()
 argument_list|)
 return|;
