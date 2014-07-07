@@ -292,7 +292,9 @@ name|threads
 init|=
 operator|new
 name|HashSet
-argument_list|<>
+argument_list|<
+name|Thread
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|method|before ()
