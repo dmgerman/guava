@@ -42,6 +42,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -361,6 +375,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    * @since 18.0    */
+annotation|@
+name|Beta
 DECL|method|of (E[] elements)
 specifier|public
 specifier|static
@@ -476,6 +492,8 @@ return|;
 block|}
 comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by those of {@code other}. The iterators are not polled until necessary.    *    *<p>The returned iterable's {@code Iterator} supports {@code remove()} when the corresponding    * {@code Iterator} supports it.    *    * @since 18.0    */
 annotation|@
+name|Beta
+annotation|@
 name|CheckReturnValue
 DECL|method|append (Iterable<? extends E> other)
 specifier|public
@@ -510,6 +528,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a fluent iterable whose iterators traverse first the elements of this fluent iterable,    * followed by {@code elements}.    *    * @since 18.0    */
+annotation|@
+name|Beta
 annotation|@
 name|CheckReturnValue
 DECL|method|append (E... elements)
@@ -1391,6 +1411,8 @@ name|collection
 return|;
 block|}
 comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    * @since 18.0    */
+annotation|@
+name|Beta
 DECL|method|join (Joiner joiner)
 specifier|public
 specifier|final
