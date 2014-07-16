@@ -156,23 +156,25 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|com
 operator|.
-name|framework
+name|google
 operator|.
-name|TestCase
+name|common
+operator|.
+name|truth
+operator|.
+name|CollectionSubject
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|junit
 operator|.
-name|truth0
+name|framework
 operator|.
-name|subjects
-operator|.
-name|CollectionSubject
+name|TestCase
 import|;
 end_import
 
