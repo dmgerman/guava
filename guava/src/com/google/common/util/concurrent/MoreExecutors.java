@@ -908,16 +908,16 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|SameThreadExecutorService
+name|DirectExecutorService
 argument_list|()
 return|;
 block|}
 comment|// See sameThreadExecutor javadoc for behavioral notes.
-DECL|class|SameThreadExecutorService
+DECL|class|DirectExecutorService
 specifier|private
 specifier|static
 class|class
-name|SameThreadExecutorService
+name|DirectExecutorService
 extends|extends
 name|AbstractListeningExecutorService
 block|{
