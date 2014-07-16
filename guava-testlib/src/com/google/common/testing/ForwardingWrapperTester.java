@@ -196,6 +196,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Modifier
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|List
@@ -324,6 +336,25 @@ range|:
 name|methods
 control|)
 block|{
+comment|// Under java 8, interfaces can have default methods that aren't abstract.
+comment|// No need to verify them.
+comment|// Can't check isDefault() for JDK 7 compatibility.
+if|if
+condition|(
+operator|!
+name|Modifier
+operator|.
+name|isAbstract
+argument_list|(
+name|method
+operator|.
+name|getModifiers
+argument_list|()
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 comment|// The interface could be package-private or private.
 comment|// filter out equals/hashCode/toString
 if|if
