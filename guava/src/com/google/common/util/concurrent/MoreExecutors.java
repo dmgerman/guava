@@ -898,8 +898,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 10.0 (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"    *>mostly source-compatible</a> since 3.0)    */
+comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 10.0 (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"    *>mostly source-compatible</a> since 3.0)    * @deprecated Use {@link #directExecutor()} if you only require an {@link Executor} and    *     {@link #newDirectExecutorService()} if you need a {@link ListeningExecutorService}.    */
 DECL|method|sameThreadExecutor ()
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|ListeningExecutorService
@@ -1262,6 +1264,63 @@ name|unlock
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 18.0 (present as MoreExecutors.sameThreadExecutor() since 10.0)    */
+DECL|method|newDirectExecutorService ()
+specifier|public
+specifier|static
+name|ListeningExecutorService
+name|newDirectExecutorService
+parameter_list|()
+block|{
+return|return
+operator|new
+name|DirectExecutorService
+argument_list|()
+return|;
+block|}
+comment|/**    * Returns an {@link Executor} that runs each task in the thread that invokes    * {@link Executor#execute execute}, as in {@link CallerRunsPolicy}.    *    *<p>This instance is equivalent to:<pre>   {@code    *   final class DirectExecutor implements Executor {    *     public void execute(Runnable r) {    *       r.run();    *     }    *   }}</pre>    *    *<p>This should be preferred to {@link #newDirectExecutorService()} because the implementing the    * {@link ExecutorService} subinterface necessitates significant performance overhead.    *    * @since 18.0    */
+DECL|method|directExecutor ()
+specifier|public
+specifier|static
+name|Executor
+name|directExecutor
+parameter_list|()
+block|{
+return|return
+name|DirectExecutor
+operator|.
+name|INSTANCE
+return|;
+block|}
+comment|/** See {@link #directExecutor} for behavioral notes. */
+DECL|enum|DirectExecutor
+specifier|private
+enum|enum
+name|DirectExecutor
+implements|implements
+name|Executor
+block|{
+DECL|enumConstant|INSTANCE
+name|INSTANCE
+block|;
+DECL|method|execute (Runnable command)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|execute
+parameter_list|(
+name|Runnable
+name|command
+parameter_list|)
+block|{
+name|command
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Creates an {@link ExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the    * given delegate executor. Those methods, as well as {@code execute} and    * {@code invokeAny}, are implemented in terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the    * delegate. This implies that the returned {@code ListeningExecutorService}    * never calls the delegate's {@code submit}, {@code invokeAll}, and {@code    * invokeAny} methods, so any special handling of tasks must be implemented in    * the delegate's {@code execute} method or by wrapping the returned {@code    * ListeningExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningExecutorService}, it is returned untouched, and the rest of this    * documentation does not apply.    *    * @since 10.0    */
