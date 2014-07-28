@@ -340,11 +340,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/*    * A NoOp service that will delay the startup and shutdown notification for a configurable amount    * of time.    */
-DECL|class|NoOpDelayedSerivce
+DECL|class|NoOpDelayedService
 specifier|private
 specifier|static
 class|class
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 extends|extends
 name|NoOpService
 block|{
@@ -353,9 +353,9 @@ specifier|private
 name|long
 name|delay
 decl_stmt|;
-DECL|method|NoOpDelayedSerivce (long delay)
+DECL|method|NoOpDelayedService (long delay)
 specifier|public
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 parameter_list|(
 name|long
 name|delay
@@ -545,7 +545,7 @@ name|Service
 name|a
 init|=
 operator|new
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 argument_list|(
 literal|150
 argument_list|)
@@ -554,7 +554,7 @@ name|Service
 name|b
 init|=
 operator|new
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 argument_list|(
 literal|353
 argument_list|)
@@ -658,7 +658,7 @@ name|Service
 name|b
 init|=
 operator|new
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 argument_list|(
 literal|353
 argument_list|)
@@ -675,7 +675,7 @@ operator|.
 name|doStart
 argument_list|()
 expr_stmt|;
-comment|// This will delay service listener execution
+comment|// This will delay service listener execution at least 150 milliseconds
 name|Uninterruptibles
 operator|.
 name|sleepUninterruptibly
@@ -694,7 +694,7 @@ name|Service
 name|a
 init|=
 operator|new
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 argument_list|(
 literal|150
 argument_list|)
@@ -783,6 +783,10 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 expr_stmt|;
+comment|// Service b startup takes at least 353 millis, but starting the timer is delayed by at least
+comment|// 150 milliseconds. so in a perfect world the timing would be 353-150=203ms, but since either
+comment|// of our sleep calls can be arbitrarily delayed we should just assert that there is a time
+comment|// recorded.
 name|assertThat
 argument_list|(
 name|startupTimes
@@ -793,14 +797,8 @@ name|b
 argument_list|)
 argument_list|)
 operator|.
-name|isInclusivelyInRange
-argument_list|(
-literal|0
-argument_list|,
-literal|353
-operator|-
-literal|150
-argument_list|)
+name|isNotNull
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testServiceStartStop ()
@@ -1554,7 +1552,7 @@ name|Service
 name|a
 init|=
 operator|new
-name|NoOpDelayedSerivce
+name|NoOpDelayedService
 argument_list|(
 literal|50
 argument_list|)
