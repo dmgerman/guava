@@ -20,13 +20,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -744,9 +748,7 @@ argument_list|,
 literal|"getExpectingExecutionException"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|index
 argument_list|)
@@ -758,9 +760,7 @@ argument_list|)
 expr_stmt|;
 comment|// Above our method should be the call to get(). Don't assert on the class
 comment|// because it could be some superclass.
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|e
 operator|.

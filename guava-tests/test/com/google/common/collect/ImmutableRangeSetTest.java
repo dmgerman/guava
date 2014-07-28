@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -821,9 +825,7 @@ operator|.
 name|of
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -911,9 +913,7 @@ operator|.
 name|all
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -1014,9 +1014,7 @@ literal|5
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -1205,9 +1203,7 @@ literal|2
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -1362,9 +1358,7 @@ literal|3
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -1542,9 +1536,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -1750,9 +1742,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -1946,9 +1936,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|rangeSet
 operator|.
@@ -2894,9 +2882,7 @@ argument_list|,
 name|asSet
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|asSet
 argument_list|)

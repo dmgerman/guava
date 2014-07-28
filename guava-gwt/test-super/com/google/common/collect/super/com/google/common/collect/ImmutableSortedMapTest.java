@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -3844,9 +3848,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -3926,9 +3928,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -3999,9 +3999,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -4081,9 +4079,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -4158,9 +4154,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -4235,9 +4229,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -4321,9 +4313,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -4407,9 +4397,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.

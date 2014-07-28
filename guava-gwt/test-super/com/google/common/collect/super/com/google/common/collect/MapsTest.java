@@ -68,13 +68,17 @@ end_import
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -1271,9 +1275,7 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -1302,9 +1304,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -1389,9 +1389,7 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -1420,9 +1418,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -3609,9 +3605,7 @@ name|areEqual
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -3649,9 +3643,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -3677,9 +3669,7 @@ literal|"z"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -3705,9 +3695,7 @@ literal|"a"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -3796,9 +3784,7 @@ name|areEqual
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff2
 operator|.
@@ -3824,9 +3810,7 @@ literal|"z"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff2
 operator|.
@@ -3864,9 +3848,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -4052,9 +4034,7 @@ name|areEqual
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -4092,9 +4072,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -4120,9 +4098,7 @@ literal|"z"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -4148,9 +4124,7 @@ literal|"a"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff1
 operator|.
@@ -4594,9 +4568,7 @@ literal|"five"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -4851,9 +4823,7 @@ literal|"two"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|strings
 argument_list|)
@@ -4906,9 +4876,7 @@ argument_list|,
 name|LENGTH_FUNCTION
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5108,9 +5076,7 @@ literal|"five"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5148,9 +5114,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5186,9 +5150,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5436,9 +5398,7 @@ argument_list|,
 name|headMap
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5569,9 +5529,7 @@ literal|"two"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|strings
 argument_list|)
@@ -5764,9 +5722,7 @@ argument_list|,
 name|LENGTH_FUNCTION
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5858,9 +5814,7 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -5964,9 +5918,7 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -6071,9 +6023,7 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.

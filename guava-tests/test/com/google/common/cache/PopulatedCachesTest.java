@@ -66,6 +66,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -89,18 +105,6 @@ operator|.
 name|TimeUnit
 operator|.
 name|SECONDS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -1627,9 +1631,7 @@ operator|.
 name|keySet
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|keys
 argument_list|)
@@ -1642,9 +1644,7 @@ argument_list|(
 name|expected
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|keys
 operator|.
@@ -1663,9 +1663,7 @@ argument_list|(
 name|expected
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|keys
 operator|.
@@ -1880,9 +1878,7 @@ operator|.
 name|values
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|values
 argument_list|)
@@ -1895,9 +1891,7 @@ argument_list|(
 name|expected
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|values
 operator|.
@@ -1916,9 +1910,7 @@ argument_list|(
 name|expected
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|values
 operator|.
@@ -2120,9 +2112,7 @@ operator|.
 name|entrySet
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|entries
 argument_list|)
@@ -2146,9 +2136,7 @@ operator|)
 name|expected
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|entries
 operator|.
@@ -2173,9 +2161,7 @@ operator|)
 name|expected
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|entries
 operator|.

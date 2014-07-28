@@ -114,6 +114,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -147,18 +163,6 @@ operator|.
 name|TimeUnit
 operator|.
 name|MILLISECONDS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -3510,9 +3514,7 @@ name|lookupKeys
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 operator|.
@@ -3837,9 +3839,7 @@ name|lookupKeys
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 operator|.

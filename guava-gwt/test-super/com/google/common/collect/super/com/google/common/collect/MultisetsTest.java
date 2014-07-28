@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -169,9 +173,7 @@ argument_list|,
 literal|3
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|set
 argument_list|)
@@ -267,9 +269,7 @@ argument_list|,
 literal|3
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|set
 argument_list|)
@@ -354,9 +354,7 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -432,9 +430,7 @@ name|toRetain
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -610,9 +606,7 @@ literal|"c"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -853,9 +847,7 @@ literal|"a"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -910,9 +902,7 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -976,9 +966,7 @@ literal|"c"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -1046,9 +1034,7 @@ literal|"a"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -1112,9 +1098,7 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -1185,9 +1169,7 @@ literal|"a"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -1256,9 +1238,7 @@ literal|"b"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.
@@ -1348,9 +1328,7 @@ argument_list|,
 name|ms2
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|diff
 argument_list|)
@@ -1823,9 +1801,7 @@ name|toRetain
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -1895,9 +1871,7 @@ name|toRemove
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -1982,9 +1956,7 @@ name|toRemove
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -2054,9 +2026,7 @@ name|toRemove
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -2136,9 +2106,7 @@ name|toRemove
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multiset
 argument_list|)
@@ -2308,9 +2276,7 @@ argument_list|(
 name|multiset
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|sortedMultiset
 operator|.
@@ -2354,9 +2320,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|sortedMultiset
 argument_list|)
@@ -2382,9 +2346,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Multisets
 operator|.

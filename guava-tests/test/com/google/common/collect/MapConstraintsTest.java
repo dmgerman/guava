@@ -36,13 +36,17 @@ end_import
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -718,9 +722,7 @@ name|hashCode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -1130,9 +1132,7 @@ name|hashCode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 operator|.
@@ -1714,9 +1714,7 @@ name|multimap
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ImmutableList
 operator|.
@@ -1742,9 +1740,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|constrained
 operator|.
@@ -1856,9 +1852,7 @@ name|hashCode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 operator|.
@@ -3169,9 +3163,7 @@ name|TestValueException
 name|expected
 parameter_list|)
 block|{}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ImmutableList
 operator|.

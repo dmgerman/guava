@@ -22,13 +22,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -688,9 +692,7 @@ operator|.
 name|DERIVED_FEATURE_1
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|FeatureUtil
 operator|.
@@ -727,9 +729,7 @@ operator|.
 name|DERIVED_FEATURE_2
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|FeatureUtil
 operator|.
@@ -770,9 +770,7 @@ operator|.
 name|COMPOUND_DERIVED_FEATURE
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|FeatureUtil
 operator|.
@@ -924,9 +922,7 @@ operator|.
 name|DERIVED_FEATURE_2
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|FeatureUtil
 operator|.
@@ -963,9 +959,7 @@ operator|.
 name|COMPOUND_DERIVED_FEATURE
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|FeatureUtil
 operator|.
@@ -1258,9 +1252,7 @@ name|ConflictingRequirementsException
 name|e
 parameter_list|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|e
 operator|.
@@ -1337,9 +1329,7 @@ name|ConflictingRequirementsException
 name|e
 parameter_list|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|e
 operator|.

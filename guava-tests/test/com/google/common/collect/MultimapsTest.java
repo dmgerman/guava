@@ -102,6 +102,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -109,18 +125,6 @@ operator|.
 name|Arrays
 operator|.
 name|asList
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -2104,9 +2108,7 @@ argument_list|,
 name|unmodifiable
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|unmodifiable
 operator|.
@@ -3295,9 +3297,7 @@ name|elementSet
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimapView
 operator|.
@@ -3313,9 +3313,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimapView
 operator|.
@@ -3331,9 +3329,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimapView
 operator|.
@@ -3356,9 +3352,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimapView
 operator|.
@@ -4529,9 +4523,7 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 operator|.
@@ -6337,9 +6329,7 @@ argument_list|,
 name|square
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|transformed
 operator|.
@@ -6496,9 +6486,7 @@ argument_list|(
 literal|"bbb"
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|transformed
 operator|.
@@ -6622,9 +6610,7 @@ argument_list|,
 name|square
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|transformed
 operator|.
@@ -6783,9 +6769,7 @@ argument_list|,
 name|transformer
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|transformed
 operator|.
@@ -7295,9 +7279,7 @@ argument_list|(
 literal|"baz"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|bazSet
 argument_list|)
@@ -7452,9 +7434,7 @@ argument_list|(
 literal|"baz"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|bazList
 argument_list|)

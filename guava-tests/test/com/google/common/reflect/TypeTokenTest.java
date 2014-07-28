@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -1256,9 +1260,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 argument_list|)
@@ -1278,9 +1280,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1298,9 +1298,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1311,9 +1309,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1327,9 +1323,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1352,9 +1346,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1401,9 +1393,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 argument_list|)
@@ -1423,9 +1413,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1443,9 +1431,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1468,9 +1454,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1491,9 +1475,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1504,9 +1486,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1547,9 +1527,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 argument_list|)
@@ -1569,9 +1547,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1589,9 +1565,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1602,9 +1576,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1618,9 +1590,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1643,9 +1613,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|types
 operator|.
@@ -1720,7 +1688,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 argument_list|)
@@ -1818,7 +1786,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -1881,7 +1849,7 @@ argument_list|()
 block|{}
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -1992,7 +1960,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2042,7 +2010,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2079,7 +2047,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2162,7 +2130,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 argument_list|)
@@ -2205,7 +2173,7 @@ argument_list|(
 name|types
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2231,7 +2199,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2311,7 +2279,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2337,7 +2305,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2361,7 +2329,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -2435,7 +2403,7 @@ operator|.
 name|getTypes
 argument_list|()
 decl_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|types
 operator|.
@@ -3868,9 +3836,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_unbounded
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -3919,9 +3885,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundIsClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -3975,7 +3939,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundsAreClassWithInterface
 parameter_list|()
 block|{
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|TypeToken
 operator|.
@@ -4043,7 +4007,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundsAreInterfaces
 parameter_list|()
 block|{
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|TypeToken
 operator|.
@@ -4120,7 +4084,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundsAreFBoundedInterfaces
 parameter_list|()
 block|{
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|TypeToken
 operator|.
@@ -4197,7 +4161,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundsAreClassWithFBoundedInterface
 parameter_list|()
 block|{
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|TypeToken
 operator|.
@@ -4268,9 +4232,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundIsTypeVariableAndClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -4330,7 +4292,7 @@ name|void
 name|testGetGenericInterfaces_typeVariable_boundIsTypeVariableAndInterface
 parameter_list|()
 block|{
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|TypeToken
 operator|.
@@ -4393,9 +4355,7 @@ name|void
 name|testGetGenericInterfaces_wildcard_lowerBounded
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -4418,9 +4378,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -4451,9 +4409,7 @@ name|void
 name|testGetGenericInterfaces_wildcard_boundIsClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -4476,9 +4432,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|TypeToken
 operator|.
@@ -4529,7 +4483,7 @@ argument_list|>
 argument_list|()
 block|{}
 decl_stmt|;
-name|assertThat
+name|makeUnmodifiable
 argument_list|(
 name|TypeToken
 operator|.
@@ -4580,9 +4534,7 @@ name|void
 name|testGetGenericInterfaces_noInterface
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 operator|new
 name|TypeToken
@@ -11758,9 +11710,7 @@ name|getRawType
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|matrixType
 operator|.
@@ -12547,9 +12497,7 @@ argument_list|(
 name|failMethod
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|invokable
 operator|.
@@ -13145,9 +13093,7 @@ argument_list|(
 name|constructor
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|invokable
 operator|.
@@ -15832,7 +15778,7 @@ block|{}
 end_class
 
 begin_function
-DECL|method|assertThat (Collection<?> actual)
+DECL|method|makeUnmodifiable (Collection<?> actual)
 specifier|private
 specifier|static
 name|CollectionSubject
@@ -15843,7 +15789,7 @@ name|Object
 argument_list|,
 name|?
 argument_list|>
-name|assertThat
+name|makeUnmodifiable
 parameter_list|(
 name|Collection
 argument_list|<
@@ -15853,9 +15799,7 @@ name|actual
 parameter_list|)
 block|{
 return|return
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Collections
 operator|.

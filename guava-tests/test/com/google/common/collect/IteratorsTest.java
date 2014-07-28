@@ -118,6 +118,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -137,18 +153,6 @@ operator|.
 name|Collections
 operator|.
 name|singleton
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -5027,9 +5031,7 @@ name|emptyIterator
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|alreadyThere
 argument_list|)
@@ -5104,9 +5106,7 @@ name|iterator
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|alreadyThere
 argument_list|)
@@ -5183,9 +5183,7 @@ name|iterator
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|alreadyThere
 argument_list|)
@@ -10325,9 +10323,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)
@@ -10353,9 +10349,7 @@ name|hasNext
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)
@@ -10383,9 +10377,7 @@ name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)
@@ -10416,9 +10408,7 @@ name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)

@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -449,9 +453,7 @@ name|getResources
 argument_list|()
 control|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|resource
 operator|.
@@ -466,9 +468,7 @@ operator|.
 name|MANIFEST_NAME
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|resource
 operator|.
@@ -521,9 +521,7 @@ name|testResourceName
 init|=
 literal|"com/google/common/reflect/test.txt"
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|byName
 operator|.
@@ -545,9 +543,7 @@ argument_list|,
 name|testResourceName
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|byToString
 operator|.
@@ -777,9 +773,7 @@ operator|.
 name|getClass
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|names
 argument_list|)
@@ -816,9 +810,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|strings
 argument_list|)
@@ -855,9 +847,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|classes
 argument_list|)
@@ -882,9 +872,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|packageNames
 argument_list|)
@@ -905,9 +893,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|simpleNames
 argument_list|)
@@ -1079,9 +1065,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|names
 argument_list|)
@@ -1106,9 +1090,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|strings
 argument_list|)
@@ -1133,9 +1115,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|classes
 argument_list|)
@@ -1154,9 +1134,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|packageNames
 argument_list|)
@@ -1177,9 +1155,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|simpleNames
 argument_list|)
@@ -1299,9 +1275,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|classes
 argument_list|)
@@ -1499,9 +1473,7 @@ name|void
 name|testClassPathEntries_emptyURLClassLoader_noParent
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -1700,9 +1672,7 @@ argument_list|,
 name|classPathEntries
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|classPathEntries
 operator|.
@@ -1809,9 +1779,7 @@ name|void
 name|testClassPathEntries_notURLClassLoader_noParent
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2180,9 +2148,7 @@ argument_list|,
 name|classLoader
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|scanner
 operator|.
@@ -2255,9 +2221,7 @@ name|delete
 argument_list|()
 expr_stmt|;
 block|}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|scanner
 operator|.
@@ -2384,9 +2348,7 @@ name|void
 name|testGetClassPathFromManifest_nullManifest
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2425,9 +2387,7 @@ argument_list|(
 literal|"base.jar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2465,9 +2425,7 @@ argument_list|(
 literal|"base.jar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2513,9 +2471,7 @@ argument_list|(
 literal|"an_invalid^path"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2559,9 +2515,7 @@ argument_list|(
 literal|"with/relative/dir"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2620,9 +2574,7 @@ argument_list|(
 literal|"with/relative.jar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2681,9 +2633,7 @@ argument_list|(
 literal|"current.jar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2741,9 +2691,7 @@ argument_list|(
 literal|"file:/with/absolute/dir"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2801,9 +2749,7 @@ argument_list|(
 literal|"file:/with/absolute.jar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2861,9 +2807,7 @@ argument_list|(
 literal|"file:/with/absolute.jar relative.jar  relative/dir"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2939,9 +2883,7 @@ argument_list|(
 literal|" relative.jar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.
@@ -2999,9 +2941,7 @@ argument_list|(
 literal|"relative.jar "
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ClassPath
 operator|.

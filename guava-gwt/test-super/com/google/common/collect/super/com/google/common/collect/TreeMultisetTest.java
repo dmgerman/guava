@@ -34,13 +34,17 @@ end_import
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -481,9 +485,7 @@ name|comparator
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 operator|.
@@ -504,9 +506,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 operator|.
@@ -529,9 +529,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 operator|.
@@ -639,9 +637,7 @@ operator|.
 name|elementSet
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -682,9 +678,7 @@ argument_list|,
 literal|"f"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -716,9 +710,7 @@ literal|"c"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -742,9 +734,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -784,9 +774,7 @@ literal|"a"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -810,9 +798,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -925,9 +911,7 @@ operator|.
 name|elementSet
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -968,9 +952,7 @@ argument_list|,
 literal|"f"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -1009,9 +991,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -1035,9 +1015,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -1150,9 +1128,7 @@ operator|.
 name|elementSet
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -1193,9 +1169,7 @@ argument_list|,
 literal|"f"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -1234,9 +1208,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -1256,9 +1228,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -1367,9 +1337,7 @@ operator|.
 name|elementSet
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -1410,9 +1378,7 @@ argument_list|,
 literal|"f"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -1439,9 +1405,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|elementSet
 argument_list|)
@@ -1459,9 +1423,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|subset
 argument_list|)
@@ -1573,9 +1535,7 @@ argument_list|(
 literal|"d"
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ms
 argument_list|)
@@ -1716,9 +1676,7 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ms
 argument_list|)

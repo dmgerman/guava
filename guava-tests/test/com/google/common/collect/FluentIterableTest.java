@@ -18,6 +18,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -25,18 +41,6 @@ operator|.
 name|Arrays
 operator|.
 name|asList
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -1519,9 +1523,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|blist
 argument_list|)
@@ -3572,9 +3574,7 @@ literal|"Z"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|tail
 argument_list|)
@@ -3664,9 +3664,7 @@ literal|"Z"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|tail
 argument_list|)
@@ -3812,9 +3810,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|tail
 argument_list|)
@@ -4201,9 +4197,7 @@ name|void
 name|testToSet
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -4244,9 +4238,7 @@ name|void
 name|testToSet_removeDuplicates
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -4302,9 +4294,7 @@ name|void
 name|testToSortedSet
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -4356,9 +4346,7 @@ name|void
 name|testToSortedSet_removeDuplicates
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -4408,9 +4396,7 @@ name|void
 name|testToMap
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -5000,9 +4986,7 @@ name|void
 name|testCopyInto_List
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -5052,9 +5036,7 @@ name|void
 name|testCopyInto_Set
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -5099,9 +5081,7 @@ name|void
 name|testCopyInto_SetAllDuplicates
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|fluent
 argument_list|(
@@ -5218,9 +5198,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|FluentIterable
 operator|.

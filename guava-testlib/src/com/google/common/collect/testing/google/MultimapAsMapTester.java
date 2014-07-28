@@ -162,13 +162,17 @@ end_import
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -469,9 +473,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|collection
 argument_list|)
@@ -482,9 +484,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|collection
 argument_list|)
@@ -525,9 +525,7 @@ block|{
 name|initMultimapWithNullKey
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -564,9 +562,7 @@ name|void
 name|testAsMapGetNullKeyAbsent
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -647,9 +643,7 @@ name|void
 name|testAsMapRemove
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -789,9 +783,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|valueCollection
 argument_list|)
@@ -831,9 +823,7 @@ name|e4
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|valueCollection
 argument_list|)
@@ -1104,9 +1094,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()

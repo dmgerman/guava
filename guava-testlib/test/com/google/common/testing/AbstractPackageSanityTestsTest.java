@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -115,9 +119,7 @@ name|void
 name|testFindClassesToTest_testClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -135,9 +137,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -155,9 +155,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -175,9 +173,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -202,9 +198,7 @@ name|void
 name|testFindClassesToTest_noCorrespondingTestClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -232,9 +226,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -278,9 +270,7 @@ operator|.
 name|publicApiOnly
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -298,9 +288,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -349,9 +337,7 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -369,9 +355,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -403,9 +387,7 @@ name|void
 name|testFindClassesToTest_withCorrespondingTestClassButNotExplicitlyTested
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -439,9 +421,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -506,9 +486,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -521,9 +499,7 @@ operator|.
 name|isEmpty
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(
@@ -545,9 +521,7 @@ name|void
 name|testFindClassesToTest_withCorrespondingTestClass_noTestName
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|findClassesToTest
 argument_list|(

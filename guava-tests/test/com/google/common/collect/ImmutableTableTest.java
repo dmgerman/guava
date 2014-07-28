@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -1131,9 +1135,7 @@ argument_list|)
 expr_stmt|;
 comment|// Even though rowKeySet, columnKeySet, and cellSet have the same
 comment|// iteration ordering, row has an inconsistent ordering.
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -1159,9 +1161,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|ImmutableTable
 operator|.
@@ -1541,9 +1541,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|copy
 operator|.
@@ -1564,9 +1562,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|copy
 operator|.
@@ -1587,9 +1583,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|copy
 operator|.
@@ -1612,9 +1606,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|copy
 operator|.
@@ -1798,9 +1790,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -1827,9 +1817,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -1860,9 +1848,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -1897,9 +1883,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -1925,9 +1909,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2100,9 +2082,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2125,9 +2105,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2150,9 +2128,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2185,9 +2161,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2215,9 +2189,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2393,9 +2365,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2422,9 +2392,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2587,9 +2555,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2612,9 +2578,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2790,9 +2754,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2823,9 +2785,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -2988,9 +2948,7 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.
@@ -3013,9 +2971,7 @@ operator|.
 name|inOrder
 argument_list|()
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|table
 operator|.

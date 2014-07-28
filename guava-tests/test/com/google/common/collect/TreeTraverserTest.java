@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -689,9 +693,7 @@ name|void
 name|testPreOrder
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|iterationOrder
 argument_list|(
@@ -709,9 +711,7 @@ argument_list|(
 literal|"hdabcegf"
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|binaryIterationOrder
 argument_list|(
@@ -736,9 +736,7 @@ name|void
 name|testPostOrder
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|iterationOrder
 argument_list|(
@@ -756,9 +754,7 @@ argument_list|(
 literal|"abcdefgh"
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|binaryIterationOrder
 argument_list|(
@@ -783,9 +779,7 @@ name|void
 name|testBreadthOrder
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|iterationOrder
 argument_list|(
@@ -803,9 +797,7 @@ argument_list|(
 literal|"hdegabcf"
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|binaryIterationOrder
 argument_list|(
@@ -830,9 +822,7 @@ name|void
 name|testInOrder
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|binaryIterationOrder
 argument_list|(

@@ -82,13 +82,17 @@ end_import
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -275,9 +279,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -346,9 +348,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()

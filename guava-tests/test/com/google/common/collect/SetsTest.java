@@ -132,6 +132,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|io
@@ -175,18 +191,6 @@ operator|.
 name|Collections
 operator|.
 name|singleton
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -2145,9 +2149,7 @@ operator|.
 name|B
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|units
 argument_list|)
@@ -2246,9 +2248,7 @@ operator|.
 name|B
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|units
 argument_list|)
@@ -2316,9 +2316,7 @@ name|of
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|none
 argument_list|)
@@ -2346,9 +2344,7 @@ name|B
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|one
 argument_list|)
@@ -2387,9 +2383,7 @@ name|B
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|two
 argument_list|)
@@ -3362,9 +3356,7 @@ literal|"bar"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|set
 argument_list|)
@@ -3438,9 +3430,7 @@ literal|"bar"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|set
 argument_list|)
@@ -3567,9 +3557,7 @@ argument_list|(
 name|iterable
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|set
 argument_list|)
@@ -3638,9 +3626,7 @@ argument_list|(
 name|iterable
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|set
 argument_list|)
@@ -4407,9 +4393,7 @@ argument_list|(
 name|set
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|copy
 argument_list|)
@@ -4495,9 +4479,7 @@ name|void
 name|testCartesianProduct_zeroary
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.
@@ -4528,9 +4510,7 @@ name|void
 name|testCartesianProduct_unary
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.
@@ -4730,9 +4710,7 @@ name|void
 name|testCartesianProduct_binary1x1
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.
@@ -4776,9 +4754,7 @@ name|void
 name|testCartesianProduct_binary1x2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.
@@ -4834,9 +4810,7 @@ name|void
 name|testCartesianProduct_binary2x2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.
@@ -4908,9 +4882,7 @@ name|void
 name|testCartesianProduct_2x2x2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.
@@ -5239,9 +5211,7 @@ argument_list|,
 literal|"4"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Sets
 operator|.

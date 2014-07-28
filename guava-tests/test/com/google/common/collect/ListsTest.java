@@ -52,6 +52,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -71,18 +87,6 @@ operator|.
 name|Collections
 operator|.
 name|singletonList
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|truth0
-operator|.
-name|Truth
-operator|.
-name|ASSERT
 import|;
 end_import
 
@@ -2740,9 +2744,7 @@ argument_list|>
 name|list
 parameter_list|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)
@@ -2849,9 +2851,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)
@@ -3099,9 +3099,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|list
 argument_list|)
@@ -3687,9 +3685,7 @@ name|void
 name|testCartesianProduct_binary1x1
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Lists
 operator|.
@@ -3733,9 +3729,7 @@ name|void
 name|testCartesianProduct_binary1x2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Lists
 operator|.
@@ -3791,9 +3785,7 @@ name|void
 name|testCartesianProduct_binary2x2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Lists
 operator|.
@@ -3865,9 +3857,7 @@ name|void
 name|testCartesianProduct_2x2x2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Lists
 operator|.
@@ -4196,9 +4186,7 @@ argument_list|,
 literal|"4"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|Lists
 operator|.

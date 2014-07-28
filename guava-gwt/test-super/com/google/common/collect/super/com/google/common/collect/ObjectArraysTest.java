@@ -18,13 +18,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -688,9 +692,7 @@ index|[]
 block|{}
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 argument_list|)
@@ -731,9 +733,7 @@ literal|"bar"
 block|}
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 argument_list|)
@@ -781,9 +781,7 @@ literal|"baz"
 block|}
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 argument_list|)
@@ -829,9 +827,7 @@ argument_list|,
 literal|"foo"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 argument_list|)
@@ -872,9 +868,7 @@ argument_list|,
 literal|"bar"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 argument_list|)
@@ -922,9 +916,7 @@ argument_list|,
 literal|"baz"
 argument_list|)
 decl_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|result
 argument_list|)

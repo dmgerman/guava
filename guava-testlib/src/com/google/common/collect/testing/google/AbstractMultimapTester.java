@@ -22,13 +22,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -775,9 +779,7 @@ argument_list|>
 name|values
 parameter_list|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -805,9 +807,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -841,9 +841,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()
@@ -863,9 +861,7 @@ expr_stmt|;
 block|}
 comment|// TODO(user): Add proper overrides to prevent autoboxing.
 comment|// Truth+autoboxing == compile error. Cast int to long to fix:
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|multimap
 argument_list|()

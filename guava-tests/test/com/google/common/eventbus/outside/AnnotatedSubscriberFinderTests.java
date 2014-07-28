@@ -20,13 +20,17 @@ end_package
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -285,9 +289,7 @@ name|void
 name|testNonSubscriber
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -305,9 +307,7 @@ name|void
 name|testSubscriber
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -462,9 +462,7 @@ name|void
 name|testOverriddenAndAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -487,9 +485,7 @@ name|void
 name|testOverriddenNotAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -821,9 +817,7 @@ name|void
 name|testNotOverriddenInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -846,9 +840,7 @@ name|void
 name|testOverriddenNotAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -871,9 +863,7 @@ name|void
 name|testDifferentlyOverriddenNotAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -889,9 +879,7 @@ argument_list|(
 name|EVENT
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -909,9 +897,7 @@ name|void
 name|testOverriddenAndAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -934,9 +920,7 @@ name|void
 name|testDifferentlyOverriddenAndAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -952,9 +936,7 @@ argument_list|(
 name|EVENT
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1100,9 +1082,7 @@ name|void
 name|testOverriddenAndAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1125,9 +1105,7 @@ name|void
 name|testOverriddenInSubclassNowhereAnnotated
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1316,9 +1294,7 @@ name|void
 name|testNeitherOverriddenNorAnnotated
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1336,9 +1312,7 @@ name|void
 name|testOverriddenInSubclassNowhereAnnotated
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1356,9 +1330,7 @@ name|void
 name|testOverriddenAndAnnotatedInSubclass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1798,9 +1770,7 @@ name|void
 name|testAnnotatedIn1
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1823,9 +1793,7 @@ name|void
 name|testAnnotatedIn2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1848,9 +1816,7 @@ name|void
 name|testAnnotatedIn1And2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1873,9 +1839,7 @@ name|void
 name|testAnnotatedIn1And2AndClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1898,9 +1862,7 @@ name|void
 name|testDeclaredIn1AnnotatedIn2
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1923,9 +1885,7 @@ name|void
 name|testDeclaredIn1AnnotatedInClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1948,9 +1908,7 @@ name|void
 name|testDeclaredIn2AnnotatedInClass
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()
@@ -1973,9 +1931,7 @@ name|void
 name|testNowhereAnnotated
 parameter_list|()
 block|{
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|getSubscriber
 argument_list|()

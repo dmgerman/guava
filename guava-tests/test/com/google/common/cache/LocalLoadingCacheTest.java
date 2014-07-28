@@ -66,13 +66,17 @@ end_import
 
 begin_import
 import|import static
-name|org
+name|com
 operator|.
-name|truth0
+name|google
+operator|.
+name|common
+operator|.
+name|truth
 operator|.
 name|Truth
 operator|.
-name|ASSERT
+name|assertThat
 import|;
 end_import
 
@@ -1194,9 +1198,7 @@ name|two
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 argument_list|)
@@ -1211,9 +1213,7 @@ argument_list|(
 name|one
 argument_list|)
 expr_stmt|;
-name|ASSERT
-operator|.
-name|that
+name|assertThat
 argument_list|(
 name|map
 argument_list|)
@@ -1230,12 +1230,12 @@ argument_list|)
 expr_stmt|;
 comment|//TODO(user): Confirm with fry@ that this is a reasonable substitute.
 comment|//Set<Map.Entry<Object, Object>> entries = map.entrySet();
-comment|//ASSERT.that(entries).has().exactly(
+comment|//assertThat(entries).has().exactly(
 comment|//    Maps.immutableEntry(three, one), Maps.immutableEntry(one, two));
 comment|//Set<Object> keys = map.keySet();
-comment|//ASSERT.that(keys).has().exactly(one, three);
+comment|//assertThat(keys).has().exactly(one, three);
 comment|//Collection<Object> values = map.values();
-comment|//ASSERT.that(values).has().exactly(one, two);
+comment|//assertThat(values).has().exactly(one, two);
 name|map
 operator|.
 name|clear
