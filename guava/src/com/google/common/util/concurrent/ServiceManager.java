@@ -1002,14 +1002,6 @@ range|:
 name|copy
 control|)
 block|{
-comment|// We give each listener its own SynchronizedExecutor to ensure that the state transitions
-comment|// are run in the same order that they occur.  The Service.Listener api guarantees us only
-comment|// that the transitions are submitted to the executor in the same order that they occur, so by
-comment|// synchronizing the executions of each listeners callbacks we can ensure that the entire
-comment|// execution of the listener occurs in the same order as the transitions themselves.
-comment|//
-comment|// This is necessary to prevent transitions being played back in the wrong order due to thread
-comment|// races to acquire the monitor in ServiceManagerState.
 name|service
 operator|.
 name|addListener
@@ -1145,6 +1137,13 @@ control|)
 block|{
 try|try
 block|{
+name|state
+operator|.
+name|tryStartTiming
+argument_list|(
+name|service
+argument_list|)
+expr_stmt|;
 name|service
 operator|.
 name|startAsync
@@ -1704,13 +1703,39 @@ argument_list|,
 name|services
 argument_list|)
 expr_stmt|;
-for|for
-control|(
+block|}
+comment|/**      * Attempts to start the timer immediately prior to the service being started via       * {@link Service#startAsync()}.      */
+DECL|method|tryStartTiming (Service service)
+name|void
+name|tryStartTiming
+parameter_list|(
 name|Service
 name|service
-range|:
-name|services
-control|)
+parameter_list|)
+block|{
+name|monitor
+operator|.
+name|enter
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+name|Stopwatch
+name|stopwatch
+init|=
+name|startupTimers
+operator|.
+name|get
+argument_list|(
+name|service
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|stopwatch
+operator|==
+literal|null
+condition|)
 block|{
 name|startupTimers
 operator|.
@@ -1720,9 +1745,18 @@ name|service
 argument_list|,
 name|Stopwatch
 operator|.
-name|createUnstarted
+name|createStarted
 argument_list|()
 argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|monitor
+operator|.
+name|leave
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2214,26 +2248,13 @@ name|Lists
 operator|.
 name|newArrayListWithCapacity
 argument_list|(
-name|states
+name|startupTimers
 operator|.
 name|size
 argument_list|()
-operator|-
-name|states
-operator|.
-name|count
-argument_list|(
-name|NEW
-argument_list|)
-operator|+
-name|states
-operator|.
-name|count
-argument_list|(
-name|STARTING
-argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// N.B. There will only be an entry in the map if the service has started
 for|for
 control|(
 name|Entry
@@ -2266,10 +2287,6 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-comment|// N.B. we check the service state in the multimap rather than via Service.state() because
-comment|// the multimap is guaranteed to be in sync with our timers while the Service.state() is
-comment|// not.  Due to happens-before ness of the monitor this 'weirdness' will not be observable
-comment|// by our caller.
 if|if
 condition|(
 operator|!
@@ -2277,16 +2294,6 @@ name|stopWatch
 operator|.
 name|isRunning
 argument_list|()
-operator|&&
-operator|!
-name|servicesByState
-operator|.
-name|containsEntry
-argument_list|(
-name|NEW
-argument_list|,
-name|service
-argument_list|)
 operator|&&
 operator|!
 operator|(
@@ -2524,15 +2531,27 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|from
+name|stopwatch
 operator|==
-name|NEW
+literal|null
 condition|)
 block|{
+comment|// This means the service was started by some means other than ServiceManager.startAsync
 name|stopwatch
+operator|=
+name|Stopwatch
 operator|.
-name|start
+name|createStarted
 argument_list|()
+expr_stmt|;
+name|startupTimers
+operator|.
+name|put
+argument_list|(
+name|service
+argument_list|,
+name|stopwatch
+argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -2552,7 +2571,7 @@ name|isRunning
 argument_list|()
 condition|)
 block|{
-comment|// N.B. if we miss the STARTING event then we will never record a startup time.
+comment|// N.B. if we miss the STARTING event then we may never record a startup time.
 name|stopwatch
 operator|.
 name|stop
