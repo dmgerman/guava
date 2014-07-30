@@ -24,25 +24,27 @@ name|google
 operator|.
 name|common
 operator|.
-name|hash
+name|base
 operator|.
-name|BloomFilterStrategies
+name|Charsets
 operator|.
-name|BitArray
+name|UTF_8
 import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|base
+name|hash
 operator|.
-name|Charsets
+name|BloomFilterStrategies
+operator|.
+name|BitArray
 import|;
 end_import
 
@@ -260,7 +262,7 @@ literal|1000000
 decl_stmt|;
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|bf
 init|=
@@ -540,7 +542,7 @@ literal|1000000
 decl_stmt|;
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|bf
 init|=
@@ -812,7 +814,7 @@ literal|1000000
 decl_stmt|;
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|bf
 init|=
@@ -824,8 +826,6 @@ name|Funnels
 operator|.
 name|stringFunnel
 argument_list|(
-name|Charsets
-operator|.
 name|UTF_8
 argument_list|)
 argument_list|,
@@ -1656,7 +1656,7 @@ parameter_list|()
 block|{
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|original
 init|=
@@ -1674,7 +1674,7 @@ argument_list|)
 decl_stmt|;
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|copy
 init|=
@@ -2031,7 +2031,7 @@ parameter_list|()
 block|{
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|bf1
 init|=
@@ -2063,7 +2063,7 @@ argument_list|)
 expr_stmt|;
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|bf2
 init|=
@@ -2294,7 +2294,7 @@ control|)
 block|{
 name|BloomFilter
 argument_list|<
-name|CharSequence
+name|String
 argument_list|>
 name|bf
 init|=

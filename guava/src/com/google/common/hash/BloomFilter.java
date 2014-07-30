@@ -331,6 +331,8 @@ specifier|private
 specifier|final
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
@@ -343,7 +345,7 @@ name|Strategy
 name|strategy
 decl_stmt|;
 comment|/**    * Creates a BloomFilter.    */
-DECL|method|BloomFilter (BitArray bits, int numHashFunctions, Funnel<T> funnel, Strategy strategy)
+DECL|method|BloomFilter (BitArray bits, int numHashFunctions, Funnel<? super T> funnel, Strategy strategy)
 specifier|private
 name|BloomFilter
 parameter_list|(
@@ -355,6 +357,8 @@ name|numHashFunctions
 parameter_list|,
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
@@ -936,7 +940,7 @@ name|MURMUR128_MITZ_64
 return|;
 block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
-DECL|method|create ( Funnel<T> funnel, int expectedInsertions , double fpp)
+DECL|method|create ( Funnel<? super T> funnel, int expectedInsertions , double fpp)
 specifier|public
 specifier|static
 parameter_list|<
@@ -950,6 +954,8 @@ name|create
 parameter_list|(
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
@@ -977,7 +983,7 @@ return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|create ( Funnel<T> funnel, int expectedInsertions , double fpp, Strategy strategy)
+DECL|method|create ( Funnel<? super T> funnel, int expectedInsertions , double fpp, Strategy strategy)
 specifier|static
 parameter_list|<
 name|T
@@ -990,6 +996,8 @@ name|create
 parameter_list|(
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
@@ -1126,7 +1134,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
-DECL|method|create (Funnel<T> funnel, int expectedInsertions )
+DECL|method|create ( Funnel<? super T> funnel, int expectedInsertions )
 specifier|public
 specifier|static
 parameter_list|<
@@ -1140,6 +1148,8 @@ name|create
 parameter_list|(
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
@@ -1314,6 +1324,8 @@ DECL|field|funnel
 specifier|final
 name|Funnel
 argument_list|<
+name|?
+super|super
 name|T
 argument_list|>
 name|funnel
