@@ -84,7 +84,7 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
-name|sameThreadExecutor
+name|directExecutor
 import|;
 end_import
 
@@ -341,7 +341,7 @@ init|=
 operator|new
 name|ExecutorSpy
 argument_list|(
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -402,7 +402,7 @@ name|addListener
 argument_list|(
 name|singleCallListener
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -726,7 +726,7 @@ name|addListener
 argument_list|(
 name|singleCallListener
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1091,7 +1091,7 @@ name|addListener
 argument_list|(
 name|earlyListener
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1131,7 +1131,7 @@ name|addListener
 argument_list|(
 name|lateListener
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;

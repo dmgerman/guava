@@ -21,6 +21,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|newDirectExecutorService
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -113,22 +131,6 @@ operator|.
 name|concurrent
 operator|.
 name|ListeningScheduledExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|MoreExecutors
 import|;
 end_import
 
@@ -255,9 +257,7 @@ specifier|final
 name|ListeningExecutorService
 name|delegate
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 annotation|@

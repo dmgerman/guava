@@ -32,7 +32,7 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
-name|sameThreadExecutor
+name|directExecutor
 import|;
 end_import
 
@@ -47,22 +47,6 @@ operator|.
 name|testing
 operator|.
 name|NullPointerTester
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|ExecutionList
 import|;
 end_import
 
@@ -292,9 +276,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -408,9 +390,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -621,7 +601,7 @@ block|}
 argument_list|,
 name|MoreExecutors
 operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -694,7 +674,7 @@ name|add
 argument_list|(
 name|THROWING_RUNNABLE
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -709,7 +689,7 @@ name|add
 argument_list|(
 name|THROWING_RUNNABLE
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;

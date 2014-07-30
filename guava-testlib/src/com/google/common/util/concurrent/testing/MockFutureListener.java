@@ -21,6 +21,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -47,22 +65,6 @@ operator|.
 name|concurrent
 operator|.
 name|ListenableFuture
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|MoreExecutors
 import|;
 end_import
 
@@ -174,9 +176,7 @@ name|addListener
 argument_list|(
 name|this
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;

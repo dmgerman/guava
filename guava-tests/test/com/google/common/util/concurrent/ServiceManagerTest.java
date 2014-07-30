@@ -2037,11 +2037,6 @@ operator|.
 name|addListener
 argument_list|(
 name|listener
-argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|manager
@@ -2364,11 +2359,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|manager

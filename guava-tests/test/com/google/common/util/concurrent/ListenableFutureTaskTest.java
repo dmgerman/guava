@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
 import|import
 name|junit
 operator|.
@@ -265,9 +283,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;

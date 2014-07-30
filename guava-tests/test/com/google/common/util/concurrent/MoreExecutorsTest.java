@@ -68,6 +68,24 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
 name|invokeAnyImpl
 import|;
 end_import
@@ -104,7 +122,7 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
-name|renamingDecorator
+name|newDirectExecutorService
 import|;
 end_import
 
@@ -122,7 +140,7 @@ name|concurrent
 operator|.
 name|MoreExecutors
 operator|.
-name|sameThreadExecutor
+name|renamingDecorator
 import|;
 end_import
 
@@ -610,10 +628,10 @@ parameter_list|()
 block|{}
 block|}
 decl_stmt|;
-DECL|method|testSameThreadExecutorServiceInThreadExecution ()
+DECL|method|testDirectExecutorServiceServiceInThreadExecution ()
 specifier|public
 name|void
-name|testSameThreadExecutorServiceInThreadExecution
+name|testDirectExecutorServiceServiceInThreadExecution
 parameter_list|()
 throws|throws
 name|Exception
@@ -622,9 +640,7 @@ specifier|final
 name|ListeningExecutorService
 name|executor
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -871,10 +887,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSameThreadExecutorInvokeAll ()
+DECL|method|testDirectExecutorServiceInvokeAll ()
 specifier|public
 name|void
-name|testSameThreadExecutorInvokeAll
+name|testDirectExecutorServiceInvokeAll
 parameter_list|()
 throws|throws
 name|Exception
@@ -883,9 +899,7 @@ specifier|final
 name|ExecutorService
 name|executor
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1048,10 +1062,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSameThreadExecutorServiceTermination ()
+DECL|method|testDirectExecutorServiceServiceTermination ()
 specifier|public
 name|void
-name|testSameThreadExecutorServiceTermination
+name|testDirectExecutorServiceServiceTermination
 parameter_list|()
 throws|throws
 name|Exception
@@ -1060,9 +1074,7 @@ specifier|final
 name|ExecutorService
 name|executor
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1492,18 +1504,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSameThreadExecutor_shutdownNow ()
+DECL|method|testDirectExecutorService_shutdownNow ()
 specifier|public
 name|void
-name|testSameThreadExecutor_shutdownNow
+name|testDirectExecutorService_shutdownNow
 parameter_list|()
 block|{
 name|ExecutorService
 name|executor
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 name|assertEquals
@@ -1537,9 +1547,7 @@ block|{
 name|ExecutorService
 name|executor
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 name|executor
@@ -1581,9 +1589,7 @@ block|{
 name|ListeningExecutorService
 name|executor
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 name|List
@@ -1639,9 +1645,7 @@ name|service
 init|=
 name|listeningDecorator
 argument_list|(
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2501,7 +2505,7 @@ block|{
 name|ListeningExecutorService
 name|e
 init|=
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 try|try
@@ -2548,7 +2552,7 @@ block|{
 name|ListeningExecutorService
 name|e
 init|=
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 try|try
@@ -2603,7 +2607,7 @@ block|{
 name|ListeningExecutorService
 name|e
 init|=
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 name|List
@@ -2705,7 +2709,7 @@ block|{
 name|ListeningExecutorService
 name|e
 init|=
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 name|List
@@ -2791,7 +2795,7 @@ block|{
 name|ListeningExecutorService
 name|e
 init|=
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 try|try
@@ -2890,7 +2894,7 @@ name|addListener
 argument_list|(
 name|listener
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3535,7 +3539,7 @@ name|renamingExecutor
 init|=
 name|renamingDecorator
 argument_list|(
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 argument_list|,
 name|Suppliers

@@ -19,6 +19,24 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -293,20 +311,6 @@ init|=
 literal|10
 decl_stmt|;
 comment|// make a param?
-comment|// We execute the listeners on the sameThreadExecutor because we don't really care about what the
-comment|// listeners are doing, and they aren't doing much.
-DECL|field|SAME_THREAD_EXECUTOR
-specifier|private
-specifier|static
-specifier|final
-name|Executor
-name|SAME_THREAD_EXECUTOR
-init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
-argument_list|()
-decl_stmt|;
 comment|// simple interface to wrap our two implementations.
 DECL|interface|ExecutionListWrapper
 interface|interface
@@ -929,7 +933,8 @@ name|add
 argument_list|(
 name|listener
 argument_list|,
-name|SAME_THREAD_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1006,7 +1011,8 @@ name|add
 argument_list|(
 name|listener
 argument_list|,
-name|SAME_THREAD_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|returnValue
@@ -1105,7 +1111,8 @@ name|add
 argument_list|(
 name|listener
 argument_list|,
-name|SAME_THREAD_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|returnValue
@@ -1201,7 +1208,8 @@ name|add
 argument_list|(
 name|listener
 argument_list|,
-name|SAME_THREAD_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1343,7 +1351,8 @@ name|add
 argument_list|(
 name|listener
 argument_list|,
-name|SAME_THREAD_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -19,6 +19,42 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|newDirectExecutorService
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Runnables
+operator|.
+name|doNothing
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -211,26 +247,6 @@ name|RESULT_VALUE
 init|=
 literal|"ran"
 decl_stmt|;
-DECL|field|DO_NOTHING
-specifier|private
-specifier|static
-specifier|final
-name|Runnable
-name|DO_NOTHING
-init|=
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{     }
-block|}
-decl_stmt|;
 comment|// Uninteresting delegations
 DECL|method|testDelegations ()
 specifier|public
@@ -374,7 +390,8 @@ name|testExecutor
 operator|.
 name|execute
 argument_list|(
-name|DO_NOTHING
+name|doNothing
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|mock
@@ -422,7 +439,8 @@ name|testExecutor
 operator|.
 name|submit
 argument_list|(
-name|DO_NOTHING
+name|doNothing
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|mock
@@ -465,7 +483,8 @@ name|testExecutor
 operator|.
 name|submit
 argument_list|(
-name|DO_NOTHING
+name|doNothing
+argument_list|()
 argument_list|,
 name|RESULT_VALUE
 argument_list|)
@@ -1150,9 +1169,7 @@ specifier|private
 name|ExecutorService
 name|inline
 init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 DECL|method|assertLastMethodCalled (String method)

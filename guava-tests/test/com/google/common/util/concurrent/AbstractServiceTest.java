@@ -20,6 +20,24 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -1343,9 +1361,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3522,9 +3538,7 @@ argument_list|(
 name|service
 argument_list|)
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3615,9 +3629,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3686,9 +3698,7 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4075,9 +4085,7 @@ name|addListener
 argument_list|(
 name|listener
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;

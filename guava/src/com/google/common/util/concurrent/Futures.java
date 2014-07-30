@@ -78,6 +78,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Uninterruptibles
 operator|.
 name|getUninterruptibly
@@ -507,36 +525,6 @@ specifier|final
 class|class
 name|Futures
 block|{
-comment|/**    * A 'same thread executor' that isn't an executor service and therefore cannot reject tasks.    *    *<p>Also, since it is a shared instance it should be generally cheaper and faster than    * {@link MoreExecutors#sameThreadExecutor}.    */
-DECL|field|INLINE_EXECUTOR
-specifier|private
-specifier|static
-specifier|final
-name|Executor
-name|INLINE_EXECUTOR
-init|=
-operator|new
-name|Executor
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|execute
-parameter_list|(
-name|Runnable
-name|runnable
-parameter_list|)
-block|{
-name|runnable
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-decl_stmt|;
 DECL|method|Futures ()
 specifier|private
 name|Futures
@@ -1347,7 +1335,8 @@ name|input
 argument_list|,
 name|fallback
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -1594,7 +1583,8 @@ block|}
 block|}
 block|}
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1715,7 +1705,8 @@ name|addListener
 argument_list|(
 name|output
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -1798,7 +1789,8 @@ argument_list|,
 name|executor
 argument_list|)
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -1984,7 +1976,8 @@ name|addListener
 argument_list|(
 name|output
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -2671,7 +2664,8 @@ block|}
 block|}
 block|}
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2862,7 +2856,8 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -2910,7 +2905,8 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -3300,7 +3296,8 @@ block|}
 block|}
 block|}
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -3345,7 +3342,8 @@ argument_list|)
 argument_list|,
 literal|false
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -3393,7 +3391,8 @@ argument_list|)
 argument_list|,
 literal|false
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -3478,7 +3477,8 @@ init|=
 operator|new
 name|SerializingExecutor
 argument_list|(
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 decl_stmt|;
 for|for
@@ -3591,7 +3591,8 @@ name|future
 argument_list|,
 name|callback
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -4829,7 +4830,8 @@ expr_stmt|;
 block|}
 block|}
 argument_list|,
-name|INLINE_EXECUTOR
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Now begin the "real" initialization.

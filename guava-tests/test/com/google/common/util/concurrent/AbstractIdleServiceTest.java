@@ -35,6 +35,24 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1213,9 +1231,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 return|;
 block|}

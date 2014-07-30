@@ -142,6 +142,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|MoreExecutors
+operator|.
+name|directExecutor
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Service
 operator|.
 name|State
@@ -986,14 +1004,6 @@ argument_list|(
 name|state
 argument_list|)
 decl_stmt|;
-name|Executor
-name|sameThreadExecutor
-init|=
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Service
@@ -1014,7 +1024,8 @@ argument_list|,
 name|stateReference
 argument_list|)
 argument_list|,
-name|sameThreadExecutor
+name|directExecutor
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// We check the state after adding the listener as a way to ensure that our listener was added
@@ -1083,9 +1094,7 @@ name|addListener
 argument_list|(
 name|listener
 argument_list|,
-name|MoreExecutors
-operator|.
-name|sameThreadExecutor
+name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
