@@ -706,7 +706,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"hdabcegf"
 argument_list|)
@@ -724,7 +724,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"dbacefg"
 argument_list|)
@@ -749,7 +749,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"abcdefgh"
 argument_list|)
@@ -767,7 +767,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"acbgfed"
 argument_list|)
@@ -792,7 +792,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"hdegabcf"
 argument_list|)
@@ -810,7 +810,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"dbeacfg"
 argument_list|)
@@ -835,7 +835,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 literal|"abcdegf"
 argument_list|)

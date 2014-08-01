@@ -1727,7 +1727,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|ImmutableList
 operator|.
@@ -3176,7 +3176,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|ImmutableList
 operator|.

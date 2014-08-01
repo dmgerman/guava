@@ -3088,7 +3088,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|asList
 argument_list|(
@@ -3179,7 +3179,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|asList
 argument_list|(
@@ -3275,7 +3275,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|asList
 argument_list|(
@@ -3363,7 +3363,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|asList
 argument_list|(
@@ -3457,7 +3457,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|asList
 argument_list|(
@@ -3551,7 +3551,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|asList
 argument_list|(
