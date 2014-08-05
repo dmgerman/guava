@@ -65,14 +65,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test case for {@link EventSubscriber}.  *  * @author Cliff Biffle  */
+comment|/**  * Tests for {@link Subscriber}.  *  * @author Cliff Biffle  * @author Colin Decker  */
 end_comment
 
 begin_class
-DECL|class|EventSubscriberTest
+DECL|class|SubscriberTest
 specifier|public
 class|class
-name|EventSubscriberTest
+name|SubscriberTest
 extends|extends
 name|TestCase
 block|{
@@ -87,6 +87,11 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+DECL|field|bus
+specifier|private
+name|EventBus
+name|bus
+decl_stmt|;
 DECL|field|methodCalled
 specifier|private
 name|boolean
@@ -97,9 +102,9 @@ specifier|private
 name|Object
 name|methodArgument
 decl_stmt|;
-DECL|method|setUp ()
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -107,9 +112,10 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
+name|bus
+operator|=
+operator|new
+name|EventBus
 argument_list|()
 expr_stmt|;
 name|methodCalled
@@ -121,27 +127,91 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * Checks that a no-frills, no-issues method call is properly executed.    *    * @throws Exception  if the aforementioned proper execution is not to be had.    */
-DECL|method|testBasicMethodCall ()
+DECL|method|testCreate ()
 specifier|public
 name|void
-name|testBasicMethodCall
+name|testCreate
+parameter_list|()
+block|{
+name|Subscriber
+name|s1
+init|=
+name|Subscriber
+operator|.
+name|create
+argument_list|(
+name|bus
+argument_list|,
+name|this
+argument_list|,
+name|getTestSubscriberMethod
+argument_list|(
+literal|"recordingMethod"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|s1
+operator|instanceof
+name|Subscriber
+operator|.
+name|SynchronizedSubscriber
+argument_list|)
+expr_stmt|;
+comment|// a thread-safe method should not create a synchronized subscriber
+name|Subscriber
+name|s2
+init|=
+name|Subscriber
+operator|.
+name|create
+argument_list|(
+name|bus
+argument_list|,
+name|this
+argument_list|,
+name|getTestSubscriberMethod
+argument_list|(
+literal|"threadSafeMethod"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertFalse
+argument_list|(
+name|s2
+operator|instanceof
+name|Subscriber
+operator|.
+name|SynchronizedSubscriber
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testInvokeSubscriberMethod_basicMethodCall ()
+specifier|public
+name|void
+name|testInvokeSubscriberMethod_basicMethodCall
 parameter_list|()
 throws|throws
-name|Exception
+name|Throwable
 block|{
 name|Method
 name|method
 init|=
-name|getRecordingMethod
-argument_list|()
+name|getTestSubscriberMethod
+argument_list|(
+literal|"recordingMethod"
+argument_list|)
 decl_stmt|;
-name|EventSubscriber
+name|Subscriber
 name|subscriber
 init|=
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 name|this
 argument_list|,
 name|method
@@ -149,21 +219,21 @@ argument_list|)
 decl_stmt|;
 name|subscriber
 operator|.
-name|handleEvent
+name|invokeSubscriberMethod
 argument_list|(
 name|FIXTURE_ARGUMENT
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Subscriber must call provided method."
+literal|"Subscriber must call provided method"
 argument_list|,
 name|methodCalled
 argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Subscriber argument must be *exactly* the provided object."
+literal|"Subscriber argument must be exactly the provided object."
 argument_list|,
 name|methodArgument
 operator|==
@@ -171,24 +241,31 @@ name|FIXTURE_ARGUMENT
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testExceptionWrapping ()
+DECL|method|testInvokeSubscriberMethod_exceptionWrapping ()
 specifier|public
 name|void
-name|testExceptionWrapping
+name|testInvokeSubscriberMethod_exceptionWrapping
 parameter_list|()
+throws|throws
+name|Throwable
 block|{
 name|Method
 name|method
 init|=
-name|getExceptionThrowingMethod
-argument_list|()
+name|getTestSubscriberMethod
+argument_list|(
+literal|"exceptionThrowingMethod"
+argument_list|)
 decl_stmt|;
-name|EventSubscriber
+name|Subscriber
 name|subscriber
 init|=
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 name|this
 argument_list|,
 name|method
@@ -198,11 +275,9 @@ try|try
 block|{
 name|subscriber
 operator|.
-name|handleEvent
+name|invokeSubscriberMethod
 argument_list|(
-operator|new
-name|Object
-argument_list|()
+name|FIXTURE_ARGUMENT
 argument_list|)
 expr_stmt|;
 name|fail
@@ -214,14 +289,12 @@ block|}
 catch|catch
 parameter_list|(
 name|InvocationTargetException
-name|e
+name|expected
 parameter_list|)
 block|{
 name|assertTrue
 argument_list|(
-literal|"Expected exception must be wrapped."
-argument_list|,
-name|e
+name|expected
 operator|.
 name|getCause
 argument_list|()
@@ -231,26 +304,31 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testErrorPassthrough ()
+DECL|method|testInvokeSubscriberMethod_errorPassthrough ()
 specifier|public
 name|void
-name|testErrorPassthrough
+name|testInvokeSubscriberMethod_errorPassthrough
 parameter_list|()
 throws|throws
-name|InvocationTargetException
+name|Throwable
 block|{
 name|Method
 name|method
 init|=
-name|getErrorThrowingMethod
-argument_list|()
+name|getTestSubscriberMethod
+argument_list|(
+literal|"errorThrowingMethod"
+argument_list|)
 decl_stmt|;
-name|EventSubscriber
+name|Subscriber
 name|subscriber
 init|=
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 name|this
 argument_list|,
 name|method
@@ -260,11 +338,9 @@ try|try
 block|{
 name|subscriber
 operator|.
-name|handleEvent
+name|invokeSubscriberMethod
 argument_list|(
-operator|new
-name|Object
-argument_list|()
+name|FIXTURE_ARGUMENT
 argument_list|)
 expr_stmt|;
 name|fail
@@ -276,11 +352,9 @@ block|}
 catch|catch
 parameter_list|(
 name|JudgmentError
-name|e
+name|expected
 parameter_list|)
-block|{
-comment|// Expected.
-block|}
+block|{     }
 block|}
 DECL|method|testEquals ()
 specifier|public
@@ -328,17 +402,23 @@ argument_list|()
 operator|.
 name|addEqualityGroup
 argument_list|(
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 literal|"foo"
 argument_list|,
 name|charAt
 argument_list|)
 argument_list|,
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 literal|"foo"
 argument_list|,
 name|charAt
@@ -347,9 +427,12 @@ argument_list|)
 operator|.
 name|addEqualityGroup
 argument_list|(
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 literal|"bar"
 argument_list|,
 name|charAt
@@ -358,9 +441,12 @@ argument_list|)
 operator|.
 name|addEqualityGroup
 argument_list|(
-operator|new
-name|EventSubscriber
+name|Subscriber
+operator|.
+name|create
 argument_list|(
+name|bus
+argument_list|,
 literal|"foo"
 argument_list|,
 name|concat
@@ -371,46 +457,30 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Gets a reference to {@link #recordingMethod(Object)}.    *    * @return a Method wrapping {@link #recordingMethod(Object)}.    * @throws IllegalStateException if executed in a context where reflection is    *         unavailable.    * @throws AssertionError if something odd has happened to    *         {@link #recordingMethod(Object)}.    */
-DECL|method|getRecordingMethod ()
+DECL|method|getTestSubscriberMethod (String name)
 specifier|private
 name|Method
-name|getRecordingMethod
-parameter_list|()
+name|getTestSubscriberMethod
+parameter_list|(
+name|String
+name|name
+parameter_list|)
 block|{
-name|Method
-name|method
-decl_stmt|;
 try|try
 block|{
-name|method
-operator|=
+return|return
 name|getClass
 argument_list|()
 operator|.
-name|getMethod
+name|getDeclaredMethod
 argument_list|(
-literal|"recordingMethod"
+name|name
 argument_list|,
 name|Object
 operator|.
 name|class
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SecurityException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"This test needs access to reflection."
-argument_list|)
-throw|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -421,140 +491,13 @@ block|{
 throw|throw
 operator|new
 name|AssertionError
-argument_list|(
-literal|"Someone changed EventSubscriberTest#recordingMethod's visibility, "
-operator|+
-literal|"signature, or removed it entirely.  (Must be public.)"
-argument_list|)
-throw|;
-block|}
-return|return
-name|method
-return|;
-block|}
-comment|/**    * Gets a reference to {@link #exceptionThrowingMethod(Object)}.    *    * @return a Method wrapping {@link #exceptionThrowingMethod(Object)}.    * @throws IllegalStateException if executed in a context where reflection is    *         unavailable.    * @throws AssertionError if something odd has happened to    *         {@link #exceptionThrowingMethod(Object)}.    */
-DECL|method|getExceptionThrowingMethod ()
-specifier|private
-name|Method
-name|getExceptionThrowingMethod
-parameter_list|()
-block|{
-name|Method
-name|method
-decl_stmt|;
-try|try
-block|{
-name|method
-operator|=
-name|getClass
 argument_list|()
-operator|.
-name|getMethod
-argument_list|(
-literal|"exceptionThrowingMethod"
-argument_list|,
-name|Object
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SecurityException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"This test needs access to reflection."
-argument_list|)
 throw|;
 block|}
-catch|catch
-parameter_list|(
-name|NoSuchMethodException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Someone changed EventSubscriberTest#exceptionThrowingMethod's "
-operator|+
-literal|"visibility, signature, or removed it entirely.  (Must be public.)"
-argument_list|)
-throw|;
 block|}
-return|return
-name|method
-return|;
-block|}
-comment|/**    * Gets a reference to {@link #errorThrowingMethod(Object)}.    *    * @return a Method wrapping {@link #errorThrowingMethod(Object)}.    * @throws IllegalStateException if executed in a context where reflection is    *         unavailable.    * @throws AssertionError if something odd has happened to    *         {@link #errorThrowingMethod(Object)}.    */
-DECL|method|getErrorThrowingMethod ()
-specifier|private
-name|Method
-name|getErrorThrowingMethod
-parameter_list|()
-block|{
-name|Method
-name|method
-decl_stmt|;
-try|try
-block|{
-name|method
-operator|=
-name|getClass
-argument_list|()
-operator|.
-name|getMethod
-argument_list|(
-literal|"errorThrowingMethod"
-argument_list|,
-name|Object
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SecurityException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"This test needs access to reflection."
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchMethodException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Someone changed EventSubscriberTest#errorThrowingMethod's "
-operator|+
-literal|"visibility, signature, or removed it entirely.  (Must be public.)"
-argument_list|)
-throw|;
-block|}
-return|return
-name|method
-return|;
-block|}
-comment|/**    * Records the provided object in {@link #methodArgument} and sets    * {@link #methodCalled}.  This method is called reflectively by EventSubscriber    * during tests, and must remain public.    *    * @param arg  argument to record.    */
+comment|/**    * Records the provided object in {@link #methodArgument} and sets {@link #methodCalled}.  This    * method is called reflectively by Subscriber during tests, and must remain public.    *    * @param arg argument to record.    */
+annotation|@
+name|Subscribe
 DECL|method|recordingMethod (Object arg)
 specifier|public
 name|void
@@ -578,6 +521,8 @@ operator|=
 name|arg
 expr_stmt|;
 block|}
+annotation|@
+name|Subscribe
 DECL|method|exceptionThrowingMethod (Object arg)
 specifier|public
 name|void
@@ -595,7 +540,7 @@ name|IntentionalException
 argument_list|()
 throw|;
 block|}
-comment|/** Local exception subclass to check variety of exception thrown. */
+comment|/**    * Local exception subclass to check variety of exception thrown.    */
 DECL|class|IntentionalException
 class|class
 name|IntentionalException
@@ -613,6 +558,8 @@ operator|-
 literal|2500191180248181379L
 decl_stmt|;
 block|}
+annotation|@
+name|Subscribe
 DECL|method|errorThrowingMethod (Object arg)
 specifier|public
 name|void
@@ -628,7 +575,20 @@ name|JudgmentError
 argument_list|()
 throw|;
 block|}
-comment|/** Local Error subclass to check variety of error thrown. */
+annotation|@
+name|Subscribe
+annotation|@
+name|AllowConcurrentEvents
+DECL|method|threadSafeMethod (Object arg)
+specifier|public
+name|void
+name|threadSafeMethod
+parameter_list|(
+name|Object
+name|arg
+parameter_list|)
+block|{   }
+comment|/**    * Local Error subclass to check variety of error thrown.    */
 DECL|class|JudgmentError
 class|class
 name|JudgmentError
