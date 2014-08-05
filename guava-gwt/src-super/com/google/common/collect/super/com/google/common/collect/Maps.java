@@ -1066,12 +1066,23 @@ operator|.
 name|MAX_POWER_OF_TWO
 condition|)
 block|{
+comment|// This is the calculation used in JDK8 to resize when a putAll
+comment|// happens; it seems to be the most conservative calculation we
+comment|// can make.  0,75 is the default load factor.
 return|return
-name|expectedSize
-operator|+
+call|(
+name|int
+call|)
+argument_list|(
+operator|(
+name|float
+operator|)
 name|expectedSize
 operator|/
-literal|3
+literal|0.75F
+operator|+
+literal|1.0F
+argument_list|)
 return|;
 block|}
 return|return

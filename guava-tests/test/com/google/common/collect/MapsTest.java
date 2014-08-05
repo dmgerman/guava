@@ -969,7 +969,7 @@ literal|"table size after adding "
 operator|+
 name|size
 operator|+
-literal|"elements"
+literal|" elements: "
 argument_list|,
 name|initialBuckets
 argument_list|,
@@ -1037,7 +1037,14 @@ argument_list|(
 name|hashMap
 argument_list|)
 decl_stmt|;
+comment|// In JDK8, table is set lazily, so it may be null.
 return|return
+name|table
+operator|==
+literal|null
+condition|?
+literal|0
+else|:
 name|table
 operator|.
 name|length
