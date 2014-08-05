@@ -1127,7 +1127,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or e n!}, or    * {@link Double#POSITIVE_INFINITY} if {@code n!> Double.MAX_VALUE}.    *    *<p>The result is within 1 ulp of the true value.    *    * @throws IllegalArgumentException if {@code n< 0}    */
+comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@code n!}, or    * {@link Double#POSITIVE_INFINITY} if {@code n!> Double.MAX_VALUE}.    *    *<p>The result is within 1 ulp of the true value.    *    * @throws IllegalArgumentException if {@code n< 0}    */
 DECL|method|factorial (int n)
 specifier|public
 specifier|static
