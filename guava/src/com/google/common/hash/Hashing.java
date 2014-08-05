@@ -624,6 +624,38 @@ literal|"Hashing.sha512()"
 argument_list|)
 decl_stmt|;
 block|}
+comment|/**    * Returns a hash function implementing the CRC32C checksum algorithm (32 hash bits) as described    * by RFC 3720, Section 12.1.    *    * @since 18.0    */
+DECL|method|crc32c ()
+specifier|public
+specifier|static
+name|HashFunction
+name|crc32c
+parameter_list|()
+block|{
+return|return
+name|Crc32cHolder
+operator|.
+name|CRC_32_C
+return|;
+block|}
+DECL|class|Crc32cHolder
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|Crc32cHolder
+block|{
+DECL|field|CRC_32_C
+specifier|static
+specifier|final
+name|HashFunction
+name|CRC_32_C
+init|=
+operator|new
+name|Crc32cHashFunction
+argument_list|()
+decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the CRC-32 checksum algorithm (32 hash bits) by delegating    * to the {@link CRC32} {@link Checksum}.    *    *<p>To get the {@code long} value equivalent to {@link Checksum#getValue()} for a    * {@code HashCode} produced by this function, use {@link HashCode#padToLong()}.    *    * @since 14.0    */
 DECL|method|crc32 ()
 specifier|public
