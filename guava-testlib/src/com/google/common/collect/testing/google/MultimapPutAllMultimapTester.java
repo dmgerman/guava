@@ -81,22 +81,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -806,20 +790,18 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Change this back to Truth
+name|assertTrue
 argument_list|(
 name|getCollection
-argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|contains
 argument_list|(
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

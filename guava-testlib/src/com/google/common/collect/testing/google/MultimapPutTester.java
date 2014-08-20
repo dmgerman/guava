@@ -979,15 +979,12 @@ operator|.
 name|e3
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Change this back to Truth
+name|assertTrue
 argument_list|(
 name|entries
-argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|contains
 argument_list|(
 name|Helpers
 operator|.
@@ -1002,6 +999,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1084,15 +1082,12 @@ operator|.
 name|e3
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Change this back to Truth
+name|assertTrue
 argument_list|(
 name|entries
-argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|contains
 argument_list|(
 name|Helpers
 operator|.
@@ -1107,6 +1102,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

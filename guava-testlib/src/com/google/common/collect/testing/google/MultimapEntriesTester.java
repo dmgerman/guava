@@ -407,19 +407,16 @@ block|{
 name|initMultimapWithNullKey
 argument_list|()
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Change this back to Truth
+name|assertTrue
 argument_list|(
 name|multimap
 argument_list|()
 operator|.
 name|entries
 argument_list|()
-argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|contains
 argument_list|(
 name|Helpers
 operator|.
@@ -432,6 +429,7 @@ literal|null
 argument_list|,
 name|getValueForNullKey
 argument_list|()
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -499,19 +497,16 @@ block|{
 name|initMultimapWithNullValue
 argument_list|()
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Change this back to Truth
+name|assertTrue
 argument_list|(
 name|multimap
 argument_list|()
 operator|.
 name|entries
 argument_list|()
-argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|contains
 argument_list|(
 name|Helpers
 operator|.
@@ -524,6 +519,7 @@ operator|(
 name|V
 operator|)
 literal|null
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
