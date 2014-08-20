@@ -391,7 +391,7 @@ name|of
 argument_list|(
 literal|"www"
 argument_list|,
-literal|"foo.google"
+literal|"foo.ihopethiswillneverbeapublicsuffix"
 argument_list|,
 literal|"x.y.z"
 argument_list|)
