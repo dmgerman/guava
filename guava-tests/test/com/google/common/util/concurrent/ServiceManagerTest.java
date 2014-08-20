@@ -604,7 +604,8 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Use assertThat(startupTimes.get(a)).isAtLeast(150);
+name|assertTrue
 argument_list|(
 name|startupTimes
 operator|.
@@ -612,18 +613,12 @@ name|get
 argument_list|(
 name|a
 argument_list|)
-argument_list|)
-operator|.
-name|isInclusivelyInRange
-argument_list|(
+operator|>=
 literal|150
-argument_list|,
-name|Long
-operator|.
-name|MAX_VALUE
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Use assertThat(startupTimes.get(b)).isAtLeast(353);
+name|assertTrue
 argument_list|(
 name|startupTimes
 operator|.
@@ -631,15 +626,8 @@ name|get
 argument_list|(
 name|b
 argument_list|)
-argument_list|)
-operator|.
-name|isInclusivelyInRange
-argument_list|(
+operator|>=
 literal|353
-argument_list|,
-name|Long
-operator|.
-name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
@@ -764,7 +752,8 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Use assertThat(startupTimes.get(a)).isAtLeast(150);
+name|assertTrue
 argument_list|(
 name|startupTimes
 operator|.
@@ -772,15 +761,8 @@ name|get
 argument_list|(
 name|a
 argument_list|)
-argument_list|)
-operator|.
-name|isInclusivelyInRange
-argument_list|(
+operator|>=
 literal|150
-argument_list|,
-name|Long
-operator|.
-name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 comment|// Service b startup takes at least 353 millis, but starting the timer is delayed by at least
