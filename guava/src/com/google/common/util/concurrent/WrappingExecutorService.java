@@ -202,7 +202,7 @@ name|delegate
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Wraps a {@code Callable} for submission to the underlying executor. This    * method is also applied to any {@code Runnable} passed to the default    * implementation of {@link #wrapTest(Runnable)}.    */
+comment|/**    * Wraps a {@code Callable} for submission to the underlying executor. This    * method is also applied to any {@code Runnable} passed to the default    * implementation of {@link #wrapTask(Runnable)}.    */
 DECL|method|wrapTask (Callable<T> callable)
 specifier|protected
 specifier|abstract
