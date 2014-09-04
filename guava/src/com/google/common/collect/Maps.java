@@ -1709,7 +1709,7 @@ name|V
 argument_list|>
 name|onlyOnLeft
 init|=
-name|newHashMap
+name|newLinkedHashMap
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1721,7 +1721,7 @@ argument_list|>
 name|onlyOnRight
 init|=
 operator|new
-name|HashMap
+name|LinkedHashMap
 argument_list|<
 name|K
 argument_list|,
@@ -1740,7 +1740,7 @@ name|V
 argument_list|>
 name|onBoth
 init|=
-name|newHashMap
+name|newLinkedHashMap
 argument_list|()
 decl_stmt|;
 name|Map
@@ -1756,7 +1756,7 @@ argument_list|>
 argument_list|>
 name|differences
 init|=
-name|newHashMap
+name|newLinkedHashMap
 argument_list|()
 decl_stmt|;
 name|doDifference
