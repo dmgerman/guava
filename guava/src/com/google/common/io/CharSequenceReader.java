@@ -99,7 +99,7 @@ comment|/**  * A {@link Reader} that reads the characters in a {@link CharSequen
 end_comment
 
 begin_comment
-comment|// TODO(user): make this public? as a type, or a method in CharStreams?
+comment|// TODO(cgdecker): make this public? as a type, or a method in CharStreams?
 end_comment
 
 begin_class

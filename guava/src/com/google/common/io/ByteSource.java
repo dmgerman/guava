@@ -1887,7 +1887,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): Possibly override slice()
+comment|// TODO(cgdecker): Possibly override slice()
 annotation|@
 name|Override
 DECL|method|toString ()
