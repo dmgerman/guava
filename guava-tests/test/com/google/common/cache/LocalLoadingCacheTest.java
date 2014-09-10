@@ -65,22 +65,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -1198,34 +1182,29 @@ name|two
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertThat
+comment|// TODO(user): Use Truth here once it's released
+name|assertEquals
 argument_list|(
+name|one
+argument_list|,
 name|map
-argument_list|)
 operator|.
-name|hasKey
+name|get
 argument_list|(
 name|three
 argument_list|)
-operator|.
-name|withValue
-argument_list|(
-name|one
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|assertEquals
 argument_list|(
+name|two
+argument_list|,
 name|map
-argument_list|)
 operator|.
-name|hasKey
+name|get
 argument_list|(
 name|one
 argument_list|)
-operator|.
-name|withValue
-argument_list|(
-name|two
 argument_list|)
 expr_stmt|;
 comment|//TODO(user): Confirm with fry@ that this is a reasonable substitute.
