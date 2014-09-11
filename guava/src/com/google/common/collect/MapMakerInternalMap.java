@@ -8528,7 +8528,7 @@ comment|/**      * A queue of elements currently in the map, ordered by access t
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|field|evictionQueue
 specifier|final
@@ -8547,7 +8547,7 @@ comment|/**      * A queue of elements currently in the map, ordered by expirati
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|field|expirationQueue
 specifier|final
@@ -8818,7 +8818,7 @@ block|}
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|newEntry (K key, int hash, @Nullable ReferenceEntry<K, V> next)
 name|ReferenceEntry
@@ -8867,7 +8867,7 @@ comment|/**      * Copies {@code original} into a new entry chained to {@code ne
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|copyEntry (ReferenceEntry<K, V> original, ReferenceEntry<K, V> newNext)
 name|ReferenceEntry
@@ -8998,7 +8998,7 @@ comment|/**      * Sets a new value of an entry. Adds newly created entries at t
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|setValue (ReferenceEntry<K, V> entry, V value)
 name|void
@@ -9081,7 +9081,7 @@ comment|/**      * Drain the key and value reference queues, cleaning up interna
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|drainReferenceQueues ()
 name|void
@@ -9116,7 +9116,7 @@ block|}
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|drainKeyReferenceQueue ()
 name|void
@@ -9195,7 +9195,7 @@ block|}
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|drainValueReferenceQueue ()
 name|void
@@ -9379,7 +9379,7 @@ comment|/**      * Updates the eviction metadata that {@code entry} was just rea
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|recordLockedRead (ReferenceEntry<K, V> entry)
 name|void
@@ -9431,7 +9431,7 @@ comment|/**      * Updates eviction metadata that {@code entry} was just written
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|recordWrite (ReferenceEntry<K, V> entry)
 name|void
@@ -9503,7 +9503,7 @@ comment|/**      * Drains the recency queue, updating eviction metadata that the
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|drainRecencyQueue ()
 name|void
@@ -9642,7 +9642,7 @@ block|}
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|expireEntries ()
 name|void
@@ -9840,7 +9840,7 @@ comment|/**      * Performs eviction if the segment is full. This should only be
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|evictEntries ()
 name|boolean
@@ -10802,7 +10802,7 @@ comment|/**      * Expands the table if possible.      */
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|expand ()
 name|void
@@ -12452,7 +12452,7 @@ comment|/**      * Removes an entry from within a table. All entries following t
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|removeFromChain (ReferenceEntry<K, V> first, ReferenceEntry<K, V> entry)
 name|ReferenceEntry
@@ -13250,7 +13250,7 @@ block|}
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|removeEntry (ReferenceEntry<K, V> entry, int hash, RemovalCause cause)
 name|boolean
@@ -13574,7 +13574,7 @@ comment|/**      * Performs routine cleanup prior to executing a write. This sho
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"Segment.this"
+literal|"this"
 argument_list|)
 DECL|method|preWriteCleanup ()
 name|void

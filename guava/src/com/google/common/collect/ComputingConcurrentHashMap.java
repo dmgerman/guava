@@ -1434,7 +1434,7 @@ decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
-literal|"ComputingValueReference.this"
+literal|"this"
 argument_list|)
 comment|// writes
 DECL|field|computedReference
