@@ -380,18 +380,6 @@ name|Nullable
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|concurrent
-operator|.
-name|GuardedBy
-import|;
-end_import
-
 begin_comment
 comment|/**  * Registry of subscribers to a single event bus.  *  * @author Colin Decker  */
 end_comment
@@ -403,11 +391,6 @@ class|class
 name|SubscriberRegistry
 block|{
 comment|/**    * All registered subscribers, indexed by event type.    *    *<p>The {@link CopyOnWriteArraySet} values make it easy and relatively lightweight to get an    * immutable snapshot of all current subscribers to an event without any locking.    */
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"lock"
-argument_list|)
 DECL|field|subscribers
 specifier|private
 specifier|final
