@@ -999,6 +999,8 @@ argument_list|,
 literal|4000
 argument_list|,
 name|MILLISECONDS
+argument_list|,
+literal|3.0
 argument_list|)
 decl_stmt|;
 for|for
@@ -1124,6 +1126,242 @@ argument_list|)
 expr_stmt|;
 comment|// #7
 block|}
+DECL|method|testWarmUpWithColdFactor ()
+specifier|public
+name|void
+name|testWarmUpWithColdFactor
+parameter_list|()
+block|{
+name|RateLimiter
+name|limiter
+init|=
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+name|stopwatch
+argument_list|,
+literal|5.0
+argument_list|,
+literal|4000
+argument_list|,
+name|MILLISECONDS
+argument_list|,
+literal|10.0
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|8
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #1
+block|}
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|200
+argument_list|)
+expr_stmt|;
+comment|// #2: to repay for the last acquire
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|4000
+argument_list|)
+expr_stmt|;
+comment|// #3: becomes cold again
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|8
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// // #4
+block|}
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|200
+argument_list|)
+expr_stmt|;
+comment|// #5: to repay for the last acquire
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|1000
+argument_list|)
+expr_stmt|;
+comment|// #6: still warm! It would take another 3 seconds to go cold
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|8
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #7
+block|}
+name|assertEvents
+argument_list|(
+literal|"R0.00, R1.75, R1.26, R0.76, R0.30, R0.20, R0.20, R0.20"
+argument_list|,
+comment|// #1
+literal|"U0.20"
+argument_list|,
+comment|// #2
+literal|"U4.00"
+argument_list|,
+comment|// #3
+literal|"R0.00, R1.75, R1.26, R0.76, R0.30, R0.20, R0.20, R0.20"
+argument_list|,
+comment|// #4
+literal|"U0.20"
+argument_list|,
+comment|// #5
+literal|"U1.00"
+argument_list|,
+comment|// #6
+literal|"R0.00, R0.20, R0.20, R0.20, R0.20, R0.20, R0.20, R0.20"
+argument_list|)
+expr_stmt|;
+comment|// #7
+block|}
+DECL|method|testWarmUpWithColdFactor1 ()
+specifier|public
+name|void
+name|testWarmUpWithColdFactor1
+parameter_list|()
+block|{
+name|RateLimiter
+name|limiter
+init|=
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+name|stopwatch
+argument_list|,
+literal|5.0
+argument_list|,
+literal|4000
+argument_list|,
+name|MILLISECONDS
+argument_list|,
+literal|1.0
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|8
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #1
+block|}
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|340
+argument_list|)
+expr_stmt|;
+comment|// #2
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|8
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #3
+block|}
+name|assertEvents
+argument_list|(
+literal|"R0.00, R0.20, R0.20, R0.20, R0.20, R0.20, R0.20, R0.20"
+argument_list|,
+comment|// #1
+literal|"U0.34"
+argument_list|,
+comment|// #2
+literal|"R0.00, R0.20, R0.20, R0.20, R0.20, R0.20, R0.20, R0.20"
+argument_list|)
+expr_stmt|;
+comment|// #3
+block|}
 DECL|method|testWarmUpAndUpdate ()
 specifier|public
 name|void
@@ -1144,6 +1382,8 @@ argument_list|,
 literal|4000
 argument_list|,
 name|MILLISECONDS
+argument_list|,
+literal|3.0
 argument_list|)
 decl_stmt|;
 for|for
@@ -1290,6 +1530,178 @@ literal|"R0.00, R0.72, R0.66, R0.59, R0.53, R0.47, R0.41"
 argument_list|,
 comment|// #7
 literal|"R0.34, R0.28, R0.25, R0.25"
+argument_list|)
+expr_stmt|;
+comment|// #7 (cont.), note, this matches #5
+block|}
+DECL|method|testWarmUpAndUpdateWithColdFactor ()
+specifier|public
+name|void
+name|testWarmUpAndUpdateWithColdFactor
+parameter_list|()
+block|{
+name|RateLimiter
+name|limiter
+init|=
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+name|stopwatch
+argument_list|,
+literal|5.0
+argument_list|,
+literal|4000
+argument_list|,
+name|MILLISECONDS
+argument_list|,
+literal|10.0
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|8
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #1
+block|}
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|4200
+argument_list|)
+expr_stmt|;
+comment|// #2: back to cold state (warmup period + repay last acquire)
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|3
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|// only three steps, we're somewhere in the warmup period
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #3
+block|}
+name|limiter
+operator|.
+name|setRate
+argument_list|(
+literal|10.0
+argument_list|)
+expr_stmt|;
+comment|// double the rate!
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #4, we repay the debt of the last acquire (imposed by the old rate)
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|4
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #5
+block|}
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+literal|4100
+argument_list|)
+expr_stmt|;
+comment|// #6, back to cold state (warmup period + repay last acquire)
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|11
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|limiter
+operator|.
+name|acquire
+argument_list|()
+expr_stmt|;
+comment|// #7, showing off the warmup starting from totally cold
+block|}
+comment|// make sure the areas (times) remain the same, while permits are different
+name|assertEvents
+argument_list|(
+literal|"R0.00, R1.75, R1.26, R0.76, R0.30, R0.20, R0.20, R0.20"
+argument_list|,
+comment|// #1
+literal|"U4.20"
+argument_list|,
+comment|// #2
+literal|"R0.00, R1.75, R1.26"
+argument_list|,
+comment|// #3, after that the rate changes
+literal|"R0.76"
+argument_list|,
+comment|// #4, this is what the throttling would be with the old rate
+literal|"R0.20, R0.10, R0.10, R0.10"
+argument_list|,
+comment|// #5
+literal|"U4.10"
+argument_list|,
+comment|// #6
+literal|"R0.00, R0.94, R0.81, R0.69, R0.57, R0.44, R0.32"
+argument_list|,
+comment|// #7
+literal|"R0.20, R0.10, R0.10, R0.10"
 argument_list|)
 expr_stmt|;
 comment|// #7 (cont.), note, this matches #5
@@ -1982,6 +2394,8 @@ argument_list|,
 literal|10
 argument_list|,
 name|SECONDS
+argument_list|,
+literal|3.0
 argument_list|)
 decl_stmt|;
 name|limiter
@@ -2111,6 +2525,8 @@ argument_list|,
 literal|10
 argument_list|,
 name|SECONDS
+argument_list|,
+literal|3.0
 argument_list|)
 decl_stmt|;
 name|stopwatch
@@ -2288,9 +2704,21 @@ name|Random
 argument_list|()
 decl_stmt|;
 name|int
-name|maxPermits
+name|warmupPermits
 init|=
 literal|10
+decl_stmt|;
+name|double
+index|[]
+name|coldFactorsToTest
+init|=
+block|{
+literal|2.0
+block|,
+literal|3.0
+block|,
+literal|10.0
+block|}
 decl_stmt|;
 name|double
 index|[]
@@ -2326,14 +2754,21 @@ block|{
 for|for
 control|(
 name|double
+name|coldFactor
+range|:
+name|coldFactorsToTest
+control|)
+block|{
+for|for
+control|(
+name|double
 name|qps
 range|:
 name|qpsToTest
 control|)
 block|{
-comment|// Since we know that: maxPermits = 0.5 * warmup / stableInterval;
-comment|// then if maxPermits == 10, we have:
-comment|// warmupSeconds = 20 / qps
+comment|// If warmupPermits = maxPermits - thresholdPermits then
+comment|// warmupPeriod = (1 + coldFactor) * warmupPermits * stableInterval / 2
 name|long
 name|warmupMillis
 init|=
@@ -2342,10 +2777,16 @@ name|long
 call|)
 argument_list|(
 operator|(
-literal|2
+literal|1
+operator|+
+name|coldFactor
+operator|)
 operator|*
-name|maxPermits
+name|warmupPermits
 operator|/
+operator|(
+literal|2.0
+operator|*
 name|qps
 operator|)
 operator|*
@@ -2366,6 +2807,8 @@ argument_list|,
 name|warmupMillis
 argument_list|,
 name|MILLISECONDS
+argument_list|,
+name|coldFactor
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2376,12 +2819,13 @@ name|measureTotalTimeMillis
 argument_list|(
 name|rateLimiter
 argument_list|,
-name|maxPermits
+name|warmupPermits
 argument_list|,
 name|random
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2414,6 +2858,15 @@ operator|.
 name|class
 argument_list|,
 literal|1
+argument_list|)
+operator|.
+name|setDefault
+argument_list|(
+name|double
+operator|.
+name|class
+argument_list|,
+literal|1.0d
 argument_list|)
 decl_stmt|;
 name|tester

@@ -320,12 +320,14 @@ argument_list|,
 name|warmupPeriod
 argument_list|,
 name|unit
+argument_list|,
+literal|3.0
 argument_list|)
 return|;
 block|}
 annotation|@
 name|VisibleForTesting
-DECL|method|create ( SleepingStopwatch stopwatch, double permitsPerSecond, long warmupPeriod, TimeUnit unit)
+DECL|method|create ( SleepingStopwatch stopwatch, double permitsPerSecond, long warmupPeriod, TimeUnit unit, double coldFactor)
 specifier|static
 name|RateLimiter
 name|create
@@ -341,6 +343,9 @@ name|warmupPeriod
 parameter_list|,
 name|TimeUnit
 name|unit
+parameter_list|,
+name|double
+name|coldFactor
 parameter_list|)
 block|{
 name|RateLimiter
@@ -354,6 +359,8 @@ argument_list|,
 name|warmupPeriod
 argument_list|,
 name|unit
+argument_list|,
+name|coldFactor
 argument_list|)
 decl_stmt|;
 name|rateLimiter
