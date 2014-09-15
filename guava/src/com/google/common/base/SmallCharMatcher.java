@@ -56,7 +56,7 @@ name|base
 operator|.
 name|CharMatcher
 operator|.
-name|FastMatcher
+name|NamedFastMatcher
 import|;
 end_import
 
@@ -85,7 +85,7 @@ specifier|final
 class|class
 name|SmallCharMatcher
 extends|extends
-name|FastMatcher
+name|NamedFastMatcher
 block|{
 DECL|field|MAX_SIZE
 specifier|static

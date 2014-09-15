@@ -68,22 +68,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|CharMatcher
-operator|.
-name|FastMatcher
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -148,10 +132,8 @@ name|CharMatcher
 name|OLD_WHITESPACE
 init|=
 operator|new
-name|FastMatcher
-argument_list|(
-literal|"CharMatcher.WHITESPACE"
-argument_list|)
+name|CharMatcher
+argument_list|()
 block|{
 annotation|@
 name|Override

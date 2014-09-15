@@ -4849,7 +4849,7 @@ name|precomputed
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|m1
 operator|.
@@ -4883,7 +4883,7 @@ name|precomputed
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|m2
 operator|.
@@ -4919,7 +4919,7 @@ name|precomputed
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|m3
 operator|.
