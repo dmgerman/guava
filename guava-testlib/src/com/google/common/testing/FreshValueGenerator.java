@@ -1369,11 +1369,93 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-DECL|field|differentiator
+DECL|field|EMPTY_GENEREATORS
+specifier|private
+specifier|static
+specifier|final
+name|ImmutableMap
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Method
+argument_list|>
+name|EMPTY_GENEREATORS
+decl_stmt|;
+static|static
+block|{
+name|ImmutableMap
+operator|.
+name|Builder
+argument_list|<
+name|Class
+argument_list|<
+name|?
+argument_list|>
+argument_list|,
+name|Method
+argument_list|>
+name|builder
+init|=
+name|ImmutableMap
+operator|.
+name|builder
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Method
+name|method
+range|:
+name|FreshValueGenerator
+operator|.
+name|class
+operator|.
+name|getDeclaredMethods
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|method
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|Empty
+operator|.
+name|class
+argument_list|)
+condition|)
+block|{
+name|builder
+operator|.
+name|put
+argument_list|(
+name|method
+operator|.
+name|getReturnType
+argument_list|()
+argument_list|,
+name|method
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|EMPTY_GENEREATORS
+operator|=
+name|builder
+operator|.
+name|build
+argument_list|()
+expr_stmt|;
+block|}
+DECL|field|freshness
 specifier|private
 specifier|final
 name|AtomicInteger
-name|differentiator
+name|freshness
 init|=
 operator|new
 name|AtomicInteger
@@ -1400,21 +1482,29 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-DECL|field|generatedOptionalTypes
+comment|/**    * The freshness level at which the {@link Empty @Empty} annotated method was invoked to generate    * instance.    */
+DECL|field|emptyInstanceGenerated
 specifier|private
 specifier|final
-name|Set
+name|Map
 argument_list|<
 name|Type
+argument_list|,
+name|Integer
 argument_list|>
-name|generatedOptionalTypes
+name|emptyInstanceGenerated
 init|=
-name|Sets
-operator|.
-name|newHashSet
+operator|new
+name|HashMap
+argument_list|<
+name|Type
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 DECL|method|addSampleInstances (Class<T> type, Iterable<? extends T> instances)
+specifier|final
 parameter_list|<
 name|T
 parameter_list|>
@@ -1452,10 +1542,121 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a fresh instance for {@code type} if possible. The returned instance could be:    *<ul>    *<li>exactly of the given type, including generic type parameters, such as    *     {@code ImmutableList<String>};    *<li>of the raw type;    *<li>null if no fresh value can be generated.    *</ul>    */
-DECL|method|generate (TypeToken<?> type)
+comment|/**    * Returns a fresh instance for {@code type} if possible. The returned instance could be:    *<ul>    *<li>exactly of the given type, including generic type parameters, such as    *     {@code ImmutableList<String>};    *<li>of the raw type;    *<li>null if no value can be generated.    *</ul>    */
+DECL|method|generateFresh (TypeToken<?> type)
 annotation|@
 name|Nullable
+specifier|final
+name|Object
+name|generateFresh
+parameter_list|(
+name|TypeToken
+argument_list|<
+name|?
+argument_list|>
+name|type
+parameter_list|)
+block|{
+name|Object
+name|generated
+init|=
+name|generate
+argument_list|(
+name|type
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|generated
+operator|!=
+literal|null
+condition|)
+block|{
+name|freshness
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|generated
+return|;
+block|}
+DECL|method|generateFresh (Class<T> type)
+annotation|@
+name|Nullable
+specifier|final
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|generateFresh
+parameter_list|(
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|type
+parameter_list|)
+block|{
+return|return
+name|Primitives
+operator|.
+name|wrap
+argument_list|(
+name|type
+argument_list|)
+operator|.
+name|cast
+argument_list|(
+name|generateFresh
+argument_list|(
+name|TypeToken
+operator|.
+name|of
+argument_list|(
+name|type
+argument_list|)
+argument_list|)
+argument_list|)
+return|;
+block|}
+DECL|method|newFreshProxy (final Class<T> interfaceType)
+specifier|final
+parameter_list|<
+name|T
+parameter_list|>
+name|T
+name|newFreshProxy
+parameter_list|(
+specifier|final
+name|Class
+argument_list|<
+name|T
+argument_list|>
+name|interfaceType
+parameter_list|)
+block|{
+name|T
+name|proxy
+init|=
+name|newProxy
+argument_list|(
+name|interfaceType
+argument_list|)
+decl_stmt|;
+name|freshness
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+return|return
+name|proxy
+return|;
+block|}
+comment|/**    * Generates an instance for {@code type} using the current {@link #freshness}.    * The generated instance may or may not be unique across different calls.    */
+DECL|method|generate (TypeToken<?> type)
+specifier|private
 name|Object
 name|generate
 parameter_list|(
@@ -1493,7 +1694,7 @@ decl_stmt|;
 name|Object
 name|sample
 init|=
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|samples
 argument_list|,
@@ -1520,7 +1721,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|rawType
 operator|.
@@ -1583,17 +1784,28 @@ return|return
 name|array
 return|;
 block|}
+name|Method
+name|emptyGenerate
+init|=
+name|EMPTY_GENEREATORS
+operator|.
+name|get
+argument_list|(
+name|rawType
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
-name|rawType
-operator|==
-name|Optional
+name|emptyGenerate
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|emptyInstanceGenerated
 operator|.
-name|class
-operator|&&
-name|generatedOptionalTypes
-operator|.
-name|add
+name|containsKey
 argument_list|(
 name|type
 operator|.
@@ -1602,17 +1814,74 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|// For any Optional<T>, we'll first generate absent(). The next call generates a distinct
-comment|// value of T to be wrapped in Optional.of().
-return|return
-name|Optional
+comment|// empty instance already generated
+if|if
+condition|(
+name|emptyInstanceGenerated
 operator|.
-name|absent
+name|get
+argument_list|(
+name|type
+operator|.
+name|getType
 argument_list|()
+argument_list|)
+operator|.
+name|intValue
+argument_list|()
+operator|==
+name|freshness
+operator|.
+name|get
+argument_list|()
+condition|)
+block|{
+comment|// same freshness, generate again.
+return|return
+name|invokeGeneratorMethod
+argument_list|(
+name|emptyGenerate
+argument_list|)
 return|;
 block|}
+else|else
+block|{
+comment|// Cannot use empty generator. Proceed with other generators.
+block|}
+block|}
+else|else
+block|{
+comment|// never generated empty instance for this type before.
+name|Object
+name|emptyInstance
+init|=
+name|invokeGeneratorMethod
+argument_list|(
+name|emptyGenerate
+argument_list|)
+decl_stmt|;
+name|emptyInstanceGenerated
+operator|.
+name|put
+argument_list|(
+name|type
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|freshness
+operator|.
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|emptyInstance
+return|;
+block|}
+block|}
 name|Method
-name|generator
+name|generate
 init|=
 name|GENERATORS
 operator|.
@@ -1623,7 +1892,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|generator
+name|generate
 operator|!=
 literal|null
 condition|)
@@ -1638,7 +1907,7 @@ name|Invokable
 operator|.
 name|from
 argument_list|(
-name|generator
+name|generate
 argument_list|)
 operator|.
 name|getParameters
@@ -1707,7 +1976,7 @@ index|]
 argument_list|)
 decl_stmt|;
 comment|// We require all @Generates methods to either be parameter-less or accept non-null
-comment|// fresh values for their generic parameter types.
+comment|// values for their generic parameter types.
 name|Object
 name|argValue
 init|=
@@ -1739,14 +2008,10 @@ name|argValue
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
 return|return
-name|generator
-operator|.
-name|invoke
+name|invokeGeneratorMethod
 argument_list|(
-name|this
+name|generate
 argument_list|,
 name|args
 operator|.
@@ -1755,82 +2020,10 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|InvocationTargetException
-name|e
-parameter_list|)
-block|{
-name|Throwables
-operator|.
-name|propagate
-argument_list|(
-name|e
-operator|.
-name|getCause
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|Throwables
-operator|.
-name|propagate
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
 return|return
 name|defaultGenerate
 argument_list|(
 name|rawType
-argument_list|)
-return|;
-block|}
-DECL|method|generate (Class<T> type)
-annotation|@
-name|Nullable
-specifier|final
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|generate
-parameter_list|(
-name|Class
-argument_list|<
-name|T
-argument_list|>
-name|type
-parameter_list|)
-block|{
-return|return
-name|Primitives
-operator|.
-name|wrap
-argument_list|(
-name|type
-argument_list|)
-operator|.
-name|cast
-argument_list|(
-name|generate
-argument_list|(
-name|TypeToken
-operator|.
-name|of
-argument_list|(
-name|type
-argument_list|)
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1875,7 +2068,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|newProxy (final Class<T> interfaceType)
-specifier|final
+specifier|private
 parameter_list|<
 name|T
 parameter_list|>
@@ -1905,6 +2098,66 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|method|invokeGeneratorMethod (Method generator, Object... args)
+specifier|private
+name|Object
+name|invokeGeneratorMethod
+parameter_list|(
+name|Method
+name|generator
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+name|generator
+operator|.
+name|invoke
+argument_list|(
+name|this
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|InvocationTargetException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|Throwables
+operator|.
+name|propagate
+argument_list|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|Throwables
+operator|.
+name|propagate
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
 DECL|class|FreshInvocationHandler
 specifier|private
 specifier|final
@@ -1919,7 +2172,7 @@ specifier|final
 name|int
 name|identity
 init|=
-name|freshInt
+name|generateInt
 argument_list|()
 decl_stmt|;
 DECL|field|interfaceType
@@ -2076,13 +2329,13 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|nextInstance (T[] instances, T defaultValue)
+DECL|method|pickInstance (T[] instances, T defaultValue)
 specifier|private
 parameter_list|<
 name|T
 parameter_list|>
 name|T
-name|nextInstance
+name|pickInstance
 parameter_list|(
 name|T
 index|[]
@@ -2093,7 +2346,7 @@ name|defaultValue
 parameter_list|)
 block|{
 return|return
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|Arrays
 operator|.
@@ -2106,13 +2359,13 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-DECL|method|nextInstance (Collection<T> instances, T defaultValue)
+DECL|method|pickInstance (Collection<T> instances, T defaultValue)
 specifier|private
 parameter_list|<
 name|T
 parameter_list|>
 name|T
-name|nextInstance
+name|pickInstance
 parameter_list|(
 name|Collection
 argument_list|<
@@ -2136,7 +2389,7 @@ return|return
 name|defaultValue
 return|;
 block|}
-comment|// freshInt() is 1-based.
+comment|// generateInt() is 1-based.
 return|return
 name|Iterables
 operator|.
@@ -2145,7 +2398,7 @@ argument_list|(
 name|instances
 argument_list|,
 operator|(
-name|freshInt
+name|generateInt
 argument_list|()
 operator|-
 literal|1
@@ -2185,7 +2438,7 @@ operator|+
 name|i
 return|;
 block|}
-comment|/**    * Annotates a method to be the instance generator of a certain type. The return type is the    * generated type. The method parameters are non-null fresh values for each method type variable    * in the same type variable declaration order of the return type.    */
+comment|/**    * Annotates a method to be the instance generator of a certain type. The return type is the    * generated type. The method parameters correspond to the generated type's type parameters.    * For example, if the annotated method returns {@code Map<K, V>}, the method signature should be:    * {@code Map<K, V> generateMap(K key, V value)}.    */
 annotation|@
 name|Target
 argument_list|(
@@ -2205,7 +2458,27 @@ specifier|private
 annotation_defn|@interface
 name|Generates
 block|{}
-DECL|method|freshClass ()
+comment|/**    * Annotates a method to generate the "empty" instance of a collection. This method should accept    * no parameter. The value it generates should be unequal to the values generated by methods    * annotated with {@link Generates}.    */
+annotation|@
+name|Target
+argument_list|(
+name|ElementType
+operator|.
+name|METHOD
+argument_list|)
+annotation|@
+name|Retention
+argument_list|(
+name|RetentionPolicy
+operator|.
+name|RUNTIME
+argument_list|)
+DECL|annotation|Empty
+specifier|private
+annotation_defn|@interface
+name|Empty
+block|{}
+DECL|method|generateClass ()
 annotation|@
 name|Generates
 specifier|private
@@ -2213,11 +2486,11 @@ name|Class
 argument_list|<
 name|?
 argument_list|>
-name|freshClass
+name|generateClass
 parameter_list|()
 block|{
 return|return
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|ImmutableList
 operator|.
@@ -2255,230 +2528,230 @@ name|class
 argument_list|)
 return|;
 block|}
-DECL|method|freshObject ()
+DECL|method|generateObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Object
-name|freshObject
+name|generateObject
 parameter_list|()
 block|{
 return|return
-name|freshString
+name|generateString
 argument_list|()
 return|;
 block|}
-DECL|method|freshNumber ()
+DECL|method|generateNumber ()
 annotation|@
 name|Generates
 specifier|private
 name|Number
-name|freshNumber
+name|generateNumber
 parameter_list|()
 block|{
 return|return
-name|freshInt
+name|generateInt
 argument_list|()
 return|;
 block|}
-DECL|method|freshInt ()
+DECL|method|generateInt ()
 annotation|@
 name|Generates
 specifier|private
 name|int
-name|freshInt
+name|generateInt
 parameter_list|()
 block|{
 return|return
-name|differentiator
+name|freshness
 operator|.
-name|getAndIncrement
+name|get
 argument_list|()
 return|;
 block|}
-DECL|method|freshInteger ()
+DECL|method|generateInteger ()
 annotation|@
 name|Generates
 specifier|private
 name|Integer
-name|freshInteger
+name|generateInteger
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Integer
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshLong ()
+DECL|method|generateLong ()
 annotation|@
 name|Generates
 specifier|private
 name|long
-name|freshLong
+name|generateLong
 parameter_list|()
 block|{
 return|return
-name|freshInt
+name|generateInt
 argument_list|()
 return|;
 block|}
-DECL|method|freshLongObject ()
+DECL|method|generateLongObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Long
-name|freshLongObject
+name|generateLongObject
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Long
 argument_list|(
-name|freshLong
+name|generateLong
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshFloat ()
+DECL|method|generateFloat ()
 annotation|@
 name|Generates
 specifier|private
 name|float
-name|freshFloat
+name|generateFloat
 parameter_list|()
 block|{
 return|return
-name|freshInt
+name|generateInt
 argument_list|()
 return|;
 block|}
-DECL|method|freshFloatObject ()
+DECL|method|generateFloatObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Float
-name|freshFloatObject
+name|generateFloatObject
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Float
 argument_list|(
-name|freshFloat
+name|generateFloat
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshDouble ()
+DECL|method|generateDouble ()
 annotation|@
 name|Generates
 specifier|private
 name|double
-name|freshDouble
+name|generateDouble
 parameter_list|()
 block|{
 return|return
-name|freshInt
+name|generateInt
 argument_list|()
 return|;
 block|}
-DECL|method|freshDoubleObject ()
+DECL|method|generateDoubleObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Double
-name|freshDoubleObject
+name|generateDoubleObject
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Double
 argument_list|(
-name|freshDouble
+name|generateDouble
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshShort ()
+DECL|method|generateShort ()
 annotation|@
 name|Generates
 specifier|private
 name|short
-name|freshShort
+name|generateShort
 parameter_list|()
 block|{
 return|return
 operator|(
 name|short
 operator|)
-name|freshInt
+name|generateInt
 argument_list|()
 return|;
 block|}
-DECL|method|freshShortObject ()
+DECL|method|generateShortObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Short
-name|freshShortObject
+name|generateShortObject
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Short
 argument_list|(
-name|freshShort
+name|generateShort
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshByte ()
+DECL|method|generateByte ()
 annotation|@
 name|Generates
 specifier|private
 name|byte
-name|freshByte
+name|generateByte
 parameter_list|()
 block|{
 return|return
 operator|(
 name|byte
 operator|)
-name|freshInt
+name|generateInt
 argument_list|()
 return|;
 block|}
-DECL|method|freshByteObject ()
+DECL|method|generateByteObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Byte
-name|freshByteObject
+name|generateByteObject
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Byte
 argument_list|(
-name|freshByte
+name|generateByte
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshChar ()
+DECL|method|generateChar ()
 annotation|@
 name|Generates
 specifier|private
 name|char
-name|freshChar
+name|generateChar
 parameter_list|()
 block|{
 return|return
-name|freshString
+name|generateString
 argument_list|()
 operator|.
 name|charAt
@@ -2487,33 +2760,33 @@ literal|0
 argument_list|)
 return|;
 block|}
-DECL|method|freshCharacter ()
+DECL|method|generateCharacter ()
 annotation|@
 name|Generates
 specifier|private
 name|Character
-name|freshCharacter
+name|generateCharacter
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Character
 argument_list|(
-name|freshChar
+name|generateChar
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshBoolean ()
+DECL|method|generateBoolean ()
 annotation|@
 name|Generates
 specifier|private
 name|boolean
-name|freshBoolean
+name|generateBoolean
 parameter_list|()
 block|{
 return|return
-name|freshInt
+name|generateInt
 argument_list|()
 operator|%
 literal|2
@@ -2521,29 +2794,29 @@ operator|==
 literal|0
 return|;
 block|}
-DECL|method|freshBooleanObject ()
+DECL|method|generateBooleanObject ()
 annotation|@
 name|Generates
 specifier|private
 name|Boolean
-name|freshBooleanObject
+name|generateBooleanObject
 parameter_list|()
 block|{
 return|return
 operator|new
 name|Boolean
 argument_list|(
-name|freshBoolean
+name|generateBoolean
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshUnsignedInteger ()
+DECL|method|generateUnsignedInteger ()
 annotation|@
 name|Generates
 specifier|private
 name|UnsignedInteger
-name|freshUnsignedInteger
+name|generateUnsignedInteger
 parameter_list|()
 block|{
 return|return
@@ -2551,17 +2824,17 @@ name|UnsignedInteger
 operator|.
 name|fromIntBits
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshUnsignedLong ()
+DECL|method|generateUnsignedLong ()
 annotation|@
 name|Generates
 specifier|private
 name|UnsignedLong
-name|freshUnsignedLong
+name|generateUnsignedLong
 parameter_list|()
 block|{
 return|return
@@ -2569,17 +2842,17 @@ name|UnsignedLong
 operator|.
 name|fromLongBits
 argument_list|(
-name|freshLong
+name|generateLong
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshBigInteger ()
+DECL|method|generateBigInteger ()
 annotation|@
 name|Generates
 specifier|private
 name|BigInteger
-name|freshBigInteger
+name|generateBigInteger
 parameter_list|()
 block|{
 return|return
@@ -2587,17 +2860,17 @@ name|BigInteger
 operator|.
 name|valueOf
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshBigDecimal ()
+DECL|method|generateBigDecimal ()
 annotation|@
 name|Generates
 specifier|private
 name|BigDecimal
-name|freshBigDecimal
+name|generateBigDecimal
 parameter_list|()
 block|{
 return|return
@@ -2605,30 +2878,30 @@ name|BigDecimal
 operator|.
 name|valueOf
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshCharSequence ()
+DECL|method|generateCharSequence ()
 annotation|@
 name|Generates
 specifier|private
 name|CharSequence
-name|freshCharSequence
+name|generateCharSequence
 parameter_list|()
 block|{
 return|return
-name|freshString
+name|generateString
 argument_list|()
 return|;
 block|}
-DECL|method|freshString ()
+DECL|method|generateString ()
 annotation|@
 name|Generates
 specifier|private
 name|String
-name|freshString
+name|generateString
 parameter_list|()
 block|{
 return|return
@@ -2636,12 +2909,12 @@ name|Integer
 operator|.
 name|toString
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshComparable ()
+DECL|method|generateComparable ()
 annotation|@
 name|Generates
 specifier|private
@@ -2649,20 +2922,20 @@ name|Comparable
 argument_list|<
 name|?
 argument_list|>
-name|freshComparable
+name|generateComparable
 parameter_list|()
 block|{
 return|return
-name|freshString
+name|generateString
 argument_list|()
 return|;
 block|}
-DECL|method|freshPattern ()
+DECL|method|generatePattern ()
 annotation|@
 name|Generates
 specifier|private
 name|Pattern
-name|freshPattern
+name|generatePattern
 parameter_list|()
 block|{
 return|return
@@ -2670,21 +2943,21 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-name|freshString
+name|generateString
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshCharset ()
+DECL|method|generateCharset ()
 annotation|@
 name|Generates
 specifier|private
 name|Charset
-name|freshCharset
+name|generateCharset
 parameter_list|()
 block|{
 return|return
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|Charset
 operator|.
@@ -2700,16 +2973,16 @@ name|UTF_8
 argument_list|)
 return|;
 block|}
-DECL|method|freshLocale ()
+DECL|method|generateLocale ()
 annotation|@
 name|Generates
 specifier|private
 name|Locale
-name|freshLocale
+name|generateLocale
 parameter_list|()
 block|{
 return|return
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|Locale
 operator|.
@@ -2722,12 +2995,12 @@ name|US
 argument_list|)
 return|;
 block|}
-DECL|method|freshCurrency ()
+DECL|method|generateCurrency ()
 annotation|@
 name|Generates
 specifier|private
 name|Currency
-name|freshCurrency
+name|generateCurrency
 parameter_list|()
 block|{
 try|try
@@ -2770,7 +3043,7 @@ literal|null
 argument_list|)
 decl_stmt|;
 return|return
-name|nextInstance
+name|pickInstance
 argument_list|(
 name|currencies
 argument_list|,
@@ -2847,7 +3120,7 @@ block|{
 name|Locale
 name|locale
 init|=
-name|freshLocale
+name|generateLocale
 argument_list|()
 decl_stmt|;
 if|if
@@ -2900,7 +3173,28 @@ block|}
 block|}
 block|}
 comment|// common.base
-DECL|method|freshOptional (T value)
+DECL|method|generateOptional ()
+annotation|@
+name|Empty
+specifier|private
+parameter_list|<
+name|T
+parameter_list|>
+name|Optional
+argument_list|<
+name|T
+argument_list|>
+name|generateOptional
+parameter_list|()
+block|{
+return|return
+name|Optional
+operator|.
+name|absent
+argument_list|()
+return|;
+block|}
+DECL|method|generateOptional (T value)
 annotation|@
 name|Generates
 specifier|private
@@ -2911,7 +3205,7 @@ name|Optional
 argument_list|<
 name|T
 argument_list|>
-name|freshOptional
+name|generateOptional
 parameter_list|(
 name|T
 name|value
@@ -2926,12 +3220,12 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshJoiner ()
+DECL|method|generateJoiner ()
 annotation|@
 name|Generates
 specifier|private
 name|Joiner
-name|freshJoiner
+name|generateJoiner
 parameter_list|()
 block|{
 return|return
@@ -2939,17 +3233,17 @@ name|Joiner
 operator|.
 name|on
 argument_list|(
-name|freshString
+name|generateString
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshSplitter ()
+DECL|method|generateSplitter ()
 annotation|@
 name|Generates
 specifier|private
 name|Splitter
-name|freshSplitter
+name|generateSplitter
 parameter_list|()
 block|{
 return|return
@@ -2957,12 +3251,12 @@ name|Splitter
 operator|.
 name|on
 argument_list|(
-name|freshString
+name|generateString
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshEquivalence ()
+DECL|method|generateEquivalence ()
 annotation|@
 name|Generates
 specifier|private
@@ -2973,7 +3267,7 @@ name|Equivalence
 argument_list|<
 name|T
 argument_list|>
-name|freshEquivalence
+name|generateEquivalence
 parameter_list|()
 block|{
 return|return
@@ -3025,7 +3319,7 @@ name|Equivalence
 operator|.
 name|class
 argument_list|,
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3043,12 +3337,12 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|freshCharMatcher ()
+DECL|method|generateCharMatcher ()
 annotation|@
 name|Generates
 specifier|private
 name|CharMatcher
-name|freshCharMatcher
+name|generateCharMatcher
 parameter_list|()
 block|{
 return|return
@@ -3080,7 +3374,7 @@ name|CharMatcher
 operator|.
 name|class
 argument_list|,
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3098,12 +3392,12 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|freshTicker ()
+DECL|method|generateTicker ()
 annotation|@
 name|Generates
 specifier|private
 name|Ticker
-name|freshTicker
+name|generateTicker
 parameter_list|()
 block|{
 return|return
@@ -3132,7 +3426,7 @@ name|Ticker
 operator|.
 name|class
 argument_list|,
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3151,7 +3445,7 @@ block|}
 return|;
 block|}
 comment|// collect
-DECL|method|freshComparator ()
+DECL|method|generateComparator ()
 annotation|@
 name|Generates
 specifier|private
@@ -3162,15 +3456,15 @@ name|Comparator
 argument_list|<
 name|T
 argument_list|>
-name|freshComparator
+name|generateComparator
 parameter_list|()
 block|{
 return|return
-name|freshOrdering
+name|generateOrdering
 argument_list|()
 return|;
 block|}
-DECL|method|freshOrdering ()
+DECL|method|generateOrdering ()
 annotation|@
 name|Generates
 specifier|private
@@ -3181,7 +3475,7 @@ name|Ordering
 argument_list|<
 name|T
 argument_list|>
-name|freshOrdering
+name|generateOrdering
 parameter_list|()
 block|{
 return|return
@@ -3219,7 +3513,7 @@ name|Ordering
 operator|.
 name|class
 argument_list|,
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3237,7 +3531,34 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|freshRange (C freshElement)
+DECL|method|generateRange ()
+annotation|@
+name|Empty
+specifier|private
+specifier|static
+parameter_list|<
+name|C
+extends|extends
+name|Comparable
+argument_list|<
+name|?
+argument_list|>
+parameter_list|>
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|generateRange
+parameter_list|()
+block|{
+return|return
+name|Range
+operator|.
+name|all
+argument_list|()
+return|;
+block|}
+DECL|method|generateRange (C freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3246,12 +3567,15 @@ parameter_list|<
 name|C
 extends|extends
 name|Comparable
+argument_list|<
+name|?
+argument_list|>
 parameter_list|>
 name|Range
 argument_list|<
 name|C
 argument_list|>
-name|freshRange
+name|generateRange
 parameter_list|(
 name|C
 name|freshElement
@@ -3266,7 +3590,7 @@ name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshIterable (E freshElement)
+DECL|method|generateIterable (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3278,20 +3602,20 @@ name|Iterable
 argument_list|<
 name|E
 argument_list|>
-name|freshIterable
+name|generateIterable
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshList
+name|generateList
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshCollection (E freshElement)
+DECL|method|generateCollection (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3303,20 +3627,20 @@ name|Collection
 argument_list|<
 name|E
 argument_list|>
-name|freshCollection
+name|generateCollection
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshList
+name|generateList
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshList (E freshElement)
+DECL|method|generateList (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3328,20 +3652,20 @@ name|List
 argument_list|<
 name|E
 argument_list|>
-name|freshList
+name|generateList
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshArrayList
+name|generateArrayList
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshArrayList (E freshElement)
+DECL|method|generateArrayList (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3353,7 +3677,7 @@ name|ArrayList
 argument_list|<
 name|E
 argument_list|>
-name|freshArrayList
+name|generateArrayList
 parameter_list|(
 name|E
 name|freshElement
@@ -3381,7 +3705,7 @@ return|return
 name|list
 return|;
 block|}
-DECL|method|freshLinkedList (E freshElement)
+DECL|method|generateLinkedList (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3393,7 +3717,7 @@ name|LinkedList
 argument_list|<
 name|E
 argument_list|>
-name|freshLinkedList
+name|generateLinkedList
 parameter_list|(
 name|E
 name|freshElement
@@ -3421,7 +3745,7 @@ return|return
 name|list
 return|;
 block|}
-DECL|method|freshImmutableList (E freshElement)
+DECL|method|generateImmutableList (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3433,7 +3757,7 @@ name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-name|freshImmutableList
+name|generateImmutableList
 parameter_list|(
 name|E
 name|freshElement
@@ -3448,7 +3772,7 @@ name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshImmutableCollection (E freshElement)
+DECL|method|generateImmutableCollection (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3460,20 +3784,20 @@ name|ImmutableCollection
 argument_list|<
 name|E
 argument_list|>
-name|freshImmutableCollection
+name|generateImmutableCollection
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshImmutableList
+name|generateImmutableList
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshSet (E freshElement)
+DECL|method|generateSet (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3485,20 +3809,20 @@ name|Set
 argument_list|<
 name|E
 argument_list|>
-name|freshSet
+name|generateSet
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshHashSet
+name|generateHashSet
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshHashSet (E freshElement)
+DECL|method|generateHashSet (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3510,20 +3834,20 @@ name|HashSet
 argument_list|<
 name|E
 argument_list|>
-name|freshHashSet
+name|generateHashSet
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshLinkedHashSet
+name|generateLinkedHashSet
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshLinkedHashSet (E freshElement)
+DECL|method|generateLinkedHashSet (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3535,7 +3859,7 @@ name|LinkedHashSet
 argument_list|<
 name|E
 argument_list|>
-name|freshLinkedHashSet
+name|generateLinkedHashSet
 parameter_list|(
 name|E
 name|freshElement
@@ -3563,7 +3887,7 @@ return|return
 name|set
 return|;
 block|}
-DECL|method|freshImmutableSet (E freshElement)
+DECL|method|generateImmutableSet (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3575,7 +3899,7 @@ name|ImmutableSet
 argument_list|<
 name|E
 argument_list|>
-name|freshImmutableSet
+name|generateImmutableSet
 parameter_list|(
 name|E
 name|freshElement
@@ -3608,15 +3932,15 @@ name|SortedSet
 argument_list|<
 name|E
 argument_list|>
-DECL|method|freshSortedSet (E freshElement)
-name|freshSortedSet
+DECL|method|generateSortedSet (E freshElement)
+name|generateSortedSet
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshNavigableSet
+name|generateNavigableSet
 argument_list|(
 name|freshElement
 argument_list|)
@@ -3640,21 +3964,21 @@ name|NavigableSet
 argument_list|<
 name|E
 argument_list|>
-DECL|method|freshNavigableSet (E freshElement)
-name|freshNavigableSet
+DECL|method|generateNavigableSet (E freshElement)
+name|generateNavigableSet
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshTreeSet
+name|generateTreeSet
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshTreeSet ( E freshElement)
+DECL|method|generateTreeSet ( E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3673,7 +3997,7 @@ name|TreeSet
 argument_list|<
 name|E
 argument_list|>
-name|freshTreeSet
+name|generateTreeSet
 parameter_list|(
 name|E
 name|freshElement
@@ -3719,8 +4043,8 @@ name|ImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
-DECL|method|freshImmutableSortedSet (E freshElement)
-name|freshImmutableSortedSet
+DECL|method|generateImmutableSortedSet (E freshElement)
+name|generateImmutableSortedSet
 parameter_list|(
 name|E
 name|freshElement
@@ -3735,7 +4059,7 @@ name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshMultiset (E freshElement)
+DECL|method|generateMultiset (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3747,20 +4071,20 @@ name|Multiset
 argument_list|<
 name|E
 argument_list|>
-name|freshMultiset
+name|generateMultiset
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshHashMultiset
+name|generateHashMultiset
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshHashMultiset (E freshElement)
+DECL|method|generateHashMultiset (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3772,7 +4096,7 @@ name|HashMultiset
 argument_list|<
 name|E
 argument_list|>
-name|freshHashMultiset
+name|generateHashMultiset
 parameter_list|(
 name|E
 name|freshElement
@@ -3800,7 +4124,7 @@ return|return
 name|multiset
 return|;
 block|}
-DECL|method|freshLinkedHashMultiset (E freshElement)
+DECL|method|generateLinkedHashMultiset (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3812,7 +4136,7 @@ name|LinkedHashMultiset
 argument_list|<
 name|E
 argument_list|>
-name|freshLinkedHashMultiset
+name|generateLinkedHashMultiset
 parameter_list|(
 name|E
 name|freshElement
@@ -3840,7 +4164,7 @@ return|return
 name|multiset
 return|;
 block|}
-DECL|method|freshImmutableMultiset (E freshElement)
+DECL|method|generateImmutableMultiset (E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3852,7 +4176,7 @@ name|ImmutableMultiset
 argument_list|<
 name|E
 argument_list|>
-name|freshImmutableMultiset
+name|generateImmutableMultiset
 parameter_list|(
 name|E
 name|freshElement
@@ -3867,7 +4191,7 @@ name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshSortedMultiset ( E freshElement)
+DECL|method|generateSortedMultiset ( E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3884,20 +4208,20 @@ name|SortedMultiset
 argument_list|<
 name|E
 argument_list|>
-name|freshSortedMultiset
+name|generateSortedMultiset
 parameter_list|(
 name|E
 name|freshElement
 parameter_list|)
 block|{
 return|return
-name|freshTreeMultiset
+name|generateTreeMultiset
 argument_list|(
 name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshTreeMultiset ( E freshElement)
+DECL|method|generateTreeMultiset ( E freshElement)
 annotation|@
 name|Generates
 specifier|private
@@ -3914,7 +4238,7 @@ name|TreeMultiset
 argument_list|<
 name|E
 argument_list|>
-name|freshTreeMultiset
+name|generateTreeMultiset
 parameter_list|(
 name|E
 name|freshElement
@@ -3958,8 +4282,8 @@ name|ImmutableSortedMultiset
 argument_list|<
 name|E
 argument_list|>
-DECL|method|freshImmutableSortedMultiset (E freshElement)
-name|freshImmutableSortedMultiset
+DECL|method|generateImmutableSortedMultiset (E freshElement)
+name|generateImmutableSortedMultiset
 parameter_list|(
 name|E
 name|freshElement
@@ -3974,7 +4298,7 @@ name|freshElement
 argument_list|)
 return|;
 block|}
-DECL|method|freshMap (K key, V value)
+DECL|method|generateMap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -3990,7 +4314,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshMap
+name|generateMap
 parameter_list|(
 name|K
 name|key
@@ -4000,7 +4324,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshHashdMap
+name|generateHashdMap
 argument_list|(
 name|key
 argument_list|,
@@ -4008,7 +4332,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshHashdMap (K key, V value)
+DECL|method|generateHashdMap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4024,7 +4348,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshHashdMap
+name|generateHashdMap
 parameter_list|(
 name|K
 name|key
@@ -4034,7 +4358,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshLinkedHashMap
+name|generateLinkedHashMap
 argument_list|(
 name|key
 argument_list|,
@@ -4042,7 +4366,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshLinkedHashMap (K key, V value)
+DECL|method|generateLinkedHashMap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4058,7 +4382,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshLinkedHashMap
+name|generateLinkedHashMap
 parameter_list|(
 name|K
 name|key
@@ -4093,7 +4417,7 @@ return|return
 name|map
 return|;
 block|}
-DECL|method|freshImmutableMap (K key, V value)
+DECL|method|generateImmutableMap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4109,7 +4433,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshImmutableMap
+name|generateImmutableMap
 parameter_list|(
 name|K
 name|key
@@ -4129,7 +4453,33 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshConcurrentMap (K key, V value)
+DECL|method|generateConcurrentMap ()
+annotation|@
+name|Empty
+specifier|private
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ConcurrentMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|generateConcurrentMap
+parameter_list|()
+block|{
+return|return
+name|Maps
+operator|.
+name|newConcurrentMap
+argument_list|()
+return|;
+block|}
+DECL|method|generateConcurrentMap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4145,7 +4495,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshConcurrentMap
+name|generateConcurrentMap
 parameter_list|(
 name|K
 name|key
@@ -4202,8 +4552,8 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|freshSortedMap (K key, V value)
-name|freshSortedMap
+DECL|method|generateSortedMap (K key, V value)
+name|generateSortedMap
 parameter_list|(
 name|K
 name|key
@@ -4213,7 +4563,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshNavigableMap
+name|generateNavigableMap
 argument_list|(
 name|key
 argument_list|,
@@ -4243,8 +4593,8 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|freshNavigableMap (K key, V value)
-name|freshNavigableMap
+DECL|method|generateNavigableMap (K key, V value)
+name|generateNavigableMap
 parameter_list|(
 name|K
 name|key
@@ -4254,7 +4604,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshTreeMap
+name|generateTreeMap
 argument_list|(
 name|key
 argument_list|,
@@ -4262,7 +4612,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshTreeMap ( K key, V value)
+DECL|method|generateTreeMap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4285,7 +4635,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshTreeMap
+name|generateTreeMap
 parameter_list|(
 name|K
 name|key
@@ -4342,8 +4692,8 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|freshImmutableSortedMap (K key, V value)
-name|freshImmutableSortedMap
+DECL|method|generateImmutableSortedMap (K key, V value)
+name|generateImmutableSortedMap
 parameter_list|(
 name|K
 name|key
@@ -4363,7 +4713,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshMultimap (K key, V value)
+DECL|method|generateMultimap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4379,7 +4729,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshMultimap
+name|generateMultimap
 parameter_list|(
 name|K
 name|key
@@ -4389,7 +4739,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshListMultimap
+name|generateListMultimap
 argument_list|(
 name|key
 argument_list|,
@@ -4397,7 +4747,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshImmutableMultimap (K key, V value)
+DECL|method|generateImmutableMultimap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4413,7 +4763,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshImmutableMultimap
+name|generateImmutableMultimap
 parameter_list|(
 name|K
 name|key
@@ -4433,7 +4783,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshListMultimap (K key, V value)
+DECL|method|generateListMultimap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4449,7 +4799,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshListMultimap
+name|generateListMultimap
 parameter_list|(
 name|K
 name|key
@@ -4459,7 +4809,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshArrayListMultimap
+name|generateArrayListMultimap
 argument_list|(
 name|key
 argument_list|,
@@ -4467,7 +4817,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshArrayListMultimap (K key, V value)
+DECL|method|generateArrayListMultimap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4483,7 +4833,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshArrayListMultimap
+name|generateArrayListMultimap
 parameter_list|(
 name|K
 name|key
@@ -4518,7 +4868,7 @@ return|return
 name|multimap
 return|;
 block|}
-DECL|method|freshImmutableListMultimap ( K key, V value)
+DECL|method|generateImmutableListMultimap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4534,7 +4884,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshImmutableListMultimap
+name|generateImmutableListMultimap
 parameter_list|(
 name|K
 name|key
@@ -4554,7 +4904,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshSetMultimap (K key, V value)
+DECL|method|generateSetMultimap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4570,7 +4920,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshSetMultimap
+name|generateSetMultimap
 parameter_list|(
 name|K
 name|key
@@ -4580,7 +4930,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshLinkedHashMultimap
+name|generateLinkedHashMultimap
 argument_list|(
 name|key
 argument_list|,
@@ -4588,7 +4938,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshHashMultimap (K key, V value)
+DECL|method|generateHashMultimap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4604,7 +4954,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshHashMultimap
+name|generateHashMultimap
 parameter_list|(
 name|K
 name|key
@@ -4639,7 +4989,7 @@ return|return
 name|multimap
 return|;
 block|}
-DECL|method|freshLinkedHashMultimap ( K key, V value)
+DECL|method|generateLinkedHashMultimap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4655,7 +5005,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshLinkedHashMultimap
+name|generateLinkedHashMultimap
 parameter_list|(
 name|K
 name|key
@@ -4690,7 +5040,7 @@ return|return
 name|multimap
 return|;
 block|}
-DECL|method|freshImmutableSetMultimap ( K key, V value)
+DECL|method|generateImmutableSetMultimap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4706,7 +5056,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshImmutableSetMultimap
+name|generateImmutableSetMultimap
 parameter_list|(
 name|K
 name|key
@@ -4726,7 +5076,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshBimap (K key, V value)
+DECL|method|generateBimap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4742,7 +5092,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshBimap
+name|generateBimap
 parameter_list|(
 name|K
 name|key
@@ -4752,7 +5102,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshHashBiMap
+name|generateHashBiMap
 argument_list|(
 name|key
 argument_list|,
@@ -4760,7 +5110,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshHashBiMap (K key, V value)
+DECL|method|generateHashBiMap (K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4776,7 +5126,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshHashBiMap
+name|generateHashBiMap
 parameter_list|(
 name|K
 name|key
@@ -4811,7 +5161,7 @@ return|return
 name|bimap
 return|;
 block|}
-DECL|method|freshImmutableBimap ( K key, V value)
+DECL|method|generateImmutableBimap ( K key, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4827,7 +5177,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|freshImmutableBimap
+name|generateImmutableBimap
 parameter_list|(
 name|K
 name|key
@@ -4847,7 +5197,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshTable (R row, C column, V value)
+DECL|method|generateTable (R row, C column, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4867,7 +5217,7 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-name|freshTable
+name|generateTable
 parameter_list|(
 name|R
 name|row
@@ -4880,7 +5230,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshHashBasedTable
+name|generateHashBasedTable
 argument_list|(
 name|row
 argument_list|,
@@ -4890,7 +5240,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|freshHashBasedTable ( R row, C column, V value)
+DECL|method|generateHashBasedTable ( R row, C column, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -4910,7 +5260,7 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-name|freshHashBasedTable
+name|generateHashBasedTable
 parameter_list|(
 name|R
 name|row
@@ -4981,8 +5331,8 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-DECL|method|freshRowSortedTable (R row, C column, V value)
-name|freshRowSortedTable
+DECL|method|generateRowSortedTable (R row, C column, V value)
+name|generateRowSortedTable
 parameter_list|(
 name|R
 name|row
@@ -4995,7 +5345,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|freshTreeBasedTable
+name|generateTreeBasedTable
 argument_list|(
 name|row
 argument_list|,
@@ -5034,8 +5384,8 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-DECL|method|freshTreeBasedTable (R row, C column, V value)
-name|freshTreeBasedTable
+DECL|method|generateTreeBasedTable (R row, C column, V value)
+name|generateTreeBasedTable
 parameter_list|(
 name|R
 name|row
@@ -5077,7 +5427,7 @@ return|return
 name|table
 return|;
 block|}
-DECL|method|freshImmutableTable ( R row, C column, V value)
+DECL|method|generateImmutableTable ( R row, C column, V value)
 annotation|@
 name|Generates
 specifier|private
@@ -5097,7 +5447,7 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-name|freshImmutableTable
+name|generateImmutableTable
 parameter_list|(
 name|R
 name|row
@@ -5123,7 +5473,7 @@ argument_list|)
 return|;
 block|}
 comment|// common.reflect
-DECL|method|freshTypeToken ()
+DECL|method|generateTypeToken ()
 annotation|@
 name|Generates
 specifier|private
@@ -5131,7 +5481,7 @@ name|TypeToken
 argument_list|<
 name|?
 argument_list|>
-name|freshTypeToken
+name|generateTypeToken
 parameter_list|()
 block|{
 return|return
@@ -5139,36 +5489,36 @@ name|TypeToken
 operator|.
 name|of
 argument_list|(
-name|freshClass
+name|generateClass
 argument_list|()
 argument_list|)
 return|;
 block|}
 comment|// io types
-DECL|method|freshFile ()
+DECL|method|generateFile ()
 annotation|@
 name|Generates
 specifier|private
 name|File
-name|freshFile
+name|generateFile
 parameter_list|()
 block|{
 return|return
 operator|new
 name|File
 argument_list|(
-name|freshString
+name|generateString
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshByteArrayInputStream ()
+DECL|method|generateByteArrayInputStream ()
 annotation|@
 name|Generates
 specifier|private
 specifier|static
 name|ByteArrayInputStream
-name|freshByteArrayInputStream
+name|generateByteArrayInputStream
 parameter_list|()
 block|{
 return|return
@@ -5183,82 +5533,82 @@ index|]
 argument_list|)
 return|;
 block|}
-DECL|method|freshInputStream ()
+DECL|method|generateInputStream ()
 annotation|@
 name|Generates
 specifier|private
 specifier|static
 name|InputStream
-name|freshInputStream
+name|generateInputStream
 parameter_list|()
 block|{
 return|return
-name|freshByteArrayInputStream
+name|generateByteArrayInputStream
 argument_list|()
 return|;
 block|}
-DECL|method|freshStringReader ()
+DECL|method|generateStringReader ()
 annotation|@
 name|Generates
 specifier|private
 name|StringReader
-name|freshStringReader
+name|generateStringReader
 parameter_list|()
 block|{
 return|return
 operator|new
 name|StringReader
 argument_list|(
-name|freshString
+name|generateString
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshReader ()
+DECL|method|generateReader ()
 annotation|@
 name|Generates
 specifier|private
 name|Reader
-name|freshReader
+name|generateReader
 parameter_list|()
 block|{
 return|return
-name|freshStringReader
+name|generateStringReader
 argument_list|()
 return|;
 block|}
-DECL|method|freshReadable ()
+DECL|method|generateReadable ()
 annotation|@
 name|Generates
 specifier|private
 name|Readable
-name|freshReadable
+name|generateReadable
 parameter_list|()
 block|{
 return|return
-name|freshReader
+name|generateReader
 argument_list|()
 return|;
 block|}
-DECL|method|freshBuffer ()
+DECL|method|generateBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|Buffer
-name|freshBuffer
+name|generateBuffer
 parameter_list|()
 block|{
 return|return
-name|freshCharBuffer
+name|generateCharBuffer
 argument_list|()
 return|;
 block|}
-DECL|method|freshCharBuffer ()
+DECL|method|generateCharBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|CharBuffer
-name|freshCharBuffer
+name|generateCharBuffer
 parameter_list|()
 block|{
 return|return
@@ -5266,17 +5616,17 @@ name|CharBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshByteBuffer ()
+DECL|method|generateByteBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|ByteBuffer
-name|freshByteBuffer
+name|generateByteBuffer
 parameter_list|()
 block|{
 return|return
@@ -5284,17 +5634,17 @@ name|ByteBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshShortBuffer ()
+DECL|method|generateShortBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|ShortBuffer
-name|freshShortBuffer
+name|generateShortBuffer
 parameter_list|()
 block|{
 return|return
@@ -5302,17 +5652,17 @@ name|ShortBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshIntBuffer ()
+DECL|method|generateIntBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|IntBuffer
-name|freshIntBuffer
+name|generateIntBuffer
 parameter_list|()
 block|{
 return|return
@@ -5320,17 +5670,17 @@ name|IntBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshLongBuffer ()
+DECL|method|generateLongBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|LongBuffer
-name|freshLongBuffer
+name|generateLongBuffer
 parameter_list|()
 block|{
 return|return
@@ -5338,17 +5688,17 @@ name|LongBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshFloatBuffer ()
+DECL|method|generateFloatBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|FloatBuffer
-name|freshFloatBuffer
+name|generateFloatBuffer
 parameter_list|()
 block|{
 return|return
@@ -5356,17 +5706,17 @@ name|FloatBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|freshDoubleBuffer ()
+DECL|method|generateDoubleBuffer ()
 annotation|@
 name|Generates
 specifier|private
 name|DoubleBuffer
-name|freshDoubleBuffer
+name|generateDoubleBuffer
 parameter_list|()
 block|{
 return|return
@@ -5374,7 +5724,7 @@ name|DoubleBuffer
 operator|.
 name|allocate
 argument_list|(
-name|freshInt
+name|generateInt
 argument_list|()
 argument_list|)
 return|;

@@ -2866,7 +2866,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|generate
+name|generateFresh
 argument_list|(
 name|params
 operator|.
@@ -3365,7 +3365,7 @@ name|arg
 init|=
 name|generator
 operator|.
-name|generate
+name|generateFresh
 argument_list|(
 name|param
 operator|.

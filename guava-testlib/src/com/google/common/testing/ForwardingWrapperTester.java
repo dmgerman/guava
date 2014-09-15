@@ -809,7 +809,7 @@ name|instance
 init|=
 name|generator
 operator|.
-name|newProxy
+name|newFreshProxy
 argument_list|(
 name|interfaceType
 argument_list|)
@@ -843,7 +843,7 @@ name|apply
 argument_list|(
 name|generator
 operator|.
-name|newProxy
+name|newFreshProxy
 argument_list|(
 name|interfaceType
 argument_list|)
@@ -890,7 +890,7 @@ operator|new
 name|FreshValueGenerator
 argument_list|()
 operator|.
-name|newProxy
+name|newFreshProxy
 argument_list|(
 name|interfaceType
 argument_list|)
@@ -966,7 +966,7 @@ name|add
 argument_list|(
 name|paramValues
 operator|.
-name|generate
+name|generateFresh
 argument_list|(
 name|paramType
 argument_list|)
@@ -1073,7 +1073,7 @@ operator|new
 name|FreshValueGenerator
 argument_list|()
 operator|.
-name|generate
+name|generateFresh
 argument_list|(
 name|method
 operator|.
