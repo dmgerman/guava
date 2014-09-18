@@ -111,7 +111,7 @@ name|V
 argument_list|>
 name|valueList
 decl_stmt|;
-DECL|method|RegularImmutableSortedMap (RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList)
+DECL|method|RegularImmutableSortedMap ( RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList)
 name|RegularImmutableSortedMap
 parameter_list|(
 name|RegularImmutableSortedSet
@@ -483,8 +483,20 @@ block|}
 else|else
 block|{
 return|return
-name|from
+operator|new
+name|RegularImmutableSortedMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|(
+operator|(
+name|RegularImmutableSortedSet
+argument_list|<
+name|K
+argument_list|>
+operator|)
 name|keySet
 operator|.
 name|getSubSet

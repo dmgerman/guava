@@ -1360,7 +1360,6 @@ argument_list|)
 return|;
 block|}
 DECL|field|EMPTY_ENTRY_ARRAY
-specifier|private
 specifier|static
 specifier|final
 name|Entry
