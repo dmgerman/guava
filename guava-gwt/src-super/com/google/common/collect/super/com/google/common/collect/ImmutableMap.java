@@ -607,17 +607,41 @@ name|V
 argument_list|>
 argument_list|>
 name|entries
-init|=
-name|Lists
-operator|.
-name|newArrayList
-argument_list|()
 decl_stmt|;
 DECL|method|Builder ()
 specifier|public
 name|Builder
 parameter_list|()
-block|{}
+block|{
+name|this
+operator|.
+name|entries
+operator|=
+name|Lists
+operator|.
+name|newArrayList
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|Builder (int initCapacity)
+name|Builder
+parameter_list|(
+name|int
+name|initCapacity
+parameter_list|)
+block|{
+name|this
+operator|.
+name|entries
+operator|=
+name|Lists
+operator|.
+name|newArrayListWithCapacity
+argument_list|(
+name|initCapacity
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|put (K key, V value)
 specifier|public
 name|Builder
