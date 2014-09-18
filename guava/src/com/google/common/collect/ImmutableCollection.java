@@ -311,6 +311,7 @@ annotation|@
 name|Override
 DECL|method|contains (@ullable Object object)
 specifier|public
+specifier|abstract
 name|boolean
 name|contains
 parameter_list|(
@@ -319,20 +320,7 @@ name|Nullable
 name|Object
 name|object
 parameter_list|)
-block|{
-return|return
-name|object
-operator|!=
-literal|null
-operator|&&
-name|super
-operator|.
-name|contains
-argument_list|(
-name|object
-argument_list|)
-return|;
-block|}
+function_decl|;
 comment|/**    * Guaranteed to throw an exception and leave the collection unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
 annotation|@
 name|Deprecated

@@ -276,6 +276,21 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|contains (Object object)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|contains
+parameter_list|(
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 DECL|method|iterator ()
 annotation|@
 name|Override

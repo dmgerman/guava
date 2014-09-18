@@ -101,6 +101,28 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
+specifier|public
+name|boolean
+name|contains
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|object
+parameter_list|)
+block|{
+return|return
+name|forward
+operator|.
+name|contains
+argument_list|(
+name|object
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|size ()
 specifier|public
 name|int
