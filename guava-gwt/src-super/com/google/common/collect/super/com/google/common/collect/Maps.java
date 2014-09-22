@@ -4399,6 +4399,7 @@ argument_list|>
 name|keyFunction
 parameter_list|)
 block|{
+comment|// TODO(user): consider presizing the builder if values is a Collection
 return|return
 name|uniqueIndex
 argument_list|(
