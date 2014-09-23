@@ -175,36 +175,6 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|SingletonImmutableBiMap (Entry<? extends K, ? extends V> entry)
-name|SingletonImmutableBiMap
-parameter_list|(
-name|Entry
-argument_list|<
-name|?
-extends|extends
-name|K
-argument_list|,
-name|?
-extends|extends
-name|V
-argument_list|>
-name|entry
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-argument_list|,
-name|entry
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
