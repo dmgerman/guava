@@ -180,7 +180,7 @@ name|theEntries
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor for RegularImmutableMap that takes as input an array of {@code TerminalEntry}    * entries.  Assumes that these entries have already been checked for null.    *    *<p>This allows reuse of the entry objects from the array in the actual implementation.    */
+comment|/**    * Constructor for RegularImmutableMap that takes as input an array of {@code TerminalEntry}    * entries.  Assumes that these entries have already been checked for null.    *     *<p>This allows reuse of the entry objects from the array in the actual implementation.    */
 DECL|method|RegularImmutableMap (int size, TerminalEntry<?, ?>[] theEntries)
 name|RegularImmutableMap
 parameter_list|(
@@ -352,7 +352,7 @@ index|]
 operator|=
 name|newEntry
 expr_stmt|;
-name|checkNoConflictInBucket
+name|checkNoConflictInKeyBucket
 argument_list|(
 name|key
 argument_list|,
@@ -568,7 +568,7 @@ index|]
 operator|=
 name|newEntry
 expr_stmt|;
-name|checkNoConflictInBucket
+name|checkNoConflictInKeyBucket
 argument_list|(
 name|key
 argument_list|,
@@ -579,12 +579,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO(user): consider sharing this code with RegularImmutableBiMap
-DECL|method|checkNoConflictInBucket ( Object key, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> bucketHead)
-specifier|private
+DECL|method|checkNoConflictInKeyBucket ( Object key, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> keyBucketHead)
 specifier|static
 name|void
-name|checkNoConflictInBucket
+name|checkNoConflictInKeyBucket
 parameter_list|(
 name|Object
 name|key
@@ -605,19 +603,19 @@ name|?
 argument_list|,
 name|?
 argument_list|>
-name|bucketHead
+name|keyBucketHead
 parameter_list|)
 block|{
 for|for
 control|(
 init|;
-name|bucketHead
+name|keyBucketHead
 operator|!=
 literal|null
 condition|;
-name|bucketHead
+name|keyBucketHead
 operator|=
-name|bucketHead
+name|keyBucketHead
 operator|.
 name|getNextInKeyBucket
 argument_list|()
@@ -630,7 +628,7 @@ name|key
 operator|.
 name|equals
 argument_list|(
-name|bucketHead
+name|keyBucketHead
 operator|.
 name|getKey
 argument_list|()
@@ -640,7 +638,7 @@ literal|"key"
 argument_list|,
 name|entry
 argument_list|,
-name|bucketHead
+name|keyBucketHead
 argument_list|)
 expr_stmt|;
 block|}
@@ -797,7 +795,45 @@ name|Object
 name|key
 parameter_list|)
 block|{
-comment|// TODO(user): consider sharing this code with RegularImmutableBiMap
+return|return
+name|get
+argument_list|(
+name|key
+argument_list|,
+name|table
+argument_list|,
+name|mask
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Nullable
+DECL|method|get (@ullable Object key, ImmutableMapEntry<?, V>[] keyTable, int mask)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|V
+name|get
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|key
+parameter_list|,
+name|ImmutableMapEntry
+argument_list|<
+name|?
+argument_list|,
+name|V
+argument_list|>
+index|[]
+name|keyTable
+parameter_list|,
+name|int
+name|mask
+parameter_list|)
+block|{
 if|if
 condition|(
 name|key
@@ -828,13 +864,13 @@ for|for
 control|(
 name|ImmutableMapEntry
 argument_list|<
-name|K
+name|?
 argument_list|,
 name|V
 argument_list|>
 name|entry
 init|=
-name|table
+name|keyTable
 index|[
 name|index
 index|]
@@ -851,7 +887,7 @@ name|getNextInKeyBucket
 argument_list|()
 control|)
 block|{
-name|K
+name|Object
 name|candidateKey
 init|=
 name|entry
