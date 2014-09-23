@@ -1260,7 +1260,7 @@ name|map
 argument_list|)
 return|;
 block|}
-DECL|method|copyOfEnumMap ( Map<K, ? extends V> original)
+DECL|method|copyOfEnumMap ( EnumMap<K, ? extends V> original)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1281,7 +1281,7 @@ name|V
 argument_list|>
 name|copyOfEnumMap
 parameter_list|(
-name|Map
+name|EnumMap
 argument_list|<
 name|K
 argument_list|,
