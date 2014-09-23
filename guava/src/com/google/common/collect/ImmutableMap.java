@@ -2260,14 +2260,23 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
-comment|// not caching hash code since it could change if map values are mutable
-comment|// in a way that modifies their hash codes
 return|return
+name|Sets
+operator|.
+name|hashCodeImpl
+argument_list|(
 name|entrySet
 argument_list|()
-operator|.
-name|hashCode
-argument_list|()
+argument_list|)
+return|;
+block|}
+DECL|method|isHashCodeFast ()
+name|boolean
+name|isHashCodeFast
+parameter_list|()
+block|{
+return|return
+literal|false
 return|;
 block|}
 DECL|method|toString ()
