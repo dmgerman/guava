@@ -586,13 +586,6 @@ name|V
 name|value
 parameter_list|)
 block|{
-name|checkEntryNotNull
-argument_list|(
-name|key
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|TerminalEntry
