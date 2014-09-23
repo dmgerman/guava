@@ -33,6 +33,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMapEntry
+operator|.
+name|createEntryArray
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -164,7 +180,7 @@ name|theEntries
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor for RegularImmutableMap that takes as input an array of {@code TerminalEntry}    * entries.  Assumes that these entries have already been checked for null.    *     *<p>This allows reuse of the entry objects from the array in the actual implementation.    */
+comment|/**    * Constructor for RegularImmutableMap that takes as input an array of {@code TerminalEntry}    * entries.  Assumes that these entries have already been checked for null.    *    *<p>This allows reuse of the entry objects from the array in the actual implementation.    */
 DECL|method|RegularImmutableMap (int size, TerminalEntry<?, ?>[] theEntries)
 name|RegularImmutableMap
 parameter_list|(
@@ -563,27 +579,31 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|checkNoConflictInBucket ( K key, ImmutableMapEntry<K, V> entry, ImmutableMapEntry<K, V> bucketHead)
+comment|// TODO(user): consider sharing this code with RegularImmutableBiMap
+DECL|method|checkNoConflictInBucket ( Object key, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> bucketHead)
 specifier|private
+specifier|static
 name|void
 name|checkNoConflictInBucket
 parameter_list|(
-name|K
+name|Object
 name|key
 parameter_list|,
-name|ImmutableMapEntry
+name|Entry
 argument_list|<
-name|K
+name|?
 argument_list|,
-name|V
+name|?
 argument_list|>
 name|entry
 parameter_list|,
+annotation|@
+name|Nullable
 name|ImmutableMapEntry
 argument_list|<
-name|K
+name|?
 argument_list|,
-name|V
+name|?
 argument_list|>
 name|bucketHead
 parameter_list|)
@@ -764,36 +784,6 @@ name|MAX_LOAD_FACTOR
 init|=
 literal|1.2
 decl_stmt|;
-comment|/**    * Creates an {@code ImmutableMapEntry} array to hold parameterized entries. The    * result must never be upcast back to ImmutableMapEntry[] (or Object[], etc.), or    * allowed to escape the class.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-comment|// Safe as long as the javadocs are followed
-DECL|method|createEntryArray (int size)
-specifier|private
-name|ImmutableMapEntry
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
-index|[]
-name|createEntryArray
-parameter_list|(
-name|int
-name|size
-parameter_list|)
-block|{
-return|return
-operator|new
-name|ImmutableMapEntry
-index|[
-name|size
-index|]
-return|;
-block|}
 DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
@@ -807,6 +797,7 @@ name|Object
 name|key
 parameter_list|)
 block|{
+comment|// TODO(user): consider sharing this code with RegularImmutableBiMap
 if|if
 condition|(
 name|key
@@ -937,6 +928,7 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
+comment|/*    * TODO(user): consider sharing this with RegularImmutableBiMap, though    * that entry set knows its hash code in advance.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(

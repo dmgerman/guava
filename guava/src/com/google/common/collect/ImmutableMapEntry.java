@@ -83,6 +83,41 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|/**    * Creates an {@code ImmutableMapEntry} array to hold parameterized entries. The    * result must never be upcast back to ImmutableMapEntry[] (or Object[], etc.), or    * allowed to escape the class.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// Safe as long as the javadocs are followed
+DECL|method|createEntryArray (int size)
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|ImmutableMapEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+index|[]
+name|createEntryArray
+parameter_list|(
+name|int
+name|size
+parameter_list|)
+block|{
+return|return
+operator|new
+name|ImmutableMapEntry
+index|[
+name|size
+index|]
+return|;
+block|}
 DECL|method|ImmutableMapEntry (K key, V value)
 name|ImmutableMapEntry
 parameter_list|(
