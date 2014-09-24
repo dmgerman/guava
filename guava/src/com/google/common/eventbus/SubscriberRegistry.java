@@ -1140,7 +1140,7 @@ name|isSynthetic
 argument_list|()
 condition|)
 block|{
-comment|// TODO(cgdecker): Should check for a generic parameter type and error out
+comment|// TODO(user): Should check for a generic parameter type and error out
 name|Class
 argument_list|<
 name|?

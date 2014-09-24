@@ -1367,7 +1367,7 @@ init|=
 literal|"abcdabcd"
 decl_stmt|;
 comment|// read the first 8 chars manually, since there's no equivalent to ByteSource.slice
-comment|// TODO(cgdecker): Add CharSource.slice?
+comment|// TODO(user): Add CharSource.slice?
 name|StringBuilder
 name|builder
 init|=
