@@ -1339,8 +1339,6 @@ name|entries
 operator|.
 name|toArray
 argument_list|(
-name|ImmutableMap
-operator|.
 name|EMPTY_ENTRY_ARRAY
 argument_list|)
 decl_stmt|;
