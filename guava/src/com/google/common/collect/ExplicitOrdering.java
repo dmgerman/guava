@@ -109,7 +109,7 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|Lists
+name|Maps
 operator|.
 name|indexMap
 argument_list|(

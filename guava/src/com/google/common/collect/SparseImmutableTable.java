@@ -175,14 +175,11 @@ name|Integer
 argument_list|>
 name|rowIndex
 init|=
-name|Lists
+name|Maps
 operator|.
 name|indexMap
 argument_list|(
 name|rowSpace
-operator|.
-name|asList
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|Map

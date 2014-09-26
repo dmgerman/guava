@@ -4287,7 +4287,7 @@ name|this
 operator|.
 name|inputSet
 operator|=
-name|Lists
+name|Maps
 operator|.
 name|indexMap
 argument_list|(

@@ -466,7 +466,7 @@ expr_stmt|;
 comment|/*      * TODO(jlevy): Support empty rowKeys or columnKeys? If we do, when      * columnKeys is empty but rowKeys isn't, the table is empty but      * containsRow() can return true and rowKeySet() isn't empty.      */
 name|rowKeyToIndex
 operator|=
-name|Lists
+name|Maps
 operator|.
 name|indexMap
 argument_list|(
@@ -475,7 +475,7 @@ argument_list|)
 expr_stmt|;
 name|columnKeyToIndex
 operator|=
-name|Lists
+name|Maps
 operator|.
 name|indexMap
 argument_list|(
