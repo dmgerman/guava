@@ -196,7 +196,7 @@ name|collect
 operator|.
 name|Maps
 operator|.
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 import|;
 end_import
 
@@ -1402,7 +1402,7 @@ DECL|class|Row
 class|class
 name|Row
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|C
 argument_list|,
@@ -2093,7 +2093,7 @@ specifier|private
 class|class
 name|Column
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|R
 argument_list|,
@@ -3835,7 +3835,7 @@ DECL|class|RowMap
 class|class
 name|RowMap
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|R
 argument_list|,
@@ -4255,7 +4255,7 @@ specifier|private
 class|class
 name|ColumnMap
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|C
 argument_list|,

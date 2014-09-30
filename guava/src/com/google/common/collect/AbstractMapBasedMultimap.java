@@ -104,7 +104,7 @@ name|collect
 operator|.
 name|Maps
 operator|.
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 import|;
 end_import
 
@@ -5113,7 +5113,7 @@ specifier|private
 class|class
 name|AsMap
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|K
 argument_list|,

@@ -3222,7 +3222,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|K
 argument_list|,
@@ -6335,7 +6335,7 @@ parameter_list|,
 name|V2
 parameter_list|>
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|K
 argument_list|,
@@ -7884,7 +7884,7 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|K
 argument_list|,
@@ -10235,14 +10235,14 @@ name|entry
 argument_list|)
 return|;
 block|}
-comment|/**    * {@code AbstractMap} extension that implements {@link #isEmpty()} as {@code    * entrySet().isEmpty()} instead of {@code size() == 0} to speed up    * implementations where {@code size()} is O(n), and it delegates the {@code    * isEmpty()} methods of its key set and value collection to this    * implementation.    */
+comment|/**    * {@code AbstractMap} extension that makes it easy to cache customized keySet, values,    * and entrySet views.    */
 annotation|@
 name|GwtCompatible
-DECL|class|ImprovedAbstractMap
+DECL|class|ViewCachingAbstractMap
 specifier|abstract
 specifier|static
 class|class
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 parameter_list|<
 name|K
 parameter_list|,

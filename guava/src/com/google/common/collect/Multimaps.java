@@ -6441,7 +6441,7 @@ parameter_list|>
 extends|extends
 name|Maps
 operator|.
-name|ImprovedAbstractMap
+name|ViewCachingAbstractMap
 argument_list|<
 name|K
 argument_list|,
