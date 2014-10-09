@@ -376,6 +376,66 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testDoubleMinValueCanAcquireExactlyOnce ()
+specifier|public
+name|void
+name|testDoubleMinValueCanAcquireExactlyOnce
+parameter_list|()
+block|{
+name|RateLimiter
+name|r
+init|=
+name|RateLimiter
+operator|.
+name|create
+argument_list|(
+name|stopwatch
+argument_list|,
+name|Double
+operator|.
+name|MIN_VALUE
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Unable to acquire initial permit"
+argument_list|,
+name|r
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"Capable of acquiring an additional permit"
+argument_list|,
+name|r
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|stopwatch
+operator|.
+name|sleepMillis
+argument_list|(
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"Capable of acquiring an additional permit after sleeping"
+argument_list|,
+name|r
+operator|.
+name|tryAcquire
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testSimpleRateUpdate ()
 specifier|public
 name|void
