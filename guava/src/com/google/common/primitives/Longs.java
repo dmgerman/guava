@@ -202,6 +202,26 @@ name|RandomAccess
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code long} primitives, that are not  * already found in either {@link Long} or {@link Arrays}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
@@ -1104,6 +1124,10 @@ block|}
 comment|/**    * Parses the specified string as a signed decimal long value. The ASCII    * character {@code '-'} (<code>'&#92;u002D'</code>) is recognized as the    * minus sign.    *    *<p>Unlike {@link Long#parseLong(String)}, this method returns    * {@code null} instead of throwing an exception if parsing fails.    * Additionally, this method only accepts ASCII digits, and returns    * {@code null} if non-ASCII digits are present in the string.    *    *<p>Note that strings prefixed with ASCII {@code '+'} are rejected, even    * under JDK 7, despite the change to {@link Long#parseLong(String)} for    * that version.    *    * @param string the string representation of a long value    * @return the long value represented by {@code string}, or {@code null} if    *     {@code string} has a length of zero or cannot be parsed as a long    *     value    * @since 14.0    */
 annotation|@
 name|Beta
+annotation|@
+name|Nullable
+annotation|@
+name|CheckForNull
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
@@ -2295,13 +2319,15 @@ name|toIndex
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object object)
+DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)

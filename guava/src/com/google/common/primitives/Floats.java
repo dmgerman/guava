@@ -246,6 +246,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckForNull
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -1900,13 +1910,15 @@ name|toIndex
 argument_list|)
 return|;
 block|}
-DECL|method|equals (Object object)
+DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|object
 parameter_list|)
@@ -2194,14 +2206,16 @@ decl_stmt|;
 block|}
 comment|/**    * Parses the specified string as a single-precision floating point value.    * The ASCII character {@code '-'} (<code>'&#92;u002D'</code>) is recognized    * as the minus sign.    *    *<p>Unlike {@link Float#parseFloat(String)}, this method returns    * {@code null} instead of throwing an exception if parsing fails.    * Valid inputs are exactly those accepted by {@link Float#valueOf(String)},    * except that leading and trailing whitespace is not permitted.    *    *<p>This implementation is likely to be faster than {@code    * Float.parseFloat} if many failures are expected.    *    * @param string the string representation of a {@code float} value    * @return the floating point value represented by {@code string}, or    *     {@code null} if {@code string} has a length of zero or cannot be    *     parsed as a {@code float} value    * @since 14.0    */
 annotation|@
+name|Beta
+annotation|@
+name|Nullable
+annotation|@
+name|CheckForNull
+annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"regular expressions"
 argument_list|)
-annotation|@
-name|Nullable
-annotation|@
-name|Beta
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static
