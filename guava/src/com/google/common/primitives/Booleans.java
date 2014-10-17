@@ -144,16 +144,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -278,7 +268,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link    * BitSet} instead, replacing {@code Booleans.contains(array, true)}    * with {@code !bitSet.isEmpty()} and {@code Booleans.contains(array, false)}    * with {@code bitSet.nextClearBit(0) == sizeOfBitSet}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
+comment|/**    * Returns {@code true} if {@code target} is present as an element anywhere in    * {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link    * java.util.BitSet} instead, replacing {@code Booleans.contains(array, true)}    * with {@code !bitSet.isEmpty()} and {@code Booleans.contains(array, false)}    * with {@code bitSet.nextClearBit(0) == sizeOfBitSet}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return {@code true} if {@code array[i] == target} for some value of {@code    *     i}    */
 DECL|method|contains (boolean[] array, boolean target)
 specifier|public
 specifier|static
@@ -317,7 +307,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns the index of the first appearance of the value {@code target} in    * {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link BitSet}    * instead, and using {@link BitSet#nextSetBit(int)} or {@link    * BitSet#nextClearBit(int)}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return the least index {@code i} for which {@code array[i] == target}, or    *     {@code -1} if no such index exists.    */
+comment|/**    * Returns the index of the first appearance of the value {@code target} in    * {@code array}.    *    *<p><b>Note:</b> consider representing the array as a {@link    * java.util.BitSet} instead, and using {@link    * java.util.BitSet#nextSetBit(int)} or {@link    * java.util.BitSet#nextClearBit(int)}.    *    * @param array an array of {@code boolean} values, possibly empty    * @param target a primitive {@code boolean} value    * @return the least index {@code i} for which {@code array[i] == target}, or    *     {@code -1} if no such index exists.    */
 DECL|method|indexOf (boolean[] array, boolean target)
 specifier|public
 specifier|static
@@ -1025,7 +1015,7 @@ name|length
 return|;
 block|}
 block|}
-comment|/**    * Copies a collection of {@code Boolean} instances into a new array of    * primitive {@code boolean} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    *<p><b>Note:</b> consider representing the collection as a {@link    * BitSet} instead.    *    * @param collection a collection of {@code Boolean} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
+comment|/**    * Copies a collection of {@code Boolean} instances into a new array of    * primitive {@code boolean} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    *<p><b>Note:</b> consider representing the collection as a {@link    * java.util.BitSet} instead.    *    * @param collection a collection of {@code Boolean} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
 DECL|method|toArray (Collection<Boolean> collection)
 specifier|public
 specifier|static
