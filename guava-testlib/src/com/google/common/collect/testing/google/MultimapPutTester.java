@@ -979,10 +979,10 @@ operator|.
 name|e3
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): Change this back to Truth
-name|assertTrue
+name|assertThat
 argument_list|(
 name|entries
+argument_list|)
 operator|.
 name|contains
 argument_list|(
@@ -999,7 +999,6 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1082,10 +1081,10 @@ operator|.
 name|e3
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): Change this back to Truth
-name|assertTrue
+name|assertThat
 argument_list|(
 name|entries
+argument_list|)
 operator|.
 name|contains
 argument_list|(
@@ -1102,7 +1101,6 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
