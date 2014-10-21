@@ -44,7 +44,7 @@ name|collect
 operator|.
 name|Sets
 operator|.
-name|newHashSet
+name|difference
 import|;
 end_import
 
@@ -60,7 +60,7 @@ name|collect
 operator|.
 name|Sets
 operator|.
-name|newTreeSet
+name|newHashSet
 import|;
 end_import
 
@@ -187,16 +187,6 @@ operator|.
 name|util
 operator|.
 name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
 import|;
 end_import
 
@@ -541,28 +531,56 @@ argument_list|,
 name|ancestor
 argument_list|)
 decl_stmt|;
-name|required
+name|Set
+argument_list|<
+name|MethodSignature
+argument_list|>
+name|missing
+init|=
+name|ImmutableSortedSet
 operator|.
-name|removeAll
+name|copyOf
 argument_list|(
+name|difference
+argument_list|(
+name|required
+argument_list|,
 name|found
 argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"Must hide public static methods from ancestor classes"
-argument_list|,
-name|Collections
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|missing
 operator|.
-name|emptySet
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|fail
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s should hide the public static methods declared in %s: %s"
+argument_list|,
+name|descendant
+operator|.
+name|getSimpleName
 argument_list|()
 argument_list|,
-name|newTreeSet
-argument_list|(
-name|required
+name|ancestor
+operator|.
+name|getSimpleName
+argument_list|()
+argument_list|,
+name|missing
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|getAllRequiredToFauxveride (Class<?> ancestor)
 specifier|private
