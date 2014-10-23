@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -60,16 +76,6 @@ name|InputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * An {@link InputStream} that counts the number of bytes read.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
@@ -99,19 +105,20 @@ operator|-
 literal|1
 decl_stmt|;
 comment|/**    * Wraps another input stream, counting the number of bytes read.    *    * @param in the input stream to be wrapped    */
-DECL|method|CountingInputStream (@ullable InputStream in)
+DECL|method|CountingInputStream (InputStream in)
 specifier|public
 name|CountingInputStream
 parameter_list|(
-annotation|@
-name|Nullable
 name|InputStream
 name|in
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|checkNotNull
+argument_list|(
 name|in
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
