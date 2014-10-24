@@ -393,10 +393,7 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,
@@ -432,10 +429,7 @@ argument_list|(
 name|sublist
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,
@@ -836,10 +830,7 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,
@@ -859,10 +850,7 @@ literal|"bar"
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 literal|3
 argument_list|)

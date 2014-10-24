@@ -3487,10 +3487,7 @@ argument_list|(
 name|alreadyThere
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"already"
 argument_list|,
@@ -7820,10 +7817,7 @@ argument_list|(
 name|list
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -7846,10 +7840,7 @@ argument_list|(
 name|list
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -7874,10 +7865,7 @@ argument_list|(
 name|list
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 literal|"b"
 argument_list|)

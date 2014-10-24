@@ -580,10 +580,7 @@ argument_list|(
 name|filterThenAdd
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|addThenFilter
 argument_list|)
@@ -952,10 +949,7 @@ argument_list|(
 name|filteredToModify
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|filtered
 argument_list|)
@@ -1138,10 +1132,7 @@ argument_list|(
 name|unfiltered
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|inverseFiltered
 argument_list|)
@@ -2069,10 +2060,7 @@ name|descendingSet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|unfiltered
 operator|.

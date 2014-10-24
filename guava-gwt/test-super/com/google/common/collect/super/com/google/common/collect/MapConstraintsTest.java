@@ -702,10 +702,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Maps
 operator|.
@@ -1112,10 +1109,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Maps
 operator|.
@@ -1725,10 +1719,7 @@ literal|"foo"
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 literal|1
 argument_list|)
@@ -1832,10 +1823,7 @@ name|entries
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Maps
 operator|.

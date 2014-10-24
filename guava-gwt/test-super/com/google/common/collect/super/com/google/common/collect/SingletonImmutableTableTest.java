@@ -682,10 +682,7 @@ name|values
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 literal|"blah"
 argument_list|)
