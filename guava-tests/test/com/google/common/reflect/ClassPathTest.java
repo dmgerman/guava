@@ -877,10 +877,7 @@ argument_list|(
 name|packageNames
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|ClassPath
 operator|.
@@ -1139,10 +1136,7 @@ argument_list|(
 name|packageNames
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 name|ClassPath
 operator|.
@@ -2529,10 +2523,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2543,9 +2534,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_relativeJar ()
@@ -2588,10 +2576,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2602,9 +2587,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_jarInCurrentDirectory ()
@@ -2647,10 +2629,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2661,9 +2640,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_absoluteDirectory ()
@@ -2705,10 +2681,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2719,9 +2692,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_absoluteJar ()
@@ -2763,10 +2733,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2777,9 +2744,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_multiplePaths ()
@@ -2897,10 +2861,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2911,9 +2872,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassPathFromManifest_trailingBlanks ()
@@ -2955,10 +2913,7 @@ name|manifest
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 operator|new
 name|File
@@ -2969,9 +2924,6 @@ operator|.
 name|toURI
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testGetClassName ()

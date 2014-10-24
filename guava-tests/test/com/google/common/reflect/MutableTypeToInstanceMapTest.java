@@ -1366,19 +1366,13 @@ operator|.
 name|asList
 argument_list|()
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|array
 index|[
 literal|0
 index|]
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testWildcardType ()

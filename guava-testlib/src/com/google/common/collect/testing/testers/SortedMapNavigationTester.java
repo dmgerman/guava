@@ -754,7 +754,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactlyElementsIn
 argument_list|(
 name|entries
 operator|.
@@ -765,6 +765,9 @@ argument_list|,
 name|i
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -866,7 +869,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactlyElementsIn
 argument_list|(
 name|entries
 operator|.
@@ -880,6 +883,9 @@ name|size
 argument_list|()
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1011,7 +1017,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactlyElementsIn
 argument_list|(
 name|entries
 operator|.
@@ -1022,6 +1028,9 @@ argument_list|,
 name|j
 argument_list|)
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 block|}

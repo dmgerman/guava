@@ -489,10 +489,7 @@ argument_list|(
 name|collection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|expectedValues
 argument_list|)
@@ -539,10 +536,7 @@ literal|null
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|getValueForNullKey
 argument_list|()

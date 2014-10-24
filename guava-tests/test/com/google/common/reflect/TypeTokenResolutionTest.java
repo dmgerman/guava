@@ -884,10 +884,7 @@ operator|.
 name|asList
 argument_list|()
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 name|String
 operator|.

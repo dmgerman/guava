@@ -913,10 +913,7 @@ argument_list|(
 name|collection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|expectedCollection
 argument_list|)
@@ -1073,10 +1070,7 @@ argument_list|(
 name|collection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|expectedCollection
 argument_list|)
@@ -1297,10 +1291,7 @@ argument_list|(
 name|collection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|expectedCollection
 argument_list|)

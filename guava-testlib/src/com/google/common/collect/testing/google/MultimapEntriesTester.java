@@ -372,10 +372,7 @@ name|entries
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|getSampleElements
 argument_list|()
