@@ -3522,10 +3522,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|asList
 argument_list|(
@@ -3847,10 +3844,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactlyAs
+name|containsExactlyElementsIn
 argument_list|(
 name|asList
 argument_list|(

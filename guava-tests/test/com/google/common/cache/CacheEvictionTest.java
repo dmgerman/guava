@@ -2013,10 +2013,7 @@ argument_list|(
 name|keySet
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|item
+name|contains
 argument_list|(
 literal|0
 argument_list|)
