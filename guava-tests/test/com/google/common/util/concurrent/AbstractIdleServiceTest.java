@@ -474,10 +474,7 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Service
 operator|.
@@ -485,9 +482,6 @@ name|State
 operator|.
 name|STARTING
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStart_failed ()
@@ -603,10 +597,7 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Service
 operator|.
@@ -614,9 +605,6 @@ name|State
 operator|.
 name|STARTING
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStop_withoutStart ()
