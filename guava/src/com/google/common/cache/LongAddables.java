@@ -99,6 +99,7 @@ operator|new
 name|LongAdder
 argument_list|()
 expr_stmt|;
+comment|// trigger static initialization of the LongAdder class, which may fail
 name|supplier
 operator|=
 operator|new
