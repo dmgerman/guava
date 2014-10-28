@@ -1491,6 +1491,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|3
 argument_list|)
@@ -1502,6 +1503,7 @@ argument_list|(
 name|samples
 operator|.
 name|e1
+argument_list|()
 argument_list|,
 literal|4
 argument_list|)
@@ -1513,6 +1515,7 @@ argument_list|(
 name|samples
 operator|.
 name|e2
+argument_list|()
 argument_list|,
 literal|1
 argument_list|)
@@ -1524,6 +1527,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 literal|5
 argument_list|)
@@ -1535,6 +1539,7 @@ argument_list|(
 name|samples
 operator|.
 name|e4
+argument_list|()
 argument_list|,
 literal|2
 argument_list|)

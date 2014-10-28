@@ -549,6 +549,7 @@ argument_list|,
 name|unhashables
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -580,6 +581,7 @@ argument_list|(
 name|unhashables
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -622,6 +624,7 @@ argument_list|,
 name|unhashables
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|2
 argument_list|,
@@ -632,6 +635,7 @@ argument_list|,
 name|unhashables
 operator|.
 name|e1
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -663,6 +667,7 @@ argument_list|(
 name|unhashables
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -680,6 +685,7 @@ argument_list|(
 name|unhashables
 operator|.
 name|e1
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

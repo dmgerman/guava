@@ -277,6 +277,7 @@ argument_list|,
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|getQueue
 argument_list|()
@@ -290,6 +291,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -324,6 +326,7 @@ argument_list|,
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|getQueue
 argument_list|()
@@ -337,6 +340,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

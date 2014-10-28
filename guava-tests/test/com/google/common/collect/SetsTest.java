@@ -1187,6 +1187,7 @@ name|samples
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Set
@@ -1210,6 +1211,7 @@ name|samples
 argument_list|()
 operator|.
 name|e4
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -1293,6 +1295,7 @@ name|samples
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Set
@@ -1309,6 +1312,7 @@ name|samples
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 decl_stmt|;
 return|return

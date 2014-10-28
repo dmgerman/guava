@@ -201,6 +201,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -222,6 +223,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

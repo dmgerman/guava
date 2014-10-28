@@ -257,6 +257,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 operator|-
 literal|1
@@ -351,6 +352,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|2
 argument_list|,
@@ -396,6 +398,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
@@ -442,6 +445,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|1
 argument_list|,
@@ -458,6 +462,7 @@ argument_list|,
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

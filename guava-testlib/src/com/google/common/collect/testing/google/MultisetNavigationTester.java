@@ -800,6 +800,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|type
 argument_list|)
@@ -817,6 +818,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|type
 argument_list|)
@@ -986,6 +988,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|OPEN
 argument_list|)
@@ -1003,6 +1006,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|OPEN
 argument_list|)
@@ -1022,6 +1026,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|CLOSED
 argument_list|)
@@ -1041,6 +1046,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|CLOSED
 argument_list|)

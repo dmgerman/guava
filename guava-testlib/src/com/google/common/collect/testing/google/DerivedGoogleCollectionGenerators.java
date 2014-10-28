@@ -621,6 +621,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|,
 name|reverse
@@ -628,6 +629,7 @@ argument_list|(
 name|samples
 operator|.
 name|e1
+argument_list|()
 argument_list|)
 argument_list|,
 name|reverse
@@ -635,6 +637,7 @@ argument_list|(
 name|samples
 operator|.
 name|e2
+argument_list|()
 argument_list|)
 argument_list|,
 name|reverse
@@ -642,6 +645,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|,
 name|reverse
@@ -649,6 +653,7 @@ argument_list|(
 name|samples
 operator|.
 name|e4
+argument_list|()
 argument_list|)
 argument_list|)
 return|;
@@ -1040,6 +1045,7 @@ argument_list|(
 name|mapSamples
 operator|.
 name|e0
+argument_list|()
 operator|.
 name|getValue
 argument_list|()
@@ -1047,6 +1053,7 @@ argument_list|,
 name|mapSamples
 operator|.
 name|e1
+argument_list|()
 operator|.
 name|getValue
 argument_list|()
@@ -1054,6 +1061,7 @@ argument_list|,
 name|mapSamples
 operator|.
 name|e2
+argument_list|()
 operator|.
 name|getValue
 argument_list|()
@@ -1061,6 +1069,7 @@ argument_list|,
 name|mapSamples
 operator|.
 name|e3
+argument_list|()
 operator|.
 name|getValue
 argument_list|()
@@ -1068,6 +1077,7 @@ argument_list|,
 name|mapSamples
 operator|.
 name|e4
+argument_list|()
 operator|.
 name|getValue
 argument_list|()

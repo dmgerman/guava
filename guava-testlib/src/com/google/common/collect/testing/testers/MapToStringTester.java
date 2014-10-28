@@ -299,6 +299,7 @@ operator|+
 name|samples
 operator|.
 name|e0
+argument_list|()
 operator|+
 literal|"}"
 argument_list|,

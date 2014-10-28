@@ -313,6 +313,7 @@ argument_list|,
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectAdded
@@ -322,6 +323,7 @@ argument_list|,
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -362,6 +364,7 @@ argument_list|,
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail
@@ -403,6 +406,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectAdded
@@ -412,6 +416,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -458,6 +463,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|iterator
@@ -507,6 +513,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail
@@ -529,6 +536,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -571,6 +579,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectAdded
@@ -583,6 +592,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -619,6 +629,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectAdded
@@ -629,6 +640,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -754,6 +766,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail
@@ -776,6 +789,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -807,6 +821,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail
@@ -829,6 +844,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

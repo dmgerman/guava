@@ -636,10 +636,12 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|samples
 operator|.
 name|e4
+argument_list|()
 argument_list|)
 return|;
 block|}

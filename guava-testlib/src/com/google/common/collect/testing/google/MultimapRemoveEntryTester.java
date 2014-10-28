@@ -347,11 +347,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e1
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -392,11 +394,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -411,11 +415,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -424,6 +430,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -446,6 +453,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|ImmutableList
 operator|.
@@ -635,6 +643,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -670,6 +679,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)
@@ -709,6 +719,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)
@@ -763,6 +774,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail

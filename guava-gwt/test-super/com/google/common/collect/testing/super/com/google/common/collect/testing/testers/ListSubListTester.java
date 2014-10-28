@@ -647,6 +647,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectAdded
@@ -656,6 +657,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -706,6 +708,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|List
@@ -731,6 +734,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectContents
@@ -787,6 +791,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -802,6 +807,7 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|,
 name|subList
@@ -857,6 +863,7 @@ argument_list|(
 name|samples
 operator|.
 name|e2
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|List
@@ -937,6 +944,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectAdded
@@ -946,6 +954,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1000,6 +1009,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|List
@@ -1025,6 +1035,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectContents
@@ -1085,6 +1096,7 @@ argument_list|,
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1100,10 +1112,12 @@ argument_list|(
 name|samples
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|samples
 operator|.
 name|e2
+argument_list|()
 argument_list|)
 argument_list|,
 name|subList

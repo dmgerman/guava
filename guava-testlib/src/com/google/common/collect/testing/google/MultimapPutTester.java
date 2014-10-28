@@ -323,11 +323,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|fail
@@ -369,6 +371,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 decl_stmt|;
 name|V
 name|value
@@ -377,6 +380,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 decl_stmt|;
 name|assertGet
 argument_list|(
@@ -460,6 +464,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 decl_stmt|;
 name|V
 name|oldValue
@@ -468,6 +473,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 decl_stmt|;
 name|V
 name|newValue
@@ -476,6 +482,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 decl_stmt|;
 name|assertGet
 argument_list|(
@@ -546,6 +553,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 decl_stmt|;
 name|V
 name|v1
@@ -554,6 +562,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 decl_stmt|;
 name|V
 name|v2
@@ -562,6 +571,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e4
+argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
@@ -675,6 +685,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)
@@ -685,6 +696,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|Lists
 operator|.
@@ -742,6 +754,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e1
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)
@@ -794,6 +807,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertGet
@@ -804,6 +818,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -854,6 +869,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertThat
@@ -873,11 +889,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -891,6 +909,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -951,11 +970,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -969,11 +990,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -991,11 +1014,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1053,11 +1078,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1071,11 +1098,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -1093,11 +1122,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1196,6 +1227,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectedCollection
@@ -1206,6 +1238,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -1335,6 +1368,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectedCollection
@@ -1345,6 +1379,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -1538,6 +1573,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectedCollection
@@ -1548,6 +1584,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat

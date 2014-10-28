@@ -241,6 +241,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 operator|+
 literal|"=["
 operator|+
@@ -248,6 +249,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 operator|+
 literal|"]}"
 argument_list|,

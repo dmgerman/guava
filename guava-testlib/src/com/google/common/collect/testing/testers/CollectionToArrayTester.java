@@ -701,6 +701,7 @@ operator|=
 name|samples
 operator|.
 name|e3
+argument_list|()
 expr_stmt|;
 name|array
 index|[
@@ -713,6 +714,7 @@ operator|=
 name|samples
 operator|.
 name|e3
+argument_list|()
 expr_stmt|;
 name|assertSame
 argument_list|(
@@ -845,6 +847,7 @@ operator|=
 name|samples
 operator|.
 name|e3
+argument_list|()
 expr_stmt|;
 name|array
 index|[
@@ -857,6 +860,7 @@ operator|=
 name|samples
 operator|.
 name|e3
+argument_list|()
 expr_stmt|;
 name|assertSame
 argument_list|(

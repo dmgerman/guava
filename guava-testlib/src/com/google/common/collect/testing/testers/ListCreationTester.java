@@ -193,6 +193,7 @@ operator|=
 name|samples
 operator|.
 name|e0
+argument_list|()
 expr_stmt|;
 name|collection
 operator|=

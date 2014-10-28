@@ -281,6 +281,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -324,6 +325,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -333,6 +335,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|expectMissing
@@ -340,6 +343,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -380,6 +384,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|multimap
@@ -391,6 +396,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertThat
@@ -406,6 +412,7 @@ argument_list|(
 name|samples
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -439,11 +446,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|,
 name|Helpers
@@ -454,11 +463,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e1
+argument_list|()
 argument_list|)
 argument_list|,
 name|Helpers
@@ -469,11 +480,13 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e2
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -488,6 +501,7 @@ name|sampleKeys
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -497,16 +511,19 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e0
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e1
+argument_list|()
 argument_list|,
 name|sampleValues
 argument_list|()
 operator|.
 name|e2
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertTrue

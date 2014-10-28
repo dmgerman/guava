@@ -185,6 +185,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e3
+argument_list|()
 decl_stmt|;
 name|V
 name|v1
@@ -193,6 +194,7 @@ name|sampleValues
 argument_list|()
 operator|.
 name|e2
+argument_list|()
 decl_stmt|;
 annotation|@
 name|SuppressWarnings
