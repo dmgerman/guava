@@ -757,10 +757,7 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Service
 operator|.
@@ -918,10 +915,7 @@ operator|.
 name|transitionStates
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Service
 operator|.
