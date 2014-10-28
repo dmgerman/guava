@@ -2192,10 +2192,7 @@ name|rowKeyList
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -2253,10 +2250,7 @@ name|columnKeyList
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,

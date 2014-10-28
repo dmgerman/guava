@@ -1117,10 +1117,7 @@ name|rowKeySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1145,10 +1142,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|12
 argument_list|,
@@ -1251,10 +1245,7 @@ name|rowKeySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -1279,10 +1270,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|12
 argument_list|,

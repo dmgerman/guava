@@ -664,10 +664,7 @@ argument_list|(
 name|set
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,

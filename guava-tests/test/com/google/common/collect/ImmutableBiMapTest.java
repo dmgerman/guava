@@ -3218,10 +3218,7 @@ argument_list|(
 name|keys
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"one"
 argument_list|,
@@ -3310,10 +3307,7 @@ argument_list|(
 name|values
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,

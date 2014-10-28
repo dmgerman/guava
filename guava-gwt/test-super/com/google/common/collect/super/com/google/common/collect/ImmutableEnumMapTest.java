@@ -317,10 +317,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Helpers
 operator|.
