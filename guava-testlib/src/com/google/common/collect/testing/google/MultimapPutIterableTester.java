@@ -1474,10 +1474,7 @@ argument_list|(
 name|getCollection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|containsAllOf
 argument_list|(
 name|sampleValues
 argument_list|()

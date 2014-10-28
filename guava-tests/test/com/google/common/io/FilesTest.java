@@ -3334,10 +3334,7 @@ name|getResult
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"hello"
 argument_list|,
@@ -3452,10 +3449,7 @@ name|getResult
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 literal|"hello"
 argument_list|,

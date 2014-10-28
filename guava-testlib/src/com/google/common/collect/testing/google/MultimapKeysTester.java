@@ -441,10 +441,7 @@ argument_list|(
 name|keys
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|containsAllOf
 argument_list|(
 name|sampleKeys
 argument_list|()
@@ -465,10 +462,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|containsAllOf
 argument_list|(
 name|Multisets
 operator|.
@@ -648,10 +642,7 @@ argument_list|(
 name|keys
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|containsAllOf
 argument_list|(
 literal|null
 argument_list|,
@@ -669,10 +660,7 @@ name|entrySet
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|allOf
+name|containsAllOf
 argument_list|(
 name|Multisets
 operator|.

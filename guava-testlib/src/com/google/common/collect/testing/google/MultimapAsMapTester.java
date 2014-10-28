@@ -782,10 +782,7 @@ argument_list|(
 name|valueCollection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|sampleValues
 argument_list|()
@@ -822,10 +819,7 @@ argument_list|(
 name|valueCollection
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|sampleValues
 argument_list|()

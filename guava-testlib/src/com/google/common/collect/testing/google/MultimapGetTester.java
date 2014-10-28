@@ -1040,10 +1040,7 @@ argument_list|(
 name|result
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|v1
 argument_list|,
@@ -1061,10 +1058,7 @@ name|k0
 argument_list|)
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|v1
 argument_list|,
