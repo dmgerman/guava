@@ -1224,12 +1224,12 @@ argument_list|)
 expr_stmt|;
 comment|//TODO(user): Confirm with fry@ that this is a reasonable substitute.
 comment|//Set<Map.Entry<Object, Object>> entries = map.entrySet();
-comment|//assertThat(entries).has().exactly(
+comment|//assertThat(entries).containsExactly(
 comment|//    Maps.immutableEntry(three, one), Maps.immutableEntry(one, two));
 comment|//Set<Object> keys = map.keySet();
-comment|//assertThat(keys).has().exactly(one, three);
+comment|//assertThat(keys).containsExactly(one, three);
 comment|//Collection<Object> values = map.values();
-comment|//assertThat(values).has().exactly(one, two);
+comment|//assertThat(values).containsExactly(one, two);
 name|map
 operator|.
 name|clear
