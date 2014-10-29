@@ -255,8 +255,6 @@ name|assertEquals
 argument_list|(
 literal|"size1Queue.poll() should return first element"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -269,8 +267,6 @@ argument_list|)
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -304,8 +300,6 @@ name|assertEquals
 argument_list|(
 literal|"sizeManyQueue.poll() should return first element"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -318,8 +312,6 @@ argument_list|)
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)

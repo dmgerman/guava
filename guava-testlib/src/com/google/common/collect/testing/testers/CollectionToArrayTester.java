@@ -698,8 +698,6 @@ name|getNumElements
 argument_list|()
 index|]
 operator|=
-name|samples
-operator|.
 name|e3
 argument_list|()
 expr_stmt|;
@@ -711,8 +709,6 @@ operator|+
 literal|1
 index|]
 operator|=
-name|samples
-operator|.
 name|e3
 argument_list|()
 expr_stmt|;
@@ -844,8 +840,6 @@ name|getNumElements
 argument_list|()
 index|]
 operator|=
-name|samples
-operator|.
 name|e3
 argument_list|()
 expr_stmt|;
@@ -857,8 +851,6 @@ operator|+
 literal|1
 index|]
 operator|=
-name|samples
-operator|.
 name|e3
 argument_list|()
 expr_stmt|;

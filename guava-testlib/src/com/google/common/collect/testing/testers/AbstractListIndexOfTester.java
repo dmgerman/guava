@@ -221,8 +221,6 @@ literal|1
 argument_list|,
 name|find
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -337,8 +335,6 @@ literal|1
 argument_list|,
 name|find
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)

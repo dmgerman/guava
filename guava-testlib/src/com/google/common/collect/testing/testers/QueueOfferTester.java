@@ -140,8 +140,6 @@ argument_list|()
 operator|.
 name|offer
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -149,8 +147,6 @@ argument_list|)
 expr_stmt|;
 name|expectAdded
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)

@@ -254,8 +254,6 @@ argument_list|()
 operator|.
 name|setCount
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -349,8 +347,6 @@ argument_list|()
 operator|.
 name|setCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -395,8 +391,6 @@ argument_list|()
 operator|.
 name|setCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -442,8 +436,6 @@ argument_list|()
 operator|.
 name|setCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -459,8 +451,6 @@ name|nCopies
 argument_list|(
 literal|3
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)

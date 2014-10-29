@@ -190,8 +190,6 @@ argument_list|()
 operator|.
 name|containsValue
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -216,8 +214,6 @@ argument_list|()
 operator|.
 name|containsValue
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -309,8 +305,6 @@ argument_list|()
 operator|.
 name|containsValue
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.

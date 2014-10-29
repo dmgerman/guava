@@ -322,8 +322,6 @@ literal|"size1Collection.toString should return [{element}]"
 argument_list|,
 literal|"["
 operator|+
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|+

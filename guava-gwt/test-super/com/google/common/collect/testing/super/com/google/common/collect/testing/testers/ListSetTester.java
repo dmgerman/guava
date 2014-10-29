@@ -197,8 +197,6 @@ parameter_list|()
 block|{
 name|doTestSet
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -300,8 +298,6 @@ argument_list|)
 expr_stmt|;
 name|doTestSet
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -403,8 +399,6 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -453,8 +447,6 @@ name|set
 argument_list|(
 name|index
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -509,8 +501,6 @@ argument_list|(
 name|aValidIndex
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -562,8 +552,6 @@ name|set
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)

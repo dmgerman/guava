@@ -466,8 +466,6 @@ name|navigableSet
 operator|.
 name|lower
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -479,8 +477,6 @@ name|navigableSet
 operator|.
 name|floor
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -492,8 +488,6 @@ name|navigableSet
 operator|.
 name|ceiling
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -505,8 +499,6 @@ name|navigableSet
 operator|.
 name|higher
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -600,8 +592,6 @@ name|navigableSet
 operator|.
 name|lower
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -615,8 +605,6 @@ name|navigableSet
 operator|.
 name|floor
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -630,8 +618,6 @@ name|navigableSet
 operator|.
 name|ceiling
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -643,8 +629,6 @@ name|navigableSet
 operator|.
 name|higher
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -1365,15 +1349,11 @@ name|navigableSet
 operator|.
 name|subSet
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
 literal|false
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,

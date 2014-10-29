@@ -534,8 +534,6 @@ parameter_list|()
 block|{
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -551,8 +549,6 @@ parameter_list|()
 block|{
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -571,8 +567,6 @@ argument_list|()
 expr_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -842,8 +836,6 @@ parameter_list|()
 block|{
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -883,8 +875,6 @@ argument_list|()
 decl_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -950,8 +940,6 @@ argument_list|()
 decl_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -993,8 +981,6 @@ parameter_list|()
 block|{
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -1026,8 +1012,6 @@ parameter_list|()
 block|{
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1052,8 +1036,6 @@ parameter_list|()
 block|{
 name|assertSetCountIncreasingFailure
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -1078,8 +1060,6 @@ parameter_list|()
 block|{
 name|assertSetCountIncreasingFailure
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -1113,8 +1093,6 @@ parameter_list|()
 block|{
 name|assertSetCountIncreasingFailure
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -1147,8 +1125,6 @@ parameter_list|()
 block|{
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1197,8 +1173,6 @@ argument_list|()
 decl_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1273,8 +1247,6 @@ argument_list|()
 decl_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1326,8 +1298,6 @@ argument_list|()
 expr_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1360,8 +1330,6 @@ argument_list|()
 expr_stmt|;
 name|assertSetCount
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1395,8 +1363,6 @@ parameter_list|()
 block|{
 name|assertSetCountDecreasingFailure
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1431,8 +1397,6 @@ argument_list|()
 expr_stmt|;
 name|assertSetCountDecreasingFailure
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1467,8 +1431,6 @@ argument_list|()
 expr_stmt|;
 name|assertSetCountDecreasingFailure
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -1714,8 +1676,6 @@ try|try
 block|{
 name|setCountNoCheckReturnValue
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,
@@ -1757,8 +1717,6 @@ try|try
 block|{
 name|setCountNoCheckReturnValue
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|,

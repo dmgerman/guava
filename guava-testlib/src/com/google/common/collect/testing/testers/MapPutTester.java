@@ -366,8 +366,6 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -379,8 +377,6 @@ name|nullValueEntry
 operator|=
 name|entry
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -403,8 +399,6 @@ name|presentKeyNullValueEntry
 operator|=
 name|entry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -434,8 +428,6 @@ literal|"put(notPresent, value) should return null"
 argument_list|,
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -443,8 +435,6 @@ argument_list|)
 expr_stmt|;
 name|expectAdded
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -500,8 +490,6 @@ argument_list|()
 decl_stmt|;
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -571,8 +559,6 @@ argument_list|()
 decl_stmt|;
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -642,8 +628,6 @@ argument_list|()
 decl_stmt|;
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -687,8 +671,6 @@ try|try
 block|{
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -710,8 +692,6 @@ argument_list|()
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -747,8 +727,6 @@ name|assertEquals
 argument_list|(
 literal|"put(present, existingValue) should return present or throw"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -757,8 +735,6 @@ argument_list|()
 argument_list|,
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -806,16 +782,12 @@ argument_list|()
 operator|.
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
 name|getKey
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -910,8 +882,6 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -1118,8 +1088,6 @@ name|assertEquals
 argument_list|(
 literal|"put(present, null) should return the associated value"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -1285,8 +1253,6 @@ argument_list|(
 name|getKeyForNullValue
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.

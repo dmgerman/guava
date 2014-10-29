@@ -540,8 +540,6 @@ name|navigableMap
 operator|.
 name|lowerEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -556,8 +554,6 @@ name|navigableMap
 operator|.
 name|lowerKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -572,8 +568,6 @@ name|navigableMap
 operator|.
 name|floorEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -588,8 +582,6 @@ name|navigableMap
 operator|.
 name|floorKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -604,8 +596,6 @@ name|navigableMap
 operator|.
 name|ceilingEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -620,8 +610,6 @@ name|navigableMap
 operator|.
 name|ceilingKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -636,8 +624,6 @@ name|navigableMap
 operator|.
 name|higherEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -652,8 +638,6 @@ name|navigableMap
 operator|.
 name|higherKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -796,8 +780,6 @@ name|navigableMap
 operator|.
 name|lowerEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -812,8 +794,6 @@ name|navigableMap
 operator|.
 name|lowerKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -830,8 +810,6 @@ name|navigableMap
 operator|.
 name|floorEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -851,8 +829,6 @@ name|navigableMap
 operator|.
 name|floorKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -869,8 +845,6 @@ name|navigableMap
 operator|.
 name|ceilingEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -890,8 +864,6 @@ name|navigableMap
 operator|.
 name|ceilingKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -906,8 +878,6 @@ name|navigableMap
 operator|.
 name|higherEntry
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -922,8 +892,6 @@ name|navigableMap
 operator|.
 name|higherKey
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.

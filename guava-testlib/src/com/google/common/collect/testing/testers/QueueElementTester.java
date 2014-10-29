@@ -234,8 +234,6 @@ name|assertEquals
 argument_list|(
 literal|"size1Queue.element() should return first element"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
@@ -274,8 +272,6 @@ name|assertEquals
 argument_list|(
 literal|"sizeManyQueue.element() should return first element"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,

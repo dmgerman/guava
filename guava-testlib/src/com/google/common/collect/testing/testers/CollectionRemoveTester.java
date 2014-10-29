@@ -306,8 +306,6 @@ name|collection
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -329,8 +327,6 @@ argument_list|)
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -379,8 +375,6 @@ name|collection
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -427,8 +421,6 @@ name|collection
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -548,8 +540,6 @@ name|collection
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -577,8 +567,6 @@ name|collection
 operator|.
 name|contains
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -612,8 +600,6 @@ name|collection
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -631,8 +617,6 @@ argument_list|()
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -785,8 +769,6 @@ name|collection
 operator|.
 name|contains
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)

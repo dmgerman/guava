@@ -205,8 +205,6 @@ name|assertEquals
 argument_list|(
 literal|"get(present) should return the associated value"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -215,8 +213,6 @@ argument_list|()
 argument_list|,
 name|get
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -238,8 +234,6 @@ literal|"get(notPresent) should return null"
 argument_list|,
 name|get
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -339,8 +333,6 @@ literal|"get(notPresent) should return null"
 argument_list|,
 name|get
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.

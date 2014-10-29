@@ -178,8 +178,6 @@ block|{
 name|K
 name|k0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -189,8 +187,6 @@ decl_stmt|;
 name|K
 name|k1
 init|=
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
@@ -200,8 +196,6 @@ decl_stmt|;
 name|V
 name|v0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -247,8 +241,6 @@ block|}
 comment|// verify that the bimap is unchanged
 name|expectAdded
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -282,8 +274,6 @@ block|{
 name|K
 name|k0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -293,8 +283,6 @@ decl_stmt|;
 name|V
 name|v0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -304,8 +292,6 @@ decl_stmt|;
 name|V
 name|v1
 init|=
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
@@ -377,16 +363,12 @@ argument_list|()
 operator|.
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
 name|getKey
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -399,16 +381,12 @@ argument_list|()
 operator|.
 name|put
 argument_list|(
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
 name|getKey
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
@@ -418,13 +396,9 @@ argument_list|)
 expr_stmt|;
 name|expectAdded
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e1
 argument_list|()
 argument_list|)
@@ -458,8 +432,6 @@ block|{
 name|K
 name|k0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -469,8 +441,6 @@ decl_stmt|;
 name|K
 name|k1
 init|=
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
@@ -480,8 +450,6 @@ decl_stmt|;
 name|V
 name|v0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -550,8 +518,6 @@ block|{
 name|K
 name|k0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -561,8 +527,6 @@ decl_stmt|;
 name|V
 name|v0
 init|=
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -572,8 +536,6 @@ decl_stmt|;
 name|K
 name|k1
 init|=
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
@@ -583,8 +545,6 @@ decl_stmt|;
 name|V
 name|v1
 init|=
-name|samples
-operator|.
 name|e1
 argument_list|()
 operator|.
@@ -616,13 +576,9 @@ argument_list|)
 expr_stmt|;
 name|expectAdded
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e1
 argument_list|()
 argument_list|)

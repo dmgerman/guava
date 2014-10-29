@@ -310,8 +310,6 @@ name|add
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -320,8 +318,6 @@ name|expectAdded
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -361,8 +357,6 @@ name|add
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -403,8 +397,6 @@ name|add
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -413,8 +405,6 @@ name|expectAdded
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -460,8 +450,6 @@ name|add
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -510,8 +498,6 @@ name|add
 argument_list|(
 literal|0
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -533,8 +519,6 @@ argument_list|()
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -576,8 +560,6 @@ argument_list|()
 operator|/
 literal|2
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -589,8 +571,6 @@ argument_list|()
 operator|/
 literal|2
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -626,8 +606,6 @@ argument_list|(
 name|getNumElements
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -637,8 +615,6 @@ argument_list|(
 name|getNumElements
 argument_list|()
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -763,8 +739,6 @@ argument_list|(
 operator|-
 literal|1
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -786,8 +760,6 @@ argument_list|()
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -818,8 +790,6 @@ argument_list|()
 operator|+
 literal|1
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)
@@ -841,8 +811,6 @@ argument_list|()
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)

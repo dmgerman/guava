@@ -257,8 +257,6 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -308,8 +306,6 @@ name|entryWithNull
 init|=
 name|entry
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.

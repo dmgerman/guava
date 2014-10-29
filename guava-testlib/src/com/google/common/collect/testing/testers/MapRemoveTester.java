@@ -319,8 +319,6 @@ name|assertEquals
 argument_list|(
 literal|"remove(present) should return the associated value"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -332,8 +330,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -359,8 +355,6 @@ argument_list|)
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 argument_list|)
@@ -417,8 +411,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -492,8 +484,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -567,8 +557,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -618,8 +606,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -744,8 +730,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -772,8 +756,6 @@ name|assertEquals
 argument_list|(
 literal|"remove(present) should not remove the element"
 argument_list|,
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -782,8 +764,6 @@ argument_list|()
 argument_list|,
 name|get
 argument_list|(
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|.
@@ -821,8 +801,6 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 operator|.
@@ -843,8 +821,6 @@ argument_list|()
 expr_stmt|;
 name|expectMissing
 argument_list|(
-name|samples
-operator|.
 name|e3
 argument_list|()
 argument_list|)

@@ -296,8 +296,6 @@ literal|"size1Map.toString should return {entry}"
 argument_list|,
 literal|"{"
 operator|+
-name|samples
-operator|.
 name|e0
 argument_list|()
 operator|+
