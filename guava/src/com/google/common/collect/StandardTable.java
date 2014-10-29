@@ -196,6 +196,22 @@ name|collect
 operator|.
 name|Maps
 operator|.
+name|IteratorBasedAbstractMap
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Maps
+operator|.
 name|ViewCachingAbstractMap
 import|;
 end_import
@@ -1402,7 +1418,7 @@ DECL|class|Row
 class|class
 name|Row
 extends|extends
-name|ViewCachingAbstractMap
+name|IteratorBasedAbstractMap
 argument_list|<
 name|C
 argument_list|,
@@ -1771,61 +1787,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|createEntrySet ()
-specifier|protected
-name|Set
-argument_list|<
-name|Entry
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|createEntrySet
-parameter_list|()
-block|{
-return|return
-operator|new
-name|RowEntrySet
-argument_list|()
-return|;
-block|}
-DECL|class|RowEntrySet
-specifier|private
-specifier|final
-class|class
-name|RowEntrySet
-extends|extends
-name|Maps
-operator|.
-name|EntrySet
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-block|{
-annotation|@
-name|Override
-DECL|method|map ()
-name|Map
-argument_list|<
-name|C
-argument_list|,
-name|V
-argument_list|>
-name|map
-parameter_list|()
-block|{
-return|return
-name|Row
-operator|.
-name|this
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|size ()
 specifier|public
 name|int
@@ -1860,8 +1821,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|iterator ()
-specifier|public
+DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
 name|Entry
@@ -1871,7 +1831,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-name|iterator
+name|entryIterator
 parameter_list|()
 block|{
 specifier|final
@@ -2060,7 +2020,6 @@ expr_stmt|;
 block|}
 block|}
 return|;
-block|}
 block|}
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The returned map's views have iterators that don't support    * {@code remove()}.    */

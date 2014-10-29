@@ -154,11 +154,17 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|AbstractMap
+name|common
+operator|.
+name|collect
+operator|.
+name|Maps
+operator|.
+name|IteratorBasedAbstractMap
 import|;
 end_import
 
@@ -168,7 +174,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|AbstractSet
+name|AbstractMap
 import|;
 end_import
 
@@ -1232,7 +1238,7 @@ specifier|final
 class|class
 name|AsMapOfRanges
 extends|extends
-name|AbstractMap
+name|IteratorBasedAbstractMap
 argument_list|<
 name|Range
 argument_list|<
@@ -1346,39 +1352,19 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|entrySet ()
+DECL|method|size ()
 specifier|public
-name|Set
-argument_list|<
-name|Entry
-argument_list|<
-name|Range
-argument_list|<
-name|K
-argument_list|>
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
-name|entrySet
+name|int
+name|size
 parameter_list|()
 block|{
 return|return
-operator|new
-name|AbstractSet
-argument_list|<
-name|Entry
-argument_list|<
-name|Range
-argument_list|<
-name|K
-argument_list|>
-argument_list|,
-name|V
-argument_list|>
-argument_list|>
+name|entriesByLowerBound
+operator|.
+name|size
 argument_list|()
-block|{
+return|;
+block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1387,7 +1373,7 @@ argument_list|)
 comment|// it's safe to upcast iterators
 annotation|@
 name|Override
-specifier|public
+DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
 name|Entry
@@ -1400,7 +1386,7 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|>
-name|iterator
+name|entryIterator
 parameter_list|()
 block|{
 return|return
@@ -1414,23 +1400,6 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|int
-name|size
-parameter_list|()
-block|{
-return|return
-name|entriesByLowerBound
-operator|.
-name|size
-argument_list|()
-return|;
-block|}
-block|}
 return|;
 block|}
 block|}
