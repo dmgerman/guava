@@ -197,10 +197,7 @@ argument_list|()
 operator|.
 name|containsKey
 argument_list|(
-name|sampleKeys
-argument_list|()
-operator|.
-name|e0
+name|k0
 argument_list|()
 argument_list|)
 argument_list|)
@@ -219,10 +216,7 @@ argument_list|()
 operator|.
 name|containsKey
 argument_list|(
-name|sampleKeys
-argument_list|()
-operator|.
-name|e3
+name|k3
 argument_list|()
 argument_list|)
 argument_list|)
