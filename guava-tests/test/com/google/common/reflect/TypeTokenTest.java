@@ -168,7 +168,7 @@ name|common
 operator|.
 name|truth
 operator|.
-name|CollectionSubject
+name|IterableSubject
 import|;
 end_import
 
@@ -2144,10 +2144,7 @@ name|classes
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|TypeToken
 operator|.
@@ -2268,10 +2265,7 @@ name|rawTypes
 argument_list|()
 argument_list|)
 operator|.
-name|has
-argument_list|()
-operator|.
-name|exactly
+name|containsExactly
 argument_list|(
 name|Class1
 operator|.
@@ -15682,7 +15676,7 @@ begin_function
 DECL|method|makeUnmodifiable (Collection<?> actual)
 specifier|private
 specifier|static
-name|CollectionSubject
+name|IterableSubject
 argument_list|<
 name|?
 argument_list|,
