@@ -190,10 +190,7 @@ argument_list|()
 operator|.
 name|containsValue
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getValue
+name|v0
 argument_list|()
 argument_list|)
 argument_list|)
@@ -214,10 +211,7 @@ argument_list|()
 operator|.
 name|containsValue
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 argument_list|)
@@ -305,10 +299,7 @@ argument_list|()
 operator|.
 name|containsValue
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 argument_list|)

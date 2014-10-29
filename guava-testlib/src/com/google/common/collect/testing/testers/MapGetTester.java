@@ -205,18 +205,12 @@ name|assertEquals
 argument_list|(
 literal|"get(present) should return the associated value"
 argument_list|,
-name|e0
-argument_list|()
-operator|.
-name|getValue
+name|v0
 argument_list|()
 argument_list|,
 name|get
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 argument_list|)
@@ -234,10 +228,7 @@ literal|"get(notPresent) should return null"
 argument_list|,
 name|get
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|)
 argument_list|)
@@ -333,10 +324,7 @@ literal|"get(notPresent) should return null"
 argument_list|,
 name|get
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|)
 argument_list|)

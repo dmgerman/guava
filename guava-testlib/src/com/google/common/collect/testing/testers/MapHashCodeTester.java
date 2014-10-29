@@ -257,10 +257,7 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -306,10 +303,7 @@ name|entryWithNull
 init|=
 name|entry
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|,
 literal|null

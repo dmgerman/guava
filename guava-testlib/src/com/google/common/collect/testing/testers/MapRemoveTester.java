@@ -319,10 +319,7 @@ name|assertEquals
 argument_list|(
 literal|"remove(present) should return the associated value"
 argument_list|,
-name|e0
-argument_list|()
-operator|.
-name|getValue
+name|v0
 argument_list|()
 argument_list|,
 name|getMap
@@ -330,10 +327,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 argument_list|)
@@ -411,10 +405,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -484,10 +475,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -557,10 +545,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -606,10 +591,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|)
 argument_list|)
@@ -730,10 +712,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -756,18 +735,12 @@ name|assertEquals
 argument_list|(
 literal|"remove(present) should not remove the element"
 argument_list|,
-name|e0
-argument_list|()
-operator|.
-name|getValue
+name|v0
 argument_list|()
 argument_list|,
 name|get
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|)
 argument_list|)
@@ -801,10 +774,7 @@ argument_list|()
 operator|.
 name|remove
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|)
 argument_list|)

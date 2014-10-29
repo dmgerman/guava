@@ -367,10 +367,7 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 argument_list|)
@@ -454,10 +451,7 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 argument_list|)
@@ -542,10 +536,7 @@ name|add
 argument_list|(
 name|entry
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|,
 literal|null
@@ -629,10 +620,7 @@ name|add
 argument_list|(
 name|entry
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|,
 literal|null

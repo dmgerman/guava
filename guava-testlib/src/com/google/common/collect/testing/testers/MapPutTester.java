@@ -366,10 +366,7 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -377,10 +374,7 @@ name|nullValueEntry
 operator|=
 name|entry
 argument_list|(
-name|e3
-argument_list|()
-operator|.
-name|getKey
+name|k3
 argument_list|()
 argument_list|,
 literal|null
@@ -399,10 +393,7 @@ name|presentKeyNullValueEntry
 operator|=
 name|entry
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|,
 literal|null
@@ -727,10 +718,7 @@ name|assertEquals
 argument_list|(
 literal|"put(present, existingValue) should return present or throw"
 argument_list|,
-name|e0
-argument_list|()
-operator|.
-name|getValue
+name|v0
 argument_list|()
 argument_list|,
 name|put
@@ -782,16 +770,10 @@ argument_list|()
 operator|.
 name|put
 argument_list|(
-name|e0
-argument_list|()
-operator|.
-name|getKey
+name|k0
 argument_list|()
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -882,10 +864,7 @@ name|entry
 argument_list|(
 literal|null
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1088,10 +1067,7 @@ name|assertEquals
 argument_list|(
 literal|"put(present, null) should return the associated value"
 argument_list|,
-name|e0
-argument_list|()
-operator|.
-name|getValue
+name|v0
 argument_list|()
 argument_list|,
 name|put
@@ -1253,10 +1229,7 @@ argument_list|(
 name|getKeyForNullValue
 argument_list|()
 argument_list|,
-name|e3
-argument_list|()
-operator|.
-name|getValue
+name|v3
 argument_list|()
 argument_list|)
 decl_stmt|;
