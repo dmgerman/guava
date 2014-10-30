@@ -252,7 +252,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -260,6 +260,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * All of the infrastructure of split and splitToString is identical, so we    * do one test of splitToString. All other cases should be covered by testing    * of split.    *    *<p>TODO(user): It would be good to make all the relevant tests run on    * both split and splitToString automatically.    */
@@ -292,7 +295,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -300,6 +303,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testToString ()
@@ -403,10 +409,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a,b,c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithDoubleDelimiter ()
@@ -438,7 +447,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -448,6 +457,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithDoubleDelimiterAndSpace ()
@@ -479,7 +491,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -489,6 +501,9 @@ literal|" b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithTrailingDelimiter ()
@@ -520,7 +535,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -530,6 +545,9 @@ literal|"c"
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithLeadingDelimiter ()
@@ -561,7 +579,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
@@ -571,6 +589,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithMulitpleLetters ()
@@ -694,7 +715,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -702,6 +723,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitEmptyToken ()
@@ -741,7 +765,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -749,6 +773,9 @@ literal|""
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitEmptyTokenOmitEmptyStrings ()
@@ -791,12 +818,15 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitOnEmptyString ()
@@ -828,10 +858,13 @@ argument_list|(
 name|nothing
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitOnEmptyStringOmitEmptyStrings ()
@@ -891,12 +924,15 @@ argument_list|(
 name|blankblank
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitOnOnlyDelimitersOmitEmptyStrings ()
@@ -1031,7 +1067,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1039,6 +1075,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSimpleSplitWithNoDelimiter ()
@@ -1075,10 +1114,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a,b,c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithDoubleDelimiter ()
@@ -1115,7 +1157,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1125,6 +1167,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithDoubleDelimiterAndSpace ()
@@ -1161,7 +1206,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1171,6 +1216,9 @@ literal|" b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithTrailingDelimiter ()
@@ -1207,7 +1255,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1217,6 +1265,9 @@ literal|"c"
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithLeadingDelimiter ()
@@ -1253,7 +1304,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
@@ -1263,6 +1314,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithMultipleLetters ()
@@ -1343,7 +1397,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1351,6 +1405,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitEmptyToken ()
@@ -1390,7 +1447,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1398,6 +1455,9 @@ literal|""
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitEmptyTokenOmitEmptyStrings ()
@@ -1440,12 +1500,15 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithLongDelimiter ()
@@ -1482,7 +1545,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1490,6 +1553,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithLongLeadingDelimiter ()
@@ -1526,7 +1592,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
@@ -1536,6 +1602,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithLongTrailingDelimiter ()
@@ -1572,7 +1641,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1582,6 +1651,9 @@ literal|"c"
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithDelimiterSubstringInValue ()
@@ -1618,12 +1690,15 @@ argument_list|(
 name|threeCommasThenThreeSpaces
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|",,,"
 argument_list|,
 literal|"   "
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithEmptyString ()
@@ -1681,10 +1756,13 @@ argument_list|(
 name|notMuch
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitOnEmptyStringOmitEmptyString ()
@@ -1744,12 +1822,15 @@ argument_list|(
 name|blankblank
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitOnOnlyDelimitersOmitEmptyStrings ()
@@ -1894,7 +1975,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1902,6 +1983,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1943,10 +2027,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a,b,c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1988,7 +2075,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1998,6 +2085,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2039,7 +2129,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2049,6 +2139,9 @@ literal|" b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2090,7 +2183,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2100,6 +2193,9 @@ literal|"c"
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2141,7 +2237,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
@@ -2151,6 +2247,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 comment|// TODO(kevinb): the name of this method suggests it might not actually be testing what it
@@ -2189,7 +2288,7 @@ argument_list|(
 name|testPatterningMotto
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -2199,6 +2298,9 @@ literal|"Debugging"
 argument_list|,
 literal|"sucks"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2265,7 +2367,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2273,6 +2375,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2319,7 +2424,7 @@ argument_list|(
 name|split
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|":"
 argument_list|,
@@ -2329,6 +2434,9 @@ literal|":"
 argument_list|,
 literal|"barbaz:"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 comment|// splits into chunks ending in :
 block|}
@@ -2376,7 +2484,7 @@ argument_list|(
 name|words
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -2388,6 +2496,9 @@ literal|">"
 argument_list|,
 literal|"bletch"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2433,7 +2544,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2441,6 +2552,9 @@ literal|""
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2489,12 +2603,15 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2532,12 +2649,15 @@ argument_list|(
 name|blankblank
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2626,7 +2746,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2634,6 +2754,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2680,7 +2803,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|,
@@ -2690,6 +2813,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2736,7 +2862,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -2746,6 +2872,9 @@ literal|"c"
 argument_list|,
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -3154,7 +3283,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"ab"
 argument_list|,
@@ -3162,6 +3291,9 @@ literal|"cd"
 argument_list|,
 literal|"e"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFixedLengthSplitEqualChunkLength ()
@@ -3198,7 +3330,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"ab"
 argument_list|,
@@ -3206,6 +3338,9 @@ literal|"cd"
 argument_list|,
 literal|"ef"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFixedLengthSplitOnlyOneChunk ()
@@ -3242,10 +3377,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"abc"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFixedLengthSplitSmallerString ()
@@ -3282,10 +3420,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"ab"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFixedLengthSplitEmptyString ()
@@ -3322,10 +3463,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFixedLengthSplitEmptyStringWithOmitEmptyStrings ()
@@ -3390,7 +3534,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3400,6 +3544,9 @@ literal|"c"
 argument_list|,
 literal|"d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testFixedLengthSplitZeroChunkLen ()
@@ -3494,7 +3641,7 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3504,6 +3651,9 @@ literal|"c"
 argument_list|,
 literal|"d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitOne ()
@@ -3545,10 +3695,13 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"abcd"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitFixedLength ()
@@ -3590,12 +3743,15 @@ argument_list|(
 name|letters
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"bcd"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitSeparator ()
@@ -3632,12 +3788,15 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b,c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparators ()
@@ -3674,12 +3833,15 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|",,b,,c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsOmitEmpty ()
@@ -3719,12 +3881,15 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b,,c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsOmitEmpty3 ()
@@ -3764,7 +3929,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3772,6 +3937,9 @@ literal|"b"
 argument_list|,
 literal|"c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsTrim ()
@@ -3814,12 +3982,15 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"b ,, c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsTrim3 ()
@@ -3862,7 +4033,7 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -3870,6 +4041,9 @@ literal|"b"
 argument_list|,
 literal|"c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsTrim1 ()
@@ -3912,10 +4086,13 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a,,  , b ,, c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsTrim1NoOmit ()
@@ -3955,10 +4132,13 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|",,a,,  , b ,, c,d"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsTrim1Empty ()
@@ -3995,10 +4175,13 @@ argument_list|(
 name|items
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|""
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testLimitExtraSeparatorsTrim1EmptyOmit ()
@@ -4821,7 +5004,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"boy"
 argument_list|,
@@ -4831,6 +5014,9 @@ literal|"cat"
 argument_list|,
 literal|"dog"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
@@ -4889,7 +5075,7 @@ name|keySet
 argument_list|()
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"girl"
 argument_list|,
@@ -4899,6 +5085,9 @@ literal|"dog"
 argument_list|,
 literal|"cat"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(

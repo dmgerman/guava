@@ -1232,7 +1232,7 @@ name|optionals
 argument_list|)
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
@@ -1240,6 +1240,9 @@ literal|"b"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testPresentInstances_allAbsent ()
@@ -1338,12 +1341,15 @@ name|optionals
 argument_list|)
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testPresentInstances_callingIteratorTwice ()
@@ -1406,24 +1412,30 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"a"
 argument_list|,
 literal|"c"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testPresentInstances_wildcards ()
@@ -1489,10 +1501,13 @@ argument_list|(
 name|onlyPresent
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|2
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|getSomeOptionalInt ()

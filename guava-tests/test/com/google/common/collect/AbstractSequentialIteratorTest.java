@@ -260,7 +260,7 @@ argument_list|(
 name|doubled
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|2
 argument_list|,
@@ -272,6 +272,9 @@ literal|16
 argument_list|,
 literal|32
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSampleCode ()

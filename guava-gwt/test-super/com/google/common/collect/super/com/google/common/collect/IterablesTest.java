@@ -4124,7 +4124,7 @@ argument_list|(
 name|tail
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"c"
 argument_list|,
@@ -4134,6 +4134,9 @@ literal|"B"
 argument_list|,
 literal|"C"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSkip_structurallyModifiedSkipSomeList ()
@@ -4205,7 +4208,7 @@ argument_list|(
 name|tail
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"B"
 argument_list|,
@@ -4213,6 +4216,9 @@ literal|"C"
 argument_list|,
 literal|"a"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSkip_structurallyModifiedSkipAll ()
