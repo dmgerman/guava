@@ -146,6 +146,16 @@ name|TestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit tests for CacheBuilder.  */
 end_comment
@@ -956,6 +966,36 @@ name|IllegalStateException
 name|expected
 parameter_list|)
 block|{}
+block|}
+DECL|method|testValuesIsNotASet ()
+specifier|public
+name|void
+name|testValuesIsNotASet
+parameter_list|()
+block|{
+name|assertFalse
+argument_list|(
+operator|new
+name|CacheBuilder
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+operator|.
+name|build
+argument_list|()
+operator|.
+name|asMap
+argument_list|()
+operator|.
+name|values
+argument_list|()
+operator|instanceof
+name|Set
+argument_list|)
+expr_stmt|;
 block|}
 comment|// "Basher tests", where we throw a bunch of stuff at a LoadingCache and check basic invariants.
 block|}

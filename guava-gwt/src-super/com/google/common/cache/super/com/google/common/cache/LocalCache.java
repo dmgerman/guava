@@ -160,6 +160,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|AbstractCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|AbstractSet
 import|;
 end_import
@@ -3457,7 +3467,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Abstraction layer for the KeySet, which redirects to cache methods.    */
 DECL|class|KeySet
 specifier|private
 specifier|final
@@ -3547,18 +3556,27 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Abstraction layer for the Values set, which redirects to cache methods.    */
 DECL|class|Values
 specifier|private
 specifier|final
 class|class
 name|Values
 extends|extends
-name|AbstractCacheSet
+name|AbstractCollection
 argument_list|<
 name|V
 argument_list|>
 block|{
+DECL|field|map
+specifier|final
+name|ConcurrentMap
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
+name|map
+decl_stmt|;
 DECL|method|Values (ConcurrentMap<?, ?> map)
 name|Values
 parameter_list|(
@@ -3571,10 +3589,11 @@ argument_list|>
 name|map
 parameter_list|)
 block|{
-name|super
-argument_list|(
+name|this
+operator|.
 name|map
-argument_list|)
+operator|=
+name|map
 expr_stmt|;
 block|}
 annotation|@
@@ -3614,8 +3633,51 @@ name|o
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|size ()
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|map
+operator|.
+name|size
+argument_list|()
+return|;
 block|}
-comment|/**    * Abstraction layer for the EntrySet, which redirects to cache methods.    */
+annotation|@
+name|Override
+DECL|method|isEmpty ()
+specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|map
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|clear ()
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|map
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 DECL|class|EntrySet
 specifier|private
 specifier|final
