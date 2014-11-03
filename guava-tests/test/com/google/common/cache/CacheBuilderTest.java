@@ -114,6 +114,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -2171,7 +2187,7 @@ name|void
 name|testValuesIsNotASet
 parameter_list|()
 block|{
-name|assertFalse
+name|assertThat
 argument_list|(
 operator|new
 name|CacheBuilder
@@ -2190,8 +2206,13 @@ argument_list|()
 operator|.
 name|values
 argument_list|()
-operator|instanceof
+argument_list|)
+operator|.
+name|isNotInstanceOf
+argument_list|(
 name|Set
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
