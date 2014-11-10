@@ -118,13 +118,13 @@ return|return
 operator|new
 name|ToStringHelper
 argument_list|(
-name|simpleName
-argument_list|(
 name|self
 operator|.
 name|getClass
 argument_list|()
-argument_list|)
+operator|.
+name|getSimpleName
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -146,10 +146,10 @@ return|return
 operator|new
 name|ToStringHelper
 argument_list|(
-name|simpleName
-argument_list|(
 name|clazz
-argument_list|)
+operator|.
+name|getSimpleName
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -169,83 +169,6 @@ operator|new
 name|ToStringHelper
 argument_list|(
 name|className
-argument_list|)
-return|;
-block|}
-comment|/**    * {@link Class#getSimpleName()} is not GWT compatible yet, so we    * provide our own implementation.    */
-comment|// Package-private so Objects can call it.
-DECL|method|simpleName (Class<?> clazz)
-specifier|static
-name|String
-name|simpleName
-parameter_list|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|clazz
-parameter_list|)
-block|{
-name|String
-name|name
-init|=
-name|clazz
-operator|.
-name|getName
-argument_list|()
-decl_stmt|;
-comment|// the nth anonymous class has a class name ending in "Outer$n"
-comment|// and local inner classes have names ending in "Outer.$1Inner"
-name|name
-operator|=
-name|name
-operator|.
-name|replaceAll
-argument_list|(
-literal|"\\$[0-9]+"
-argument_list|,
-literal|"\\$"
-argument_list|)
-expr_stmt|;
-comment|// we want the name of the inner class all by its lonesome
-name|int
-name|start
-init|=
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|'$'
-argument_list|)
-decl_stmt|;
-comment|// if this isn't an inner class, just find the start of the
-comment|// top level class name.
-if|if
-condition|(
-name|start
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-name|start
-operator|=
-name|name
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|'.'
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|name
-operator|.
-name|substring
-argument_list|(
-name|start
-operator|+
-literal|1
 argument_list|)
 return|;
 block|}
