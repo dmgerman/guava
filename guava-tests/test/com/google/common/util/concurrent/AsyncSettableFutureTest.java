@@ -126,14 +126,6 @@ name|assertFalse
 argument_list|(
 name|future
 operator|.
-name|isSet
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-name|future
-operator|.
 name|isDone
 argument_list|()
 argument_list|)
@@ -174,14 +166,6 @@ name|setValue
 argument_list|(
 literal|42
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|future
-operator|.
-name|isSet
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Later attempts to set the future should return false.
@@ -292,14 +276,6 @@ name|setException
 argument_list|(
 name|e
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|future
-operator|.
-name|isSet
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Later attempts to set the future should return false.
@@ -426,14 +402,6 @@ name|setFuture
 argument_list|(
 name|nested
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|future
-operator|.
-name|isSet
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Later attempts to set the future should return false.
@@ -593,14 +561,6 @@ name|setFuture
 argument_list|(
 name|nested
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|future
-operator|.
-name|isSet
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Later attempts to set the future should return false.

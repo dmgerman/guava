@@ -213,20 +213,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if this future has been (possibly asynchronously) set.    * Note that a {@code false} result in no way gaurantees that a later call    * to, e.g., {@link #setFuture} will succeed, since another thread could    * make the call in between.  This is somewhat analogous to {@link #isDone},    * but since setting and completing are not the same event, it is useful to    * have this method broken out.    */
-DECL|method|isSet ()
-specifier|public
-name|boolean
-name|isSet
-parameter_list|()
-block|{
-return|return
-name|nested
-operator|.
-name|isDone
-argument_list|()
-return|;
-block|}
 DECL|class|NestedFuture
 specifier|private
 specifier|static
