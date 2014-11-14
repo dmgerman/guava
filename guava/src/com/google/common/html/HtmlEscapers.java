@@ -73,7 +73,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@code Escaper} instances suitable for strings to be included in HTML  * attribute values and<em>most</em> elements' text contents. When possible,  * avoid manual escaping by using templating systems and high-level APIs that  * provide autoescaping.  *  *<p>HTML escaping is particularly tricky: For example,<a  * href="http://goo.gl/5TgZb">some elements' text contents must not be HTML  * escaped</a>. As a result, it is impossible to escape an HTML document  * correctly without domain-specific knowledge beyond what {@code HtmlEscapers}  * provides. We strongly encourage the use of HTML templating systems.  *  * @author Sven Mawson  * @author David Beaumont  * @since 15.0  */
+comment|/**  * {@code Escaper} instances suitable for strings to be included in HTML  * attribute values and<em>most</em> elements' text contents. When possible,  * avoid manual escaping by using templating systems and high-level APIs that  * provide autoescaping.  * One Google-authored templating system available for external use is<a  * href="https://developers.google.com/closure/templates/">Closure  * Templates</a>.  *  *<p>HTML escaping is particularly tricky: For example,<a  * href="http://goo.gl/5TgZb">some elements' text contents must not be HTML  * escaped</a>. As a result, it is impossible to escape an HTML document  * correctly without domain-specific knowledge beyond what {@code HtmlEscapers}  * provides. We strongly encourage the use of HTML templating systems.  *  * @author Sven Mawson  * @author David Beaumont  * @since 15.0  */
 end_comment
 
 begin_class
