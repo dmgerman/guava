@@ -782,7 +782,7 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * The current state of the service.  This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field.  This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.    *    *<p>To update this field correctly the lock must be held to guarantee that the state is    * consistent.    */
+comment|/**    * The current state of the service.  This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field.  This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.      *     *<p>To update this field correctly the lock must be held to guarantee that the state is     * consistent.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -806,7 +806,7 @@ specifier|protected
 name|AbstractService
 parameter_list|()
 block|{}
-comment|/**    * This method is called by {@link #startAsync} to initiate service startup. The invocation of    * this method should cause a call to {@link #notifyStarted()}, either during this method's run,    * or after it has returned. If startup fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #startAsync} is    * called multiple times.    */
+comment|/**    * This method is called by {@link #startAsync} to initiate service startup. The invocation of     * this method should cause a call to {@link #notifyStarted()}, either during this method's run,    * or after it has returned. If startup fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #startAsync} is     * called multiple times.    */
 DECL|method|doStart ()
 specifier|protected
 specifier|abstract
@@ -814,7 +814,7 @@ name|void
 name|doStart
 parameter_list|()
 function_decl|;
-comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p> This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    */
+comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p> This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is     * called multiple times.    */
 DECL|method|doStop ()
 specifier|protected
 specifier|abstract
@@ -857,7 +857,6 @@ expr_stmt|;
 name|doStart
 argument_list|()
 expr_stmt|;
-comment|// TODO(user): justify why we are catching Throwable and not RuntimeException
 block|}
 catch|catch
 parameter_list|(
@@ -1021,8 +1020,6 @@ name|previous
 argument_list|)
 throw|;
 block|}
-comment|// TODO(user): justify why we are catching Throwable and not RuntimeException.  Also, we
-comment|// may inadvertently catch our AssertionErrors.
 block|}
 catch|catch
 parameter_list|(
@@ -1760,7 +1757,7 @@ operator|+
 literal|"]"
 return|;
 block|}
-comment|/**    * Attempts to execute all the listeners in {@link #listeners} while not holding the    * {@link #monitor}.    */
+comment|/**     * Attempts to execute all the listeners in {@link #listeners} while not holding the    * {@link #monitor}.    */
 DECL|method|executeListeners ()
 specifier|private
 name|void

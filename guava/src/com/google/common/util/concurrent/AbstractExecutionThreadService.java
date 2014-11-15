@@ -48,20 +48,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Throwables
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -228,6 +214,8 @@ expr_stmt|;
 name|notifyStarted
 argument_list|()
 expr_stmt|;
+comment|// If stopAsync() is called while starting we may be in the STOPPING state in which
+comment|// case we should skip right down to shutdown.
 if|if
 condition|(
 name|isRunning
@@ -262,6 +250,8 @@ name|Exception
 name|ignored
 parameter_list|)
 block|{
+comment|// TODO(user): if guava ever moves to java7, this would be a good candidate for
+comment|// a suppressed exception, or maybe we could generalize Closer.Suppressor
 name|logger
 operator|.
 name|log
@@ -278,9 +268,12 @@ name|ignored
 argument_list|)
 expr_stmt|;
 block|}
-throw|throw
+name|notifyFailed
+argument_list|(
 name|t
-throw|;
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
 block|}
 name|shutDown
@@ -301,14 +294,6 @@ argument_list|(
 name|t
 argument_list|)
 expr_stmt|;
-throw|throw
-name|Throwables
-operator|.
-name|propagate
-argument_list|(
-name|t
-argument_list|)
-throw|;
 block|}
 block|}
 block|}
@@ -334,7 +319,7 @@ specifier|protected
 name|AbstractExecutionThreadService
 parameter_list|()
 block|{}
-comment|/**    * Start the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
+comment|/**    * Start the service. This method is invoked on the execution thread.    *    *<p>By default this method does nothing.    */
 DECL|method|startUp ()
 specifier|protected
 name|void
@@ -353,7 +338,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Stop the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
+comment|/**    * Stop the service. This method is invoked on the execution thread.    *    *<p>By default this method does nothing.    */
 comment|// TODO: consider supporting a TearDownTestCase-like API
 DECL|method|shutDown ()
 specifier|protected
@@ -363,14 +348,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Invoked to request the service to stop.    *     *<p>By default this method does nothing.    */
+comment|/**    * Invoked to request the service to stop.    *    *<p>By default this method does nothing.    */
 DECL|method|triggerShutdown ()
 specifier|protected
 name|void
 name|triggerShutdown
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    *     *<p>The default implementation returns a new {@link Executor} that sets the     * name of its threads to the string returned by {@link #serviceName}    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    *    *<p>The default implementation returns a new {@link Executor} that sets the    * name of its threads to the string returned by {@link #serviceName}    */
 DECL|method|executor ()
 specifier|protected
 name|Executor
