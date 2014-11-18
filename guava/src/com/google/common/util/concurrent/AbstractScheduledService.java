@@ -475,6 +475,8 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|runningTask
@@ -486,8 +488,6 @@ block|{
 comment|// task may have been cancelled while blocked on the lock.
 return|return;
 block|}
-try|try
-block|{
 name|AbstractScheduledService
 operator|.
 name|this
