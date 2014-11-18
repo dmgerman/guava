@@ -792,14 +792,7 @@ name|String
 name|s
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
 return|return
-name|s
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|sourceFormat
 operator|.
 name|to
@@ -821,14 +814,7 @@ name|String
 name|s
 parameter_list|)
 block|{
-comment|// TODO(kevinb): remove null boilerplate (convert() will do it automatically)
 return|return
-name|s
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|targetFormat
 operator|.
 name|to
