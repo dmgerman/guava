@@ -248,7 +248,7 @@ argument_list|(
 name|actual
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,
@@ -312,6 +312,9 @@ literal|536870912
 argument_list|,
 literal|1073741824
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testEmpty ()

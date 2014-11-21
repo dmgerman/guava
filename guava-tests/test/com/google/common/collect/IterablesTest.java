@@ -2755,7 +2755,7 @@ argument_list|(
 name|repeated
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|1
 argument_list|,
@@ -2781,6 +2781,9 @@ literal|2
 argument_list|,
 literal|3
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testPartition_badSize ()
