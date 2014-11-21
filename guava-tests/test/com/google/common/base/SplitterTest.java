@@ -623,7 +623,7 @@ argument_list|(
 name|testCharacteringMotto
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -633,6 +633,9 @@ literal|"Debugging"
 argument_list|,
 literal|"sucks"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithMatcherDelimiter ()
@@ -666,7 +669,7 @@ argument_list|(
 name|testCharacteringMotto
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -676,6 +679,9 @@ literal|"Debugging"
 argument_list|,
 literal|"sucks"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testCharacterSplitWithDoubleDelimiterOmitEmptyStrings ()
@@ -1019,7 +1025,7 @@ argument_list|(
 name|family
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"(Marlon)"
 argument_list|,
@@ -1031,6 +1037,9 @@ literal|"(Jemaine)"
 argument_list|,
 literal|"(Tito)"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSimpleSplit ()
@@ -1348,7 +1357,7 @@ argument_list|(
 name|testStringingMotto
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"Testing"
 argument_list|,
@@ -1358,6 +1367,9 @@ literal|"Debugging"
 argument_list|,
 literal|"sucks"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testStringSplitWithDoubleDelimiterOmitEmptyStrings ()
@@ -1922,7 +1934,7 @@ argument_list|(
 name|family
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"(Marlon)"
 argument_list|,
@@ -1934,6 +1946,9 @@ literal|"(Jemaine)"
 argument_list|,
 literal|"(Tito)"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -2976,7 +2991,7 @@ argument_list|(
 name|family
 argument_list|)
 operator|.
-name|iteratesAs
+name|containsExactly
 argument_list|(
 literal|"(Marlon)"
 argument_list|,
@@ -2988,6 +3003,9 @@ literal|"(Jemaine)"
 argument_list|,
 literal|"(Tito)"
 argument_list|)
+operator|.
+name|inOrder
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|testSplitterIterableIsUnmodifiable_char ()
