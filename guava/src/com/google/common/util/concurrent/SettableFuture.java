@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|Beta
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -29,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)}  * or {@link #setException(Throwable)} call. It may also be cancelled.  *  * @author Sven Mawson  * @since 9.0 (in 1.0 as {@code ValueFuture})  */
+comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #set(Object)},  * {@link #setException(Throwable)} or {@link #setFuture(ListenableFuture)} call.   * It may also be cancelled.  *  * @author Sven Mawson  * @since 9.0 (in 1.0 as {@code ValueFuture})  */
 end_comment
 
 begin_class
@@ -76,10 +90,9 @@ specifier|private
 name|SettableFuture
 parameter_list|()
 block|{}
-comment|/**    * Sets the value of this future.  This method will return {@code true} if    * the value was successfully set, or {@code false} if the future has already    * been set or cancelled.    *    * @param value the value the future should hold.    * @return true if the value was successfully set.    */
+DECL|method|set (@ullable V value)
 annotation|@
 name|Override
-DECL|method|set (@ullable V value)
 specifier|public
 name|boolean
 name|set
@@ -99,10 +112,9 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**    * Sets the future to having failed with the given exception. This exception    * will be wrapped in an {@code ExecutionException} and thrown from the {@code    * get} methods. This method will return {@code true} if the exception was    * successfully set, or {@code false} if the future has already been set or    * cancelled.    *    * @param throwable the exception the future should hold.    * @return true if the exception was successfully set.    */
+DECL|method|setException (Throwable throwable)
 annotation|@
 name|Override
-DECL|method|setException (Throwable throwable)
 specifier|public
 name|boolean
 name|setException
@@ -117,6 +129,33 @@ operator|.
 name|setException
 argument_list|(
 name|throwable
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Beta
+annotation|@
+name|Override
+DECL|method|setFuture (ListenableFuture<? extends V> future)
+specifier|public
+name|boolean
+name|setFuture
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|V
+argument_list|>
+name|future
+parameter_list|)
+block|{
+return|return
+name|super
+operator|.
+name|setFuture
+argument_list|(
+name|future
 argument_list|)
 return|;
 block|}
