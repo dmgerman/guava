@@ -2353,7 +2353,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|inputFuture
+name|localInputFuture
 operator|.
 name|cancel
 argument_list|(
