@@ -848,6 +848,37 @@ specifier|final
 class|class
 name|Failure
 block|{
+DECL|field|FALLBACK_INSTANCE
+specifier|static
+specifier|final
+name|Failure
+name|FALLBACK_INSTANCE
+init|=
+operator|new
+name|Failure
+argument_list|(
+operator|new
+name|Throwable
+argument_list|(
+literal|"Failure occurred while trying to finish a future."
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+specifier|synchronized
+name|Throwable
+name|fillInStackTrace
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+comment|// no stack trace
+block|}
+block|}
+argument_list|)
+decl_stmt|;
 DECL|field|exception
 specifier|final
 name|Throwable
@@ -2217,6 +2248,8 @@ condition|)
 block|{
 comment|// the listener is responsible for calling complete, directExecutor is appropriate since
 comment|// all we are doing is unpacking a completed future which should be fast.
+try|try
+block|{
 name|future
 operator|.
 name|addListener
@@ -2227,6 +2260,56 @@ name|directExecutor
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+comment|// addListener has thrown an exception!  SetFuture.run can't throw any exceptions so this
+comment|// must have been caused by addListener itself.  The most likely explanation is a
+comment|// misconfigured mock.  Try to switch to Failure.
+name|Failure
+name|failure
+decl_stmt|;
+try|try
+block|{
+name|failure
+operator|=
+operator|new
+name|Failure
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|oomMostLikely
+parameter_list|)
+block|{
+name|failure
+operator|=
+name|Failure
+operator|.
+name|FALLBACK_INSTANCE
+expr_stmt|;
+block|}
+comment|// Note: The only way this CAS could fail is if cancel() has raced with us. That is ok.
+name|ATOMIC_HELPER
+operator|.
+name|casValue
+argument_list|(
+name|this
+argument_list|,
+name|valueToSet
+argument_list|,
+name|failure
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
