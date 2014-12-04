@@ -93,7 +93,7 @@ specifier|private
 name|Serialization
 parameter_list|()
 block|{}
-comment|/**    * Reads a count corresponding to a serialized map, multiset, or multimap. It    * returns the size of a map serialized by {@link    * #writeMap(Map, ObjectOutputStream)}, the number of distinct elements in a    * multiset serialized by {@link    * #writeMultiset(Multiset, ObjectOutputStream)}, or the number of distinct    * keys in a multimap serialized by {@link    * #writeMultimap(Multimap, ObjectOutputStream)}.    *    *<p>The returned count may be used to construct an empty collection of the    * appropriate capacity before calling any of the {@code populate} methods.    */
+comment|/**    * Reads a count corresponding to a serialized map, multiset, or multimap. It    * returns the size of a map serialized by {@link    * #writeMap(Map, ObjectOutputStream)}, the number of distinct elements in a    * multiset serialized by {@link    * #writeMultiset(Multiset, ObjectOutputStream)}, or the number of distinct    * keys in a multimap serialized by {@link    * #writeMultimap(Multimap, ObjectOutputStream)}.    */
 DECL|method|readCount (ObjectInputStream stream)
 specifier|static
 name|int

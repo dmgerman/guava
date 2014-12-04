@@ -3369,6 +3369,11 @@ operator|.
 name|defaultReadObject
 argument_list|()
 expr_stmt|;
+name|init
+argument_list|(
+literal|16
+argument_list|)
+expr_stmt|;
 name|int
 name|size
 init|=
@@ -3379,11 +3384,6 @@ argument_list|(
 name|stream
 argument_list|)
 decl_stmt|;
-name|init
-argument_list|(
-name|size
-argument_list|)
-expr_stmt|;
 name|Serialization
 operator|.
 name|populateMap

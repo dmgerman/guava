@@ -343,14 +343,7 @@ name|E
 argument_list|,
 name|Count
 argument_list|>
-argument_list|(
-name|Maps
-operator|.
-name|capacity
-argument_list|(
-name|distinctElements
-argument_list|)
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Serialization

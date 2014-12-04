@@ -332,10 +332,8 @@ name|E
 argument_list|,
 name|Count
 operator|>
-name|newHashMapWithExpectedSize
-argument_list|(
-name|distinctElements
-argument_list|)
+name|newHashMap
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Serialization
