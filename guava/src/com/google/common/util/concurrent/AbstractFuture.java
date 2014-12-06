@@ -1003,114 +1003,13 @@ block|{
 comment|// nothing to do, we must have been cancelled
 return|return;
 block|}
-comment|// TODO(user): Specialize this method in the case that future is an AbstractFuture.  Then
-comment|// instead of calling .get() and catching exception we can just copy the value field which
-comment|// should be much cheaper (a single cast and a volatile read, instead of at least 2 reads,
-comment|// dealing with InterruptedException and possibly throwing/catching exceptions).  The issue is
-comment|// that some subclasses override .get() and may expect/require it to be called and this would
-comment|// break those assumptions. Possible ideas for managing this:
-comment|// 1. limit the optimization to a trusted set of subclasses (subclasses in this package?
-comment|//    via a package private interface?)
-comment|// 2. entirely change the subclassing interface e.g. make .get() final. Then users who want to
-comment|//    do fancy things in .get() will need to use ForwardingFuture.
-name|Object
-name|valueToSet
-decl_stmt|;
-try|try
-block|{
-name|V
-name|v
-init|=
-name|Uninterruptibles
-operator|.
-name|getUninterruptibly
+name|completeWithFuture
 argument_list|(
 name|future
-argument_list|)
-decl_stmt|;
-name|valueToSet
-operator|=
-name|v
-operator|==
-literal|null
-condition|?
-name|NULL
-else|:
-name|v
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ExecutionException
-name|exception
-parameter_list|)
-block|{
-name|valueToSet
-operator|=
-operator|new
-name|Failure
-argument_list|(
-name|exception
-operator|.
-name|getCause
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CancellationException
-name|cancellation
-parameter_list|)
-block|{
-name|valueToSet
-operator|=
-operator|new
-name|Cancellation
-argument_list|(
-literal|false
-argument_list|,
-name|cancellation
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|valueToSet
-operator|=
-operator|new
-name|Failure
-argument_list|(
-name|t
-argument_list|)
-expr_stmt|;
-block|}
-comment|// The only way this can fail is if we raced with another thread calling cancel(). If we lost
-comment|// that race then there is nothing to do.
-if|if
-condition|(
-name|ATOMIC_HELPER
-operator|.
-name|casValue
-argument_list|(
-name|AbstractFuture
-operator|.
-name|this
 argument_list|,
 name|this
-argument_list|,
-name|valueToSet
 argument_list|)
-condition|)
-block|{
-name|complete
-argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// TODO(user): investigate using the @Contended annotation on these fields when jdk8 is
@@ -2201,7 +2100,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Asynchronously sets the result of this {@code Future} unless this {@code Future} has previously    * been cancelled or set (including {@linkplain #setFuture set asynchronously}). If a call to this    * method is accepted, this {@code Future} will complete when the supplied {@code Future}    * completes or when this {@code Future} is cancelled (at which point cancellation will also be    * propagated to the supplied {@code Future}).    *    *<p>When a call to this method returns, the {@code Future} is guaranteed to be    * {@linkplain #isDone done}<b>only if</b> (a) the call was accepted (in which case it returns    * {@code true})<b>and</b> (b) the supplied {@code Future} was already done. Otherwise, the    * result may have been asynchronously set to a {@code Future} that is not yet done. Note that    * such a result, though not yet known, cannot by overridden by a call to a {@code set*} method,    * only by a call to {@link #cancel}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set. However, there is no guarantee that the {@code Future} is done.    * @since 19.0    */
+comment|/**    * Asynchronously sets the result of this {@code Future} unless this {@code Future} has previously    * been cancelled or set (including {@linkplain #setFuture set asynchronously}). If a call to this    * method is accepted, this {@code Future} will complete when the supplied {@code Future}    * completes or when this {@code Future} is cancelled (at which point cancellation will also be    * propagated to the supplied {@code Future}).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future.    * If the supplied future is not done and the call is accepted, then the future will be set    * asynchronously. Note that such a result, though not yet known, cannot by overridden by a call    * to a {@code set*} method, only by a call to {@link #cancel}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
 DECL|method|setFuture (ListenableFuture<? extends V> future)
 annotation|@
 name|Beta
@@ -2223,6 +2122,35 @@ argument_list|(
 name|future
 argument_list|)
 expr_stmt|;
+name|Object
+name|localValue
+init|=
+name|value
+decl_stmt|;
+if|if
+condition|(
+name|localValue
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|future
+operator|.
+name|isDone
+argument_list|()
+condition|)
+block|{
+return|return
+name|completeWithFuture
+argument_list|(
+name|future
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
 name|SetFuture
 name|valueToSet
 init|=
@@ -2246,8 +2174,8 @@ name|valueToSet
 argument_list|)
 condition|)
 block|{
-comment|// the listener is responsible for calling complete, directExecutor is appropriate since
-comment|// all we are doing is unpacking a completed future which should be fast.
+comment|// the listener is responsible for calling completeWithFuture, directExecutor is appropriate
+comment|// since all we are doing is unpacking a completed future which should be fast.
 try|try
 block|{
 name|future
@@ -2314,16 +2242,17 @@ return|return
 literal|true
 return|;
 block|}
+name|localValue
+operator|=
+name|value
+expr_stmt|;
+comment|// we lost the cas, fall through and maybe cancel
+block|}
 comment|// The future has already been set to something.  If it is cancellation we should cancel the
 comment|// incoming future.
-name|Object
-name|obj
-init|=
-name|value
-decl_stmt|;
 if|if
 condition|(
-name|obj
+name|localValue
 operator|instanceof
 name|Cancellation
 condition|)
@@ -2337,12 +2266,145 @@ operator|(
 operator|(
 name|Cancellation
 operator|)
-name|obj
+name|localValue
 operator|)
 operator|.
 name|wasInterrupted
 argument_list|)
 expr_stmt|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+comment|/**    * Called when a future passed via setFuture has completed.    *    * @param future the done future to complete this future with.    * @param expected the expected value of the {@link #value} field.    */
+DECL|method|completeWithFuture (ListenableFuture<? extends V> future, Object expected)
+specifier|private
+name|boolean
+name|completeWithFuture
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|V
+argument_list|>
+name|future
+parameter_list|,
+name|Object
+name|expected
+parameter_list|)
+block|{
+comment|// TODO(user): Specialize this method in the case that future is an AbstractFuture.  Then
+comment|// instead of calling .get() and catching exception we can just copy the value field which
+comment|// should be much cheaper (a single cast and a volatile read, instead of at least 2 reads,
+comment|// dealing with InterruptedException and possibly throwing/catching exceptions).  The issue is
+comment|// that some subclasses override .get() and may expect/require it to be called and this would
+comment|// break those assumptions. Possible ideas for managing this:
+comment|// 1. limit the optimization to a trusted set of subclasses (subclasses in this package?
+comment|//    via a package private interface?)
+comment|// 2. entirely change the subclassing interface e.g. make .get() final. Then users who want to
+comment|//    do fancy things in .get() will need to use ForwardingFuture.
+name|Object
+name|valueToSet
+decl_stmt|;
+try|try
+block|{
+name|V
+name|v
+init|=
+name|Uninterruptibles
+operator|.
+name|getUninterruptibly
+argument_list|(
+name|future
+argument_list|)
+decl_stmt|;
+name|valueToSet
+operator|=
+name|v
+operator|==
+literal|null
+condition|?
+name|NULL
+else|:
+name|v
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ExecutionException
+name|exception
+parameter_list|)
+block|{
+name|valueToSet
+operator|=
+operator|new
+name|Failure
+argument_list|(
+name|exception
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|CancellationException
+name|cancellation
+parameter_list|)
+block|{
+name|valueToSet
+operator|=
+operator|new
+name|Cancellation
+argument_list|(
+literal|false
+argument_list|,
+name|cancellation
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|valueToSet
+operator|=
+operator|new
+name|Failure
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+comment|// The only way this can fail is if we raced with another thread calling cancel(). If we lost
+comment|// that race then there is nothing to do.
+if|if
+condition|(
+name|ATOMIC_HELPER
+operator|.
+name|casValue
+argument_list|(
+name|AbstractFuture
+operator|.
+name|this
+argument_list|,
+name|expected
+argument_list|,
+name|valueToSet
+argument_list|)
+condition|)
+block|{
+name|complete
+argument_list|()
+expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 return|return
 literal|false
