@@ -682,10 +682,7 @@ name|binarySearch
 argument_list|(
 name|list
 argument_list|,
-name|checkNotNull
-argument_list|(
 name|e
-argument_list|)
 argument_list|,
 name|Ordering
 operator|.
