@@ -521,27 +521,14 @@ specifier|static
 specifier|final
 name|Waiter
 name|TOMBSTONE
-decl_stmt|;
-static|static
-block|{
-name|Waiter
-name|waiter
 init|=
 operator|new
 name|Waiter
-argument_list|()
+argument_list|(
+literal|false
+comment|/* ignored param */
+argument_list|)
 decl_stmt|;
-name|waiter
-operator|.
-name|next
-operator|=
-literal|null
-expr_stmt|;
-name|TOMBSTONE
-operator|=
-name|waiter
-expr_stmt|;
-block|}
 DECL|field|thread
 annotation|@
 name|Nullable
@@ -556,6 +543,15 @@ specifier|volatile
 name|Waiter
 name|next
 decl_stmt|;
+comment|// Constructor for the TOMBSTONE, avoids use of ATOMIC_HELPER in case this class is loaded
+comment|// before the ATOMIC_HELPER.  Apparently this is possible on some android platforms.
+DECL|method|Waiter (boolean ignored)
+name|Waiter
+parameter_list|(
+name|boolean
+name|ignored
+parameter_list|)
+block|{}
 DECL|method|Waiter ()
 name|Waiter
 parameter_list|()
