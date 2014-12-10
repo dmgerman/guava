@@ -479,7 +479,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Benchmarks {@link Utf8#isWellFormed} on valid byte arrays    * containing pseudo-randomly-generated codePoints less than {@code    * maxCodePoint}.  A constant seed is used, so separate runs perform    * identical computations.    */
+comment|/**    * Benchmarks {@link Utf8#isWellFormed} on valid byte arrays containing    * pseudo-randomly-generated codePoints less than {@code maxCodePoint}.    * A constant seed is used, so separate runs perform identical computations.    */
 DECL|method|isWellFormed (int reps)
 annotation|@
 name|Benchmark
@@ -536,7 +536,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Benchmarks {@link Utf8#length} on valid strings containing    * pseudo-randomly-generated codePoints less than {@code    * maxCodePoint}.  A constant seed is used, so separate runs perform    * identical computations.    */
+comment|/**    * Benchmarks {@link Utf8#encodedLength} on valid strings containing    * pseudo-randomly-generated codePoints less than {@code maxCodePoint}.    * A constant seed is used, so separate runs perform identical computations.    */
 DECL|method|lengthOfString (int reps)
 annotation|@
 name|Benchmark
@@ -593,7 +593,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Benchmarks {@link Utf8#length} on valid StringBuilders containing    * pseudo-randomly-generated codePoints less than {@code    * maxCodePoint}.  A constant seed is used, so separate runs perform    * identical computations.    */
+comment|/**    * Benchmarks {@link Utf8#encodedLength} on valid StringBuilders containing    * pseudo-randomly-generated codePoints less than {@code maxCodePoint}.    * A constant seed is used, so separate runs perform identical computations.    */
 DECL|method|lengthOfStringBuilder (int reps)
 annotation|@
 name|Benchmark
