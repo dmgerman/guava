@@ -929,8 +929,15 @@ literal|0xF
 argument_list|)
 expr_stmt|;
 name|c
-operator|>>=
+operator|=
+call|(
+name|char
+call|)
+argument_list|(
+name|c
+operator|>>
 literal|4
+argument_list|)
 expr_stmt|;
 block|}
 return|return
