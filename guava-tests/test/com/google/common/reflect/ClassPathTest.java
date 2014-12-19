@@ -507,14 +507,6 @@ argument_list|,
 name|resource
 argument_list|)
 expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|resource
-operator|.
-name|url
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 name|String
 name|testResourceName
