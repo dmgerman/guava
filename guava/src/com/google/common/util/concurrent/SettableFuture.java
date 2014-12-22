@@ -57,6 +57,8 @@ name|V
 parameter_list|>
 extends|extends
 name|AbstractFuture
+operator|.
+name|TrustedFuture
 argument_list|<
 name|V
 argument_list|>

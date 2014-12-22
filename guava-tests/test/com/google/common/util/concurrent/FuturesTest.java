@@ -701,7 +701,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-literal|"com.google.common.util.concurrent.Futures$CombinedFuture"
+literal|"com.google.common.util.concurrent.Futures$CollectionFuture"
 argument_list|)
 decl_stmt|;
 DECL|field|combinedFutureLogHandler

@@ -267,6 +267,133 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+comment|/**    * A less abstract subclass of AbstractFuture.  This can be used to optimize setFuture by ensuring    * that {@link #get} calls exactly the implementation of {@link AbstractFuture#get}.    */
+DECL|class|TrustedFuture
+specifier|abstract
+specifier|static
+class|class
+name|TrustedFuture
+parameter_list|<
+name|V
+parameter_list|>
+extends|extends
+name|AbstractFuture
+argument_list|<
+name|V
+argument_list|>
+block|{
+comment|// N.B. cancel is not overridden to be final, because many future utilities need to override
+comment|// cancel in order to propagate cancellation to other futures.
+DECL|method|get ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|V
+name|get
+parameter_list|()
+throws|throws
+name|InterruptedException
+throws|,
+name|ExecutionException
+block|{
+return|return
+name|super
+operator|.
+name|get
+argument_list|()
+return|;
+block|}
+DECL|method|get (long timeout, TimeUnit unit)
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|V
+name|get
+parameter_list|(
+name|long
+name|timeout
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|)
+throws|throws
+name|InterruptedException
+throws|,
+name|ExecutionException
+throws|,
+name|TimeoutException
+block|{
+return|return
+name|super
+operator|.
+name|get
+argument_list|(
+name|timeout
+argument_list|,
+name|unit
+argument_list|)
+return|;
+block|}
+DECL|method|isDone ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|boolean
+name|isDone
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|isDone
+argument_list|()
+return|;
+block|}
+DECL|method|isCancelled ()
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|boolean
+name|isCancelled
+parameter_list|()
+block|{
+return|return
+name|super
+operator|.
+name|isCancelled
+argument_list|()
+return|;
+block|}
+DECL|method|addListener (Runnable listener, Executor executor)
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|void
+name|addListener
+parameter_list|(
+name|Runnable
+name|listener
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+name|super
+operator|.
+name|addListener
+argument_list|(
+name|listener
+argument_list|,
+name|executor
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// Logger to log exceptions caught when running listeners.
 DECL|field|log
 specifier|private
@@ -2291,19 +2418,38 @@ name|Object
 name|expected
 parameter_list|)
 block|{
-comment|// TODO(user): Specialize this method in the case that future is an AbstractFuture.  Then
-comment|// instead of calling .get() and catching exception we can just copy the value field which
-comment|// should be much cheaper (a single cast and a volatile read, instead of at least 2 reads,
-comment|// dealing with InterruptedException and possibly throwing/catching exceptions).  The issue is
-comment|// that some subclasses override .get() and may expect/require it to be called and this would
-comment|// break those assumptions. Possible ideas for managing this:
-comment|// 1. limit the optimization to a trusted set of subclasses (subclasses in this package?
-comment|//    via a package private interface?)
-comment|// 2. entirely change the subclassing interface e.g. make .get() final. Then users who want to
-comment|//    do fancy things in .get() will need to use ForwardingFuture.
 name|Object
 name|valueToSet
 decl_stmt|;
+if|if
+condition|(
+name|future
+operator|instanceof
+name|TrustedFuture
+condition|)
+block|{
+comment|// Break encapsulation for TrustedFuture instances since we know that subclasses cannot
+comment|// override .get() (since it is final) and therefore this is equivalent to calling .get()
+comment|// and unpacking the exceptions like we do below (just much faster because it is a single
+comment|// field read instead of a read, several branches and possibly creating exceptions).
+name|valueToSet
+operator|=
+operator|(
+operator|(
+name|AbstractFuture
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|future
+operator|)
+operator|.
+name|value
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Otherwise calculate valueToSet by calling .get()
 try|try
 block|{
 name|V
@@ -2376,6 +2522,7 @@ argument_list|(
 name|t
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// The only way this can fail is if we raced with another thread calling cancel(). If we lost
 comment|// that race then there is nothing to do.
@@ -2505,7 +2652,21 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
+comment|// We call this after the listeners on the theory that done() will only be used for 'cleanup'
+comment|// oriented tasks (e.g. clearing fields) and so can wait behind listeners which may be executing
+comment|// more important work.  A counter argument would be that done() is trusted code and therefore
+comment|// it would be safe to run before potentially slow or poorly behaved listeners.  Reevaluate this
+comment|// once we have more examples of done() implementations.
+name|done
+argument_list|()
+expr_stmt|;
 block|}
+comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
+DECL|method|done ()
+name|void
+name|done
+parameter_list|()
+block|{}
 comment|/** Clears the {@link #waiters} list and returns the most recently added value. */
 DECL|method|clearWaiters ()
 specifier|private

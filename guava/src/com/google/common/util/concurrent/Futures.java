@@ -2261,6 +2261,7 @@ comment|/**    * An implementation of {@code ListenableFuture} that also impleme
 DECL|class|ChainingListenableFuture
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|ChainingListenableFuture
 parameter_list|<
@@ -2270,6 +2271,8 @@ name|O
 parameter_list|>
 extends|extends
 name|AbstractFuture
+operator|.
+name|TrustedFuture
 argument_list|<
 name|O
 argument_list|>
@@ -3021,6 +3024,7 @@ comment|/**    * A wrapped future that does not propagate cancellation to its de
 DECL|class|NonCancellationPropagatingFuture
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|NonCancellationPropagatingFuture
 parameter_list|<
@@ -3028,6 +3032,8 @@ name|V
 parameter_list|>
 extends|extends
 name|AbstractFuture
+operator|.
+name|TrustedFuture
 argument_list|<
 name|V
 argument_list|>
@@ -4306,10 +4312,10 @@ block|}
 end_function
 
 begin_interface
-DECL|interface|FutureCombiner
+DECL|interface|FutureCollector
 specifier|private
 interface|interface
-name|FutureCombiner
+name|FutureCollector
 parameter_list|<
 name|V
 parameter_list|,
@@ -4334,11 +4340,12 @@ block|}
 end_interface
 
 begin_class
-DECL|class|CombinedFuture
+DECL|class|CollectionFuture
 specifier|private
 specifier|static
+specifier|final
 class|class
-name|CombinedFuture
+name|CollectionFuture
 parameter_list|<
 name|V
 parameter_list|,
@@ -4346,6 +4353,8 @@ name|C
 parameter_list|>
 extends|extends
 name|AbstractFuture
+operator|.
+name|TrustedFuture
 argument_list|<
 name|C
 argument_list|>
@@ -4361,7 +4370,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|CombinedFuture
+name|CollectionFuture
 operator|.
 name|class
 operator|.
@@ -4383,7 +4392,7 @@ specifier|static
 specifier|final
 name|AtomicReferenceFieldUpdater
 argument_list|<
-name|CombinedFuture
+name|CollectionFuture
 argument_list|<
 name|?
 argument_list|,
@@ -4403,7 +4412,7 @@ argument_list|(
 operator|(
 name|Class
 operator|)
-name|CombinedFuture
+name|CollectionFuture
 operator|.
 name|class
 argument_list|,
@@ -4442,7 +4451,7 @@ name|AtomicInteger
 name|remaining
 decl_stmt|;
 DECL|field|combiner
-name|FutureCombiner
+name|FutureCollector
 argument_list|<
 name|V
 argument_list|,
@@ -4468,8 +4477,8 @@ name|Throwable
 argument_list|>
 name|seenExceptions
 decl_stmt|;
-DECL|method|CombinedFuture ( ImmutableCollection<? extends ListenableFuture<? extends V>> futures, boolean allMustSucceed, Executor listenerExecutor, FutureCombiner<V, C> combiner)
-name|CombinedFuture
+DECL|method|CollectionFuture ( ImmutableCollection<? extends ListenableFuture<? extends V>> futures, boolean allMustSucceed, Executor listenerExecutor, FutureCollector<V, C> combiner)
+name|CollectionFuture
 parameter_list|(
 name|ImmutableCollection
 argument_list|<
@@ -4490,7 +4499,7 @@ parameter_list|,
 name|Executor
 name|listenerExecutor
 parameter_list|,
-name|FutureCombiner
+name|FutureCollector
 argument_list|<
 name|V
 argument_list|,
@@ -4557,6 +4566,36 @@ name|listenerExecutor
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|done ()
+annotation|@
+name|Override
+name|void
+name|done
+parameter_list|()
+block|{
+comment|// Let go of the memory held by other futures
+name|this
+operator|.
+name|futures
+operator|=
+literal|null
+expr_stmt|;
+comment|// By now the values array has either been set as the Future's value,
+comment|// or (in case of failure) is no longer useful.
+name|this
+operator|.
+name|values
+operator|=
+literal|null
+expr_stmt|;
+comment|// The combiner may also hold state, so free that as well
+name|this
+operator|.
+name|combiner
+operator|=
+literal|null
+expr_stmt|;
+block|}
 comment|/**      * Must be called at the end of the constructor.      */
 DECL|method|init (final Executor listenerExecutor)
 specifier|protected
@@ -4568,55 +4607,6 @@ name|Executor
 name|listenerExecutor
 parameter_list|)
 block|{
-comment|// First, schedule cleanup to execute when the Future is done.
-name|addListener
-argument_list|(
-operator|new
-name|Runnable
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-comment|// Let go of the memory held by other futures
-name|CombinedFuture
-operator|.
-name|this
-operator|.
-name|futures
-operator|=
-literal|null
-expr_stmt|;
-comment|// By now the values array has either been set as the Future's value,
-comment|// or (in case of failure) is no longer useful.
-name|CombinedFuture
-operator|.
-name|this
-operator|.
-name|values
-operator|=
-literal|null
-expr_stmt|;
-comment|// The combiner may also hold state, so free that as well
-name|CombinedFuture
-operator|.
-name|this
-operator|.
-name|combiner
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-argument_list|,
-name|directExecutor
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// Now begin the "real" initialization.
 comment|// Corner case: List is empty.
 if|if
@@ -5133,7 +5123,7 @@ operator|==
 literal|0
 condition|)
 block|{
-name|FutureCombiner
+name|FutureCollector
 argument_list|<
 name|V
 argument_list|,
@@ -5225,7 +5215,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|CombinedFuture
+name|CollectionFuture
 argument_list|<
 name|V
 argument_list|,
@@ -5242,7 +5232,7 @@ argument_list|,
 name|listenerExecutor
 argument_list|,
 operator|new
-name|FutureCombiner
+name|FutureCollector
 argument_list|<
 name|V
 argument_list|,
