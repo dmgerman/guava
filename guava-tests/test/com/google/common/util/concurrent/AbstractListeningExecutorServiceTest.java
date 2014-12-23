@@ -96,7 +96,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|/*      * Mostly just tests that ListenableFutureTasks are created and run; tests for      * ListenableFutureTask should ensure that listeners are called correctly.      */
+comment|/*      * Mostly just tests that TrustedListenableFutureTask are created and run; tests for      * TrustedListenableFutureTask should ensure that listeners are called correctly.      */
 name|TestListeningExecutorService
 name|e
 init|=
@@ -128,7 +128,7 @@ name|assertTrue
 argument_list|(
 name|runnableFuture
 operator|instanceof
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -165,7 +165,7 @@ name|assertTrue
 argument_list|(
 name|callableFuture
 operator|instanceof
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -212,7 +212,7 @@ name|assertTrue
 argument_list|(
 name|runnableFuture2
 operator|instanceof
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -320,7 +320,7 @@ name|assertTrue
 argument_list|(
 name|runnable
 operator|instanceof
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 argument_list|)
 expr_stmt|;
 name|runnable

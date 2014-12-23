@@ -58,6 +58,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|RunnableFuture
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -67,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract {@link ListeningExecutorService} implementation that creates  * {@link ListenableFutureTask} instances for each {@link Runnable} and {@link Callable} submitted  * to it. These tasks are run with the abstract {@link #execute execute(Runnable)} method.  *  *<p>In addition to {@link #execute}, subclasses must implement all methods related to shutdown and  * termination.  *  * @author Chris Povirk  * @since 14.0  */
+comment|/**  * Abstract {@link ListeningExecutorService} implementation that creates {@link ListenableFuture}  * instances for each {@link Runnable} and {@link Callable} submitted to it. These tasks are run  * with the abstract {@link #execute execute(Runnable)} method.  *  *<p>In addition to {@link #execute}, subclasses must implement all methods related to shutdown and  * termination.  *  * @author Chris Povirk  * @since 14.0  */
 end_comment
 
 begin_class
@@ -83,6 +95,7 @@ name|AbstractExecutorService
 implements|implements
 name|ListeningExecutorService
 block|{
+comment|/** @since 19.0 (present with return type {@code ListenableFutureTask} since 14.0) */
 DECL|method|newTaskFor (Runnable runnable, T value)
 annotation|@
 name|Override
@@ -91,7 +104,7 @@ specifier|final
 parameter_list|<
 name|T
 parameter_list|>
-name|ListenableFutureTask
+name|RunnableFuture
 argument_list|<
 name|T
 argument_list|>
@@ -105,7 +118,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 operator|.
 name|create
 argument_list|(
@@ -115,6 +128,7 @@ name|value
 argument_list|)
 return|;
 block|}
+comment|/** @since 19.0 (present with return type {@code ListenableFutureTask} since 14.0) */
 DECL|method|newTaskFor (Callable<T> callable)
 annotation|@
 name|Override
@@ -123,7 +137,7 @@ specifier|final
 parameter_list|<
 name|T
 parameter_list|>
-name|ListenableFutureTask
+name|RunnableFuture
 argument_list|<
 name|T
 argument_list|>
@@ -137,7 +151,7 @@ name|callable
 parameter_list|)
 block|{
 return|return
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 operator|.
 name|create
 argument_list|(

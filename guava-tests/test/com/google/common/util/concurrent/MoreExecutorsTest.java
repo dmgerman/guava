@@ -1708,7 +1708,7 @@ argument_list|)
 operator|.
 name|isInstanceOf
 argument_list|(
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 operator|.
 name|class
 argument_list|)
@@ -1736,7 +1736,7 @@ argument_list|)
 operator|.
 name|isInstanceOf
 argument_list|(
-name|ListenableFutureTask
+name|TrustedListenableFutureTask
 operator|.
 name|class
 argument_list|)
