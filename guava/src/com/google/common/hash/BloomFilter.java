@@ -889,17 +889,6 @@ name|bits
 argument_list|)
 return|;
 block|}
-DECL|field|DEFAULT_STRATEGY
-specifier|private
-specifier|static
-specifier|final
-name|Strategy
-name|DEFAULT_STRATEGY
-init|=
-name|BloomFilterStrategies
-operator|.
-name|MURMUR128_MITZ_64
-decl_stmt|;
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and expected false positive probability.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    *<p>It is recommended that the funnel be implemented as a Java enum. This has the    * benefit of ensuring proper serialization and deserialization, which is important    * since {@link #equals} also relies on object identity of funnels.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @param fpp the desired false positive probability (must be positive and less than 1.0)    * @return a {@code BloomFilter}    */
 DECL|method|create ( Funnel<? super T> funnel, long expectedInsertions, double fpp)
 specifier|public
@@ -937,7 +926,9 @@ name|expectedInsertions
 argument_list|,
 name|fpp
 argument_list|,
-name|DEFAULT_STRATEGY
+name|BloomFilterStrategies
+operator|.
+name|MURMUR128_MITZ_64
 argument_list|)
 return|;
 block|}
