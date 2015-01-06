@@ -342,6 +342,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -2129,6 +2139,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> predicate)
 specifier|public
 specifier|static

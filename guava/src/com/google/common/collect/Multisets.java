@@ -256,6 +256,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -999,6 +1009,8 @@ block|}
 comment|/**    * Returns a view of the elements of {@code unfiltered} that satisfy a predicate. The returned    * multiset is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multiset's iterators, and those of its {@code entrySet()} and    * {@code elementSet()}, do not support {@code remove()}.  However, all other multiset methods    * supported by {@code unfiltered} are supported by the returned multiset. When given an element    * that doesn't satisfy the predicate, the multiset's {@code add()} and {@code addAll()} methods    * throw an {@link IllegalArgumentException}. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered multiset, only elements that satisfy the filter    * will be removed from the underlying multiset.    *    *<p>The returned multiset isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multiset's methods, such as {@code size()}, iterate across every    * element in the underlying multiset and determine which elements satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the returned multiset and use the    * copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See    * {@link Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 14.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|filter (Multiset<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
