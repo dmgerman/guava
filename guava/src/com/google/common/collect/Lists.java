@@ -414,6 +414,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -2473,6 +2483,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a reversed view of the specified list. For example, {@code    * Lists.reverse(Arrays.asList(1, 2, 3))} returns a list containing {@code 3,    * 2, 1}. The returned list is backed by this list, so changes in the returned    * list are reflected in this list, and vice-versa. The returned list supports    * all of the optional list operations supported by this list.    *    *<p>The returned list is random-access if the specified list is random    * access.    *    * @since 7.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|reverse (List<T> list)
 specifier|public
 specifier|static
