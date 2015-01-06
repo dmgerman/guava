@@ -538,6 +538,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -1164,6 +1174,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|immediateFuture (@ullable V value)
 specifier|public
 specifier|static
@@ -1194,6 +1206,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} or {@code    * checkedGet()} will immediately return the provided value.    */
+annotation|@
+name|CheckReturnValue
 specifier|public
 specifier|static
 parameter_list|<
@@ -1232,6 +1246,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code ListenableFuture} which has an exception set immediately    * upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Throwable} wrapped in an {@code    * ExecutionException}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|immediateFailedFuture ( Throwable throwable)
 specifier|public
 specifier|static
@@ -1265,6 +1281,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which is cancelled immediately upon    * construction, so that {@code isCancelled()} always returns {@code true}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|immediateCancelledFuture ()
 specifier|public
 specifier|static
@@ -1288,6 +1306,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Exception} wrapped in an {@code    * ExecutionException}, and calling {@code checkedGet()} will throw the    * provided exception itself.    */
+annotation|@
+name|CheckReturnValue
 specifier|public
 specifier|static
 parameter_list|<
