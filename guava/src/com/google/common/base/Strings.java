@@ -92,6 +92,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -115,6 +125,8 @@ name|Strings
 parameter_list|()
 block|{}
 comment|/**    * Returns the given string if it is non-null; the empty string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is non-null; {@code ""} if it is null    */
+annotation|@
+name|CheckReturnValue
 DECL|method|nullToEmpty (@ullable String string)
 specifier|public
 specifier|static
