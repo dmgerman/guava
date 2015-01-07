@@ -3027,6 +3027,8 @@ block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its successful input futures. The list of results is in the    * same order as the input list, and if any of the provided futures fails or    * is canceled, its corresponding position will contain {@code null} (which is    * indistinguishable from the future having a successful value of    * {@code null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|successfulAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -3072,6 +3074,8 @@ block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its successful input futures. The list of results is in the    * same order as the input list, and if any of the provided futures fails or    * is canceled, its corresponding position will contain {@code null} (which is    * indistinguishable from the future having a successful value of    * {@code null}).    *    *<p>Canceling this future will attempt to cancel all the component futures.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|successfulAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
 specifier|public
 specifier|static
