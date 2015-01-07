@@ -1070,6 +1070,8 @@ literal|null
 return|;
 block|}
 comment|/**    * Determines whether two iterables contain equal elements in the same order.    * More specifically, this method returns {@code true} if {@code iterable1}    * and {@code iterable2} contain the same number of elements and every element    * of {@code iterable1} is equal to the corresponding element of    * {@code iterable2}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|elementsEqual ( Iterable<?> iterable1, Iterable<?> iterable2)
 specifier|public
 specifier|static
