@@ -192,7 +192,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"toString"
+literal|"Functions.toStringFunction()"
 return|;
 block|}
 block|}
@@ -276,7 +276,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"identity"
+literal|"Functions.identity()"
 return|;
 block|}
 block|}
@@ -493,7 +493,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"forMap("
+literal|"Functions.forMap("
 operator|+
 name|map
 operator|+
@@ -763,8 +763,9 @@ name|String
 name|toString
 parameter_list|()
 block|{
+comment|// TODO(cpovirk): maybe remove "defaultValue=" to make this look like the method call does
 return|return
-literal|"forMap("
+literal|"Functions.forMap("
 operator|+
 name|map
 operator|+
@@ -1049,6 +1050,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+comment|// TODO(cpovirk): maybe make this look like the method call does ("Functions.compose(...)")
 return|return
 name|g
 operator|+
@@ -1246,7 +1248,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"forPredicate("
+literal|"Functions.forPredicate("
 operator|+
 name|predicate
 operator|+
@@ -1436,7 +1438,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"constant("
+literal|"Functions.constant("
 operator|+
 name|value
 operator|+
@@ -1632,7 +1634,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"forSupplier("
+literal|"Functions.forSupplier("
 operator|+
 name|supplier
 operator|+

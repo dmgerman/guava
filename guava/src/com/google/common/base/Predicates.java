@@ -1159,9 +1159,6 @@ return|return
 literal|"Predicates.not("
 operator|+
 name|predicate
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|")"
 return|;
@@ -2455,18 +2452,13 @@ name|String
 name|toString
 parameter_list|()
 block|{
+comment|// TODO(cpovirk): maybe make this look like the method call does ("Predicates.compose(...)")
 return|return
 name|p
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|"("
 operator|+
 name|f
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|")"
 return|;
