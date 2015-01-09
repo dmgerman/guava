@@ -252,9 +252,8 @@ specifier|final
 name|int
 name|BUF_SIZE
 init|=
-literal|0x1000
+literal|8192
 decl_stmt|;
-comment|// 4K
 DECL|method|ByteStreams ()
 specifier|private
 name|ByteStreams

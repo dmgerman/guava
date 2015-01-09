@@ -2912,7 +2912,7 @@ name|array
 init|=
 name|newPreFilledByteArray
 argument_list|(
-literal|6000
+literal|10000
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2971,7 +2971,7 @@ argument_list|)
 argument_list|,
 name|newPreFilledByteArray
 argument_list|(
-literal|4096
+literal|8192
 argument_list|)
 argument_list|)
 expr_stmt|;
