@@ -63,7 +63,7 @@ parameter_list|,
 name|V
 parameter_list|>
 block|{
-comment|/**    * Notifies the listener that a removal occurred at some point in the past.    */
+comment|/**    * Notifies the listener that a removal occurred at some point in the past.    *    *<p>This does not always signify that the key is now absent from the cache,    * as it may have already been re-added.    */
 comment|// Technically should accept RemovalNotification<? extends K, ? extends V>, but because
 comment|// RemovalNotification is guaranteed covariant, let's make users' lives simpler.
 DECL|method|onRemoval (RemovalNotification<K, V> notification)
