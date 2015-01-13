@@ -28,22 +28,6 @@ name|hash
 operator|.
 name|Hashing
 operator|.
-name|ConcatenatedHashFunction
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|hash
-operator|.
-name|Hashing
-operator|.
 name|goodFastHash
 import|;
 end_import
@@ -117,6 +101,22 @@ operator|.
 name|Table
 operator|.
 name|Cell
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|hash
+operator|.
+name|Hashing
+operator|.
+name|ConcatenatedHashFunction
 import|;
 end_import
 
@@ -239,6 +239,16 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
 import|;
 end_import
 
@@ -3306,6 +3316,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"Known hash for hash(%s, UTF_8) failed"
 argument_list|,
 name|input

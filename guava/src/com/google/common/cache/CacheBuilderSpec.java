@@ -162,6 +162,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|TimeUnit
@@ -1286,8 +1296,6 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
 name|format
 argument_list|(
 literal|"key %s value set to %s, must be integer"
@@ -1384,8 +1392,6 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
 name|format
 argument_list|(
 literal|"key %s value set to %s, must be integer"
@@ -1963,8 +1969,6 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
 name|format
 argument_list|(
 literal|"key %s invalid format.  was %s, must end with one of [dDhHmMsS]"
@@ -2018,8 +2022,6 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
 name|format
 argument_list|(
 literal|"key %s value set to %s, must be integer"
@@ -2182,6 +2184,35 @@ operator|=
 name|unit
 expr_stmt|;
 block|}
+block|}
+DECL|method|format (String format, Object... args)
+specifier|private
+specifier|static
+name|String
+name|format
+parameter_list|(
+name|String
+name|format
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+return|return
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+name|format
+argument_list|,
+name|args
+argument_list|)
+return|;
 block|}
 block|}
 end_class

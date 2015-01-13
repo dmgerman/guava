@@ -148,6 +148,16 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Unit test for {@link Chars}.  *  * @author Kevin Bourrillion  */
 end_comment
@@ -2103,6 +2113,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 literal|"hi=%s, lo=%s, expected=%s, result=%s"
 argument_list|,
 name|hi

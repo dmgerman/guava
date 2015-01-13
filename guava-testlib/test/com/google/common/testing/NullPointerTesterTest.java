@@ -366,6 +366,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -1387,9 +1397,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"Bar(%s, %s)"
 argument_list|,
@@ -1435,9 +1443,7 @@ block|{
 name|String
 name|errorMessage
 init|=
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"Should not have flagged method %s for %s"
 argument_list|,
@@ -1496,9 +1502,7 @@ block|}
 name|String
 name|errorMessage
 init|=
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"Should have flagged method %s for %s"
 argument_list|,
@@ -3103,8 +3107,8 @@ argument_list|)
 comment|// for NullPointerTester
 DECL|class|BaseClassThatFailsToThrow
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|BaseClassThatFailsToThrow
 block|{
@@ -3148,8 +3152,8 @@ argument_list|)
 comment|// for NullPointerTester
 DECL|class|BaseClassThatFailsToThrowForPackagePrivate
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|BaseClassThatFailsToThrowForPackagePrivate
 block|{
@@ -3196,8 +3200,8 @@ argument_list|)
 comment|// for NullPointerTester
 DECL|class|BaseClassThatFailsToThrowForProtected
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|BaseClassThatFailsToThrowForProtected
 block|{
@@ -3879,8 +3883,8 @@ expr_stmt|;
 block|}
 DECL|class|DefaultValueChecker
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|DefaultValueChecker
 block|{
@@ -5630,8 +5634,8 @@ end_function
 begin_class
 DECL|class|AbstractGenericDefaultValueChecker
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractGenericDefaultValueChecker
 parameter_list|<
@@ -5722,8 +5726,8 @@ end_function
 
 begin_class
 specifier|private
-specifier|static
 specifier|abstract
+specifier|static
 DECL|class|AbstractGenericDefaultValueForPackagePrivateMethodChecker
 class|class
 name|AbstractGenericDefaultValueForPackagePrivateMethodChecker
@@ -6351,6 +6355,38 @@ literal|"inner class"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+end_function
+
+begin_function
+DECL|method|rootLocaleFormat (String format, Object... args)
+specifier|private
+specifier|static
+name|String
+name|rootLocaleFormat
+parameter_list|(
+name|String
+name|format
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+return|return
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+name|format
+argument_list|,
+name|args
+argument_list|)
+return|;
 block|}
 end_function
 

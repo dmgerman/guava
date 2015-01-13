@@ -90,6 +90,16 @@ name|Method
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Since annotations have some reusability issues that force copy and paste  * all over the place, it's worth having a test to ensure that all our Feature  * enums have their annotations correctly set up.  *  * @author George van den Driessche  */
 end_comment
@@ -119,9 +129,7 @@ parameter_list|)
 block|{
 name|assertNotNull
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s must be annotated with @TesterAnnotation."
 argument_list|,
@@ -153,9 +161,7 @@ argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s must have a @Retention annotation."
 argument_list|,
@@ -167,9 +173,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s must have RUNTIME RetentionPolicy."
 argument_list|,
@@ -188,9 +192,7 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s must be inherited."
 argument_list|,
@@ -247,9 +249,7 @@ parameter_list|)
 block|{
 name|fail
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s must have a property named '%s'."
 argument_list|,
@@ -274,9 +274,7 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s.%s() must return an array."
 argument_list|,
@@ -293,9 +291,7 @@ argument_list|)
 expr_stmt|;
 name|assertSame
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s.%s() must return an array of %s."
 argument_list|,
@@ -408,9 +404,7 @@ else|else
 block|{
 name|fail
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"Feature enum %s contains a class named "
 operator|+
@@ -426,9 +420,7 @@ block|}
 block|}
 name|fail
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"Feature enum %s should contain an "
 operator|+
@@ -488,9 +480,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s is not an annotation."
 argument_list|,
@@ -543,6 +533,35 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|rootLocaleFormat (String format, Object... args)
+specifier|private
+specifier|static
+name|String
+name|rootLocaleFormat
+parameter_list|(
+name|String
+name|format
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+return|return
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+name|format
+argument_list|,
+name|args
+argument_list|)
+return|;
 block|}
 block|}
 end_class

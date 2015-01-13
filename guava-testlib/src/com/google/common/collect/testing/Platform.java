@@ -32,6 +32,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
 begin_comment
 comment|/**  * Methods factored out so that they can be emulated differently in GWT.  *  *<p>This class is emulated in GWT.  *  * @author Hayward Chan  */
 end_comment
@@ -132,6 +142,10 @@ name|String
 operator|.
 name|format
 argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
 name|template
 argument_list|,
 name|args

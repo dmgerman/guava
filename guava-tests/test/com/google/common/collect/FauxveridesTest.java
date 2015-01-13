@@ -206,6 +206,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -560,9 +570,7 @@ condition|)
 block|{
 name|fail
 argument_list|(
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s should hide the public static methods declared in %s: %s"
 argument_list|,
@@ -1005,9 +1013,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|String
-operator|.
-name|format
+name|rootLocaleFormat
 argument_list|(
 literal|"%s%s(%s)"
 argument_list|,
@@ -1472,6 +1478,38 @@ block|}
 block|}
 decl_stmt|;
 end_decl_stmt
+
+begin_function
+DECL|method|rootLocaleFormat (String format, Object... args)
+specifier|private
+specifier|static
+name|String
+name|rootLocaleFormat
+parameter_list|(
+name|String
+name|format
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+return|return
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+name|format
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+end_function
 
 unit|}
 end_unit
