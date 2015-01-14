@@ -164,6 +164,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
@@ -559,6 +587,13 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Futures
 specifier|public
 specifier|final
@@ -571,6 +606,11 @@ name|Futures
 parameter_list|()
 block|{}
 comment|/**    * Creates a {@link CheckedFuture} out of a normal {@link ListenableFuture}    * and a {@link Function} that maps from {@link Exception} instances into the    * appropriate checked type.    *    *<p>The given mapping function will be applied to an    * {@link InterruptedException}, a {@link CancellationException}, or an    * {@link ExecutionException}.    * See {@link Future#get()} for details on the exceptions thrown.    *    * @since 9.0 (source-compatible since 1.0)    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|makeChecked ( ListenableFuture<V> future, Function<? super Exception, X> mapper)
 specifier|public
 specifier|static
@@ -624,6 +664,11 @@ name|mapper
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateFuture
 specifier|private
 specifier|abstract
@@ -802,6 +847,11 @@ literal|true
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateSuccessfulFuture
 specifier|private
 specifier|static
@@ -853,6 +903,11 @@ name|value
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateSuccessfulCheckedFuture
 specifier|private
 specifier|static
@@ -950,6 +1005,11 @@ name|value
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateFailedFuture
 specifier|private
 specifier|static
@@ -1003,6 +1063,11 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateCancelledFuture
 specifier|private
 specifier|static
@@ -1070,6 +1135,11 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateFailedCheckedFuture
 specifier|private
 specifier|static
@@ -1176,6 +1246,11 @@ block|}
 comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}.    */
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|immediateFuture (@ullable V value)
 specifier|public
 specifier|static
@@ -1208,6 +1283,11 @@ block|}
 comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} or {@code    * checkedGet()} will immediately return the provided value.    */
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1248,6 +1328,11 @@ block|}
 comment|/**    * Returns a {@code ListenableFuture} which has an exception set immediately    * upon construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Throwable} wrapped in an {@code    * ExecutionException}.    */
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|immediateFailedFuture ( Throwable throwable)
 specifier|public
 specifier|static
@@ -1283,6 +1368,11 @@ block|}
 comment|/**    * Creates a {@code ListenableFuture} which is cancelled immediately upon    * construction, so that {@code isCancelled()} always returns {@code true}.    *    * @since 14.0    */
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|immediateCancelledFuture ()
 specifier|public
 specifier|static
@@ -1308,6 +1398,11 @@ block|}
 comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Exception} wrapped in an {@code    * ExecutionException}, and calling {@code checkedGet()} will throw the    * provided exception itself.    */
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1349,6 +1444,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       });}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       });}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #withFallback(ListenableFuture,    * FutureFallback, Executor) supplying an executor}. If you do not supply an    * executor, {@code withFallback} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * fallback.create} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code withFallback}    * is called, {@code withFallback} will call {@code fallback.create} inline.    *<li>If the input {@code Future} is not yet done, {@code withFallback} will    * schedule {@code fallback.create} to be run by the thread that completes    * the input {@code Future}, which may be an internal system thread such as    * an RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * fallback.create}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @since 14.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback)
 specifier|public
 specifier|static
@@ -1391,6 +1491,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       }, directExecutor());}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       }, directExecutor());}</pre>    *    *<p>When the execution of {@code fallback.create} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #withFallback(ListenableFuture, FutureFallback)    * omitting the executor} or explicitly specifying {@code    * directExecutor}. However, be aware of the caveats documented in the    * link above.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @param executor the executor that runs {@code fallback} if {@code input}    *     fails    * @since 14.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
@@ -1444,6 +1549,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A future that falls back on a second, generated future, in case its    * original future fails.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|FallbackFuture
 specifier|private
 specifier|static
@@ -1672,6 +1782,11 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1741,6 +1856,11 @@ name|output
 return|;
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>When the execution of {@code function.apply} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #transform(ListenableFuture, AsyncFunction) omitting    * the executor} or explicitly specifying {@code directExecutor}.    * However, be aware of the caveats documented in the link above.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @param executor Executor to run the function in.    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function, Executor executor)
 specifier|public
 specifier|static
@@ -1825,6 +1945,11 @@ name|output
 return|;
 block|}
 comment|/**    * Returns a Runnable that will invoke the delegate Runnable on the delegate executor, but if the    * task is rejected, it will propagate that rejection to the output future.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|rejectionPropagatingRunnable ( final AbstractFuture<?> outputFuture, final Runnable delegateTask, final Executor delegateExecutor)
 specifier|private
 specifier|static
@@ -1934,6 +2059,11 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction);}</pre>    *    *<p>Note: If the transformation is slow or heavyweight, consider {@linkplain    * #transform(ListenableFuture, Function, Executor) supplying an executor}.    * If you do not supply an executor, {@code transform} will use an inline    * executor, which carries some caveats for heavier operations.  For example,    * the call to {@code function.apply} may run on an unpredictable or    * undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since 9.0 (in 1.0 as {@code compose})    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|transform (ListenableFuture<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -2012,6 +2142,11 @@ name|output
 return|;
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>When the transformation is fast and lightweight, consider {@linkplain    * #transform(ListenableFuture, Function) omitting the executor} or    * explicitly specifying {@code directExecutor}. However, be aware of the    * caveats documented in the link above.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.    * @param executor Executor to run the function in.    * @return A future that holds result of the transformation.    * @since 9.0 (in 2.0 as {@code compose})    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|transform (ListenableFuture<I> input, final Function<? super I, ? extends O> function, Executor executor)
 specifier|public
 specifier|static
@@ -2069,6 +2204,11 @@ argument_list|)
 return|;
 block|}
 comment|/** Wraps the given function as an AsyncFunction. */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|asAsyncFunction ( final Function<? super I, ? extends O> function)
 specifier|private
 specifier|static
@@ -2143,6 +2283,11 @@ block|}
 return|;
 block|}
 comment|/**    * Like {@link #transform(ListenableFuture, Function)} except that the    * transformation {@code function} is invoked on each call to    * {@link Future#get() get()} on the returned future.    *    *<p>The returned {@code Future} reflects the input's cancellation    * state directly, and any attempt to cancel the returned Future is likewise    * passed through to the input Future.    *    *<p>Note that calls to {@linkplain Future#get(long, TimeUnit) timed get}    * only apply the timeout to the execution of the underlying {@code Future},    *<em>not</em> to the execution of the transformation function.    *    *<p>The primary audience of this method is callers of {@code transform}    * who don't have a {@code ListenableFuture} available and    * do not mind repeated, lazy function evaluation.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.    * @return A future that returns the result of the transformation.    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|lazyTransform (final Future<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -2337,6 +2482,11 @@ block|}
 return|;
 block|}
 comment|/**    * An implementation of {@code ListenableFuture} that also implements    * {@code Runnable} so that it can be used to nest ListenableFutures.    * Once the passed-in {@code ListenableFuture} is complete, it calls the    * passed-in {@code Function} to generate the result.    *    *<p>For historical reasons, this class has a special case in its exception    * handling: If the given {@code AsyncFunction} throws an {@code    * UndeclaredThrowableException}, {@code ChainingListenableFuture} unwraps it    * and uses its<i>cause</i> as the output future's exception, rather than    * using the {@code UndeclaredThrowableException} itself as it would for other    * exception types. The reason for this is that {@code Futures.transform} used    * to require a {@code Function}, whose {@code apply} method is not allowed to    * throw checked exceptions. Nowadays, {@code Futures.transform} has an    * overload that accepts an {@code AsyncFunction}, whose {@code apply} method    *<i>is</i> allowed to throw checked exception. Users who wish to throw    * checked exceptions should use that overload instead, and<a    * href="http://code.google.com/p/guava-libraries/issues/detail?id=1548">we    * should remove the {@code UndeclaredThrowableException} special case</a>.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ChainingListenableFuture
 specifier|private
 specifier|static
@@ -2619,6 +2769,11 @@ block|,
 literal|"unchecked"
 block|}
 argument_list|)
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|dereference ( ListenableFuture<? extends ListenableFuture<? extends V>> nested)
 specifier|public
 specifier|static
@@ -2663,6 +2818,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Helper {@code Function} for {@link #dereference}.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|field|DEREFERENCER
 specifier|private
 specifier|static
@@ -2715,6 +2875,11 @@ decl_stmt|;
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails immediately.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|allAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -2760,6 +2925,11 @@ block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails immediately.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|allAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
 specifier|public
 specifier|static
@@ -2806,6 +2976,11 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|CombinedFuture
 specifier|private
 specifier|static
@@ -2993,6 +3168,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose result is set from the    * supplied future when it completes.  Cancelling the supplied future    * will also cancel the returned future, but cancelling the returned    * future will have no effect on the supplied future.    *    * @since 15.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|nonCancellationPropagating ( ListenableFuture<V> future)
 specifier|public
 specifier|static
@@ -3024,6 +3204,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A wrapped future that does not propagate cancellation to its delegate.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|NonCancellationPropagatingFuture
 specifier|private
 specifier|static
@@ -3088,6 +3273,11 @@ annotation|@
 name|Beta
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|successfulAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -3135,6 +3325,11 @@ annotation|@
 name|Beta
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|successfulAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
 specifier|public
 specifier|static
@@ -3184,6 +3379,11 @@ block|}
 comment|/**    * Returns a list of delegate futures that correspond to the futures received in the order    * that they complete. Delegate futures return the same value or throw the same exception    * as the corresponding input future returns/throws.    *    *<p>Cancelling a delegate future has no effect on any input future, since the delegate future    * does not correspond to a specific input future until the appropriate number of input    * futures have completed. At that point, it is too late to cancel the input future.    * The input future's result, which cannot be stored into the cancelled delegate future,    * is ignored.    *    * @since 17.0    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|inCompletionOrder ( Iterable<? extends ListenableFuture<? extends T>> futures)
 specifier|public
 specifier|static
@@ -3346,6 +3546,11 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Registers separate success and failure callbacks to be run when the {@code    * Future}'s computation is {@linkplain java.util.concurrent.Future#isDone()    * complete} or, if the computation is already complete, immediately.    *    *<p>There is no guaranteed ordering of execution of callbacks, but any    * callback added through this method is guaranteed to be called once the    * computation is complete.    *    * Example:<pre> {@code    * ListenableFuture<QueryResult> future = ...;    * addCallback(future,    *     new FutureCallback<QueryResult> {    *       public void onSuccess(QueryResult result) {    *         storeInCache(result);    *       }    *       public void onFailure(Throwable t) {    *         reportError(t);    *       }    *     });}</pre>    *    *<p>Note: If the callback is slow or heavyweight, consider {@linkplain    * #addCallback(ListenableFuture, FutureCallback, Executor) supplying an    * executor}. If you do not supply an executor, {@code addCallback} will use    * a {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the callback may run on    * an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code addCallback} is    * called, {@code addCallback} will execute the callback inline.    *<li>If the input {@code Future} is not yet done, {@code addCallback} will    * schedule the callback to be run by the thread that completes the input    * {@code Future}, which may be an internal system thread such as an RPC    * network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the callback, all    * other registered but unexecuted listeners are prevented from running    * during its execution, even if those listeners are to run in other    * executors.    *    *<p>For a more general interface to attach a completion listener to a    * {@code Future}, see {@link ListenableFuture#addListener addListener}.    *    * @param future The future attach the callback to.    * @param callback The callback to invoke when {@code future} is completed.    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|addCallback (ListenableFuture<V> future, FutureCallback<? super V> callback)
 specifier|public
 specifier|static
@@ -3517,6 +3722,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns the result of {@link Future#get()}, converting most exceptions to a    * new instance of the given checked exception type. This reduces boilerplate    * for a common use of {@code Future} in which it is unnecessary to    * programmatically distinguish between exception types or to extract other    * information from the exception instance.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@code X} if the cause is a checked exception, an {@link    *     UncheckedExecutionException} if the cause is a {@code    *     RuntimeException}, or an {@link ExecutionError} if the cause is an    *     {@code Error}.    *<li>Any {@link InterruptedException} is wrapped in an {@code X} (after    *     restoring the interrupt).    *<li>Any {@link CancellationException} is propagated untouched, as is any    *     other {@link RuntimeException} (though {@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    *<p>The overall principle is to continue to treat every checked exception as a    * checked exception, every unchecked exception as an unchecked exception, and    * every error as an error. In addition, the cause of any {@code    * ExecutionException} is wrapped in order to ensure that the new stack trace    * matches that of the current thread.    *    *<p>Instances of {@code exceptionClass} are created by choosing an arbitrary    * public constructor that accepts zero or more arguments, all of type {@code    * String} or {@code Throwable} (preferring constructors with at least one    * {@code String}) and calling the constructor via reflection. If the    * exception did not already have a cause, one is set by calling {@link    * Throwable#initCause(Throwable)} on it. If no such constructor exists, an    * {@code IllegalArgumentException} is thrown.    *    * @throws X if {@code get} throws any checked exception except for an {@code    *         ExecutionException} whose cause is not itself a checked exception    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with a {@code RuntimeException} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @throws IllegalArgumentException if {@code exceptionClass} extends {@code    *         RuntimeException} or does not have a suitable constructor    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|get ( Future<V> future, Class<X> exceptionClass)
 specifier|public
 specifier|static
@@ -3621,6 +3831,11 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns the result of {@link Future#get(long, TimeUnit)}, converting most    * exceptions to a new instance of the given checked exception type. This    * reduces boilerplate for a common use of {@code Future} in which it is    * unnecessary to programmatically distinguish between exception types or to    * extract other information from the exception instance.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@code X} if the cause is a checked exception, an {@link    *     UncheckedExecutionException} if the cause is a {@code    *     RuntimeException}, or an {@link ExecutionError} if the cause is an    *     {@code Error}.    *<li>Any {@link InterruptedException} is wrapped in an {@code X} (after    *     restoring the interrupt).    *<li>Any {@link TimeoutException} is wrapped in an {@code X}.    *<li>Any {@link CancellationException} is propagated untouched, as is any    *     other {@link RuntimeException} (though {@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    *<p>The overall principle is to continue to treat every checked exception as a    * checked exception, every unchecked exception as an unchecked exception, and    * every error as an error. In addition, the cause of any {@code    * ExecutionException} is wrapped in order to ensure that the new stack trace    * matches that of the current thread.    *    *<p>Instances of {@code exceptionClass} are created by choosing an arbitrary    * public constructor that accepts zero or more arguments, all of type {@code    * String} or {@code Throwable} (preferring constructors with at least one    * {@code String}) and calling the constructor via reflection. If the    * exception did not already have a cause, one is set by calling {@link    * Throwable#initCause(Throwable)} on it. If no such constructor exists, an    * {@code IllegalArgumentException} is thrown.    *    * @throws X if {@code get} throws any checked exception except for an {@code    *         ExecutionException} whose cause is not itself a checked exception    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with a {@code RuntimeException} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @throws IllegalArgumentException if {@code exceptionClass} extends {@code    *         RuntimeException} or does not have a suitable constructor    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|get ( Future<V> future, long timeout, TimeUnit unit, Class<X> exceptionClass)
 specifier|public
 specifier|static
@@ -3754,6 +3969,11 @@ argument_list|()
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|wrapAndThrowExceptionOrError ( Throwable cause, Class<X> exceptionClass)
 specifier|private
 specifier|static
@@ -3820,6 +4040,11 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the result of calling {@link Future#get()} uninterruptibly on a    * task known not to throw a checked exception. This makes {@code Future} more    * suitable for lightweight, fast-running tasks that, barring bugs in the    * code, will not fail. This gives it exception-handling behavior similar to    * that of {@code ForkJoinTask.join}.    *    *<p>Exceptions from {@code Future.get} are treated as follows:    *<ul>    *<li>Any {@link ExecutionException} has its<i>cause</i> wrapped in an    *     {@link UncheckedExecutionException} (if the cause is an {@code    *     Exception}) or {@link ExecutionError} (if the cause is an {@code    *     Error}).    *<li>Any {@link InterruptedException} causes a retry of the {@code get}    *     call. The interrupt is restored before {@code getUnchecked} returns.    *<li>Any {@link CancellationException} is propagated untouched. So is any    *     other {@link RuntimeException} ({@code get} implementations are    *     discouraged from throwing such exceptions).    *</ul>    *    *<p>The overall principle is to eliminate all checked exceptions: to loop to    * avoid {@code InterruptedException}, to pass through {@code    * CancellationException}, and to wrap any exception from the underlying    * computation in an {@code UncheckedExecutionException} or {@code    * ExecutionError}.    *    *<p>For an uninterruptible {@code get} that preserves other exceptions, see    * {@link Uninterruptibles#getUninterruptibly(Future)}.    *    * @throws UncheckedExecutionException if {@code get} throws an {@code    *         ExecutionException} with an {@code Exception} as its cause    * @throws ExecutionError if {@code get} throws an {@code ExecutionException}    *         with an {@code Error} as its cause    * @throws CancellationException if {@code get} throws a {@code    *         CancellationException}    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|getUnchecked (Future<V> future)
 specifier|public
 specifier|static
@@ -3871,6 +4096,11 @@ argument_list|()
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|wrapAndThrowUnchecked (Throwable cause)
 specifier|private
 specifier|static
@@ -3910,6 +4140,11 @@ throw|;
 block|}
 comment|/*    * TODO(user): FutureChecker interface for these to be static methods on? If    * so, refer to it in the (static-method) Futures.get documentation    */
 comment|/*    * Arguably we don't need a timed getUnchecked because any operation slow    * enough to require a timeout is heavyweight enough to throw a checked    * exception and therefore be inappropriate to use with getUnchecked. Further,    * it's not clear that converting the checked TimeoutException to a    * RuntimeException -- especially to an UncheckedExecutionException, since it    * wasn't thrown by the computation -- makes sense, and if we don't convert    * it, the user still has to write a try-catch block.    *    * If you think you would use this method, let us know.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|newWithCause ( Class<X> exceptionClass, Throwable cause)
 specifier|private
 specifier|static
@@ -4033,6 +4268,11 @@ name|cause
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 specifier|private
 specifier|static
 parameter_list|<
@@ -4069,6 +4309,11 @@ name|constructors
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|field|WITH_STRING_PARAM_FIRST
 specifier|private
 specifier|static
@@ -4140,6 +4385,11 @@ expr_stmt|;
 end_class
 
 begin_function
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|newFromConstructor ( Constructor<X> constructor, Throwable cause)
 annotation|@
 name|Nullable
@@ -4319,6 +4569,11 @@ block|}
 end_function
 
 begin_interface
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|interface|FutureCollector
 specifier|private
 interface|interface
@@ -4347,6 +4602,11 @@ block|}
 end_interface
 
 begin_class
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|CollectionFuture
 specifier|private
 specifier|static
@@ -5187,6 +5447,11 @@ comment|/** Used for {@link #allAsList} and {@link #successfulAsList}. */
 end_comment
 
 begin_function
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|listFuture ( ImmutableList<ListenableFuture<? extends V>> futures, boolean allMustSucceed, Executor listenerExecutor)
 specifier|private
 specifier|static
@@ -5328,6 +5593,11 @@ comment|/**    * A checked future that uses a function to map from exceptions to
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|MappingCheckedFuture
 specifier|private
 specifier|static

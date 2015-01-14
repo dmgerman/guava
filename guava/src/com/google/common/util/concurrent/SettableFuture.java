@@ -34,6 +34,34 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -47,6 +75,13 @@ comment|/**  * A {@link ListenableFuture} whose result may be set by a {@link #s
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|SettableFuture
 specifier|public
 specifier|final
@@ -136,6 +171,11 @@ return|;
 block|}
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setFuture (ListenableFuture<? extends V> future)
