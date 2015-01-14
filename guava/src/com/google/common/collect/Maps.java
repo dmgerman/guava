@@ -1070,7 +1070,7 @@ condition|)
 block|{
 comment|// This is the calculation used in JDK8 to resize when a putAll
 comment|// happens; it seems to be the most conservative calculation we
-comment|// can make.  0,75 is the default load factor.
+comment|// can make.  0.75 is the default load factor.
 return|return
 call|(
 name|int
