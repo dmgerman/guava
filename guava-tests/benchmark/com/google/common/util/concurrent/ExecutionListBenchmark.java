@@ -2570,7 +2570,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * TODO(user):  This was copied verbatim from Striped64.java... standardize this?      */
+comment|/**      * TODO(lukes):  This was copied verbatim from Striped64.java... standardize this?      */
 DECL|method|getUnsafe ()
 specifier|private
 specifier|static

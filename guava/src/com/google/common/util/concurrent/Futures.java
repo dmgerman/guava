@@ -4974,7 +4974,7 @@ name|localValues
 init|=
 name|values
 decl_stmt|;
-comment|// TODO(user): This check appears to be redundant since values is
+comment|// TODO(lukes): This check appears to be redundant since values is
 comment|// assigned null only after the future completes.  However, values
 comment|// is not volatile so it may be possible for us to observe the changes
 comment|// to these two values in a different order... which I think is why

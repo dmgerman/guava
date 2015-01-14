@@ -1135,7 +1135,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO(user): investigate using the @Contended annotation on these fields when jdk8 is
+comment|// TODO(lukes): investigate using the @Contended annotation on these fields when jdk8 is
 comment|// available.
 comment|/**    * This field encodes the current state of the future.    *    *<p>The valid values are:    *<ul>    *<li>{@code null} initial state, nothing has happened.    *<li>{@link Cancellation} terminal state, {@code cancel} was called.    *<li>{@link Failure} terminal state, {@code setException} was called.    *<li>{@link SetFuture} intermediate state, {@code setFuture} was called.    *<li>{@link #NULL} terminal state, {@code set(null)} was called.    *<li>Any other non-null value, terminal state, {@code set} was called with a non-null    *       argument.    *</ul>    */
 DECL|field|value
@@ -1882,7 +1882,7 @@ condition|)
 block|{
 comment|// Try to delay allocating the exception.  At this point we may still lose the CAS, but it is
 comment|// certainly less likely.
-comment|// TODO(user): this exception actually makes cancellation significantly more expensive :(
+comment|// TODO(lukes): this exception actually makes cancellation significantly more expensive :(
 comment|// I wonder if we should consider removing it or providing a mechanism to not do it.
 name|Object
 name|valueToSet
@@ -2661,7 +2661,7 @@ name|done
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
+comment|/**     * Callback method that is called immediately after the future is completed.    *     *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
 DECL|method|done ()
 name|void
 name|done
@@ -2916,7 +2916,7 @@ name|v
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.    *    *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.    */
+comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.      *     *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.     */
 DECL|class|UnsafeAtomicHelper
 specifier|private
 specifier|static

@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp} and {@link #shutDown} but while in  * the "running" state need to perform a periodic task.  Subclasses can implement {@link #startUp},  * {@link #shutDown} and also a {@link #runOneIteration} method that will be executed periodically.  *  *<p>This class uses the {@link ScheduledExecutorService} returned from {@link #executor} to run  * the {@link #startUp} and {@link #shutDown} methods and also uses that service to schedule the  * {@link #runOneIteration} that will be executed periodically as specified by its  * {@link Scheduler}. When this service is asked to stop via {@link #stopAsync} it will cancel the  * periodic task (but not interrupt it) and wait for it to stop before running the  * {@link #shutDown} method.  *  *<p>Subclasses are guaranteed that the life cycle methods ({@link #runOneIteration}, {@link  * #startUp} and {@link #shutDown}) will never run concurrently. Notably, if any execution of {@link  * #runOneIteration} takes longer than its schedule defines, then subsequent executions may start  * late.  Also, all life cycle methods are executed with a lock held, so subclasses can safely  * modify shared state without additional synchronization necessary for visibility to later  * executions of the life cycle methods.  *  *<h3>Usage Example</h3>  *  *<p>Here is a sketch of a service which crawls a website and uses the scheduling capabilities to  * rate limit itself.<pre> {@code  * class CrawlingService extends AbstractScheduledService {  *   private Set<Uri> visited;  *   private Queue<Uri> toCrawl;  *   protected void startUp() throws Exception {  *     toCrawl = readStartingUris();  *   }  *  *   protected void runOneIteration() throws Exception {  *     Uri uri = toCrawl.remove();  *     Collection<Uri> newUris = crawl(uri);  *     visited.add(uri);  *     for (Uri newUri : newUris) {  *       if (!visited.contains(newUri)) { toCrawl.add(newUri); }  *     }  *   }  *  *   protected void shutDown() throws Exception {  *     saveUris(toCrawl);  *   }  *  *   protected Scheduler scheduler() {  *     return Scheduler.newFixedRateSchedule(0, 1, TimeUnit.SECONDS);  *   }  * }}</pre>  *  *<p>This class uses the life cycle methods to read in a list of starting URIs and save the set of  * outstanding URIs when shutting down.  Also, it takes advantage of the scheduling functionality to  * rate limit the number of queries we perform.  *  * @author Luke Sandberg  * @since 11.0  */
+comment|/**  * Base class for services that can implement {@link #startUp} and {@link #shutDown} but while in   * the "running" state need to perform a periodic task.  Subclasses can implement {@link #startUp},  * {@link #shutDown} and also a {@link #runOneIteration} method that will be executed periodically.  *   *<p>This class uses the {@link ScheduledExecutorService} returned from {@link #executor} to run  * the {@link #startUp} and {@link #shutDown} methods and also uses that service to schedule the   * {@link #runOneIteration} that will be executed periodically as specified by its   * {@link Scheduler}. When this service is asked to stop via {@link #stopAsync} it will cancel the   * periodic task (but not interrupt it) and wait for it to stop before running the   * {@link #shutDown} method.    *   *<p>Subclasses are guaranteed that the life cycle methods ({@link #runOneIteration}, {@link   * #startUp} and {@link #shutDown}) will never run concurrently. Notably, if any execution of {@link  * #runOneIteration} takes longer than its schedule defines, then subsequent executions may start   * late.  Also, all life cycle methods are executed with a lock held, so subclasses can safely   * modify shared state without additional synchronization necessary for visibility to later   * executions of the life cycle methods.  *   *<h3>Usage Example</h3>  *   *<p>Here is a sketch of a service which crawls a website and uses the scheduling capabilities to   * rate limit itself.<pre> {@code  * class CrawlingService extends AbstractScheduledService {  *   private Set<Uri> visited;  *   private Queue<Uri> toCrawl;   *   protected void startUp() throws Exception {  *     toCrawl = readStartingUris();  *   }  *   *   protected void runOneIteration() throws Exception {  *     Uri uri = toCrawl.remove();  *     Collection<Uri> newUris = crawl(uri);  *     visited.add(uri);  *     for (Uri newUri : newUris) {  *       if (!visited.contains(newUri)) { toCrawl.add(newUri); }  *     }  *   }  *     *   protected void shutDown() throws Exception {  *     saveUris(toCrawl);  *   }  *   *   protected Scheduler scheduler() {  *     return Scheduler.newFixedRateSchedule(0, 1, TimeUnit.SECONDS);  *   }  * }}</pre>  *   *<p>This class uses the life cycle methods to read in a list of starting URIs and save the set of   * outstanding URIs when shutting down.  Also, it takes advantage of the scheduling functionality to  * rate limit the number of queries we perform.  *   * @author Luke Sandberg  * @since 11.0  */
 end_comment
 
 begin_class
@@ -258,7 +258,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * A scheduler defines the policy for how the {@link AbstractScheduledService} should run its    * task.    *    *<p>Consider using the {@link #newFixedDelaySchedule} and {@link #newFixedRateSchedule} factory    * methods, these provide {@link Scheduler} instances for the common use case of running the    * service with a fixed schedule.  If more flexibility is needed then consider subclassing    * {@link CustomScheduler}.    *    * @author Luke Sandberg    * @since 11.0    */
+comment|/**    * A scheduler defines the policy for how the {@link AbstractScheduledService} should run its     * task.    *     *<p>Consider using the {@link #newFixedDelaySchedule} and {@link #newFixedRateSchedule} factory     * methods, these provide {@link Scheduler} instances for the common use case of running the     * service with a fixed schedule.  If more flexibility is needed then consider subclassing      * {@link CustomScheduler}.     *     * @author Luke Sandberg    * @since 11.0    */
 DECL|class|Scheduler
 specifier|public
 specifier|abstract
@@ -266,7 +266,7 @@ specifier|static
 class|class
 name|Scheduler
 block|{
-comment|/**      * Returns a {@link Scheduler} that schedules the task using the      * {@link ScheduledExecutorService#scheduleWithFixedDelay} method.      *      * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the      *        next      * @param unit the time unit of the initialDelay and delay parameters      */
+comment|/**      * Returns a {@link Scheduler} that schedules the task using the       * {@link ScheduledExecutorService#scheduleWithFixedDelay} method.      *       * @param initialDelay the time to delay first execution      * @param delay the delay between the termination of one execution and the commencement of the       *        next      * @param unit the time unit of the initialDelay and delay parameters      */
 DECL|method|newFixedDelaySchedule (final long initialDelay, final long delay, final TimeUnit unit)
 specifier|public
 specifier|static
@@ -328,7 +328,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**      * Returns a {@link Scheduler} that schedules the task using the      * {@link ScheduledExecutorService#scheduleAtFixedRate} method.      *      * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @param unit the time unit of the initialDelay and period parameters      */
+comment|/**      * Returns a {@link Scheduler} that schedules the task using the       * {@link ScheduledExecutorService#scheduleAtFixedRate} method.      *       * @param initialDelay the time to delay first execution      * @param period the period between successive executions of the task      * @param unit the time unit of the initialDelay and period parameters      */
 DECL|method|newFixedRateSchedule (final long initialDelay, final long period, final TimeUnit unit)
 specifier|public
 specifier|static
@@ -443,7 +443,7 @@ name|executorService
 decl_stmt|;
 comment|// This lock protects the task so we can ensure that none of the template methods (startUp,
 comment|// shutDown or runOneIteration) run concurrently with one another.
-comment|// TODO(user):  why don't we use ListenableFuture to sequence things?  Then we could drop the
+comment|// TODO(lukes):  why don't we use ListenableFuture to sequence things?  Then we could drop the
 comment|// lock.
 specifier|private
 specifier|final
@@ -777,7 +777,7 @@ specifier|protected
 name|AbstractScheduledService
 parameter_list|()
 block|{}
-comment|/**    * Run one iteration of the scheduled task. If any invocation of this method throws an exception,    * the service will transition to the {@link Service.State#FAILED} state and this method will no    * longer be called.    */
+comment|/**     * Run one iteration of the scheduled task. If any invocation of this method throws an exception,     * the service will transition to the {@link Service.State#FAILED} state and this method will no     * longer be called.    */
 DECL|method|runOneIteration ()
 specifier|protected
 specifier|abstract
@@ -787,7 +787,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Start the service.    *    *<p>By default this method does nothing.    */
+comment|/**     * Start the service.    *     *<p>By default this method does nothing.    */
 DECL|method|startUp ()
 specifier|protected
 name|void
@@ -796,7 +796,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Stop the service. This is guaranteed not to run concurrently with {@link #runOneIteration}.    *    *<p>By default this method does nothing.    */
+comment|/**    * Stop the service. This is guaranteed not to run concurrently with {@link #runOneIteration}.    *     *<p>By default this method does nothing.     */
 DECL|method|shutDown ()
 specifier|protected
 name|void
@@ -805,7 +805,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Returns the {@link Scheduler} object used to configure this service.  This method will only be    * called once.    */
+comment|/**    * Returns the {@link Scheduler} object used to configure this service.  This method will only be    * called once.     */
 DECL|method|scheduler ()
 specifier|protected
 specifier|abstract
@@ -813,7 +813,7 @@ name|Scheduler
 name|scheduler
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the {@link ScheduledExecutorService} that will be used to execute the {@link #startUp},    * {@link #runOneIteration} and {@link #shutDown} methods.  If this method is overridden the    * executor will not be {@linkplain ScheduledExecutorService#shutdown shutdown} when this    * service {@linkplain Service.State#TERMINATED terminates} or    * {@linkplain Service.State#TERMINATED fails}. Subclasses may override this method to supply a    * custom {@link ScheduledExecutorService} instance. This method is guaranteed to only be called    * once.    *    *<p>By default this returns a new {@link ScheduledExecutorService} with a single thread thread    * pool that sets the name of the thread to the {@linkplain #serviceName() service name}.    * Also, the pool will be {@linkplain ScheduledExecutorService#shutdown() shut down} when the    * service {@linkplain Service.State#TERMINATED terminates} or    * {@linkplain Service.State#TERMINATED fails}.    */
+comment|/**    * Returns the {@link ScheduledExecutorService} that will be used to execute the {@link #startUp},    * {@link #runOneIteration} and {@link #shutDown} methods.  If this method is overridden the     * executor will not be {@linkplain ScheduledExecutorService#shutdown shutdown} when this     * service {@linkplain Service.State#TERMINATED terminates} or     * {@linkplain Service.State#TERMINATED fails}. Subclasses may override this method to supply a     * custom {@link ScheduledExecutorService} instance. This method is guaranteed to only be called     * once.    *     *<p>By default this returns a new {@link ScheduledExecutorService} with a single thread thread    * pool that sets the name of the thread to the {@linkplain #serviceName() service name}.      * Also, the pool will be {@linkplain ScheduledExecutorService#shutdown() shut down} when the     * service {@linkplain Service.State#TERMINATED terminates} or     * {@linkplain Service.State#TERMINATED fails}.    */
 DECL|method|executor ()
 specifier|protected
 name|ScheduledExecutorService
@@ -913,7 +913,7 @@ return|return
 name|executor
 return|;
 block|}
-comment|/**    * Returns the name of this service. {@link AbstractScheduledService} may include the name in    * debugging output.    *    * @since 14.0    */
+comment|/**    * Returns the name of this service. {@link AbstractScheduledService} may include the name in     * debugging output.    *    * @since 14.0    */
 DECL|method|serviceName ()
 specifier|protected
 name|String
@@ -1149,7 +1149,7 @@ name|unit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to    * use a dynamically changing schedule.  After every execution of the task, assuming it hasn't    * been cancelled, the {@link #getNextSchedule} method will be called.    *    * @author Luke Sandberg    * @since 11.0    */
+comment|/**    * A {@link Scheduler} that provides a convenient way for the {@link AbstractScheduledService} to     * use a dynamically changing schedule.  After every execution of the task, assuming it hasn't     * been cancelled, the {@link #getNextSchedule} method will be called.    *     * @author Luke Sandberg    * @since 11.0    */
 annotation|@
 name|Beta
 DECL|class|CustomScheduler
@@ -1191,14 +1191,14 @@ specifier|final
 name|ScheduledExecutorService
 name|executor
 decl_stmt|;
-comment|/**        * The service that is managing this callable.  This is used so that failure can be        * reported properly.        */
+comment|/**         * The service that is managing this callable.  This is used so that failure can be         * reported properly.        */
 DECL|field|service
 specifier|private
 specifier|final
 name|AbstractService
 name|service
 decl_stmt|;
-comment|/**        * This lock is used to ensure safe and correct cancellation, it ensures that a new task is        * not scheduled while a cancel is ongoing.  Also it protects the currentFuture variable to        * ensure that it is assigned atomically with being scheduled.        */
+comment|/**        * This lock is used to ensure safe and correct cancellation, it ensures that a new task is         * not scheduled while a cancel is ongoing.  Also it protects the currentFuture variable to         * ensure that it is assigned atomically with being scheduled.        */
 DECL|field|lock
 specifier|private
 specifier|final
@@ -1498,7 +1498,7 @@ return|return
 name|task
 return|;
 block|}
-comment|/**      * A value object that represents an absolute delay until a task should be invoked.      *      * @author Luke Sandberg      * @since 11.0      */
+comment|/**      * A value object that represents an absolute delay until a task should be invoked.      *       * @author Luke Sandberg      * @since 11.0      */
 annotation|@
 name|Beta
 DECL|class|Schedule
@@ -1551,7 +1551,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Calculates the time at which to next invoke the task.      *      *<p>This is guaranteed to be called immediately after the task has completed an iteration and      * on the same thread as the previous execution of {@link      * AbstractScheduledService#runOneIteration}.      *      * @return a schedule that defines the delay before the next execution.      */
+comment|/**      * Calculates the time at which to next invoke the task.      *       *<p>This is guaranteed to be called immediately after the task has completed an iteration and      * on the same thread as the previous execution of {@link       * AbstractScheduledService#runOneIteration}.      *       * @return a schedule that defines the delay before the next execution.      */
 DECL|method|getNextSchedule ()
 specifier|protected
 specifier|abstract

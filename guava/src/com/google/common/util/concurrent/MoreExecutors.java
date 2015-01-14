@@ -2772,8 +2772,8 @@ return|return
 name|result
 return|;
 block|}
-comment|// TODO(user): provide overloads for ListeningExecutorService? ListeningScheduledExecutorService?
-comment|// TODO(user): provide overloads that take constant strings? Function<Runnable, String>s to
+comment|// TODO(lukes): provide overloads for ListeningExecutorService? ListeningScheduledExecutorService?
+comment|// TODO(lukes): provide overloads that take constant strings? Function<Runnable, String>s to
 comment|// calculate names?
 comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
 DECL|method|renamingDecorator (final Executor executor, final Supplier<String> nameSupplier)
