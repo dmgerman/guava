@@ -1204,7 +1204,7 @@ operator|)
 name|hextet
 return|;
 block|}
-comment|/**    * Convert a byte array into an InetAddress.    *    * {@link InetAddress#getByAddress} is documented as throwing a checked    * exception "if IP address if of illegal length."  We replace it with    * an unchecked exception, for use by callers who already know that addr    * is an array of length 4 or 16.    *    * @param addr the raw 4-byte or 16-byte IP address in big-endian order    * @return an InetAddress object created from the raw IP address    */
+comment|/**    * Convert a byte array into an InetAddress.    *    * {@link InetAddress#getByAddress} is documented as throwing a checked    * exception "if IP address is of illegal length."  We replace it with    * an unchecked exception, for use by callers who already know that addr    * is an array of length 4 or 16.    *    * @param addr the raw 4-byte or 16-byte IP address in big-endian order    * @return an InetAddress object created from the raw IP address    */
 DECL|method|bytesToInetAddress (byte[] addr)
 specifier|private
 specifier|static
