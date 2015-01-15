@@ -74,6 +74,34 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -457,6 +485,13 @@ comment|/**  * Factory and utility methods for {@link java.util.concurrent.Execu
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|MoreExecutors
 specifier|public
 specifier|final
@@ -471,6 +506,11 @@ block|{}
 comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -505,6 +545,11 @@ block|}
 comment|/**    * Converts the given ScheduledThreadPoolExecutor into a    * ScheduledExecutorService that exits when the application is complete.  It    * does so by using daemon threads and adding a shutdown hook to wait for    * their completion.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @param terminationTimeout how long to wait for the executor to    *        finish before terminating the JVM    * @param timeUnit unit of time for the time parameter    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -539,6 +584,11 @@ block|}
 comment|/**    * Add a shutdown hook to wait for thread completion in the given    * {@link ExecutorService service}.  This is useful if the given service uses    * daemon threads, and we want to keep the JVM from exiting immediately on    * shutdown, instead giving these daemon threads a chance to terminate    * normally.    * @param service ExecutorService which uses daemon threads    * @param terminationTimeout how long to wait for the executor to finish    *        before terminating the JVM    * @param timeUnit unit of time for the time parameter    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|addDelayedShutdownHook ( ExecutorService service, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -572,6 +622,11 @@ block|}
 comment|/**    * Converts the given ThreadPoolExecutor into an ExecutorService that exits    * when the application is complete.  It does so by using daemon threads and    * adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newFixedThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|getExitingExecutorService (ThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -596,6 +651,11 @@ block|}
 comment|/**    * Converts the given ThreadPoolExecutor into a ScheduledExecutorService that    * exits when the application is complete.  It does so by using daemon threads    * and adding a shutdown hook to wait for their completion.    *    *<p>This method waits 120 seconds before continuing with JVM termination,    * even if the executor has not finished its work.    *    *<p>This is mainly for fixed thread pools.    * See {@link Executors#newScheduledThreadPool(int)}.    *    * @param executor the executor to modify to make sure it exits when the    *        application is finished    * @return an unmodifiable version of the input which will not hang the JVM    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -618,9 +678,14 @@ argument_list|)
 return|;
 block|}
 comment|/** Represents the current application to register shutdown hooks. */
-DECL|class|Application
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 annotation|@
 name|VisibleForTesting
+DECL|class|Application
 specifier|static
 class|class
 name|Application
@@ -862,6 +927,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|useDaemonThreadFactory (ThreadPoolExecutor executor)
 specifier|private
 specifier|static
@@ -899,9 +969,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 10.0 (<a href="http://code.google.com/p/guava-libraries/wiki/Compatibility"    *>mostly source-compatible</a> since 3.0)    * @deprecated Use {@link #directExecutor()} if you only require an {@link Executor} and    *     {@link #newDirectExecutorService()} if you need a {@link ListeningExecutorService}.    */
-DECL|method|sameThreadExecutor ()
 annotation|@
 name|Deprecated
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
+DECL|method|sameThreadExecutor ()
 specifier|public
 specifier|static
 name|ListeningExecutorService
@@ -915,6 +990,11 @@ argument_list|()
 return|;
 block|}
 comment|// See sameThreadExecutor javadoc for behavioral notes.
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|DirectExecutorService
 specifier|private
 specifier|static
@@ -1267,6 +1347,11 @@ block|}
 block|}
 block|}
 comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 18.0 (present as MoreExecutors.sameThreadExecutor() since 10.0)    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|newDirectExecutorService ()
 specifier|public
 specifier|static
@@ -1324,6 +1409,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Creates an {@link ExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the    * given delegate executor. Those methods, as well as {@code execute} and    * {@code invokeAny}, are implemented in terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the    * delegate. This implies that the returned {@code ListeningExecutorService}    * never calls the delegate's {@code submit}, {@code invokeAll}, and {@code    * invokeAny} methods, so any special handling of tasks must be implemented in    * the delegate's {@code execute} method or by wrapping the returned {@code    * ListeningExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningExecutorService}, it is returned untouched, and the rest of this    * documentation does not apply.    *    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|listeningDecorator ( ExecutorService delegate)
 specifier|public
 specifier|static
@@ -1369,6 +1459,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@link ScheduledExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the    * given delegate executor. Those methods, as well as {@code execute} and    * {@code invokeAny}, are implemented in terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the    * delegate. This implies that the returned {@code    * ListeningScheduledExecutorService} never calls the delegate's {@code    * submit}, {@code invokeAll}, and {@code invokeAny} methods, so any special    * handling of tasks must be implemented in the delegate's {@code execute}    * method or by wrapping the returned {@code    * ListeningScheduledExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningScheduledExecutorService}, it is returned untouched, and the rest    * of this documentation does not apply.    *    * @since 10.0    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|listeningDecorator ( ScheduledExecutorService delegate)
 specifier|public
 specifier|static
@@ -1398,6 +1493,11 @@ name|delegate
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ListeningDecorator
 specifier|private
 specifier|static
@@ -1538,6 +1638,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ScheduledListeningDecorator
 specifier|private
 specifier|static
@@ -1981,6 +2086,11 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|NeverSuccessfulListenableFutureTask
 specifier|private
 specifier|static
@@ -2430,6 +2540,11 @@ block|}
 block|}
 block|}
 comment|/**    * Submits the task and adds a listener that adds the future to {@code queue} when it completes.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|submitAndAddQueueListener ( ListeningExecutorService executorService, Callable<T> task, final BlockingQueue<Future<T>> queue)
 specifier|private
 specifier|static
@@ -2512,6 +2627,11 @@ block|}
 comment|/**    * Returns a default thread factory used to create new threads.    *    *<p>On AppEngine, returns {@code ThreadManager.currentRequestThreadFactory()}.    * Otherwise, returns {@link Executors#defaultThreadFactory()}.    *    * @since 14.0    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|platformThreadFactory ()
 specifier|public
 specifier|static
@@ -2624,6 +2744,11 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|isAppEngine ()
 specifier|private
 specifier|static
@@ -2717,6 +2842,11 @@ return|;
 block|}
 block|}
 comment|/**    * Creates a thread using {@link #platformThreadFactory}, and sets its name to {@code name}    * unless changing the name is forbidden by the security manager.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|newThread (String name, Runnable runnable)
 specifier|static
 name|Thread
@@ -2776,6 +2906,11 @@ comment|// TODO(lukes): provide overloads for ListeningExecutorService? Listenin
 comment|// TODO(lukes): provide overloads that take constant strings? Function<Runnable, String>s to
 comment|// calculate names?
 comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|renamingDecorator (final Executor executor, final Supplier<String> nameSupplier)
 specifier|static
 name|Executor
@@ -2848,6 +2983,11 @@ block|}
 return|;
 block|}
 comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|renamingDecorator (final ExecutorService service, final Supplier<String> nameSupplier)
 specifier|static
 name|ExecutorService
@@ -2948,6 +3088,11 @@ block|}
 return|;
 block|}
 comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|renamingDecorator (final ScheduledExecutorService service, final Supplier<String> nameSupplier)
 specifier|static
 name|ScheduledExecutorService
@@ -3050,6 +3195,11 @@ block|}
 comment|/**    * Shuts down the given executor gradually, first disabling new submissions and later cancelling    * existing tasks.    *    *<p>The method takes the following steps:    *<ol>    *<li>calls {@link ExecutorService#shutdown()}, disabling acceptance of new submitted tasks.    *<li>waits for half of the specified timeout.    *<li>if the timeout expires, it calls {@link ExecutorService#shutdownNow()}, cancelling    *  pending tasks and interrupting running tasks.    *<li>waits for the other half of the specified timeout.    *</ol>    *    *<p>If, at any step of the process, the given executor is terminated or the calling thread is    * interrupted, the method calls {@link ExecutorService#shutdownNow()}, cancelling    * pending tasks and interrupting running tasks.    *    * @param service the {@code ExecutorService} to shut down    * @param timeout the maximum time to wait for the {@code ExecutorService} to terminate    * @param unit the time unit of the timeout argument    * @return {@code true} if the pool was terminated successfully, {@code false} if the    *     {@code ExecutorService} could not terminate<b>or</b> the thread running this method    *     is interrupted while waiting for the {@code ExecutorService} to terminate    * @since 17.0    */
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"concurrency"
+argument_list|)
 DECL|method|shutdownAndAwaitTermination ( ExecutorService service, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

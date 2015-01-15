@@ -664,11 +664,6 @@ name|mapper
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|class|ImmediateFuture
 specifier|private
 specifier|abstract
@@ -847,11 +842,6 @@ literal|true
 return|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|class|ImmediateSuccessfulFuture
 specifier|private
 specifier|static
@@ -1246,11 +1236,6 @@ block|}
 comment|/**    * Creates a {@code ListenableFuture} which has its value set immediately upon    * construction. The getters just return the value. This {@code Future} can't    * be canceled or timed out and its {@code isDone()} method always returns    * {@code true}.    */
 annotation|@
 name|CheckReturnValue
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|immediateFuture (@ullable V value)
 specifier|public
 specifier|static
@@ -1782,11 +1767,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1856,11 +1836,6 @@ name|output
 return|;
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>When the execution of {@code function.apply} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #transform(ListenableFuture, AsyncFunction) omitting    * the executor} or explicitly specifying {@code directExecutor}.    * However, be aware of the caveats documented in the link above.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @param executor Executor to run the function in.    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function, Executor executor)
 specifier|public
 specifier|static
@@ -1945,11 +1920,6 @@ name|output
 return|;
 block|}
 comment|/**    * Returns a Runnable that will invoke the delegate Runnable on the delegate executor, but if the    * task is rejected, it will propagate that rejection to the output future.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|rejectionPropagatingRunnable ( final AbstractFuture<?> outputFuture, final Runnable delegateTask, final Executor delegateExecutor)
 specifier|private
 specifier|static
@@ -2059,11 +2029,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction);}</pre>    *    *<p>Note: If the transformation is slow or heavyweight, consider {@linkplain    * #transform(ListenableFuture, Function, Executor) supplying an executor}.    * If you do not supply an executor, {@code transform} will use an inline    * executor, which carries some caveats for heavier operations.  For example,    * the call to {@code function.apply} may run on an unpredictable or    * undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since 9.0 (in 1.0 as {@code compose})    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|transform (ListenableFuture<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -2142,11 +2107,6 @@ name|output
 return|;
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    *<p>When the transformation is fast and lightweight, consider {@linkplain    * #transform(ListenableFuture, Function) omitting the executor} or    * explicitly specifying {@code directExecutor}. However, be aware of the    * caveats documented in the link above.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.    * @param executor Executor to run the function in.    * @return A future that holds result of the transformation.    * @since 9.0 (in 2.0 as {@code compose})    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|transform (ListenableFuture<I> input, final Function<? super I, ? extends O> function, Executor executor)
 specifier|public
 specifier|static
@@ -2204,11 +2164,6 @@ argument_list|)
 return|;
 block|}
 comment|/** Wraps the given function as an AsyncFunction. */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|asAsyncFunction ( final Function<? super I, ? extends O> function)
 specifier|private
 specifier|static
@@ -2482,11 +2437,6 @@ block|}
 return|;
 block|}
 comment|/**    * An implementation of {@code ListenableFuture} that also implements    * {@code Runnable} so that it can be used to nest ListenableFutures.    * Once the passed-in {@code ListenableFuture} is complete, it calls the    * passed-in {@code Function} to generate the result.    *    *<p>For historical reasons, this class has a special case in its exception    * handling: If the given {@code AsyncFunction} throws an {@code    * UndeclaredThrowableException}, {@code ChainingListenableFuture} unwraps it    * and uses its<i>cause</i> as the output future's exception, rather than    * using the {@code UndeclaredThrowableException} itself as it would for other    * exception types. The reason for this is that {@code Futures.transform} used    * to require a {@code Function}, whose {@code apply} method is not allowed to    * throw checked exceptions. Nowadays, {@code Futures.transform} has an    * overload that accepts an {@code AsyncFunction}, whose {@code apply} method    *<i>is</i> allowed to throw checked exception. Users who wish to throw    * checked exceptions should use that overload instead, and<a    * href="http://code.google.com/p/guava-libraries/issues/detail?id=1548">we    * should remove the {@code UndeclaredThrowableException} special case</a>.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|class|ChainingListenableFuture
 specifier|private
 specifier|static
