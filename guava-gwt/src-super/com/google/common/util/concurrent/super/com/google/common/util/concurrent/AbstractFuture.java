@@ -26,6 +26,22 @@ name|google
 operator|.
 name|common
 operator|.
+name|base
+operator|.
+name|Preconditions
+operator|.
+name|checkNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -714,6 +730,11 @@ argument_list|>
 name|future
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|future
+argument_list|)
+expr_stmt|;
 comment|// If this future is already cancelled, cancel the delegate.
 if|if
 condition|(
