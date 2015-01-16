@@ -797,6 +797,17 @@ return|return
 literal|true
 return|;
 block|}
+DECL|method|wasInterrupted ()
+specifier|protected
+specifier|final
+name|boolean
+name|wasInterrupted
+parameter_list|()
+block|{
+return|return
+name|mayInterruptIfRunning
+return|;
+block|}
 DECL|method|notifyAndClearListeners ()
 specifier|private
 name|void
