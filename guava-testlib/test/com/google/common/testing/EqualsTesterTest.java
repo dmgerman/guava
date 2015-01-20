@@ -1497,19 +1497,10 @@ name|Object
 name|o
 parameter_list|)
 block|{
-if|if
-condition|(
+return|return
 name|o
-operator|==
+operator|!=
 literal|null
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
-literal|true
 return|;
 block|}
 DECL|method|hashCode ()
