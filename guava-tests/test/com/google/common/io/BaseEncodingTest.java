@@ -81,6 +81,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -247,6 +263,16 @@ operator|.
 name|io
 operator|.
 name|UnsupportedEncodingException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -732,6 +758,8 @@ name|base64
 argument_list|()
 argument_list|,
 literal|"\u007f"
+argument_list|,
+literal|"Unrecognized character: 0x7f"
 argument_list|)
 expr_stmt|;
 name|assertFailsToDecode
@@ -740,6 +768,8 @@ name|base64
 argument_list|()
 argument_list|,
 literal|"Wf2!"
+argument_list|,
+literal|"Unrecognized character: !"
 argument_list|)
 expr_stmt|;
 comment|// This sentence just isn't base64() encoded.
@@ -1483,7 +1513,9 @@ argument_list|(
 name|base32
 argument_list|()
 argument_list|,
-literal|"\u007f"
+literal|" "
+argument_list|,
+literal|"Unrecognized character: 0x20"
 argument_list|)
 expr_stmt|;
 name|assertFailsToDecode
@@ -1492,6 +1524,8 @@ name|base32
 argument_list|()
 argument_list|,
 literal|"Wf2!"
+argument_list|,
+literal|"Unrecognized character: f"
 argument_list|)
 expr_stmt|;
 comment|// This sentence just isn't base32() encoded.
@@ -1792,6 +1826,8 @@ name|base32Hex
 argument_list|()
 argument_list|,
 literal|"\u007f"
+argument_list|,
+literal|"Unrecognized character: 0x7f"
 argument_list|)
 expr_stmt|;
 name|assertFailsToDecode
@@ -1800,6 +1836,8 @@ name|base32Hex
 argument_list|()
 argument_list|,
 literal|"Wf2!"
+argument_list|,
+literal|"Unrecognized character: W"
 argument_list|)
 expr_stmt|;
 comment|// This sentence just isn't base32 encoded.
@@ -1949,6 +1987,51 @@ argument_list|()
 operator|.
 name|upperCase
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testBase16InvalidDecodings ()
+specifier|public
+name|void
+name|testBase16InvalidDecodings
+parameter_list|()
+block|{
+comment|// These contain bytes not in the decodabet.
+name|assertFailsToDecode
+argument_list|(
+name|base16
+argument_list|()
+argument_list|,
+literal|"\n"
+argument_list|,
+literal|"Unrecognized character: 0xa"
+argument_list|)
+expr_stmt|;
+name|assertFailsToDecode
+argument_list|(
+name|base16
+argument_list|()
+argument_list|,
+literal|"EFG"
+argument_list|,
+literal|"Unrecognized character: G"
+argument_list|)
+expr_stmt|;
+comment|// Valid base16 strings always have an even length.
+name|assertFailsToDecode
+argument_list|(
+name|base16
+argument_list|()
+argument_list|,
+literal|"A"
+argument_list|)
+expr_stmt|;
+name|assertFailsToDecode
+argument_list|(
+name|base16
+argument_list|()
+argument_list|,
+literal|"ABC"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2275,6 +2358,34 @@ name|String
 name|cannotDecode
 parameter_list|)
 block|{
+name|assertFailsToDecode
+argument_list|(
+name|encoding
+argument_list|,
+name|cannotDecode
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @Nullable String expectedMessage)
+specifier|private
+specifier|static
+name|void
+name|assertFailsToDecode
+parameter_list|(
+name|BaseEncoding
+name|encoding
+parameter_list|,
+name|String
+name|cannotDecode
+parameter_list|,
+annotation|@
+name|Nullable
+name|String
+name|expectedMessage
+parameter_list|)
+block|{
 try|try
 block|{
 name|encoding
@@ -2296,7 +2407,27 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-comment|// success
+if|if
+condition|(
+name|expectedMessage
+operator|!=
+literal|null
+condition|)
+block|{
+name|assertThat
+argument_list|(
+name|expected
+operator|.
+name|getCause
+argument_list|()
+argument_list|)
+operator|.
+name|hasMessage
+argument_list|(
+name|expectedMessage
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 try|try
 block|{
@@ -2319,7 +2450,24 @@ name|DecodingException
 name|expected
 parameter_list|)
 block|{
-comment|// success
+if|if
+condition|(
+name|expectedMessage
+operator|!=
+literal|null
+condition|)
+block|{
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
+argument_list|(
+name|expectedMessage
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@

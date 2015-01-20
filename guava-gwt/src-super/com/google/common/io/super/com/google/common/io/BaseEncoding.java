@@ -1392,7 +1392,27 @@ name|DecodingException
 argument_list|(
 literal|"Unrecognized character: "
 operator|+
+operator|(
+name|CharMatcher
+operator|.
+name|INVISIBLE
+operator|.
+name|matches
+argument_list|(
 name|ch
+argument_list|)
+condition|?
+literal|"0x"
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|ch
+argument_list|)
+else|:
+name|ch
+operator|)
 argument_list|)
 throw|;
 block|}
