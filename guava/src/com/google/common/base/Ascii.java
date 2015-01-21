@@ -92,6 +92,8 @@ end_comment
 
 begin_class
 annotation|@
+name|CheckReturnValue
+annotation|@
 name|GwtCompatible
 DECL|class|Ascii
 specifier|public
@@ -1014,8 +1016,6 @@ block|}
 comment|/**    * Truncates the given character sequence to the given maximum length. If the length of the    * sequence is greater than {@code maxLength}, the returned string will be exactly    * {@code maxLength} chars in length and will end with the given {@code truncationIndicator}.    * Otherwise, the sequence will be returned as a string with no changes to the content.    *    *<p>Examples:    *    *<pre>   {@code    *   Ascii.truncate("foobar", 7, "..."); // returns "foobar"    *   Ascii.truncate("foobar", 5, "..."); // returns "fo..." }</pre>    *    *<p><b>Note:</b> This method<i>may</i> work with certain non-ASCII text but is not safe for    * use with arbitrary Unicode text. It is mostly intended for use with text that is known to be    * safe for use with it (such as all-ASCII text) and for simple debugging text. When using this    * method, consider the following:    *    *<ul>    *<li>it may split surrogate pairs</li>    *<li>it may split characters and combining characters</li>    *<li>it does not consider word boundaries</li>    *<li>if truncating for display to users, there are other considerations that must be taken    *   into account</li>    *<li>the appropriate truncation indicator may be locale-dependent</li>    *<li>it is safe to use non-ASCII characters in the truncation indicator</li>    *</ul>    *    *    * @throws IllegalArgumentException if {@code maxLength} is less than the length of    *     {@code truncationIndicator}    * @since 16.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|truncate (CharSequence seq, int maxLength, String truncationIndicator)
 specifier|public
 specifier|static
