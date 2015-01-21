@@ -346,6 +346,8 @@ end_comment
 
 begin_class
 annotation|@
+name|CheckReturnValue
+annotation|@
 name|GwtCompatible
 DECL|class|Collections2
 specifier|public
@@ -361,8 +363,6 @@ block|{}
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned collection is a live view of {@code unfiltered}; changes to one    * affect the other.    *    *<p>The resulting collection's iterator does not support {@code remove()},    * but all other collection methods are supported. When given an element that    * doesn't satisfy the predicate, the collection's {@code add()} and {@code    * addAll()} methods throw an {@link IllegalArgumentException}. When methods    * such as {@code removeAll()} and {@code clear()} are called on the filtered    * collection, only elements that satisfy the filter will be removed from the    * underlying collection.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered collection's methods, such as {@code size()},    * iterate across every element in the underlying collection and determine    * which elements satisfy the filter. When a live view is<i>not</i> needed,    * it may be faster to copy {@code Iterables.filter(unfiltered, predicate)}    * and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    */
 comment|// TODO(kevinb): how can we omit that Iterables link when building gwt
 comment|// javadoc?
-annotation|@
-name|CheckReturnValue
 DECL|method|filter ( Collection<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
@@ -1027,8 +1027,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a collection that applies {@code function} to each element of    * {@code fromCollection}. The returned collection is a live view of {@code    * fromCollection}; changes to one affect the other.    *    *<p>The returned collection's {@code add()} and {@code addAll()} methods    * throw an {@link UnsupportedOperationException}. All other collection    * methods are supported, as long as {@code fromCollection} supports them.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code fromCollection} is.    *    *<p>When a live view is<i>not</i> needed, it may be faster to copy the    * transformed collection and use the copy.    *    *<p>If the input {@code Collection} is known to be a {@code List}, consider    * {@link Lists#transform}. If only an {@code Iterable} is available, use    * {@link Iterables#transform}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|transform (Collection<F> fromCollection, Function<? super F, T> function)
 specifier|public
 specifier|static
