@@ -1222,20 +1222,22 @@ name|O
 argument_list|>
 name|outputFuture
 init|=
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
 name|function
 operator|.
 name|apply
 argument_list|(
 name|sourceResult
 argument_list|)
-argument_list|,
-literal|"AsyncFunction may not return null."
-argument_list|)
 decl_stmt|;
+name|checkNotNull
+argument_list|(
+name|outputFuture
+argument_list|,
+literal|"AsyncFunction.apply returned null instead of a Future. "
+operator|+
+literal|"Did you mean to return immediateFuture(null)?"
+argument_list|)
+expr_stmt|;
 name|setFuture
 argument_list|(
 name|outputFuture
