@@ -44,6 +44,16 @@ name|Future
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Transforms a value, possibly asynchronously. For an example usage and more  * information, see {@link Futures#transform(ListenableFuture, AsyncFunction)}.  *  * @author Chris Povirk  * @since 11.0  */
 end_comment
@@ -62,13 +72,15 @@ name|O
 parameter_list|>
 block|{
 comment|/**    * Returns an output {@code Future} to use in place of the given {@code    * input}. The output {@code Future} need not be {@linkplain Future#isDone    * done}, making {@code AsyncFunction} suitable for asynchronous derivations.    *    *<p>Throwing an exception from this method is equivalent to returning a    * failing {@code Future}.    */
-DECL|method|apply (I input)
+DECL|method|apply (@ullable I input)
 name|ListenableFuture
 argument_list|<
 name|O
 argument_list|>
 name|apply
 parameter_list|(
+annotation|@
+name|Nullable
 name|I
 name|input
 parameter_list|)
