@@ -300,6 +300,38 @@ specifier|final
 class|class
 name|Futures
 block|{
+comment|// A note on memory visibility.
+comment|// Many of the utilities in this class (transform, withFallback, withTimeout, asList, combine)
+comment|// have two requirements that significantly complicate their design.
+comment|// 1. Cancellation should propagate from the returned future to the input future(s)
+comment|// 2. The returned futures shouldn't unnecessarily 'pin' their inputs after completion.
+comment|//
+comment|// A consequence of these these requirements is that the delegate futures cannot be stored in
+comment|// final fields.
+comment|//
+comment|// For simplicity the rest of this description will discuss Futures.withFallback since it is the
+comment|// simplest instance, though very similar descriptions apply to many other classes in this file.
+comment|//
+comment|// In the constructor of FutureFallback, the delegate future is assigned to a field 'running'.
+comment|// That field is non-final and non-volatile.  There are 2 places where the 'running' field is read
+comment|// and where we will have to consider visibility of the write operation in the constructor.
+comment|//
+comment|// 1. In the listener that performs the callback.  In this case it is fine since running is
+comment|//    assigned prior to calling addListener, and addListener has happens-before semantics.
+comment|//
+comment|// 2. In cancel() where we propagate cancellation to the input.  In this case it is _not_ fine.
+comment|//    There is currently nothing that enforces that the write to running in the constructor is
+comment|//    visible to cancel().  This is because there is no happens before edge between the write and
+comment|//    a (hypothetical) unsafe read by our caller.
+comment|//
+comment|// See: http://cs.oswego.edu/pipermail/concurrency-interest/2015-January/013800.html
+comment|// For a discussion about this specific issue.
+comment|//
+comment|// For the time being we are OK with the problem discussed above since it requires a caller to
+comment|// introduce a very specific kind of data-race.  And given the other operations performed by these
+comment|// methods that involve volatile read/write operations, in practise there is no issue.
+comment|// Future versions of the JMM may revise semantics in such a way that we can safely publish these
+comment|// objects.
 DECL|method|Futures ()
 specifier|private
 name|Futures
