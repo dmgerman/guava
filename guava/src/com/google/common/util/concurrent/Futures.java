@@ -478,6 +478,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ScheduledExecutorService
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|TimeUnit
 import|;
 end_import
@@ -1785,6 +1797,454 @@ literal|false
 return|;
 block|}
 block|}
+comment|/**    * Returns a future that delegates to another but will finish early (via a    * {@link TimeoutException} wrapped in an {@link ExecutionException}) if the    * specified duration expires.    *    *<p>The delegate future is interrupted and cancelled if it times out.    *    * @param delegate The future to delegate to.    * @param time when to timeout the future    * @param unit the time unit of the time parameter    * @param scheduledExecutor The executor service to enforce the timeout.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"java.util.concurrent.ScheduledExecutorService"
+argument_list|)
+DECL|method|withTimeout (ListenableFuture<V> delegate, long time, TimeUnit unit, ScheduledExecutorService scheduledExecutor)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|withTimeout
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|,
+name|long
+name|time
+parameter_list|,
+name|TimeUnit
+name|unit
+parameter_list|,
+name|ScheduledExecutorService
+name|scheduledExecutor
+parameter_list|)
+block|{
+name|TimeoutFuture
+argument_list|<
+name|V
+argument_list|>
+name|result
+init|=
+operator|new
+name|TimeoutFuture
+argument_list|<
+name|V
+argument_list|>
+argument_list|(
+name|delegate
+argument_list|)
+decl_stmt|;
+name|TimeoutFuture
+operator|.
+name|Fire
+argument_list|<
+name|V
+argument_list|>
+name|fire
+init|=
+operator|new
+name|TimeoutFuture
+operator|.
+name|Fire
+argument_list|<
+name|V
+argument_list|>
+argument_list|(
+name|result
+argument_list|)
+decl_stmt|;
+name|result
+operator|.
+name|timer
+operator|=
+name|scheduledExecutor
+operator|.
+name|schedule
+argument_list|(
+name|fire
+argument_list|,
+name|time
+argument_list|,
+name|unit
+argument_list|)
+expr_stmt|;
+name|delegate
+operator|.
+name|addListener
+argument_list|(
+name|fire
+argument_list|,
+name|directExecutor
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|result
+return|;
+block|}
+comment|/**    * Future that delegates to another but will finish early (via a {@link    * TimeoutException} wrapped in an {@link ExecutionException}) if the    * specified duration expires.    * The delegate future is interrupted and cancelled if it times out.    */
+DECL|class|TimeoutFuture
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|TimeoutFuture
+parameter_list|<
+name|V
+parameter_list|>
+extends|extends
+name|AbstractFuture
+operator|.
+name|TrustedFuture
+argument_list|<
+name|V
+argument_list|>
+block|{
+comment|// Memory visibility of these fields.
+comment|// There are two cases to consider.
+comment|// 1. visibility of the writes to these fields to Fire.run
+comment|//    The initial write to delegateRef is made definitely visible via the semantics of
+comment|//    addListener/SES.schedule.  The later racy write in cancel() is not guaranteed to be
+comment|//    observed, however that is fine since the correctness is based on the atomic state in
+comment|//    our base class.
+comment|//    The initial write to timer is never definitely visible to Fire.run since it is assigned
+comment|//    after SES.schedule is called. Therefore Fire.run has to check for null.  However, it
+comment|//    should be visible if Fire.run is called by delegate.addListener since addListener is
+comment|//    called after the assignment to timer, and importantly this is the main situation in which
+comment|//    we need to be able to see the write.
+comment|// 2. visibility of the writes to cancel
+comment|//    Since these fields are non-final that means that TimeoutFuture is not being 'safely
+comment|//    published', thus a motivated caller may be able to expose the reference to another thread
+comment|//    that would then call cancel() and be unable to cancel the delegate.
+comment|//    There are a number of ways to solve this, none of which are very pretty, and it is
+comment|//    currently believed to be a purely theoretical problem (since the other actions should
+comment|//    supply sufficient write-barriers).
+DECL|field|delegateRef
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegateRef
+decl_stmt|;
+DECL|field|timer
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|timer
+decl_stmt|;
+DECL|method|TimeoutFuture (ListenableFuture<V> delegate)
+name|TimeoutFuture
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delegateRef
+operator|=
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|delegate
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** A runnable that is called when the delegate or the timer completes. */
+DECL|class|Fire
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|Fire
+parameter_list|<
+name|V
+parameter_list|>
+implements|implements
+name|Runnable
+block|{
+comment|// Holding a strong reference to the enclosing class (as we would do if
+comment|// this weren't a static nested class) could cause retention of the
+comment|// delegate's return value (in AbstractFuture) for the duration of the
+comment|// timeout in the case of successful completion. We clear this on run.
+DECL|field|timeoutFutureRef
+name|TimeoutFuture
+argument_list|<
+name|V
+argument_list|>
+name|timeoutFutureRef
+decl_stmt|;
+DECL|method|Fire (TimeoutFuture<V> timeoutFuture)
+name|Fire
+parameter_list|(
+name|TimeoutFuture
+argument_list|<
+name|V
+argument_list|>
+name|timeoutFuture
+parameter_list|)
+block|{
+name|this
+operator|.
+name|timeoutFutureRef
+operator|=
+name|timeoutFuture
+expr_stmt|;
+block|}
+DECL|method|run ()
+annotation|@
+name|Override
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+comment|// If either of these reads return null then we must be after a successful cancel
+comment|// or another call to this method.
+name|TimeoutFuture
+argument_list|<
+name|V
+argument_list|>
+name|timeoutFuture
+init|=
+name|timeoutFutureRef
+decl_stmt|;
+if|if
+condition|(
+name|timeoutFuture
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+init|=
+name|timeoutFuture
+operator|.
+name|delegateRef
+decl_stmt|;
+if|if
+condition|(
+name|delegate
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
+comment|// Unpin all the memory before attempting to complete.  Not only does this save us from
+comment|// wrapping everything in a finally block, it also ensures that if delegate.cancel() (in the
+comment|// else block), causes delegate to complete, then it won't reentrantly call back in and
+comment|// cause TimeoutFuture to finish with cancellation.
+name|timeoutFutureRef
+operator|=
+literal|null
+expr_stmt|;
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|timer
+init|=
+name|timeoutFuture
+operator|.
+name|timer
+decl_stmt|;
+name|timeoutFuture
+operator|.
+name|delegateRef
+operator|=
+literal|null
+expr_stmt|;
+name|timeoutFuture
+operator|.
+name|timer
+operator|=
+literal|null
+expr_stmt|;
+if|if
+condition|(
+name|delegate
+operator|.
+name|isDone
+argument_list|()
+condition|)
+block|{
+name|timeoutFuture
+operator|.
+name|setFuture
+argument_list|(
+name|delegate
+argument_list|)
+expr_stmt|;
+comment|// Try to cancel the timer as an optimization
+comment|// timer may be null if this call to run was by the timer task since there is no
+comment|// happens-before edge between the assignment to timer and an execution of the timer
+comment|// task.
+if|if
+condition|(
+name|timer
+operator|!=
+literal|null
+condition|)
+block|{
+name|timer
+operator|.
+name|cancel
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|// Some users, for better or worse, rely on the delegate definitely being cancelled prior
+comment|// to the timeout future completing.  We wrap in a try...finally... for the off chance
+comment|// that cancelling the delegate causes an Error to be thrown from a listener on the
+comment|// delegate.
+try|try
+block|{
+name|delegate
+operator|.
+name|cancel
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// TODO(lukes): this stack trace is particularly useless (all it does is point at the
+comment|// scheduledexecutorservice thread), consider eliminating it altogether?
+name|timeoutFuture
+operator|.
+name|setException
+argument_list|(
+operator|new
+name|TimeoutException
+argument_list|(
+literal|"Future timed out: "
+operator|+
+name|delegate
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
+DECL|method|cancel (boolean mayInterruptIfRunning)
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|cancel
+parameter_list|(
+name|boolean
+name|mayInterruptIfRunning
+parameter_list|)
+block|{
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|localTimer
+init|=
+name|timer
+decl_stmt|;
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+init|=
+name|delegateRef
+decl_stmt|;
+if|if
+condition|(
+name|super
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+condition|)
+block|{
+comment|// Either can be null if super.cancel() races with an execution of Fire.run, but it doesn't
+comment|// matter because either 1. the delegate is already done (so there is no point in
+comment|// propagating cancellation and Fire.run will cancel the timer. or 2. the timeout occurred
+comment|// and Fire.run will cancel the delegate
+comment|// Technically this is also possible in the 'unsafe publishing' case described above.
+if|if
+condition|(
+name|delegate
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Unpin and prevent Fire from doing anything if delegate.cancel finishes the delegate.
+name|delegateRef
+operator|=
+literal|null
+expr_stmt|;
+name|delegate
+operator|.
+name|cancel
+argument_list|(
+name|mayInterruptIfRunning
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|localTimer
+operator|!=
+literal|null
+condition|)
+block|{
+name|timer
+operator|=
+literal|null
+expr_stmt|;
+name|localTimer
+operator|.
+name|cancel
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
 specifier|public
@@ -2491,6 +2951,8 @@ name|O
 argument_list|>
 name|function
 decl_stmt|;
+comment|// In theory, this field might not be visible to a cancel() call in certain circumstances. For
+comment|// details, see the comments on the fields of TimeoutFuture.
 DECL|field|inputFuture
 specifier|private
 name|ListenableFuture
