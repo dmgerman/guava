@@ -615,7 +615,7 @@ block|{
 comment|// A note on memory visibility.
 comment|// Many of the utilities in this class (transform, withFallback, withTimeout, asList, combine)
 comment|// have two requirements that significantly complicate their design.
-comment|// 1. Cancellation should propagate from the returned future to the input future(s)
+comment|// 1. Cancellation should propagate from the returned future to the input future(s).
 comment|// 2. The returned futures shouldn't unnecessarily 'pin' their inputs after completion.
 comment|//
 comment|// A consequence of these these requirements is that the delegate futures cannot be stored in
@@ -629,21 +629,32 @@ comment|// That field is non-final and non-volatile.  There are 2 places where t
 comment|// and where we will have to consider visibility of the write operation in the constructor.
 comment|//
 comment|// 1. In the listener that performs the callback.  In this case it is fine since running is
-comment|//    assigned prior to calling addListener, and addListener has happens-before semantics.
+comment|//    assigned prior to calling addListener, and addListener happens-before any invocation of the
+comment|//    listener. Notably, this means that 'volatile' is unnecessary to make 'running' visible to
+comment|//    the listener.
 comment|//
 comment|// 2. In cancel() where we propagate cancellation to the input.  In this case it is _not_ fine.
 comment|//    There is currently nothing that enforces that the write to running in the constructor is
 comment|//    visible to cancel().  This is because there is no happens before edge between the write and
-comment|//    a (hypothetical) unsafe read by our caller.
+comment|//    a (hypothetical) unsafe read by our caller. Note: adding 'volatile' does not fix this issue,
+comment|//    it would just add an edge such that if cancel() observed non-null, then it would also
+comment|//    definitely observe all earlier writes, but we still have no guarantee that cancel() would
+comment|//    see the inital write (just stronger guarantees if it does).
 comment|//
 comment|// See: http://cs.oswego.edu/pipermail/concurrency-interest/2015-January/013800.html
-comment|// For a discussion about this specific issue.
+comment|// For a (long) discussion about this specific issue and the general futility of life.
 comment|//
 comment|// For the time being we are OK with the problem discussed above since it requires a caller to
 comment|// introduce a very specific kind of data-race.  And given the other operations performed by these
-comment|// methods that involve volatile read/write operations, in practise there is no issue.
-comment|// Future versions of the JMM may revise semantics in such a way that we can safely publish these
-comment|// objects.
+comment|// methods that involve volatile read/write operations, in practice there is no issue.  Also, the
+comment|// way in such a visibility issue would surface is most likely as a failure of cancel() to
+comment|// propagate to the input.  Cancellation propagation is fundamentally racy so this is fine.
+comment|//
+comment|// Future versions of the JMM may revise safe construction semantics in such a way that we can
+comment|// safely publish these objects and we won't need this whole discussion.
+comment|// TODO(user,lukes): consider adding volatile to all these fields since in current known JVMs
+comment|// that should resolve the issue.  This comes at the cost of adding more write barriers to the
+comment|// implementations.
 DECL|method|Futures ()
 specifier|private
 name|Futures
@@ -3576,7 +3587,7 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-name|futures
+name|localFutures
 init|=
 name|this
 operator|.
@@ -3592,6 +3603,13 @@ name|mayInterruptIfRunning
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|localFutures
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|ListenableFuture
@@ -3600,7 +3618,7 @@ name|?
 argument_list|>
 name|future
 range|:
-name|futures
+name|localFutures
 control|)
 block|{
 name|future
@@ -3610,6 +3628,7 @@ argument_list|(
 name|mayInterruptIfRunning
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -5499,6 +5518,10 @@ decl_stmt|;
 if|if
 condition|(
 name|cancelled
+operator|&&
+name|futuresToCancel
+operator|!=
+literal|null
 condition|)
 block|{
 for|for
@@ -5699,13 +5722,6 @@ name|localValues
 init|=
 name|values
 decl_stmt|;
-comment|// TODO(lukes): This check appears to be redundant since values is
-comment|// assigned null only after the future completes.  However, values
-comment|// is not volatile so it may be possible for us to observe the changes
-comment|// to these two values in a different order... which I think is why
-comment|// we need to check both.  Clear up this craziness either by making
-comment|// values volatile or proving that it doesn't need to be for some other
-comment|// reason.
 if|if
 condition|(
 name|isDone
