@@ -450,6 +450,11 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testNoSpecialNullBehavior ()
 specifier|public
 name|void
@@ -1575,6 +1580,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMap ()
 specifier|public
 name|void
@@ -1739,6 +1749,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testEntries ()
 specifier|public
 name|void

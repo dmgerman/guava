@@ -382,13 +382,18 @@ block|}
 annotation|@
 name|Benchmark
 DECL|method|getIfPresent (int repetitions)
-name|void
+name|boolean
 name|getIfPresent
 parameter_list|(
 name|int
 name|repetitions
 parameter_list|)
 block|{
+name|boolean
+name|retVal
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -404,6 +409,8 @@ operator|++
 name|i
 control|)
 block|{
+name|retVal
+operator|&=
 name|Enums
 operator|.
 name|getIfPresent
@@ -417,8 +424,14 @@ operator|&
 literal|255
 index|]
 argument_list|)
+operator|.
+name|isPresent
+argument_list|()
 expr_stmt|;
 block|}
+return|return
+name|retVal
+return|;
 block|}
 DECL|enum|SmallEnum
 specifier|private

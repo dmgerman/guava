@@ -2654,6 +2654,8 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
 name|ArbitraryInstances
 operator|.
 name|get
@@ -2672,7 +2674,10 @@ argument_list|(
 literal|"a"
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
 name|ArbitraryInstances
 operator|.
 name|get
@@ -2685,6 +2690,7 @@ operator|.
 name|split
 argument_list|(
 literal|"a,b"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertFalse

@@ -155,6 +155,8 @@ class|class
 name|Joiner
 block|{
 comment|/**    * Returns a joiner which automatically places {@code separator} between consecutive elements.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|on (String separator)
 specifier|public
 specifier|static
@@ -174,6 +176,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a joiner which automatically places {@code separator} between consecutive elements.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|on (char separator)
 specifier|public
 specifier|static
@@ -588,6 +592,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Iterable<?> parts)
 specifier|public
 specifier|final
@@ -612,6 +618,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Iterator<?> parts)
 specifier|public
 specifier|final
@@ -640,6 +648,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Object[] parts)
 specifier|public
 specifier|final
@@ -664,6 +674,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
+comment|//@CheckReturnValue
 DECL|method|join (@ullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
@@ -1110,6 +1121,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Map<?, ?> map)
 specifier|public
 name|String
@@ -1442,6 +1455,8 @@ block|}
 comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since 10.0      */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Iterable<? extends Entry<?, ?>> entries)
 specifier|public
 name|String
@@ -1474,6 +1489,8 @@ block|}
 comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since 11.0      */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Iterator<? extends Entry<?, ?>> entries)
 specifier|public
 name|String

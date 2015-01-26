@@ -405,6 +405,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: could remove if we got NPT working in GWT somehow
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testPadStart_null ()
 specifier|public
 name|void
@@ -634,6 +639,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: could remove if we got NPT working in GWT somehow
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testPadEnd_null ()
 specifier|public
 name|void
@@ -664,6 +674,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testRepeat ()
 specifier|public
 name|void
@@ -832,6 +847,11 @@ parameter_list|)
 block|{     }
 block|}
 comment|// TODO: could remove if we got NPT working in GWT somehow
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testRepeat_null ()
 specifier|public
 name|void

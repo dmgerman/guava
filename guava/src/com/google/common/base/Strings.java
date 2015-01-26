@@ -112,6 +112,8 @@ end_comment
 
 begin_class
 annotation|@
+name|CheckReturnValue
+annotation|@
 name|GwtCompatible
 DECL|class|Strings
 specifier|public
@@ -125,8 +127,6 @@ name|Strings
 parameter_list|()
 block|{}
 comment|/**    * Returns the given string if it is non-null; the empty string otherwise.    *    * @param string the string to test and possibly return    * @return {@code string} itself if it is non-null; {@code ""} if it is null    */
-annotation|@
-name|CheckReturnValue
 DECL|method|nullToEmpty (@ullable String string)
 specifier|public
 specifier|static

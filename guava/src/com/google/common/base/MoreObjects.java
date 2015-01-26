@@ -52,6 +52,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -70,6 +80,8 @@ class|class
 name|MoreObjects
 block|{
 comment|/**    * Returns the first of two given parameters that is not {@code null}, if either is, or otherwise    * throws a {@link NullPointerException}.    *    *<p><b>Note:</b> if {@code first} is represented as an {@link Optional}, this can be    * accomplished with {@link Optional#or(Object) first.or(second)}. That approach also allows for    * lazy evaluation of the fallback instance, using {@link Optional#or(Supplier)    * first.or(supplier)}.    *    * @return {@code first} if it is non-null; otherwise {@code second} if it is non-null    * @throws NullPointerException if both {@code first} and {@code second} are null    * @since 18.0 (since 3.0 as {@code Objects.firstNonNull()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|firstNonNull (@ullable T first, @Nullable T second)
 specifier|public
 specifier|static
@@ -104,6 +116,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an instance of {@link ToStringHelper}.    *    *<p>This is helpful for implementing {@link Object#toString()}.    * Specification by example:<pre>   {@code    *   // Returns "ClassName{}"    *   MoreObjects.toStringHelper(this)    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   MoreObjects.toStringHelper(this)    *       .add("x", 1)    *       .toString();    *    *   // Returns "MyObject{x=1}"    *   MoreObjects.toStringHelper("MyObject")    *       .add("x", 1)    *       .toString();    *    *   // Returns "ClassName{x=1, y=foo}"    *   MoreObjects.toStringHelper(this)    *       .add("x", 1)    *       .add("y", "foo")    *       .toString();    *    *   // Returns "ClassName{x=1}"    *   MoreObjects.toStringHelper(this)    *       .omitNullValues()    *       .add("x", 1)    *       .add("y", null)    *       .toString();    *   }}</pre>    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param self the object to generate the string for (typically {@code this}), used only for its    *     class name    * @since 18.0 (since 2.0 as {@code Objects.toStringHelper()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toStringHelper (Object self)
 specifier|public
 specifier|static
@@ -129,6 +143,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as {@link    * #toStringHelper(Object)}, but using the simple name of {@code clazz} instead of using an    * instance's {@link Object#getClass()}.    *    *<p>Note that in GWT, class names are often obfuscated.    *    * @param clazz the {@link Class} of the instance    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toStringHelper (Class<?> clazz)
 specifier|public
 specifier|static
@@ -154,6 +170,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an instance of {@link ToStringHelper} in the same manner as {@link    * #toStringHelper(Object)}, but using {@code className} instead of using an instance's {@link    * Object#getClass()}.    *    * @param className the name of the instance type    * @since 18.0 (since 7.0 as {@code Objects.toStringHelper()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toStringHelper (String className)
 specifier|public
 specifier|static
@@ -581,6 +599,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns a string in the format specified by      * {@link MoreObjects#toStringHelper(Object)}.      *      *<p>After calling this method, you can keep adding more properties to later      * call toString() again and get a more complete representation of the      * same object; but properties cannot be removed, so this only allows      * limited reuse of the helper instance. The helper allows duplication of      * properties (multiple name/value pairs with the same name can be added).      */
+annotation|@
+name|CheckReturnValue
 DECL|method|toString ()
 annotation|@
 name|Override
