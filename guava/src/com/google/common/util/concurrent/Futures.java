@@ -1840,13 +1840,14 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Returns a future that delegates to another but will finish early (via a    * {@link TimeoutException} wrapped in an {@link ExecutionException}) if the    * specified duration expires.    *    *<p>The delegate future is interrupted and cancelled if it times out.    *    * @param delegate The future to delegate to.    * @param time when to timeout the future    * @param unit the time unit of the time parameter    * @param scheduledExecutor The executor service to enforce the timeout.    */
+comment|/**    * Returns a future that delegates to another but will finish early (via a    * {@link TimeoutException} wrapped in an {@link ExecutionException}) if the    * specified duration expires.    *    *<p>The delegate future is interrupted and cancelled if it times out.    *    * @param delegate The future to delegate to.    * @param time when to timeout the future    * @param unit the time unit of the time parameter    * @param scheduledExecutor The executor service to enforce the timeout.    *    * @since 19.0    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"java.util.concurrent.ScheduledExecutorService"
 argument_list|)
 DECL|method|withTimeout (ListenableFuture<V> delegate, long time, TimeUnit unit, ScheduledExecutorService scheduledExecutor)
+specifier|public
 specifier|static
 parameter_list|<
 name|V
