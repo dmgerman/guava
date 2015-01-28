@@ -3246,11 +3246,6 @@ block|,
 literal|"unchecked"
 block|}
 argument_list|)
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|method|dereference ( ListenableFuture<? extends ListenableFuture<? extends V>> nested)
 specifier|public
 specifier|static
@@ -3295,11 +3290,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Helper {@code Function} for {@link #dereference}.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|field|DEREFERENCER
 specifier|private
 specifier|static
