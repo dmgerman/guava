@@ -48,7 +48,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Deque
+name|Queue
 import|;
 end_import
 
@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Executor ensuring that all Runnables submitted are executed in order,  * using the provided Executor, and serially such that no two will ever  * be running at the same time.  *  *<p>Tasks submitted to {@link #execute(Runnable)} are executed in FIFO order.  *  *<p>Tasks can also be prepended to the queue to be executed in LIFO order before any other  * submitted tasks. Primarily intended for the currently executing task to be able to schedule a  * continuation task.  *  *<p>Execution on the queue can be {@linkplain #suspend suspended}, e.g. while waiting for an RPC,  * and execution can be {@linkplain #resume resumed} later.  *  *<p>The execution of tasks is done by one thread as long as there are tasks left in the queue and  * execution has not been suspended. {@code RuntimeException}s thrown by tasks are simply logged and  * the executor keeps trucking. If an {@code Error} is thrown, the error will propagate and  * execution will stop until it is restarted by external calls.  */
+comment|/**  * Executor ensuring that all Runnables submitted are executed in order,  * using the provided Executor, and serially such that no two will ever  * be running at the same time.  *  * TODO(user): The tasks are given to the underlying executor as a single  * task, which means the semantics of the executor may be changed, e.g. the  * executor may have an afterExecute method that runs after every task  *  * TODO(user): What happens in case of shutdown or shutdownNow?  Should  * TaskRunner check for interruption?  *  * TODO(user): It would be nice to provide a handle to individual task  * results using Future.  Maybe SerializingExecutorService?  *  * @author JJ Furman  */
 end_comment
 
 begin_class
@@ -138,19 +138,20 @@ specifier|final
 name|Executor
 name|executor
 decl_stmt|;
+comment|/** A list of Runnables to be run in order. */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"internalLock"
 argument_list|)
-DECL|field|queue
+DECL|field|waitQueue
 specifier|private
 specifier|final
-name|Deque
+name|Queue
 argument_list|<
 name|Runnable
 argument_list|>
-name|queue
+name|waitQueue
 init|=
 operator|new
 name|ArrayDeque
@@ -159,30 +160,55 @@ name|Runnable
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**    * We explicitly keep track of if the TaskRunner is currently scheduled to    * run.  If it isn't, we start it.  We can't just use    * waitQueue.isEmpty() as a proxy because we need to ensure that only one    * Runnable submitted is running at a time so even if waitQueue is empty    * the isThreadScheduled isn't set to false until after the Runnable is    * finished.    */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"internalLock"
 argument_list|)
-DECL|field|isWorkerRunning
+DECL|field|isThreadScheduled
 specifier|private
 name|boolean
-name|isWorkerRunning
+name|isThreadScheduled
 init|=
 literal|false
 decl_stmt|;
-annotation|@
-name|GuardedBy
-argument_list|(
-literal|"internalLock"
-argument_list|)
-DECL|field|suspensions
+comment|/** The object that actually runs the Runnables submitted, reused. */
+DECL|field|taskRunner
 specifier|private
-name|int
-name|suspensions
+specifier|final
+name|TaskRunner
+name|taskRunner
 init|=
-literal|0
+operator|new
+name|TaskRunner
+argument_list|()
 decl_stmt|;
+comment|/**    * Creates a SerializingExecutor, running tasks using {@code executor}.    *    * @param executor Executor in which tasks should be run. Must not be null.    */
+DECL|method|SerializingExecutor (Executor executor)
+specifier|public
+name|SerializingExecutor
+parameter_list|(
+name|Executor
+name|executor
+parameter_list|)
+block|{
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|executor
+argument_list|,
+literal|"'executor' must not be null."
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|executor
+operator|=
+name|executor
+expr_stmt|;
+block|}
 DECL|field|internalLock
 specifier|private
 specifier|final
@@ -192,174 +218,86 @@ init|=
 operator|new
 name|Object
 argument_list|()
-decl_stmt|;
-DECL|method|SerializingExecutor (Executor executor)
-specifier|public
-name|SerializingExecutor
-parameter_list|(
-name|Executor
-name|executor
-parameter_list|)
 block|{
-name|this
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SerializingExecutor lock: "
+operator|+
+name|super
 operator|.
-name|executor
-operator|=
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
-name|executor
-argument_list|)
-expr_stmt|;
+name|toString
+argument_list|()
+return|;
 block|}
-comment|/**    * Adds a task to the queue and makes sure a worker thread is running, unless the queue has been    * suspended.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #resume()} is    * made.    */
-DECL|method|execute (Runnable task)
+block|}
+decl_stmt|;
+comment|/**    * Runs the given runnable strictly after all Runnables that were submitted    * before it, and using the {@code executor} passed to the constructor.     .    */
+annotation|@
+name|Override
+DECL|method|execute (Runnable r)
 specifier|public
 name|void
 name|execute
 parameter_list|(
 name|Runnable
-name|task
+name|r
 parameter_list|)
-block|{
-synchronized|synchronized
-init|(
-name|internalLock
-init|)
-block|{
-name|queue
-operator|.
-name|add
-argument_list|(
-name|task
-argument_list|)
-expr_stmt|;
-block|}
-name|startQueueWorker
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Prepends a task to the front of the queue and makes sure a worker thread is running, unless the    * queue has been suspended.    */
-DECL|method|executeFirst (Runnable task)
-specifier|public
-name|void
-name|executeFirst
-parameter_list|(
-name|Runnable
-name|task
-parameter_list|)
-block|{
-synchronized|synchronized
-init|(
-name|internalLock
-init|)
-block|{
-name|queue
-operator|.
-name|addFirst
-argument_list|(
-name|task
-argument_list|)
-expr_stmt|;
-block|}
-name|startQueueWorker
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**    * Suspends the running of tasks until {@link #resume()} is called. This can be called multiple    * times to increase the suspensions count and execution will not continue until {@link #resume}    * has been called the same number of times as {@code suspend} has been.    *    *<p>Any task that has already been pulled off the queue for execution will be completed    * before execution is suspended.    */
-DECL|method|suspend ()
-specifier|public
-name|void
-name|suspend
-parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|internalLock
-init|)
-block|{
-name|suspensions
-operator|++
-expr_stmt|;
-block|}
-block|}
-comment|/**    * Continue execution of tasks after a call to {@link #suspend()}. More accurately, decreases the    * suspension counter, as has been incremented by calls to {@link #suspend}, and resumes execution    * if the suspension counter is zero.    *    *<p>If this method throws, e.g. a {@code RejectedExecutionException} from the delegate executor,    * execution of tasks will stop until a call to this method or to {@link #execute(Runnable)} or    * {@link #executeFirst(Runnable)} is made.    *    * @throws java.lang.IllegalStateException if this executor is not suspended.    */
-DECL|method|resume ()
-specifier|public
-name|void
-name|resume
-parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|internalLock
-init|)
 block|{
 name|Preconditions
 operator|.
-name|checkState
+name|checkNotNull
 argument_list|(
-name|suspensions
-operator|>
-literal|0
+name|r
+argument_list|,
+literal|"'r' must not be null."
 argument_list|)
 expr_stmt|;
-name|suspensions
-operator|--
-expr_stmt|;
-block|}
-name|startQueueWorker
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|startQueueWorker ()
-specifier|private
-name|void
-name|startQueueWorker
-parameter_list|()
-block|{
+name|boolean
+name|scheduleTaskRunner
+init|=
+literal|false
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|internalLock
 init|)
 block|{
-comment|// We sometimes try to start a queue worker without knowing if there is any work to do.
-if|if
-condition|(
-name|queue
+name|waitQueue
 operator|.
-name|peek
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
+name|add
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
-name|suspensions
-operator|>
-literal|0
+operator|!
+name|isThreadScheduled
 condition|)
 block|{
-return|return;
-block|}
-if|if
-condition|(
-name|isWorkerRunning
-condition|)
-block|{
-return|return;
-block|}
-name|isWorkerRunning
+name|isThreadScheduled
+operator|=
+literal|true
+expr_stmt|;
+name|scheduleTaskRunner
 operator|=
 literal|true
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|scheduleTaskRunner
+condition|)
+block|{
 name|boolean
-name|executionRejected
+name|threw
 init|=
 literal|true
 decl_stmt|;
@@ -369,12 +307,10 @@ name|executor
 operator|.
 name|execute
 argument_list|(
-operator|new
-name|QueueWorker
-argument_list|()
+name|taskRunner
 argument_list|)
 expr_stmt|;
-name|executionRejected
+name|threw
 operator|=
 literal|false
 expr_stmt|;
@@ -383,17 +319,19 @@ finally|finally
 block|{
 if|if
 condition|(
-name|executionRejected
+name|threw
 condition|)
 block|{
-comment|// The best we can do is to stop executing the queue, but reset the state so that
-comment|// execution can be resumed later if the caller so wishes.
 synchronized|synchronized
 init|(
 name|internalLock
 init|)
 block|{
-name|isWorkerRunning
+comment|// It is possible that at this point that there are still tasks in
+comment|// the queue, it would be nice to keep trying but the error may not
+comment|// be recoverable.  So we update our state and propogate so that if
+comment|// our caller deems it recoverable we won't be stuck.
+name|isThreadScheduled
 operator|=
 literal|false
 expr_stmt|;
@@ -401,11 +339,12 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Worker that runs tasks off the queue until it is empty or the queue is suspended.    */
-DECL|class|QueueWorker
+block|}
+comment|/**    * Task that actually runs the Runnables.  It takes the Runnables off of the    * queue one by one and runs them.  After it is done with all Runnables and    * there are no more to run, puts the SerializingExecutor in the state where    * isThreadScheduled = false and returns.  This allows the current worker    * thread to return to the original pool.    */
+DECL|class|TaskRunner
 specifier|private
 class|class
-name|QueueWorker
+name|TaskRunner
 implements|implements
 name|Runnable
 block|{
@@ -417,98 +356,62 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|boolean
+name|stillRunning
+init|=
+literal|true
+decl_stmt|;
 try|try
-block|{
-name|workOnQueue
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Error
-name|e
-parameter_list|)
-block|{
-synchronized|synchronized
-init|(
-name|internalLock
-init|)
-block|{
-name|isWorkerRunning
-operator|=
-literal|false
-expr_stmt|;
-block|}
-throw|throw
-name|e
-throw|;
-comment|// The execution of a task has ended abnormally.
-comment|// We could have tasks left in the queue, so should perhaps try to restart a worker,
-comment|// but then the Error will get delayed if we are using a direct (same thread) executor.
-block|}
-block|}
-DECL|method|workOnQueue ()
-specifier|private
-name|void
-name|workOnQueue
-parameter_list|()
 block|{
 while|while
 condition|(
 literal|true
 condition|)
 block|{
+name|Preconditions
+operator|.
+name|checkState
+argument_list|(
+name|isThreadScheduled
+argument_list|)
+expr_stmt|;
 name|Runnable
-name|task
-init|=
-literal|null
+name|nextToRun
 decl_stmt|;
 synchronized|synchronized
 init|(
 name|internalLock
 init|)
 block|{
-if|if
-condition|(
-name|suspensions
-operator|==
-literal|0
-operator|&&
-operator|!
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|isInterrupted
-argument_list|()
-condition|)
-block|{
-name|task
+name|nextToRun
 operator|=
-name|queue
+name|waitQueue
 operator|.
 name|poll
 argument_list|()
 expr_stmt|;
-block|}
 if|if
 condition|(
-name|task
+name|nextToRun
 operator|==
 literal|null
 condition|)
 block|{
-name|isWorkerRunning
+name|isThreadScheduled
 operator|=
 literal|false
 expr_stmt|;
-return|return;
+name|stillRunning
+operator|=
+literal|false
+expr_stmt|;
+break|break;
 block|}
 block|}
+comment|// Always run while not holding the lock, to avoid deadlocks.
 try|try
 block|{
-name|task
+name|nextToRun
 operator|.
 name|run
 argument_list|()
@@ -520,6 +423,7 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
+comment|// Log it and keep going.
 name|log
 operator|.
 name|log
@@ -530,11 +434,34 @@ name|SEVERE
 argument_list|,
 literal|"Exception while executing runnable "
 operator|+
-name|task
+name|nextToRun
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|stillRunning
+condition|)
+block|{
+comment|// An Error is bubbling up, we should mark ourselves as no longer
+comment|// running, that way if anyone tries to keep using us we won't be
+comment|// corrupted.
+synchronized|synchronized
+init|(
+name|internalLock
+init|)
+block|{
+name|isThreadScheduled
+operator|=
+literal|false
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
