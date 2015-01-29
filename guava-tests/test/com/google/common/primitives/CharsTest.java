@@ -457,6 +457,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertCastFails (long value)
 specifier|private
 name|void
@@ -1501,6 +1506,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -1604,6 +1614,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -1958,6 +1973,23 @@ block|}
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Chars.fromByteArray"
+argument_list|)
+DECL|method|testFromByteArrayFails ()
+specifier|public
+name|void
+name|testFromByteArrayFails
+parameter_list|()
+block|{
 try|try
 block|{
 name|Chars
@@ -2192,6 +2224,23 @@ name|c
 argument_list|)
 expr_stmt|;
 comment|// sanity check
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Chars.fromByteArray, Chars.toByteArray"
+argument_list|)
+DECL|method|testByteArrayRoundTripsFails ()
+specifier|public
+name|void
+name|testByteArrayRoundTripsFails
+parameter_list|()
+block|{
 try|try
 block|{
 name|Chars
@@ -2311,6 +2360,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testEnsureCapacity_fail ()
 specifier|public
 name|void
@@ -2887,6 +2941,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testToArray_withNull ()
 specifier|public
 name|void

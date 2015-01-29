@@ -72,11 +72,23 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Contains static utility methods pertaining to primitive types and their  * corresponding wrapper types.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 DECL|class|Primitives
 specifier|public
 specifier|final

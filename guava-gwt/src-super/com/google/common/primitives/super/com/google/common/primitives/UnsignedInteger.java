@@ -146,6 +146,8 @@ end_comment
 
 begin_class
 annotation|@
+name|CheckReturnValue
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -379,8 +381,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 32 bits,    * returns the low 32 bits of the result.    *     * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|plus (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -407,8 +407,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of subtracting this and {@code val}. If the result would be negative,    * returns the low 32 bits of the result.    *     * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|minus (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -433,8 +431,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of dividing this by {@code val}.    *     * @throws ArithmeticException if {@code val} is zero    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|dividedBy (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger
@@ -464,8 +460,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns this mod {@code val}.    *     * @throws ArithmeticException if {@code val} is zero    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|mod (UnsignedInteger val)
 specifier|public
 name|UnsignedInteger

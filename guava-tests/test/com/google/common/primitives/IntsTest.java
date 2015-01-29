@@ -481,6 +481,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertCastFails (long value)
 specifier|private
 specifier|static
@@ -1526,6 +1531,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -1629,6 +1639,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -2074,6 +2089,23 @@ block|}
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Ints.fromByteArray"
+argument_list|)
+DECL|method|testFromByteArrayFails ()
+specifier|public
+name|void
+name|testFromByteArrayFails
+parameter_list|()
+block|{
 try|try
 block|{
 name|Ints
@@ -2372,6 +2404,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testEnsureCapacity_fail ()
 specifier|public
 name|void
@@ -2991,6 +3028,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testToArray_withNull ()
 specifier|public
 name|void
@@ -3836,6 +3878,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testStringConverter_convertError ()
 specifier|public
 name|void
