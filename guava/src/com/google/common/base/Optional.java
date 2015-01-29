@@ -96,6 +96,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -124,6 +134,8 @@ implements|implements
 name|Serializable
 block|{
 comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|absent ()
 specifier|public
 specifier|static
@@ -145,6 +157,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an {@code Optional} instance containing the given non-null reference.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|of (T reference)
 specifier|public
 specifier|static
@@ -176,6 +190,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that    * reference; otherwise returns {@link Optional#absent}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|fromNullable (@ullable T nullableReference)
 specifier|public
 specifier|static
@@ -224,6 +240,8 @@ name|Optional
 parameter_list|()
 block|{}
 comment|/**    * Returns {@code true} if this holder contains a (non-null) instance.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|isPresent ()
 specifier|public
 specifier|abstract
@@ -240,6 +258,8 @@ name|get
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code defaultValue} otherwise. If    * no default value should be required because the instance is known to be present, use    * {@link #get()} instead. For a default value of {@code null}, use {@link #orNull}.    *    *<p>Note about generics: The signature {@code public T or(T defaultValue)} is overly    * restrictive. However, the ideal signature, {@code public<S super T> S or(S)}, is not legal    * Java. As a result, some sensible operations involving subtypes are compile errors:    *<pre>   {@code    *    *   Optional<Integer> optionalInt = getSomeOptionalInt();    *   Number value = optionalInt.or(0.5); // error    *    *   FluentIterable<? extends Number> numbers = getSomeNumbers();    *   Optional<? extends Number> first = numbers.first();    *   Number value = first.or(0.5); // error}</pre>    *    *<p>As a workaround, it is always safe to cast an {@code Optional<? extends T>} to {@code    * Optional<T>}. Casting either of the above example {@code Optional} instances to {@code    * Optional<Number>} (where {@code Number} is the desired output type) solves the problem:    *<pre>   {@code    *    *   Optional<Number> optionalInt = (Optional) getSomeOptionalInt();    *   Number value = optionalInt.or(0.5); // fine    *    *   FluentIterable<? extends Number> numbers = getSomeNumbers();    *   Optional<Number> first = (Optional) numbers.first();    *   Number value = first.or(0.5); // fine}</pre>    */
+annotation|@
+name|CheckReturnValue
 DECL|method|or (T defaultValue)
 specifier|public
 specifier|abstract
@@ -251,6 +271,8 @@ name|defaultValue
 parameter_list|)
 function_decl|;
 comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 specifier|abstract
@@ -272,6 +294,8 @@ function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise. If the    * supplier returns {@code null}, a {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the supplier returns {@code null}    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|or (Supplier<? extends T> supplier)
 specifier|public
 specifier|abstract
@@ -290,6 +314,8 @@ function_decl|;
 comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the    * instance is known to be present, use {@link #get()} instead.    */
 annotation|@
 name|Nullable
+annotation|@
+name|CheckReturnValue
 DECL|method|orNull ()
 specifier|public
 specifier|abstract
@@ -298,6 +324,8 @@ name|orNull
 parameter_list|()
 function_decl|;
 comment|/**    * Returns an immutable singleton {@link Set} whose only element is the contained instance    * if it is present; an empty immutable {@link Set} otherwise.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|asSet ()
 specifier|public
 specifier|abstract
@@ -309,6 +337,8 @@ name|asSet
 parameter_list|()
 function_decl|;
 comment|/**    * If the instance is present, it is transformed with the given {@link Function}; otherwise,    * {@link Optional#absent} is returned. If the function returns {@code null}, a    * {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the function returns {@code null}    *    * @since 12.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|transform (Function<? super T, V> function)
 specifier|public
 specifier|abstract
@@ -370,6 +400,8 @@ function_decl|;
 comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0 (generics widened in 13.0)    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|presentInstances ( final Iterable<? extends Optional<? extends T>> optionals)
 specifier|public
 specifier|static
