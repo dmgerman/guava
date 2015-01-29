@@ -5270,11 +5270,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"dereference"
-argument_list|)
 DECL|method|testDereference_genericsWildcard ()
 specifier|public
 name|void
@@ -5340,11 +5335,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"dereference"
-argument_list|)
 DECL|method|testDereference_genericsHierarchy ()
 specifier|public
 name|void
@@ -5416,11 +5406,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"dereference"
-argument_list|)
 DECL|method|testDereference_resultCancelsOuter ()
 specifier|public
 name|void
@@ -5472,11 +5457,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"dereference"
-argument_list|)
 DECL|method|testDereference_resultCancelsInner ()
 specifier|public
 name|void
@@ -5541,11 +5521,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"dereference"
-argument_list|)
 DECL|method|testDereference_outerCancelsResult ()
 specifier|public
 name|void
@@ -5597,11 +5572,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"dereference"
-argument_list|)
 DECL|method|testDereference_innerCancelsResult ()
 specifier|public
 name|void
