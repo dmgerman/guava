@@ -106,6 +106,16 @@ name|Comparator
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret  * values as<i>unsigned</i> (that is, any negative value {@code b} is treated  * as the positive value {@code 256 + b}). The corresponding methods that treat  * the values as signed are found in {@link SignedBytes}, and the methods for  * which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @author Louis Wasserman  * @since 1.0  */
 end_comment
@@ -158,6 +168,8 @@ init|=
 literal|0xFF
 decl_stmt|;
 comment|/**    * Returns the value of the given byte as an integer, when treated as    * unsigned. That is, returns {@code value + 256} if {@code value} is    * negative; {@code value} itself otherwise.    *    * @since 6.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toInt (byte value)
 specifier|public
 specifier|static
@@ -264,6 +276,8 @@ name|value
 return|;
 block|}
 comment|/**    * Compares the two specified {@code byte} values, treating them as unsigned    * values between 0 and 255 inclusive. For example, {@code (byte) -127} is    * considered greater than {@code (byte) 127} because it is seen as having    * the value of positive {@code 129}.    *    * @param a the first {@code byte} to compare    * @param b the second {@code byte} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive    *     value if {@code a} is greater than {@code b}; or zero if they are equal    */
+annotation|@
+name|CheckReturnValue
 DECL|method|compare (byte a, byte b)
 specifier|public
 specifier|static
@@ -290,6 +304,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the least value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is less than or equal to    *     every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+annotation|@
+name|CheckReturnValue
 DECL|method|min (byte... array)
 specifier|public
 specifier|static
@@ -370,6 +386,8 @@ name|min
 return|;
 block|}
 comment|/**    * Returns the greatest value present in {@code array}.    *    * @param array a<i>nonempty</i> array of {@code byte} values    * @return the value present in {@code array} that is greater than or equal    *     to every other value in the array    * @throws IllegalArgumentException if {@code array} is empty    */
+annotation|@
+name|CheckReturnValue
 DECL|method|max (byte... array)
 specifier|public
 specifier|static
@@ -452,6 +470,8 @@ block|}
 comment|/**    * Returns a string representation of x, where x is treated as unsigned.    *    * @since 13.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|toString (byte x)
 specifier|public
 specifier|static
@@ -474,6 +494,8 @@ block|}
 comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated    * as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    * @since 13.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|toString (byte x, int radix)
 specifier|public
 specifier|static
@@ -521,7 +543,7 @@ name|radix
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code byte} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *         value    * @throws NullPointerException if {@code s} is null     *         (in contrast to {@link Byte#parseByte(String)})    * @since 13.0    */
+comment|/**    * Returns the unsigned {@code byte} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *         value    * @throws NullPointerException if {@code s} is null    *         (in contrast to {@link Byte#parseByte(String)})    * @since 13.0    */
 annotation|@
 name|Beta
 DECL|method|parseUnsignedByte (String string)
@@ -543,7 +565,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the unsigned {@code byte} value represented by a string with the given radix.    *    * @param string the string containing the unsigned {@code byte} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *         with the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    * @throws NullPointerException if {@code s} is null     *         (in contrast to {@link Byte#parseByte(String)})    * @since 13.0    */
+comment|/**    * Returns the unsigned {@code byte} value represented by a string with the given radix.    *    * @param string the string containing the unsigned {@code byte} representation to be parsed.    * @param radix the radix to use while parsing {@code string}    * @throws NumberFormatException if the string does not contain a valid unsigned {@code byte}    *         with the given radix, or if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    * @throws NullPointerException if {@code s} is null    *         (in contrast to {@link Byte#parseByte(String)})    * @since 13.0    */
 annotation|@
 name|Beta
 DECL|method|parseUnsignedByte (String string, int radix)
@@ -607,6 +629,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns a string containing the supplied {@code byte} values separated by    * {@code separator}. For example, {@code join(":", (byte) 1, (byte) 2,    * (byte) 255)} returns the string {@code "1:2:255"}.    *    * @param separator the text that should appear between consecutive values in    *     the resulting string (but not at the start or end)    * @param array an array of {@code byte} values, possibly empty    */
+annotation|@
+name|CheckReturnValue
 DECL|method|join (String separator, byte... array)
 specifier|public
 specifier|static
@@ -717,6 +741,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a comparator that compares two {@code byte} arrays    * lexicographically. That is, it compares, using {@link    * #compare(byte, byte)}), the first pair of values that follow any common    * prefix, or when one array is a prefix of the other, treats the shorter    * array as the lesser. For example, {@code []< [0x01]< [0x01, 0x7F]<    * [0x01, 0x80]< [0x02]}. Values are treated as unsigned.    *    *<p>The returned comparator is inconsistent with {@link    * Object#equals(Object)} (since arrays support only identity equality), but    * it is consistent with {@link java.util.Arrays#equals(byte[], byte[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order">    *     Lexicographical order article at Wikipedia</a>    * @since 2.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -1174,7 +1200,7 @@ name|rw
 argument_list|)
 return|;
 block|}
-comment|/*              * We want to compare only the first index where left[index] != right[index].              * This corresponds to the least significant nonzero byte in lw ^ rw, since lw              * and rw are little-endian.  Long.numberOfTrailingZeros(diff) tells us the least               * significant nonzero bit, and zeroing out the first three bits of L.nTZ gives us the               * shift to get that least significant nonzero byte.              */
+comment|/*              * We want to compare only the first index where left[index] != right[index].              * This corresponds to the least significant nonzero byte in lw ^ rw, since lw              * and rw are little-endian.  Long.numberOfTrailingZeros(diff) tells us the least              * significant nonzero bit, and zeroing out the first three bits of L.nTZ gives us the              * shift to get that least significant nonzero byte.              */
 name|int
 name|n
 init|=

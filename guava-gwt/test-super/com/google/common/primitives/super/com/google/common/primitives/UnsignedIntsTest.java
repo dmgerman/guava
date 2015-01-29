@@ -264,6 +264,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -367,6 +372,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -759,8 +769,6 @@ name|void
 name|testParseInt
 parameter_list|()
 block|{
-try|try
-block|{
 for|for
 control|(
 name|long
@@ -791,21 +799,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e
-parameter_list|)
-block|{
-name|fail
+annotation|@
+name|SuppressWarnings
 argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
+literal|"CheckReturnValue"
 argument_list|)
-expr_stmt|;
-block|}
+DECL|method|testParseIntFail ()
+specifier|public
+name|void
+name|testParseIntFail
+parameter_list|()
+block|{
 try|try
 block|{
 name|UnsignedInts
@@ -840,8 +844,6 @@ specifier|public
 name|void
 name|testParseIntWithRadix
 parameter_list|()
-throws|throws
-name|NumberFormatException
 block|{
 for|for
 control|(
@@ -896,6 +898,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+DECL|method|testParseIntWithRadixLimits ()
+specifier|public
+name|void
+name|testParseIntWithRadixLimits
+parameter_list|()
+block|{
 comment|// loops through all legal radix values.
 for|for
 control|(
@@ -993,6 +1007,11 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testParseIntThrowsExceptionForInvalidRadix ()
 specifier|public
 name|void
@@ -1167,6 +1186,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testDecodeIntFails ()
 specifier|public
 name|void

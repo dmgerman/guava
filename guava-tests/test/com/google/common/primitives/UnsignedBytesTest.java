@@ -404,6 +404,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertCastFails (long value)
 specifier|private
 specifier|static
@@ -565,6 +570,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -660,6 +670,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -795,6 +810,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertParseFails (String value)
 specifier|private
 specifier|static
@@ -921,6 +941,11 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertParseFails (String value, int radix)
 specifier|private
 specifier|static
@@ -1084,6 +1109,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testParseUnsignedByteThrowsExceptionForInvalidRadix ()
 specifier|public
 name|void

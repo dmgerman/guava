@@ -1405,7 +1405,7 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"ReturnValueIgnored"
+literal|"CheckReturnValue"
 argument_list|)
 DECL|method|testModByZero ()
 specifier|public

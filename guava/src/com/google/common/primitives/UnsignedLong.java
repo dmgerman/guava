@@ -297,7 +297,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *     value    */
 DECL|method|valueOf (String string)
 specifier|public
 specifier|static
@@ -317,7 +317,7 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *         value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *         {@link Character#MAX_RADIX}    */
+comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *     value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *     {@link Character#MAX_RADIX}    */
 DECL|method|valueOf (String string, int radix)
 specifier|public
 specifier|static
@@ -346,6 +346,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|plus (UnsignedLong val)
 specifier|public
 name|UnsignedLong
@@ -372,6 +374,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of subtracting this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|minus (UnsignedLong val)
 specifier|public
 name|UnsignedLong

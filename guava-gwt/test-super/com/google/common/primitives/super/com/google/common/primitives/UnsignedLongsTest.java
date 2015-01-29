@@ -283,6 +283,11 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -360,6 +365,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -842,6 +852,18 @@ literal|"7851896530399809066"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+DECL|method|testParseLongFails ()
+specifier|public
+name|void
+name|testParseLongFails
+parameter_list|()
+block|{
 try|try
 block|{
 comment|// One more than maximum value
@@ -955,6 +977,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testDecodeLongFails ()
 specifier|public
 name|void
@@ -1073,6 +1100,18 @@ literal|16
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+DECL|method|testParseLongWithRadixLimits ()
+specifier|public
+name|void
+name|testParseLongWithRadixLimits
+parameter_list|()
+block|{
 name|BigInteger
 name|max
 init|=
@@ -1203,6 +1242,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testParseLongThrowsExceptionForInvalidRadix ()
 specifier|public
 name|void
