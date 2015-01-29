@@ -542,6 +542,11 @@ name|ExecutionException
 throws|,
 name|TimeoutException
 block|{
+name|checkNotNull
+argument_list|(
+name|unit
+argument_list|)
+expr_stmt|;
 return|return
 name|get
 argument_list|()
@@ -604,6 +609,11 @@ name|Throwable
 name|throwable
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -1077,13 +1087,19 @@ name|this
 operator|.
 name|command
 operator|=
+name|checkNotNull
+argument_list|(
 name|command
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|executor
 operator|=
+name|checkNotNull
+argument_list|(
 name|executor
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|execute ()
