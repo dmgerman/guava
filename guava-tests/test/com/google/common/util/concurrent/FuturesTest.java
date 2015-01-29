@@ -256,6 +256,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Function
@@ -422,39 +450,11 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|testing
-operator|.
-name|TestingExecutors
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
 operator|.
 name|AssertionFailedError
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
 import|;
 end_import
 
@@ -634,18 +634,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ScheduledExecutorService
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -709,17 +697,29 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit tests for {@link Futures}.  *  * TODO: Add tests for other Futures methods  *  * @author Nishant Thakkar  */
+comment|/**  * Unit tests for {@link Futures}.  *  * @author Nishant Thakkar  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|FuturesTest
 specifier|public
 class|class
 name|FuturesTest
 extends|extends
-name|TestCase
+name|EmptySetUpAndTearDown
 block|{
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TestLogHandler"
+argument_list|)
 DECL|field|combinedFutureLogger
 specifier|private
 specifier|static
@@ -734,6 +734,11 @@ argument_list|(
 literal|"com.google.common.util.concurrent.Futures$CollectionFuture"
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TestLogHandler"
+argument_list|)
 DECL|field|combinedFutureLogHandler
 specifier|private
 specifier|final
@@ -771,14 +776,24 @@ name|DATA3
 init|=
 literal|"most data"
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"mocks"
+argument_list|)
 DECL|field|mocksControl
 specifier|private
 name|IMocksControl
 name|mocksControl
 decl_stmt|;
-DECL|method|setUp ()
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TestLogHandler, mocks"
+argument_list|)
 annotation|@
 name|Override
+DECL|method|setUp ()
 specifier|protected
 name|void
 name|setUp
@@ -806,9 +821,14 @@ name|createControl
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|tearDown ()
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TestLogHandler, interruption"
+argument_list|)
 annotation|@
 name|Override
+DECL|method|tearDown ()
 specifier|protected
 name|void
 name|tearDown
@@ -942,6 +962,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"immediateFailedFuture"
+argument_list|)
 DECL|method|testImmediateFailedFuture ()
 specifier|public
 name|void
@@ -1008,6 +1033,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"immediateFailedFuture"
+argument_list|)
 DECL|method|testImmediateFailedFuture_cancellationException ()
 specifier|public
 name|void
@@ -1082,6 +1112,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"immediateCancelledFuture"
+argument_list|)
 DECL|method|testImmediateCancelledFuture ()
 specifier|public
 name|void
@@ -1242,6 +1277,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|method|hasClassName (final Class<?> clazz)
 specifier|private
 specifier|static
@@ -1295,6 +1335,11 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|CallerClass1
 specifier|private
 specifier|static
@@ -1319,6 +1364,11 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|CallerClass2
 specifier|private
 specifier|static
@@ -1361,6 +1411,11 @@ name|MyException
 extends|extends
 name|Exception
 block|{}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"immediateCheckedFuture"
+argument_list|)
 DECL|method|testImmediateCheckedFuture ()
 specifier|public
 name|void
@@ -1418,6 +1473,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"immediateCheckedFuture"
+argument_list|)
 DECL|method|testMultipleImmediateCheckedFutures ()
 specifier|public
 name|void
@@ -1522,6 +1582,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"immediateFailedCheckedFuture"
+argument_list|)
 DECL|method|testImmediateFailedCheckedFuture ()
 specifier|public
 name|void
@@ -2184,6 +2249,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|method|testTransform_rejectionPropagatesToOutput ()
 specifier|public
 name|void
@@ -2555,6 +2625,11 @@ extends|extends
 name|RuntimeException
 block|{}
 comment|/**    * Test that the function is invoked only once, even if it throws an    * exception. Also, test that that function's result is wrapped in an    * ExecutionException.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testTransformExceptionRemainsMemoized ()
 specifier|public
 name|void
@@ -2702,6 +2777,11 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|runGetIdempotencyTest (Future<Integer> transformedFuture, Class<? extends Throwable> expectedExceptionClass)
 specifier|private
 specifier|static
@@ -2781,6 +2861,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|method|newOneTimeExceptionThrower ()
 specifier|private
 specifier|static
@@ -2839,6 +2924,11 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|method|newOneTimeErrorThrower ()
 specifier|private
 specifier|static
@@ -3027,6 +3117,11 @@ name|wasExecuted
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"lazyTransform"
+argument_list|)
 DECL|method|testLazyTransform ()
 specifier|public
 name|void
@@ -3138,6 +3233,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"lazyTransform"
+argument_list|)
 DECL|method|testLazyTransform_exception ()
 specifier|public
 name|void
@@ -3272,6 +3372,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|FunctionSpy
 specifier|private
 specifier|static
@@ -3361,6 +3466,11 @@ return|;
 block|}
 block|}
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -3440,6 +3550,11 @@ name|verify
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3547,6 +3662,11 @@ name|verify
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 DECL|method|testWithFallback_fallbackGeneratesRuntimeException ()
 specifier|public
 name|void
@@ -3570,6 +3690,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 DECL|method|testWithFallback_fallbackGeneratesCheckedException ()
 specifier|public
 name|void
@@ -3594,6 +3719,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3704,6 +3834,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 DECL|method|testWithFallback_fallbackReturnsRuntimeException ()
 specifier|public
 name|void
@@ -3727,6 +3862,11 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 DECL|method|testWithFallback_fallbackReturnsCheckedException ()
 specifier|public
 name|void
@@ -3751,6 +3891,11 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3911,6 +4056,11 @@ name|verify
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 DECL|method|testWithFallback_fallbackNotReady ()
 specifier|public
 name|void
@@ -4013,6 +4163,11 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -4101,6 +4256,11 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -4188,6 +4348,11 @@ name|verify
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4311,6 +4476,11 @@ name|verify
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"withFallback"
+argument_list|)
 DECL|method|testWithFallback_nullInsteadOfFuture ()
 specifier|public
 name|void
@@ -4622,6 +4792,11 @@ name|bar
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"get() timeout"
+argument_list|)
 DECL|method|testTransform_asyncFunction_timeout ()
 specifier|public
 name|void
@@ -4892,6 +5067,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|testTransform_asyncFunction_cancelledWhileApplyingFunction ()
 specifier|public
 name|void
@@ -5072,6 +5252,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"dereference"
+argument_list|)
 DECL|method|testDereference_genericsWildcard ()
 specifier|public
 name|void
@@ -5137,6 +5322,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"dereference"
+argument_list|)
 DECL|method|testDereference_genericsHierarchy ()
 specifier|public
 name|void
@@ -5208,6 +5398,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"dereference"
+argument_list|)
 DECL|method|testDereference_resultCancelsOuter ()
 specifier|public
 name|void
@@ -5259,6 +5454,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"dereference"
+argument_list|)
 DECL|method|testDereference_resultCancelsInner ()
 specifier|public
 name|void
@@ -5323,6 +5523,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"dereference"
+argument_list|)
 DECL|method|testDereference_outerCancelsResult ()
 specifier|public
 name|void
@@ -5374,6 +5579,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"dereference"
+argument_list|)
 DECL|method|testDereference_innerCancelsResult ()
 specifier|public
 name|void
@@ -5440,6 +5650,11 @@ expr_stmt|;
 block|}
 comment|/**    * Runnable which can be called a single time, and only after    * {@link #expectCall} is called.    */
 comment|// TODO(cpovirk): top-level class?
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|SingleCallListener
 specifier|static
 class|class
@@ -5550,6 +5765,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList ()
 specifier|public
 name|void
@@ -5732,6 +5952,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_emptyList ()
 specifier|public
 name|void
@@ -5820,6 +6045,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_emptyArray ()
 specifier|public
 name|void
@@ -5898,6 +6128,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_failure ()
 specifier|public
 name|void
@@ -6044,6 +6279,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_singleFailure ()
 specifier|public
 name|void
@@ -6126,6 +6366,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_immediateFailure ()
 specifier|public
 name|void
@@ -6223,6 +6468,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_error ()
 specifier|public
 name|void
@@ -6325,6 +6575,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_cancelled ()
 specifier|public
 name|void
@@ -6457,6 +6712,11 @@ block|{
 comment|// Expected
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_resultCancelled ()
 specifier|public
 name|void
@@ -6561,6 +6821,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_resultCancelledInterrupted_withSecondaryListFuture ()
 specifier|public
 name|void
@@ -6680,6 +6945,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_resultCancelled_withSecondaryListFuture ()
 specifier|public
 name|void
@@ -6781,6 +7051,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_resultInterrupted ()
 specifier|public
 name|void
@@ -6886,6 +7161,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test the case where the futures are fulfilled prior to    * constructing the ListFuture.  There was a bug where the    * loop that connects a Listener to each of the futures would die    * on the last loop-check as done() on ListFuture nulled out the    * variable being looped over (the list of futures).    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_doneFutures ()
 specifier|public
 name|void
@@ -7046,6 +7326,11 @@ expr_stmt|;
 block|}
 comment|/**    * A single non-error failure is not logged because it is reported via the output future.    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -7113,6 +7398,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Ensure that errors are always logged.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7203,6 +7493,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * All as list will log extra exceptions that occur after failure.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7301,6 +7596,11 @@ block|}
 block|}
 comment|/**    * The same exception happening on multiple futures should not be logged.    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -7378,6 +7678,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Different exceptions happening on multiple futures with the same cause    * should not be logged.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7497,6 +7802,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|method|createCombinedResult (Integer i, Boolean b)
 specifier|private
 specifier|static
@@ -7522,6 +7832,11 @@ return|;
 block|}
 comment|/*    * TODO(cpovirk): maybe pass around TestFuture instances instead of    * ListenableFuture instances    */
 comment|/**    * A future in {@link TestFutureBatch} that also has a name for debugging    * purposes and a {@code finisher}, a task that will complete the future in    * some fashion when it is called, allowing for testing both before and after    * the completion of the future.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|TestFuture
 specifier|private
 specifier|static
@@ -7584,6 +7899,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * A collection of several futures, covering cancellation, success, and    * failure (both {@link ExecutionException} and {@link RuntimeException}),    * both immediate and delayed. We use each possible pair of these futures in    * {@link FuturesTest#runExtensiveMergerTest}.    *    *<p>Each test requires a new {@link TestFutureBatch} because we need new    * delayed futures each time, as the old delayed futures were completed as    * part of the old test.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|TestFutureBatch
 specifier|private
 specifier|static
@@ -8615,6 +8935,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * {@link Futures#allAsList(Iterable)} or    * {@link Futures#successfulAsList(Iterable)}, hidden behind a common    * interface for testing.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|interface|Merger
 specifier|private
 interface|interface
@@ -8743,6 +9068,11 @@ block|}
 decl_stmt|;
 block|}
 comment|/**    * Very rough equivalent of a timed get, produced by calling the no-arg get    * method in another thread and waiting a short time for it.    *    *<p>We need this to test the behavior of no-arg get methods without hanging    * the main test thread forever in the case of failure.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|pseudoTimedGet ( final Future<V> input, long timeout, TimeUnit unit)
 specifier|private
 specifier|static
@@ -8899,6 +9229,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * For each possible pair of futures from {@link TestFutureBatch}, for each    * possible completion order of those futures, test that various get calls    * (timed before future completion, untimed before future completion, and    * untimed after future completion) return or throw the proper values.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|method|runExtensiveMergerTest (Merger merger)
 specifier|private
 specifier|static
@@ -9391,6 +9726,11 @@ block|}
 block|}
 block|}
 comment|/**    * Call the non-timed {@link Future#get()} in a way that allows us to abort if    * it's expected to hang forever. More precisely, if it's expected to return,    * we simply call it[*], but if it's expected to hang (because one of the    * input futures that we know makes it up isn't done yet), then we call it in    * a separate thread (using pseudoTimedGet). The result is that we wait as    * long as necessary when the method is expected to return (at the cost of    * hanging forever if there is a bug in the class under test) but that we time    * out fairly promptly when the method is expected to hang (possibly too    * quickly, but too-quick failures should be very unlikely, given that we used    * to bail after 20ms during the expected-successful tests, and there we saw a    * failure rate of ~1/5000, meaning that the other thread's get() call nearly    * always completes within 20ms if it's going to complete at all).    *    * [*] To avoid hangs, I've disabled the in-thread calls. This makes the test    * take (very roughly) 2.5s longer. (2.5s is also the maximum length of time    * we will wait for a timed get that is expected to succeed; the fact that the    * numbers match is only a coincidence.) See the comment below for how to    * restore the fast but hang-y version.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|method|conditionalPseudoTimedGet ( TestFutureBatch inputs, ListenableFuture<String> iFuture, ListenableFuture<String> jFuture, ListenableFuture<List<String>> future, int timeout, TimeUnit unit)
 specifier|private
 specifier|static
@@ -9469,6 +9809,11 @@ name|MILLISECONDS
 argument_list|)
 return|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"allAsList"
+argument_list|)
 DECL|method|testAllAsList_extensive ()
 specifier|public
 name|void
@@ -9485,6 +9830,11 @@ name|allMerger
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_extensive ()
 specifier|public
 name|void
@@ -9501,6 +9851,11 @@ name|successMerger
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList ()
 specifier|public
 name|void
@@ -9683,6 +10038,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_emptyList ()
 specifier|public
 name|void
@@ -9771,6 +10131,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_emptyArray ()
 specifier|public
 name|void
@@ -9849,6 +10214,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_partialFailure ()
 specifier|public
 name|void
@@ -10002,6 +10372,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_totalFailure ()
 specifier|public
 name|void
@@ -10159,6 +10534,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_cancelled ()
 specifier|public
 name|void
@@ -10308,6 +10688,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_resultCancelled ()
 specifier|public
 name|void
@@ -10412,6 +10797,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_resultCancelledRacingInputDone ()
 specifier|public
 name|void
@@ -10505,6 +10895,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|doTestSuccessfulAsList_resultCancelledRacingInputDone ()
 specifier|private
 specifier|static
@@ -10687,6 +11082,11 @@ block|{
 comment|// Expected
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_resultInterrupted ()
 specifier|public
 name|void
@@ -10791,6 +11191,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
 DECL|method|testSuccessfulAsList_mixed ()
 specifier|public
 name|void
@@ -10977,6 +11382,11 @@ expr_stmt|;
 block|}
 comment|/** Non-Error exceptions are never logged. */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -11094,6 +11504,11 @@ expr_stmt|;
 block|}
 comment|/**    * Ensure that errors are always logged.    */
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"successfulAsList"
+argument_list|)
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -11172,6 +11587,11 @@ name|MyError
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"nonCancellationPropagating"
+argument_list|)
 DECL|method|testNonCancellationPropagating_successful ()
 specifier|public
 name|void
@@ -11245,6 +11665,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"nonCancellationPropagating"
+argument_list|)
 DECL|method|testNonCancellationPropagating_failure ()
 specifier|public
 name|void
@@ -11340,6 +11765,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"nonCancellationPropagating"
+argument_list|)
 DECL|method|testNonCancellationPropagating_delegateCancelled ()
 specifier|public
 name|void
@@ -11399,6 +11829,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"nonCancellationPropagating"
+argument_list|)
 DECL|method|testNonCancellationPropagating_doesNotPropagate ()
 specifier|public
 name|void
@@ -11474,6 +11909,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|TestException
 specifier|private
 specifier|static
@@ -11498,6 +11938,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|mapper
 specifier|private
 specifier|static
@@ -11578,6 +12023,11 @@ block|}
 block|}
 block|}
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_mapsExecutionExceptions ()
 specifier|public
 name|void
@@ -11766,6 +12216,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_mapsInterruption ()
 specifier|public
 name|void
@@ -11941,6 +12396,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_mapsCancellation ()
 specifier|public
 name|void
@@ -12091,6 +12551,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_propagatesFailedMappers ()
 specifier|public
 name|void
@@ -12204,6 +12669,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_listenersRunOnceCompleted ()
 specifier|public
 name|void
@@ -12299,6 +12769,11 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_listenersRunOnCancel ()
 specifier|public
 name|void
@@ -12393,6 +12868,11 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"makeChecked"
+argument_list|)
 DECL|method|testMakeChecked_listenersRunOnFailure ()
 specifier|public
 name|void
@@ -12492,6 +12972,11 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|interface|MapperFunction
 specifier|private
 interface|interface
@@ -12513,6 +12998,11 @@ name|OtherThrowable
 extends|extends
 name|Throwable
 block|{}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|CHECKED_EXCEPTION
 specifier|private
 specifier|static
@@ -12526,6 +13016,11 @@ argument_list|(
 literal|"mymessage"
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|FAILED_FUTURE_CHECKED_EXCEPTION
 specifier|private
 specifier|static
@@ -12541,6 +13036,11 @@ argument_list|(
 name|CHECKED_EXCEPTION
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|UNCHECKED_EXCEPTION
 specifier|private
 specifier|static
@@ -12554,6 +13054,11 @@ argument_list|(
 literal|"mymessage"
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|FAILED_FUTURE_UNCHECKED_EXCEPTION
 specifier|private
 specifier|static
@@ -12569,6 +13074,11 @@ argument_list|(
 name|UNCHECKED_EXCEPTION
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|RUNTIME_EXCEPTION
 specifier|private
 specifier|static
@@ -12580,6 +13090,11 @@ operator|new
 name|RuntimeException
 argument_list|()
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|OTHER_THROWABLE
 specifier|private
 specifier|static
@@ -12591,6 +13106,11 @@ operator|new
 name|OtherThrowable
 argument_list|()
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|FAILED_FUTURE_OTHER_THROWABLE
 specifier|private
 specifier|static
@@ -12606,6 +13126,11 @@ argument_list|(
 name|OTHER_THROWABLE
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|ERROR
 specifier|private
 specifier|static
@@ -12619,6 +13144,11 @@ argument_list|(
 literal|"mymessage"
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|FAILED_FUTURE_ERROR
 specifier|private
 specifier|static
@@ -12634,6 +13164,11 @@ argument_list|(
 name|ERROR
 argument_list|)
 decl_stmt|;
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|field|RUNTIME_EXCEPTION_FUTURE
 specifier|private
 specifier|static
@@ -12684,6 +13219,11 @@ block|}
 block|}
 decl_stmt|;
 comment|// Boring untimed-get tests:
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_success ()
 specifier|public
 name|void
@@ -12710,6 +13250,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_interrupted ()
 specifier|public
 name|void
@@ -12787,6 +13332,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_cancelled ()
 specifier|public
 name|void
@@ -12835,6 +13385,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_ExecutionExceptionChecked ()
 specifier|public
 name|void
@@ -12874,6 +13429,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_ExecutionExceptionUnchecked ()
 specifier|public
 name|void
@@ -12915,6 +13475,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_ExecutionExceptionError ()
 specifier|public
 name|void
@@ -12956,6 +13521,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_ExecutionExceptionOtherThrowable ()
 specifier|public
 name|void
@@ -12995,6 +13565,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_RuntimeException ()
 specifier|public
 name|void
@@ -13033,6 +13608,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_badExceptionConstructor_wrapsOriginalChecked ()
 specifier|public
 name|void
@@ -13074,6 +13654,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_withGoodAndBadExceptionConstructor ()
 specifier|public
 name|void
@@ -13116,6 +13701,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// Boring timed-get tests:
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_success ()
 specifier|public
 name|void
@@ -13146,6 +13736,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_interrupted ()
 specifier|public
 name|void
@@ -13227,6 +13822,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_cancelled ()
 specifier|public
 name|void
@@ -13279,6 +13879,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_ExecutionExceptionChecked ()
 specifier|public
 name|void
@@ -13322,6 +13927,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_ExecutionExceptionUnchecked ()
 specifier|public
 name|void
@@ -13367,6 +13977,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_ExecutionExceptionError ()
 specifier|public
 name|void
@@ -13412,6 +14027,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_ExecutionExceptionOtherThrowable ()
 specifier|public
 name|void
@@ -13455,6 +14075,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_RuntimeException ()
 specifier|public
 name|void
@@ -13497,6 +14122,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_TimeoutException ()
 specifier|public
 name|void
@@ -13551,6 +14181,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_badExceptionConstructor_wrapsOriginalChecked ()
 specifier|public
 name|void
@@ -13598,6 +14233,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetTimed_withGoodAndBadExceptionConstructor ()
 specifier|public
 name|void
@@ -13646,6 +14286,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// Boring getUnchecked tests:
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_success ()
 specifier|public
 name|void
@@ -13666,6 +14311,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_interrupted ()
 specifier|public
 name|void
@@ -13716,6 +14366,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_cancelled ()
 specifier|public
 name|void
@@ -13758,6 +14413,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_ExecutionExceptionChecked ()
 specifier|public
 name|void
@@ -13793,6 +14453,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_ExecutionExceptionUnchecked ()
 specifier|public
 name|void
@@ -13828,6 +14493,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_ExecutionExceptionError ()
 specifier|public
 name|void
@@ -13863,6 +14533,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_ExecutionExceptionOtherThrowable ()
 specifier|public
 name|void
@@ -13898,6 +14573,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"getUnchecked"
+argument_list|)
 DECL|method|testGetUnchecked_RuntimeException ()
 specifier|public
 name|void
@@ -13931,6 +14611,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// Edge case tests of the exception-construction code through untimed get():
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_exceptionClassIsRuntimeException ()
 specifier|public
 name|void
@@ -13959,6 +14644,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_exceptionClassSomePublicConstructors ()
 specifier|public
 name|void
@@ -13987,6 +14677,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_exceptionClassNoPublicConstructor ()
 specifier|public
 name|void
@@ -14017,6 +14712,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_exceptionClassPublicConstructorWrongType ()
 specifier|public
 name|void
@@ -14047,6 +14747,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_exceptionClassPrefersStringConstructor ()
 specifier|public
 name|void
@@ -14083,6 +14788,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Futures.get"
+argument_list|)
 DECL|method|testGetUntimed_exceptionClassUsedInitCause ()
 specifier|public
 name|void
@@ -14135,6 +14845,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"inCompletionOrder"
+argument_list|)
 DECL|method|testCompletionOrder ()
 specifier|public
 name|void
@@ -14302,6 +15017,11 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"inCompletionOrder"
+argument_list|)
 DECL|method|testCompletionOrderExceptionThrown ()
 specifier|public
 name|void
@@ -14516,6 +15236,11 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"inCompletionOrder"
+argument_list|)
 DECL|method|testCompletionOrderFutureCancelled ()
 specifier|public
 name|void
@@ -14713,6 +15438,11 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"inCompletionOrder"
+argument_list|)
 DECL|method|testCancellingADelegateDoesNotPropagate ()
 specifier|public
 name|void
@@ -14838,6 +15568,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Mostly an example of how it would look like to use a list of mixed types
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"inCompletionOrder"
+argument_list|)
 DECL|method|testCompletionOrderMixedBagOTypes ()
 specifier|public
 name|void
@@ -15001,6 +15736,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|TwoArgConstructorException
 specifier|public
 specifier|static
@@ -15030,6 +15770,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|TwoArgConstructorRuntimeException
 specifier|public
 specifier|static
@@ -15059,6 +15804,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|ExceptionWithPrivateConstructor
 specifier|public
 specifier|static
@@ -15088,6 +15838,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -15174,6 +15929,11 @@ name|e
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|ExceptionWithManyConstructors
 specifier|public
 specifier|static
@@ -15313,6 +16073,11 @@ name|i
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|ExceptionWithoutThrowableConstructor
 specifier|public
 specifier|static
@@ -15337,6 +16102,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|ExceptionWithWrongTypesConstructor
 specifier|public
 specifier|static
@@ -15364,6 +16134,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|ExceptionWithGoodAndBadConstructor
 specifier|private
 specifier|static
@@ -15407,6 +16182,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncompatible tests"
+argument_list|)
 DECL|class|ExceptionWithBadConstructor
 specifier|private
 specifier|static
@@ -15436,6 +16216,11 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"ClassSanityTester"
+argument_list|)
 DECL|method|testFutures_nullChecks ()
 specifier|public
 name|void
@@ -15550,69 +16335,6 @@ comment|// never complete when timing out.  Notably, nothing would get logged si
 comment|// stuck in the ScheduledFuture inside of TimeoutFuture and nothing ever calls get on it.
 comment|// Simulate a timeout that fires before the call the SES.schedule returns but the future is
 comment|// already completed.
-DECL|method|testWithTimeout_timerWriteNotVisibleToScheduledTask ()
-specifier|public
-name|void
-name|testWithTimeout_timerWriteNotVisibleToScheduledTask
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-name|delegate
-init|=
-name|Futures
-operator|.
-name|immediateFuture
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
-name|ScheduledExecutorService
-name|service
-init|=
-name|TestingExecutors
-operator|.
-name|sameThreadScheduledExecutor
-argument_list|()
-decl_stmt|;
-name|ListenableFuture
-argument_list|<
-name|Object
-argument_list|>
-name|timeoutFuture
-init|=
-name|Futures
-operator|.
-name|withTimeout
-argument_list|(
-name|delegate
-argument_list|,
-literal|0
-argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
-argument_list|,
-name|service
-argument_list|)
-decl_stmt|;
-comment|// should complete when the timer task notices that the delegate is done.
-name|timeoutFuture
-operator|.
-name|get
-argument_list|(
-literal|1
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 
