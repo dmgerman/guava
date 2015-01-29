@@ -2069,6 +2069,29 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|createCombinedResult (Integer i, Boolean b)
+specifier|private
+specifier|static
+name|String
+name|createCombinedResult
+parameter_list|(
+name|Integer
+name|i
+parameter_list|,
+name|Boolean
+name|b
+parameter_list|)
+block|{
+return|return
+literal|"-"
+operator|+
+name|i
+operator|+
+literal|"-"
+operator|+
+name|b
+return|;
+block|}
 comment|/*    * TODO(cpovirk): maybe pass around TestFuture instances instead of    * ListenableFuture instances    */
 DECL|class|OtherThrowable
 specifier|private

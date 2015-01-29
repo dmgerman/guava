@@ -7790,11 +7790,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
 DECL|method|createCombinedResult (Integer i, Boolean b)
 specifier|private
 specifier|static
