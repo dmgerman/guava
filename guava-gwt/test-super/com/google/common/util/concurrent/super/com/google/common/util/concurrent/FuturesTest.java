@@ -1718,11 +1718,10 @@ comment|// Boring timed-get tests:
 comment|// Boring getUnchecked tests:
 comment|// Edge case tests of the exception-construction code through untimed get():
 comment|// Mostly an example of how it would look like to use a list of mixed types
-DECL|method|failWithCause (Throwable cause, String message)
-specifier|private
+DECL|method|failureWithCause (Throwable cause, String message)
 specifier|static
-name|void
-name|failWithCause
+name|AssertionFailedError
+name|failureWithCause
 parameter_list|(
 name|Throwable
 name|cause
@@ -1747,9 +1746,9 @@ argument_list|(
 name|cause
 argument_list|)
 expr_stmt|;
-throw|throw
+return|return
 name|failure
-throw|;
+return|;
 block|}
 comment|/** A future that throws a runtime exception from get. */
 DECL|class|BuggyFuture

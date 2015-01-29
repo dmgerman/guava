@@ -196,6 +196,24 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Uninterruptibles
+operator|.
+name|getUninterruptibly
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -8571,7 +8589,8 @@ operator|!
 name|expression
 condition|)
 block|{
-name|failWithCause
+throw|throw
+name|failureWithCause
 argument_list|(
 name|cause
 argument_list|,
@@ -8580,7 +8599,7 @@ argument_list|(
 name|inputs
 argument_list|)
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 DECL|method|hasDelayed (ListenableFuture<String> a, ListenableFuture<String> b)
@@ -9073,14 +9092,13 @@ name|GwtIncompatible
 argument_list|(
 literal|"threads"
 argument_list|)
-DECL|method|pseudoTimedGet ( final Future<V> input, long timeout, TimeUnit unit)
-specifier|private
+DECL|method|pseudoTimedGetUninterruptibly ( final Future<V> input, long timeout, TimeUnit unit)
 specifier|static
 parameter_list|<
 name|V
 parameter_list|>
 name|V
-name|pseudoTimedGet
+name|pseudoTimedGetUninterruptibly
 parameter_list|(
 specifier|final
 name|Future
@@ -9096,8 +9114,6 @@ name|TimeUnit
 name|unit
 parameter_list|)
 throws|throws
-name|InterruptedException
-throws|,
 name|ExecutionException
 throws|,
 name|TimeoutException
@@ -9147,10 +9163,10 @@ decl_stmt|;
 try|try
 block|{
 return|return
-name|waiter
-operator|.
-name|get
+name|getUninterruptibly
 argument_list|(
+name|waiter
+argument_list|,
 name|timeout
 argument_list|,
 name|unit
@@ -9187,24 +9203,13 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|AssertionFailedError
-name|error
-init|=
-operator|new
-name|AssertionFailedError
-argument_list|(
-literal|"Unexpected exception"
-argument_list|)
-decl_stmt|;
-name|error
-operator|.
-name|initCause
+throw|throw
+name|failureWithCause
 argument_list|(
 name|e
+argument_list|,
+literal|"Unexpected exception"
 argument_list|)
-expr_stmt|;
-throw|throw
-name|error
 throw|;
 block|}
 finally|finally
@@ -9214,18 +9219,7 @@ operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
-name|assertTrue
-argument_list|(
-name|executor
-operator|.
-name|awaitTermination
-argument_list|(
-literal|10
-argument_list|,
-name|SECONDS
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// TODO(cpovirk: assertTrue(awaitTerminationUninterruptibly(executor, 10, SECONDS));
 block|}
 block|}
 comment|/**    * For each possible pair of futures from {@link TestFutureBatch}, for each    * possible completion order of those futures, test that various get calls    * (timed before future completion, untimed before future completion, and    * untimed after future completion) return or throw the proper values.    */
@@ -9483,7 +9477,7 @@ name|String
 argument_list|>
 name|result
 init|=
-name|conditionalPseudoTimedGet
+name|conditionalPseudoTimedGetUninterruptibly
 argument_list|(
 name|inputs
 argument_list|,
@@ -9731,14 +9725,14 @@ name|GwtIncompatible
 argument_list|(
 literal|"used only in GwtIncompatible tests"
 argument_list|)
-DECL|method|conditionalPseudoTimedGet ( TestFutureBatch inputs, ListenableFuture<String> iFuture, ListenableFuture<String> jFuture, ListenableFuture<List<String>> future, int timeout, TimeUnit unit)
+DECL|method|conditionalPseudoTimedGetUninterruptibly ( TestFutureBatch inputs, ListenableFuture<String> iFuture, ListenableFuture<String> jFuture, ListenableFuture<List<String>> future, int timeout, TimeUnit unit)
 specifier|private
 specifier|static
 name|List
 argument_list|<
 name|String
 argument_list|>
-name|conditionalPseudoTimedGet
+name|conditionalPseudoTimedGetUninterruptibly
 parameter_list|(
 name|TestFutureBatch
 name|inputs
@@ -9771,8 +9765,6 @@ name|TimeUnit
 name|unit
 parameter_list|)
 throws|throws
-name|InterruptedException
-throws|,
 name|ExecutionException
 throws|,
 name|TimeoutException
@@ -9790,7 +9782,7 @@ name|jFuture
 argument_list|)
 operator|)
 condition|?
-name|pseudoTimedGet
+name|pseudoTimedGetUninterruptibly
 argument_list|(
 name|future
 argument_list|,
@@ -9799,7 +9791,7 @@ argument_list|,
 name|unit
 argument_list|)
 else|:
-name|pseudoTimedGet
+name|pseudoTimedGetUninterruptibly
 argument_list|(
 name|future
 argument_list|,
@@ -16251,11 +16243,10 @@ name|testNulls
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|failWithCause (Throwable cause, String message)
-specifier|private
+DECL|method|failureWithCause (Throwable cause, String message)
 specifier|static
-name|void
-name|failWithCause
+name|AssertionFailedError
+name|failureWithCause
 parameter_list|(
 name|Throwable
 name|cause
@@ -16280,9 +16271,9 @@ argument_list|(
 name|cause
 argument_list|)
 expr_stmt|;
-throw|throw
+return|return
 name|failure
-throw|;
+return|;
 block|}
 comment|/** A future that throws a runtime exception from get. */
 DECL|class|BuggyFuture
