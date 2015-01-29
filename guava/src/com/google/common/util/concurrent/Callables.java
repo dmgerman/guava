@@ -42,6 +42,34 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Supplier
@@ -75,6 +103,13 @@ comment|/**  * Static utility methods pertaining to the {@link Callable} interfa
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|Callables
 specifier|public
 specifier|final
@@ -129,6 +164,11 @@ block|}
 return|;
 block|}
 comment|/**    * Wraps the given callable such that for the duration of {@link Callable#call} the thread that is    * running will have the given name.    *    *    * @param callable The callable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|threadRenaming (final Callable<T> callable, final Supplier<String> nameSupplier)
 specifier|static
 parameter_list|<
@@ -241,6 +281,11 @@ block|}
 return|;
 block|}
 comment|/**    * Wraps the given runnable such that for the duration of {@link Runnable#run} the thread that is    * running with have the given name.    *    *    * @param task The Runnable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|threadRenaming (final Runnable task, final Supplier<String> nameSupplier)
 specifier|static
 name|Runnable
@@ -338,6 +383,11 @@ block|}
 return|;
 block|}
 comment|/** Tries to set name of the given {@link Thread}, returns true if successful. */
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|trySetName (final String threadName, Thread currentThread)
 specifier|private
 specifier|static

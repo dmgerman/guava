@@ -37,6 +37,52 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TestPlatform
+operator|.
+name|verifyThreadWasNotInterrupted
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
 import|import
 name|junit
 operator|.
@@ -163,6 +209,13 @@ comment|/**  * Test case for {@link TrustedListenableFutureTask}.  */
 end_comment
 
 begin_class
+annotation|@
+name|GwtCompatible
+argument_list|(
+name|emulated
+operator|=
+literal|true
+argument_list|)
 DECL|class|TrustedListenableFutureTaskTest
 specifier|public
 class|class
@@ -317,16 +370,8 @@ name|CancellationException
 name|expected
 parameter_list|)
 block|{     }
-name|assertFalse
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
+name|verifyThreadWasNotInterrupted
 argument_list|()
-operator|.
-name|isInterrupted
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|testFailed ()
@@ -428,6 +473,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"blocking wait"
+argument_list|)
 DECL|method|testCancel_interrupted ()
 specifier|public
 name|void
@@ -662,6 +712,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"blocking wait"
+argument_list|)
 DECL|method|testRunIdempotency ()
 specifier|public
 name|void
@@ -854,6 +909,11 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"used only in GwtIncomaptible tests"
+argument_list|)
 DECL|method|awaitUnchecked (CyclicBarrier barrier)
 specifier|private
 name|int

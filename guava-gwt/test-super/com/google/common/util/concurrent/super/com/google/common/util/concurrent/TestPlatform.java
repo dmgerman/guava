@@ -213,6 +213,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|verifyThreadWasNotInterrupted ()
+specifier|static
+name|void
+name|verifyThreadWasNotInterrupted
+parameter_list|()
+block|{
+comment|// There are no threads in GWT so there's nothing to assert.
+block|}
 DECL|method|TestPlatform ()
 specifier|private
 name|TestPlatform

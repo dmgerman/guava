@@ -3443,11 +3443,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 DECL|class|CombinedFuture
 specifier|private
 specifier|static

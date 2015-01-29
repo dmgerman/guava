@@ -124,6 +124,18 @@ name|framework
 operator|.
 name|Assert
 operator|.
+name|assertFalse
+import|;
+end_import
+
+begin_import
+import|import static
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
+operator|.
 name|fail
 import|;
 end_import
@@ -297,6 +309,24 @@ literal|""
 argument_list|)
 throw|;
 block|}
+block|}
+DECL|method|verifyThreadWasNotInterrupted ()
+specifier|static
+name|void
+name|verifyThreadWasNotInterrupted
+parameter_list|()
+block|{
+name|assertFalse
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|isInterrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|TestPlatform ()
 specifier|private
