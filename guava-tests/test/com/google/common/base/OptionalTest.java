@@ -224,11 +224,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testOf_null ()
 specifier|public
 name|void
@@ -346,11 +341,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testGet_absent ()
 specifier|public
 name|void
@@ -510,11 +500,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testOr_nullSupplier_absent ()
 specifier|public
 name|void
@@ -961,11 +946,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testTransform_present_functionReturnsNull ()
 specifier|public
 name|void
