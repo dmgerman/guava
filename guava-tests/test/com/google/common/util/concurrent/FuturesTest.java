@@ -749,7 +749,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-literal|"com.google.common.util.concurrent.Futures$CollectionFuture"
+literal|"com.google.common.util.concurrent.CollectionFuture"
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -5638,11 +5638,6 @@ expr_stmt|;
 block|}
 comment|/**    * Runnable which can be called a single time, and only after    * {@link #expectCall} is called.    */
 comment|// TODO(cpovirk): top-level class?
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
 DECL|class|SingleCallListener
 specifier|static
 class|class
@@ -5753,11 +5748,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList ()
 specifier|public
 name|void
@@ -6033,11 +6023,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_emptyArray ()
 specifier|public
 name|void
@@ -6116,11 +6101,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_failure ()
 specifier|public
 name|void
@@ -6563,11 +6543,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_cancelled ()
 specifier|public
 name|void
@@ -6700,11 +6675,6 @@ block|{
 comment|// Expected
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_resultCancelled ()
 specifier|public
 name|void
@@ -6809,11 +6779,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_resultCancelledInterrupted_withSecondaryListFuture ()
 specifier|public
 name|void
@@ -6933,11 +6898,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_resultCancelled_withSecondaryListFuture ()
 specifier|public
 name|void
@@ -7039,11 +6999,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_resultInterrupted ()
 specifier|public
 name|void
@@ -7149,11 +7104,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Test the case where the futures are fulfilled prior to    * constructing the ListFuture.  There was a bug where the    * loop that connects a Listener to each of the futures would die    * on the last loop-check as done() on ListFuture nulled out the    * variable being looped over (the list of futures).    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
 DECL|method|testAllAsList_doneFutures ()
 specifier|public
 name|void
@@ -7316,7 +7266,7 @@ comment|/**    * A single non-error failure is not logged because it is reported
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"allAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -7389,7 +7339,7 @@ comment|/**    * Ensure that errors are always logged.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"allAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -7484,7 +7434,7 @@ comment|/**    * All as list will log extra exceptions that occur after failure.
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"allAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -7586,7 +7536,7 @@ comment|/**    * The same exception happening on multiple futures should not be 
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"allAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -7669,7 +7619,7 @@ comment|/**    * Different exceptions happening on multiple futures with the sam
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"allAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -11341,7 +11291,7 @@ comment|/** Non-Error exceptions are never logged. */
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"successfulAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -11463,7 +11413,7 @@ comment|/**    * Ensure that errors are always logged.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"successfulAsList"
+literal|"TestLogHandler"
 argument_list|)
 annotation|@
 name|SuppressWarnings
