@@ -205,7 +205,7 @@ name|k1
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): Implement and benchmark the hashFoo() shortcuts.
+comment|// TODO(kak): Implement and benchmark the hashFoo() shortcuts.
 DECL|method|toString ()
 annotation|@
 name|Override

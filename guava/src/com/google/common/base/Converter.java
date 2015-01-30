@@ -414,7 +414,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns the reversed view of this converter, which converts {@code this.convert(a)} back to a    * value roughly equivalent to {@code a}.    *    *<p>The returned converter is serializable if {@code this} converter is.    */
-comment|// TODO(user): Make this method final
+comment|// TODO(kak): Make this method final
 DECL|method|reverse ()
 specifier|public
 name|Converter

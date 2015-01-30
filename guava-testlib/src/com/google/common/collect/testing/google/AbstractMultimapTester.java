@@ -853,7 +853,7 @@ name|isNull
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO(user): Add proper overrides to prevent autoboxing.
+comment|// TODO(cgruber): Add proper overrides to prevent autoboxing.
 comment|// Truth+autoboxing == compile error. Cast int to long to fix:
 name|assertThat
 argument_list|(

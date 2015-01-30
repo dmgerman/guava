@@ -414,7 +414,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): Do we want to checkNotNull each element in containsAll, removeAll, and retainAll?
+comment|// TODO(kak): Do we want to checkNotNull each element in containsAll, removeAll, and retainAll?
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

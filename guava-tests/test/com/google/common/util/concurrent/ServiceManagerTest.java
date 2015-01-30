@@ -604,7 +604,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): Use assertThat(startupTimes.get(a)).isAtLeast(150);
+comment|// TODO(kak): Use assertThat(startupTimes.get(a)).isAtLeast(150);
 name|assertTrue
 argument_list|(
 name|startupTimes
@@ -617,7 +617,7 @@ operator|>=
 literal|150
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): Use assertThat(startupTimes.get(b)).isAtLeast(353);
+comment|// TODO(kak): Use assertThat(startupTimes.get(b)).isAtLeast(353);
 name|assertTrue
 argument_list|(
 name|startupTimes
@@ -752,7 +752,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): Use assertThat(startupTimes.get(a)).isAtLeast(150);
+comment|// TODO(kak): Use assertThat(startupTimes.get(a)).isAtLeast(150);
 name|assertTrue
 argument_list|(
 name|startupTimes

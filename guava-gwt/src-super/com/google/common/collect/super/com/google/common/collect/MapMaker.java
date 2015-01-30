@@ -120,7 +120,7 @@ argument_list|,
 name|Object
 argument_list|>
 block|{
-comment|// TODO(fry,user): ConcurrentHashMap never throws a CME when mutating the map during iteration, but
+comment|// TODO(fry,kak): ConcurrentHashMap never throws a CME when mutating the map during iteration, but
 comment|// this implementation (based on a LHM) does. This will all be replaced soon anyways, so leaving
 comment|// it as is for now.
 DECL|class|ExpiringComputingMap

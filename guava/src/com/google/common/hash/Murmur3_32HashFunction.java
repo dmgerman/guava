@@ -382,7 +382,7 @@ name|BYTES
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): Maybe implement #hashBytes instead?
+comment|// TODO(kak): Maybe implement #hashBytes instead?
 DECL|method|hashUnencodedChars (CharSequence input)
 annotation|@
 name|Override
