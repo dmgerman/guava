@@ -2462,7 +2462,7 @@ if|if
 condition|(
 name|left
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|right
 argument_list|)
@@ -4753,7 +4753,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|List
 operator|.
@@ -4765,7 +4765,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|ArrayList
 operator|.
@@ -4777,7 +4777,7 @@ name|assertFalse
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|List
 index|[]
@@ -4804,7 +4804,7 @@ name|assertTrue
 argument_list|(
 name|tokN
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Number
 operator|.
@@ -4816,7 +4816,7 @@ name|assertTrue
 argument_list|(
 name|tokN
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Integer
 operator|.
@@ -4845,7 +4845,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|TypeToken
 operator|.
@@ -4876,7 +4876,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|TypeToken
 operator|.
@@ -4921,7 +4921,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -4945,7 +4945,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -4969,7 +4969,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5012,7 +5012,7 @@ name|getSuperclass
 argument_list|()
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5051,7 +5051,7 @@ argument_list|(
 name|interfaceType
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5076,7 +5076,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5100,7 +5100,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5145,7 +5145,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5162,7 +5162,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5177,7 +5177,7 @@ argument_list|(
 name|wildcardType
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5195,7 +5195,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5242,7 +5242,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5261,7 +5261,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5271,7 +5271,7 @@ name|assertTrue
 argument_list|(
 name|wildcardType
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5291,7 +5291,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5350,7 +5350,7 @@ name|assertFalse
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Object
 index|[]
@@ -5363,7 +5363,7 @@ name|assertFalse
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Object
 index|[]
@@ -5377,7 +5377,7 @@ name|assertFalse
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|String
 index|[]
@@ -5390,7 +5390,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Object
 index|[]
@@ -5403,7 +5403,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Object
 operator|.
@@ -5415,7 +5415,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Object
 index|[]
@@ -5429,7 +5429,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|String
 index|[]
@@ -5489,7 +5489,7 @@ name|assertTrue
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5509,7 +5509,7 @@ name|assertTrue
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5530,7 +5530,7 @@ name|assertTrue
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5550,7 +5550,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5570,7 +5570,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5589,7 +5589,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5610,7 +5610,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -5657,7 +5657,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfString
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeOfString
 argument_list|)
@@ -5667,7 +5667,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfString
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Object
 operator|.
@@ -5679,7 +5679,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfString
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|CharSequence
 operator|.
@@ -5691,7 +5691,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfString
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|String
 operator|.
@@ -5703,7 +5703,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfString
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Types
 operator|.
@@ -5748,7 +5748,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5765,7 +5765,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5780,7 +5780,7 @@ argument_list|(
 name|wildcardType
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5798,7 +5798,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5845,7 +5845,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5864,7 +5864,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5874,7 +5874,7 @@ name|assertTrue
 argument_list|(
 name|wildcardType
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5894,7 +5894,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|wildcardType
 argument_list|)
@@ -5953,7 +5953,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|subtypeOfArray
 argument_list|)
@@ -5963,7 +5963,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeOfArray
 argument_list|)
@@ -5973,7 +5973,7 @@ name|assertFalse
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|subtypeOfArray
 argument_list|)
@@ -5983,7 +5983,7 @@ name|assertFalse
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeOfArray
 argument_list|)
@@ -6040,7 +6040,7 @@ name|assertFalse
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|subtypeOfArray
 argument_list|)
@@ -6050,7 +6050,7 @@ name|assertTrue
 argument_list|(
 name|supertypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeOfArray
 argument_list|)
@@ -6060,7 +6060,7 @@ name|assertTrue
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|subtypeOfArray
 argument_list|)
@@ -6070,7 +6070,7 @@ name|assertFalse
 argument_list|(
 name|subtypeOfArray
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeOfArray
 argument_list|)
@@ -6098,7 +6098,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6123,7 +6123,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6150,7 +6150,7 @@ operator|.
 expr|class
 argument_list|)
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6195,7 +6195,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|StringList
 operator|.
@@ -6207,7 +6207,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|StringList
 operator|.
@@ -6245,7 +6245,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Second
 operator|.
@@ -6257,7 +6257,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Third
 operator|.
@@ -6301,7 +6301,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|List
 index|[]
@@ -6314,7 +6314,7 @@ name|assertFalse
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|List
 operator|.
@@ -6348,7 +6348,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Second
 index|[]
@@ -6361,7 +6361,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|Third
 index|[]
@@ -6401,7 +6401,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6417,7 +6417,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6436,7 +6436,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6475,7 +6475,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6494,7 +6494,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6513,7 +6513,7 @@ name|assertTrue
 argument_list|(
 name|tokS
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6556,7 +6556,7 @@ name|assertTrue
 argument_list|(
 name|tokA
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6576,7 +6576,7 @@ name|assertTrue
 argument_list|(
 name|tokA
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6599,7 +6599,7 @@ name|assertTrue
 argument_list|(
 name|tokA
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -6650,7 +6650,7 @@ name|assertTrue
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|StringList
 operator|.
@@ -6662,7 +6662,7 @@ name|assertFalse
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|List
 operator|.
@@ -6694,7 +6694,7 @@ name|assertTrue
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|ConcreteIS
 operator|.
@@ -6706,7 +6706,7 @@ name|assertFalse
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|ConcreteSI
 operator|.
@@ -6750,7 +6750,7 @@ name|assertTrue
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|StringList
 index|[]
@@ -6763,7 +6763,7 @@ name|assertFalse
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|List
 index|[]
@@ -6806,7 +6806,7 @@ name|assertTrue
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|StringList
 operator|.
@@ -6824,7 +6824,7 @@ name|assertFalse
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|IntegerList
 operator|.
@@ -6862,7 +6862,7 @@ name|assertTrue
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|ConcreteIS
 operator|.
@@ -6877,7 +6877,7 @@ name|assertFalse
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|ConcreteSI
 operator|.
@@ -6946,7 +6946,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|tokL
 operator|.
@@ -6959,7 +6959,7 @@ name|assertTrue
 argument_list|(
 name|tokL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|token
 operator|.
@@ -7002,7 +7002,7 @@ name|assertTrue
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7021,7 +7021,7 @@ name|assertTrue
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7040,7 +7040,7 @@ name|assertTrue
 argument_list|(
 name|tokenL
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7076,7 +7076,7 @@ name|assertTrue
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7095,7 +7095,7 @@ name|assertTrue
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7116,7 +7116,7 @@ name|assertFalse
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7137,7 +7137,7 @@ name|assertTrue
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7158,7 +7158,7 @@ name|assertFalse
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7179,7 +7179,7 @@ name|assertTrue
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7195,7 +7195,7 @@ name|assertFalse
 argument_list|(
 name|tokenF
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -7369,7 +7369,7 @@ argument_list|()
 argument_list|,
 name|unboundedToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|typeToken
 argument_list|)
@@ -7380,7 +7380,7 @@ name|assertFalse
 argument_list|(
 name|upperBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|unboundedToken
 argument_list|)
@@ -7390,7 +7390,7 @@ name|assertTrue
 argument_list|(
 name|upperBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|upperBoundToken
 argument_list|)
@@ -7400,7 +7400,7 @@ name|assertFalse
 argument_list|(
 name|upperBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|lowerBoundToken
 argument_list|)
@@ -7410,7 +7410,7 @@ name|assertTrue
 argument_list|(
 name|upperBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|concreteToken
 argument_list|)
@@ -7420,7 +7420,7 @@ name|assertTrue
 argument_list|(
 name|upperBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|subtypeToken
 argument_list|)
@@ -7430,7 +7430,7 @@ name|assertFalse
 argument_list|(
 name|upperBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeToken
 argument_list|)
@@ -7440,7 +7440,7 @@ name|assertFalse
 argument_list|(
 name|lowerBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|unboundedToken
 argument_list|)
@@ -7450,7 +7450,7 @@ name|assertFalse
 argument_list|(
 name|lowerBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|upperBoundToken
 argument_list|)
@@ -7460,7 +7460,7 @@ name|assertTrue
 argument_list|(
 name|lowerBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|lowerBoundToken
 argument_list|)
@@ -7470,7 +7470,7 @@ name|assertTrue
 argument_list|(
 name|lowerBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|concreteToken
 argument_list|)
@@ -7480,7 +7480,7 @@ name|assertFalse
 argument_list|(
 name|lowerBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|subtypeToken
 argument_list|)
@@ -7490,7 +7490,7 @@ name|assertTrue
 argument_list|(
 name|lowerBoundToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|supertypeToken
 argument_list|)
@@ -7520,7 +7520,7 @@ name|concreteToken
 argument_list|,
 name|concreteToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|typeToken
 argument_list|)
@@ -7551,7 +7551,7 @@ name|subtypeToken
 argument_list|,
 name|subtypeToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|typeToken
 argument_list|)
@@ -7582,7 +7582,7 @@ name|supertypeToken
 argument_list|,
 name|supertypeToken
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|typeToken
 argument_list|)
@@ -7607,9 +7607,9 @@ name|N11
 extends|extends
 name|N1
 parameter_list|>
-DECL|method|testIsAssignableFrom_typeVariable ()
+DECL|method|testisSupertypeOf_typeVariable ()
 name|void
-name|testIsAssignableFrom_typeVariable
+name|testisSupertypeOf_typeVariable
 parameter_list|()
 block|{
 name|assertAssignable
@@ -7787,9 +7787,9 @@ name|N11
 extends|extends
 name|N1
 parameter_list|>
-DECL|method|testIsAssignableFrom_equalWildcardTypes ()
+DECL|method|testisSupertypeOf_equalWildcardTypes ()
 name|void
-name|testIsAssignableFrom_equalWildcardTypes
+name|testisSupertypeOf_equalWildcardTypes
 parameter_list|()
 block|{
 name|assertAssignable
@@ -7948,12 +7948,12 @@ end_empty_stmt
 
 begin_function
 unit|}    public
-DECL|method|testIsAssignableFrom_wildcard_noBound ()
+DECL|method|testisSupertypeOf_wildcard_noBound ()
 parameter_list|<
 name|N
 parameter_list|>
 name|void
-name|testIsAssignableFrom_wildcard_noBound
+name|testisSupertypeOf_wildcard_noBound
 parameter_list|()
 block|{
 name|assertAssignable
@@ -8031,9 +8031,9 @@ name|N11
 extends|extends
 name|N1
 parameter_list|>
-DECL|method|testIsAssignableFrom_wildcardType_upperBoundMatch ()
+DECL|method|testisSupertypeOf_wildcardType_upperBoundMatch ()
 name|void
-name|testIsAssignableFrom_wildcardType_upperBoundMatch
+name|testisSupertypeOf_wildcardType_upperBoundMatch
 parameter_list|()
 block|{
 comment|// ? extends T
@@ -8258,9 +8258,9 @@ name|N11
 extends|extends
 name|N1
 parameter_list|>
-DECL|method|testIsAssignableFrom_wildcardType_lowerBoundMatch ()
+DECL|method|testisSupertypeOf_wildcardType_lowerBoundMatch ()
 name|void
-name|testIsAssignableFrom_wildcardType_lowerBoundMatch
+name|testisSupertypeOf_wildcardType_lowerBoundMatch
 parameter_list|()
 block|{
 comment|// ? super T
@@ -8569,9 +8569,9 @@ argument_list|<
 name|L
 argument_list|>
 parameter_list|>
-DECL|method|testIsAssignableFrom_recursiveTypeVariableBounds ()
+DECL|method|testisSupertypeOf_recursiveTypeVariableBounds ()
 name|void
-name|testIsAssignableFrom_recursiveTypeVariableBounds
+name|testisSupertypeOf_recursiveTypeVariableBounds
 parameter_list|()
 block|{
 name|assertAssignable
@@ -8678,10 +8678,10 @@ block|}
 end_function
 
 begin_function
-DECL|method|testIsAssignableFrom_resolved ()
+DECL|method|testisSupertypeOf_resolved ()
 specifier|public
 name|void
-name|testIsAssignableFrom_resolved
+name|testisSupertypeOf_resolved
 parameter_list|()
 block|{
 name|assertFalse
@@ -12363,7 +12363,7 @@ argument_list|()
 argument_list|,
 name|parameterType
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -16054,7 +16054,7 @@ argument_list|()
 argument_list|)
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 operator|new
 name|TypeToken
@@ -16141,6 +16141,50 @@ name|from
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+name|to
+operator|.
+name|getType
+argument_list|()
+operator|+
+literal|" is expected to be a supertype of "
+operator|+
+name|from
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|to
+operator|.
+name|isSupertypeOf
+argument_list|(
+name|from
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|from
+operator|.
+name|getType
+argument_list|()
+operator|+
+literal|" is expected to be a subtype of "
+operator|+
+name|to
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|from
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|to
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 end_function
 
@@ -16183,6 +16227,50 @@ operator|.
 name|isAssignableFrom
 argument_list|(
 name|from
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|to
+operator|.
+name|getType
+argument_list|()
+operator|+
+literal|" shouldn't be a supertype of "
+operator|+
+name|from
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|to
+operator|.
+name|isSupertypeOf
+argument_list|(
+name|from
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|from
+operator|.
+name|getType
+argument_list|()
+operator|+
+literal|" shouldn't be a subtype of "
+operator|+
+name|to
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|from
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|to
 argument_list|)
 argument_list|)
 expr_stmt|;

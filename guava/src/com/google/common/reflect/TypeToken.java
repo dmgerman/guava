@@ -377,7 +377,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Type} with generics.  *  *<p>Operations that are otherwise only available in {@link Class} are implemented to support  * {@code Type}, for example {@link #isAssignableFrom}, {@link #isArray} and {@link  * #getComponentType}. It also provides additional utilities such as {@link #getTypes} and {@link  * #resolveType} etc.  *  *<p>There are three ways to get a {@code TypeToken} instance:<ul>  *<li>Wrap a {@code Type} obtained via reflection. For example: {@code  * TypeToken.of(method.getGenericReturnType())}.  *<li>Capture a generic type with a (usually anonymous) subclass. For example:<pre>   {@code  *   new TypeToken<List<String>>() {}}</pre>  *<p>Note that it's critical that the actual type argument is carried by a subclass.  * The following code is wrong because it only captures the {@code<T>} type variable  * of the {@code listType()} method signature; while {@code<String>} is lost in erasure:  *<pre>   {@code  *   class Util {  *     static<T> TypeToken<List<T>> listType() {  *       return new TypeToken<List<T>>() {};  *     }  *   }  *  *   TypeToken<List<String>> stringListType = Util.<String>listType();}</pre>  *<li>Capture a generic type with a (usually anonymous) subclass and resolve it against  * a context class that knows what the type parameters are. For example:<pre>   {@code  *   abstract class IKnowMyType<T> {  *     TypeToken<T> type = new TypeToken<T>(getClass()) {};  *   }  *   new IKnowMyType<String>() {}.type => String}</pre>  *</ul>  *  *<p>{@code TypeToken} is serializable when no type variable is contained in the type.  *  *<p>Note to Guice users: {@code} TypeToken is similar to Guice's {@code TypeLiteral} class  * except that it is serializable and offers numerous additional utility methods.  *  * @author Bob Lee  * @author Sven Mawson  * @author Ben Yu  * @since 12.0  */
+comment|/**  * A {@link Type} with generics.  *  *<p>Operations that are otherwise only available in {@link Class} are implemented to support  * {@code Type}, for example {@link #isSubtypeOf}, {@link #isArray} and {@link #getComponentType}.  * It also provides additional utilities such as {@link #getTypes}, {@link #resolveType}, etc.  *  *<p>There are three ways to get a {@code TypeToken} instance:<ul>  *<li>Wrap a {@code Type} obtained via reflection. For example: {@code  * TypeToken.of(method.getGenericReturnType())}.  *<li>Capture a generic type with a (usually anonymous) subclass. For example:<pre>   {@code  *   new TypeToken<List<String>>() {}}</pre>  *<p>Note that it's critical that the actual type argument is carried by a subclass.  * The following code is wrong because it only captures the {@code<T>} type variable  * of the {@code listType()} method signature; while {@code<String>} is lost in erasure:  *<pre>   {@code  *   class Util {  *     static<T> TypeToken<List<T>> listType() {  *       return new TypeToken<List<T>>() {};  *     }  *   }  *  *   TypeToken<List<String>> stringListType = Util.<String>listType();}</pre>  *<li>Capture a generic type with a (usually anonymous) subclass and resolve it against  * a context class that knows what the type parameters are. For example:<pre>   {@code  *   abstract class IKnowMyType<T> {  *     TypeToken<T> type = new TypeToken<T>(getClass()) {};  *   }  *   new IKnowMyType<String>() {}.type => String}</pre>  *</ul>  *  *<p>{@code TypeToken} is serializable when no type variable is contained in the type.  *  *<p>Note to Guice users: {@code} TypeToken is similar to Guice's {@code TypeLiteral} class  * except that it is serializable and offers numerous additional utility methods.  *  * @author Bob Lee  * @author Sven Mawson  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -1362,7 +1362,7 @@ name|checkArgument
 argument_list|(
 name|this
 operator|.
-name|extendsFromClass
+name|someRawTypeIsSubclassOf
 argument_list|(
 name|superclass
 argument_list|)
@@ -1599,7 +1599,9 @@ return|return
 name|subtype
 return|;
 block|}
-comment|/** Returns true if this type is assignable from the given {@code type}. */
+comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @deprecated Use the method under its new name, {@link #isSupertypeOf(TypeToken)}.    */
+annotation|@
+name|Deprecated
 DECL|method|isAssignableFrom (TypeToken<?> type)
 specifier|public
 specifier|final
@@ -1614,15 +1616,15 @@ name|type
 parameter_list|)
 block|{
 return|return
-name|type
-operator|.
-name|extendsFrom
+name|isSupertypeOf
 argument_list|(
-name|runtimeType
+name|type
 argument_list|)
 return|;
 block|}
-comment|/** Check if this type is assignable from the given {@code type}. */
+comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @deprecated Use the method under its new name, {@link #isSupertypeOf(Type)}.    */
+annotation|@
+name|Deprecated
 DECL|method|isAssignableFrom (Type type)
 specifier|public
 specifier|final
@@ -1634,14 +1636,291 @@ name|type
 parameter_list|)
 block|{
 return|return
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
+name|type
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+DECL|method|isSupertypeOf (TypeToken<?> type)
+specifier|public
+specifier|final
+name|boolean
+name|isSupertypeOf
+parameter_list|(
+name|TypeToken
+argument_list|<
+name|?
+argument_list|>
+name|type
+parameter_list|)
+block|{
+return|return
+name|type
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|getType
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+DECL|method|isSupertypeOf (Type type)
+specifier|public
+specifier|final
+name|boolean
+name|isSupertypeOf
+parameter_list|(
+name|Type
+name|type
+parameter_list|)
+block|{
+return|return
 name|of
 argument_list|(
 name|type
 argument_list|)
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|getType
+argument_list|()
 argument_list|)
 return|;
+block|}
+comment|/**    * Returns true if this type is a subtype of the given {@code type}. "Subtype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+DECL|method|isSubtypeOf (TypeToken<?> type)
+specifier|public
+specifier|final
+name|boolean
+name|isSubtypeOf
+parameter_list|(
+name|TypeToken
+argument_list|<
+name|?
+argument_list|>
+name|type
+parameter_list|)
+block|{
+return|return
+name|isSubtypeOf
+argument_list|(
+name|type
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns true if this type is a subtype of the given {@code type}. "Subtype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
+DECL|method|isSubtypeOf (Type supertype)
+specifier|public
+specifier|final
+name|boolean
+name|isSubtypeOf
+parameter_list|(
+name|Type
+name|supertype
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|supertype
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|supertype
+operator|instanceof
+name|WildcardType
+condition|)
+block|{
+comment|// if 'supertype' is<? super Foo>, 'this' can be:
+comment|// Foo, SubFoo,<? extends Foo>.
+comment|// if 'supertype' is<? extends Foo>, nothing is a subtype.
+return|return
+name|any
+argument_list|(
+operator|(
+operator|(
+name|WildcardType
+operator|)
+name|supertype
+operator|)
+operator|.
+name|getLowerBounds
+argument_list|()
+argument_list|)
+operator|.
+name|isSupertypeOf
+argument_list|(
+name|runtimeType
+argument_list|)
+return|;
+block|}
+comment|// if 'this' is wildcard, it's a suptype of to 'supertype' if any of its "extends"
+comment|// bounds is a subtype of 'supertype'.
+if|if
+condition|(
+name|runtimeType
+operator|instanceof
+name|WildcardType
+condition|)
+block|{
+comment|//<? super Base> is of no use in checking 'from' being a subtype of 'to'.
+return|return
+name|any
+argument_list|(
+operator|(
+operator|(
+name|WildcardType
+operator|)
+name|runtimeType
+operator|)
+operator|.
+name|getUpperBounds
+argument_list|()
+argument_list|)
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|supertype
+argument_list|)
+return|;
+block|}
+comment|// if 'this' is type variable, it's a subtype if any of its "extends"
+comment|// bounds is a subtype of 'supertype'.
+if|if
+condition|(
+name|runtimeType
+operator|instanceof
+name|TypeVariable
+condition|)
+block|{
+return|return
+name|runtimeType
+operator|.
+name|equals
+argument_list|(
+name|supertype
+argument_list|)
+operator|||
+name|any
+argument_list|(
+operator|(
+operator|(
+name|TypeVariable
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|runtimeType
+operator|)
+operator|.
+name|getBounds
+argument_list|()
+argument_list|)
+operator|.
+name|isSubtypeOf
+argument_list|(
+name|supertype
+argument_list|)
+return|;
+block|}
+if|if
+condition|(
+name|runtimeType
+operator|instanceof
+name|GenericArrayType
+condition|)
+block|{
+return|return
+name|of
+argument_list|(
+name|supertype
+argument_list|)
+operator|.
+name|isSuperTypeOfArray
+argument_list|(
+operator|(
+name|GenericArrayType
+operator|)
+name|runtimeType
+argument_list|)
+return|;
+block|}
+comment|// Proceed to regular Type subtype check
+if|if
+condition|(
+name|supertype
+operator|instanceof
+name|Class
+condition|)
+block|{
+return|return
+name|this
+operator|.
+name|someRawTypeIsSubclassOf
+argument_list|(
+operator|(
+name|Class
+argument_list|<
+name|?
+argument_list|>
+operator|)
+name|supertype
+argument_list|)
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|supertype
+operator|instanceof
+name|ParameterizedType
+condition|)
+block|{
+return|return
+name|this
+operator|.
+name|isSubtypeOfParameterizedType
+argument_list|(
+operator|(
+name|ParameterizedType
+operator|)
+name|supertype
+argument_list|)
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|supertype
+operator|instanceof
+name|GenericArrayType
+condition|)
+block|{
+return|return
+name|this
+operator|.
+name|isSubTypeOfArrayType
+argument_list|(
+operator|(
+name|GenericArrayType
+operator|)
+name|supertype
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+comment|// to instanceof TypeVariable
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|/**    * Returns true if this type is known to be an array type, such as {@code int[]}, {@code T[]},    * {@code<? extends Map<String, Integer>[]>} etc.    */
 DECL|method|isArray ()
@@ -1872,7 +2151,7 @@ name|checkArgument
 argument_list|(
 name|this
 operator|.
-name|extendsFromClass
+name|someRawTypeIsSubclassOf
 argument_list|(
 name|method
 operator|.
@@ -3200,214 +3479,10 @@ block|}
 end_function
 
 begin_function
-DECL|method|extendsFrom (Type supertype)
+DECL|method|someRawTypeIsSubclassOf (Class<?> superclass)
 specifier|private
 name|boolean
-name|extendsFrom
-parameter_list|(
-name|Type
-name|supertype
-parameter_list|)
-block|{
-if|if
-condition|(
-name|supertype
-operator|instanceof
-name|WildcardType
-condition|)
-block|{
-comment|// if 'supertype' is<? super Foo>, 'this' can be:
-comment|// Foo, SubFoo,<? extends Foo>.
-comment|// if 'supertype' is<? extends Foo>, nothing assignable.
-return|return
-name|any
-argument_list|(
-operator|(
-operator|(
-name|WildcardType
-operator|)
-name|supertype
-operator|)
-operator|.
-name|getLowerBounds
-argument_list|()
-argument_list|)
-operator|.
-name|isSupertypeOf
-argument_list|(
-name|runtimeType
-argument_list|)
-return|;
-block|}
-comment|// if 'this' is wildcard, it's assignable to 'supertype' if any of its "extends"
-comment|// bounds is assignable to 'supertype'.
-if|if
-condition|(
-name|runtimeType
-operator|instanceof
-name|WildcardType
-condition|)
-block|{
-comment|//<? super Base> is of no use in checking 'from' being a subtype of 'to'.
-return|return
-name|any
-argument_list|(
-operator|(
-operator|(
-name|WildcardType
-operator|)
-name|runtimeType
-operator|)
-operator|.
-name|getUpperBounds
-argument_list|()
-argument_list|)
-operator|.
-name|extendsFrom
-argument_list|(
-name|supertype
-argument_list|)
-return|;
-block|}
-comment|// if 'this' is type variable, it's assignable if any of its "extends"
-comment|// bounds is assignable to 'supertype'.
-if|if
-condition|(
-name|runtimeType
-operator|instanceof
-name|TypeVariable
-condition|)
-block|{
-return|return
-name|runtimeType
-operator|.
-name|equals
-argument_list|(
-name|supertype
-argument_list|)
-operator|||
-name|any
-argument_list|(
-operator|(
-operator|(
-name|TypeVariable
-argument_list|<
-name|?
-argument_list|>
-operator|)
-name|runtimeType
-operator|)
-operator|.
-name|getBounds
-argument_list|()
-argument_list|)
-operator|.
-name|extendsFrom
-argument_list|(
-name|supertype
-argument_list|)
-return|;
-block|}
-if|if
-condition|(
-name|runtimeType
-operator|instanceof
-name|GenericArrayType
-condition|)
-block|{
-return|return
-name|of
-argument_list|(
-name|supertype
-argument_list|)
-operator|.
-name|isSuperTypeOfArray
-argument_list|(
-operator|(
-name|GenericArrayType
-operator|)
-name|runtimeType
-argument_list|)
-return|;
-block|}
-comment|// Proceed to regular Type assignability check
-if|if
-condition|(
-name|supertype
-operator|instanceof
-name|Class
-condition|)
-block|{
-return|return
-name|this
-operator|.
-name|extendsFromClass
-argument_list|(
-operator|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-operator|)
-name|supertype
-argument_list|)
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|supertype
-operator|instanceof
-name|ParameterizedType
-condition|)
-block|{
-return|return
-name|this
-operator|.
-name|extendsFromParameterizedType
-argument_list|(
-operator|(
-name|ParameterizedType
-operator|)
-name|supertype
-argument_list|)
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|supertype
-operator|instanceof
-name|GenericArrayType
-condition|)
-block|{
-return|return
-name|this
-operator|.
-name|extendsFromArrayType
-argument_list|(
-operator|(
-name|GenericArrayType
-operator|)
-name|supertype
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-comment|// to instanceof TypeVariable
-return|return
-literal|false
-return|;
-block|}
-block|}
-end_function
-
-begin_function
-DECL|method|extendsFromClass (Class<?> superclass)
-specifier|private
-name|boolean
-name|extendsFromClass
+name|someRawTypeIsSubclassOf
 parameter_list|(
 name|Class
 argument_list|<
@@ -3450,10 +3525,10 @@ block|}
 end_function
 
 begin_function
-DECL|method|extendsFromParameterizedType (ParameterizedType supertype)
+DECL|method|isSubtypeOfParameterizedType (ParameterizedType supertype)
 specifier|private
 name|boolean
-name|extendsFromParameterizedType
+name|isSubtypeOfParameterizedType
 parameter_list|(
 name|ParameterizedType
 name|supertype
@@ -3478,7 +3553,7 @@ condition|(
 operator|!
 name|this
 operator|.
-name|extendsFromClass
+name|someRawTypeIsSubclassOf
 argument_list|(
 name|matchedClass
 argument_list|)
@@ -3562,10 +3637,10 @@ block|}
 end_function
 
 begin_function
-DECL|method|extendsFromArrayType (GenericArrayType supertype)
+DECL|method|isSubTypeOfArrayType (GenericArrayType supertype)
 specifier|private
 name|boolean
-name|extendsFromArrayType
+name|isSubTypeOfArrayType
 parameter_list|(
 name|GenericArrayType
 name|supertype
@@ -3614,7 +3689,7 @@ name|getComponentType
 argument_list|()
 argument_list|)
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|supertype
 operator|.
@@ -3648,7 +3723,7 @@ name|getGenericComponentType
 argument_list|()
 argument_list|)
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|supertype
 operator|.
@@ -3727,7 +3802,7 @@ name|getGenericComponentType
 argument_list|()
 argument_list|)
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|thisClass
 operator|.
@@ -3753,7 +3828,7 @@ name|getGenericComponentType
 argument_list|()
 argument_list|)
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 operator|(
 operator|(
@@ -3848,7 +3923,7 @@ name|getLowerBounds
 argument_list|()
 argument_list|)
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|runtimeType
 argument_list|)
@@ -3954,9 +4029,9 @@ operator|=
 name|target
 expr_stmt|;
 block|}
-DECL|method|extendsFrom (Type supertype)
+DECL|method|isSubtypeOf (Type supertype)
 name|boolean
-name|extendsFrom
+name|isSubtypeOf
 parameter_list|(
 name|Type
 name|supertype
@@ -3977,7 +4052,7 @@ argument_list|(
 name|bound
 argument_list|)
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|supertype
 argument_list|)
@@ -4026,7 +4101,7 @@ if|if
 condition|(
 name|type
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|bound
 argument_list|)
@@ -4463,7 +4538,7 @@ if|if
 condition|(
 name|bound
 operator|.
-name|extendsFrom
+name|isSubtypeOf
 argument_list|(
 name|supertype
 argument_list|)
@@ -4478,7 +4553,7 @@ block|,
 literal|"unchecked"
 block|}
 argument_list|)
-comment|// guarded by the isAssignableFrom check.
+comment|// guarded by the isSubtypeOf check.
 name|TypeToken
 argument_list|<
 name|?
