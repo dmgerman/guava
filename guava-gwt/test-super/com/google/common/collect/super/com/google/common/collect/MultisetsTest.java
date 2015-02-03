@@ -528,7 +528,7 @@ name|assertFalse
 argument_list|(
 name|Multisets
 operator|.
-name|retainOccurrences
+name|removeOccurrences
 argument_list|(
 name|multiset
 argument_list|,

@@ -3030,7 +3030,7 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 18.0 (present in 10.0 with a requirement that the second parameter    *     be a {@code Multiset})    */
+comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * Iterables.frequency(occurrencesToRemove, e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 18.0 (present in 10.0 with a requirement that the second parameter    *     be a {@code Multiset})    */
 DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Iterable<?> occurrencesToRemove)
 specifier|public
 specifier|static
@@ -3058,7 +3058,7 @@ name|Multiset
 condition|)
 block|{
 return|return
-name|removeOccurrencesImpl
+name|removeOccurrences
 argument_list|(
 name|multisetToModify
 argument_list|,
@@ -3073,35 +3073,6 @@ argument_list|)
 return|;
 block|}
 else|else
-block|{
-return|return
-name|removeOccurrencesImpl
-argument_list|(
-name|multisetToModify
-argument_list|,
-name|occurrencesToRemove
-argument_list|)
-return|;
-block|}
-block|}
-DECL|method|removeOccurrencesImpl ( Multiset<?> multisetToModify, Iterable<?> occurrencesToRemove)
-specifier|private
-specifier|static
-name|boolean
-name|removeOccurrencesImpl
-parameter_list|(
-name|Multiset
-argument_list|<
-name|?
-argument_list|>
-name|multisetToModify
-parameter_list|,
-name|Iterable
-argument_list|<
-name|?
-argument_list|>
-name|occurrencesToRemove
-parameter_list|)
 block|{
 name|checkNotNull
 argument_list|(
@@ -3140,19 +3111,17 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**    * Delegate that cares about the element types in multisetToModify.    */
-DECL|method|removeOccurrencesImpl ( Multiset<E> multisetToModify, Multiset<?> occurrencesToRemove)
-specifier|private
+block|}
+comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0 (missing in 18.0 when only the overload taking an {@code Iterable} was present)    */
+DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Multiset<?> occurrencesToRemove)
+specifier|public
 specifier|static
-parameter_list|<
-name|E
-parameter_list|>
 name|boolean
-name|removeOccurrencesImpl
+name|removeOccurrences
 parameter_list|(
 name|Multiset
 argument_list|<
-name|E
+name|?
 argument_list|>
 name|multisetToModify
 parameter_list|,
@@ -3163,7 +3132,6 @@ argument_list|>
 name|occurrencesToRemove
 parameter_list|)
 block|{
-comment|// TODO(user): generalize to removing an Iterable, perhaps
 name|checkNotNull
 argument_list|(
 name|multisetToModify
@@ -3181,9 +3149,11 @@ literal|false
 decl_stmt|;
 name|Iterator
 argument_list|<
+name|?
+extends|extends
 name|Entry
 argument_list|<
-name|E
+name|?
 argument_list|>
 argument_list|>
 name|entryIterator
@@ -3206,7 +3176,7 @@ condition|)
 block|{
 name|Entry
 argument_list|<
-name|E
+name|?
 argument_list|>
 name|entry
 init|=
