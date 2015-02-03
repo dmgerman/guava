@@ -921,7 +921,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets sample instances for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the sample instances can be passed to create {@code Foo} instances that are unequal.    *    *<p>Used for types where {@link ClassSanityTester} doesn't already know how to instantiate    * distinct values. It's usually necessary to add two unequal instances for each type, with the    * exception that if the sample instance is to be passed to a {@link Nullable} parameter, one    * non-null sample is sufficient. Setting an empty list will clear sample instances for {@code    * type}.     *     * @deprecated Use {@link #setDistinctValues} instead.    */
+comment|/**    * Sets sample instances for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the sample instances can be passed to create {@code Foo} instances that are unequal.    *    *<p>Used for types where {@link ClassSanityTester} doesn't already know how to instantiate    * distinct values. It's usually necessary to add two unequal instances for each type, with the    * exception that if the sample instance is to be passed to a {@link Nullable} parameter, one    * non-null sample is sufficient. Setting an empty list will clear sample instances for {@code    * type}.    *    * @deprecated Use {@link #setDistinctValues} instead. This method will be removed in Guava    *     release 20.0.    */
 annotation|@
 name|Deprecated
 DECL|method|setSampleInstances (Class<T> type, Iterable<? extends T> instances)
@@ -3328,10 +3328,10 @@ name|generator
 return|;
 block|}
 DECL|method|generateDummyArg (Parameter param, FreshValueGenerator generator)
-specifier|private
-specifier|static
 annotation|@
 name|Nullable
+specifier|private
+specifier|static
 name|Object
 name|generateDummyArg
 parameter_list|(
@@ -4152,8 +4152,8 @@ name|Serializable
 block|{
 DECL|field|tester
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|ClassSanityTester
 name|tester
 decl_stmt|;
