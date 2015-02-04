@@ -240,7 +240,7 @@ expr_stmt|;
 block|}
 comment|// Helper to assert common properties of xml escapers.
 DECL|method|assertBasicXmlEscaper (CharEscaper xmlEscaper, boolean shouldEscapeQuotes, boolean shouldEscapeWhitespaceChars)
-specifier|private
+specifier|static
 name|void
 name|assertBasicXmlEscaper
 parameter_list|(

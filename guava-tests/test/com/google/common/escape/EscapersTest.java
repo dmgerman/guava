@@ -605,7 +605,7 @@ block|}
 block|}
 comment|// A trival non-optimized escaper for testing.
 DECL|method|createSimpleCharEscaper ( final ImmutableMap<Character, char[]> replacementMap)
-specifier|private
+specifier|static
 name|CharEscaper
 name|createSimpleCharEscaper
 parameter_list|(
@@ -650,7 +650,7 @@ return|;
 block|}
 comment|// A trival non-optimized escaper for testing.
 DECL|method|createSimpleUnicodeEscaper ( final ImmutableMap<Integer, char[]> replacementMap)
-specifier|private
+specifier|static
 name|UnicodeEscaper
 name|createSimpleUnicodeEscaper
 parameter_list|(
