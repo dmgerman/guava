@@ -4963,7 +4963,7 @@ argument_list|>
 argument_list|()
 block|{}
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|defaultType
 argument_list|)

@@ -641,7 +641,7 @@ condition|(
 operator|!
 name|returnType
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|getReturnType
 argument_list|()

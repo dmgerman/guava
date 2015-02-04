@@ -3526,7 +3526,7 @@ argument_list|()
 operator|&&
 name|type
 operator|.
-name|isAssignableFrom
+name|isSupertypeOf
 argument_list|(
 name|invokable
 operator|.
