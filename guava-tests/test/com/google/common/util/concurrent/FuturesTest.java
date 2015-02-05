@@ -255,18 +255,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|expect
-import|;
-end_import
-
-begin_import
 import|import
 name|com
 operator|.
@@ -473,26 +461,6 @@ operator|.
 name|framework
 operator|.
 name|AssertionFailedError
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|easymock
-operator|.
-name|IMocksControl
 import|;
 end_import
 
@@ -797,16 +765,6 @@ decl_stmt|;
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"mocks"
-argument_list|)
-DECL|field|mocksControl
-specifier|private
-name|IMocksControl
-name|mocksControl
-decl_stmt|;
-annotation|@
-name|GwtIncompatible
-argument_list|(
 literal|"TestLogHandler, mocks"
 argument_list|)
 annotation|@
@@ -830,13 +788,6 @@ name|addHandler
 argument_list|(
 name|combinedFutureLogHandler
 argument_list|)
-expr_stmt|;
-name|mocksControl
-operator|=
-name|EasyMock
-operator|.
-name|createControl
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1428,7 +1379,7 @@ class|class
 name|MyException
 extends|extends
 name|Exception
-block|{}
+block|{    }
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1713,7 +1664,7 @@ specifier|private
 specifier|static
 class|class
 name|Foo
-block|{}
+block|{    }
 DECL|class|FooChild
 specifier|private
 specifier|static
@@ -1721,13 +1672,13 @@ class|class
 name|FooChild
 extends|extends
 name|Foo
-block|{}
+block|{    }
 DECL|class|Bar
 specifier|private
 specifier|static
 class|class
 name|Bar
-block|{}
+block|{    }
 DECL|class|BarChild
 specifier|private
 specifier|static
@@ -1735,7 +1686,7 @@ class|class
 name|BarChild
 extends|extends
 name|Bar
-block|{}
+block|{    }
 DECL|method|testTransform_genericsNull ()
 specifier|public
 name|void
@@ -2366,7 +2317,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Tests that the function is invoked only once, even if it throws an    * exception.    */
+comment|/**    * Tests that the function is invoked only once, even if it throws an exception.    */
 DECL|method|testTransformValueRemainsMemoized ()
 specifier|public
 name|void
@@ -2634,15 +2585,15 @@ class|class
 name|MyError
 extends|extends
 name|Error
-block|{}
+block|{    }
 DECL|class|MyRuntimeException
 specifier|static
 class|class
 name|MyRuntimeException
 extends|extends
 name|RuntimeException
-block|{}
-comment|/**    * Test that the function is invoked only once, even if it throws an    * exception. Also, test that that function's result is wrapped in an    * ExecutionException.    */
+block|{    }
+comment|/**    * Test that the function is invoked only once, even if it throws an exception. Also, test that    * that function's result is wrapped in an ExecutionException.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -3036,9 +2987,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|execute (Runnable command)
 annotation|@
 name|Override
+DECL|method|execute (Runnable command)
 specifier|public
 name|void
 name|execute
@@ -3483,16 +3434,180 @@ name|applyCount
 return|;
 block|}
 block|}
+DECL|class|FutureFallbackSpy
+specifier|private
+specifier|static
+class|class
+name|FutureFallbackSpy
+parameter_list|<
+name|V
+parameter_list|>
+implements|implements
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+block|{
+DECL|field|count
+specifier|private
+name|int
+name|count
+decl_stmt|;
+DECL|field|delegate
+specifier|private
+specifier|final
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+decl_stmt|;
+DECL|method|FutureFallbackSpy (FutureFallback<V> delegate)
+specifier|public
+name|FutureFallbackSpy
+parameter_list|(
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|)
+block|{
+name|this
+operator|.
+name|delegate
+operator|=
+name|delegate
+expr_stmt|;
+block|}
 annotation|@
-name|GwtIncompatible
+name|Override
+DECL|method|create (Throwable t)
+specifier|public
+specifier|final
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|create
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|count
+operator|++
+expr_stmt|;
+return|return
+name|delegate
+operator|.
+name|create
 argument_list|(
-literal|"withFallback"
+name|t
 argument_list|)
+return|;
+block|}
+DECL|method|verifyCallCount (int expected)
+name|void
+name|verifyCallCount
+parameter_list|(
+name|int
+name|expected
+parameter_list|)
+block|{
+name|assertThat
+argument_list|(
+name|count
+argument_list|)
+operator|.
+name|is
+argument_list|(
+name|expected
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|spy (FutureFallback<V> delegate)
+specifier|private
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|FutureFallbackSpy
+argument_list|<
+name|V
+argument_list|>
+name|spy
+parameter_list|(
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+name|delegate
+parameter_list|)
+block|{
+return|return
+operator|new
+name|FutureFallbackSpy
+argument_list|<
+name|V
+argument_list|>
+argument_list|(
+name|delegate
+argument_list|)
+return|;
+block|}
+DECL|method|unexpectedFallback ()
+specifier|private
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+name|unexpectedFallback
+parameter_list|()
+block|{
+return|return
+operator|new
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+argument_list|()
+block|{
 annotation|@
-name|SuppressWarnings
+name|Override
+specifier|public
+name|ListenableFuture
+argument_list|<
+name|V
+argument_list|>
+name|create
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+throw|throw
+operator|new
+name|AssertionError
 argument_list|(
-literal|"unchecked"
+literal|"Unexpected fallback"
+argument_list|,
+name|t
 argument_list|)
+throw|;
+block|}
+block|}
+return|;
+block|}
 DECL|method|testWithFallback_inputDoesNotRaiseException ()
 specifier|public
 name|void
@@ -3507,14 +3622,8 @@ name|Integer
 argument_list|>
 name|fallback
 init|=
-name|mocksControl
-operator|.
-name|createMock
-argument_list|(
-name|FutureFallback
-operator|.
-name|class
-argument_list|)
+name|unexpectedFallback
+argument_list|()
 decl_stmt|;
 name|ListenableFuture
 argument_list|<
@@ -3529,11 +3638,6 @@ argument_list|(
 literal|7
 argument_list|)
 decl_stmt|;
-name|mocksControl
-operator|.
-name|replay
-argument_list|()
-expr_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -3562,22 +3666,7 @@ name|intValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|mocksControl
-operator|.
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|testWithFallback_inputRaisesException ()
 specifier|public
 name|void
@@ -3586,21 +3675,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|FutureFallback
-argument_list|<
-name|Integer
-argument_list|>
-name|fallback
-init|=
-name|mocksControl
-operator|.
-name|createMock
-argument_list|(
-name|FutureFallback
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+specifier|final
 name|RuntimeException
 name|raisedException
 init|=
@@ -3608,26 +3683,58 @@ operator|new
 name|RuntimeException
 argument_list|()
 decl_stmt|;
-name|expect
-argument_list|(
+name|FutureFallbackSpy
+argument_list|<
+name|Integer
+argument_list|>
 name|fallback
-operator|.
+init|=
+name|spy
+argument_list|(
+operator|new
+name|FutureFallback
+argument_list|<
+name|Integer
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|ListenableFuture
+argument_list|<
+name|Integer
+argument_list|>
 name|create
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|assertThat
+argument_list|(
+name|t
+argument_list|)
+operator|.
+name|isSameAs
 argument_list|(
 name|raisedException
 argument_list|)
-argument_list|)
-operator|.
-name|andReturn
-argument_list|(
+expr_stmt|;
+return|return
 name|Futures
 operator|.
 name|immediateFuture
 argument_list|(
 literal|20
 argument_list|)
+return|;
+block|}
+block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -3641,16 +3748,11 @@ argument_list|(
 name|raisedException
 argument_list|)
 decl_stmt|;
-name|mocksControl
-operator|.
-name|replay
-argument_list|()
-expr_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
 argument_list|>
-name|faultToleranteFuture
+name|faultTolerantFuture
 init|=
 name|Futures
 operator|.
@@ -3665,7 +3767,7 @@ name|assertEquals
 argument_list|(
 literal|20
 argument_list|,
-name|faultToleranteFuture
+name|faultTolerantFuture
 operator|.
 name|get
 argument_list|()
@@ -3674,17 +3776,14 @@ name|intValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|mocksControl
+name|fallback
 operator|.
-name|verify
-argument_list|()
+name|verifyCallCount
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
 DECL|method|testWithFallback_fallbackGeneratesRuntimeException ()
 specifier|public
 name|void
@@ -3708,11 +3807,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
 DECL|method|testWithFallback_fallbackGeneratesCheckedException ()
 specifier|public
 name|void
@@ -3727,7 +3821,7 @@ init|=
 operator|new
 name|Exception
 argument_list|()
-block|{}
+block|{     }
 decl_stmt|;
 name|runExpectedExceptionFallbackTest
 argument_list|(
@@ -3737,16 +3831,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|testWithFallback_fallbackGeneratesError ()
 specifier|public
 name|void
@@ -3852,11 +3936,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
 DECL|method|testWithFallback_fallbackReturnsRuntimeException ()
 specifier|public
 name|void
@@ -3880,11 +3959,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
 DECL|method|testWithFallback_fallbackReturnsCheckedException ()
 specifier|public
 name|void
@@ -3899,7 +3973,7 @@ init|=
 operator|new
 name|Exception
 argument_list|()
-block|{}
+block|{     }
 decl_stmt|;
 name|runExpectedExceptionFallbackTest
 argument_list|(
@@ -3909,102 +3983,77 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-DECL|method|runExpectedExceptionFallbackTest ( Throwable expectedException, boolean wrapInFuture)
+DECL|method|runExpectedExceptionFallbackTest ( final Exception expectedException, final boolean wrapInFuture)
 specifier|private
 name|void
 name|runExpectedExceptionFallbackTest
 parameter_list|(
-name|Throwable
+specifier|final
+name|Exception
 name|expectedException
 parameter_list|,
+specifier|final
 name|boolean
 name|wrapInFuture
 parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|FutureFallback
+name|FutureFallbackSpy
 argument_list|<
 name|Integer
 argument_list|>
 name|fallback
 init|=
-name|mocksControl
-operator|.
-name|createMock
+name|spy
 argument_list|(
-name|FutureFallback
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|RuntimeException
-name|raisedException
-init|=
 operator|new
-name|RuntimeException
+name|FutureFallback
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
-decl_stmt|;
+block|{
+annotation|@
+name|Override
+specifier|public
+name|ListenableFuture
+argument_list|<
+name|Integer
+argument_list|>
+name|create
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+throws|throws
+name|Exception
+block|{
 if|if
 condition|(
 operator|!
 name|wrapInFuture
 condition|)
 block|{
-comment|// Exception is thrown in the body of the "fallback" method.
-name|expect
-argument_list|(
-name|fallback
-operator|.
-name|create
-argument_list|(
-name|raisedException
-argument_list|)
-argument_list|)
-operator|.
-name|andThrow
-argument_list|(
+throw|throw
 name|expectedException
-argument_list|)
-expr_stmt|;
+throw|;
 block|}
 else|else
 block|{
-comment|// Exception is wrapped in a future and returned.
-name|expect
-argument_list|(
-name|fallback
-operator|.
-name|create
-argument_list|(
-name|raisedException
-argument_list|)
-argument_list|)
-operator|.
-name|andReturn
-argument_list|(
+return|return
 name|Futures
 operator|.
-expr|<
-name|Integer
-operator|>
 name|immediateFailedFuture
 argument_list|(
 name|expectedException
 argument_list|)
-argument_list|)
-expr_stmt|;
+return|;
 block|}
+block|}
+block|}
+argument_list|)
+decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -4015,14 +4064,11 @@ name|Futures
 operator|.
 name|immediateFailedFuture
 argument_list|(
-name|raisedException
+operator|new
+name|RuntimeException
+argument_list|()
 argument_list|)
 decl_stmt|;
-name|mocksControl
-operator|.
-name|replay
-argument_list|()
-expr_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -4068,17 +4114,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|mocksControl
+name|fallback
 operator|.
-name|verify
-argument_list|()
+name|verifyCallCount
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
 DECL|method|testWithFallback_fallbackNotReady ()
 specifier|public
 name|void
@@ -4180,16 +4223,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|testWithFallback_resultInterruptedBeforeFallback ()
 specifier|public
 name|void
@@ -4215,20 +4248,9 @@ name|Integer
 argument_list|>
 name|fallback
 init|=
-name|mocksControl
-operator|.
-name|createMock
-argument_list|(
-name|FutureFallback
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|mocksControl
-operator|.
-name|replay
+name|unexpectedFallback
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -4267,22 +4289,7 @@ name|wasInterrupted
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|mocksControl
-operator|.
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|testWithFallback_resultCancelledBeforeFallback ()
 specifier|public
 name|void
@@ -4308,20 +4315,9 @@ name|Integer
 argument_list|>
 name|fallback
 init|=
-name|mocksControl
-operator|.
-name|createMock
-argument_list|(
-name|FutureFallback
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|mocksControl
-operator|.
-name|replay
+name|unexpectedFallback
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -4360,16 +4356,11 @@ name|wasInterrupted
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|mocksControl
-operator|.
-name|verify
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"withFallback"
+literal|"mocks"
 argument_list|)
 annotation|@
 name|SuppressWarnings
@@ -4384,6 +4375,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|SettableFuture
 argument_list|<
 name|Integer
@@ -4395,21 +4387,7 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-name|FutureFallback
-argument_list|<
-name|Integer
-argument_list|>
-name|fallback
-init|=
-name|mocksControl
-operator|.
-name|createMock
-argument_list|(
-name|FutureFallback
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+specifier|final
 name|RuntimeException
 name|raisedException
 init|=
@@ -4417,21 +4395,53 @@ operator|new
 name|RuntimeException
 argument_list|()
 decl_stmt|;
-name|expect
-argument_list|(
+name|FutureFallbackSpy
+argument_list|<
+name|Integer
+argument_list|>
 name|fallback
-operator|.
+init|=
+name|spy
+argument_list|(
+operator|new
+name|FutureFallback
+argument_list|<
+name|Integer
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|ListenableFuture
+argument_list|<
+name|Integer
+argument_list|>
 name|create
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|assertThat
+argument_list|(
+name|t
+argument_list|)
+operator|.
+name|isSameAs
 argument_list|(
 name|raisedException
 argument_list|)
-argument_list|)
-operator|.
-name|andReturn
-argument_list|(
-name|secondary
-argument_list|)
 expr_stmt|;
+return|return
+name|secondary
+return|;
+block|}
+block|}
+argument_list|)
+decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -4445,11 +4455,6 @@ argument_list|(
 name|raisedException
 argument_list|)
 decl_stmt|;
-name|mocksControl
-operator|.
-name|replay
-argument_list|()
-expr_stmt|;
 name|ListenableFuture
 argument_list|<
 name|Integer
@@ -4488,17 +4493,14 @@ name|wasInterrupted
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|mocksControl
+name|fallback
 operator|.
-name|verify
-argument_list|()
+name|verifyCallCount
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"withFallback"
-argument_list|)
 DECL|method|testWithFallback_nullInsteadOfFuture ()
 specifier|public
 name|void
@@ -4509,7 +4511,7 @@ name|Exception
 block|{
 name|ListenableFuture
 argument_list|<
-name|?
+name|Integer
 argument_list|>
 name|inputFuture
 init|=
@@ -4772,7 +4774,7 @@ argument_list|<
 name|BarChild
 argument_list|>
 argument_list|()
-block|{}
+block|{             }
 decl_stmt|;
 name|future
 operator|.
@@ -4886,7 +4888,7 @@ parameter_list|(
 name|TimeoutException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testTransform_asyncFunction_error ()
 specifier|public
@@ -5251,7 +5253,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|resultFuture
@@ -5268,7 +5270,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 DECL|method|testDereference_genericsWildcard ()
 specifier|public
@@ -5636,7 +5638,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Runnable which can be called a single time, and only after    * {@link #expectCall} is called.    */
+comment|/**    * Runnable which can be called a single time, and only after {@link #expectCall} is called.    */
 comment|// TODO(cpovirk): top-level class?
 DECL|class|SingleCallListener
 specifier|static
@@ -5664,9 +5666,9 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -7103,7 +7105,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Test the case where the futures are fulfilled prior to    * constructing the ListFuture.  There was a bug where the    * loop that connects a Listener to each of the futures would die    * on the last loop-check as done() on ListFuture nulled out the    * variable being looped over (the list of futures).    */
+comment|/**    * Test the case where the futures are fulfilled prior to constructing the ListFuture.  There was    * a bug where the loop that connects a Listener to each of the futures would die on the last    * loop-check as done() on ListFuture nulled out the variable being looped over (the list of    * futures).    */
 DECL|method|testAllAsList_doneFutures ()
 specifier|public
 name|void
@@ -7615,7 +7617,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Different exceptions happening on multiple futures with the same cause    * should not be logged.    */
+comment|/**    * Different exceptions happening on multiple futures with the same cause should not be logged.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -7764,7 +7766,7 @@ name|b
 return|;
 block|}
 comment|/*    * TODO(cpovirk): maybe pass around TestFuture instances instead of    * ListenableFuture instances    */
-comment|/**    * A future in {@link TestFutureBatch} that also has a name for debugging    * purposes and a {@code finisher}, a task that will complete the future in    * some fashion when it is called, allowing for testing both before and after    * the completion of the future.    */
+comment|/**    * A future in {@link TestFutureBatch} that also has a name for debugging purposes and a {@code    * finisher}, a task that will complete the future in some fashion when it is called, allowing for    * testing both before and after the completion of the future.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -7831,7 +7833,7 @@ name|finisher
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A collection of several futures, covering cancellation, success, and    * failure (both {@link ExecutionException} and {@link RuntimeException}),    * both immediate and delayed. We use each possible pair of these futures in    * {@link FuturesTest#runExtensiveMergerTest}.    *    *<p>Each test requires a new {@link TestFutureBatch} because we need new    * delayed futures each time, as the old delayed futures were completed as    * part of the old test.    */
+comment|/**    * A collection of several futures, covering cancellation, success, and failure (both {@link    * ExecutionException} and {@link RuntimeException}), both immediate and delayed. We use each    * possible pair of these futures in {@link FuturesTest#runExtensiveMergerTest}.    *    *<p>Each test requires a new {@link TestFutureBatch} because we need new delayed futures each    * time, as the old delayed futures were completed as part of the old test.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -8232,7 +8234,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|/**      * All the futures, together with human-readable names for use by      * {@link #smartToString}.      */
+comment|/**      * All the futures, together with human-readable names for use by {@link #smartToString}.      */
 DECL|field|allFutures
 specifier|final
 name|ImmutableList
@@ -8434,7 +8436,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/**      * Like {@code inputs.toString()}, but with the nonsense {@code toString}      * representations replaced with the name of each future from      * {@link #allFutures}.      */
+comment|/**      * Like {@code inputs.toString()}, but with the nonsense {@code toString} representations      * replaced with the name of each future from {@link #allFutures}.      */
 DECL|method|smartToString (ImmutableSet<ListenableFuture<String>> inputs)
 name|String
 name|smartToString
@@ -8868,7 +8870,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * {@link Futures#allAsList(Iterable)} or    * {@link Futures#successfulAsList(Iterable)}, hidden behind a common    * interface for testing.    */
+comment|/**    * {@link Futures#allAsList(Iterable)} or {@link Futures#successfulAsList(Iterable)}, hidden    * behind a common interface for testing.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -9001,7 +9003,7 @@ block|}
 block|}
 decl_stmt|;
 block|}
-comment|/**    * Very rough equivalent of a timed get, produced by calling the no-arg get    * method in another thread and waiting a short time for it.    *    *<p>We need this to test the behavior of no-arg get methods without hanging    * the main test thread forever in the case of failure.    */
+comment|/**    * Very rough equivalent of a timed get, produced by calling the no-arg get method in another    * thread and waiting a short time for it.    *    *<p>We need this to test the behavior of no-arg get methods without hanging the main test thread    * forever in the case of failure.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -9137,7 +9139,7 @@ expr_stmt|;
 comment|// TODO(cpovirk: assertTrue(awaitTerminationUninterruptibly(executor, 10, SECONDS));
 block|}
 block|}
-comment|/**    * For each possible pair of futures from {@link TestFutureBatch}, for each    * possible completion order of those futures, test that various get calls    * (timed before future completion, untimed before future completion, and    * untimed after future completion) return or throw the proper values.    */
+comment|/**    * For each possible pair of futures from {@link TestFutureBatch}, for each possible completion    * order of those futures, test that various get calls (timed before future completion, untimed    * before future completion, and untimed after future completion) return or throw the proper    * values.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -9634,7 +9636,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**    * Call the non-timed {@link Future#get()} in a way that allows us to abort if    * it's expected to hang forever. More precisely, if it's expected to return,    * we simply call it[*], but if it's expected to hang (because one of the    * input futures that we know makes it up isn't done yet), then we call it in    * a separate thread (using pseudoTimedGet). The result is that we wait as    * long as necessary when the method is expected to return (at the cost of    * hanging forever if there is a bug in the class under test) but that we time    * out fairly promptly when the method is expected to hang (possibly too    * quickly, but too-quick failures should be very unlikely, given that we used    * to bail after 20ms during the expected-successful tests, and there we saw a    * failure rate of ~1/5000, meaning that the other thread's get() call nearly    * always completes within 20ms if it's going to complete at all).    *    * [*] To avoid hangs, I've disabled the in-thread calls. This makes the test    * take (very roughly) 2.5s longer. (2.5s is also the maximum length of time    * we will wait for a timed get that is expected to succeed; the fact that the    * numbers match is only a coincidence.) See the comment below for how to    * restore the fast but hang-y version.    */
+comment|/**    * Call the non-timed {@link Future#get()} in a way that allows us to abort if it's expected to    * hang forever. More precisely, if it's expected to return, we simply call it[*], but if it's    * expected to hang (because one of the input futures that we know makes it up isn't done yet),    * then we call it in a separate thread (using pseudoTimedGet). The result is that we wait as long    * as necessary when the method is expected to return (at the cost of hanging forever if there is    * a bug in the class under test) but that we time out fairly promptly when the method is expected    * to hang (possibly too quickly, but too-quick failures should be very unlikely, given that we    * used to bail after 20ms during the expected-successful tests, and there we saw a failure rate    * of ~1/5000, meaning that the other thread's get() call nearly always completes within 20ms if    * it's going to complete at all).    *    * [*] To avoid hangs, I've disabled the in-thread calls. This makes the test take (very roughly)    * 2.5s longer. (2.5s is also the maximum length of time we will wait for a timed get that is    * expected to succeed; the fact that the numbers match is only a coincidence.) See the comment    * below for how to restore the fast but hang-y version.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -10764,14 +10766,14 @@ specifier|public
 name|void
 name|flush
 parameter_list|()
-block|{}
+block|{       }
 annotation|@
 name|Override
 specifier|public
 name|void
 name|close
 parameter_list|()
-block|{}
+block|{       }
 block|}
 decl_stmt|;
 name|ExecutionList
@@ -11287,7 +11289,7 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Non-Error exceptions are never logged. */
+comment|/**    * Non-Error exceptions are never logged.    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -12371,7 +12373,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|checked
@@ -12394,7 +12396,7 @@ parameter_list|(
 name|CancellationException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|checked
@@ -12551,7 +12553,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 try|try
 block|{
 name|checked
@@ -12574,7 +12576,7 @@ parameter_list|(
 name|NullPointerException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
@@ -12895,7 +12897,7 @@ name|Throwable
 argument_list|,
 name|Exception
 argument_list|>
-block|{}
+block|{    }
 DECL|class|OtherThrowable
 specifier|private
 specifier|static
@@ -12904,7 +12906,7 @@ class|class
 name|OtherThrowable
 extends|extends
 name|Throwable
-block|{}
+block|{    }
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -16190,7 +16192,7 @@ return|return
 name|failure
 return|;
 block|}
-comment|/** A future that throws a runtime exception from get. */
+comment|/**    * A future that throws a runtime exception from get.    */
 DECL|class|BuggyFuture
 specifier|static
 class|class
@@ -16201,9 +16203,9 @@ argument_list|<
 name|String
 argument_list|>
 block|{
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|String
 name|get
@@ -16215,9 +16217,9 @@ name|RuntimeException
 argument_list|()
 throw|;
 block|}
-DECL|method|set (String v)
 annotation|@
 name|Override
+DECL|method|set (String v)
 specifier|public
 name|boolean
 name|set

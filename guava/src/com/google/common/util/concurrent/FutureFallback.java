@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -63,6 +77,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|interface|FutureFallback
 specifier|public
 interface|interface
