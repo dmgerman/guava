@@ -96,6 +96,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -105,6 +115,8 @@ comment|/**  * An immutable object that may contain a non-null reference to anot
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
