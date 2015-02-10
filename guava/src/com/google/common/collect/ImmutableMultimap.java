@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link Multimap}. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableMultimap(Multimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  *<p>In addition to methods defined by {@link Multimap}, an {@link #inverse}  * method is also supported.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * An immutable {@link Multimap}. Does not permit null keys or values.  *  *<p>Unlike {@link Multimaps#unmodifiableMultimap(Multimap)}, which is  * a<i>view</i> of a separate multimap which can still change, an instance of  * {@code ImmutableMultimap} contains its own data and will<i>never</i>  * change. {@code ImmutableMultimap} is convenient for  * {@code public static final} multimaps ("constant multimaps") and also lets  * you easily make a "defensive copy" of a multimap provided to your class by  * a caller.  *  *<a name="iteration"></a>  *<p><b>Key-grouped iteration.</b> All view collections follow the same  * iteration order. In all current implementations, the iteration order always  * keeps multiple entries with the same key together. Any creation method that  * would customarily respect insertion order (such as {@link #copyOf(Multimap)})  * instead preserves key-grouped order by inserting entries for an existing key  * immediately after the last entry having that key.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class  * are guaranteed to be immutable.  *  *<p>In addition to methods defined by {@link Multimap}, an {@link #inverse}  * method is also supported.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -349,7 +349,7 @@ name|v2
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
@@ -404,7 +404,7 @@ name|v3
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
@@ -469,7 +469,7 @@ name|v4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable multimap containing the given entries, in order.    */
+comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
 DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 specifier|public
 specifier|static
@@ -1255,7 +1255,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}. The generated multimap's key and value orderings correspond to    * the iteration ordering of the {@code multimap.asMap()} view.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
+comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}, in the "key-grouped" iteration order described in the class    * documentation.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
 DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
@@ -1799,7 +1799,7 @@ name|size
 return|;
 block|}
 comment|// views
-comment|/**    * Returns an immutable set of the distinct keys in this multimap. These keys    * are ordered according to when they first appeared during the construction    * of this multimap.    */
+comment|/**    * Returns an immutable set of the distinct keys in this multimap, in the same    * order as they appear in this multimap.    */
 annotation|@
 name|Override
 DECL|method|keySet ()
@@ -1818,7 +1818,7 @@ name|keySet
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an immutable map that associates each key with its corresponding    * values in the multimap.    */
+comment|/**    * Returns an immutable map that associates each key with its corresponding    * values in the multimap. Keys and values appear in the same order as in this    * multimap.    */
 annotation|@
 name|Override
 annotation|@
@@ -1871,7 +1871,7 @@ literal|"should never be called"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns an immutable collection of all key-value pairs in the multimap. Its    * iterator traverses the values for the first key, the values for the second    * key, and so on.    */
+comment|/**    * Returns an immutable collection of all key-value pairs in the multimap.    */
 annotation|@
 name|Override
 DECL|method|entries ()
@@ -2315,7 +2315,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a collection, which may contain duplicates, of all keys. The number    * of times a key appears in the returned multiset equals the number of    * mappings the key has in the multimap. Duplicate keys appear consecutively    * in the multiset's iteration order.    */
+comment|/**    * Returns an immutable multiset containing all the keys in this multimap, in    * the same order and with the same frequencies as they appear in this    * multimap; to get only a single occurrence of each key, use {@link #keySet}.    */
 annotation|@
 name|Override
 DECL|method|keys ()
