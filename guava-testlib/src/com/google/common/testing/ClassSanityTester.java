@@ -880,7 +880,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality.    * To set sample instances for equality testing, use {@link #setSampleInstances} instead.    */
+comment|/**    * Sets the default value for {@code type}. The default value isn't used in testing {@link    * Object#equals} because more than one sample instances are needed for testing inequality.    * To set distinct values for equality testing, use {@link #setDistinctValues} instead.    */
 DECL|method|setDefault (Class<T> type, T value)
 specifier|public
 parameter_list|<
@@ -921,10 +921,10 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Sets sample instances for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the sample instances can be passed to create {@code Foo} instances that are unequal.    *    *<p>Used for types where {@link ClassSanityTester} doesn't already know how to instantiate    * distinct values. It's usually necessary to add two unequal instances for each type, with the    * exception that if the sample instance is to be passed to a {@link Nullable} parameter, one    * non-null sample is sufficient. Setting an empty list will clear sample instances for {@code    * type}.    *    * @deprecated Use {@link #setDistinctValues} instead. This method will be removed in Guava    *     release 20.0.    */
+comment|/**    * Sets sample instances for {@code type}, so that when a class {@code Foo} is tested for {@link    * Object#equals} and {@link Object#hashCode}, and its construction requires a parameter of {@code    * type}, the sample instances can be passed to create {@code Foo} instances that are unequal.    *    *<p>Used for types where {@link ClassSanityTester} doesn't already know how to instantiate    * distinct values. It's usually necessary to add two unequal instances for each type, with the    * exception that if the sample instance is to be passed to a {@link Nullable} parameter, one    * non-null sample is sufficient. Setting an empty list will clear sample instances for {@code    * type}.    *    * @deprecated To supply multiple values, use {@link #setDistinctValues}. It accepts only two    *     values, which is enough for any {@code equals} testing. To supply a single value, use    *     {@link #setDefault}. This method will be removed in Guava release 20.0.    */
 annotation|@
 name|Deprecated
-DECL|method|setSampleInstances (Class<T> type, Iterable<? extends T> instances)
+DECL|method|setSampleInstances ( Class<T> type, Iterable<? extends T> instances)
 specifier|public
 parameter_list|<
 name|T
