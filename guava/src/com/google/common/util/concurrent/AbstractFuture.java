@@ -693,14 +693,9 @@ name|next
 decl_stmt|;
 comment|// Constructor for the TOMBSTONE, avoids use of ATOMIC_HELPER in case this class is loaded
 comment|// before the ATOMIC_HELPER.  Apparently this is possible on some android platforms.
-DECL|method|Waiter (@uppressWarningsR) boolean ignored)
+DECL|method|Waiter (boolean ignored)
 name|Waiter
 parameter_list|(
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|boolean
 name|ignored
 parameter_list|)
@@ -1066,16 +1061,16 @@ name|wasInterrupted
 decl_stmt|;
 DECL|field|cause
 specifier|final
-name|Throwable
+name|CancellationException
 name|cause
 decl_stmt|;
-DECL|method|Cancellation (boolean wasInterrupted, Throwable cause)
+DECL|method|Cancellation (boolean wasInterrupted, CancellationException cause)
 name|Cancellation
 parameter_list|(
 name|boolean
 name|wasInterrupted
 parameter_list|,
-name|Throwable
+name|CancellationException
 name|cause
 parameter_list|)
 block|{
@@ -1918,8 +1913,11 @@ name|Cancellation
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|,
-name|newCancellationCause
-argument_list|()
+operator|new
+name|CancellationException
+argument_list|(
+literal|"Future.cancel() was called."
+argument_list|)
 argument_list|)
 decl_stmt|;
 do|do
@@ -2007,23 +2005,6 @@ do|;
 block|}
 return|return
 literal|false
-return|;
-block|}
-comment|/**    * Returns an exception to be used as the cause of the CancellationException thrown by    * {@link #get}.    *    *<p>Note: this method may be called speculatively.  There is no guarantee that the future will    * be cancelled if this method is called.    *    * @since 19.0    */
-annotation|@
-name|Beta
-DECL|method|newCancellationCause ()
-specifier|protected
-name|Throwable
-name|newCancellationCause
-parameter_list|()
-block|{
-return|return
-operator|new
-name|CancellationException
-argument_list|(
-literal|"Future.cancel() was called."
-argument_list|)
 return|;
 block|}
 comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
@@ -2701,7 +2682,7 @@ name|done
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
+comment|/**     * Callback method that is called immediately after the future is completed.    *     *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
 DECL|method|done ()
 name|void
 name|done
@@ -2956,7 +2937,7 @@ name|v
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.    *    *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.    */
+comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.      *     *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.     */
 DECL|class|UnsafeAtomicHelper
 specifier|private
 specifier|static
