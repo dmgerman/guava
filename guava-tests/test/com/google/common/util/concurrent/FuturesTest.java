@@ -466,6 +466,16 @@ end_import
 
 begin_import
 import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|TestCase
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -699,7 +709,7 @@ specifier|public
 class|class
 name|FuturesTest
 extends|extends
-name|EmptySetUpAndTearDown
+name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
