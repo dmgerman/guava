@@ -82,6 +82,8 @@ literal|"SHA-1"
 block|,
 literal|"SHA-256"
 block|,
+literal|"SHA-384"
+block|,
 literal|"SHA-512"
 block|}
 argument_list|)

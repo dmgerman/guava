@@ -143,6 +143,16 @@ name|sha256
 argument_list|()
 argument_list|)
 block|,
+DECL|enumConstant|SHA384
+DECL|enumConstant|Hashing.sha384
+name|SHA384
+argument_list|(
+name|Hashing
+operator|.
+name|sha384
+argument_list|()
+argument_list|)
+block|,
 DECL|enumConstant|SHA512
 DECL|enumConstant|Hashing.sha512
 name|SHA512

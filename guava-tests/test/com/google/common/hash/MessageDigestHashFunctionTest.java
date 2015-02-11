@@ -224,6 +224,16 @@ argument_list|)
 operator|.
 name|put
 argument_list|(
+literal|"SHA-384"
+argument_list|,
+name|Hashing
+operator|.
+name|sha384
+argument_list|()
+argument_list|)
+operator|.
+name|put
+argument_list|(
 literal|"SHA-512"
 argument_list|,
 name|Hashing

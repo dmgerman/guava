@@ -589,6 +589,41 @@ literal|"Hashing.sha256()"
 argument_list|)
 decl_stmt|;
 block|}
+comment|/**    * Returns a hash function implementing the SHA-384 algorithm (384 hash bits) by delegating to    * the SHA-384 {@link MessageDigest}.    *    * @since 19.0    */
+DECL|method|sha384 ()
+specifier|public
+specifier|static
+name|HashFunction
+name|sha384
+parameter_list|()
+block|{
+return|return
+name|Sha384Holder
+operator|.
+name|SHA_384
+return|;
+block|}
+DECL|class|Sha384Holder
+specifier|private
+specifier|static
+class|class
+name|Sha384Holder
+block|{
+DECL|field|SHA_384
+specifier|static
+specifier|final
+name|HashFunction
+name|SHA_384
+init|=
+operator|new
+name|MessageDigestHashFunction
+argument_list|(
+literal|"SHA-384"
+argument_list|,
+literal|"Hashing.sha384()"
+argument_list|)
+decl_stmt|;
+block|}
 comment|/**    * Returns a hash function implementing the SHA-512 algorithm (512 hash bits) by delegating to the    * SHA-512 {@link MessageDigest}.    */
 DECL|method|sha512 ()
 specifier|public

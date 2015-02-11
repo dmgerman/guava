@@ -289,6 +289,17 @@ name|sha256
 argument_list|()
 argument_list|)
 block|,
+DECL|enumConstant|SHA_384
+name|SHA_384
+argument_list|(
+literal|"SHA-384"
+argument_list|,
+name|Hashing
+operator|.
+name|sha384
+argument_list|()
+argument_list|)
+block|,
 DECL|enumConstant|SHA_512
 name|SHA_512
 argument_list|(
