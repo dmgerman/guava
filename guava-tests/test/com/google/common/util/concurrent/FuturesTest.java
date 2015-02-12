@@ -3923,8 +3923,7 @@ name|t
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|AssertionError
+name|newAssertionError
 argument_list|(
 literal|"Unexpected fallback"
 argument_list|,
@@ -4095,8 +4094,7 @@ name|t
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|AssertionError
+name|newAssertionError
 argument_list|(
 literal|"Unexpected fallback"
 argument_list|,
@@ -4295,8 +4293,7 @@ name|t
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|AssertionError
+name|newAssertionError
 argument_list|(
 literal|"Unexpected fallback"
 argument_list|,
@@ -4305,6 +4302,40 @@ argument_list|)
 throw|;
 block|}
 block|}
+return|;
+block|}
+comment|/** Alternative to AssertionError(String, Throwable), which doesn't exist in GWT 2.6.1. */
+DECL|method|newAssertionError (String message, Throwable cause)
+specifier|private
+specifier|static
+name|AssertionError
+name|newAssertionError
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|AssertionError
+name|e
+init|=
+operator|new
+name|AssertionError
+argument_list|(
+name|message
+argument_list|)
+decl_stmt|;
+name|e
+operator|.
+name|initCause
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+return|return
+name|e
 return|;
 block|}
 DECL|method|testWithFallback_inputDoesNotRaiseException ()
