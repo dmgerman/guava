@@ -1609,7 +1609,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
+comment|/**    *<b>To be deprecated:</b> These {@code AsyncFunction} overloads of {@code    * transform} are being renamed to {@code transformAsync}. (The {@code    * Function} overloads are keeping the "transform" name.)    *    *<p>Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1623,6 +1623,97 @@ argument_list|<
 name|O
 argument_list|>
 name|transform
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|I
+argument_list|>
+name|input
+parameter_list|,
+name|AsyncFunction
+argument_list|<
+name|?
+super|super
+name|I
+argument_list|,
+name|?
+extends|extends
+name|O
+argument_list|>
+name|function
+parameter_list|)
+block|{
+return|return
+name|transformAsync
+argument_list|(
+name|input
+argument_list|,
+name|function
+argument_list|)
+return|;
+block|}
+comment|/**    *<b>To be deprecated:</b> These {@code AsyncFunction} overloads of {@code    * transform} are being renamed to {@code transformAsync}. (The {@code    * Function} overloads are keeping the "transform" name.)    *    *<p>Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>When the execution of {@code function.apply} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #transform(ListenableFuture, AsyncFunction) omitting    * the executor} or explicitly specifying {@code directExecutor}.    * However, be aware of the caveats documented in the link above.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @param executor Executor to run the function in.    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
+DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function, Executor executor)
+specifier|public
+specifier|static
+parameter_list|<
+name|I
+parameter_list|,
+name|O
+parameter_list|>
+name|ListenableFuture
+argument_list|<
+name|O
+argument_list|>
+name|transform
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|I
+argument_list|>
+name|input
+parameter_list|,
+name|AsyncFunction
+argument_list|<
+name|?
+super|super
+name|I
+argument_list|,
+name|?
+extends|extends
+name|O
+argument_list|>
+name|function
+parameter_list|,
+name|Executor
+name|executor
+parameter_list|)
+block|{
+return|return
+name|transformAsync
+argument_list|(
+name|input
+argument_list|,
+name|function
+argument_list|,
+name|executor
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously derived from the result    * of the given {@code Future}. More precisely, the returned {@code Future} takes its result from    * a {@code Future} produced by applying the given {@code AsyncFunction} to the result of the    * original {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transformAsync(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create (whether the {@code    * Future} itself is slow or heavyweight to complete is irrelevant), consider {@linkplain    * #transformAsync(ListenableFuture, AsyncFunction, Executor) supplying an executor}. If you do    * not supply an executor, {@code transformAsync} will use a {@linkplain    * MoreExecutors#directExecutor direct executor}, which carries some caveats for heavier    * operations. For example, the call to {@code function.apply} may run on an unpredictable or    * undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transformAsync} is called, {@code    * transformAsync} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transformAsync} will schedule {@code    * function.apply} to be run by the thread that completes the input {@code Future}, which may be    * an internal system thread such as an RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code function.apply}, all other    * registered but unexecuted listeners are prevented from running during its execution, even if    * those listeners are to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in sync with that of the    * input future and that of the future returned by the function. That is, if the returned {@code    * Future} is cancelled, it will attempt to cancel the other two, and if either of the other two    * is cancelled, the returned {@code Future} will receive a callback in which it will attempt to    * cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future to the result of the    *     output future    * @return A future that holds result of the function (if the input succeeded) or the original    *     input's failure (if not)    * @since 19.0    */
+DECL|method|transformAsync ( ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
+specifier|public
+specifier|static
+parameter_list|<
+name|I
+parameter_list|,
+name|O
+parameter_list|>
+name|ListenableFuture
+argument_list|<
+name|O
+argument_list|>
+name|transformAsync
 parameter_list|(
 name|ListenableFuture
 argument_list|<
@@ -1678,8 +1769,8 @@ return|return
 name|output
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * chain function. That is, if the returned {@code Future} is cancelled, it    * will attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>When the execution of {@code function.apply} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #transform(ListenableFuture, AsyncFunction) omitting    * the executor} or explicitly specifying {@code directExecutor}.    * However, be aware of the caveats documented in the link above.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @param executor Executor to run the function in.    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
-DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function, Executor executor)
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously derived from the result    * of the given {@code Future}. More precisely, the returned {@code Future} takes its result from    * a {@code Future} produced by applying the given {@code AsyncFunction} to the result of the    * original {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transformAsync(rowKeyFuture, queryFunction, executor);}</pre>    *    *<p>The returned {@code Future} attempts to keep its cancellation state in sync with that of the    * input future and that of the future returned by the chain function. That is, if the returned    * {@code Future} is cancelled, it will attempt to cancel the other two, and if either of the    * other two is cancelled, the returned {@code Future} will receive a callback in which it will    * attempt to cancel itself.    *    *<p>When the execution of {@code function.apply} is fast and lightweight (though the {@code    * Future} it returns need not meet these criteria), consider {@linkplain    * #transformAsync(ListenableFuture, AsyncFunction) omitting the executor} or explicitly    * specifying {@code directExecutor}. However, be aware of the caveats documented in the link    * above.    *    * @param input The future to transform    * @param function A function to transform the result of the input future to the result of the    *     output future    * @param executor Executor to run the function in.    * @return A future that holds result of the function (if the input succeeded) or the original    *     input's failure (if not)    * @since 19.0    */
+DECL|method|transformAsync (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function, Executor executor)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1691,7 +1782,7 @@ name|ListenableFuture
 argument_list|<
 name|O
 argument_list|>
-name|transform
+name|transformAsync
 parameter_list|(
 name|ListenableFuture
 argument_list|<
