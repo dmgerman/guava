@@ -64,6 +64,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Platform
+operator|.
+name|isInstanceOfThrowableClass
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Uninterruptibles
 operator|.
 name|getUninterruptibly
@@ -373,6 +391,8 @@ specifier|public
 specifier|final
 class|class
 name|Futures
+extends|extends
+name|GwtFuturesCatchingSpecialization
 block|{
 comment|// A note on memory visibility.
 comment|// Many of the utilities in this class (transform, withFallback, withTimeout, asList, combine)
@@ -771,7 +791,7 @@ name|throwable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       });}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       });}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #withFallback(ListenableFuture,    * FutureFallback, Executor) supplying an executor}. If you do not supply an    * executor, {@code withFallback} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * fallback.create} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code withFallback}    * is called, {@code withFallback} will call {@code fallback.create} inline.    *<li>If the input {@code Future} is not yet done, {@code withFallback} will    * schedule {@code fallback.create} to be run by the thread that completes    * the input {@code Future}, which may be an internal system thread such as    * an RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * fallback.create}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @since 14.0    */
+comment|/**    *<b>To be deprecated:</b> Prefer {@link #catchingAsync(ListenableFuture,    * Class, AsyncFunction) catchingAsync(input, Throwable.class,    * fallbackImplementedAsAnAsyncFunction)}, usually replacing {@code    * Throwable.class} with the specific type you want to handle.    *    *<p>Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       });}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       });}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #withFallback(ListenableFuture,    * FutureFallback, Executor) supplying an executor}. If you do not supply an    * executor, {@code withFallback} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * fallback.create} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code withFallback}    * is called, {@code withFallback} will call {@code fallback.create} inline.    *<li>If the input {@code Future} is not yet done, {@code withFallback} will    * schedule {@code fallback.create} to be run by the thread that completes    * the input {@code Future}, which may be an internal system thread such as    * an RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * fallback.create}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @since 14.0    */
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback)
 specifier|public
 specifier|static
@@ -813,7 +833,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       }, directExecutor());}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       }, directExecutor());}</pre>    *    *<p>When the execution of {@code fallback.create} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #withFallback(ListenableFuture, FutureFallback)    * omitting the executor} or explicitly specifying {@code    * directExecutor}. However, be aware of the caveats documented in the    * link above.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @param executor the executor that runs {@code fallback} if {@code input}    *     fails    * @since 14.0    */
+comment|/**    *<b>To be deprecated:</b> Prefer {@link #catchingAsync(ListenableFuture,    * Class, AsyncFunction, Executor) catchingAsync(input, Throwable.class,    * fallbackImplementedAsAnAsyncFunction, executor)}, usually replacing {@code    * Throwable.class} with the specific type you want to handle.    *    *<p>Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       }, directExecutor());}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       }, directExecutor());}</pre>    *    *<p>When the execution of {@code fallback.create} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #withFallback(ListenableFuture, FutureFallback)    * omitting the executor} or explicitly specifying {@code    * directExecutor}. However, be aware of the caveats documented in the    * link above.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @param executor the executor that runs {@code fallback} if {@code input}    *     fails    * @since 14.0    */
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
@@ -846,6 +866,45 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
+return|return
+name|catchingAsync
+argument_list|(
+name|input
+argument_list|,
+name|Throwable
+operator|.
+name|class
+argument_list|,
+name|asAsyncFunction
+argument_list|(
+name|fallback
+argument_list|)
+argument_list|,
+name|executor
+argument_list|)
+return|;
+block|}
+DECL|method|asAsyncFunction (final FutureFallback<V> fallback)
+specifier|static
+parameter_list|<
+name|V
+parameter_list|>
+name|AsyncFunction
+argument_list|<
+name|Throwable
+argument_list|,
+name|V
+argument_list|>
+name|asAsyncFunction
+parameter_list|(
+specifier|final
+name|FutureFallback
+argument_list|<
+name|V
+argument_list|>
+name|fallback
+parameter_list|)
+block|{
 name|checkNotNull
 argument_list|(
 name|fallback
@@ -853,27 +912,58 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|FallbackFuture
+name|AsyncFunction
+argument_list|<
+name|Throwable
+argument_list|,
+name|V
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|ListenableFuture
 argument_list|<
 name|V
 argument_list|>
+name|apply
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+return|return
+name|checkNotNull
 argument_list|(
-name|input
-argument_list|,
 name|fallback
+operator|.
+name|create
+argument_list|(
+name|t
+argument_list|)
 argument_list|,
-name|executor
+literal|"FutureFallback.create returned null instead of a "
+operator|+
+literal|"Future. Did you mean to return immediateFuture(null)?"
 argument_list|)
 return|;
 block|}
-comment|/**    * A future that falls back on a second, generated future, in case its    * original future fails.    */
-DECL|class|FallbackFuture
-specifier|private
+block|}
+return|;
+block|}
+DECL|class|CatchingFuture
 specifier|static
 class|class
-name|FallbackFuture
+name|CatchingFuture
 parameter_list|<
 name|V
+parameter_list|,
+name|X
+extends|extends
+name|Throwable
 parameter_list|>
 extends|extends
 name|AbstractFuture
@@ -892,8 +982,8 @@ name|V
 argument_list|>
 name|running
 decl_stmt|;
-DECL|method|FallbackFuture (ListenableFuture<? extends V> input, final FutureFallback<? extends V> fallback, final Executor executor)
-name|FallbackFuture
+DECL|method|CatchingFuture (ListenableFuture<? extends V> input, final Class<X> exceptionType, final AsyncFunction<? super X, ? extends V> fallback, final Executor executor)
+name|CatchingFuture
 parameter_list|(
 name|ListenableFuture
 argument_list|<
@@ -904,8 +994,19 @@ argument_list|>
 name|input
 parameter_list|,
 specifier|final
-name|FutureFallback
+name|Class
 argument_list|<
+name|X
+argument_list|>
+name|exceptionType
+parameter_list|,
+specifier|final
+name|AsyncFunction
+argument_list|<
+name|?
+super|super
+name|X
+argument_list|,
 name|?
 extends|extends
 name|V
@@ -917,6 +1018,16 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|exceptionType
+argument_list|)
+expr_stmt|;
+name|checkNotNull
+argument_list|(
+name|fallback
+argument_list|)
+expr_stmt|;
 name|running
 operator|=
 name|input
@@ -1005,6 +1116,30 @@ expr_stmt|;
 block|}
 try|try
 block|{
+if|if
+condition|(
+name|isInstanceOfThrowableClass
+argument_list|(
+name|throwable
+argument_list|,
+name|exceptionType
+argument_list|)
+condition|)
+block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+comment|// verified safe by isInstance
+name|X
+name|castThrowable
+init|=
+operator|(
+name|X
+operator|)
+name|throwable
+decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|?
@@ -1015,16 +1150,16 @@ name|replacement
 init|=
 name|fallback
 operator|.
-name|create
+name|apply
 argument_list|(
-name|throwable
+name|castThrowable
 argument_list|)
 decl_stmt|;
 name|checkNotNull
 argument_list|(
 name|replacement
 argument_list|,
-literal|"FutureFallback.create returned null instead of a Future. "
+literal|"AsyncFunction.apply returned null instead of a Future. "
 operator|+
 literal|"Did you mean to return immediateFuture(null)?"
 argument_list|)
@@ -1034,6 +1169,15 @@ argument_list|(
 name|replacement
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|setException
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1465,7 +1609,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    */
 DECL|method|transform (ListenableFuture<I> input, AsyncFunction<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1727,7 +1871,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction);}</pre>    *    *<p>Note: If the transformation is slow or heavyweight, consider {@linkplain    * #transform(ListenableFuture, Function, Executor) supplying an executor}.    * If you do not supply an executor, {@code transform} will use an inline    * executor, which carries some caveats for heavier operations.  For example,    * the call to {@code function.apply} may run on an unpredictable or    * undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes the {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since 9.0 (in 1.0 as {@code compose})    */
+comment|/**    * Returns a new {@code ListenableFuture} whose result is the product of    * applying the given {@code Function} to the result of the given {@code    * Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<QueryResult> queryFuture = ...;    *   Function<QueryResult, List<Row>> rowsFunction =    *       new Function<QueryResult, List<Row>>() {    *         public List<Row> apply(QueryResult queryResult) {    *           return queryResult.getRows();    *         }    *       };    *   ListenableFuture<List<Row>> rowsFuture =    *       transform(queryFuture, rowsFunction);}</pre>    *    *<p>Note: If the transformation is slow or heavyweight, consider {@linkplain    * #transform(ListenableFuture, Function, Executor) supplying an executor}.    * If you do not supply an executor, {@code transform} will use an inline    * executor, which carries some caveats for heavier operations.  For example,    * the call to {@code function.apply} may run on an unpredictable or    * undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future. That is, if the returned {@code Future}    * is cancelled, it will attempt to cancel the input, and if the input is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    *<p>An example use of this method is to convert a serializable object    * returned from an RPC into a POJO.    *    * @param input The future to transform    * @param function A Function to transform the results of the provided future    *     to the results of the returned future.  This will be run in the thread    *     that notifies input it is complete.    * @return A future that holds result of the transformation.    * @since 9.0 (in 1.0 as {@code compose})    */
 DECL|method|transform (ListenableFuture<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -1864,7 +2008,6 @@ return|;
 block|}
 comment|/** Wraps the given function as an AsyncFunction. */
 DECL|method|asAsyncFunction ( final Function<? super I, ? extends O> function)
-specifier|private
 specifier|static
 parameter_list|<
 name|I
@@ -1893,6 +2036,11 @@ argument_list|>
 name|function
 parameter_list|)
 block|{
+name|checkNotNull
+argument_list|(
+name|function
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|AsyncFunction
