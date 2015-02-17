@@ -2838,8 +2838,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|cancellationExceptionWithCause ( @ullable String message, @Nullable Throwable cause)
+specifier|private
 specifier|static
-specifier|final
 name|CancellationException
 name|cancellationExceptionWithCause
 parameter_list|(
