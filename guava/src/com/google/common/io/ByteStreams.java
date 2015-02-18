@@ -1352,17 +1352,30 @@ name|int
 name|size
 parameter_list|)
 block|{
-name|checkArgument
-argument_list|(
+comment|// When called at high frequency, boxing size generates too much garbage,
+comment|// so avoid doing that if we can.
+if|if
+condition|(
 name|size
-operator|>=
+operator|<
 literal|0
-argument_list|,
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
 literal|"Invalid size: %s"
 argument_list|,
 name|size
 argument_list|)
-expr_stmt|;
+argument_list|)
+throw|;
+block|}
 return|return
 name|newDataOutput
 argument_list|(
