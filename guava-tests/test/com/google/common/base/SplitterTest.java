@@ -197,6 +197,11 @@ argument_list|(
 literal|','
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testSplitNullString ()
 specifier|public
 name|void
@@ -1713,6 +1718,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testStringSplitWithEmptyString ()
 specifier|public
 name|void
@@ -2893,6 +2903,11 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"java.util.regex.Pattern"
@@ -3567,6 +3582,11 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFixedLengthSplitZeroChunkLen ()
 specifier|public
 name|void
@@ -3593,6 +3613,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFixedLengthSplitNegativeChunkLen ()
 specifier|public
 name|void
@@ -4923,9 +4948,8 @@ block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
-literal|"ReturnValueIgnored"
+literal|"CheckReturnValue"
 argument_list|)
-comment|// testing for exception
 DECL|method|testMapSplitter_emptySeparator ()
 specifier|public
 name|void
@@ -4952,6 +4976,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMapSplitter_malformedEntry ()
 specifier|public
 name|void
@@ -5137,6 +5166,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testMapSplitter_duplicateKeys ()
 specifier|public
 name|void

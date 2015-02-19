@@ -255,6 +255,8 @@ name|limit
 expr_stmt|;
 block|}
 comment|/**    * Returns a splitter that uses the given single-character separator. For    * example, {@code Splitter.on(',').split("foo,,bar")} returns an iterable    * containing {@code ["foo", "", "bar"]}.    *    * @param separator the character to recognize as a separator    * @return a splitter, with default settings, that recognizes that separator    */
+annotation|@
+name|CheckReturnValue
 DECL|method|on (char separator)
 specifier|public
 specifier|static
@@ -278,6 +280,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a splitter that considers any single character matched by the    * given {@code CharMatcher} to be a separator. For example, {@code    * Splitter.on(CharMatcher.anyOf(";,")).split("foo,;bar,quux")} returns an    * iterable containing {@code ["foo", "", "bar", "quux"]}.    *    * @param separatorMatcher a {@link CharMatcher} that determines whether a    *     character is a separator    * @return a splitter, with default settings, that uses this matcher    */
+annotation|@
+name|CheckReturnValue
 DECL|method|on (final CharMatcher separatorMatcher)
 specifier|public
 specifier|static
@@ -368,6 +372,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a splitter that uses the given fixed string as a separator. For    * example, {@code Splitter.on(", ").split("foo, bar,baz")} returns an    * iterable containing {@code ["foo", "bar,baz"]}.    *    * @param separator the literal, nonempty string to recognize as a separator    * @return a splitter, with default settings, that recognizes that separator    */
+annotation|@
+name|CheckReturnValue
 DECL|method|on (final String separator)
 specifier|public
 specifier|static
@@ -540,6 +546,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a splitter that divides strings into pieces of the given length.    * For example, {@code Splitter.fixedLength(2).split("abcde")} returns an    * iterable containing {@code ["ab", "cd", "e"]}. The last piece can be    * smaller than {@code length} but will never be empty.    *    *<p><b>Exception:</b> for consistency with separator-based splitters, {@code    * split("")} does not yield an empty iterable, but an iterable containing    * {@code ""}. This is the only case in which {@code    * Iterables.size(split(input))} does not equal {@code    * IntMath.divide(input.length(), length, CEILING)}. To avoid this behavior,    * use {@code omitEmptyStrings}.    *    * @param length the desired length of pieces after splitting, a positive    *     integer    * @return a splitter, with default settings, that can split into fixed sized    *     pieces    * @throws IllegalArgumentException if {@code length} is zero or negative    */
+annotation|@
+name|CheckReturnValue
 DECL|method|fixedLength (final int length)
 specifier|public
 specifier|static
@@ -756,6 +764,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Splits {@code sequence} into string components and makes them available    * through an {@link Iterator}, which may be lazily evaluated. If you want    * an eagerly computed {@link List}, use {@link #splitToList(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return an iteration over the segments split from the parameter.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|split (final CharSequence sequence)
 specifier|public
 name|Iterable
@@ -864,6 +874,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Splits {@code sequence} into string components and returns them as    * an immutable list. If you want an {@link Iterable} which may be lazily    * evaluated, use {@link #split(CharSequence)}.    *    * @param sequence the sequence of characters to split    * @return an immutable list of the segments split from the parameter    * @since 15.0    */
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|Beta
 DECL|method|splitToList (CharSequence sequence)
@@ -1067,6 +1079,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Splits {@code sequence} into substrings, splits each substring into      * an entry, and returns an unmodifiable map with each of the entries. For      * example,<code>      * Splitter.on(';').trimResults().withKeyValueSeparator("=>")      * .split("a=>b ; c=>b")      *</code> will return a mapping from {@code "a"} to {@code "b"} and      * {@code "c"} to {@code b}.      *      *<p>The returned map preserves the order of the entries from      * {@code sequence}.      *      * @throws IllegalArgumentException if the specified sequence does not split      *         into valid map entries, or if there are duplicate keys      */
+annotation|@
+name|CheckReturnValue
 DECL|method|split (CharSequence sequence)
 specifier|public
 name|Map

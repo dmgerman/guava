@@ -674,7 +674,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
-comment|//@CheckReturnValue
+annotation|@
+name|CheckReturnValue
 DECL|method|join (@ullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
