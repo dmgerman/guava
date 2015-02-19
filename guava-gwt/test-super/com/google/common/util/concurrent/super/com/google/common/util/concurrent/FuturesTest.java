@@ -1855,7 +1855,7 @@ argument_list|(
 name|applyCount
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|expected
 argument_list|)
@@ -2220,7 +2220,7 @@ argument_list|(
 name|count
 argument_list|)
 operator|.
-name|is
+name|isEqualTo
 argument_list|(
 name|expected
 argument_list|)
