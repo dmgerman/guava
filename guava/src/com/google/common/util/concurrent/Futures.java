@@ -3050,7 +3050,7 @@ name|function
 argument_list|)
 expr_stmt|;
 return|return
-name|transform
+name|transformAsync
 argument_list|(
 name|input
 argument_list|,
@@ -3654,9 +3654,7 @@ name|nested
 parameter_list|)
 block|{
 return|return
-name|Futures
-operator|.
-name|transform
+name|transformAsync
 argument_list|(
 operator|(
 name|ListenableFuture
