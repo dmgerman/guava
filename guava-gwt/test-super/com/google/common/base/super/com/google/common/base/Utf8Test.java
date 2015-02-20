@@ -525,6 +525,11 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testEncodedLengthFails (String invalidString, int invalidCodePointIndex)
 specifier|private
 specifier|static

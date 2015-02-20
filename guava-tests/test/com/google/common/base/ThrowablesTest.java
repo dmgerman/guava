@@ -2083,27 +2083,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|Throwables
-operator|.
-name|getCausalChain
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"Should have throw NPE"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NullPointerException
-name|expected
-parameter_list|)
-block|{     }
 name|List
 argument_list|<
 name|Throwable
@@ -2137,6 +2116,39 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
+name|expected
+parameter_list|)
+block|{     }
+block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
+DECL|method|testGetCasualChainNull ()
+specifier|public
+name|void
+name|testGetCasualChainNull
+parameter_list|()
+block|{
+try|try
+block|{
+name|Throwables
+operator|.
+name|getCausalChain
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Should have throw NPE"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
 name|expected
 parameter_list|)
 block|{     }

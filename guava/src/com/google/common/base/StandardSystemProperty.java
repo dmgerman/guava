@@ -50,6 +50,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -66,6 +76,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"java.lang.System#getProperty"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|enum|StandardSystemProperty
 specifier|public
 enum|enum

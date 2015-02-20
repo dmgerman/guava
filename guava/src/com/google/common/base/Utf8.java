@@ -60,6 +60,16 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Low-level, high-performance utility methods related to the {@linkplain Charsets#UTF_8 UTF-8}  * character encoding. UTF-8 is defined in section D92 of  *<a href="http://www.unicode.org/versions/Unicode6.2.0/ch03.pdf">The Unicode Standard Core  * Specification, Chapter 3</a>.  *  *<p>The variant of UTF-8 implemented by this class is the restricted definition of UTF-8  * introduced in Unicode 3.1. One implication of this is that it rejects  *<a href="http://www.unicode.org/versions/corrigendum1.html">"non-shortest form"</a> byte  * sequences, even though the JDK decoder may accept them.  *  * @author Martin Buchholz  * @author ClÃ©ment Roux  * @since 16.0  */
 end_comment
@@ -76,6 +86,8 @@ class|class
 name|Utf8
 block|{
 comment|/**    * Returns the number of bytes in the UTF-8-encoded form of {@code sequence}. For a string,    * this method is equivalent to {@code string.getBytes(UTF_8).length}, but is more efficient in    * both time and space.    *    * @throws IllegalArgumentException if {@code sequence} contains ill-formed UTF-16 (unpaired    *     surrogates)    */
+annotation|@
+name|CheckReturnValue
 DECL|method|encodedLength (CharSequence sequence)
 specifier|public
 specifier|static
@@ -348,6 +360,8 @@ name|utf8Length
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code bytes} is a<i>well-formed</i> UTF-8 byte sequence according to    * Unicode 6.0. Note that this is a stronger criterion than simply whether the bytes can be    * decoded. For example, some versions of the JDK decoder will accept "non-shortest form" byte    * sequences, but encoding never reproduces these. Such byte sequences are<i>not</i> considered    * well-formed.    *    *<p>This method returns {@code true} if and only if {@code Arrays.equals(bytes, new    * String(bytes, UTF_8).getBytes(UTF_8))} does, but is more efficient in both time and space.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|isWellFormed (byte[] bytes)
 specifier|public
 specifier|static
@@ -373,6 +387,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns whether the given byte array slice is a well-formed UTF-8 byte sequence, as defined by    * {@link #isWellFormed(byte[])}. Note that this can be false even when {@code    * isWellFormed(bytes)} is true.    *    * @param bytes the input buffer    * @param off the offset in the buffer of the first byte to read    * @param len the number of bytes to read from the buffer    */
+annotation|@
+name|CheckReturnValue
 DECL|method|isWellFormed (byte[] bytes, int off, int len)
 specifier|public
 specifier|static
