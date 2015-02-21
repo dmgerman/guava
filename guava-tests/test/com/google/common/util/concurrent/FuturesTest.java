@@ -6333,6 +6333,11 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"AsyncFunctionReturnsNull"
+argument_list|)
 specifier|public
 name|ListenableFuture
 argument_list|<
