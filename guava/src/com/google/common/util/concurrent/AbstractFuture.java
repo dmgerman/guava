@@ -1307,13 +1307,12 @@ name|remainingNanos
 else|:
 literal|0
 decl_stmt|;
-comment|// This may look like a 'while' but it is really an 'if' that we can break<label> out of.
 name|long_wait_loop
 label|:
-while|while
+if|if
 condition|(
 name|remainingNanos
-operator|>
+operator|>=
 name|SPIN_THRESHOLD_NANOS
 condition|)
 block|{
