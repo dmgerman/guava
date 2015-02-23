@@ -76,6 +76,16 @@ name|InputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link InputStream} that maintains a hash of the data read from it.  *  * @author Qian Huang  * @since 16.0  */
 end_comment
@@ -234,6 +244,8 @@ block|}
 comment|/**    * mark() is not supported for HashingInputStream    * @return {@code false} always    */
 annotation|@
 name|Override
+annotation|@
+name|CheckReturnValue
 DECL|method|markSupported ()
 specifier|public
 name|boolean
@@ -276,6 +288,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the {@link HashCode} based on the data read from this stream. The result is    * unspecified if this method is called more than once on the same instance.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|hash ()
 specifier|public
 name|HashCode

@@ -1123,6 +1123,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testPreconditions ()
 specifier|public
 name|void
@@ -1234,6 +1239,11 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFailureWhenMoreThan255HashFunctionsAreNeeded ()
 specifier|public
 name|void
@@ -1394,6 +1404,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Tests that we always get a non-negative optimal size.    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testOptimalSize ()
 specifier|public
 name|void
@@ -1561,6 +1576,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testLargeNumberOfInsertions ()
 specifier|public
 name|void

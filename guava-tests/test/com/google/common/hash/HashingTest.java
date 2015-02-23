@@ -1482,6 +1482,11 @@ name|MAX_SHARDS
 init|=
 literal|500
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testConsistentHash_outOfRange ()
 specifier|public
 name|void
@@ -1778,6 +1783,11 @@ name|RANDOM_SEED
 init|=
 literal|177L
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testCombineOrdered_empty ()
 specifier|public
 name|void
@@ -1810,6 +1820,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testCombineOrdered_differentBitLengths ()
 specifier|public
 name|void
@@ -2106,6 +2121,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testCombineUnordered_empty ()
 specifier|public
 name|void
@@ -2138,6 +2158,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testCombineUnordered_differentBitLengths ()
 specifier|public
 name|void

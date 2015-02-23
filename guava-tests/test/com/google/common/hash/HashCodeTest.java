@@ -1403,6 +1403,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFromStringFailsWithInvalidHexChar ()
 specifier|public
 name|void
@@ -1429,6 +1434,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFromStringFailsWithUpperCaseString ()
 specifier|public
 name|void
@@ -1478,6 +1488,11 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFromStringFailsWithShortInputs ()
 specifier|public
 name|void
@@ -1530,6 +1545,11 @@ literal|"7f"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|testFromStringFailsWithOddLengthInput ()
 specifier|public
 name|void
@@ -2192,6 +2212,11 @@ name|class
 argument_list|)
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertExpectedHashCode (ExpectedHashCode expectedHashCode, HashCode hash)
 specifier|private
 specifier|static
