@@ -210,6 +210,16 @@ name|TimeUnit
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * An object that measures elapsed time in nanoseconds. It is useful to measure  * elapsed time using this class instead of direct calls to {@link  * System#nanoTime} for a few reasons:  *  *<ul>  *<li>An alternate time source can be substituted, for testing or performance  *     reasons.  *<li>As documented by {@code nanoTime}, the value returned has no absolute  *     meaning, and can only be interpreted as relative to another timestamp  *     returned by {@code nanoTime} at a different time. {@code Stopwatch} is a  *     more effective abstraction because it exposes only these relative values,  *     not the absolute ones.  *</ul>  *  *<p>Basic usage:  *<pre>  *   Stopwatch stopwatch = Stopwatch.{@link #createStarted createStarted}();  *   doSomething();  *   stopwatch.{@link #stop stop}(); // optional  *  *   long millis = stopwatch.elapsed(MILLISECONDS);  *  *   log.info("time: " + stopwatch); // formatted string like "12.3 ms"</pre>  *  *<p>Stopwatch methods are not idempotent; it is an error to start or stop a  * stopwatch that is already in the desired state.  *  *<p>When testing code that uses this class, use  * {@link #createUnstarted(Ticker)} or {@link #createStarted(Ticker)} to  * supply a fake or mock ticker.  *<!-- TODO(kevinb): restore the "such as" --> This allows you to  * simulate any valid behavior of the stopwatch.  *  *<p><b>Note:</b> This class is not thread-safe.  *  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
@@ -252,6 +262,8 @@ name|long
 name|startTick
 decl_stmt|;
 comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @since 15.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|createUnstarted ()
 specifier|public
 specifier|static
@@ -266,6 +278,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @since 15.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|createUnstarted (Ticker ticker)
 specifier|public
 specifier|static
@@ -285,6 +299,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates (and starts) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @since 15.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|createStarted ()
 specifier|public
 specifier|static
@@ -302,6 +318,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates (and starts) a new stopwatch, using the specified time    * source.    *    * @since 15.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|createStarted (Ticker ticker)
 specifier|public
 specifier|static
@@ -362,6 +380,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns {@code true} if {@link #start()} has been called on this stopwatch,    * and {@link #stop()} has not been called since the last call to {@code    * start()}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|isRunning ()
 specifier|public
 name|boolean
@@ -479,6 +499,8 @@ name|elapsedNanos
 return|;
 block|}
 comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    *    * @since 14.0 (since 10.0 as {@code elapsedTime()})    */
+annotation|@
+name|CheckReturnValue
 DECL|method|elapsed (TimeUnit desiredUnit)
 specifier|public
 name|long
