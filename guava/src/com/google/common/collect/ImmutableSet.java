@@ -146,16 +146,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -181,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A high-performance, immutable {@code Set} with reliable, user-specified  * iteration order. Does not permit null elements.  *  *<p>Unlike {@link Collections#unmodifiableSet}, which is a<i>view</i> of a  * separate collection that can still change, an instance of this class contains  * its own private data and will<i>never</i> change. This class is convenient  * for {@code public static final} sets ("constant sets") and also lets you  * easily make a "defensive copy" of a set provided to your class by a caller.  *  *<p><b>Warning:</b> Like most sets, an {@code ImmutableSet} will not function  * correctly if an element is modified after being placed in the set. For this  * reason, and to avoid general confusion, it is strongly recommended to place  * only immutable objects into this collection.  *  *<p>This class has been observed to perform significantly better than {@link  * HashSet} for objects with very fast {@link Object#hashCode} implementations  * (as a well-behaved immutable object should). While this class's factory  * methods create hash-based instances, the {@link ImmutableSortedSet} subclass  * performs binary searches instead.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed  * outside its package as it has no public or protected constructors. Thus,  * instances of this type are guaranteed to be immutable.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @see ImmutableList  * @see ImmutableMap  * @author Kevin Bourrillion  * @author Nick Kralevich  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * An immutable collection that cannot contain duplicate elements and has order-independent  * {@linkplain #equals equality};<b>please see {@link ImmutableCollection}</b> for many important  * details common to all immutable collection types.  *  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class
@@ -221,8 +211,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|/**    * Returns the empty immutable set. This set behaves and performs comparably    * to {@link Collections#emptySet}, and is preferable mainly for consistency    * and maintainability of your code.    */
-comment|// Casting to any type is safe because the set will never hold any elements.
+comment|/**    * Returns the empty immutable set. Preferred over {@link Collections#emptySet} for code    * consistency, and because the return type conveys the immutability guarantee.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -230,6 +219,7 @@ block|{
 literal|"unchecked"
 block|}
 argument_list|)
+comment|// fully variant implementation (never actually produces any Es)
 DECL|method|of ()
 specifier|public
 specifier|static
@@ -255,7 +245,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-comment|/**    * Returns an immutable set containing a single element. This set behaves and    * performs comparably to {@link Collections#singleton}, but will not accept    * a null element. It is preferable mainly for consistency and    * maintainability of your code.    */
+comment|/**    * Returns an immutable set containing {@code element}. Preferred over {@link    * Collections#singleton} for code consistency, {@code null} rejection, and because the return    * type conveys the immutability guarantee.    */
 DECL|method|of (E element)
 specifier|public
 specifier|static
@@ -283,7 +273,7 @@ name|element
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    */
 DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
@@ -314,7 +304,7 @@ name|e2
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    */
 DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
@@ -350,7 +340,7 @@ name|e3
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    */
 DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
@@ -391,7 +381,7 @@ name|e4
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    */
+comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    */
 DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
@@ -437,7 +427,7 @@ name|e5
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any element is null    * @since 3.0 (source-compatible since 2.0)    */
+comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    *    * @since 3.0 (source-compatible since 2.0)    */
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static
@@ -993,206 +983,7 @@ return|return
 name|MAX_TABLE_SIZE
 return|;
 block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
-DECL|method|copyOf (E[] elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
-name|copyOf
-parameter_list|(
-name|E
-index|[]
-name|elements
-parameter_list|)
-block|{
-switch|switch
-condition|(
-name|elements
-operator|.
-name|length
-condition|)
-block|{
-case|case
-literal|0
-case|:
-return|return
-name|of
-argument_list|()
-return|;
-case|case
-literal|1
-case|:
-return|return
-name|of
-argument_list|(
-name|elements
-index|[
-literal|0
-index|]
-argument_list|)
-return|;
-default|default:
-return|return
-name|construct
-argument_list|(
-name|elements
-operator|.
-name|length
-argument_list|,
-name|elements
-operator|.
-name|clone
-argument_list|()
-argument_list|)
-return|;
-block|}
-block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|copyOf (Iterable<? extends E> elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
-name|copyOf
-parameter_list|(
-name|Iterable
-argument_list|<
-name|?
-extends|extends
-name|E
-argument_list|>
-name|elements
-parameter_list|)
-block|{
-return|return
-operator|(
-name|elements
-operator|instanceof
-name|Collection
-operator|)
-condition|?
-name|copyOf
-argument_list|(
-operator|(
-name|Collection
-argument_list|<
-name|?
-extends|extends
-name|E
-argument_list|>
-operator|)
-name|elements
-argument_list|)
-else|:
-name|copyOf
-argument_list|(
-name|elements
-operator|.
-name|iterator
-argument_list|()
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored.    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|copyOf (Iterator<? extends E> elements)
-specifier|public
-specifier|static
-parameter_list|<
-name|E
-parameter_list|>
-name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
-name|copyOf
-parameter_list|(
-name|Iterator
-argument_list|<
-name|?
-extends|extends
-name|E
-argument_list|>
-name|elements
-parameter_list|)
-block|{
-comment|// We special-case for 0 or 1 elements, but anything further is madness.
-if|if
-condition|(
-operator|!
-name|elements
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-return|return
-name|of
-argument_list|()
-return|;
-block|}
-name|E
-name|first
-init|=
-name|elements
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|elements
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-return|return
-name|of
-argument_list|(
-name|first
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-return|return
-operator|new
-name|ImmutableSet
-operator|.
-name|Builder
-argument_list|<
-name|E
-argument_list|>
-argument_list|()
-operator|.
-name|add
-argument_list|(
-name|first
-argument_list|)
-operator|.
-name|addAll
-argument_list|(
-name|elements
-argument_list|)
-operator|.
-name|build
-argument_list|()
-return|;
-block|}
-block|}
-comment|/**    * Returns an immutable set containing the given elements, in order. Repeated    * occurrences of an element (according to {@link Object#equals}) after the    * first are ignored. This method iterates over {@code elements} at most    * once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSet.copyOf(s)} returns an {@code ImmutableSet<String>} containing    * each of the strings in {@code s}, while {@code ImmutableSet.of(s)} returns    * a {@code ImmutableSet<Set<String>>} containing one element (the given set    * itself).    *    *<p><b>Note:</b> Despite what the method name suggests, {@code copyOf} will    * return constant-space views, rather than linear-space copies, of some    * inputs known to be immutable. For some other immutable inputs, such as key    * sets of an {@code ImmutableMap}, it still performs a copy in order to avoid    * holding references to the values of the map. The heuristics used in this    * decision are undocumented and subject to change except that:    *<ul>    *<li>A full copy will be done of any {@code ImmutableSortedSet}.</li>    *<li>{@code ImmutableSet.copyOf()} is idempotent with respect to pointer    * equality.</li>    *</ul>    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source collection.    *    *<p><b>Performance note:</b> In certain cases when {@code elements} is an {@link    * ImmutableCollection}, its data will be reused directly without copying; the {@code elements}    * instance itself might even be returned. The specific circumstances in which these optimizations    * happen are undefined and subject to change.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1300,6 +1091,205 @@ argument_list|,
 name|array
 argument_list|)
 return|;
+block|}
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source iterable. This method iterates over {@code elements} only    * once.    *    *<p><b>Performance note:</b> In certain cases when {@code elements} is an {@link    * ImmutableCollection}, its data will be reused directly without copying; the {@code elements}    * instance itself might even be returned. The specific circumstances in which these optimizations    * happen are undefined and subject to change.    *    * @throws NullPointerException if any of {@code elements} is null    */
+DECL|method|copyOf (Iterable<? extends E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+return|return
+operator|(
+name|elements
+operator|instanceof
+name|Collection
+operator|)
+condition|?
+name|copyOf
+argument_list|(
+operator|(
+name|Collection
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+operator|)
+name|elements
+argument_list|)
+else|:
+name|copyOf
+argument_list|(
+name|elements
+operator|.
+name|iterator
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source iterator.    *    * @throws NullPointerException if any of {@code elements} is null    */
+DECL|method|copyOf (Iterator<? extends E> elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|Iterator
+argument_list|<
+name|?
+extends|extends
+name|E
+argument_list|>
+name|elements
+parameter_list|)
+block|{
+comment|// We special-case for 0 or 1 elements, but anything further is madness.
+if|if
+condition|(
+operator|!
+name|elements
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+return|return
+name|of
+argument_list|()
+return|;
+block|}
+name|E
+name|first
+init|=
+name|elements
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|elements
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+return|return
+name|of
+argument_list|(
+name|first
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+operator|new
+name|ImmutableSet
+operator|.
+name|Builder
+argument_list|<
+name|E
+argument_list|>
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|first
+argument_list|)
+operator|.
+name|addAll
+argument_list|(
+name|elements
+argument_list|)
+operator|.
+name|build
+argument_list|()
+return|;
+block|}
+block|}
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source array.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
+DECL|method|copyOf (E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|ImmutableSet
+argument_list|<
+name|E
+argument_list|>
+name|copyOf
+parameter_list|(
+name|E
+index|[]
+name|elements
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|elements
+operator|.
+name|length
+condition|)
+block|{
+case|case
+literal|0
+case|:
+return|return
+name|of
+argument_list|()
+return|;
+case|case
+literal|1
+case|:
+return|return
+name|of
+argument_list|(
+name|elements
+index|[
+literal|0
+index|]
+argument_list|)
+return|;
+default|default:
+return|return
+name|construct
+argument_list|(
+name|elements
+operator|.
+name|length
+argument_list|,
+name|elements
+operator|.
+name|clone
+argument_list|()
+argument_list|)
+return|;
+block|}
 block|}
 DECL|method|copyOfEnumSet ( EnumSet<E> enumSet)
 specifier|private
