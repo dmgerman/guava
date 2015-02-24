@@ -221,7 +221,7 @@ expr_stmt|;
 return|return
 name|Futures
 operator|.
-name|transform
+name|transformAsync
 argument_list|(
 name|trigger
 argument_list|,
