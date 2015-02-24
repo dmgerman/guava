@@ -142,6 +142,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|Service
+operator|.
+name|State
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|ServiceManager
 operator|.
 name|Listener
@@ -470,7 +488,7 @@ argument_list|(
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"failed"
+literal|"start failure"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -502,7 +520,7 @@ argument_list|(
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"failed"
+literal|"run failure"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -529,7 +547,7 @@ argument_list|(
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"failed"
+literal|"stop failure"
 argument_list|)
 argument_list|)
 expr_stmt|;
