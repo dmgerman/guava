@@ -71,12 +71,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>To be deprecated:</b> This interface's main user,  * {@link Futures#withFallback(ListenableFuture, FutureFallback) Futures.withFallback}, has been  * updated to use {@link AsyncFunction}.  *  *<p>Provides a backup {@code Future} to replace an earlier failed {@code Future}. An  * implementation of this interface can be applied to an input {@code Future} with  * {@link Futures#withFallback}.  *  * @param<V> the result type of the provided backup {@code Future}  *  * @author Bruno Diniz  * @since 14.0  */
+comment|/**  * Provides a backup {@code Future} to replace an earlier failed {@code Future}. An implementation  * of this interface can be applied to an input {@code Future} with {@link Futures#withFallback}.  *  * @param<V> the result type of the provided backup {@code Future}  *  * @author Bruno Diniz  * @since 14.0  * @deprecated This interface's main user, {@link Futures#withFallback(ListenableFuture,  *     FutureFallback) Futures.withFallback}, has been updated to use {@link AsyncFunction}. We  *     recommend that other APIs be updated in the same way. This interface will be removed in Guava  *     release 20.0.  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|Deprecated
 annotation|@
 name|GwtCompatible
 DECL|interface|FutureFallback
