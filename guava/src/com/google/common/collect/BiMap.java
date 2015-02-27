@@ -89,6 +89,8 @@ comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the
 annotation|@
 name|Override
 DECL|method|put (@ullable K key, @Nullable V value)
+annotation|@
+name|Nullable
 name|V
 name|put
 parameter_list|(
@@ -105,6 +107,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * An alternate form of {@code put} that silently removes any existing entry    * with the value {@code value} before proceeding with the {@link #put}    * operation. If the bimap previously contained the provided key-value    * mapping, this method has no effect.    *    *<p>Note that a successful call to this method could cause the size of the    * bimap to increase by one, stay the same, or even decrease by one.    *    *<p><b>Warning:</b> If an existing entry with this value is removed, the key    * for that entry is discarded and not returned.    *    * @param key the key with which the specified value is to be associated    * @param value the value to be associated with the specified key    * @return the value which was previously associated with the key, which may    *     be {@code null}, or {@code null} if there was no previous entry    */
 DECL|method|forcePut (@ullable K key, @Nullable V value)
+annotation|@
+name|Nullable
 name|V
 name|forcePut
 parameter_list|(

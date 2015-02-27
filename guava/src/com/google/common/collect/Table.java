@@ -212,6 +212,8 @@ parameter_list|()
 function_decl|;
 comment|/**    * Associates the specified value with the specified keys. If the table    * already contained a mapping for those keys, the old value is replaced with    * the specified value.    *    * @param rowKey row key that the value should be associated with    * @param columnKey column key that the value should be associated with    * @param value value to be associated with the specified keys    * @return the value previously associated with the keys, or {@code null} if    *     no mapping existed for the keys    */
 DECL|method|put (R rowKey, C columnKey, V value)
+annotation|@
+name|Nullable
 name|V
 name|put
 parameter_list|(
@@ -249,6 +251,8 @@ parameter_list|)
 function_decl|;
 comment|/**    * Removes the mapping, if any, associated with the given keys.    *    * @param rowKey row key of mapping to be removed    * @param columnKey column key of mapping to be removed    * @return the value previously associated with the keys, or {@code null} if    *     no such value existed    */
 DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
+annotation|@
+name|Nullable
 name|V
 name|remove
 parameter_list|(
@@ -381,18 +385,24 @@ parameter_list|>
 block|{
 comment|/**      * Returns the row key of this cell.      */
 DECL|method|getRowKey ()
+annotation|@
+name|Nullable
 name|R
 name|getRowKey
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the column key of this cell.      */
 DECL|method|getColumnKey ()
+annotation|@
+name|Nullable
 name|C
 name|getColumnKey
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the value of this cell.      */
 DECL|method|getValue ()
+annotation|@
+name|Nullable
 name|V
 name|getValue
 parameter_list|()
