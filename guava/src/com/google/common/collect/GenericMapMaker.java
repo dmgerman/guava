@@ -344,7 +344,7 @@ argument_list|>
 name|weakValues
 parameter_list|()
 function_decl|;
-comment|/**    * See {@link MapMaker#softValues}.    *    * @deprecated Caching functionality in {@code MapMaker} has been moved to {@link    *     com.google.common.cache.CacheBuilder}, with {@link #softValues} being replaced by {@link    *     com.google.common.cache.CacheBuilder#softValues}. Note that {@code CacheBuilder} is simply    *     an enhanced API for an implementation which was branched from {@code MapMaker}.<b>This    *     method is scheduled for removal in March 2015.</b>    */
+comment|/**    * See {@link MapMaker#softValues}.    *    * @deprecated Caching functionality in {@code MapMaker} has been moved to {@link    *     com.google.common.cache.CacheBuilder}, with {@link #softValues} being replaced by {@link    *     com.google.common.cache.CacheBuilder#softValues}. Note that {@code CacheBuilder} is simply    *     an enhanced API for an implementation which was branched from {@code MapMaker}.    */
 annotation|@
 name|Deprecated
 annotation|@
@@ -353,7 +353,6 @@ argument_list|(
 literal|"java.lang.ref.SoftReference"
 argument_list|)
 DECL|method|softValues ()
-specifier|public
 specifier|abstract
 name|GenericMapMaker
 argument_list|<
