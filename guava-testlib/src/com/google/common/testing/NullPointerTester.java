@@ -1360,7 +1360,6 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|// TODO(benyu): Use labs/reflect/Signature if it graduates.
 DECL|class|Signature
 specifier|private
 specifier|static
