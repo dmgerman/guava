@@ -2383,8 +2383,29 @@ operator|.
 name|urls
 argument_list|()
 decl_stmt|;
-name|assertEquals
+if|if
+condition|(
+name|urlsFromLoader
+operator|.
+name|size
+argument_list|()
+operator|!=
+name|urlsFromClassPath
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
+name|fail
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Number of URLs from system classloader (%s) and number of URLs from ClassPath (%s) "
+operator|+
+literal|"do not match"
+argument_list|,
 name|urlsFromLoader
 operator|.
 name|size
@@ -2395,7 +2416,9 @@ operator|.
 name|size
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
