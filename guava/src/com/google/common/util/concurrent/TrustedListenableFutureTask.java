@@ -35,18 +35,16 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|java
+import|import
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|concurrent
+name|common
 operator|.
-name|atomic
+name|annotations
 operator|.
-name|AtomicReferenceFieldUpdater
-operator|.
-name|newUpdater
+name|GwtCompatible
 import|;
 end_import
 
@@ -60,7 +58,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtCompatible
+name|GwtIncompatible
 import|;
 end_import
 
@@ -102,20 +100,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicReferenceFieldUpdater
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -131,11 +115,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-argument_list|(
-name|emulated
-operator|=
-literal|true
-argument_list|)
 DECL|class|TrustedListenableFutureTask
 class|class
 name|TrustedListenableFutureTask
@@ -155,31 +134,6 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|field|RUNNER
-specifier|private
-specifier|static
-specifier|final
-name|AtomicReferenceFieldUpdater
-argument_list|<
-name|TrustedListenableFutureTask
-argument_list|,
-name|Thread
-argument_list|>
-name|RUNNER
-init|=
-name|newUpdater
-argument_list|(
-name|TrustedListenableFutureTask
-operator|.
-name|class
-argument_list|,
-name|Thread
-operator|.
-name|class
-argument_list|,
-literal|"runner"
-argument_list|)
-decl_stmt|;
 comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    */
 DECL|method|create (Callable<V> callable)
 specifier|static
@@ -251,26 +205,8 @@ return|;
 block|}
 DECL|field|task
 specifier|private
-name|Callable
-argument_list|<
-name|V
-argument_list|>
+name|TrutestedFutureInterruptibleTask
 name|task
-decl_stmt|;
-comment|// These two fields are used to interrupt running tasks.  The thread executing the task publishes
-comment|// itself to the 'runner' field and the thread interrupting sets 'doneInterrupting' when it has
-comment|// finished interrupting.
-DECL|field|runner
-specifier|private
-specifier|volatile
-name|Thread
-name|runner
-decl_stmt|;
-DECL|field|doneInterrupting
-specifier|private
-specifier|volatile
-name|boolean
-name|doneInterrupting
 decl_stmt|;
 DECL|method|TrustedListenableFutureTask (Callable<V> callable)
 name|TrustedListenableFutureTask
@@ -286,7 +222,8 @@ name|this
 operator|.
 name|task
 operator|=
-name|checkNotNull
+operator|new
+name|TrutestedFutureInterruptibleTask
 argument_list|(
 name|callable
 argument_list|)
@@ -300,135 +237,50 @@ name|void
 name|run
 parameter_list|()
 block|{
-if|if
-condition|(
-operator|!
-name|RUNNER
-operator|.
-name|compareAndSet
-argument_list|(
-name|this
-argument_list|,
-literal|null
-argument_list|,
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-argument_list|)
-condition|)
-block|{
-return|return;
-comment|// someone else has run or is running.
-block|}
-try|try
-block|{
-comment|// Read before checking isDone to ensure that a cancel race doesn't cause us to read null.
-name|Callable
-argument_list|<
-name|V
-argument_list|>
+name|TrutestedFutureInterruptibleTask
 name|localTask
 init|=
 name|task
 decl_stmt|;
-comment|// Ensure we haven't been cancelled or already run.
 if|if
 condition|(
-operator|!
-name|isDone
-argument_list|()
-condition|)
-block|{
-name|doRun
-argument_list|(
 name|localTask
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|setException
-argument_list|(
-name|t
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|task
-operator|=
+operator|!=
 literal|null
-expr_stmt|;
-name|runner
-operator|=
-literal|null
-expr_stmt|;
-if|if
-condition|(
-name|wasInterrupted
-argument_list|()
 condition|)
 block|{
-comment|// We were interrupted, it is possible that the interrupted bit hasn't been set yet.  Wait
-comment|// for the interrupting thread to set 'doneInterrupting' to true. See interruptTask().
-comment|// We want to wait so that we don't interrupt the _next_ thing run on the thread.
-comment|// Note. We don't reset the interrupted bit, just wait for it to be set.
-comment|// If this is a thread pool thread, the thread pool will reset it for us.  Otherwise, the
-comment|// interrupted bit may have been intended for something else, so don't clear it.
-while|while
-condition|(
-operator|!
-name|doneInterrupting
-condition|)
-block|{
-name|Thread
+name|localTask
 operator|.
-name|yield
+name|run
 argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
-block|}
-DECL|method|cancel (boolean mayInterruptIfRunning)
+DECL|method|done ()
 annotation|@
 name|Override
-specifier|public
-name|boolean
-name|cancel
-parameter_list|(
-name|boolean
-name|mayInterruptIfRunning
-parameter_list|)
+name|void
+name|done
+parameter_list|()
 block|{
-if|if
-condition|(
 name|super
 operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-condition|)
-block|{
+name|done
+argument_list|()
+expr_stmt|;
+comment|// Free all resources associated with the running task
+name|this
+operator|.
 name|task
 operator|=
 literal|null
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
-return|return
-literal|false
-return|;
-block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"Interruption not supported"
+argument_list|)
 DECL|method|interruptTask ()
 annotation|@
 name|Override
@@ -438,31 +290,24 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{
-comment|// interruptTask is guaranteed to be called at most once and if runner is non-null when that
-comment|// happens then it must have been the first thread that entered run().  So there is no risk that
-comment|// we are interrupting the wrong thread.
-name|Thread
-name|currentRunner
+name|TrutestedFutureInterruptibleTask
+name|localTask
 init|=
-name|runner
+name|task
 decl_stmt|;
 if|if
 condition|(
-name|currentRunner
+name|localTask
 operator|!=
 literal|null
 condition|)
 block|{
-name|currentRunner
+name|localTask
 operator|.
-name|interrupt
+name|interruptTask
 argument_list|()
 expr_stmt|;
 block|}
-name|doneInterrupting
-operator|=
-literal|true
-expr_stmt|;
 block|}
 comment|/**    * Template method for calculating and setting the value. Guaranteed to be called at most once.    *    *<p>Extracted as an extension point for subclasses that wish to modify behavior.    * See Futures.combine (which has specialized exception handling).    */
 DECL|method|doRun (Callable<V> localTask)
@@ -486,6 +331,96 @@ name|call
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+DECL|class|TrutestedFutureInterruptibleTask
+specifier|final
+class|class
+name|TrutestedFutureInterruptibleTask
+extends|extends
+name|InterruptibleTask
+block|{
+DECL|field|callable
+specifier|private
+specifier|final
+name|Callable
+argument_list|<
+name|V
+argument_list|>
+name|callable
+decl_stmt|;
+DECL|method|TrutestedFutureInterruptibleTask (Callable<V> callable)
+name|TrutestedFutureInterruptibleTask
+parameter_list|(
+name|Callable
+argument_list|<
+name|V
+argument_list|>
+name|callable
+parameter_list|)
+block|{
+name|this
+operator|.
+name|callable
+operator|=
+name|checkNotNull
+argument_list|(
+name|callable
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|runInterruptibly ()
+annotation|@
+name|Override
+name|void
+name|runInterruptibly
+parameter_list|()
+block|{
+comment|// Ensure we haven't been cancelled or already run.
+if|if
+condition|(
+operator|!
+name|isDone
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|doRun
+argument_list|(
+name|callable
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|setException
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+DECL|method|wasInterrupted ()
+annotation|@
+name|Override
+name|boolean
+name|wasInterrupted
+parameter_list|()
+block|{
+return|return
+name|TrustedListenableFutureTask
+operator|.
+name|this
+operator|.
+name|wasInterrupted
+argument_list|()
+return|;
+block|}
 block|}
 block|}
 end_class

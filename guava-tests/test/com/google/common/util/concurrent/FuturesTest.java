@@ -737,7 +737,12 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-literal|"com.google.common.util.concurrent.CollectionFuture"
+name|AggregateFuture
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 decl_stmt|;
 annotation|@
