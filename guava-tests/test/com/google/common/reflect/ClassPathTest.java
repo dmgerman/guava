@@ -2404,7 +2404,7 @@ name|format
 argument_list|(
 literal|"Number of URLs from system classloader (%s) and number of URLs from ClassPath (%s) "
 operator|+
-literal|"do not match"
+literal|"do not match for resource %s"
 argument_list|,
 name|urlsFromLoader
 operator|.
@@ -2415,6 +2415,8 @@ name|urlsFromClassPath
 operator|.
 name|size
 argument_list|()
+argument_list|,
+name|resourceName
 argument_list|)
 argument_list|)
 expr_stmt|;
