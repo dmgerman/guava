@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link ImmutableList} with one or more elements.  *  * @author Kevin Bourrillion  */
+comment|/**  * Implementation of {@link ImmutableList} used for 0 or 2+ elements (not 1).  *  * @author Kevin Bourrillion  */
 end_comment
 
 begin_class
@@ -88,6 +88,26 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|EMPTY
+specifier|static
+specifier|final
+name|ImmutableList
+argument_list|<
+name|Object
+argument_list|>
+name|EMPTY
+init|=
+operator|new
+name|RegularImmutableList
+argument_list|<
+name|Object
+argument_list|>
+argument_list|(
+name|ObjectArrays
+operator|.
+name|EMPTY_ARRAY
+argument_list|)
+decl_stmt|;
 DECL|field|offset
 specifier|private
 specifier|final

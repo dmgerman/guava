@@ -97,6 +97,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|RegularImmutableList
+operator|.
+name|EMPTY
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -233,27 +249,6 @@ argument_list|>
 implements|,
 name|RandomAccess
 block|{
-DECL|field|EMPTY
-specifier|private
-specifier|static
-specifier|final
-name|ImmutableList
-argument_list|<
-name|Object
-argument_list|>
-name|EMPTY
-init|=
-operator|new
-name|RegularImmutableList
-argument_list|<
-name|Object
-argument_list|>
-argument_list|(
-name|ObjectArrays
-operator|.
-name|EMPTY_ARRAY
-argument_list|)
-decl_stmt|;
 comment|/**    * Returns the empty immutable list. This set behaves and performs comparably    * to {@link Collections#emptyList}, and is preferable mainly for consistency    * and maintainability of your code.    */
 comment|// Casting to any type is safe because the list will never hold any elements.
 annotation|@
@@ -1745,14 +1740,14 @@ name|E
 argument_list|>
 block|{
 DECL|field|offset
-specifier|transient
 specifier|final
+specifier|transient
 name|int
 name|offset
 decl_stmt|;
 DECL|field|length
-specifier|transient
 specifier|final
+specifier|transient
 name|int
 name|length
 decl_stmt|;
