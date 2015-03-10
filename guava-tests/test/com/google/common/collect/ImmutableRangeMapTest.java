@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|testing
+operator|.
+name|SerializableTester
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -1276,6 +1290,13 @@ name|assertEquals
 argument_list|(
 name|expectedAsMap
 argument_list|,
+name|asMap
+argument_list|)
+expr_stmt|;
+name|SerializableTester
+operator|.
+name|reserializeAndAssert
+argument_list|(
 name|asMap
 argument_list|)
 expr_stmt|;

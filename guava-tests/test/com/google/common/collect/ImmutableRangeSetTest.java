@@ -2740,6 +2740,16 @@ argument_list|(
 name|built
 argument_list|)
 expr_stmt|;
+name|SerializableTester
+operator|.
+name|reserializeAndAssert
+argument_list|(
+name|built
+operator|.
+name|asRanges
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|method|testAsSet ()
