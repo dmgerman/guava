@@ -476,7 +476,7 @@ name|delegate
 argument_list|)
 return|;
 block|}
-comment|/*    * This class is used to serialize ImmutableEnumSet instances.    */
+comment|/*    * This class is used to serialize ImmutableEnumMap instances.    */
 DECL|class|EnumSerializedForm
 specifier|private
 specifier|static
