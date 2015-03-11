@@ -890,6 +890,8 @@ name|executor
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|asAsyncFunction (final FutureFallback<V> fallback)
 specifier|static
 parameter_list|<
@@ -2566,6 +2568,8 @@ decl_stmt|;
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails immediately.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
+annotation|@
+name|SafeVarargs
 DECL|method|allAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -2664,6 +2668,8 @@ annotation|@
 name|Beta
 annotation|@
 name|CheckReturnValue
+annotation|@
+name|SafeVarargs
 DECL|method|successfulAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
