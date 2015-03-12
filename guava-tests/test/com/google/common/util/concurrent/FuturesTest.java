@@ -100,6 +100,24 @@ name|concurrent
 operator|.
 name|Futures
 operator|.
+name|getChecked
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Futures
+operator|.
 name|getUnchecked
 import|;
 end_import
@@ -17058,12 +17076,12 @@ comment|// Boring untimed-get tests:
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_success ()
+DECL|method|testGetCheckedUntimed_success ()
 specifier|public
 name|void
-name|testGetUntimed_success
+name|testGetCheckedUntimed_success
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
@@ -17072,7 +17090,7 @@ name|assertEquals
 argument_list|(
 literal|"foo"
 argument_list|,
-name|get
+name|getChecked
 argument_list|(
 name|immediateFuture
 argument_list|(
@@ -17089,12 +17107,12 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_interrupted ()
+DECL|method|testGetCheckedUntimed_interrupted ()
 specifier|public
 name|void
-name|testGetUntimed_interrupted
+name|testGetCheckedUntimed_interrupted
 parameter_list|()
 block|{
 name|SettableFuture
@@ -17118,7 +17136,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|future
 argument_list|,
@@ -17171,12 +17189,12 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_cancelled ()
+DECL|method|testGetCheckedUntimed_cancelled ()
 specifier|public
 name|void
-name|testGetUntimed_cancelled
+name|testGetCheckedUntimed_cancelled
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
@@ -17201,7 +17219,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|future
 argument_list|,
@@ -17224,17 +17242,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_ExecutionExceptionChecked ()
+DECL|method|testGetCheckedUntimed_ExecutionExceptionChecked ()
 specifier|public
 name|void
-name|testGetUntimed_ExecutionExceptionChecked
+name|testGetCheckedUntimed_ExecutionExceptionChecked
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -17268,19 +17286,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_ExecutionExceptionUnchecked ()
+DECL|method|testGetCheckedUntimed_ExecutionExceptionUnchecked ()
 specifier|public
 name|void
-name|testGetUntimed_ExecutionExceptionUnchecked
+name|testGetCheckedUntimed_ExecutionExceptionUnchecked
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_UNCHECKED_EXCEPTION
 argument_list|,
@@ -17314,19 +17332,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_ExecutionExceptionError ()
+DECL|method|testGetCheckedUntimed_ExecutionExceptionError ()
 specifier|public
 name|void
-name|testGetUntimed_ExecutionExceptionError
+name|testGetCheckedUntimed_ExecutionExceptionError
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_ERROR
 argument_list|,
@@ -17360,17 +17378,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_ExecutionExceptionOtherThrowable ()
+DECL|method|testGetCheckedUntimed_ExecutionExceptionOtherThrowable ()
 specifier|public
 name|void
-name|testGetUntimed_ExecutionExceptionOtherThrowable
+name|testGetCheckedUntimed_ExecutionExceptionOtherThrowable
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_OTHER_THROWABLE
 argument_list|,
@@ -17404,19 +17422,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_RuntimeException ()
+DECL|method|testGetCheckedUntimed_RuntimeException ()
 specifier|public
 name|void
-name|testGetUntimed_RuntimeException
+name|testGetCheckedUntimed_RuntimeException
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|RUNTIME_EXCEPTION_FUTURE
 argument_list|,
@@ -17447,19 +17465,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_badExceptionConstructor_wrapsOriginalChecked ()
+DECL|method|testGetCheckedUntimed_badExceptionConstructor_wrapsOriginalChecked ()
 specifier|public
 name|void
-name|testGetUntimed_badExceptionConstructor_wrapsOriginalChecked
+name|testGetCheckedUntimed_badExceptionConstructor_wrapsOriginalChecked
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -17493,19 +17511,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_withGoodAndBadExceptionConstructor ()
+DECL|method|testGetCheckedUntimed_withGoodAndBadExceptionConstructor ()
 specifier|public
 name|void
-name|testGetUntimed_withGoodAndBadExceptionConstructor
+name|testGetCheckedUntimed_withGoodAndBadExceptionConstructor
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -17540,12 +17558,12 @@ comment|// Boring timed-get tests:
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_success ()
+DECL|method|testGetCheckedTimed_success ()
 specifier|public
 name|void
-name|testGetTimed_success
+name|testGetCheckedTimed_success
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
@@ -17554,7 +17572,7 @@ name|assertEquals
 argument_list|(
 literal|"foo"
 argument_list|,
-name|get
+name|getChecked
 argument_list|(
 name|immediateFuture
 argument_list|(
@@ -17575,12 +17593,12 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_interrupted ()
+DECL|method|testGetCheckedTimed_interrupted ()
 specifier|public
 name|void
-name|testGetTimed_interrupted
+name|testGetCheckedTimed_interrupted
 parameter_list|()
 block|{
 name|SettableFuture
@@ -17604,7 +17622,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|future
 argument_list|,
@@ -17661,12 +17679,12 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_cancelled ()
+DECL|method|testGetCheckedTimed_cancelled ()
 specifier|public
 name|void
-name|testGetTimed_cancelled
+name|testGetCheckedTimed_cancelled
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
@@ -17691,7 +17709,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|future
 argument_list|,
@@ -17718,17 +17736,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_ExecutionExceptionChecked ()
+DECL|method|testGetCheckedTimed_ExecutionExceptionChecked ()
 specifier|public
 name|void
-name|testGetTimed_ExecutionExceptionChecked
+name|testGetCheckedTimed_ExecutionExceptionChecked
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -17766,19 +17784,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_ExecutionExceptionUnchecked ()
+DECL|method|testGetCheckedTimed_ExecutionExceptionUnchecked ()
 specifier|public
 name|void
-name|testGetTimed_ExecutionExceptionUnchecked
+name|testGetCheckedTimed_ExecutionExceptionUnchecked
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_UNCHECKED_EXCEPTION
 argument_list|,
@@ -17816,19 +17834,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_ExecutionExceptionError ()
+DECL|method|testGetCheckedTimed_ExecutionExceptionError ()
 specifier|public
 name|void
-name|testGetTimed_ExecutionExceptionError
+name|testGetCheckedTimed_ExecutionExceptionError
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_ERROR
 argument_list|,
@@ -17866,17 +17884,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_ExecutionExceptionOtherThrowable ()
+DECL|method|testGetCheckedTimed_ExecutionExceptionOtherThrowable ()
 specifier|public
 name|void
-name|testGetTimed_ExecutionExceptionOtherThrowable
+name|testGetCheckedTimed_ExecutionExceptionOtherThrowable
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_OTHER_THROWABLE
 argument_list|,
@@ -17914,19 +17932,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_RuntimeException ()
+DECL|method|testGetCheckedTimed_RuntimeException ()
 specifier|public
 name|void
-name|testGetTimed_RuntimeException
+name|testGetCheckedTimed_RuntimeException
 parameter_list|()
 throws|throws
 name|TwoArgConstructorException
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|RUNTIME_EXCEPTION_FUTURE
 argument_list|,
@@ -17961,12 +17979,12 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_TimeoutException ()
+DECL|method|testGetCheckedTimed_TimeoutException ()
 specifier|public
 name|void
-name|testGetTimed_TimeoutException
+name|testGetCheckedTimed_TimeoutException
 parameter_list|()
 block|{
 name|SettableFuture
@@ -17982,7 +18000,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|future
 argument_list|,
@@ -18020,19 +18038,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_badExceptionConstructor_wrapsOriginalChecked ()
+DECL|method|testGetCheckedTimed_badExceptionConstructor_wrapsOriginalChecked ()
 specifier|public
 name|void
-name|testGetTimed_badExceptionConstructor_wrapsOriginalChecked
+name|testGetCheckedTimed_badExceptionConstructor_wrapsOriginalChecked
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18072,19 +18090,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetTimed_withGoodAndBadExceptionConstructor ()
+DECL|method|testGetCheckedTimed_withGoodAndBadExceptionConstructor ()
 specifier|public
 name|void
-name|testGetTimed_withGoodAndBadExceptionConstructor
+name|testGetCheckedTimed_withGoodAndBadExceptionConstructor
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18450,17 +18468,17 @@ comment|// Edge case tests of the exception-construction code through untimed ge
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_exceptionClassIsRuntimeException ()
+DECL|method|testGetCheckedUntimed_exceptionClassIsRuntimeException ()
 specifier|public
 name|void
-name|testGetUntimed_exceptionClassIsRuntimeException
+name|testGetCheckedUntimed_exceptionClassIsRuntimeException
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18483,17 +18501,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_exceptionClassSomePublicConstructors ()
+DECL|method|testGetCheckedUntimed_exceptionClassSomePublicConstructors ()
 specifier|public
 name|void
-name|testGetUntimed_exceptionClassSomePublicConstructors
+name|testGetCheckedUntimed_exceptionClassSomePublicConstructors
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18516,19 +18534,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_exceptionClassNoPublicConstructor ()
+DECL|method|testGetCheckedUntimed_exceptionClassNoPublicConstructor ()
 specifier|public
 name|void
-name|testGetUntimed_exceptionClassNoPublicConstructor
+name|testGetCheckedUntimed_exceptionClassNoPublicConstructor
 parameter_list|()
 throws|throws
 name|ExceptionWithPrivateConstructor
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18551,19 +18569,19 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_exceptionClassPublicConstructorWrongType ()
+DECL|method|testGetCheckedUntimed_exceptionClassPublicConstructorWrongType ()
 specifier|public
 name|void
-name|testGetUntimed_exceptionClassPublicConstructorWrongType
+name|testGetCheckedUntimed_exceptionClassPublicConstructorWrongType
 parameter_list|()
 throws|throws
 name|ExceptionWithWrongTypesConstructor
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18586,17 +18604,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_exceptionClassPrefersStringConstructor ()
+DECL|method|testGetCheckedUntimed_exceptionClassPrefersStringConstructor ()
 specifier|public
 name|void
-name|testGetUntimed_exceptionClassPrefersStringConstructor
+name|testGetCheckedUntimed_exceptionClassPrefersStringConstructor
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
@@ -18627,17 +18645,17 @@ block|}
 annotation|@
 name|GwtIncompatible
 argument_list|(
-literal|"Futures.get"
+literal|"Futures.getChecked"
 argument_list|)
-DECL|method|testGetUntimed_exceptionClassUsedInitCause ()
+DECL|method|testGetCheckedUntimed_exceptionClassUsedInitCause ()
 specifier|public
 name|void
-name|testGetUntimed_exceptionClassUsedInitCause
+name|testGetCheckedUntimed_exceptionClassUsedInitCause
 parameter_list|()
 block|{
 try|try
 block|{
-name|get
+name|getChecked
 argument_list|(
 name|FAILED_FUTURE_CHECKED_EXCEPTION
 argument_list|,
