@@ -1858,6 +1858,13 @@ name|class
 argument_list|)
 condition|)
 block|{
+name|method
+operator|.
+name|setAccessible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|builder
 operator|.
 name|put
