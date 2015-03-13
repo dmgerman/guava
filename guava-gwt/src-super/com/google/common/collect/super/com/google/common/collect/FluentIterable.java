@@ -1144,6 +1144,26 @@ name|iterable
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    * @since 19.0    */
+DECL|method|toMultiset ()
+specifier|public
+specifier|final
+name|ImmutableMultiset
+argument_list|<
+name|E
+argument_list|>
+name|toMultiset
+parameter_list|()
+block|{
+return|return
+name|ImmutableMultiset
+operator|.
+name|copyOf
+argument_list|(
+name|iterable
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
 DECL|method|toMap (Function<? super E, V> valueFunction)
 specifier|public
