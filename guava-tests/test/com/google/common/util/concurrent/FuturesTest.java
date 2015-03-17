@@ -82,24 +82,6 @@ name|concurrent
 operator|.
 name|Futures
 operator|.
-name|get
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Futures
-operator|.
 name|getChecked
 import|;
 end_import

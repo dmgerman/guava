@@ -450,7 +450,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    * To get uninterruptibility and remove checked exceptions, see    * {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#get(Future, Class) Futures.get}    * or {@link Futures#makeChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
+comment|/**    * Invokes {@code future.}{@link Future#get() get()} uninterruptibly.    * To get uninterruptibility and remove checked exceptions, see    * {@link Futures#getUnchecked}.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    */
 DECL|method|getUninterruptibly (Future<V> future)
 specifier|public
 specifier|static
@@ -521,7 +521,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#get(Future, Class) Futures.get}    * or {@link Futures#makeChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
+comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
