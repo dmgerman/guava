@@ -383,7 +383,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a supplier which caches the instance retrieved during the first    * call to {@code get()} and returns that value on subsequent calls to    * {@code get()}. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The supplier's serialized form    * does not contain the cached value, which will be recalculated when {@code    * get()} is called on the reserialized instance.    *    *<p>If {@code delegate} is an instance created by an earlier call to {@code    * memoize}, it is returned directly.    */
+comment|/**    * Returns a supplier which caches the instance retrieved during the first    * call to {@code get()} and returns that value on subsequent calls to    * {@code get()}. See:    *<a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>    *    *<p>The returned supplier is thread-safe. The delegate's {@code get()}    * method will be invoked at most once. The supplier's serialized form does    * not contain the cached value, which will be recalculated when {@code get()}    * is called on the reserialized instance.    *    *<p>If {@code delegate} is an instance created by an earlier call to {@code    * memoize}, it is returned directly.    */
 DECL|method|memoize (Supplier<T> delegate)
 specifier|public
 specifier|static
