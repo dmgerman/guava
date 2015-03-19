@@ -65,6 +65,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Hashing
+operator|.
+name|smearedHash
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -873,38 +889,6 @@ name|modCount
 operator|++
 expr_stmt|;
 block|}
-DECL|method|hash (@ullable Object o)
-specifier|private
-specifier|static
-name|int
-name|hash
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|o
-parameter_list|)
-block|{
-return|return
-name|Hashing
-operator|.
-name|smear
-argument_list|(
-operator|(
-name|o
-operator|==
-literal|null
-operator|)
-condition|?
-literal|0
-else|:
-name|o
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-return|;
-block|}
 DECL|method|seekByKey (@ullable Object key, int keyHash)
 specifier|private
 name|BiEntry
@@ -1075,7 +1059,7 @@ name|seekByKey
 argument_list|(
 name|key
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|key
 argument_list|)
@@ -1102,7 +1086,7 @@ name|seekByValue
 argument_list|(
 name|value
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|value
 argument_list|)
@@ -1138,7 +1122,7 @@ name|seekByKey
 argument_list|(
 name|key
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|key
 argument_list|)
@@ -1238,7 +1222,7 @@ block|{
 name|int
 name|keyHash
 init|=
-name|hash
+name|smearedHash
 argument_list|(
 name|key
 argument_list|)
@@ -1246,7 +1230,7 @@ decl_stmt|;
 name|int
 name|valueHash
 init|=
-name|hash
+name|smearedHash
 argument_list|(
 name|value
 argument_list|)
@@ -1424,7 +1408,7 @@ block|{
 name|int
 name|valueHash
 init|=
-name|hash
+name|smearedHash
 argument_list|(
 name|value
 argument_list|)
@@ -1432,7 +1416,7 @@ decl_stmt|;
 name|int
 name|keyHash
 init|=
-name|hash
+name|smearedHash
 argument_list|(
 name|key
 argument_list|)
@@ -1780,7 +1764,7 @@ name|seekByKey
 argument_list|(
 name|key
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|key
 argument_list|)
@@ -2194,7 +2178,7 @@ name|seekByKey
 argument_list|(
 name|o
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|o
 argument_list|)
@@ -2380,7 +2364,7 @@ decl_stmt|;
 name|int
 name|valueHash
 init|=
-name|hash
+name|smearedHash
 argument_list|(
 name|value
 argument_list|)
@@ -2643,7 +2627,7 @@ name|seekByValue
 argument_list|(
 name|value
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|value
 argument_list|)
@@ -2746,7 +2730,7 @@ name|seekByValue
 argument_list|(
 name|value
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|value
 argument_list|)
@@ -2864,7 +2848,7 @@ name|seekByValue
 argument_list|(
 name|o
 argument_list|,
-name|hash
+name|smearedHash
 argument_list|(
 name|o
 argument_list|)
@@ -3137,7 +3121,7 @@ decl_stmt|;
 name|int
 name|keyHash
 init|=
-name|hash
+name|smearedHash
 argument_list|(
 name|key
 argument_list|)
