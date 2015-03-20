@@ -1305,6 +1305,7 @@ index|]
 decl_stmt|;
 DECL|field|EXCLUDED_CLASS_NAMES
 specifier|static
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -1757,8 +1758,8 @@ name|this
 operator|!=
 name|acquiredLock
 argument_list|,
-literal|"Attempted to acquire multiple locks with the same rank "
-operator|+
+literal|"Attempted to acquire multiple locks with the same rank %s"
+argument_list|,
 name|acquiredLock
 operator|.
 name|getLockName
