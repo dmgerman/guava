@@ -912,7 +912,6 @@ return|;
 block|}
 DECL|class|ImmutableEntry
 specifier|static
-specifier|final
 class|class
 name|ImmutableEntry
 parameter_list|<
@@ -929,11 +928,13 @@ block|{
 DECL|field|element
 annotation|@
 name|Nullable
+specifier|private
 specifier|final
 name|E
 name|element
 decl_stmt|;
 DECL|field|count
+specifier|private
 specifier|final
 name|int
 name|count
@@ -976,6 +977,7 @@ DECL|method|getElement ()
 annotation|@
 name|Nullable
 specifier|public
+specifier|final
 name|E
 name|getElement
 parameter_list|()
@@ -988,12 +990,26 @@ annotation|@
 name|Override
 DECL|method|getCount ()
 specifier|public
+specifier|final
 name|int
 name|getCount
 parameter_list|()
 block|{
 return|return
 name|count
+return|;
+block|}
+DECL|method|nextInBucket ()
+specifier|public
+name|ImmutableEntry
+argument_list|<
+name|E
+argument_list|>
+name|nextInBucket
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 DECL|field|serialVersionUID
