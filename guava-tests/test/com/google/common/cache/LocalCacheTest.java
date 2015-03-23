@@ -17310,7 +17310,9 @@ block|}
 name|segment
 operator|.
 name|evictEntries
-argument_list|()
+argument_list|(
+name|entry
+argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(

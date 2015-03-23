@@ -4114,8 +4114,8 @@ parameter_list|)
 block|{}
 block|}
 DECL|class|AbstractReferenceEntry
-specifier|static
 specifier|abstract
+specifier|static
 class|class
 name|AbstractReferenceEntry
 parameter_list|<
@@ -11503,16 +11503,24 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Performs eviction if the segment is full. This should only be called prior to adding a new      * entry and increasing {@code count}.      */
+comment|/**      * Performs eviction if the segment is over capacity. Avoids flushing the entire cache if the      * newest entry exceeds the maximum weight all on its own.      *      * @param newest the most recently added entry      */
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
-DECL|method|evictEntries ()
+DECL|method|evictEntries (ReferenceEntry<K, V> newest)
 name|void
 name|evictEntries
-parameter_list|()
+parameter_list|(
+name|ReferenceEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newest
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -11528,6 +11536,46 @@ block|}
 name|drainRecencyQueue
 argument_list|()
 expr_stmt|;
+comment|// If the newest entry by itself is too heavy for the segment, don't bother evicting
+comment|// anything else, just that
+if|if
+condition|(
+name|newest
+operator|.
+name|getValueReference
+argument_list|()
+operator|.
+name|getWeight
+argument_list|()
+operator|>
+name|maxSegmentWeight
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|removeEntry
+argument_list|(
+name|newest
+argument_list|,
+name|newest
+operator|.
+name|getHash
+argument_list|()
+argument_list|,
+name|RemovalCause
+operator|.
+name|SIZE
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
+block|}
 while|while
 condition|(
 name|totalWeight
@@ -12564,7 +12612,9 @@ name|newCount
 expr_stmt|;
 comment|// write-volatile
 name|evictEntries
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 return|return
 literal|null
@@ -12621,7 +12671,9 @@ name|now
 argument_list|)
 expr_stmt|;
 name|evictEntries
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 return|return
 name|entryValue
@@ -12686,7 +12738,9 @@ name|newCount
 expr_stmt|;
 comment|// write-volatile
 name|evictEntries
-argument_list|()
+argument_list|(
+name|newEntry
+argument_list|)
 expr_stmt|;
 return|return
 literal|null
@@ -13340,7 +13394,9 @@ name|now
 argument_list|)
 expr_stmt|;
 name|evictEntries
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -13645,7 +13701,9 @@ name|now
 argument_list|)
 expr_stmt|;
 name|evictEntries
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 return|return
 name|entryValue
@@ -14215,7 +14273,9 @@ name|newCount
 expr_stmt|;
 comment|// write-volatile
 name|evictEntries
-argument_list|()
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -14303,7 +14363,9 @@ name|newCount
 expr_stmt|;
 comment|// write-volatile
 name|evictEntries
-argument_list|()
+argument_list|(
+name|newEntry
+argument_list|)
 expr_stmt|;
 return|return
 literal|true
