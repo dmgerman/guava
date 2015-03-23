@@ -655,6 +655,18 @@ name|ATOMIC_HELPER
 operator|=
 name|helper
 expr_stmt|;
+comment|// Prevent rare disastrous classloading in first call to LockSupport.park.
+comment|// See: https://bugs.openjdk.java.net/browse/JDK-8074773
+name|Class
+argument_list|<
+name|?
+argument_list|>
+name|ensureLoaded
+init|=
+name|LockSupport
+operator|.
+name|class
+decl_stmt|;
 block|}
 comment|/**    * Waiter links form a Treiber stack, in the {@link #waiters} field.    */
 DECL|class|Waiter
