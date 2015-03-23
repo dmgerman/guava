@@ -110,38 +110,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ImmutableMap
-operator|.
-name|Builder
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ImmutableMapEntry
-operator|.
-name|TerminalEntry
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -177,18 +145,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -541,10 +497,10 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|ofEntries (TerminalEntry<K, V>.... entries)
+DECL|method|ofEntries (ImmutableMapEntry<K, V>.... entries)
 name|ofEntries
 parameter_list|(
-name|TerminalEntry
+name|ImmutableMapEntry
 argument_list|<
 name|K
 argument_list|,

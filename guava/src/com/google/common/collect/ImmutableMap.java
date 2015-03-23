@@ -62,22 +62,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|ImmutableMapEntry
-operator|.
-name|TerminalEntry
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -545,7 +529,7 @@ name|K
 parameter_list|,
 name|V
 parameter_list|>
-name|TerminalEntry
+name|ImmutableMapEntry
 argument_list|<
 name|K
 argument_list|,
@@ -562,7 +546,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|TerminalEntry
+name|ImmutableMapEntry
 argument_list|<
 name|K
 argument_list|,
@@ -670,7 +654,7 @@ name|V
 parameter_list|>
 block|{
 DECL|field|entries
-name|TerminalEntry
+name|ImmutableMapEntry
 argument_list|<
 name|K
 argument_list|,
@@ -716,7 +700,7 @@ operator|.
 name|entries
 operator|=
 operator|new
-name|TerminalEntry
+name|ImmutableMapEntry
 index|[
 name|initialCapacity
 index|]
@@ -795,7 +779,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|TerminalEntry
+name|ImmutableMapEntry
 argument_list|<
 name|K
 argument_list|,
@@ -1264,6 +1248,10 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|(
+name|entryArray
+operator|.
+name|length
+argument_list|,
 name|entryArray
 argument_list|)
 return|;
