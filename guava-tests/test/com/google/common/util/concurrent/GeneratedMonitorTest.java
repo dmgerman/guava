@@ -3218,8 +3218,7 @@ block|}
 else|else
 block|{
 throw|throw
-operator|new
-name|AssertionError
+name|newAssertionError
 argument_list|(
 literal|"unexpected exception"
 argument_list|,
@@ -3235,8 +3234,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|AssertionError
+name|newAssertionError
 argument_list|(
 literal|"unexpected exception"
 argument_list|,
@@ -3799,6 +3797,46 @@ expr_stmt|;
 block|}
 block|}
 block|}
+return|;
+block|}
+end_function
+
+begin_comment
+comment|/** Alternative to AssertionError(String, Throwable), which doesn't exist in Java 1.6 */
+end_comment
+
+begin_function
+DECL|method|newAssertionError (String message, Throwable cause)
+specifier|private
+specifier|static
+name|AssertionError
+name|newAssertionError
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|Throwable
+name|cause
+parameter_list|)
+block|{
+name|AssertionError
+name|e
+init|=
+operator|new
+name|AssertionError
+argument_list|(
+name|message
+argument_list|)
+decl_stmt|;
+name|e
+operator|.
+name|initCause
+argument_list|(
+name|cause
+argument_list|)
+expr_stmt|;
+return|return
+name|e
 return|;
 block|}
 end_function
