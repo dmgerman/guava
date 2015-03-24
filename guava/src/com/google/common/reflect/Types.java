@@ -334,6 +334,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|security
+operator|.
+name|AccessControlException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -1858,6 +1868,8 @@ name|class
 argument_list|)
 condition|)
 block|{
+try|try
+block|{
 name|method
 operator|.
 name|setAccessible
@@ -1865,6 +1877,16 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|AccessControlException
+name|e
+parameter_list|)
+block|{
+comment|// OK: the method is accessible to us anyway. The setAccessible call is only for
+comment|// unusual execution environments where that might not be true.
+block|}
 name|builder
 operator|.
 name|put
