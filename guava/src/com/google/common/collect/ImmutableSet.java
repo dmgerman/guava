@@ -171,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable collection that cannot contain duplicate elements and has order-independent  * {@linkplain #equals equality};<b>please see {@link ImmutableCollection}</b> for many important  * details common to all immutable collection types.  *  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@link Set} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

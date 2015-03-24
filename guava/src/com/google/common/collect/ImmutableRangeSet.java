@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An efficient immutable implementation of a {@link RangeSet}.  *  * @author Louis Wasserman  * @since 14.0  */
+comment|/**  * A {@link RangeSet} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_class

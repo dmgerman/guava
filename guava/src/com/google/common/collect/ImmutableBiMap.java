@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable {@link BiMap} with reliable user-specified iteration order. Does  * not permit null keys or values. An {@code ImmutableBiMap} and its inverse  * have the same iteration ordering.  *  *<p>An instance of {@code ImmutableBiMap} contains its own data and will  *<i>never</i> change. {@code ImmutableBiMap} is convenient for  * {@code public static final} maps ("constant maps") and also lets you easily  * make a "defensive copy" of a bimap provided to your class by a caller.  *  *<p><b>Note:</b> Although this class is not final, it cannot be subclassed as  * it has no public or protected constructors. Thus, instances of this class are  * guaranteed to be immutable.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@link BiMap} whose contents will never change, with many other important properties detailed  * at {@link ImmutableCollection}.  *  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
 end_comment
 
 begin_class

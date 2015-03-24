@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable implementation of {@code RangeMap}, supporting all query operations efficiently.  *  *<p>Like all {@code RangeMap} implementations, this supports neither null keys nor null values.  *  * @author Louis Wasserman  * @since 14.0  */
+comment|/**  * A {@link RangeMap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  * @author Louis Wasserman  * @since 14.0  */
 end_comment
 
 begin_class
