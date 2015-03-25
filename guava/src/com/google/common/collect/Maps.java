@@ -544,6 +544,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -8664,6 +8674,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a key that    * doesn't satisfy the predicate, the map's {@code put()} and {@code putAll()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( Map<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8810,6 +8822,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose    * keys satisfy a predicate. The returned map is a live view of {@code    * unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a key that    * doesn't satisfy the predicate, the map's {@code put()} and {@code putAll()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( SortedMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8869,6 +8883,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableMap"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( NavigableMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8923,6 +8939,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose keys satisfy a predicate.    * The returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the    * bimap and its views. When given a key that doesn't satisfy the predicate, the bimap's {@code    * put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every key in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as    * documented at {@link Predicate#apply}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( BiMap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -8980,6 +8998,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} whose values    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a value    * that doesn't satisfy the predicate, the map's {@code put()}, {@code    * putAll()}, and {@link Entry#setValue} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose values satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterValues ( Map<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -9081,6 +9101,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} whose    * values satisfy a predicate. The returned map is a live view of {@code    * unfiltered}; changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a value    * that doesn't satisfy the predicate, the map's {@code put()}, {@code    * putAll()}, and {@link Entry#setValue} methods throw an {@link    * IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings whose values satisfy the    * filter will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterValues ( SortedMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -9138,6 +9160,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableMap"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|filterValues ( NavigableMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -9190,6 +9214,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} whose values satisfy a    * predicate. The returned bimap is a live view of {@code unfiltered}; changes to one affect the    * other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the    * bimap and its views. When given a value that doesn't satisfy the predicate, the bimap's    * {@code put()}, {@code forcePut()} and {@code putAll()} methods throw an {@link    * IllegalArgumentException}. Similarly, the map's entries have a {@link Entry#setValue} method    * that throws an {@link IllegalArgumentException} when the provided value doesn't satisfy the    * predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every value in    * the underlying bimap and determine which satisfy the filter. When a live view is<i>not</i>    * needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as    * documented at {@link Predicate#apply}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterValues ( BiMap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -9242,6 +9268,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a map containing the mappings in {@code unfiltered} that satisfy a    * predicate. The returned map is a live view of {@code unfiltered}; changes    * to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a    * key/value pair that doesn't satisfy the predicate, the map's {@code put()}    * and {@code putAll()} methods throw an {@link IllegalArgumentException}.    * Similarly, the map's entries have a {@link Entry#setValue} method that    * throws an {@link IllegalArgumentException} when the existing key and the    * provided value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings that satisfy the filter    * will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterEntries ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -9374,6 +9402,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a sorted map containing the mappings in {@code unfiltered} that    * satisfy a predicate. The returned map is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting map's {@code keySet()}, {@code entrySet()}, and {@code    * values()} views have iterators that don't support {@code remove()}, but all    * other methods are supported by the map and its views. When given a    * key/value pair that doesn't satisfy the predicate, the map's {@code put()}    * and {@code putAll()} methods throw an {@link IllegalArgumentException}.    * Similarly, the map's entries have a {@link Entry#setValue} method that    * throws an {@link IllegalArgumentException} when the existing key and the    * provided value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called    * on the filtered map or its views, only mappings that satisfy the filter    * will be removed from the underlying map.    *    *<p>The returned map isn't threadsafe or serializable, even if {@code    * unfiltered} is.    *    *<p>Many of the filtered map's methods, such as {@code size()},    * iterate across every key/value mapping in the underlying map and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered map and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterEntries ( SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -9510,6 +9540,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableMap"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|filterEntries ( NavigableMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -9593,6 +9625,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a bimap containing the mappings in {@code unfiltered} that satisfy a predicate. The    * returned bimap is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting bimap's {@code keySet()}, {@code entrySet()}, and {@code values()} views have    * iterators that don't support {@code remove()}, but all other methods are supported by the bimap    * and its views. When given a key/value pair that doesn't satisfy the predicate, the bimap's    * {@code put()}, {@code forcePut()} and {@code putAll()} methods throw an    * {@link IllegalArgumentException}. Similarly, the map's entries have an {@link Entry#setValue}    * method that throws an {@link IllegalArgumentException} when the existing key and the provided    * value don't satisfy the predicate.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on the filtered    * bimap or its views, only mappings that satisfy the filter will be removed from the underlying    * bimap.    *    *<p>The returned bimap isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered bimap's methods, such as {@code size()}, iterate across every    * key/value mapping in the underlying bimap and determine which satisfy the filter. When a live    * view is<i>not</i> needed, it may be faster to copy the filtered bimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with equals</i>, as    * documented at {@link Predicate#apply}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterEntries ( BiMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static

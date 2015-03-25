@@ -2302,6 +2302,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"Class.isInstance"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|filter ( final Iterable<?> unfiltered, final Class<T> type)
 specifier|public
 specifier|static

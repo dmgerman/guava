@@ -346,6 +346,16 @@ name|javax
 operator|.
 name|annotation
 operator|.
+name|CheckReturnValue
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
 name|Nullable
 import|;
 end_import
@@ -6846,6 +6856,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( Multimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -7043,6 +7055,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( SetMultimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -7191,6 +7205,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose keys    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code keyPredicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterKeys ( ListMultimap<K, V> unfiltered, final Predicate<? super K> keyPredicate)
 specifier|public
 specifier|static
@@ -7296,6 +7312,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose values    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a value that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose value satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterValues ( Multimap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -7348,6 +7366,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} whose values    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a value that doesn't satisfy the predicate, the    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose value satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code valuePredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}. Do not provide a    * predicate such as {@code Predicates.instanceOf(ArrayList.class)}, which is    * inconsistent with equals.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterValues ( SetMultimap<K, V> unfiltered, final Predicate<? super V> valuePredicate)
 specifier|public
 specifier|static
@@ -7400,6 +7420,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} that    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key/value pair that doesn't satisfy the predicate,    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    *    * @since 11.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterEntries ( Multimap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
@@ -7507,6 +7529,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a multimap containing the mappings in {@code unfiltered} that    * satisfy a predicate. The returned multimap is a live view of    * {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multimap's views have iterators that don't support    * {@code remove()}, but all other methods are supported by the multimap and    * its views. When adding a key/value pair that doesn't satisfy the predicate,    * multimap's {@code put()}, {@code putAll()}, and {@code replaceValues()}    * methods throw an {@link IllegalArgumentException}.    *    *<p>When methods such as {@code removeAll()} and {@code clear()} are called on    * the filtered multimap or its views, only mappings whose keys satisfy the    * filter will be removed from the underlying multimap.    *    *<p>The returned multimap isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered multimap's methods, such as {@code size()}, iterate    * across every key/value mapping in the underlying multimap and determine    * which satisfy the filter. When a live view is<i>not</i> needed, it may be    * faster to copy the filtered multimap and use the copy.    *    *<p><b>Warning:</b> {@code entryPredicate} must be<i>consistent with    * equals</i>, as documented at {@link Predicate#apply}.    *    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|filterEntries ( SetMultimap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|public
 specifier|static
