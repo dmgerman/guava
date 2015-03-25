@@ -267,6 +267,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a fluent iterable that wraps {@code iterable}, or {@code iterable} itself if it    * is already a {@code FluentIterable}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|from (final Iterable<E> iterable)
 specifier|public
 specifier|static
@@ -334,6 +336,8 @@ block|}
 comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to    * {@code FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to    *     {@code FluentIterable}    */
 annotation|@
 name|Deprecated
+annotation|@
+name|CheckReturnValue
 DECL|method|from (FluentIterable<E> iterable)
 specifier|public
 specifier|static
@@ -363,6 +367,8 @@ block|}
 comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    * @since 18.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|of (E[] elements)
 specifier|public
 specifier|static
@@ -395,6 +401,8 @@ block|}
 comment|/**    * Returns a string representation of this fluent iterable, with the format    * {@code [e1, e2, ..., en]}.    */
 annotation|@
 name|Override
+annotation|@
+name|CheckReturnValue
 DECL|method|toString ()
 specifier|public
 name|String
@@ -411,6 +419,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the number of elements in this fluent iterable.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|size ()
 specifier|public
 specifier|final
@@ -428,6 +438,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if this fluent iterable contains any object for which    * {@code equals(element)} is true.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|contains (@ullable Object element)
 specifier|public
 specifier|final
@@ -587,6 +599,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if any element in this fluent iterable satisfies the predicate.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|anyMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -614,6 +628,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if every element in this fluent iterable satisfies the predicate.    * If this fluent iterable is empty, {@code true} is returned.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|allMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -641,6 +657,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable that    * satisfies the given predicate, if such an element exists.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code null}. If {@code null}    * is matched in this fluent iterable, a {@link NullPointerException} will be thrown.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|firstMatch (Predicate<? super E> predicate)
 specifier|public
 specifier|final
@@ -671,6 +689,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a fluent iterable that applies {@code function} to each element of this    * fluent iterable.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this iterable's    * iterator does. After a successful {@code remove()} call, this fluent iterable no longer    * contains the corresponding element.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|transform (Function<? super E, T> function)
 specifier|public
 specifier|final
@@ -709,6 +729,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Applies {@code function} to each element of this fluent iterable and returns    * a fluent iterable with the concatenated combination of results.  {@code function}    * returns an Iterable of results.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if this    * function-returned iterables' iterator does. After a successful {@code remove()} call,    * the returned fluent iterable no longer contains the corresponding element.    *    * @since 13.0 (required {@code Function<E, Iterable<T>>} until 14.0)    */
+annotation|@
+name|CheckReturnValue
 DECL|method|transformAndConcat ( Function<? super E, ? extends Iterable<? extends T>> function)
 specifier|public
 parameter_list|<
@@ -754,6 +776,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the first element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    * @throws NullPointerException if the first element is null; if this is a possibility, use    *     {@code iterator().next()} or {@link Iterables#getFirst} instead.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|first ()
 specifier|public
 specifier|final
@@ -801,6 +825,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|last ()
 specifier|public
 specifier|final
@@ -1023,6 +1049,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Determines whether this fluent iterable is empty.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|isEmpty ()
 specifier|public
 specifier|final
@@ -1042,6 +1070,8 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toList ()
 specifier|public
 specifier|final
@@ -1062,6 +1092,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}.  To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toSortedList (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1095,6 +1127,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toSet ()
 specifier|public
 specifier|final
@@ -1115,6 +1149,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toSortedSet (Comparator<? super E> comparator)
 specifier|public
 specifier|final
@@ -1145,6 +1181,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    * @since 19.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toMultiset ()
 specifier|public
 specifier|final
@@ -1165,6 +1203,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|toMap (Function<? super E, V> valueFunction)
 specifier|public
 specifier|final
@@ -1202,6 +1242,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in this {@code FluentIterable} of values. Each element of this    * iterable will be stored as a value in the resulting multimap, yielding a multimap with the same    * size as this iterable. The key used to store that value in the multimap will be the result of    * calling the function on that value. The resulting multimap is created as an immutable snapshot.    * In the returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    * @param keyFunction the function used to produce the key for each value    * @throws NullPointerException if any of the following cases is true:    *<ul>    *<li>{@code keyFunction} is null    *<li>An element in this fluent iterable is null    *<li>{@code keyFunction} returns {@code null} for any element of this iterable    *</ul>    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|index (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -1239,6 +1281,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map for which the {@link java.util.Map#values} are the elements of this    * {@code FluentIterable} in the given order, and each key is the product of invoking a supplied    * function on its corresponding value.    *    * @param keyFunction the function used to produce the key for each value    * @throws IllegalArgumentException if {@code keyFunction} produces the same key for more than one    *     value in this fluent iterable    * @throws NullPointerException if any element of this fluent iterable is null, or if    *     {@code keyFunction} produces {@code null} for any value    * @since 14.0    */
+annotation|@
+name|CheckReturnValue
 DECL|method|uniqueIndex (Function<? super E, K> keyFunction)
 specifier|public
 specifier|final
@@ -1347,6 +1391,8 @@ block|}
 comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    * @since 18.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|join (Joiner joiner)
 specifier|public
 specifier|final
@@ -1367,6 +1413,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the element at the specified position in this fluent iterable.    *    * @param position position of the element to return    * @return the element at the specified position in this fluent iterable    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of this fluent iterable    */
+annotation|@
+name|CheckReturnValue
 DECL|method|get (int position)
 specifier|public
 specifier|final
