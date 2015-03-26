@@ -3525,6 +3525,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|isCancelled
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|I
 name|sourceResult
 decl_stmt|;
