@@ -16,6 +16,16 @@ name|collect
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
 begin_comment
 comment|/**  * GWT emulation of {@link RegularImmutableBiMap}.  *  * @author Jared Levy  * @author Hayward Chan  */
 end_comment
@@ -42,6 +52,26 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+DECL|field|EMPTY
+specifier|static
+specifier|final
+name|RegularImmutableBiMap
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|EMPTY
+init|=
+operator|new
+name|RegularImmutableBiMap
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+decl_stmt|;
 comment|// This reference is used both by the GWT compiler to infer the elements
 comment|// of the lists that needs to be serialized.
 DECL|field|inverse
@@ -54,6 +84,46 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
+DECL|method|RegularImmutableBiMap ()
+name|RegularImmutableBiMap
+parameter_list|()
+block|{
+name|super
+argument_list|(
+operator|new
+name|RegularImmutableMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+operator|new
+name|HashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|inverse
+operator|=
+operator|(
+name|ImmutableBiMap
+argument_list|<
+name|V
+argument_list|,
+name|K
+argument_list|>
+operator|)
+name|this
+expr_stmt|;
+block|}
 DECL|method|RegularImmutableBiMap (ImmutableMap<K, V> delegate)
 name|RegularImmutableBiMap
 parameter_list|(

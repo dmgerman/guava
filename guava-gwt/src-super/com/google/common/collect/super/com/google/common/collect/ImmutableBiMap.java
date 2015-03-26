@@ -116,9 +116,9 @@ argument_list|,
 name|V
 argument_list|>
 operator|)
-name|EmptyImmutableBiMap
+name|RegularImmutableBiMap
 operator|.
-name|INSTANCE
+name|EMPTY
 return|;
 block|}
 DECL|method|of (K k1, V v1)

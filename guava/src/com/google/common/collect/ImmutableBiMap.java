@@ -128,9 +128,9 @@ argument_list|,
 name|V
 argument_list|>
 operator|)
-name|EmptyImmutableBiMap
+name|RegularImmutableBiMap
 operator|.
-name|INSTANCE
+name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an immutable bimap containing a single entry.    */
