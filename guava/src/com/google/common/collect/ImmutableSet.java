@@ -240,9 +240,9 @@ argument_list|<
 name|E
 argument_list|>
 operator|)
-name|EmptyImmutableSet
+name|RegularImmutableSet
 operator|.
-name|INSTANCE
+name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an immutable set containing {@code element}. Preferred over {@link    * Collections#singleton} for code consistency, {@code null} rejection, and because the return    * type conveys the immutability guarantee.    */

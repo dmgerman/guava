@@ -154,9 +154,9 @@ argument_list|<
 name|E
 argument_list|>
 operator|)
-name|EmptyImmutableSet
+name|RegularImmutableSet
 operator|.
-name|INSTANCE
+name|EMPTY
 return|;
 block|}
 DECL|method|of (E element)

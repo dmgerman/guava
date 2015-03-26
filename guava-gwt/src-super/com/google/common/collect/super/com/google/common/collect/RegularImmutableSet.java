@@ -17,18 +17,12 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
+import|import
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkArgument
+name|Collections
 import|;
 end_import
 
@@ -60,6 +54,27 @@ argument_list|<
 name|E
 argument_list|>
 block|{
+DECL|field|EMPTY
+specifier|static
+specifier|final
+name|RegularImmutableSet
+argument_list|<
+name|Object
+argument_list|>
+name|EMPTY
+init|=
+operator|new
+name|RegularImmutableSet
+argument_list|<
+name|Object
+argument_list|>
+argument_list|(
+name|Collections
+operator|.
+name|emptySet
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|method|RegularImmutableSet (Set<E> delegate)
 name|RegularImmutableSet
 parameter_list|(
@@ -73,18 +88,6 @@ block|{
 name|super
 argument_list|(
 name|delegate
-argument_list|)
-expr_stmt|;
-comment|// Required for GWT deserialization because the server-side implementation
-comment|// requires this.
-name|checkArgument
-argument_list|(
-name|delegate
-operator|.
-name|size
-argument_list|()
-operator|>=
-literal|2
 argument_list|)
 expr_stmt|;
 block|}
