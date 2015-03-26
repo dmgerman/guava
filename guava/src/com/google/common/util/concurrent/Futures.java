@@ -590,6 +590,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|makeChecked ( ListenableFuture<V> future, Function<? super Exception, X> mapper)
 specifier|public
 specifier|static
@@ -1241,12 +1243,12 @@ return|;
 block|}
 comment|/**    * Returns a {@code CheckedFuture} which has its value set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} or {@code    * checkedGet()} will immediately return the provided value.    */
 annotation|@
-name|CheckReturnValue
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 specifier|public
 specifier|static
 parameter_list|<
@@ -1321,12 +1323,12 @@ return|;
 block|}
 comment|/**    * Creates a {@code ListenableFuture} which is cancelled immediately upon    * construction, so that {@code isCancelled()} always returns {@code true}.    *    * @since 14.0    */
 annotation|@
-name|CheckReturnValue
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|immediateCancelledFuture ()
 specifier|public
 specifier|static
@@ -1351,12 +1353,12 @@ return|;
 block|}
 comment|/**    * Returns a {@code CheckedFuture} which has an exception set immediately upon    * construction.    *    *<p>The returned {@code Future} can't be cancelled, and its {@code isDone()}    * method always returns {@code true}. Calling {@code get()} will immediately    * throw the provided {@code Exception} wrapped in an {@code    * ExecutionException}, and calling {@code checkedGet()} will throw the    * provided exception itself.    */
 annotation|@
-name|CheckReturnValue
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 specifier|public
 specifier|static
 parameter_list|<
@@ -1400,6 +1402,8 @@ block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       });}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       });}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #withFallback(ListenableFuture,    * FutureFallback, Executor) supplying an executor}. If you do not supply an    * executor, {@code withFallback} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * fallback.create} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code withFallback}    * is called, {@code withFallback} will call {@code fallback.create} inline.    *<li>If the input {@code Future} is not yet done, {@code withFallback} will    * schedule {@code fallback.create} to be run by the thread that completes    * the input {@code Future}, which may be an internal system thread such as    * an RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * fallback.create}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @since 14.0    * @deprecated Use {@link #catchingAsync(ListenableFuture, Class,    *     AsyncFunction) catchingAsync(input, Throwable.class,    *     fallbackImplementedAsAnAsyncFunction)}, usually replacing {@code    *     Throwable.class} with the specific type you want to handle. This method    *     will be removed in Guava release 20.0.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|CheckReturnValue
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback)
 specifier|public
 specifier|static
@@ -1444,6 +1448,8 @@ block|}
 comment|/**    * Returns a {@code Future} whose result is taken from the given primary    * {@code input} or, if the primary input fails, from the {@code Future}    * provided by the {@code fallback}. {@link FutureFallback#create} is not    * invoked until the primary input has failed, so if the primary input    * succeeds, it is never invoked. If, during the invocation of {@code    * fallback}, an exception is thrown, this exception is used as the result of    * the output {@code Future}.    *    *<p>Below is an example of a fallback that returns a default value if an    * exception occurs:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter in case an exception happens when    *   // processing the RPC to fetch counters.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           // Returning "0" as the default for the counter when the    *           // exception happens.    *           return immediateFuture(0);    *         }    *       }, directExecutor());}</pre>    *    *<p>The fallback can also choose to propagate the original exception when    * desired:    *    *<pre>   {@code    *   ListenableFuture<Integer> fetchCounterFuture = ...;    *    *   // Falling back to a zero counter only in case the exception was a    *   // TimeoutException.    *   ListenableFuture<Integer> faultTolerantFuture = Futures.withFallback(    *       fetchCounterFuture, new FutureFallback<Integer>() {    *         public ListenableFuture<Integer> create(Throwable t) {    *           if (t instanceof TimeoutException) {    *             return immediateFuture(0);    *           }    *           return immediateFailedFuture(t);    *         }    *       }, directExecutor());}</pre>    *    *<p>When the execution of {@code fallback.create} is fast and lightweight    * (though the {@code Future} it returns need not meet these criteria),    * consider {@linkplain #withFallback(ListenableFuture, FutureFallback)    * omitting the executor} or explicitly specifying {@code    * directExecutor}. However, be aware of the caveats documented in the    * link above.    *    * @param input the primary input {@code Future}    * @param fallback the {@link FutureFallback} implementation to be called if    *     {@code input} fails    * @param executor the executor that runs {@code fallback} if {@code input}    *     fails    * @since 14.0    * @deprecated Use {@link #catchingAsync(ListenableFuture, Class,    *     AsyncFunction, Executor) catchingAsync(input, Throwable.class,    *     fallbackImplementedAsAnAsyncFunction, executor)}, usually replacing    *     {@code Throwable.class} with the specific type you want to handle. This method    *     will be removed in Guava release 20.0.    */
 annotation|@
 name|Deprecated
+annotation|@
+name|CheckReturnValue
 DECL|method|withFallback ( ListenableFuture<? extends V> input, FutureFallback<? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
@@ -1500,6 +1506,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"AVAILABLE but requires exceptionType to be Throwable.class"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|catching ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback)
 specifier|public
 specifier|static
@@ -1563,6 +1571,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"AVAILABLE but requires exceptionType to be Throwable.class"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|catching ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
@@ -1631,6 +1641,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"AVAILABLE but requires exceptionType to be Throwable.class"
 argument_list|)
+comment|// TODO(kak): @CheckReturnValue
 DECL|method|catchingAsync ( ListenableFuture<? extends V> input, Class<X> exceptionType, AsyncFunction<? super X, ? extends V> fallback)
 specifier|public
 specifier|static
@@ -1694,6 +1705,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"AVAILABLE but requires exceptionType to be Throwable.class"
 argument_list|)
+comment|// TODO(kak): @CheckReturnValue
 DECL|method|catchingAsync ( ListenableFuture<? extends V> input, Class<X> exceptionType, AsyncFunction<? super X, ? extends V> fallback, Executor executor)
 specifier|public
 specifier|static
@@ -2140,6 +2152,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"java.util.concurrent.ScheduledExecutorService"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|withTimeout (ListenableFuture<V> delegate, long time, TimeUnit unit, ScheduledExecutorService scheduledExecutor)
 specifier|public
 specifier|static
@@ -3159,6 +3173,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|lazyTransform (final Future<I> input, final Function<? super I, ? extends O> function)
 specifier|public
 specifier|static
@@ -3639,6 +3655,8 @@ block|,
 literal|"unchecked"
 block|}
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|dereference ( ListenableFuture<? extends ListenableFuture<? extends V>> nested)
 specifier|public
 specifier|static
@@ -3735,6 +3753,8 @@ annotation|@
 name|Beta
 annotation|@
 name|SafeVarargs
+annotation|@
+name|CheckReturnValue
 DECL|method|allAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -3781,6 +3801,8 @@ block|}
 comment|/**    * Creates a new {@code ListenableFuture} whose value is a list containing the    * values of all its input futures, if all succeed. If any input fails, the    * returned future fails immediately.    *    *<p>The list of results is in the same order as the input list.    *    *<p>Canceling this future will attempt to cancel all the component futures,    * and if any of the provided futures fails or is canceled, this one is,    * too.    *    * @param futures futures to combine    * @return a future that provides a list of the results of the component    *         futures    * @since 10.0    */
 annotation|@
 name|Beta
+annotation|@
+name|CheckReturnValue
 DECL|method|allAsList ( Iterable<? extends ListenableFuture<? extends V>> futures)
 specifier|public
 specifier|static
@@ -3834,6 +3856,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|nonCancellationPropagating ( ListenableFuture<V> future)
 specifier|public
 specifier|static
@@ -3933,9 +3957,9 @@ comment|/**    * Creates a new {@code ListenableFuture} whose value is a list co
 annotation|@
 name|Beta
 annotation|@
-name|CheckReturnValue
-annotation|@
 name|SafeVarargs
+annotation|@
+name|CheckReturnValue
 DECL|method|successfulAsList ( ListenableFuture<? extends V>.... futures)
 specifier|public
 specifier|static
@@ -4039,6 +4063,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|inCompletionOrder ( Iterable<? extends ListenableFuture<? extends T>> futures)
 specifier|public
 specifier|static
