@@ -1015,17 +1015,10 @@ expr_stmt|;
 block|}
 comment|/**      * Listeners implicitly keep a reference to {@link RunningState} as they're inner classes,      * so we free resources here as well for the allMustSucceed=true case (i.e. when a future fails,      * we immediately release resources we no longer need); additionally, the future will release      * its reference to {@link RunningState}, which should free all associated memory when all the      * futures complete& the listeners are released.      *      * TODO(user): Write tests for memory retention      */
 DECL|method|releaseResourcesAfterFailure ()
-annotation|@
-name|Override
 name|void
 name|releaseResourcesAfterFailure
 parameter_list|()
 block|{
-name|super
-operator|.
-name|releaseResourcesAfterFailure
-argument_list|()
-expr_stmt|;
 name|this
 operator|.
 name|futures

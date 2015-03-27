@@ -52,7 +52,8 @@ specifier|abstract
 class|class
 name|AggregateFutureState
 block|{
-comment|// Initialized once the first time we see an exception
+comment|// Lazily initialized the first time we see an exception; not released until all the input futures
+comment|//& this future completes. Released when the future releases the reference to the running state
 DECL|field|seenExceptions
 specifier|private
 name|Set
@@ -123,16 +124,6 @@ return|return
 operator|--
 name|remaining
 return|;
-block|}
-DECL|method|releaseResourcesAfterFailure ()
-name|void
-name|releaseResourcesAfterFailure
-parameter_list|()
-block|{
-name|seenExceptions
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 end_class

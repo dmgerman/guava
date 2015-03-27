@@ -192,7 +192,8 @@ argument_list|,
 literal|"remaining"
 argument_list|)
 decl_stmt|;
-comment|// Initialized once the first time we see an exception
+comment|// Lazily initialized the first time we see an exception; not released until all the input futures
+comment|//& this future completes. Released when the future releases the reference to the running state
 DECL|field|seenExceptions
 specifier|private
 specifier|volatile
@@ -270,6 +271,7 @@ name|newConcurrentHashSet
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Guaranteed to get us the right value because we only set this once (here)
 name|seenExceptionsLocal
 operator|=
 name|seenExceptions
@@ -293,16 +295,6 @@ argument_list|(
 name|this
 argument_list|)
 return|;
-block|}
-DECL|method|releaseResourcesAfterFailure ()
-name|void
-name|releaseResourcesAfterFailure
-parameter_list|()
-block|{
-name|seenExceptions
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 end_class
