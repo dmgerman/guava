@@ -219,6 +219,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
+comment|// TODO(user): fold RegularImmutableSortedMap into this type
 comment|/*    * TODO(kevinb): Confirm that ImmutableSortedMap is faster to construct and    * uses less memory than TreeMap; then say so in the class Javadoc.    */
 DECL|field|NATURAL_ORDER
 specifier|private
@@ -248,14 +249,30 @@ argument_list|>
 name|NATURAL_EMPTY_MAP
 init|=
 operator|new
-name|EmptyImmutableSortedMap
+name|RegularImmutableSortedMap
 argument_list|<
 name|Comparable
 argument_list|,
 name|Object
 argument_list|>
 argument_list|(
-name|NATURAL_ORDER
+name|ImmutableSortedSet
+operator|.
+name|emptySet
+argument_list|(
+name|Ordering
+operator|.
+name|natural
+argument_list|()
+argument_list|)
+argument_list|,
+name|ImmutableList
+operator|.
+expr|<
+name|Object
+operator|>
+name|of
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|method|emptyMap (Comparator<? super K> comparator)
@@ -304,14 +321,27 @@ else|else
 block|{
 return|return
 operator|new
-name|EmptyImmutableSortedMap
+name|RegularImmutableSortedMap
 argument_list|<
 name|K
 argument_list|,
 name|V
 argument_list|>
 argument_list|(
+name|ImmutableSortedSet
+operator|.
+name|emptySet
+argument_list|(
 name|comparator
+argument_list|)
+argument_list|,
+name|ImmutableList
+operator|.
+expr|<
+name|V
+operator|>
+name|of
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -950,7 +980,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted     * by the provided comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0                  */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted    * by the provided comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1017,7 +1047,7 @@ name|naturalOrder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted     * by the provided comparator.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted    * by the provided comparator.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries, Comparator<? super K> comparator)
@@ -1366,7 +1396,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Accepts a collection of possibly-null entries.  If {@code sameComparator}, then it is assumed     * that they do not need to be sorted or checked for dupes.    */
+comment|/**    * Accepts a collection of possibly-null entries.  If {@code sameComparator}, then it is assumed    * that they do not need to be sorted or checked for dupes.    */
 DECL|method|fromEntries ( Comparator<? super K> comparator, boolean sameComparator, Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|private
 specifier|static
@@ -2105,7 +2135,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds all the given entries to the built map.  Duplicate keys, according       * to the comparator (which might be the keys' natural order), are not       * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
+comment|/**      * Adds all the given entries to the built map.  Duplicate keys, according      * to the comparator (which might be the keys' natural order), are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
 annotation|@
 name|Beta
 annotation|@

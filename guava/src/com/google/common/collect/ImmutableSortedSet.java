@@ -261,7 +261,7 @@ DECL|field|NATURAL_EMPTY_SET
 specifier|private
 specifier|static
 specifier|final
-name|ImmutableSortedSet
+name|RegularImmutableSortedSet
 argument_list|<
 name|Comparable
 argument_list|>
@@ -289,7 +289,7 @@ specifier|static
 parameter_list|<
 name|E
 parameter_list|>
-name|ImmutableSortedSet
+name|RegularImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
@@ -315,8 +315,13 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|of
-argument_list|()
+operator|(
+name|RegularImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+operator|)
+name|NATURAL_EMPTY_SET
 return|;
 block|}
 else|else
