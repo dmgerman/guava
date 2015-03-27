@@ -2063,6 +2063,15 @@ name|reverse
 parameter_list|()
 block|{
 return|return
+operator|(
+name|size
+argument_list|()
+operator|<=
+literal|1
+operator|)
+condition|?
+name|this
+else|:
 operator|new
 name|ReverseImmutableList
 argument_list|<

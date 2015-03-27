@@ -596,11 +596,9 @@ name|createDescendingSet
 parameter_list|()
 block|{
 return|return
-operator|new
-name|EmptyImmutableSortedSet
-argument_list|<
-name|C
-argument_list|>
+name|ImmutableSortedSet
+operator|.
+name|emptySet
 argument_list|(
 name|Ordering
 operator|.
