@@ -135,7 +135,7 @@ end_comment
 begin_class
 DECL|class|ImmutableSortedMap
 specifier|public
-specifier|abstract
+specifier|final
 class|class
 name|ImmutableSortedMap
 parameter_list|<
@@ -2219,7 +2219,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|RegularImmutableSortedMap
+name|ImmutableSortedMap
 argument_list|<
 name|K
 argument_list|,

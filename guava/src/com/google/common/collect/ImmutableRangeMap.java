@@ -1455,7 +1455,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|RegularImmutableSortedMap
+name|ImmutableSortedMap
 argument_list|<
 name|Range
 argument_list|<

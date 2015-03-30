@@ -1277,7 +1277,7 @@ name|comparator
 return|;
 block|}
 DECL|method|getSubSet (int newFromIndex, int newToIndex)
-name|ImmutableSortedSet
+name|RegularImmutableSortedSet
 argument_list|<
 name|E
 argument_list|>
