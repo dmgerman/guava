@@ -3158,6 +3158,10 @@ operator|.
 name|valueHash
 argument_list|)
 decl_stmt|;
+name|delegate
+operator|=
+name|newEntry
+expr_stmt|;
 name|insert
 argument_list|(
 name|newEntry
