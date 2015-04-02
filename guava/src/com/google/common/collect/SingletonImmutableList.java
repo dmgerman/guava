@@ -60,16 +60,6 @@ name|Preconditions
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Implementation of {@link ImmutableList} with exactly one element.  *  * @author Hayward Chan  */
 end_comment
@@ -230,62 +220,6 @@ else|:
 name|this
 return|;
 block|}
-DECL|method|reverse ()
-annotation|@
-name|Override
-specifier|public
-name|ImmutableList
-argument_list|<
-name|E
-argument_list|>
-name|reverse
-parameter_list|()
-block|{
-return|return
-name|this
-return|;
-block|}
-DECL|method|contains (@ullable Object object)
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|contains
-parameter_list|(
-annotation|@
-name|Nullable
-name|Object
-name|object
-parameter_list|)
-block|{
-return|return
-name|element
-operator|.
-name|equals
-argument_list|(
-name|object
-argument_list|)
-return|;
-block|}
-DECL|method|hashCode ()
-annotation|@
-name|Override
-specifier|public
-name|int
-name|hashCode
-parameter_list|()
-block|{
-comment|// not caching hash code since it could change if the element is mutable
-comment|// in a way that modifies its hash code.
-return|return
-literal|31
-operator|+
-name|element
-operator|.
-name|hashCode
-argument_list|()
-return|;
-block|}
 DECL|method|toString ()
 annotation|@
 name|Override
@@ -333,18 +267,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isEmpty
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 DECL|method|isPartialView ()
 annotation|@
 name|Override
@@ -354,33 +276,6 @@ parameter_list|()
 block|{
 return|return
 literal|false
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|copyIntoArray (Object[] dst, int offset)
-name|int
-name|copyIntoArray
-parameter_list|(
-name|Object
-index|[]
-name|dst
-parameter_list|,
-name|int
-name|offset
-parameter_list|)
-block|{
-name|dst
-index|[
-name|offset
-index|]
-operator|=
-name|element
-expr_stmt|;
-return|return
-name|offset
-operator|+
-literal|1
 return|;
 block|}
 block|}
