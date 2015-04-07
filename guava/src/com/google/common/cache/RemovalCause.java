@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -81,8 +67,6 @@ comment|/**  * The reason why a cached entry was removed.  *  * @author Charles 
 end_comment
 
 begin_enum
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 DECL|enum|RemovalCause

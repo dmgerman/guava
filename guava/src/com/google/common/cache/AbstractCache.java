@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -123,8 +109,6 @@ comment|/**  * This class provides a skeletal implementation of the {@code Cache
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 DECL|class|AbstractCache
@@ -476,8 +460,6 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Accumulates statistics during the operation of a {@link Cache} for presentation by {@link    * Cache#stats}. This is solely intended for consumption by {@code Cache} implementors.    *    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|interface|StatsCounter
 specifier|public
 interface|interface
@@ -533,8 +515,6 @@ parameter_list|()
 function_decl|;
 block|}
 comment|/**    * A thread-safe {@link StatsCounter} implementation for use by {@link Cache} implementors.    *    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|class|SimpleStatsCounter
 specifier|public
 specifier|static

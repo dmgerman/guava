@@ -24,20 +24,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Preconditions
@@ -75,8 +61,6 @@ comment|/**  * A cache which forwards all its method calls to another cache. Sub
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|ForwardingLoadingCache
 specifier|public
 specifier|abstract
@@ -241,8 +225,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * A simplified version of {@link ForwardingLoadingCache} where subclasses can pass in an already    * constructed {@link LoadingCache} as the delegete.    *    * @since 10.0    */
-annotation|@
-name|Beta
 DECL|class|SimpleForwardingLoadingCache
 specifier|public
 specifier|abstract

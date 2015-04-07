@@ -34,20 +34,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -63,8 +49,6 @@ comment|/**  * A collection of common removal listeners.  *  * @author Charles F
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|RemovalListeners
 specifier|public
 specifier|final

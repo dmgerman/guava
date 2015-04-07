@@ -42,20 +42,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -312,8 +298,6 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Returns a cache loader based on an<i>existing</i> function instance. Note that there's no need    * to create a<i>new</i> function just to pass it in here; just subclass {@code CacheLoader} and    * implement {@link #load load} instead.    *    * @param function the function to be used for loading values; must never return {@code null}    * @return a cache loader that loads values by passing each key to {@code function}    */
-annotation|@
-name|Beta
 DECL|method|from (Function<K, V> function)
 specifier|public
 specifier|static
@@ -441,8 +425,6 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns a cache loader based on an<i>existing</i> supplier instance. Note that there's no need    * to create a<i>new</i> supplier just to pass it in here; just subclass {@code CacheLoader} and    * implement {@link #load load} instead.    *    * @param supplier the supplier to be used for loading values; must never return {@code null}    * @return a cache loader that loads values by calling {@link Supplier#get}, irrespective of the    *     key    */
-annotation|@
-name|Beta
 DECL|method|from (Supplier<V> supplier)
 specifier|public
 specifier|static
@@ -476,8 +458,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code CacheLoader} which wraps {@code loader}, executing calls to    * {@link CacheLoader#reload} using {@code executor}.    *    *<p>This method is useful only when {@code loader.reload} has a synchronous implementation,    * such as {@linkplain #reload the default implementation}.    *    * @since 17.0    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(

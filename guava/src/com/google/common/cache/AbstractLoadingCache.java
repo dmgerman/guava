@@ -24,20 +24,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|ImmutableMap
@@ -113,8 +99,6 @@ comment|/**  * This class provides a skeletal implementation of the {@code Cache
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 DECL|class|AbstractLoadingCache
 specifier|public
 specifier|abstract

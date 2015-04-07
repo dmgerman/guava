@@ -74,20 +74,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -779,8 +765,6 @@ return|;
 block|}
 comment|/**    * Constructs a new {@code CacheBuilder} instance with the settings specified in {@code spec}.    *    * @since 12.0    */
 annotation|@
-name|Beta
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"To be supported"
@@ -811,8 +795,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Constructs a new {@code CacheBuilder} instance with the settings specified in {@code spec}.    * This is especially useful for command-line configuration of a {@code CacheBuilder}.    *    * @param spec a String in the format specified by {@link CacheBuilderSpec}    * @since 12.0    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -1793,8 +1775,6 @@ name|expireAfterAccessNanos
 return|;
 block|}
 comment|/**    * Specifies that active entries are eligible for automatic refresh once a fixed duration has    * elapsed after the entry's creation, or the most recent replacement of its value. The semantics    * of refreshes are specified in {@link LoadingCache#refresh}, and are performed by calling    * {@link CacheLoader#reload}.    *    *<p>As the default implementation of {@link CacheLoader#reload} is synchronous, it is    * recommended that users of this method override {@link CacheLoader#reload} with an asynchronous    * implementation; otherwise refreshes will be performed during unrelated cache read and write    * operations.    *    *<p>Currently automatic refreshes are performed when the first stale request for an entry    * occurs. The request triggering refresh will make a blocking call to {@link CacheLoader#reload}    * and immediately return the new value if the returned future is complete, and the old value    * otherwise.    *    *<p><b>Note:</b><i>all exceptions thrown during refresh will be logged and then swallowed</i>.    *    * @param duration the length of time after an entry is created that it should be considered    *     stale, and thus eligible for refresh    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the refresh interval was already set    * @since 11.0    */
-annotation|@
-name|Beta
 annotation|@
 name|GwtIncompatible
 argument_list|(

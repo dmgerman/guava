@@ -26,20 +26,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -49,8 +35,6 @@ comment|/**  * An object that can receive a notification when an entry is remove
 end_comment
 
 begin_interface
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 DECL|interface|RemovalListener
