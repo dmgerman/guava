@@ -1372,8 +1372,9 @@ name|removalListener
 operator|.
 name|onRemoval
 argument_list|(
-operator|new
 name|RemovalNotification
+operator|.
+name|create
 argument_list|(
 name|key
 argument_list|,
@@ -2515,8 +2516,9 @@ name|removalListener
 operator|.
 name|onRemoval
 argument_list|(
-operator|new
 name|RemovalNotification
+operator|.
+name|create
 argument_list|(
 name|ignored
 operator|.

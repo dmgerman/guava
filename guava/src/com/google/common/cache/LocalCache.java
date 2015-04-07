@@ -11477,13 +11477,9 @@ name|V
 argument_list|>
 name|notification
 init|=
-operator|new
 name|RemovalNotification
-argument_list|<
-name|K
-argument_list|,
-name|V
-argument_list|>
+operator|.
+name|create
 argument_list|(
 name|key
 argument_list|,

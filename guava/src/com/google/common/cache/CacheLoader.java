@@ -744,14 +744,23 @@ init|=
 literal|0
 decl_stmt|;
 block|}
+comment|/**    * Exception thrown by {@code loadAll()} to indicate that it is not supported.    *    * @since 19.0    */
 DECL|class|UnsupportedLoadingOperationException
+specifier|public
 specifier|static
 specifier|final
 class|class
 name|UnsupportedLoadingOperationException
 extends|extends
 name|UnsupportedOperationException
+block|{
+comment|// Package-private because this should only be thrown by loadAll() when it is not overridden.
+comment|// Cache implementors may want to catch it but should not need to be able to throw it.
+DECL|method|UnsupportedLoadingOperationException ()
+name|UnsupportedLoadingOperationException
+parameter_list|()
 block|{}
+block|}
 comment|/**    * Thrown to indicate that an invalid response was returned from a call to {@link CacheLoader}.    *    * @since 11.0    */
 DECL|class|InvalidCacheLoadException
 specifier|public
