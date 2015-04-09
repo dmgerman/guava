@@ -361,7 +361,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static methods acting on or generating a {@code Multimap}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Multimaps">  * {@code Multimaps}</a>.  *  * @author Jared Levy  * @author Robert Konigsberg  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Provides static methods acting on or generating a {@code Multimap}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Multimaps">  * {@code Multimaps}</a>.  *  * @author Jared Levy  * @author Robert Konigsberg  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class

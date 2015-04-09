@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wraps an exception that occurred during a computation.  *  * @author Bob Lee  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Wraps an exception that occurred during a computation.  *  * @author Bob Lee  * @since 2.0  */
 end_comment
 
 begin_class

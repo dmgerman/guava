@@ -235,7 +235,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterables  * produced in this class are<i>lazy</i>, which means that their iterators  * only advance the backing iteration when absolutely necessary.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Iterables">  * {@code Iterables}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * This class contains static utility methods that operate on or return objects  * of type {@code Iterable}. Except as noted, each method has a corresponding  * {@link Iterator}-based method in the {@link Iterators} class.  *  *<p><i>Performance notes:</i> Unless otherwise noted, all of the iterables  * produced in this class are<i>lazy</i>, which means that their iterators  * only advance the backing iteration when absolutely necessary.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Iterables">  * {@code Iterables}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class

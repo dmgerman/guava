@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper functions that can operate on any {@code Object}.  *  *<p>See the Guava User Guide on<a  * href="http://code.google.com/p/guava-libraries/wiki/CommonObjectUtilitiesExplained">writing  * {@code Object} methods with {@code Objects}</a>.  *  * @author Laurence Gonsalves  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Helper functions that can operate on any {@code Object}.  *  *<p>See the Guava User Guide on<a  * href="http://code.google.com/p/guava-libraries/wiki/CommonObjectUtilitiesExplained">writing  * {@code Object} methods with {@code Objects}</a>.  *  * @author Laurence Gonsalves  * @since 2.0  */
 end_comment
 
 begin_class

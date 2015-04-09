@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An iterator that supports a one-element lookahead while iterating.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionHelpersExplained#PeekingIterator">  * {@code PeekingIterator}</a>.  *  * @author Mick Killianey  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * An iterator that supports a one-element lookahead while iterating.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionHelpersExplained#PeekingIterator">  * {@code PeekingIterator}</a>.  *  * @author Mick Killianey  * @since 2.0  */
 end_comment
 
 begin_interface

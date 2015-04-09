@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Useful suppliers.  *  *<p>All methods return serializable suppliers as long as they're given  * serializable parameters.  *  * @author Laurence Gonsalves  * @author Harry Heymann  * @since 2.0  */
 end_comment
 
 begin_class

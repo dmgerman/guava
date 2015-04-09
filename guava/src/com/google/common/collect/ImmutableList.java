@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link List} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@link List} whose contents will never change, with many other important properties detailed at  * {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @see ImmutableMap  * @see ImmutableSet  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -2587,7 +2587,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable list instances, especially {@code public    * static final} lists ("constant lists"). Example:<pre>   {@code    *    *   public static final ImmutableList<Color> GOOGLE_COLORS    *       = new ImmutableList.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple lists in series. Each new list contains all the    * elements of the ones created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static

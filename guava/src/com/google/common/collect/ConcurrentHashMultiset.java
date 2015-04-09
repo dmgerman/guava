@@ -291,7 +291,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A multiset that supports concurrent modifications and that provides atomic versions of most  * {@code Multiset} operations (exceptions where noted). Null elements are not supported.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A multiset that supports concurrent modifications and that provides atomic versions of most  * {@code Multiset} operations (exceptions where noted). Null elements are not supported.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Cliff L. Biffle  * @author mike nonemacher  * @since 2.0  */
 end_comment
 
 begin_class

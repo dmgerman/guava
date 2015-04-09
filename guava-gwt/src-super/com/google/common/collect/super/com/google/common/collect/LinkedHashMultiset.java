@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its  * iterator orders elements according to when the first occurrence of the  * element was added. When the multiset contains multiple instances of an  * element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to  * the multiset, the element will appear at the end of the iteration.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its  * iterator orders elements according to when the first occurrence of the  * element was added. When the multiset contains multiple instances of an  * element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to  * the multiset, the element will appear at the end of the iteration.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class

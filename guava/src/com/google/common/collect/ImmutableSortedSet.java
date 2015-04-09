@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link NavigableSet} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library; implements {@code NavigableSet} since 12.0)  */
+comment|/**  * A {@link NavigableSet} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Warning:</b> as with any sorted collection, you are strongly advised not to use a {@link  * Comparator} or {@link Comparable} type whose comparison behavior is<i>inconsistent with  * equals</i>. That is, {@code a.compareTo(b)} or {@code comparator.compare(a, b)} should equal zero  *<i>if and only if</i> {@code a.equals(b)}. If this advice is not followed, the resulting  * collection will not correctly obey its specification.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (implements {@code NavigableSet} since 12.0)  */
 end_comment
 
 begin_comment
@@ -1557,7 +1557,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * A builder for creating immutable sorted set instances, especially {@code    * public static final} sets ("constant sets"), with a given comparator.    * Example:<pre>   {@code    *    *   public static final ImmutableSortedSet<Number> LUCKY_NUMBERS =    *       new ImmutableSortedSet.Builder<Number>(ODDS_FIRST_COMPARATOR)    *           .addAll(SINGLE_DIGIT_PRIMES)    *           .add(42)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple sets in series. Each set is a superset of the set    * created before it.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable sorted set instances, especially {@code    * public static final} sets ("constant sets"), with a given comparator.    * Example:<pre>   {@code    *    *   public static final ImmutableSortedSet<Number> LUCKY_NUMBERS =    *       new ImmutableSortedSet.Builder<Number>(ODDS_FIRST_COMPARATOR)    *           .addAll(SINGLE_DIGIT_PRIMES)    *           .add(42)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple sets in series. Each set is a superset of the set    * created before it.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static

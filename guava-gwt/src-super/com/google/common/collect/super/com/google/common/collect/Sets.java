@@ -289,7 +289,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link Set} instances. Also see this  * class's counterparts {@link Lists}, {@link Maps} and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Sets">  * {@code Sets}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Chris Povirk  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@link Set} instances. Also see this  * class's counterparts {@link Lists}, {@link Maps} and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Sets">  * {@code Sets}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @author Chris Povirk  * @since 2.0  */
 end_comment
 
 begin_class
@@ -1419,7 +1419,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * An unmodifiable view of a set which may be backed by other sets; this view    * will change as the backing sets do. Contains methods to copy the data into    * a new set which will then remain stable. There is usually no reason to    * retain a reference of type {@code SetView}; typically, you either use it    * as a plain {@link Set}, or immediately invoke {@link #immutableCopy} or    * {@link #copyInto} and forget the {@code SetView} itself.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * An unmodifiable view of a set which may be backed by other sets; this view    * will change as the backing sets do. Contains methods to copy the data into    * a new set which will then remain stable. There is usually no reason to    * retain a reference of type {@code SetView}; typically, you either use it    * as a plain {@link Set}, or immediately invoke {@link #immutableCopy} or    * {@link #copyInto} and forget the {@code SetView} itself.    *    * @since 2.0    */
 DECL|class|SetView
 specifier|public
 specifier|abstract

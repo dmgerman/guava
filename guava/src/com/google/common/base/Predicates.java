@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the  * use of {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Static utility methods pertaining to {@code Predicate} instances.  *  *<p>All methods returns serializable predicates as long as they're given  * serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the  * use of {@code Predicate}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class

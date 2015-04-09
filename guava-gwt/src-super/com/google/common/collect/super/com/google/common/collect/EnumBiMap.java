@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
 begin_class

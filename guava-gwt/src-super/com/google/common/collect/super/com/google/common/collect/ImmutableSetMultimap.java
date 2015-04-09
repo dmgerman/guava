@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link SetMultimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Mike Ward  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@link SetMultimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Mike Ward  * @since 2.0  */
 end_comment
 
 begin_class
@@ -755,7 +755,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * A builder for creating immutable {@code SetMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableSetMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable {@code SetMultimap} instances, especially    * {@code public static final} multimaps ("constant multimaps"). Example:    *<pre>   {@code    *    *   static final Multimap<String, Integer> STRING_TO_INTEGER_MULTIMAP =    *       new ImmutableSetMultimap.Builder<String, Integer>()    *           .put("one", 1)    *           .putAll("several", 1, 2, 3)    *           .putAll("many", 1, 2, 3, 4, 5)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multimaps in series. Each multimap contains the    * key-value mappings in the previously created multimaps.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static

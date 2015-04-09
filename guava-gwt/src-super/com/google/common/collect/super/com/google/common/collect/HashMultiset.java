@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Multiset implementation backed by a {@link HashMap}.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * Multiset implementation backed by a {@link HashMap}.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class

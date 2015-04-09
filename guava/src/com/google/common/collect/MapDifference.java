@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object representing the differences between two maps.  *  * @author Kevin Bourrillion  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * An object representing the differences between two maps.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_interface
@@ -141,7 +141,7 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * A difference between the mappings from two maps with the same key. The    * {@link #leftValue} and {@link #rightValue} are not equal, and one but not    * both of them may be null.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A difference between the mappings from two maps with the same key. The    * {@link #leftValue} and {@link #rightValue} are not equal, and one but not    * both of them may be null.    *    * @since 2.0    */
 DECL|interface|ValueDifference
 interface|interface
 name|ValueDifference

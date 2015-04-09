@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Multiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Grouped iteration.</b> In all current implementations, duplicate elements always appear  * consecutively when iterating. Elements iterate in order by the<i>first</i> appearance of  * that element when the multiset was created.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0 (imported from Google Collections Library)  */
+comment|/**  * A {@link Multiset} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p><b>Grouped iteration.</b> In all current implementations, duplicate elements always appear  * consecutively when iterating. Elements iterate in order by the<i>first</i> appearance of  * that element when the multiset was created.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class
@@ -1680,7 +1680,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable multiset instances, especially {@code    * public static final} multisets ("constant multisets"). Example:    *<pre> {@code    *    *   public static final ImmutableMultiset<Bean> BEANS =    *       new ImmutableMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multisets in series.    *    * @since 2.0 (imported from Google Collections Library)    */
+comment|/**    * A builder for creating immutable multiset instances, especially {@code    * public static final} multisets ("constant multisets"). Example:    *<pre> {@code    *    *   public static final ImmutableMultiset<Bean> BEANS =    *       new ImmutableMultiset.Builder<Bean>()    *           .addCopies(Bean.COCOA, 4)    *           .addCopies(Bean.GARDEN, 6)    *           .addCopies(Bean.RED, 8)    *           .addCopies(Bean.BLACK_EYED, 10)    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple multisets in series.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
