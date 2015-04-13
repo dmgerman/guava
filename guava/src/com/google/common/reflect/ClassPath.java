@@ -1272,9 +1272,11 @@ parameter_list|,
 name|File
 name|f
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Called when a resource entry in a jar file is scanned. */
-DECL|method|onJarEntry (ClassLoader loader, File file, JarEntry entry)
+DECL|method|onJarEntry (ClassLoader loader, JarFile file, JarEntry entry)
 specifier|protected
 specifier|abstract
 name|void
@@ -1283,12 +1285,14 @@ parameter_list|(
 name|ClassLoader
 name|loader
 parameter_list|,
-name|File
+name|JarFile
 name|file
 parameter_list|,
 name|JarEntry
 name|entry
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 DECL|method|scan (File file, ClassLoader classloader)
 annotation|@
@@ -1617,7 +1621,7 @@ name|onJarEntry
 argument_list|(
 name|classloader
 argument_list|,
-name|file
+name|jarFile
 argument_list|,
 name|entry
 argument_list|)
@@ -2126,7 +2130,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|onJarEntry (ClassLoader classloader, File file, JarEntry entry)
+DECL|method|onJarEntry (ClassLoader classloader, JarFile file, JarEntry entry)
 annotation|@
 name|Override
 specifier|protected
@@ -2136,7 +2140,7 @@ parameter_list|(
 name|ClassLoader
 name|classloader
 parameter_list|,
-name|File
+name|JarFile
 name|file
 parameter_list|,
 name|JarEntry
