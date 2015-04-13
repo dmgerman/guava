@@ -363,7 +363,7 @@ name|maxPermits
 return|;
 block|}
 block|}
-comment|/**    * This implements a "bursty" RateLimiter, where storedPermits are translated to    * zero throttling. The maximum number of permits that can be saved (when the RateLimiter is    * unused) is defined in terms of time, in this sense: if a RateLimiter is 2qps, and this    * time is specified as 10 seconds, we can save up to 2 * 10 = 20 permits.     */
+comment|/**    * This implements a "bursty" RateLimiter, where storedPermits are translated to    * zero throttling. The maximum number of permits that can be saved (when the RateLimiter is    * unused) is defined in terms of time, in this sense: if a RateLimiter is 2qps, and this    * time is specified as 10 seconds, we can save up to 2 * 10 = 20 permits.    */
 DECL|class|SmoothBursty
 specifier|static
 specifier|final
@@ -745,8 +745,8 @@ name|double
 name|coolDownIntervalMicros
 parameter_list|()
 function_decl|;
+comment|/**    * Updates {@code storedPermits} and {@code nextFreeTicketMicros} based on the current time.    */
 DECL|method|resync (long nowMicros)
-specifier|private
 name|void
 name|resync
 parameter_list|(

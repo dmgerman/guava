@@ -3447,6 +3447,8 @@ argument_list|(
 literal|"latestPermitAgeSec"
 argument_list|,
 literal|"setRate"
+argument_list|,
+literal|"getAvailablePermits"
 argument_list|)
 decl_stmt|;
 comment|// We would use ArbitraryInstances, but it returns 0, invalid for many RateLimiter methods.
