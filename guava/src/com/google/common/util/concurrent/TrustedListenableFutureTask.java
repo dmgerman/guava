@@ -205,7 +205,7 @@ return|;
 block|}
 DECL|field|task
 specifier|private
-name|TrutestedFutureInterruptibleTask
+name|TrustedFutureInterruptibleTask
 name|task
 decl_stmt|;
 DECL|method|TrustedListenableFutureTask (Callable<V> callable)
@@ -223,7 +223,7 @@ operator|.
 name|task
 operator|=
 operator|new
-name|TrutestedFutureInterruptibleTask
+name|TrustedFutureInterruptibleTask
 argument_list|(
 name|callable
 argument_list|)
@@ -237,7 +237,7 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|TrutestedFutureInterruptibleTask
+name|TrustedFutureInterruptibleTask
 name|localTask
 init|=
 name|task
@@ -290,7 +290,7 @@ name|void
 name|interruptTask
 parameter_list|()
 block|{
-name|TrutestedFutureInterruptibleTask
+name|TrustedFutureInterruptibleTask
 name|localTask
 init|=
 name|task
@@ -332,10 +332,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|class|TrutestedFutureInterruptibleTask
+DECL|class|TrustedFutureInterruptibleTask
+specifier|private
 specifier|final
 class|class
-name|TrutestedFutureInterruptibleTask
+name|TrustedFutureInterruptibleTask
 extends|extends
 name|InterruptibleTask
 block|{
@@ -348,8 +349,8 @@ name|V
 argument_list|>
 name|callable
 decl_stmt|;
-DECL|method|TrutestedFutureInterruptibleTask (Callable<V> callable)
-name|TrutestedFutureInterruptibleTask
+DECL|method|TrustedFutureInterruptibleTask (Callable<V> callable)
+name|TrustedFutureInterruptibleTask
 parameter_list|(
 name|Callable
 argument_list|<
