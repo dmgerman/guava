@@ -355,7 +355,7 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
-literal|0x598df91c
+literal|0x79a31aac
 return|;
 block|}
 DECL|method|toString ()
