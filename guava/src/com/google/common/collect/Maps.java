@@ -986,7 +986,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    * This behavior cannot be broadly guaranteed, but it is observed to be true    * for OpenJDK 1.6. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of elements you expect to add to the    *        returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
+comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    * This behavior cannot be broadly guaranteed, but it is observed to be true    * for OpenJDK 1.7. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the    *        returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
 DECL|method|newHashMapWithExpectedSize ( int expectedSize)
 specifier|public
 specifier|static
@@ -1158,6 +1158,43 @@ argument_list|,
 name|V
 argument_list|>
 argument_list|()
+return|;
+block|}
+comment|/**    * Creates a {@code LinkedHashMap} instance, with a high enough    * "initial capacity" that it<i>should</i> hold {@code expectedSize}    * elements without growth. This behavior cannot be broadly guaranteed, but    * it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the    *        returned map    * @return a new, empty {@code LinkedHashMap} with enough capacity to hold    *         {@code expectedSize} entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 19.0    */
+DECL|method|newLinkedHashMapWithExpectedSize ( int expectedSize)
+specifier|public
+specifier|static
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
+name|LinkedHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|newLinkedHashMapWithExpectedSize
+parameter_list|(
+name|int
+name|expectedSize
+parameter_list|)
+block|{
+return|return
+operator|new
+name|LinkedHashMap
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+argument_list|(
+name|capacity
+argument_list|(
+name|expectedSize
+argument_list|)
+argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from    *         {@code map}    */
