@@ -2192,6 +2192,10 @@ argument_list|)
 operator|.
 name|containsExactly
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|originalStackTrace
 argument_list|)
 operator|.
@@ -2243,6 +2247,10 @@ argument_list|)
 operator|.
 name|containsExactly
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|originalStackTrace
 argument_list|)
 operator|.
@@ -2279,6 +2287,10 @@ argument_list|)
 operator|.
 name|containsExactly
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|e
 operator|.
 name|getStackTrace
