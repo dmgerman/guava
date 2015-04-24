@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Maps
+operator|.
+name|newLinkedHashMapWithExpectedSize
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -461,16 +477,7 @@ name|createMap
 parameter_list|()
 block|{
 return|return
-operator|new
-name|LinkedHashMap
-argument_list|<
-name|K
-argument_list|,
-name|Collection
-argument_list|<
-name|V
-argument_list|>
-argument_list|>
+name|newLinkedHashMapWithExpectedSize
 argument_list|(
 name|expectedKeys
 argument_list|)
