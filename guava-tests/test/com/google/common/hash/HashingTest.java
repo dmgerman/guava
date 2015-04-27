@@ -18,18 +18,6 @@ end_package
 
 begin_import
 import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-operator|.
-name|asList
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|google
@@ -39,6 +27,20 @@ operator|.
 name|base
 operator|.
 name|Charsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+operator|.
+name|asList
 import|;
 end_import
 
@@ -3730,8 +3732,6 @@ name|hashString
 argument_list|(
 name|input
 argument_list|,
-name|Charsets
-operator|.
 name|UTF_8
 argument_list|)
 operator|.
@@ -3753,6 +3753,21 @@ init|=
 operator|new
 name|NullPointerTester
 argument_list|()
+operator|.
+name|setDefault
+argument_list|(
+name|byte
+index|[]
+operator|.
+expr|class
+argument_list|,
+literal|"secret key"
+operator|.
+name|getBytes
+argument_list|(
+name|UTF_8
+argument_list|)
+argument_list|)
 operator|.
 name|setDefault
 argument_list|(
@@ -4205,9 +4220,21 @@ name|equals
 argument_list|(
 literal|"goodFastHash"
 argument_list|)
+comment|// tested in testGoodFastHashEquals
+operator|&&
+operator|!
+name|method
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"hmac"
+argument_list|)
 condition|)
 block|{
-comment|// tested in testGoodFastHashEquals
+comment|// skip hmac functions
 name|Object
 index|[]
 name|params1
