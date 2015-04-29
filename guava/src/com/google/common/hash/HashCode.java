@@ -1466,7 +1466,7 @@ name|byte
 index|[]
 name|bytes
 init|=
-name|asBytes
+name|getBytesInternal
 argument_list|()
 decl_stmt|;
 name|int
@@ -1536,7 +1536,7 @@ name|byte
 index|[]
 name|bytes
 init|=
-name|asBytes
+name|getBytesInternal
 argument_list|()
 decl_stmt|;
 name|StringBuilder
