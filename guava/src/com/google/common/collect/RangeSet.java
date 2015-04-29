@@ -151,6 +151,18 @@ argument_list|>
 name|asRanges
 parameter_list|()
 function_decl|;
+comment|/**    * Returns a descending view of the {@linkplain Range#isConnected disconnected} ranges that    * make up this range set. The returned set may be empty. The iterators returned by its    * {@link Iterable#iterator} method return the ranges in decreasing order of lower bound    * (equivalently, of upper bound).    */
+DECL|method|asDescendingSetOfRanges ()
+name|Set
+argument_list|<
+name|Range
+argument_list|<
+name|C
+argument_list|>
+argument_list|>
+name|asDescendingSetOfRanges
+parameter_list|()
+function_decl|;
 comment|/**    * Returns a view of the complement of this {@code RangeSet}.    *    *<p>The returned view supports the {@link #add} operation if this {@code RangeSet} supports    * {@link #remove}, and vice versa.    */
 DECL|method|complement ()
 name|RangeSet
