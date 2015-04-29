@@ -542,7 +542,7 @@ comment|// have two requirements that significantly complicate their design.
 comment|// 1. Cancellation should propagate from the returned future to the input future(s).
 comment|// 2. The returned futures shouldn't unnecessarily 'pin' their inputs after completion.
 comment|//
-comment|// A consequence of these these requirements is that the delegate futures cannot be stored in
+comment|// A consequence of these requirements is that the delegate futures cannot be stored in
 comment|// final fields.
 comment|//
 comment|// For simplicity the rest of this description will discuss Futures.withFallback since it is the
