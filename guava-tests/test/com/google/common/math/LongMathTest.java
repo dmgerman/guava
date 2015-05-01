@@ -28,22 +28,6 @@ name|math
 operator|.
 name|MathTesting
 operator|.
-name|ALL_INTEGER_CANDIDATES
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|math
-operator|.
-name|MathTesting
-operator|.
 name|ALL_LONG_CANDIDATES
 import|;
 end_import
@@ -2719,7 +2703,7 @@ control|(
 name|long
 name|a
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 for|for
@@ -2727,7 +2711,7 @@ control|(
 name|long
 name|b
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 name|BigInteger
@@ -2809,7 +2793,7 @@ control|(
 name|long
 name|a
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 for|for
@@ -2817,7 +2801,7 @@ control|(
 name|long
 name|b
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 name|BigInteger
@@ -2899,7 +2883,7 @@ control|(
 name|long
 name|a
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 for|for
@@ -2907,7 +2891,7 @@ control|(
 name|long
 name|b
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 name|BigInteger
@@ -2989,7 +2973,7 @@ control|(
 name|long
 name|b
 range|:
-name|ALL_INTEGER_CANDIDATES
+name|ALL_LONG_CANDIDATES
 control|)
 block|{
 for|for

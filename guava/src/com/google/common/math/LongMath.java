@@ -2221,6 +2221,11 @@ condition|)
 block|{
 name|checkNoOverflow
 argument_list|(
+operator|-
+name|FLOOR_SQRT_MAX_LONG
+operator|<=
+name|b
+operator|&&
 name|b
 operator|<=
 name|FLOOR_SQRT_MAX_LONG
