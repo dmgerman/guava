@@ -374,10 +374,7 @@ block|{
 return|return
 name|encode
 argument_list|(
-name|checkNotNull
-argument_list|(
 name|bytes
-argument_list|)
 argument_list|,
 literal|0
 argument_list|,
@@ -405,11 +402,6 @@ name|int
 name|len
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|bytes
-argument_list|)
-expr_stmt|;
 name|checkPositionIndexes
 argument_list|(
 name|off
@@ -2419,11 +2411,6 @@ argument_list|(
 name|target
 argument_list|)
 expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|chars
-argument_list|)
-expr_stmt|;
 name|chars
 operator|=
 name|padding
@@ -2962,11 +2949,6 @@ name|int
 name|afterEveryChars
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|separator
-argument_list|)
-expr_stmt|;
 name|checkArgument
 argument_list|(
 name|padding
@@ -2982,7 +2964,9 @@ argument_list|(
 name|separator
 argument_list|)
 argument_list|,
-literal|"Separator cannot contain alphabet or padding characters"
+literal|"Separator (%s) cannot contain alphabet or padding characters"
+argument_list|,
+name|separator
 argument_list|)
 expr_stmt|;
 return|return
@@ -3448,11 +3432,6 @@ argument_list|(
 name|target
 argument_list|)
 expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|chars
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|chars
@@ -3851,11 +3830,6 @@ block|{
 name|checkNotNull
 argument_list|(
 name|target
-argument_list|)
-expr_stmt|;
-name|checkNotNull
-argument_list|(
-name|chars
 argument_list|)
 expr_stmt|;
 name|chars
