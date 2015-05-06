@@ -1388,6 +1388,7 @@ name|ch
 argument_list|)
 throw|;
 block|}
+comment|/**    * Returns {@code true} if {@code object} is a {@link HashCode} instance with the identical byte    * representation to this hash code.    *    *<p>Security note:</p> this method uses a constant-time (not short-circuiting) implementation    * to protect against<a href="http://en.wikipedia.org/wiki/Timing_attack">timing attacks</a>.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
