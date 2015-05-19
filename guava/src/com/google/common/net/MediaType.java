@@ -1866,6 +1866,13 @@ name|String
 argument_list|>
 name|parameters
 decl_stmt|;
+comment|// lazily computed
+DECL|field|toString
+specifier|private
+specifier|volatile
+name|String
+name|toString
+decl_stmt|;
 DECL|method|MediaType (String type, String subtype, ImmutableListMultimap<String, String> parameters)
 specifier|private
 name|MediaType
@@ -3379,6 +3386,36 @@ name|Override
 specifier|public
 name|String
 name|toString
+parameter_list|()
+block|{
+name|String
+name|result
+init|=
+name|toString
+decl_stmt|;
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+block|{
+name|toString
+operator|=
+name|result
+operator|=
+name|computeToString
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|result
+return|;
+block|}
+DECL|method|computeToString ()
+specifier|private
+name|String
+name|computeToString
 parameter_list|()
 block|{
 name|StringBuilder
