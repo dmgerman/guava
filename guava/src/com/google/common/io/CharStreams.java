@@ -498,18 +498,6 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|// force a blocking read
-if|if
-condition|(
-name|reader
-operator|.
-name|read
-argument_list|()
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
 throw|throw
 operator|new
 name|EOFException
@@ -517,16 +505,9 @@ argument_list|()
 throw|;
 block|}
 name|n
-operator|--
-expr_stmt|;
-block|}
-else|else
-block|{
-name|n
 operator|-=
 name|amt
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/**    * Returns a {@link Writer} that simply discards written chars.    *    * @since 15.0    */
