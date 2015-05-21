@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtCompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -101,6 +115,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtCompatible
 DECL|class|TestLogHandler
 specifier|public
 class|class
@@ -118,23 +134,19 @@ name|LogRecord
 argument_list|>
 name|list
 init|=
-name|Collections
-operator|.
-name|synchronizedList
-argument_list|(
 operator|new
 name|ArrayList
 argument_list|<
 name|LogRecord
 argument_list|>
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|/**    * Adds the most recently logged record to our list.    */
 annotation|@
 name|Override
 DECL|method|publish (@ullable LogRecord record)
 specifier|public
+specifier|synchronized
 name|void
 name|publish
 parameter_list|(
@@ -170,6 +182,7 @@ parameter_list|()
 block|{}
 DECL|method|clear ()
 specifier|public
+specifier|synchronized
 name|void
 name|clear
 parameter_list|()
@@ -180,9 +193,11 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Fetch the list of logged records    * @return unmodifiable LogRecord list of all logged records    */
+comment|/**    * Returns a snapshot of the logged records.    */
+comment|/*    * TODO(cpovirk): consider higher-level APIs here (say, assertNoRecordsLogged(),    * getOnlyRecordLogged(), getAndClearLogRecords()...)    *    * TODO(cpovirk): consider renaming this method to reflect that it takes a snapshot (and/or return    * an ImmutableList)    */
 DECL|method|getStoredLogRecords ()
 specifier|public
+specifier|synchronized
 name|List
 argument_list|<
 name|LogRecord
