@@ -219,7 +219,15 @@ name|void
 name|verifyThreadWasNotInterrupted
 parameter_list|()
 block|{
-comment|// There are no threads in GWT so there's nothing to assert.
+comment|// There is no thread interruption in GWT, so there's nothing to do.
+block|}
+DECL|method|clearInterrupt ()
+specifier|static
+name|void
+name|clearInterrupt
+parameter_list|()
+block|{
+comment|// There is no thread interruption in GWT, so there's nothing to do.
 block|}
 DECL|method|TestPlatform ()
 specifier|private

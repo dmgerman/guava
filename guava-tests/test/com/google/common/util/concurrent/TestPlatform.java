@@ -328,6 +328,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|clearInterrupt ()
+specifier|static
+name|void
+name|clearInterrupt
+parameter_list|()
+block|{
+name|Thread
+operator|.
+name|interrupted
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|TestPlatform ()
 specifier|private
 name|TestPlatform

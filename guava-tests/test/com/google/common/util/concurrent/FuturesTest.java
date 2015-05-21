@@ -206,6 +206,24 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|TestPlatform
+operator|.
+name|clearInterrupt
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|Uninterruptibles
 operator|.
 name|awaitUninterruptibly
@@ -758,17 +776,12 @@ name|FuturesTest
 extends|extends
 name|TestCase
 block|{
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
-DECL|field|combinedFutureLogger
+DECL|field|aggregateFutureLogger
 specifier|private
 specifier|static
 specifier|final
 name|Logger
-name|combinedFutureLogger
+name|aggregateFutureLogger
 init|=
 name|Logger
 operator|.
@@ -782,16 +795,11 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
-DECL|field|combinedFutureLogHandler
+DECL|field|aggregateFutureLogHandler
 specifier|private
 specifier|final
 name|TestLogHandler
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 init|=
 operator|new
 name|TestLogHandler
@@ -825,11 +833,6 @@ init|=
 literal|"most data"
 decl_stmt|;
 annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler, mocks"
-argument_list|)
-annotation|@
 name|Override
 DECL|method|setUp ()
 specifier|protected
@@ -844,19 +847,14 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
-name|combinedFutureLogger
+name|aggregateFutureLogger
 operator|.
 name|addHandler
 argument_list|(
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler, interruption"
-argument_list|)
 annotation|@
 name|Override
 DECL|method|tearDown ()
@@ -868,16 +866,14 @@ throws|throws
 name|Exception
 block|{
 comment|/*      * Clear interrupt for future tests.      *      * (Ideally we would perform interrupts only in threads that we create, but      * it's hard to imagine that anything will break in practice.)      */
-name|Thread
-operator|.
-name|interrupted
+name|clearInterrupt
 argument_list|()
 expr_stmt|;
-name|combinedFutureLogger
+name|aggregateFutureLogger
 operator|.
 name|removeHandler
 argument_list|(
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 argument_list|)
 expr_stmt|;
 name|super
@@ -993,11 +989,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"immediateFailedFuture"
-argument_list|)
 DECL|method|testImmediateFailedFuture ()
 specifier|public
 name|void
@@ -1064,11 +1055,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"immediateFailedFuture"
-argument_list|)
 DECL|method|testImmediateFailedFuture_cancellationException ()
 specifier|public
 name|void
@@ -11413,11 +11399,6 @@ expr_stmt|;
 block|}
 comment|/**    * A single non-error failure is not logged because it is reported via the output future.    */
 annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
-annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -11473,7 +11454,7 @@ literal|"Nothing should be logged"
 argument_list|,
 literal|0
 argument_list|,
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -11485,11 +11466,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Ensure that errors are always logged.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -11546,7 +11522,7 @@ name|LogRecord
 argument_list|>
 name|logged
 init|=
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -11580,11 +11556,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * All as list will log extra exceptions that occur after failure.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -11648,7 +11619,7 @@ name|LogRecord
 argument_list|>
 name|logged
 init|=
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -11682,11 +11653,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * The same exception happening on multiple futures should not be logged.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -11753,7 +11719,7 @@ literal|"Nothing should be logged"
 argument_list|,
 literal|0
 argument_list|,
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -11764,11 +11730,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
 DECL|method|testAllAsList_logging_seenExceptionUpdateRaceBuggy ()
 specifier|public
 name|void
@@ -11893,7 +11854,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -11905,11 +11866,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Different exceptions happening on multiple futures with the same cause should not be logged.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -12018,7 +11974,7 @@ literal|"Nothing should be logged"
 argument_list|,
 literal|0
 argument_list|,
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -15578,11 +15534,6 @@ expr_stmt|;
 block|}
 comment|/**    * Non-Error exceptions are never logged.    */
 annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
-annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
@@ -15629,7 +15580,7 @@ literal|"Nothing should be logged"
 argument_list|,
 literal|0
 argument_list|,
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -15688,7 +15639,7 @@ literal|"Nothing should be logged"
 argument_list|,
 literal|0
 argument_list|,
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
@@ -15699,11 +15650,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Ensure that errors are always logged.    */
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"TestLogHandler"
-argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -15751,7 +15697,7 @@ name|LogRecord
 argument_list|>
 name|logged
 init|=
-name|combinedFutureLogHandler
+name|aggregateFutureLogHandler
 operator|.
 name|getStoredLogRecords
 argument_list|()
