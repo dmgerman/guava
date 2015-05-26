@@ -4336,7 +4336,7 @@ name|builder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    */
+comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from    * those values. In other words, each input value produces an entry in the map    * whose key is the result of applying {@code keyFunction} to that value.    * These entries appear in the same order as the input values. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   ImmutableSet<Color> allColors = ImmutableSet.of(red, green, blue);    *    *   Map<String, Color> colorForName =    *       uniqueIndex(allColors, toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterable, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    */
 DECL|method|uniqueIndex ( Iterable<V> values, Function<? super V, K> keyFunction)
 specifier|public
 specifier|static
@@ -4383,7 +4383,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map for which the {@link Map#values} are the given    * elements in the given order, and each key is the product of invoking a    * supplied function on its corresponding value.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    * @since 10.0    */
+comment|/**    * Returns a map with the given {@code values}, indexed by keys derived from    * those values. In other words, each input value produces an entry in the map    * whose key is the result of applying {@code keyFunction} to that value.    * These entries appear in the same order as the input values. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   Iterator<Color> allColors = ImmutableSet.of(red, green, blue).iterator();    *    *   Map<String, Color> colorForName =    *       uniqueIndex(allColors, toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link    * Multimaps#index(Iterator, Function) Multimaps.index}.    *    * @param values the values to use when constructing the {@code Map}    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *         keyFunction} on each value in the input collection to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *         key for more than one value in the input collection    * @throws NullPointerException if any elements of {@code values} is null, or    *         if {@code keyFunction} produces {@code null} for any value    * @since 10.0    */
 DECL|method|uniqueIndex ( Iterator<V> values, Function<? super V, K> keyFunction)
 specifier|public
 specifier|static
@@ -4468,12 +4468,34 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 return|return
 name|builder
 operator|.
 name|build
 argument_list|()
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|duplicateKeys
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|duplicateKeys
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|". To index multiple values under a key, use Multimaps.index."
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * Returns an immutable map entry with the specified key and value. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException}.    *    *<p>The returned entry is serializable.    *    * @param key the key to be associated with the returned entry    * @param value the value to be associated with the returned entry    */
 annotation|@

@@ -677,7 +677,7 @@ block|}
 catch|catch
 parameter_list|(
 name|IllegalArgumentException
-name|ex
+name|expected
 parameter_list|)
 block|{     }
 block|}
@@ -6326,7 +6326,21 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{     }
+block|{
+name|assertThat
+argument_list|(
+name|expected
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"Multimaps.index"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/** Null values are not allowed. */
 DECL|method|testUniqueIndexNullValue ()
