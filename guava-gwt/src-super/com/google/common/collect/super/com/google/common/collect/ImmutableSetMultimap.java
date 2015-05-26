@@ -885,7 +885,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * {@inheritDoc}      *       * @since 19.0      */
+comment|/**      * {@inheritDoc}      *      * @since 19.0      */
 annotation|@
 name|Beta
 DECL|method|putAll ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
