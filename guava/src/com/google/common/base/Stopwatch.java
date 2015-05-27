@@ -528,9 +528,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"String.format()"
 argument_list|)
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

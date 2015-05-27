@@ -283,9 +283,7 @@ name|Level
 operator|.
 name|INFO
 argument_list|,
-literal|"Failed to clear thread local values inherited"
-operator|+
-literal|" by reference finalizer thread."
+literal|"Failed to clear thread local values inherited by reference finalizer thread."
 argument_list|,
 name|t
 argument_list|)
@@ -433,7 +431,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
-comment|/* ignore */
+comment|// ignore
 block|}
 block|}
 block|}
@@ -639,11 +637,9 @@ name|Level
 operator|.
 name|INFO
 argument_list|,
-literal|"Couldn't access Thread.inheritableThreadLocals."
+literal|"Couldn't access Thread.inheritableThreadLocals. Reference finalizer threads will "
 operator|+
-literal|" Reference finalizer threads will inherit thread local"
-operator|+
-literal|" values."
+literal|"inherit thread local values."
 argument_list|)
 expr_stmt|;
 return|return

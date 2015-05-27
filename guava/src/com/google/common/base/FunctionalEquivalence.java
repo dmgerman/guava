@@ -137,7 +137,7 @@ name|T
 argument_list|>
 name|resultEquivalence
 decl_stmt|;
-DECL|method|FunctionalEquivalence ( Function<F, ? extends T> function, Equivalence<T> resultEquivalence)
+DECL|method|FunctionalEquivalence (Function<F, ? extends T> function, Equivalence<T> resultEquivalence)
 name|FunctionalEquivalence
 parameter_list|(
 name|Function
@@ -176,9 +176,9 @@ name|resultEquivalence
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doEquivalent (F a, F b)
 annotation|@
 name|Override
+DECL|method|doEquivalent (F a, F b)
 specifier|protected
 name|boolean
 name|doEquivalent
@@ -211,9 +211,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|doHash (F a)
 annotation|@
 name|Override
+DECL|method|doHash (F a)
 specifier|protected
 name|int
 name|doHash
@@ -236,9 +236,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -309,9 +309,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -328,9 +328,9 @@ name|resultEquivalence
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

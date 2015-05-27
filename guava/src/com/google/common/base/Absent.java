@@ -145,9 +145,9 @@ specifier|private
 name|Absent
 parameter_list|()
 block|{}
-DECL|method|isPresent ()
 annotation|@
 name|Override
+DECL|method|isPresent ()
 specifier|public
 name|boolean
 name|isPresent
@@ -157,9 +157,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -173,9 +173,9 @@ literal|"Optional.get() cannot be called on an absent value"
 argument_list|)
 throw|;
 block|}
-DECL|method|or (T defaultValue)
 annotation|@
 name|Override
+DECL|method|or (T defaultValue)
 specifier|public
 name|T
 name|or
@@ -199,9 +199,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// safe covariant cast
-DECL|method|or (Optional<? extends T> secondChoice)
 annotation|@
 name|Override
+DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 name|Optional
 argument_list|<
@@ -231,9 +231,9 @@ name|secondChoice
 argument_list|)
 return|;
 block|}
-DECL|method|or (Supplier<? extends T> supplier)
 annotation|@
 name|Override
+DECL|method|or (Supplier<? extends T> supplier)
 specifier|public
 name|T
 name|or
@@ -259,11 +259,11 @@ literal|"use Optional.orNull() instead of a Supplier that returns null"
 argument_list|)
 return|;
 block|}
-DECL|method|orNull ()
 annotation|@
 name|Override
 annotation|@
 name|Nullable
+DECL|method|orNull ()
 specifier|public
 name|T
 name|orNull
@@ -273,9 +273,9 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|asSet ()
 annotation|@
 name|Override
+DECL|method|asSet ()
 specifier|public
 name|Set
 argument_list|<
@@ -291,9 +291,9 @@ name|emptySet
 argument_list|()
 return|;
 block|}
-DECL|method|transform (Function<? super T, V> function)
 annotation|@
 name|Override
+DECL|method|transform (Function<? super T, V> function)
 specifier|public
 parameter_list|<
 name|V
@@ -327,9 +327,9 @@ name|absent
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -346,9 +346,9 @@ operator|==
 name|this
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -358,9 +358,9 @@ return|return
 literal|0x79a31aac
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

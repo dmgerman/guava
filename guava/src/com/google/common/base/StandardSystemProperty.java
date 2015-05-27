@@ -330,9 +330,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string representation of this system property.    */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

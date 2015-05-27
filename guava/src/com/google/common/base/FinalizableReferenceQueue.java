@@ -535,9 +535,9 @@ name|FinalizerLoader
 block|{
 comment|// This is used by the ClassLoader-leak test in FinalizableReferenceQueueTest to disable
 comment|// finding Finalizer on the system class path even if it is there.
+DECL|field|disabled
 annotation|@
 name|VisibleForTesting
-DECL|field|disabled
 specifier|static
 name|boolean
 name|disabled
@@ -645,13 +645,13 @@ specifier|final
 name|String
 name|LOADING_ERROR
 init|=
-literal|"Could not load Finalizer in its own class loader."
+literal|"Could not load Finalizer in its own class loader. Loading Finalizer in the current class "
 operator|+
-literal|"Loading Finalizer in the current class loader instead. As a result, you will not be able"
+literal|"loader instead. As a result, you will not be able to garbage collect this class "
 operator|+
-literal|"to garbage collect this class loader. To support reclaiming this class loader, either"
+literal|"loader. To support reclaiming this class loader, either resolve the underlying "
 operator|+
-literal|"resolve the underlying issue, or move Google Collections to your system class path."
+literal|"issue, or move Guava to your system class path."
 decl_stmt|;
 annotation|@
 name|Override

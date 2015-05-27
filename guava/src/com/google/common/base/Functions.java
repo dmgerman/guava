@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code Function} instances.  *  *<p>All methods return serializable functions as long as they're given serializable parameters.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the use of {@code  * Function}</a>.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@code Function} instances.  *  *<p>All methods return serializable functions as long as they're given serializable parameters.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/FunctionalExplained">the use of {@code  * Function}</a>.  *  * @author Mike Bostock  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -195,9 +195,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -279,9 +279,9 @@ return|return
 name|o
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -428,9 +428,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
@@ -481,9 +481,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -496,9 +496,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -684,9 +684,9 @@ else|:
 name|defaultValue
 return|;
 block|}
-DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
@@ -748,9 +748,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -767,9 +767,9 @@ name|defaultValue
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -968,9 +968,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1034,9 +1034,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1054,9 +1054,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1187,9 +1187,9 @@ name|t
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1236,9 +1236,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1251,9 +1251,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1367,9 +1367,9 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1418,9 +1418,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1441,9 +1441,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1467,7 +1467,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns a function that always returns the result of invoking {@link Supplier#get} on {@code    * supplier}, regardless of its input.    *     * @since 10.0    */
+comment|/**    * Returns a function that always returns the result of invoking {@link Supplier#get} on {@code    * supplier}, regardless of its input.    *    * @since 10.0    */
 annotation|@
 name|Beta
 DECL|method|forSupplier (Supplier<T> supplier)
@@ -1551,9 +1551,9 @@ name|supplier
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|apply (@ullable Object input)
 annotation|@
 name|Override
+DECL|method|apply (@ullable Object input)
 specifier|public
 name|T
 name|apply
@@ -1571,9 +1571,9 @@ name|get
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1622,9 +1622,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1637,9 +1637,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

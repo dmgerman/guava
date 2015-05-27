@@ -611,9 +611,9 @@ block|}
 comment|/**      * Returns a string in the format specified by      * {@link MoreObjects#toStringHelper(Object)}.      *      *<p>After calling this method, you can keep adding more properties to later      * call toString() again and get a more complete representation of the      * same object; but properties cannot be removed, so this only allows      * limited reuse of the helper instance. The helper allows duplication of      * properties (multiple name/value pairs with the same name can be added).      */
 annotation|@
 name|CheckReturnValue
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

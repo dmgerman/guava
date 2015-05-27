@@ -116,9 +116,9 @@ operator|=
 name|reference
 expr_stmt|;
 block|}
-DECL|method|isPresent ()
 annotation|@
 name|Override
+DECL|method|isPresent ()
 specifier|public
 name|boolean
 name|isPresent
@@ -128,9 +128,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -140,9 +140,9 @@ return|return
 name|reference
 return|;
 block|}
-DECL|method|or (T defaultValue)
 annotation|@
 name|Override
+DECL|method|or (T defaultValue)
 specifier|public
 name|T
 name|or
@@ -162,9 +162,9 @@ return|return
 name|reference
 return|;
 block|}
-DECL|method|or (Optional<? extends T> secondChoice)
 annotation|@
 name|Override
+DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 name|Optional
 argument_list|<
@@ -190,9 +190,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|or (Supplier<? extends T> supplier)
 annotation|@
 name|Override
+DECL|method|or (Supplier<? extends T> supplier)
 specifier|public
 name|T
 name|or
@@ -215,9 +215,9 @@ return|return
 name|reference
 return|;
 block|}
-DECL|method|orNull ()
 annotation|@
 name|Override
+DECL|method|orNull ()
 specifier|public
 name|T
 name|orNull
@@ -227,9 +227,9 @@ return|return
 name|reference
 return|;
 block|}
-DECL|method|asSet ()
 annotation|@
 name|Override
+DECL|method|asSet ()
 specifier|public
 name|Set
 argument_list|<
@@ -247,9 +247,9 @@ name|reference
 argument_list|)
 return|;
 block|}
-DECL|method|transform (Function<? super T, V> function)
 annotation|@
 name|Override
+DECL|method|transform (Function<? super T, V> function)
 specifier|public
 parameter_list|<
 name|V
@@ -292,9 +292,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -341,9 +341,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -358,9 +358,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

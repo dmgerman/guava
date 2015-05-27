@@ -335,7 +335,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if each of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a false    * predicate is found. It defensively copies the iterable passed in, so future    * changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * true}.    */
-DECL|method|and ( Iterable<? extends Predicate<? super T>> components)
+DECL|method|and (Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
 parameter_list|<
@@ -470,7 +470,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if any one of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found. It defensively copies the iterable passed in, so    * future changes to it won't alter the behavior of this predicate. If {@code    * components} is empty, the returned predicate will always evaluate to {@code    * false}.    */
-DECL|method|or ( Iterable<? extends Predicate<? super T>> components)
+DECL|method|or (Iterable<? extends Predicate<? super T>> components)
 specifier|public
 specifier|static
 parameter_list|<
@@ -548,7 +548,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if either of its    * components evaluates to {@code true}. The components are evaluated in    * order, and evaluation will be "short-circuited" as soon as a    * true predicate is found.    */
-DECL|method|or ( Predicate<? super T> first, Predicate<? super T> second)
+DECL|method|or (Predicate<? super T> first, Predicate<? super T> second)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1094,9 +1094,9 @@ name|t
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1110,9 +1110,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1159,9 +1159,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1314,9 +1314,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1332,9 +1332,9 @@ operator|+
 literal|0x12472c2c
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1381,9 +1381,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1526,9 +1526,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1544,9 +1544,9 @@ operator|+
 literal|0x053c91cf
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1593,9 +1593,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1682,9 +1682,9 @@ name|t
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1697,9 +1697,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1746,9 +1746,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1843,9 +1843,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1858,9 +1858,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1898,9 +1898,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2002,9 +2002,9 @@ name|input
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2017,9 +2017,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2057,9 +2057,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2178,9 +2178,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2227,9 +2227,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2242,9 +2242,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2374,9 +2374,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2436,9 +2436,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2456,9 +2456,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2549,9 +2549,9 @@ name|find
 argument_list|()
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2576,9 +2576,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2646,9 +2646,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2737,9 +2737,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

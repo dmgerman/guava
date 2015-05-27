@@ -461,11 +461,11 @@ specifier|final
 name|String
 name|ZEROES
 init|=
-literal|"0\u0660\u06f0\u07c0\u0966\u09e6\u0a66\u0ae6\u0b66\u0be6"
+literal|"0\u0660\u06f0\u07c0\u0966\u09e6\u0a66\u0ae6\u0b66\u0be6\u0c66\u0ce6\u0d66\u0e50\u0ed0\u0f20"
 operator|+
-literal|"\u0c66\u0ce6\u0d66\u0e50\u0ed0\u0f20\u1040\u1090\u17e0\u1810\u1946\u19d0\u1b50\u1bb0"
+literal|"\u1040\u1090\u17e0\u1810\u1946\u19d0\u1b50\u1bb0\u1c40\u1c50\ua620\ua8d0\ua900\uaa50"
 operator|+
-literal|"\u1c40\u1c50\ua620\ua8d0\ua900\uaa50\uff10"
+literal|"\uff10"
 decl_stmt|;
 comment|/**    * Determines whether a character is a digit according to    *<a href="http://unicode.org/cldr/utility/list-unicodeset.jsp?a=%5Cp%7Bdigit%7D">Unicode</a>.    * If you only care to match ASCII digits, you can use {@code inRange('0', '9')}.    */
 DECL|field|DIGIT
@@ -808,6 +808,28 @@ return|;
 block|}
 block|}
 decl_stmt|;
+DECL|field|INVISIBLE_RANGE_STARTS
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|INVISIBLE_RANGE_STARTS
+init|=
+literal|"\u0000\u007f\u00ad\u0600\u061c\u06dd\u070f\u1680\u180e\u2000\u2028\u205f\u2066\u2067"
+operator|+
+literal|"\u2068\u2069\u206a\u3000\ud800\ufeff\ufff9\ufffa"
+decl_stmt|;
+DECL|field|INVISIBLE_RANGE_ENDS
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|INVISIBLE_RANGE_ENDS
+init|=
+literal|"\u0020\u00a0\u00ad\u0604\u061c\u06dd\u070f\u1680\u180e\u200f\u202f\u2064\u2066\u2067"
+operator|+
+literal|"\u2068\u2069\u206f\u3000\uf8ff\ufeff\ufff9\ufffb"
+decl_stmt|;
 comment|/**    * Determines whether a character is invisible; that is, if its Unicode category is any of    * SPACE_SEPARATOR, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, CONTROL, FORMAT, SURROGATE, and    * PRIVATE_USE according to ICU4J.    */
 DECL|field|INVISIBLE
 specifier|public
@@ -821,20 +843,12 @@ name|RangesMatcher
 argument_list|(
 literal|"CharMatcher.INVISIBLE"
 argument_list|,
-operator|(
-literal|"\u0000\u007f\u00ad\u0600\u061c\u06dd\u070f\u1680\u180e\u2000\u2028\u205f\u2066\u2067\u2068"
-operator|+
-literal|"\u2069\u206a\u3000\ud800\ufeff\ufff9\ufffa"
-operator|)
+name|INVISIBLE_RANGE_STARTS
 operator|.
 name|toCharArray
 argument_list|()
 argument_list|,
-operator|(
-literal|"\u0020\u00a0\u00ad\u0604\u061c\u06dd\u070f\u1680\u180e\u200f\u202f\u2064\u2066\u2067\u2068"
-operator|+
-literal|"\u2069\u206f\u3000\uf8ff\ufeff\ufff9\ufffb"
-operator|)
+name|INVISIBLE_RANGE_ENDS
 operator|.
 name|toCharArray
 argument_list|()
@@ -1990,7 +2004,7 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|isEither ( final char match1, final char match2)
+DECL|method|isEither (final char match1, final char match2)
 specifier|private
 specifier|static
 name|CharMatcher
@@ -2318,9 +2332,9 @@ name|original
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|matches (char c)
 annotation|@
 name|Override
+DECL|method|matches (char c)
 specifier|public
 name|boolean
 name|matches
@@ -2339,9 +2353,9 @@ name|c
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|matchesAllOf (CharSequence sequence)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|matchesAllOf
@@ -2359,9 +2373,9 @@ name|sequence
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|matchesNoneOf (CharSequence sequence)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|matchesNoneOf
@@ -2379,9 +2393,9 @@ name|sequence
 argument_list|)
 return|;
 block|}
-DECL|method|countIn (CharSequence sequence)
 annotation|@
 name|Override
+DECL|method|countIn (CharSequence sequence)
 specifier|public
 name|int
 name|countIn
@@ -2404,9 +2418,9 @@ name|sequence
 argument_list|)
 return|;
 block|}
-DECL|method|negate ()
 annotation|@
 name|Override
+DECL|method|negate ()
 specifier|public
 name|CharMatcher
 name|negate
@@ -2416,9 +2430,9 @@ return|return
 name|original
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2521,9 +2535,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2632,9 +2646,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2756,9 +2770,9 @@ name|description
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 specifier|final
 name|String
@@ -4187,8 +4201,6 @@ specifier|final
 name|String
 name|WHITESPACE_TABLE
 init|=
-literal|""
-operator|+
 literal|"\u2002\u3000\r\u0085\u200A\u2005\u2000\u3000"
 operator|+
 literal|"\u2029\u000B\u3000\u2008\u2003\u205F\u3000\u1680"

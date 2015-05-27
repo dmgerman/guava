@@ -119,7 +119,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving one or more parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc.  Unmatched arguments will be appended to the formatted message    *     in square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalArgumentException if {@code expression} is false    * @throws NullPointerException if the check fails and either {@code errorMessageTemplate} or    *     {@code errorMessageArgs} is null (don't let this happen)    */
-DECL|method|checkArgument (boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
+DECL|method|checkArgument ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -221,7 +221,7 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures the truth of an expression involving the state of the calling instance, but not    * involving any parameters to the calling method.    *    * @param expression a boolean expression    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc.  Unmatched arguments will be appended to the formatted message    *     in square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @throws IllegalStateException if {@code expression} is false    * @throws NullPointerException if the check fails and either {@code errorMessageTemplate} or    *     {@code errorMessageArgs} is null (don't let this happen)    */
-DECL|method|checkState (boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
+DECL|method|checkState ( boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 name|void
@@ -337,7 +337,7 @@ name|reference
 return|;
 block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc.  Unmatched arguments will be appended to the formatted message    *     in square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    */
-DECL|method|checkNotNull (T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
+DECL|method|checkNotNull ( T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
 parameter_list|<
@@ -413,7 +413,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array, list or string of size    * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
-DECL|method|checkElementIndex ( int index, int size, @Nullable String desc)
+DECL|method|checkElementIndex (int index, int size, @Nullable String desc)
 specifier|public
 specifier|static
 name|int

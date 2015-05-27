@@ -327,6 +327,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Propagates {@code throwable} exactly as-is, if and only if it is an instance of {@link    * RuntimeException}, {@link Error}, {@code declaredType1}, or {@code declaredType2}. In the    * unlikely case that you have three or more declared checked exception types, you can handle them    * all by invoking these methods repeatedly. See usage example in {@link    * #propagateIfPossible(Throwable, Class)}.    *    * @param throwable the Throwable to possibly propagate    * @param declaredType1 any checked exception type declared by the calling method    * @param declaredType2 any other checked exception type declared by the calling method    */
+DECL|method|propagateIfPossible ( @ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -338,7 +339,6 @@ name|X2
 extends|extends
 name|Throwable
 parameter_list|>
-DECL|method|propagateIfPossible (@ullable Throwable throwable, Class<X1> declaredType1, Class<X2> declaredType2)
 name|void
 name|propagateIfPossible
 parameter_list|(
@@ -770,9 +770,9 @@ init|=
 literal|"sun.misc.JavaLangAccess"
 decl_stmt|;
 comment|/** SharedSecrets class name to load using reflection */
+DECL|field|SHARED_SECRETS_CLASSNAME
 annotation|@
 name|VisibleForTesting
-DECL|field|SHARED_SECRETS_CLASSNAME
 specifier|static
 specifier|final
 name|String
@@ -781,9 +781,9 @@ init|=
 literal|"sun.misc.SharedSecrets"
 decl_stmt|;
 comment|/** Access to some fancy internal JVM internals. */
+DECL|field|jla
 annotation|@
 name|Nullable
-DECL|field|jla
 specifier|private
 specifier|static
 specifier|final

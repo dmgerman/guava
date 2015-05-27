@@ -106,15 +106,15 @@ enum|enum
 name|State
 block|{
 DECL|enumConstant|READY
-DECL|enumConstant|NOT_READY
-DECL|enumConstant|DONE
-DECL|enumConstant|FAILED
 name|READY
 block|,
+DECL|enumConstant|NOT_READY
 name|NOT_READY
 block|,
+DECL|enumConstant|DONE
 name|DONE
 block|,
+DECL|enumConstant|FAILED
 name|FAILED
 block|,   }
 DECL|field|next
@@ -270,9 +270,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|remove ()
 annotation|@
 name|Override
+DECL|method|remove ()
 specifier|public
 specifier|final
 name|void

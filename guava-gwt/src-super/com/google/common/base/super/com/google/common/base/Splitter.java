@@ -1345,9 +1345,9 @@ operator|=
 name|toSplit
 expr_stmt|;
 block|}
-DECL|method|computeNext ()
 annotation|@
 name|Override
+DECL|method|computeNext ()
 specifier|protected
 name|String
 name|computeNext

@@ -85,7 +85,7 @@ specifier|private
 name|PairwiseEquivalence_CustomFieldSerializer
 parameter_list|()
 block|{}
-DECL|method|deserialize (SerializationStreamReader reader, PairwiseEquivalence<?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, PairwiseEquivalence<?> instance)
 specifier|public
 specifier|static
 name|void

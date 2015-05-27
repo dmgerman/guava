@@ -121,7 +121,7 @@ name|Suppliers
 parameter_list|()
 block|{}
 comment|/**    * Returns a new supplier which is the composition of the provided function    * and supplier. In other words, the new supplier's value will be computed by    * retrieving the value from {@code supplier}, and then applying    * {@code function} to that value. Note that the resulting supplier will not    * call {@code supplier} or invoke {@code function} until it is called.    */
-DECL|method|compose ( Function<? super F, T> function, Supplier<F> supplier)
+DECL|method|compose (Function<? super F, T> function, Supplier<F> supplier)
 specifier|public
 specifier|static
 parameter_list|<
@@ -252,9 +252,9 @@ operator|=
 name|supplier
 expr_stmt|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -272,9 +272,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -334,9 +334,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -353,9 +353,9 @@ name|supplier
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -482,9 +482,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -534,9 +534,9 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -601,9 +601,9 @@ name|unit
 argument_list|)
 return|;
 block|}
-DECL|class|ExpiringMemoizingSupplier
 annotation|@
 name|VisibleForTesting
+DECL|class|ExpiringMemoizingSupplier
 specifier|static
 class|class
 name|ExpiringMemoizingSupplier
@@ -644,7 +644,7 @@ specifier|volatile
 name|long
 name|expirationNanos
 decl_stmt|;
-DECL|method|ExpiringMemoizingSupplier ( Supplier<T> delegate, long duration, TimeUnit unit)
+DECL|method|ExpiringMemoizingSupplier (Supplier<T> delegate, long duration, TimeUnit unit)
 name|ExpiringMemoizingSupplier
 parameter_list|(
 name|Supplier
@@ -692,9 +692,9 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -787,9 +787,9 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -886,9 +886,9 @@ operator|=
 name|instance
 expr_stmt|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -898,9 +898,9 @@ return|return
 name|instance
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -949,9 +949,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -966,9 +966,9 @@ name|instance
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1069,9 +1069,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -1090,9 +1090,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1195,9 +1195,9 @@ DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
 comment|// Note: This makes T a "pass-through type"
-DECL|method|apply (Supplier<Object> input)
 annotation|@
 name|Override
+DECL|method|apply (Supplier<Object> input)
 specifier|public
 name|Object
 name|apply
@@ -1216,9 +1216,9 @@ name|get
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
