@@ -90,7 +90,7 @@ specifier|public
 class|class
 name|ImmutableSetMultimap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, ImmutableSetMultimap<?, ?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, ImmutableSetMultimap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -107,14 +107,14 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 comment|// Serialization type safety is at the caller's mercy.
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|instantiate ( SerializationStreamReader reader)
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|ImmutableSetMultimap
@@ -197,7 +197,7 @@ name|builder
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, ImmutableSetMultimap<?, ?> instance)
+DECL|method|serialize ( SerializationStreamWriter writer, ImmutableSetMultimap<?, ?> instance)
 specifier|public
 specifier|static
 name|void

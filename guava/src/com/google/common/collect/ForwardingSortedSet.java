@@ -126,9 +126,9 @@ specifier|protected
 name|ForwardingSortedSet
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|SortedSet
@@ -338,11 +338,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #contains} in terms of the {@code first()}    * method of {@link #tailSet}. If you override {@link #tailSet}, you may wish    * to override {@link #contains} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardContains (@ullable Object object)
 annotation|@
 name|Override
 annotation|@
 name|Beta
+DECL|method|standardContains (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardContains
@@ -431,11 +431,11 @@ return|;
 block|}
 block|}
 comment|/**    * A sensible definition of {@link #remove} in terms of the {@code iterator()}    * method of {@link #tailSet}. If you override {@link #tailSet}, you may wish    * to override {@link #remove} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardRemove (@ullable Object object)
 annotation|@
 name|Override
 annotation|@
 name|Beta
+DECL|method|standardRemove (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardRemove
@@ -548,9 +548,9 @@ literal|false
 return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #subSet(Object, Object)} in    * terms of {@link #headSet(Object)} and {@link #tailSet(Object)}. In some    * situations, you may wish to override {@link #subSet(Object, Object)} to    * forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardSubSet (E fromElement, E toElement)
 annotation|@
 name|Beta
+DECL|method|standardSubSet (E fromElement, E toElement)
 specifier|protected
 name|SortedSet
 argument_list|<

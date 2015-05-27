@@ -185,9 +185,9 @@ name|DEFAULT_VALUES_PER_KEY
 init|=
 literal|2
 decl_stmt|;
+DECL|field|expectedValuesPerKey
 annotation|@
 name|VisibleForTesting
-DECL|field|expectedValuesPerKey
 specifier|transient
 name|int
 name|expectedValuesPerKey
@@ -224,7 +224,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Constructs an empty {@code HashMultimap} with enough capacity to hold the    * specified numbers of keys and values without rehashing.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code    *      expectedValuesPerKey} is negative    */
-DECL|method|create ( int expectedKeys, int expectedValuesPerKey)
+DECL|method|create (int expectedKeys, int expectedValuesPerKey)
 specifier|public
 specifier|static
 parameter_list|<
@@ -263,7 +263,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs a {@code HashMultimap} with the same mappings as the specified    * multimap. If a key-value mapping appears multiple times in the input    * multimap, it only appears once in the constructed multimap.    *    * @param multimap the multimap whose contents are copied to this multimap    */
-DECL|method|create ( Multimap<? extends K, ? extends V> multimap)
+DECL|method|create (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
 parameter_list|<
@@ -419,9 +419,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Creates an empty {@code HashSet} for a collection of values for one key.    *    * @return a new {@code HashSet} containing a collection of values for one key    */
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 name|Set
 argument_list|<
 name|V

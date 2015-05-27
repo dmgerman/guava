@@ -69,9 +69,9 @@ specifier|protected
 name|ForwardingIterator
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|Iterator

@@ -941,7 +941,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|compute (K key, int hash, ReferenceEntry<K, V> e, ComputingValueReference<K, V> computingValueReference)
+DECL|method|compute ( K key, int hash, ReferenceEntry<K, V> e, ComputingValueReference<K, V> computingValueReference)
 name|V
 name|compute
 parameter_list|(
@@ -1852,7 +1852,7 @@ name|V
 argument_list|>
 name|computingFunction
 decl_stmt|;
-DECL|method|ComputingSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
+DECL|method|ComputingSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate, Function<? super K, ? extends V> computingFunction)
 name|ComputingSerializationProxy
 parameter_list|(
 name|Strength

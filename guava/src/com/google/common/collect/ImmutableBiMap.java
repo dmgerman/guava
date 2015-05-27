@@ -224,7 +224,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -288,7 +288,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys or values are added    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -513,9 +513,9 @@ name|Builder
 parameter_list|()
 block|{}
 comment|/**      * Associates {@code key} with {@code value} in the built bimap. Duplicate      * keys or values are not allowed, and will cause {@link #build} to fail.      */
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|Builder
 argument_list|<
@@ -546,9 +546,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds the given {@code entry} to the bimap.  Duplicate keys or values      * are not allowed, and will cause {@link #build} to fail.      *      * @since 19.0      */
-DECL|method|put (Entry<? extends K, ? extends V> entry)
 annotation|@
 name|Override
+DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
 argument_list|<
@@ -583,9 +583,9 @@ name|this
 return|;
 block|}
 comment|/**      * Associates all of the given map's keys and values in the built bimap.      * Duplicate keys or values are not allowed, and will cause {@link #build}      * to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|Builder
 argument_list|<
@@ -664,9 +664,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created immutable bimap.      *      * @throws IllegalArgumentException if duplicate keys or values were added      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableBiMap
 argument_list|<
@@ -728,7 +728,7 @@ block|}
 block|}
 block|}
 comment|/**    * Returns an immutable bimap containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws IllegalArgumentException if two keys have the same value    * @throws NullPointerException if any key or value in {@code map} is null    */
-DECL|method|copyOf ( Map<? extends K, ? extends V> map)
+DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -960,9 +960,9 @@ name|inverse
 parameter_list|()
 function_decl|;
 comment|/**    * Returns an immutable set of the values in this map. The values are in the    * same order as the parameters used to build this map.    */
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1031,9 +1031,9 @@ name|bimap
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|readResolve ()
 annotation|@
 name|Override
+DECL|method|readResolve ()
 name|Object
 name|readResolve
 parameter_list|()
@@ -1072,9 +1072,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

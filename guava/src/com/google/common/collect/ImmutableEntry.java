@@ -117,11 +117,11 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-DECL|method|getKey ()
 annotation|@
 name|Nullable
 annotation|@
 name|Override
+DECL|method|getKey ()
 specifier|public
 specifier|final
 name|K
@@ -132,11 +132,11 @@ return|return
 name|key
 return|;
 block|}
-DECL|method|getValue ()
 annotation|@
 name|Nullable
 annotation|@
 name|Override
+DECL|method|getValue ()
 specifier|public
 specifier|final
 name|V
@@ -147,9 +147,9 @@ return|return
 name|value
 return|;
 block|}
-DECL|method|setValue (V value)
 annotation|@
 name|Override
+DECL|method|setValue (V value)
 specifier|public
 specifier|final
 name|V

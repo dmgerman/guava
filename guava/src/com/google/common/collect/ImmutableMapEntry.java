@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@code Map.Entry} for {@link ImmutableMap} that adds extra methods to traverse  * hash buckets for the key and the value. This allows reuse in {@link RegularImmutableMap} and  * {@link RegularImmutableBiMap}, which don't have to recopy the entries created by their  * {@code Builder} implementations.  *   * This base implementation has no key or value pointers, so instances of ImmutableMapEntry  * (but not its subclasses) can be reused when copied from one ImmutableMap to another.  *  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@code Map.Entry} for {@link ImmutableMap} that adds extra methods to traverse  * hash buckets for the key and the value. This allows reuse in {@link RegularImmutableMap} and  * {@link RegularImmutableBiMap}, which don't have to recopy the entries created by their  * {@code Builder} implementations.  *  *<p>This base implementation has no key or value pointers, so instances of ImmutableMapEntry  * (but not its subclasses) can be reused when copied from one ImmutableMap to another.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -334,7 +334,7 @@ name|V
 argument_list|>
 name|nextInValueBucket
 decl_stmt|;
-DECL|method|NonTerminalImmutableBiMapEntry (K key, V value, ImmutableMapEntry<K, V> nextInKeyBucket, ImmutableMapEntry<K, V> nextInValueBucket)
+DECL|method|NonTerminalImmutableBiMapEntry ( K key, V value, ImmutableMapEntry<K, V> nextInKeyBucket, ImmutableMapEntry<K, V> nextInValueBucket)
 name|NonTerminalImmutableBiMapEntry
 parameter_list|(
 name|K

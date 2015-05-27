@@ -198,7 +198,7 @@ name|E
 argument_list|>
 name|constraint
 decl_stmt|;
-DECL|method|ConstrainedCollection ( Collection<E> delegate, Constraint<? super E> constraint)
+DECL|method|ConstrainedCollection (Collection<E> delegate, Constraint<? super E> constraint)
 specifier|public
 name|ConstrainedCollection
 parameter_list|(
@@ -236,9 +236,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -251,9 +251,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -278,9 +278,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elements)
 specifier|public
 name|boolean
 name|addAll
@@ -310,7 +310,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a constrained view of the specified set, using the specified    * constraint. Any operations that add new elements to the set will call the    * provided constraint. However, this method does not verify that existing    * elements satisfy the constraint.    *    *<p>The returned set is not serializable.    *    * @param set the set to constrain    * @param constraint the constraint that validates added elements    * @return a constrained view of the set    */
-DECL|method|constrainedSet ( Set<E> set, Constraint<? super E> constraint)
+DECL|method|constrainedSet (Set<E> set, Constraint<? super E> constraint)
 specifier|public
 specifier|static
 parameter_list|<
@@ -422,9 +422,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -437,9 +437,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -464,9 +464,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elements)
 specifier|public
 name|boolean
 name|addAll
@@ -569,7 +569,7 @@ name|E
 argument_list|>
 name|constraint
 decl_stmt|;
-DECL|method|ConstrainedSortedSet ( SortedSet<E> delegate, Constraint<? super E> constraint)
+DECL|method|ConstrainedSortedSet (SortedSet<E> delegate, Constraint<? super E> constraint)
 name|ConstrainedSortedSet
 parameter_list|(
 name|SortedSet
@@ -606,9 +606,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|SortedSet
 argument_list|<
@@ -621,9 +621,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|headSet (E toElement)
 annotation|@
 name|Override
+DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -649,9 +649,9 @@ name|constraint
 argument_list|)
 return|;
 block|}
-DECL|method|subSet (E fromElement, E toElement)
 annotation|@
 name|Override
+DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -682,9 +682,9 @@ name|constraint
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (E fromElement)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -710,9 +710,9 @@ name|constraint
 argument_list|)
 return|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -737,9 +737,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elements)
 specifier|public
 name|boolean
 name|addAll
@@ -769,7 +769,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a constrained view of the specified list, using the specified    * constraint. Any operations that add new elements to the list will call the    * provided constraint. However, this method does not verify that existing    * elements satisfy the constraint.    *    *<p>If {@code list} implements {@link RandomAccess}, so will the returned    * list. The returned list is not serializable.    *    * @param list the list to constrain    * @param constraint the constraint that validates added elements    * @return a constrained view of the list    */
-DECL|method|constrainedList ( List<E> list, Constraint<? super E> constraint)
+DECL|method|constrainedList (List<E> list, Constraint<? super E> constraint)
 specifier|public
 specifier|static
 parameter_list|<
@@ -898,9 +898,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|List
 argument_list|<
@@ -913,9 +913,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -940,9 +940,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|add (int index, E element)
 annotation|@
 name|Override
+DECL|method|add (int index, E element)
 specifier|public
 name|void
 name|add
@@ -971,9 +971,9 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|addAll (Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elements)
 specifier|public
 name|boolean
 name|addAll
@@ -1001,9 +1001,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|addAll (int index, Collection<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (int index, Collection<? extends E> elements)
 specifier|public
 name|boolean
 name|addAll
@@ -1036,9 +1036,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|listIterator ()
 annotation|@
 name|Override
+DECL|method|listIterator ()
 specifier|public
 name|ListIterator
 argument_list|<
@@ -1059,9 +1059,9 @@ name|constraint
 argument_list|)
 return|;
 block|}
-DECL|method|listIterator (int index)
 annotation|@
 name|Override
+DECL|method|listIterator (int index)
 specifier|public
 name|ListIterator
 argument_list|<
@@ -1087,9 +1087,9 @@ name|constraint
 argument_list|)
 return|;
 block|}
-DECL|method|set (int index, E element)
 annotation|@
 name|Override
+DECL|method|set (int index, E element)
 specifier|public
 name|E
 name|set
@@ -1119,9 +1119,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
 argument_list|<
@@ -1169,7 +1169,7 @@ argument_list|>
 implements|implements
 name|RandomAccess
 block|{
-DECL|method|ConstrainedRandomAccessList ( List<E> delegate, Constraint<? super E> constraint)
+DECL|method|ConstrainedRandomAccessList (List<E> delegate, Constraint<? super E> constraint)
 name|ConstrainedRandomAccessList
 parameter_list|(
 name|List
@@ -1271,7 +1271,7 @@ name|E
 argument_list|>
 name|constraint
 decl_stmt|;
-DECL|method|ConstrainedListIterator ( ListIterator<E> delegate, Constraint<? super E> constraint)
+DECL|method|ConstrainedListIterator (ListIterator<E> delegate, Constraint<? super E> constraint)
 specifier|public
 name|ConstrainedListIterator
 parameter_list|(
@@ -1303,9 +1303,9 @@ operator|=
 name|constraint
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|ListIterator
 argument_list|<
@@ -1318,9 +1318,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|void
 name|add
@@ -1344,9 +1344,9 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|set (E element)
 annotation|@
 name|Override
+DECL|method|set (E element)
 specifier|public
 name|void
 name|set

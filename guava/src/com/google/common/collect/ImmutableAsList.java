@@ -117,9 +117,9 @@ argument_list|>
 name|delegateCollection
 parameter_list|()
 function_decl|;
-DECL|method|contains (Object target)
 annotation|@
 name|Override
+DECL|method|contains (Object target)
 specifier|public
 name|boolean
 name|contains
@@ -276,9 +276,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"serialization"
 argument_list|)
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

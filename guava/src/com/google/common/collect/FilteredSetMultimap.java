@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A supertype for filtered {@link SetMultimap} implementations.  *   * @author Louis Wasserman  */
+comment|/**  * A supertype for filtered {@link SetMultimap} implementations.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_interface

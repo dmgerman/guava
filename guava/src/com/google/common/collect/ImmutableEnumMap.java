@@ -185,7 +185,6 @@ return|;
 case|case
 literal|1
 case|:
-block|{
 name|Entry
 argument_list|<
 name|K
@@ -220,7 +219,6 @@ name|getValue
 argument_list|()
 argument_list|)
 return|;
-block|}
 default|default:
 return|return
 operator|new
@@ -277,9 +275,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|keyIterator ()
 annotation|@
 name|Override
+DECL|method|keyIterator ()
 name|UnmodifiableIterator
 argument_list|<
 name|K
@@ -456,9 +454,9 @@ literal|false
 return|;
 block|}
 comment|// All callers of the constructor are restricted to<K extends Enum<K>>.
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

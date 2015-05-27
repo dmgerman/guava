@@ -35,9 +35,9 @@ name|E
 argument_list|>
 block|{
 comment|/**    * Not supported. Use {@link ImmutableSortedSet#naturalOrder}, which offers    * better type-safety, instead. This method exists only to hide    * {@link ImmutableSet#builder} from consumers of {@code ImmutableSortedSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link ImmutableSortedSet#naturalOrder}, which offers    *     better type-safety.    */
-DECL|method|builder ()
 annotation|@
 name|Deprecated
+DECL|method|builder ()
 specifier|public
 specifier|static
 parameter_list|<
@@ -59,9 +59,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass a parameter of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable)}.</b>    */
-DECL|method|of (E element)
 annotation|@
 name|Deprecated
+DECL|method|of (E element)
 specifier|public
 specifier|static
 parameter_list|<
@@ -84,9 +84,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable)}.</b>    */
-DECL|method|of (E e1, E e2)
 annotation|@
 name|Deprecated
+DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -112,9 +112,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable)}.</b>    */
-DECL|method|of (E e1, E e2, E e3)
 annotation|@
 name|Deprecated
+DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -143,9 +143,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable, Comparable)}.    *</b>    */
-DECL|method|of ( E e1, E e2, E e3, E e4)
 annotation|@
 name|Deprecated
+DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -177,9 +177,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(    *     Comparable, Comparable, Comparable, Comparable, Comparable)}.</b>    */
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5)
 annotation|@
 name|Deprecated
+DECL|method|of (E e1, E e2, E e3, E e4, E e5)
 specifier|public
 specifier|static
 parameter_list|<
@@ -213,10 +213,10 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable, Comparable,     *     Comparable, Comparable, Comparable...)}.</b>    */
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
+comment|/**    * Not supported.<b>You are attempting to create a set that may contain a    * non-{@code Comparable} element.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass the parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#of(Comparable, Comparable, Comparable, Comparable,    *     Comparable, Comparable, Comparable...)}.</b>    */
 annotation|@
 name|Deprecated
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... remaining)
 specifier|public
 specifier|static
 parameter_list|<
@@ -258,9 +258,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Not supported.<b>You are attempting to create a set that may contain    * non-{@code Comparable} elements.</b> Proper calls will resolve to the    * version in {@code ImmutableSortedSet}, not this dummy version.    *    * @throws UnsupportedOperationException always    * @deprecated<b>Pass parameters of type {@code Comparable} to use {@link    *     ImmutableSortedSet#copyOf(Comparable[])}.</b>    */
-DECL|method|copyOf (E[] elements)
 annotation|@
 name|Deprecated
+DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -283,7 +283,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/*    * We would like to include an unsupported "<E> copyOf(Iterable<E>)" here,    * providing only the properly typed    * "<E extends Comparable<E>> copyOf(Iterable<E>)" in ImmutableSortedSet (and    * likewise for the Iterator equivalent). However, due to a change in Sun's    * interpretation of the JLS (as described at    * http://bugs.sun.com/view_bug.do?bug_id=6182950), the OpenJDK 7 compiler    * available as of this writing rejects our attempts. To maintain    * compatibility with that version and with any other compilers that interpret    * the JLS similarly, there is no definition of copyOf() here, and the    * definition in ImmutableSortedSet matches that in ImmutableSet.    *     * The result is that ImmutableSortedSet.copyOf() may be called on    * non-Comparable elements. We have not discovered a better solution. In    * retrospect, the static factory methods should have gone in a separate class    * so that ImmutableSortedSet wouldn't "inherit" too-permissive factory    * methods from ImmutableSet.    */
+comment|/*    * We would like to include an unsupported "<E> copyOf(Iterable<E>)" here,    * providing only the properly typed    * "<E extends Comparable<E>> copyOf(Iterable<E>)" in ImmutableSortedSet (and    * likewise for the Iterator equivalent). However, due to a change in Sun's    * interpretation of the JLS (as described at    * http://bugs.sun.com/view_bug.do?bug_id=6182950), the OpenJDK 7 compiler    * available as of this writing rejects our attempts. To maintain    * compatibility with that version and with any other compilers that interpret    * the JLS similarly, there is no definition of copyOf() here, and the    * definition in ImmutableSortedSet matches that in ImmutableSet.    *    * The result is that ImmutableSortedSet.copyOf() may be called on    * non-Comparable elements. We have not discovered a better solution. In    * retrospect, the static factory methods should have gone in a separate class    * so that ImmutableSortedSet wouldn't "inherit" too-permissive factory    * methods from ImmutableSet.    */
 block|}
 end_class
 

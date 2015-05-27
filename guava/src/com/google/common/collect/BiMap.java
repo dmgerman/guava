@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A bimap (or "bidirectional map") is a map that preserves the uniqueness of  * its values as well as that of its keys. This constraint enables bimaps to  * support an "inverse view", which is another bimap containing the same entries  * as this bimap but with reversed keys and values.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A bimap (or "bidirectional map") is a map that preserves the uniqueness of  * its values as well as that of its keys. This constraint enables bimaps to  * support an "inverse view", which is another bimap containing the same entries  * as this bimap but with reversed keys and values.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_interface
@@ -88,9 +88,9 @@ comment|// Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the given value is already bound to a    *     different key in this bimap. The bimap will remain unmodified in this    *     event. To avoid this exception, call {@link #forcePut} instead.    */
 annotation|@
 name|Override
-DECL|method|put (@ullable K key, @Nullable V value)
 annotation|@
 name|Nullable
+DECL|method|put (@ullable K key, @Nullable V value)
 name|V
 name|put
 parameter_list|(
@@ -106,9 +106,9 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**    * An alternate form of {@code put} that silently removes any existing entry    * with the value {@code value} before proceeding with the {@link #put}    * operation. If the bimap previously contained the provided key-value    * mapping, this method has no effect.    *    *<p>Note that a successful call to this method could cause the size of the    * bimap to increase by one, stay the same, or even decrease by one.    *    *<p><b>Warning:</b> If an existing entry with this value is removed, the key    * for that entry is discarded and not returned.    *    * @param key the key with which the specified value is to be associated    * @param value the value to be associated with the specified key    * @return the value which was previously associated with the key, which may    *     be {@code null}, or {@code null} if there was no previous entry    */
-DECL|method|forcePut (@ullable K key, @Nullable V value)
 annotation|@
 name|Nullable
+DECL|method|forcePut (@ullable K key, @Nullable V value)
 name|V
 name|forcePut
 parameter_list|(

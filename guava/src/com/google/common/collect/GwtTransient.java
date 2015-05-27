@@ -116,7 +116,7 @@ argument_list|)
 DECL|annotation|GwtTransient
 annotation_defn|@interface
 name|GwtTransient
-block|{ }
+block|{}
 end_annotation_defn
 
 end_unit

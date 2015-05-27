@@ -73,9 +73,9 @@ argument_list|>
 name|delegateCollection
 parameter_list|()
 function_decl|;
-DECL|method|contains (Object target)
 annotation|@
 name|Override
+DECL|method|contains (Object target)
 specifier|public
 name|boolean
 name|contains

@@ -167,9 +167,9 @@ name|E
 argument_list|>
 name|delegate
 decl_stmt|;
+DECL|field|maxSize
 annotation|@
 name|VisibleForTesting
-DECL|field|maxSize
 specifier|final
 name|int
 name|maxSize
@@ -255,9 +255,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Queue
 argument_list|<
@@ -271,9 +271,9 @@ name|delegate
 return|;
 block|}
 comment|/**    * Adds the given element to this queue. If the queue is currently full, the element at the head    * of the queue is evicted to make room.    *    * @return {@code true} always    */
-DECL|method|offer (E e)
 annotation|@
 name|Override
+DECL|method|offer (E e)
 specifier|public
 name|boolean
 name|offer
@@ -290,9 +290,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Adds the given element to this queue. If the queue is currently full, the element at the head    * of the queue is evicted to make room.    *    * @return {@code true} always    */
-DECL|method|add (E e)
 annotation|@
 name|Override
+DECL|method|add (E e)
 specifier|public
 name|boolean
 name|add
@@ -343,9 +343,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> collection)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> collection)
 specifier|public
 name|boolean
 name|addAll

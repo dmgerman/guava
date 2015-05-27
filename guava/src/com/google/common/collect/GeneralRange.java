@@ -322,7 +322,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns everything above the endpoint relative to the specified comparator, with the specified    * endpoint behavior.    */
-DECL|method|downTo (Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
+DECL|method|downTo ( Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
 specifier|static
 parameter_list|<
 name|T
@@ -374,7 +374,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns everything below the endpoint relative to the specified comparator, with the specified    * endpoint behavior.    */
-DECL|method|upTo (Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
+DECL|method|upTo ( Comparator<? super T> comparator, @Nullable T endpoint, BoundType boundType)
 specifier|static
 parameter_list|<
 name|T
@@ -426,7 +426,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns everything between the endpoints relative to the specified comparator, with the    * specified endpoint behavior.    */
-DECL|method|range (Comparator<? super T> comparator, @Nullable T lower, BoundType lowerType, @Nullable T upper, BoundType upperType)
+DECL|method|range ( Comparator<? super T> comparator, @Nullable T lower, BoundType lowerType, @Nullable T upper, BoundType upperType)
 specifier|static
 parameter_list|<
 name|T
@@ -502,9 +502,9 @@ specifier|final
 name|boolean
 name|hasLowerBound
 decl_stmt|;
+DECL|field|lowerEndpoint
 annotation|@
 name|Nullable
-DECL|field|lowerEndpoint
 specifier|private
 specifier|final
 name|T
@@ -522,9 +522,9 @@ specifier|final
 name|boolean
 name|hasUpperBound
 decl_stmt|;
+DECL|field|upperEndpoint
 annotation|@
 name|Nullable
-DECL|field|upperEndpoint
 specifier|private
 specifier|final
 name|T
@@ -536,7 +536,7 @@ specifier|final
 name|BoundType
 name|upperBoundType
 decl_stmt|;
-DECL|method|GeneralRange (Comparator<? super T> comparator, boolean hasLowerBound, @Nullable T lowerEndpoint, BoundType lowerBoundType, boolean hasUpperBound, @Nullable T upperEndpoint, BoundType upperBoundType)
+DECL|method|GeneralRange ( Comparator<? super T> comparator, boolean hasLowerBound, @Nullable T lowerEndpoint, BoundType lowerBoundType, boolean hasUpperBound, @Nullable T upperEndpoint, BoundType upperBoundType)
 specifier|private
 name|GeneralRange
 parameter_list|(

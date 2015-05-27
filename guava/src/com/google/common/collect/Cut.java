@@ -352,9 +352,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// catching CCE
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -490,9 +490,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|endpoint ()
 annotation|@
 name|Override
+DECL|method|endpoint ()
 name|Comparable
 argument_list|<
 name|?
@@ -508,9 +508,9 @@ literal|"range unbounded on this side"
 argument_list|)
 throw|;
 block|}
-DECL|method|isLessThan (Comparable<?> value)
 annotation|@
 name|Override
+DECL|method|isLessThan (Comparable<?> value)
 name|boolean
 name|isLessThan
 parameter_list|(
@@ -525,9 +525,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|typeAsLowerBound ()
 annotation|@
 name|Override
+DECL|method|typeAsLowerBound ()
 name|BoundType
 name|typeAsLowerBound
 parameter_list|()
@@ -538,9 +538,9 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
-DECL|method|typeAsUpperBound ()
 annotation|@
 name|Override
+DECL|method|typeAsUpperBound ()
 name|BoundType
 name|typeAsUpperBound
 parameter_list|()
@@ -553,9 +553,9 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
-DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|withLowerBoundType ( BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 name|Cut
 argument_list|<
 name|Comparable
@@ -584,9 +584,9 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
-DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|withUpperBoundType ( BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 name|Cut
 argument_list|<
 name|Comparable
@@ -617,9 +617,9 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
-DECL|method|describeAsLowerBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsLowerBound (StringBuilder sb)
 name|void
 name|describeAsLowerBound
 parameter_list|(
@@ -635,9 +635,9 @@ literal|"(-\u221e"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|describeAsUpperBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsUpperBound (StringBuilder sb)
 name|void
 name|describeAsUpperBound
 parameter_list|(
@@ -651,9 +651,9 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|leastValueAbove ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|leastValueAbove (DiscreteDomain<Comparable<?>> domain)
 name|Comparable
 argument_list|<
 name|?
@@ -677,9 +677,9 @@ name|minValue
 argument_list|()
 return|;
 block|}
-DECL|method|greatestValueBelow ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|greatestValueBelow (DiscreteDomain<Comparable<?>> domain)
 name|Comparable
 argument_list|<
 name|?
@@ -702,9 +702,9 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|canonical ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|canonical (DiscreteDomain<Comparable<?>> domain)
 name|Cut
 argument_list|<
 name|Comparable
@@ -755,9 +755,9 @@ name|this
 return|;
 block|}
 block|}
-DECL|method|compareTo (Cut<Comparable<?>> o)
 annotation|@
 name|Override
+DECL|method|compareTo (Cut<Comparable<?>> o)
 specifier|public
 name|int
 name|compareTo
@@ -785,9 +785,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -886,9 +886,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|endpoint ()
 annotation|@
 name|Override
+DECL|method|endpoint ()
 name|Comparable
 argument_list|<
 name|?
@@ -904,9 +904,9 @@ literal|"range unbounded on this side"
 argument_list|)
 throw|;
 block|}
-DECL|method|isLessThan (Comparable<?> value)
 annotation|@
 name|Override
+DECL|method|isLessThan (Comparable<?> value)
 name|boolean
 name|isLessThan
 parameter_list|(
@@ -921,9 +921,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|typeAsLowerBound ()
 annotation|@
 name|Override
+DECL|method|typeAsLowerBound ()
 name|BoundType
 name|typeAsLowerBound
 parameter_list|()
@@ -936,9 +936,9 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
-DECL|method|typeAsUpperBound ()
 annotation|@
 name|Override
+DECL|method|typeAsUpperBound ()
 name|BoundType
 name|typeAsUpperBound
 parameter_list|()
@@ -949,9 +949,9 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
-DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|withLowerBoundType ( BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 name|Cut
 argument_list|<
 name|Comparable
@@ -982,9 +982,9 @@ literal|"this statement should be unreachable"
 argument_list|)
 throw|;
 block|}
-DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|withUpperBoundType ( BoundType boundType, DiscreteDomain<Comparable<?>> domain)
 name|Cut
 argument_list|<
 name|Comparable
@@ -1013,9 +1013,9 @@ name|IllegalStateException
 argument_list|()
 throw|;
 block|}
-DECL|method|describeAsLowerBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsLowerBound (StringBuilder sb)
 name|void
 name|describeAsLowerBound
 parameter_list|(
@@ -1029,9 +1029,9 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|describeAsUpperBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsUpperBound (StringBuilder sb)
 name|void
 name|describeAsUpperBound
 parameter_list|(
@@ -1047,9 +1047,9 @@ literal|"+\u221e)"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|leastValueAbove ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|leastValueAbove (DiscreteDomain<Comparable<?>> domain)
 name|Comparable
 argument_list|<
 name|?
@@ -1072,9 +1072,9 @@ name|AssertionError
 argument_list|()
 throw|;
 block|}
-DECL|method|greatestValueBelow ( DiscreteDomain<Comparable<?>> domain)
 annotation|@
 name|Override
+DECL|method|greatestValueBelow (DiscreteDomain<Comparable<?>> domain)
 name|Comparable
 argument_list|<
 name|?
@@ -1098,9 +1098,9 @@ name|maxValue
 argument_list|()
 return|;
 block|}
-DECL|method|compareTo (Cut<Comparable<?>> o)
 annotation|@
 name|Override
+DECL|method|compareTo (Cut<Comparable<?>> o)
 specifier|public
 name|int
 name|compareTo
@@ -1127,9 +1127,9 @@ else|:
 literal|1
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1220,9 +1220,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isLessThan (C value)
 annotation|@
 name|Override
+DECL|method|isLessThan (C value)
 name|boolean
 name|isLessThan
 parameter_list|(
@@ -1243,9 +1243,9 @@ operator|<=
 literal|0
 return|;
 block|}
-DECL|method|typeAsLowerBound ()
 annotation|@
 name|Override
+DECL|method|typeAsLowerBound ()
 name|BoundType
 name|typeAsLowerBound
 parameter_list|()
@@ -1256,9 +1256,9 @@ operator|.
 name|CLOSED
 return|;
 block|}
-DECL|method|typeAsUpperBound ()
 annotation|@
 name|Override
+DECL|method|typeAsUpperBound ()
 name|BoundType
 name|typeAsUpperBound
 parameter_list|()
@@ -1269,9 +1269,9 @@ operator|.
 name|OPEN
 return|;
 block|}
-DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<C> domain)
 name|Cut
 argument_list|<
 name|C
@@ -1346,9 +1346,9 @@ argument_list|()
 throw|;
 block|}
 block|}
-DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<C> domain)
 name|Cut
 argument_list|<
 name|C
@@ -1423,9 +1423,9 @@ argument_list|()
 throw|;
 block|}
 block|}
-DECL|method|describeAsLowerBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsLowerBound (StringBuilder sb)
 name|void
 name|describeAsLowerBound
 parameter_list|(
@@ -1446,9 +1446,9 @@ name|endpoint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|describeAsUpperBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsUpperBound (StringBuilder sb)
 name|void
 name|describeAsUpperBound
 parameter_list|(
@@ -1469,9 +1469,9 @@ literal|')'
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|leastValueAbove (DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|leastValueAbove (DiscreteDomain<C> domain)
 name|C
 name|leastValueAbove
 parameter_list|(
@@ -1486,9 +1486,9 @@ return|return
 name|endpoint
 return|;
 block|}
-DECL|method|greatestValueBelow (DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|greatestValueBelow (DiscreteDomain<C> domain)
 name|C
 name|greatestValueBelow
 parameter_list|(
@@ -1508,9 +1508,9 @@ name|endpoint
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1523,9 +1523,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1610,9 +1610,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isLessThan (C value)
 annotation|@
 name|Override
+DECL|method|isLessThan (C value)
 name|boolean
 name|isLessThan
 parameter_list|(
@@ -1633,9 +1633,9 @@ operator|<
 literal|0
 return|;
 block|}
-DECL|method|typeAsLowerBound ()
 annotation|@
 name|Override
+DECL|method|typeAsLowerBound ()
 name|BoundType
 name|typeAsLowerBound
 parameter_list|()
@@ -1646,9 +1646,9 @@ operator|.
 name|OPEN
 return|;
 block|}
-DECL|method|typeAsUpperBound ()
 annotation|@
 name|Override
+DECL|method|typeAsUpperBound ()
 name|BoundType
 name|typeAsUpperBound
 parameter_list|()
@@ -1659,9 +1659,9 @@ operator|.
 name|CLOSED
 return|;
 block|}
-DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|withLowerBoundType (BoundType boundType, DiscreteDomain<C> domain)
 name|Cut
 argument_list|<
 name|C
@@ -1732,9 +1732,9 @@ argument_list|()
 throw|;
 block|}
 block|}
-DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|withUpperBoundType (BoundType boundType, DiscreteDomain<C> domain)
 name|Cut
 argument_list|<
 name|C
@@ -1805,9 +1805,9 @@ argument_list|()
 throw|;
 block|}
 block|}
-DECL|method|describeAsLowerBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsLowerBound (StringBuilder sb)
 name|void
 name|describeAsLowerBound
 parameter_list|(
@@ -1828,9 +1828,9 @@ name|endpoint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|describeAsUpperBound (StringBuilder sb)
 annotation|@
 name|Override
+DECL|method|describeAsUpperBound (StringBuilder sb)
 name|void
 name|describeAsUpperBound
 parameter_list|(
@@ -1851,9 +1851,9 @@ literal|']'
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|leastValueAbove (DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|leastValueAbove (DiscreteDomain<C> domain)
 name|C
 name|leastValueAbove
 parameter_list|(
@@ -1873,9 +1873,9 @@ name|endpoint
 argument_list|)
 return|;
 block|}
-DECL|method|greatestValueBelow (DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|greatestValueBelow (DiscreteDomain<C> domain)
 name|C
 name|greatestValueBelow
 parameter_list|(
@@ -1890,9 +1890,9 @@ return|return
 name|endpoint
 return|;
 block|}
-DECL|method|canonical (DiscreteDomain<C> domain)
 annotation|@
 name|Override
+DECL|method|canonical (DiscreteDomain<C> domain)
 name|Cut
 argument_list|<
 name|C
@@ -1935,9 +1935,9 @@ name|aboveAll
 argument_list|()
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1951,9 +1951,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

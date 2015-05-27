@@ -330,9 +330,9 @@ operator|=
 name|domain
 expr_stmt|;
 block|}
-DECL|method|headSet (C toElement)
 annotation|@
 name|Override
+DECL|method|headSet (C toElement)
 specifier|public
 name|ContiguousSet
 argument_list|<
@@ -356,9 +356,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|subSet (C fromElement, C toElement)
 annotation|@
 name|Override
+DECL|method|subSet (C fromElement, C toElement)
 specifier|public
 name|ContiguousSet
 argument_list|<
@@ -411,9 +411,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (C fromElement)
 annotation|@
 name|Override
+DECL|method|tailSet (C fromElement)
 specifier|public
 name|ContiguousSet
 argument_list|<
@@ -438,8 +438,9 @@ argument_list|)
 return|;
 block|}
 comment|/*    * These methods perform most headSet, subSet, and tailSet logic, besides parameter validation.    */
-DECL|method|headSetImpl (C toElement, boolean inclusive)
+comment|// TODO(kevinb): we can probably make these real @Overrides now
 comment|/*@Override*/
+DECL|method|headSetImpl (C toElement, boolean inclusive)
 specifier|abstract
 name|ContiguousSet
 argument_list|<
@@ -454,8 +455,8 @@ name|boolean
 name|inclusive
 parameter_list|)
 function_decl|;
-DECL|method|subSetImpl (C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 comment|/*@Override*/
+DECL|method|subSetImpl ( C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 specifier|abstract
 name|ContiguousSet
 argument_list|<
@@ -476,8 +477,8 @@ name|boolean
 name|toInclusive
 parameter_list|)
 function_decl|;
-DECL|method|tailSetImpl (C fromElement, boolean inclusive)
 comment|/*@Override*/
+DECL|method|tailSetImpl (C fromElement, boolean inclusive)
 specifier|abstract
 name|ContiguousSet
 argument_list|<
@@ -538,9 +539,9 @@ name|upperBoundType
 parameter_list|)
 function_decl|;
 comment|/** Returns a short-hand representation of the contents such as {@code "[1..100]"}. */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -555,9 +556,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Not supported. {@code ContiguousSet} instances are constructed with {@link #create}. This    * method exists only to hide {@link ImmutableSet#builder} from consumers of {@code    * ContiguousSet}.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #create}.    */
-DECL|method|builder ()
 annotation|@
 name|Deprecated
+DECL|method|builder ()
 specifier|public
 specifier|static
 parameter_list|<

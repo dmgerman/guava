@@ -98,8 +98,8 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|ImmutableSortedMap
@@ -125,7 +125,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-DECL|method|serialize ( SerializationStreamWriter writer, ImmutableSortedMap<?, ?> instance)
+DECL|method|serialize (SerializationStreamWriter writer, ImmutableSortedMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void

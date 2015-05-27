@@ -139,9 +139,9 @@ specifier|protected
 name|ForwardingSortedMap
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|SortedMap
@@ -397,11 +397,11 @@ return|;
 block|}
 block|}
 comment|/**    * A sensible definition of {@link #containsKey} in terms of the {@code    * firstKey()} method of {@link #tailMap}. If you override {@link #tailMap},    * you may wish to override {@link #containsKey} to forward to this    * implementation.    *    * @since 7.0    */
-DECL|method|standardContainsKey (@ullable Object key)
 annotation|@
 name|Override
 annotation|@
 name|Beta
+DECL|method|standardContainsKey (@ullable Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey
@@ -494,9 +494,9 @@ return|;
 block|}
 block|}
 comment|/**    * A sensible default implementation of {@link #subMap(Object, Object)} in    * terms of {@link #headMap(Object)} and {@link #tailMap(Object)}. In some    * situations, you may wish to override {@link #subMap(Object, Object)} to    * forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardSubMap (K fromKey, K toKey)
 annotation|@
 name|Beta
+DECL|method|standardSubMap (K fromKey, K toKey)
 specifier|protected
 name|SortedMap
 argument_list|<

@@ -286,7 +286,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys are provided    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -350,7 +350,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map containing the given entries, in order.    *    * @throws IllegalArgumentException if duplicate keys are provided    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -584,7 +584,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-DECL|method|checkNoConflict (boolean safe, String conflictDescription, Entry<?, ?> entry1, Entry<?, ?> entry2)
+DECL|method|checkNoConflict ( boolean safe, String conflictDescription, Entry<?, ?> entry1, Entry<?, ?> entry2)
 specifier|static
 name|void
 name|checkNoConflict
@@ -889,7 +889,7 @@ block|}
 comment|/**      * Adds all of the given entries to the built map.  Duplicate keys are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
 annotation|@
 name|Beta
-DECL|method|putAll ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
+DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|public
 name|Builder
 argument_list|<
@@ -1008,7 +1008,7 @@ block|}
 block|}
 block|}
 comment|/**    * Returns an immutable map containing the same entries as {@code map}. If    * {@code map} somehow contains entries with duplicate keys (for example, if    * it is a {@code SortedMap} whose comparator is not<i>consistent with    * equals</i>), the results of this method are undefined.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code map} is null    */
-DECL|method|copyOf ( Map<? extends K, ? extends V> map)
+DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2044,9 +2044,9 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2061,9 +2061,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2081,9 +2081,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|containsKey (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -2105,9 +2105,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|get (@ullable Object key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2150,9 +2150,9 @@ name|outerValue
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -2166,9 +2166,9 @@ name|isPartialView
 argument_list|()
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2184,9 +2184,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|isHashCodeFast ()
 annotation|@
 name|Override
+DECL|method|isHashCodeFast ()
 name|boolean
 name|isHashCodeFast
 parameter_list|()
@@ -2355,9 +2355,9 @@ block|}
 return|;
 block|}
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -2385,9 +2385,9 @@ name|boolean
 name|isPartialView
 parameter_list|()
 function_decl|;
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2412,9 +2412,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

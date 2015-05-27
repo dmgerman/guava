@@ -282,7 +282,7 @@ name|Iterables
 parameter_list|()
 block|{}
 comment|/** Returns an unmodifiable view of {@code iterable}. */
-DECL|method|unmodifiableIterable ( final Iterable<T> iterable)
+DECL|method|unmodifiableIterable (final Iterable<T> iterable)
 specifier|public
 specifier|static
 parameter_list|<
@@ -334,9 +334,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-DECL|method|unmodifiableIterable ( ImmutableCollection<E> iterable)
 annotation|@
 name|Deprecated
+DECL|method|unmodifiableIterable (ImmutableCollection<E> iterable)
 specifier|public
 specifier|static
 parameter_list|<
@@ -555,7 +555,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes, from an iterable, every element that belongs to the provided    * collection.    *    *<p>This method calls {@link Collection#removeAll} if {@code iterable} is a    * collection, and {@link Iterators#removeAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterable}    */
-DECL|method|removeAll ( Iterable<?> removeFrom, Collection<?> elementsToRemove)
+DECL|method|removeAll (Iterable<?> removeFrom, Collection<?> elementsToRemove)
 specifier|public
 specifier|static
 name|boolean
@@ -613,7 +613,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes, from an iterable, every element that does not belong to the    * provided collection.    *    *<p>This method calls {@link Collection#retainAll} if {@code iterable} is a    * collection, and {@link Iterators#retainAll} otherwise.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterable}    */
-DECL|method|retainAll ( Iterable<?> removeFrom, Collection<?> elementsToRetain)
+DECL|method|retainAll (Iterable<?> removeFrom, Collection<?> elementsToRetain)
 specifier|public
 specifier|static
 name|boolean
@@ -671,7 +671,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2.0    */
-DECL|method|removeIf ( Iterable<T> removeFrom, Predicate<? super T> predicate)
+DECL|method|removeIf (Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -877,7 +877,7 @@ operator|!=
 name|to
 return|;
 block|}
-DECL|method|slowRemoveIfForRemainingElements (List<T> list, Predicate<? super T> predicate, int to, int from)
+DECL|method|slowRemoveIfForRemainingElements ( List<T> list, Predicate<? super T> predicate, int to, int from)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1072,7 +1072,7 @@ block|}
 comment|/**    * Determines whether two iterables contain equal elements in the same order.    * More specifically, this method returns {@code true} if {@code iterable1}    * and {@code iterable2} contain the same number of elements and every element    * of {@code iterable1} is equal to the corresponding element of    * {@code iterable2}.    */
 annotation|@
 name|CheckReturnValue
-DECL|method|elementsEqual ( Iterable<?> iterable1, Iterable<?> iterable2)
+DECL|method|elementsEqual (Iterable<?> iterable1, Iterable<?> iterable2)
 specifier|public
 specifier|static
 name|boolean
@@ -1223,7 +1223,7 @@ block|}
 comment|/**    * Returns the single element contained in {@code iterable}, or {@code    * defaultValue} if the iterable is empty.    *    * @throws IllegalArgumentException if the iterator contains multiple    *     elements    */
 annotation|@
 name|Nullable
-DECL|method|getOnlyElement ( Iterable<? extends T> iterable, @Nullable T defaultValue)
+DECL|method|getOnlyElement (Iterable<? extends T> iterable, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1444,7 +1444,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Adds all elements in {@code iterable} to {@code collection}.    *    * @return {@code true} if {@code collection} was modified as a result of this    *     operation.    */
-DECL|method|addAll ( Collection<T> addTo, Iterable<? extends T> elementsToAdd)
+DECL|method|addAll (Collection<T> addTo, Iterable<? extends T> elementsToAdd)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1709,7 +1709,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines two iterables into a single iterable. The returned iterable has an    * iterator that traverses the elements in {@code a}, followed by the elements    * in {@code b}. The source iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    */
-DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b)
+DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1753,7 +1753,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines three iterables into a single iterable. The returned iterable has    * an iterator that traverses the elements in {@code a}, followed by the    * elements in {@code b}, followed by the elements in {@code c}. The source    * iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    */
-DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
+DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1807,7 +1807,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines four iterables into a single iterable. The returned iterable has    * an iterator that traverses the elements in {@code a}, followed by the    * elements in {@code b}, followed by the elements in {@code c}, followed by    * the elements in {@code d}. The source iterators are not polled until    * necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it.    */
-DECL|method|concat (Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
+DECL|method|concat ( Iterable<? extends T> a, Iterable<? extends T> b, Iterable<? extends T> c, Iterable<? extends T> d)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1906,7 +1906,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines multiple iterables into a single iterable. The returned iterable    * has an iterator that traverses the elements of each iterable in    * {@code inputs}. The input iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it. The methods of the returned    * iterable may throw {@code NullPointerException} if any of the input    * iterators is null.    */
-DECL|method|concat ( final Iterable<? extends Iterable<? extends T>> inputs)
+DECL|method|concat (final Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2058,7 +2058,7 @@ block|}
 empty_stmt|;
 block|}
 comment|/**    * Divides an iterable into unmodifiable sublists of the given size (the final    * iterable may be smaller). For example, partitioning an iterable containing    * {@code [a, b, c, d, e]} with a partition size of 3 yields {@code    * [[a, b, c], [d, e]]} -- an outer iterable containing two inner lists of    * three and two elements, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link    * Iterator#remove()} method. The returned lists implement {@link    * RandomAccess}, whether or not the input list does.    *    *<p><b>Note:</b> if {@code iterable} is a {@link List}, use {@link    * Lists#partition(List, int)} instead.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition (the last may be smaller)    * @return an iterable of unmodifiable lists containing the elements of {@code    *     iterable} divided into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
-DECL|method|partition ( final Iterable<T> iterable, final int size)
+DECL|method|partition (final Iterable<T> iterable, final int size)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2139,7 +2139,7 @@ block|}
 return|;
 block|}
 comment|/**    * Divides an iterable into unmodifiable sublists of the given size, padding    * the final iterable with null values if necessary. For example, partitioning    * an iterable containing {@code [a, b, c, d, e]} with a partition size of 3    * yields {@code [[a, b, c], [d, e, null]]} -- an outer iterable containing    * two inner lists of three elements each, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link    * Iterator#remove()} method.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition    * @return an iterable of unmodifiable lists containing the elements of {@code    *     iterable} divided into partitions (the final iterable may have    *     trailing null elements)    * @throws IllegalArgumentException if {@code size} is nonpositive    */
-DECL|method|paddedPartition ( final Iterable<T> iterable, final int size)
+DECL|method|paddedPartition (final Iterable<T> iterable, final int size)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2304,7 +2304,7 @@ literal|"Class.isInstance"
 argument_list|)
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( final Iterable<?> unfiltered, final Class<T> type)
+DECL|method|filter (final Iterable<?> unfiltered, final Class<T> type)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2377,7 +2377,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns {@code true} if any element in {@code iterable} satisfies the predicate.    */
-DECL|method|any ( Iterable<T> iterable, Predicate<? super T> predicate)
+DECL|method|any (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2416,7 +2416,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if every element in {@code iterable} satisfies the    * predicate. If {@code iterable} is empty, {@code true} is returned.    */
-DECL|method|all ( Iterable<T> iterable, Predicate<? super T> predicate)
+DECL|method|all (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2496,7 +2496,7 @@ block|}
 comment|/**    * Returns the first element in {@code iterable} that satisfies the given    * predicate, or {@code defaultValue} if none found. Note that this can    * usually be handled more naturally using {@code    * tryFind(iterable, predicate).or(defaultValue)}.    *    * @since 7.0    */
 annotation|@
 name|Nullable
-DECL|method|find (Iterable<? extends T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
+DECL|method|find ( Iterable<? extends T> iterable, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2586,7 +2586,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the index in {@code iterable} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterable has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterables.get(iterable, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    * @since 2.0    */
-DECL|method|indexOf ( Iterable<T> iterable, Predicate<? super T> predicate)
+DECL|method|indexOf (Iterable<T> iterable, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2627,7 +2627,7 @@ block|}
 comment|/**    * Returns an iterable that applies {@code function} to each element of {@code    * fromIterable}.    *    *<p>The returned iterable's iterator supports {@code remove()} if the    * provided iterator does. After a successful {@code remove()} call,    * {@code fromIterable} no longer contains the corresponding element.    *    *<p>If the input {@code Iterable} is known to be a {@code List} or other    * {@code Collection}, consider {@link Lists#transform} and {@link    * Collections2#transform}.    */
 annotation|@
 name|CheckReturnValue
-DECL|method|transform (final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
+DECL|method|transform ( final Iterable<F> fromIterable, final Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3355,7 +3355,7 @@ block|}
 return|;
 block|}
 comment|/**    * Creates an iterable with the first {@code limitSize} elements of the given    * iterable. If the original iterable does not contain that many elements, the    * returned iterable will have the same behavior as the original iterable. The    * returned iterable's iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterable the iterable to limit    * @param limitSize the maximum number of elements in the returned iterable    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
-DECL|method|limit ( final Iterable<T> iterable, final int limitSize)
+DECL|method|limit (final Iterable<T> iterable, final int limitSize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3717,6 +3717,7 @@ return|;
 block|}
 comment|// TODO(user): Is this the best place for this? Move to fluent functions?
 comment|// Useful as a public method?
+DECL|method|toIterator ()
 specifier|private
 specifier|static
 parameter_list|<
@@ -3738,7 +3739,6 @@ extends|extends
 name|T
 argument_list|>
 argument_list|>
-DECL|method|toIterator ()
 name|toIterator
 parameter_list|()
 block|{

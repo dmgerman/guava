@@ -103,7 +103,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Skeletal implementation of {@link NavigableMap}.  *   * @author Louis Wasserman  */
+comment|/**  * Skeletal implementation of {@link NavigableMap}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

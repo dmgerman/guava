@@ -99,7 +99,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|ImmutableSortedAsList ( ImmutableSortedSet<E> backingSet, ImmutableList<E> backingList)
+DECL|method|ImmutableSortedAsList (ImmutableSortedSet<E> backingSet, ImmutableList<E> backingList)
 name|ImmutableSortedAsList
 parameter_list|(
 name|ImmutableSortedSet
@@ -146,9 +146,9 @@ name|delegateCollection
 argument_list|()
 return|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -174,9 +174,9 @@ argument_list|(
 literal|"ImmutableSortedSet.indexOf"
 argument_list|)
 comment|// TODO(cpovirk): consider manual binary search under GWT to preserve O(log N) lookup
-DECL|method|indexOf (@ullable Object target)
 annotation|@
 name|Override
+DECL|method|indexOf (@ullable Object target)
 specifier|public
 name|int
 name|indexOf
@@ -230,9 +230,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"ImmutableSortedSet.indexOf"
 argument_list|)
-DECL|method|lastIndexOf (@ullable Object target)
 annotation|@
 name|Override
+DECL|method|lastIndexOf (@ullable Object target)
 specifier|public
 name|int
 name|lastIndexOf
@@ -293,13 +293,12 @@ name|int
 name|toIndex
 parameter_list|)
 block|{
-return|return
-operator|new
-name|RegularImmutableSortedSet
+name|ImmutableList
 argument_list|<
 name|E
 argument_list|>
-argument_list|(
+name|parentSubList
+init|=
 name|super
 operator|.
 name|subListUnchecked
@@ -308,6 +307,15 @@ name|fromIndex
 argument_list|,
 name|toIndex
 argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|RegularImmutableSortedSet
+argument_list|<
+name|E
+argument_list|>
+argument_list|(
+name|parentSubList
 argument_list|,
 name|comparator
 argument_list|()

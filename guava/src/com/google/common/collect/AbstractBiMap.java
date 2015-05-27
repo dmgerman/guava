@@ -315,9 +315,9 @@ operator|=
 name|forward
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -462,9 +462,9 @@ name|inverse
 expr_stmt|;
 block|}
 comment|// Query Operations (optimizations)
-DECL|method|containsValue (@ullable Object value)
 annotation|@
 name|Override
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
@@ -485,9 +485,9 @@ argument_list|)
 return|;
 block|}
 comment|// Modification Operations
-DECL|method|put (@ullable K key, @Nullable V value)
 annotation|@
 name|Override
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|V
 name|put
@@ -658,7 +658,7 @@ return|return
 name|oldValue
 return|;
 block|}
-DECL|method|updateInverseMap ( K key, boolean containedKey, V oldValue, V newValue)
+DECL|method|updateInverseMap (K key, boolean containedKey, V oldValue, V newValue)
 specifier|private
 name|void
 name|updateInverseMap
@@ -699,9 +699,9 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|remove (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object key)
 specifier|public
 name|V
 name|remove
@@ -774,9 +774,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Bulk Operations
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
 name|putAll
@@ -829,9 +829,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -877,9 +877,9 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -922,9 +922,9 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -940,9 +940,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -956,9 +956,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|boolean
 name|remove
@@ -989,9 +989,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|removeAll (Collection<?> keysToRemove)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> keysToRemove)
 specifier|public
 name|boolean
 name|removeAll
@@ -1010,9 +1010,9 @@ name|keysToRemove
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> keysToRetain)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> keysToRetain)
 specifier|public
 name|boolean
 name|retainAll
@@ -1031,9 +1031,9 @@ name|keysToRetain
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1065,9 +1065,9 @@ name|V
 argument_list|>
 name|valueSet
 decl_stmt|;
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Set
 argument_list|<
@@ -1124,9 +1124,9 @@ operator|.
 name|keySet
 argument_list|()
 decl_stmt|;
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -1139,9 +1139,9 @@ return|return
 name|valuesDelegate
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1163,9 +1163,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -1177,9 +1177,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -1200,9 +1200,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1228,9 +1228,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -1306,9 +1306,9 @@ operator|.
 name|entrySet
 argument_list|()
 decl_stmt|;
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -1326,9 +1326,9 @@ return|return
 name|esDelegate
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1342,9 +1342,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|remove (Object object)
 annotation|@
 name|Override
+DECL|method|remove (Object object)
 specifier|public
 name|boolean
 name|remove
@@ -1411,9 +1411,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1671,9 +1671,9 @@ block|}
 return|;
 block|}
 comment|// See java.util.Collections.CheckedEntrySet for details on attacks.
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -1685,9 +1685,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -1708,9 +1708,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -1731,9 +1731,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -1752,9 +1752,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -1773,9 +1773,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll

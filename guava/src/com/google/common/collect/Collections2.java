@@ -365,7 +365,7 @@ comment|// TODO(kevinb): how can we omit that Iterables link when building gwt
 comment|// javadoc?
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( Collection<E> unfiltered, Predicate<? super E> predicate)
+DECL|method|filter (Collection<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -438,7 +438,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Delegates to {@link Collection#contains}. Returns {@code false} if the    * {@code contains} method throws a {@code ClassCastException} or    * {@code NullPointerException}.    */
-DECL|method|safeContains ( Collection<?> collection, @Nullable Object object)
+DECL|method|safeContains (Collection<?> collection, @Nullable Object object)
 specifier|static
 name|boolean
 name|safeContains
@@ -1029,7 +1029,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a collection that applies {@code function} to each element of    * {@code fromCollection}. The returned collection is a live view of {@code    * fromCollection}; changes to one affect the other.    *    *<p>The returned collection's {@code add()} and {@code addAll()} methods    * throw an {@link UnsupportedOperationException}. All other collection    * methods are supported, as long as {@code fromCollection} supports them.    *    *<p>The returned collection isn't threadsafe or serializable, even if    * {@code fromCollection} is.    *    *<p>When a live view is<i>not</i> needed, it may be faster to copy the    * transformed collection and use the copy.    *    *<p>If the input {@code Collection} is known to be a {@code List}, consider    * {@link Lists#transform}. If only an {@code Iterable} is available, use    * {@link Iterables#transform}.    */
-DECL|method|transform (Collection<F> fromCollection, Function<? super F, T> function)
+DECL|method|transform ( Collection<F> fromCollection, Function<? super F, T> function)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1153,9 +1153,9 @@ name|function
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1167,9 +1167,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -1182,9 +1182,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1207,9 +1207,9 @@ name|function
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1434,6 +1434,7 @@ decl_stmt|;
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable}.    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Duplicate elements are considered equal. For example, the list [1, 1]    * will have only one permutation, instead of two. This is why the elements    * have to implement {@link Comparable}.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    *<p>This method is equivalent to    * {@code Collections2.orderedPermutations(list, Ordering.natural())}.    *    * @param elements the original iterable whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException if the specified iterable is null or has any    *     null elements.    * @since 12.0    */
 annotation|@
 name|Beta
+DECL|method|orderedPermutations ( Iterable<E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1446,7 +1447,6 @@ super|super
 name|E
 argument_list|>
 parameter_list|>
-DECL|method|orderedPermutations (Iterable<E> elements)
 name|Collection
 argument_list|<
 name|List
@@ -1476,9 +1476,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Iterable} using the specified {@link Comparator} for establishing    * the lexicographical ordering.    *    *<p>Examples:<pre>   {@code    *    *   for (List<String> perm : orderedPermutations(asList("b", "c", "a"))) {    *     println(perm);    *   }    *   // -> ["a", "b", "c"]    *   // -> ["a", "c", "b"]    *   // -> ["b", "a", "c"]    *   // -> ["b", "c", "a"]    *   // -> ["c", "a", "b"]    *   // -> ["c", "b", "a"]    *    *   for (List<Integer> perm : orderedPermutations(asList(1, 2, 2, 1))) {    *     println(perm);    *   }    *   // -> [1, 1, 2, 2]    *   // -> [1, 2, 1, 2]    *   // -> [1, 2, 2, 1]    *   // -> [2, 1, 1, 2]    *   // -> [2, 1, 2, 1]    *   // -> [2, 2, 1, 1]}</pre>    *    *<p><i>Notes:</i> This is an implementation of the algorithm for    * Lexicographical Permutations Generation, described in Knuth's "The Art of    * Computer Programming", Volume 4, Chapter 7, Section 7.2.1.2. The    * iteration order follows the lexicographical order. This means that    * the first permutation will be in ascending order, and the last will be in    * descending order.    *    *<p>Elements that compare equal are considered equal and no new permutations    * are created by swapping them.    *    *<p>An empty iterable has only one permutation, which is an empty list.    *    * @param elements the original iterable whose elements have to be permuted.    * @param comparator a comparator for the iterable's elements.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original iterable.    * @throws NullPointerException If the specified iterable is null, has any    *     null elements, or if the specified comparator is null.    * @since 12.0    */
-DECL|method|orderedPermutations ( Iterable<E> elements, Comparator<? super E> comparator)
 annotation|@
 name|Beta
+DECL|method|orderedPermutations ( Iterable<E> elements, Comparator<? super E> comparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1763,9 +1763,9 @@ operator|)
 name|permutations
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1775,9 +1775,9 @@ return|return
 name|size
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -1787,9 +1787,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1814,9 +1814,9 @@ name|comparator
 argument_list|)
 return|;
 block|}
-DECL|method|contains (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object obj)
 specifier|public
 name|boolean
 name|contains
@@ -1861,9 +1861,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1949,9 +1949,9 @@ operator|=
 name|comparator
 expr_stmt|;
 block|}
-DECL|method|computeNext ()
 annotation|@
 name|Override
+DECL|method|computeNext ()
 specifier|protected
 name|List
 argument_list|<
@@ -2194,9 +2194,9 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns a {@link Collection} of all the permutations of the specified    * {@link Collection}.    *    *<p><i>Notes:</i> This is an implementation of the Plain Changes algorithm    * for permutations generation, described in Knuth's "The Art of Computer    * Programming", Volume 4, Chapter 7, Section 7.2.1.2.    *    *<p>If the input list contains equal elements, some of the generated    * permutations will be equal.    *    *<p>An empty collection has only one permutation, which is an empty list.    *    * @param elements the original collection whose elements have to be permuted.    * @return an immutable {@link Collection} containing all the different    *     permutations of the original collection.    * @throws NullPointerException if the specified collection is null or has any    *     null elements.    * @since 12.0    */
-DECL|method|permutations ( Collection<E> elements)
 annotation|@
 name|Beta
+DECL|method|permutations (Collection<E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2277,9 +2277,9 @@ operator|=
 name|input
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2297,9 +2297,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -2309,9 +2309,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -2334,9 +2334,9 @@ name|inputList
 argument_list|)
 return|;
 block|}
-DECL|method|contains (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object obj)
 specifier|public
 name|boolean
 name|contains
@@ -2381,9 +2381,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2511,9 +2511,9 @@ operator|.
 name|MAX_VALUE
 expr_stmt|;
 block|}
-DECL|method|computeNext ()
 annotation|@
 name|Override
+DECL|method|computeNext ()
 specifier|protected
 name|List
 argument_list|<

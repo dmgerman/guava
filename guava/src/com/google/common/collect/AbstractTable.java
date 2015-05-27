@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Skeletal, implementation-agnostic implementation of the {@link Table} interface.  *   * @author Louis Wasserman  */
+comment|/**  * Skeletal, implementation-agnostic implementation of the {@link Table} interface.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -1125,9 +1125,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -1149,9 +1149,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1166,9 +1166,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the string representation {@code rowMap().toString()}.    */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

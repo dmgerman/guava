@@ -124,9 +124,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 specifier|abstract
 name|List
 argument_list|<
@@ -154,9 +154,9 @@ return|;
 block|}
 comment|// Following Javadoc copied from ListMultimap.
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
-DECL|method|get (@ullable K key)
 annotation|@
 name|Override
+DECL|method|get (@ullable K key)
 specifier|public
 name|List
 argument_list|<
@@ -186,9 +186,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
-DECL|method|removeAll (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|List
 argument_list|<
@@ -218,9 +218,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because the values for a given key may have duplicates and follow the    * insertion ordering, this method returns a {@link List}, instead of the    * {@link Collection} specified in the {@link Multimap} interface.    */
-DECL|method|replaceValues ( @ullable K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -260,9 +260,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} always    */
-DECL|method|put (@ullable K key, @Nullable V value)
 annotation|@
 name|Override
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
 name|put
@@ -290,9 +290,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link List} values.    */
-DECL|method|asMap ()
 annotation|@
 name|Override
+DECL|method|asMap ()
 specifier|public
 name|Map
 argument_list|<
@@ -314,9 +314,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code ListMultimap} instances are equal if, for each key, they    * contain the same values in the same order. If the value orderings disagree,    * the multimaps will not be considered equal.    */
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals

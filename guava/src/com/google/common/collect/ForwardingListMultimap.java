@@ -88,9 +88,9 @@ specifier|protected
 name|ForwardingListMultimap
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|ListMultimap
@@ -102,9 +102,9 @@ argument_list|>
 name|delegate
 parameter_list|()
 function_decl|;
-DECL|method|get (@ullable K key)
 annotation|@
 name|Override
+DECL|method|get (@ullable K key)
 specifier|public
 name|List
 argument_list|<
@@ -128,9 +128,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|List
 argument_list|<
@@ -154,9 +154,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|replaceValues (K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<

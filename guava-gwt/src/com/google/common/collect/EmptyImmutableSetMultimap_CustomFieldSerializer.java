@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of  * {@link EmptyImmutableSetMultimap}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of  * {@link EmptyImmutableSetMultimap}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -62,7 +62,7 @@ specifier|public
 class|class
 name|EmptyImmutableSetMultimap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, EmptyImmutableSetMultimap instance)
+DECL|method|deserialize ( SerializationStreamReader reader, EmptyImmutableSetMultimap instance)
 specifier|public
 specifier|static
 name|void
@@ -74,8 +74,8 @@ parameter_list|,
 name|EmptyImmutableSetMultimap
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|EmptyImmutableSetMultimap
@@ -91,7 +91,7 @@ operator|.
 name|INSTANCE
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, EmptyImmutableSetMultimap instance)
+DECL|method|serialize ( SerializationStreamWriter writer, EmptyImmutableSetMultimap instance)
 specifier|public
 specifier|static
 name|void
@@ -103,7 +103,7 @@ parameter_list|,
 name|EmptyImmutableSetMultimap
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 block|}
 end_class
 

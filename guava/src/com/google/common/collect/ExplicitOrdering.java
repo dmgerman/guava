@@ -137,9 +137,9 @@ operator|=
 name|rankMap
 expr_stmt|;
 block|}
-DECL|method|compare (T left, T right)
 annotation|@
 name|Override
+DECL|method|compare (T left, T right)
 specifier|public
 name|int
 name|compare
@@ -202,9 +202,9 @@ return|return
 name|rank
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -253,9 +253,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -268,9 +268,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

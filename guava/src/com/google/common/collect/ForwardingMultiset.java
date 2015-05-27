@@ -130,9 +130,9 @@ specifier|protected
 name|ForwardingMultiset
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|Multiset
@@ -256,9 +256,9 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -283,9 +283,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -356,10 +356,10 @@ name|newCount
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #contains} in terms of {@link #count}. If    * you override {@link #count}, you may wish to override {@link #contains} to    * forward to this implementation.    *     * @since 7.0    */
-DECL|method|standardContains (@ullable Object object)
+comment|/**    * A sensible definition of {@link #contains} in terms of {@link #count}. If    * you override {@link #count}, you may wish to override {@link #contains} to    * forward to this implementation.    *    * @since 7.0    */
 annotation|@
 name|Override
+DECL|method|standardContains (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardContains
@@ -380,9 +380,9 @@ literal|0
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #clear} in terms of the {@code iterator}    * method of {@link #entrySet}. If you override {@link #entrySet}, you may    * wish to override {@link #clear} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardClear ()
 annotation|@
 name|Override
+DECL|method|standardClear ()
 specifier|protected
 name|void
 name|standardClear
@@ -400,10 +400,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A sensible, albeit inefficient, definition of {@link #count} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #count} to forward to this implementation.    *     * @since 7.0    */
-DECL|method|standardCount (@ullable Object object)
+comment|/**    * A sensible, albeit inefficient, definition of {@link #count} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #count} to forward to this implementation.    *    * @since 7.0    */
 annotation|@
 name|Beta
+DECL|method|standardCount (@ullable Object object)
 specifier|protected
 name|int
 name|standardCount
@@ -455,7 +455,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #add(Object)} in terms of {@link    * #add(Object, int)}. If you override {@link #add(Object, int)}, you may    * wish to override {@link #add(Object)} to forward to this implementation.    *     * @since 7.0    */
+comment|/**    * A sensible definition of {@link #add(Object)} in terms of {@link    * #add(Object, int)}. If you override {@link #add(Object, int)}, you may    * wish to override {@link #add(Object)} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardAdd (E element)
 specifier|protected
 name|boolean
@@ -476,12 +476,12 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #addAll(Collection)} in terms of {@link    * #add(Object)} and {@link #add(Object, int)}. If you override either of    * these methods, you may wish to override {@link #addAll(Collection)} to    * forward to this implementation.    *     * @since 7.0    */
-DECL|method|standardAddAll ( Collection<? extends E> elementsToAdd)
+comment|/**    * A sensible definition of {@link #addAll(Collection)} in terms of {@link    * #add(Object)} and {@link #add(Object, int)}. If you override either of    * these methods, you may wish to override {@link #addAll(Collection)} to    * forward to this implementation.    *    * @since 7.0    */
 annotation|@
 name|Beta
 annotation|@
 name|Override
+DECL|method|standardAddAll (Collection<? extends E> elementsToAdd)
 specifier|protected
 name|boolean
 name|standardAddAll
@@ -506,10 +506,10 @@ name|elementsToAdd
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #remove(Object)} in terms of {@link    * #remove(Object, int)}. If you override {@link #remove(Object, int)}, you    * may wish to override {@link #remove(Object)} to forward to this    * implementation.    *     * @since 7.0    */
-DECL|method|standardRemove (Object element)
+comment|/**    * A sensible definition of {@link #remove(Object)} in terms of {@link    * #remove(Object, int)}. If you override {@link #remove(Object, int)}, you    * may wish to override {@link #remove(Object)} to forward to this    * implementation.    *    * @since 7.0    */
 annotation|@
 name|Override
+DECL|method|standardRemove (Object element)
 specifier|protected
 name|boolean
 name|standardRemove
@@ -530,9 +530,9 @@ literal|0
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #removeAll} in terms of the {@code    * removeAll} method of {@link #elementSet}. If you override {@link    * #elementSet}, you may wish to override {@link #removeAll} to forward to    * this implementation.    *    * @since 7.0    */
-DECL|method|standardRemoveAll ( Collection<?> elementsToRemove)
 annotation|@
 name|Override
+DECL|method|standardRemoveAll (Collection<?> elementsToRemove)
 specifier|protected
 name|boolean
 name|standardRemoveAll
@@ -556,9 +556,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #retainAll} in terms of the {@code    * retainAll} method of {@link #elementSet}. If you override {@link    * #elementSet}, you may wish to override {@link #retainAll} to forward to    * this implementation.    *    * @since 7.0    */
-DECL|method|standardRetainAll ( Collection<?> elementsToRetain)
 annotation|@
 name|Override
+DECL|method|standardRetainAll (Collection<?> elementsToRetain)
 specifier|protected
 name|boolean
 name|standardRetainAll
@@ -581,7 +581,7 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible definition of {@link #setCount(Object, int)} in terms of {@link    * #count(Object)}, {@link #add(Object, int)}, and {@link #remove(Object,    * int)}. {@link #entrySet()}. If you override any of these methods, you may    * wish to override {@link #setCount(Object, int)} to forward to this    * implementation.    *     * @since 7.0    */
+comment|/**    * A sensible definition of {@link #setCount(Object, int)} in terms of {@link    * #count(Object)}, {@link #add(Object, int)}, and {@link #remove(Object,    * int)}. {@link #entrySet()}. If you override any of these methods, you may    * wish to override {@link #setCount(Object, int)} to forward to this    * implementation.    *    * @since 7.0    */
 DECL|method|standardSetCount (E element, int count)
 specifier|protected
 name|int
@@ -676,7 +676,7 @@ name|this
 return|;
 block|}
 block|}
-comment|/**    * A sensible definition of {@link #iterator} in terms of {@link #entrySet}    * and {@link #remove(Object)}. If you override either of these methods, you    * may wish to override {@link #iterator} to forward to this implementation.    *     * @since 7.0    */
+comment|/**    * A sensible definition of {@link #iterator} in terms of {@link #entrySet}    * and {@link #remove(Object)}. If you override either of these methods, you    * may wish to override {@link #iterator} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardIterator ()
 specifier|protected
 name|Iterator
@@ -695,7 +695,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * A sensible, albeit inefficient, definition of {@link #size} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #size} to forward to this implementation.    *     * @since 7.0    */
+comment|/**    * A sensible, albeit inefficient, definition of {@link #size} in terms of    * {@link #entrySet}. If you override {@link #entrySet}, you may wish to    * override {@link #size} to forward to this implementation.    *    * @since 7.0    */
 DECL|method|standardSize ()
 specifier|protected
 name|int
@@ -750,9 +750,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #toString} as {@code entrySet().toString()}    * . If you override {@link #entrySet}, you may wish to override {@link    * #toString} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardToString ()
 annotation|@
 name|Override
+DECL|method|standardToString ()
 specifier|protected
 name|String
 name|standardToString

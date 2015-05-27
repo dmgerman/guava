@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  *<p>Example:<pre>   {@code  *  *   Iterator<Integer> powersOfTwo =   *       new AbstractSequentialIterator<Integer>(1) {  *         protected Integer computeNext(Integer previous) {  *           return (previous == 1<< 30) ? null : previous * 2;  *         }  *       };}</pre>  *  * @author Chris Povirk  * @since 12.0 (in Guava as {@code AbstractLinkedIterator} since 8.0)  */
+comment|/**  * This class provides a skeletal implementation of the {@code Iterator}  * interface for sequences whose next element can always be derived from the  * previous element. Null elements are not supported, nor is the  * {@link #remove()} method.  *  *<p>Example:<pre>   {@code  *  *   Iterator<Integer> powersOfTwo =  *       new AbstractSequentialIterator<Integer>(1) {  *         protected Integer computeNext(Integer previous) {  *           return (previous == 1<< 30) ? null : previous * 2;  *         }  *       };}</pre>  *  * @author Chris Povirk  * @since 12.0 (in Guava as {@code AbstractLinkedIterator} since 8.0)  */
 end_comment
 
 begin_class

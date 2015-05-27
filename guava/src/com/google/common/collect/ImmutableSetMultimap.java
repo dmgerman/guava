@@ -414,7 +414,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable multimap containing the given entries, in order.    * Repeated occurrences of an entry (according to {@link Object#equals}) after    * the first are ignored.    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -782,9 +782,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 name|Collection
 argument_list|<
 name|V
@@ -850,9 +850,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Adds a key-value mapping to the built multimap if it is not already      * present.      */
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|Builder
 argument_list|<
@@ -889,9 +889,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds an entry to the built multimap if it is not already present.      *      * @since 11.0      */
-DECL|method|put (Entry<? extends K, ? extends V> entry)
 annotation|@
 name|Override
+DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
 argument_list|<
@@ -942,9 +942,9 @@ block|}
 comment|/**      * {@inheritDoc}      *      * @since 19.0      */
 annotation|@
 name|Beta
-DECL|method|putAll ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
 annotation|@
 name|Override
+DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|public
 name|Builder
 argument_list|<
@@ -983,9 +983,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|putAll (K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|Builder
 argument_list|<
@@ -1046,9 +1046,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|putAll (K key, V... values)
 annotation|@
 name|Override
+DECL|method|putAll (K key, V... values)
 specifier|public
 name|Builder
 argument_list|<
@@ -1080,9 +1080,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|putAll ( Multimap<? extends K, ? extends V> multimap)
 annotation|@
 name|Override
+DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|Builder
 argument_list|<
@@ -1221,9 +1221,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created immutable set multimap.      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSetMultimap
 argument_list|<
@@ -1707,7 +1707,7 @@ name|V
 argument_list|>
 name|emptySet
 decl_stmt|;
-DECL|method|ImmutableSetMultimap (ImmutableMap<K, ImmutableSet<V>> map, int size, @Nullable Comparator<? super V> valueComparator)
+DECL|method|ImmutableSetMultimap ( ImmutableMap<K, ImmutableSet<V>> map, int size, @Nullable Comparator<? super V> valueComparator)
 name|ImmutableSetMultimap
 parameter_list|(
 name|ImmutableMap
@@ -1754,9 +1754,9 @@ expr_stmt|;
 block|}
 comment|// views
 comment|/**    * Returns an immutable set of the values for the given key.  If no mappings    * in the multimap have the provided key, an empty immutable set is returned.    * The values are in the same order as the parameters used to build this    * multimap.    */
-DECL|method|get (@ullable K key)
 annotation|@
 name|Override
+DECL|method|get (@ullable K key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1927,11 +1927,11 @@ name|invertedMultimap
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|removeAll (Object key)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1950,11 +1950,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the multimap unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1995,9 +1995,9 @@ argument_list|>
 name|entries
 decl_stmt|;
 comment|/**    * Returns an immutable collection of all key-value pairs in the multimap.    * Its iterator traverses the values for the first key, the values for the    * second key, and so on.    */
-DECL|method|entries ()
 annotation|@
 name|Override
+DECL|method|entries ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2025,11 +2025,9 @@ init|=
 name|entries
 decl_stmt|;
 return|return
-operator|(
 name|result
 operator|==
 literal|null
-operator|)
 condition|?
 operator|(
 name|entries
@@ -2266,7 +2264,7 @@ name|values
 argument_list|)
 return|;
 block|}
-DECL|method|emptySet ( @ullable Comparator<? super V> valueComparator)
+DECL|method|emptySet (@ullable Comparator<? super V> valueComparator)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2408,9 +2406,9 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|valueComparator ()
 annotation|@
 name|Nullable
+DECL|method|valueComparator ()
 name|Comparator
 argument_list|<
 name|?

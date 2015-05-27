@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An interface for all filtered multimap types.  *   * @author Louis Wasserman  */
+comment|/**  * An interface for all filtered multimap types.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_interface

@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License. */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -133,9 +133,9 @@ name|domain
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|first ()
 annotation|@
 name|Override
+DECL|method|first ()
 specifier|public
 name|C
 name|first
@@ -147,9 +147,9 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-DECL|method|last ()
 annotation|@
 name|Override
+DECL|method|last ()
 specifier|public
 name|C
 name|last
@@ -161,9 +161,9 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -173,9 +173,9 @@ return|return
 literal|0
 return|;
 block|}
-DECL|method|intersection (ContiguousSet<C> other)
 annotation|@
 name|Override
+DECL|method|intersection (ContiguousSet<C> other)
 specifier|public
 name|ContiguousSet
 argument_list|<
@@ -194,9 +194,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|range ()
 annotation|@
 name|Override
+DECL|method|range ()
 specifier|public
 name|Range
 argument_list|<
@@ -211,9 +211,9 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-DECL|method|range (BoundType lowerBoundType, BoundType upperBoundType)
 annotation|@
 name|Override
+DECL|method|range (BoundType lowerBoundType, BoundType upperBoundType)
 specifier|public
 name|Range
 argument_list|<
@@ -234,9 +234,9 @@ name|NoSuchElementException
 argument_list|()
 throw|;
 block|}
-DECL|method|headSetImpl (C toElement, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|headSetImpl (C toElement, boolean inclusive)
 name|ContiguousSet
 argument_list|<
 name|C
@@ -254,9 +254,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|subSetImpl ( C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subSetImpl ( C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 name|ContiguousSet
 argument_list|<
 name|C
@@ -280,9 +280,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|tailSetImpl (C fromElement, boolean fromInclusive)
 annotation|@
 name|Override
+DECL|method|tailSetImpl (C fromElement, boolean fromInclusive)
 name|ContiguousSet
 argument_list|<
 name|C
@@ -300,9 +300,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|contains (Object object)
 annotation|@
 name|Override
+DECL|method|contains (Object object)
 specifier|public
 name|boolean
 name|contains
@@ -320,9 +320,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"not used by GWT emulation"
 argument_list|)
-DECL|method|indexOf (Object target)
 annotation|@
 name|Override
+DECL|method|indexOf (Object target)
 name|int
 name|indexOf
 parameter_list|(
@@ -335,9 +335,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -358,9 +358,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
-DECL|method|descendingIterator ()
 annotation|@
 name|Override
+DECL|method|descendingIterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -376,9 +376,9 @@ name|emptyIterator
 argument_list|()
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -387,9 +387,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -399,9 +399,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|asList ()
 annotation|@
 name|Override
+DECL|method|asList ()
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -417,9 +417,9 @@ name|of
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -429,9 +429,9 @@ return|return
 literal|"[]"
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -474,9 +474,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

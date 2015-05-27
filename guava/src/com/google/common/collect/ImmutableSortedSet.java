@@ -284,7 +284,7 @@ argument_list|,
 name|NATURAL_ORDER
 argument_list|)
 decl_stmt|;
-DECL|method|emptySet ( Comparator<? super E> comparator)
+DECL|method|emptySet (Comparator<? super E> comparator)
 specifier|static
 parameter_list|<
 name|E
@@ -371,7 +371,7 @@ name|NATURAL_EMPTY_SET
 return|;
 block|}
 comment|/**    * Returns an immutable sorted set containing a single element.    */
-DECL|method|of ( E element)
+DECL|method|of (E element)
 specifier|public
 specifier|static
 parameter_list|<
@@ -421,7 +421,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2)
+DECL|method|of (E e1, E e2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -469,7 +469,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2, E e3)
+DECL|method|of (E e1, E e2, E e3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -522,7 +522,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|of ( E e1, E e2, E e3, E e4)
+DECL|method|of (E e1, E e2, E e3, E e4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -780,7 +780,7 @@ return|;
 block|}
 comment|// TODO(kevinb): Consider factory methods that reject duplicates
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@link Comparable#compareTo}, only the first one specified is included.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 3.0    */
-DECL|method|copyOf ( E[] elements)
+DECL|method|copyOf (E[] elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -824,7 +824,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@code compareTo()}, only the first one specified is included. To create a    * copy of a {@code SortedSet} that preserves the comparator, call {@link    * #copyOfSorted} instead. This method iterates over {@code elements} at most    * once.     *    *<p>Note that if {@code s} is a {@code Set<String>}, then {@code    * ImmutableSortedSet.copyOf(s)} returns an {@code ImmutableSortedSet<String>}    * containing each of the strings in {@code s}, while {@code    * ImmutableSortedSet.of(s)} returns an {@code    * ImmutableSortedSet<Set<String>>} containing one element (the given set    * itself).    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on elements that are    * not mutually comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|copyOf ( Iterable<? extends E> elements)
+DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -882,7 +882,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@code compareTo()}, only the first one specified is included. To create a    * copy of a {@code SortedSet} that preserves the comparator, call    * {@link #copyOfSorted} instead. This method iterates over {@code elements}    * at most once.    *    *<p>Note that if {@code s} is a {@code Set<String>}, then    * {@code ImmutableSortedSet.copyOf(s)} returns an    * {@code ImmutableSortedSet<String>} containing each of the strings in    * {@code s}, while {@code ImmutableSortedSet.of(s)} returns an    * {@code ImmutableSortedSet<Set<String>>} containing one element (the given    * set itself).    *    *<p><b>Note:</b> Despite what the method name suggests, if {@code elements}    * is an {@code ImmutableSortedSet}, it may be returned instead of a copy.    *    *<p>This method is not type-safe, as it may be called on elements that are    * not mutually comparable.    *    *<p>This method is safe to use even when {@code elements} is a synchronized    * or concurrent collection that is currently being modified by another    * thread.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
-DECL|method|copyOf ( Collection<? extends E> elements)
+DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -940,7 +940,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable sorted set containing the given elements sorted by    * their natural ordering. When multiple elements are equivalent according to    * {@code compareTo()}, only the first one specified is included.    *    *<p>This method is not type-safe, as it may be called on elements that are    * not mutually comparable.    *    * @throws ClassCastException if the elements are not mutually comparable    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|copyOf ( Iterator<? extends E> elements)
+DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1611,9 +1611,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableSortedSet}.  If the      * {@code ImmutableSortedSet} already contains {@code element}, then      * {@code add} has no effect. (only the previously added element      * is retained).      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -1637,9 +1637,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedSet},      * ignoring duplicate elements (only the first duplicate element is added).      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} contains a null element      */
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1664,9 +1664,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedSet},      * ignoring duplicate elements (only the first duplicate element is added).      *      * @param elements the elements to add to the {@code ImmutableSortedSet}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} contains a null element      */
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1695,9 +1695,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSortedSet},      * ignoring duplicate elements (only the first duplicate element is added).      *      * @param elements the elements to add to the {@code ImmutableSortedSet}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} contains a null element      */
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1726,9 +1726,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created {@code ImmutableSortedSet} based on the contents      * of the {@code Builder} and its comparator.      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSortedSet
 argument_list|<
@@ -1805,7 +1805,7 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|unsafeCompare ( Comparator<?> comparator, Object a, Object b)
+DECL|method|unsafeCompare (Comparator<?> comparator, Object a, Object b)
 specifier|static
 name|int
 name|unsafeCompare
@@ -2638,9 +2638,9 @@ literal|"Use SerializedForm"
 argument_list|)
 throw|;
 block|}
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

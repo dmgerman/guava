@@ -142,9 +142,9 @@ specifier|protected
 name|ForwardingMap
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|Map
@@ -410,9 +410,9 @@ name|entrySet
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -437,9 +437,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -483,9 +483,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #remove} in terms of    * the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #remove} to forward to this    * implementation.    *    *<p>Alternately, you may wish to override {@link #remove} with {@code    * keySet().remove}, assuming that approach would not lead to an infinite    * loop.    *    * @since 7.0    */
-DECL|method|standardRemove (@ullable Object key)
 annotation|@
 name|Beta
+DECL|method|standardRemove (@ullable Object key)
 specifier|protected
 name|V
 name|standardRemove
@@ -623,9 +623,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * A sensible, albeit inefficient, definition of {@link #containsKey} in terms    * of the {@code iterator} method of {@link #entrySet}. If you override {@link    * #entrySet}, you may wish to override {@link #containsKey} to forward to    * this implementation.    *    * @since 7.0    */
-DECL|method|standardContainsKey (@ullable Object key)
 annotation|@
 name|Beta
+DECL|method|standardContainsKey (@ullable Object key)
 specifier|protected
 name|boolean
 name|standardContainsKey

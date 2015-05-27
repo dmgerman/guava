@@ -604,7 +604,7 @@ name|EMPTY_MODIFIABLE_ITERATOR
 return|;
 block|}
 comment|/** Returns an unmodifiable view of {@code iterator}. */
-DECL|method|unmodifiableIterator ( final Iterator<T> iterator)
+DECL|method|unmodifiableIterator (final Iterator<T> iterator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -686,9 +686,9 @@ block|}
 return|;
 block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-DECL|method|unmodifiableIterator ( UnmodifiableIterator<T> iterator)
 annotation|@
 name|Deprecated
+DECL|method|unmodifiableIterator (UnmodifiableIterator<T> iterator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -786,7 +786,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Traverses an iterator and removes every element that belongs to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRemove the elements to remove    * @return {@code true} if any element was removed from {@code iterator}    */
-DECL|method|removeAll ( Iterator<?> removeFrom, Collection<?> elementsToRemove)
+DECL|method|removeAll (Iterator<?> removeFrom, Collection<?> elementsToRemove)
 specifier|public
 specifier|static
 name|boolean
@@ -818,7 +818,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes every element that satisfies the provided predicate from the    * iterator. The iterator will be left exhausted: its {@code hasNext()}    * method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterator    * @since 2.0    */
-DECL|method|removeIf ( Iterator<T> removeFrom, Predicate<? super T> predicate)
+DECL|method|removeIf (Iterator<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -889,7 +889,7 @@ name|modified
 return|;
 block|}
 comment|/**    * Traverses an iterator and removes every element that does not belong to the    * provided collection. The iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.    *    * @param removeFrom the iterator to (potentially) remove elements from    * @param elementsToRetain the elements to retain    * @return {@code true} if any element was removed from {@code iterator}    */
-DECL|method|retainAll ( Iterator<?> removeFrom, Collection<?> elementsToRetain)
+DECL|method|retainAll (Iterator<?> removeFrom, Collection<?> elementsToRetain)
 specifier|public
 specifier|static
 name|boolean
@@ -924,7 +924,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Determines whether two iterators contain equal elements in the same order.    * More specifically, this method returns {@code true} if {@code iterator1}    * and {@code iterator2} contain the same number of elements and every element    * of {@code iterator1} is equal to the corresponding element of    * {@code iterator2}.    *    *<p>Note that this will modify the supplied iterators, since they will have    * been advanced some number of elements forward.    */
-DECL|method|elementsEqual ( Iterator<?> iterator1, Iterator<?> iterator2)
+DECL|method|elementsEqual (Iterator<?> iterator1, Iterator<?> iterator2)
 specifier|public
 specifier|static
 name|boolean
@@ -1210,7 +1210,7 @@ name|defaultValue
 return|;
 block|}
 comment|/**    * Adds all elements in {@code iterator} to {@code collection}. The iterator    * will be left exhausted: its {@code hasNext()} method will return    * {@code false}.    *    * @return {@code true} if {@code collection} was modified as a result of this    *         operation    */
-DECL|method|addAll ( Collection<T> addTo, Iterator<? extends T> iterator)
+DECL|method|addAll (Collection<T> addTo, Iterator<? extends T> iterator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1538,7 +1538,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines three iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}. The source iterators    * are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
-DECL|method|concat (Iterator<? extends T> a, Iterator<? extends T> b, Iterator<? extends T> c)
+DECL|method|concat ( Iterator<? extends T> a, Iterator<? extends T> b, Iterator<? extends T> c)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1614,7 +1614,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines four iterators into a single iterator. The returned iterator    * iterates across the elements in {@code a}, followed by the elements in    * {@code b}, followed by the elements in {@code c}, followed by the elements    * in {@code d}. The source iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
-DECL|method|concat (Iterator<? extends T> a, Iterator<? extends T> b, Iterator<? extends T> c, Iterator<? extends T> d)
+DECL|method|concat ( Iterator<? extends T> a, Iterator<? extends T> b, Iterator<? extends T> c, Iterator<? extends T> d)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1769,7 +1769,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines multiple iterators into a single iterator. The returned iterator    * iterates across the elements of each iterator in {@code inputs}. The input    * iterators are not polled until necessary.    *    *<p>The returned iterator supports {@code remove()} when the corresponding    * input iterator supports it. The methods of the returned iterator may throw    * {@code NullPointerException} if any of the input iterators is null.    *    *<p><b>Note:</b> the current implementation is not suitable for nested    * concatenated iterators, i.e. the following should be avoided when in a loop:    * {@code iterator = Iterators.concat(iterator, suffix);}, since iteration over the    * resulting iterator has a cubic complexity to the depth of the nesting.    */
-DECL|method|concat ( final Iterator<? extends Iterator<? extends T>> inputs)
+DECL|method|concat (final Iterator<? extends Iterator<? extends T>> inputs)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1937,7 +1937,7 @@ block|}
 return|;
 block|}
 comment|/**    * Divides an iterator into unmodifiable sublists of the given size (the final    * list may be smaller). For example, partitioning an iterator containing    * {@code [a, b, c, d, e]} with a partition size of 3 yields {@code    * [[a, b, c], [d, e]]} -- an outer iterator containing two inner lists of    * three and two elements, all in the original order.    *    *<p>The returned lists implement {@link java.util.RandomAccess}.    *    * @param iterator the iterator to return a partitioned view of    * @param size the desired size of each partition (the last may be smaller)    * @return an iterator of immutable lists containing the elements of {@code    *     iterator} divided into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
-DECL|method|partition ( Iterator<T> iterator, int size)
+DECL|method|partition (Iterator<T> iterator, int size)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1974,7 +1974,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Divides an iterator into unmodifiable sublists of the given size, padding    * the final iterator with null values if necessary. For example, partitioning    * an iterator containing {@code [a, b, c, d, e]} with a partition size of 3    * yields {@code [[a, b, c], [d, e, null]]} -- an outer iterator containing    * two inner lists of three elements each, all in the original order.    *    *<p>The returned lists implement {@link java.util.RandomAccess}.    *    * @param iterator the iterator to return a partitioned view of    * @param size the desired size of each partition    * @return an iterator of immutable lists containing the elements of {@code    *     iterator} divided into partitions (the final iterable may have    *     trailing null elements)    * @throws IllegalArgumentException if {@code size} is nonpositive    */
-DECL|method|paddedPartition ( Iterator<T> iterator, int size)
+DECL|method|paddedPartition (Iterator<T> iterator, int size)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2318,7 +2318,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns {@code true} if one or more elements returned by {@code iterator}    * satisfy the given predicate.    */
-DECL|method|any ( Iterator<T> iterator, Predicate<? super T> predicate)
+DECL|method|any (Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2355,7 +2355,7 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns {@code true} if every element returned by {@code iterator}    * satisfies the given predicate. If {@code iterator} is empty, {@code true}    * is returned.    */
-DECL|method|all ( Iterator<T> iterator, Predicate<? super T> predicate)
+DECL|method|all (Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2421,7 +2421,7 @@ literal|true
 return|;
 block|}
 comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate; use this method only when such an element is known to exist. If    * no such element is found, the iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}. If it is possible that    *<i>no</i> element will match, use {@link #tryFind} or {@link    * #find(Iterator, Predicate, Object)} instead.    *    * @throws NoSuchElementException if no element in {@code iterator} matches    *     the given predicate    */
-DECL|method|find ( Iterator<T> iterator, Predicate<? super T> predicate)
+DECL|method|find (Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2460,7 +2460,7 @@ block|}
 comment|/**    * Returns the first element in {@code iterator} that satisfies the given    * predicate. If no such element is found, {@code defaultValue} will be    * returned from this method and the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}. Note that this can    * usually be handled more naturally using {@code    * tryFind(iterator, predicate).or(defaultValue)}.    *    * @since 7.0    */
 annotation|@
 name|Nullable
-DECL|method|find (Iterator<? extends T> iterator, Predicate<? super T> predicate, @Nullable T defaultValue)
+DECL|method|find ( Iterator<? extends T> iterator, Predicate<? super T> predicate, @Nullable T defaultValue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2506,7 +2506,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@link Optional} containing the first element in {@code    * iterator} that satisfies the given predicate, if such an element exists. If    * no such element is found, an empty {@link Optional} will be returned from    * this method and the iterator will be left exhausted: its {@code    * hasNext()} method will return {@code false}.    *    *<p><b>Warning:</b> avoid using a {@code predicate} that matches {@code    * null}. If {@code null} is matched in {@code iterator}, a    * NullPointerException will be thrown.    *    * @since 11.0    */
-DECL|method|tryFind ( Iterator<T> iterator, Predicate<? super T> predicate)
+DECL|method|tryFind (Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2572,7 +2572,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns the index in {@code iterator} of the first element that satisfies    * the provided {@code predicate}, or {@code -1} if the Iterator has no such    * elements.    *    *<p>More formally, returns the lowest index {@code i} such that    * {@code predicate.apply(Iterators.get(iterator, i))} returns {@code true},    * or {@code -1} if there is no such index.    *    *<p>If -1 is returned, the iterator will be left exhausted: its    * {@code hasNext()} method will return {@code false}.  Otherwise,    * the iterator will be set to the element which satisfies the    * {@code predicate}.    *    * @since 2.0    */
-DECL|method|indexOf ( Iterator<T> iterator, Predicate<? super T> predicate)
+DECL|method|indexOf (Iterator<T> iterator, Predicate<? super T> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2648,7 +2648,7 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns an iterator that applies {@code function} to each element of {@code    * fromIterator}.    *    *<p>The returned iterator supports {@code remove()} if the provided iterator    * does. After a successful {@code remove()} call, {@code fromIterator} no    * longer contains the corresponding element.    */
-DECL|method|transform (final Iterator<F> fromIterator, final Function<? super F, ? extends T> function)
+DECL|method|transform ( final Iterator<F> fromIterator, final Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3056,7 +3056,7 @@ name|i
 return|;
 block|}
 comment|/**    * Creates an iterator returning the first {@code limitSize} elements of the    * given iterator. If the original iterator does not contain that many    * elements, the returned iterator will have the same behavior as the original    * iterator. The returned iterator supports {@code remove()} if the original    * iterator does.    *    * @param iterator the iterator to limit    * @param limitSize the maximum number of elements in the returned iterator    * @throws IllegalArgumentException if {@code limitSize} is negative    * @since 3.0    */
-DECL|method|limit ( final Iterator<T> iterator, final int limitSize)
+DECL|method|limit (final Iterator<T> iterator, final int limitSize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3492,7 +3492,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an iterator containing only {@code value}.    *    *<p>The {@link Iterable} equivalent of this method is {@link    * Collections#singleton}.    */
-DECL|method|singletonIterator ( @ullable final T value)
+DECL|method|singletonIterator (@ullable final T value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3564,7 +3564,7 @@ block|}
 return|;
 block|}
 comment|/**    * Adapts an {@code Enumeration} to the {@code Iterator} interface.    *    *<p>This method has no equivalent in {@link Iterables} because viewing an    * {@code Enumeration} as an {@code Iterable} is impossible. However, the    * contents can be<i>copied</i> into a collection using {@link    * Collections#list}.    */
-DECL|method|forEnumeration ( final Enumeration<T> enumeration)
+DECL|method|forEnumeration (final Enumeration<T> enumeration)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3861,7 +3861,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a {@code PeekingIterator} backed by the given iterator.    *    *<p>Calls to the {@code peek} method with no intervening calls to {@code    * next} do not affect the iteration, and hence return the same object each    * time. A subsequent call to {@code next} is guaranteed to return the same    * object again. For example:<pre>   {@code    *    *   PeekingIterator<String> peekingIterator =    *       Iterators.peekingIterator(Iterators.forArray("a", "b"));    *   String a1 = peekingIterator.peek(); // returns "a"    *   String a2 = peekingIterator.peek(); // also returns "a"    *   String a3 = peekingIterator.next(); // also returns "a"}</pre>    *    *<p>Any structural changes to the underlying iteration (aside from those    * performed by the iterator's own {@link PeekingIterator#remove()} method)    * will leave the iterator in an undefined state.    *    *<p>The returned iterator does not support removal after peeking, as    * explained by {@link PeekingIterator#remove()}.    *    *<p>Note: If the given iterator is already a {@code PeekingIterator},    * it<i>might</i> be returned to the caller, although this is neither    * guaranteed to occur nor required to be consistent.  For example, this    * method<i>might</i> choose to pass through recognized implementations of    * {@code PeekingIterator} when the behavior of the implementation is    * known to meet the contract guaranteed by this method.    *    *<p>There is no {@link Iterable} equivalent to this method, so use this    * method to wrap each individual iterator as it is generated.    *    * @param iterator the backing iterator. The {@link PeekingIterator} assumes    *     ownership of this iterator, so users should cease making direct calls    *     to it after calling this method.    * @return a peeking iterator backed by that iterator. Apart from the    *     additional {@link PeekingIterator#peek()} method, this iterator behaves    *     exactly the same as {@code iterator}.    */
-DECL|method|peekingIterator ( Iterator<? extends T> iterator)
+DECL|method|peekingIterator (Iterator<? extends T> iterator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3926,9 +3926,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-DECL|method|peekingIterator ( PeekingIterator<T> iterator)
 annotation|@
 name|Deprecated
+DECL|method|peekingIterator (PeekingIterator<T> iterator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -4044,7 +4044,7 @@ argument_list|>
 argument_list|>
 name|queue
 decl_stmt|;
-DECL|method|MergingIterator (Iterable<? extends Iterator<? extends T>> iterators, final Comparator<? super T> itemComparator)
+DECL|method|MergingIterator ( Iterable<? extends Iterator<? extends T>> iterators, final Comparator<? super T> itemComparator)
 specifier|public
 name|MergingIterator
 parameter_list|(

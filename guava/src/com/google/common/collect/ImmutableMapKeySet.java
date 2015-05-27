@@ -222,9 +222,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"serialization"
 argument_list|)
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

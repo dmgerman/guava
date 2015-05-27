@@ -124,9 +124,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 specifier|abstract
 name|Set
 argument_list|<
@@ -135,9 +135,9 @@ argument_list|>
 name|createCollection
 parameter_list|()
 function_decl|;
-DECL|method|createUnmodifiableEmptyCollection ()
 annotation|@
 name|Override
+DECL|method|createUnmodifiableEmptyCollection ()
 name|Set
 argument_list|<
 name|V
@@ -154,9 +154,9 @@ return|;
 block|}
 comment|// Following Javadoc copied from SetMultimap.
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
-DECL|method|get (@ullable K key)
 annotation|@
 name|Override
+DECL|method|get (@ullable K key)
 specifier|public
 name|Set
 argument_list|<
@@ -186,9 +186,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
-DECL|method|entries ()
 annotation|@
 name|Override
+DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
@@ -225,9 +225,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    */
-DECL|method|removeAll (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (@ullable Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -257,9 +257,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Because a {@code SetMultimap} has unique values for a given key, this    * method returns a {@link Set}, instead of the {@link Collection} specified    * in the {@link Multimap} interface.    *    *<p>Any duplicates in {@code values} will be stored in the multimap once.    */
-DECL|method|replaceValues ( @ullable K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (@ullable K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -299,9 +299,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Though the method signature doesn't say so explicitly, the returned map    * has {@link Set} values.    */
-DECL|method|asMap ()
 annotation|@
 name|Override
+DECL|method|asMap ()
 specifier|public
 name|Map
 argument_list|<
@@ -323,9 +323,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Stores a key-value pair in the multimap.    *    * @param key key to store in the multimap    * @param value value to store in the multimap    * @return {@code true} if the method increased the size of the multimap, or    *     {@code false} if the multimap already contained the key-value pair    */
-DECL|method|put (@ullable K key, @Nullable V value)
 annotation|@
 name|Override
+DECL|method|put (@ullable K key, @Nullable V value)
 specifier|public
 name|boolean
 name|put
@@ -353,9 +353,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Compares the specified object to this multimap for equality.    *    *<p>Two {@code SetMultimap} instances are equal if, for each key, they    * contain the same values. Equality does not depend on the ordering of keys    * or values.    */
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals

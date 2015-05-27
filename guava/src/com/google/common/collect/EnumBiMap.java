@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
+comment|/**  * A {@code BiMap} backed by two {@code EnumMap} instances. Null keys and values  * are not permitted. An {@code EnumBiMap} and its inverse are both  * serializable.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
 begin_class
@@ -185,6 +185,7 @@ argument_list|>
 name|valueType
 decl_stmt|;
 comment|/**    * Returns a new, empty {@code EnumBiMap} using the specified key and value    * types.    *    * @param keyType the key type    * @param valueType the value type    */
+DECL|method|create ( Class<K> keyType, Class<V> valueType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -208,7 +209,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|create (Class<K> keyType, Class<V> valueType)
 name|create
 parameter_list|(
 name|Class
@@ -240,6 +240,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new bimap with the same mappings as the specified map. If the    * specified map is an {@code EnumBiMap}, the new bimap has the same types as    * the provided map. Otherwise, the specified map must contain at least one    * mapping, in order to determine the key and value types.    *    * @param map the map whose mappings are to be placed in this map    * @throws IllegalArgumentException if map is not an {@code EnumBiMap}    *     instance and contains no mappings    */
+DECL|method|create (Map<K, V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -263,7 +264,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|create (Map<K, V> map)
 name|create
 parameter_list|(
 name|Map

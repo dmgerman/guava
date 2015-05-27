@@ -165,7 +165,7 @@ name|distinctElements
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@code HashMultiset} containing the specified elements.    *     *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *     * @param elements the elements that the multiset should contain    */
+comment|/**    * Creates a new {@code HashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
 DECL|method|create (Iterable<? extends E> elements)
 specifier|public
 specifier|static

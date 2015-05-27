@@ -442,9 +442,9 @@ specifier|final
 name|int
 name|valueHash
 decl_stmt|;
+DECL|field|nextInKToVBucket
 annotation|@
 name|Nullable
-DECL|field|nextInKToVBucket
 name|BiEntry
 argument_list|<
 name|K
@@ -453,9 +453,9 @@ name|V
 argument_list|>
 name|nextInKToVBucket
 decl_stmt|;
+DECL|field|nextInVToKBucket
 annotation|@
 name|Nullable
-DECL|field|nextInVToKBucket
 name|BiEntry
 argument_list|<
 name|K
@@ -761,6 +761,7 @@ index|[
 name|valueBucket
 index|]
 init|;
+literal|true
 condition|;
 name|bucketEntry
 operator|=

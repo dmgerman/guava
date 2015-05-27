@@ -747,7 +747,7 @@ block|}
 DECL|method|Builder ()
 name|Builder
 parameter_list|()
-block|{     }
+block|{}
 comment|/**      * Adds {@code element} to the {@code ImmutableCollection} being built.      *      *<p>Note that each builder class covariantly returns its own type from      * this method.      *      * @param element the element to add      * @return this {@code Builder} instance      * @throws NullPointerException if {@code element} is null      */
 DECL|method|add (E element)
 specifier|public

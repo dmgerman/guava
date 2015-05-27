@@ -727,7 +727,7 @@ name|this
 return|;
 block|}
 comment|/**      * Specifies the ordering of the generated table's columns.      */
-DECL|method|orderColumnsBy ( Comparator<? super C> columnComparator)
+DECL|method|orderColumnsBy (Comparator<? super C> columnComparator)
 specifier|public
 name|Builder
 argument_list|<
@@ -803,7 +803,7 @@ name|this
 return|;
 block|}
 comment|/**      * Adds the given {@code cell} to the table, making it immutable if      * necessary. Duplicate key pairs are not allowed and will cause {@link      * #build} to fail.      */
-DECL|method|put ( Cell<? extends R, ? extends C, ? extends V> cell)
+DECL|method|put (Cell<? extends R, ? extends C, ? extends V> cell)
 specifier|public
 name|Builder
 argument_list|<
@@ -927,7 +927,7 @@ name|this
 return|;
 block|}
 comment|/**      * Associates all of the given table's keys and values in the built table.      * Duplicate row key column key pairs are not allowed, and will cause      * {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code table} is null      */
-DECL|method|putAll ( Table<? extends R, ? extends C, ? extends V> table)
+DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 name|Builder
 argument_list|<
@@ -1066,9 +1066,9 @@ DECL|method|ImmutableTable ()
 name|ImmutableTable
 parameter_list|()
 block|{}
-DECL|method|cellSet ()
 annotation|@
 name|Override
+DECL|method|cellSet ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1203,9 +1203,9 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if {@code columnKey} is {@code null}    */
-DECL|method|column (C columnKey)
 annotation|@
 name|Override
+DECL|method|column (C columnKey)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -1257,9 +1257,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|columnKeySet ()
 annotation|@
 name|Override
+DECL|method|columnKeySet ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1277,9 +1277,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<R, V>} instances in the returned map are    * {@link ImmutableMap} instances as well.    */
-DECL|method|columnMap ()
 annotation|@
 name|Override
+DECL|method|columnMap ()
 specifier|public
 specifier|abstract
 name|ImmutableMap
@@ -1297,9 +1297,9 @@ name|columnMap
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    * @throws NullPointerException if {@code rowKey} is {@code null}    */
-DECL|method|row (R rowKey)
 annotation|@
 name|Override
+DECL|method|row (R rowKey)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -1351,9 +1351,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|rowKeySet ()
 annotation|@
 name|Override
+DECL|method|rowKeySet ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -1371,9 +1371,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The value {@code Map<C, V>} instances in the returned map are    * {@link ImmutableMap} instances as well.    */
-DECL|method|rowMap ()
 annotation|@
 name|Override
+DECL|method|rowMap ()
 specifier|public
 specifier|abstract
 name|ImmutableMap
@@ -1443,11 +1443,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|clear ()
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 specifier|final
 name|void
@@ -1461,11 +1461,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|put (R rowKey, C columnKey, V value)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|put (R rowKey, C columnKey, V value)
 specifier|public
 specifier|final
 name|V
@@ -1488,11 +1488,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|putAll ( Table<? extends R, ? extends C, ? extends V> table)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|putAll (Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|final
 name|void
@@ -1522,11 +1522,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the table unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|remove (Object rowKey, Object columnKey)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|remove (Object rowKey, Object columnKey)
 specifier|public
 specifier|final
 name|V

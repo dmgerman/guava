@@ -80,7 +80,7 @@ specifier|public
 class|class
 name|ImmutableListMultimap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, ImmutableListMultimap<?, ?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, ImmutableListMultimap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -97,8 +97,8 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|ImmutableListMultimap
@@ -137,7 +137,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, ImmutableListMultimap<?, ?> instance)
+DECL|method|serialize ( SerializationStreamWriter writer, ImmutableListMultimap<?, ?> instance)
 specifier|public
 specifier|static
 name|void

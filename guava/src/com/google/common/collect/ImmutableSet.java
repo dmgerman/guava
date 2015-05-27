@@ -917,9 +917,9 @@ name|DESIRED_LOAD_FACTOR
 argument_list|)
 decl_stmt|;
 comment|/**    * Returns an array size suitable for the backing array of a hash table that    * uses open addressing with linear probing in its implementation.  The    * returned size is the smallest power of two that can hold setSize elements    * with the desired load factor.    *    *<p>Do not call this method with setSize< 2.    */
-DECL|method|chooseTableSize (int setSize)
 annotation|@
 name|VisibleForTesting
+DECL|method|chooseTableSize (int setSize)
 specifier|static
 name|int
 name|chooseTableSize
@@ -1291,7 +1291,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|copyOfEnumSet ( EnumSet<E> enumSet)
+DECL|method|copyOfEnumSet (EnumSet<E> enumSet)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1343,9 +1343,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1414,9 +1414,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1433,9 +1433,9 @@ return|;
 block|}
 comment|// This declaration is needed to make Set.iterator() and
 comment|// ImmutableCollection.iterator() consistent.
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 specifier|abstract
 name|UnmodifiableIterator
@@ -1597,9 +1597,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()
@@ -1679,9 +1679,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableSet}.  If the {@code      * ImmutableSet} already contains {@code element}, then {@code add} has no      * effect (only the previously added element is retained).      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -1705,9 +1705,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSet},      * ignoring duplicate elements (only the first duplicate element is added).      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1732,9 +1732,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSet},      * ignoring duplicate elements (only the first duplicate element is added).      *      * @param elements the {@code Iterable} to add to the {@code ImmutableSet}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1763,9 +1763,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableSet},      * ignoring duplicate elements (only the first duplicate element is added).      *      * @param elements the elements to add to the {@code ImmutableSet}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1794,9 +1794,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created {@code ImmutableSet} based on the contents of      * the {@code Builder}.      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSet
 argument_list|<

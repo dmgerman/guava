@@ -474,9 +474,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an instance using {@code countMap} to store elements and their counts.    *    *<p>This instance will assume ownership of {@code countMap}, and other code    * should not maintain references to the map or modify it in any way.    *    * @param countMap backing map for storing the elements in the multiset and    *     their counts. It must be empty.    * @throws IllegalArgumentException if {@code countMap} is not empty    */
-DECL|method|ConcurrentHashMultiset (ConcurrentMap<E, AtomicInteger> countMap)
 annotation|@
 name|VisibleForTesting
+DECL|method|ConcurrentHashMultiset (ConcurrentMap<E, AtomicInteger> countMap)
 name|ConcurrentHashMultiset
 parameter_list|(
 name|ConcurrentMap
@@ -505,9 +505,9 @@ expr_stmt|;
 block|}
 comment|// Query Operations
 comment|/**    * Returns the number of occurrences of {@code element} in this multiset.    *    * @param element the element to look for    * @return the nonnegative number of occurrences of the element    */
-DECL|method|count (@ullable Object element)
 annotation|@
 name|Override
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
@@ -546,9 +546,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>If the data in the multiset is modified by any other threads during this method,    * it is undefined which (if any) of these modifications will be reflected in the result.    */
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -588,9 +588,9 @@ argument_list|)
 return|;
 block|}
 comment|/*    * Note: the superclass toArray() methods assume that size() gives a correct    * answer, which ours does not.    */
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -605,9 +605,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -710,9 +710,9 @@ return|;
 block|}
 comment|// Modification Operations
 comment|/**    * Adds a number of occurrences of the specified element to this multiset.    *    * @param element the element to add    * @param occurrences the number of occurrences to add    * @return the previous count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative, or if    *     the resulting amount would exceed {@link Integer#MAX_VALUE}    */
-DECL|method|add (E element, int occurrences)
 annotation|@
 name|Override
+DECL|method|add (E element, int occurrences)
 specifier|public
 name|int
 name|add
@@ -932,9 +932,9 @@ block|}
 block|}
 comment|/**    * Removes a number of occurrences of the specified element from this multiset. If the multiset    * contains fewer than this number of occurrences to begin with, all occurrences will be removed.    *    * @param element the element whose occurrences should be removed    * @param occurrences the number of occurrences of the element to remove    * @return the count of the element before the operation; possibly zero    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 comment|/*    * TODO(cpovirk): remove and removeExactly currently accept null inputs only    * if occurrences == 0. This satisfies both NullPointerTester and    * CollectionRemoveTester.testRemove_nullAllowed, but it's not clear that it's    * a good policy, especially because, in order for the test to pass, the    * parameter must be misleadingly annotated as @Nullable. I suspect that    * we'll want to remove @Nullable, add an eager checkNotNull, and loosen up    * testRemove_nullAllowed.    */
-DECL|method|remove (@ullable Object element, int occurrences)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
@@ -1203,9 +1203,9 @@ block|}
 block|}
 block|}
 comment|/**    * Adds or removes occurrences of {@code element} such that the {@link #count} of the    * element becomes {@code count}.    *    * @return the count of {@code element} in the multiset before this call    * @throws IllegalArgumentException if {@code count} is negative    */
-DECL|method|setCount (E element, int count)
 annotation|@
 name|Override
+DECL|method|setCount (E element, int count)
 specifier|public
 name|int
 name|setCount
@@ -1413,9 +1413,9 @@ block|}
 block|}
 block|}
 comment|/**    * Sets the number of occurrences of {@code element} to {@code newCount}, but only if    * the count is currently {@code expectedOldCount}. If {@code element} does not appear    * in the multiset exactly {@code expectedOldCount} times, no changes will be made.    *    * @return {@code true} if the change was successful. This usually indicates    *     that the multiset has been modified, but not always: in the case that    *     {@code expectedOldCount == newCount}, the method will return {@code true} if    *     the condition was met.    * @throws IllegalArgumentException if {@code expectedOldCount} or {@code newCount} is negative    */
-DECL|method|setCount (E element, int expectedOldCount, int newCount)
 annotation|@
 name|Override
+DECL|method|setCount (E element, int expectedOldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
@@ -1637,9 +1637,9 @@ literal|false
 return|;
 block|}
 comment|// Views
-DECL|method|createElementSet ()
 annotation|@
 name|Override
+DECL|method|createElementSet ()
 name|Set
 argument_list|<
 name|E
@@ -1776,9 +1776,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|createEntrySet ()
 annotation|@
 name|Override
+DECL|method|createEntrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -1798,9 +1798,9 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
-DECL|method|distinctElements ()
 annotation|@
 name|Override
+DECL|method|distinctElements ()
 name|int
 name|distinctElements
 parameter_list|()
@@ -1812,9 +1812,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -1827,9 +1827,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|entryIterator ()
 annotation|@
 name|Override
+DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
 name|Entry
@@ -2056,9 +2056,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -2082,9 +2082,9 @@ argument_list|>
 operator|.
 name|EntrySet
 block|{
-DECL|method|multiset ()
 annotation|@
 name|Override
+DECL|method|multiset ()
 name|ConcurrentHashMultiset
 argument_list|<
 name|E
@@ -2099,9 +2099,9 @@ name|this
 return|;
 block|}
 comment|/*      * Note: the superclass toArray() methods assume that size() gives a correct      * answer, which ours does not.      */
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -2116,9 +2116,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T

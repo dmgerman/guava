@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link Table} using hash tables.  *  *<p>The views returned by {@link #column}, {@link #columnKeySet()}, and {@link  * #columnMap()} have iterators that don't support {@code remove()}. Otherwise,  * all optional operations are supported. Null row keys, columns keys, and  * values are not supported.  *  *<p>Lookups by row key are often faster than lookups by column key, because  * the data is stored in a {@code Map<R, Map<C, V>>}. A method call like {@code  * column(columnKey).get(rowKey)} still runs quickly, since the row key is  * provided. However, {@code column(columnKey).size()} takes longer, since an  * iteration across all row keys occurs.  *  *<p>Note that this implementation is not synchronized. If multiple threads  * access this table concurrently and one of the threads modifies the table, it  * must be synchronized externally.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Table">  * {@code Table}</a>.  *  * @author Jared Levy  * @since 7.0  */
+comment|/**  * Implementation of {@link Table} using hash tables.  *  *<p>The views returned by {@link #column}, {@link #columnKeySet()}, and {@link  * #columnMap()} have iterators that don't support {@code remove()}. Otherwise,  * all optional operations are supported. Null row keys, columns keys, and  * values are not supported.  *  *<p>Lookups by row key are often faster than lookups by column key, because  * the data is stored in a {@code Map<R, Map<C, V>>}. A method call like {@code  * column(columnKey).get(rowKey)} still runs quickly, since the row key is  * provided. However, {@code column(columnKey).size()} takes longer, since an  * iteration across all row keys occurs.  *  *<p>Note that this implementation is not synchronized. If multiple threads  * access this table concurrently and one of the threads modifies the table, it  * must be synchronized externally.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Table">  * {@code Table}</a>.  *  * @author Jared Levy  * @since 7.0  */
 end_comment
 
 begin_class
@@ -444,9 +444,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Overriding so NullPointerTester test passes.
-DECL|method|contains ( @ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|boolean
 name|contains
@@ -473,9 +473,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsColumn (@ullable Object columnKey)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsColumn
@@ -495,9 +495,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsRow (@ullable Object rowKey)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsRow
@@ -517,9 +517,9 @@ name|rowKey
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|containsValue (@ullable Object value)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|containsValue
@@ -539,9 +539,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Override
+DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|get
@@ -568,9 +568,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -590,9 +590,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|remove ( @ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|remove

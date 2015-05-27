@@ -94,7 +94,7 @@ extends|extends
 name|Comparable
 parameter_list|>
 block|{
-comment|/**    * Returns the discrete domain for values of type {@code Integer}.    *     * @since 14.0 (since 10.0 as {@code DiscreteDomains.integers()})    */
+comment|/**    * Returns the discrete domain for values of type {@code Integer}.    *    * @since 14.0 (since 10.0 as {@code DiscreteDomains.integers()})    */
 DECL|method|integers ()
 specifier|public
 specifier|static
@@ -136,9 +136,9 @@ operator|new
 name|IntegerDomain
 argument_list|()
 decl_stmt|;
-DECL|method|next (Integer value)
 annotation|@
 name|Override
+DECL|method|next (Integer value)
 specifier|public
 name|Integer
 name|next
@@ -168,9 +168,9 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|previous (Integer value)
 annotation|@
 name|Override
+DECL|method|previous (Integer value)
 specifier|public
 name|Integer
 name|previous
@@ -200,9 +200,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|distance (Integer start, Integer end)
 annotation|@
 name|Override
+DECL|method|distance (Integer start, Integer end)
 specifier|public
 name|long
 name|distance
@@ -223,9 +223,9 @@ operator|-
 name|start
 return|;
 block|}
-DECL|method|minValue ()
 annotation|@
 name|Override
+DECL|method|minValue ()
 specifier|public
 name|Integer
 name|minValue
@@ -237,9 +237,9 @@ operator|.
 name|MIN_VALUE
 return|;
 block|}
-DECL|method|maxValue ()
 annotation|@
 name|Override
+DECL|method|maxValue ()
 specifier|public
 name|Integer
 name|maxValue
@@ -283,7 +283,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns the discrete domain for values of type {@code Long}.    *     * @since 14.0 (since 10.0 as {@code DiscreteDomains.longs()})    */
+comment|/**    * Returns the discrete domain for values of type {@code Long}.    *    * @since 14.0 (since 10.0 as {@code DiscreteDomains.longs()})    */
 DECL|method|longs ()
 specifier|public
 specifier|static
@@ -325,9 +325,9 @@ operator|new
 name|LongDomain
 argument_list|()
 decl_stmt|;
-DECL|method|next (Long value)
 annotation|@
 name|Override
+DECL|method|next (Long value)
 specifier|public
 name|Long
 name|next
@@ -357,9 +357,9 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|previous (Long value)
 annotation|@
 name|Override
+DECL|method|previous (Long value)
 specifier|public
 name|Long
 name|previous
@@ -389,9 +389,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|distance (Long start, Long end)
 annotation|@
 name|Override
+DECL|method|distance (Long start, Long end)
 specifier|public
 name|long
 name|distance
@@ -450,9 +450,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|minValue ()
 annotation|@
 name|Override
+DECL|method|minValue ()
 specifier|public
 name|Long
 name|minValue
@@ -464,9 +464,9 @@ operator|.
 name|MIN_VALUE
 return|;
 block|}
-DECL|method|maxValue ()
 annotation|@
 name|Override
+DECL|method|maxValue ()
 specifier|public
 name|Long
 name|maxValue
@@ -584,9 +584,9 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 decl_stmt|;
-DECL|method|next (BigInteger value)
 annotation|@
 name|Override
+DECL|method|next (BigInteger value)
 specifier|public
 name|BigInteger
 name|next
@@ -606,9 +606,9 @@ name|ONE
 argument_list|)
 return|;
 block|}
-DECL|method|previous (BigInteger value)
 annotation|@
 name|Override
+DECL|method|previous (BigInteger value)
 specifier|public
 name|BigInteger
 name|previous
@@ -628,9 +628,9 @@ name|ONE
 argument_list|)
 return|;
 block|}
-DECL|method|distance (BigInteger start, BigInteger end)
 annotation|@
 name|Override
+DECL|method|distance (BigInteger start, BigInteger end)
 specifier|public
 name|long
 name|distance

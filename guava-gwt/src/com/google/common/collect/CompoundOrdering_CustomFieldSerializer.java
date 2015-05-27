@@ -81,7 +81,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link CompoundOrdering}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of {@link CompoundOrdering}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -105,14 +105,14 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// deserialization is unsafe
-DECL|method|instantiate ( SerializationStreamReader reader)
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|CompoundOrdering

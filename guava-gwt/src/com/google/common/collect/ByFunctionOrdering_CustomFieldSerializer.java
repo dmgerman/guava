@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link ByFunctionOrdering}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of {@link ByFunctionOrdering}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -94,7 +94,7 @@ specifier|public
 class|class
 name|ByFunctionOrdering_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, ByFunctionOrdering<?, ?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, ByFunctionOrdering<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -111,14 +111,14 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// deserialization is unsafe
-DECL|method|instantiate ( SerializationStreamReader reader)
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|ByFunctionOrdering

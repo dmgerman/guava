@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -257,7 +257,7 @@ return|return
 name|multiset
 return|;
 block|}
-comment|/**    * Returns a new {@code EnumMultiset} instance containing the given elements.  Unlike    * {@link EnumMultiset#create(Iterable)}, this method does not produce an exception on an empty    * iterable.    *     * @since 14.0    */
+comment|/**    * Returns a new {@code EnumMultiset} instance containing the given elements.  Unlike    * {@link EnumMultiset#create(Iterable)}, this method does not produce an exception on an empty    * iterable.    *    * @since 14.0    */
 DECL|method|create (Iterable<E> elements, Class<E> type)
 specifier|public
 specifier|static

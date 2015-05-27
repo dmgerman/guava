@@ -221,7 +221,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@link Multimaps#filterEntries(Multimap, Predicate)}.  *   * @author Jared Levy  * @author Louis Wasserman  */
+comment|/**  * Implementation of {@link Multimaps#filterEntries(Multimap, Predicate)}.  *  * @author Jared Levy  * @author Louis Wasserman  */
 end_comment
 
 begin_class

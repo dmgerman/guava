@@ -136,9 +136,9 @@ name|E
 argument_list|>
 block|{
 comment|// Query Operations
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -153,9 +153,9 @@ name|this
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -169,9 +169,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|contains (@ullable Object element)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object element)
 specifier|public
 name|boolean
 name|contains
@@ -191,9 +191,9 @@ operator|>
 literal|0
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -264,9 +264,9 @@ literal|0
 return|;
 block|}
 comment|// Modification Operations
-DECL|method|add (@ullable E element)
 annotation|@
 name|Override
+DECL|method|add (@ullable E element)
 specifier|public
 name|boolean
 name|add
@@ -310,9 +310,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|remove (@ullable Object element)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object element)
 specifier|public
 name|boolean
 name|remove
@@ -417,9 +417,9 @@ return|;
 block|}
 comment|// Bulk Operations
 comment|/**    * {@inheritDoc}    *    *<p>This implementation is highly efficient when {@code elementsToAdd}    * is itself a {@link Multiset}.    */
-DECL|method|addAll (Collection<? extends E> elementsToAdd)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elementsToAdd)
 specifier|public
 name|boolean
 name|addAll
@@ -444,9 +444,9 @@ name|elementsToAdd
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> elementsToRemove)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> elementsToRemove)
 specifier|public
 name|boolean
 name|removeAll
@@ -469,9 +469,9 @@ name|elementsToRemove
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> elementsToRetain)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> elementsToRetain)
 specifier|public
 name|boolean
 name|retainAll
@@ -494,9 +494,9 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -632,9 +632,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -687,9 +687,9 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|multiset ()
 annotation|@
 name|Override
+DECL|method|multiset ()
 name|Multiset
 argument_list|<
 name|E
@@ -703,9 +703,9 @@ operator|.
 name|this
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -722,9 +722,9 @@ name|entryIterator
 argument_list|()
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -755,9 +755,9 @@ return|;
 block|}
 comment|// Object methods
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns {@code true} if {@code object} is a multiset    * of the same size and if, for each element, the two multisets have the same    * count.    */
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -780,9 +780,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the hash code of {@link    * Multiset#entrySet()}.    */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -797,9 +797,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This implementation returns the result of invoking {@code toString} on    * {@link Multiset#entrySet()}.    */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

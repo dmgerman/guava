@@ -456,7 +456,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|subMultiset (@ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
+DECL|method|subMultiset ( @ullable E fromElement, BoundType fromBoundType, @Nullable E toElement, BoundType toBoundType)
 specifier|public
 name|SortedMultiset
 argument_list|<

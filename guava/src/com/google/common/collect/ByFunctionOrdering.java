@@ -143,7 +143,7 @@ name|T
 argument_list|>
 name|ordering
 decl_stmt|;
-DECL|method|ByFunctionOrdering ( Function<F, ? extends T> function, Ordering<T> ordering)
+DECL|method|ByFunctionOrdering (Function<F, ? extends T> function, Ordering<T> ordering)
 name|ByFunctionOrdering
 parameter_list|(
 name|Function
@@ -182,9 +182,9 @@ name|ordering
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|compare (F left, F right)
 annotation|@
 name|Override
+DECL|method|compare (F left, F right)
 specifier|public
 name|int
 name|compare
@@ -217,9 +217,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -294,9 +294,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -313,9 +313,9 @@ name|ordering
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

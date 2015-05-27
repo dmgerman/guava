@@ -127,9 +127,9 @@ specifier|protected
 name|ForwardingList
 parameter_list|()
 block|{}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 specifier|abstract
 name|List
@@ -377,9 +377,9 @@ name|toIndex
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -404,9 +404,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -443,7 +443,7 @@ literal|true
 return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #addAll(int, Collection)}, in    * terms of the {@code add} method of {@link #listIterator(int)}. If you    * override {@link #listIterator(int)}, you may wish to override {@link    * #addAll(int, Collection)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardAddAll ( int index, Iterable<? extends E> elements)
+DECL|method|standardAddAll (int index, Iterable<? extends E> elements)
 specifier|protected
 name|boolean
 name|standardAddAll
@@ -552,9 +552,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #listIterator(int)}, in terms    * of {@link #size}, {@link #get(int)}, {@link #set(int, Object)}, {@link    * #add(int, Object)}, and {@link #remove(int)}. If you override any of these    * methods, you may wish to override {@link #listIterator(int)} to forward to    * this implementation.    *    * @since 7.0    */
-DECL|method|standardListIterator (int start)
 annotation|@
 name|Beta
+DECL|method|standardListIterator (int start)
 specifier|protected
 name|ListIterator
 argument_list|<
@@ -578,9 +578,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible default implementation of {@link #subList(int, int)}. If you    * override any other methods, you may wish to override {@link #subList(int,    * int)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardSubList (int fromIndex, int toIndex)
 annotation|@
 name|Beta
+DECL|method|standardSubList (int fromIndex, int toIndex)
 specifier|protected
 name|List
 argument_list|<
@@ -609,9 +609,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #equals(Object)} in terms of {@link #size}    * and {@link #iterator}. If you override either of those methods, you may    * wish to override {@link #equals(Object)} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardEquals (@ullable Object object)
 annotation|@
 name|Beta
+DECL|method|standardEquals (@ullable Object object)
 specifier|protected
 name|boolean
 name|standardEquals
@@ -634,9 +634,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A sensible definition of {@link #hashCode} in terms of {@link #iterator}.    * If you override {@link #iterator}, you may wish to override {@link    * #hashCode} to forward to this implementation.    *    * @since 7.0    */
-DECL|method|standardHashCode ()
 annotation|@
 name|Beta
+DECL|method|standardHashCode ()
 specifier|protected
 name|int
 name|standardHashCode

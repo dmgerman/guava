@@ -513,7 +513,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E e7)
 specifier|public
 specifier|static
 parameter_list|<
@@ -567,7 +567,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8)
 specifier|public
 specifier|static
 parameter_list|<
@@ -626,7 +626,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    */
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1469,9 +1469,9 @@ parameter_list|()
 block|{}
 comment|// This declaration is needed to make List.iterator() and
 comment|// ImmutableCollection.iterator() consistent.
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -1485,9 +1485,9 @@ name|listIterator
 argument_list|()
 return|;
 block|}
-DECL|method|listIterator ()
 annotation|@
 name|Override
+DECL|method|listIterator ()
 specifier|public
 name|UnmodifiableListIterator
 argument_list|<
@@ -1503,9 +1503,9 @@ literal|0
 argument_list|)
 return|;
 block|}
-DECL|method|listIterator (int index)
 annotation|@
 name|Override
+DECL|method|listIterator (int index)
 specifier|public
 name|UnmodifiableListIterator
 argument_list|<
@@ -1993,9 +1993,9 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Returns this list instance.    *    * @since 2.0    */
-DECL|method|asList ()
 annotation|@
 name|Override
+DECL|method|asList ()
 specifier|public
 specifier|final
 name|ImmutableList
@@ -2171,9 +2171,9 @@ operator|-
 name|index
 return|;
 block|}
-DECL|method|reverse ()
 annotation|@
 name|Override
+DECL|method|reverse ()
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -2186,9 +2186,9 @@ return|return
 name|forwardList
 return|;
 block|}
-DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -2208,9 +2208,9 @@ name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (@ullable Object object)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|indexOf
@@ -2247,9 +2247,9 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (@ullable Object object)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|lastIndexOf
@@ -2286,9 +2286,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -2333,9 +2333,9 @@ name|reverse
 argument_list|()
 return|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|E
 name|get
@@ -2364,9 +2364,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2379,9 +2379,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -2394,9 +2394,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -2418,9 +2418,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2548,9 +2548,9 @@ literal|"Use SerializedForm"
 argument_list|)
 throw|;
 block|}
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()
@@ -2632,9 +2632,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableList}.      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -2658,9 +2658,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2689,9 +2689,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2716,9 +2716,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableList}.      *      * @param elements the {@code Iterable} to add to the {@code ImmutableList}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -2747,9 +2747,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created {@code ImmutableList} based on the contents of      * the {@code Builder}.      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableList
 argument_list|<

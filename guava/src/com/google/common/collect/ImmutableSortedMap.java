@@ -383,6 +383,7 @@ name|NATURAL_EMPTY_MAP
 return|;
 block|}
 comment|/**    * Returns an immutable map containing a single entry.    */
+DECL|method|of (K k1, V v1)
 specifier|public
 specifier|static
 parameter_list|<
@@ -397,7 +398,6 @@ argument_list|>
 parameter_list|,
 name|V
 parameter_list|>
-DECL|method|of (K k1, V v1)
 name|ImmutableSortedMap
 argument_list|<
 name|K
@@ -496,6 +496,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|method|ofEntries ( ImmutableMapEntry<K, V>.... entries)
 specifier|private
 specifier|static
 parameter_list|<
@@ -516,7 +517,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|ofEntries (ImmutableMapEntry<K, V>.... entries)
 name|ofEntries
 parameter_list|(
 name|ImmutableMapEntry
@@ -553,6 +553,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+DECL|method|of ( K k1, V v1, K k2, V v2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -573,7 +574,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2)
 name|of
 parameter_list|(
 name|K
@@ -614,6 +614,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -634,7 +635,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 name|of
 parameter_list|(
 name|K
@@ -688,6 +688,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -708,7 +709,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 name|of
 parameter_list|(
 name|K
@@ -775,6 +775,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 specifier|public
 specifier|static
 parameter_list|<
@@ -795,7 +796,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5)
 name|of
 parameter_list|(
 name|K
@@ -870,7 +870,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map containing the same entries as {@code map}, sorted    * by the natural ordering of the keys.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws ClassCastException if the keys in {@code map} are not mutually    *         comparable    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to    *         their natural ordering    */
-DECL|method|copyOf ( Map<? extends K, ? extends V> map)
+DECL|method|copyOf (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -979,7 +979,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted     * by the provided comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0                  */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted    * by the provided comparator.    *    *<p>This method is not type-safe, as it may be called on a map with keys    * that are not mutually comparable.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
@@ -1046,7 +1046,7 @@ name|naturalOrder
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map containing the given entries, with keys sorted     * by the provided comparator.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
+comment|/**    * Returns an immutable map containing the given entries, with keys sorted    * by the provided comparator.    *    * @throws NullPointerException if any key or value in {@code map} is null    * @throws IllegalArgumentException if any two keys are equal according to the    *         comparator    * @since 19.0    */
 annotation|@
 name|Beta
 DECL|method|copyOf ( Iterable<? extends Entry<? extends K, ? extends V>> entries, Comparator<? super K> comparator)
@@ -1111,7 +1111,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|copyOfSorted ( SortedMap<K, ? extends V> map)
+DECL|method|copyOfSorted (SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1395,7 +1395,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Accepts a collection of possibly-null entries.  If {@code sameComparator}, then it is assumed     * that they do not need to be sorted or checked for dupes.    */
+comment|/**    * Accepts a collection of possibly-null entries.  If {@code sameComparator}, then it is assumed    * that they do not need to be sorted or checked for dupes.    */
 DECL|method|fromEntries ( Comparator<? super K> comparator, boolean sameComparator, Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|private
 specifier|static
@@ -1486,7 +1486,7 @@ name|length
 argument_list|)
 return|;
 block|}
-DECL|method|fromEntries (Comparator<? super K> comparator, boolean sameComparator, Entry<K, V>[] entryArray, int size)
+DECL|method|fromEntries ( Comparator<? super K> comparator, boolean sameComparator, Entry<K, V>[] entryArray, int size)
 specifier|private
 specifier|static
 parameter_list|<
@@ -2028,9 +2028,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Associates {@code key} with {@code value} in the built map. Duplicate      * keys, according to the comparator (which might be the keys' natural      * order), are not allowed, and will cause {@link #build} to fail.      */
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|Builder
 argument_list|<
@@ -2061,9 +2061,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds the given {@code entry} to the map, making it immutable if      * necessary. Duplicate keys, according to the comparator (which might be      * the keys' natural order), are not allowed, and will cause {@link #build}      * to fail.      *      * @since 11.0      */
-DECL|method|put (Entry<? extends K, ? extends V> entry)
 annotation|@
 name|Override
+DECL|method|put (Entry<? extends K, ? extends V> entry)
 specifier|public
 name|Builder
 argument_list|<
@@ -2098,9 +2098,9 @@ name|this
 return|;
 block|}
 comment|/**      * Associates all of the given map's keys and values in the built map.      * Duplicate keys, according to the comparator (which might be the keys'      * natural order), are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      */
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|Builder
 argument_list|<
@@ -2134,7 +2134,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Adds all the given entries to the built map.  Duplicate keys, according       * to the comparator (which might be the keys' natural order), are not       * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
+comment|/**      * Adds all the given entries to the built map.  Duplicate keys, according      * to the comparator (which might be the keys' natural order), are not      * allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key, value, or entry is null      * @since 19.0      */
 annotation|@
 name|Beta
 annotation|@
@@ -2179,9 +2179,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created immutable sorted map.      *      * @throws IllegalArgumentException if any two keys are equal according to      *     the comparator (which might be the keys' natural order)      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableSortedMap
 argument_list|<
@@ -2304,7 +2304,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ImmutableSortedMap (RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList, ImmutableSortedMap<K, V> descendingMap)
+DECL|method|ImmutableSortedMap ( RegularImmutableSortedSet<K> keySet, ImmutableList<V> valueList, ImmutableSortedMap<K, V> descendingMap)
 name|ImmutableSortedMap
 parameter_list|(
 name|RegularImmutableSortedSet
@@ -2403,9 +2403,9 @@ name|index
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -2423,9 +2423,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable set of the mappings in this map, sorted by the key    * ordering.    */
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|ImmutableSet
 argument_list|<
@@ -2624,9 +2624,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns an immutable sorted set of the keys in this map.    */
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|ImmutableSortedSet
 argument_list|<
@@ -2640,9 +2640,9 @@ name|keySet
 return|;
 block|}
 comment|/**    * Returns an immutable collection of the values in this map, sorted by the    * ordering of the corresponding keys.    */
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|ImmutableCollection
 argument_list|<
@@ -2891,7 +2891,7 @@ block|}
 comment|/**    * This method returns a {@code ImmutableSortedMap}, consisting of the entries    * whose keys ranges from {@code fromKey} to {@code toKey}, inclusive or    * exclusive as indicated by the boolean flags.    *    *<p>The {@link SortedMap#subMap} documentation states that a submap of a    * submap throws an {@link IllegalArgumentException} if passed a {@code    * fromKey} less than an earlier {@code fromKey}. However, this method doesn't    * throw an exception in that situation, but instead keeps the original {@code    * fromKey}. Similarly, this method keeps the original {@code toKey}, instead    * of throwing an exception, if passed a {@code toKey} greater than an earlier    * {@code toKey}.    *    * @since 12.0    */
 annotation|@
 name|Override
-DECL|method|subMap (K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
 specifier|public
 name|ImmutableSortedMap
 argument_list|<
@@ -3515,9 +3515,9 @@ name|comparator
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|readResolve ()
 annotation|@
 name|Override
+DECL|method|readResolve ()
 name|Object
 name|readResolve
 parameter_list|()
@@ -3558,9 +3558,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

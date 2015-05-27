@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A skeleton {@code Multimap} implementation, not necessarily in terms of a {@code Map}.  *   * @author Louis Wasserman  */
+comment|/**  * A skeleton {@code Multimap} implementation, not necessarily in terms of a {@code Map}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -970,9 +970,9 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -986,9 +986,9 @@ name|valueIterator
 argument_list|()
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1003,9 +1003,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|contains (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object o)
 specifier|public
 name|boolean
 name|contains
@@ -1027,9 +1027,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1138,9 +1138,9 @@ name|createAsMap
 parameter_list|()
 function_decl|;
 comment|// Comparison and hashing
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1163,9 +1163,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the hash code for this multimap.    *    *<p>The hash code of a multimap is defined as the hash code of the map view,    * as returned by {@link Multimap#asMap}.    *    * @see Map#hashCode    */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode

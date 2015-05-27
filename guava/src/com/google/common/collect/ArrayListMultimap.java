@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of {@code Multimap} that uses an {@code ArrayList} to store  * the values for a given key. A {@link HashMap} associates each key with an  * {@link ArrayList} of values.  *  *<p>When iterating through the collections supplied by this class, the  * ordering of values for a given key agrees with the order in which the values  * were added.  *  *<p>This multimap allows duplicate key-value pairs. After adding a new  * key-value pair equal to an existing key-value pair, the {@code  * ArrayListMultimap} will contain entries for both the new value and the old  * value.  *  *<p>Keys and values may be null. All optional multimap methods are supported,  * and all returned views are modifiable.  *  *<p>The lists returned by {@link #get}, {@link #removeAll}, and {@link  * #replaceValues} all implement {@link java.util.RandomAccess}.  *  *<p>This class is not threadsafe when any concurrent operations update the  * multimap. Concurrent read operations will work correctly. To allow concurrent  * update operations, wrap your multimap with a call to {@link  * Multimaps#synchronizedListMultimap}.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Implementation of {@code Multimap} that uses an {@code ArrayList} to store  * the values for a given key. A {@link HashMap} associates each key with an  * {@link ArrayList} of values.  *  *<p>When iterating through the collections supplied by this class, the  * ordering of values for a given key agrees with the order in which the values  * were added.  *  *<p>This multimap allows duplicate key-value pairs. After adding a new  * key-value pair equal to an existing key-value pair, the {@code  * ArrayListMultimap} will contain entries for both the new value and the old  * value.  *  *<p>Keys and values may be null. All optional multimap methods are supported,  * and all returned views are modifiable.  *  *<p>The lists returned by {@link #get}, {@link #removeAll}, and {@link  * #replaceValues} all implement {@link java.util.RandomAccess}.  *  *<p>This class is not threadsafe when any concurrent operations update the  * multimap. Concurrent read operations will work correctly. To allow concurrent  * update operations, wrap your multimap with a call to {@link  * Multimaps#synchronizedListMultimap}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -235,7 +235,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Constructs an empty {@code ArrayListMultimap} with enough capacity to hold    * the specified numbers of keys and values without resizing.    *    * @param expectedKeys the expected number of distinct keys    * @param expectedValuesPerKey the expected average number of values per key    * @throws IllegalArgumentException if {@code expectedKeys} or {@code    *      expectedValuesPerKey} is negative    */
-DECL|method|create ( int expectedKeys, int expectedValuesPerKey)
+DECL|method|create (int expectedKeys, int expectedValuesPerKey)
 specifier|public
 specifier|static
 parameter_list|<
@@ -274,7 +274,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs an {@code ArrayListMultimap} with the same mappings as the    * specified multimap.    *    * @param multimap the multimap whose contents are copied to this multimap    */
-DECL|method|create ( Multimap<? extends K, ? extends V> multimap)
+DECL|method|create (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
 parameter_list|<
@@ -441,9 +441,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a new, empty {@code ArrayList} to hold the collection of values for    * an arbitrary key.    */
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 name|List
 argument_list|<
 name|V

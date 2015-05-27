@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and  * a {@code HashMap} instance for values-to-keys. Null keys are not permitted,  * but null values are. An {@code EnumHashBiMap} and its inverse are both  * serializable.  *   *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
+comment|/**  * A {@code BiMap} backed by an {@code EnumMap} instance for keys-to-values, and  * a {@code HashMap} instance for values-to-keys. Null keys are not permitted,  * but null values are. An {@code EnumHashBiMap} and its inverse are both  * serializable.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#BiMap">  * {@code BiMap}</a>.  *  * @author Mike Bostock  * @since 2.0  */
 end_comment
 
 begin_class
@@ -175,6 +175,7 @@ argument_list|>
 name|keyType
 decl_stmt|;
 comment|/**    * Returns a new, empty {@code EnumHashBiMap} using the specified key type.    *    * @param keyType the key type    */
+DECL|method|create (Class<K> keyType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -193,7 +194,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|create (Class<K> keyType)
 name|create
 parameter_list|(
 name|Class
@@ -217,6 +217,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs a new bimap with the same mappings as the specified map. If the    * specified map is an {@code EnumHashBiMap} or an {@link EnumBiMap}, the new    * bimap has the same key type as the input bimap. Otherwise, the specified    * map must contain at least one mapping, in order to determine the key type.    *    * @param map the map whose mappings are to be placed in this map    * @throws IllegalArgumentException if map is not an {@code EnumBiMap} or an    *     {@code EnumHashBiMap} instance and contains no mappings    */
+DECL|method|create (Map<K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -235,7 +236,6 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-DECL|method|create (Map<K, ? extends V> map)
 name|create
 parameter_list|(
 name|Map
@@ -350,9 +350,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|put (K key, @Nullable V value)
 annotation|@
 name|Override
+DECL|method|put (K key, @Nullable V value)
 specifier|public
 name|V
 name|put
@@ -377,9 +377,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|forcePut (K key, @Nullable V value)
 annotation|@
 name|Override
+DECL|method|forcePut (K key, @Nullable V value)
 specifier|public
 name|V
 name|forcePut

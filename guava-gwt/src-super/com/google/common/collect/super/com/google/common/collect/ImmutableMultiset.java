@@ -393,7 +393,7 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|//
-DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E... others)
+DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static
 parameter_list|<
@@ -501,7 +501,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|copyOf ( Iterable<? extends E> elements)
+DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -701,7 +701,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an immutable multiset containing the given elements, in the "grouped iteration order"    * described in the class documentation.    *    * @throws NullPointerException if any of {@code elements} is null    */
-DECL|method|copyOf ( Iterator<? extends E> elements)
+DECL|method|copyOf (Iterator<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -756,9 +756,9 @@ DECL|method|ImmutableMultiset ()
 name|ImmutableMultiset
 parameter_list|()
 block|{}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -988,9 +988,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1012,9 +1012,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1030,9 +1030,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1651,9 +1651,9 @@ name|contents
 expr_stmt|;
 block|}
 comment|/**      * Adds {@code element} to the {@code ImmutableMultiset}.      *      * @param element the element to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code element} is null      */
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|Builder
 argument_list|<
@@ -1744,9 +1744,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|add (E... elements)
 annotation|@
 name|Override
+DECL|method|add (E... elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1771,9 +1771,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the {@code Iterable} to add to the {@code      *     ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|addAll (Iterable<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterable<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1858,9 +1858,9 @@ name|this
 return|;
 block|}
 comment|/**      * Adds each element of {@code elements} to the {@code ImmutableMultiset}.      *      * @param elements the elements to add to the {@code ImmutableMultiset}      * @return this {@code Builder} object      * @throws NullPointerException if {@code elements} is null or contains a      *     null element      */
-DECL|method|addAll (Iterator<? extends E> elements)
 annotation|@
 name|Override
+DECL|method|addAll (Iterator<? extends E> elements)
 specifier|public
 name|Builder
 argument_list|<
@@ -1889,9 +1889,9 @@ name|this
 return|;
 block|}
 comment|/**      * Returns a newly-created {@code ImmutableMultiset} based on the contents      * of the {@code Builder}.      */
-DECL|method|build ()
 annotation|@
 name|Override
+DECL|method|build ()
 specifier|public
 name|ImmutableMultiset
 argument_list|<

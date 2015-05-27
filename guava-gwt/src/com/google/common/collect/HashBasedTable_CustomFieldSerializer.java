@@ -99,7 +99,7 @@ name|?
 argument_list|>
 name|table
 parameter_list|)
-block|{   }
+block|{}
 DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static

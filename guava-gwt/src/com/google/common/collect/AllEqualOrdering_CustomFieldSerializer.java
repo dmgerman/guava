@@ -74,7 +74,7 @@ parameter_list|,
 name|AllEqualOrdering
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
@@ -103,7 +103,7 @@ parameter_list|,
 name|AllEqualOrdering
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 block|}
 end_class
 

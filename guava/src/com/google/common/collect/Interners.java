@@ -284,9 +284,9 @@ operator|.
 name|makeCustomMap
 argument_list|()
 decl_stmt|;
-DECL|method|intern (E sample)
 annotation|@
 name|Override
+DECL|method|intern (E sample)
 specifier|public
 name|E
 name|intern
@@ -377,11 +377,11 @@ block|}
 block|}
 block|}
 DECL|enum|Dummy
-DECL|enumConstant|VALUE
 specifier|private
 enum|enum
 name|Dummy
 block|{
+DECL|enumConstant|VALUE
 name|VALUE
 block|}
 block|}
@@ -464,9 +464,9 @@ operator|=
 name|interner
 expr_stmt|;
 block|}
-DECL|method|apply (E input)
 annotation|@
 name|Override
+DECL|method|apply (E input)
 specifier|public
 name|E
 name|apply
@@ -484,9 +484,9 @@ name|input
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -499,9 +499,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object other)
 annotation|@
 name|Override
+DECL|method|equals (Object other)
 specifier|public
 name|boolean
 name|equals

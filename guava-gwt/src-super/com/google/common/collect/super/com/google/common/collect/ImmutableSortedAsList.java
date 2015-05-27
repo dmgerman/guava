@@ -75,7 +75,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|ImmutableSortedAsList ( ImmutableSortedSet<E> backingSet, ImmutableList<E> backingList)
+DECL|method|ImmutableSortedAsList (ImmutableSortedSet<E> backingSet, ImmutableList<E> backingList)
 name|ImmutableSortedAsList
 parameter_list|(
 name|ImmutableSortedSet
@@ -122,9 +122,9 @@ name|delegateCollection
 argument_list|()
 return|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<

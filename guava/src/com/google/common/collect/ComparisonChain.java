@@ -473,9 +473,9 @@ operator|=
 name|result
 expr_stmt|;
 block|}
-DECL|method|compare ( @ullable Comparable left, @Nullable Comparable right)
 annotation|@
 name|Override
+DECL|method|compare (@ullable Comparable left, @Nullable Comparable right)
 specifier|public
 name|ComparisonChain
 name|compare
@@ -495,9 +495,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|compare (@ullable T left, @Nullable T right, @Nullable Comparator<T> comparator)
 annotation|@
 name|Override
+DECL|method|compare ( @ullable T left, @Nullable T right, @Nullable Comparator<T> comparator)
 specifier|public
 parameter_list|<
 name|T
@@ -528,9 +528,9 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare (int left, int right)
-annotation|@
-name|Override
 specifier|public
 name|ComparisonChain
 name|compare
@@ -546,9 +546,9 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare (long left, long right)
-annotation|@
-name|Override
 specifier|public
 name|ComparisonChain
 name|compare
@@ -564,9 +564,9 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare (float left, float right)
-annotation|@
-name|Override
 specifier|public
 name|ComparisonChain
 name|compare
@@ -582,9 +582,9 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|compare (double left, double right)
-annotation|@
-name|Override
 specifier|public
 name|ComparisonChain
 name|compare
@@ -600,9 +600,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|compareTrueFirst (boolean left, boolean right)
 annotation|@
 name|Override
+DECL|method|compareTrueFirst (boolean left, boolean right)
 specifier|public
 name|ComparisonChain
 name|compareTrueFirst
@@ -618,9 +618,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|compareFalseFirst (boolean left, boolean right)
 annotation|@
 name|Override
+DECL|method|compareFalseFirst (boolean left, boolean right)
 specifier|public
 name|ComparisonChain
 name|compareFalseFirst
@@ -636,9 +636,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|result ()
 annotation|@
 name|Override
+DECL|method|result ()
 specifier|public
 name|int
 name|result
@@ -650,7 +650,7 @@ return|;
 block|}
 block|}
 comment|/**    * Compares two comparable objects as specified by {@link    * Comparable#compareTo},<i>if</i> the result of this comparison chain    * has not already been determined.    */
-DECL|method|compare ( Comparable<?> left, Comparable<?> right)
+DECL|method|compare (Comparable<?> left, Comparable<?> right)
 specifier|public
 specifier|abstract
 name|ComparisonChain

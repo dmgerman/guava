@@ -350,7 +350,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3)
 specifier|public
 specifier|static
 parameter_list|<
@@ -405,7 +405,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable multimap containing the given entries, in the    * "key-grouped" insertion order described in the    *<a href="#iteration">class documentation</a>.    */
-DECL|method|of ( K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
+DECL|method|of (K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4)
 specifier|public
 specifier|static
 parameter_list|<
@@ -613,9 +613,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 name|Collection
 argument_list|<
 name|V
@@ -771,10 +771,10 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Adds entries to the built multimap.      *       * @since 19.0      */
+comment|/**      * Adds entries to the built multimap.      *      * @since 19.0      */
 annotation|@
 name|Beta
-DECL|method|putAll ( Iterable<? extends Entry<? extends K, ? extends V>> entries)
+DECL|method|putAll (Iterable<? extends Entry<? extends K, ? extends V>> entries)
 specifier|public
 name|Builder
 argument_list|<
@@ -1256,7 +1256,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an immutable multimap containing the same mappings as {@code    * multimap}, in the "key-grouped" iteration order described in the class    * documentation.    *    *<p>Despite the method name, this method attempts to avoid actually copying    * the data when it is safe to do so. The exact circumstances under which a    * copy will or will not be performed are undocumented and subject to change.    *    * @throws NullPointerException if any key or value in {@code multimap} is    *         null    */
-DECL|method|copyOf ( Multimap<? extends K, ? extends V> multimap)
+DECL|method|copyOf (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1420,6 +1420,7 @@ specifier|static
 class|class
 name|FieldSettersHolder
 block|{
+DECL|field|MAP_FIELD_SETTER
 specifier|static
 specifier|final
 name|Serialization
@@ -1428,7 +1429,6 @@ name|FieldSetter
 argument_list|<
 name|ImmutableMultimap
 argument_list|>
-DECL|field|MAP_FIELD_SETTER
 name|MAP_FIELD_SETTER
 init|=
 name|Serialization
@@ -1442,6 +1442,7 @@ argument_list|,
 literal|"map"
 argument_list|)
 decl_stmt|;
+DECL|field|SIZE_FIELD_SETTER
 specifier|static
 specifier|final
 name|Serialization
@@ -1450,7 +1451,6 @@ name|FieldSetter
 argument_list|<
 name|ImmutableMultimap
 argument_list|>
-DECL|field|SIZE_FIELD_SETTER
 name|SIZE_FIELD_SETTER
 init|=
 name|Serialization
@@ -1464,6 +1464,7 @@ argument_list|,
 literal|"size"
 argument_list|)
 decl_stmt|;
+DECL|field|EMPTY_SET_FIELD_SETTER
 specifier|static
 specifier|final
 name|Serialization
@@ -1472,7 +1473,6 @@ name|FieldSetter
 argument_list|<
 name|ImmutableSetMultimap
 argument_list|>
-DECL|field|EMPTY_SET_FIELD_SETTER
 name|EMPTY_SET_FIELD_SETTER
 init|=
 name|Serialization
@@ -1984,9 +1984,9 @@ operator|=
 name|multimap
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -2007,9 +2007,9 @@ name|entryIterator
 argument_list|()
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -2036,9 +2036,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|contains (Object object)
 annotation|@
 name|Override
+DECL|method|contains (Object object)
 specifier|public
 name|boolean
 name|contains
@@ -2695,9 +2695,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -2779,9 +2779,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()

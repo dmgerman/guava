@@ -833,9 +833,9 @@ name|String
 name|getKeyRole
 parameter_list|()
 function_decl|;
-DECL|method|getValue (int index)
 annotation|@
 name|Nullable
+DECL|method|getValue (int index)
 specifier|abstract
 name|V
 name|getValue
@@ -844,9 +844,9 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-DECL|method|setValue (int index, V newValue)
 annotation|@
 name|Nullable
+DECL|method|setValue (int index, V newValue)
 specifier|abstract
 name|V
 name|setValue
@@ -1416,9 +1416,9 @@ block|}
 comment|/**    * Not supported. Use {@link #eraseAll} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #eraseAll}    */
 annotation|@
 name|Override
-DECL|method|clear ()
 annotation|@
 name|Deprecated
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1782,9 +1782,9 @@ block|}
 comment|/**    * Not supported. Use {@link #erase} instead.    *    * @throws UnsupportedOperationException always    * @deprecated Use {@link #erase}    */
 annotation|@
 name|Override
-DECL|method|remove (Object rowKey, Object columnKey)
 annotation|@
 name|Deprecated
+DECL|method|remove (Object rowKey, Object columnKey)
 specifier|public
 name|V
 name|remove

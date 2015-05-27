@@ -299,7 +299,7 @@ name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an immutable range map mapping a single range to a single value.    */
-DECL|method|of ( Range<K> range, V value)
+DECL|method|of (Range<K> range, V value)
 specifier|public
 specifier|static
 parameter_list|<

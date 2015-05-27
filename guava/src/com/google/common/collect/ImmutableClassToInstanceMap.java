@@ -169,7 +169,7 @@ name|EMPTY
 return|;
 block|}
 comment|/**    * Returns an {@code ImmutableClassToInstanceMap} containing a single entry.    */
-DECL|method|of ( Class<T> type, T value)
+DECL|method|of (Class<T> type, T value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -333,7 +333,7 @@ name|this
 return|;
 block|}
 comment|/**      * Associates all of {@code map's} keys and values in the built map.      * Duplicate keys are not allowed, and will cause {@link #build} to fail.      *      * @throws NullPointerException if any key or value in {@code map} is null      * @throws ClassCastException if any value is not an instance of the type      *     specified by its key      */
-DECL|method|putAll ( Map<? extends Class<? extends T>, ? extends T> map)
+DECL|method|putAll (Map<? extends Class<? extends T>, ? extends T> map)
 specifier|public
 parameter_list|<
 name|T
@@ -619,7 +619,7 @@ name|B
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|ImmutableClassToInstanceMap ( ImmutableMap<Class<? extends B>, B> delegate)
+DECL|method|ImmutableClassToInstanceMap (ImmutableMap<Class<? extends B>, B> delegate)
 specifier|private
 name|ImmutableClassToInstanceMap
 parameter_list|(
@@ -644,9 +644,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<

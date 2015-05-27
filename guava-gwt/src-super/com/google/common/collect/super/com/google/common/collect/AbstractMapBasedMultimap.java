@@ -1167,7 +1167,7 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|wrapList ( @ullable K key, List<V> list, @Nullable WrappedCollection ancestor)
+DECL|method|wrapList (@ullable K key, List<V> list, @Nullable WrappedCollection ancestor)
 specifier|private
 name|List
 argument_list|<
@@ -1256,7 +1256,7 @@ name|V
 argument_list|>
 name|ancestorDelegate
 decl_stmt|;
-DECL|method|WrappedCollection (@ullable K key, Collection<V> delegate, @Nullable WrappedCollection ancestor)
+DECL|method|WrappedCollection ( @ullable K key, Collection<V> delegate, @Nullable WrappedCollection ancestor)
 name|WrappedCollection
 parameter_list|(
 annotation|@
@@ -1461,9 +1461,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1479,9 +1479,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1515,9 +1515,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1533,9 +1533,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1563,9 +1563,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1735,9 +1735,9 @@ name|delegateIterator
 return|;
 block|}
 block|}
-DECL|method|add (V value)
 annotation|@
 name|Override
+DECL|method|add (V value)
 specifier|public
 name|boolean
 name|add
@@ -1799,9 +1799,9 @@ name|ancestor
 return|;
 block|}
 comment|// The following methods are provided for better performance.
-DECL|method|addAll (Collection<? extends V> collection)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends V> collection)
 specifier|public
 name|boolean
 name|addAll
@@ -1881,9 +1881,9 @@ return|return
 name|changed
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -1904,9 +1904,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -1930,9 +1930,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1968,9 +1968,9 @@ argument_list|()
 expr_stmt|;
 comment|// maybe shouldn't be removed if this is a sublist
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -2008,9 +2008,9 @@ return|return
 name|changed
 return|;
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -2080,9 +2080,9 @@ return|return
 name|changed
 return|;
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
@@ -3196,7 +3196,7 @@ name|WrappedList
 implements|implements
 name|RandomAccess
 block|{
-DECL|method|RandomAccessWrappedList (@ullable K key, List<V> delegate, @Nullable WrappedCollection ancestor)
+DECL|method|RandomAccessWrappedList ( @ullable K key, List<V> delegate, @Nullable WrappedCollection ancestor)
 name|RandomAccessWrappedList
 parameter_list|(
 annotation|@
@@ -3309,9 +3309,9 @@ name|subMap
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -3449,9 +3449,9 @@ block|}
 return|;
 block|}
 comment|// The following methods are included for better performance.
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|boolean
 name|remove
@@ -3526,9 +3526,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -3553,9 +3553,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -3585,9 +3585,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4084,9 +4084,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>The iterator generated by the returned collection traverses the values    * for one key, followed by the values of a second key, and so on.    */
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -4356,9 +4356,9 @@ argument_list|()
 return|;
 block|}
 comment|// The following methods are included for performance.
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -4378,9 +4378,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -4440,9 +4440,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -4475,9 +4475,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -4545,9 +4545,9 @@ return|return
 name|output
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -4571,9 +4571,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4586,9 +4586,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -4725,9 +4725,9 @@ operator|.
 name|this
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -4753,9 +4753,9 @@ argument_list|()
 return|;
 block|}
 comment|// The following methods are included for performance.
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -4778,9 +4778,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -5215,9 +5215,9 @@ name|sortedKeySet
 decl_stmt|;
 comment|// returns a SortedSet, even though returning a Set would be sufficient to
 comment|// satisfy the SortedMap.keySet() interface
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|SortedSet
 argument_list|<

@@ -17,7 +17,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * "Overrides" the {@link ImmutableMultiset} static methods that lack  * {@link ImmutableSortedMultiset} equivalents with deprecated, exception-throwing versions. This  * prevents accidents like the following:  *  *<pre>   {@code  *   *   List<Object> objects = ...;  *   // Sort them:  *   Set<Object> sorted = ImmutableSortedMultiset.copyOf(objects);  *   // BAD CODE! The returned multiset is actually an unsorted ImmutableMultiset!}</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedMultiset} itself, it seems clearer  * to separate these "do not call" methods from those intended for normal use.  *  * @author Louis Wasserman  */
+comment|/**  * "Overrides" the {@link ImmutableMultiset} static methods that lack  * {@link ImmutableSortedMultiset} equivalents with deprecated, exception-throwing versions. This  * prevents accidents like the following:  *  *<pre>   {@code  *  *   List<Object> objects = ...;  *   // Sort them:  *   Set<Object> sorted = ImmutableSortedMultiset.copyOf(objects);  *   // BAD CODE! The returned multiset is actually an unsorted ImmutableMultiset!}</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedMultiset} itself, it seems clearer  * to separate these "do not call" methods from those intended for normal use.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class

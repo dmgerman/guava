@@ -114,7 +114,7 @@ specifier|public
 class|class
 name|ImmutableEnumMap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, ImmutableEnumMap<?, ?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, ImmutableEnumMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -131,7 +131,7 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 DECL|method|instantiate ( SerializationStreamReader reader)
 specifier|public
 specifier|static

@@ -584,9 +584,9 @@ argument_list|()
 return|;
 block|}
 comment|// Optimizations - Query Operations
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -601,9 +601,9 @@ name|size
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -814,9 +814,9 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-DECL|method|count (@ullable Object element)
 annotation|@
 name|Override
+DECL|method|count (@ullable Object element)
 specifier|public
 name|int
 name|count
@@ -856,9 +856,9 @@ return|;
 block|}
 comment|// Optional Operations - Modification Operations
 comment|/**    * {@inheritDoc}    *    * @throws IllegalArgumentException if the call would result in more than    *     {@link Integer#MAX_VALUE} occurrences of {@code element} in this    *     multiset.    */
-DECL|method|add (@ullable E element, int occurrences)
 annotation|@
 name|Override
+DECL|method|add (@ullable E element, int occurrences)
 specifier|public
 name|int
 name|add
@@ -986,9 +986,9 @@ return|return
 name|oldCount
 return|;
 block|}
-DECL|method|remove (@ullable Object element, int occurrences)
 annotation|@
 name|Override
+DECL|method|remove (@ullable Object element, int occurrences)
 specifier|public
 name|int
 name|remove
@@ -1102,9 +1102,9 @@ name|oldCount
 return|;
 block|}
 comment|// Roughly a 33% performance improvement over AbstractMultiset.setCount().
-DECL|method|setCount (@ullable E element, int count)
 annotation|@
 name|Override
+DECL|method|setCount (@ullable E element, int count)
 specifier|public
 name|int
 name|setCount

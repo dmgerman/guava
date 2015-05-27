@@ -198,9 +198,9 @@ operator|=
 name|delegate
 expr_stmt|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -209,9 +209,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -247,9 +247,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|contains (Object object)
 annotation|@
 name|Override
+DECL|method|contains (Object object)
 specifier|public
 name|boolean
 name|contains
@@ -267,9 +267,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|containsAll
@@ -315,9 +315,9 @@ name|collection
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -330,9 +330,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -389,9 +389,9 @@ specifier|transient
 name|int
 name|hashCode
 decl_stmt|;
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -419,9 +419,9 @@ else|:
 name|result
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -435,9 +435,9 @@ argument_list|()
 return|;
 block|}
 comment|// All callers of the constructor are restricted to<E extends Enum<E>>.
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

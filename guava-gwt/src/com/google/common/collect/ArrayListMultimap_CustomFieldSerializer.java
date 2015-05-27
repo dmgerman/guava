@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link ArrayListMultimap}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of {@link ArrayListMultimap}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -97,8 +97,8 @@ name|?
 argument_list|>
 name|out
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader in)
+block|{}
+DECL|method|instantiate (SerializationStreamReader in)
 specifier|public
 specifier|static
 name|ArrayListMultimap

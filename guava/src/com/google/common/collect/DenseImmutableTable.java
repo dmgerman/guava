@@ -226,7 +226,7 @@ name|int
 index|[]
 name|iterationOrderColumn
 decl_stmt|;
-DECL|method|DenseImmutableTable (ImmutableList<Cell<R, C, V>> cellList, ImmutableSet<R> rowSpace, ImmutableSet<C> columnSpace)
+DECL|method|DenseImmutableTable ( ImmutableList<Cell<R, C, V>> cellList, ImmutableSet<R> rowSpace, ImmutableSet<C> columnSpace)
 name|DenseImmutableTable
 parameter_list|(
 name|ImmutableList
@@ -617,9 +617,9 @@ name|index
 argument_list|)
 return|;
 block|}
-DECL|method|getValue (int keyIndex)
 annotation|@
 name|Nullable
+DECL|method|getValue (int keyIndex)
 specifier|abstract
 name|V
 name|getValue
@@ -1157,9 +1157,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|columnMap ()
 annotation|@
 name|Override
+DECL|method|columnMap ()
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -1201,9 +1201,9 @@ return|return
 name|rowMap
 return|;
 block|}
-DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Override
+DECL|method|get (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|V
 name|get

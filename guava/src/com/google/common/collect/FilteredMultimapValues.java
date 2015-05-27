@@ -151,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation for {@link FilteredMultimap#values()}.  *   * @author Louis Wasserman  */
+comment|/**  * Implementation for {@link FilteredMultimap#values()}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
