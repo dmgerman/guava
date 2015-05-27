@@ -350,7 +350,7 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kevinb): consider making this public
-DECL|method|indexOf ( boolean[] array, boolean target, int start, int end)
+DECL|method|indexOf (boolean[] array, boolean target, int start, int end)
 specifier|private
 specifier|static
 name|int
@@ -550,7 +550,7 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kevinb): consider making this public
-DECL|method|lastIndexOf ( boolean[] array, boolean target, int start, int end)
+DECL|method|lastIndexOf (boolean[] array, boolean target, int start, int end)
 specifier|private
 specifier|static
 name|int
@@ -695,7 +695,7 @@ name|result
 return|;
 block|}
 comment|/**    * Returns an array containing the same values as {@code array}, but    * guaranteed to be of a specified minimum length. If {@code array} already    * has a length of at least {@code minLength}, it is returned directly.    * Otherwise, a new array of size {@code minLength + padding} is returned,    * containing the values of {@code array}, and zeroes in the remaining places.    *    * @param array the source array    * @param minLength the minimum length the returned array must guarantee    * @param padding an extra amount to "grow" the array by if growth is    *     necessary    * @throws IllegalArgumentException if {@code minLength} or {@code padding} is    *     negative    * @return an array containing the values of {@code array}, with guaranteed    *     minimum length {@code minLength}    */
-DECL|method|ensureCapacity ( boolean[] array, int minLength, int padding)
+DECL|method|ensureCapacity (boolean[] array, int minLength, int padding)
 specifier|public
 specifier|static
 name|boolean
@@ -1249,9 +1249,9 @@ operator|=
 name|end
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1263,9 +1263,9 @@ operator|-
 name|start
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -1275,9 +1275,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|Boolean
 name|get
@@ -1303,9 +1303,9 @@ name|index
 index|]
 return|;
 block|}
-DECL|method|contains (Object target)
 annotation|@
 name|Override
+DECL|method|contains (Object target)
 specifier|public
 name|boolean
 name|contains
@@ -1342,9 +1342,9 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (Object target)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|indexOf
@@ -1399,9 +1399,9 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (Object target)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|lastIndexOf
@@ -1456,9 +1456,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|set (int index, Boolean element)
 annotation|@
 name|Override
+DECL|method|set (int index, Boolean element)
 specifier|public
 name|Boolean
 name|set
@@ -1505,9 +1505,9 @@ return|return
 name|oldValue
 return|;
 block|}
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
 argument_list|<
@@ -1567,9 +1567,9 @@ name|toIndex
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1680,9 +1680,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1729,9 +1729,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

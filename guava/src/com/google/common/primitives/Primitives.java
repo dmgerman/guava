@@ -357,7 +357,7 @@ name|wrapToPrim
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|add (Map<Class<?>, Class<?>> forward, Map<Class<?>, Class<?>> backward, Class<?> key, Class<?> value)
+DECL|method|add ( Map<Class<?>, Class<?>> forward, Map<Class<?>, Class<?>> backward, Class<?> key, Class<?> value)
 specifier|private
 specifier|static
 name|void

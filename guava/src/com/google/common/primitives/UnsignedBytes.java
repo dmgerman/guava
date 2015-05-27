@@ -933,9 +933,11 @@ block|}
 catch|catch
 parameter_list|(
 name|SecurityException
-name|tryReflectionInstead
+name|e
 parameter_list|)
-block|{}
+block|{
+comment|// that's okay; try reflection instead
+block|}
 try|try
 block|{
 return|return
@@ -1034,6 +1036,7 @@ argument_list|(
 name|x
 argument_list|)
 condition|)
+block|{
 return|return
 name|k
 operator|.
@@ -1042,6 +1045,7 @@ argument_list|(
 name|x
 argument_list|)
 return|;
+block|}
 block|}
 throw|throw
 operator|new
@@ -1079,9 +1083,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|compare (byte[] left, byte[] right)
 annotation|@
 name|Override
+DECL|method|compare (byte[] left, byte[] right)
 specifier|public
 name|int
 name|compare
@@ -1318,9 +1322,9 @@ block|{
 DECL|enumConstant|INSTANCE
 name|INSTANCE
 block|;
-DECL|method|compare (byte[] left, byte[] right)
 annotation|@
 name|Override
+DECL|method|compare (byte[] left, byte[] right)
 specifier|public
 name|int
 name|compare
