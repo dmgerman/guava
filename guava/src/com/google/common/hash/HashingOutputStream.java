@@ -144,9 +144,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (int b)
 annotation|@
 name|Override
+DECL|method|write (int b)
 specifier|public
 name|void
 name|write
@@ -175,9 +175,9 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (byte[] bytes, int off, int len)
 annotation|@
 name|Override
+DECL|method|write (byte[] bytes, int off, int len)
 specifier|public
 name|void
 name|write
@@ -237,9 +237,9 @@ block|}
 comment|// Overriding close() because FilterOutputStream's close() method pre-JDK8 has bad behavior:
 comment|// it silently ignores any exception thrown by flush(). Instead, just close the delegate stream.
 comment|// It should flush itself if necessary.
-DECL|method|close ()
 annotation|@
 name|Override
+DECL|method|close ()
 specifier|public
 name|void
 name|close

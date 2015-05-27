@@ -169,9 +169,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -232,9 +232,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -327,9 +327,9 @@ name|charset
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -346,9 +346,9 @@ operator|+
 literal|")"
 return|;
 block|}
-DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
@@ -391,9 +391,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -536,9 +536,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -673,9 +673,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -689,9 +689,9 @@ operator|+
 literal|")"
 return|;
 block|}
-DECL|method|equals (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
@@ -738,9 +738,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -761,7 +761,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**    * Returns a funnel for longs.    *     * @since 13.0    */
+comment|/**    * Returns a funnel for longs.    *    * @since 13.0    */
 DECL|method|longFunnel ()
 specifier|public
 specifier|static
@@ -811,9 +811,9 @@ name|from
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -824,7 +824,7 @@ literal|"Funnels.longFunnel()"
 return|;
 block|}
 block|}
-comment|/**    * Wraps a {@code PrimitiveSink} as an {@link OutputStream}, so it is easy to    * {@link Funnel#funnel funnel} an object to a {@code PrimitiveSink}    * if there is already a way to write the contents of the object to an {@code OutputStream}.      *     *<p>The {@code close} and {@code flush} methods of the returned {@code OutputStream}    * do nothing, and no method throws {@code IOException}.    *     * @since 13.0    */
+comment|/**    * Wraps a {@code PrimitiveSink} as an {@link OutputStream}, so it is easy to    * {@link Funnel#funnel funnel} an object to a {@code PrimitiveSink}    * if there is already a way to write the contents of the object to an {@code OutputStream}.    *    *<p>The {@code close} and {@code flush} methods of the returned {@code OutputStream}    * do nothing, and no method throws {@code IOException}.    *    * @since 13.0    */
 DECL|method|asOutputStream (PrimitiveSink sink)
 specifier|public
 specifier|static
@@ -875,9 +875,9 @@ name|sink
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|write (int b)
 annotation|@
 name|Override
+DECL|method|write (int b)
 specifier|public
 name|void
 name|write
@@ -897,9 +897,9 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|write (byte[] bytes)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|write
@@ -917,9 +917,9 @@ name|bytes
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|write (byte[] bytes, int off, int len)
-annotation|@
-name|Override
 specifier|public
 name|void
 name|write
@@ -947,9 +947,9 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

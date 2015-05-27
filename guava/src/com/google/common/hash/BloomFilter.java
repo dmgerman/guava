@@ -355,7 +355,7 @@ name|Strategy
 name|strategy
 decl_stmt|;
 comment|/**    * Creates a BloomFilter.    */
-DECL|method|BloomFilter (BitArray bits, int numHashFunctions, Funnel<? super T> funnel, Strategy strategy)
+DECL|method|BloomFilter ( BitArray bits, int numHashFunctions, Funnel<? super T> funnel, Strategy strategy)
 specifier|private
 name|BloomFilter
 parameter_list|(
@@ -571,9 +571,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the number of bits in the underlying bit array.    */
-DECL|method|bitSize ()
 annotation|@
 name|VisibleForTesting
+DECL|method|bitSize ()
 name|long
 name|bitSize
 parameter_list|()
@@ -1108,7 +1108,7 @@ block|}
 comment|/**    * Creates a {@link BloomFilter BloomFilter<T>} with the expected number of    * insertions and a default expected false positive probability of 3%.    *    *<p>Note that overflowing a {@code BloomFilter} with significantly more elements    * than specified, will result in its saturation, and a sharp deterioration of its    * false positive probability.    *    *<p>The constructed {@code BloomFilter<T>} will be serializable if the provided    * {@code Funnel<T>} is.    *    * @param funnel the funnel of T's that the constructed {@code BloomFilter<T>} will use    * @param expectedInsertions the number of expected insertions to the constructed    *     {@code BloomFilter<T>}; must be positive    * @return a {@code BloomFilter}    */
 annotation|@
 name|CheckReturnValue
-DECL|method|create ( Funnel<? super T> funnel, long expectedInsertions)
+DECL|method|create (Funnel<? super T> funnel, long expectedInsertions)
 specifier|public
 specifier|static
 parameter_list|<

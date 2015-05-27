@@ -285,9 +285,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -301,9 +301,9 @@ operator|.
 name|SIZE
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -349,9 +349,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|newHasher ()
 annotation|@
 name|Override
+DECL|method|newHasher ()
 specifier|public
 name|Hasher
 name|newHasher

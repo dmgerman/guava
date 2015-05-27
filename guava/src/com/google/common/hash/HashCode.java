@@ -526,9 +526,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|equalsSameBits (HashCode that)
 annotation|@
 name|Override
+DECL|method|equalsSameBits (HashCode that)
 name|boolean
 name|equalsSameBits
 parameter_list|(

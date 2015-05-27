@@ -164,9 +164,9 @@ operator|=
 name|seed
 expr_stmt|;
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -176,9 +176,9 @@ return|return
 literal|32
 return|;
 block|}
-DECL|method|newHasher ()
 annotation|@
 name|Override
+DECL|method|newHasher ()
 specifier|public
 name|Hasher
 name|newHasher
@@ -266,9 +266,9 @@ operator|^
 name|seed
 return|;
 block|}
-DECL|method|hashInt (int input)
 annotation|@
 name|Override
+DECL|method|hashInt (int input)
 specifier|public
 name|HashCode
 name|hashInt
@@ -306,9 +306,9 @@ name|BYTES
 argument_list|)
 return|;
 block|}
-DECL|method|hashLong (long input)
 annotation|@
 name|Override
+DECL|method|hashLong (long input)
 specifier|public
 name|HashCode
 name|hashLong
@@ -383,9 +383,9 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kak): Maybe implement #hashBytes instead?
-DECL|method|hashUnencodedChars (CharSequence input)
 annotation|@
 name|Override
+DECL|method|hashUnencodedChars (CharSequence input)
 specifier|public
 name|HashCode
 name|hashUnencodedChars
@@ -696,9 +696,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-DECL|method|process (ByteBuffer bb)
 annotation|@
 name|Override
+DECL|method|process (ByteBuffer bb)
 specifier|protected
 name|void
 name|process
@@ -736,9 +736,9 @@ operator|+=
 name|CHUNK_SIZE
 expr_stmt|;
 block|}
-DECL|method|processRemaining (ByteBuffer bb)
 annotation|@
 name|Override
+DECL|method|processRemaining (ByteBuffer bb)
 specifier|protected
 name|void
 name|processRemaining
@@ -799,9 +799,9 @@ name|k1
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeHash ()
 annotation|@
 name|Override
+DECL|method|makeHash ()
 specifier|public
 name|HashCode
 name|makeHash

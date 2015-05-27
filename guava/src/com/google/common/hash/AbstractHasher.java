@@ -40,9 +40,9 @@ name|AbstractHasher
 implements|implements
 name|Hasher
 block|{
-DECL|method|putBoolean (boolean b)
 annotation|@
 name|Override
+DECL|method|putBoolean (boolean b)
 specifier|public
 specifier|final
 name|Hasher
@@ -69,9 +69,9 @@ literal|0
 argument_list|)
 return|;
 block|}
-DECL|method|putDouble (double d)
 annotation|@
 name|Override
+DECL|method|putDouble (double d)
 specifier|public
 specifier|final
 name|Hasher
@@ -93,9 +93,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|putFloat (float f)
 annotation|@
 name|Override
+DECL|method|putFloat (float f)
 specifier|public
 specifier|final
 name|Hasher
@@ -117,9 +117,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|putUnencodedChars (CharSequence charSequence)
 annotation|@
 name|Override
+DECL|method|putUnencodedChars (CharSequence charSequence)
 specifier|public
 name|Hasher
 name|putUnencodedChars
@@ -165,9 +165,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|putString (CharSequence charSequence, Charset charset)
 annotation|@
 name|Override
+DECL|method|putString (CharSequence charSequence, Charset charset)
 specifier|public
 name|Hasher
 name|putString

@@ -66,9 +66,9 @@ name|Hasher
 extends|extends
 name|PrimitiveSink
 block|{
-DECL|method|putByte (byte b)
 annotation|@
 name|Override
+DECL|method|putByte (byte b)
 name|Hasher
 name|putByte
 parameter_list|(
@@ -76,9 +76,9 @@ name|byte
 name|b
 parameter_list|)
 function_decl|;
-DECL|method|putBytes (byte[] bytes)
 annotation|@
 name|Override
+DECL|method|putBytes (byte[] bytes)
 name|Hasher
 name|putBytes
 parameter_list|(
@@ -87,9 +87,9 @@ index|[]
 name|bytes
 parameter_list|)
 function_decl|;
-DECL|method|putBytes (byte[] bytes, int off, int len)
 annotation|@
 name|Override
+DECL|method|putBytes (byte[] bytes, int off, int len)
 name|Hasher
 name|putBytes
 parameter_list|(
@@ -104,9 +104,9 @@ name|int
 name|len
 parameter_list|)
 function_decl|;
-DECL|method|putShort (short s)
 annotation|@
 name|Override
+DECL|method|putShort (short s)
 name|Hasher
 name|putShort
 parameter_list|(
@@ -114,9 +114,9 @@ name|short
 name|s
 parameter_list|)
 function_decl|;
-DECL|method|putInt (int i)
 annotation|@
 name|Override
+DECL|method|putInt (int i)
 name|Hasher
 name|putInt
 parameter_list|(
@@ -124,9 +124,9 @@ name|int
 name|i
 parameter_list|)
 function_decl|;
-DECL|method|putLong (long l)
 annotation|@
 name|Override
+DECL|method|putLong (long l)
 name|Hasher
 name|putLong
 parameter_list|(
@@ -135,9 +135,9 @@ name|l
 parameter_list|)
 function_decl|;
 comment|/**    * Equivalent to {@code putInt(Float.floatToRawIntBits(f))}.    */
-DECL|method|putFloat (float f)
 annotation|@
 name|Override
+DECL|method|putFloat (float f)
 name|Hasher
 name|putFloat
 parameter_list|(
@@ -146,9 +146,9 @@ name|f
 parameter_list|)
 function_decl|;
 comment|/**    * Equivalent to {@code putLong(Double.doubleToRawLongBits(d))}.    */
-DECL|method|putDouble (double d)
 annotation|@
 name|Override
+DECL|method|putDouble (double d)
 name|Hasher
 name|putDouble
 parameter_list|(
@@ -157,9 +157,9 @@ name|d
 parameter_list|)
 function_decl|;
 comment|/**    * Equivalent to {@code putByte(b ? (byte) 1 : (byte) 0)}.    */
-DECL|method|putBoolean (boolean b)
 annotation|@
 name|Override
+DECL|method|putBoolean (boolean b)
 name|Hasher
 name|putBoolean
 parameter_list|(
@@ -167,9 +167,9 @@ name|boolean
 name|b
 parameter_list|)
 function_decl|;
-DECL|method|putChar (char c)
 annotation|@
 name|Override
+DECL|method|putChar (char c)
 name|Hasher
 name|putChar
 parameter_list|(
@@ -178,9 +178,9 @@ name|c
 parameter_list|)
 function_decl|;
 comment|/**    * Equivalent to processing each {@code char} value in the {@code CharSequence}, in order.    * The input must not be updated while this method is in progress.    *    * @since 15.0 (since 11.0 as putString(CharSequence)).    */
-DECL|method|putUnencodedChars (CharSequence charSequence)
 annotation|@
 name|Override
+DECL|method|putUnencodedChars (CharSequence charSequence)
 name|Hasher
 name|putUnencodedChars
 parameter_list|(
@@ -189,9 +189,9 @@ name|charSequence
 parameter_list|)
 function_decl|;
 comment|/**    * Equivalent to {@code putBytes(charSequence.toString().getBytes(charset))}.    */
-DECL|method|putString (CharSequence charSequence, Charset charset)
 annotation|@
 name|Override
+DECL|method|putString (CharSequence charSequence, Charset charset)
 name|Hasher
 name|putString
 parameter_list|(

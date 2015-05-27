@@ -171,9 +171,9 @@ operator|=
 name|k1
 expr_stmt|;
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -183,9 +183,9 @@ return|return
 literal|64
 return|;
 block|}
-DECL|method|newHasher ()
 annotation|@
 name|Override
+DECL|method|newHasher ()
 specifier|public
 name|Hasher
 name|newHasher
@@ -206,9 +206,9 @@ argument_list|)
 return|;
 block|}
 comment|// TODO(kak): Implement and benchmark the hashFoo() shortcuts.
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -468,9 +468,9 @@ operator|^=
 name|k1
 expr_stmt|;
 block|}
-DECL|method|process (ByteBuffer buffer)
 annotation|@
 name|Override
+DECL|method|process (ByteBuffer buffer)
 specifier|protected
 name|void
 name|process
@@ -492,9 +492,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|processRemaining (ByteBuffer buffer)
 annotation|@
 name|Override
+DECL|method|processRemaining (ByteBuffer buffer)
 specifier|protected
 name|void
 name|processRemaining
@@ -542,9 +542,9 @@ name|i
 expr_stmt|;
 block|}
 block|}
-DECL|method|makeHash ()
 annotation|@
 name|Override
+DECL|method|makeHash ()
 specifier|public
 name|HashCode
 name|makeHash

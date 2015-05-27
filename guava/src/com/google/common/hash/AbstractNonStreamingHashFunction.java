@@ -118,9 +118,9 @@ name|expectedInputSize
 argument_list|)
 return|;
 block|}
-DECL|method|hashObject (T instance, Funnel<? super T> funnel)
 annotation|@
 name|Override
+DECL|method|hashObject (T instance, Funnel<? super T> funnel)
 specifier|public
 parameter_list|<
 name|T
@@ -155,9 +155,9 @@ name|hash
 argument_list|()
 return|;
 block|}
-DECL|method|hashUnencodedChars (CharSequence input)
 annotation|@
 name|Override
+DECL|method|hashUnencodedChars (CharSequence input)
 specifier|public
 name|HashCode
 name|hashUnencodedChars
@@ -219,9 +219,9 @@ name|hash
 argument_list|()
 return|;
 block|}
-DECL|method|hashString (CharSequence input, Charset charset)
 annotation|@
 name|Override
+DECL|method|hashString (CharSequence input, Charset charset)
 specifier|public
 name|HashCode
 name|hashString
@@ -248,9 +248,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|hashInt (int input)
 annotation|@
 name|Override
+DECL|method|hashInt (int input)
 specifier|public
 name|HashCode
 name|hashInt
@@ -274,9 +274,9 @@ name|hash
 argument_list|()
 return|;
 block|}
-DECL|method|hashLong (long input)
 annotation|@
 name|Override
+DECL|method|hashLong (long input)
 specifier|public
 name|HashCode
 name|hashLong
@@ -300,9 +300,9 @@ name|hash
 argument_list|()
 return|;
 block|}
-DECL|method|hashBytes (byte[] input)
 annotation|@
 name|Override
+DECL|method|hashBytes (byte[] input)
 specifier|public
 name|HashCode
 name|hashBytes

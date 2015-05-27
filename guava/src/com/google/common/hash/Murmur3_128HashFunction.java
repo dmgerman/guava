@@ -115,9 +115,9 @@ operator|=
 name|seed
 expr_stmt|;
 block|}
-DECL|method|bits ()
 annotation|@
 name|Override
+DECL|method|bits ()
 specifier|public
 name|int
 name|bits
@@ -127,9 +127,9 @@ return|return
 literal|128
 return|;
 block|}
-DECL|method|newHasher ()
 annotation|@
 name|Override
+DECL|method|newHasher ()
 specifier|public
 name|Hasher
 name|newHasher
@@ -299,9 +299,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-DECL|method|process (ByteBuffer bb)
 annotation|@
 name|Override
+DECL|method|process (ByteBuffer bb)
 specifier|protected
 name|void
 name|process
@@ -411,9 +411,9 @@ operator|+
 literal|0x38495ab5
 expr_stmt|;
 block|}
-DECL|method|processRemaining (ByteBuffer bb)
 annotation|@
 name|Override
+DECL|method|processRemaining (ByteBuffer bb)
 specifier|protected
 name|void
 name|processRemaining
@@ -772,9 +772,9 @@ name|k2
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|makeHash ()
 annotation|@
 name|Override
+DECL|method|makeHash ()
 specifier|public
 name|HashCode
 name|makeHash
