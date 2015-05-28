@@ -446,6 +446,8 @@ name|void
 name|testContainsEntryWithIncomparableKey
 parameter_list|()
 block|{
+try|try
+block|{
 name|assertFalse
 argument_list|(
 name|getMap
@@ -471,11 +473,22 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|acceptable
+parameter_list|)
+block|{
+comment|// allowed by the spec
+block|}
+block|}
 DECL|method|testContainsEntryWithIncomparableValue ()
 specifier|public
 name|void
 name|testContainsEntryWithIncomparableValue
 parameter_list|()
+block|{
+try|try
 block|{
 name|assertFalse
 argument_list|(
@@ -501,6 +514,15 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassCastException
+name|acceptable
+parameter_list|)
+block|{
+comment|// allowed by the spec
+block|}
 block|}
 annotation|@
 name|MapFeature
