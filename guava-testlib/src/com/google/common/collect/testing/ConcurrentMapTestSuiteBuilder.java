@@ -86,7 +86,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|using ( TestConcurrentMapGenerator<K, V> generator)
+DECL|method|using ( TestMapGenerator<K, V> generator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -102,7 +102,7 @@ name|V
 argument_list|>
 name|using
 parameter_list|(
-name|TestConcurrentMapGenerator
+name|TestMapGenerator
 argument_list|<
 name|K
 argument_list|,
