@@ -1301,7 +1301,7 @@ name|testsForConcurrentSkipListMapNatural
 parameter_list|()
 block|{
 return|return
-name|NavigableMapTestSuiteBuilder
+name|ConcurrentNavigableMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
@@ -1394,7 +1394,7 @@ name|testsForConcurrentSkipListMapWithComparator
 parameter_list|()
 block|{
 return|return
-name|NavigableMapTestSuiteBuilder
+name|ConcurrentNavigableMapTestSuiteBuilder
 operator|.
 name|using
 argument_list|(
