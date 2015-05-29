@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
@@ -33,6 +33,28 @@ operator|.
 name|features
 operator|.
 name|CollectionFeature
+operator|.
+name|SERIALIZABLE
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|CollectionFeature
+operator|.
+name|SERIALIZABLE_INCLUDING_VIEWS
 import|;
 end_import
 
@@ -475,8 +497,6 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-name|CollectionFeature
-operator|.
 name|SERIALIZABLE
 argument_list|)
 condition|)
@@ -740,8 +760,6 @@ name|derivedFeatures
 operator|.
 name|remove
 argument_list|(
-name|CollectionFeature
-operator|.
 name|SERIALIZABLE
 argument_list|)
 expr_stmt|;
@@ -749,8 +767,6 @@ name|derivedFeatures
 operator|.
 name|remove
 argument_list|(
-name|CollectionFeature
-operator|.
 name|SERIALIZABLE_INCLUDING_VIEWS
 argument_list|)
 expr_stmt|;

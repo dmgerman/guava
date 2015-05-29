@@ -19,6 +19,26 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|CollectionFeature
+operator|.
+name|KNOWN_ORDER
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -51,24 +71,6 @@ operator|.
 name|DerivedCollectionGenerators
 operator|.
 name|SortedMapSubmapTestMapGenerator
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|testing
-operator|.
-name|features
-operator|.
-name|CollectionFeature
 import|;
 end_import
 
@@ -321,8 +323,6 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-name|CollectionFeature
-operator|.
 name|KNOWN_ORDER
 argument_list|)
 condition|)
@@ -348,8 +348,6 @@ name|features
 operator|.
 name|add
 argument_list|(
-name|CollectionFeature
-operator|.
 name|KNOWN_ORDER
 argument_list|)
 expr_stmt|;

@@ -56,7 +56,27 @@ name|features
 operator|.
 name|MapFeature
 operator|.
-name|*
+name|ALLOWS_NULL_VALUES
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
+name|features
+operator|.
+name|MapFeature
+operator|.
+name|ALLOWS_NULL_VALUE_QUERIES
 import|;
 end_import
 
