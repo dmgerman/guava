@@ -752,6 +752,31 @@ name|double
 name|right
 parameter_list|)
 function_decl|;
+comment|/**    * Discouraged synonym for {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed    *     are being either negated or reversed, undo the negation or reversal and    *     use {@link #compareTrueFirst}.    */
+annotation|@
+name|Deprecated
+DECL|method|compare (Boolean left, Boolean right)
+specifier|public
+specifier|final
+name|ComparisonChain
+name|compare
+parameter_list|(
+name|Boolean
+name|left
+parameter_list|,
+name|Boolean
+name|right
+parameter_list|)
+block|{
+return|return
+name|compareFalseFirst
+argument_list|(
+name|left
+argument_list|,
+name|right
+argument_list|)
+return|;
+block|}
 comment|/**    * Compares two {@code boolean} values, considering {@code true} to be less    * than {@code false},<i>if</i> the result of this comparison chain has not    * already been determined.    *    * @since 12.0    */
 DECL|method|compareTrueFirst (boolean left, boolean right)
 specifier|public
