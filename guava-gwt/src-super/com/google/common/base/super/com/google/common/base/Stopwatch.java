@@ -156,20 +156,6 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|Beta
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
 name|GwtCompatible
 import|;
 end_import
@@ -201,8 +187,6 @@ comment|/**  * An object that measures elapsed time in nanoseconds. It is useful
 end_comment
 
 begin_class
-annotation|@
-name|Beta
 annotation|@
 name|GwtCompatible
 argument_list|(
