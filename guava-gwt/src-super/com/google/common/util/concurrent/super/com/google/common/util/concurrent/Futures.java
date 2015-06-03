@@ -394,17 +394,17 @@ comment|//
 comment|// For simplicity the rest of this description will discuss Futures.withFallback since it is the
 comment|// simplest instance, though very similar descriptions apply to many other classes in this file.
 comment|//
-comment|// In the constructor of FutureFallback, the delegate future is assigned to a field 'running'.
-comment|// That field is non-final and non-volatile.  There are 2 places where the 'running' field is read
-comment|// and where we will have to consider visibility of the write operation in the constructor.
+comment|// In the constructor of FutureFallback, the delegate future is assigned to a field 'inputFuture'.
+comment|// That field is non-final and non-volatile.  There are 2 places where the 'inputFuture' field is
+comment|// read and where we will have to consider visibility of the write operation in the constructor.
 comment|//
-comment|// 1. In the listener that performs the callback.  In this case it is fine since running is
+comment|// 1. In the listener that performs the callback.  In this case it is fine since inputFuture is
 comment|//    assigned prior to calling addListener, and addListener happens-before any invocation of the
-comment|//    listener. Notably, this means that 'volatile' is unnecessary to make 'running' visible to
-comment|//    the listener.
+comment|//    listener. Notably, this means that 'volatile' is unnecessary to make 'inputFuture' visible
+comment|//    to the listener.
 comment|//
 comment|// 2. In cancel() where we propagate cancellation to the input.  In this case it is _not_ fine.
-comment|//    There is currently nothing that enforces that the write to running in the constructor is
+comment|//    There is currently nothing that enforces that the write to inputFuture in the constructor is
 comment|//    visible to cancel().  This is because there is no happens before edge between the write and
 comment|//    a (hypothetical) unsafe read by our caller. Note: adding 'volatile' does not fix this issue,
 comment|//    it would just add an edge such that if cancel() observed non-null, then it would also
@@ -1029,7 +1029,7 @@ argument_list|>
 implements|implements
 name|Runnable
 block|{
-DECL|field|running
+DECL|field|inputFuture
 annotation|@
 name|Nullable
 name|ListenableFuture
@@ -1038,7 +1038,7 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|running
+name|inputFuture
 decl_stmt|;
 DECL|field|exceptionType
 annotation|@
@@ -1055,7 +1055,7 @@ name|Nullable
 name|F
 name|fallback
 decl_stmt|;
-DECL|method|AbstractCatchingFuture ( ListenableFuture<? extends V> input, Class<X> exceptionType, F fallback)
+DECL|method|AbstractCatchingFuture ( ListenableFuture<? extends V> inputFuture, Class<X> exceptionType, F fallback)
 name|AbstractCatchingFuture
 parameter_list|(
 name|ListenableFuture
@@ -1064,7 +1064,7 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|input
+name|inputFuture
 parameter_list|,
 name|Class
 argument_list|<
@@ -1087,11 +1087,11 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|running
+name|inputFuture
 operator|=
 name|checkNotNull
 argument_list|(
-name|input
+name|inputFuture
 argument_list|)
 expr_stmt|;
 name|this
@@ -1119,9 +1119,9 @@ name|?
 extends|extends
 name|V
 argument_list|>
-name|localRunning
+name|localInputFuture
 init|=
-name|running
+name|inputFuture
 decl_stmt|;
 name|Class
 argument_list|<
@@ -1138,7 +1138,7 @@ name|fallback
 decl_stmt|;
 if|if
 condition|(
-name|localRunning
+name|localInputFuture
 operator|==
 literal|null
 operator||
@@ -1165,7 +1165,7 @@ name|set
 argument_list|(
 name|getUninterruptibly
 argument_list|(
-name|localRunning
+name|localInputFuture
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1278,7 +1278,7 @@ parameter_list|()
 block|{
 name|this
 operator|.
-name|running
+name|inputFuture
 operator|=
 literal|null
 expr_stmt|;
@@ -1312,11 +1312,9 @@ name|ListenableFuture
 argument_list|<
 name|?
 argument_list|>
-name|current
+name|localInputFuture
 init|=
-name|this
-operator|.
-name|running
+name|inputFuture
 decl_stmt|;
 if|if
 condition|(
@@ -1334,12 +1332,12 @@ comment|// nothing to cancel and if the fallback is pending, cancellation would 
 comment|// super.cancel().
 if|if
 condition|(
-name|current
+name|localInputFuture
 operator|!=
 literal|null
 condition|)
 block|{
-name|current
+name|localInputFuture
 operator|.
 name|cancel
 argument_list|(
