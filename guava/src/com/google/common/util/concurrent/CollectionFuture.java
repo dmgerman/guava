@@ -262,6 +262,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|collectOneValue (boolean allMustSucceed, int index, @Nullable V returnValue)
+specifier|final
 name|void
 name|collectOneValue
 parameter_list|(
@@ -331,6 +332,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|handleAllCompleted ()
+specifier|final
 name|void
 name|handleAllCompleted
 parameter_list|()
