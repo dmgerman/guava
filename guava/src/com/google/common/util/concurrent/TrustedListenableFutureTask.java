@@ -259,6 +259,7 @@ block|}
 DECL|method|done ()
 annotation|@
 name|Override
+specifier|final
 name|void
 name|done
 parameter_list|()
@@ -308,29 +309,6 @@ name|interruptTask
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|/**    * Template method for calculating and setting the value. Guaranteed to be called at most once.    *    *<p>Extracted as an extension point for subclasses that wish to modify behavior.    * See Futures.combine (which has specialized exception handling).    */
-DECL|method|doRun (Callable<V> localTask)
-name|void
-name|doRun
-parameter_list|(
-name|Callable
-argument_list|<
-name|V
-argument_list|>
-name|localTask
-parameter_list|)
-throws|throws
-name|Exception
-block|{
-name|set
-argument_list|(
-name|localTask
-operator|.
-name|call
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|class|TrustedFutureInterruptibleTask
 specifier|private
@@ -386,9 +364,12 @@ condition|)
 block|{
 try|try
 block|{
-name|doRun
+name|set
 argument_list|(
 name|callable
+operator|.
+name|call
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
