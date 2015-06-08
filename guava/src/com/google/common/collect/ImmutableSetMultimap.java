@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link SetMultimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Mike Ward  * @since 2.0  */
+comment|/**  * A {@link SetMultimap} whose contents will never change, with many other important properties  * detailed at {@link ImmutableCollection}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ImmutableCollectionsExplained">  * immutable collections</a>.  *  * @author Mike Ward  * @since 2.0  */
 end_comment
 
 begin_class

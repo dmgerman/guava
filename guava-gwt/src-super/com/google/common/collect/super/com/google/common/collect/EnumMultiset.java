@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multiset">  * {@code Multiset}</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * Multiset implementation backed by an {@link EnumMap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset">  * {@code Multiset}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class

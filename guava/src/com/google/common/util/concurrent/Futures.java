@@ -501,7 +501,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to the {@link Future} interface.  *  *<p>Many of these methods use the {@link ListenableFuture} API; consult the  * Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ListenableFutureExplained">  * {@code ListenableFuture}</a>.  *  * @author Kevin Bourrillion  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to the {@link Future} interface.  *  *<p>Many of these methods use the {@link ListenableFuture} API; consult the  * Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/ListenableFutureExplained">  * {@code ListenableFuture}</a>.  *  * @author Kevin Bourrillion  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class

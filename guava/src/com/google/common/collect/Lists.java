@@ -429,7 +429,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@link List} instances. Also see this  * class's counterparts {@link Sets}, {@link Maps} and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Lists">  * {@code Lists}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
+comment|/**  * Static utility methods pertaining to {@link List} instances. Also see this  * class's counterparts {@link Sets}, {@link Maps} and {@link Queues}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#lists">  * {@code Lists}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class

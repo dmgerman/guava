@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  *<p>See the Guava User Guide entry on<a href=  * "http://code.google.com/p/guava-libraries/wiki/ThrowablesExplained">Throwables</a>.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to instances of {@link Throwable}.  *  *<p>See the Guava User Guide entry on<a href=  * "https://github.com/google/guava/wiki/ThrowablesExplained">Throwables</a>.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 1.0  */
 end_comment
 
 begin_class

@@ -57,7 +57,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *  *<p>Assuming you're free to choose, note that<b>{@link #UTF_8} is widely preferred</b>.  *  *<p>See the Guava User Guide article on<a  * href="http://code.google.com/p/guava-libraries/wiki/StringsExplained#Charsets">  * {@code Charsets}</a>.  *  * @author Mike Bostock  * @since 1.0  */
+comment|/**  * Contains constant definitions for the six standard {@link Charset} instances, which are  * guaranteed to be supported by all Java platform implementations.  *  *<p>Assuming you're free to choose, note that<b>{@link #UTF_8} is widely preferred</b>.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/StringsExplained#charsets">  * {@code Charsets}</a>.  *  * @author Mike Bostock  * @since 1.0  */
 end_comment
 
 begin_class

@@ -271,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/CollectionUtilitiesExplained#Multisets">  * {@code Multisets}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
+comment|/**  * Provides static utility methods for creating and working with {@link  * Multiset} instances.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#multisets">  * {@code Multisets}</a>.  *  * @author Kevin Bourrillion  * @author Mike Bostock  * @author Louis Wasserman  * @since 2.0  */
 end_comment
 
 begin_class

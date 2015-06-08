@@ -77,7 +77,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper functions that operate on any {@code Object}, and are not already provided in  * {@link java.util.Objects}.  *  *<p>See the Guava User Guide on<a  * href="http://code.google.com/p/guava-libraries/wiki/CommonObjectUtilitiesExplained">writing  * {@code Object} methods with {@code MoreObjects}</a>.  *  * @author Laurence Gonsalves  * @since 18.0 (since 2.0 as {@code Objects})  */
+comment|/**  * Helper functions that operate on any {@code Object}, and are not already provided in  * {@link java.util.Objects}.  *  *<p>See the Guava User Guide on<a  * href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained">writing  * {@code Object} methods with {@code MoreObjects}</a>.  *  * @author Laurence Gonsalves  * @since 18.0 (since 2.0 as {@code Objects})  */
 end_comment
 
 begin_class

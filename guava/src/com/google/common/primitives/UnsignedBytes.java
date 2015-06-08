@@ -117,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret  * values as<i>unsigned</i> (that is, any negative value {@code b} is treated  * as the positive value {@code 256 + b}). The corresponding methods that treat  * the values as signed are found in {@link SignedBytes}, and the methods for  * which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a href=  * "http://code.google.com/p/guava-libraries/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @author Louis Wasserman  * @since 1.0  */
+comment|/**  * Static utility methods pertaining to {@code byte} primitives that interpret  * values as<i>unsigned</i> (that is, any negative value {@code b} is treated  * as the positive value {@code 256 + b}). The corresponding methods that treat  * the values as signed are found in {@link SignedBytes}, and the methods for  * which signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @author Martin Buchholz  * @author Hiroshi Yamauchi  * @author Louis Wasserman  * @since 1.0  */
 end_comment
 
 begin_class

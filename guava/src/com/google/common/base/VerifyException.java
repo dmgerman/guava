@@ -55,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exception thrown upon the failure of a  *<a href="http://code.google.com/p/guava-libraries/wiki/ConditionalFailuresExplained">verification  * check</a>, including those performed by the convenience methods of the {@link Verify} class.  *  * @since 17.0  */
+comment|/**  * Exception thrown upon the failure of a  *<a href="https://github.com/google/guava/wiki/ConditionalFailuresExplained">verification  * check</a>, including those performed by the convenience methods of the {@link Verify} class.  *  * @since 17.0  */
 end_comment
 
 begin_class
