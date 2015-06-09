@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
@@ -29,6 +29,8 @@ operator|.
 name|collect
 operator|.
 name|Sets
+operator|.
+name|newHashSet
 import|;
 end_import
 
@@ -83,13 +85,13 @@ operator|=
 name|remainingFutures
 expr_stmt|;
 block|}
-DECL|method|getSeenExceptions ()
+DECL|method|getOrInitSeenExceptions ()
 specifier|final
 name|Set
 argument_list|<
 name|Throwable
 argument_list|>
-name|getSeenExceptions
+name|getOrInitSeenExceptions
 parameter_list|()
 block|{
 if|if
@@ -101,19 +103,31 @@ condition|)
 block|{
 name|seenExceptions
 operator|=
-name|Sets
-operator|.
-expr|<
-name|Throwable
-operator|>
 name|newHashSet
 argument_list|()
+expr_stmt|;
+name|addInitialException
+argument_list|(
+name|seenExceptions
+argument_list|)
 expr_stmt|;
 block|}
 return|return
 name|seenExceptions
 return|;
 block|}
+DECL|method|addInitialException (Set<Throwable> seen)
+specifier|abstract
+name|void
+name|addInitialException
+parameter_list|(
+name|Set
+argument_list|<
+name|Throwable
+argument_list|>
+name|seen
+parameter_list|)
+function_decl|;
 DECL|method|decrementRemainingAndGet ()
 specifier|final
 name|int

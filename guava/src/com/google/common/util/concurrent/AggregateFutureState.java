@@ -20,6 +20,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|Sets
+operator|.
+name|newConcurrentHashSet
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -61,20 +77,6 @@ operator|.
 name|annotations
 operator|.
 name|GwtCompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Sets
 import|;
 end_import
 
@@ -230,15 +232,16 @@ operator|=
 name|remainingFutures
 expr_stmt|;
 block|}
-DECL|method|getSeenExceptions ()
+DECL|method|getOrInitSeenExceptions ()
 specifier|final
 name|Set
 argument_list|<
 name|Throwable
 argument_list|>
-name|getSeenExceptions
+name|getOrInitSeenExceptions
 parameter_list|()
 block|{
+comment|/*      * The initialization of seenExceptions has to be more complicated than we'd like. The simple      * approach would be for each caller CAS it from null to a Set populated with its exception. But      * there's another race: If the first thread fails with an exception and a second thread      * immediately fails with the same exception:      *      * Thread1: calls setException(), which returns true, context switch before it can CAS      * seenExceptions to its exception      *      * Thread2: calls setException(), which returns false, CASes seenExceptions to its exception,      * and wrongly believes that its exception is new (leading it to logging it when it shouldn't)      *      * Our solution is for threads to CAS seenExceptions from null to a Set population with _the      * initial exception_, no matter which thread does the work. This ensures that seenExceptions      * always contains not just the current thread's exception but also the initial thread's.      */
 name|Set
 argument_list|<
 name|Throwable
@@ -254,6 +257,17 @@ operator|==
 literal|null
 condition|)
 block|{
+name|seenExceptionsLocal
+operator|=
+name|newConcurrentHashSet
+argument_list|()
+expr_stmt|;
+comment|/*        * Other handleException() callers may see this as soon as we publish it. We need to populate        * it with the initial failure before we do, or else they may think that the initial failure        * has never been seen before.        */
+name|addInitialException
+argument_list|(
+name|seenExceptionsLocal
+argument_list|)
+expr_stmt|;
 name|SEEN_EXCEPTIONS_UDPATER
 operator|.
 name|compareAndSet
@@ -262,16 +276,10 @@ name|this
 argument_list|,
 literal|null
 argument_list|,
-name|Sets
-operator|.
-expr|<
-name|Throwable
-operator|>
-name|newConcurrentHashSet
-argument_list|()
+name|seenExceptionsLocal
 argument_list|)
 expr_stmt|;
-comment|// Guaranteed to get us the right value because we only set this once (here)
+comment|/*        * If another handleException() caller created the set, we need to use that copy in case yet        * other callers have added to it.        *        * This read is guaranteed to get us the right value because we only set this once (here).        */
 name|seenExceptionsLocal
 operator|=
 name|seenExceptions
@@ -281,6 +289,19 @@ return|return
 name|seenExceptionsLocal
 return|;
 block|}
+comment|/** Populates {@code seen} with the exception that was passed to {@code setException}. */
+DECL|method|addInitialException (Set<Throwable> seen)
+specifier|abstract
+name|void
+name|addInitialException
+parameter_list|(
+name|Set
+argument_list|<
+name|Throwable
+argument_list|>
+name|seen
+parameter_list|)
+function_decl|;
 DECL|method|decrementRemainingAndGet ()
 specifier|final
 name|int

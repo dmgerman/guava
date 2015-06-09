@@ -2718,6 +2718,24 @@ name|void
 name|done
 parameter_list|()
 block|{}
+comment|/**    * Returns the exception that this {@code Future} completed with. This includes completion through    * a call to {@link setException} or {@link setFuture}{@code (failedFuture)} but not cancellation.    *    * @throws RuntimeException if the {@code Future} has not failed    */
+DECL|method|trustedGetException ()
+specifier|final
+name|Throwable
+name|trustedGetException
+parameter_list|()
+block|{
+return|return
+operator|(
+operator|(
+name|Failure
+operator|)
+name|value
+operator|)
+operator|.
+name|exception
+return|;
+block|}
 comment|/** Clears the {@link #waiters} list and returns the most recently added value. */
 DECL|method|clearWaiters ()
 specifier|private
