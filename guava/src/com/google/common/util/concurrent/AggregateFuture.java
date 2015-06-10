@@ -265,6 +265,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|// TODO(cpovirk): Use maybePropagateCancellation() if the performance is OK and the code is clean.
 DECL|method|cancel (boolean mayInterruptIfRunning)
 annotation|@
 name|Override

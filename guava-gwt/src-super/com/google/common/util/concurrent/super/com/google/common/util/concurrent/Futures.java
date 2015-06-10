@@ -391,25 +391,26 @@ comment|//
 comment|// A consequence of these requirements is that the delegate futures cannot be stored in
 comment|// final fields.
 comment|//
-comment|// For simplicity the rest of this description will discuss Futures.withFallback since it is the
+comment|// For simplicity the rest of this description will discuss Futures.catching since it is the
 comment|// simplest instance, though very similar descriptions apply to many other classes in this file.
 comment|//
-comment|// In the constructor of FutureFallback, the delegate future is assigned to a field 'inputFuture'.
-comment|// That field is non-final and non-volatile.  There are 2 places where the 'inputFuture' field is
-comment|// read and where we will have to consider visibility of the write operation in the constructor.
+comment|// In the constructor of AbstractCatchingFuture, the delegate future is assigned to a field
+comment|// 'inputFuture'. That field is non-final and non-volatile.  There are 2 places where the
+comment|// 'inputFuture' field is read and where we will have to consider visibility of the write
+comment|// operation in the constructor.
 comment|//
 comment|// 1. In the listener that performs the callback.  In this case it is fine since inputFuture is
 comment|//    assigned prior to calling addListener, and addListener happens-before any invocation of the
 comment|//    listener. Notably, this means that 'volatile' is unnecessary to make 'inputFuture' visible
 comment|//    to the listener.
 comment|//
-comment|// 2. In cancel() where we propagate cancellation to the input.  In this case it is _not_ fine.
+comment|// 2. In done() where we may propagate cancellation to the input.  In this case it is _not_ fine.
 comment|//    There is currently nothing that enforces that the write to inputFuture in the constructor is
-comment|//    visible to cancel().  This is because there is no happens before edge between the write and
-comment|//    a (hypothetical) unsafe read by our caller. Note: adding 'volatile' does not fix this issue,
-comment|//    it would just add an edge such that if cancel() observed non-null, then it would also
-comment|//    definitely observe all earlier writes, but we still have no guarantee that cancel() would
-comment|//    see the inital write (just stronger guarantees if it does).
+comment|//    visible to done().  This is because there is no happens before edge between the write and a
+comment|//    (hypothetical) unsafe read by our caller. Note: adding 'volatile' does not fix this issue,
+comment|//    it would just add an edge such that if done() observed non-null, then it would also
+comment|//    definitely observe all earlier writes, but we still have no guarantee that done() would see
+comment|//    the inital write (just stronger guarantees if it does).
 comment|//
 comment|// See: http://cs.oswego.edu/pipermail/concurrency-interest/2015-January/013800.html
 comment|// For a (long) discussion about this specific issue and the general futility of life.
@@ -1288,6 +1289,11 @@ name|void
 name|done
 parameter_list|()
 block|{
+name|maybePropagateCancellation
+argument_list|(
+name|inputFuture
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|inputFuture
@@ -1306,64 +1312,6 @@ name|fallback
 operator|=
 literal|null
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|cancel (boolean mayInterruptIfRunning)
-specifier|public
-specifier|final
-name|boolean
-name|cancel
-parameter_list|(
-name|boolean
-name|mayInterruptIfRunning
-parameter_list|)
-block|{
-comment|// we need to read this field prior to calling super.cancel() because cancel will null it out
-name|ListenableFuture
-argument_list|<
-name|?
-argument_list|>
-name|localInputFuture
-init|=
-name|inputFuture
-decl_stmt|;
-if|if
-condition|(
-name|super
-operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-condition|)
-block|{
-comment|// May be null if the original future completed, but we were cancelled while the fallback
-comment|// is still pending.  This is fine because if the original future completed, then there is
-comment|// nothing to cancel and if the fallback is pending, cancellation would be handled by
-comment|// super.cancel().
-if|if
-condition|(
-name|localInputFuture
-operator|!=
-literal|null
-condition|)
-block|{
-name|localInputFuture
-operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
 block|}
 block|}
 comment|/**    * A {@link AbstractCatchingFuture} that delegates to an {@link AsyncFunction}    * and {@link #setFuture(ListenableFuture)} to implement {@link #doFallback}    */
@@ -1843,6 +1791,8 @@ comment|// Some users, for better or worse, rely on the delegate definitely bein
 comment|// to the timeout future completing.  We wrap in a try...finally... for the off chance
 comment|// that cancelling the delegate causes an Error to be thrown from a listener on the
 comment|// delegate.
+comment|// TODO(cpovirk): fix those callers, and simplify this code, including relying on done()
+comment|// for most/all of the cleanup above
 try|try
 block|{
 name|delegate
@@ -1874,16 +1824,12 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|cancel (boolean mayInterruptIfRunning)
+DECL|method|done ()
 annotation|@
 name|Override
-specifier|public
-name|boolean
-name|cancel
-parameter_list|(
-name|boolean
-name|mayInterruptIfRunning
-parameter_list|)
+name|void
+name|done
+parameter_list|()
 block|{
 name|Future
 argument_list|<
@@ -1901,16 +1847,6 @@ name|delegate
 init|=
 name|delegateRef
 decl_stmt|;
-if|if
-condition|(
-name|super
-operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-condition|)
-block|{
 comment|// Either can be null if super.cancel() races with an execution of Fire.run, but it doesn't
 comment|// matter because either 1. the delegate is already done (so there is no point in
 comment|// propagating cancellation and Fire.run will cancel the timer. or 2. the timeout occurred
@@ -1928,11 +1864,13 @@ name|delegateRef
 operator|=
 literal|null
 expr_stmt|;
+comment|// TODO(cpovirk): use maybePropagateCancellation?
 name|delegate
 operator|.
 name|cancel
 argument_list|(
-name|mayInterruptIfRunning
+name|wasInterrupted
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1955,13 +1893,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
 block|}
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    * @deprecated These {@code AsyncFunction} overloads of {@code transform} are    *     being renamed to {@code transformAsync}. (The {@code Function}    *     overloads are keeping the "transform" name.) This method will be removed in Guava release    *     20.0.    */
@@ -2562,63 +2493,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|cancel (boolean mayInterruptIfRunning)
-specifier|public
-specifier|final
-name|boolean
-name|cancel
-parameter_list|(
-name|boolean
-name|mayInterruptIfRunning
-parameter_list|)
-block|{
-comment|/*        * Our additional cancellation work needs to occur even if        * !mayInterruptIfRunning, so we can't move it into interruptTask().        */
-comment|// we need to read this field prior to calling cancel() because cancel will null it out
-name|ListenableFuture
-argument_list|<
-name|?
-extends|extends
-name|I
-argument_list|>
-name|localInputFuture
-init|=
-name|inputFuture
-decl_stmt|;
-if|if
-condition|(
-name|super
-operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|localInputFuture
-operator|!=
-literal|null
-condition|)
-block|{
-name|localInputFuture
-operator|.
-name|cancel
-argument_list|(
-name|mayInterruptIfRunning
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|run ()
 specifier|public
 specifier|final
@@ -2775,6 +2649,11 @@ name|void
 name|done
 parameter_list|()
 block|{
+name|maybePropagateCancellation
+argument_list|(
+name|inputFuture
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|inputFuture

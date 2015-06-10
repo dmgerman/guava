@@ -202,6 +202,16 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Emulation for AbstractFuture in GWT.  */
 end_comment
@@ -889,6 +899,40 @@ expr_stmt|;
 return|return
 name|throwable
 return|;
+block|}
+DECL|method|maybePropagateCancellation (@ullable Future<?> related)
+specifier|final
+name|void
+name|maybePropagateCancellation
+parameter_list|(
+annotation|@
+name|Nullable
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|related
+parameter_list|)
+block|{
+if|if
+condition|(
+name|related
+operator|!=
+literal|null
+operator|&&
+name|isCancelled
+argument_list|()
+condition|)
+block|{
+name|related
+operator|.
+name|cancel
+argument_list|(
+name|wasInterrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|enum|State
 specifier|private

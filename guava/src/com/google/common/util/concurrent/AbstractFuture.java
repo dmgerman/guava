@@ -112,6 +112,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|security
@@ -173,6 +187,18 @@ operator|.
 name|concurrent
 operator|.
 name|Executor
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|Future
 import|;
 end_import
 
@@ -2713,6 +2739,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
+comment|// TODO(cpovirk): @ForOverride if https://github.com/google/error-prone/issues/342 permits
 DECL|method|done ()
 name|void
 name|done
@@ -2735,6 +2762,41 @@ operator|)
 operator|.
 name|exception
 return|;
+block|}
+comment|/**    * If this future has been cancelled (and possibly interrupted), cancels (and possibly interrupts)    * the given future (if available).    *    *<p>This method should be used only when this future is completed. It is designed to be called    * from {@code done}.    */
+DECL|method|maybePropagateCancellation (@ullable Future<?> related)
+specifier|final
+name|void
+name|maybePropagateCancellation
+parameter_list|(
+annotation|@
+name|Nullable
+name|Future
+argument_list|<
+name|?
+argument_list|>
+name|related
+parameter_list|)
+block|{
+if|if
+condition|(
+name|related
+operator|!=
+literal|null
+operator|&&
+name|isCancelled
+argument_list|()
+condition|)
+block|{
+name|related
+operator|.
+name|cancel
+argument_list|(
+name|wasInterrupted
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/** Clears the {@link #waiters} list and returns the most recently added value. */
 DECL|method|clearWaiters ()
