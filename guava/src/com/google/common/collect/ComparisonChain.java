@@ -752,7 +752,7 @@ name|double
 name|right
 parameter_list|)
 function_decl|;
-comment|/**    * Discouraged synonym for {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed    *     are being either negated or reversed, undo the negation or reversal and    *     use {@link #compareTrueFirst}.    */
+comment|/**    * Discouraged synonym for {@link #compareFalseFirst}.    *    * @deprecated Use {@link #compareFalseFirst}; or, if the parameters passed    *     are being either negated or reversed, undo the negation or reversal and    *     use {@link #compareTrueFirst}.    * @since 19.0    */
 annotation|@
 name|Deprecated
 DECL|method|compare (Boolean left, Boolean right)

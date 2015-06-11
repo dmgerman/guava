@@ -882,7 +882,7 @@ name|X_XSS_PROTECTION
 init|=
 literal|"X-XSS-Protection"
 decl_stmt|;
-comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {@code Ping-From}</a> header field name.    * */
+comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {@code Ping-From}</a> header field name.    *    * @since 19.0    */
 DECL|field|PING_FROM
 specifier|public
 specifier|static
@@ -892,7 +892,7 @@ name|PING_FROM
 init|=
 literal|"Ping-From"
 decl_stmt|;
-comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {code Ping-To}</a> header field name.    * */
+comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {code Ping-To}</a> header field name.    *    * @since 19.0    */
 DECL|field|PING_TO
 specifier|public
 specifier|static

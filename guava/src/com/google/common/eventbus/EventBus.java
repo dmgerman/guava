@@ -332,7 +332,7 @@ name|exceptionHandler
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the identifier for this event bus.    */
+comment|/**    * Returns the identifier for this event bus.    *    * @since 19.0    */
 DECL|method|identifier ()
 specifier|public
 specifier|final

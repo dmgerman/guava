@@ -171,7 +171,7 @@ argument_list|>
 name|asMapOfRanges
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a view of this range map as an unmodifiable {@code Map<Range<K>, V>}.    * Modifications to this range map are guaranteed to read through to the returned {@code Map}.    *    *<p>The returned {@code Map} iterates over entries in descending order of the bounds of the    * {@code Range} entries.    *    *<p>It is guaranteed that no empty ranges will be in the returned {@code Map}.    */
+comment|/**    * Returns a view of this range map as an unmodifiable {@code Map<Range<K>, V>}.    * Modifications to this range map are guaranteed to read through to the returned {@code Map}.    *    *<p>The returned {@code Map} iterates over entries in descending order of the bounds of the    * {@code Range} entries.    *    *<p>It is guaranteed that no empty ranges will be in the returned {@code Map}.    *    * @since 19.0    */
 DECL|method|asDescendingMapOfRanges ()
 name|Map
 argument_list|<

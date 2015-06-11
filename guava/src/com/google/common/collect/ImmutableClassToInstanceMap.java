@@ -139,7 +139,7 @@ name|of
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * Returns an empty {@code ImmutableClassToInstanceMap}.    */
+comment|/**    * Returns an empty {@code ImmutableClassToInstanceMap}.    *    * @since 19.0    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -168,7 +168,7 @@ operator|)
 name|EMPTY
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableClassToInstanceMap} containing a single entry.    */
+comment|/**    * Returns an {@code ImmutableClassToInstanceMap} containing a single entry.    *    * @since 19.0    */
 DECL|method|of (Class<T> type, T value)
 specifier|public
 specifier|static
