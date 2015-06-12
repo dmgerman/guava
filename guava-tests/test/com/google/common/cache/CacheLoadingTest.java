@@ -16423,10 +16423,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testExpandDuringRefresh ()
+comment|// Test ignored because it is extremely flaky in CI builds
 specifier|public
 name|void
-name|testExpandDuringRefresh
+DECL|method|ignoreTestExpandDuringRefresh ()
+name|ignoreTestExpandDuringRefresh
 parameter_list|()
 throws|throws
 name|InterruptedException
