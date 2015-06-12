@@ -2713,10 +2713,6 @@ parameter_list|>
 implements|implements
 name|Runnable
 block|{
-comment|// Holding a strong reference to the enclosing class (as we would do if
-comment|// this weren't a static nested class) could cause retention of the
-comment|// delegate's return value (in AbstractFuture) for the duration of the
-comment|// timeout in the case of successful completion. We clear this on run.
 DECL|field|timeoutFutureRef
 annotation|@
 name|Nullable
@@ -2789,33 +2785,8 @@ condition|)
 block|{
 return|return;
 block|}
-comment|// Unpin all the memory before attempting to complete.  Not only does this save us from
-comment|// wrapping everything in a finally block, it also ensures that if delegate.cancel() (in the
-comment|// else block), causes delegate to complete, then it won't reentrantly call back in and
-comment|// cause TimeoutFuture to finish with cancellation.
+comment|/*          * If we're about to complete the TimeoutFuture, we want to release our reference to it.          * Otherwise, we'll pin it (and its result) in memory until the timeout task is GCed. (The          * need to clear our reference to the TimeoutFuture is the reason we use a *static* nested          * class with a manual reference back to the "containing" class.)          *          * This has the nice-ish side effect of limiting reentrancy: run() calls          * timeoutFuture.setException() calls run(). That reentrancy would already be harmless,          * since timeoutFuture can be set (and delegate cancelled) only once. (And "set only once"          * is important for other reasons: run() can still be invoked concurrently in different          * threads, even with the above null checks.)          */
 name|timeoutFutureRef
-operator|=
-literal|null
-expr_stmt|;
-name|Future
-argument_list|<
-name|?
-argument_list|>
-name|timer
-init|=
-name|timeoutFuture
-operator|.
-name|timer
-decl_stmt|;
-name|timeoutFuture
-operator|.
-name|delegateRef
-operator|=
-literal|null
-expr_stmt|;
-name|timeoutFuture
-operator|.
-name|timer
 operator|=
 literal|null
 expr_stmt|;
@@ -2834,45 +2805,10 @@ argument_list|(
 name|delegate
 argument_list|)
 expr_stmt|;
-comment|// Try to cancel the timer as an optimization
-comment|// timer may be null if this call to run was by the timer task since there is no
-comment|// happens-before edge between the assignment to timer and an execution of the timer
-comment|// task.
-if|if
-condition|(
-name|timer
-operator|!=
-literal|null
-condition|)
-block|{
-name|timer
-operator|.
-name|cancel
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{
-comment|// Some users, for better or worse, rely on the delegate definitely being cancelled prior
-comment|// to the timeout future completing.  We wrap in a try...finally... for the off chance
-comment|// that cancelling the delegate causes an Error to be thrown from a listener on the
-comment|// delegate.
-comment|// TODO(cpovirk): fix those callers, and simplify this code, including relying on done()
-comment|// for most/all of the cleanup above
 try|try
-block|{
-name|delegate
-operator|.
-name|cancel
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
 block|{
 comment|// TODO(lukes): this stack trace is particularly useless (all it does is point at the
 comment|// scheduledexecutorservice thread), consider eliminating it altogether?
@@ -2890,6 +2826,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|delegate
+operator|.
+name|cancel
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2900,6 +2846,11 @@ name|void
 name|done
 parameter_list|()
 block|{
+name|maybePropagateCancellation
+argument_list|(
+name|delegateRef
+argument_list|)
+expr_stmt|;
 name|Future
 argument_list|<
 name|?
@@ -2908,41 +2859,9 @@ name|localTimer
 init|=
 name|timer
 decl_stmt|;
-name|ListenableFuture
-argument_list|<
-name|V
-argument_list|>
-name|delegate
-init|=
-name|delegateRef
-decl_stmt|;
-comment|// Either can be null if super.cancel() races with an execution of Fire.run, but it doesn't
-comment|// matter because either 1. the delegate is already done (so there is no point in
-comment|// propagating cancellation and Fire.run will cancel the timer. or 2. the timeout occurred
-comment|// and Fire.run will cancel the delegate
-comment|// Technically this is also possible in the 'unsafe publishing' case described above.
-if|if
-condition|(
-name|delegate
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// Unpin and prevent Fire from doing anything if delegate.cancel finishes the delegate.
-name|delegateRef
-operator|=
-literal|null
-expr_stmt|;
-comment|// TODO(cpovirk): use maybePropagateCancellation?
-name|delegate
-operator|.
-name|cancel
-argument_list|(
-name|wasInterrupted
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|// Try to cancel the timer as an optimization
+comment|// timer may be null if this call to run was by the timer task since there is no
+comment|// happens-before edge between the assignment to timer and an execution of the timer task.
 if|if
 condition|(
 name|localTimer
@@ -2950,10 +2869,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|timer
-operator|=
-literal|null
-expr_stmt|;
 name|localTimer
 operator|.
 name|cancel
@@ -2962,6 +2877,14 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|delegateRef
+operator|=
+literal|null
+expr_stmt|;
+name|timer
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a new {@code ListenableFuture} whose result is asynchronously    * derived from the result of the given {@code Future}. More precisely, the    * returned {@code Future} takes its result from a {@code Future} produced by    * applying the given {@code AsyncFunction} to the result of the original    * {@code Future}. Example:    *    *<pre>   {@code    *   ListenableFuture<RowKey> rowKeyFuture = indexService.lookUp(query);    *   AsyncFunction<RowKey, QueryResult> queryFunction =    *       new AsyncFunction<RowKey, QueryResult>() {    *         public ListenableFuture<QueryResult> apply(RowKey rowKey) {    *           return dataService.read(rowKey);    *         }    *       };    *   ListenableFuture<QueryResult> queryFuture =    *       transform(rowKeyFuture, queryFunction);}</pre>    *    *<p>Note: If the derived {@code Future} is slow or heavyweight to create    * (whether the {@code Future} itself is slow or heavyweight to complete is    * irrelevant), consider {@linkplain #transform(ListenableFuture,    * AsyncFunction, Executor) supplying an executor}. If you do not supply an    * executor, {@code transform} will use a    * {@linkplain MoreExecutors#directExecutor direct executor}, which carries    * some caveats for heavier operations. For example, the call to {@code    * function.apply} may run on an unpredictable or undesirable thread:    *    *<ul>    *<li>If the input {@code Future} is done at the time {@code transform} is    * called, {@code transform} will call {@code function.apply} inline.    *<li>If the input {@code Future} is not yet done, {@code transform} will    * schedule {@code function.apply} to be run by the thread that completes the    * input {@code Future}, which may be an internal system thread such as an    * RPC network thread.    *</ul>    *    *<p>Also note that, regardless of which thread executes {@code    * function.apply}, all other registered but unexecuted listeners are    * prevented from running during its execution, even if those listeners are    * to run in other executors.    *    *<p>The returned {@code Future} attempts to keep its cancellation state in    * sync with that of the input future and that of the future returned by the    * function. That is, if the returned {@code Future} is cancelled, it will    * attempt to cancel the other two, and if either of the other two is    * cancelled, the returned {@code Future} will receive a callback in which it    * will attempt to cancel itself.    *    * @param input The future to transform    * @param function A function to transform the result of the input future    *     to the result of the output future    * @return A future that holds result of the function (if the input succeeded)    *     or the original input's failure (if not)    * @since 11.0    * @deprecated These {@code AsyncFunction} overloads of {@code transform} are    *     being renamed to {@code transformAsync}. (The {@code Function}    *     overloads are keeping the "transform" name.) This method will be removed in Guava release    *     20.0.    */
