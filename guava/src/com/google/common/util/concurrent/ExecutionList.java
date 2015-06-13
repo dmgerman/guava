@@ -19,16 +19,18 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|annotations
+name|base
 operator|.
-name|VisibleForTesting
+name|Preconditions
+operator|.
+name|checkNotNull
 import|;
 end_import
 
@@ -40,9 +42,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Preconditions
+name|VisibleForTesting
 import|;
 end_import
 
@@ -105,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>A list of listeners, each with an associated {@code Executor}, that  * guarantees that every {@code Runnable} that is {@linkplain #add added} will  * be executed after {@link #execute()} is called. Any {@code Runnable} added  * after the call to {@code execute} is still guaranteed to execute. There is no  * guarantee, however, that listeners will be executed in the order that they  * are added.  *  *<p>Exceptions thrown by a listener will be propagated up to the executor.  * Any exception thrown during {@code Executor.execute} (e.g., a {@code  * RejectedExecutionException} or an exception thrown by {@linkplain  * MoreExecutors#directExecutor direct execution}) will be caught and  * logged.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * A support class for {@code ListenableFuture} implementations to manage their listeners. An  * instance contains a list of listeners, each with an associated {@code Executor}, and guarantees  * that every {@code Runnable} that is {@linkplain #add added} will be executed after {@link  * #execute()} is called. Any {@code Runnable} added after the call to {@code execute} is still  * guaranteed to execute. There is no guarantee, however, that listeners will be executed in the  * order that they are added.  *  *<p>Exceptions thrown by a listener will be propagated up to the executor. Any exception thrown  * during {@code Executor.execute} (e.g., a {@code RejectedExecutionException} or an exception  * thrown by {@linkplain MoreExecutors#directExecutor direct execution}) will be caught and logged.  *  * @author Nishant Thakkar  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -136,7 +138,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * The runnable, executor pairs to execute.  This acts as a stack threaded through the     * {@link RunnableExecutorPair#next} field.    */
+comment|/**    * The runnable, executor pairs to execute.  This acts as a stack threaded through the {@link    * RunnableExecutorPair#next} field.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -163,7 +165,7 @@ specifier|public
 name|ExecutionList
 parameter_list|()
 block|{}
-comment|/**    * Adds the {@code Runnable} and accompanying {@code Executor} to the list of    * listeners to execute. If execution has already begun, the listener is    * executed immediately.    *    *<p>Note: For fast, lightweight listeners that would be safe to execute in    * any thread, consider {@link MoreExecutors#directExecutor}. For heavier    * listeners, {@code directExecutor()} carries some caveats: First, the    * thread that the listener runs in depends on whether the {@code    * ExecutionList} has been executed at the time it is added. In particular,    * listeners may run in the thread that calls {@code add}. Second, the thread    * that calls {@link #execute} may be an internal implementation thread, such    * as an RPC network thread, and {@code directExecutor()} listeners may    * run in this thread. Finally, during the execution of a {@code    * directExecutor} listener, all other registered but unexecuted    * listeners are prevented from running, even if those listeners are to run    * in other executors.    */
+comment|/**    * Adds the {@code Runnable} and accompanying {@code Executor} to the list of listeners to    * execute. If execution has already begun, the listener is executed immediately.    *    *<p>When selecting an executor, note that {@code directExecutor} is dangerous in some cases. See    * the discussion in the {@link ListenableFuture#addListener ListenableFuture.addListener}    * documentation.    */
 DECL|method|add (Runnable runnable, Executor executor)
 specifier|public
 name|void
@@ -176,11 +178,8 @@ name|Executor
 name|executor
 parameter_list|)
 block|{
-comment|// Fail fast on a null.  We throw NPE here because the contract of
-comment|// Executor states that it throws NPE on null listener, so we propagate
-comment|// that contract up into the add method as well.
-name|Preconditions
-operator|.
+comment|// Fail fast on a null.  We throw NPE here because the contract of Executor states that it
+comment|// throws NPE on null listener, so we propagate that contract up into the add method as well.
 name|checkNotNull
 argument_list|(
 name|runnable
@@ -188,8 +187,6 @@ argument_list|,
 literal|"Runnable was null."
 argument_list|)
 expr_stmt|;
-name|Preconditions
-operator|.
 name|checkNotNull
 argument_list|(
 name|executor
@@ -197,9 +194,9 @@ argument_list|,
 literal|"Executor was null."
 argument_list|)
 expr_stmt|;
-comment|// Lock while we check state.  We must maintain the lock while adding the
-comment|// new pair so that another thread can't run the list out from under us.
-comment|// We only add to the list if we have not yet started execution.
+comment|// Lock while we check state.  We must maintain the lock while adding the new pair so that
+comment|// another thread can't run the list out from under us. We only add to the list if we have not
+comment|// yet started execution.
 synchronized|synchronized
 init|(
 name|this
@@ -226,10 +223,10 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|// Execute the runnable immediately. Because of scheduling this may end up
-comment|// getting called before some of the previously added runnables, but we're
-comment|// OK with that.  If we want to change the contract to guarantee ordering
-comment|// among runnables we'd have to modify the logic here to allow it.
+comment|// Execute the runnable immediately. Because of scheduling this may end up getting called before
+comment|// some of the previously added runnables, but we're OK with that.  If we want to change the
+comment|// contract to guarantee ordering among runnables we'd have to modify the logic here to allow
+comment|// it.
 name|executeListener
 argument_list|(
 name|runnable
@@ -238,15 +235,15 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Runs this execution list, executing all existing pairs in the order they    * were added. However, note that listeners added after this point may be    * executed before those previously added, and note that the execution order    * of all listeners is ultimately chosen by the implementations of the    * supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is    * semantically equivalent to calling it exactly once.    *    * @since 10.0 (present in 1.0 as {@code run})    */
+comment|/**    * Runs this execution list, executing all existing pairs in the order they were added. However,    * note that listeners added after this point may be executed before those previously added, and    * note that the execution order of all listeners is ultimately chosen by the implementations of    * the supplied executors.    *    *<p>This method is idempotent. Calling it several times in parallel is semantically equivalent    * to calling it exactly once.    *    * @since 10.0 (present in 1.0 as {@code run})    */
 DECL|method|execute ()
 specifier|public
 name|void
 name|execute
 parameter_list|()
 block|{
-comment|// Lock while we update our state so the add method above will finish adding
-comment|// any listeners before we start to run them.
+comment|// Lock while we update our state so the add method above will finish adding any listeners
+comment|// before we start to run them.
 name|RunnableExecutorPair
 name|list
 decl_stmt|;
@@ -344,7 +341,7 @@ name|next
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all     * {@linkplain RuntimeException runtime exceptions} thrown by the executor.    */
+comment|/**    * Submits the given runnable to the given {@link Executor} catching and logging all {@linkplain    * RuntimeException runtime exceptions} thrown by the executor.    */
 DECL|method|executeListener (Runnable runnable, Executor executor)
 specifier|private
 specifier|static
@@ -374,9 +371,9 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-comment|// Log it and keep going, bad runnable and/or executor.  Don't
-comment|// punish the other runnables if we're given a bad one.  We only
-comment|// catch RuntimeException because we want Errors to propagate up.
+comment|// Log it and keep going, bad runnable and/or executor.  Don't punish the other runnables if
+comment|// we're given a bad one.  We only catch RuntimeException because we want Errors to propagate
+comment|// up.
 name|log
 operator|.
 name|log
