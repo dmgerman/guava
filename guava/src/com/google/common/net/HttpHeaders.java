@@ -892,7 +892,7 @@ name|PING_FROM
 init|=
 literal|"Ping-From"
 decl_stmt|;
-comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {code Ping-To}</a> header field name.    *    * @since 19.0    */
+comment|/**    * The HTTP<a href="http://html.spec.whatwg.org/multipage/semantics.html#hyperlink-auditing">    * {@code Ping-To}</a> header field name.    *    * @since 19.0    */
 DECL|field|PING_TO
 specifier|public
 specifier|static

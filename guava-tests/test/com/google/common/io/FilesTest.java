@@ -938,7 +938,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * A {@link File} that provides a specialized value for {link File#length()}.    */
+comment|/**    * A {@link File} that provides a specialized value for {@link File#length()}.    */
 DECL|class|BadLengthFile
 specifier|private
 specifier|static
