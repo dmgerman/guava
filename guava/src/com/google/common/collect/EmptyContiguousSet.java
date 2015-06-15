@@ -475,6 +475,22 @@ literal|false
 return|;
 block|}
 annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"not used in GWT"
+argument_list|)
+annotation|@
+name|Override
+DECL|method|isHashCodeFast ()
+name|boolean
+name|isHashCodeFast
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
 name|Override
 DECL|method|hashCode ()
 specifier|public

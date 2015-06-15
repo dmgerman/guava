@@ -383,6 +383,17 @@ name|object
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|isHashCodeFast ()
+name|boolean
+name|isHashCodeFast
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 DECL|field|hashCode
 specifier|private
 specifier|transient
