@@ -2783,7 +2783,7 @@ condition|(
 name|related
 operator|!=
 literal|null
-operator|&&
+operator|&
 name|isCancelled
 argument_list|()
 condition|)
