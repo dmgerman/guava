@@ -600,7 +600,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-empty_stmt|;
 specifier|private
 specifier|final
 name|Runnable
@@ -1341,10 +1340,46 @@ name|void
 name|reschedule
 parameter_list|()
 block|{
+comment|// invoke the callback outside the lock, prevents some shenanigans.
+name|Schedule
+name|schedule
+decl_stmt|;
+try|try
+block|{
+name|schedule
+operator|=
+name|CustomScheduler
+operator|.
+name|this
+operator|.
+name|getNextSchedule
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|service
+operator|.
+name|notifyFailed
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 comment|// We reschedule ourselves with a lock held for two reasons. 1. we want to make sure that
 comment|// cancel calls cancel on the correct future. 2. we want to make sure that the assignment
 comment|// to currentFuture doesn't race with itself so that currentFuture is assigned in the
 comment|// correct order.
+name|Throwable
+name|scheduleFailure
+init|=
+literal|null
+decl_stmt|;
 name|lock
 operator|.
 name|lock
@@ -1365,17 +1400,6 @@ name|isCancelled
 argument_list|()
 condition|)
 block|{
-specifier|final
-name|Schedule
-name|schedule
-init|=
-name|CustomScheduler
-operator|.
-name|this
-operator|.
-name|getNextSchedule
-argument_list|()
-decl_stmt|;
 name|currentFuture
 operator|=
 name|executor
@@ -1406,12 +1430,12 @@ comment|// notices and transitions to the FAILED state.  We do it by calling not
 comment|// because the service does not monitor the state of the future so if the exception is not
 comment|// caught and forwarded to the service the task would stop executing but the service would
 comment|// have no idea.
-name|service
-operator|.
-name|notifyFailed
-argument_list|(
+comment|// TODO(lukes): consider building everything in terms of ListenableScheduledFuture then
+comment|// the AbstractService could monitor the future directly.  Rescheduling is still hard...
+comment|// but it would help with some of these lock ordering issues.
+name|scheduleFailure
+operator|=
 name|e
-argument_list|)
 expr_stmt|;
 block|}
 finally|finally
@@ -1420,6 +1444,22 @@ name|lock
 operator|.
 name|unlock
 argument_list|()
+expr_stmt|;
+block|}
+comment|// Call notifyFailed outside the lock to avoid lock ordering issues.
+if|if
+condition|(
+name|scheduleFailure
+operator|!=
+literal|null
+condition|)
+block|{
+name|service
+operator|.
+name|notifyFailed
+argument_list|(
+name|scheduleFailure
+argument_list|)
 expr_stmt|;
 block|}
 block|}
