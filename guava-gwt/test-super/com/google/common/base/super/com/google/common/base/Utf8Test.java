@@ -1271,6 +1271,7 @@ return|;
 block|}
 DECL|method|assertWellFormed (int... bytes)
 specifier|private
+specifier|static
 name|void
 name|assertWellFormed
 parameter_list|(
@@ -1295,6 +1296,7 @@ expr_stmt|;
 block|}
 DECL|method|assertNotWellFormed (int... bytes)
 specifier|private
+specifier|static
 name|void
 name|assertNotWellFormed
 parameter_list|(
