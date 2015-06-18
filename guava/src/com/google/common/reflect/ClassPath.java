@@ -377,6 +377,11 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|J2ObjCIncompatible
+argument_list|(
+literal|"java.util.jar"
+argument_list|)
 DECL|class|ClassPath
 specifier|public
 specifier|final

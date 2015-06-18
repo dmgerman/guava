@@ -372,6 +372,11 @@ begin_class
 annotation|@
 name|Beta
 comment|// TODO: Switch to JUnit 4 and use @Parameterized and @BeforeClass
+annotation|@
+name|J2ObjCIncompatible
+argument_list|(
+literal|"com.google.common.reflect.ClassPath"
+argument_list|)
 DECL|class|AbstractPackageSanityTests
 specifier|public
 specifier|abstract
