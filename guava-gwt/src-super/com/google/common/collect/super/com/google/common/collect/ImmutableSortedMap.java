@@ -90,6 +90,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableSortedMap
+operator|.
+name|Builder
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -1606,6 +1622,35 @@ block|}
 return|return
 name|this
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|orderEntriesByValue (Comparator<? super V> valueComparator)
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|orderEntriesByValue
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|V
+argument_list|>
+name|valueComparator
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not available on ImmutableSortedMap.Builder"
+argument_list|)
+throw|;
 block|}
 DECL|method|build ()
 annotation|@

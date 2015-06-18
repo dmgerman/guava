@@ -110,6 +110,22 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMap
+operator|.
+name|Builder
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -2177,6 +2193,40 @@ expr_stmt|;
 return|return
 name|this
 return|;
+block|}
+comment|/**      * Throws an {@code UnsupportedOperationException}.      *       * @since 19.0      * @deprecated Unsupported by ImmutableSortedMap.Builder.      */
+annotation|@
+name|Beta
+annotation|@
+name|Override
+annotation|@
+name|Deprecated
+DECL|method|orderEntriesByValue (Comparator<? super V> valueComparator)
+specifier|public
+name|Builder
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
+name|orderEntriesByValue
+parameter_list|(
+name|Comparator
+argument_list|<
+name|?
+super|super
+name|V
+argument_list|>
+name|valueComparator
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not available on ImmutableSortedMap.Builder"
+argument_list|)
+throw|;
 block|}
 comment|/**      * Returns a newly-created immutable sorted map.      *      * @throws IllegalArgumentException if any two keys are equal according to      *     the comparator (which might be the keys' natural order)      */
 annotation|@
