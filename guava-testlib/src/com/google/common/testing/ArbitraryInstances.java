@@ -2220,9 +2220,12 @@ name|Iterators
 operator|.
 name|peekingIterator
 argument_list|(
-name|Iterators
+name|ImmutableSet
 operator|.
-name|emptyIterator
+name|of
+argument_list|()
+operator|.
+name|iterator
 argument_list|()
 argument_list|)
 argument_list|)
