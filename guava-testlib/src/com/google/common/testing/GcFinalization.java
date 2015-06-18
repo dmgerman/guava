@@ -133,6 +133,11 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|J2ObjCIncompatible
+argument_list|(
+literal|"gc"
+argument_list|)
 DECL|class|GcFinalization
 specifier|public
 specifier|final
