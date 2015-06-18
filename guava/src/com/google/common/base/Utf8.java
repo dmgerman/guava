@@ -33,6 +33,42 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Character
+operator|.
+name|MAX_SURROGATE
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Character
+operator|.
+name|MIN_SUPPLEMENTARY_CODE_POINT
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|Character
+operator|.
+name|MIN_SURROGATE
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -304,16 +340,12 @@ expr_stmt|;
 comment|// jdk7+: if (Character.isSurrogate(c)) {
 if|if
 condition|(
-name|Character
-operator|.
 name|MIN_SURROGATE
 operator|<=
 name|c
 operator|&&
 name|c
 operator|<=
-name|Character
-operator|.
 name|MAX_SURROGATE
 condition|)
 block|{
@@ -334,8 +366,6 @@ if|if
 condition|(
 name|cp
 operator|<
-name|Character
-operator|.
 name|MIN_SUPPLEMENTARY_CODE_POINT
 condition|)
 block|{
