@@ -32,6 +32,24 @@ name|collect
 operator|.
 name|testing
 operator|.
+name|Helpers
+operator|.
+name|assertEmpty
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
 name|features
 operator|.
 name|CollectionFeature
@@ -97,22 +115,6 @@ operator|.
 name|CollectionSize
 operator|.
 name|ZERO
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
 import|;
 end_import
 
@@ -187,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for {@code Multiset.elementSet()} not covered by the derived {@code SetTestSuiteBuilder}.  *   * @author Louis Wasserman  */
+comment|/**  * Tests for {@code Multiset.elementSet()} not covered by the derived {@code SetTestSuiteBuilder}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -440,14 +442,11 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|assertEmpty
 argument_list|(
 name|getMultiset
 argument_list|()
 argument_list|)
-operator|.
-name|isEmpty
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -512,14 +511,11 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|assertThat
+name|assertEmpty
 argument_list|(
 name|getMultiset
 argument_list|()
 argument_list|)
-operator|.
-name|isEmpty
-argument_list|()
 expr_stmt|;
 block|}
 block|}

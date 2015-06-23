@@ -28,11 +28,13 @@ name|google
 operator|.
 name|common
 operator|.
-name|truth
+name|collect
 operator|.
-name|Truth
+name|testing
 operator|.
-name|assertThat
+name|Helpers
+operator|.
+name|assertEqualIgnoringOrder
 import|;
 end_import
 
@@ -779,8 +781,10 @@ argument_list|>
 name|values
 parameter_list|)
 block|{
-name|assertThat
+name|assertEqualIgnoringOrder
 argument_list|(
+name|values
+argument_list|,
 name|multimap
 argument_list|()
 operator|.
@@ -788,11 +792,6 @@ name|get
 argument_list|(
 name|key
 argument_list|)
-argument_list|)
-operator|.
-name|containsExactlyElementsIn
-argument_list|(
-name|values
 argument_list|)
 expr_stmt|;
 if|if
@@ -804,8 +803,10 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|assertThat
+name|assertEqualIgnoringOrder
 argument_list|(
+name|values
+argument_list|,
 name|multimap
 argument_list|()
 operator|.
@@ -816,11 +817,6 @@ name|get
 argument_list|(
 name|key
 argument_list|)
-argument_list|)
-operator|.
-name|containsExactlyElementsIn
-argument_list|(
-name|values
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -835,7 +831,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|assertThat
+name|assertNull
 argument_list|(
 name|multimap
 argument_list|()
@@ -848,15 +844,15 @@ argument_list|(
 name|key
 argument_list|)
 argument_list|)
-operator|.
-name|isNull
-argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO(cgruber): Add proper overrides to prevent autoboxing.
-comment|// Truth+autoboxing == compile error. Cast int to long to fix:
-name|assertThat
+name|assertEquals
 argument_list|(
+name|values
+operator|.
+name|size
+argument_list|()
+argument_list|,
 name|multimap
 argument_list|()
 operator|.
@@ -864,17 +860,6 @@ name|get
 argument_list|(
 name|key
 argument_list|)
-operator|.
-name|size
-argument_list|()
-argument_list|)
-operator|.
-name|isEqualTo
-argument_list|(
-operator|(
-name|long
-operator|)
-name|values
 operator|.
 name|size
 argument_list|()

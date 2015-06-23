@@ -32,6 +32,24 @@ name|collect
 operator|.
 name|testing
 operator|.
+name|Helpers
+operator|.
+name|assertContains
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
 name|features
 operator|.
 name|MapFeature
@@ -77,22 +95,6 @@ operator|.
 name|MapFeature
 operator|.
 name|SUPPORTS_PUT
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
 import|;
 end_import
 
@@ -764,13 +766,10 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|assertContains
 argument_list|(
 name|getCollection
-argument_list|)
-operator|.
-name|contains
-argument_list|(
+argument_list|,
 name|v3
 argument_list|()
 argument_list|)

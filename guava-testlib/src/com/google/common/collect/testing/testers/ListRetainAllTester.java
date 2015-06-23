@@ -32,6 +32,24 @@ name|collect
 operator|.
 name|testing
 operator|.
+name|Helpers
+operator|.
+name|assertContentsInOrder
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|testing
+operator|.
 name|features
 operator|.
 name|CollectionFeature
@@ -97,22 +115,6 @@ operator|.
 name|CollectionSize
 operator|.
 name|ZERO
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
 import|;
 end_import
 
@@ -428,14 +430,11 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertThat
+name|assertContentsInOrder
 argument_list|(
 name|getList
 argument_list|()
-argument_list|)
-operator|.
-name|containsExactly
-argument_list|(
+argument_list|,
 name|e0
 argument_list|()
 argument_list|,
@@ -445,9 +444,6 @@ argument_list|,
 name|e0
 argument_list|()
 argument_list|)
-operator|.
-name|inOrder
-argument_list|()
 expr_stmt|;
 block|}
 block|}
