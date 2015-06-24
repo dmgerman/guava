@@ -52,18 +52,6 @@ name|lang
 operator|.
 name|Character
 operator|.
-name|MIN_SUPPLEMENTARY_CODE_POINT
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|Character
-operator|.
 name|MIN_SURROGATE
 import|;
 end_import
@@ -350,9 +338,8 @@ name|MAX_SURROGATE
 condition|)
 block|{
 comment|// Check that we have a well-formed surrogate pair.
-name|int
-name|cp
-init|=
+if|if
+condition|(
 name|Character
 operator|.
 name|codePointAt
@@ -361,21 +348,18 @@ name|sequence
 argument_list|,
 name|i
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|cp
-operator|<
-name|MIN_SUPPLEMENTARY_CODE_POINT
+operator|==
+name|c
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Unpaired surrogate at index "
-operator|+
+name|unpairedSurrogateMsg
+argument_list|(
 name|i
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -793,6 +777,22 @@ return|;
 block|}
 block|}
 block|}
+block|}
+DECL|method|unpairedSurrogateMsg (int i)
+specifier|private
+specifier|static
+name|String
+name|unpairedSurrogateMsg
+parameter_list|(
+name|int
+name|i
+parameter_list|)
+block|{
+return|return
+literal|"Unpaired surrogate at index "
+operator|+
+name|i
+return|;
 block|}
 DECL|method|Utf8 ()
 specifier|private
