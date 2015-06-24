@@ -756,6 +756,13 @@ argument_list|>
 name|seen
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|isCancelled
+argument_list|()
+condition|)
+block|{
 name|addCausalChain
 argument_list|(
 name|seen
@@ -764,6 +771,7 @@ name|trustedGetException
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Handles the input at the given index completing.      */
 DECL|method|handleOneInputDone (int index, Future<? extends InputT> future)
