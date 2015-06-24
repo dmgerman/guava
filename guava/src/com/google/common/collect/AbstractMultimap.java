@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -641,6 +655,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|Entries
 specifier|private
 class|class
@@ -695,6 +711,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|EntrySet
 specifier|private
 class|class
@@ -961,6 +979,8 @@ name|Values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|Values
 class|class
 name|Values

@@ -140,6 +140,34 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -1636,6 +1664,8 @@ literal|true
 return|;
 block|}
 comment|/**    * Each instance of MinMaxPriortyQueue encapsulates two instances of Heap:    * a min-heap and a max-heap. Conceptually, these might each have their own    * array for storage, but for efficiency's sake they are stored interleaved on    * alternate heap levels in the same array (MMPQ.queue).    */
+annotation|@
+name|WeakOuter
 DECL|class|Heap
 specifier|private
 class|class
@@ -1650,6 +1680,8 @@ argument_list|>
 name|ordering
 decl_stmt|;
 DECL|field|otherHeap
+annotation|@
+name|Weak
 name|Heap
 name|otherHeap
 decl_stmt|;

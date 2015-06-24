@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -665,6 +679,8 @@ argument_list|>
 name|cellIterator
 parameter_list|()
 function_decl|;
+annotation|@
+name|WeakOuter
 DECL|class|CellSet
 class|class
 name|CellSet
@@ -1048,6 +1064,8 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|Values
 class|class
 name|Values

@@ -124,6 +124,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2132,6 +2146,8 @@ else|:
 name|map
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|ColumnMap
 specifier|private
 class|class
@@ -2465,6 +2481,8 @@ else|:
 name|map
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|RowMap
 specifier|private
 class|class

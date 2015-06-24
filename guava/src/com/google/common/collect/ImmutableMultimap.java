@@ -92,6 +92,34 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1956,6 +1984,8 @@ argument_list|>
 argument_list|>
 block|{
 DECL|field|multimap
+annotation|@
+name|Weak
 specifier|final
 name|ImmutableMultimap
 argument_list|<
@@ -2362,6 +2392,8 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// Uses writeReplace, not default serialization
+annotation|@
+name|WeakOuter
 DECL|class|Keys
 class|class
 name|Keys
@@ -2643,9 +2675,11 @@ name|V
 argument_list|>
 block|{
 DECL|field|multimap
+annotation|@
+name|Weak
 specifier|private
-specifier|transient
 specifier|final
+specifier|transient
 name|ImmutableMultimap
 argument_list|<
 name|K

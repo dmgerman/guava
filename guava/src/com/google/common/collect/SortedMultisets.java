@@ -94,6 +94,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -196,6 +210,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|multiset
+annotation|@
+name|Weak
 specifier|private
 specifier|final
 name|SortedMultiset

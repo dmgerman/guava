@@ -44,6 +44,20 @@ name|GwtIncompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link ImmutableAsList} implementation specialized for when the delegate collection is  * already backed by an {@code ImmutableList} or array.  *  * @author Louis Wasserman  */
 end_comment
@@ -75,6 +89,8 @@ name|E
 argument_list|>
 block|{
 DECL|field|delegate
+annotation|@
+name|Weak
 specifier|private
 specifier|final
 name|ImmutableCollection

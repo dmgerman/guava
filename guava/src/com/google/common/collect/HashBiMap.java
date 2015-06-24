@@ -140,6 +140,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2060,6 +2074,8 @@ name|KeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|KeySet
 specifier|private
 specifier|final
@@ -2757,6 +2773,8 @@ name|InverseKeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|InverseKeySet
 specifier|private
 specifier|final

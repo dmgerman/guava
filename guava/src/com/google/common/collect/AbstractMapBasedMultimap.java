@@ -110,6 +110,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1255,6 +1269,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Collection decorator that stays in sync with the multimap values for a key.    * There are two kinds of wrapped collections: full and subcollections. Both    * have a delegate pointing to the underlying collection class.    *    *<p>Full collections, identified by a null ancestor field, contain all    * multimap values for a given key. Its delegate is a value in {@link    * AbstractMapBasedMultimap#map} whenever the delegate is non-empty. The {@code    * refreshIfEmpty}, {@code removeIfEmpty}, and {@code addToMap} methods ensure    * that the {@code WrappedCollection} and map remain consistent.    *    *<p>A subcollection, such as a sublist, contains some of the values for a    * given key. Its ancestor field points to the full wrapped collection with    * all values for the key. The subcollection {@code refreshIfEmpty}, {@code    * removeIfEmpty}, and {@code addToMap} methods call the corresponding methods    * of the full wrapped collection.    */
+annotation|@
+name|WeakOuter
 DECL|class|WrappedCollection
 specifier|private
 class|class
@@ -2222,6 +2238,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Set decorator that stays in sync with the multimap values for a key. */
+annotation|@
+name|WeakOuter
 DECL|class|WrappedSet
 specifier|private
 class|class
@@ -2344,6 +2362,8 @@ return|;
 block|}
 block|}
 comment|/**    * SortedSet decorator that stays in sync with the multimap values for a key.    */
+annotation|@
+name|WeakOuter
 DECL|class|WrappedSortedSet
 specifier|private
 class|class
@@ -2613,6 +2633,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
+annotation|@
+name|WeakOuter
 DECL|class|WrappedNavigableSet
 class|class
 name|WrappedNavigableSet
@@ -2987,6 +3009,8 @@ return|;
 block|}
 block|}
 comment|/** List decorator that stays in sync with the multimap values for a key. */
+annotation|@
+name|WeakOuter
 DECL|class|WrappedList
 specifier|private
 class|class
@@ -3682,6 +3706,8 @@ name|map
 argument_list|)
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|KeySet
 specifier|private
 class|class
@@ -4017,6 +4043,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|SortedKeySet
 specifier|private
 class|class
@@ -4229,6 +4257,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
+annotation|@
+name|WeakOuter
 DECL|class|NavigableKeySet
 class|class
 name|NavigableKeySet
@@ -5108,6 +5138,8 @@ name|map
 argument_list|)
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|AsMap
 specifier|private
 class|class
@@ -5518,6 +5550,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|AsMapEntries
 class|class
 name|AsMapEntries
@@ -5813,6 +5847,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|SortedAsMap
 specifier|private
 class|class

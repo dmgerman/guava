@@ -234,6 +234,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1091,6 +1105,8 @@ return|;
 block|}
 comment|// Views
 comment|/**    * Abstract set whose {@code isEmpty()} returns whether the table is empty and    * whose {@code clear()} clears all table mappings.    */
+annotation|@
+name|WeakOuter
 DECL|class|TableSet
 specifier|private
 specifier|abstract
@@ -2355,6 +2371,8 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|EntrySet
 specifier|private
 class|class
@@ -2707,15 +2725,17 @@ name|columnKey
 argument_list|)
 condition|)
 block|{
-return|return
-operator|new
+annotation|@
+name|WeakOuter
+class|class
+name|EntryImpl
+extends|extends
 name|AbstractMapEntry
 argument_list|<
 name|R
 argument_list|,
 name|V
 argument_list|>
-argument_list|()
 block|{
 annotation|@
 name|Override
@@ -2778,6 +2798,10 @@ argument_list|)
 return|;
 block|}
 block|}
+return|return
+operator|new
+name|EntryImpl
+argument_list|()
 return|;
 block|}
 block|}
@@ -2803,6 +2827,8 @@ name|KeySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|KeySet
 specifier|private
 class|class
@@ -2932,6 +2958,8 @@ name|Values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|Values
 specifier|private
 class|class
@@ -3126,6 +3154,8 @@ else|:
 name|result
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|ColumnKeySet
 specifier|private
 class|class
@@ -3790,6 +3820,8 @@ name|RowMap
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|RowMap
 class|class
 name|RowMap
@@ -3923,6 +3955,8 @@ name|EntrySet
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|EntrySet
 class|class
 name|EntrySet
@@ -4209,6 +4243,8 @@ else|:
 name|result
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|ColumnMap
 specifier|private
 class|class
@@ -4378,6 +4414,8 @@ name|ColumnMapValues
 argument_list|()
 return|;
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|ColumnMapEntrySet
 class|class
 name|ColumnMapEntrySet
@@ -4732,6 +4770,8 @@ name|changed
 return|;
 block|}
 block|}
+annotation|@
+name|WeakOuter
 DECL|class|ColumnMapValues
 specifier|private
 class|class
