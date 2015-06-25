@@ -1315,6 +1315,21 @@ argument_list|,
 literal|"dart"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for<a href="https://goo.gl/dNnKKj">Apple Passbook</a>.    *    * @since 19.0    */
+DECL|field|APPLE_PASSBOOK
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|APPLE_PASSBOOK
+init|=
+name|createConstant
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"vnd.apple.pkpass"
+argument_list|)
+decl_stmt|;
 comment|/**    * Media type for<a href="http://en.wikipedia.org/wiki/Embedded_OpenType">Embedded OpenType</a>    * fonts. This is    *<a href="http://www.iana.org/assignments/media-types/application/vnd.ms-fontobject">registered    *</a> with the IANA.    *    * @since 17.0    */
 DECL|field|EOT
 specifier|public
