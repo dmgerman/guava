@@ -60,18 +60,6 @@ name|lang
 operator|.
 name|Character
 operator|.
-name|MAX_SURROGATE
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|Character
-operator|.
 name|MIN_HIGH_SURROGATE
 import|;
 end_import
@@ -97,18 +85,6 @@ operator|.
 name|Character
 operator|.
 name|MIN_SUPPLEMENTARY_CODE_POINT
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|Character
-operator|.
-name|MIN_SURROGATE
 import|;
 end_import
 
@@ -326,27 +302,6 @@ operator|.
 name|build
 argument_list|()
 expr_stmt|;
-block|}
-comment|/** jdk7+ has Character.isSurrogate */
-DECL|method|isSurrogate (char c)
-specifier|private
-specifier|static
-name|boolean
-name|isSurrogate
-parameter_list|(
-name|char
-name|c
-parameter_list|)
-block|{
-return|return
-name|c
-operator|>=
-name|MIN_SURROGATE
-operator|&&
-name|c
-operator|<=
-name|MAX_SURROGATE
-return|;
 block|}
 DECL|method|testEncodedLength_validStrings ()
 specifier|public
