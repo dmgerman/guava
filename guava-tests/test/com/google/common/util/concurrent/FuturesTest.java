@@ -19166,6 +19166,11 @@ name|GwtIncompatible
 argument_list|(
 literal|"Futures.getChecked"
 argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"FuturesGetCheckedIllegalExceptionType"
+argument_list|)
 DECL|method|testGetCheckedUntimed_exceptionClassIsRuntimeException ()
 specifier|public
 name|void
@@ -19232,6 +19237,11 @@ name|GwtIncompatible
 argument_list|(
 literal|"Futures.getChecked"
 argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"FuturesGetCheckedIllegalExceptionType"
+argument_list|)
 DECL|method|testGetCheckedUntimed_exceptionClassNoPublicConstructor ()
 specifier|public
 name|void
@@ -19266,6 +19276,11 @@ annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"Futures.getChecked"
+argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"FuturesGetCheckedIllegalExceptionType"
 argument_list|)
 DECL|method|testGetCheckedUntimed_exceptionClassPublicConstructorWrongType ()
 specifier|public
