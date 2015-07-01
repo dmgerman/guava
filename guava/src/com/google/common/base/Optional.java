@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable object that may contain a non-null reference to another object. Each  * instance of this type either contains a non-null reference, or contains nothing (in  * which case we say that the reference is "absent"); it is never said to "contain {@code  * null}".  *  *<p>A non-null {@code Optional<T>} reference can be used as a replacement for a nullable  * {@code T} reference. It allows you to represent "a {@code T} that must be present" and  * a "a {@code T} that might be absent" as two distinct types in your program, which can  * aid clarity.  *  *<p>Some uses of this class include  *  *<ul>  *<li>As a method return type, as an alternative to returning {@code null} to indicate  *     that no value was available  *<li>To distinguish between "unknown" (for example, not present in a map) and "known to  *     have no value" (present in the map, with value {@code Optional.absent()})  *<li>To wrap nullable references for storage in a collection that does not support  *     {@code null} (though there are  *<a href="https://github.com/google/guava/wiki/LivingWithNullHostileCollections">  *     several other approaches to this</a> that should be considered first)  *</ul>  *  *<p>A common alternative to using this class is to find or create a suitable  *<a href="http://en.wikipedia.org/wiki/Null_Object_pattern">null object</a> for the  * type in question.  *  *<p>This class is not intended as a direct analogue of any existing "option" or "maybe"  * construct from other programming environments, though it may bear some similarities.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional">  * using {@code Optional}</a>.  *  * @param<T> the type of instance that can be contained. {@code Optional} is naturally  *     covariant on this type, so it is safe to cast an {@code Optional<T>} to {@code  *     Optional<S>} for any supertype {@code S} of {@code T}.  * @author Kurt Alfred Kluever  * @author Kevin Bourrillion  * @since 10.0  */
+comment|/**  * An immutable object that may contain a non-null reference to another object. Each  * instance of this type either contains a non-null reference, or contains nothing (in  * which case we say that the reference is "absent"); it is never said to "contain {@code  * null}".  *  *<p>A non-null {@code Optional<T>} reference can be used as a replacement for a nullable  * {@code T} reference. It allows you to represent "a {@code T} that must be present" and  * a "a {@code T} that might be absent" as two distinct types in your program, which can  * aid clarity.  *  *<p>Some uses of this class include  *  *<ul>  *<li>As a method return type, as an alternative to returning {@code null} to indicate  *     that no value was available  *<li>To distinguish between "unknown" (for example, not present in a map) and "known to  *     have no value" (present in the map, with value {@code Optional.absent()})  *<li>To wrap nullable references for storage in a collection that does not support  *     {@code null} (though there are  *<a href="https://github.com/google/guava/wiki/LivingWithNullHostileCollections">  *     several other approaches to this</a> that should be considered first)  *</ul>  *  *<p>A common alternative to using this class is to find or create a suitable  *<a href="http://en.wikipedia.org/wiki/Null_Object_pattern">null object</a> for the  * type in question.  *  *<p>This class is not intended as a direct analogue of any existing "option" or "maybe"  * construct from other programming environments, though it may bear some similarities.  *  *<p><b>Comparison to {@code java.util.Optional} (JDK 8 and higher):</b> A new {@code Optional}  * class was added for Java 8. The two classes are extremely similar, but incompatible (they cannot  * share a common supertype).<i>All</i> known differences are listed either here or with the  * relevant methods below.  *  *<ul>  *<li>This class is serializable; {@code java.util.Optional} is not.  *<li>{@code java.util.Optional} has the additional methods {@code ifPresent}, {@code filter},  *     {@code flatMap}, and {@code orElseThrow}.  *<li>{@code java.util} offers the primitive-specialized versions {@code OptionalInt}, {@code  *     OptionalLong} and {@code OptionalDouble}, the use of which is recommended; Guava does not  *     have these.  *</ul>  *  *<p><b>There are no plans to deprecate this class in the foreseeable future.</b> However, we do  * gently recommend that you prefer the new, standard Java class whenever possible.  *  *<p>See the Guava User Guide article on<a  * href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional">  * using {@code Optional}</a>.  *  * @param<T> the type of instance that can be contained. {@code Optional} is naturally  *     covariant on this type, so it is safe to cast an {@code Optional<T>} to {@code  *     Optional<S>} for any supertype {@code S} of {@code T}.  * @author Kurt Alfred Kluever  * @author Kevin Bourrillion  * @since 10.0  */
 end_comment
 
 begin_class
@@ -135,7 +135,7 @@ parameter_list|>
 implements|implements
 name|Serializable
 block|{
-comment|/**    * Returns an {@code Optional} instance with no contained reference.    */
+comment|/**    * Returns an {@code Optional} instance with no contained reference.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.empty}.    */
 DECL|method|absent ()
 specifier|public
 specifier|static
@@ -156,7 +156,7 @@ name|withType
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code Optional} instance containing the given non-null reference.    */
+comment|/**    * Returns an {@code Optional} instance containing the given non-null reference. To have {@code    * null} treated as {@link #absent}, use {@link #fromNullable} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    *    * @throws NullPointerException if {@code reference} is null    */
 DECL|method|of (T reference)
 specifier|public
 specifier|static
@@ -187,7 +187,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that    * reference; otherwise returns {@link Optional#absent}.    */
+comment|/**    * If {@code nullableReference} is non-null, returns an {@code Optional} instance containing that    * reference; otherwise returns {@link Optional#absent}.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.ofNullable}.    */
 DECL|method|fromNullable (@ullable T nullableReference)
 specifier|public
 specifier|static
@@ -235,7 +235,7 @@ DECL|method|Optional ()
 name|Optional
 parameter_list|()
 block|{}
-comment|/**    * Returns {@code true} if this holder contains a (non-null) instance.    */
+comment|/**    * Returns {@code true} if this holder contains a (non-null) instance.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 DECL|method|isPresent ()
 specifier|public
 specifier|abstract
@@ -243,7 +243,7 @@ name|boolean
 name|isPresent
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the contained instance, which must be present. If the instance might be    * absent, use {@link #or(Object)} or {@link #orNull} instead.    *    * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns    *     {@code false})    */
+comment|/**    * Returns the contained instance, which must be present. If the instance might be    * absent, use {@link #or(Object)} or {@link #orNull} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> when the value is absent, this method    * throws {@link IllegalStateException}, whereas the Java 8 counterpart throws {@link    * NoSuchElementException}.    *    * @throws IllegalStateException if the instance is absent ({@link #isPresent} returns    *     {@code false}); depending on this<i>specific</i> exception type (over the more general    *     {@link RuntimeException}) is discouraged    */
 DECL|method|get ()
 specifier|public
 specifier|abstract
@@ -251,7 +251,7 @@ name|T
 name|get
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the contained instance if it is present; {@code defaultValue} otherwise. If    * no default value should be required because the instance is known to be present, use    * {@link #get()} instead. For a default value of {@code null}, use {@link #orNull}.    *    *<p>Note about generics: The signature {@code public T or(T defaultValue)} is overly    * restrictive. However, the ideal signature, {@code public<S super T> S or(S)}, is not legal    * Java. As a result, some sensible operations involving subtypes are compile errors:    *<pre>   {@code    *    *   Optional<Integer> optionalInt = getSomeOptionalInt();    *   Number value = optionalInt.or(0.5); // error    *    *   FluentIterable<? extends Number> numbers = getSomeNumbers();    *   Optional<? extends Number> first = numbers.first();    *   Number value = first.or(0.5); // error}</pre>    *    *<p>As a workaround, it is always safe to cast an {@code Optional<? extends T>} to {@code    * Optional<T>}. Casting either of the above example {@code Optional} instances to {@code    * Optional<Number>} (where {@code Number} is the desired output type) solves the problem:    *<pre>   {@code    *    *   Optional<Number> optionalInt = (Optional) getSomeOptionalInt();    *   Number value = optionalInt.or(0.5); // fine    *    *   FluentIterable<? extends Number> numbers = getSomeNumbers();    *   Optional<Number> first = (Optional) numbers.first();    *   Number value = first.or(0.5); // fine}</pre>    */
+comment|/**    * Returns the contained instance if it is present; {@code defaultValue} otherwise. If    * no default value should be required because the instance is known to be present, use    * {@link #get()} instead. For a default value of {@code null}, use {@link #orNull}.    *    *<p>Note about generics: The signature {@code public T or(T defaultValue)} is overly    * restrictive. However, the ideal signature, {@code public<S super T> S or(S)}, is not legal    * Java. As a result, some sensible operations involving subtypes are compile errors:    *<pre>   {@code    *    *   Optional<Integer> optionalInt = getSomeOptionalInt();    *   Number value = optionalInt.or(0.5); // error    *    *   FluentIterable<? extends Number> numbers = getSomeNumbers();    *   Optional<? extends Number> first = numbers.first();    *   Number value = first.or(0.5); // error}</pre>    *    *<p>As a workaround, it is always safe to cast an {@code Optional<? extends T>} to {@code    * Optional<T>}. Casting either of the above example {@code Optional} instances to {@code    * Optional<Number>} (where {@code Number} is the desired output type) solves the problem:    *<pre>   {@code    *    *   Optional<Number> optionalInt = (Optional) getSomeOptionalInt();    *   Number value = optionalInt.or(0.5); // fine    *    *   FluentIterable<? extends Number> numbers = getSomeNumbers();    *   Optional<Number> first = (Optional) numbers.first();    *   Number value = first.or(0.5); // fine}</pre>    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's    * {@code Optional.orElse}, but will not accept {@code null} as a {@code defaultValue} ({@link    * #orNull} must be used instead). As a result, the value returned by this method is guaranteed    * non-null, which is not the case for the {@code java.util} equivalent.    */
 DECL|method|or (T defaultValue)
 specifier|public
 specifier|abstract
@@ -262,7 +262,7 @@ name|T
 name|defaultValue
 parameter_list|)
 function_decl|;
-comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    */
+comment|/**    * Returns this {@code Optional} if it has a value present; {@code secondChoice}    * otherwise.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class; write {@code thisOptional.isPresent() ? thisOptional : secondChoice}    * instead.    */
 DECL|method|or (Optional<? extends T> secondChoice)
 specifier|public
 specifier|abstract
@@ -281,7 +281,7 @@ argument_list|>
 name|secondChoice
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise. If the    * supplier returns {@code null}, a {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the supplier returns {@code null}    */
+comment|/**    * Returns the contained instance if it is present; {@code supplier.get()} otherwise.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's    * {@code Optional.orElseGet}, except when {@code supplier} returns {@code null}. In this case    * this method throws an exception, whereas the Java 8 method returns the {@code null} to the    * caller.    *    * @throws NullPointerException if this optional's value is absent and the supplier returns    *     {@code null}    */
 annotation|@
 name|Beta
 DECL|method|or (Supplier<? extends T> supplier)
@@ -299,7 +299,7 @@ argument_list|>
 name|supplier
 parameter_list|)
 function_decl|;
-comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the    * instance is known to be present, use {@link #get()} instead.    */
+comment|/**    * Returns the contained instance if it is present; {@code null} otherwise. If the    * instance is known to be present, use {@link #get()} instead.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is equivalent to Java 8's    * {@code Optional.orElse(null)}.    */
 annotation|@
 name|Nullable
 DECL|method|orNull ()
@@ -309,7 +309,7 @@ name|T
 name|orNull
 parameter_list|()
 function_decl|;
-comment|/**    * Returns an immutable singleton {@link Set} whose only element is the contained instance    * if it is present; an empty immutable {@link Set} otherwise.    *    * @since 11.0    */
+comment|/**    * Returns an immutable singleton {@link Set} whose only element is the contained instance    * if it is present; an empty immutable {@link Set} otherwise.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class. However, this common usage:<pre>   {@code    *    *   for (Foo foo : possibleFoo.asSet()) {    *     doSomethingWith(foo);    *   }}</pre>    *    * ... can be replaced with:<pre>   {@code    *    *   possibleFoo.ifPresent(foo -> doSomethingWith(foo));}</pre>    *    * @since 11.0    */
 DECL|method|asSet ()
 specifier|public
 specifier|abstract
@@ -320,7 +320,7 @@ argument_list|>
 name|asSet
 parameter_list|()
 function_decl|;
-comment|/**    * If the instance is present, it is transformed with the given {@link Function}; otherwise,    * {@link Optional#absent} is returned. If the function returns {@code null}, a    * {@link NullPointerException} is thrown.    *    * @throws NullPointerException if the function returns {@code null}    *    * @since 12.0    */
+comment|/**    * If the instance is present, it is transformed with the given {@link Function}; otherwise,    * {@link Optional#absent} is returned.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method is similar to Java 8's    * {@code Optional.map}, except when {@code function} returns {@code null}. In this case this    * method throws an exception, whereas the Java 8 method returns {@code Optional.absent()}.    *    * @throws NullPointerException if the function returns {@code null}    * @since 12.0    */
 DECL|method|transform (Function<? super T, V> function)
 specifier|public
 specifier|abstract
@@ -344,7 +344,7 @@ argument_list|>
 name|function
 parameter_list|)
 function_decl|;
-comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    */
+comment|/**    * Returns {@code true} if {@code object} is an {@code Optional} instance, and either    * the contained references are {@linkplain Object#equals equal} to each other or both    * are absent. Note that {@code Optional} instances of differing parameterized types can    * be equal.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> no differences.    */
 annotation|@
 name|Override
 DECL|method|equals (@ullable Object object)
@@ -359,7 +359,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a hash code for this instance.    */
+comment|/**    * Returns a hash code for this instance.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this class leaves the specific choice of    * hash code unspecified, unlike the Java 8 equivalent.    */
 annotation|@
 name|Override
 DECL|method|hashCode ()
@@ -369,7 +369,7 @@ name|int
 name|hashCode
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a string representation for this instance. The form of this string    * representation is unspecified.    */
+comment|/**    * Returns a string representation for this instance.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this class leaves the specific string    * representation unspecified, unlike the Java 8 equivalent.    */
 annotation|@
 name|Override
 DECL|method|toString ()
@@ -379,7 +379,7 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    * @since 11.0 (generics widened in 13.0)    */
+comment|/**    * Returns the value of each present instance from the supplied {@code optionals}, in order,    * skipping over occurrences of {@link Optional#absent}. Iterators are unmodifiable and are    * evaluated lazily.    *    *<p><b>Comparison to {@code java.util.Optional}:</b> this method has no equivalent in Java 8's    * {@code Optional} class; use    * {@code optionals.stream().filter(Optional::isPresent).map(Optional::get)} instead.    *    * @since 11.0 (generics widened in 13.0)    */
 annotation|@
 name|Beta
 DECL|method|presentInstances ( final Iterable<? extends Optional<? extends T>> optionals)
