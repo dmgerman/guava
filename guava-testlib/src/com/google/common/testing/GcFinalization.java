@@ -46,6 +46,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|J2ObjCIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -135,9 +149,7 @@ annotation|@
 name|Beta
 annotation|@
 name|J2ObjCIncompatible
-argument_list|(
-literal|"gc"
-argument_list|)
+comment|// gc
 DECL|class|GcFinalization
 specifier|public
 specifier|final

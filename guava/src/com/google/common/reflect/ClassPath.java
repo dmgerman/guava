@@ -202,6 +202,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|J2ObjCIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -379,9 +393,7 @@ annotation|@
 name|Beta
 annotation|@
 name|J2ObjCIncompatible
-argument_list|(
-literal|"java.util.jar"
-argument_list|)
+comment|// java.util.jar
 DECL|class|ClassPath
 specifier|public
 specifier|final

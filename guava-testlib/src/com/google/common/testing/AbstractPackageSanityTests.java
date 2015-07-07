@@ -252,6 +252,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|J2ObjCIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -374,9 +388,7 @@ name|Beta
 comment|// TODO: Switch to JUnit 4 and use @Parameterized and @BeforeClass
 annotation|@
 name|J2ObjCIncompatible
-argument_list|(
-literal|"com.google.common.reflect.ClassPath"
-argument_list|)
+comment|// com.google.common.reflect.ClassPath
 DECL|class|AbstractPackageSanityTests
 specifier|public
 specifier|abstract
