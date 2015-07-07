@@ -1088,7 +1088,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or makes no    * change if this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the    * element count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)    */
+comment|/**    * Removes exactly the specified number of occurrences of {@code element}, or makes no    * change if this is not possible.    *    *<p>This method, in contrast to {@link #remove(Object, int)}, has no effect when the    * element count is smaller than {@code occurrences}.    *    * @param element the element to remove    * @param occurrences the number of occurrences of {@code element} to remove    * @return {@code true} if the removal was possible (including if {@code occurrences} is zero)    * @throws IllegalArgumentException if {@code occurrences} is negative    */
 DECL|method|removeExactly (@ullable Object element, int occurrences)
 specifier|public
 name|boolean
