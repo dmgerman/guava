@@ -2007,7 +2007,7 @@ name|Object
 name|object
 parameter_list|)
 block|{
-comment|// TODO(user): identify why this affects GWT tests
+comment|// TODO(lowasser): identify why this affects GWT tests
 return|return
 name|standardEquals
 argument_list|(

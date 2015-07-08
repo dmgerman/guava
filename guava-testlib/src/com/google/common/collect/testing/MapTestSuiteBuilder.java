@@ -1204,7 +1204,7 @@ argument_list|(
 name|mapFeatures
 argument_list|)
 decl_stmt|;
-comment|// TODO(user): make this trigger only if the map is a submap
+comment|// TODO(lowasser): make this trigger only if the map is a submap
 comment|// currently, the KeySetGenerator won't work properly for a subset of a keyset of a submap
 name|keySetFeatures
 operator|.

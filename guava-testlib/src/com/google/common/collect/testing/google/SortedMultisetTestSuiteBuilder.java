@@ -568,7 +568,7 @@ argument_list|>
 name|parentBuilder
 parameter_list|)
 block|{
-comment|// TODO(user): make a SortedElementSetGenerator
+comment|// TODO(lowasser): make a SortedElementSetGenerator
 return|return
 name|SetTestSuiteBuilder
 operator|.

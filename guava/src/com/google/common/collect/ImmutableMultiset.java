@@ -172,7 +172,7 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// we're overriding default serialization
-comment|// TODO(user): write an efficient asList() implementation
+comment|// TODO(lowasser): write an efficient asList() implementation
 DECL|class|ImmutableMultiset
 specifier|public
 specifier|abstract

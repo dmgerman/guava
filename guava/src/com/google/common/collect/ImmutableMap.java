@@ -1240,7 +1240,7 @@ name|ImmutableSortedMap
 operator|)
 condition|)
 block|{
-comment|// TODO(user): Make ImmutableMap.copyOf(immutableBiMap) call copyOf()
+comment|// TODO(lowasser): Make ImmutableMap.copyOf(immutableBiMap) call copyOf()
 comment|// on the ImmutableMap delegate(), rather than the bimap itself
 annotation|@
 name|SuppressWarnings

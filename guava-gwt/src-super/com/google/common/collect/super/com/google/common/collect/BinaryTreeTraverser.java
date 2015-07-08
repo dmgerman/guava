@@ -85,7 +85,7 @@ argument_list|<
 name|T
 argument_list|>
 block|{
-comment|// TODO(user): make this GWT-compatible when we've checked in ArrayDeque and BitSet emulation
+comment|// TODO(lowasser): make this GWT-compatible when we've checked in ArrayDeque and BitSet emulation
 comment|/**    * Returns the left child of the specified node, or {@link Optional#absent()} if the specified    * node has no left child.    */
 DECL|method|leftChild (T root)
 specifier|public
@@ -260,7 +260,7 @@ block|}
 block|}
 return|;
 block|}
-comment|// TODO(user): see if any significant optimizations are possible for breadthFirstIterator
+comment|// TODO(lowasser): see if any significant optimizations are possible for breadthFirstIterator
 DECL|method|inOrderTraversal (final T root)
 specifier|public
 specifier|final

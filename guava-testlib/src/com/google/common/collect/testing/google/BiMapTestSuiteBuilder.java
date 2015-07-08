@@ -936,7 +936,7 @@ return|return
 name|inverseFeatures
 return|;
 block|}
-comment|// TODO(user): can we eliminate the duplication from MapTestSuiteBuilder here?
+comment|// TODO(lowasser): can we eliminate the duplication from MapTestSuiteBuilder here?
 DECL|method|computeValuesSetFeatures ( Set<Feature<?>> mapFeatures)
 specifier|private
 specifier|static

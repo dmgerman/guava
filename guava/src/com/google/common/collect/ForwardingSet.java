@@ -102,7 +102,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|// TODO(user): identify places where thread safety is actually lost
+comment|// TODO(lowasser): identify places where thread safety is actually lost
 comment|/** Constructor for use by subclasses. */
 DECL|method|ForwardingSet ()
 specifier|protected

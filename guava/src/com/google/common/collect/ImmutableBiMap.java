@@ -696,7 +696,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.      *      *<p>The sort order is stable, that is, if two entries have values that compare      * as equivalent, the entry that was inserted first will be first in the built map's      * iteration order.      *      * @throws IllegalStateException if this method was already called      * @since 19.0      */
+comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.        *       *<p>The sort order is stable, that is, if two entries have values that compare      * as equivalent, the entry that was inserted first will be first in the built map's      * iteration order.      *       * @throws IllegalStateException if this method was already called      * @since 19.0      */
 annotation|@
 name|Beta
 annotation|@
@@ -918,7 +918,7 @@ argument_list|>
 operator|)
 name|map
 decl_stmt|;
-comment|// TODO(user): if we need to make a copy of a BiMap because the
+comment|// TODO(lowasser): if we need to make a copy of a BiMap because the
 comment|// forward map is a view, don't make a copy of the non-view delegate map
 if|if
 condition|(

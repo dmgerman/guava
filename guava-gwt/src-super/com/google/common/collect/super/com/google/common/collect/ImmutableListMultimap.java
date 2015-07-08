@@ -1005,7 +1005,7 @@ name|of
 argument_list|()
 return|;
 block|}
-comment|// TODO(user): copy ImmutableSetMultimap by using asList() on the sets
+comment|// TODO(lowasser): copy ImmutableSetMultimap by using asList() on the sets
 if|if
 condition|(
 name|multimap

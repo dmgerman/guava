@@ -1151,7 +1151,7 @@ name|createTestSuite
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO(user): add forwarding-to-ImmutableSortedMap test
+comment|// TODO(lowasser): add forwarding-to-ImmutableSortedMap test
 return|return
 name|suite
 return|;

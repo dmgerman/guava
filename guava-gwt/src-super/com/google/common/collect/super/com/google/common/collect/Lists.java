@@ -3093,7 +3093,7 @@ argument_list|>
 name|list
 parameter_list|)
 block|{
-comment|// TODO(user): worth optimizing for RandomAccess?
+comment|// TODO(lowasser): worth optimizing for RandomAccess?
 name|int
 name|hashCode
 init|=

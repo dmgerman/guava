@@ -510,7 +510,7 @@ operator|new
 name|TestSuite
 argument_list|()
 decl_stmt|;
-comment|// TODO(user): should we force TreeMultimap to be more thorough about checking nulls?
+comment|// TODO(lowasser): should we force TreeMultimap to be more thorough about checking nulls?
 name|suite
 operator|.
 name|addTest

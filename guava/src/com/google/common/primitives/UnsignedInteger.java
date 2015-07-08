@@ -459,7 +459,7 @@ name|UnsignedInteger
 name|val
 parameter_list|)
 block|{
-comment|// TODO(user): make this GWT-compatible
+comment|// TODO(lowasser): make this GWT-compatible
 return|return
 name|fromIntBits
 argument_list|(

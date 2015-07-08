@@ -633,7 +633,7 @@ argument_list|)
 argument_list|)
 return|;
 default|default:
-comment|// TODO(user): is it potentially worth just going ahead and building a precomputed
+comment|// TODO(lowasser): is it potentially worth just going ahead and building a precomputed
 comment|// matcher?
 return|return
 operator|new
@@ -888,7 +888,7 @@ return|;
 block|}
 else|else
 block|{
-comment|// TODO(user): is it worth it to worry about the last character of large matchers?
+comment|// TODO(lowasser): is it worth it to worry about the last character of large matchers?
 name|table
 operator|.
 name|flip

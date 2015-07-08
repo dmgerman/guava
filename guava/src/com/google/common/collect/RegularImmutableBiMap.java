@@ -601,7 +601,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/*          * TODO(user): consider using a NonTerminalImmutableMapEntry when nextInKeyBucket is          * nonnull but nextInValueBucket is null.  This may save a few bytes on some platforms, but          * 2-morphic call sites are often optimized much better than 3-morphic, so it'd require          * benchmarking.          */
+comment|/*          * TODO(lowasser): consider using a NonTerminalImmutableMapEntry when nextInKeyBucket is          * nonnull but nextInValueBucket is null.  This may save a few bytes on some platforms, but          * 2-morphic call sites are often optimized much better than 3-morphic, so it'd require          * benchmarking.          */
 name|boolean
 name|reusable
 init|=

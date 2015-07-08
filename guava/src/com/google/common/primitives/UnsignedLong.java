@@ -210,7 +210,7 @@ name|long
 name|bits
 parameter_list|)
 block|{
-comment|// TODO(user): consider caching small values, like Long.valueOf
+comment|// TODO(lowasser): consider caching small values, like Long.valueOf
 return|return
 operator|new
 name|UnsignedLong

@@ -264,7 +264,7 @@ specifier|abstract
 class|class
 name|BaseEncoding
 block|{
-comment|// TODO(user): consider making encodeTo(Appendable, byte[], int, int) public.
+comment|// TODO(lowasser): consider making encodeTo(Appendable, byte[], int, int) public.
 DECL|method|BaseEncoding ()
 name|BaseEncoding
 parameter_list|()
@@ -408,7 +408,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// TODO(user): document the extent of leniency, probably after adding ignore(CharMatcher)
+comment|// TODO(lowasser): document the extent of leniency, probably after adding ignore(CharMatcher)
 DECL|method|extract (byte[] result, int length)
 specifier|private
 specifier|static
@@ -1524,7 +1524,7 @@ name|StandardBaseEncoding
 extends|extends
 name|BaseEncoding
 block|{
-comment|// TODO(user): provide a useful toString
+comment|// TODO(lowasser): provide a useful toString
 DECL|field|alphabet
 specifier|final
 name|Alphabet

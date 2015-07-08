@@ -350,7 +350,7 @@ name|index
 argument_list|)
 return|;
 block|}
-comment|// TODO(user): benchmark optimizations for equals() and see if they're worthwhile
+comment|// TODO(lowasser): benchmark optimizations for equals() and see if they're worthwhile
 block|}
 end_class
 

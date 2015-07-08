@@ -905,7 +905,7 @@ name|list
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(user): benchmark when it's best to do a linear search
+comment|// TODO(lowasser): benchmark when it's best to do a linear search
 name|int
 name|lower
 init|=

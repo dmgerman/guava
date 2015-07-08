@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *  *<p>For example, the tree  *  *<pre>          {@code  *          h  *        / | \  *       /  e  \  *      d       g  *     /|\      |  *    / | \     f  *   a  b  c       }</pre>  *  *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *  *<p>Null nodes are strictly forbidden.  *  * @author Louis Wasserman  * @since 15.0  */
+comment|/**  * Views elements of a type {@code T} as nodes in a tree, and provides methods to traverse the trees  * induced by this traverser.  *   *<p>For example, the tree  *  *<pre>          {@code  *          h  *        / | \  *       /  e  \  *      d       g  *     /|\      |  *    / | \     f  *   a  b  c       }</pre>  *     *<p>can be iterated over in preorder (hdabcegf), postorder (abcdefgh), or breadth-first order  * (hdegabcf).  *   *<p>Null nodes are strictly forbidden.  *  * @author Louis Wasserman  * @since 15.0  */
 end_comment
 
 begin_class
@@ -123,7 +123,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|// TODO(user): make this GWT-compatible when we've checked in ArrayDeque emulation
+comment|// TODO(lowasser): make this GWT-compatible when we've checked in ArrayDeque emulation
 comment|/**    * Returns the children of the specified node.  Must not contain null.    */
 DECL|method|children (T root)
 specifier|public

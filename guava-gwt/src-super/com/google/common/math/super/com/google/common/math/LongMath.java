@@ -1746,7 +1746,7 @@ literal|1
 operator|)
 return|;
 block|}
-comment|/*    * If n<= millerRabinBases[i][0], then testing n against bases millerRabinBases[i][1..]    * suffices to prove its primality.  Values from miller-rabin.appspot.com.    *    * NOTE: We could get slightly better bases that would be treated as unsigned, but benchmarks    * showed negligible performance improvements.    */
+comment|/*    * If n<= millerRabinBases[i][0], then testing n against bases millerRabinBases[i][1..]    * suffices to prove its primality.  Values from miller-rabin.appspot.com.    *     * NOTE: We could get slightly better bases that would be treated as unsigned, but benchmarks    * showed negligible performance improvements.    */
 DECL|field|millerRabinBaseSets
 specifier|private
 specifier|static
@@ -1868,7 +1868,7 @@ name|long
 name|m
 parameter_list|)
 block|{
-comment|/*          * NOTE(user, 2015-Feb-12): Benchmarks suggest that changing this to          * UnsignedLongs.remainder and increasing the threshold to 2^32 doesn't pay for itself,          * and adding another enum constant hurts performance further -- I suspect because          * bimorphic implementation is a sweet spot for the JVM.          */
+comment|/*           * NOTE(lowasser, 2015-Feb-12): Benchmarks suggest that changing this to           * UnsignedLongs.remainder and increasing the threshold to 2^32 doesn't pay for itself,          * and adding another enum constant hurts performance further -- I suspect because          * bimorphic implementation is a sweet spot for the JVM.          */
 return|return
 operator|(
 name|a
@@ -2060,7 +2060,7 @@ operator|&
 literal|0xFFFFFFFFL
 decl_stmt|;
 comment|//< 2^32
-comment|/*          * a * b == aHi * bHi * 2^64 + (aHi * bLo + aLo * bHi) * 2^63 + aLo * bLo.          *       == (aHi * bHi * 2^32 + aHi * bLo + aLo * bHi) * 2^32 + aLo * bLo          *          * We carry out this computation in modular arithmetic.  Since times2ToThe32Mod accepts          * any unsigned long, we don't have to do a mod on every operation, only when intermediate          * results can exceed 2^63.          */
+comment|/*          * a * b == aHi * bHi * 2^64 + (aHi * bLo + aLo * bHi) * 2^63 + aLo * bLo.          *       == (aHi * bHi * 2^32 + aHi * bLo + aLo * bHi) * 2^32 + aLo * bLo          *           * We carry out this computation in modular arithmetic.  Since times2ToThe32Mod accepts          * any unsigned long, we don't have to do a mod on every operation, only when intermediate          * results can exceed 2^63.          */
 name|long
 name|result
 init|=
@@ -2168,7 +2168,7 @@ operator|&
 literal|0xFFFFFFFFL
 decl_stmt|;
 comment|//< 2^32
-comment|/*          * a^2 == aHi^2 * 2^64 + aHi * aLo * 2^33 + aLo^2          *     == (aHi^2 * 2^32 + aHi * aLo * 2) * 2^32 + aLo^2          * We carry out this computation in modular arithmetic.  Since times2ToThe32Mod accepts          * any unsigned long, we don't have to do a mod on every operation, only when intermediate          * results can exceed 2^63.          */
+comment|/*          * a^2 == aHi^2 * 2^64 + aHi * aLo * 2^33 + aLo^2          *     == (aHi^2 * 2^32 + aHi * aLo * 2) * 2^32 + aLo^2          * We carry out this computation in modular arithmetic.  Since times2ToThe32Mod accepts          * any unsigned long, we don't have to do a mod on every operation, only when intermediate          * results can exceed 2^63.            */
 name|long
 name|result
 init|=

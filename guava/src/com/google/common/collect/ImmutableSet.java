@@ -1005,7 +1005,7 @@ argument_list|>
 name|elements
 parameter_list|)
 block|{
-comment|/*      * TODO(user): consider checking for ImmutableAsList here      * TODO(user): consider checking for Multiset here      */
+comment|/*      * TODO(lowasser): consider checking for ImmutableAsList here      * TODO(lowasser): consider checking for Multiset here      */
 if|if
 condition|(
 name|elements

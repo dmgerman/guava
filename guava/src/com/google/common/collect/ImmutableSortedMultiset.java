@@ -177,7 +177,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-comment|// TODO(user): GWT compatibility
+comment|// TODO(lowasser): GWT compatibility
 DECL|field|NATURAL_ORDER
 specifier|private
 specifier|static

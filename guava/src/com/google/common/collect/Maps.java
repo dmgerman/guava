@@ -5200,7 +5200,7 @@ argument_list|>
 name|keyFunction
 parameter_list|)
 block|{
-comment|// TODO(user): consider presizing the builder if values is a Collection
+comment|// TODO(lowasser): consider presizing the builder if values is a Collection
 return|return
 name|uniqueIndex
 argument_list|(
@@ -8951,7 +8951,7 @@ argument_list|>
 name|keyPredicate
 parameter_list|)
 block|{
-comment|// TODO(user): Return a subclass of Maps.FilteredKeyMap for slightly better
+comment|// TODO(lowasser): Return a subclass of Maps.FilteredKeyMap for slightly better
 comment|// performance.
 return|return
 name|filterEntries
@@ -9012,7 +9012,7 @@ argument_list|>
 name|keyPredicate
 parameter_list|)
 block|{
-comment|// TODO(user): Return a subclass of Maps.FilteredKeyMap for slightly better
+comment|// TODO(lowasser): Return a subclass of Maps.FilteredKeyMap for slightly better
 comment|// performance.
 return|return
 name|filterEntries

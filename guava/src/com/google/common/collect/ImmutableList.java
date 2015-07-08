@@ -2617,7 +2617,7 @@ name|DEFAULT_INITIAL_CAPACITY
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(user): consider exposing this
+comment|// TODO(lowasser): consider exposing this
 DECL|method|Builder (int capacity)
 name|Builder
 parameter_list|(
