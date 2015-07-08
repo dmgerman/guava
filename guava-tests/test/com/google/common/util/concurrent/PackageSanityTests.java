@@ -50,16 +50,6 @@ name|SleepingStopwatch
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Basic sanity tests for the entire package.  *  * @author Ben Yu  */
 end_comment
@@ -130,17 +120,6 @@ operator|.
 name|class
 argument_list|,
 name|NO_OP_STOPWATCH
-argument_list|)
-expr_stmt|;
-name|setDefault
-argument_list|(
-name|Class
-operator|.
-name|class
-argument_list|,
-name|IOException
-operator|.
-name|class
 argument_list|)
 expr_stmt|;
 name|setDefault

@@ -8710,6 +8710,19 @@ name|MyError
 argument_list|)
 expr_stmt|;
 block|}
+DECL|class|OtherThrowable
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|OtherThrowable
+extends|extends
+name|Throwable
+block|{    }
+comment|// Boring untimed-get tests:
+comment|// Boring timed-get tests:
+comment|// Boring getUnchecked tests:
+comment|// Edge case tests of the exception-construction code through untimed get():
 comment|// Mostly an example of how it would look like to use a list of mixed types
 DECL|method|failureWithCause (Throwable cause, String message)
 specifier|static

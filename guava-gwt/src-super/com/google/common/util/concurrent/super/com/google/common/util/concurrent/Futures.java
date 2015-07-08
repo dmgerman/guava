@@ -3285,7 +3285,8 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    * Arguably we don't need a timed getUnchecked because any operation slow    * enough to require a timeout is heavyweight enough to throw a checked    * exception and therefore be inappropriate to use with getUnchecked. Further,    * it's not clear that converting the checked TimeoutException to a    * RuntimeException -- especially to an UncheckedExecutionException, since it    * wasn't thrown by the computation -- makes sense, and if we don't convert    * it, the user still has to write a try-catch block.    *    * If you think you would use this method, let us know. You might also also    * look into the Fork-Join framework:    * http://docs.oracle.com/javase/tutorial/essential/concurrency/forkjoin.html    */
+comment|/*    * TODO(user): FutureChecker interface for these to be static methods on? If    * so, refer to it in the (static-method) Futures.getChecked documentation    */
+comment|/*    * Arguably we don't need a timed getUnchecked because any operation slow    * enough to require a timeout is heavyweight enough to throw a checked    * exception and therefore be inappropriate to use with getUnchecked. Further,    * it's not clear that converting the checked TimeoutException to a    * RuntimeException -- especially to an UncheckedExecutionException, since it    * wasn't thrown by the computation -- makes sense, and if we don't convert    * it, the user still has to write a try-catch block.    *    * If you think you would use this method, let us know.    */
 comment|/** Used for {@link #allAsList} and {@link #successfulAsList}. */
 DECL|class|ListFuture
 specifier|private
