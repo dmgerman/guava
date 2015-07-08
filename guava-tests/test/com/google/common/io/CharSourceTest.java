@@ -294,7 +294,7 @@ name|suite
 operator|.
 name|addTestSuite
 argument_list|(
-name|CharStreamsTest
+name|CharSourceTest
 operator|.
 name|class
 argument_list|)
