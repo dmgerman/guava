@@ -36,15 +36,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|gwt
-operator|.
-name|lang
-operator|.
-name|Array
+name|Arrays
 import|;
 end_import
 
@@ -86,11 +82,17 @@ operator|(
 name|T
 index|[]
 operator|)
-name|Array
+name|Arrays
 operator|.
-name|clone
+name|copyOfRange
 argument_list|(
 name|array
+argument_list|,
+literal|0
+argument_list|,
+name|array
+operator|.
+name|length
 argument_list|)
 return|;
 block|}
