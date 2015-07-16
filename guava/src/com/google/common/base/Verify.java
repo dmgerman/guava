@@ -85,7 +85,7 @@ specifier|final
 class|class
 name|Verify
 block|{
-comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with no    * message otherwise.    */
+comment|/**    * Ensures that {@code expression} is {@code true}, throwing a {@code VerifyException} with no    * message otherwise.    *    * @throws VerifyException if {@code expression} is {@code false}    */
 DECL|method|verify (boolean expression)
 specifier|public
 specifier|static
@@ -151,7 +151,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a default    * message otherwise.    *    * @return {@code reference}, guaranteed to be non-null, for convenience    */
+comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a default    * message otherwise.    *    * @return {@code reference}, guaranteed to be non-null, for convenience    * @throws VerifyException if {@code reference} is {@code null}    */
 DECL|method|verifyNotNull (@ullable T reference)
 specifier|public
 specifier|static
@@ -176,7 +176,7 @@ literal|"expected a non-null reference"
 argument_list|)
 return|;
 block|}
-comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a custom    * message otherwise.    *    * @param errorMessageTemplate a template for the exception message should the    *     check fail. The message is formed by replacing each {@code %s}    *     placeholder in the template with an argument. These are matched by    *     position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.    *     Unmatched arguments will be appended to the formatted message in square    *     braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}.    * @return {@code reference}, guaranteed to be non-null, for convenience    */
+comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a custom    * message otherwise.    *    * @param errorMessageTemplate a template for the exception message should the    *     check fail. The message is formed by replacing each {@code %s}    *     placeholder in the template with an argument. These are matched by    *     position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.    *     Unmatched arguments will be appended to the formatted message in square    *     braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}.    * @return {@code reference}, guaranteed to be non-null, for convenience    * @throws VerifyException if {@code reference} is {@code null}    */
 DECL|method|verifyNotNull ( @ullable T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
