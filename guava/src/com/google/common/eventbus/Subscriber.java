@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -146,6 +160,8 @@ return|;
 block|}
 comment|/** The event bus this subscriber belongs to. */
 DECL|field|bus
+annotation|@
+name|Weak
 specifier|private
 name|EventBus
 name|bus

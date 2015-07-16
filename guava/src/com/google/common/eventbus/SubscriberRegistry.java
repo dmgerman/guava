@@ -276,6 +276,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -415,6 +429,8 @@ argument_list|()
 decl_stmt|;
 comment|/**    * The event bus this registry belongs to.    */
 DECL|field|bus
+annotation|@
+name|Weak
 specifier|private
 specifier|final
 name|EventBus
