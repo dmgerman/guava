@@ -451,16 +451,11 @@ name|v3
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"putIfAbsent(present, differentValue) should throw"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
-name|expected
+name|tolerated
 parameter_list|)
 block|{     }
 name|expectUnchanged
