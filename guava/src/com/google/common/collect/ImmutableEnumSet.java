@@ -100,26 +100,18 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|asImmutable (EnumSet<E> set)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtypes"
+argument_list|)
+comment|// necessary to compile against Java 8
+DECL|method|asImmutable (EnumSet set)
 specifier|static
-parameter_list|<
-name|E
-extends|extends
-name|Enum
-argument_list|<
-name|E
-argument_list|>
-parameter_list|>
 name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
 name|asImmutable
 parameter_list|(
 name|EnumSet
-argument_list|<
-name|E
-argument_list|>
 name|set
 parameter_list|)
 block|{
@@ -160,9 +152,6 @@ default|default:
 return|return
 operator|new
 name|ImmutableEnumSet
-argument_list|<
-name|E
-argument_list|>
 argument_list|(
 name|set
 argument_list|)

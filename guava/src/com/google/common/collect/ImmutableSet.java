@@ -1291,27 +1291,19 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|copyOfEnumSet (EnumSet<E> enumSet)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"rawtypes"
+argument_list|)
+comment|// necessary to compile against Java 8
+DECL|method|copyOfEnumSet (EnumSet enumSet)
 specifier|private
 specifier|static
-parameter_list|<
-name|E
-extends|extends
-name|Enum
-argument_list|<
-name|E
-argument_list|>
-parameter_list|>
 name|ImmutableSet
-argument_list|<
-name|E
-argument_list|>
 name|copyOfEnumSet
 parameter_list|(
 name|EnumSet
-argument_list|<
-name|E
-argument_list|>
 name|enumSet
 parameter_list|)
 block|{
