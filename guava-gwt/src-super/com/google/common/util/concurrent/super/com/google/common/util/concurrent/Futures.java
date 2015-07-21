@@ -3403,8 +3403,13 @@ name|result
 init|=
 name|Lists
 operator|.
-name|newArrayList
+name|newArrayListWithCapacity
+argument_list|(
+name|values
+operator|.
+name|size
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
