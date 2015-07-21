@@ -968,6 +968,7 @@ argument_list|)
 DECL|class|DirectExecutorService
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|DirectExecutorService
 extends|extends
@@ -1492,6 +1493,7 @@ annotation|@
 name|Override
 DECL|method|awaitTermination (long timeout, TimeUnit unit)
 specifier|public
+specifier|final
 name|boolean
 name|awaitTermination
 parameter_list|(
@@ -1519,6 +1521,7 @@ annotation|@
 name|Override
 DECL|method|isShutdown ()
 specifier|public
+specifier|final
 name|boolean
 name|isShutdown
 parameter_list|()
@@ -1534,6 +1537,7 @@ annotation|@
 name|Override
 DECL|method|isTerminated ()
 specifier|public
+specifier|final
 name|boolean
 name|isTerminated
 parameter_list|()
@@ -1549,6 +1553,7 @@ annotation|@
 name|Override
 DECL|method|shutdown ()
 specifier|public
+specifier|final
 name|void
 name|shutdown
 parameter_list|()
@@ -1563,6 +1568,7 @@ annotation|@
 name|Override
 DECL|method|shutdownNow ()
 specifier|public
+specifier|final
 name|List
 argument_list|<
 name|Runnable
@@ -1581,6 +1587,7 @@ annotation|@
 name|Override
 DECL|method|execute (Runnable command)
 specifier|public
+specifier|final
 name|void
 name|execute
 parameter_list|(
@@ -1605,6 +1612,7 @@ argument_list|)
 DECL|class|ScheduledListeningDecorator
 specifier|private
 specifier|static
+specifier|final
 class|class
 name|ScheduledListeningDecorator
 extends|extends
