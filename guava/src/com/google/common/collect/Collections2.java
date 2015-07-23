@@ -910,6 +910,11 @@ name|and
 argument_list|(
 name|predicate
 argument_list|,
+name|Predicates
+operator|.
+expr|<
+name|Object
+operator|>
 name|in
 argument_list|(
 name|collection
@@ -946,6 +951,11 @@ name|predicate
 argument_list|,
 name|not
 argument_list|(
+name|Predicates
+operator|.
+expr|<
+name|Object
+operator|>
 name|in
 argument_list|(
 name|collection
