@@ -1354,6 +1354,18 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"MoreExecutors.directExecutor()"
+return|;
+block|}
 block|}
 comment|/**    * Creates an {@link ExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the    * given delegate executor. Those methods, as well as {@code execute} and    * {@code invokeAny}, are implemented in terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the    * delegate. This implies that the returned {@code ListeningExecutorService}    * never calls the delegate's {@code submit}, {@code invokeAll}, and {@code    * invokeAny} methods, so any special handling of tasks must be implemented in    * the delegate's {@code execute} method or by wrapping the returned {@code    * ListeningExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningExecutorService}, it is returned untouched, and the rest of this    * documentation does not apply.    *    * @since 10.0    */
 annotation|@

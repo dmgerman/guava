@@ -110,6 +110,18 @@ name|run
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"MoreExecutors.directExecutor()"
+return|;
+block|}
 block|}
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166    * Expert Group and released to the public domain, as explained at    * http://creativecommons.org/publicdomain/zero/1.0/    * Other contributors include Andrew Wright, Jeffrey Hayes,    * Pat Fisher, Mike Judd.    */
 comment|// TODO(lukes): provide overloads for ListeningExecutorService? ListeningScheduledExecutorService?
