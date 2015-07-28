@@ -1447,6 +1447,21 @@ argument_list|,
 literal|"json"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for the    *<a href="http://www.w3.org/TR/appmanifest/">Manifest for a web application</a>.    *    * @since 19.0    */
+DECL|field|MANIFEST_JSON_UTF_8
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|MANIFEST_JSON_UTF_8
+init|=
+name|createConstantUtf8
+argument_list|(
+name|APPLICATION_TYPE
+argument_list|,
+literal|"manifest+json"
+argument_list|)
+decl_stmt|;
 DECL|field|KML
 specifier|public
 specifier|static
