@@ -465,6 +465,7 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
+comment|// TODO(lukes): handle RejectedExecutionException
 name|adapterExecutor
 operator|.
 name|execute
@@ -491,22 +492,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Error
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
-catch|catch
-parameter_list|(
 name|Throwable
 name|e
 parameter_list|)
 block|{
-comment|// ExecutionException / CancellationException / RuntimeException
-comment|// The task is done, run the listeners.
+comment|// ExecutionException / CancellationException / RuntimeException / Error
+comment|// The task is presumably done, run the listeners.
 block|}
 name|executionList
 operator|.
