@@ -404,6 +404,7 @@ block|}
 comment|/**    * Worker that runs tasks off the queue until it is empty or the queue is suspended.    */
 DECL|class|QueueWorker
 specifier|private
+specifier|final
 class|class
 name|QueueWorker
 implements|implements
