@@ -3171,6 +3171,9 @@ name|collection
 argument_list|)
 return|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// https://code.google.com/p/android/issues/detail?id=72073
 DECL|method|testMapSplitter_trimmedBoth ()
 specifier|public
 name|void
@@ -3270,6 +3273,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// https://code.google.com/p/android/issues/detail?id=72073
 DECL|method|testMapSplitter_trimmedEntries ()
 specifier|public
 name|void
@@ -3361,6 +3367,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// https://code.google.com/p/android/issues/detail?id=72073
 DECL|method|testMapSplitter_trimmedKeyValue ()
 specifier|public
 name|void
@@ -3457,6 +3466,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// https://code.google.com/p/android/issues/detail?id=72073
 DECL|method|testMapSplitter_notTrimmed ()
 specifier|public
 name|void
@@ -3545,6 +3557,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// https://code.google.com/p/android/issues/detail?id=72073
 DECL|method|testMapSplitter_CharacterSeparator ()
 specifier|public
 name|void
@@ -3639,6 +3654,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// https://code.google.com/p/android/issues/detail?id=72073
 DECL|method|testMapSplitter_multiCharacterSeparator ()
 specifier|public
 name|void

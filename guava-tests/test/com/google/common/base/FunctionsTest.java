@@ -2753,6 +2753,10 @@ name|GwtIncompatible
 argument_list|(
 literal|"reflection"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): ClassNotFoundException: com.google.common.base.Function
+comment|// (I suspect that this and the other similar failures happen with ArbitraryInstances proxies.)
 DECL|method|testEqualsAndSerializable ()
 specifier|public
 name|void

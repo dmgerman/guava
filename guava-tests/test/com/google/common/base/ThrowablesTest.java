@@ -2153,19 +2153,29 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testLazyStackTrace ()
+annotation|@
+name|SuppressUnderAndroid
+comment|// No getJavaLangAccess in Android (at least not in the version we use).
+DECL|method|testLazyStackTraceWorksInProd ()
 specifier|public
 name|void
-name|testLazyStackTrace
+name|testLazyStackTraceWorksInProd
 parameter_list|()
 block|{
-comment|// Obviously this isn't guaranteed, but it works well enough for now:
+comment|// Obviously this isn't guaranteed in every environment, but it works well enough for now:
 name|assertTrue
 argument_list|(
 name|lazyStackTraceIsLazy
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|testLazyStackTrace ()
+specifier|public
+name|void
+name|testLazyStackTrace
+parameter_list|()
+block|{
 name|Exception
 name|e
 init|=
@@ -2226,6 +2236,16 @@ name|UnsupportedOperationException
 name|expected
 parameter_list|)
 block|{     }
+comment|// Now we test a property that holds only for the lazy implementation.
+if|if
+condition|(
+operator|!
+name|lazyStackTraceIsLazy
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
 name|e
 operator|.
 name|setStackTrace
