@@ -423,6 +423,21 @@ condition|)
 block|{
 return|return;
 block|}
+if|if
+condition|(
+name|to
+operator|instanceof
+name|WildcardType
+operator|!=
+name|from
+operator|instanceof
+name|WildcardType
+condition|)
+block|{
+comment|// When we are saying "assuming<?> is T, there really isn't any useful type mapping.
+comment|// Similarly, saying "assuming T is<?>" is meaningless. Of course it is.
+return|return;
+block|}
 operator|new
 name|TypeVisitor
 argument_list|()
