@@ -1549,7 +1549,7 @@ name|comparator
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by the    * reverse of their natural ordering.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<E>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
+comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by the    * reverse of their natural ordering.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<?>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
 DECL|method|reverseOrder ()
 specifier|public
 specifier|static
@@ -1585,7 +1585,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by their    * natural ordering. The sorted multisets use {@link Ordering#natural()} as the comparator. This    * method provides more type-safety than {@link #builder}, as it can be called only for classes    * that implement {@link Comparable}.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<E>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
+comment|/**    * Returns a builder that creates immutable sorted multisets whose elements are ordered by their    * natural ordering. The sorted multisets use {@link Ordering#natural()} as the comparator. This    * method provides more type-safety than {@link #builder}, as it can be called only for classes    * that implement {@link Comparable}.    *    *<p>Note: the type parameter {@code E} extends {@code Comparable<?>} rather than {@code    * Comparable<? super E>} as a workaround for javac<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6468354">bug 6468354</a>.    */
 DECL|method|naturalOrder ()
 specifier|public
 specifier|static
