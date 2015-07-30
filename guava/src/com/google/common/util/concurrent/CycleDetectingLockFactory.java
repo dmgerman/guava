@@ -162,6 +162,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -2580,6 +2594,8 @@ operator|.
 name|ReadLock
 block|{
 DECL|field|readWriteLock
+annotation|@
+name|Weak
 specifier|final
 name|CycleDetectingReentrantReadWriteLock
 name|readWriteLock
@@ -2775,6 +2791,8 @@ operator|.
 name|WriteLock
 block|{
 DECL|field|readWriteLock
+annotation|@
+name|Weak
 specifier|final
 name|CycleDetectingReentrantReadWriteLock
 name|readWriteLock

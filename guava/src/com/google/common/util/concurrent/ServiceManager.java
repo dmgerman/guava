@@ -572,6 +572,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -1490,13 +1504,35 @@ name|Guard
 name|awaitHealthGuard
 init|=
 operator|new
+name|AwaitHealthGuard
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|AwaitHealthGuard
+specifier|final
+class|class
+name|AwaitHealthGuard
+extends|extends
 name|Monitor
 operator|.
 name|Guard
+block|{
+DECL|method|AwaitHealthGuard ()
+name|AwaitHealthGuard
+parameter_list|()
+block|{
+name|super
 argument_list|(
+name|ServiceManagerState
+operator|.
+name|this
+operator|.
 name|monitor
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|isSatisfied ()
 annotation|@
 name|Override
 specifier|public
@@ -1538,7 +1574,6 @@ argument_list|)
 return|;
 block|}
 block|}
-decl_stmt|;
 comment|/**      * Controls how long to wait for all services to reach a terminal state.      */
 DECL|field|stoppedGuard
 specifier|final
@@ -1548,13 +1583,35 @@ name|Guard
 name|stoppedGuard
 init|=
 operator|new
+name|StoppedGuard
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|StoppedGuard
+specifier|final
+class|class
+name|StoppedGuard
+extends|extends
 name|Monitor
 operator|.
 name|Guard
+block|{
+DECL|method|StoppedGuard ()
+name|StoppedGuard
+parameter_list|()
+block|{
+name|super
 argument_list|(
+name|ServiceManagerState
+operator|.
+name|this
+operator|.
 name|monitor
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|isSatisfied ()
 annotation|@
 name|Override
 specifier|public
@@ -1581,7 +1638,6 @@ name|numberOfServices
 return|;
 block|}
 block|}
-decl_stmt|;
 comment|/** The listeners to notify during a state transition. */
 annotation|@
 name|GuardedBy

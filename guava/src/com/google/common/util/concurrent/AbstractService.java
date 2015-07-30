@@ -260,6 +260,20 @@ end_comment
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -633,11 +647,34 @@ name|Guard
 name|isStartable
 init|=
 operator|new
+name|IsStartableGuard
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|IsStartableGuard
+specifier|private
+specifier|final
+class|class
+name|IsStartableGuard
+extends|extends
 name|Guard
+block|{
+DECL|method|IsStartableGuard ()
+name|IsStartableGuard
+parameter_list|()
+block|{
+name|super
 argument_list|(
+name|AbstractService
+operator|.
+name|this
+operator|.
 name|monitor
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|isSatisfied ()
 annotation|@
 name|Override
 specifier|public
@@ -653,7 +690,6 @@ name|NEW
 return|;
 block|}
 block|}
-decl_stmt|;
 DECL|field|isStoppable
 specifier|private
 specifier|final
@@ -661,11 +697,34 @@ name|Guard
 name|isStoppable
 init|=
 operator|new
+name|IsStoppableGuard
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|IsStoppableGuard
+specifier|private
+specifier|final
+class|class
+name|IsStoppableGuard
+extends|extends
 name|Guard
+block|{
+DECL|method|IsStoppableGuard ()
+name|IsStoppableGuard
+parameter_list|()
+block|{
+name|super
 argument_list|(
+name|AbstractService
+operator|.
+name|this
+operator|.
 name|monitor
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|isSatisfied ()
 annotation|@
 name|Override
 specifier|public
@@ -686,7 +745,6 @@ literal|0
 return|;
 block|}
 block|}
-decl_stmt|;
 DECL|field|hasReachedRunning
 specifier|private
 specifier|final
@@ -694,11 +752,34 @@ name|Guard
 name|hasReachedRunning
 init|=
 operator|new
+name|HasReachedRunningGuard
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|HasReachedRunningGuard
+specifier|private
+specifier|final
+class|class
+name|HasReachedRunningGuard
+extends|extends
 name|Guard
+block|{
+DECL|method|HasReachedRunningGuard ()
+name|HasReachedRunningGuard
+parameter_list|()
+block|{
+name|super
 argument_list|(
+name|AbstractService
+operator|.
+name|this
+operator|.
 name|monitor
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|isSatisfied ()
 annotation|@
 name|Override
 specifier|public
@@ -719,7 +800,6 @@ literal|0
 return|;
 block|}
 block|}
-decl_stmt|;
 DECL|field|isStopped
 specifier|private
 specifier|final
@@ -727,11 +807,34 @@ name|Guard
 name|isStopped
 init|=
 operator|new
+name|IsStoppedGuard
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|IsStoppedGuard
+specifier|private
+specifier|final
+class|class
+name|IsStoppedGuard
+extends|extends
 name|Guard
+block|{
+DECL|method|IsStoppedGuard ()
+name|IsStoppedGuard
+parameter_list|()
+block|{
+name|super
 argument_list|(
+name|AbstractService
+operator|.
+name|this
+operator|.
 name|monitor
 argument_list|)
-block|{
+expr_stmt|;
+block|}
+DECL|method|isSatisfied ()
 annotation|@
 name|Override
 specifier|public
@@ -748,7 +851,6 @@ argument_list|()
 return|;
 block|}
 block|}
-decl_stmt|;
 comment|/**    * The listeners to notify during a state transition.    */
 annotation|@
 name|GuardedBy

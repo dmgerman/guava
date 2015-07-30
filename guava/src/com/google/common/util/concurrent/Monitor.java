@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|Weak
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -184,6 +198,8 @@ class|class
 name|Guard
 block|{
 DECL|field|monitor
+annotation|@
+name|Weak
 specifier|final
 name|Monitor
 name|monitor

@@ -487,11 +487,22 @@ name|AbstractService
 name|delegate
 init|=
 operator|new
-name|AbstractService
+name|ServiceDelegate
 argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|ServiceDelegate
+specifier|private
+specifier|final
+class|class
+name|ServiceDelegate
+extends|extends
+name|AbstractService
 block|{
 comment|// A handle to the running task so that we can stop it when a shutdown has been requested.
 comment|// These two fields are volatile because their values will be accessed from multiple threads.
+DECL|field|runningTask
 specifier|private
 specifier|volatile
 name|Future
@@ -500,6 +511,7 @@ name|?
 argument_list|>
 name|runningTask
 decl_stmt|;
+DECL|field|executorService
 specifier|private
 specifier|volatile
 name|ScheduledExecutorService
@@ -509,6 +521,7 @@ comment|// This lock protects the task so we can ensure that none of the templat
 comment|// shutDown or runOneIteration) run concurrently with one another.
 comment|// TODO(lukes):  why don't we use ListenableFuture to sequence things?  Then we could drop the
 comment|// lock.
+DECL|field|lock
 specifier|private
 specifier|final
 name|ReentrantLock
@@ -520,11 +533,13 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|WeakOuter
+DECL|class|Task
 class|class
 name|Task
 implements|implements
 name|Runnable
 block|{
+DECL|method|run ()
 annotation|@
 name|Override
 specifier|public
@@ -614,6 +629,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|field|task
 specifier|private
 specifier|final
 name|Runnable
@@ -623,6 +639,7 @@ operator|new
 name|Task
 argument_list|()
 decl_stmt|;
+DECL|method|doStart ()
 annotation|@
 name|Override
 specifier|protected
@@ -751,6 +768,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|doStop ()
 annotation|@
 name|Override
 specifier|protected
@@ -840,7 +858,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-decl_stmt|;
 comment|/** Constructor for use by subclasses. */
 DECL|method|AbstractScheduledService ()
 specifier|protected
@@ -890,17 +907,12 @@ name|ScheduledExecutorService
 name|executor
 parameter_list|()
 block|{
-specifier|final
-name|ScheduledExecutorService
-name|executor
-init|=
-name|Executors
-operator|.
-name|newSingleThreadScheduledExecutor
-argument_list|(
-operator|new
+annotation|@
+name|WeakOuter
+class|class
+name|ThreadFactoryImpl
+implements|implements
 name|ThreadFactory
-argument_list|()
 block|{
 annotation|@
 name|Override
@@ -925,6 +937,17 @@ argument_list|)
 return|;
 block|}
 block|}
+specifier|final
+name|ScheduledExecutorService
+name|executor
+init|=
+name|Executors
+operator|.
+name|newSingleThreadScheduledExecutor
+argument_list|(
+operator|new
+name|ThreadFactoryImpl
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// Add a listener to shutdown the executor after the service is stopped.  This ensures that the

@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|j2objc
+operator|.
+name|annotations
+operator|.
+name|WeakOuter
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -108,12 +122,23 @@ argument_list|>
 name|threadNameSupplier
 init|=
 operator|new
+name|ThreadNameSupplier
+argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|ThreadNameSupplier
+specifier|private
+specifier|final
+class|class
+name|ThreadNameSupplier
+implements|implements
 name|Supplier
 argument_list|<
 name|String
 argument_list|>
-argument_list|()
 block|{
+DECL|method|get ()
 annotation|@
 name|Override
 specifier|public
@@ -132,7 +157,6 @@ argument_list|()
 return|;
 block|}
 block|}
-decl_stmt|;
 comment|/* use AbstractService for state management */
 DECL|field|delegate
 specifier|private
@@ -141,9 +165,20 @@ name|Service
 name|delegate
 init|=
 operator|new
-name|AbstractService
+name|DelegateService
 argument_list|()
+decl_stmt|;
+annotation|@
+name|WeakOuter
+DECL|class|DelegateService
+specifier|private
+specifier|final
+class|class
+name|DelegateService
+extends|extends
+name|AbstractService
 block|{
+DECL|method|doStart ()
 annotation|@
 name|Override
 specifier|protected
@@ -201,6 +236,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|doStop ()
 annotation|@
 name|Override
 specifier|protected
@@ -259,7 +295,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-decl_stmt|;
 comment|/** Constructor for use by subclasses. */
 DECL|method|AbstractIdleService ()
 specifier|protected
