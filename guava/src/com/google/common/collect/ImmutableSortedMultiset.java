@@ -1558,7 +1558,7 @@ name|E
 extends|extends
 name|Comparable
 argument_list|<
-name|E
+name|?
 argument_list|>
 parameter_list|>
 name|Builder
@@ -1594,7 +1594,7 @@ name|E
 extends|extends
 name|Comparable
 argument_list|<
-name|E
+name|?
 argument_list|>
 parameter_list|>
 name|Builder
