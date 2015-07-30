@@ -18089,13 +18089,21 @@ control|)
 block|{
 name|sum
 operator|+=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
 name|segments
 index|[
 name|i
 index|]
 operator|.
 name|count
+argument_list|)
 expr_stmt|;
+comment|// see https://github.com/google/guava/issues/2108
 block|}
 return|return
 name|sum
