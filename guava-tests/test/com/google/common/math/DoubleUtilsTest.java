@@ -106,6 +106,9 @@ name|DoubleUtilsTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressUnderAndroid
+comment|// no FpUtils
 DECL|method|testNextDown ()
 specifier|public
 name|void
@@ -139,6 +142,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): File bug for BigDecimal.doubleValue().
 DECL|method|testBigToDouble ()
 specifier|public
 name|void
@@ -153,8 +159,27 @@ range|:
 name|ALL_BIGINTEGER_CANDIDATES
 control|)
 block|{
-name|assertEquals
+if|if
+condition|(
+name|b
+operator|.
+name|doubleValue
+argument_list|()
+operator|!=
+name|DoubleUtils
+operator|.
+name|bigToDouble
 argument_list|(
+name|b
+argument_list|)
+condition|)
+block|{
+name|failFormat
+argument_list|(
+literal|"Converting %s to double: expected doubleValue %s but got bigToDouble %s"
+argument_list|,
+name|b
+argument_list|,
 name|b
 operator|.
 name|doubleValue
@@ -168,6 +193,7 @@ name|b
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|testEnsureNonNegative ()
@@ -275,6 +301,33 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{     }
+block|}
+DECL|method|failFormat (String template, Object... args)
+specifier|private
+specifier|static
+name|void
+name|failFormat
+parameter_list|(
+name|String
+name|template
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+name|template
+argument_list|,
+name|args
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

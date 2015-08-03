@@ -1568,7 +1568,7 @@ name|FLOOR
 argument_list|)
 decl_stmt|;
 name|boolean
-name|expectSuccess
+name|expectedSuccess
 init|=
 name|LongMath
 operator|.
@@ -1599,7 +1599,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|expectSuccess
+name|expectedSuccess
 argument_list|)
 expr_stmt|;
 block|}
@@ -1609,11 +1609,21 @@ name|ArithmeticException
 name|e
 parameter_list|)
 block|{
-name|assertFalse
+if|if
+condition|(
+name|expectedSuccess
+condition|)
+block|{
+name|failFormat
 argument_list|(
-name|expectSuccess
+literal|"expected log10(%s, UNNECESSARY) = %s; got ArithmeticException"
+argument_list|,
+name|x
+argument_list|,
+name|floor
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1910,6 +1920,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): File BigDecimal.divide() rounding bug.
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
@@ -1971,10 +1984,9 @@ operator|.
 name|longValue
 argument_list|()
 decl_stmt|;
-name|assertEquals
-argument_list|(
-name|expected
-argument_list|,
+name|long
+name|actual
+init|=
 name|LongMath
 operator|.
 name|divide
@@ -1985,8 +1997,30 @@ name|q
 argument_list|,
 name|mode
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|expected
+operator|!=
+name|actual
+condition|)
+block|{
+name|failFormat
+argument_list|(
+literal|"expected divide(%s, %s, %s) = %s; got %s"
+argument_list|,
+name|p
+argument_list|,
+name|q
+argument_list|,
+name|mode
+argument_list|,
+name|expected
+argument_list|,
+name|actual
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1996,6 +2030,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): Problem with LongMath.divide on Android?
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
@@ -2019,7 +2056,7 @@ name|NONZERO_LONG_CANDIDATES
 control|)
 block|{
 name|boolean
-name|dividesEvenly
+name|expectedSuccess
 init|=
 operator|(
 name|p
@@ -2051,7 +2088,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|dividesEvenly
+name|expectedSuccess
 argument_list|)
 expr_stmt|;
 block|}
@@ -2061,11 +2098,21 @@ name|ArithmeticException
 name|e
 parameter_list|)
 block|{
-name|assertFalse
+if|if
+condition|(
+name|expectedSuccess
+condition|)
+block|{
+name|failFormat
 argument_list|(
-name|dividesEvenly
+literal|"expected divide(%s, %s, UNNECESSARY) to succeed; got ArithmeticException"
+argument_list|,
+name|p
+argument_list|,
+name|q
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2768,11 +2815,23 @@ name|ArithmeticException
 name|e
 parameter_list|)
 block|{
-name|assertFalse
-argument_list|(
+if|if
+condition|(
 name|expectedSuccess
+condition|)
+block|{
+name|failFormat
+argument_list|(
+literal|"expected checkedAdd(%s, %s) = %s; got ArithmeticException"
+argument_list|,
+name|a
+argument_list|,
+name|b
+argument_list|,
+name|expectedResult
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2858,11 +2917,23 @@ name|ArithmeticException
 name|e
 parameter_list|)
 block|{
-name|assertFalse
-argument_list|(
+if|if
+condition|(
 name|expectedSuccess
+condition|)
+block|{
+name|failFormat
+argument_list|(
+literal|"expected checkedSubtract(%s, %s) = %s; got ArithmeticException"
+argument_list|,
+name|a
+argument_list|,
+name|b
+argument_list|,
+name|expectedResult
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2872,6 +2943,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): Problem with LongMath.checkedMultiply on Android?
 DECL|method|testCheckedMultiply ()
 specifier|public
 name|void
@@ -2948,11 +3022,23 @@ name|ArithmeticException
 name|e
 parameter_list|)
 block|{
-name|assertFalse
-argument_list|(
+if|if
+condition|(
 name|expectedSuccess
+condition|)
+block|{
+name|failFormat
+argument_list|(
+literal|"expected checkedMultiply(%s, %s) = %s; got ArithmeticException"
+argument_list|,
+name|a
+argument_list|,
+name|b
+argument_list|,
+name|expectedResult
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3036,11 +3122,23 @@ name|ArithmeticException
 name|e
 parameter_list|)
 block|{
-name|assertFalse
-argument_list|(
+if|if
+condition|(
 name|expectedSuccess
+condition|)
+block|{
+name|failFormat
+argument_list|(
+literal|"expected checkedPow(%s, %s) = %s; got ArithmeticException"
+argument_list|,
+name|b
+argument_list|,
+name|exp
+argument_list|,
+name|expectedResult
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3987,6 +4085,38 @@ argument_list|(
 name|LongMath
 operator|.
 name|class
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|GwtIncompatible
+argument_list|(
+literal|"String.format"
+argument_list|)
+DECL|method|failFormat (String template, Object... args)
+specifier|private
+specifier|static
+name|void
+name|failFormat
+parameter_list|(
+name|String
+name|template
+parameter_list|,
+name|Object
+modifier|...
+name|args
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+name|template
+argument_list|,
+name|args
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
