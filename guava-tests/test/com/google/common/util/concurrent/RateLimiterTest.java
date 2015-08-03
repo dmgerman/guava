@@ -1049,6 +1049,9 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// difference in String.format rounding?
 DECL|method|testWarmUp ()
 specifier|public
 name|void
@@ -1432,6 +1435,9 @@ argument_list|)
 expr_stmt|;
 comment|// #3
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// difference in String.format rounding?
 DECL|method|testWarmUpAndUpdate ()
 specifier|public
 name|void
@@ -3243,16 +3249,16 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|testMocking ()
+DECL|method|testMockingMockito ()
 specifier|public
 name|void
-name|testMocking
+name|testMockingMockito
 parameter_list|()
 throws|throws
 name|Exception
 block|{
 name|RateLimiter
-name|mockito
+name|mock
 init|=
 name|Mockito
 operator|.
@@ -3263,8 +3269,25 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|doTestMocking
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// EasyMock Class Extension doesn't appear to work on Android.
+DECL|method|testMockingEasyMock ()
+specifier|public
+name|void
+name|testMockingEasyMock
+parameter_list|()
+throws|throws
+name|Exception
+block|{
 name|RateLimiter
-name|easyMock
+name|mock
 init|=
 name|EasyMock
 operator|.
@@ -3279,9 +3302,27 @@ name|EasyMock
 operator|.
 name|replay
 argument_list|(
-name|easyMock
+name|mock
 argument_list|)
 expr_stmt|;
+name|doTestMocking
+argument_list|(
+name|mock
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|doTestMocking (RateLimiter mock)
+specifier|private
+specifier|static
+name|void
+name|doTestMocking
+parameter_list|(
+name|RateLimiter
+name|mock
+parameter_list|)
+throws|throws
+name|Exception
+block|{
 for|for
 control|(
 name|Method
@@ -3335,19 +3376,7 @@ name|method
 operator|.
 name|invoke
 argument_list|(
-name|mockito
-argument_list|,
-name|arbitraryParameters
-argument_list|(
-name|method
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|method
-operator|.
-name|invoke
-argument_list|(
-name|easyMock
+name|mock
 argument_list|,
 name|arbitraryParameters
 argument_list|(

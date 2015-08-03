@@ -204,6 +204,9 @@ name|BloomFilterTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressUnderAndroid
+comment|// OutOfMemoryError
 DECL|method|testLargeBloomFilterDoesntOverflow ()
 specifier|public
 name|void
@@ -1581,6 +1584,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"CheckReturnValue"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// OutOfMemoryError
 DECL|method|testLargeNumberOfInsertions ()
 specifier|public
 name|void
