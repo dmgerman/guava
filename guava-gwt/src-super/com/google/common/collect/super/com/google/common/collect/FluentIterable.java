@@ -437,7 +437,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns {@code true} if this fluent iterable contains any object for which    * {@code equals(target)} is true.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(Predicate.isEqual(target))}    */
+comment|/**    * Returns {@code true} if this fluent iterable contains any object for which    * {@code equals(target)} is true.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.anyMatch(Predicate.isEqual(target))}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|contains (@ullable Object target)
@@ -824,7 +824,7 @@ name|absent
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
+comment|/**    * Returns an {@link Optional} containing the last element in this fluent iterable.    * If the iterable is empty, {@code Optional.absent()} is returned.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.reduce((a, b) -> b)}.    *    * @throws NullPointerException if the last element is null; if this is a possibility, use    *     {@link Iterables#getLast} instead.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|last ()
@@ -988,7 +988,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip}    * elements. If this fluent iterable contains fewer than {@code numberToSkip} elements,    * the returned fluent iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are    * reflected in the returned fluent iterable. That is, the its iterator skips the first    * {@code numberToSkip} elements that exist when the iterator is created, not when {@code skip()}    * is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the    * {@code Iterator} of this fluent iterable supports it. Note that it is<i>not</i>    * possible to delete the last skipped element by immediately calling {@code remove()} on the    * returned fluent iterable's iterator, as the {@code Iterator} contract states that a call    * to {@code * remove()} before a call to {@code next()} will throw an    * {@link IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(numberToSkip)} (same)    */
+comment|/**    * Returns a view of this fluent iterable that skips its first {@code numberToSkip}    * elements. If this fluent iterable contains fewer than {@code numberToSkip} elements,    * the returned fluent iterable skips all of its elements.    *    *<p>Modifications to this fluent iterable before a call to {@code iterator()} are    * reflected in the returned fluent iterable. That is, the its iterator skips the first    * {@code numberToSkip} elements that exist when the iterator is created, not when {@code skip()}    * is called.    *    *<p>The returned fluent iterable's iterator supports {@code remove()} if the    * {@code Iterator} of this fluent iterable supports it. Note that it is<i>not</i>    * possible to delete the last skipped element by immediately calling {@code remove()} on the    * returned fluent iterable's iterator, as the {@code Iterator} contract states that a call    * to {@code * remove()} before a call to {@code next()} will throw an    * {@link IllegalStateException}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(numberToSkip)} (same).    */
 annotation|@
 name|CheckReturnValue
 DECL|method|skip (int numberToSkip)
@@ -1018,7 +1018,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a fluent iterable with the first {@code size} elements of this    * fluent iterable. If this fluent iterable does not contain that many elements,    * the returned fluent iterable will have the same behavior as this fluent iterable.    * The returned fluent iterable's iterator supports {@code remove()} if this    * fluent iterable's iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.limit(maxSize)} (same)    *    * @param maxSize the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
+comment|/**    * Creates a fluent iterable with the first {@code size} elements of this    * fluent iterable. If this fluent iterable does not contain that many elements,    * the returned fluent iterable will have the same behavior as this fluent iterable.    * The returned fluent iterable's iterator supports {@code remove()} if this    * fluent iterable's iterator does.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.limit(maxSize)} (same).    *    * @param maxSize the maximum number of elements in the returned fluent iterable    * @throws IllegalArgumentException if {@code size} is negative    */
 annotation|@
 name|CheckReturnValue
 DECL|method|limit (int maxSize)
@@ -1048,7 +1048,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Determines whether this fluent iterable is empty.    *    *<p><b>{@code Stream} equivalent:</b> {@code !stream.findAny().isPresent()}    */
+comment|/**    * Determines whether this fluent iterable is empty.    *    *<p><b>{@code Stream} equivalent:</b> {@code !stream.findAny().isPresent()}.    */
 annotation|@
 name|CheckReturnValue
 DECL|method|isEmpty ()
@@ -1069,7 +1069,7 @@ name|hasNext
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this fluent iterable in    * proper sequence.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableList.copyOf(stream.iterator())}.    *    * @since 14.0 (since 12.0 as {@code toImmutableList()}).    */
 annotation|@
 name|CheckReturnValue
 DECL|method|toList ()
@@ -1091,7 +1091,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}.  To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableList.copyOf(stream.sorted(comparator).iterator())}    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
+comment|/**    * Returns an {@code ImmutableList} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}.  To produce an {@code    * ImmutableList} sorted by its natural ordering, use {@code toSortedList(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableList.copyOf(stream.sorted(comparator).iterator())}.    *    * @param comparator the function by which to sort list elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 13.0 as {@code toSortedImmutableList()}).    */
 annotation|@
 name|CheckReturnValue
 DECL|method|toSortedList (Comparator<? super E> comparator)
@@ -1126,7 +1126,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
+comment|/**    * Returns an {@code ImmutableSet} containing all of the elements from this fluent iterable with    * duplicates removed.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableSet.copyOf(stream.iterator())}.    *    * @since 14.0 (since 12.0 as {@code toImmutableSet()}).    */
 annotation|@
 name|CheckReturnValue
 DECL|method|toSet ()
@@ -1148,7 +1148,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableSortedSet.copyOf(comparator, stream.iterator())}    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
+comment|/**    * Returns an {@code ImmutableSortedSet} containing all of the elements from this {@code    * FluentIterable} in the order specified by {@code comparator}, with duplicates (determined by    * {@code comparator.compare(x, y) == 0}) removed. To produce an {@code ImmutableSortedSet} sorted    * by its natural ordering, use {@code toSortedSet(Ordering.natural())}.    *    *<p><b>{@code Stream} equivalent:</b>    * {@code ImmutableSortedSet.copyOf(comparator, stream.iterator())}.    *    * @param comparator the function by which to sort set elements    * @throws NullPointerException if any element is null    * @since 14.0 (since 12.0 as {@code toImmutableSortedSet()}).    */
 annotation|@
 name|CheckReturnValue
 DECL|method|toSortedSet (Comparator<? super E> comparator)
@@ -1180,7 +1180,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}    *    * @since 19.0    */
+comment|/**    * Returns an {@code ImmutableMultiset} containing all of the elements from this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code ImmutableMultiset.copyOf(stream.iterator())}.    *    * @since 19.0    */
 annotation|@
 name|CheckReturnValue
 DECL|method|toMultiset ()
@@ -1202,7 +1202,7 @@ name|iterable
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> TODO (note that Collectors.toMap would trash the order...)    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
+comment|/**    * Returns an immutable map whose keys are the distinct elements of this {@code FluentIterable}    * and whose value for each key was computed by {@code valueFunction}. The map's iteration order    * is the order of the first appearance of each key in this iterable.    *    *<p>When there are multiple instances of a key in this iterable, it is unspecified whether    * {@code valueFunction} will be applied to more than one instance of that key and, if it is,    * which result will be mapped to that key in the returned map.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(k -> k, valueFunction)))} (but note that    * this may not preserve the order of entries).    *    * @throws NullPointerException if any element of this iterable is {@code null}, or if {@code    *     valueFunction} produces {@code null} for any key    * @since 14.0    */
 annotation|@
 name|CheckReturnValue
 DECL|method|toMap (Function<? super E, V> valueFunction)
@@ -1241,7 +1241,7 @@ name|valueFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in this {@code FluentIterable} of values. Each element of this    * iterable will be stored as a value in the resulting multimap, yielding a multimap with the same    * size as this iterable. The key used to store that value in the multimap will be the result of    * calling the function on that value. The resulting multimap is created as an immutable snapshot.    * In the returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    * @param keyFunction the function used to produce the key for each value    * @throws NullPointerException if any of the following cases is true:    *<ul>    *<li>{@code keyFunction} is null    *<li>An element in this fluent iterable is null    *<li>{@code keyFunction} returns {@code null} for any element of this iterable    *</ul>    * @since 14.0    */
+comment|/**    * Creates an index {@code ImmutableListMultimap} that contains the results of applying a    * specified function to each item in this {@code FluentIterable} of values. Each element of this    * iterable will be stored as a value in the resulting multimap, yielding a multimap with the same    * size as this iterable. The key used to store that value in the multimap will be the result of    * calling the function on that value. The resulting multimap is created as an immutable snapshot.    * In the returned multimap, keys appear in the order they are first encountered, and the values    * corresponding to each key appear in the same order as they are encountered.    *    * @param keyFunction the function used to produce the key for each value    * @throws NullPointerException if any of the following cases is true:    *<ul>    *<li>{@code keyFunction} is null    *<li>An element in this fluent iterable is null    *<li>{@code keyFunction} returns {@code null} for any element of this iterable    *</ul>    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.collect(Collectors.groupingBy(keyFunction))}    * behaves similarly, but returns a mutable {@code Map<K, List<E>>} instead, and may not preserve    * the order of entries).    *    * @since 14.0    */
 annotation|@
 name|CheckReturnValue
 DECL|method|index (Function<? super E, K> keyFunction)
@@ -1280,7 +1280,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    *   Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> TODO    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *     keyFunction} on each value in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *     key for more than one value in this fluent iterable    * @throws NullPointerException if any elements of this fluent iterable is null, or    *     if {@code keyFunction} produces {@code null} for any value    * @since 14.0    */
+comment|/**    * Returns a map with the contents of this {@code FluentIterable} as its {@code values}, indexed    * by keys derived from those values. In other words, each input value produces an entry in the    * map whose key is the result of applying {@code keyFunction} to that value. These entries appear    * in the same order as they appeared in this fluent iterable. Example usage:    *<pre>   {@code    *    *   Color red = new Color("red", 255, 0, 0);    *   ...    *   FluentIterable<Color> allColors = FluentIterable.from(ImmutableSet.of(red, green, blue));    *    *   Map<String, Color> colorForName = allColors.uniqueIndex(toStringFunction());    *   assertThat(colorForName).containsEntry("red", red);}</pre>    *    *<p>If your index may associate multiple values with each key, use {@link #index(Function)    * index}.    *    *<p><b>{@code Stream} equivalent:</b> {@code    * ImmutableMap.copyOf(stream.collect(Collectors.toMap(keyFunction, v -> v)))} (but note that this    * may not preserve the order of entries).    *    * @param keyFunction the function used to produce the key for each value    * @return a map mapping the result of evaluating the function {@code    *     keyFunction} on each value in this fluent iterable to that value    * @throws IllegalArgumentException if {@code keyFunction} produces the same    *     key for more than one value in this fluent iterable    * @throws NullPointerException if any elements of this fluent iterable is null, or    *     if {@code keyFunction} produces {@code null} for any value    * @since 14.0    */
 annotation|@
 name|CheckReturnValue
 DECL|method|uniqueIndex (Function<? super E, K> keyFunction)
@@ -1319,7 +1319,7 @@ name|keyFunction
 argument_list|)
 return|;
 block|}
-comment|/**    * Copies all the elements from this fluent iterable to {@code collection}. This is equivalent to    * calling {@code Iterables.addAll(collection, this)}.    *    * @param collection the collection to copy elements to    * @return {@code collection}, for convenience    * @since 14.0    */
+comment|/**    * Copies all the elements from this fluent iterable to {@code collection}. This is equivalent to    * calling {@code Iterables.addAll(collection, this)}.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.forEachOrdered(collection::add)} or    * {@code stream.forEach(collection::add)}.    *    * @param collection the collection to copy elements to    * @return {@code collection}, for convenience    * @since 14.0    */
 DECL|method|copyInto (C collection)
 specifier|public
 specifier|final
@@ -1388,7 +1388,7 @@ return|return
 name|collection
 return|;
 block|}
-comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    * @since 18.0    */
+comment|/**    * Returns a {@link String} containing all of the elements of this fluent iterable joined with    * {@code joiner}.    *    *<p><b>{@code Stream} equivalent:</b> {@code joiner.join(stream.iterator())}, or, if you are not    * using any optional {@code Joiner} features,    * {@code stream.collect(Collectors.joining(delimiter)}.    *    * @since 18.0    */
 annotation|@
 name|Beta
 annotation|@
@@ -1412,7 +1412,8 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the element at the specified position in this fluent iterable.    *    * @param position position of the element to return    * @return the element at the specified position in this fluent iterable    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of this fluent iterable    */
+comment|/**    * Returns the element at the specified position in this fluent iterable.    *    *<p><b>{@code Stream} equivalent:</b> {@code stream.skip(position).findFirst().get()} (but note    * that this throws different exception types, and throws an exception if {@code null} would be    * returned).    *    * @param position position of the element to return    * @return the element at the specified position in this fluent iterable    * @throws IndexOutOfBoundsException if {@code position} is negative or greater than or equal to    *     the size of this fluent iterable    */
+comment|// TODO(kevinb): add @Nullable?
 annotation|@
 name|CheckReturnValue
 DECL|method|get (int position)
