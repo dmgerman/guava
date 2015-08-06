@@ -48,15 +48,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|gwt
-operator|.
-name|lang
-operator|.
-name|Array
+name|Arrays
 import|;
 end_import
 
@@ -98,17 +94,45 @@ name|int
 name|length
 parameter_list|)
 block|{
-return|return
-name|Array
+name|T
+index|[]
+name|clone
+init|=
+name|Arrays
 operator|.
-name|createFrom
+name|copyOf
 argument_list|(
 name|reference
 argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+name|resizeArray
+argument_list|(
+name|clone
+argument_list|,
 name|length
 argument_list|)
+expr_stmt|;
+return|return
+name|clone
 return|;
 block|}
+DECL|method|resizeArray (Object array, int newSize)
+specifier|private
+specifier|static
+specifier|native
+name|void
+name|resizeArray
+parameter_list|(
+name|Object
+name|array
+parameter_list|,
+name|int
+name|newSize
+parameter_list|)
+comment|/*-{     array.length = newSize;   }-*/
+function_decl|;
 block|}
 end_class
 
