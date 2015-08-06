@@ -72,7 +72,7 @@ name|common
 operator|.
 name|annotations
 operator|.
-name|GwtIncompatible
+name|GwtCompatible
 import|;
 end_import
 
@@ -106,16 +106,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayDeque
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -138,9 +128,11 @@ begin_class
 annotation|@
 name|Beta
 annotation|@
-name|GwtIncompatible
+name|GwtCompatible
 argument_list|(
-literal|"java.util.ArrayDeque"
+name|emulated
+operator|=
+literal|true
 argument_list|)
 DECL|class|EvictingQueue
 specifier|public
@@ -197,11 +189,9 @@ name|this
 operator|.
 name|delegate
 operator|=
-operator|new
-name|ArrayDeque
-argument_list|<
-name|E
-argument_list|>
+name|Platform
+operator|.
+name|newFastestQueue
 argument_list|(
 name|maxSize
 argument_list|)
