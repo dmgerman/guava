@@ -224,6 +224,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|CollectionAddTester
 specifier|public
 class|class

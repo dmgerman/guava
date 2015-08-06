@@ -458,6 +458,8 @@ name|String
 argument_list|>
 name|queue
 decl_stmt|;
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

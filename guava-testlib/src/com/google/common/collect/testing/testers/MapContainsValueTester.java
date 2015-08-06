@@ -169,6 +169,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|MapContainsValueTester
 specifier|public
 class|class

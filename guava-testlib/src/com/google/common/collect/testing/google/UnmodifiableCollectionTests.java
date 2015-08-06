@@ -94,6 +94,20 @@ name|common
 operator|.
 name|collect
 operator|.
+name|Iterators
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
 name|LinkedHashMultiset
 import|;
 end_import
@@ -484,11 +498,18 @@ name|E
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|copy
+comment|// Avoid copy.addAll(collection), which runs afoul of an Android bug in older versions:
+comment|// http://b.android.com/72073 http://r.android.com/98929
+name|Iterators
 operator|.
 name|addAll
 argument_list|(
+name|copy
+argument_list|,
 name|collection
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 expr_stmt|;
 try|try

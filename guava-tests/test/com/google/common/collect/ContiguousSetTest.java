@@ -3558,6 +3558,8 @@ name|BuiltTests
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

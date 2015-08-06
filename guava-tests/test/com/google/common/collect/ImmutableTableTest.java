@@ -2933,6 +2933,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"Mind-bogglingly slow in GWT"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// slow
 DECL|method|testOverflowCondition ()
 specifier|public
 name|void

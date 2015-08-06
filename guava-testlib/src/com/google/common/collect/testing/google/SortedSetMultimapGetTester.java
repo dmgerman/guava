@@ -55,6 +55,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|SortedSetMultimapGetTester
 specifier|public
 class|class

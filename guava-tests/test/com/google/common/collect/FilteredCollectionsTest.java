@@ -169,6 +169,9 @@ comment|/**  * Tests for filtered collection views.  *  * @author Louis Wasserma
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
+comment|// nested tests
 DECL|class|FilteredCollectionsTest
 specifier|public
 class|class

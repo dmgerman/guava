@@ -683,6 +683,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

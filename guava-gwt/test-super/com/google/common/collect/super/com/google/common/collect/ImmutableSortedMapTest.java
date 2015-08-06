@@ -454,6 +454,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|MapTests
 specifier|public
 specifier|static
@@ -545,6 +547,8 @@ literal|1
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|SingletonMapTests
 specifier|public
 specifier|static
@@ -608,6 +612,8 @@ literal|1
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|HeadMapTests
 specifier|public
 specifier|static
@@ -691,6 +697,8 @@ literal|4
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|HeadMapInclusiveTests
 specifier|public
 specifier|static
@@ -776,6 +784,8 @@ literal|4
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|TailMapTests
 specifier|public
 specifier|static
@@ -859,6 +869,8 @@ literal|1
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|TailExclusiveMapTests
 specifier|public
 specifier|static
@@ -944,6 +956,8 @@ literal|1
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|SubMapTests
 specifier|public
 specifier|static
@@ -1029,6 +1043,8 @@ literal|4
 return|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|CreationTests
 specifier|public
 specifier|static

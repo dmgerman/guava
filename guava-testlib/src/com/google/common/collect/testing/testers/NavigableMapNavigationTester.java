@@ -225,6 +225,8 @@ comment|/**  * A generic JUnit test which tests operations on a NavigableMap. Ca
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|NavigableMapNavigationTester
 specifier|public
 class|class

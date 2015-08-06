@@ -642,6 +642,8 @@ name|String
 argument_list|>
 name|forward
 decl_stmt|;
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1886,6 +1888,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Proxy problem, perhaps around SortedMultisetBridge?
 DECL|method|testElementSet ()
 specifier|public
 name|void

@@ -151,6 +151,8 @@ comment|/**  * This builder creates a composite test suite, containing a separat
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|PerCollectionSizeTestSuiteBuilder
 specifier|public
 specifier|abstract

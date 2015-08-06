@@ -231,6 +231,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

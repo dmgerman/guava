@@ -131,6 +131,8 @@ name|TreeBasedTableTest
 extends|extends
 name|AbstractTableTest
 block|{
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|TreeRowTest
 specifier|public
 specifier|static

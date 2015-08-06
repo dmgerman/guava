@@ -216,6 +216,8 @@ name|SynchronizedBiMapTest
 extends|extends
 name|SynchronizedMapTest
 block|{
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

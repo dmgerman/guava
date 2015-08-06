@@ -825,6 +825,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"reflection"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// relies on assumptions about OpenJDK
 DECL|method|testNewHashMapWithExpectedSize_wontGrow ()
 specifier|public
 name|void
@@ -892,6 +895,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"reflection"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// relies on assumptions about OpenJDK
 DECL|method|testNewLinkedHashMapWithExpectedSize_wontGrow ()
 specifier|public
 name|void
@@ -10419,6 +10425,8 @@ return|;
 block|}
 block|}
 decl_stmt|;
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|FilteredMapTest
 specifier|public
 specifier|static
@@ -11892,6 +11900,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|FilteredSortedMapTest
 specifier|public
 specifier|static
@@ -12343,6 +12353,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|FilteredBiMapTest
 specifier|public
 specifier|static

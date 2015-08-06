@@ -131,6 +131,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|ListMultimapPutAllTester
 specifier|public
 class|class

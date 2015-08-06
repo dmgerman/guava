@@ -112,6 +112,8 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|SetHashCodeTester
 specifier|public
 class|class

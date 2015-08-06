@@ -89,6 +89,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|ListToArrayTester
 specifier|public
 class|class

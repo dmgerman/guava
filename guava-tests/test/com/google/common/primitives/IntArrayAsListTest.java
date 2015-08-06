@@ -234,6 +234,8 @@ argument_list|(
 literal|"cast"
 argument_list|)
 comment|// redundant casts are intentional and harmless
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|IntArrayAsListTest
 specifier|public
 class|class

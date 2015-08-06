@@ -745,6 +745,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -6197,7 +6199,7 @@ name|RandomAccess
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: use the ListTestSuiteBuilder
+comment|// TODO: use the suite builders
 DECL|method|testPartition_view ()
 specifier|public
 name|void

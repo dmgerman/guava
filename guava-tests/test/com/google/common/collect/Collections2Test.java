@@ -346,6 +346,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -569,6 +571,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|testsForFilter ()
 specifier|private
 specifier|static
@@ -682,6 +686,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|testsForFilterAll ()
 specifier|private
 specifier|static
@@ -781,6 +787,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|testsForFilterLinkedList ()
 specifier|private
 specifier|static
@@ -894,6 +902,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|testsForFilterNoNulls ()
 specifier|private
 specifier|static
@@ -1010,6 +1020,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|testsForFilterFiltered ()
 specifier|private
 specifier|static
@@ -1199,6 +1211,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|testsForTransform ()
 specifier|private
 specifier|static

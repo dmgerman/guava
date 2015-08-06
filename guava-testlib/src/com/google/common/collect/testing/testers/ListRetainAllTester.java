@@ -201,6 +201,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|ListRetainAllTester
 specifier|public
 class|class

@@ -200,6 +200,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

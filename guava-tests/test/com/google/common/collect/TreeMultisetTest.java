@@ -354,6 +354,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -2681,6 +2683,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"reflection"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// Reflection bug, or actual binary compatibility problem?
 DECL|method|testElementSetBridgeMethods ()
 specifier|public
 name|void

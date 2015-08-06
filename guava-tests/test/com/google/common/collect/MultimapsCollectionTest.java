@@ -743,6 +743,8 @@ argument_list|(
 literal|"suite"
 argument_list|)
 comment|// TODO(cpovirk): set up collect/gwt/suites version
+annotation|@
+name|SuppressUnderAndroid
 DECL|class|MultimapsCollectionTest
 specifier|public
 class|class
