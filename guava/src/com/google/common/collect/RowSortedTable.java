@@ -115,9 +115,9 @@ name|V
 argument_list|>
 block|{
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedSet}, instead of the {@code Set}    * specified in the {@link Table} interface.    */
-DECL|method|rowKeySet ()
 annotation|@
 name|Override
+DECL|method|rowKeySet ()
 name|SortedSet
 argument_list|<
 name|R
@@ -126,9 +126,9 @@ name|rowKeySet
 parameter_list|()
 function_decl|;
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedMap}, instead of the {@code Map}    * specified in the {@link Table} interface.    */
-DECL|method|rowMap ()
 annotation|@
 name|Override
+DECL|method|rowMap ()
 name|SortedMap
 argument_list|<
 name|R

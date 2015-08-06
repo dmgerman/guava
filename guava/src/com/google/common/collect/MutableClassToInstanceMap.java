@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map.  * See also {@link ImmutableClassToInstanceMap}.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap">  * {@code ClassToInstanceMap}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
+comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provided map.  * See also {@link ImmutableClassToInstanceMap}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#classtoinstancemap">  * {@code ClassToInstanceMap}</a>.  *  * @author Kevin Bourrillion  * @since 2.0  */
 end_comment
 
 begin_class
@@ -135,7 +135,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new {@code MutableClassToInstanceMap} instance backed by a given    * empty {@code backingMap}. The caller surrenders control of the backing map,    * and thus should not allow any direct references to it to remain accessible.    */
-DECL|method|create ( Map<Class<? extends B>, B> backingMap)
+DECL|method|create (Map<Class<? extends B>, B> backingMap)
 specifier|public
 specifier|static
 parameter_list|<

@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains static utility methods for writing {@code Multiset} GWT  * field serializers. Serializers should delegate to  * {@link #serialize(SerializationStreamWriter, Multiset)} and  * {@link #populate(SerializationStreamReader, Multiset)}.  *   * @author Chris Povirk  */
+comment|/**  * This class contains static utility methods for writing {@code Multiset} GWT  * field serializers. Serializers should delegate to  * {@link #serialize(SerializationStreamWriter, Multiset)} and  * {@link #populate(SerializationStreamReader, Multiset)}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -80,7 +80,7 @@ specifier|final
 class|class
 name|Multiset_CustomFieldSerializerBase
 block|{
-DECL|method|populate ( SerializationStreamReader reader, Multiset<Object> multiset)
+DECL|method|populate (SerializationStreamReader reader, Multiset<Object> multiset)
 specifier|static
 name|Multiset
 argument_list|<

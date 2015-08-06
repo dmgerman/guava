@@ -961,7 +961,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code HashMap} instance, with a high enough "initial capacity"    * that it<i>should</i> hold {@code expectedSize} elements without growth.    * This behavior cannot be broadly guaranteed, but it is observed to be true    * for OpenJDK 1.7. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the    *        returned map    * @return a new, empty {@code HashMap} with enough capacity to hold {@code    *         expectedSize} entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    */
-DECL|method|newHashMapWithExpectedSize ( int expectedSize)
+DECL|method|newHashMapWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1063,7 +1063,7 @@ return|;
 comment|// any large value
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code    *         map}    */
-DECL|method|newHashMap ( Map<? extends K, ? extends V> map)
+DECL|method|newHashMap (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1135,7 +1135,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code LinkedHashMap} instance, with a high enough    * "initial capacity" that it<i>should</i> hold {@code expectedSize}    * elements without growth. This behavior cannot be broadly guaranteed, but    * it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned map.    *    * @param expectedSize the number of entries you expect to add to the    *        returned map    * @return a new, empty {@code LinkedHashMap} with enough capacity to hold    *         {@code expectedSize} entries without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 19.0    */
-DECL|method|newLinkedHashMapWithExpectedSize ( int expectedSize)
+DECL|method|newLinkedHashMapWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1172,7 +1172,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from    *         {@code map}    */
-DECL|method|newLinkedHashMap ( Map<? extends K, ? extends V> map)
+DECL|method|newLinkedHashMap (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1319,7 +1319,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given    * comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
-DECL|method|newTreeMap ( @ullable Comparator<C> comparator)
+DECL|method|newTreeMap (@ullable Comparator<C> comparator)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1412,7 +1412,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code    *         map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap}    *         instance and contains no mappings    */
-DECL|method|newEnumMap ( Map<K, ? extends V> map)
+DECL|method|newEnumMap (Map<K, ? extends V> map)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2064,7 +2064,7 @@ argument_list|>
 argument_list|>
 name|differences
 decl_stmt|;
-DECL|method|MapDifferenceImpl (Map<K, V> onlyOnLeft, Map<K, V> onlyOnRight, Map<K, V> onBoth, Map<K, ValueDifference<V>> differences)
+DECL|method|MapDifferenceImpl ( Map<K, V> onlyOnLeft, Map<K, V> onlyOnRight, Map<K, V> onBoth, Map<K, ValueDifference<V>> differences)
 name|MapDifferenceImpl
 parameter_list|(
 name|Map
@@ -2236,9 +2236,9 @@ return|return
 name|differences
 return|;
 block|}
-DECL|method|equals (Object object)
 annotation|@
 name|Override
+DECL|method|equals (Object object)
 specifier|public
 name|boolean
 name|equals
@@ -2333,9 +2333,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2360,9 +2360,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2575,9 +2575,9 @@ return|return
 name|right
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -2649,9 +2649,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2668,9 +2668,9 @@ name|right
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2891,7 +2891,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SortedMapDifferenceImpl (SortedMap<K, V> onlyOnLeft, SortedMap<K, V> onlyOnRight, SortedMap<K, V> onBoth, SortedMap<K, ValueDifference<V>> differences)
+DECL|method|SortedMapDifferenceImpl ( SortedMap<K, V> onlyOnLeft, SortedMap<K, V> onlyOnRight, SortedMap<K, V> onBoth, SortedMap<K, ValueDifference<V>> differences)
 name|SortedMapDifferenceImpl
 parameter_list|(
 name|SortedMap
@@ -2942,9 +2942,9 @@ name|differences
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesDiffering ()
-annotation|@
-name|Override
 specifier|public
 name|SortedMap
 argument_list|<
@@ -2976,9 +2976,9 @@ name|entriesDiffering
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesInCommon ()
-annotation|@
-name|Override
 specifier|public
 name|SortedMap
 argument_list|<
@@ -3004,9 +3004,9 @@ name|entriesInCommon
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|entriesOnlyOnLeft ()
-annotation|@
-name|Override
 specifier|public
 name|SortedMap
 argument_list|<
@@ -3032,9 +3032,9 @@ name|entriesOnlyOnLeft
 argument_list|()
 return|;
 block|}
-DECL|method|entriesOnlyOnRight ()
 annotation|@
 name|Override
+DECL|method|entriesOnlyOnRight ()
 specifier|public
 name|SortedMap
 argument_list|<
@@ -3067,7 +3067,7 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|orNaturalOrder ( @ullable Comparator<? super E> comparator)
+DECL|method|orNaturalOrder (@ullable Comparator<? super E> comparator)
 specifier|static
 parameter_list|<
 name|E
@@ -3117,7 +3117,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a live {@link Map} view whose keys are the contents of {@code set}    * and whose values are computed on demand using {@code function}. To get an    * immutable<i>copy</i> instead, use {@link #toMap(Iterable, Function)}.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map    * does not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also    * of type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
-DECL|method|asMap ( Set<K> set, Function<? super K, V> function)
+DECL|method|asMap (Set<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3191,7 +3191,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a view of the sorted set as a map, mapping keys from the set    * according to the specified function.    *    *<p>Specifically, for each {@code k} in the backing set, the returned map    * has an entry mapping {@code k} to {@code function.apply(k)}. The {@code    * keySet}, {@code values}, and {@code entrySet} views of the returned map    * iterate in the same order as the backing set.    *    *<p>Modifications to the backing set are read through to the returned map.    * The returned map supports removal operations if the backing set does.    * Removal operations write through to the backing set.  The returned map does    * not support put operations.    *    *<p><b>Warning:</b> If the function rejects {@code null}, caution is    * required to make sure the set does not contain {@code null}, because the    * view cannot stop {@code null} from being added to the set.    *    *<p><b>Warning:</b> This method assumes that for any instance {@code k} of    * key type {@code K}, {@code k.equals(k2)} implies that {@code k2} is also of    * type {@code K}. Using a key type for which this may not hold, such as    * {@code ArrayList}, may risk a {@code ClassCastException} when calling    * methods on the resulting map view.    *    * @since 14.0    */
-DECL|method|asMap ( SortedSet<K> set, Function<? super K, V> function)
+DECL|method|asMap (SortedSet<K> set, Function<? super K, V> function)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3235,7 +3235,7 @@ name|function
 argument_list|)
 return|;
 block|}
-DECL|method|asMapSortedIgnoreNavigable (SortedSet<K> set, Function<? super K, V> function)
+DECL|method|asMapSortedIgnoreNavigable ( SortedSet<K> set, Function<? super K, V> function)
 specifier|static
 parameter_list|<
 name|K
@@ -4234,7 +4234,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code    * keys} and whose value for each key was computed by {@code valueFunction}.    * The map's iteration order is the order of the first appearance of each key    * in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is    * unspecified whether {@code valueFunction} will be applied to more than one    * instance of that key and, if it is, which result will be mapped to that    * key in the returned map.    *    *<p>If {@code keys} is a {@link Set}, a live view can be obtained instead of    * a copy using {@link Maps#asMap(Set, Function)}.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
-DECL|method|toMap (Iterable<K> keys, Function<? super K, V> valueFunction)
+DECL|method|toMap ( Iterable<K> keys, Function<? super K, V> valueFunction)
 specifier|public
 specifier|static
 parameter_list|<
@@ -4280,7 +4280,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable map whose keys are the distinct elements of {@code    * keys} and whose value for each key was computed by {@code valueFunction}.    * The map's iteration order is the order of the first appearance of each key    * in {@code keys}.    *    *<p>When there are multiple instances of a key in {@code keys}, it is    * unspecified whether {@code valueFunction} will be applied to more than one    * instance of that key and, if it is, which result will be mapped to that    * key in the returned map.    *    * @throws NullPointerException if any element of {@code keys} is    *     {@code null}, or if {@code valueFunction} produces {@code null}    *     for any key    * @since 14.0    */
-DECL|method|toMap (Iterator<K> keys, Function<? super K, V> valueFunction)
+DECL|method|toMap ( Iterator<K> keys, Function<? super K, V> valueFunction)
 specifier|public
 specifier|static
 parameter_list|<
@@ -4539,7 +4539,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|immutableEntry ( @ullable K key, @Nullable V value)
+DECL|method|immutableEntry (@ullable K key, @Nullable V value)
 specifier|public
 specifier|static
 parameter_list|<
@@ -4582,7 +4582,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable view of the specified set of entries. The {@link    * Entry#setValue} operation throws an {@link UnsupportedOperationException},    * as do any operations that would modify the returned set.    *    * @param entrySet the entries for which to return an unmodifiable view    * @return an unmodifiable view of the entries    */
-DECL|method|unmodifiableEntrySet ( Set<Entry<K, V>> entrySet)
+DECL|method|unmodifiableEntrySet (Set<Entry<K, V>> entrySet)
 specifier|static
 parameter_list|<
 name|K
@@ -4846,9 +4846,9 @@ operator|=
 name|entries
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -4866,9 +4866,9 @@ return|return
 name|entries
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -4893,9 +4893,9 @@ argument_list|)
 return|;
 block|}
 comment|// See java.util.Collections.UnmodifiableEntrySet for details on attacks.
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -4907,9 +4907,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -4981,9 +4981,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// See java.util.Collections.UnmodifiableEntrySet for details on attacks.
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -5005,9 +5005,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -5345,7 +5345,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an unmodifiable view of the specified bimap. This method allows    * modules to provide users with "read-only" access to internal bimaps. Query    * operations on the returned bimap "read through" to the specified bimap, and    * attempts to modify the returned map, whether direct or via its collection    * views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned bimap will be serializable if the specified bimap is    * serializable.    *    * @param bimap the bimap for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified bimap    */
-DECL|method|unmodifiableBiMap ( BiMap<? extends K, ? extends V> bimap)
+DECL|method|unmodifiableBiMap (BiMap<? extends K, ? extends V> bimap)
 specifier|public
 specifier|static
 parameter_list|<
@@ -5506,9 +5506,9 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -5594,9 +5594,9 @@ else|:
 name|result
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Set
 argument_list|<
@@ -5969,6 +5969,7 @@ parameter_list|)
 function_decl|;
 block|}
 comment|/**    * Views a function as an entry transformer that ignores the entry key.    */
+DECL|method|asEntryTransformer ( final Function<? super V1, V2> function)
 specifier|static
 parameter_list|<
 name|K
@@ -5985,7 +5986,6 @@ name|V1
 argument_list|,
 name|V2
 argument_list|>
-DECL|method|asEntryTransformer (final Function<? super V1, V2> function)
 name|asEntryTransformer
 parameter_list|(
 specifier|final
@@ -6508,9 +6508,9 @@ name|transformer
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -6523,9 +6523,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -6549,9 +6549,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|V2
 name|get
@@ -6605,9 +6605,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|V2
 name|remove
@@ -6644,9 +6644,9 @@ else|:
 literal|null
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -6658,9 +6658,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -6676,9 +6676,9 @@ name|keySet
 argument_list|()
 return|;
 block|}
-DECL|method|entryIterator ()
 annotation|@
 name|Override
+DECL|method|entryIterator ()
 name|Iterator
 argument_list|<
 name|Entry
@@ -6720,9 +6720,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -6796,7 +6796,7 @@ operator|)
 name|fromMap
 return|;
 block|}
-DECL|method|TransformedEntriesSortedMap (SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
+DECL|method|TransformedEntriesSortedMap ( SortedMap<K, V1> fromMap, EntryTransformer<? super K, ? super V1, V2> transformer)
 name|TransformedEntriesSortedMap
 parameter_list|(
 name|SortedMap
@@ -6830,9 +6830,9 @@ name|transformer
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -6851,9 +6851,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
-DECL|method|firstKey ()
 annotation|@
 name|Override
+DECL|method|firstKey ()
 specifier|public
 name|K
 name|firstKey
@@ -6867,9 +6867,9 @@ name|firstKey
 argument_list|()
 return|;
 block|}
-DECL|method|headMap (K toKey)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -6898,9 +6898,9 @@ name|transformer
 argument_list|)
 return|;
 block|}
-DECL|method|lastKey ()
 annotation|@
 name|Override
+DECL|method|lastKey ()
 specifier|public
 name|K
 name|lastKey
@@ -6914,9 +6914,9 @@ name|lastKey
 argument_list|()
 return|;
 block|}
-DECL|method|subMap (K fromKey, K toKey)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -6950,9 +6950,9 @@ name|transformer
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7891,7 +7891,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Support {@code clear()}, {@code removeAll()}, and {@code retainAll()} when    * filtering a filtered map.    */
-DECL|method|filterFiltered (AbstractFilteredMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
+DECL|method|filterFiltered ( AbstractFilteredMap<K, V> map, Predicate<? super Entry<K, V>> entryPredicate)
 specifier|private
 specifier|static
 parameter_list|<
@@ -8007,7 +8007,7 @@ argument_list|>
 argument_list|>
 name|predicate
 decl_stmt|;
-DECL|method|AbstractFilteredMap ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
+DECL|method|AbstractFilteredMap (Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|AbstractFilteredMap
 parameter_list|(
 name|Map
@@ -8091,9 +8091,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|V
 name|put
@@ -8126,9 +8126,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
 name|putAll
@@ -8191,9 +8191,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|containsKey (Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -8223,9 +8223,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|V
 name|get
@@ -8265,9 +8265,9 @@ else|:
 literal|null
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -8281,9 +8281,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|remove (Object key)
 annotation|@
 name|Override
+DECL|method|remove (Object key)
 specifier|public
 name|V
 name|remove
@@ -8380,7 +8380,7 @@ argument_list|>
 argument_list|>
 name|predicate
 decl_stmt|;
-DECL|method|FilteredMapValues (Map<K, V> filteredMap, Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
+DECL|method|FilteredMapValues ( Map<K, V> filteredMap, Map<K, V> unfiltered, Predicate<? super Entry<K, V>> predicate)
 name|FilteredMapValues
 parameter_list|(
 name|Map
@@ -8431,9 +8431,9 @@ operator|=
 name|predicate
 expr_stmt|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -8535,9 +8535,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|removeAll
@@ -8559,9 +8559,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> collection)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> collection)
 specifier|public
 name|boolean
 name|retainAll
@@ -8586,9 +8586,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -8609,9 +8609,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -8668,7 +8668,7 @@ name|K
 argument_list|>
 name|keyPredicate
 decl_stmt|;
-DECL|method|FilteredKeyMap (Map<K, V> unfiltered, Predicate<? super K> keyPredicate, Predicate<? super Entry<K, V>> entryPredicate)
+DECL|method|FilteredKeyMap ( Map<K, V> unfiltered, Predicate<? super K> keyPredicate, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredKeyMap
 parameter_list|(
 name|Map
@@ -8838,7 +8838,7 @@ argument_list|>
 argument_list|>
 name|filteredEntrySet
 decl_stmt|;
-DECL|method|FilteredEntryMap ( Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
+DECL|method|FilteredEntryMap (Map<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredEntryMap
 parameter_list|(
 name|Map
@@ -8924,9 +8924,9 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -8944,9 +8944,9 @@ return|return
 name|filteredEntrySet
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -9111,9 +9111,9 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -9247,9 +9247,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -9270,9 +9270,9 @@ name|toArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -9407,7 +9407,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|FilteredEntrySortedMap (SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
+DECL|method|FilteredEntrySortedMap ( SortedMap<K, V> unfiltered, Predicate<? super Entry<K, V>> entryPredicate)
 name|FilteredEntrySortedMap
 parameter_list|(
 name|SortedMap
@@ -9462,9 +9462,9 @@ operator|)
 name|unfiltered
 return|;
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|SortedSet
 argument_list|<
@@ -9658,9 +9658,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -9679,9 +9679,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
-DECL|method|firstKey ()
 annotation|@
 name|Override
+DECL|method|firstKey ()
 specifier|public
 name|K
 name|firstKey
@@ -9699,9 +9699,9 @@ name|next
 argument_list|()
 return|;
 block|}
-DECL|method|lastKey ()
 annotation|@
 name|Override
+DECL|method|lastKey ()
 specifier|public
 name|K
 name|lastKey
@@ -9763,9 +9763,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|headMap (K toKey)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -9800,9 +9800,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
-DECL|method|subMap (K fromKey, K toKey)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -9842,9 +9842,9 @@ name|predicate
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -10286,9 +10286,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|unmodifiableOrNull (@ullable Entry<K, V> entry)
 annotation|@
 name|Nullable
+DECL|method|unmodifiableOrNull (@ullable Entry<K, V> entry)
 specifier|private
 specifier|static
 parameter_list|<
@@ -10382,9 +10382,9 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -10435,9 +10435,9 @@ name|K
 argument_list|>
 name|keySet
 decl_stmt|;
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -10499,9 +10499,9 @@ name|V
 argument_list|>
 name|values
 decl_stmt|;
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -10573,9 +10573,9 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 specifier|abstract
 name|int
@@ -10596,9 +10596,9 @@ argument_list|>
 name|entryIterator
 parameter_list|()
 function_decl|;
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -10662,9 +10662,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -11197,7 +11197,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * An implementation of {@link Map#putAll}.    */
-DECL|method|putAllImpl ( Map<K, V> self, Map<? extends K, ? extends V> map)
+DECL|method|putAllImpl (Map<K, V> self, Map<? extends K, ? extends V> map)
 specifier|static
 parameter_list|<
 name|K
@@ -11332,9 +11332,9 @@ return|return
 name|map
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -11357,9 +11357,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -11373,9 +11373,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -11389,9 +11389,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -11410,9 +11410,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -11445,9 +11445,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -11822,9 +11822,9 @@ return|return
 name|map
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -11847,9 +11847,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -11928,9 +11928,9 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|removeAll (Collection<?> c)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|removeAll
@@ -12029,9 +12029,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|retainAll (Collection<?> c)
-annotation|@
-name|Override
 specifier|public
 name|boolean
 name|retainAll
@@ -12130,9 +12130,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -12146,9 +12146,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -12162,9 +12162,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|contains (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object o)
 specifier|public
 name|boolean
 name|contains
@@ -12185,9 +12185,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -12235,9 +12235,9 @@ argument_list|>
 name|map
 parameter_list|()
 function_decl|;
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -12251,9 +12251,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -12266,9 +12266,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -12355,9 +12355,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -12371,9 +12371,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -12428,9 +12428,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -12478,9 +12478,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll

@@ -225,7 +225,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides static methods that involve a {@code Table}.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#tables">  * {@code Tables}</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 7.0  */
+comment|/**  * Provides static methods that involve a {@code Table}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/CollectionUtilitiesExplained#tables">  * {@code Tables}</a>.  *  * @author Jared Levy  * @author Louis Wasserman  * @since 7.0  */
 end_comment
 
 begin_class
@@ -340,7 +340,7 @@ specifier|final
 name|V
 name|value
 decl_stmt|;
-DECL|method|ImmutableCell ( @ullable R rowKey, @Nullable C columnKey, @Nullable V value)
+DECL|method|ImmutableCell (@ullable R rowKey, @Nullable C columnKey, @Nullable V value)
 name|ImmutableCell
 parameter_list|(
 annotation|@
@@ -451,9 +451,9 @@ DECL|method|AbstractCell ()
 name|AbstractCell
 parameter_list|()
 block|{}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -547,9 +547,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -571,9 +571,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -808,7 +808,7 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|contains ( @ullable Object rowKey, @Nullable Object columnKey)
+DECL|method|contains (@ullable Object rowKey, @Nullable Object columnKey)
 specifier|public
 name|boolean
 name|contains
@@ -1458,7 +1458,7 @@ name|V2
 argument_list|>
 name|function
 decl_stmt|;
-DECL|method|TransformedTable ( Table<R, C, V1> fromTable, Function<? super V1, V2> function)
+DECL|method|TransformedTable (Table<R, C, V1> fromTable, Function<? super V1, V2> function)
 name|TransformedTable
 parameter_list|(
 name|Table
@@ -1501,9 +1501,9 @@ name|function
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|contains (Object rowKey, Object columnKey)
 annotation|@
 name|Override
+DECL|method|contains (Object rowKey, Object columnKey)
 specifier|public
 name|boolean
 name|contains
@@ -1526,9 +1526,9 @@ name|columnKey
 argument_list|)
 return|;
 block|}
-DECL|method|get (Object rowKey, Object columnKey)
 annotation|@
 name|Override
+DECL|method|get (Object rowKey, Object columnKey)
 specifier|public
 name|V2
 name|get
@@ -1567,9 +1567,9 @@ else|:
 literal|null
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1582,9 +1582,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1596,9 +1596,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|put (R rowKey, C columnKey, V2 value)
 annotation|@
 name|Override
+DECL|method|put (R rowKey, C columnKey, V2 value)
 specifier|public
 name|V2
 name|put
@@ -1619,9 +1619,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|putAll ( Table<? extends R, ? extends C, ? extends V2> table)
 annotation|@
 name|Override
+DECL|method|putAll (Table<? extends R, ? extends C, ? extends V2> table)
 specifier|public
 name|void
 name|putAll
@@ -1649,9 +1649,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|remove (Object rowKey, Object columnKey)
 annotation|@
 name|Override
+DECL|method|remove (Object rowKey, Object columnKey)
 specifier|public
 name|V2
 name|remove
@@ -1688,9 +1688,9 @@ else|:
 literal|null
 return|;
 block|}
-DECL|method|row (R rowKey)
 annotation|@
 name|Override
+DECL|method|row (R rowKey)
 specifier|public
 name|Map
 argument_list|<
@@ -1720,9 +1720,9 @@ name|function
 argument_list|)
 return|;
 block|}
-DECL|method|column (C columnKey)
 annotation|@
 name|Override
+DECL|method|column (C columnKey)
 specifier|public
 name|Map
 argument_list|<
@@ -1887,9 +1887,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|rowKeySet ()
 annotation|@
 name|Override
+DECL|method|rowKeySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -1905,9 +1905,9 @@ name|rowKeySet
 argument_list|()
 return|;
 block|}
-DECL|method|columnKeySet ()
 annotation|@
 name|Override
+DECL|method|columnKeySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -1947,9 +1947,9 @@ name|function
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|rowMap ()
-annotation|@
-name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -2049,9 +2049,9 @@ name|rowFunction
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|columnMap ()
-annotation|@
-name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -2152,7 +2152,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns an unmodifiable view of the specified table. This method allows modules to provide    * users with "read-only" access to internal tables. Query operations on the returned table    * "read through" to the specified table, and attempts to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *     *<p>The returned table will be serializable if the specified table is serializable.    *    *<p>Consider using an {@link ImmutableTable}, which is guaranteed never to change.    *     * @param table    *          the table for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified table    * @since 11.0    */
+comment|/**    * Returns an unmodifiable view of the specified table. This method allows modules to provide    * users with "read-only" access to internal tables. Query operations on the returned table    * "read through" to the specified table, and attempts to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    *<p>Consider using an {@link ImmutableTable}, which is guaranteed never to change.    *    * @param table    *          the table for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified table    * @since 11.0    */
 DECL|method|unmodifiableTable ( Table<? extends R, ? extends C, ? extends V> table)
 specifier|public
 specifier|static
@@ -2698,7 +2698,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-comment|/**    * Returns an unmodifiable view of the specified row-sorted table. This method allows modules to    * provide users with "read-only" access to internal tables. Query operations on the returned    * table "read through" to the specified table, and attemps to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *     *<p>The returned table will be serializable if the specified table is serializable.    *     * @param table the row-sorted table for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified table    * @since 11.0    */
+comment|/**    * Returns an unmodifiable view of the specified row-sorted table. This method allows modules to    * provide users with "read-only" access to internal tables. Query operations on the returned    * table "read through" to the specified table, and attemps to modify the returned table, whether    * direct or via its collection views, result in an {@code UnsupportedOperationException}.    *    *<p>The returned table will be serializable if the specified table is serializable.    *    * @param table the row-sorted table for which an unmodifiable view is to be returned    * @return an unmodifiable view of the specified table    * @since 11.0    */
 annotation|@
 name|Beta
 DECL|method|unmodifiableRowSortedTable ( RowSortedTable<R, ? extends C, ? extends V> table)

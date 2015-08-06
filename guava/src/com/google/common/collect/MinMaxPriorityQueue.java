@@ -652,7 +652,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Builds a new min-max priority queue using the previously specified      * options, and having the given initial elements.      */
-DECL|method|create ( Iterable<? extends T> initialContents)
+DECL|method|create (Iterable<? extends T> initialContents)
 specifier|public
 parameter_list|<
 name|T
@@ -871,9 +871,9 @@ name|queueSize
 index|]
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -884,9 +884,9 @@ name|size
 return|;
 block|}
 comment|/**    * Adds the given element to this queue. If this queue has a maximum size,    * after adding {@code element} the queue will automatically evict its    * greatest element (according to its comparator), which may be {@code    * element} itself.    *    * @return {@code true} always    */
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -904,9 +904,9 @@ return|return
 literal|true
 return|;
 block|}
-DECL|method|addAll (Collection<? extends E> newElements)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> newElements)
 specifier|public
 name|boolean
 name|addAll
@@ -948,9 +948,9 @@ name|modified
 return|;
 block|}
 comment|/**    * Adds the given element to this queue. If this queue has a maximum size,    * after adding {@code element} the queue will automatically evict its    * greatest element (according to its comparator), which may be {@code    * element} itself.    */
-DECL|method|offer (E element)
 annotation|@
 name|Override
+DECL|method|offer (E element)
 specifier|public
 name|boolean
 name|offer
@@ -1001,9 +1001,9 @@ operator|!=
 name|element
 return|;
 block|}
-DECL|method|poll ()
 annotation|@
 name|Override
+DECL|method|poll ()
 specifier|public
 name|E
 name|poll
@@ -1045,9 +1045,9 @@ name|index
 index|]
 return|;
 block|}
-DECL|method|peek ()
 annotation|@
 name|Override
+DECL|method|peek ()
 specifier|public
 name|E
 name|peek
@@ -1218,9 +1218,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Removes the element at position {@code index}.    *    *<p>Normally this method leaves the elements at up to {@code index - 1},    * inclusive, untouched.  Under these circumstances, it returns {@code null}.    *    *<p>Occasionally, in order to maintain the heap invariant, it must swap a    * later element of the list with one before {@code index}. Under these    * circumstances it returns a pair of elements as a {@link MoveDesc}. The    * first one is the element that was previously at the end of the heap and is    * now at some position before {@code index}. The second element is the one    * that was swapped down to replace the element at {@code index}. This fact is    * used by iterator.remove so as to visit elements during a traversal once and    * only once.    */
-DECL|method|removeAt (int index)
 annotation|@
 name|VisibleForTesting
+DECL|method|removeAt (int index)
 name|MoveDesc
 argument_list|<
 name|E
@@ -1576,9 +1576,9 @@ name|ODD_POWERS_OF_TWO
 init|=
 literal|0xaaaaaaaa
 decl_stmt|;
-DECL|method|isEvenLevel (int index)
 annotation|@
 name|VisibleForTesting
+DECL|method|isEvenLevel (int index)
 specifier|static
 name|boolean
 name|isEvenLevel
@@ -1618,9 +1618,9 @@ operator|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if the MinMax heap structure holds. This is only used    * in testing.    *    * TODO(kevinb): move to the test class?    */
-DECL|method|isIntact ()
 annotation|@
 name|VisibleForTesting
+DECL|method|isIntact ()
 name|boolean
 name|isIntact
 parameter_list|()
@@ -1731,7 +1731,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Tries to move {@code toTrickle} from a min to a max level and      * bubble up there. If it moved before {@code removeIndex} this method      * returns a pair as described in {@link #removeAt}.      */
-DECL|method|tryCrossOverAndBubbleUp ( int removeIndex, int vacated, E toTrickle)
+DECL|method|tryCrossOverAndBubbleUp (int removeIndex, int vacated, E toTrickle)
 name|MoveDesc
 argument_list|<
 name|E
@@ -2766,9 +2766,9 @@ specifier|private
 name|boolean
 name|canRemove
 decl_stmt|;
-DECL|method|hasNext ()
 annotation|@
 name|Override
+DECL|method|hasNext ()
 specifier|public
 name|boolean
 name|hasNext
@@ -2805,9 +2805,9 @@ argument_list|()
 operator|)
 return|;
 block|}
-DECL|method|next ()
 annotation|@
 name|Override
+DECL|method|next ()
 specifier|public
 name|E
 name|next
@@ -2893,9 +2893,9 @@ literal|"iterator moved past last element in queue."
 argument_list|)
 throw|;
 block|}
-DECL|method|remove ()
 annotation|@
 name|Override
+DECL|method|remove ()
 specifier|public
 name|void
 name|remove
@@ -3163,9 +3163,9 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an iterator over the elements contained in this collection,    *<i>in no particular order</i>.    *    *<p>The iterator is<i>fail-fast</i>: If the MinMaxPriorityQueue is modified    * at any time after the iterator is created, in any way except through the    * iterator's own remove method, the iterator will generally throw a    * {@link ConcurrentModificationException}. Thus, in the face of concurrent    * modification, the iterator fails quickly and cleanly, rather than risking    * arbitrary, non-deterministic behavior at an undetermined time in the    * future.    *    *<p>Note that the fail-fast behavior of an iterator cannot be guaranteed    * as it is, generally speaking, impossible to make any hard guarantees in the    * presence of unsynchronized concurrent modification.  Fail-fast iterators    * throw {@code ConcurrentModificationException} on a best-effort basis.    * Therefore, it would be wrong to write a program that depended on this    * exception for its correctness:<i>the fail-fast behavior of iterators    * should be used only to detect bugs.</i>    *    * @return an iterator over the elements contained in this collection    */
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -3180,9 +3180,9 @@ name|QueueIterator
 argument_list|()
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -3216,9 +3216,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -3272,9 +3272,9 @@ operator|.
 name|ordering
 return|;
 block|}
-DECL|method|capacity ()
 annotation|@
 name|VisibleForTesting
+DECL|method|capacity ()
 name|int
 name|capacity
 parameter_list|()
@@ -3295,9 +3295,9 @@ name|DEFAULT_CAPACITY
 init|=
 literal|11
 decl_stmt|;
-DECL|method|initialQueueSize (int configuredExpectedSize, int maximumSize, Iterable<?> initialContents)
 annotation|@
 name|VisibleForTesting
+DECL|method|initialQueueSize ( int configuredExpectedSize, int maximumSize, Iterable<?> initialContents)
 specifier|static
 name|int
 name|initialQueueSize

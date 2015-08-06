@@ -1376,7 +1376,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-DECL|method|makeComputingMap ( Function<? super K, ? extends V> computingFunction)
+DECL|method|makeComputingMap (Function<? super K, ? extends V> computingFunction)
 argument_list|<
 name|K
 argument_list|,

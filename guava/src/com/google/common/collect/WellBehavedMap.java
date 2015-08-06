@@ -180,9 +180,9 @@ name|delegate
 argument_list|)
 return|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -197,9 +197,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<

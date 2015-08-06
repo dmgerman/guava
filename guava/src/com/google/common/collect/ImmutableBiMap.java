@@ -696,7 +696,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.        *       *<p>The sort order is stable, that is, if two entries have values that compare      * as equivalent, the entry that was inserted first will be first in the built map's      * iteration order.      *       * @throws IllegalStateException if this method was already called      * @since 19.0      */
+comment|/**      * Configures this {@code Builder} to order entries by value according to the specified      * comparator.      *      *<p>The sort order is stable, that is, if two entries have values that compare      * as equivalent, the entry that was inserted first will be first in the built map's      * iteration order.      *      * @throws IllegalStateException if this method was already called      * @since 19.0      */
 annotation|@
 name|Beta
 annotation|@

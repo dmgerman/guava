@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its  * iterator orders elements according to when the first occurrence of the  * element was added. When the multiset contains multiple instances of an  * element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to  * the multiset, the element will appear at the end of the iteration.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset">  * {@code Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A {@code Multiset} implementation with predictable iteration order. Its  * iterator orders elements according to when the first occurrence of the  * element was added. When the multiset contains multiple instances of an  * element, those instances are consecutive in the iteration order. If all  * occurrences of an element are removed, after which that element is added to  * the multiset, the element will appear at the end of the iteration.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multiset">  * {@code Multiset}</a>.  *  * @author Kevin Bourrillion  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_class
@@ -172,7 +172,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a new {@code LinkedHashMultiset} containing the specified elements.    *    *<p>This implementation is highly efficient when {@code elements} is itself    * a {@link Multiset}.    *    * @param elements the elements that the multiset should contain    */
-DECL|method|create ( Iterable<? extends E> elements)
+DECL|method|create (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<

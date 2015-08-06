@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link NaturalOrdering}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of {@link NaturalOrdering}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -74,8 +74,8 @@ parameter_list|,
 name|NaturalOrdering
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|NaturalOrdering
@@ -103,7 +103,7 @@ parameter_list|,
 name|NaturalOrdering
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 block|}
 end_class
 

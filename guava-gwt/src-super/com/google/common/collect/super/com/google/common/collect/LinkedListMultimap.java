@@ -737,7 +737,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Adds a new node for the specified key-value pair before the specified    * {@code nextSibling} element, or at the end of the list if {@code    * nextSibling} is null. Note: if {@code nextSibling} is specified, it MUST be    * for an node for the same {@code key}!    */
-DECL|method|addNode ( @ullable K key, @Nullable V value, @Nullable Node<K, V> nextSibling)
+DECL|method|addNode (@ullable K key, @Nullable V value, @Nullable Node<K, V> nextSibling)
 specifier|private
 name|Node
 argument_list|<

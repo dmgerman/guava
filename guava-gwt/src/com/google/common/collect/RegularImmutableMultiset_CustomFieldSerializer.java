@@ -105,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of {@link RegularImmutableMultiset}.  *   * @author Louis Wasserman  */
+comment|/**  * This class implements the GWT serialization of {@link RegularImmutableMultiset}.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
@@ -114,7 +114,7 @@ specifier|public
 class|class
 name|RegularImmutableMultiset_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, RegularImmutableMultiset<?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, RegularImmutableMultiset<?> instance)
 specifier|public
 specifier|static
 name|void
@@ -129,8 +129,8 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|RegularImmutableMultiset
@@ -181,7 +181,7 @@ name|elements
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, RegularImmutableMultiset<?> instance)
+DECL|method|serialize ( SerializationStreamWriter writer, RegularImmutableMultiset<?> instance)
 specifier|public
 specifier|static
 name|void

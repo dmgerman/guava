@@ -175,9 +175,9 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
@@ -213,9 +213,9 @@ return|return
 literal|1
 return|;
 block|}
-DECL|method|containsKey (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|containsKey (@ullable Object key)
 specifier|public
 name|boolean
 name|containsKey
@@ -235,9 +235,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|containsValue (@ullable Object value)
 annotation|@
 name|Override
+DECL|method|containsValue (@ullable Object value)
 specifier|public
 name|boolean
 name|containsValue
@@ -257,9 +257,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()

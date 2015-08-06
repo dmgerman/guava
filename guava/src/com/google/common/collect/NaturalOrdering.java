@@ -96,9 +96,9 @@ operator|new
 name|NaturalOrdering
 argument_list|()
 decl_stmt|;
-DECL|method|compare (Comparable left, Comparable right)
 annotation|@
 name|Override
+DECL|method|compare (Comparable left, Comparable right)
 specifier|public
 name|int
 name|compare
@@ -130,9 +130,9 @@ name|right
 argument_list|)
 return|;
 block|}
-DECL|method|reverse ()
 annotation|@
 name|Override
+DECL|method|reverse ()
 specifier|public
 parameter_list|<
 name|S
@@ -169,9 +169,9 @@ return|return
 name|INSTANCE
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

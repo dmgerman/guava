@@ -226,9 +226,9 @@ argument_list|<
 name|C
 argument_list|>
 block|{
+DECL|field|rangesByLowerBound
 annotation|@
 name|VisibleForTesting
-DECL|field|rangesByLowerBound
 specifier|final
 name|NavigableMap
 argument_list|<
@@ -2623,7 +2623,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|ComplementRangesByLowerBound (NavigableMap<Cut<C>, Range<C>> positiveRangesByLowerBound, Range<Cut<C>> window)
+DECL|method|ComplementRangesByLowerBound ( NavigableMap<Cut<C>, Range<C>> positiveRangesByLowerBound, Range<Cut<C>> window)
 specifier|private
 name|ComplementRangesByLowerBound
 parameter_list|(
@@ -4054,7 +4054,7 @@ argument_list|>
 argument_list|>
 name|rangesByUpperBound
 decl_stmt|;
-DECL|method|SubRangeSetRangesByLowerBound (Range<Cut<C>> lowerBoundWindow, Range<C> restriction, NavigableMap<Cut<C>, Range<C>> rangesByLowerBound)
+DECL|method|SubRangeSetRangesByLowerBound ( Range<Cut<C>> lowerBoundWindow, Range<C> restriction, NavigableMap<Cut<C>, Range<C>> rangesByLowerBound)
 specifier|private
 name|SubRangeSetRangesByLowerBound
 parameter_list|(

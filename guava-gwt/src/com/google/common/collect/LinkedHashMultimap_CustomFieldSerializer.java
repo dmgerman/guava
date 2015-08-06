@@ -127,8 +127,8 @@ name|?
 argument_list|>
 name|out
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader stream)
+block|{}
+DECL|method|instantiate (SerializationStreamReader stream)
 specifier|public
 specifier|static
 name|LinkedHashMultimap

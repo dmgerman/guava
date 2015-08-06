@@ -53,7 +53,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of  * {@link ReverseNaturalOrdering}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of  * {@link ReverseNaturalOrdering}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -62,7 +62,7 @@ specifier|public
 class|class
 name|ReverseNaturalOrdering_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, ReverseNaturalOrdering instance)
+DECL|method|deserialize ( SerializationStreamReader reader, ReverseNaturalOrdering instance)
 specifier|public
 specifier|static
 name|void
@@ -74,8 +74,8 @@ parameter_list|,
 name|ReverseNaturalOrdering
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|ReverseNaturalOrdering
@@ -103,7 +103,7 @@ parameter_list|,
 name|ReverseNaturalOrdering
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 block|}
 end_class
 

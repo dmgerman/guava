@@ -723,7 +723,7 @@ name|hashCode
 argument_list|)
 return|;
 block|}
-DECL|method|RegularImmutableBiMap (ImmutableMapEntry<K, V>[] keyTable, ImmutableMapEntry<K, V>[] valueTable, Entry<K, V>[] entries, int mask, int hashCode)
+DECL|method|RegularImmutableBiMap ( ImmutableMapEntry<K, V>[] keyTable, ImmutableMapEntry<K, V>[] valueTable, Entry<K, V>[] entries, int mask, int hashCode)
 specifier|private
 name|RegularImmutableBiMap
 parameter_list|(
@@ -793,7 +793,7 @@ name|hashCode
 expr_stmt|;
 block|}
 comment|// checkNoConflictInKeyBucket is static imported from RegularImmutableMap
-DECL|method|checkNoConflictInValueBucket (Object value, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> valueBucketHead)
+DECL|method|checkNoConflictInValueBucket ( Object value, Entry<?, ?> entry, @Nullable ImmutableMapEntry<?, ?> valueBucketHead)
 specifier|private
 specifier|static
 name|void

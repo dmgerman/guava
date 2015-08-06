@@ -456,9 +456,9 @@ specifier|final
 name|int
 name|valueHash
 decl_stmt|;
+DECL|field|nextInKToVBucket
 annotation|@
 name|Nullable
-DECL|field|nextInKToVBucket
 name|BiEntry
 argument_list|<
 name|K
@@ -467,9 +467,9 @@ name|V
 argument_list|>
 name|nextInKToVBucket
 decl_stmt|;
+DECL|field|nextInVToKBucket
 annotation|@
 name|Nullable
-DECL|field|nextInVToKBucket
 name|BiEntry
 argument_list|<
 name|K
@@ -478,9 +478,9 @@ name|V
 argument_list|>
 name|nextInVToKBucket
 decl_stmt|;
+DECL|field|nextInKeyInsertionOrder
 annotation|@
 name|Nullable
-DECL|field|nextInKeyInsertionOrder
 name|BiEntry
 argument_list|<
 name|K
@@ -489,9 +489,9 @@ name|V
 argument_list|>
 name|nextInKeyInsertionOrder
 decl_stmt|;
+DECL|field|prevInKeyInsertionOrder
 annotation|@
 name|Nullable
-DECL|field|prevInKeyInsertionOrder
 name|BiEntry
 argument_list|<
 name|K

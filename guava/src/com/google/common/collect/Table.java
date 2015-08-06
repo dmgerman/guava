@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A collection that associates an ordered pair of keys, called a row key and a  * column key, with a single value. A table may be sparse, with only a small  * fraction of row key / column key pairs possessing a corresponding value.  *  *<p>The mappings corresponding to a given row key may be viewed as a {@link  * Map} whose keys are the columns. The reverse is also available, associating a  * column with a row key / value map. Note that, in some implementations, data  * access by column key may have fewer supported operations or worse performance  * than data access by row key.  *  *<p>The methods returning collections or maps always return views of the  * underlying table. Updating the table can change the contents of those  * collections, and updating the collections will change the table.  *  *<p>All methods that modify the table are optional, and the views returned by  * the table may or may not be modifiable. When modification isn't supported,  * those methods will throw an {@link UnsupportedOperationException}.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#table">  * {@code Table}</a>.  *  * @author Jared Levy  * @param<R> the type of the table row keys  * @param<C> the type of the table column keys  * @param<V> the type of the mapped values  * @since 7.0  */
+comment|/**  * A collection that associates an ordered pair of keys, called a row key and a  * column key, with a single value. A table may be sparse, with only a small  * fraction of row key / column key pairs possessing a corresponding value.  *  *<p>The mappings corresponding to a given row key may be viewed as a {@link  * Map} whose keys are the columns. The reverse is also available, associating a  * column with a row key / value map. Note that, in some implementations, data  * access by column key may have fewer supported operations or worse performance  * than data access by row key.  *  *<p>The methods returning collections or maps always return views of the  * underlying table. Updating the table can change the contents of those  * collections, and updating the collections will change the table.  *  *<p>All methods that modify the table are optional, and the views returned by  * the table may or may not be modifiable. When modification isn't supported,  * those methods will throw an {@link UnsupportedOperationException}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#table">  * {@code Table}</a>.  *  * @author Jared Levy  * @param<R> the type of the table row keys  * @param<C> the type of the table column keys  * @param<V> the type of the mapped values  * @since 7.0  */
 end_comment
 
 begin_interface
@@ -211,9 +211,9 @@ name|clear
 parameter_list|()
 function_decl|;
 comment|/**    * Associates the specified value with the specified keys. If the table    * already contained a mapping for those keys, the old value is replaced with    * the specified value.    *    * @param rowKey row key that the value should be associated with    * @param columnKey column key that the value should be associated with    * @param value value to be associated with the specified keys    * @return the value previously associated with the keys, or {@code null} if    *     no mapping existed for the keys    */
-DECL|method|put (R rowKey, C columnKey, V value)
 annotation|@
 name|Nullable
+DECL|method|put (R rowKey, C columnKey, V value)
 name|V
 name|put
 parameter_list|(
@@ -250,9 +250,9 @@ name|table
 parameter_list|)
 function_decl|;
 comment|/**    * Removes the mapping, if any, associated with the given keys.    *    * @param rowKey row key of mapping to be removed    * @param columnKey column key of mapping to be removed    * @return the value previously associated with the keys, or {@code null} if    *     no such value existed    */
-DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
 annotation|@
 name|Nullable
+DECL|method|remove (@ullable Object rowKey, @Nullable Object columnKey)
 name|V
 name|remove
 parameter_list|(
@@ -384,25 +384,25 @@ name|V
 parameter_list|>
 block|{
 comment|/**      * Returns the row key of this cell.      */
-DECL|method|getRowKey ()
 annotation|@
 name|Nullable
+DECL|method|getRowKey ()
 name|R
 name|getRowKey
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the column key of this cell.      */
-DECL|method|getColumnKey ()
 annotation|@
 name|Nullable
+DECL|method|getColumnKey ()
 name|C
 name|getColumnKey
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the value of this cell.      */
-DECL|method|getValue ()
 annotation|@
 name|Nullable
+DECL|method|getValue ()
 name|V
 name|getValue
 parameter_list|()

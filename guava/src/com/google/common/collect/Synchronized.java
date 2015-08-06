@@ -351,9 +351,9 @@ name|delegate
 return|;
 block|}
 comment|// No equals and hashCode; see ForwardingObject for details.
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -419,7 +419,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|collection ( Collection<E> collection, @Nullable Object mutex)
+DECL|method|collection (Collection<E> collection, @Nullable Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -456,9 +456,9 @@ name|mutex
 argument_list|)
 return|;
 block|}
-DECL|class|SynchronizedCollection
 annotation|@
 name|VisibleForTesting
+DECL|class|SynchronizedCollection
 specifier|static
 class|class
 name|SynchronizedCollection
@@ -473,7 +473,7 @@ argument_list|<
 name|E
 argument_list|>
 block|{
-DECL|method|SynchronizedCollection ( Collection<E> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedCollection (Collection<E> delegate, @Nullable Object mutex)
 specifier|private
 name|SynchronizedCollection
 parameter_list|(
@@ -502,9 +502,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Collection
 argument_list|<
 name|E
@@ -878,9 +878,9 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|set (Set<E> set, @Nullable Object mutex)
 annotation|@
 name|VisibleForTesting
+DECL|method|set (Set<E> set, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -957,9 +957,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Set
 argument_list|<
 name|E
@@ -980,9 +980,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1018,9 +1018,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1050,7 +1050,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|sortedSet ( SortedSet<E> set, @Nullable Object mutex)
+DECL|method|sortedSet (SortedSet<E> set, @Nullable Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1128,9 +1128,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|SortedSet
 argument_list|<
 name|E
@@ -1438,9 +1438,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|List
 argument_list|<
 name|E
@@ -1754,9 +1754,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -1792,9 +1792,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1873,7 +1873,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|multiset ( Multiset<E> multiset, @Nullable Object mutex)
+DECL|method|multiset (Multiset<E> multiset, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -1985,9 +1985,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Multiset
 argument_list|<
 name|E
@@ -2255,9 +2255,9 @@ name|entrySet
 return|;
 block|}
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -2293,9 +2293,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2325,7 +2325,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|multimap ( Multimap<K, V> multimap, @Nullable Object mutex)
+DECL|method|multimap (Multimap<K, V> multimap, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -2461,9 +2461,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Multimap
 argument_list|<
 name|K
@@ -3136,9 +3136,9 @@ name|keys
 return|;
 block|}
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -3174,9 +3174,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3290,7 +3290,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedListMultimap ( ListMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedListMultimap (ListMultimap<K, V> delegate, @Nullable Object mutex)
 name|SynchronizedListMultimap
 parameter_list|(
 name|ListMultimap
@@ -3315,9 +3315,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|ListMultimap
 argument_list|<
 name|K
@@ -3342,9 +3342,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|get (K key)
 annotation|@
 name|Override
+DECL|method|get (K key)
 specifier|public
 name|List
 argument_list|<
@@ -3377,9 +3377,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|removeAll (Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|List
 argument_list|<
@@ -3408,9 +3408,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -3459,7 +3459,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|setMultimap ( SetMultimap<K, V> multimap, @Nullable Object mutex)
+DECL|method|setMultimap (SetMultimap<K, V> multimap, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -3558,7 +3558,7 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|SynchronizedSetMultimap ( SetMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSetMultimap (SetMultimap<K, V> delegate, @Nullable Object mutex)
 name|SynchronizedSetMultimap
 parameter_list|(
 name|SetMultimap
@@ -3583,9 +3583,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|SetMultimap
 argument_list|<
 name|K
@@ -3610,9 +3610,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|get (K key)
 annotation|@
 name|Override
+DECL|method|get (K key)
 specifier|public
 name|Set
 argument_list|<
@@ -3645,9 +3645,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|removeAll (Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -3676,9 +3676,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -3717,9 +3717,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
-DECL|method|entries ()
 annotation|@
 name|Override
+DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
@@ -3856,7 +3856,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedSortedSetMultimap ( SortedSetMultimap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedSortedSetMultimap (SortedSetMultimap<K, V> delegate, @Nullable Object mutex)
 name|SynchronizedSortedSetMultimap
 parameter_list|(
 name|SortedSetMultimap
@@ -3881,9 +3881,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|SortedSetMultimap
 argument_list|<
 name|K
@@ -3908,9 +3908,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|get (K key)
 annotation|@
 name|Override
+DECL|method|get (K key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3943,9 +3943,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|removeAll (Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3974,9 +3974,9 @@ return|;
 comment|// copy not synchronized
 block|}
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -4151,7 +4151,7 @@ name|mutex
 argument_list|)
 return|;
 block|}
-DECL|method|typePreservingSet ( Set<E> set, @Nullable Object mutex)
+DECL|method|typePreservingSet (Set<E> set, @Nullable Object mutex)
 specifier|private
 specifier|static
 parameter_list|<
@@ -4235,7 +4235,7 @@ argument_list|>
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapEntries ( Set<Map.Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapEntries (Set<Map.Entry<K, Collection<V>>> delegate, @Nullable Object mutex)
 name|SynchronizedAsMapEntries
 parameter_list|(
 name|Set
@@ -4418,9 +4418,9 @@ block|}
 return|;
 block|}
 comment|// See Collections.CheckedMap.CheckedEntrySet for details on attacks.
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -4443,9 +4443,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -4477,9 +4477,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -4506,9 +4506,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -4538,9 +4538,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -4578,9 +4578,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -4607,9 +4607,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -4642,9 +4642,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
@@ -4814,9 +4814,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Map
 argument_list|<
 name|K
@@ -5214,9 +5214,9 @@ name|values
 return|;
 block|}
 block|}
-DECL|method|equals (Object o)
 annotation|@
 name|Override
+DECL|method|equals (Object o)
 specifier|public
 name|boolean
 name|equals
@@ -5252,9 +5252,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -5284,7 +5284,7 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-DECL|method|sortedMap ( SortedMap<K, V> sortedMap, @Nullable Object mutex)
+DECL|method|sortedMap (SortedMap<K, V> sortedMap, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|K
@@ -5377,9 +5377,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|SortedMap
 argument_list|<
 name|K
@@ -5404,9 +5404,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -5431,9 +5431,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|firstKey ()
 annotation|@
 name|Override
+DECL|method|firstKey ()
 specifier|public
 name|K
 name|firstKey
@@ -5453,9 +5453,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|headMap (K toKey)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -5490,9 +5490,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|lastKey ()
 annotation|@
 name|Override
+DECL|method|lastKey ()
 specifier|public
 name|K
 name|lastKey
@@ -5512,9 +5512,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|subMap (K fromKey, K toKey)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -5554,9 +5554,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|tailMap (K fromKey)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -5662,9 +5662,9 @@ literal|null
 argument_list|)
 return|;
 block|}
-DECL|class|SynchronizedBiMap
 annotation|@
 name|VisibleForTesting
+DECL|class|SynchronizedBiMap
 specifier|static
 class|class
 name|SynchronizedBiMap
@@ -5710,7 +5710,7 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-DECL|method|SynchronizedBiMap (BiMap<K, V> delegate, @Nullable Object mutex, @Nullable BiMap<V, K> inverse)
+DECL|method|SynchronizedBiMap ( BiMap<K, V> delegate, @Nullable Object mutex, @Nullable BiMap<V, K> inverse)
 specifier|private
 name|SynchronizedBiMap
 parameter_list|(
@@ -5752,9 +5752,9 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|BiMap
 argument_list|<
 name|K
@@ -5779,9 +5779,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Set
 argument_list|<
@@ -5993,9 +5993,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|get (Object key)
 annotation|@
 name|Override
+DECL|method|get (Object key)
 specifier|public
 name|Collection
 argument_list|<
@@ -6043,9 +6043,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -6101,9 +6101,9 @@ name|asMapEntrySet
 return|;
 block|}
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Collection
 argument_list|<
@@ -6150,9 +6150,9 @@ name|asMapValues
 return|;
 block|}
 block|}
-DECL|method|containsValue (Object o)
 annotation|@
 name|Override
+DECL|method|containsValue (Object o)
 specifier|public
 name|boolean
 name|containsValue
@@ -6199,7 +6199,7 @@ name|V
 argument_list|>
 argument_list|>
 block|{
-DECL|method|SynchronizedAsMapValues ( Collection<Collection<V>> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedAsMapValues (Collection<Collection<V>> delegate, @Nullable Object mutex)
 name|SynchronizedAsMapValues
 parameter_list|(
 name|Collection
@@ -6225,9 +6225,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -6346,9 +6346,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|NavigableSet
 argument_list|<
 name|E
@@ -6369,9 +6369,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|ceiling (E e)
 annotation|@
 name|Override
+DECL|method|ceiling (E e)
 specifier|public
 name|E
 name|ceiling
@@ -6396,9 +6396,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|descendingIterator ()
 annotation|@
 name|Override
+DECL|method|descendingIterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -6424,9 +6424,9 @@ name|E
 argument_list|>
 name|descendingSet
 decl_stmt|;
-DECL|method|descendingSet ()
 annotation|@
 name|Override
+DECL|method|descendingSet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6479,9 +6479,9 @@ name|descendingSet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|floor (E e)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|floor
@@ -6506,9 +6506,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|headSet (E toElement, boolean inclusive)
-annotation|@
-name|Override
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6548,9 +6548,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|higher (E e)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|higher
@@ -6575,9 +6575,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|lower (E e)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|lower
@@ -6602,9 +6602,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirst ()
-annotation|@
-name|Override
 specifier|public
 name|E
 name|pollFirst
@@ -6624,9 +6624,9 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|pollLast ()
-annotation|@
-name|Override
 specifier|public
 name|E
 name|pollLast
@@ -6646,9 +6646,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|subSet (E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6698,9 +6698,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|tailSet (E fromElement, boolean inclusive)
-annotation|@
-name|Override
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -6740,9 +6740,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|headSet (E toElement)
 annotation|@
 name|Override
+DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -6763,9 +6763,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|subSet (E fromElement, E toElement)
 annotation|@
 name|Override
+DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -6793,9 +6793,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailSet (E fromElement)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -6831,7 +6831,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
-DECL|method|navigableSet ( NavigableSet<E> navigableSet, @Nullable Object mutex)
+DECL|method|navigableSet (NavigableSet<E> navigableSet, @Nullable Object mutex)
 specifier|static
 parameter_list|<
 name|E
@@ -6904,7 +6904,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableMap"
 argument_list|)
-DECL|method|navigableMap ( NavigableMap<K, V> navigableMap)
+DECL|method|navigableMap (NavigableMap<K, V> navigableMap)
 specifier|static
 parameter_list|<
 name|K
@@ -6991,9 +6991,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableMap"
 argument_list|)
-DECL|class|SynchronizedNavigableMap
 annotation|@
 name|VisibleForTesting
+DECL|class|SynchronizedNavigableMap
 specifier|static
 class|class
 name|SynchronizedNavigableMap
@@ -7017,7 +7017,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|SynchronizedNavigableMap ( NavigableMap<K, V> delegate, @Nullable Object mutex)
+DECL|method|SynchronizedNavigableMap (NavigableMap<K, V> delegate, @Nullable Object mutex)
 name|SynchronizedNavigableMap
 parameter_list|(
 name|NavigableMap
@@ -7042,9 +7042,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|NavigableMap
 argument_list|<
 name|K
@@ -7069,9 +7069,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|ceilingEntry (K key)
 annotation|@
 name|Override
+DECL|method|ceilingEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -7106,9 +7106,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|ceilingKey (K key)
 annotation|@
 name|Override
+DECL|method|ceilingKey (K key)
 specifier|public
 name|K
 name|ceilingKey
@@ -7141,9 +7141,9 @@ name|K
 argument_list|>
 name|descendingKeySet
 decl_stmt|;
-DECL|method|descendingKeySet ()
 annotation|@
 name|Override
+DECL|method|descendingKeySet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -7196,9 +7196,9 @@ name|V
 argument_list|>
 name|descendingMap
 decl_stmt|;
-DECL|method|descendingMap ()
 annotation|@
 name|Override
+DECL|method|descendingMap ()
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -7241,9 +7241,9 @@ name|descendingMap
 return|;
 block|}
 block|}
-DECL|method|firstEntry ()
 annotation|@
 name|Override
+DECL|method|firstEntry ()
 specifier|public
 name|Entry
 argument_list|<
@@ -7273,9 +7273,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|floorEntry (K key)
 annotation|@
 name|Override
+DECL|method|floorEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -7310,9 +7310,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|floorKey (K key)
 annotation|@
 name|Override
+DECL|method|floorKey (K key)
 specifier|public
 name|K
 name|floorKey
@@ -7337,9 +7337,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|headMap (K toKey, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey, boolean inclusive)
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -7379,9 +7379,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|higherEntry (K key)
 annotation|@
 name|Override
+DECL|method|higherEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -7416,9 +7416,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|higherKey (K key)
 annotation|@
 name|Override
+DECL|method|higherKey (K key)
 specifier|public
 name|K
 name|higherKey
@@ -7443,9 +7443,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|lastEntry ()
 annotation|@
 name|Override
+DECL|method|lastEntry ()
 specifier|public
 name|Entry
 argument_list|<
@@ -7475,9 +7475,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|lowerEntry (K key)
 annotation|@
 name|Override
+DECL|method|lowerEntry (K key)
 specifier|public
 name|Entry
 argument_list|<
@@ -7512,9 +7512,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|lowerKey (K key)
 annotation|@
 name|Override
+DECL|method|lowerKey (K key)
 specifier|public
 name|K
 name|lowerKey
@@ -7539,9 +7539,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|keySet ()
 annotation|@
 name|Override
+DECL|method|keySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -7563,9 +7563,9 @@ name|K
 argument_list|>
 name|navigableKeySet
 decl_stmt|;
-DECL|method|navigableKeySet ()
 annotation|@
 name|Override
+DECL|method|navigableKeySet ()
 specifier|public
 name|NavigableSet
 argument_list|<
@@ -7608,9 +7608,9 @@ name|navigableKeySet
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|pollFirstEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -7640,9 +7640,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|pollLastEntry ()
-annotation|@
-name|Override
 specifier|public
 name|Entry
 argument_list|<
@@ -7672,9 +7672,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|subMap ( K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
-annotation|@
-name|Override
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -7724,9 +7724,9 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 DECL|method|tailMap (K fromKey, boolean inclusive)
-annotation|@
-name|Override
 specifier|public
 name|NavigableMap
 argument_list|<
@@ -7766,9 +7766,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|headMap (K toKey)
 annotation|@
 name|Override
+DECL|method|headMap (K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7791,9 +7791,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|subMap (K fromKey, K toKey)
 annotation|@
 name|Override
+DECL|method|subMap (K fromKey, K toKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7823,9 +7823,9 @@ literal|false
 argument_list|)
 return|;
 block|}
-DECL|method|tailMap (K fromKey)
 annotation|@
 name|Override
+DECL|method|tailMap (K fromKey)
 specifier|public
 name|SortedMap
 argument_list|<
@@ -7977,9 +7977,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// guaranteed by the constructor
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Entry
 argument_list|<
 name|K
@@ -8004,9 +8004,9 @@ name|delegate
 argument_list|()
 return|;
 block|}
-DECL|method|equals (Object obj)
 annotation|@
 name|Override
+DECL|method|equals (Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -8031,9 +8031,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -8053,9 +8053,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|getKey ()
 annotation|@
 name|Override
+DECL|method|getKey ()
 specifier|public
 name|K
 name|getKey
@@ -8075,9 +8075,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|getValue ()
 annotation|@
 name|Override
+DECL|method|getValue ()
 specifier|public
 name|V
 name|getValue
@@ -8097,9 +8097,9 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|setValue (V value)
 annotation|@
 name|Override
+DECL|method|setValue (V value)
 specifier|public
 name|V
 name|setValue
@@ -8220,9 +8220,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Queue
 argument_list|<
 name|E
@@ -8457,9 +8457,9 @@ name|mutex
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 name|Deque
 argument_list|<
 name|E

@@ -142,9 +142,9 @@ return|return
 name|element
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -174,9 +174,9 @@ return|return
 literal|1
 return|;
 block|}
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -220,9 +220,9 @@ else|:
 name|this
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -267,9 +267,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()

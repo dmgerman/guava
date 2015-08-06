@@ -264,7 +264,7 @@ name|E
 argument_list|>
 name|elements
 decl_stmt|;
-DECL|method|RegularImmutableSortedSet ( ImmutableList<E> elements, Comparator<? super E> comparator)
+DECL|method|RegularImmutableSortedSet (ImmutableList<E> elements, Comparator<? super E> comparator)
 name|RegularImmutableSortedSet
 parameter_list|(
 name|ImmutableList
@@ -294,9 +294,9 @@ operator|=
 name|elements
 expr_stmt|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -317,9 +317,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
-DECL|method|descendingIterator ()
 annotation|@
 name|Override
+DECL|method|descendingIterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -353,9 +353,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|contains (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object o)
 specifier|public
 name|boolean
 name|contains
@@ -392,9 +392,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -627,9 +627,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -666,9 +666,9 @@ name|offset
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1344,9 +1344,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|indexOf (@ullable Object target)
 annotation|@
 name|Override
+DECL|method|indexOf (@ullable Object target)
 name|int
 name|indexOf
 parameter_list|(
@@ -1416,9 +1416,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|createAsList ()
 annotation|@
 name|Override
+DECL|method|createAsList ()
 name|ImmutableList
 argument_list|<
 name|E

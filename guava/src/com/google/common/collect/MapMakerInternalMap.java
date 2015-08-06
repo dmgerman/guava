@@ -2486,7 +2486,7 @@ name|WEAK_EXPIRABLE_EVICTABLE
 block|}
 block|}
 decl_stmt|;
-DECL|method|getFactory (Strength keyStrength, boolean expireAfterWrite, boolean evictsBySize)
+DECL|method|getFactory ( Strength keyStrength, boolean expireAfterWrite, boolean evictsBySize)
 specifier|static
 name|EntryFactory
 name|getFactory
@@ -17462,7 +17462,7 @@ name|V
 argument_list|>
 name|delegate
 decl_stmt|;
-DECL|method|AbstractSerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate)
+DECL|method|AbstractSerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate)
 name|AbstractSerializationProxy
 parameter_list|(
 name|Strength
@@ -17877,7 +17877,7 @@ name|serialVersionUID
 init|=
 literal|3
 decl_stmt|;
-DECL|method|SerializationProxy (Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate)
+DECL|method|SerializationProxy ( Strength keyStrength, Strength valueStrength, Equivalence<Object> keyEquivalence, Equivalence<Object> valueEquivalence, long expireAfterWriteNanos, long expireAfterAccessNanos, int maximumSize, int concurrencyLevel, RemovalListener<? super K, ? super V> removalListener, ConcurrentMap<K, V> delegate)
 name|SerializationProxy
 parameter_list|(
 name|Strength

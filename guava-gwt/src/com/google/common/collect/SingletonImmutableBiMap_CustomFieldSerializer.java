@@ -96,7 +96,7 @@ specifier|public
 class|class
 name|SingletonImmutableBiMap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, SingletonImmutableBiMap<?, ?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, SingletonImmutableBiMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -113,7 +113,7 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
+block|{}
 DECL|method|instantiate ( SerializationStreamReader reader)
 specifier|public
 specifier|static
@@ -168,7 +168,7 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, SingletonImmutableBiMap<?, ?> instance)
+DECL|method|serialize ( SerializationStreamWriter writer, SingletonImmutableBiMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void

@@ -161,7 +161,7 @@ name|V
 argument_list|>
 block|{
 comment|/*    * TODO(jlevy): Consider adding headTable, tailTable, and subTable methods,    * which return a Table view with rows keys in a given range. Create a    * RowSortedTable subinterface with the revised methods?    */
-DECL|method|StandardRowSortedTable (SortedMap<R, Map<C, V>> backingMap, Supplier<? extends Map<C, V>> factory)
+DECL|method|StandardRowSortedTable ( SortedMap<R, Map<C, V>> backingMap, Supplier<? extends Map<C, V>> factory)
 name|StandardRowSortedTable
 parameter_list|(
 name|SortedMap
@@ -233,9 +233,9 @@ name|backingMap
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedSet}, instead of the {@code Set}    * specified in the {@link Table} interface.    */
-DECL|method|rowKeySet ()
 annotation|@
 name|Override
+DECL|method|rowKeySet ()
 specifier|public
 name|SortedSet
 argument_list|<
@@ -259,9 +259,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>This method returns a {@link SortedMap}, instead of the {@code Map}    * specified in the {@link Table} interface.    */
-DECL|method|rowMap ()
 annotation|@
 name|Override
+DECL|method|rowMap ()
 specifier|public
 name|SortedMap
 argument_list|<

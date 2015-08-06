@@ -353,7 +353,7 @@ name|transformer
 argument_list|)
 return|;
 block|}
-DECL|method|mapsAsMapSortedSet (SortedSet<K> set, Function<? super K, V> function)
+DECL|method|mapsAsMapSortedSet ( SortedSet<K> set, Function<? super K, V> function)
 specifier|static
 parameter_list|<
 name|K
@@ -475,7 +475,7 @@ name|predicate
 argument_list|)
 return|;
 block|}
-DECL|method|mapsFilterSortedMap (SortedMap<K, V> map, Predicate<? super Map.Entry<K, V>> predicate)
+DECL|method|mapsFilterSortedMap ( SortedMap<K, V> map, Predicate<? super Map.Entry<K, V>> predicate)
 specifier|static
 parameter_list|<
 name|K

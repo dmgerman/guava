@@ -74,9 +74,9 @@ operator|new
 name|UsingToStringOrdering
 argument_list|()
 decl_stmt|;
-DECL|method|compare (Object left, Object right)
 annotation|@
 name|Override
+DECL|method|compare (Object left, Object right)
 specifier|public
 name|int
 name|compare
@@ -114,9 +114,9 @@ return|return
 name|INSTANCE
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

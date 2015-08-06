@@ -135,9 +135,9 @@ name|forwardOrder
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|compare (T a, T b)
 annotation|@
 name|Override
+DECL|method|compare (T a, T b)
 specifier|public
 name|int
 name|compare
@@ -166,9 +166,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// how to explain?
-DECL|method|reverse ()
 annotation|@
 name|Override
+DECL|method|reverse ()
 specifier|public
 parameter_list|<
 name|S
@@ -193,9 +193,9 @@ name|forwardOrder
 return|;
 block|}
 comment|// Override the min/max methods to "hoist" delegation outside loops
+annotation|@
+name|Override
 DECL|method|min (E a, E b)
-annotation|@
-name|Override
 specifier|public
 parameter_list|<
 name|E
@@ -223,9 +223,9 @@ name|b
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|min (E a, E b, E c, E... rest)
-annotation|@
-name|Override
 specifier|public
 parameter_list|<
 name|E
@@ -264,9 +264,9 @@ name|rest
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|min (Iterator<E> iterator)
-annotation|@
-name|Override
 specifier|public
 parameter_list|<
 name|E
@@ -292,9 +292,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
-DECL|method|min (Iterable<E> iterable)
 annotation|@
 name|Override
+DECL|method|min (Iterable<E> iterable)
 specifier|public
 parameter_list|<
 name|E
@@ -320,9 +320,9 @@ name|iterable
 argument_list|)
 return|;
 block|}
-DECL|method|max (E a, E b)
 annotation|@
 name|Override
+DECL|method|max (E a, E b)
 specifier|public
 parameter_list|<
 name|E
@@ -350,9 +350,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|max (E a, E b, E c, E... rest)
 annotation|@
 name|Override
+DECL|method|max (E a, E b, E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -391,9 +391,9 @@ name|rest
 argument_list|)
 return|;
 block|}
-DECL|method|max (Iterator<E> iterator)
 annotation|@
 name|Override
+DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
 name|E
@@ -419,9 +419,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
-DECL|method|max (Iterable<E> iterable)
 annotation|@
 name|Override
+DECL|method|max (Iterable<E> iterable)
 specifier|public
 parameter_list|<
 name|E
@@ -447,9 +447,9 @@ name|iterable
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -463,9 +463,9 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -525,9 +525,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

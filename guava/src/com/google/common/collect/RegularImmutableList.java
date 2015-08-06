@@ -185,9 +185,9 @@ return|return
 name|size
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()

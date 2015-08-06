@@ -482,7 +482,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|immutableEnumSet ( Iterable<E> elements)
+DECL|method|immutableEnumSet (Iterable<E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -644,7 +644,7 @@ block|}
 block|}
 block|}
 comment|/**    * Returns a new,<i>mutable</i> {@code EnumSet} instance containing the given elements in their    * natural order. This method behaves identically to {@link EnumSet#copyOf(Collection)}, but also    * accepts non-{@code Collection} iterables and empty iterables.    */
-DECL|method|newEnumSet (Iterable<E> iterable, Class<E> elementType)
+DECL|method|newEnumSet ( Iterable<E> iterable, Class<E> elementType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -926,7 +926,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a thread-safe set backed by a hash map and containing the given    * elements. The set is backed by a {@link ConcurrentHashMap} instance, and    * thus carries the same concurrency guarantees.    *    *<p>Unlike {@code HashSet}, this class does NOT allow {@code null} to be    * used as an element. The set is serializable.    *    * @param elements the elements that the set should contain    * @return a new thread-safe set containing those elements (minus duplicates)    * @throws NullPointerException if {@code elements} or any of its contents is    *      null    * @since 15.0    */
-DECL|method|newConcurrentHashSet ( Iterable<? extends E> elements)
+DECL|method|newConcurrentHashSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -994,7 +994,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a {@code LinkedHashSet} instance, with a high enough "initial    * capacity" that it<i>should</i> hold {@code expectedSize} elements without    * growth. This behavior cannot be broadly guaranteed, but it is observed to    * be true for OpenJDK 1.6. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the    *        returned set    * @return a new, empty {@code LinkedHashSet} with enough capacity to hold    *         {@code expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 11.0    */
-DECL|method|newLinkedHashSetWithExpectedSize ( int expectedSize)
+DECL|method|newLinkedHashSetWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1027,7 +1027,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code LinkedHashSet} instance containing the    * given elements in order.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use {@link ImmutableSet#copyOf(Iterable)} instead.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code LinkedHashSet} containing those elements (minus    *     duplicates)    */
-DECL|method|newLinkedHashSet ( Iterable<? extends E> elements)
+DECL|method|newLinkedHashSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1120,7 +1120,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code TreeSet} instance containing the given    * elements sorted by their natural ordering.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedSet#copyOf(Iterable)} instead.    *    *<p><b>Note:</b> If {@code elements} is a {@code SortedSet} with an explicit    * comparator, this method has different behavior than    * {@link TreeSet#TreeSet(SortedSet)}, which returns a {@code TreeSet} with    * that comparator.    *    * @param elements the elements that the set should contain    * @return a new {@code TreeSet} containing those elements (minus duplicates)    */
-DECL|method|newTreeSet ( Iterable<? extends E> elements)
+DECL|method|newTreeSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1266,7 +1266,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"CopyOnWriteArraySet"
 argument_list|)
-DECL|method|newCopyOnWriteArraySet ( Iterable<? extends E> elements)
+DECL|method|newCopyOnWriteArraySet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1329,7 +1329,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates an {@code EnumSet} consisting of all enum values that are not in    * the specified collection. If the collection is an {@link EnumSet}, this    * method has the same behavior as {@link EnumSet#complementOf}. Otherwise,    * the specified collection must contain at least one element, in order to    * determine the element type. If the collection could be empty, use    * {@link #complementOf(Collection, Class)} instead of this method.    *    * @param collection the collection whose complement should be stored in the    *     enum set    * @return a new, modifiable {@code EnumSet} containing all values of the enum    *     that aren't present in the given collection    * @throws IllegalArgumentException if {@code collection} is not an    *     {@code EnumSet} instance and contains no elements    */
-DECL|method|complementOf ( Collection<E> collection)
+DECL|method|complementOf (Collection<E> collection)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1637,7 +1637,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an unmodifiable<b>view</b> of the union of two sets. The returned    * set contains all elements that are contained in either backing set.    * Iterating over the returned set iterates first over all the elements of    * {@code set1}, then over each element of {@code set2}, in order, that is not    * contained in {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based on    * different equivalence relations (as {@link HashSet}, {@link TreeSet}, and    * the {@link Map#keySet} of an {@code IdentityHashMap} all are).    *    *<p><b>Note:</b> The returned view performs better when {@code set1} is the    * smaller of the two sets. If you have reason to believe one of your sets    * will generally be smaller than the other, pass it first.    *    *<p>Further, note that the current implementation is not suitable for nested    * {@code union} views, i.e. the following should be avoided when in a loop:    * {@code union = Sets.union(union, anotherSet);}, since iterating over the resulting    * set has a cubic complexity to the depth of the nesting.    */
-DECL|method|union ( final Set<? extends E> set1, final Set<? extends E> set2)
+DECL|method|union (final Set<? extends E> set1, final Set<? extends E> set2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1876,7 +1876,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an unmodifiable<b>view</b> of the intersection of two sets. The    * returned set contains all elements that are contained by both backing sets.    * The iteration order of the returned set matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based    * on different equivalence relations (as {@code HashSet}, {@code TreeSet},    * and the keySet of an {@code IdentityHashMap} all are).    *    *<p><b>Note:</b> The returned view performs slightly better when {@code    * set1} is the smaller of the two sets. If you have reason to believe one of    * your sets will generally be smaller than the other, pass it first.    * Unfortunately, since this method sets the generic type of the returned set    * based on the type of the first set passed, this could in rare cases force    * you to make a cast, for example:<pre>   {@code    *    *   Set<Object> aFewBadObjects = ...    *   Set<String> manyBadStrings = ...    *    *   // impossible for a non-String to be in the intersection    *   SuppressWarnings("unchecked")    *   Set<String> badStrings = (Set) Sets.intersection(    *       aFewBadObjects, manyBadStrings);}</pre>    *    *<p>This is unfortunate, but should come up only very rarely.    */
-DECL|method|intersection ( final Set<E> set1, final Set<?> set2)
+DECL|method|intersection (final Set<E> set1, final Set<?> set2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2055,7 +2055,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns an unmodifiable<b>view</b> of the difference of two sets. The    * returned set contains all elements that are contained by {@code set1} and    * not contained by {@code set2}. {@code set2} may also contain elements not    * present in {@code set1}; these are simply ignored. The iteration order of    * the returned set matches that of {@code set1}.    *    *<p>Results are undefined if {@code set1} and {@code set2} are sets based    * on different equivalence relations (as {@code HashSet}, {@code TreeSet},    * and the keySet of an {@code IdentityHashMap} all are).    */
-DECL|method|difference ( final Set<E> set1, final Set<?> set2)
+DECL|method|difference (final Set<E> set1, final Set<?> set2)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2455,7 +2455,7 @@ comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predi
 comment|// TODO(kevinb): how to omit that last sentence when building GWT javadoc?
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( Set<E> unfiltered, Predicate<? super E> predicate)
+DECL|method|filter (Set<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2632,9 +2632,9 @@ name|predicate
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -2654,9 +2654,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2673,7 +2673,7 @@ block|}
 comment|/**    * Returns the elements of a {@code SortedSet}, {@code unfiltered}, that    * satisfy a predicate. The returned set is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. When given an element that doesn't satisfy    * the predicate, the set's {@code add()} and {@code addAll()} methods throw    * an {@link IllegalArgumentException}. When methods such as    * {@code removeAll()} and {@code clear()} are called on the filtered set,    * only elements that satisfy the filter will be removed from the underlying    * set.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate across    * every element in the underlying set and determine which elements satisfy    * the filter. When a live view is<i>not</i> needed, it may be faster to copy    * {@code Iterables.filter(unfiltered, predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with    * equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    *    * @since 11.0    */
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( SortedSet<E> unfiltered, Predicate<? super E> predicate)
+DECL|method|filter (SortedSet<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3629,7 +3629,7 @@ return|;
 block|}
 block|}
 comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given sets in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:<pre>   {@code    *    *   Sets.cartesianProduct(ImmutableList.of(    *       ImmutableSet.of(1, 2),    *       ImmutableSet.of("A", "B", "C")))}</pre>    *    *<p>returns a set containing six lists:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical    * order for Cartesian products that you would get from nesting for loops:    *<pre>   {@code    *    *   for (B b0 : sets.get(0)) {    *     for (B b1 : sets.get(1)) {    *       ...    *       ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *       // operate on tuple    *     }    *   }}</pre>    *    *<p>Note that if any input set is empty, the Cartesian product will also be    * empty. If no sets at all are provided (an empty list), the resulting    * Cartesian product has one element, an empty list (counter-intuitive, but    * mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of sets of size    * {@code m, n, p} is a set of size {@code m x n x p}, its actual memory    * consumption is much smaller. When the cartesian set is constructed, the    * input sets are merely copied. Only as the resulting set is iterated are the    * individual lists created, and these are not retained after iteration.    *    * @param sets the sets to choose elements from, in the order that    *     the elements chosen from those sets should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable set containing immutable    *     lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets},    *     or any element of a provided set is null    * @since 2.0    */
-DECL|method|cartesianProduct ( List<? extends Set<? extends B>> sets)
+DECL|method|cartesianProduct (List<? extends Set<? extends B>> sets)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3668,7 +3668,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given sets in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the sets. For example:<pre>   {@code    *    *   Sets.cartesianProduct(    *       ImmutableSet.of(1, 2),    *       ImmutableSet.of("A", "B", "C"))}</pre>    *    *<p>returns a set containing six lists:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical    * order for Cartesian products that you would get from nesting for loops:    *<pre>   {@code    *    *   for (B b0 : sets.get(0)) {    *     for (B b1 : sets.get(1)) {    *       ...    *       ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *       // operate on tuple    *     }    *   }}</pre>    *    *<p>Note that if any input set is empty, the Cartesian product will also be    * empty. If no sets at all are provided (an empty list), the resulting    * Cartesian product has one element, an empty list (counter-intuitive, but    * mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of sets of size    * {@code m, n, p} is a set of size {@code m x n x p}, its actual memory    * consumption is much smaller. When the cartesian set is constructed, the    * input sets are merely copied. Only as the resulting set is iterated are the    * individual lists created, and these are not retained after iteration.    *    * @param sets the sets to choose elements from, in the order that    *     the elements chosen from those sets should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable set containing immutable    *     lists    * @throws NullPointerException if {@code sets}, any one of the {@code sets},    *     or any element of a provided set is null    * @since 2.0    */
-DECL|method|cartesianProduct ( Set<? extends B>.... sets)
+DECL|method|cartesianProduct (Set<? extends B>.... sets)
 specifier|public
 specifier|static
 parameter_list|<
@@ -3964,7 +3964,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|CartesianSet ( ImmutableList<ImmutableSet<E>> axes, CartesianList<E> delegate)
+DECL|method|CartesianSet (ImmutableList<ImmutableSet<E>> axes, CartesianList<E> delegate)
 specifier|private
 name|CartesianSet
 parameter_list|(
@@ -4015,9 +4015,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -4507,9 +4507,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -4524,9 +4524,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -4536,9 +4536,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -4594,9 +4594,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|contains (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object obj)
 specifier|public
 name|boolean
 name|contains
@@ -4644,9 +4644,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|equals (@ullable Object obj)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object obj)
 specifier|public
 name|boolean
 name|equals
@@ -4698,9 +4698,9 @@ name|obj
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -4726,9 +4726,9 @@ literal|1
 operator|)
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -4896,7 +4896,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
-DECL|method|unmodifiableNavigableSet ( NavigableSet<E> set)
+DECL|method|unmodifiableNavigableSet (NavigableSet<E> set)
 specifier|public
 specifier|static
 parameter_list|<
@@ -5328,7 +5328,7 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
-DECL|method|synchronizedNavigableSet ( NavigableSet<E> navigableSet)
+DECL|method|synchronizedNavigableSet (NavigableSet<E> navigableSet)
 specifier|public
 specifier|static
 parameter_list|<

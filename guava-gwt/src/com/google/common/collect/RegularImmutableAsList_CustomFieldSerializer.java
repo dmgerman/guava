@@ -101,7 +101,7 @@ specifier|public
 class|class
 name|RegularImmutableAsList_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, RegularImmutableAsList<?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, RegularImmutableAsList<?> instance)
 specifier|public
 specifier|static
 name|void
@@ -116,8 +116,8 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|RegularImmutableAsList

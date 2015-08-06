@@ -106,9 +106,9 @@ operator|=
 name|ordering
 expr_stmt|;
 block|}
-DECL|method|compare (@ullable T left, @Nullable T right)
 annotation|@
 name|Override
+DECL|method|compare (@ullable T left, @Nullable T right)
 specifier|public
 name|int
 name|compare
@@ -168,9 +168,9 @@ name|right
 argument_list|)
 return|;
 block|}
-DECL|method|reverse ()
 annotation|@
 name|Override
+DECL|method|reverse ()
 specifier|public
 parameter_list|<
 name|S
@@ -195,9 +195,9 @@ name|nullsFirst
 argument_list|()
 return|;
 block|}
-DECL|method|nullsFirst ()
 annotation|@
 name|Override
+DECL|method|nullsFirst ()
 specifier|public
 parameter_list|<
 name|S
@@ -224,9 +224,9 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 comment|// still need the right way to explain this
-DECL|method|nullsLast ()
 annotation|@
 name|Override
+DECL|method|nullsLast ()
 specifier|public
 parameter_list|<
 name|S
@@ -250,9 +250,9 @@ operator|)
 name|this
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -312,9 +312,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -331,9 +331,9 @@ literal|921210296
 return|;
 comment|// meaningless
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

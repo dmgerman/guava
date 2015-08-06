@@ -119,9 +119,9 @@ operator|=
 name|elementOrder
 expr_stmt|;
 block|}
-DECL|method|compare ( Iterable<T> leftIterable, Iterable<T> rightIterable)
 annotation|@
 name|Override
+DECL|method|compare (Iterable<T> leftIterable, Iterable<T> rightIterable)
 specifier|public
 name|int
 name|compare
@@ -230,9 +230,9 @@ return|return
 literal|0
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -292,9 +292,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -310,9 +310,9 @@ literal|2075626741
 return|;
 comment|// meaningless
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

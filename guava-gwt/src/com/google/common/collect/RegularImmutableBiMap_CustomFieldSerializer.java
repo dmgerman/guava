@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class implements the GWT serialization of  * {@link RegularImmutableBiMap}.  *   * @author Chris Povirk  */
+comment|/**  * This class implements the GWT serialization of  * {@link RegularImmutableBiMap}.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
@@ -124,7 +124,7 @@ specifier|public
 class|class
 name|RegularImmutableBiMap_CustomFieldSerializer
 block|{
-DECL|method|deserialize (SerializationStreamReader reader, RegularImmutableBiMap<?, ?> instance)
+DECL|method|deserialize ( SerializationStreamReader reader, RegularImmutableBiMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void
@@ -141,8 +141,8 @@ name|?
 argument_list|>
 name|instance
 parameter_list|)
-block|{   }
-DECL|method|instantiate ( SerializationStreamReader reader)
+block|{}
+DECL|method|instantiate (SerializationStreamReader reader)
 specifier|public
 specifier|static
 name|RegularImmutableBiMap
@@ -203,7 +203,7 @@ name|entries
 argument_list|)
 return|;
 block|}
-DECL|method|serialize (SerializationStreamWriter writer, RegularImmutableBiMap<?, ?> instance)
+DECL|method|serialize ( SerializationStreamWriter writer, RegularImmutableBiMap<?, ?> instance)
 specifier|public
 specifier|static
 name|void

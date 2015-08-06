@@ -107,13 +107,13 @@ name|?
 argument_list|>
 name|out
 parameter_list|)
-block|{   }
+block|{}
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|instantiate ( SerializationStreamReader in)
+DECL|method|instantiate (SerializationStreamReader in)
 specifier|public
 specifier|static
 name|TreeMultimap

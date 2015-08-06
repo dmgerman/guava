@@ -289,7 +289,7 @@ name|Multisets
 parameter_list|()
 block|{}
 comment|/**    * Returns an unmodifiable view of the specified multiset. Query operations on    * the returned multiset "read through" to the specified multiset, and    * attempts to modify the returned multiset result in an    * {@link UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param multiset the multiset for which an unmodifiable view is to be    *     generated    * @return an unmodifiable view of the multiset    */
-DECL|method|unmodifiableMultiset ( Multiset<? extends E> multiset)
+DECL|method|unmodifiableMultiset (Multiset<? extends E> multiset)
 specifier|public
 specifier|static
 parameter_list|<
@@ -360,9 +360,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Simply returns its argument.    *    * @deprecated no need to use this    * @since 10.0    */
-DECL|method|unmodifiableMultiset ( ImmutableMultiset<E> multiset)
 annotation|@
 name|Deprecated
+DECL|method|unmodifiableMultiset (ImmutableMultiset<E> multiset)
 specifier|public
 specifier|static
 parameter_list|<
@@ -437,9 +437,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Multiset
 argument_list|<
@@ -542,9 +542,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -603,9 +603,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -633,9 +633,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|add (E element)
 annotation|@
 name|Override
+DECL|method|add (E element)
 specifier|public
 name|boolean
 name|add
@@ -650,9 +650,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|add (E element, int occurences)
 annotation|@
 name|Override
+DECL|method|add (E element, int occurences)
 specifier|public
 name|int
 name|add
@@ -670,9 +670,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|addAll (Collection<? extends E> elementsToAdd)
 annotation|@
 name|Override
+DECL|method|addAll (Collection<? extends E> elementsToAdd)
 specifier|public
 name|boolean
 name|addAll
@@ -692,9 +692,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|remove (Object element)
 annotation|@
 name|Override
+DECL|method|remove (Object element)
 specifier|public
 name|boolean
 name|remove
@@ -709,9 +709,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|remove (Object element, int occurrences)
 annotation|@
 name|Override
+DECL|method|remove (Object element, int occurrences)
 specifier|public
 name|int
 name|remove
@@ -729,9 +729,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|removeAll (Collection<?> elementsToRemove)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> elementsToRemove)
 specifier|public
 name|boolean
 name|removeAll
@@ -749,9 +749,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|retainAll (Collection<?> elementsToRetain)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> elementsToRetain)
 specifier|public
 name|boolean
 name|retainAll
@@ -769,9 +769,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -783,9 +783,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|setCount (E element, int count)
 annotation|@
 name|Override
+DECL|method|setCount (E element, int count)
 specifier|public
 name|int
 name|setCount
@@ -803,9 +803,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-DECL|method|setCount (E element, int oldCount, int newCount)
 annotation|@
 name|Override
+DECL|method|setCount (E element, int oldCount, int newCount)
 specifier|public
 name|boolean
 name|setCount
@@ -839,7 +839,7 @@ block|}
 comment|/**    * Returns an unmodifiable view of the specified sorted multiset. Query    * operations on the returned multiset "read through" to the specified    * multiset, and attempts to modify the returned multiset result in an {@link    * UnsupportedOperationException}.    *    *<p>The returned multiset will be serializable if the specified multiset is    * serializable.    *    * @param sortedMultiset the sorted multiset for which an unmodifiable view is    *     to be generated    * @return an unmodifiable view of the multiset    * @since 11.0    */
 annotation|@
 name|Beta
-DECL|method|unmodifiableSortedMultiset ( SortedMultiset<E> sortedMultiset)
+DECL|method|unmodifiableSortedMultiset (SortedMultiset<E> sortedMultiset)
 specifier|public
 specifier|static
 parameter_list|<
@@ -973,9 +973,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getElement ()
 annotation|@
 name|Nullable
+DECL|method|getElement ()
 specifier|public
 specifier|final
 name|E
@@ -2804,7 +2804,7 @@ block|}
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since 10.0    */
-DECL|method|containsOccurrences ( Multiset<?> superMultiset, Multiset<?> subMultiset)
+DECL|method|containsOccurrences (Multiset<?> superMultiset, Multiset<?> subMultiset)
 specifier|public
 specifier|static
 name|boolean
@@ -2880,7 +2880,7 @@ literal|true
 return|;
 block|}
 comment|/**    * Modifies {@code multisetToModify} so that its count for an element    * {@code e} is at most {@code multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to    * {@code Math.min(multisetToModify.count(e),    * multisetToRetain.count(e))}. This is similar to    * {@link #intersection(Multiset, Multiset) intersection}    * {@code (multisetToModify, multisetToRetain)}, but mutates    * {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps    * all occurrences of elements that appear at all in {@code    * multisetToRetain}, and deletes all occurrences of all other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result    *         of this operation    * @since 10.0    */
-DECL|method|retainOccurrences (Multiset<?> multisetToModify, Multiset<?> multisetToRetain)
+DECL|method|retainOccurrences ( Multiset<?> multisetToModify, Multiset<?> multisetToRetain)
 specifier|public
 specifier|static
 name|boolean
@@ -3282,9 +3282,9 @@ name|E
 argument_list|>
 block|{
 comment|/**      * Indicates whether an object equals this entry, following the behavior      * specified in {@link Multiset.Entry#equals}.      */
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -3354,9 +3354,9 @@ literal|false
 return|;
 block|}
 comment|/**      * Return this entry's hash code, following the behavior specified in      * {@link Multiset.Entry#hashCode}.      */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3389,9 +3389,9 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Returns a string representation of this multiset entry. The string      * representation consists of the associated element if the associated count      * is one, and otherwise the associated element followed by the characters      * " x " (space, x and space) followed by the count. Elements and counts are      * converted to strings as by {@code String.valueOf}.      */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -3563,7 +3563,7 @@ literal|false
 return|;
 block|}
 comment|/**    * An implementation of {@link Multiset#addAll}.    */
-DECL|method|addAllImpl ( Multiset<E> self, Collection<? extends E> elements)
+DECL|method|addAllImpl (Multiset<E> self, Collection<? extends E> elements)
 specifier|static
 parameter_list|<
 name|E
@@ -3671,7 +3671,7 @@ literal|true
 return|;
 block|}
 comment|/**    * An implementation of {@link Multiset#removeAll}.    */
-DECL|method|removeAllImpl ( Multiset<?> self, Collection<?> elementsToRemove)
+DECL|method|removeAllImpl (Multiset<?> self, Collection<?> elementsToRemove)
 specifier|static
 name|boolean
 name|removeAllImpl
@@ -3729,7 +3729,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * An implementation of {@link Multiset#retainAll}.    */
-DECL|method|retainAllImpl ( Multiset<?> self, Collection<?> elementsToRetain)
+DECL|method|retainAllImpl (Multiset<?> self, Collection<?> elementsToRetain)
 specifier|static
 name|boolean
 name|retainAllImpl
@@ -3878,7 +3878,7 @@ name|oldCount
 return|;
 block|}
 comment|/**    * An implementation of {@link Multiset#setCount(Object, int, int)}.    */
-DECL|method|setCountImpl ( Multiset<E> self, E element, int oldCount, int newCount)
+DECL|method|setCountImpl (Multiset<E> self, E element, int oldCount, int newCount)
 specifier|static
 parameter_list|<
 name|E
@@ -3973,9 +3973,9 @@ argument_list|>
 name|multiset
 parameter_list|()
 function_decl|;
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -3988,9 +3988,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -4009,9 +4009,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -4033,9 +4033,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -4049,9 +4049,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -4131,9 +4131,9 @@ operator|>
 literal|0
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -4179,9 +4179,9 @@ argument_list|>
 name|multiset
 parameter_list|()
 function_decl|;
-DECL|method|contains (@ullable Object o)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object o)
 specifier|public
 name|boolean
 name|contains
@@ -4266,9 +4266,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"cast"
 argument_list|)
-DECL|method|remove (Object object)
 annotation|@
 name|Override
+DECL|method|remove (Object object)
 specifier|public
 name|boolean
 name|remove
@@ -4359,9 +4359,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -4473,7 +4473,7 @@ specifier|private
 name|boolean
 name|canRemove
 decl_stmt|;
-DECL|method|MultisetIteratorImpl ( Multiset<E> multiset, Iterator<Entry<E>> entryIterator)
+DECL|method|MultisetIteratorImpl (Multiset<E> multiset, Iterator<Entry<E>> entryIterator)
 name|MultisetIteratorImpl
 parameter_list|(
 name|Multiset

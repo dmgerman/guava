@@ -187,7 +187,7 @@ DECL|method|SortedMultisets ()
 specifier|private
 name|SortedMultisets
 parameter_list|()
-block|{   }
+block|{}
 comment|/**    * A skeleton implementation for {@link SortedMultiset#elementSet}.    */
 DECL|class|ElementSet
 specifier|static
@@ -237,9 +237,9 @@ operator|=
 name|multiset
 expr_stmt|;
 block|}
-DECL|method|multiset ()
 annotation|@
 name|Override
+DECL|method|multiset ()
 specifier|final
 name|SortedMultiset
 argument_list|<
@@ -252,9 +252,9 @@ return|return
 name|multiset
 return|;
 block|}
-DECL|method|comparator ()
 annotation|@
 name|Override
+DECL|method|comparator ()
 specifier|public
 name|Comparator
 argument_list|<
@@ -273,9 +273,9 @@ name|comparator
 argument_list|()
 return|;
 block|}
-DECL|method|subSet (E fromElement, E toElement)
 annotation|@
 name|Override
+DECL|method|subSet (E fromElement, E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -309,9 +309,9 @@ name|elementSet
 argument_list|()
 return|;
 block|}
-DECL|method|headSet (E toElement)
 annotation|@
 name|Override
+DECL|method|headSet (E toElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -338,9 +338,9 @@ name|elementSet
 argument_list|()
 return|;
 block|}
-DECL|method|tailSet (E fromElement)
 annotation|@
 name|Override
+DECL|method|tailSet (E fromElement)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -367,9 +367,9 @@ name|elementSet
 argument_list|()
 return|;
 block|}
-DECL|method|first ()
 annotation|@
 name|Override
+DECL|method|first ()
 specifier|public
 name|E
 name|first
@@ -386,9 +386,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-DECL|method|last ()
 annotation|@
 name|Override
+DECL|method|last ()
 specifier|public
 name|E
 name|last

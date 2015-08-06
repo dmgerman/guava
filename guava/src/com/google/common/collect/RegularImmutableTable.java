@@ -691,7 +691,7 @@ name|columnComparator
 argument_list|)
 return|;
 block|}
-DECL|method|forCells ( Iterable<Cell<R, C, V>> cells)
+DECL|method|forCells (Iterable<Cell<R, C, V>> cells)
 specifier|static
 parameter_list|<
 name|R
@@ -736,6 +736,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * A factory that chooses the most space-efficient representation of the    * table.    */
+DECL|method|forCellsInternal ( Iterable<Cell<R, C, V>> cells, @Nullable Comparator<? super R> rowComparator, @Nullable Comparator<? super C> columnComparator)
 specifier|private
 specifier|static
 specifier|final
@@ -754,7 +755,6 @@ name|C
 argument_list|,
 name|V
 argument_list|>
-DECL|method|forCellsInternal (Iterable<Cell<R, C, V>> cells, @Nullable Comparator<? super R> rowComparator, @Nullable Comparator<? super C> columnComparator)
 name|forCellsInternal
 parameter_list|(
 name|Iterable

@@ -148,7 +148,7 @@ specifier|transient
 name|int
 name|hashCode
 decl_stmt|;
-DECL|method|RegularImmutableSet ( Object[] elements, int hashCode, Object[] table, int mask)
+DECL|method|RegularImmutableSet (Object[] elements, int hashCode, Object[] table, int mask)
 name|RegularImmutableSet
 parameter_list|(
 name|Object
@@ -191,9 +191,9 @@ operator|=
 name|hashCode
 expr_stmt|;
 block|}
-DECL|method|contains (@ullable Object target)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object target)
 specifier|public
 name|boolean
 name|contains
@@ -417,9 +417,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -429,9 +429,9 @@ return|return
 name|hashCode
 return|;
 block|}
-DECL|method|isHashCodeFast ()
 annotation|@
 name|Override
+DECL|method|isHashCodeFast ()
 name|boolean
 name|isHashCodeFast
 parameter_list|()

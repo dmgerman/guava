@@ -323,7 +323,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Stores the contents of a multiset in an output stream, as part of    * serialization. It does not support concurrent multisets whose content may    * change while the method is running.    *    *<p>The serialized output consists of the number of distinct elements, the    * first element, its count, the second element, its count, and so on.    */
-DECL|method|writeMultiset ( Multiset<E> multiset, ObjectOutputStream stream)
+DECL|method|writeMultiset (Multiset<E> multiset, ObjectOutputStream stream)
 specifier|static
 parameter_list|<
 name|E
@@ -400,7 +400,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Populates a multiset by reading an input stream, as part of    * deserialization. See {@link #writeMultiset} for the data format.    */
-DECL|method|populateMultiset ( Multiset<E> multiset, ObjectInputStream stream)
+DECL|method|populateMultiset (Multiset<E> multiset, ObjectInputStream stream)
 specifier|static
 parameter_list|<
 name|E
@@ -518,7 +518,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Stores the contents of a multimap in an output stream, as part of    * serialization. It does not support concurrent multimaps whose content may    * change while the method is running. The {@link Multimap#asMap} view    * determines the ordering in which data is written to the stream.    *    *<p>The serialized output consists of the number of distinct keys, and then    * for each distinct key: the key, the number of values for that key, and the    * key's values.    */
-DECL|method|writeMultimap ( Multimap<K, V> multimap, ObjectOutputStream stream)
+DECL|method|writeMultimap (Multimap<K, V> multimap, ObjectOutputStream stream)
 specifier|static
 parameter_list|<
 name|K
@@ -624,7 +624,7 @@ block|}
 block|}
 block|}
 comment|/**    * Populates a multimap by reading an input stream, as part of    * deserialization. See {@link #writeMultimap} for the data format.    */
-DECL|method|populateMultimap ( Multimap<K, V> multimap, ObjectInputStream stream)
+DECL|method|populateMultimap (Multimap<K, V> multimap, ObjectInputStream stream)
 specifier|static
 parameter_list|<
 name|K
@@ -794,7 +794,7 @@ block|}
 block|}
 block|}
 comment|// Secret sauce for setting final fields; don't make it public.
-DECL|method|getFieldSetter ( final Class<T> clazz, String fieldName)
+DECL|method|getFieldSetter (final Class<T> clazz, String fieldName)
 specifier|static
 parameter_list|<
 name|T

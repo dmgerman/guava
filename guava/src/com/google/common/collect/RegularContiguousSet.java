@@ -241,9 +241,9 @@ name|domain
 argument_list|)
 return|;
 block|}
-DECL|method|headSetImpl (C toElement, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|headSetImpl (C toElement, boolean inclusive)
 name|ContiguousSet
 argument_list|<
 name|C
@@ -276,9 +276,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|subSetImpl (C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 annotation|@
 name|Override
+DECL|method|subSetImpl ( C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
 name|ContiguousSet
 argument_list|<
 name|C
@@ -356,9 +356,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|tailSetImpl (C fromElement, boolean inclusive)
 annotation|@
 name|Override
+DECL|method|tailSetImpl (C fromElement, boolean inclusive)
 name|ContiguousSet
 argument_list|<
 name|C
@@ -396,9 +396,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"not used by GWT emulation"
 argument_list|)
-DECL|method|indexOf (Object target)
 annotation|@
 name|Override
+DECL|method|indexOf (Object target)
 name|int
 name|indexOf
 parameter_list|(
@@ -432,9 +432,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -497,9 +497,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"NavigableSet"
 argument_list|)
-DECL|method|descendingIterator ()
 annotation|@
 name|Override
+DECL|method|descendingIterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -595,9 +595,9 @@ operator|==
 literal|0
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -606,9 +606,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|first ()
 annotation|@
 name|Override
+DECL|method|first ()
 specifier|public
 name|C
 name|first
@@ -625,9 +625,9 @@ name|domain
 argument_list|)
 return|;
 block|}
-DECL|method|last ()
 annotation|@
 name|Override
+DECL|method|last ()
 specifier|public
 name|C
 name|last
@@ -644,9 +644,9 @@ name|domain
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -687,9 +687,9 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|contains (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|contains (@ullable Object object)
 specifier|public
 name|boolean
 name|contains
@@ -736,9 +736,9 @@ literal|false
 return|;
 block|}
 block|}
-DECL|method|containsAll (Collection<?> targets)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> targets)
 specifier|public
 name|boolean
 name|containsAll
@@ -761,9 +761,9 @@ name|targets
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -773,9 +773,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|intersection (ContiguousSet<C> other)
 annotation|@
 name|Override
+DECL|method|intersection (ContiguousSet<C> other)
 specifier|public
 name|ContiguousSet
 argument_list|<
@@ -904,9 +904,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|range ()
 annotation|@
 name|Override
+DECL|method|range ()
 specifier|public
 name|Range
 argument_list|<
@@ -924,9 +924,9 @@ name|CLOSED
 argument_list|)
 return|;
 block|}
-DECL|method|range (BoundType lowerBoundType, BoundType upperBoundType)
 annotation|@
 name|Override
+DECL|method|range (BoundType lowerBoundType, BoundType upperBoundType)
 specifier|public
 name|Range
 argument_list|<
@@ -970,9 +970,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1069,9 +1069,9 @@ argument_list|)
 return|;
 block|}
 comment|// copied to make sure not to use the GWT-emulated version
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -1176,9 +1176,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"serialization"
 argument_list|)
-DECL|method|writeReplace ()
 annotation|@
 name|Override
+DECL|method|writeReplace ()
 name|Object
 name|writeReplace
 parameter_list|()

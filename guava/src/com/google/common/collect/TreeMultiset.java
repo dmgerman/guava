@@ -1848,9 +1848,9 @@ block|}
 return|;
 block|}
 comment|/**    * Returns the first node in the tree that is in range.    */
-DECL|method|firstNode ()
 annotation|@
 name|Nullable
+DECL|method|firstNode ()
 specifier|private
 name|AvlNode
 argument_list|<
@@ -1996,9 +1996,9 @@ else|:
 name|node
 return|;
 block|}
-DECL|method|lastNode ()
 annotation|@
 name|Nullable
+DECL|method|lastNode ()
 specifier|private
 name|AvlNode
 argument_list|<
@@ -2655,9 +2655,9 @@ specifier|private
 name|T
 name|value
 decl_stmt|;
-DECL|method|get ()
 annotation|@
 name|Nullable
+DECL|method|get ()
 specifier|public
 name|T
 name|get
@@ -4931,9 +4931,9 @@ operator|.
 name|height
 return|;
 block|}
-DECL|method|ceiling (Comparator<? super E> comparator, E e)
 annotation|@
 name|Nullable
+DECL|method|ceiling (Comparator<? super E> comparator, E e)
 specifier|private
 name|AvlNode
 argument_list|<
@@ -5032,9 +5032,9 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|method|floor (Comparator<? super E> comparator, E e)
 annotation|@
 name|Nullable
+DECL|method|floor (Comparator<? super E> comparator, E e)
 specifier|private
 name|AvlNode
 argument_list|<
@@ -5473,12 +5473,12 @@ name|stream
 argument_list|)
 expr_stmt|;
 block|}
-DECL|field|serialVersionUID
 annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"not needed in emulated source"
 argument_list|)
+DECL|field|serialVersionUID
 specifier|private
 specifier|static
 specifier|final

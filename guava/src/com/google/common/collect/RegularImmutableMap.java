@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_package
@@ -209,7 +209,7 @@ name|entries
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a RegularImmutableMap from the first n entries in entryArray.  This implementation    * may replace the entries in entryArray with its own entry objects (though they will have the    * same key/value contents), and may take ownership of entryArray.     */
+comment|/**    * Creates a RegularImmutableMap from the first n entries in entryArray.  This implementation    * may replace the entries in entryArray with its own entry objects (though they will have the    * same key/value contents), and may take ownership of entryArray.    */
 DECL|method|fromEntryArray (int n, Entry<K, V>[] entryArray)
 specifier|static
 parameter_list|<
@@ -640,9 +640,9 @@ name|MAX_LOAD_FACTOR
 init|=
 literal|1.2
 decl_stmt|;
-DECL|method|get (@ullable Object key)
 annotation|@
 name|Override
+DECL|method|get (@ullable Object key)
 specifier|public
 name|V
 name|get
@@ -790,9 +790,9 @@ operator|.
 name|length
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()

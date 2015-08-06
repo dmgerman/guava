@@ -106,9 +106,9 @@ operator|new
 name|ReverseNaturalOrdering
 argument_list|()
 decl_stmt|;
-DECL|method|compare (Comparable left, Comparable right)
 annotation|@
 name|Override
+DECL|method|compare (Comparable left, Comparable right)
 specifier|public
 name|int
 name|compare
@@ -146,9 +146,9 @@ name|left
 argument_list|)
 return|;
 block|}
-DECL|method|reverse ()
 annotation|@
 name|Override
+DECL|method|reverse ()
 specifier|public
 parameter_list|<
 name|S
@@ -170,9 +170,9 @@ argument_list|()
 return|;
 block|}
 comment|// Override the min/max methods to "hoist" delegation outside loops
-DECL|method|min (E a, E b)
 annotation|@
 name|Override
+DECL|method|min (E a, E b)
 specifier|public
 parameter_list|<
 name|E
@@ -202,9 +202,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|min (E a, E b, E c, E... rest)
 annotation|@
 name|Override
+DECL|method|min (E a, E b, E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -245,9 +245,9 @@ name|rest
 argument_list|)
 return|;
 block|}
-DECL|method|min (Iterator<E> iterator)
 annotation|@
 name|Override
+DECL|method|min (Iterator<E> iterator)
 specifier|public
 parameter_list|<
 name|E
@@ -275,9 +275,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
-DECL|method|min (Iterable<E> iterable)
 annotation|@
 name|Override
+DECL|method|min (Iterable<E> iterable)
 specifier|public
 parameter_list|<
 name|E
@@ -305,9 +305,9 @@ name|iterable
 argument_list|)
 return|;
 block|}
-DECL|method|max (E a, E b)
 annotation|@
 name|Override
+DECL|method|max (E a, E b)
 specifier|public
 parameter_list|<
 name|E
@@ -337,9 +337,9 @@ name|b
 argument_list|)
 return|;
 block|}
-DECL|method|max (E a, E b, E c, E... rest)
 annotation|@
 name|Override
+DECL|method|max (E a, E b, E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -380,9 +380,9 @@ name|rest
 argument_list|)
 return|;
 block|}
-DECL|method|max (Iterator<E> iterator)
 annotation|@
 name|Override
+DECL|method|max (Iterator<E> iterator)
 specifier|public
 parameter_list|<
 name|E
@@ -410,9 +410,9 @@ name|iterator
 argument_list|)
 return|;
 block|}
-DECL|method|max (Iterable<E> iterable)
 annotation|@
 name|Override
+DECL|method|max (Iterable<E> iterable)
 specifier|public
 parameter_list|<
 name|E
@@ -451,9 +451,9 @@ return|return
 name|INSTANCE
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

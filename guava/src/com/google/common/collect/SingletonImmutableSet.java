@@ -151,9 +151,9 @@ return|return
 literal|1
 return|;
 block|}
-DECL|method|contains (Object target)
 annotation|@
 name|Override
+DECL|method|contains (Object target)
 specifier|public
 name|boolean
 name|contains
@@ -171,9 +171,9 @@ name|target
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|UnmodifiableIterator
 argument_list|<
@@ -191,9 +191,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -229,9 +229,9 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 specifier|final
 name|int
@@ -265,9 +265,9 @@ return|return
 name|code
 return|;
 block|}
-DECL|method|isHashCodeFast ()
 annotation|@
 name|Override
+DECL|method|isHashCodeFast ()
 name|boolean
 name|isHashCodeFast
 parameter_list|()
@@ -278,9 +278,9 @@ operator|!=
 literal|0
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString

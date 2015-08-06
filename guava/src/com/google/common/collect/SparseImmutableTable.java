@@ -138,7 +138,7 @@ name|int
 index|[]
 name|iterationOrderColumn
 decl_stmt|;
-DECL|method|SparseImmutableTable (ImmutableList<Cell<R, C, V>> cellList, ImmutableSet<R> rowSpace, ImmutableSet<C> columnSpace)
+DECL|method|SparseImmutableTable ( ImmutableList<Cell<R, C, V>> cellList, ImmutableSet<R> rowSpace, ImmutableSet<C> columnSpace)
 name|SparseImmutableTable
 parameter_list|(
 name|ImmutableList
@@ -637,9 +637,9 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|columnMap ()
 annotation|@
 name|Override
+DECL|method|columnMap ()
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -659,9 +659,9 @@ return|return
 name|columnMap
 return|;
 block|}
-DECL|method|rowMap ()
 annotation|@
 name|Override
+DECL|method|rowMap ()
 specifier|public
 name|ImmutableMap
 argument_list|<

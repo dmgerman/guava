@@ -309,7 +309,7 @@ return|return
 name|multimap
 return|;
 block|}
-DECL|method|serialize ( SerializationStreamWriter writer, Multimap<?, ?> instance)
+DECL|method|serialize (SerializationStreamWriter writer, Multimap<?, ?> instance)
 specifier|public
 specifier|static
 name|void

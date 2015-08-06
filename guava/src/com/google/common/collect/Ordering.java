@@ -368,9 +368,9 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|from (Ordering<T> ordering)
 annotation|@
 name|Deprecated
+DECL|method|from (Ordering<T> ordering)
 specifier|public
 specifier|static
 parameter_list|<
@@ -442,7 +442,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|explicit ( T leastValue, T... remainingValuesInOrder)
+DECL|method|explicit (T leastValue, T... remainingValuesInOrder)
 specifier|public
 specifier|static
 parameter_list|<
@@ -567,9 +567,9 @@ name|ArbitraryOrdering
 argument_list|()
 decl_stmt|;
 block|}
-DECL|class|ArbitraryOrdering
 annotation|@
 name|VisibleForTesting
+DECL|class|ArbitraryOrdering
 specifier|static
 class|class
 name|ArbitraryOrdering
@@ -645,9 +645,9 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
-DECL|method|compare (Object left, Object right)
 annotation|@
 name|Override
+DECL|method|compare (Object left, Object right)
 specifier|public
 name|int
 name|compare
@@ -768,9 +768,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -998,7 +998,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|compound ( Comparator<? super U> secondaryComparator)
+DECL|method|compound (Comparator<? super U> secondaryComparator)
 specifier|public
 parameter_list|<
 name|U
@@ -1044,7 +1044,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|compound ( Iterable<? extends Comparator<? super T>> comparators)
+DECL|method|compound (Iterable<? extends Comparator<? super T>> comparators)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1123,9 +1123,9 @@ return|;
 block|}
 comment|// Regular instance methods
 comment|// Override to add @Nullable
-DECL|method|compare (@ullable T left, @Nullable T right)
 annotation|@
 name|Override
+DECL|method|compare (@ullable T left, @Nullable T right)
 specifier|public
 specifier|abstract
 name|int
@@ -1262,7 +1262,7 @@ name|b
 return|;
 block|}
 comment|/**    * Returns the least of the specified values according to this ordering. If    * there are multiple least values, the first of those is returned.    *    * @param a value to compare, returned if less than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|min ( @ullable E a, @Nullable E b, @Nullable E c, E... rest)
+DECL|method|min (@ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -1449,7 +1449,7 @@ name|b
 return|;
 block|}
 comment|/**    * Returns the greatest of the specified values according to this ordering. If    * there are multiple greatest values, the first of those is returned.    *    * @param a value to compare, returned if greater than or equal to the rest.    * @param b value to compare    * @param c value to compare    * @param rest values to compare    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i> under this ordering.    */
-DECL|method|max ( @ullable E a, @Nullable E b, @Nullable E c, E... rest)
+DECL|method|max (@ullable E a, @Nullable E b, @Nullable E c, E... rest)
 specifier|public
 parameter_list|<
 name|E
@@ -2105,7 +2105,7 @@ argument_list|)
 return|;
 comment|// We can't use ImmutableList; we have to be null-friendly!
 block|}
-DECL|method|partition ( E[] values, int left, int right, int pivotIndex)
+DECL|method|partition (E[] values, int left, int right, int pivotIndex)
 specifier|private
 parameter_list|<
 name|E
@@ -2360,7 +2360,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an<b>immutable</b> list containing {@code elements} sorted by this    * ordering. The input is not modified.    *    *<p>Unlike {@link Sets#newTreeSet(Iterable)}, this method does not discard    * elements that are duplicates according to the comparator. The sort    * performed is<i>stable</i>, meaning that such elements will appear in the    * returned list in the same order they appeared in {@code elements}.    *    *<p><b>Performance note:</b> According to our    * benchmarking    * on Open JDK 7, this method is the most efficient way to make a sorted copy    * of a collection.    *    * @throws NullPointerException if any of {@code elements} (or {@code    *     elements} itself) is null    * @since 3.0    */
-DECL|method|immutableSortedCopy ( Iterable<E> elements)
+DECL|method|immutableSortedCopy (Iterable<E> elements)
 specifier|public
 parameter_list|<
 name|E

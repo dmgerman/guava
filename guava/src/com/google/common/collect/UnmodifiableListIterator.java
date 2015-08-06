@@ -73,11 +73,11 @@ name|UnmodifiableListIterator
 parameter_list|()
 block|{}
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|add (E e)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|add (E e)
 specifier|public
 specifier|final
 name|void
@@ -94,11 +94,11 @@ argument_list|()
 throw|;
 block|}
 comment|/**    * Guaranteed to throw an exception and leave the underlying data unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
-DECL|method|set (E e)
 annotation|@
 name|Deprecated
 annotation|@
 name|Override
+DECL|method|set (E e)
 specifier|public
 specifier|final
 name|void

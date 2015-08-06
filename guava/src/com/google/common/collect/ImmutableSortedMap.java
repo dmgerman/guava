@@ -2208,7 +2208,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Throws an {@code UnsupportedOperationException}.      *       * @since 19.0      * @deprecated Unsupported by ImmutableSortedMap.Builder.      */
+comment|/**      * Throws an {@code UnsupportedOperationException}.      *      * @since 19.0      * @deprecated Unsupported by ImmutableSortedMap.Builder.      */
 annotation|@
 name|Beta
 annotation|@
@@ -3413,6 +3413,8 @@ argument_list|>
 name|descendingMap
 parameter_list|()
 block|{
+comment|// TODO(kevinb): the descendingMap is never actually cached at all. Either it should be or the
+comment|// code below simplified.
 name|ImmutableSortedMap
 argument_list|<
 name|K

@@ -552,9 +552,9 @@ return|return
 name|list
 return|;
 block|}
-DECL|method|computeArrayListCapacity (int arraySize)
 annotation|@
 name|VisibleForTesting
+DECL|method|computeArrayListCapacity (int arraySize)
 specifier|static
 name|int
 name|computeArrayListCapacity
@@ -713,7 +713,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newArrayListWithCapacity ( int initialArraySize)
+DECL|method|newArrayListWithCapacity (int initialArraySize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -756,7 +756,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newArrayListWithExpectedSize ( int estimatedSize)
+DECL|method|newArrayListWithExpectedSize (int estimatedSize)
 specifier|public
 specifier|static
 parameter_list|<
@@ -825,7 +825,7 @@ name|serializable
 operator|=
 literal|true
 argument_list|)
-DECL|method|newLinkedList ( Iterable<? extends E> elements)
+DECL|method|newLinkedList (Iterable<? extends E> elements)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1057,9 +1057,9 @@ name|rest
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1073,9 +1073,9 @@ operator|+
 literal|1
 return|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|E
 name|get
@@ -1121,7 +1121,7 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns an unmodifiable list containing the specified first and second    * element, and backed by the specified array of additional elements. Changes    * to the {@code rest} array will be reflected in the returned list. Unlike    * {@link Arrays#asList}, the returned list is unmodifiable.    *    *<p>This is useful when a varargs method needs to use a signature such as    * {@code (Foo firstFoo, Foo secondFoo, Foo... moreFoos)}, in order to avoid    * overload ambiguity or to enforce a minimum argument count.    *    *<p>The returned list is serializable and implements {@link RandomAccess}.    *    * @param first the first element    * @param second the second element    * @param rest an array of additional elements, possibly empty    * @return an unmodifiable list containing the specified elements    */
-DECL|method|asList ( @ullable E first, @Nullable E second, E[] rest)
+DECL|method|asList (@ullable E first, @Nullable E second, E[] rest)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1238,9 +1238,9 @@ name|rest
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1254,9 +1254,9 @@ operator|+
 literal|2
 return|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|E
 name|get
@@ -1313,6 +1313,7 @@ literal|0
 decl_stmt|;
 block|}
 comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given lists in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the lists. For example:<pre>   {@code    *    *   Lists.cartesianProduct(ImmutableList.of(    *       ImmutableList.of(1, 2),    *       ImmutableList.of("A", "B", "C")))}</pre>    *    *<p>returns a list containing six lists in the following order:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical    * order for Cartesian products that you would get from nesting for loops:    *<pre>   {@code    *    *   for (B b0 : lists.get(0)) {    *     for (B b1 : lists.get(1)) {    *       ...    *       ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *       // operate on tuple    *     }    *   }}</pre>    *    *<p>Note that if any input list is empty, the Cartesian product will also be    * empty. If no lists at all are provided (an empty list), the resulting    * Cartesian product has one element, an empty list (counter-intuitive, but    * mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of lists of size    * {@code m, n, p} is a list of size {@code m x n x p}, its actual memory    * consumption is much smaller. When the cartesian product is constructed, the    * input lists are merely copied. Only as the resulting list is iterated are    * the individual lists created, and these are not retained after iteration.    *    * @param lists the lists to choose elements from, in the order that    *     the elements chosen from those lists should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable list containing immutable    *     lists    * @throws IllegalArgumentException if the size of the cartesian product would    *     be greater than {@link Integer#MAX_VALUE}    * @throws NullPointerException if {@code lists}, any one of the {@code lists},    *     or any element of a provided list is null    * @since 19.0    */
+DECL|method|cartesianProduct (List<? extends List<? extends B>> lists)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1325,7 +1326,6 @@ argument_list|<
 name|B
 argument_list|>
 argument_list|>
-DECL|method|cartesianProduct (List<? extends List<? extends B>> lists)
 name|cartesianProduct
 parameter_list|(
 name|List
@@ -1352,6 +1352,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns every possible list that can be formed by choosing one element    * from each of the given lists in order; the "n-ary    *<a href="http://en.wikipedia.org/wiki/Cartesian_product">Cartesian    * product</a>" of the lists. For example:<pre>   {@code    *    *   Lists.cartesianProduct(ImmutableList.of(    *       ImmutableList.of(1, 2),    *       ImmutableList.of("A", "B", "C")))}</pre>    *    *<p>returns a list containing six lists in the following order:    *    *<ul>    *<li>{@code ImmutableList.of(1, "A")}    *<li>{@code ImmutableList.of(1, "B")}    *<li>{@code ImmutableList.of(1, "C")}    *<li>{@code ImmutableList.of(2, "A")}    *<li>{@code ImmutableList.of(2, "B")}    *<li>{@code ImmutableList.of(2, "C")}    *</ul>    *    *<p>The result is guaranteed to be in the "traditional", lexicographical    * order for Cartesian products that you would get from nesting for loops:    *<pre>   {@code    *    *   for (B b0 : lists.get(0)) {    *     for (B b1 : lists.get(1)) {    *       ...    *       ImmutableList<B> tuple = ImmutableList.of(b0, b1, ...);    *       // operate on tuple    *     }    *   }}</pre>    *    *<p>Note that if any input list is empty, the Cartesian product will also be    * empty. If no lists at all are provided (an empty list), the resulting    * Cartesian product has one element, an empty list (counter-intuitive, but    * mathematically consistent).    *    *<p><i>Performance notes:</i> while the cartesian product of lists of size    * {@code m, n, p} is a list of size {@code m x n x p}, its actual memory    * consumption is much smaller. When the cartesian product is constructed, the    * input lists are merely copied. Only as the resulting list is iterated are    * the individual lists created, and these are not retained after iteration.    *    * @param lists the lists to choose elements from, in the order that    *     the elements chosen from those lists should appear in the resulting    *     lists    * @param<B> any common base class shared by all axes (often just {@link    *     Object})    * @return the Cartesian product, as an immutable list containing immutable    *     lists    * @throws IllegalArgumentException if the size of the cartesian product would    *     be greater than {@link Integer#MAX_VALUE}    * @throws NullPointerException if {@code lists}, any one of the    *     {@code lists}, or any element of a provided list is null    * @since 19.0    */
+DECL|method|cartesianProduct (List<? extends B>.... lists)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1364,7 +1365,6 @@ argument_list|<
 name|B
 argument_list|>
 argument_list|>
-DECL|method|cartesianProduct (List<? extends B>.... lists)
 name|cartesianProduct
 parameter_list|(
 name|List
@@ -1500,7 +1500,7 @@ name|T
 argument_list|>
 name|function
 decl_stmt|;
-DECL|method|TransformingSequentialList ( List<F> fromList, Function<? super F, ? extends T> function)
+DECL|method|TransformingSequentialList (List<F> fromList, Function<? super F, ? extends T> function)
 name|TransformingSequentialList
 parameter_list|(
 name|List
@@ -1542,9 +1542,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * The default implementation inherited is based on iteration and removal of      * each element which can be overkill. That's why we forward this call      * directly to the backing list.      */
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1556,9 +1556,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -1571,9 +1571,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|listIterator (final int index)
 annotation|@
 name|Override
+DECL|method|listIterator (final int index)
 specifier|public
 name|ListIterator
 argument_list|<
@@ -1677,7 +1677,7 @@ name|T
 argument_list|>
 name|function
 decl_stmt|;
-DECL|method|TransformingRandomAccessList ( List<F> fromList, Function<? super F, ? extends T> function)
+DECL|method|TransformingRandomAccessList (List<F> fromList, Function<? super F, ? extends T> function)
 name|TransformingRandomAccessList
 parameter_list|(
 name|List
@@ -1718,9 +1718,9 @@ name|function
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -1732,9 +1732,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|T
 name|get
@@ -1757,9 +1757,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -1773,9 +1773,9 @@ name|listIterator
 argument_list|()
 return|;
 block|}
-DECL|method|listIterator (int index)
 annotation|@
 name|Override
+DECL|method|listIterator (int index)
 specifier|public
 name|ListIterator
 argument_list|<
@@ -1825,9 +1825,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -1840,9 +1840,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-DECL|method|remove (int index)
 annotation|@
 name|Override
+DECL|method|remove (int index)
 specifier|public
 name|T
 name|remove
@@ -1865,9 +1865,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2014,9 +2014,9 @@ operator|=
 name|size
 expr_stmt|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|List
 argument_list|<
@@ -2071,9 +2071,9 @@ name|end
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2097,9 +2097,9 @@ name|CEILING
 argument_list|)
 return|;
 block|}
-DECL|method|isEmpty ()
 annotation|@
 name|Override
+DECL|method|isEmpty ()
 specifier|public
 name|boolean
 name|isEmpty
@@ -2152,9 +2152,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns a view of the specified string as an immutable list of {@code    * Character} values.    *    * @since 7.0    */
-DECL|method|charactersOf (String string)
 annotation|@
 name|Beta
+DECL|method|charactersOf (String string)
 specifier|public
 specifier|static
 name|ImmutableList
@@ -2216,9 +2216,9 @@ operator|=
 name|string
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|indexOf (@ullable Object object)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|indexOf
@@ -2250,9 +2250,9 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|lastIndexOf (@ullable Object object)
-annotation|@
-name|Override
 specifier|public
 name|int
 name|lastIndexOf
@@ -2284,9 +2284,9 @@ operator|-
 literal|1
 return|;
 block|}
-DECL|method|subList ( int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|ImmutableList
 argument_list|<
@@ -2326,9 +2326,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|isPartialView ()
 annotation|@
 name|Override
+DECL|method|isPartialView ()
 name|boolean
 name|isPartialView
 parameter_list|()
@@ -2337,9 +2337,9 @@ return|return
 literal|false
 return|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|Character
 name|get
@@ -2366,9 +2366,9 @@ name|index
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2383,9 +2383,9 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a view of the specified {@code CharSequence} as a {@code    * List<Character>}, viewing {@code sequence} as a sequence of Unicode code    * units. The view does not support any modification operations, but reflects    * any changes to the underlying character sequence.    *    * @param sequence the character sequence to view as a {@code List} of    *        characters    * @return an {@code List<Character>} view of the character sequence    * @since 7.0    */
-DECL|method|charactersOf (CharSequence sequence)
 annotation|@
 name|Beta
+DECL|method|charactersOf (CharSequence sequence)
 specifier|public
 specifier|static
 name|List
@@ -2441,9 +2441,9 @@ operator|=
 name|sequence
 expr_stmt|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|Character
 name|get
@@ -2470,9 +2470,9 @@ name|index
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2701,9 +2701,9 @@ operator|-
 name|index
 return|;
 block|}
-DECL|method|add (int index, @Nullable T element)
 annotation|@
 name|Override
+DECL|method|add (int index, @Nullable T element)
 specifier|public
 name|void
 name|add
@@ -2730,9 +2730,9 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|clear ()
 annotation|@
 name|Override
+DECL|method|clear ()
 specifier|public
 name|void
 name|clear
@@ -2744,9 +2744,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|remove (int index)
 annotation|@
 name|Override
+DECL|method|remove (int index)
 specifier|public
 name|T
 name|remove
@@ -2767,9 +2767,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|removeRange (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|removeRange (int fromIndex, int toIndex)
 specifier|protected
 name|void
 name|removeRange
@@ -2792,9 +2792,9 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|set (int index, @Nullable T element)
 annotation|@
 name|Override
+DECL|method|set (int index, @Nullable T element)
 specifier|public
 name|T
 name|set
@@ -2822,9 +2822,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|get (int index)
 annotation|@
 name|Override
+DECL|method|get (int index)
 specifier|public
 name|T
 name|get
@@ -2845,9 +2845,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -2860,9 +2860,9 @@ name|size
 argument_list|()
 return|;
 block|}
-DECL|method|subList (int fromIndex, int toIndex)
 annotation|@
 name|Override
+DECL|method|subList (int fromIndex, int toIndex)
 specifier|public
 name|List
 argument_list|<
@@ -2907,9 +2907,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -2923,9 +2923,9 @@ name|listIterator
 argument_list|()
 return|;
 block|}
-DECL|method|listIterator (int index)
 annotation|@
 name|Override
+DECL|method|listIterator (int index)
 specifier|public
 name|ListIterator
 argument_list|<
@@ -3420,7 +3420,7 @@ return|;
 block|}
 block|}
 comment|/**    * An implementation of {@link List#addAll(int, Collection)}.    */
-DECL|method|addAllImpl ( List<E> list, int index, Iterable<? extends E> elements)
+DECL|method|addAllImpl (List<E> list, int index, Iterable<? extends E> elements)
 specifier|static
 parameter_list|<
 name|E
@@ -3920,7 +3920,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * An implementation of {@link List#subList(int, int)}.    */
-DECL|method|subListImpl ( final List<E> list, int fromIndex, int toIndex)
+DECL|method|subListImpl (final List<E> list, int fromIndex, int toIndex)
 specifier|static
 parameter_list|<
 name|E
@@ -4101,9 +4101,9 @@ name|backingList
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|add (int index, E element)
 annotation|@
 name|Override
+DECL|method|add (int index, E element)
 specifier|public
 name|void
 name|add
@@ -4125,9 +4125,9 @@ name|element
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|addAll (int index, Collection<? extends E> c)
 annotation|@
 name|Override
+DECL|method|addAll (int index, Collection<? extends E> c)
 specifier|public
 name|boolean
 name|addAll
@@ -4155,9 +4155,9 @@ name|c
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|get (int index)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|get
@@ -4175,9 +4175,9 @@ name|index
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|remove (int index)
-annotation|@
-name|Override
 specifier|public
 name|E
 name|remove
@@ -4195,9 +4195,9 @@ name|index
 argument_list|)
 return|;
 block|}
-DECL|method|set (int index, E element)
 annotation|@
 name|Override
+DECL|method|set (int index, E element)
 specifier|public
 name|E
 name|set
@@ -4220,9 +4220,9 @@ name|element
 argument_list|)
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -4240,9 +4240,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size

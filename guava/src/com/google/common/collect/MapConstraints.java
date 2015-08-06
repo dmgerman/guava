@@ -268,9 +268,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1067,7 +1067,7 @@ argument_list|>
 argument_list|>
 name|entrySet
 decl_stmt|;
-DECL|method|ConstrainedMap ( Map<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedMap (Map<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedMap
 parameter_list|(
 name|Map
@@ -1110,9 +1110,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Map
 argument_list|<
@@ -1127,9 +1127,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|entrySet ()
 annotation|@
 name|Override
+DECL|method|entrySet ()
 specifier|public
 name|Set
 argument_list|<
@@ -1182,9 +1182,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|V
 name|put
@@ -1216,9 +1216,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (Map<? extends K, ? extends V> map)
 annotation|@
 name|Override
+DECL|method|putAll (Map<? extends K, ? extends V> map)
 specifier|public
 name|void
 name|putAll
@@ -1342,7 +1342,7 @@ name|K
 argument_list|>
 name|inverse
 decl_stmt|;
-DECL|method|ConstrainedBiMap (BiMap<K, V> delegate, @Nullable BiMap<V, K> inverse, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedBiMap ( BiMap<K, V> delegate, @Nullable BiMap<V, K> inverse, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedBiMap
 parameter_list|(
 name|BiMap
@@ -1390,9 +1390,9 @@ operator|=
 name|inverse
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|BiMap
 argument_list|<
@@ -1508,9 +1508,9 @@ return|return
 name|inverse
 return|;
 block|}
-DECL|method|values ()
 annotation|@
 name|Override
+DECL|method|values ()
 specifier|public
 name|Set
 argument_list|<
@@ -1684,7 +1684,7 @@ argument_list|>
 argument_list|>
 name|asMap
 decl_stmt|;
-DECL|method|ConstrainedMultimap (Multimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedMultimap ( Multimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
 specifier|public
 name|ConstrainedMultimap
 parameter_list|(
@@ -1728,9 +1728,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Multimap
 argument_list|<
@@ -1745,9 +1745,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|asMap ()
 annotation|@
 name|Override
+DECL|method|asMap ()
 specifier|public
 name|Map
 argument_list|<
@@ -2068,9 +2068,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|entries ()
 annotation|@
 name|Override
+DECL|method|entries ()
 specifier|public
 name|Collection
 argument_list|<
@@ -2123,9 +2123,9 @@ return|return
 name|result
 return|;
 block|}
-DECL|method|get (final K key)
 annotation|@
 name|Override
+DECL|method|get (final K key)
 specifier|public
 name|Collection
 argument_list|<
@@ -2184,9 +2184,9 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|put (K key, V value)
 annotation|@
 name|Override
+DECL|method|put (K key, V value)
 specifier|public
 name|boolean
 name|put
@@ -2218,9 +2218,9 @@ name|value
 argument_list|)
 return|;
 block|}
-DECL|method|putAll (K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|putAll (K key, Iterable<? extends V> values)
 specifier|public
 name|boolean
 name|putAll
@@ -2255,9 +2255,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|putAll ( Multimap<? extends K, ? extends V> multimap)
 annotation|@
 name|Override
+DECL|method|putAll (Multimap<? extends K, ? extends V> multimap)
 specifier|public
 name|boolean
 name|putAll
@@ -2320,9 +2320,9 @@ return|return
 name|changed
 return|;
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|Collection
 argument_list|<
@@ -2409,7 +2409,7 @@ argument_list|>
 name|entrySet
 decl_stmt|;
 comment|/**      * @param entrySet map entries, linking each key with its corresponding      *     values, that already enforce the constraint      */
-DECL|method|ConstrainedAsMapValues (Collection<Collection<V>> delegate, Set<Entry<K, Collection<V>>> entrySet)
+DECL|method|ConstrainedAsMapValues ( Collection<Collection<V>> delegate, Set<Entry<K, Collection<V>>> entrySet)
 name|ConstrainedAsMapValues
 parameter_list|(
 name|Collection
@@ -2449,9 +2449,9 @@ operator|=
 name|entrySet
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -2467,9 +2467,9 @@ return|return
 name|delegate
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -2562,9 +2562,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -2576,9 +2576,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -2599,9 +2599,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -2617,9 +2617,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -2638,9 +2638,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -2656,9 +2656,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -2677,9 +2677,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
@@ -2748,7 +2748,7 @@ argument_list|>
 argument_list|>
 name|entries
 decl_stmt|;
-DECL|method|ConstrainedEntries (Collection<Entry<K, V>> entries, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedEntries ( Collection<Entry<K, V>> entries, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedEntries
 parameter_list|(
 name|Collection
@@ -2788,9 +2788,9 @@ operator|=
 name|constraint
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Collection
 argument_list|<
@@ -2808,9 +2808,9 @@ return|return
 name|entries
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -2881,9 +2881,9 @@ block|}
 return|;
 block|}
 comment|// See Collections.CheckedMap.CheckedEntrySet for details on attacks.
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -2895,9 +2895,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -2918,9 +2918,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -2941,9 +2941,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -2962,9 +2962,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -2985,9 +2985,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -3006,9 +3006,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
@@ -3092,9 +3092,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// See Collections.CheckedMap.CheckedEntrySet for details on attacks.
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -3116,9 +3116,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3190,7 +3190,7 @@ argument_list|>
 argument_list|>
 name|entries
 decl_stmt|;
-DECL|method|ConstrainedAsMapEntries (Set<Entry<K, Collection<V>>> entries, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedAsMapEntries ( Set<Entry<K, Collection<V>>> entries, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedAsMapEntries
 parameter_list|(
 name|Set
@@ -3233,9 +3233,9 @@ operator|=
 name|constraint
 expr_stmt|;
 block|}
-DECL|method|delegate ()
 annotation|@
 name|Override
+DECL|method|delegate ()
 specifier|protected
 name|Set
 argument_list|<
@@ -3256,9 +3256,9 @@ return|return
 name|entries
 return|;
 block|}
-DECL|method|iterator ()
 annotation|@
 name|Override
+DECL|method|iterator ()
 specifier|public
 name|Iterator
 argument_list|<
@@ -3344,9 +3344,9 @@ block|}
 return|;
 block|}
 comment|// See Collections.CheckedMap.CheckedEntrySet for details on attacks.
-DECL|method|toArray ()
 annotation|@
 name|Override
+DECL|method|toArray ()
 specifier|public
 name|Object
 index|[]
@@ -3358,9 +3358,9 @@ name|standardToArray
 argument_list|()
 return|;
 block|}
-DECL|method|toArray (T[] array)
 annotation|@
 name|Override
+DECL|method|toArray (T[] array)
 specifier|public
 parameter_list|<
 name|T
@@ -3381,9 +3381,9 @@ name|array
 argument_list|)
 return|;
 block|}
-DECL|method|contains (Object o)
 annotation|@
 name|Override
+DECL|method|contains (Object o)
 specifier|public
 name|boolean
 name|contains
@@ -3404,9 +3404,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|containsAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|containsAll (Collection<?> c)
 specifier|public
 name|boolean
 name|containsAll
@@ -3425,9 +3425,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -3445,9 +3445,9 @@ name|object
 argument_list|)
 return|;
 block|}
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -3458,9 +3458,9 @@ name|standardHashCode
 argument_list|()
 return|;
 block|}
-DECL|method|remove (Object o)
 annotation|@
 name|Override
+DECL|method|remove (Object o)
 specifier|public
 name|boolean
 name|remove
@@ -3481,9 +3481,9 @@ name|o
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|removeAll (Collection<?> c)
 specifier|public
 name|boolean
 name|removeAll
@@ -3502,9 +3502,9 @@ name|c
 argument_list|)
 return|;
 block|}
-DECL|method|retainAll (Collection<?> c)
 annotation|@
 name|Override
+DECL|method|retainAll (Collection<?> c)
 specifier|public
 name|boolean
 name|retainAll
@@ -3549,7 +3549,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ConstrainedListMultimap (ListMultimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedListMultimap ( ListMultimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedListMultimap
 parameter_list|(
 name|ListMultimap
@@ -3581,9 +3581,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|get (K key)
 annotation|@
 name|Override
+DECL|method|get (K key)
 specifier|public
 name|List
 argument_list|<
@@ -3610,9 +3610,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|List
 argument_list|<
@@ -3639,9 +3639,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|List
 argument_list|<
@@ -3704,7 +3704,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ConstrainedSetMultimap (SetMultimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedSetMultimap ( SetMultimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedSetMultimap
 parameter_list|(
 name|SetMultimap
@@ -3736,9 +3736,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|get (K key)
 annotation|@
 name|Override
+DECL|method|get (K key)
 specifier|public
 name|Set
 argument_list|<
@@ -3765,9 +3765,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|entries ()
 annotation|@
 name|Override
+DECL|method|entries ()
 specifier|public
 name|Set
 argument_list|<
@@ -3803,9 +3803,9 @@ name|entries
 argument_list|()
 return|;
 block|}
-DECL|method|removeAll (Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|Set
 argument_list|<
@@ -3832,9 +3832,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|Set
 argument_list|<
@@ -3897,7 +3897,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-DECL|method|ConstrainedSortedSetMultimap (SortedSetMultimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
+DECL|method|ConstrainedSortedSetMultimap ( SortedSetMultimap<K, V> delegate, MapConstraint<? super K, ? super V> constraint)
 name|ConstrainedSortedSetMultimap
 parameter_list|(
 name|SortedSetMultimap
@@ -3929,9 +3929,9 @@ name|constraint
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|get (K key)
 annotation|@
 name|Override
+DECL|method|get (K key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3958,9 +3958,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|removeAll (Object key)
 annotation|@
 name|Override
+DECL|method|removeAll (Object key)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -3987,9 +3987,9 @@ name|key
 argument_list|)
 return|;
 block|}
-DECL|method|replaceValues ( K key, Iterable<? extends V> values)
 annotation|@
 name|Override
+DECL|method|replaceValues (K key, Iterable<? extends V> values)
 specifier|public
 name|SortedSet
 argument_list|<
@@ -4058,7 +4058,7 @@ argument_list|()
 return|;
 block|}
 block|}
-DECL|method|checkValues (K key, Iterable<? extends V> values, MapConstraint<? super K, ? super V> constraint)
+DECL|method|checkValues ( K key, Iterable<? extends V> values, MapConstraint<? super K, ? super V> constraint)
 specifier|private
 specifier|static
 parameter_list|<
@@ -4131,7 +4131,7 @@ return|return
 name|copy
 return|;
 block|}
-DECL|method|checkMap (Map<? extends K, ? extends V> map, MapConstraint<? super K, ? super V> constraint)
+DECL|method|checkMap ( Map<? extends K, ? extends V> map, MapConstraint<? super K, ? super V> constraint)
 specifier|private
 specifier|static
 parameter_list|<

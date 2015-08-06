@@ -172,9 +172,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|column (C columnKey)
 annotation|@
 name|Override
+DECL|method|column (C columnKey)
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -219,9 +219,9 @@ name|of
 argument_list|()
 return|;
 block|}
-DECL|method|columnMap ()
 annotation|@
 name|Override
+DECL|method|columnMap ()
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -263,9 +263,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|rowMap ()
 annotation|@
 name|Override
+DECL|method|rowMap ()
 specifier|public
 name|ImmutableMap
 argument_list|<
@@ -307,9 +307,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|size ()
 annotation|@
 name|Override
+DECL|method|size ()
 specifier|public
 name|int
 name|size
@@ -352,9 +352,9 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|method|createValues ()
 annotation|@
 name|Override
+DECL|method|createValues ()
 name|ImmutableCollection
 argument_list|<
 name|V

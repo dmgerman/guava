@@ -91,7 +91,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@code SetMultimap} whose set of values for a given key are kept sorted;  * that is, they comprise a {@link SortedSet}. It cannot hold duplicate  * key-value pairs; adding a key-value pair that's already in the multimap has  * no effect. This interface does not specify the ordering of the multimap's  * keys. See the {@link Multimap} documentation for information common to all  * multimaps.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link SortedSet} of values, while {@link Multimap#entries()}  * returns a {@link Set} of map entries. Though the method signature doesn't say  * so explicitly, the map returned by {@link #asMap} has {@code SortedSet}  * values.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
+comment|/**  * A {@code SetMultimap} whose set of values for a given key are kept sorted;  * that is, they comprise a {@link SortedSet}. It cannot hold duplicate  * key-value pairs; adding a key-value pair that's already in the multimap has  * no effect. This interface does not specify the ordering of the multimap's  * keys. See the {@link Multimap} documentation for information common to all  * multimaps.  *  *<p>The {@link #get}, {@link #removeAll}, and {@link #replaceValues} methods  * each return a {@link SortedSet} of values, while {@link Multimap#entries()}  * returns a {@link Set} of map entries. Though the method signature doesn't say  * so explicitly, the map returned by {@link #asMap} has {@code SortedSet}  * values.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap">  * {@code Multimap}</a>.  *  * @author Jared Levy  * @since 2.0  */
 end_comment
 
 begin_interface
@@ -170,9 +170,9 @@ name|values
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a map view that associates each key with the corresponding values    * in the multimap. Changes to the returned map, such as element removal, will    * update the underlying multimap. The map does not support {@code setValue()}    * on its entries, {@code put}, or {@code putAll}.    *    *<p>When passed a key that is present in the map, {@code    * asMap().get(Object)} has the same behavior as {@link #get}, returning a    * live collection. When passed a key that is not present, however, {@code    * asMap().get(Object)} returns {@code null} instead of an empty collection.    *    *<p><b>Note:</b> The returned map's values are guaranteed to be of type    * {@link SortedSet}. To obtain this map with the more specific generic type    * {@code Map<K, SortedSet<V>>}, call    * {@link Multimaps#asMap(SortedSetMultimap)} instead.    */
-DECL|method|asMap ()
 annotation|@
 name|Override
+DECL|method|asMap ()
 name|Map
 argument_list|<
 name|K

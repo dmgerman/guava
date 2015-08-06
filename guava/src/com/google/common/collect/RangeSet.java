@@ -212,7 +212,7 @@ argument_list|>
 name|range
 parameter_list|)
 function_decl|;
-comment|/**    * Removes all ranges from this {@code RangeSet} (optional operation).  After this operation,    * {@code this.contains(c)} will return false for all {@code c}.    *     *<p>This is equivalent to {@code remove(Range.all())}.    *     * @throws UnsupportedOperationException if this range set does not support the {@code clear}    *         operation    */
+comment|/**    * Removes all ranges from this {@code RangeSet} (optional operation).  After this operation,    * {@code this.contains(c)} will return false for all {@code c}.    *    *<p>This is equivalent to {@code remove(Range.all())}.    *    * @throws UnsupportedOperationException if this range set does not support the {@code clear}    *         operation    */
 DECL|method|clear ()
 name|void
 name|clear

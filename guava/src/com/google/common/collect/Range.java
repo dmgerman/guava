@@ -346,7 +346,7 @@ operator|new
 name|RangeLexOrdering
 argument_list|()
 decl_stmt|;
-DECL|method|create ( Cut<C> lowerBound, Cut<C> upperBound)
+DECL|method|create (Cut<C> lowerBound, Cut<C> upperBound)
 specifier|static
 parameter_list|<
 name|C
@@ -477,7 +477,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a range that contains all values greater than or equal to    * {@code lower} and strictly less than {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
-DECL|method|closedOpen ( C lower, C upper)
+DECL|method|closedOpen (C lower, C upper)
 specifier|public
 specifier|static
 parameter_list|<
@@ -521,7 +521,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a range that contains all values strictly greater than {@code    * lower} and less than or equal to {@code upper}.    *    * @throws IllegalArgumentException if {@code lower} is greater than {@code    *     upper}    * @since 14.0    */
-DECL|method|openClosed ( C lower, C upper)
+DECL|method|openClosed (C lower, C upper)
 specifier|public
 specifier|static
 parameter_list|<
@@ -755,7 +755,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a range with no lower bound up to the given endpoint, which may be    * either inclusive (closed) or exclusive (open).    *    * @since 14.0    */
-DECL|method|upTo ( C endpoint, BoundType boundType)
+DECL|method|upTo (C endpoint, BoundType boundType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -895,7 +895,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a range from the given endpoint, which may be either inclusive    * (closed) or exclusive (open), with no upper bound.    *    * @since 14.0    */
-DECL|method|downTo ( C endpoint, BoundType boundType)
+DECL|method|downTo (C endpoint, BoundType boundType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1040,7 +1040,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the minimal range that    * {@linkplain Range#contains(Comparable) contains} all of the given values.    * The returned range is {@linkplain BoundType#CLOSED closed} on both ends.    *    * @throws ClassCastException if the parameters are not<i>mutually    *     comparable</i>    * @throws NoSuchElementException if {@code values} is empty    * @throws NullPointerException if any of {@code values} is null    * @since 14.0    */
-DECL|method|encloseAll ( Iterable<C> values)
+DECL|method|encloseAll (Iterable<C> values)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1936,9 +1936,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code object} is a range having the same endpoints and bound types as    * this range. Note that discrete ranges such as {@code (1..4)} and {@code [2..3]} are<b>not</b>    * equal to one another, despite the fact that they each contain precisely the same set of values.    * Similarly, empty ranges are not equal unless they have exactly the same representation, so    * {@code [3..3)}, {@code (3..3]}, {@code (4..4]} are all unequal.    */
-DECL|method|equals (@ullable Object object)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object object)
 specifier|public
 name|boolean
 name|equals
@@ -1995,9 +1995,9 @@ literal|false
 return|;
 block|}
 comment|/** Returns a hash code for this range. */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 specifier|public
 name|int
 name|hashCode
@@ -2018,9 +2018,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a string representation of this range, such as {@code "[3..5)"} (other examples are    * listed in the class documentation).    */
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -2175,7 +2175,7 @@ name|right
 argument_list|)
 return|;
 block|}
-comment|/**    * Needed to serialize sorted collections of Ranges.     */
+comment|/**    * Needed to serialize sorted collections of Ranges.    */
 DECL|class|RangeLexOrdering
 specifier|private
 specifier|static

@@ -897,7 +897,7 @@ block|}
 comment|/**    * Drains the queue as {@link BlockingQueue#drainTo(Collection, int)}, but if the requested    * {@code numElements} elements are not available, it will wait for them up to the specified    * timeout.    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    * @throws InterruptedException if interrupted while waiting    */
 annotation|@
 name|Beta
-DECL|method|drain (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
+DECL|method|drain ( BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1035,10 +1035,10 @@ return|return
 name|added
 return|;
 block|}
-comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},     * but with a different behavior in case it is interrupted while waiting. In that case, the     * operation will continue as usual, and in the end the thread's interruption status will be set     * (no {@code InterruptedException} is thrown).     *     * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
+comment|/**    * Drains the queue as {@linkplain #drain(BlockingQueue, Collection, int, long, TimeUnit)},    * but with a different behavior in case it is interrupted while waiting. In that case, the    * operation will continue as usual, and in the end the thread's interruption status will be set    * (no {@code InterruptedException} is thrown).    *    * @param q the blocking queue to be drained    * @param buffer where to add the transferred elements    * @param numElements the number of elements to be waited for    * @param timeout how long to wait before giving up, in units of {@code unit}    * @param unit a {@code TimeUnit} determining how to interpret the timeout parameter    * @return the number of elements transferred    */
 annotation|@
 name|Beta
-DECL|method|drainUninterruptibly (BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
+DECL|method|drainUninterruptibly ( BlockingQueue<E> q, Collection<? super E> buffer, int numElements, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
 parameter_list|<

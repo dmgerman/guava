@@ -162,9 +162,9 @@ name|rightValue
 parameter_list|()
 function_decl|;
 comment|/**      * Two instances are considered equal if their {@link #leftValue()}      * values are equal and their {@link #rightValue()} values are also equal.      */
-DECL|method|equals (@ullable Object other)
 annotation|@
 name|Override
+DECL|method|equals (@ullable Object other)
 name|boolean
 name|equals
 parameter_list|(
@@ -175,9 +175,9 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * The hash code equals the value      * {@code Arrays.asList(leftValue(), rightValue()).hashCode()}.      */
-DECL|method|hashCode ()
 annotation|@
 name|Override
+DECL|method|hashCode ()
 name|int
 name|hashCode
 parameter_list|()

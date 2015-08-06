@@ -162,6 +162,7 @@ argument_list|>
 name|valueComparator
 decl_stmt|;
 comment|/**    * Creates an empty {@code TreeMultimap} ordered by the natural ordering of    * its keys and values.    */
+DECL|method|create ()
 specifier|public
 specifier|static
 parameter_list|<
@@ -173,7 +174,6 @@ name|V
 extends|extends
 name|Comparable
 parameter_list|>
-DECL|method|create ()
 name|TreeMultimap
 argument_list|<
 name|K
@@ -260,6 +260,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Constructs a {@code TreeMultimap}, ordered by the natural ordering of its    * keys and values, with the same mappings as the specified multimap.    *    * @param multimap the multimap whose contents are copied to this multimap    */
+DECL|method|create ( Multimap<? extends K, ? extends V> multimap)
 specifier|public
 specifier|static
 parameter_list|<
@@ -271,7 +272,6 @@ name|V
 extends|extends
 name|Comparable
 parameter_list|>
-DECL|method|create (Multimap<? extends K, ? extends V> multimap)
 name|TreeMultimap
 argument_list|<
 name|K
@@ -366,7 +366,7 @@ operator|=
 name|valueComparator
 expr_stmt|;
 block|}
-DECL|method|TreeMultimap (Comparator<? super K> keyComparator, Comparator<? super V> valueComparator, Multimap<? extends K, ? extends V> multimap)
+DECL|method|TreeMultimap ( Comparator<? super K> keyComparator, Comparator<? super V> valueComparator, Multimap<? extends K, ? extends V> multimap)
 specifier|private
 name|TreeMultimap
 parameter_list|(
@@ -413,9 +413,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * {@inheritDoc}    *    *<p>Creates an empty {@code TreeSet} for a collection of values for one key.    *    * @return a new {@code TreeSet} containing a collection of values for one    *     key    */
-DECL|method|createCollection ()
 annotation|@
 name|Override
+DECL|method|createCollection ()
 name|SortedSet
 argument_list|<
 name|V
@@ -509,7 +509,7 @@ return|return
 name|valueComparator
 return|;
 block|}
-comment|/*    * The following @GwtIncompatible methods override the methods in     * AbstractSortedKeySortedSetMultimap, so GWT will fall back to the ASKSSM implementations,    * which return SortedSets and SortedMaps.    */
+comment|/*    * The following @GwtIncompatible methods override the methods in    * AbstractSortedKeySortedSetMultimap, so GWT will fall back to the ASKSSM implementations,    * which return SortedSets and SortedMaps.    */
 block|}
 end_class
 
