@@ -20800,7 +20800,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// super.toArray() may misbehave if size() is inaccurate, at least on old versions of Android.
-comment|// https://code.google.com/p/android/issues/detail?id=36519
+comment|// https://code.google.com/p/android/issues/detail?id=36519 / http://r.android.com/47508
 annotation|@
 name|Override
 DECL|method|toArray ()
@@ -20812,7 +20812,9 @@ parameter_list|()
 block|{
 return|return
 name|toArrayList
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 operator|.
 name|toArray
 argument_list|()
@@ -20836,7 +20838,9 @@ parameter_list|)
 block|{
 return|return
 name|toArrayList
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 operator|.
 name|toArray
 argument_list|(
@@ -20844,28 +20848,41 @@ name|a
 argument_list|)
 return|;
 block|}
-DECL|method|toArrayList ()
+block|}
+DECL|method|toArrayList (Collection<E> c)
 specifier|private
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
 name|ArrayList
 argument_list|<
-name|T
+name|E
 argument_list|>
 name|toArrayList
-parameter_list|()
+parameter_list|(
+name|Collection
+argument_list|<
+name|E
+argument_list|>
+name|c
+parameter_list|)
 block|{
 comment|// Avoid calling ArrayList(Collection), which may call back into toArray.
 name|ArrayList
 argument_list|<
-name|T
+name|E
 argument_list|>
 name|result
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|T
+name|E
 argument_list|>
 argument_list|(
+name|c
+operator|.
 name|size
 argument_list|()
 argument_list|)
@@ -20876,6 +20893,8 @@ name|addAll
 argument_list|(
 name|result
 argument_list|,
+name|c
+operator|.
 name|iterator
 argument_list|()
 argument_list|)
@@ -20883,7 +20902,6 @@ expr_stmt|;
 return|return
 name|result
 return|;
-block|}
 block|}
 annotation|@
 name|WeakOuter
@@ -21095,6 +21113,55 @@ operator|.
 name|containsValue
 argument_list|(
 name|o
+argument_list|)
+return|;
+block|}
+comment|// super.toArray() may misbehave if size() is inaccurate, at least on old versions of Android.
+comment|// https://code.google.com/p/android/issues/detail?id=36519 / http://r.android.com/47508
+annotation|@
+name|Override
+DECL|method|toArray ()
+specifier|public
+name|Object
+index|[]
+name|toArray
+parameter_list|()
+block|{
+return|return
+name|toArrayList
+argument_list|(
+name|this
+argument_list|)
+operator|.
+name|toArray
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toArray (E[] a)
+specifier|public
+parameter_list|<
+name|E
+parameter_list|>
+name|E
+index|[]
+name|toArray
+parameter_list|(
+name|E
+index|[]
+name|a
+parameter_list|)
+block|{
+return|return
+name|toArrayList
+argument_list|(
+name|this
+argument_list|)
+operator|.
+name|toArray
+argument_list|(
+name|a
 argument_list|)
 return|;
 block|}
