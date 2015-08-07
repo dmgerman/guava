@@ -80,16 +80,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayDeque
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|BitSet
 import|;
 end_import
@@ -142,7 +132,7 @@ argument_list|<
 name|T
 argument_list|>
 block|{
-comment|// TODO(lowasser): make this GWT-compatible when we've checked in ArrayDeque and BitSet emulation
+comment|// TODO(lowasser): make this GWT-compatible when we've checked in BitSet emulation
 comment|/**    * Returns the left child of the specified node, or {@link Optional#absent()} if the specified    * node has no left child.    */
 DECL|method|leftChild (T root)
 specifier|public
@@ -375,12 +365,12 @@ name|this
 operator|.
 name|stack
 operator|=
-operator|new
-name|ArrayDeque
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
+name|Platform
+operator|.
+name|newFastestDeque
+argument_list|(
+literal|8
+argument_list|)
 expr_stmt|;
 name|stack
 operator|.
@@ -521,12 +511,12 @@ name|this
 operator|.
 name|stack
 operator|=
-operator|new
-name|ArrayDeque
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
+name|Platform
+operator|.
+name|newFastestDeque
+argument_list|(
+literal|8
+argument_list|)
 expr_stmt|;
 name|stack
 operator|.
@@ -744,12 +734,12 @@ name|this
 operator|.
 name|stack
 operator|=
-operator|new
-name|ArrayDeque
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
+name|Platform
+operator|.
+name|newFastestDeque
+argument_list|(
+literal|8
+argument_list|)
 expr_stmt|;
 name|this
 operator|.

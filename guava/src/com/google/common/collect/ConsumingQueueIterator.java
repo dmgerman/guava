@@ -102,15 +102,18 @@ modifier|...
 name|elements
 parameter_list|)
 block|{
-comment|// Uses LinkedList because ArrayDeque isn't GWT-compatible for now =(
 name|this
 operator|.
 name|queue
 operator|=
-name|Lists
+name|Platform
 operator|.
-name|newLinkedList
-argument_list|()
+name|newFastestDeque
+argument_list|(
+name|elements
+operator|.
+name|length
+argument_list|)
 expr_stmt|;
 name|Collections
 operator|.

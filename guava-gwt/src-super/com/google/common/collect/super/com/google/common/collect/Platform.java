@@ -112,6 +112,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Deque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -133,16 +143,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Queue
 import|;
 end_import
 
@@ -826,16 +826,16 @@ name|predicate
 argument_list|)
 return|;
 block|}
-DECL|method|newFastestQueue (int ignored)
+DECL|method|newFastestDeque (int ignored)
 specifier|static
 parameter_list|<
 name|E
 parameter_list|>
-name|Queue
+name|Deque
 argument_list|<
 name|E
 argument_list|>
-name|newFastestQueue
+name|newFastestDeque
 parameter_list|(
 name|int
 name|ignored

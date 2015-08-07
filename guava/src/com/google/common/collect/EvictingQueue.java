@@ -186,7 +186,7 @@ name|delegate
 operator|=
 name|Platform
 operator|.
-name|newFastestQueue
+name|newFastestDeque
 argument_list|(
 name|maxSize
 argument_list|)
