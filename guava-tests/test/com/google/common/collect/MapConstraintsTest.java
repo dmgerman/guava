@@ -4221,6 +4221,9 @@ name|TEST_VALUE
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|/*      * Either the Multimap should reject the nefarious internalEntry.setValue() call that      * queryEntry.equals() makes, or it should arrange for internalEntry.equals(queryEntry) to be      * used instead of the reverse so that queryEntry.equals(internalEntry) is never invoked.      *      * Probably the other tests should be similarly tolerant of either outcome. But for now, this is      * the only one failing in any of our environments.      */
+try|try
+block|{
 name|assertFalse
 argument_list|(
 name|entries
@@ -4236,6 +4239,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TestValueException
+name|tolerated
+parameter_list|)
+block|{     }
 name|assertFalse
 argument_list|(
 name|multimap
