@@ -306,6 +306,9 @@ name|ByteSourceTest
 extends|extends
 name|IoTestCase
 block|{
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android doesn't understand suites whose tests lack default constructors.
 DECL|method|suite ()
 specifier|public
 specifier|static

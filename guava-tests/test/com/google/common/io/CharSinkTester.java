@@ -117,6 +117,9 @@ comment|/**  * A generator of {@code TestSuite} instances for testing {@code Cha
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android doesn't understand tests that lack default constructors.
 DECL|class|CharSinkTester
 specifier|public
 class|class

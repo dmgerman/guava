@@ -97,10 +97,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test that EventBus finds the correct subscribers.  *  * This test must be outside the c.g.c.eventbus package to test correctly.  * @author Louis Wasserman  */
+comment|/**  * Test that EventBus finds the correct subscribers.  *  * This test must be outside the c.g.c.eventbus package to test correctly.  *  * @author Louis Wasserman  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): Android sees no tests, maybe because the classes are nested?
 DECL|class|AnnotatedSubscriberFinderTests
 specifier|public
 class|class

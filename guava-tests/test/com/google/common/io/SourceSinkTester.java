@@ -153,6 +153,9 @@ comment|/**  * @param<S> the source or sink type  * @param<T> the data type (byt
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android doesn't understand tests that lack default constructors.
 DECL|class|SourceSinkTester
 specifier|public
 class|class

@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -2415,6 +2431,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): Zero is found at beginning instead of end. Why?
 DECL|method|testNewDataOutput_writeChars ()
 specifier|public
 name|void
@@ -3952,6 +3971,7 @@ return|return
 name|out
 return|;
 block|}
+comment|// TODO(cpovirk): Inline this.
 DECL|method|assertEquals (byte[] expected, byte[] actual)
 specifier|private
 specifier|static
@@ -3967,31 +3987,14 @@ index|[]
 name|actual
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
-literal|"Arrays differed in size"
-argument_list|,
-name|expected
-operator|.
-name|length
-argument_list|,
-name|actual
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"Array contents were different"
-argument_list|,
-name|Arrays
-operator|.
-name|equals
-argument_list|(
-name|expected
-argument_list|,
 name|actual
 argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+name|expected
 argument_list|)
 expr_stmt|;
 block|}

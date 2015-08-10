@@ -227,6 +227,9 @@ comment|/**  * A generator of {@code TestSuite} instances for testing {@code Byt
 end_comment
 
 begin_class
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android doesn't understand tests that lack default constructors.
 DECL|class|ByteSourceTester
 specifier|public
 class|class
