@@ -3249,6 +3249,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/*    * Note: Mockito appears to lose its ability to Mock doGetRate as of Android 21. If we start    * testing with that version or newer, we'll need to suppress this test (or see if Mockito can be    * changed to support this).    */
 DECL|method|testMockingMockito ()
 specifier|public
 name|void

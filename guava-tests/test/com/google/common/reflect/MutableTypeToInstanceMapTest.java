@@ -240,6 +240,9 @@ name|MutableTypeToInstanceMapTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressUnderAndroid
+comment|// problem with suite builders on Android
 DECL|method|suite ()
 specifier|public
 specifier|static

@@ -80,12 +80,23 @@ parameter_list|)
 block|{
 return|return;
 block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|expectedOnAndroid
+parameter_list|)
+block|{
+return|return;
+block|}
 name|fail
 argument_list|(
 literal|"Should have thrown"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// TODO(cpovirk): java.lang.IllegalAccessError: superclass not accessible
 DECL|method|testSuccessfulForwarding ()
 specifier|public
 name|void

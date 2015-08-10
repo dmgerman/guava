@@ -492,6 +492,9 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_emptyURLClassLoader_noParent ()
 specifier|public
 name|void
@@ -527,6 +530,9 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_URLClassLoader_noParent ()
 specifier|public
 name|void
@@ -605,6 +611,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_URLClassLoader_withParent ()
 specifier|public
 name|void
@@ -734,6 +743,9 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_duplicateUri_parentWins ()
 specifier|public
 name|void
@@ -810,6 +822,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_noParent ()
 specifier|public
 name|void
@@ -840,6 +855,9 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_withParent ()
 specifier|public
 name|void
@@ -904,6 +922,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_withParentAndGrandParent ()
 specifier|public
 name|void
@@ -1001,6 +1022,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressUnderAndroid
+comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_withGrandParent ()
 specifier|public
 name|void
