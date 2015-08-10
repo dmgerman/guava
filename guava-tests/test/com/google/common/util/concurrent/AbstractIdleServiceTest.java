@@ -1035,6 +1035,17 @@ block|{}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
+specifier|protected
+name|String
+name|serviceName
+parameter_list|()
+block|{
+return|return
+literal|"Foo"
+return|;
+block|}
 block|}
 decl_stmt|;
 try|try
@@ -1073,16 +1084,9 @@ name|getMessage
 argument_list|()
 argument_list|)
 operator|.
-name|contains
+name|isEqualTo
 argument_list|(
-name|Service
-operator|.
-name|State
-operator|.
-name|STARTING
-operator|.
-name|toString
-argument_list|()
+literal|"Timed out waiting for Foo [STARTING] to reach the RUNNING state."
 argument_list|)
 expr_stmt|;
 block|}

@@ -1246,12 +1246,7 @@ literal|"Timed out waiting for "
 operator|+
 name|this
 operator|+
-literal|" to reach the RUNNING state. "
-operator|+
-literal|"Current state: "
-operator|+
-name|state
-argument_list|()
+literal|" to reach the RUNNING state."
 argument_list|)
 throw|;
 block|}

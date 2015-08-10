@@ -857,6 +857,23 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|toString ()
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|AbstractScheduledService
+operator|.
+name|this
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 comment|/** Constructor for use by subclasses. */
 DECL|method|AbstractScheduledService ()
