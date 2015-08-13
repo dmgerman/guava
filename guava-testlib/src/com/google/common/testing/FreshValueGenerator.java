@@ -1369,7 +1369,7 @@ name|build
 argument_list|()
 expr_stmt|;
 block|}
-DECL|field|EMPTY_GENEREATORS
+DECL|field|EMPTY_GENERATORS
 specifier|private
 specifier|static
 specifier|final
@@ -1382,7 +1382,7 @@ argument_list|>
 argument_list|,
 name|Method
 argument_list|>
-name|EMPTY_GENEREATORS
+name|EMPTY_GENERATORS
 decl_stmt|;
 static|static
 block|{
@@ -1443,7 +1443,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|EMPTY_GENEREATORS
+name|EMPTY_GENERATORS
 operator|=
 name|builder
 operator|.
@@ -1787,7 +1787,7 @@ block|}
 name|Method
 name|emptyGenerate
 init|=
-name|EMPTY_GENEREATORS
+name|EMPTY_GENERATORS
 operator|.
 name|get
 argument_list|(
