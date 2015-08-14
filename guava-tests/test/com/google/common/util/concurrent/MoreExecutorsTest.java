@@ -2030,7 +2030,7 @@ argument_list|)
 decl_stmt|;
 name|ListenableFuture
 argument_list|<
-name|?
+name|Integer
 argument_list|>
 name|future
 init|=
@@ -2042,7 +2042,7 @@ name|Callables
 operator|.
 name|returning
 argument_list|(
-literal|null
+literal|42
 argument_list|)
 argument_list|,
 literal|1
@@ -2064,6 +2064,19 @@ name|future
 operator|.
 name|isDone
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|future
+operator|.
+name|get
+argument_list|()
+argument_list|)
+operator|.
+name|isEqualTo
+argument_list|(
+literal|42
 argument_list|)
 expr_stmt|;
 name|assertListenerRunImmediately
