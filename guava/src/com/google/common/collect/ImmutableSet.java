@@ -428,6 +428,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable set containing the given elements, minus duplicates, in the order each was    * first specified. That is, if multiple elements are {@linkplain Object#equals equal}, all except    * the first are ignored.    *    * @since 3.0 (source-compatible since 2.0)    */
+annotation|@
+name|SafeVarargs
+comment|// For Eclipse. For internal javac we have disabled this pointless type of warning.
 DECL|method|of (E e1, E e2, E e3, E e4, E e5, E e6, E... others)
 specifier|public
 specifier|static

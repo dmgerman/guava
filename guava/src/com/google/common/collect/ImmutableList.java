@@ -835,6 +835,9 @@ block|}
 comment|// These go up to eleven. After that, you just get the varargs form, and
 comment|// whatever warnings might come along with it. :(
 comment|/**    * Returns an immutable list containing the given elements, in order.    *    * @throws NullPointerException if any element is null    * @since 3.0 (source-compatible since 2.0)    */
+annotation|@
+name|SafeVarargs
+comment|// For Eclipse. For internal javac we have disabled this pointless type of warning.
 DECL|method|of ( E e1, E e2, E e3, E e4, E e5, E e6, E e7, E e8, E e9, E e10, E e11, E e12, E... others)
 specifier|public
 specifier|static
