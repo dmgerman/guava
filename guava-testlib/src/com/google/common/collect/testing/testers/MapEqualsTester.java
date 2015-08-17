@@ -179,8 +179,6 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapEqualsTester
 specifier|public
 class|class

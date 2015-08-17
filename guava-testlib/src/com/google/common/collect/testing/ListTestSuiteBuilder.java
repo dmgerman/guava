@@ -535,8 +535,6 @@ comment|/**  * Creates, based on your criteria, a JUnit test suite that exhausti
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|ListTestSuiteBuilder
 specifier|public
 specifier|final

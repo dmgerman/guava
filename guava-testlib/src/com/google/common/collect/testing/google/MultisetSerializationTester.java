@@ -118,8 +118,6 @@ begin_class
 annotation|@
 name|GwtCompatible
 comment|// but no-op
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MultisetSerializationTester
 specifier|public
 class|class

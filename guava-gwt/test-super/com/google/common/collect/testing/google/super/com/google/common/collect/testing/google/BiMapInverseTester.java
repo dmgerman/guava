@@ -122,8 +122,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|BiMapInverseTester
 specifier|public
 class|class

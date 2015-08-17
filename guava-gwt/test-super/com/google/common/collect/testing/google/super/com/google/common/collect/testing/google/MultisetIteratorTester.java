@@ -176,8 +176,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MultisetIteratorTester
 specifier|public
 class|class

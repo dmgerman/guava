@@ -245,8 +245,6 @@ comment|/**  * Generates a test suite covering the {@link Map} implementations i
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|TestsForMapsInJavaUtil
 specifier|public
 class|class

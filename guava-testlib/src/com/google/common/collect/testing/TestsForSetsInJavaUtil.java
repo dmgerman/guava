@@ -253,8 +253,6 @@ comment|/**  * Generates a test suite covering the {@link Set} implementations i
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|TestsForSetsInJavaUtil
 specifier|public
 class|class

@@ -155,8 +155,6 @@ comment|/**  * Concrete instantiation of {@link AbstractCollectionTestSuiteBuild
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|CollectionTestSuiteBuilder
 specifier|public
 class|class

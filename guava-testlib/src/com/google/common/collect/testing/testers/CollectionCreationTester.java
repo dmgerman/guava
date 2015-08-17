@@ -180,8 +180,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|CollectionCreationTester
 specifier|public
 class|class

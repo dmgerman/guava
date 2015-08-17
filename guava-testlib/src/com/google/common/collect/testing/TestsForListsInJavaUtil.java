@@ -211,8 +211,6 @@ comment|/**  * Generates a test suite covering the {@link List} implementations 
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|TestsForListsInJavaUtil
 specifier|public
 class|class

@@ -226,8 +226,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|CollectionToArrayTester
 specifier|public
 class|class

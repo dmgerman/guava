@@ -219,8 +219,6 @@ argument_list|)
 comment|// too many "unchecked generic array creations"
 annotation|@
 name|GwtCompatible
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|ListAddAllAtIndexTester
 specifier|public
 class|class

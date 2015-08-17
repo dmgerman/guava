@@ -361,8 +361,6 @@ comment|/**  * Abstract superclass of all test-suite builders for collection int
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|AbstractCollectionTestSuiteBuilder
 specifier|public
 specifier|abstract

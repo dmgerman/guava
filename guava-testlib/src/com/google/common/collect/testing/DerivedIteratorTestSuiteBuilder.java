@@ -43,8 +43,6 @@ comment|/**  * Given a test iterable generator, builds a test suite for the  * i
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|DerivedIteratorTestSuiteBuilder
 specifier|public
 class|class
