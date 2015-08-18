@@ -116,6 +116,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|codehaus
+operator|.
+name|mojo
+operator|.
+name|animal_sniffer
+operator|.
+name|IgnoreJRERequirement
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -608,15 +622,8 @@ name|getBestValidator
 argument_list|()
 decl_stmt|;
 annotation|@
-name|org
-operator|.
-name|codehaus
-operator|.
-name|mojo
-operator|.
-name|animal_sniffer
-operator|.
 name|IgnoreJRERequirement
+comment|// getChecked falls back to another implementation if necessary
 annotation|@
 name|J2ObjCIncompatible
 comment|// ClassValue
