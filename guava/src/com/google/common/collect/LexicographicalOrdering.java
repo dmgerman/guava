@@ -46,6 +46,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -92,7 +102,7 @@ name|Serializable
 block|{
 DECL|field|elementOrder
 specifier|final
-name|Ordering
+name|Comparator
 argument_list|<
 name|?
 super|super
@@ -100,10 +110,10 @@ name|T
 argument_list|>
 name|elementOrder
 decl_stmt|;
-DECL|method|LexicographicalOrdering (Ordering<? super T> elementOrder)
+DECL|method|LexicographicalOrdering (Comparator<? super T> elementOrder)
 name|LexicographicalOrdering
 parameter_list|(
-name|Ordering
+name|Comparator
 argument_list|<
 name|?
 super|super
