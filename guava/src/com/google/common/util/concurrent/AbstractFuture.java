@@ -112,20 +112,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|errorprone
-operator|.
-name|annotations
-operator|.
-name|ForOverride
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|security
@@ -550,8 +536,15 @@ try|try
 block|{
 name|helper
 operator|=
-operator|new
-name|UnsafeAtomicHelper
+name|UnsafeAtomicHelperFactory
+operator|.
+name|values
+argument_list|()
+index|[
+literal|0
+index|]
+operator|.
+name|tryCreateUnsafeAtomicHelper
 argument_list|()
 expr_stmt|;
 block|}
@@ -2739,7 +2732,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
-comment|// TODO(cpovirk): @ForOverride if https://github.com/google/error-prone/issues/342 permits
 DECL|method|done ()
 name|void
 name|done
@@ -3047,7 +3039,59 @@ name|v
 parameter_list|)
 function_decl|;
 block|}
+comment|/**    * Temporary hack to hide the reference to {@link UnsafeAtomicHelper} from Android. The caller of    * this code will execute {@link #tryCreateUnsafeAtomicHelper} on the<b>first</b> enum value    * present. On the server, this will try to create {@link UnsafeAtomicHelper}. On Android, it will    * just return {@code null}.    */
+DECL|enum|UnsafeAtomicHelperFactory
+specifier|private
+enum|enum
+name|UnsafeAtomicHelperFactory
+block|{
+DECL|enumConstant|SuppressUnderAndroid
+annotation|@
+name|SuppressUnderAndroid
+comment|// temporarily while we make Proguard tolerate Unsafe
+DECL|enumConstant|REALLY_TRY_TO_CREATE
+name|REALLY_TRY_TO_CREATE
+block|{
+annotation|@
+name|Override
+name|AtomicHelper
+name|tryCreateUnsafeAtomicHelper
+parameter_list|()
+block|{
+return|return
+operator|new
+name|UnsafeAtomicHelper
+argument_list|()
+return|;
+block|}
+block|}
+block|,
+DECL|enumConstant|DONT_EVEN_TRY_TO_CREATE
+name|DONT_EVEN_TRY_TO_CREATE
+block|{
+annotation|@
+name|Override
+name|AtomicHelper
+name|tryCreateUnsafeAtomicHelper
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+block|}
+block|,    ;
+DECL|method|tryCreateUnsafeAtomicHelper ()
+specifier|abstract
+name|AtomicHelper
+name|tryCreateUnsafeAtomicHelper
+parameter_list|()
+function_decl|;
+block|}
 comment|/**    * {@link AtomicHelper} based on {@link sun.misc.Unsafe}.    *    *<p>Static initialization of this class will fail if the {@link sun.misc.Unsafe} object cannot    * be accessed.    */
+annotation|@
+name|SuppressUnderAndroid
+comment|// temporarily while we make Proguard tolerate Unsafe
 DECL|class|UnsafeAtomicHelper
 specifier|private
 specifier|static
@@ -3371,9 +3415,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|putThread (Waiter waiter, Thread thread)
 annotation|@
 name|Override
+DECL|method|putThread (Waiter waiter, Thread thread)
 name|void
 name|putThread
 parameter_list|(
@@ -3396,9 +3440,9 @@ name|thread
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|putNext (Waiter waiter, Waiter next)
 annotation|@
 name|Override
+DECL|method|putNext (Waiter waiter, Waiter next)
 name|void
 name|putNext
 parameter_list|(
@@ -3422,9 +3466,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Performs a CAS operation on the {@link #waiters} field. */
-DECL|method|casWaiters (AbstractFuture future, Waiter curr, Waiter next)
 annotation|@
 name|Override
+DECL|method|casWaiters (AbstractFuture future, Waiter curr, Waiter next)
 name|boolean
 name|casWaiters
 parameter_list|(
@@ -3454,9 +3498,9 @@ argument_list|)
 return|;
 block|}
 comment|/** Performs a CAS operation on the {@link #listeners} field. */
-DECL|method|casListeners (AbstractFuture future, Listener curr, Listener next)
 annotation|@
 name|Override
+DECL|method|casListeners (AbstractFuture future, Listener curr, Listener next)
 name|boolean
 name|casListeners
 parameter_list|(
@@ -3486,9 +3530,9 @@ argument_list|)
 return|;
 block|}
 comment|/** Performs a CAS operation on the {@link #value} field. */
-DECL|method|casValue (AbstractFuture future, Object expected, Object v)
 annotation|@
 name|Override
+DECL|method|casValue (AbstractFuture future, Object expected, Object v)
 name|boolean
 name|casValue
 parameter_list|(
