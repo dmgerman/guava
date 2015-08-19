@@ -640,14 +640,14 @@ name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|e
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"resource no such resource not found."
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -697,16 +697,16 @@ name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|e
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"resource com/google/common/io/testdata/i18n.txt"
 operator|+
 literal|" relative to com.google.common.io.ResourcesTest not found."
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

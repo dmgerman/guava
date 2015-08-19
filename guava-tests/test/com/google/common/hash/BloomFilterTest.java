@@ -49,6 +49,22 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1567,14 +1583,14 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"Could not create BloomFilter of 3327428144502 bits"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2980,16 +2996,17 @@ name|void
 name|testBloomFilterStrategies
 parameter_list|()
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
-literal|2
-argument_list|,
 name|BloomFilterStrategies
 operator|.
 name|values
 argument_list|()
+argument_list|)
 operator|.
-name|length
+name|hasLength
+argument_list|(
+literal|2
 argument_list|)
 expr_stmt|;
 name|assertEquals

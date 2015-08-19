@@ -1625,12 +1625,9 @@ block|{
 name|assertThat
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 operator|.
-name|isEqualTo
+name|hasMessage
 argument_list|(
 literal|"Timed out waiting for Foo [STARTING] to reach the RUNNING state."
 argument_list|)

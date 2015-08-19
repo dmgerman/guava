@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -488,14 +504,14 @@ name|UnsupportedOperationException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"readLine is not supported"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

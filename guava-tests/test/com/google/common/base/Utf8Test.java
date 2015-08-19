@@ -18,6 +18,22 @@ end_package
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|lang
@@ -764,16 +780,16 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"Unpaired surrogate at index "
 operator|+
 name|invalidCodePointIndex
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

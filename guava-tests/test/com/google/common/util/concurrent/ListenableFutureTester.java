@@ -36,6 +36,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|junit
 operator|.
 name|framework
@@ -532,17 +548,17 @@ name|ExecutionException
 name|e
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
-name|message
-argument_list|,
 name|e
 operator|.
 name|getCause
 argument_list|()
+argument_list|)
 operator|.
-name|getMessage
-argument_list|()
+name|hasMessage
+argument_list|(
+name|message
 argument_list|)
 expr_stmt|;
 block|}

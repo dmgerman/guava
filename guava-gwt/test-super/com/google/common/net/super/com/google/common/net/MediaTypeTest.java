@@ -177,16 +177,18 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|com
 operator|.
 name|google
 operator|.
 name|common
 operator|.
-name|annotations
+name|truth
 operator|.
-name|GwtCompatible
+name|Truth
+operator|.
+name|assertThat
 import|;
 end_import
 
@@ -198,9 +200,9 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
+name|annotations
 operator|.
-name|Optional
+name|GwtCompatible
 import|;
 end_import
 
@@ -1648,13 +1650,8 @@ name|void
 name|testGetCharset
 parameter_list|()
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
-name|Optional
-operator|.
-name|absent
-argument_list|()
-argument_list|,
 name|MediaType
 operator|.
 name|parse
@@ -1665,16 +1662,12 @@ operator|.
 name|charset
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|Optional
 operator|.
-name|of
+name|isAbsent
+argument_list|()
+expr_stmt|;
+name|assertThat
 argument_list|(
-name|UTF_8
-argument_list|)
-argument_list|,
 name|MediaType
 operator|.
 name|parse
@@ -1684,6 +1677,11 @@ argument_list|)
 operator|.
 name|charset
 argument_list|()
+argument_list|)
+operator|.
+name|hasValue
+argument_list|(
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}

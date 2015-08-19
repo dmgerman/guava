@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -327,17 +343,17 @@ name|ClusterException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
 argument_list|(
-literal|"two"
-argument_list|,
 name|expected
 operator|.
 name|getCause
 argument_list|()
+argument_list|)
 operator|.
-name|getMessage
-argument_list|()
+name|hasMessage
+argument_list|(
+literal|"two"
 argument_list|)
 expr_stmt|;
 block|}

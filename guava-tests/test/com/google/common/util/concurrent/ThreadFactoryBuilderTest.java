@@ -462,12 +462,13 @@ name|int
 name|threadId
 parameter_list|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|thread
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 operator|.
 name|matches
 argument_list|(
@@ -476,7 +477,6 @@ operator|+
 name|threadId
 operator|+
 literal|"$"
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

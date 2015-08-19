@@ -442,7 +442,12 @@ name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"No public static methods that return java.lang.Object or subtype are found in "
 operator|+
@@ -451,11 +456,6 @@ operator|.
 name|class
 operator|+
 literal|"."
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;
@@ -671,7 +671,12 @@ name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"No public static methods that return java.lang.Iterable or subtype are found in "
 operator|+
@@ -680,11 +685,6 @@ operator|.
 name|class
 operator|+
 literal|"."
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return;

@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -498,14 +514,19 @@ name|ParseException
 name|expected
 parameter_list|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|expected
 operator|.
 name|getCause
 argument_list|()
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|IllegalArgumentException
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}

@@ -98,6 +98,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|util
@@ -697,15 +713,16 @@ name|concurrencyLevel
 argument_list|)
 expr_stmt|;
 comment|// concurrency level
-name|assertEquals
+name|assertThat
 argument_list|(
-literal|4
-argument_list|,
 name|map
 operator|.
 name|segments
+argument_list|)
 operator|.
-name|length
+name|hasLength
+argument_list|(
+literal|4
 argument_list|)
 expr_stmt|;
 comment|// initial capacity / concurrency level
@@ -956,15 +973,16 @@ name|concurrencyLevel
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertThat
 argument_list|(
-name|segmentCount
-argument_list|,
 name|map
 operator|.
 name|segments
+argument_list|)
 operator|.
-name|length
+name|hasLength
+argument_list|(
+name|segmentCount
 argument_list|)
 expr_stmt|;
 block|}

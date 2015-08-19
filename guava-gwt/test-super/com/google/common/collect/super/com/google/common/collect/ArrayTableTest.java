@@ -2864,14 +2864,14 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"Row dog not in [foo, bar, cat]"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2898,14 +2898,14 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"Column 4 not in [1, 2, 3]"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -3384,14 +3384,14 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"Column 4 not in [1, 2, 3]"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -3461,14 +3461,14 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{
-name|assertEquals
+name|assertThat
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|hasMessage
 argument_list|(
 literal|"Row dog not in [foo, bar, cat]"
-argument_list|,
-name|expected
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

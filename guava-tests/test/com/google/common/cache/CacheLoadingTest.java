@@ -719,12 +719,17 @@ name|void
 name|checkLoggedInvalidLoad
 parameter_list|()
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|popLoggedThrowable
 argument_list|()
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|InvalidCacheLoadException
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -14211,7 +14216,7 @@ name|i
 operator|++
 control|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|result
 operator|.
@@ -14219,8 +14224,13 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|InvalidCacheLoadException
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -14400,7 +14410,7 @@ control|)
 block|{
 comment|// doConcurrentGet alternates between calling getUnchecked and calling get, but an unchecked
 comment|// exception thrown by the loader is always wrapped as an UncheckedExecutionException.
-name|assertTrue
+name|assertThat
 argument_list|(
 name|result
 operator|.
@@ -14408,8 +14418,13 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|UncheckedExecutionException
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|assertSame
@@ -14630,7 +14645,7 @@ operator|==
 literal|2
 condition|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|result
 operator|.
@@ -14638,8 +14653,13 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|ExecutionException
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|assertSame
@@ -14665,7 +14685,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|result
 operator|.
@@ -14673,8 +14693,13 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|UncheckedExecutionException
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|assertSame

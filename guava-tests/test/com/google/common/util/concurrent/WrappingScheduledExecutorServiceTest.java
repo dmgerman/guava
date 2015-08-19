@@ -19,6 +19,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|junit
 operator|.
@@ -627,9 +643,9 @@ name|lastUnit
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|schedule (Runnable command, long delay, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|schedule (Runnable command, long delay, TimeUnit unit)
 specifier|public
 name|ScheduledFuture
 argument_list|<
@@ -647,11 +663,16 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|command
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|WrappedRunnable
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|lastMethodCalled
@@ -670,9 +691,9 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|schedule ( Callable<V> callable, long delay, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|schedule (Callable<V> callable, long delay, TimeUnit unit)
 specifier|public
 parameter_list|<
 name|V
@@ -696,11 +717,16 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|callable
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|WrappedCallable
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|lastMethodCalled
@@ -719,9 +745,9 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long period, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|scheduleAtFixedRate ( Runnable command, long initialDelay, long period, TimeUnit unit)
 specifier|public
 name|ScheduledFuture
 argument_list|<
@@ -742,11 +768,16 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|command
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|WrappedRunnable
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|lastMethodCalled
@@ -769,9 +800,9 @@ return|return
 literal|null
 return|;
 block|}
-DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long delay, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|scheduleWithFixedDelay ( Runnable command, long initialDelay, long delay, TimeUnit unit)
 specifier|public
 name|ScheduledFuture
 argument_list|<
@@ -792,11 +823,16 @@ name|TimeUnit
 name|unit
 parameter_list|)
 block|{
-name|assertTrue
+name|assertThat
 argument_list|(
 name|command
-operator|instanceof
+argument_list|)
+operator|.
+name|isInstanceOf
+argument_list|(
 name|WrappedRunnable
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|lastMethodCalled

@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|truth
+operator|.
+name|Truth
+operator|.
+name|assertThat
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -1437,11 +1453,16 @@ name|void
 name|testRandomAccess
 parameter_list|()
 block|{
-name|assertFalse
+name|assertThat
 argument_list|(
 name|forward
-operator|instanceof
+argument_list|)
+operator|.
+name|isNotInstanceOf
+argument_list|(
 name|RandomAccess
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 block|}
