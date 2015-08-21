@@ -3156,7 +3156,7 @@ literal|"java.util.regex.Pattern"
 argument_list|)
 annotation|@
 name|AndroidIncompatible
-comment|// TODO(cpovirk): File Android bug (different from the two above).
+comment|// not clear that j.u.r.Matcher promises to handle mutations during use
 DECL|method|testSplitterIterableIsLazy_pattern ()
 specifier|public
 name|void
