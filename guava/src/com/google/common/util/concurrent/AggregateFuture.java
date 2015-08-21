@@ -743,6 +743,19 @@ name|firstTimeSeeingThisException
 operator|)
 condition|)
 block|{
+name|String
+name|message
+init|=
+operator|(
+name|throwable
+operator|instanceof
+name|Error
+operator|)
+condition|?
+literal|"Input Future failed with Error"
+else|:
+literal|"Got more than one input Future failure. Logging failures after the first"
+decl_stmt|;
 name|logger
 operator|.
 name|log
@@ -751,7 +764,7 @@ name|Level
 operator|.
 name|SEVERE
 argument_list|,
-literal|"input future failed."
+name|message
 argument_list|,
 name|throwable
 argument_list|)
