@@ -101,9 +101,6 @@ comment|/**  * Test that EventBus finds the correct subscribers.  *  * This test
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
-comment|// TODO(cpovirk): Android sees no tests, maybe because the classes are nested?
 DECL|class|AnnotatedSubscriberFinderTests
 specifier|public
 class|class
