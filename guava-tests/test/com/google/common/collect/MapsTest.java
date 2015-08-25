@@ -10425,8 +10425,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|FilteredMapTest
 specifier|public
 specifier|static
@@ -11900,8 +11898,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|FilteredSortedMapTest
 specifier|public
 specifier|static
@@ -12353,8 +12349,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|FilteredBiMapTest
 specifier|public
 specifier|static

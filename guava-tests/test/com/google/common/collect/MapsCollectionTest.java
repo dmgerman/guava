@@ -519,8 +519,6 @@ comment|/**  * Test suites for wrappers in {@code Maps}.  *  * @author Louis Was
 end_comment
 
 begin_class
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapsCollectionTest
 specifier|public
 class|class

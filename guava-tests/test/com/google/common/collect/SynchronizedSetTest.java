@@ -206,8 +206,6 @@ literal|1
 argument_list|)
 decl_stmt|;
 comment|// something Serializable
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

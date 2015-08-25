@@ -72,9 +72,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
-comment|// nested tests
 DECL|class|SetOperationsTest
 specifier|public
 class|class

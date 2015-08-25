@@ -434,7 +434,7 @@ argument_list|>
 name|keySet
 parameter_list|()
 block|{
-comment|/*        * We can't use StandardKeySet, as the suite builder assumes that our keySet is a        * NavigableSet. We test StandardKeySet in the superclass, so it's still covered.        */
+comment|/*        * We can't use StandardKeySet, as NavigableMapTestSuiteBuilder assumes that our keySet is a        * NavigableSet. We test StandardKeySet in the superclass, so it's still covered.        */
 return|return
 name|navigableKeySet
 argument_list|()
@@ -999,8 +999,6 @@ argument_list|()
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

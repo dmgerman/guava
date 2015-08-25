@@ -620,8 +620,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1237,8 +1235,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTests
 specifier|public
 specifier|static
@@ -1330,8 +1326,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|SingletonMapTests
 specifier|public
 specifier|static
@@ -1400,8 +1394,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"SerializableTester"
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|ReserializedMapTests
 specifier|public
 specifier|static
@@ -1478,8 +1470,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTestsWithBadHashes
 specifier|public
 specifier|static
@@ -1602,8 +1592,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"GWT's ImmutableMap emulation is backed by java.util.HashMap."
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTestsWithUnhashableValues
 specifier|public
 specifier|static
@@ -1720,8 +1708,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"GWT's ImmutableMap emulation is backed by java.util.HashMap."
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTestsWithSingletonUnhashableValue
 specifier|public
 specifier|static
@@ -1765,8 +1751,6 @@ argument_list|)
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|CreationTests
 specifier|public
 specifier|static

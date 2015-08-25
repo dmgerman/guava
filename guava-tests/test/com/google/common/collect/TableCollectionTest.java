@@ -424,9 +424,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
-comment|// nested classes
 DECL|class|TableCollectionTest
 specifier|public
 class|class

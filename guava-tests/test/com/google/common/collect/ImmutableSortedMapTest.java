@@ -463,8 +463,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -965,8 +963,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTests
 specifier|public
 specifier|static
@@ -1058,8 +1054,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|SingletonMapTests
 specifier|public
 specifier|static
@@ -1128,8 +1122,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"SerializableTester"
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|ReserializedMapTests
 specifier|public
 specifier|static
@@ -1206,8 +1198,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|HeadMapTests
 specifier|public
 specifier|static
@@ -1291,8 +1281,6 @@ literal|4
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|HeadMapInclusiveTests
 specifier|public
 specifier|static
@@ -1378,8 +1366,6 @@ literal|4
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|TailMapTests
 specifier|public
 specifier|static
@@ -1463,8 +1449,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|TailExclusiveMapTests
 specifier|public
 specifier|static
@@ -1550,8 +1534,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|SubMapTests
 specifier|public
 specifier|static
@@ -1637,8 +1619,6 @@ literal|4
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|CreationTests
 specifier|public
 specifier|static

@@ -166,9 +166,6 @@ name|emulated
 operator|=
 literal|true
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
-comment|// nested tests
 DECL|class|ImmutableBiMapTest
 specifier|public
 class|class

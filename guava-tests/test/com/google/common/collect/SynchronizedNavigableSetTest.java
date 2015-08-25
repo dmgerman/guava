@@ -895,8 +895,6 @@ init|=
 literal|0
 decl_stmt|;
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

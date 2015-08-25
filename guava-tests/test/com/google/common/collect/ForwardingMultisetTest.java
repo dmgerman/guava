@@ -642,8 +642,6 @@ name|String
 argument_list|>
 name|forward
 decl_stmt|;
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

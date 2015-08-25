@@ -4240,7 +4240,7 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: use the suite builders
+comment|// TODO: use the ListTestSuiteBuilder
 DECL|method|testPartition_view ()
 specifier|public
 name|void

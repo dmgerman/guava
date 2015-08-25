@@ -415,8 +415,6 @@ argument_list|(
 literal|"suite"
 argument_list|)
 comment|// TODO(cpovirk): add to collect/gwt/suites
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static

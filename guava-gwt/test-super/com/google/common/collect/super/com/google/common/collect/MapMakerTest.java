@@ -124,8 +124,6 @@ block|{
 comment|// "Basher tests", where we throw a bunch of stuff at a Cache and check basic invariants.
 comment|/*    * TODO(cpovirk): eliminate duplication between these tests and those in LegacyMapMakerTests and    * anywhere else    */
 comment|/** Tests for the builder. */
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MakerTest
 specifier|public
 specifier|static
@@ -332,8 +330,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Tests of the built map with maximumSize. */
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MaximumSizeTest
 specifier|public
 specifier|static
@@ -504,8 +500,6 @@ block|}
 block|}
 block|}
 comment|/** Tests for recursive computation. */
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|RecursiveComputationTest
 specifier|public
 specifier|static
@@ -612,8 +606,6 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Tests for computing functionality.    */
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|ComputingTest
 specifier|public
 specifier|static

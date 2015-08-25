@@ -491,8 +491,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTests
 specifier|public
 specifier|static
@@ -584,8 +582,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|SingletonMapTests
 specifier|public
 specifier|static
@@ -649,8 +645,6 @@ literal|1
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|MapTestsWithBadHashes
 specifier|public
 specifier|static
@@ -768,8 +762,6 @@ literal|4
 return|;
 block|}
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|CreationTests
 specifier|public
 specifier|static

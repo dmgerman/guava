@@ -282,8 +282,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"suite"
 argument_list|)
-annotation|@
-name|SuppressUnderAndroid
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -468,8 +466,6 @@ return|return
 name|suite
 return|;
 block|}
-annotation|@
-name|SuppressUnderAndroid
 DECL|class|TreeRowTest
 specifier|public
 specifier|static
