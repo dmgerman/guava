@@ -143,6 +143,38 @@ return|return
 name|value
 return|;
 block|}
+DECL|method|checkPositive (int value, String name)
+specifier|static
+name|void
+name|checkPositive
+parameter_list|(
+name|int
+name|value
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+if|if
+condition|(
+name|value
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|name
+operator|+
+literal|" must be positive but was: "
+operator|+
+name|value
+argument_list|)
+throw|;
+block|}
+block|}
 comment|/**    * Precondition tester for {@code Iterator.remove()} that throws an exception with a consistent    * error message.    */
 DECL|method|checkRemove (boolean canRemove)
 specifier|static

@@ -757,15 +757,13 @@ name|element
 argument_list|)
 return|;
 block|}
-name|checkArgument
+name|CollectPreconditions
+operator|.
+name|checkPositive
 argument_list|(
 name|occurrences
-operator|>
-literal|0
 argument_list|,
-literal|"Invalid occurrences: %s"
-argument_list|,
-name|occurrences
+literal|"occurences"
 argument_list|)
 expr_stmt|;
 while|while
@@ -976,15 +974,13 @@ name|element
 argument_list|)
 return|;
 block|}
-name|checkArgument
+name|CollectPreconditions
+operator|.
+name|checkPositive
 argument_list|(
 name|occurrences
-operator|>
-literal|0
 argument_list|,
-literal|"Invalid occurrences: %s"
-argument_list|,
-name|occurrences
+literal|"occurences"
 argument_list|)
 expr_stmt|;
 name|AtomicInteger
@@ -1114,15 +1110,13 @@ return|return
 literal|true
 return|;
 block|}
-name|checkArgument
+name|CollectPreconditions
+operator|.
+name|checkPositive
 argument_list|(
 name|occurrences
-operator|>
-literal|0
 argument_list|,
-literal|"Invalid occurrences: %s"
-argument_list|,
-name|occurrences
+literal|"occurences"
 argument_list|)
 expr_stmt|;
 name|AtomicInteger
