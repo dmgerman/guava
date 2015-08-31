@@ -983,7 +983,7 @@ return|return
 name|MAX_TABLE_SIZE
 return|;
 block|}
-comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source collection.    *    *<p><b>Performance note:</b> In certain cases when {@code elements} is an {@link    * ImmutableCollection}, its data will be reused directly without copying; the {@code elements}    * instance itself might even be returned. The specific circumstances in which these optimizations    * happen are undefined and subject to change.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source collection.    *    *<p><b>Performance note:</b> This method will sometimes recognize that the actual copy operation    * is unnecessary; for example, {@code copyOf(copyOf(anArrayList))} will copy the data only once.    * This reduces the expense of habitually making defensive copies at API boundaries. However, the    * the precise conditions for skipping the copy operation are undefined.    *    * @throws NullPointerException if any of {@code elements} is null    * @since 7.0 (source-compatible since 2.0)    */
 DECL|method|copyOf (Collection<? extends E> elements)
 specifier|public
 specifier|static
@@ -1092,7 +1092,7 @@ name|array
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source iterable. This method iterates over {@code elements} only    * once.    *    *<p><b>Performance note:</b> In certain cases when {@code elements} is an {@link    * ImmutableCollection}, its data will be reused directly without copying; the {@code elements}    * instance itself might even be returned. The specific circumstances in which these optimizations    * happen are undefined and subject to change.    *    * @throws NullPointerException if any of {@code elements} is null    */
+comment|/**    * Returns an immutable set containing each of {@code elements}, minus duplicates, in the order    * each appears first in the source iterable. This method iterates over {@code elements} only    * once.    *    *<p><b>Performance note:</b> This method will sometimes recognize that the actual copy operation    * is unnecessary; for example, {@code copyOf(copyOf(anArrayList))} should copy the data only    * once. This reduces the expense of habitually making defensive copies at API boundaries.    * However, the precise conditions for skipping the copy operation are undefined.    *    * @throws NullPointerException if any of {@code elements} is null    */
 DECL|method|copyOf (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1628,7 +1628,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * A builder for creating immutable set instances, especially {@code public    * static final} sets ("constant sets"). Example:<pre>   {@code    *    *   public static final ImmutableSet<Color> GOOGLE_COLORS =    *       new ImmutableSet.Builder<Color>()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Builder instances can be reused; it is safe to call {@link #build} multiple    * times to build multiple sets in series. Each set is a superset of the set    * created before it.    *    * @since 2.0    */
+comment|/**    * A builder for creating {@code ImmutableSet} instances. Example:<pre>   {@code    *    *   static final ImmutableSet<Color> GOOGLE_COLORS =    *       ImmutableSet.<Color>builder()    *           .addAll(WEBSAFE_COLORS)    *           .add(new Color(0, 191, 255))    *           .build();}</pre>    *    *<p>Building does not change the state of the builder, so it is still possible to add more    * elements and to build again.    *    * @since 2.0    */
 DECL|class|Builder
 specifier|public
 specifier|static
