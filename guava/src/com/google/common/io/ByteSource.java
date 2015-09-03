@@ -351,7 +351,7 @@ name|in
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a view of a slice of this byte source that is at most {@code length} bytes long    * starting at the given {@code offset}.    *    * @throws IllegalArgumentException if {@code offset} or {@code length} is negative    */
+comment|/**    * Returns a view of a slice of this byte source that is at most {@code length} bytes long    * starting at the given {@code offset}. If {@code offset} is greater than the size of this    * source, the returned source will be empty. If {@code offset + length} is greater than the size    * of this source, the returned source will contain the slice starting at {@code offset} and    * ending at the end of this source.    *    * @throws IllegalArgumentException if {@code offset} or {@code length} is negative    */
 DECL|method|slice (long offset, long length)
 specifier|public
 name|ByteSource
@@ -1602,11 +1602,16 @@ operator|>
 literal|0
 condition|)
 block|{
+name|long
+name|skipped
+decl_stmt|;
 try|try
 block|{
+name|skipped
+operator|=
 name|ByteStreams
 operator|.
-name|skipFully
+name|skipUpTo
 argument_list|(
 name|in
 argument_list|,
@@ -1654,6 +1659,31 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|skipped
+operator|<
+name|offset
+condition|)
+block|{
+comment|// offset was beyond EOF
+name|in
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+operator|new
+name|ByteArrayInputStream
+argument_list|(
+operator|new
+name|byte
+index|[
+literal|0
+index|]
+argument_list|)
+return|;
 block|}
 block|}
 return|return
