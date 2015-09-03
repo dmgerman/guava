@@ -1579,7 +1579,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Supplies an arbitrary "default" instance for a wide range of types, often useful in testing  * utilities.  *   *<p>Covers arrays, enums and common types defined in {@code java.lang}, {@code java.lang.reflect},  * {@code java.io}, {@code java.nio}, {@code java.math}, {@code java.util}, {@code  * java.util.concurrent}, {@code java.util.regex}, {@code com.google.common.base}, {@code  * com.google.common.collect} and {@code com.google.common.primitives}. In addition, if the type  * exposes at least one public static final constant of the same type, one of the constants will be  * used; or if the class exposes a public parameter-less constructor then it will be "new"d and  * returned.  *   *<p>All default instances returned by {@link #get} are generics-safe. Clients won't get type  * errors for using {@code get(Comparator.class)} as a {@code Comparator<Foo>}, for example.  * Immutable empty instances are returned for collection types; {@code ""} for string;  * {@code 0} for number types; reasonable default instance for other stateless types. For mutable  * types, a fresh instance is created each time {@code get()} is called.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 12.0  */
+comment|/**  * Supplies an arbitrary "default" instance for a wide range of types, often useful in testing  * utilities.  *  *<p>Covers arrays, enums and common types defined in {@code java.lang}, {@code java.lang.reflect},  * {@code java.io}, {@code java.nio}, {@code java.math}, {@code java.util}, {@code  * java.util.concurrent}, {@code java.util.regex}, {@code com.google.common.base}, {@code  * com.google.common.collect} and {@code com.google.common.primitives}. In addition, if the type  * exposes at least one public static final constant of the same type, one of the constants will be  * used; or if the class exposes a public parameter-less constructor then it will be "new"d and  * returned.  *  *<p>All default instances returned by {@link #get} are generics-safe. Clients won't get type  * errors for using {@code get(Comparator.class)} as a {@code Comparator<Foo>}, for example.  * Immutable empty instances are returned for collection types; {@code ""} for string;  * {@code 0} for number types; reasonable default instance for other stateless types. For mutable  * types, a fresh instance is created each time {@code get()} is called.  *  * @author Kevin Bourrillion  * @author Ben Yu  * @since 12.0  */
 end_comment
 
 begin_class
@@ -3715,12 +3715,6 @@ name|DeterministicRandom
 extends|extends
 name|Random
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-comment|// invoked by reflection
 DECL|method|DeterministicRandom ()
 specifier|public
 name|DeterministicRandom

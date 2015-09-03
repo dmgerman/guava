@@ -1877,20 +1877,17 @@ extends|extends
 name|ReentrantLock
 block|{
 comment|/*      * Padding from 40 into 64 bytes, same size as cache line. Might be beneficial to add      * a fourth long here, to minimize chance of interference between consecutive locks,      * but I couldn't observe any benefit from that.      */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-DECL|field|q1
-DECL|field|q2
-DECL|field|q3
+DECL|field|unused1
 name|long
-name|q1
-decl_stmt|,
-name|q2
-decl_stmt|,
-name|q3
+name|unused1
+decl_stmt|;
+DECL|field|unused2
+name|long
+name|unused2
+decl_stmt|;
+DECL|field|unused3
+name|long
+name|unused3
 decl_stmt|;
 DECL|method|PaddedLock ()
 name|PaddedLock
@@ -1912,20 +1909,17 @@ extends|extends
 name|Semaphore
 block|{
 comment|// See PaddedReentrantLock comment
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-DECL|field|q1
-DECL|field|q2
-DECL|field|q3
+DECL|field|unused1
 name|long
-name|q1
-decl_stmt|,
-name|q2
-decl_stmt|,
-name|q3
+name|unused1
+decl_stmt|;
+DECL|field|unused2
+name|long
+name|unused2
+decl_stmt|;
+DECL|field|unused3
+name|long
+name|unused3
 decl_stmt|;
 DECL|method|PaddedSemaphore (int permits)
 name|PaddedSemaphore

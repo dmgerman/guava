@@ -19278,17 +19278,8 @@ name|segments
 control|)
 block|{
 comment|// ensure visibility of most recent completed write
-annotation|@
-name|SuppressWarnings
-argument_list|(
-block|{
-literal|"UnusedDeclaration"
-block|,
-literal|"unused"
-block|}
-argument_list|)
 name|int
-name|c
+name|unused
 init|=
 name|segment
 operator|.

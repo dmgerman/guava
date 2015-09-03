@@ -724,16 +724,11 @@ name|next
 decl_stmt|;
 comment|// Constructor for the TOMBSTONE, avoids use of ATOMIC_HELPER in case this class is loaded
 comment|// before the ATOMIC_HELPER.  Apparently this is possible on some android platforms.
-DECL|method|Waiter (@uppressWarningsR) boolean ignored)
+DECL|method|Waiter (boolean unused)
 name|Waiter
 parameter_list|(
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|boolean
-name|ignored
+name|unused
 parameter_list|)
 block|{}
 DECL|method|Waiter ()

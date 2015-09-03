@@ -163,11 +163,6 @@ name|ThreadFactoryBuilder
 parameter_list|()
 block|{}
 comment|/**    * Sets the naming format to use when naming threads ({@link Thread#setName})    * which are created with this ThreadFactory.    *    * @param nameFormat a {@link String#format(String, Object...)}-compatible    *     format String, to which a unique integer (0, 1, etc.) will be supplied    *     as the single parameter. This integer will be unique to the built    *     instance of the ThreadFactory and will be assigned sequentially. For    *     example, {@code "rpc-pool-%d"} will generate thread names like    *     {@code "rpc-pool-0"}, {@code "rpc-pool-1"}, {@code "rpc-pool-2"}, etc.    * @return this for the builder pattern    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|setNameFormat (String nameFormat)
 specifier|public
 name|ThreadFactoryBuilder
@@ -177,13 +172,16 @@ name|String
 name|nameFormat
 parameter_list|)
 block|{
+name|String
+name|unused
+init|=
 name|format
 argument_list|(
 name|nameFormat
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// fail fast if the format is bad or null
 name|this
 operator|.

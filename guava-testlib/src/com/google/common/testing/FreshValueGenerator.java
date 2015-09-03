@@ -2299,26 +2299,16 @@ return|;
 block|}
 block|}
 comment|/** Subclasses can override to provide different return value for proxied interface methods. */
-DECL|method|interfaceMethodCalled ( @uppressWarningsR) Class<?> interfaceType, @SuppressWarnings(R) Method method)
+DECL|method|interfaceMethodCalled (Class<?> interfaceType, Method method)
 name|Object
 name|interfaceMethodCalled
 parameter_list|(
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|interfaceType
 parameter_list|,
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|Method
 name|method
 parameter_list|)

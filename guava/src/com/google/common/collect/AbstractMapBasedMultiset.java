@@ -1284,12 +1284,6 @@ name|GwtIncompatible
 argument_list|(
 literal|"java.io.ObjectStreamException"
 argument_list|)
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-comment|// actually used during deserialization
 DECL|method|readObjectNoData ()
 specifier|private
 name|void
