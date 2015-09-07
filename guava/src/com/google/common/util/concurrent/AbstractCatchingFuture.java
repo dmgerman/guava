@@ -136,6 +136,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -765,6 +779,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Template method for subtypes to actually run the fallback. */
+annotation|@
+name|ForOverride
 DECL|method|doFallback (F fallback, X throwable)
 specifier|abstract
 name|void

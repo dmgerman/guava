@@ -2750,6 +2750,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
+comment|// TODO(cpovirk): @ForOverride https://github.com/google/error-prone/issues/342
 DECL|method|done ()
 name|void
 name|done

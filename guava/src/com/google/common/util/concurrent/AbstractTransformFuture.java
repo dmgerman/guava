@@ -118,6 +118,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|ForOverride
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|lang
@@ -687,6 +701,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Template method for subtypes to actually run the transform. */
+annotation|@
+name|ForOverride
 DECL|method|doTransform (F function, I result)
 specifier|abstract
 name|void
