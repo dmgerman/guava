@@ -224,7 +224,7 @@ name|key
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A simplified version of {@link ForwardingLoadingCache} where subclasses can pass in an already    * constructed {@link LoadingCache} as the delegete.    *    * @since 10.0    */
+comment|/**    * A simplified version of {@link ForwardingLoadingCache} where subclasses can pass in an already    * constructed {@link LoadingCache} as the delegate.    *    * @since 10.0    */
 DECL|class|SimpleForwardingLoadingCache
 specifier|public
 specifier|abstract

@@ -430,7 +430,7 @@ name|cleanUp
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * A simplified version of {@link ForwardingCache} where subclasses can pass in an already    * constructed {@link Cache} as the delegete.    *    * @since 10.0    */
+comment|/**    * A simplified version of {@link ForwardingCache} where subclasses can pass in an already    * constructed {@link Cache} as the delegate.    *    * @since 10.0    */
 DECL|class|SimpleForwardingCache
 specifier|public
 specifier|abstract
