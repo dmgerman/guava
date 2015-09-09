@@ -230,6 +230,16 @@ name|HashCode
 name|hash
 parameter_list|()
 function_decl|;
+comment|/**    * {@inheritDoc}    *    * @deprecated This returns {@link Object#hashCode()}; you almost certainly mean to call    *     {@code hash().asInt()}.    */
+annotation|@
+name|Override
+annotation|@
+name|Deprecated
+DECL|method|hashCode ()
+name|int
+name|hashCode
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
