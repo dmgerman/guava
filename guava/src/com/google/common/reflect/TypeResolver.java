@@ -794,6 +794,10 @@ argument_list|(
 literal|"No type mapping from "
 operator|+
 name|fromClass
+operator|+
+literal|" to "
+operator|+
+name|to
 argument_list|)
 throw|;
 block|}
