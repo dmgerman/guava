@@ -1657,9 +1657,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Cannot putAll(nonEmptyRangeMap) into an empty "
-operator|+
-literal|"subRangeMap"
+literal|"Cannot putAll(nonEmptyRangeMap) into an empty subRangeMap"
 argument_list|)
 throw|;
 block|}

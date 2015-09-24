@@ -1050,9 +1050,7 @@ argument_list|)
 operator|.
 name|hasMessage
 argument_list|(
-literal|"expected one element but was: "
-operator|+
-literal|"<one, two, three, four, five>"
+literal|"expected one element but was:<one, two, three, four, five>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1113,9 +1111,7 @@ argument_list|)
 operator|.
 name|hasMessage
 argument_list|(
-literal|"expected one element but was: "
-operator|+
-literal|"<one, two, three, four, five, ...>"
+literal|"expected one element but was:<one, two, three, four, five, ...>"
 argument_list|)
 expr_stmt|;
 block|}
