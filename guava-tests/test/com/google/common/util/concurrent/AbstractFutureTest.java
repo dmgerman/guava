@@ -547,7 +547,8 @@ name|CancellationException
 name|e
 parameter_list|)
 block|{
-name|assertNotNull
+comment|// See AbstractFutureCancellationCauseTest for how to set causes
+name|assertNull
 argument_list|(
 name|e
 operator|.
@@ -632,7 +633,8 @@ name|CancellationException
 name|e
 parameter_list|)
 block|{
-name|assertNotNull
+comment|// See AbstractFutureCancellationCauseTest for how to set causes
+name|assertNull
 argument_list|(
 name|e
 operator|.
@@ -2576,10 +2578,9 @@ name|finalResults
 operator|.
 name|add
 argument_list|(
-name|e
+name|CancellationException
 operator|.
-name|getCause
-argument_list|()
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -2679,10 +2680,9 @@ name|finalResults
 operator|.
 name|add
 argument_list|(
-name|e
+name|CancellationException
 operator|.
-name|getCause
-argument_list|()
+name|class
 argument_list|)
 expr_stmt|;
 break|break;
@@ -2953,8 +2953,10 @@ decl_stmt|;
 if|if
 condition|(
 name|result
-operator|instanceof
+operator|==
 name|CancellationException
+operator|.
+name|class
 condition|)
 block|{
 name|assertTrue
@@ -3333,10 +3335,9 @@ name|finalResults
 operator|.
 name|add
 argument_list|(
-name|e
+name|CancellationException
 operator|.
-name|getCause
-argument_list|()
+name|class
 argument_list|)
 expr_stmt|;
 block|}
@@ -3506,8 +3507,10 @@ decl_stmt|;
 if|if
 condition|(
 name|result
-operator|instanceof
+operator|==
 name|CancellationException
+operator|.
+name|class
 condition|)
 block|{
 name|assertTrue

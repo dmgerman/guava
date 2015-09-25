@@ -300,6 +300,27 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+DECL|field|GENERATE_CANCELLATION_CAUSES
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|GENERATE_CANCELLATION_CAUSES
+init|=
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"guava.concurrent.generate_cancellation_cause"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|/**    * A less abstract subclass of AbstractFuture.  This can be used to optimize setFuture by ensuring    * that {@link #get} calls exactly the implementation of {@link AbstractFuture#get}.    */
 DECL|class|TrustedFuture
 specifier|abstract
@@ -317,6 +338,8 @@ argument_list|>
 block|{
 comment|// N.B. cancel is not overridden to be final, because many future utilities need to override
 comment|// cancel in order to propagate cancellation to other futures.
+comment|// TODO(lukes): with maybePropagateCancellation this is no longer really true.  Track down the
+comment|// final few cases and eliminate their overrides of cancel()
 DECL|method|get ()
 annotation|@
 name|Override
@@ -676,6 +699,11 @@ name|helper
 expr_stmt|;
 comment|// Prevent rare disastrous classloading in first call to LockSupport.park.
 comment|// See: https://bugs.openjdk.java.net/browse/JDK-8074773
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Class
 argument_list|<
 name|?
@@ -1091,16 +1119,20 @@ name|boolean
 name|wasInterrupted
 decl_stmt|;
 DECL|field|cause
+annotation|@
+name|Nullable
 specifier|final
 name|Throwable
 name|cause
 decl_stmt|;
-DECL|method|Cancellation (boolean wasInterrupted, Throwable cause)
+DECL|method|Cancellation (boolean wasInterrupted, @Nullable Throwable cause)
 name|Cancellation
 parameter_list|(
 name|boolean
 name|wasInterrupted
 parameter_list|,
+annotation|@
+name|Nullable
 name|Throwable
 name|cause
 parameter_list|)
@@ -1115,10 +1147,7 @@ name|this
 operator|.
 name|cause
 operator|=
-name|checkNotNull
-argument_list|(
 name|cause
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1935,6 +1964,16 @@ comment|// Try to delay allocating the exception.  At this point we may still lo
 comment|// certainly less likely.
 comment|// TODO(lukes): this exception actually makes cancellation significantly more expensive :(
 comment|// I wonder if we should consider removing it or providing a mechanism to not do it.
+name|Throwable
+name|cause
+init|=
+name|GENERATE_CANCELLATION_CAUSES
+condition|?
+name|newCancellationCause
+argument_list|()
+else|:
+literal|null
+decl_stmt|;
 name|Object
 name|valueToSet
 init|=
@@ -1943,8 +1982,7 @@ name|Cancellation
 argument_list|(
 name|mayInterruptIfRunning
 argument_list|,
-name|newCancellationCause
-argument_list|()
+name|cause
 argument_list|)
 decl_stmt|;
 do|do
@@ -2034,11 +2072,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Returns an exception to be used as the cause of the CancellationException thrown by    * {@link #get}.    *    *<p>Note: this method may be called speculatively.  There is no guarantee that the future will    * be cancelled if this method is called.    *    * @since 19.0    */
-annotation|@
-name|Beta
+comment|/**    * Returns an exception to be used as the cause of the CancellationException thrown by    * {@link #get}.    *    *<p>Note: this method may be called speculatively.  There is no guarantee that the future will    * be cancelled if this method is called.    */
 DECL|method|newCancellationCause ()
-specifier|protected
+specifier|private
 name|Throwable
 name|newCancellationCause
 parameter_list|()
