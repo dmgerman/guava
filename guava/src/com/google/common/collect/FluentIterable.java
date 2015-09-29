@@ -347,6 +347,40 @@ block|}
 block|}
 return|;
 block|}
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
+annotation|@
+name|Beta
+annotation|@
+name|CheckReturnValue
+DECL|method|from (E[] elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|FluentIterable
+argument_list|<
+name|E
+argument_list|>
+name|from
+parameter_list|(
+name|E
+index|[]
+name|elements
+parameter_list|)
+block|{
+return|return
+name|from
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|elements
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Construct a fluent iterable from another fluent iterable. This is obviously never necessary,    * but is intended to help call out cases where one migration from {@code Iterable} to    * {@code FluentIterable} has obviated the need to explicitly convert to a {@code FluentIterable}.    *    * @deprecated instances of {@code FluentIterable} don't need to be converted to    *     {@code FluentIterable}    */
 annotation|@
 name|Deprecated
@@ -378,11 +412,45 @@ name|iterable
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns a fluent iterable containing no elements.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.empty()}.    *    * @since 20.0    */
+annotation|@
+name|Beta
+annotation|@
+name|CheckReturnValue
+DECL|method|of ()
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|FluentIterable
+argument_list|<
+name|E
+argument_list|>
+name|of
+parameter_list|()
+block|{
+return|return
+name|FluentIterable
+operator|.
+name|from
+argument_list|(
+name|ImmutableList
+operator|.
+expr|<
+name|E
+operator|>
+name|of
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 18.0    */
 annotation|@
 name|Beta
 annotation|@
 name|CheckReturnValue
+comment|// TODO(kak): @deprecated Use {@link #from(E[])} instead.
 DECL|method|of (E[] elements)
 specifier|public
 specifier|static
@@ -407,6 +475,47 @@ name|Lists
 operator|.
 name|newArrayList
 argument_list|(
+name|elements
+argument_list|)
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns a fluent iterable containing the specified elements in order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(...)}.    *    * @since 20.0    */
+annotation|@
+name|Beta
+annotation|@
+name|CheckReturnValue
+DECL|method|of (@ullable E element, E... elements)
+specifier|public
+specifier|static
+parameter_list|<
+name|E
+parameter_list|>
+name|FluentIterable
+argument_list|<
+name|E
+argument_list|>
+name|of
+parameter_list|(
+annotation|@
+name|Nullable
+name|E
+name|element
+parameter_list|,
+name|E
+modifier|...
+name|elements
+parameter_list|)
+block|{
+return|return
+name|from
+argument_list|(
+name|Lists
+operator|.
+name|asList
+argument_list|(
+name|element
+argument_list|,
 name|elements
 argument_list|)
 argument_list|)
