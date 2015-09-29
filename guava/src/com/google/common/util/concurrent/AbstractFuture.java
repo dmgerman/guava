@@ -1969,8 +1969,11 @@ name|cause
 init|=
 name|GENERATE_CANCELLATION_CAUSES
 condition|?
-name|newCancellationCause
-argument_list|()
+operator|new
+name|CancellationException
+argument_list|(
+literal|"Future.cancel() was called."
+argument_list|)
 else|:
 literal|null
 decl_stmt|;
@@ -2070,21 +2073,6 @@ do|;
 block|}
 return|return
 literal|false
-return|;
-block|}
-comment|/**    * Returns an exception to be used as the cause of the CancellationException thrown by    * {@link #get}.    *    *<p>Note: this method may be called speculatively.  There is no guarantee that the future will    * be cancelled if this method is called.    */
-DECL|method|newCancellationCause ()
-specifier|private
-name|Throwable
-name|newCancellationCause
-parameter_list|()
-block|{
-return|return
-operator|new
-name|CancellationException
-argument_list|(
-literal|"Future.cancel() was called."
-argument_list|)
 return|;
 block|}
 comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
