@@ -168,24 +168,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|MoreExecutors
-operator|.
-name|newDirectExecutorService
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TestPlatform
 operator|.
 name|clearInterrupt
@@ -2996,11 +2978,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"newDirectExecutorService"
-argument_list|)
 DECL|method|testTransform_rejectionPropagatesToOutput ()
 specifier|public
 name|void
@@ -3020,12 +2997,6 @@ operator|.
 name|create
 argument_list|()
 decl_stmt|;
-name|ExecutorService
-name|executor
-init|=
-name|newDirectExecutorService
-argument_list|()
-decl_stmt|;
 name|ListenableFuture
 argument_list|<
 name|String
@@ -3043,14 +3014,9 @@ operator|.
 name|toStringFunction
 argument_list|()
 argument_list|,
-name|executor
+name|REJECTING_EXECUTOR
 argument_list|)
 decl_stmt|;
-name|executor
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 name|input
 operator|.
 name|set
@@ -7999,11 +7965,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|GwtIncompatible
-argument_list|(
-literal|"newDirectExecutorService"
-argument_list|)
 DECL|method|testCatchingAsync_rejectionPropagatesToOutput ()
 specifier|public
 name|void
@@ -8021,12 +7982,6 @@ init|=
 name|SettableFuture
 operator|.
 name|create
-argument_list|()
-decl_stmt|;
-name|ExecutorService
-name|executor
-init|=
-name|newDirectExecutorService
 argument_list|()
 decl_stmt|;
 name|ListenableFuture
@@ -8050,14 +8005,9 @@ operator|.
 name|toStringFunction
 argument_list|()
 argument_list|,
-name|executor
+name|REJECTING_EXECUTOR
 argument_list|)
 decl_stmt|;
-name|executor
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 name|input
 operator|.
 name|setException
@@ -18781,6 +18731,35 @@ comment|// never complete when timing out.  Notably, nothing would get logged si
 comment|// stuck in the ScheduledFuture inside of TimeoutFuture and nothing ever calls get on it.
 comment|// Simulate a timeout that fires before the call the SES.schedule returns but the future is
 comment|// already completed.
+DECL|field|REJECTING_EXECUTOR
+specifier|private
+specifier|static
+specifier|final
+name|Executor
+name|REJECTING_EXECUTOR
+init|=
+operator|new
+name|Executor
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|execute
+parameter_list|(
+name|Runnable
+name|runnable
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RejectedExecutionException
+argument_list|()
+throw|;
+block|}
+block|}
+decl_stmt|;
 block|}
 end_class
 
