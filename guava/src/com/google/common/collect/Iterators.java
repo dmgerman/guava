@@ -2296,10 +2296,10 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate.    */
+comment|/**    * Returns the elements of {@code unfiltered} that satisfy the input predicate    * {@code retainIfTrue}.    */
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> predicate)
+DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> retainIfTrue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2325,7 +2325,7 @@ name|?
 super|super
 name|T
 argument_list|>
-name|predicate
+name|retainIfTrue
 parameter_list|)
 block|{
 name|checkNotNull
@@ -2335,7 +2335,7 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|predicate
+name|retainIfTrue
 argument_list|)
 expr_stmt|;
 return|return
@@ -2371,7 +2371,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|predicate
+name|retainIfTrue
 operator|.
 name|apply
 argument_list|(
@@ -2392,7 +2392,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns all instances of class {@code type} in {@code unfiltered}. The    * returned iterator has elements whose class is {@code type} or a subclass of    * {@code type}.    *    * @param unfiltered an iterator containing objects of any type    * @param type the type of elements desired    * @return an unmodifiable iterator containing all elements of the original    *     iterator that were of the requested type    */
+comment|/**    * Returns all elements in {@code unfiltered} that are of the type {@code desiredType}.    *    * @param unfiltered an iterator containing objects of any type, to be filtered on    * @param desiredType the type of elements desired in the result iterator    * @return an unmodifiable iterator containing all elements of the original    *     iterator that were of the requested type    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2406,7 +2406,7 @@ literal|"Class.isInstance"
 argument_list|)
 annotation|@
 name|CheckReturnValue
-DECL|method|filter (Iterator<?> unfiltered, Class<T> type)
+DECL|method|filter (Iterator<?> unfiltered, Class<T> desiredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2428,7 +2428,7 @@ name|Class
 argument_list|<
 name|T
 argument_list|>
-name|type
+name|desiredType
 parameter_list|)
 block|{
 return|return
@@ -2444,7 +2444,7 @@ name|unfiltered
 argument_list|,
 name|instanceOf
 argument_list|(
-name|type
+name|desiredType
 argument_list|)
 argument_list|)
 return|;

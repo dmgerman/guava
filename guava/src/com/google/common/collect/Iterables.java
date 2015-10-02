@@ -2219,10 +2219,10 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * resulting iterable's iterator does not support {@code remove()}.    */
+comment|/**    * Returns the elements of {@code unfiltered} that satisfy the input predicate    * {@code retainIfTrue}. The resulting iterable's iterator does not support {@code remove()}.    */
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( final Iterable<T> unfiltered, final Predicate<? super T> predicate)
+DECL|method|filter ( final Iterable<T> unfiltered, final Predicate<? super T> retainIfTrue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2248,7 +2248,7 @@ name|?
 super|super
 name|T
 argument_list|>
-name|predicate
+name|retainIfTrue
 parameter_list|)
 block|{
 name|checkNotNull
@@ -2258,7 +2258,7 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|predicate
+name|retainIfTrue
 argument_list|)
 expr_stmt|;
 return|return
@@ -2289,14 +2289,14 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|,
-name|predicate
+name|retainIfTrue
 argument_list|)
 return|;
 block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns all instances of class {@code type} in {@code unfiltered}. The    * returned iterable has elements whose class is {@code type} or a subclass of    * {@code type}. The returned iterable's iterator does not support    * {@code remove()}.    *    * @param unfiltered an iterable containing objects of any type    * @param type the type of elements desired    * @return an unmodifiable iterable containing all elements of the original    *     iterable that were of the requested type    */
+comment|/**    * Returns all elements in {@code unfiltered} that are of the type {@code desiredType}.    * The returned iterable's iterator does not support {@code remove()}.    *    * @param unfiltered an iterable containing objects of any type, to be filtered on    * @param desiredType the type of elements desired in the result iterable    * @return an unmodifiable iterable containing all elements of the original    *     iterable that were of the requested type    */
 annotation|@
 name|GwtIncompatible
 argument_list|(
@@ -2304,7 +2304,7 @@ literal|"Class.isInstance"
 argument_list|)
 annotation|@
 name|CheckReturnValue
-DECL|method|filter (final Iterable<?> unfiltered, final Class<T> type)
+DECL|method|filter (final Iterable<?> unfiltered, final Class<T> desiredType)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2328,7 +2328,7 @@ name|Class
 argument_list|<
 name|T
 argument_list|>
-name|type
+name|desiredType
 parameter_list|)
 block|{
 name|checkNotNull
@@ -2338,7 +2338,7 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|type
+name|desiredType
 argument_list|)
 expr_stmt|;
 return|return
@@ -2369,7 +2369,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|,
-name|type
+name|desiredType
 argument_list|)
 return|;
 block|}

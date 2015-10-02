@@ -2211,10 +2211,10 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate.    */
+comment|/**    * Returns the elements of {@code unfiltered} that satisfy the input predicate    * {@code retainIfTrue}.    */
 annotation|@
 name|CheckReturnValue
-DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> predicate)
+DECL|method|filter ( final Iterator<T> unfiltered, final Predicate<? super T> retainIfTrue)
 specifier|public
 specifier|static
 parameter_list|<
@@ -2240,7 +2240,7 @@ name|?
 super|super
 name|T
 argument_list|>
-name|predicate
+name|retainIfTrue
 parameter_list|)
 block|{
 name|checkNotNull
@@ -2250,7 +2250,7 @@ argument_list|)
 expr_stmt|;
 name|checkNotNull
 argument_list|(
-name|predicate
+name|retainIfTrue
 argument_list|)
 expr_stmt|;
 return|return
@@ -2286,7 +2286,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|predicate
+name|retainIfTrue
 operator|.
 name|apply
 argument_list|(
