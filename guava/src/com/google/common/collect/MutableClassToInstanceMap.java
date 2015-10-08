@@ -50,6 +50,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashMap
@@ -71,6 +81,12 @@ comment|/**  * A mutable class-to-instance map backed by an arbitrary user-provi
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"serial"
+argument_list|)
+comment|// using writeReplace instead of standard serialization
 DECL|class|MutableClassToInstanceMap
 specifier|public
 specifier|final
@@ -96,6 +112,8 @@ name|ClassToInstanceMap
 argument_list|<
 name|B
 argument_list|>
+implements|,
+name|Serializable
 block|{
 comment|/**    * Returns a new {@code MutableClassToInstanceMap} instance backed by a {@link    * HashMap} using the default initial capacity and load factor.    */
 DECL|method|create ()
@@ -355,6 +373,86 @@ name|value
 argument_list|)
 return|;
 block|}
+DECL|method|writeReplace ()
+specifier|private
+name|Object
+name|writeReplace
+parameter_list|()
+block|{
+return|return
+operator|new
+name|SerializedForm
+argument_list|(
+name|delegate
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**    * Serialized form of the map, to avoid serializing the constraint.    */
+DECL|class|SerializedForm
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|SerializedForm
+parameter_list|<
+name|B
+parameter_list|>
+implements|implements
+name|Serializable
+block|{
+DECL|field|backingMap
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+argument_list|,
+name|B
+argument_list|>
+name|backingMap
+decl_stmt|;
+DECL|method|SerializedForm (Map<Class<? extends B>, B> backingMap)
+name|SerializedForm
+parameter_list|(
+name|Map
+argument_list|<
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|B
+argument_list|>
+argument_list|,
+name|B
+argument_list|>
+name|backingMap
+parameter_list|)
+block|{
+name|this
+operator|.
+name|backingMap
+operator|=
+name|backingMap
+expr_stmt|;
+block|}
+DECL|method|readResolve ()
+name|Object
+name|readResolve
+parameter_list|()
+block|{
+return|return
+name|create
+argument_list|(
+name|backingMap
+argument_list|)
+return|;
+block|}
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -364,6 +462,7 @@ name|serialVersionUID
 init|=
 literal|0
 decl_stmt|;
+block|}
 block|}
 end_class
 
