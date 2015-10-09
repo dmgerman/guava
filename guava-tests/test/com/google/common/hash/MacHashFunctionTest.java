@@ -530,6 +530,9 @@ name|SuppressWarnings
 argument_list|(
 literal|"CheckReturnValue"
 argument_list|)
+annotation|@
+name|SuppressUnderAndroid
+comment|// sun.security
 DECL|method|testNoProviders ()
 specifier|public
 name|void
@@ -938,6 +941,14 @@ name|IllegalArgumentException
 name|expected
 parameter_list|)
 block|{     }
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|toleratedOnAndroid
+parameter_list|)
+block|{
+comment|// TODO(cpovirk): In an ideal world, we'd check here that we're running on Android.
+block|}
 block|}
 DECL|method|testEmptyInputs ()
 specifier|public
