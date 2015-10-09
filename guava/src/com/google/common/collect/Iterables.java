@@ -670,7 +670,7 @@ name|elementsToRetain
 argument_list|)
 return|;
 block|}
-comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2.0    */
+comment|/**    * Removes, from an iterable, every element that satisfies the provided    * predicate.    *    *<p>Removals may or may not happen immediately as each element is tested    * against the predicate.  The behavior of this method is not specified if    * {@code predicate} is dependent on {@code removeFrom}.    *    * @param removeFrom the iterable to (potentially) remove elements from    * @param predicate a predicate that determines whether an element should    *     be removed    * @return {@code true} if any elements were removed from the iterable    *    * @throws UnsupportedOperationException if the iterable does not support    *     {@code remove()}.    * @since 2.0    */
 DECL|method|removeIf (Iterable<T> removeFrom, Predicate<? super T> predicate)
 specifier|public
 specifier|static
