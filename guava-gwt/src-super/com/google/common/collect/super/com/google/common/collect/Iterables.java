@@ -1266,7 +1266,7 @@ name|T
 argument_list|>
 name|collection
 init|=
-name|toCollection
+name|castOrCopyToCollection
 argument_list|(
 name|iterable
 argument_list|)
@@ -1295,7 +1295,7 @@ name|iterable
 parameter_list|)
 block|{
 return|return
-name|toCollection
+name|castOrCopyToCollection
 argument_list|(
 name|iterable
 argument_list|)
@@ -1305,7 +1305,7 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Converts an iterable into a collection. If the iterable is already a    * collection, it is returned. Otherwise, an {@link java.util.ArrayList} is    * created with the contents of the iterable in the same iteration order.    */
-DECL|method|toCollection (Iterable<E> iterable)
+DECL|method|castOrCopyToCollection (Iterable<E> iterable)
 specifier|private
 specifier|static
 parameter_list|<
@@ -1315,7 +1315,7 @@ name|Collection
 argument_list|<
 name|E
 argument_list|>
-name|toCollection
+name|castOrCopyToCollection
 parameter_list|(
 name|Iterable
 argument_list|<
