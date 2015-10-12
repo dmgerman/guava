@@ -12049,14 +12049,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-name|count
-operator|!=
-literal|0
-condition|)
-block|{
-comment|// read-volatile
 name|long
 name|now
 init|=
@@ -12145,7 +12137,6 @@ block|}
 name|tryDrainReferenceQueues
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 literal|null
 return|;
@@ -12170,14 +12161,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-name|count
-operator|!=
-literal|0
-condition|)
-block|{
-comment|// read-volatile
 name|long
 name|now
 init|=
@@ -12228,10 +12211,6 @@ operator|!=
 literal|null
 return|;
 block|}
-return|return
-literal|false
-return|;
-block|}
 finally|finally
 block|{
 name|postReadCleanup
@@ -12252,14 +12231,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-name|count
-operator|!=
-literal|0
-condition|)
-block|{
-comment|// read-volatile
 name|long
 name|now
 init|=
@@ -12373,7 +12344,6 @@ block|{
 return|return
 literal|true
 return|;
-block|}
 block|}
 block|}
 block|}

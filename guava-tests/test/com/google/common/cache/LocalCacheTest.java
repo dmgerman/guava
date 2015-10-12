@@ -7964,7 +7964,7 @@ name|hash
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// count == 0
+comment|// count == 1
 name|table
 operator|.
 name|set
@@ -7974,41 +7974,6 @@ argument_list|,
 name|entry
 argument_list|)
 expr_stmt|;
-name|assertNull
-argument_list|(
-name|segment
-operator|.
-name|get
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-name|segment
-operator|.
-name|containsKey
-argument_list|(
-name|key
-argument_list|,
-name|hash
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-name|segment
-operator|.
-name|containsValue
-argument_list|(
-name|value
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// count == 1
 name|segment
 operator|.
 name|count
