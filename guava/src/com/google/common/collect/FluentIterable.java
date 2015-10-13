@@ -347,7 +347,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is an unmodifiable view of the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 20.0 (since 18.0 as an overload of {@code of})    */
 annotation|@
 name|Beta
 annotation|@
@@ -445,7 +445,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 18.0    */
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 18.0    */
 annotation|@
 name|Beta
 annotation|@
