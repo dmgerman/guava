@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2007 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -340,9 +340,9 @@ comment|// N.B. cancel is not overridden to be final, because many future utilit
 comment|// cancel in order to propagate cancellation to other futures.
 comment|// TODO(lukes): with maybePropagateCancellation this is no longer really true.  Track down the
 comment|// final few cases and eliminate their overrides of cancel()
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 specifier|final
 name|V
@@ -360,9 +360,9 @@ name|get
 argument_list|()
 return|;
 block|}
-DECL|method|get (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|get (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 name|V
@@ -392,9 +392,9 @@ name|unit
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isDone ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|boolean
@@ -408,9 +408,9 @@ name|isDone
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|isCancelled ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|boolean
@@ -424,9 +424,9 @@ name|isCancelled
 argument_list|()
 return|;
 block|}
-DECL|method|addListener (Runnable listener, Executor executor)
 annotation|@
 name|Override
+DECL|method|addListener (Runnable listener, Executor executor)
 specifier|public
 specifier|final
 name|void
@@ -750,8 +750,7 @@ specifier|volatile
 name|Waiter
 name|next
 decl_stmt|;
-comment|// Constructor for the TOMBSTONE, avoids use of ATOMIC_HELPER in case this class is loaded
-comment|// before the ATOMIC_HELPER.  Apparently this is possible on some android platforms.
+comment|/**      * Constructor for the TOMBSTONE, avoids use of ATOMIC_HELPER in case this class is loaded      * before the ATOMIC_HELPER. Apparently this is possible on some android platforms.      */
 DECL|method|Waiter (boolean unused)
 name|Waiter
 parameter_list|(
@@ -1189,9 +1188,9 @@ operator|=
 name|future
 expr_stmt|;
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -1245,7 +1244,6 @@ specifier|protected
 name|AbstractFuture
 parameter_list|()
 block|{}
-comment|/*    * Improve the documentation of when InterruptedException is thrown. Our    * behavior matches the JDK's, but the JDK's documentation is misleading.    */
 comment|// Gets and Timed Gets
 comment|//
 comment|// * Be responsive to interruption
@@ -1268,7 +1266,8 @@ comment|//   completion preferably and AQS is non-deterministic (depends on wher
 comment|//   is).  If we wanted to be strict about it, we could store the unpark() time in the Waiter
 comment|//   node and we could use that to make a decision about whether or not we timed out prior to
 comment|//   being unparked.
-comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code    * InterruptedException} if the current thread is interrupted before or during    * the call, even if the value is already available.    *    * @throws InterruptedException if the current thread was interrupted before    *     or during the call (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
+comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
+comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
 name|Override
 DECL|method|get (long timeout, TimeUnit unit)
@@ -1599,11 +1598,11 @@ name|TimeoutException
 argument_list|()
 throw|;
 block|}
-comment|/*    * Improve the documentation of when InterruptedException is thrown. Our    * behavior matches the JDK's, but the JDK's documentation is misleading.    */
-comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code    * InterruptedException} if the current thread is interrupted before or during    * the call, even if the value is already available.    *    * @throws InterruptedException if the current thread was interrupted before    *     or during the call (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
-DECL|method|get ()
+comment|/*    * Improve the documentation of when InterruptedException is thrown. Our behavior matches the    * JDK's, but the JDK's documentation is misleading.    */
+comment|/**    * {@inheritDoc}    *    *<p>The default {@link AbstractFuture} implementation throws {@code InterruptedException} if the    * current thread is interrupted before or during the call, even if the value is already    * available.    *    * @throws InterruptedException if the current thread was interrupted before or during the call    *     (optional but recommended).    * @throws CancellationException {@inheritDoc}    */
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|V
 name|get
@@ -2075,14 +2074,14 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Subclasses can override this method to implement interruption of the    * future's computation. The method is invoked automatically by a successful    * call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
+comment|/**    * Subclasses can override this method to implement interruption of the future's computation. The    * method is invoked automatically by a successful call to {@link #cancel(boolean) cancel(true)}.    *    *<p>The default implementation does nothing.    *    * @since 10.0    */
 DECL|method|interruptTask ()
 specifier|protected
 name|void
 name|interruptTask
 parameter_list|()
-block|{   }
-comment|/**    * Returns true if this future was cancelled with {@code    * mayInterruptIfRunning} set to {@code true}.    *    * @since 14.0    */
+block|{}
+comment|/**    * Returns true if this future was cancelled with {@code mayInterruptIfRunning} set to {@code    * true}.    *    * @since 14.0    */
 DECL|method|wasInterrupted ()
 specifier|protected
 specifier|final
@@ -2313,9 +2312,9 @@ literal|false
 return|;
 block|}
 comment|/**    * Sets the result of this {@code Future} to match the supplied input {@code Future} once the    * supplied {@code Future} is done, unless this {@code Future} has already been cancelled or set    * (including "set asynchronously," defined below).    *    *<p>If the supplied future is {@linkplain #isDone done} when this method is called and the call    * is accepted, then this future is guaranteed to have been completed with the supplied future by    * the time this method returns. If the supplied future is not done and the call is accepted, then    * the future will be<i>set asynchronously</i>. Note that such a result, though not yet known,    * cannot by overridden by a call to a {@code set*} method, only by a call to {@link #cancel}.    *    *<p>If the call {@code setFuture(delegate)} is accepted and this {@code Future} is later    * cancelled, cancellation will be propagated to {@code delegate}. Additionally, any call to    * {@code setFuture} after any cancellation will propagate cancellation to the supplied {@code    * Future}.    *    * @param future the future to delegate to    * @return true if the attempt was accepted, indicating that the {@code Future} was not previously    *     cancelled or set.    * @since 19.0    */
-DECL|method|setFuture (ListenableFuture<? extends V> future)
 annotation|@
 name|Beta
+DECL|method|setFuture (ListenableFuture<? extends V> future)
 specifier|protected
 name|boolean
 name|setFuture
@@ -3591,9 +3590,9 @@ name|SafeAtomicHelper
 extends|extends
 name|AtomicHelper
 block|{
-DECL|method|putThread (Waiter waiter, Thread thread)
 annotation|@
 name|Override
+DECL|method|putThread (Waiter waiter, Thread thread)
 name|void
 name|putThread
 parameter_list|(
@@ -3614,9 +3613,9 @@ name|thread
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|putNext (Waiter waiter, Waiter next)
 annotation|@
 name|Override
+DECL|method|putNext (Waiter waiter, Waiter next)
 name|void
 name|putNext
 parameter_list|(
@@ -3637,9 +3636,9 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|casWaiters (AbstractFuture future, Waiter curr, Waiter next)
 annotation|@
 name|Override
+DECL|method|casWaiters (AbstractFuture future, Waiter curr, Waiter next)
 name|boolean
 name|casWaiters
 parameter_list|(
@@ -3666,9 +3665,9 @@ name|next
 argument_list|)
 return|;
 block|}
-DECL|method|casListeners (AbstractFuture future, Listener curr, Listener next)
 annotation|@
 name|Override
+DECL|method|casListeners (AbstractFuture future, Listener curr, Listener next)
 name|boolean
 name|casListeners
 parameter_list|(
@@ -3695,9 +3694,9 @@ name|next
 argument_list|)
 return|;
 block|}
-DECL|method|casValue (AbstractFuture future, Object expected, Object v)
 annotation|@
 name|Override
+DECL|method|casValue (AbstractFuture future, Object expected, Object v)
 name|boolean
 name|casValue
 parameter_list|(

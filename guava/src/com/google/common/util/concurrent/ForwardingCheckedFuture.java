@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -71,7 +71,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A future which forwards all its method calls to another future. Subclasses  * should override one or more methods to modify the behavior of the backing   * future as desired per the<a href=  * "http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can simply extend {@link SimpleForwardingCheckedFuture}.  *   * @param<V> The result type returned by this Future's {@code get} method  * @param<X> The type of the Exception thrown by the Future's   *            {@code checkedGet} method  *  * @author Anthony Zana  * @since 9.0  */
+comment|/**  * A future which forwards all its method calls to another future. Subclasses should override one or  * more methods to modify the behavior of the backing future as desired per the<a href=  * "http://en.wikipedia.org/wiki/Decorator_pattern">decorator pattern</a>.  *  *<p>Most subclasses can simply extend {@link SimpleForwardingCheckedFuture}.  *  * @param<V> The result type returned by this Future's {@code get} method  * @param<X> The type of the Exception thrown by the Future's {@code checkedGet} method  *  * @author Anthony Zana  * @since 9.0  */
 end_comment
 
 begin_class
@@ -165,7 +165,7 @@ name|delegate
 parameter_list|()
 function_decl|;
 comment|// TODO(cpovirk): Use Standard Javadoc form for SimpleForwarding*
-comment|/**    * A simplified version of {@link ForwardingCheckedFuture} where subclasses    * can pass in an already constructed {@link CheckedFuture} as the delegate.    *     * @since 9.0    */
+comment|/**    * A simplified version of {@link ForwardingCheckedFuture} where subclasses can pass in an already    * constructed {@link CheckedFuture} as the delegate.    *    * @since 9.0    */
 annotation|@
 name|Beta
 DECL|class|SimpleForwardingCheckedFuture

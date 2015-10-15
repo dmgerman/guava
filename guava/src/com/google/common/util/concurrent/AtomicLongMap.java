@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty},  * {@link #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p><b>Note:</b> If your values are always positive and less than 2^31, you may wish to use a  * {@link com.google.common.collect.Multiset} such as  * {@link com.google.common.collect.ConcurrentHashMultiset} instead.  *  *<b>Warning:</b> Unlike {@code Multiset}, entries whose values are zero are not automatically  * removed from the map. Instead they must be removed manually with {@link #removeAllZeros}.  *  * @author Charles Fry  * @since 11.0  */
+comment|/**  * A map containing {@code long} values that can be atomically updated. While writes to a  * traditional {@code Map} rely on {@code put(K, V)}, the typical mechanism for writing to this map  * is {@code addAndGet(K, long)}, which adds a {@code long} to the value currently associated with  * {@code K}. If a key has not yet been associated with a value, its implicit value is zero.  *  *<p>Most methods in this class treat absent values and zero values identically, as individually  * documented. Exceptions to this are {@link #containsKey}, {@link #size}, {@link #isEmpty}, {@link  * #asMap}, and {@link #toString}.  *  *<p>Instances of this class may be used by multiple threads concurrently. All operations are  * atomic unless otherwise noted.  *  *<p><b>Note:</b> If your values are always positive and less than 2^31, you may wish to use a  * {@link com.google.common.collect.Multiset} such as {@link  * com.google.common.collect.ConcurrentHashMultiset} instead.  *  *<b>Warning:</b> Unlike {@code Multiset}, entries whose values are zero are not automatically  * removed from the map. Instead they must be removed manually with {@link #removeAllZeros}.  *  * @author Charles Fry  * @since 11.0  */
 end_comment
 
 begin_class
@@ -347,11 +347,10 @@ parameter_list|)
 block|{
 name|outer
 label|:
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|AtomicLong
 name|atomic
@@ -398,11 +397,10 @@ return|;
 block|}
 comment|// atomic is now non-null; fall through
 block|}
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|long
 name|oldValue
@@ -528,11 +526,10 @@ parameter_list|)
 block|{
 name|outer
 label|:
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|AtomicLong
 name|atomic
@@ -579,11 +576,10 @@ return|;
 block|}
 comment|// atomic is now non-null; fall through
 block|}
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|long
 name|oldValue
@@ -670,11 +666,10 @@ parameter_list|)
 block|{
 name|outer
 label|:
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|AtomicLong
 name|atomic
@@ -721,11 +716,10 @@ return|;
 block|}
 comment|// atomic is now non-null; fall through
 block|}
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|long
 name|oldValue
@@ -846,7 +840,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Removes and returns the value associated with {@code key}. If {@code key} is not    * in the map, this method has no effect and returns zero.    */
+comment|/**    * Removes and returns the value associated with {@code key}. If {@code key} is not in the map,    * this method has no effect and returns zero.    */
 DECL|method|remove (K key)
 specifier|public
 name|long
@@ -877,11 +871,10 @@ return|return
 literal|0L
 return|;
 block|}
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|long
 name|oldValue
@@ -924,7 +917,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**    * Removes all mappings from this map whose values are zero.    *    *<p>This method is not atomic: the map may be visible in intermediate states, where some    * of the zero values have been removed and others have not.    */
+comment|/**    * Removes all mappings from this map whose values are zero.    *    *<p>This method is not atomic: the map may be visible in intermediate states, where some of the    * zero values have been removed and others have not.    */
 DECL|method|removeAllZeros ()
 specifier|public
 name|void
@@ -1162,7 +1155,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the number of key-value mappings in this map. If the map contains more than    * {@code Integer.MAX_VALUE} elements, returns {@code Integer.MAX_VALUE}.    */
+comment|/**    * Returns the number of key-value mappings in this map. If the map contains more than {@code    * Integer.MAX_VALUE} elements, returns {@code Integer.MAX_VALUE}.    */
 DECL|method|size ()
 specifier|public
 name|int
@@ -1219,7 +1212,7 @@ argument_list|()
 return|;
 block|}
 comment|/*    * ConcurrentMap operations which we may eventually add.    *    * The problem with these is that remove(K, long) has to be done in two phases by definition ---    * first decrementing to zero, and then removing. putIfAbsent or replace could observe the    * intermediate zero-state. Ways we could deal with this are:    *    * - Don't define any of the ConcurrentMap operations. This is the current state of affairs.    *    * - Define putIfAbsent and replace as treating zero and absent identically (as currently    *   implemented below). This is a bit surprising with putIfAbsent, which really becomes    *   putIfZero.    *    * - Allow putIfAbsent and replace to distinguish between zero and absent, but don't implement    *   remove(K, long). Without any two-phase operations it becomes feasible for all remaining    *   operations to distinguish between zero and absent. If we do this, then perhaps we should add    *   replace(key, long).    *    * - Introduce a special-value private static final AtomicLong that would have the meaning of    *   removal-in-progress, and rework all operations to properly distinguish between zero and    *   absent.    */
-comment|/**    * If {@code key} is not already associated with a value or if {@code key} is associated with    * zero, associate it with {@code newValue}. Returns the previous value associated with    * {@code key}, or zero if there was no mapping for {@code key}.    */
+comment|/**    * If {@code key} is not already associated with a value or if {@code key} is associated with    * zero, associate it with {@code newValue}. Returns the previous value associated with {@code    * key}, or zero if there was no mapping for {@code key}.    */
 DECL|method|putIfAbsent (K key, long newValue)
 name|long
 name|putIfAbsent
@@ -1231,11 +1224,10 @@ name|long
 name|newValue
 parameter_list|)
 block|{
-for|for
-control|(
-init|;
-condition|;
-control|)
+while|while
+condition|(
+literal|true
+condition|)
 block|{
 name|AtomicLong
 name|atomic
@@ -1328,7 +1320,7 @@ name|oldValue
 return|;
 block|}
 block|}
-comment|/**    * If {@code (key, expectedOldValue)} is currently in the map, this method replaces    * {@code expectedOldValue} with {@code newValue} and returns true; otherwise, this method    * returns false.    *    *<p>If {@code expectedOldValue} is zero, this method will succeed if {@code (key, zero)}    * is currently in the map, or if {@code key} is not in the map at all.    */
+comment|/**    * If {@code (key, expectedOldValue)} is currently in the map, this method replaces {@code    * expectedOldValue} with {@code newValue} and returns true; otherwise, this method returns false.    *    *<p>If {@code expectedOldValue} is zero, this method will succeed if {@code (key, zero)} is    * currently in the map, or if {@code key} is not in the map at all.    */
 DECL|method|replace (K key, long expectedOldValue, long newValue)
 name|boolean
 name|replace
@@ -1393,7 +1385,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * If {@code (key, value)} is currently in the map, this method removes it and returns    * true; otherwise, this method returns false.    */
+comment|/**    * If {@code (key, value)} is currently in the map, this method removes it and returns true;    * otherwise, this method returns false.    */
 DECL|method|remove (K key, long value)
 name|boolean
 name|remove

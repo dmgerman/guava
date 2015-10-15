@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -175,6 +175,7 @@ argument_list|,
 literal|"seenExceptions"
 argument_list|)
 decl_stmt|;
+DECL|field|REMAINING_COUNT_UPDATER
 specifier|private
 specifier|static
 specifier|final
@@ -182,7 +183,6 @@ name|AtomicIntegerFieldUpdater
 argument_list|<
 name|AggregateFutureState
 argument_list|>
-DECL|field|REMAINING_COUNT_UPDATER
 name|REMAINING_COUNT_UPDATER
 init|=
 name|newUpdater
@@ -207,12 +207,12 @@ name|seenExceptions
 init|=
 literal|null
 decl_stmt|;
-DECL|field|remaining
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unused"
 argument_list|)
+DECL|field|remaining
 specifier|private
 specifier|volatile
 name|int

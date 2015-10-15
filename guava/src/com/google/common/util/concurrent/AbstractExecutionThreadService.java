@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -107,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and  * {@link #shutDown} methods. This class uses a single thread to execute the  * service; consider {@link AbstractService} if you would like to manage any  * threading manually.  *  * @author Jesse Wilson  * @since 1.0  */
+comment|/**  * Base class for services that can implement {@link #startUp}, {@link #run} and {@link #shutDown}  * methods. This class uses a single thread to execute the service; consider {@link AbstractService}  * if you would like to manage any threading manually.  *  * @author Jesse Wilson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -214,8 +214,8 @@ expr_stmt|;
 name|notifyStarted
 argument_list|()
 expr_stmt|;
-comment|// If stopAsync() is called while starting we may be in the STOPPING state in which
-comment|// case we should skip right down to shutdown.
+comment|// If stopAsync() is called while starting we may be in the STOPPING state in
+comment|// which case we should skip right down to shutdown.
 if|if
 condition|(
 name|isRunning
@@ -250,8 +250,9 @@ name|Exception
 name|ignored
 parameter_list|)
 block|{
-comment|// TODO(lukes): if guava ever moves to java7, this would be a good candidate for
-comment|// a suppressed exception, or maybe we could generalize Closer.Suppressor
+comment|// TODO(lukes): if guava ever moves to java7, this would be a good
+comment|// candidate for a suppressed exception, or maybe we could generalize
+comment|// Closer.Suppressor
 name|logger
 operator|.
 name|log
@@ -335,7 +336,7 @@ specifier|protected
 name|AbstractExecutionThreadService
 parameter_list|()
 block|{}
-comment|/**    * Start the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
+comment|/**    * Start the service. This method is invoked on the execution thread.    *    *<p>By default this method does nothing.    */
 DECL|method|startUp ()
 specifier|protected
 name|void
@@ -344,7 +345,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Run the service. This method is invoked on the execution thread.    * Implementations must respond to stop requests. You could poll for lifecycle    * changes in a work loop:    *<pre>    *   public void run() {    *     while ({@link #isRunning()}) {    *       // perform a unit of work    *     }    *   }    *</pre>    * ...or you could respond to stop requests by implementing {@link    * #triggerShutdown()}, which should cause {@link #run()} to return.    */
+comment|/**    * Run the service. This method is invoked on the execution thread. Implementations must respond    * to stop requests. You could poll for lifecycle changes in a work loop:    *    *<pre>    *   public void run() {    *     while ({@link #isRunning()}) {    *       // perform a unit of work    *     }    *   }    *</pre>    *    *<p>...or you could respond to stop requests by implementing {@link #triggerShutdown()}, which    * should cause {@link #run()} to return.    */
 DECL|method|run ()
 specifier|protected
 specifier|abstract
@@ -354,7 +355,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Stop the service. This method is invoked on the execution thread.    *     *<p>By default this method does nothing.    */
+comment|/**    * Stop the service. This method is invoked on the execution thread.    *    *<p>By default this method does nothing.    */
 comment|// TODO: consider supporting a TearDownTestCase-like API
 DECL|method|shutDown ()
 specifier|protected
@@ -364,14 +365,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{}
-comment|/**    * Invoked to request the service to stop.    *     *<p>By default this method does nothing.    */
+comment|/**    * Invoked to request the service to stop.    *    *<p>By default this method does nothing.    */
 DECL|method|triggerShutdown ()
 specifier|protected
 name|void
 name|triggerShutdown
 parameter_list|()
 block|{}
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started, and should return    * promptly.    *     *<p>The default implementation returns a new {@link Executor} that sets the     * name of its threads to the string returned by {@link #serviceName}    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service. Subclasses may override    * this method to use a custom {@link Executor}, which may configure its worker thread with a    * specific name, thread group or priority. The returned executor's {@link    * Executor#execute(Runnable) execute()} method is called when this service is started, and should    * return promptly.    *    *<p>The default implementation returns a new {@link Executor} that sets the name of its threads    * to the string returned by {@link #serviceName}    */
 DECL|method|executor ()
 specifier|protected
 name|Executor
@@ -410,9 +411,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -430,9 +431,9 @@ operator|+
 literal|"]"
 return|;
 block|}
-DECL|method|isRunning ()
 annotation|@
 name|Override
+DECL|method|isRunning ()
 specifier|public
 specifier|final
 name|boolean
@@ -446,9 +447,9 @@ name|isRunning
 argument_list|()
 return|;
 block|}
-DECL|method|state ()
 annotation|@
 name|Override
+DECL|method|state ()
 specifier|public
 specifier|final
 name|State
@@ -463,9 +464,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * @since 13.0    */
-DECL|method|addListener (Listener listener, Executor executor)
 annotation|@
 name|Override
+DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
 specifier|final
 name|void
@@ -489,9 +490,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @since 14.0    */
-DECL|method|failureCause ()
 annotation|@
 name|Override
+DECL|method|failureCause ()
 specifier|public
 specifier|final
 name|Throwable
@@ -506,9 +507,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|Override
 DECL|method|startAsync ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|Service
@@ -525,9 +526,9 @@ name|this
 return|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|Override
 DECL|method|stopAsync ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|Service
@@ -544,9 +545,9 @@ name|this
 return|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|Override
 DECL|method|awaitRunning ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|void
@@ -560,9 +561,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|Override
 DECL|method|awaitRunning (long timeout, TimeUnit unit)
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|void
@@ -588,9 +589,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @since 15.0    */
-DECL|method|awaitTerminated ()
 annotation|@
 name|Override
+DECL|method|awaitTerminated ()
 specifier|public
 specifier|final
 name|void
@@ -604,9 +605,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * @since 15.0    */
-DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 name|void
@@ -631,7 +632,7 @@ name|unit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService}    * may include the name in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 14.0 (present in 10.0 as getServiceName)    */
+comment|/**    * Returns the name of this service. {@link AbstractExecutionThreadService} may include the name    * in debugging output.    *    *<p>Subclasses may override this method.    *    * @since 14.0 (present in 10.0 as getServiceName)    */
 DECL|method|serviceName ()
 specifier|protected
 name|String

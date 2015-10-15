@@ -449,7 +449,7 @@ parameter_list|(
 name|PotentialDeadlockException
 name|e
 parameter_list|)
-block|{       }
+block|{}
 block|}
 block|;   }
 comment|/**    * Creates a new factory with the specified policy.    */
@@ -549,7 +549,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a {@link ReentrantReadWriteLock} with the given fairness policy.    * The {@code lockName} is used in the warning or exception output to help    * identify the locks involved in the detected deadlock.    */
-DECL|method|newReentrantReadWriteLock ( String lockName, boolean fair)
+DECL|method|newReentrantReadWriteLock (String lockName, boolean fair)
 specifier|public
 name|ReentrantReadWriteLock
 name|newReentrantReadWriteLock
@@ -600,7 +600,6 @@ extends|extends
 name|Enum
 argument_list|>
 argument_list|,
-DECL|field|lockGraphNodesPerType
 name|Map
 argument_list|<
 name|?
@@ -610,6 +609,7 @@ argument_list|,
 name|LockGraphNode
 argument_list|>
 argument_list|>
+DECL|field|lockGraphNodesPerType
 name|lockGraphNodesPerType
 init|=
 operator|new
@@ -623,6 +623,7 @@ name|makeMap
 argument_list|()
 decl_stmt|;
 comment|/**    * Creates a {@code CycleDetectingLockFactory.WithExplicitOrdering<E>}.    */
+DECL|method|newInstanceWithExplicitOrdering ( Class<E> enumClass, Policy policy)
 specifier|public
 specifier|static
 parameter_list|<
@@ -637,7 +638,6 @@ name|WithExplicitOrdering
 argument_list|<
 name|E
 argument_list|>
-DECL|method|newInstanceWithExplicitOrdering (Class<E> enumClass, Policy policy)
 name|newInstanceWithExplicitOrdering
 parameter_list|(
 name|Class
@@ -701,7 +701,7 @@ name|lockGraphNodes
 argument_list|)
 return|;
 block|}
-DECL|method|getOrCreateNodes ( Class<? extends Enum> clazz)
+DECL|method|getOrCreateNodes (Class<? extends Enum> clazz)
 specifier|private
 specifier|static
 name|Map
@@ -1056,7 +1056,7 @@ name|lockGraphNodes
 decl_stmt|;
 annotation|@
 name|VisibleForTesting
-DECL|method|WithExplicitOrdering ( Policy policy, Map<E, LockGraphNode> lockGraphNodes)
+DECL|method|WithExplicitOrdering (Policy policy, Map<E, LockGraphNode> lockGraphNodes)
 name|WithExplicitOrdering
 parameter_list|(
 name|Policy
@@ -1162,7 +1162,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Creates a {@link ReentrantReadWriteLock} with the given fairness policy      * and rank. The values returned by {@link Enum#getDeclaringClass()} and      * {@link Enum#name()} are used to describe the lock in warning or exception      * output.      *      * @throws IllegalStateException If the factory has already created a      *    {@code Lock} with the specified rank.      */
-DECL|method|newReentrantReadWriteLock ( E rank, boolean fair)
+DECL|method|newReentrantReadWriteLock (E rank, boolean fair)
 specifier|public
 name|ReentrantReadWriteLock
 name|newReentrantReadWriteLock
@@ -1248,6 +1248,7 @@ block|}
 comment|/**    * Tracks the currently acquired locks for each Thread, kept up to date by    * calls to {@link #aboutToAcquire(CycleDetectingLock)} and    * {@link #lockStateChanged(CycleDetectingLock)}.    */
 comment|// This is logically a Set, but an ArrayList is used to minimize the amount
 comment|// of allocation done on lock()/unlock().
+DECL|field|acquiredLocks
 specifier|private
 specifier|static
 specifier|final
@@ -1258,7 +1259,6 @@ argument_list|<
 name|LockGraphNode
 argument_list|>
 argument_list|>
-DECL|field|acquiredLocks
 name|acquiredLocks
 init|=
 operator|new
@@ -1643,6 +1643,7 @@ name|makeMap
 argument_list|()
 decl_stmt|;
 comment|/**      * The map tracking lock nodes that can cause a lock acquisition cycle if      * acquired before this node.      */
+DECL|field|disallowedPriorLocks
 specifier|final
 name|Map
 argument_list|<
@@ -1650,7 +1651,6 @@ name|LockGraphNode
 argument_list|,
 name|PotentialDeadlockException
 argument_list|>
-DECL|field|disallowedPriorLocks
 name|disallowedPriorLocks
 init|=
 operator|new
@@ -1696,7 +1696,7 @@ return|return
 name|lockName
 return|;
 block|}
-DECL|method|checkAcquiredLocks ( Policy policy, List<LockGraphNode> acquiredLocks)
+DECL|method|checkAcquiredLocks (Policy policy, List<LockGraphNode> acquiredLocks)
 name|void
 name|checkAcquiredLocks
 parameter_list|(
@@ -1934,7 +1934,7 @@ block|}
 comment|/**      * Performs a depth-first traversal of the graph edges defined by each      * node's {@code allowedPriorLocks} to find a path between {@code this} and      * the specified {@code lock}.      *      * @return If a path was found, a chained {@link ExampleStackTrace}      *     illustrating the path to the {@code lock}, or {@code null} if no path      *     was found.      */
 annotation|@
 name|Nullable
-DECL|method|findPathTo ( LockGraphNode node, Set<LockGraphNode> seen)
+DECL|method|findPathTo (LockGraphNode node, Set<LockGraphNode> seen)
 specifier|private
 name|ExampleStackTrace
 name|findPathTo
@@ -2231,7 +2231,7 @@ specifier|final
 name|LockGraphNode
 name|lockGraphNode
 decl_stmt|;
-DECL|method|CycleDetectingReentrantLock ( LockGraphNode lockGraphNode, boolean fair)
+DECL|method|CycleDetectingReentrantLock (LockGraphNode lockGraphNode, boolean fair)
 specifier|private
 name|CycleDetectingReentrantLock
 parameter_list|(
@@ -2479,7 +2479,7 @@ specifier|final
 name|LockGraphNode
 name|lockGraphNode
 decl_stmt|;
-DECL|method|CycleDetectingReentrantReadWriteLock ( LockGraphNode lockGraphNode, boolean fair)
+DECL|method|CycleDetectingReentrantReadWriteLock (LockGraphNode lockGraphNode, boolean fair)
 specifier|private
 name|CycleDetectingReentrantReadWriteLock
 parameter_list|(
@@ -2600,7 +2600,7 @@ specifier|final
 name|CycleDetectingReentrantReadWriteLock
 name|readWriteLock
 decl_stmt|;
-DECL|method|CycleDetectingReentrantReadLock ( CycleDetectingReentrantReadWriteLock readWriteLock)
+DECL|method|CycleDetectingReentrantReadLock (CycleDetectingReentrantReadWriteLock readWriteLock)
 name|CycleDetectingReentrantReadLock
 parameter_list|(
 name|CycleDetectingReentrantReadWriteLock
@@ -2797,7 +2797,7 @@ specifier|final
 name|CycleDetectingReentrantReadWriteLock
 name|readWriteLock
 decl_stmt|;
-DECL|method|CycleDetectingReentrantWriteLock ( CycleDetectingReentrantReadWriteLock readWriteLock)
+DECL|method|CycleDetectingReentrantWriteLock (CycleDetectingReentrantReadWriteLock readWriteLock)
 name|CycleDetectingReentrantWriteLock
 parameter_list|(
 name|CycleDetectingReentrantReadWriteLock

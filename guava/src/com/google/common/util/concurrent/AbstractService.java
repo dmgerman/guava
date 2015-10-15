@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -373,7 +373,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for implementing services that can handle {@link #doStart} and {@link #doStop}  * requests, responding to them with {@link #notifyStarted()} and {@link #notifyStopped()}  * callbacks. Its subclasses must manage threads manually; consider  * {@link AbstractExecutionThreadService} if you need only a single execution thread.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 1.0  */
+comment|/**  * Base class for implementing services that can handle {@link #doStart} and {@link #doStop}  * requests, responding to them with {@link #notifyStarted()} and {@link #notifyStopped()}  * callbacks. Its subclasses must manage threads manually; consider {@link  * AbstractExecutionThreadService} if you need only a single execution thread.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -674,9 +674,9 @@ name|monitor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -724,9 +724,9 @@ name|monitor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -779,9 +779,9 @@ name|monitor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -834,9 +834,9 @@ name|monitor
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|isSatisfied ()
 annotation|@
 name|Override
+DECL|method|isSatisfied ()
 specifier|public
 name|boolean
 name|isSatisfied
@@ -884,7 +884,7 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * The current state of the service.  This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field.  This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.      *     *<p>To update this field correctly the lock must be held to guarantee that the state is     * consistent.    */
+comment|/**    * The current state of the service. This should be written with the lock held but can be read    * without it because it is an immutable object in a volatile field. This is desirable so that    * methods like {@link #state}, {@link #failureCause} and notably {@link #toString} can be run    * without grabbing the lock.    *    *<p>To update this field correctly the lock must be held to guarantee that the state is    * consistent.    */
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -908,7 +908,7 @@ specifier|protected
 name|AbstractService
 parameter_list|()
 block|{}
-comment|/**    * This method is called by {@link #startAsync} to initiate service startup. The invocation of     * this method should cause a call to {@link #notifyStarted()}, either during this method's run,    * or after it has returned. If startup fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #startAsync} is     * called multiple times.    */
+comment|/**    * This method is called by {@link #startAsync} to initiate service startup. The invocation of    * this method should cause a call to {@link #notifyStarted()}, either during this method's run,    * or after it has returned. If startup fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service startup, even when {@link #startAsync} is    * called multiple times.    */
 DECL|method|doStart ()
 specifier|protected
 specifier|abstract
@@ -916,7 +916,7 @@ name|void
 name|doStart
 parameter_list|()
 function_decl|;
-comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to    * {@link #notifyFailed(Throwable)} instead.    *    *<p> This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is     * called multiple times.    */
+comment|/**    * This method should be used to initiate service shutdown. The invocation of this method should    * cause a call to {@link #notifyStopped()}, either during this method's run, or after it has    * returned. If shutdown fails, the invocation should cause a call to {@link    * #notifyFailed(Throwable)} instead.    *    *<p>This method should return promptly; prefer to do work on a different thread where it is    * convenient. It is invoked exactly once on service shutdown, even when {@link #stopAsync} is    * called multiple times.    */
 DECL|method|doStop ()
 specifier|protected
 specifier|abstract
@@ -924,9 +924,9 @@ name|void
 name|doStop
 parameter_list|()
 function_decl|;
-DECL|method|startAsync ()
 annotation|@
 name|Override
+DECL|method|startAsync ()
 specifier|public
 specifier|final
 name|Service
@@ -1002,9 +1002,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|stopAsync ()
 annotation|@
 name|Override
+DECL|method|stopAsync ()
 specifier|public
 specifier|final
 name|Service
@@ -1151,9 +1151,9 @@ return|return
 name|this
 return|;
 block|}
-DECL|method|awaitRunning ()
 annotation|@
 name|Override
+DECL|method|awaitRunning ()
 specifier|public
 specifier|final
 name|void
@@ -1184,9 +1184,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|awaitRunning (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|awaitRunning (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 name|void
@@ -1251,9 +1251,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-DECL|method|awaitTerminated ()
 annotation|@
 name|Override
+DECL|method|awaitTerminated ()
 specifier|public
 specifier|final
 name|void
@@ -1284,9 +1284,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 name|void
@@ -1518,7 +1518,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Implementing classes should invoke this method once their service has stopped. It will cause    * the service to transition from {@link State#STOPPING} to {@link State#TERMINATED}.    *    * @throws IllegalStateException if the service is neither {@link State#STOPPING} nor    *         {@link State#RUNNING}.    */
+comment|/**    * Implementing classes should invoke this method once their service has stopped. It will cause    * the service to transition from {@link State#STOPPING} to {@link State#TERMINATED}.    *    * @throws IllegalStateException if the service is neither {@link State#STOPPING} nor {@link    *     State#RUNNING}.    */
 DECL|method|notifyStopped ()
 specifier|protected
 specifier|final
@@ -1831,9 +1831,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -1854,7 +1854,7 @@ operator|+
 literal|"]"
 return|;
 block|}
-comment|/**     * Attempts to execute all the listeners in {@link #listeners} while not holding the    * {@link #monitor}.    */
+comment|/**    * Attempts to execute all the listeners in {@link #listeners} while not holding the    * {@link #monitor}.    */
 DECL|method|executeListeners ()
 specifier|private
 name|void
@@ -2156,9 +2156,9 @@ name|boolean
 name|shutdownWhenStartupFinishes
 decl_stmt|;
 comment|/**      * The exception that caused this service to fail.  This will be {@code null}      * unless the service has failed.      */
+DECL|field|failure
 annotation|@
 name|Nullable
-DECL|field|failure
 specifier|final
 name|Throwable
 name|failure

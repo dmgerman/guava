@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2006 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -258,9 +258,9 @@ specifier|private
 name|RunningState
 name|runningState
 decl_stmt|;
-DECL|method|done ()
 annotation|@
 name|Override
+DECL|method|done ()
 specifier|final
 name|void
 name|done
@@ -280,9 +280,9 @@ literal|null
 expr_stmt|;
 block|}
 comment|// TODO(cpovirk): Use maybePropagateCancellation() if the performance is OK and the code is clean.
-DECL|method|cancel (boolean mayInterruptIfRunning)
 annotation|@
 name|Override
+DECL|method|cancel (boolean mayInterruptIfRunning)
 specifier|public
 specifier|final
 name|boolean
@@ -373,9 +373,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"Interruption not supported"
 argument_list|)
-DECL|method|interruptTask ()
 annotation|@
 name|Override
+DECL|method|interruptTask ()
 specifier|protected
 specifier|final
 name|void
@@ -461,7 +461,7 @@ specifier|final
 name|boolean
 name|collectsValues
 decl_stmt|;
-DECL|method|RunningState (ImmutableCollection<? extends ListenableFuture<? extends InputT>> futures, boolean allMustSucceed, boolean collectsValues)
+DECL|method|RunningState ( ImmutableCollection<? extends ListenableFuture<? extends InputT>> futures, boolean allMustSucceed, boolean collectsValues)
 name|RunningState
 parameter_list|(
 name|ImmutableCollection
@@ -515,9 +515,9 @@ name|collectsValues
 expr_stmt|;
 block|}
 comment|/* Used in the !allMustSucceed case so we don't have to instantiate a listener. */
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 specifier|final
 name|void
@@ -528,7 +528,7 @@ name|decrementCountAndMaybeComplete
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * The "real" initialization; we can't put this in the constructor because, in the case where      * futures are already complete, we would not initialize the subclass before calling      * {@link #handleOneInputDone}. As this is called after the subclass is constructed, we're      * guaranteed to have properly initialized the subclass.      */
+comment|/**      * The "real" initialization; we can't put this in the constructor because, in the case where      * futures are already complete, we would not initialize the subclass before calling {@link      * #handleOneInputDone}. As this is called after the subclass is constructed, we're guaranteed      * to have properly initialized the subclass.      */
 DECL|method|init ()
 specifier|private
 name|void
@@ -549,8 +549,8 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
-comment|// NOTE: If we ever want to use a custom executor here, have a look at
-comment|// CombinedFuture as we'll need to handle RejectedExecutionException
+comment|// NOTE: If we ever want to use a custom executor here, have a look at CombinedFuture as we'll
+comment|// need to handle RejectedExecutionException
 if|if
 condition|(
 name|allMustSucceed
@@ -558,14 +558,12 @@ condition|)
 block|{
 comment|// We need fail fast, so we have to keep track of which future failed so we can propagate
 comment|// the exception immediately
-comment|// Register a listener on each Future in the list to update
-comment|// the state of this future.
-comment|// Note that if all the futures on the list are done prior to completing
-comment|// this loop, the last call to addListener() will callback to
-comment|// setOneValue(), transitively call our cleanup listener, and set
-comment|// this.futures to null.
-comment|// This is not actually a problem, since the foreach only needs
-comment|// this.futures to be non-null at the beginning of the loop.
+comment|// Register a listener on each Future in the list to update the state of this future.
+comment|// Note that if all the futures on the list are done prior to completing this loop, the last
+comment|// call to addListener() will callback to setOneValue(), transitively call our cleanup
+comment|// listener, and set this.futures to null.
+comment|// This is not actually a problem, since the foreach only needs this.futures to be non-null
+comment|// at the beginning of the loop.
 name|int
 name|i
 init|=
@@ -662,7 +660,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is      * true. Also, logs the throwable if it is an {@link Error} or if      * {@link #allMustSucceed} is {@code true}, the throwable did not cause      * this future to fail, and it is the first time we've seen that particular Throwable.      */
+comment|/**      * Fails this future with the given Throwable if {@link #allMustSucceed} is true. Also, logs the      * throwable if it is an {@link Error} or if {@link #allMustSucceed} is {@code true}, the      * throwable did not cause this future to fail, and it is the first time we've seen that      * particular Throwable.      */
 DECL|method|handleException (Throwable throwable)
 specifier|private
 name|void
@@ -712,8 +710,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Go up the causal chain to see if we've already seen this cause; if we have,
-comment|// even if it's wrapped by a different exception, don't log it.
+comment|// Go up the causal chain to see if we've already seen this cause; if we have, even if
+comment|// it's wrapped by a different exception, don't log it.
 name|firstTimeSeeingThisException
 operator|=
 name|addCausalChain
@@ -820,9 +818,8 @@ argument_list|>
 name|future
 parameter_list|)
 block|{
-comment|// The only cases in which this Future should already be done are (a) if
-comment|// it was cancelled or (b) if an input failed and we propagated that
-comment|// immediately because of allMustSucceed.
+comment|// The only cases in which this Future should already be done are (a) if it was cancelled or
+comment|// (b) if an input failed and we propagated that immediately because of allMustSucceed.
 name|checkState
 argument_list|(
 name|allMustSucceed
@@ -862,9 +859,9 @@ name|isCancelled
 argument_list|()
 condition|)
 block|{
-comment|// this.cancel propagates the cancellation to children; we use super.cancel
-comment|// to set our own state but let the input futures keep running
-comment|// as some of them may be used elsewhere.
+comment|// this.cancel propagates the cancellation to children; we use super.cancel to set our
+comment|// own state but let the input futures keep running as some of them may be used
+comment|// elsewhere.
 name|AggregateFuture
 operator|.
 name|super
@@ -1038,7 +1035,7 @@ name|handleAllCompleted
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Listeners implicitly keep a reference to {@link RunningState} as they're inner classes,      * so we free resources here as well for the allMustSucceed=true case (i.e. when a future fails,      * we immediately release resources we no longer need); additionally, the future will release      * its reference to {@link RunningState}, which should free all associated memory when all the      * futures complete& the listeners are released.      *      * TODO(user): Write tests for memory retention      */
+comment|/**      * Listeners implicitly keep a reference to {@link RunningState} as they're inner classes, so we      * free resources here as well for the allMustSucceed=true case (i.e. when a future fails, we      * immediately release resources we no longer need); additionally, the future will release its      * reference to {@link RunningState}, which should free all associated memory when all the      * futures complete and the listeners are released.      *      * TODO(user): Write tests for memory retention      */
 DECL|method|releaseResourcesAfterFailure ()
 name|void
 name|releaseResourcesAfterFailure
@@ -1051,7 +1048,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Called only if {@code collectsValues} is true.      *      *<p>If {@code allMustSucceed} is true, called as each future completes; otherwise,      * called for each future when all futures complete.      */
+comment|/**      * Called only if {@code collectsValues} is true.      *      *<p>If {@code allMustSucceed} is true, called as each future completes; otherwise, called for      * each future when all futures complete.      */
 DECL|method|collectOneValue (boolean allMustSucceed, int index, @Nullable InputT returnValue)
 specifier|abstract
 name|void

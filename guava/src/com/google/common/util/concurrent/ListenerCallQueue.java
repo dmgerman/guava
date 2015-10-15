@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2014 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2014 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A special purpose queue/executor that executes listener callbacks serially on a configured  * executor.  Each callback task can be enqueued and executed as separate phases.  *   *<p>This class is very similar to {@link SerializingExecutor} with the exception that tasks can  * be enqueued without necessarily executing immediately.  */
+comment|/**  * A special purpose queue/executor that executes listener callbacks serially on a configured  * executor. Each callback task can be enqueued and executed as separate phases.  *  *<p>This class is very similar to {@link SerializingExecutor} with the exception that tasks can be  * enqueued without necessarily executing immediately.  */
 end_comment
 
 begin_class
@@ -241,12 +241,12 @@ specifier|final
 name|Executor
 name|executor
 decl_stmt|;
-DECL|field|waitQueue
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
+DECL|field|waitQueue
 specifier|private
 specifier|final
 name|Queue
@@ -263,12 +263,12 @@ operator|.
 name|newArrayDeque
 argument_list|()
 decl_stmt|;
-DECL|field|isThreadScheduled
 annotation|@
 name|GuardedBy
 argument_list|(
 literal|"this"
 argument_list|)
+DECL|field|isThreadScheduled
 specifier|private
 name|boolean
 name|isThreadScheduled
@@ -413,9 +413,9 @@ throw|;
 block|}
 block|}
 block|}
-DECL|method|run ()
 annotation|@
 name|Override
+DECL|method|run ()
 specifier|public
 name|void
 name|run
@@ -527,9 +527,8 @@ condition|(
 name|stillRunning
 condition|)
 block|{
-comment|// An Error is bubbling up, we should mark ourselves as no longer
-comment|// running, that way if anyone tries to keep using us we won't be
-comment|// corrupted.
+comment|// An Error is bubbling up. We should mark ourselves as no longer running. That way, if
+comment|// anyone tries to keep using us, we won't be corrupted.
 synchronized|synchronized
 init|(
 name|ListenerCallQueue

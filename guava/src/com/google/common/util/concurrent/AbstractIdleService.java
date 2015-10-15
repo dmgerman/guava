@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2009 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -97,7 +97,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for services that do not need a thread while "running"  * but may need one during startup and shutdown. Subclasses can  * implement {@link #startUp} and {@link #shutDown} methods, each  * which run in a executor which by default uses a separate thread  * for each method.  *  * @author Chris Nokleberg  * @since 1.0  */
+comment|/**  * Base class for services that do not need a thread while "running" but may need one during startup  * and shutdown. Subclasses can implement {@link #startUp} and {@link #shutDown} methods, each which  * run in a executor which by default uses a separate thread for each method.  *  * @author Chris Nokleberg  * @since 1.0  */
 end_comment
 
 begin_class
@@ -138,9 +138,9 @@ argument_list|<
 name|String
 argument_list|>
 block|{
-DECL|method|get ()
 annotation|@
 name|Override
+DECL|method|get ()
 specifier|public
 name|String
 name|get
@@ -178,9 +178,9 @@ name|DelegateService
 extends|extends
 name|AbstractService
 block|{
-DECL|method|doStart ()
 annotation|@
 name|Override
+DECL|method|doStart ()
 specifier|protected
 specifier|final
 name|void
@@ -236,9 +236,9 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|doStop ()
 annotation|@
 name|Override
+DECL|method|doStop ()
 specifier|protected
 specifier|final
 name|void
@@ -294,9 +294,9 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -338,7 +338,7 @@ parameter_list|()
 throws|throws
 name|Exception
 function_decl|;
-comment|/**    * Returns the {@link Executor} that will be used to run this service.    * Subclasses may override this method to use a custom {@link Executor}, which    * may configure its worker thread with a specific name, thread group or    * priority. The returned executor's {@link Executor#execute(Runnable)    * execute()} method is called when this service is started and stopped,    * and should return promptly.    */
+comment|/**    * Returns the {@link Executor} that will be used to run this service. Subclasses may override    * this method to use a custom {@link Executor}, which may configure its worker thread with a    * specific name, thread group or priority. The returned executor's {@link    * Executor#execute(Runnable) execute()} method is called when this service is started and    * stopped, and should return promptly.    */
 DECL|method|executor ()
 specifier|protected
 name|Executor
@@ -379,9 +379,9 @@ block|}
 block|}
 return|;
 block|}
-DECL|method|toString ()
 annotation|@
 name|Override
+DECL|method|toString ()
 specifier|public
 name|String
 name|toString
@@ -399,9 +399,9 @@ operator|+
 literal|"]"
 return|;
 block|}
-DECL|method|isRunning ()
 annotation|@
 name|Override
+DECL|method|isRunning ()
 specifier|public
 specifier|final
 name|boolean
@@ -415,9 +415,9 @@ name|isRunning
 argument_list|()
 return|;
 block|}
-DECL|method|state ()
 annotation|@
 name|Override
+DECL|method|state ()
 specifier|public
 specifier|final
 name|State
@@ -432,9 +432,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * @since 13.0    */
-DECL|method|addListener (Listener listener, Executor executor)
 annotation|@
 name|Override
+DECL|method|addListener (Listener listener, Executor executor)
 specifier|public
 specifier|final
 name|void
@@ -458,9 +458,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @since 14.0    */
-DECL|method|failureCause ()
 annotation|@
 name|Override
+DECL|method|failureCause ()
 specifier|public
 specifier|final
 name|Throwable
@@ -475,9 +475,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|Override
 DECL|method|startAsync ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|Service
@@ -494,9 +494,9 @@ name|this
 return|;
 block|}
 comment|/**    * @since 15.0    */
+annotation|@
+name|Override
 DECL|method|stopAsync ()
-annotation|@
-name|Override
 specifier|public
 specifier|final
 name|Service
@@ -513,9 +513,9 @@ name|this
 return|;
 block|}
 comment|/**    * @since 15.0    */
-DECL|method|awaitRunning ()
 annotation|@
 name|Override
+DECL|method|awaitRunning ()
 specifier|public
 specifier|final
 name|void
@@ -529,9 +529,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * @since 15.0    */
-DECL|method|awaitRunning (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|awaitRunning (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 name|void
@@ -557,9 +557,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * @since 15.0    */
-DECL|method|awaitTerminated ()
 annotation|@
 name|Override
+DECL|method|awaitTerminated ()
 specifier|public
 specifier|final
 name|void
@@ -573,9 +573,9 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * @since 15.0    */
-DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 annotation|@
 name|Override
+DECL|method|awaitTerminated (long timeout, TimeUnit unit)
 specifier|public
 specifier|final
 name|void

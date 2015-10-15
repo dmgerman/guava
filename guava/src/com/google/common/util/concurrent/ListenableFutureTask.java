@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2008 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture}  * interface.  Unlike {@code FutureTask}, {@code ListenableFutureTask} does not  * provide an overrideable {@link FutureTask#done() done()} method.  For similar  * functionality, call {@link #addListener}.  *   *<p>  *  * @author Sven Mawson  * @since 1.0  */
+comment|/**  * A {@link FutureTask} that also implements the {@link ListenableFuture} interface.  Unlike {@code  * FutureTask}, {@code ListenableFutureTask} does not provide an overrideable {@link  * FutureTask#done() done()} method.  For similar functionality, call {@link #addListener}.  *  *<p>  *  * @author Sven Mawson  * @since 1.0  */
 end_comment
 
 begin_class
@@ -87,9 +87,9 @@ argument_list|<
 name|V
 argument_list|>
 block|{
-comment|// TODO(cpovirk): explore ways of making ListenableFutureTask final. There are
-comment|// some valid reasons such as BoundedQueueExecutorService to allow extends but it
-comment|// would be nice to make it final to avoid unintended usage.
+comment|// TODO(cpovirk): explore ways of making ListenableFutureTask final. There are some valid reasons
+comment|// such as BoundedQueueExecutorService to allow extends but it would be nice to make it final to
+comment|// avoid unintended usage.
 comment|// The execution list to hold our listeners.
 DECL|field|executionList
 specifier|private
@@ -101,7 +101,7 @@ operator|new
 name|ExecutionList
 argument_list|()
 decl_stmt|;
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Callable}.    *    * @param callable the callable task    * @since 10.0    */
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given {@code    * Callable}.    *    * @param callable the callable task    * @since 10.0    */
 DECL|method|create (Callable<V> callable)
 specifier|public
 specifier|static
@@ -132,8 +132,8 @@ name|callable
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the    * given {@code Runnable}, and arrange that {@code get} will return the    * given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't    *     need a particular result, consider using constructions of the form:    *     {@code ListenableFuture<?> f = ListenableFutureTask.create(runnable,    *     null)}    * @since 10.0    */
-DECL|method|create ( Runnable runnable, @Nullable V result)
+comment|/**    * Creates a {@code ListenableFutureTask} that will upon running, execute the given {@code    * Runnable}, and arrange that {@code get} will return the given result on successful completion.    *    * @param runnable the runnable task    * @param result the result to return on successful completion. If you don't need a particular    *     result, consider using constructions of the form: {@code ListenableFuture<?> f =    *     ListenableFutureTask.create(runnable, null)}    * @since 10.0    */
+DECL|method|create (Runnable runnable, @Nullable V result)
 specifier|public
 specifier|static
 parameter_list|<

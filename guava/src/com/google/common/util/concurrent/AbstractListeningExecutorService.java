@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2011 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -96,9 +96,9 @@ implements|implements
 name|ListeningExecutorService
 block|{
 comment|/** @since 19.0 (present with return type {@code ListenableFutureTask} since 14.0) */
-DECL|method|newTaskFor (Runnable runnable, T value)
 annotation|@
 name|Override
+DECL|method|newTaskFor (Runnable runnable, T value)
 specifier|protected
 specifier|final
 parameter_list|<
@@ -129,9 +129,9 @@ argument_list|)
 return|;
 block|}
 comment|/** @since 19.0 (present with return type {@code ListenableFutureTask} since 14.0) */
-DECL|method|newTaskFor (Callable<T> callable)
 annotation|@
 name|Override
+DECL|method|newTaskFor (Callable<T> callable)
 specifier|protected
 specifier|final
 parameter_list|<
@@ -159,9 +159,9 @@ name|callable
 argument_list|)
 return|;
 block|}
-DECL|method|submit (Runnable task)
 annotation|@
 name|Override
+DECL|method|submit (Runnable task)
 specifier|public
 name|ListenableFuture
 argument_list|<
@@ -188,9 +188,9 @@ name|task
 argument_list|)
 return|;
 block|}
-DECL|method|submit (Runnable task, @Nullable T result)
 annotation|@
 name|Override
+DECL|method|submit (Runnable task, @Nullable T result)
 specifier|public
 parameter_list|<
 name|T
@@ -227,9 +227,9 @@ name|result
 argument_list|)
 return|;
 block|}
-DECL|method|submit (Callable<T> task)
 annotation|@
 name|Override
+DECL|method|submit (Callable<T> task)
 specifier|public
 parameter_list|<
 name|T

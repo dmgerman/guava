@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License");  * you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except  * in compliance with the License. You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software distributed under the License  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express  * or implied. See the License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_package
@@ -99,7 +99,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} instances. To create an instance  * from an existing {@link ExecutorService}, call  * {@link MoreExecutors#listeningDecorator(ExecutorService)}.  *  * @author Chris Povirk  * @since 10.0  */
+comment|/**  * An {@link ExecutorService} that returns {@link ListenableFuture} instances. To create an instance  * from an existing {@link ExecutorService}, call {@link  * MoreExecutors#listeningDecorator(ExecutorService)}.  *  * @author Chris Povirk  * @since 10.0  */
 end_comment
 
 begin_interface
@@ -164,7 +164,7 @@ name|T
 name|result
 parameter_list|)
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances. The easiest    * way to obtain a {@code List<ListenableFuture<T>>} from this method is an unchecked (but safe)    * cast:<pre>    *   {@code @SuppressWarnings("unchecked") // guaranteed by invokeAll contract}    *   {@code List<ListenableFuture<T>> futures = (List) executor.invokeAll(tasks);}    *</pre>    *    * @return A list of {@code ListenableFuture} instances representing the tasks, in the same    *         sequential order as produced by the iterator for the given task list, each of which has    *         completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
+comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances. The easiest    * way to obtain a {@code List<ListenableFuture<T>>} from this method is an unchecked (but safe)    * cast:<pre>    *   {@code @SuppressWarnings("unchecked") // guaranteed by invokeAll contract}    *   {@code List<ListenableFuture<T>> futures = (List) executor.invokeAll(tasks);}    *</pre>    *    * @return A list of {@code ListenableFuture} instances representing the tasks, in the same    *     sequential order as produced by the iterator for the given task list, each of which has    *     completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
 annotation|@
 name|Override
 DECL|method|invokeAll (Collection<? extends Callable<T>> tasks)
@@ -194,7 +194,7 @@ parameter_list|)
 throws|throws
 name|InterruptedException
 function_decl|;
-comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances. The easiest    * way to obtain a {@code List<ListenableFuture<T>>} from this method is an unchecked (but safe)    * cast:<pre>    *   {@code @SuppressWarnings("unchecked") // guaranteed by invokeAll contract}    *   {@code List<ListenableFuture<T>> futures = (List) executor.invokeAll(tasks, timeout, unit);}    *</pre>    *    * @return a list of {@code ListenableFuture} instances representing the tasks, in the same    *         sequential order as produced by the iterator for the given task list. If the operation    *         did not time out, each task will have completed. If it did time out, some of these    *         tasks will not have completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
+comment|/**    * {@inheritDoc}    *    *<p>All elements in the returned list must be {@link ListenableFuture} instances. The easiest    * way to obtain a {@code List<ListenableFuture<T>>} from this method is an unchecked (but safe)    * cast:<pre>    *   {@code @SuppressWarnings("unchecked") // guaranteed by invokeAll contract}    *   {@code List<ListenableFuture<T>> futures = (List) executor.invokeAll(tasks, timeout, unit);}    *</pre>    *    * @return a list of {@code ListenableFuture} instances representing the tasks, in the same    *     sequential order as produced by the iterator for the given task list. If the operation did    *     not time out, each task will have completed. If it did time out, some of these tasks will    *     not have completed.    * @throws RejectedExecutionException {@inheritDoc}    * @throws NullPointerException if any task is null    */
 annotation|@
 name|Override
 DECL|method|invokeAll ( Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
