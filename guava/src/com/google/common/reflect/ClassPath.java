@@ -371,7 +371,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Scans the source of a {@link ClassLoader} and finds all loadable classes and resources.  *  * @author Ben Yu  * @since 14.0  */
+comment|/**  * Scans the source of a {@link ClassLoader} and finds all loadable classes and resources.  *  *<p><b>Warning:</b> Currently only {@link URLClassLoader} and only {@code file://} urls are  * supported.  *  * @author Ben Yu  * @since 14.0  */
 end_comment
 
 begin_class
@@ -499,7 +499,7 @@ operator|=
 name|resources
 expr_stmt|;
 block|}
-comment|/**    * Returns a {@code ClassPath} representing all classes and resources loadable from {@code    * classloader} and its parent class loaders.    *    *<p>Currently only {@link URLClassLoader} and only {@code file://} urls are supported.    *    * @throws IOException if the attempt to read class path resources (jar files or directories)    *         failed.    */
+comment|/**    * Returns a {@code ClassPath} representing all classes and resources loadable from {@code    * classloader} and its parent class loaders.    *    *<p><b>Warning:</b> Currently only {@link URLClassLoader} and only {@code file://} urls are    * supported.    *    * @throws IOException if the attempt to read class path resources (jar files or directories)    *         failed.    */
 DECL|method|from (ClassLoader classloader)
 specifier|public
 specifier|static
