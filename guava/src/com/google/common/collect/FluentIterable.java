@@ -445,12 +445,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @since 18.0    */
+comment|/**    * Returns a fluent iterable containing {@code elements} in the specified order.    *    *<p>The returned iterable is modifiable, but modifications do not affect the input array.    *    *<p><b>{@code Stream} equivalent:</b> {@code Stream.of(elements)} or {@code    * Arrays.stream(elements)}.    *    * @deprecated Use {@link #from(E[])} instead (but note the differences in mutability). This    *     method will be removed in Guava release 21.0.    * @since 18.0    */
 annotation|@
 name|Beta
 annotation|@
 name|CheckReturnValue
-comment|// TODO(kak): @deprecated Use {@link #from(E[])} instead.
+annotation|@
+name|Deprecated
 DECL|method|of (E[] elements)
 specifier|public
 specifier|static
