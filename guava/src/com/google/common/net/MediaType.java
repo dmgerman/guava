@@ -1315,7 +1315,7 @@ argument_list|,
 literal|"dart"
 argument_list|)
 decl_stmt|;
-comment|/**    * Media type for<a href="https://goo.gl/dNnKKj">Apple Passbook</a>.    *    * @since 19.0    */
+comment|/**    * Media type for<a href="https://goo.gl/2QoMvg">Apple Passbook</a>.    *    * @since 19.0    */
 DECL|field|APPLE_PASSBOOK
 specifier|public
 specifier|static
