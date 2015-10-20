@@ -762,8 +762,10 @@ argument_list|>
 name|predicate
 parameter_list|)
 block|{
-comment|// Note: Not all random access lists support set() so we need to deal with
-comment|// those that don't and attempt the slower remove() based solution.
+comment|// Note: Not all random access lists support set(). Additionally, it's possible
+comment|// for a list to reject setting an element, such as when the list does not permit
+comment|// duplicate elements. For both of those cases,  we need to fall back to a slower
+comment|// implementation.
 name|int
 name|from
 init|=
@@ -831,6 +833,27 @@ block|}
 catch|catch
 parameter_list|(
 name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+name|slowRemoveIfForRemainingElements
+argument_list|(
+name|list
+argument_list|,
+name|predicate
+argument_list|,
+name|to
+argument_list|,
+name|from
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
