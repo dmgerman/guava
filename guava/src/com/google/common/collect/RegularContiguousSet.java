@@ -873,7 +873,7 @@ name|compareTo
 argument_list|(
 name|upperEndpoint
 argument_list|)
-operator|<
+operator|<=
 literal|0
 operator|)
 condition|?
