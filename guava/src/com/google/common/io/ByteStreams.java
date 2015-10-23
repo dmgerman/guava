@@ -562,12 +562,27 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Presize the ByteArrayOutputStream since we know how large it will need
+comment|// to be, unless that value is less than the default ByteArrayOutputStream
+comment|// size (32).
 name|ByteArrayOutputStream
 name|out
 init|=
 operator|new
 name|ByteArrayOutputStream
+argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|32
+argument_list|,
+name|in
+operator|.
+name|available
 argument_list|()
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|copy
 argument_list|(
