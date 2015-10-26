@@ -3467,6 +3467,10 @@ name|multimapGenerator
 operator|.
 name|create
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|entries
 argument_list|)
 operator|.
@@ -3927,6 +3931,10 @@ name|multimapGenerator
 operator|.
 name|create
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|entries
 argument_list|)
 operator|.
@@ -4525,6 +4533,10 @@ name|multimapGenerator
 operator|.
 name|create
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|array
 argument_list|)
 operator|.
@@ -4689,6 +4701,10 @@ name|multimapGenerator
 operator|.
 name|create
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|array
 argument_list|)
 operator|.

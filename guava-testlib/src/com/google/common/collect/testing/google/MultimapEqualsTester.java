@@ -410,6 +410,10 @@ argument_list|()
 operator|.
 name|create
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|createArrayWithNullKey
 argument_list|()
 argument_list|)
@@ -484,6 +488,10 @@ argument_list|()
 operator|.
 name|create
 argument_list|(
+operator|(
+name|Object
+index|[]
+operator|)
 name|createArrayWithNullValue
 argument_list|()
 argument_list|)
