@@ -2447,7 +2447,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): Zero is found at beginning instead of end. Why?
 DECL|method|testNewDataOutput_writeChars ()
 specifier|public

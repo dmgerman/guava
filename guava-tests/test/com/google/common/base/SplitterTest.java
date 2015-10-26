@@ -2387,7 +2387,7 @@ argument_list|(
 literal|"java.util.regex.Pattern"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): File Android bug.
 DECL|method|testPatternSplitLookBehind ()
 specifier|public
@@ -2450,7 +2450,7 @@ argument_list|(
 literal|"java.util.regex.Pattern"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): File Android bug.
 DECL|method|testPatternSplitWordBoundary ()
 specifier|public
@@ -3155,7 +3155,7 @@ argument_list|(
 literal|"java.util.regex.Pattern"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): File Android bug (different from the two above).
 DECL|method|testSplitterIterableIsLazy_pattern ()
 specifier|public

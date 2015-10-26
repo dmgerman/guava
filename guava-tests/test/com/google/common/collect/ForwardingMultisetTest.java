@@ -1887,7 +1887,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Proxy problem, perhaps around SortedMultisetBridge?
 DECL|method|testElementSet ()
 specifier|public

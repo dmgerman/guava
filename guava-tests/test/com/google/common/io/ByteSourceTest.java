@@ -321,7 +321,7 @@ extends|extends
 name|IoTestCase
 block|{
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android doesn't understand suites whose tests lack default constructors.
 DECL|method|suite ()
 specifier|public

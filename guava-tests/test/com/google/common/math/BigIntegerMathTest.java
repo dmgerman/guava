@@ -2421,7 +2421,7 @@ argument_list|(
 literal|"TODO"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): Problem with BigIntegerMath.divide on Android?
 DECL|method|testDivNonZeroExact ()
 specifier|public

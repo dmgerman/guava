@@ -267,7 +267,7 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): Look up Build.VERSION.SDK_INT reflectively.
 DECL|method|testCreate ()
 specifier|public

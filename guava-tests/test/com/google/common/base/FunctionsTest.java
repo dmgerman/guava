@@ -2754,7 +2754,7 @@ argument_list|(
 literal|"reflection"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): ClassNotFoundException: com.google.common.base.Function
 comment|// (I suspect that this and the other similar failures happen with ArbitraryInstances proxies.)
 DECL|method|testEqualsAndSerializable ()

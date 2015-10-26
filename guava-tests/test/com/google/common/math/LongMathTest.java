@@ -1921,7 +1921,7 @@ argument_list|(
 literal|"TODO"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): File BigDecimal.divide() rounding bug.
 DECL|method|testDivNonZero ()
 specifier|public
@@ -2031,7 +2031,7 @@ argument_list|(
 literal|"TODO"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): Problem with LongMath.divide on Android?
 DECL|method|testDivNonZeroExact ()
 specifier|public
@@ -2944,7 +2944,7 @@ argument_list|(
 literal|"TODO"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): Problem with LongMath.checkedMultiply on Android?
 DECL|method|testCheckedMultiply ()
 specifier|public

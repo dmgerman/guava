@@ -1050,7 +1050,7 @@ parameter_list|)
 block|{     }
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// difference in String.format rounding?
 DECL|method|testWarmUp ()
 specifier|public
@@ -1436,7 +1436,7 @@ expr_stmt|;
 comment|// #3
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// difference in String.format rounding?
 DECL|method|testWarmUpAndUpdate ()
 specifier|public
@@ -3277,7 +3277,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// EasyMock Class Extension doesn't appear to work on Android.
 DECL|method|testMockingEasyMock ()
 specifier|public

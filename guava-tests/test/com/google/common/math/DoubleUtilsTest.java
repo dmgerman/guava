@@ -107,7 +107,7 @@ extends|extends
 name|TestCase
 block|{
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// no FpUtils
 DECL|method|testNextDown ()
 specifier|public
@@ -143,7 +143,7 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): File bug for BigDecimal.doubleValue().
 DECL|method|testBigToDouble ()
 specifier|public

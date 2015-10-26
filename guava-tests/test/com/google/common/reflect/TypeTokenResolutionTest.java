@@ -166,7 +166,7 @@ end_comment
 
 begin_class
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// lots of failures, possibly some related to bad equals() implementations?
 DECL|class|TypeTokenResolutionTest
 specifier|public

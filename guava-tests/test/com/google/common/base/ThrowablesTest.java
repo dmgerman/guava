@@ -2164,7 +2164,7 @@ parameter_list|)
 block|{     }
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// No getJavaLangAccess in Android (at least not in the version we use).
 DECL|method|testLazyStackTraceWorksInProd ()
 specifier|public

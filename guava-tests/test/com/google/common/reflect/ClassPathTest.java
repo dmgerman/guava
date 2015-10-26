@@ -493,7 +493,7 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_emptyURLClassLoader_noParent ()
 specifier|public
@@ -531,7 +531,7 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_URLClassLoader_noParent ()
 specifier|public
@@ -612,7 +612,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_URLClassLoader_withParent ()
 specifier|public
@@ -744,7 +744,7 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_duplicateUri_parentWins ()
 specifier|public
@@ -823,7 +823,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_noParent ()
 specifier|public
@@ -856,7 +856,7 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_withParent ()
 specifier|public
@@ -923,7 +923,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_withParentAndGrandParent ()
 specifier|public
@@ -1023,7 +1023,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android forbids null parent ClassLoader
 DECL|method|testClassPathEntries_notURLClassLoader_withGrandParent ()
 specifier|public

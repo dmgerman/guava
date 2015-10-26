@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2015 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_package
-DECL|package|com.google.common.collect
+DECL|package|com.google.common.math
 package|package
 name|com
 operator|.
@@ -12,7 +12,7 @@ name|google
 operator|.
 name|common
 operator|.
-name|collect
+name|math
 package|;
 end_package
 
@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Signifies that a test should not be run under Android. This annotation is respected only by our  * Google-internal Android suite generators. Note that those generators also suppress any test  * annotated with MediumTest or LargeTest.  *  *<p>For more discussion, see {@linkplain com.google.common.base.SuppressUnderAndroid the  * documentation on another copy of this annotation}.  */
+comment|/**  * Signifies that a test should not be run under Android. This annotation is respected only by our  * Google-internal Android suite generators. Note that those generators also suppress any test  * annotated with MediumTest or LargeTest.  *  *<p>For more discussion, see {@linkplain com.google.common.base.AndroidIncompatible the  * documentation on another copy of this annotation}.  */
 end_comment
 
 begin_annotation_defn
@@ -165,9 +165,9 @@ block|}
 argument_list|)
 annotation|@
 name|GwtCompatible
-DECL|annotation|SuppressUnderAndroid
+DECL|annotation|AndroidIncompatible
 annotation_defn|@interface
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 block|{}
 end_annotation_defn
 

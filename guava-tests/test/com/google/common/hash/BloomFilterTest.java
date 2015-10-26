@@ -221,7 +221,7 @@ extends|extends
 name|TestCase
 block|{
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// OutOfMemoryError
 DECL|method|testLargeBloomFilterDoesntOverflow ()
 specifier|public
@@ -1601,7 +1601,7 @@ argument_list|(
 literal|"CheckReturnValue"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// OutOfMemoryError
 DECL|method|testLargeNumberOfInsertions ()
 specifier|public

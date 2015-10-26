@@ -156,7 +156,7 @@ end_comment
 
 begin_class
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Android doesn't understand tests that lack default constructors.
 DECL|class|ByteSinkTester
 specifier|public

@@ -95,7 +95,7 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): java.lang.IllegalAccessError: superclass not accessible
 DECL|method|testSuccessfulForwarding ()
 specifier|public

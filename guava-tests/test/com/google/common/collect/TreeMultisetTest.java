@@ -2682,7 +2682,7 @@ argument_list|(
 literal|"reflection"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// Reflection bug, or actual binary compatibility problem?
 DECL|method|testElementSetBridgeMethods ()
 specifier|public

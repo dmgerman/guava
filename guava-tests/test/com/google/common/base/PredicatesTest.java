@@ -5386,7 +5386,7 @@ argument_list|(
 literal|"reflection"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): ClassNotFoundException: com.google.common.base.Function
 DECL|method|testEqualsAndSerializable ()
 specifier|public

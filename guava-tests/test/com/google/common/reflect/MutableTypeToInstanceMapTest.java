@@ -241,7 +241,7 @@ extends|extends
 name|TestCase
 block|{
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// problem with suite builders on Android
 DECL|method|suite ()
 specifier|public

@@ -826,7 +826,7 @@ argument_list|(
 literal|"reflection"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// relies on assumptions about OpenJDK
 DECL|method|testNewHashMapWithExpectedSize_wontGrow ()
 specifier|public
@@ -896,7 +896,7 @@ argument_list|(
 literal|"reflection"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// relies on assumptions about OpenJDK
 DECL|method|testNewLinkedHashMapWithExpectedSize_wontGrow ()
 specifier|public

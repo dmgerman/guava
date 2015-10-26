@@ -345,7 +345,7 @@ block|}
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// no concept of separate ClassLoaders
 DECL|method|testDecoupledLoader ()
 specifier|public
@@ -521,7 +521,7 @@ return|;
 block|}
 block|}
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// TODO(cpovirk): How significant is this failure?
 DECL|method|testGetFinalizerUrl ()
 specifier|public

@@ -531,7 +531,7 @@ argument_list|(
 literal|"CheckReturnValue"
 argument_list|)
 annotation|@
-name|SuppressUnderAndroid
+name|AndroidIncompatible
 comment|// sun.security
 DECL|method|testNoProviders ()
 specifier|public
