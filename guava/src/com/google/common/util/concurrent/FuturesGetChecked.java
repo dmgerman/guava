@@ -574,9 +574,6 @@ annotation|@
 name|J2ObjCIncompatible
 comment|// ClassValue
 annotation|@
-name|SuppressUnderAndroid
-comment|// ClassValue
-annotation|@
 name|VisibleForTesting
 DECL|method|classValueValidator ()
 specifier|static
@@ -629,9 +626,6 @@ name|IgnoreJRERequirement
 comment|// getChecked falls back to another implementation if necessary
 annotation|@
 name|J2ObjCIncompatible
-comment|// ClassValue
-annotation|@
-name|SuppressUnderAndroid
 comment|// ClassValue
 DECL|enum|ClassValueValidator
 enum|enum
