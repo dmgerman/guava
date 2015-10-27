@@ -1646,6 +1646,9 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|AndroidIncompatible
+comment|// Perhaps emulator clock does not update between the two get() calls?
+annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"deprecation"
