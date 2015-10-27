@@ -2263,6 +2263,9 @@ parameter_list|)
 block|{}
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testCheckedAdd ()
 specifier|public
 name|void
