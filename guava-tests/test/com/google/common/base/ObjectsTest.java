@@ -26,7 +26,7 @@ name|common
 operator|.
 name|base
 operator|.
-name|MoreObjects
+name|Objects
 operator|.
 name|firstNonNull
 import|;
