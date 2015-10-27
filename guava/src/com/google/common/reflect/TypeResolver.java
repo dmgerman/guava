@@ -423,21 +423,6 @@ condition|)
 block|{
 return|return;
 block|}
-if|if
-condition|(
-name|to
-operator|instanceof
-name|WildcardType
-operator|!=
-name|from
-operator|instanceof
-name|WildcardType
-condition|)
-block|{
-comment|// When we are saying "assuming<?> is T, there really isn't any useful type mapping.
-comment|// Similarly, saying "assuming T is<?>" is meaningless. Of course it is.
-return|return;
-block|}
 operator|new
 name|TypeVisitor
 argument_list|()
@@ -477,17 +462,26 @@ name|WildcardType
 name|fromWildcardType
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|to
+operator|instanceof
+name|WildcardType
+operator|)
+condition|)
+block|{
+return|return;
+comment|// okay to say<?> is anything
+block|}
 name|WildcardType
 name|toWildcardType
 init|=
-name|expectArgument
-argument_list|(
+operator|(
 name|WildcardType
-operator|.
-name|class
-argument_list|,
+operator|)
 name|to
-argument_list|)
 decl_stmt|;
 name|Type
 index|[]
@@ -626,6 +620,16 @@ name|ParameterizedType
 name|fromParameterizedType
 parameter_list|)
 block|{
+if|if
+condition|(
+name|to
+operator|instanceof
+name|WildcardType
+condition|)
+block|{
+return|return;
+comment|// Okay to say Foo<A> is<?>
+block|}
 name|ParameterizedType
 name|toParameterizedType
 init|=
@@ -738,6 +742,16 @@ name|GenericArrayType
 name|fromArrayType
 parameter_list|)
 block|{
+if|if
+condition|(
+name|to
+operator|instanceof
+name|WildcardType
+condition|)
+block|{
+return|return;
+comment|// Okay to say A[] is<?>
+block|}
 name|Type
 name|componentType
 init|=
@@ -784,7 +798,17 @@ argument_list|>
 name|fromClass
 parameter_list|)
 block|{
-comment|// Can't map from a raw class to anything other than itself.
+if|if
+condition|(
+name|to
+operator|instanceof
+name|WildcardType
+condition|)
+block|{
+return|return;
+comment|// Okay to say Foo is<?>
+block|}
+comment|// Can't map from a raw class to anything other than itself or a wildcard.
 comment|// You can't say "assuming String is Integer".
 comment|// And we don't support "assuming String is T"; user has to say "assuming T is String".
 throw|throw
