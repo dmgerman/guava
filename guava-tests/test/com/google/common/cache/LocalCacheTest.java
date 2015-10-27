@@ -4787,6 +4787,9 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// Perhaps emulator clock does not update between the two get() calls?
 DECL|method|testComputeExpiredEntry ()
 specifier|public
 name|void

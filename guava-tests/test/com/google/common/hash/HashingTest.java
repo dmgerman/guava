@@ -792,6 +792,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): Surprisingly often has more then 5% collisions there.
 DECL|method|testSipHash24 ()
 specifier|public
 name|void
@@ -870,6 +873,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow TODO(cpovirk): Maybe just reduce iterations under Android.
 DECL|method|testGoodFastHash ()
 specifier|public
 name|void

@@ -968,6 +968,9 @@ name|expected
 parameter_list|)
 block|{}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testLessThanBranchFree ()
 specifier|public
 name|void
@@ -2735,6 +2738,9 @@ block|{}
 block|}
 block|}
 annotation|@
+name|AndroidIncompatible
+comment|// slow
+annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"TODO"
@@ -2841,6 +2847,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testCheckedSubtract ()
 specifier|public
 name|void
@@ -3610,6 +3619,9 @@ name|FLOOR_SQRT_MAX_LONG
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 annotation|@
 name|GwtIncompatible
 argument_list|(

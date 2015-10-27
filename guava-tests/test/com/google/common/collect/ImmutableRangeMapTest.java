@@ -1162,6 +1162,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testAsMapOfRanges ()
 specifier|public
 name|void

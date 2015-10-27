@@ -896,6 +896,9 @@ parameter_list|)
 block|{}
 block|}
 comment|/**    * This test creates a long random sequence of inputs, then a lot of differently configured    * sinks process it; all should produce the same answer, the only difference should be the    * number of process()/processRemaining() invocations, due to alignment.    */
+annotation|@
+name|AndroidIncompatible
+comment|// slow. TODO(cpovirk): Maybe just reduce iterations under Android.
 DECL|method|testExhaustive ()
 specifier|public
 name|void

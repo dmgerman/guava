@@ -1569,6 +1569,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
