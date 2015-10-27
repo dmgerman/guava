@@ -2340,6 +2340,9 @@ name|GwtIncompatible
 argument_list|(
 literal|"TODO"
 argument_list|)
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testDivNonZero ()
 specifier|public
 name|void
