@@ -17,6 +17,22 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|MoreObjects
+operator|.
+name|firstNonNull
+import|;
+end_import
+
+begin_import
 import|import
 name|com
 operator|.
@@ -390,8 +406,6 @@ decl_stmt|;
 name|String
 name|s2
 init|=
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 name|s1
@@ -418,8 +432,6 @@ decl_stmt|;
 name|Long
 name|n2
 init|=
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 literal|null
@@ -450,8 +462,6 @@ name|Exception
 block|{
 try|try
 block|{
-name|Objects
-operator|.
 name|firstNonNull
 argument_list|(
 literal|null

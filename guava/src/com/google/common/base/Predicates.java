@@ -76,6 +76,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|MoreObjects
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -2657,7 +2671,7 @@ block|{
 name|String
 name|patternString
 init|=
-name|Objects
+name|MoreObjects
 operator|.
 name|toStringHelper
 argument_list|(
