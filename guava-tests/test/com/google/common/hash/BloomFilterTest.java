@@ -1872,6 +1872,9 @@ name|newFpp
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testBitSize ()
 specifier|public
 name|void
