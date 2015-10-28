@@ -657,6 +657,9 @@ name|FLOOR_SQRT_MAX_INT
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// presumably slow
 DECL|method|testLessThanBranchFree ()
 specifier|public
 name|void
@@ -1682,6 +1685,9 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// presumably slow
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
@@ -2351,6 +2357,9 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// slow
 DECL|method|testCheckedSubtract ()
 specifier|public
 name|void
@@ -2436,6 +2445,9 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// presumably slow
 DECL|method|testCheckedMultiply ()
 specifier|public
 name|void
