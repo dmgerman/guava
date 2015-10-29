@@ -166,7 +166,7 @@ specifier|private
 name|EventBus
 name|bus
 decl_stmt|;
-comment|/** Object sporting the subscriber method. */
+comment|/** The object with the subscriber method. */
 annotation|@
 name|VisibleForTesting
 DECL|field|target
