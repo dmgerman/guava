@@ -987,6 +987,9 @@ name|map
 operator|.
 name|get
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Integer
 operator|.
 name|class
@@ -1022,6 +1025,9 @@ name|map
 operator|.
 name|get
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Long
 operator|.
 name|class
