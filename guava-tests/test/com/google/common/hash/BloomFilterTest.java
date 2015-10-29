@@ -1619,7 +1619,7 @@ operator|.
 name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
-literal|42L
+literal|30L
 operator|+
 name|Integer
 operator|.
@@ -1637,7 +1637,7 @@ operator|.
 name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
-literal|50L
+literal|45L
 operator|*
 name|Integer
 operator|.
