@@ -697,6 +697,9 @@ name|forward
 operator|.
 name|remove
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Object
 operator|.
 name|class
@@ -721,6 +724,9 @@ name|forward
 operator|.
 name|removeFirstOccurrence
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Object
 operator|.
 name|class
@@ -745,6 +751,9 @@ name|forward
 operator|.
 name|removeLastOccurrence
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Object
 operator|.
 name|class

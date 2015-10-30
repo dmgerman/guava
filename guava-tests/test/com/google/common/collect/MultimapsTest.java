@@ -3780,6 +3780,9 @@ name|entries
 operator|.
 name|contains
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|4.5
 argument_list|)
 argument_list|)
@@ -3790,6 +3793,9 @@ name|entries
 operator|.
 name|remove
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|4.5
 argument_list|)
 argument_list|)

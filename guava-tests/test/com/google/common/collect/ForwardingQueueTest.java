@@ -883,6 +883,9 @@ name|forward
 operator|.
 name|remove
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Object
 operator|.
 name|class

@@ -14708,6 +14708,9 @@ name|unmod
 operator|.
 name|remove
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|"four"
 argument_list|)
 expr_stmt|;

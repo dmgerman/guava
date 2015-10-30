@@ -3043,6 +3043,9 @@ name|set
 operator|.
 name|contains
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|3.7
 argument_list|)
 argument_list|)
@@ -5812,6 +5815,12 @@ name|set
 operator|.
 name|containsAll
 argument_list|(
+operator|(
+name|Collection
+argument_list|<
+name|?
+argument_list|>
+operator|)
 name|unexpected
 argument_list|)
 argument_list|)
