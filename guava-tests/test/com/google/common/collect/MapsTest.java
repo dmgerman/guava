@@ -14708,10 +14708,7 @@ name|unmod
 operator|.
 name|remove
 argument_list|(
-operator|(
-name|Object
-operator|)
-literal|"four"
+literal|4
 argument_list|)
 expr_stmt|;
 name|fail

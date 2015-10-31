@@ -883,12 +883,7 @@ name|forward
 operator|.
 name|remove
 argument_list|(
-operator|(
-name|Object
-operator|)
-name|Object
-operator|.
-name|class
+literal|"asdf"
 argument_list|)
 expr_stmt|;
 name|assertEquals
