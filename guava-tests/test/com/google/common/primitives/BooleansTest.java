@@ -1726,6 +1726,9 @@ argument_list|)
 operator|.
 name|indexOf
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|"wrong type"
 argument_list|)
 argument_list|)
@@ -1821,6 +1824,9 @@ argument_list|)
 operator|.
 name|indexOf
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|"wrong type"
 argument_list|)
 argument_list|)
@@ -1913,6 +1919,9 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
+operator|(
+name|Object
+operator|)
 literal|"wrong type"
 argument_list|)
 argument_list|)
