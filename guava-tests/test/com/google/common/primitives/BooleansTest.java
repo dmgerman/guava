@@ -1822,7 +1822,7 @@ argument_list|(
 name|EMPTY
 argument_list|)
 operator|.
-name|indexOf
+name|lastIndexOf
 argument_list|(
 operator|(
 name|Object
@@ -1843,7 +1843,7 @@ argument_list|(
 name|EMPTY
 argument_list|)
 operator|.
-name|indexOf
+name|lastIndexOf
 argument_list|(
 literal|true
 argument_list|)
