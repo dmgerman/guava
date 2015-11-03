@@ -714,6 +714,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): Surprisingly often has more then 5% collisions there.
 DECL|method|testMurmur3_32 ()
 specifier|public
 name|void
