@@ -1619,11 +1619,11 @@ operator|.
 name|unencodedCharsFunnel
 argument_list|()
 argument_list|,
-literal|30L
-operator|+
 name|Integer
 operator|.
 name|MAX_VALUE
+operator|/
+literal|2
 argument_list|,
 literal|0.28
 argument_list|)
