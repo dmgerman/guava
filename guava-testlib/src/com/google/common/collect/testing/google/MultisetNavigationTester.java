@@ -3746,6 +3746,7 @@ block|}
 block|}
 DECL|method|totalSize (Iterable<? extends Entry<?>> entries)
 specifier|private
+specifier|static
 name|int
 name|totalSize
 parameter_list|(
