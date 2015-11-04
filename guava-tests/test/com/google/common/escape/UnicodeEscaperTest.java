@@ -918,6 +918,7 @@ block|{     }
 block|}
 DECL|method|escapeAsString (Escaper e, String s)
 specifier|private
+specifier|static
 name|String
 name|escapeAsString
 parameter_list|(

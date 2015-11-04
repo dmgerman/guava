@@ -2364,6 +2364,7 @@ return|;
 block|}
 DECL|method|warmUp (LoadingCache<Object, Object> cache, int minimum, int maximum)
 specifier|private
+specifier|static
 name|void
 name|warmUp
 parameter_list|(

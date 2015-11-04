@@ -4387,6 +4387,7 @@ block|}
 block|}
 DECL|method|putModel (Map<Integer, Integer> model, Range<Integer> range, int value)
 specifier|private
+specifier|static
 name|void
 name|putModel
 parameter_list|(
@@ -4451,6 +4452,7 @@ block|}
 block|}
 DECL|method|removeModel (Map<Integer, Integer> model, Range<Integer> range)
 specifier|private
+specifier|static
 name|void
 name|removeModel
 parameter_list|(

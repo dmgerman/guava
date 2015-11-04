@@ -2850,6 +2850,7 @@ expr_stmt|;
 block|}
 DECL|method|getAll (LoadingCache<Integer, Integer> cache, List<Integer> keys)
 specifier|private
+specifier|static
 name|void
 name|getAll
 parameter_list|(

@@ -5412,8 +5412,9 @@ return|return
 name|seed
 return|;
 block|}
-DECL|method|insertRandomly (ArrayList<Integer> elements, MinMaxPriorityQueue<Integer> q, Random random)
+DECL|method|insertRandomly ( ArrayList<Integer> elements, MinMaxPriorityQueue<Integer> q, Random random)
 specifier|private
+specifier|static
 name|void
 name|insertRandomly
 parameter_list|(

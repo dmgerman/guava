@@ -494,6 +494,7 @@ return|;
 block|}
 DECL|method|createMapMaker ()
 specifier|private
+specifier|static
 name|MapMaker
 name|createMapMaker
 parameter_list|()

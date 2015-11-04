@@ -3586,6 +3586,7 @@ expr_stmt|;
 block|}
 DECL|method|awaitUnchecked (final CyclicBarrier barrier)
 specifier|private
+specifier|static
 name|int
 name|awaitUnchecked
 parameter_list|(

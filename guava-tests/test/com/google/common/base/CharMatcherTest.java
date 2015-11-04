@@ -1287,6 +1287,7 @@ literal|"NullPointerTester"
 argument_list|)
 DECL|method|doTestNull (CharMatcher matcher)
 specifier|private
+specifier|static
 name|void
 name|doTestNull
 parameter_list|(
