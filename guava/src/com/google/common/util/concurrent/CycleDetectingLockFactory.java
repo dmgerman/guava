@@ -2135,6 +2135,7 @@ block|}
 comment|/**    * CycleDetectingLock implementations must call this method in a    * {@code finally} clause after any attempt to change the lock state,    * including both lock and unlock attempts. Failure to do so can result in    * corrupting the acquireLocks set.    */
 DECL|method|lockStateChanged (CycleDetectingLock lock)
 specifier|private
+specifier|static
 name|void
 name|lockStateChanged
 parameter_list|(
