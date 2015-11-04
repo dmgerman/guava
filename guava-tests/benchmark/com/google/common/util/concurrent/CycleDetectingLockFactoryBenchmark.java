@@ -272,6 +272,7 @@ expr_stmt|;
 block|}
 DECL|method|lockAndUnlock (Lock lock, int reps)
 specifier|private
+specifier|static
 name|void
 name|lockAndUnlock
 parameter_list|(
@@ -347,6 +348,7 @@ expr_stmt|;
 block|}
 DECL|method|lockAndUnlockNested (Lock[] locks, int reps)
 specifier|private
+specifier|static
 name|void
 name|lockAndUnlockNested
 parameter_list|(
