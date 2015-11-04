@@ -311,7 +311,7 @@ specifier|protected
 name|ByteSource
 parameter_list|()
 block|{}
-comment|/**    * Returns a {@link CharSource} view of this byte source that decodes bytes read from this source    * as characters using the given {@link Charset}.    */
+comment|/**    * Returns a {@link CharSource} view of this byte source that decodes bytes read from this source    * as characters using the given {@link Charset}.    *    *<p>If {@link CharSource#asByteSource} is called on the returned source with the same charset,    * the default implementation of this method will ensure that the original {@code ByteSource} is    * returned, rather than round-trip encoding. Subclasses that override this method should behave    * the same way.    */
 DECL|method|asCharSource (Charset charset)
 specifier|public
 name|CharSource
@@ -1357,13 +1357,11 @@ extends|extends
 name|CharSource
 block|{
 DECL|field|charset
-specifier|private
 specifier|final
 name|Charset
 name|charset
 decl_stmt|;
 DECL|method|AsCharSource (Charset charset)
-specifier|private
 name|AsCharSource
 parameter_list|(
 name|Charset
@@ -1379,6 +1377,44 @@ argument_list|(
 name|charset
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|asByteSource (Charset charset)
+specifier|public
+name|ByteSource
+name|asByteSource
+parameter_list|(
+name|Charset
+name|charset
+parameter_list|)
+block|{
+if|if
+condition|(
+name|charset
+operator|.
+name|equals
+argument_list|(
+name|this
+operator|.
+name|charset
+argument_list|)
+condition|)
+block|{
+return|return
+name|ByteSource
+operator|.
+name|this
+return|;
+block|}
+return|return
+name|super
+operator|.
+name|asByteSource
+argument_list|(
+name|charset
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override

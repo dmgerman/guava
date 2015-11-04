@@ -259,6 +259,8 @@ name|SourceSinkFactories
 operator|.
 name|urlCharSourceFactory
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

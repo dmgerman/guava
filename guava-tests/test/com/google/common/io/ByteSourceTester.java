@@ -372,7 +372,6 @@ name|suite
 return|;
 block|}
 DECL|method|suiteForString (ByteSourceFactory factory, String string, String name, String desc)
-specifier|private
 specifier|static
 name|TestSuite
 name|suiteForString
@@ -448,7 +447,6 @@ name|suite
 return|;
 block|}
 DECL|method|suiteForBytes (ByteSourceFactory factory, byte[] bytes, String name, String desc, boolean slice)
-specifier|private
 specifier|static
 name|TestSuite
 name|suiteForBytes
