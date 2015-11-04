@@ -550,7 +550,7 @@ name|k1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the MD5 hash algorithm (128 hash bits) by delegating to    * the MD5 {@link MessageDigest}.    *    *<p><b>Warning:</b> MD5 is not cryptographically secure or collision-resistant and is not    * recommended for use in new code.  It should be used for legacy compatibility reasons only.    * Please consider using a hash function in the SHA-2 family of functions (e.g., SHA-256).    */
 DECL|method|md5 ()
 specifier|public
 specifier|static
@@ -585,7 +585,7 @@ literal|"Hashing.md5()"
 argument_list|)
 decl_stmt|;
 block|}
-comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits) by delegating to the    * SHA-1 {@link MessageDigest}.    */
+comment|/**    * Returns a hash function implementing the SHA-1 algorithm (160 hash bits) by delegating to the    * SHA-1 {@link MessageDigest}.    *    *<p><b>Warning:</b> SHA1 is not cryptographically secure and is not recommended for use in new    * code. It should be used for legacy compatibility reasons only. Please consider using a hash    * function in the SHA-2 family of functions (e.g., SHA-256).    */
 DECL|method|sha1 ()
 specifier|public
 specifier|static
