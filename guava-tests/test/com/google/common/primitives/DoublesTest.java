@@ -4103,6 +4103,9 @@ block|}
 block|}
 block|}
 annotation|@
+name|AndroidIncompatible
+comment|// slow
+annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"Doubles.tryParse"
