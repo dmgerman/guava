@@ -1118,6 +1118,9 @@ name|FreshValueGeneratorTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|AndroidIncompatible
+comment|// problem with equality of Type objects?
 DECL|method|testFreshInstance ()
 specifier|public
 name|void
@@ -2933,6 +2936,9 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|AndroidIncompatible
+comment|// problem with equality of Type objects?
 DECL|method|testOptional ()
 specifier|public
 name|void

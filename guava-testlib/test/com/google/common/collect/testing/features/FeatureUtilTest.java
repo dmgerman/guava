@@ -432,6 +432,9 @@ end_class
 
 begin_class
 annotation|@
+name|AndroidIncompatible
+comment|// Android attempts to run directly
+annotation|@
 name|NonTesterAnnotation
 annotation|@
 name|ExampleDerivedFeature
@@ -980,6 +983,9 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|AndroidIncompatible
+comment|// Android runs ExampleDerivedInterfaceTester directly if it exists
 DECL|method|testBuildTesterRequirements_class ()
 specifier|public
 name|void
@@ -1080,6 +1086,9 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|AndroidIncompatible
+comment|// Android runs ExampleDerivedInterfaceTester directly if it exists
 DECL|method|testBuildTesterRequirements_method ()
 specifier|public
 name|void
@@ -1206,6 +1215,9 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|AndroidIncompatible
+comment|// Android runs ExampleDerivedInterfaceTester directly if it exists
 DECL|method|testBuildTesterRequirements_classClassConflict ()
 specifier|public
 name|void
@@ -1269,6 +1281,9 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|AndroidIncompatible
+comment|// Android runs ExampleDerivedInterfaceTester directly if it exists
 DECL|method|testBuildTesterRequirements_methodClassConflict ()
 specifier|public
 name|void
@@ -1341,6 +1356,9 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|AndroidIncompatible
+comment|// Android runs ExampleDerivedInterfaceTester directly if it exists
 DECL|method|testBuildDeclaredTesterRequirements ()
 specifier|public
 name|void

@@ -4669,7 +4669,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{

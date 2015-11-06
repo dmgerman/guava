@@ -74,6 +74,16 @@ name|junit
 operator|.
 name|framework
 operator|.
+name|AssertionFailedError
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
 name|TestCase
 import|;
 end_import
@@ -214,7 +224,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -273,7 +283,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -342,7 +352,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -363,7 +373,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -401,7 +411,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -439,7 +449,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -499,7 +509,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -526,7 +536,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -551,7 +561,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -576,7 +586,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -637,7 +647,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -732,7 +742,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -759,7 +769,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }
@@ -784,7 +794,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{     }

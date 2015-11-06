@@ -721,6 +721,9 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): ClassNotFoundException... ClassSanityTesterTest$AnInterface
 DECL|method|testSerializableOnReturnValues_good ()
 specifier|public
 name|void
@@ -802,7 +805,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
@@ -873,7 +876,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|AssertionError
+name|AssertionFailedError
 name|expected
 parameter_list|)
 block|{
@@ -922,6 +925,9 @@ literal|"should have failed"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): ClassNotFoundException... ClassSanityTesterTest$AnInterface
 DECL|method|testEqualsAndSerializableOnReturnValues_good ()
 specifier|public
 name|void
@@ -1457,6 +1463,9 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// problem with equality of Type objects?
 DECL|method|testEqualsUsingReferentialEquality ()
 specifier|public
 name|void
@@ -1595,7 +1604,9 @@ return|return;
 block|}
 name|fail
 argument_list|(
-literal|"should have failed"
+literal|"should have failed for "
+operator|+
+name|cls
 argument_list|)
 expr_stmt|;
 block|}
@@ -2684,6 +2695,9 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): ClassNotFoundException... ClassSanityTesterTest$AnInterface
 DECL|method|testInterfaceProxySerializable ()
 specifier|public
 name|void
