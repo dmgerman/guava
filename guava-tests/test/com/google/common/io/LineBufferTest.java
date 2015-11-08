@@ -129,6 +129,9 @@ comment|/**  * Unit tests for {@link LineBuffer} and {@link LineReader}.  *  * @
 end_comment
 
 begin_class
+annotation|@
+name|AndroidIncompatible
+comment|// occasionally very slow
 DECL|class|LineBufferTest
 specifier|public
 class|class
