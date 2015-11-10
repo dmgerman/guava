@@ -1195,6 +1195,37 @@ name|get
 parameter_list|()
 function_decl|;
 block|}
+comment|/**    * Returns a hash function implementing FarmHash's Fingerprint64, an open-source algorithm.    *<p>    * This is designed for generating persistent fingerprints of strings.  It isn't cryptographically    * secure, but it produces a high-quality hash with fewer collisions than some alternatives we've    * used in the past.  FarmHashFingerprints generated using this are byte-wise identical to those    * created using the C++ version, but note that this uses unsigned integers (see    * {@link com.google.common.primitives.UnsignedInts}).  Comparisons between the two should take    * this into account.    *    * @since 20.0    */
+DECL|method|farmHashFingerprint64 ()
+specifier|public
+specifier|static
+name|HashFunction
+name|farmHashFingerprint64
+parameter_list|()
+block|{
+return|return
+name|FarmHashFingerprint64Holder
+operator|.
+name|FARMHASH_FINGERPRINT_64
+return|;
+block|}
+DECL|class|FarmHashFingerprint64Holder
+specifier|private
+specifier|static
+class|class
+name|FarmHashFingerprint64Holder
+block|{
+DECL|field|FARMHASH_FINGERPRINT_64
+specifier|static
+specifier|final
+name|HashFunction
+name|FARMHASH_FINGERPRINT_64
+init|=
+operator|new
+name|FarmHashFingerprint64
+argument_list|()
+decl_stmt|;
+block|}
 comment|/**    * Assigns to {@code hashCode} a "bucket" in the range {@code [0, buckets)}, in a uniform manner    * that minimizes the need for remapping as {@code buckets} grows. That is, {@code    * consistentHash(h, n)} equals:    *    *<ul>    *<li>{@code n - 1}, with approximate probability {@code 1/n}    *<li>{@code consistentHash(h, n - 1)}, otherwise (probability {@code 1 - 1/n})    *</ul>    *    *<p>This method is suitable for the common use case of dividing work among buckets that meet the    * following conditions:    *    *<ul>    *<li>You want to assign the same fraction of inputs to each bucket.    *<li>When you reduce the number of buckets, you can accept that the most recently added buckets    * will be removed first. More concretely, if you are dividing traffic among tasks, you can    * decrease the number of tasks from 15 and 10, killing off the final 5 tasks, and {@code    * consistentHash} will handle it. If, however, you are dividing traffic among servers {@code    * alpha}, {@code bravo}, and {@code charlie} and you occasionally need to take each of the    * servers offline, {@code consistentHash} will be a poor fit: It provides no way for you to    * specify which of the three buckets is disappearing. Thus, if your buckets change from {@code    * [alpha, bravo, charlie]} to {@code [bravo, charlie]}, it will assign all the old {@code alpha}    * traffic to {@code bravo} and all the old {@code bravo} traffic to {@code charlie}, rather than    * letting {@code bravo} keep its traffic.    *</ul>    *    *    *<p>See the<a href="http://en.wikipedia.org/wiki/Consistent_hashing">Wikipedia article on    * consistent hashing</a> for more information.    */
 DECL|method|consistentHash (HashCode hashCode, int buckets)
 specifier|public

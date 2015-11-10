@@ -173,6 +173,16 @@ name|sipHash24
 argument_list|()
 argument_list|)
 block|,
+DECL|enumConstant|FARMHASH_FINGERPRINT_64
+DECL|enumConstant|Hashing.farmHashFingerprint64
+name|FARMHASH_FINGERPRINT_64
+argument_list|(
+name|Hashing
+operator|.
+name|farmHashFingerprint64
+argument_list|()
+argument_list|)
+block|,
 comment|// Hash functions found in //javatests for comparing against current implementation of CityHash.
 comment|// These can probably be removed sooner or later.
 block|;
