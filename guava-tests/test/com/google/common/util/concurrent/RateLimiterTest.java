@@ -3195,6 +3195,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|sleepMicrosUninterruptibly (long micros)
+specifier|protected
 name|void
 name|sleepMicrosUninterruptibly
 parameter_list|(

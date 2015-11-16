@@ -893,22 +893,28 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|VisibleForTesting
 DECL|class|SleepingStopwatch
 specifier|abstract
 specifier|static
 class|class
 name|SleepingStopwatch
 block|{
+comment|/** Constructor for use by subclasses. */
+DECL|method|SleepingStopwatch ()
+specifier|protected
+name|SleepingStopwatch
+parameter_list|()
+block|{}
 comment|/*      * We always hold the mutex when calling this. TODO(cpovirk): Is that important? Perhaps we need      * to guarantee that each call to reserveEarliestAvailable, etc. sees a value>= the previous?      * Also, is it OK that we don't hold the mutex when sleeping?      */
 DECL|method|readMicros ()
+specifier|protected
 specifier|abstract
 name|long
 name|readMicros
 parameter_list|()
 function_decl|;
 DECL|method|sleepMicrosUninterruptibly (long micros)
+specifier|protected
 specifier|abstract
 name|void
 name|sleepMicrosUninterruptibly
@@ -918,6 +924,7 @@ name|micros
 parameter_list|)
 function_decl|;
 DECL|method|createFromSystemTimer ()
+specifier|public
 specifier|static
 specifier|final
 name|SleepingStopwatch
@@ -940,6 +947,7 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
+specifier|protected
 name|long
 name|readMicros
 parameter_list|()
@@ -955,6 +963,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|protected
 name|void
 name|sleepMicrosUninterruptibly
 parameter_list|(

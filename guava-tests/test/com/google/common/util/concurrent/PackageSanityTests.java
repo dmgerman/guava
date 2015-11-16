@@ -85,6 +85,7 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|protected
 name|long
 name|readMicros
 parameter_list|()
@@ -95,6 +96,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|protected
 name|void
 name|sleepMicrosUninterruptibly
 parameter_list|(
