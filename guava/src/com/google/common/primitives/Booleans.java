@@ -1026,6 +1026,18 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Booleans.lexicographicalComparator()"
+return|;
+block|}
 block|}
 comment|/**    * Copies a collection of {@code Boolean} instances into a new array of    * primitive {@code boolean} values.    *    *<p>Elements are copied from the argument collection as if by {@code    * collection.toArray()}.  Calling this method is as thread-safe as calling    * that method.    *    *<p><b>Note:</b> consider representing the collection as a {@link    * java.util.BitSet} instead.    *    * @param collection a collection of {@code Boolean} objects    * @return an array containing the same values as {@code collection}, in the    *     same order, converted to primitives    * @throws NullPointerException if {@code collection} or any of its elements    *     is null    */
 DECL|method|toArray (Collection<Boolean> collection)

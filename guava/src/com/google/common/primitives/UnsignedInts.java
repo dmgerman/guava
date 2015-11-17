@@ -593,6 +593,18 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"UnsignedInts.lexicographicalComparator()"
+return|;
+block|}
 block|}
 comment|/**    * Returns dividend / divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
 annotation|@

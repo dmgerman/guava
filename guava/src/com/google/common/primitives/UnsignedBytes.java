@@ -1308,6 +1308,18 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"UnsignedBytes.lexicographicalComparator() (sun.misc.Unsafe version)"
+return|;
+block|}
 block|}
 DECL|enum|PureJavaComparator
 enum|enum
@@ -1407,6 +1419,18 @@ operator|-
 name|right
 operator|.
 name|length
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString ()
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"UnsignedBytes.lexicographicalComparator() (pure Java version)"
 return|;
 block|}
 block|}
