@@ -985,7 +985,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code HashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#of()} instead.    *    *<p><b>Note:</b> if {@code K} is an {@code enum} type, use {@link    * #newEnumMap} instead.    *    * @return a new, empty {@code HashMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code HashMap} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#of()} instead.    *    *<p><b>Note:</b> if {@code K} is an {@code enum} type, use {@link    * #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code HashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code HashMap}    */
 DECL|method|newHashMap ()
 specifier|public
 specifier|static
@@ -1116,7 +1116,7 @@ name|MAX_VALUE
 return|;
 comment|// any large value
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code    *         map}    */
+comment|/**    * Creates a<i>mutable</i> {@code HashMap} instance with the same mappings as    * the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note:</b> if {@code K} is an {@link Enum} type, use {@link    * #newEnumMap} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code HashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new {@code HashMap} initialized with the mappings from {@code    *         map}    */
 DECL|method|newHashMap (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1159,7 +1159,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty, insertion-ordered {@code LinkedHashMap}    * instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#of()} instead.    *    * @return a new, empty {@code LinkedHashMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty, insertion-ordered {@code LinkedHashMap}    * instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code LinkedHashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code LinkedHashMap}    */
 DECL|method|newLinkedHashMap ()
 specifier|public
 specifier|static
@@ -1225,7 +1225,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from    *         {@code map}    */
+comment|/**    * Creates a<i>mutable</i>, insertion-ordered {@code LinkedHashMap} instance    * with the same mappings as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableMap#copyOf(Map)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code LinkedHashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the mappings to be placed in the new map    * @return a new, {@code LinkedHashMap} initialized with the mappings from    *         {@code map}    */
 DECL|method|newLinkedHashMap (Map<? extends K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1300,7 +1300,7 @@ name|makeMap
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural    * ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#of()} instead.    *    * @return a new, empty {@code TreeMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the natural    * ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code TreeMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code TreeMap}    */
 DECL|method|newTreeMap ()
 specifier|public
 specifier|static
@@ -1331,7 +1331,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as    * the specified map and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    * @param map the sorted map whose mappings are to be placed in the new map    *        and whose comparator is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code    *         map} and using the comparator of {@code map}    */
+comment|/**    * Creates a<i>mutable</i> {@code TreeMap} instance with the same mappings as    * the specified map and using the same ordering as the specified map.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedMap#copyOfSorted(SortedMap)} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code TreeMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the sorted map whose mappings are to be placed in the new map    *        and whose comparator is to be used to sort the new map    * @return a new {@code TreeMap} initialized with the mappings from {@code    *         map} and using the comparator of {@code map}    */
 DECL|method|newTreeMap (SortedMap<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1372,7 +1372,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given    * comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code TreeMap} instance using the given    * comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedMap.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code TreeMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param comparator the comparator to sort the keys with    * @return a new, empty {@code TreeMap}    */
 DECL|method|newTreeMap (@ullable Comparator<C> comparator)
 specifier|public
 specifier|static
@@ -1465,7 +1465,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code    *         map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap}    *         instance and contains no mappings    */
+comment|/**    * Creates an {@code EnumMap} with the same mappings as the specified map.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code EnumMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @param map the map from which to initialize this {@code EnumMap}    * @return a new {@code EnumMap} initialized with the mappings from {@code    *         map}    * @throws IllegalArgumentException if {@code m} is not an {@code EnumMap}    *         instance and contains no mappings    */
 DECL|method|newEnumMap (Map<K, ? extends V> map)
 specifier|public
 specifier|static
@@ -1511,7 +1511,7 @@ name|map
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates an {@code IdentityHashMap} instance.    *    * @return a new, empty {@code IdentityHashMap}    */
+comment|/**    * Creates an {@code IdentityHashMap} instance.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and    * should be treated as deprecated. Instead, use the {@code IdentityHashMap}    * constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code IdentityHashMap}    */
 DECL|method|newIdentityHashMap ()
 specifier|public
 specifier|static

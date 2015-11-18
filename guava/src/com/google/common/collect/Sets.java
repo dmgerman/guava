@@ -970,7 +970,7 @@ name|set
 return|;
 block|}
 comment|// LinkedHashSet
-comment|/**    * Creates a<i>mutable</i>, empty {@code LinkedHashSet} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSet#of()} instead.    *    * @return a new, empty {@code LinkedHashSet}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code LinkedHashSet} instance.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSet#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code LinkedHashSet} constructor directly, taking advantage of    * the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code LinkedHashSet}    */
 DECL|method|newLinkedHashSet ()
 specifier|public
 specifier|static
@@ -993,7 +993,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a {@code LinkedHashSet} instance, with a high enough "initial    * capacity" that it<i>should</i> hold {@code expectedSize} elements without    * growth. This behavior cannot be broadly guaranteed, but it is observed to    * be true for OpenJDK 1.6. It also can't be guaranteed that the method isn't    * inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the    *        returned set    * @return a new, empty {@code LinkedHashSet} with enough capacity to hold    *         {@code expectedSize} elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 11.0    */
+comment|/**    * Creates a {@code LinkedHashSet} instance, with a high enough "initial capacity" that it    *<i>should</i> hold {@code expectedSize} elements without growth. This behavior cannot be    * broadly guaranteed, but it is observed to be true for OpenJDK 1.7. It also can't be guaranteed    * that the method isn't inadvertently<i>oversizing</i> the returned set.    *    * @param expectedSize the number of elements you expect to add to the returned set    * @return a new, empty {@code LinkedHashSet} with enough capacity to hold {@code expectedSize}    *         elements without resizing    * @throws IllegalArgumentException if {@code expectedSize} is negative    * @since 11.0    */
 DECL|method|newLinkedHashSetWithExpectedSize (int expectedSize)
 specifier|public
 specifier|static
@@ -1026,7 +1026,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code LinkedHashSet} instance containing the    * given elements in order.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use {@link ImmutableSet#copyOf(Iterable)} instead.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code LinkedHashSet} containing those elements (minus    *     duplicates)    */
+comment|/**    * Creates a<i>mutable</i> {@code LinkedHashSet} instance containing the given elements in order.    *    *<p><b>Note:</b> if mutability is not required and the elements are non-null, use {@link    * ImmutableSet#copyOf(Iterable)} instead.    *    *<p><b>Note for Java 7 and later:</b> if {@code elements} is a {@link Collection}, you don't    * need this method. Instead, use the {@code LinkedHashSet} constructor directly, taking advantage    * of the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    *<p>Overall, this method is not very useful and will likely be deprecated in the future.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code LinkedHashSet} containing those elements (minus duplicates)    */
 DECL|method|newLinkedHashSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1094,7 +1094,7 @@ name|set
 return|;
 block|}
 comment|// TreeSet
-comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance sorted by the    * natural sort ordering of its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedSet#of()} instead.    *    * @return a new, empty {@code TreeSet}    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance sorted by the natural sort ordering of    * its elements.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSortedSet#of()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    * @return a new, empty {@code TreeSet}    */
 DECL|method|newTreeSet ()
 specifier|public
 specifier|static
@@ -1119,7 +1119,7 @@ argument_list|>
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i> {@code TreeSet} instance containing the given    * elements sorted by their natural ordering.    *    *<p><b>Note:</b> if mutability is not required, use {@link    * ImmutableSortedSet#copyOf(Iterable)} instead.    *    *<p><b>Note:</b> If {@code elements} is a {@code SortedSet} with an explicit    * comparator, this method has different behavior than    * {@link TreeSet#TreeSet(SortedSet)}, which returns a {@code TreeSet} with    * that comparator.    *    * @param elements the elements that the set should contain    * @return a new {@code TreeSet} containing those elements (minus duplicates)    */
+comment|/**    * Creates a<i>mutable</i> {@code TreeSet} instance containing the given elements sorted by their    * natural ordering.    *    *<p><b>Note:</b> if mutability is not required, use {@link ImmutableSortedSet#copyOf(Iterable)}    * instead.    *    *<p><b>Note:</b> If {@code elements} is a {@code SortedSet} with an explicit comparator, this    * method has different behavior than {@link TreeSet#TreeSet(SortedSet)}, which returns a {@code    * TreeSet} with that comparator.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    *    *<p>This method is just a small convenience for creating an empty set and then calling {@link    * Iterables#addAll}. This method is not very useful and will likely be deprecated in the future.    *    * @param elements the elements that the set should contain    * @return a new {@code TreeSet} containing those elements (minus duplicates)    */
 DECL|method|newTreeSet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -1165,7 +1165,7 @@ return|return
 name|set
 return|;
 block|}
-comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance with the given    * comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedSet.orderedBy(comparator).build()} instead.    *    * @param comparator the comparator to use to sort the set    * @return a new, empty {@code TreeSet}    * @throws NullPointerException if {@code comparator} is null    */
+comment|/**    * Creates a<i>mutable</i>, empty {@code TreeSet} instance with the given comparator.    *    *<p><b>Note:</b> if mutability is not required, use {@code    * ImmutableSortedSet.orderedBy(comparator).build()} instead.    *    *<p><b>Note for Java 7 and later:</b> this method is now unnecessary and should be treated as    * deprecated. Instead, use the {@code TreeSet} constructor directly, taking advantage of the new    *<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>. One caveat to this is that the {@code    * TreeSet} constructor uses a null {@code Comparator} to mean "natural ordering," whereas this    * factory rejects null. Clean your code accordingly.    *    * @param comparator the comparator to use to sort the set    * @return a new, empty {@code TreeSet}    * @throws NullPointerException if {@code comparator} is null    */
 DECL|method|newTreeSet (Comparator<? super E> comparator)
 specifier|public
 specifier|static
