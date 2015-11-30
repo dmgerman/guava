@@ -361,6 +361,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Encodes the specified byte array, and returns the encoded {@code String}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|encode (byte[] bytes)
 specifier|public
 name|String
@@ -385,6 +387,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Encodes the specified range of the specified byte array, and returns the encoded    * {@code String}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|encode (byte[] bytes, int off, int len)
 specifier|public
 specifier|final
@@ -468,6 +472,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"Writer,OutputStream"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|encodingStream (Writer writer)
 specifier|public
 specifier|abstract
@@ -484,6 +490,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"ByteSink,CharSink"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|encodingSink (final CharSink encodedSink)
 specifier|public
 specifier|final
@@ -688,6 +696,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"Reader,InputStream"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|decodingStream (Reader reader)
 specifier|public
 specifier|abstract
@@ -704,6 +714,8 @@ name|GwtIncompatible
 argument_list|(
 literal|"ByteSource,CharSource"
 argument_list|)
+annotation|@
+name|CheckReturnValue
 DECL|method|decodingSource (final CharSource encodedSource)
 specifier|public
 specifier|final
@@ -886,6 +898,8 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base64" base encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-4">RFC 4648 section 4</a>, Base 64 Encoding.    * (This is the same as the base 64 encoding from<a    * href="http://tools.ietf.org/html/rfc3548#section-3">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1"> RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|base64 ()
 specifier|public
 specifier|static
@@ -915,6 +929,8 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base64url" encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-5">RFC 4648 section 5</a>, Base 64 Encoding    * with URL and Filename Safe Alphabet, also sometimes referred to as the "web safe Base64."    * (This is the same as the base 64 encoding with URL and filename safe alphabet from<a    * href="http://tools.ietf.org/html/rfc3548#section-4">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1"> RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|base64Url ()
 specifier|public
 specifier|static
@@ -944,6 +960,8 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base32" encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-6">RFC 4648 section 6</a>, Base 32 Encoding.    * (This is the same as the base 32 encoding from<a    * href="http://tools.ietf.org/html/rfc3548#section-5">RFC 3548</a>.)    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1"> RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|base32 ()
 specifier|public
 specifier|static
@@ -973,6 +991,8 @@ literal|'='
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base32hex" encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-7">RFC 4648 section 7</a>, Base 32 Encoding    * with Extended Hex Alphabet.  There is no corresponding encoding in RFC 3548.    *    *<p>The character {@code '='} is used for padding, but can be {@linkplain #omitPadding()    * omitted} or {@linkplain #withPadChar(char) replaced}.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1"> RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|base32Hex ()
 specifier|public
 specifier|static
@@ -1000,6 +1020,8 @@ literal|"0123456789ABCDEF"
 argument_list|)
 decl_stmt|;
 comment|/**    * The "base16" encoding specified by<a    * href="http://tools.ietf.org/html/rfc4648#section-8">RFC 4648 section 8</a>, Base 16 Encoding.    * (This is the same as the base 16 encoding from<a    * href="http://tools.ietf.org/html/rfc3548#section-6">RFC 3548</a>.) This is commonly known as    * "hexadecimal" format.    *    *<p>No padding is necessary in base 16, so {@link #withPadChar(char)} and    * {@link #omitPadding()} have no effect.    *    *<p>No line feeds are added by default, as per<a    * href="http://tools.ietf.org/html/rfc4648#section-3.1"> RFC 4648 section 3.1</a>, Line Feeds in    * Encoded Data. Line feeds may be added using {@link #withSeparator(String, int)}.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|base16 ()
 specifier|public
 specifier|static

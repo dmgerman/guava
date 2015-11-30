@@ -2668,6 +2668,11 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"CheckReturnValue"
+argument_list|)
 DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @Nullable String expectedMessage)
 specifier|private
 specifier|static
