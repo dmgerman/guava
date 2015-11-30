@@ -5488,7 +5488,7 @@ name|map
 operator|.
 name|get
 argument_list|(
-name|this
+name|type
 argument_list|)
 decl_stmt|;
 if|if

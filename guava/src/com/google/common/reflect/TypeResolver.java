@@ -2399,7 +2399,7 @@ block|}
 comment|/** Wraps {@code t} in a {@code TypeVariableKey} if it's a type variable. */
 DECL|method|forLookup (Type t)
 specifier|static
-name|Object
+name|TypeVariableKey
 name|forLookup
 parameter_list|(
 name|Type
