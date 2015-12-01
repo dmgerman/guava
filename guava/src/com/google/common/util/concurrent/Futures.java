@@ -2406,8 +2406,6 @@ name|value
 decl_stmt|;
 try|try
 block|{
-comment|// TODO(user): (Before Guava release), validate that this
-comment|// is the thing for IE.
 name|value
 operator|=
 name|getUninterruptibly
