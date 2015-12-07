@@ -102,6 +102,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -213,17 +223,45 @@ name|int
 name|length
 parameter_list|)
 block|{
-return|return
-name|GwtPlatform
+name|T
+index|[]
+name|clone
+init|=
+name|Arrays
 operator|.
-name|newArray
+name|copyOf
 argument_list|(
 name|reference
 argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+name|resizeArray
+argument_list|(
+name|clone
+argument_list|,
 name|length
 argument_list|)
+expr_stmt|;
+return|return
+name|clone
 return|;
 block|}
+DECL|method|resizeArray (Object array, int newSize)
+specifier|private
+specifier|static
+specifier|native
+name|void
+name|resizeArray
+parameter_list|(
+name|Object
+name|array
+parameter_list|,
+name|int
+name|newSize
+parameter_list|)
+comment|/*-{     array.length = newSize;   }-*/
+function_decl|;
 comment|/*    * Regarding newSetForMap() and SetFromMap:    *    * Written by Doug Lea with assistance from members of JCP JSR-166    * Expert Group and released to the public domain, as explained at    * http://creativecommons.org/licenses/publicdomain    */
 DECL|method|newSetFromMap (Map<E, Boolean> map)
 specifier|static

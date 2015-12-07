@@ -18,6 +18,16 @@ name|testing
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
 begin_comment
 comment|/**  * Minimal GWT emulation of {@code com.google.common.collect.testing.Platform}.  *  *<p><strong>This .java file should never be consumed by javac.</strong>  *  * @author Hayward Chan  */
 end_comment
@@ -79,11 +89,21 @@ name|array
 parameter_list|)
 block|{
 return|return
-name|GwtPlatform
+operator|(
+name|T
+index|[]
+operator|)
+name|Arrays
 operator|.
-name|clone
+name|copyOfRange
 argument_list|(
 name|array
+argument_list|,
+literal|0
+argument_list|,
+name|array
+operator|.
+name|length
 argument_list|)
 return|;
 block|}
