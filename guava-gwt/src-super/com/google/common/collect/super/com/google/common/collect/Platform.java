@@ -78,6 +78,36 @@ end_import
 
 begin_import
 import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
+name|JsPackage
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
+name|JsProperty
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
+operator|.
+name|annotations
+operator|.
+name|JsType
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -250,7 +280,6 @@ block|}
 DECL|method|resizeArray (Object array, int newSize)
 specifier|private
 specifier|static
-specifier|native
 name|void
 name|resizeArray
 parameter_list|(
@@ -260,8 +289,54 @@ parameter_list|,
 name|int
 name|newSize
 parameter_list|)
-comment|/*-{     array.length = newSize;   }-*/
+block|{
+operator|(
+operator|(
+name|NativeArray
+operator|)
+name|array
+operator|)
+operator|.
+name|setLength
+argument_list|(
+name|newSize
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO(user): Move this logic to a utility class.
+annotation|@
+name|JsType
+argument_list|(
+name|isNative
+operator|=
+literal|true
+argument_list|,
+name|name
+operator|=
+literal|"Array"
+argument_list|,
+name|namespace
+operator|=
+name|JsPackage
+operator|.
+name|GLOBAL
+argument_list|)
+DECL|interface|NativeArray
+specifier|private
+interface|interface
+name|NativeArray
+block|{
+annotation|@
+name|JsProperty
+DECL|method|setLength (int length)
+name|void
+name|setLength
+parameter_list|(
+name|int
+name|length
+parameter_list|)
 function_decl|;
+block|}
 comment|/*    * Regarding newSetForMap() and SetFromMap:    *    * Written by Doug Lea with assistance from members of JCP JSR-166    * Expert Group and released to the public domain, as explained at    * http://creativecommons.org/licenses/publicdomain    */
 DECL|method|newSetFromMap (Map<E, Boolean> map)
 specifier|static

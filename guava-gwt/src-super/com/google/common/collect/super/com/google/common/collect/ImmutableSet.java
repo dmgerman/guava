@@ -936,6 +936,20 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|// This declaration is needed to make Set.iterator() and
+comment|// ImmutableCollection.iterator() appear consistent to javac's type inference.
+annotation|@
+name|Override
+DECL|method|iterator ()
+specifier|public
+specifier|abstract
+name|UnmodifiableIterator
+argument_list|<
+name|E
+argument_list|>
+name|iterator
+parameter_list|()
+function_decl|;
 DECL|class|Indexed
 specifier|abstract
 specifier|static

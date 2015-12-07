@@ -32,17 +32,31 @@ end_import
 
 begin_import
 import|import
-name|com
+name|jsinterop
 operator|.
-name|google
+name|annotations
 operator|.
-name|gwt
+name|JsFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
 operator|.
-name|user
+name|annotations
 operator|.
-name|client
+name|JsMethod
+import|;
+end_import
+
+begin_import
+import|import
+name|jsinterop
 operator|.
-name|Timer
+name|annotations
+operator|.
+name|JsPackage
 import|;
 end_import
 
@@ -521,11 +535,10 @@ parameter_list|)
 block|{
 comment|// from MapMaker
 comment|/*        * TODO: Keep weak reference to map, too. Build a priority queue out of the entries themselves        * instead of creating a task per entry. Then, we could have one recurring task per map (which        * would clean the entire map and then reschedule itself depending upon when the next        * expiration comes). We also want to avoid removing an entry prematurely if the entry was set        * to the same value again.        */
-name|Timer
-name|timer
-init|=
+name|setTimeout
+argument_list|(
 operator|new
-name|Timer
+name|Callback
 argument_list|()
 block|{
 annotation|@
@@ -544,11 +557,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-decl_stmt|;
-name|timer
-operator|.
-name|schedule
-argument_list|(
+argument_list|,
 operator|(
 name|int
 operator|)
@@ -556,6 +565,47 @@ name|expirationMillis
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|JsFunction
+DECL|interface|Callback
+specifier|private
+interface|interface
+name|Callback
+block|{
+DECL|method|run ()
+name|void
+name|run
+parameter_list|()
+function_decl|;
+block|}
+comment|// TODO(user): Move this logic to a common location.
+annotation|@
+name|JsMethod
+argument_list|(
+name|name
+operator|=
+literal|"setTimeout"
+argument_list|,
+name|namespace
+operator|=
+name|JsPackage
+operator|.
+name|GLOBAL
+argument_list|)
+DECL|method|setTimeout (Callback callback, int delayInMs)
+specifier|private
+specifier|static
+specifier|native
+name|void
+name|setTimeout
+parameter_list|(
+name|Callback
+name|callback
+parameter_list|,
+name|int
+name|delayInMs
+parameter_list|)
+function_decl|;
 annotation|@
 name|Override
 DECL|method|get (Object k)
