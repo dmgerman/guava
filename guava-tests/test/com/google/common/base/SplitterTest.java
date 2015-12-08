@@ -2388,7 +2388,7 @@ literal|"java.util.regex.Pattern"
 argument_list|)
 annotation|@
 name|AndroidIncompatible
-comment|// TODO(cpovirk): File Android bug.
+comment|// Bug in older versions of Android we test against, since fixed.
 DECL|method|testPatternSplitLookBehind ()
 specifier|public
 name|void
@@ -2451,7 +2451,7 @@ literal|"java.util.regex.Pattern"
 argument_list|)
 annotation|@
 name|AndroidIncompatible
-comment|// TODO(cpovirk): File Android bug.
+comment|// Bug in older versions of Android we test against, since fixed.
 DECL|method|testPatternSplitWordBoundary ()
 specifier|public
 name|void
