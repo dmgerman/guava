@@ -17818,13 +17818,6 @@ DECL|method|makeUnmodifiable (Collection<?> actual)
 specifier|private
 specifier|static
 name|IterableSubject
-argument_list|<
-name|?
-argument_list|,
-name|Object
-argument_list|,
-name|?
-argument_list|>
 name|makeUnmodifiable
 parameter_list|(
 name|Collection
