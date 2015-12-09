@@ -2035,7 +2035,7 @@ literal|"TODO"
 argument_list|)
 annotation|@
 name|AndroidIncompatible
-comment|// TODO(cpovirk): Problem with LongMath.divide on Android?
+comment|// Bug in older versions of Android we test against, since fixed.
 DECL|method|testDivNonZeroExact ()
 specifier|public
 name|void
