@@ -930,6 +930,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): Surprisingly often has more then 5% collisions there.
 comment|// goodFastHash(32) uses Murmur3_32. Use the same epsilon bounds.
 DECL|method|testGoodFastHash32 ()
 specifier|public
