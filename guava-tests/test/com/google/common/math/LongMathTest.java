@@ -2957,13 +2957,31 @@ literal|"TODO"
 argument_list|)
 annotation|@
 name|AndroidIncompatible
-comment|// TODO(cpovirk): Problem with LongMath.checkedMultiply on Android?
+comment|// slow
 DECL|method|testCheckedMultiply ()
 specifier|public
 name|void
 name|testCheckedMultiply
 parameter_list|()
 block|{
+name|boolean
+name|isAndroid
+init|=
+name|System
+operator|.
+name|getProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.runtime.name"
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"Android"
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|long
@@ -2980,6 +2998,23 @@ range|:
 name|ALL_LONG_CANDIDATES
 control|)
 block|{
+if|if
+condition|(
+name|isAndroid
+operator|&&
+name|a
+operator|==
+operator|-
+literal|4294967296L
+operator|&&
+name|b
+operator|==
+literal|2147483648L
+condition|)
+block|{
+comment|/*            * Bug in older versions of Android we test against, since fixed: -9223372036854775808L /            * -4294967296L = -9223372036854775808L!            *            * To be clear, this bug affects not the test's computation of the expected result but the            * _actual prod code_. But it probably affects only unusual cases.            */
+continue|continue;
+block|}
 name|BigInteger
 name|expectedResult
 init|=
