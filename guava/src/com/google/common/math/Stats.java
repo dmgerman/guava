@@ -1345,7 +1345,6 @@ block|}
 comment|// Serialization helpers
 comment|/**    * The size of byte array representaion in bytes.    */
 DECL|field|BYTES
-specifier|public
 specifier|static
 specifier|final
 name|int
@@ -1367,7 +1366,7 @@ name|Byte
 operator|.
 name|SIZE
 decl_stmt|;
-comment|/**    * Gets a {@link #BYTES}-long byte array representation of this instance.    *    *<p>NOTE: NO guarantees are made regarding stability of the representation between versions.    */
+comment|/**    * Gets a byte array representation of this instance.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    */
 DECL|method|toByteArray ()
 specifier|public
 name|byte
@@ -1375,7 +1374,9 @@ index|[]
 name|toByteArray
 parameter_list|()
 block|{
-return|return
+name|ByteBuffer
+name|buff
+init|=
 name|ByteBuffer
 operator|.
 name|allocate
@@ -1389,6 +1390,53 @@ name|ByteOrder
 operator|.
 name|LITTLE_ENDIAN
 argument_list|)
+decl_stmt|;
+name|writeTo
+argument_list|(
+name|buff
+argument_list|)
+expr_stmt|;
+return|return
+name|buff
+operator|.
+name|array
+argument_list|()
+return|;
+block|}
+comment|/**    * Writes to the given {@link ByteBuffer} a byte representation of this instance.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    *    * @param buffer A {@link ByteBuffer} with at least BYTES {@link ByteBuffer#remaining}, ordered as    *     {@link ByteOrder#LITTLE_ENDIAN}, to which a BYTES-long byte representation of this instance    *     is written. In the process increases the position of {@link ByteBuffer} by BYTES.    */
+DECL|method|writeTo (ByteBuffer buffer)
+name|void
+name|writeTo
+parameter_list|(
+name|ByteBuffer
+name|buffer
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|buffer
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|buffer
+operator|.
+name|remaining
+argument_list|()
+operator|>=
+name|BYTES
+argument_list|,
+literal|"Expected at least Stats.BYTES = %s remaining , got %s"
+argument_list|,
+name|BYTES
+argument_list|,
+name|buffer
+operator|.
+name|remaining
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|buffer
 operator|.
 name|putLong
 argument_list|(
@@ -1414,12 +1462,9 @@ name|putDouble
 argument_list|(
 name|max
 argument_list|)
-operator|.
-name|array
-argument_list|()
-return|;
+expr_stmt|;
 block|}
-comment|/**    * Creates a Stats instance from the given byte representation. The array must be at least    * {@link #BYTES} long, and only the first {@link #BYTES} bytes will be used.    *    *<p>NOTE: NO guarantees are made regarding stability of the representation between versions.    */
+comment|/**    * Creates a Stats instance from the given byte representation which was obtained by    * {@link #toByteArray}.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    */
 DECL|method|fromByteArray (byte[] byteArray)
 specifier|public
 specifier|static
@@ -1441,10 +1486,10 @@ argument_list|(
 name|byteArray
 operator|.
 name|length
-operator|>=
+operator|==
 name|BYTES
 argument_list|,
-literal|"Expected at least Stats.BYTES = %s, got %s"
+literal|"Expected Stats.BYTES = %s remaining , got %s"
 argument_list|,
 name|BYTES
 argument_list|,
@@ -1453,9 +1498,9 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|ByteBuffer
-name|buff
-init|=
+return|return
+name|readFrom
+argument_list|(
 name|ByteBuffer
 operator|.
 name|wrap
@@ -1469,32 +1514,68 @@ name|ByteOrder
 operator|.
 name|LITTLE_ENDIAN
 argument_list|)
-decl_stmt|;
+argument_list|)
+return|;
+block|}
+comment|/**    * Creates a Stats instance from the byte representation read from the given {@link ByteBuffer}.    *    *<p><b>Note:</b> No guarantees are made regarding stability of the representation between    * versions.    *    * @param buffer A {@link ByteBuffer} with at least BYTES {@link ByteBuffer#remaining}, ordered as    *     {@link ByteOrder#LITTLE_ENDIAN}, from which a BYTES-long byte representation of this    *     instance is read. In the process increases the position of {@link ByteBuffer} by BYTES.    */
+DECL|method|readFrom (ByteBuffer buffer)
+specifier|static
+name|Stats
+name|readFrom
+parameter_list|(
+name|ByteBuffer
+name|buffer
+parameter_list|)
+block|{
+name|checkNotNull
+argument_list|(
+name|buffer
+argument_list|)
+expr_stmt|;
+name|checkArgument
+argument_list|(
+name|buffer
+operator|.
+name|remaining
+argument_list|()
+operator|>=
+name|BYTES
+argument_list|,
+literal|"Expected at least Stats.BYTES = %s remaining , got %s"
+argument_list|,
+name|BYTES
+argument_list|,
+name|buffer
+operator|.
+name|remaining
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Stats
 argument_list|(
-name|buff
+name|buffer
 operator|.
 name|getLong
 argument_list|()
 argument_list|,
-name|buff
+name|buffer
 operator|.
 name|getDouble
 argument_list|()
 argument_list|,
-name|buff
+name|buffer
 operator|.
 name|getDouble
 argument_list|()
 argument_list|,
-name|buff
+name|buffer
 operator|.
 name|getDouble
 argument_list|()
 argument_list|,
-name|buff
+name|buffer
 operator|.
 name|getDouble
 argument_list|()

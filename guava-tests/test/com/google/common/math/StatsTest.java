@@ -938,6 +938,16 @@ name|ByteBuffer
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|ByteOrder
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests for {@link Stats}. This tests instances created by both {@link Stats#of} and  * {@link StatsAccumulator#snapshot}.  *  * @author Pete Gillin  */
 end_comment
@@ -4523,21 +4533,6 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
-comment|// Stats.BYTES fits resulting array length
-name|assertThat
-argument_list|(
-name|statsByteArray
-operator|.
-name|length
-argument_list|)
-operator|.
-name|isEqualTo
-argument_list|(
-name|Stats
-operator|.
-name|BYTES
-argument_list|)
-expr_stmt|;
 comment|// Round trip to byte array and back
 name|assertThat
 argument_list|(
@@ -4616,12 +4611,21 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-DECL|method|testFromByteArray_withTooLongArrayInputToIsParsedSuccesfuly ()
+DECL|method|testFromByteArray_withTooLongArrayInputThrowsIllegalArgumentException ()
 specifier|public
 name|void
-name|testFromByteArray_withTooLongArrayInputToIsParsedSuccesfuly
+name|testFromByteArray_withTooLongArrayInputThrowsIllegalArgumentException
 parameter_list|()
 block|{
+name|byte
+index|[]
+name|buffer
+init|=
+name|MANY_VALUES_STATS_VARARGS
+operator|.
+name|toByteArray
+argument_list|()
+decl_stmt|;
 name|byte
 index|[]
 name|tooLongByteArray
@@ -4630,19 +4634,23 @@ name|ByteBuffer
 operator|.
 name|allocate
 argument_list|(
-name|Stats
+name|buffer
 operator|.
-name|BYTES
+name|length
 operator|+
 literal|2
 argument_list|)
 operator|.
+name|order
+argument_list|(
+name|ByteOrder
+operator|.
+name|LITTLE_ENDIAN
+argument_list|)
+operator|.
 name|put
 argument_list|(
-name|MANY_VALUES_STATS_VARARGS
-operator|.
-name|toByteArray
-argument_list|()
+name|buffer
 argument_list|)
 operator|.
 name|putChar
@@ -4653,21 +4661,27 @@ operator|.
 name|array
 argument_list|()
 decl_stmt|;
-name|assertThat
-argument_list|(
+try|try
+block|{
 name|Stats
 operator|.
 name|fromByteArray
 argument_list|(
 name|tooLongByteArray
 argument_list|)
-argument_list|)
-operator|.
-name|isEqualTo
+expr_stmt|;
+name|fail
 argument_list|(
-name|MANY_VALUES_STATS_VARARGS
+literal|"Expected IllegalArgumentException"
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|expected
+parameter_list|)
+block|{     }
 block|}
 DECL|method|testFromByteArrayWithTooShortArrayInputThrowsIllegalArgumentException ()
 specifier|public
@@ -4677,25 +4691,38 @@ parameter_list|()
 block|{
 name|byte
 index|[]
+name|buffer
+init|=
+name|MANY_VALUES_STATS_VARARGS
+operator|.
+name|toByteArray
+argument_list|()
+decl_stmt|;
+name|byte
+index|[]
 name|tooShortByteArray
 init|=
 name|ByteBuffer
 operator|.
 name|allocate
 argument_list|(
-name|Stats
+name|buffer
 operator|.
-name|BYTES
+name|length
 operator|-
 literal|1
 argument_list|)
 operator|.
+name|order
+argument_list|(
+name|ByteOrder
+operator|.
+name|LITTLE_ENDIAN
+argument_list|)
+operator|.
 name|put
 argument_list|(
-name|MANY_VALUES_STATS_VARARGS
-operator|.
-name|toByteArray
-argument_list|()
+name|buffer
 argument_list|,
 literal|0
 argument_list|,
@@ -4729,7 +4756,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{       }
+block|{     }
 block|}
 block|}
 end_class

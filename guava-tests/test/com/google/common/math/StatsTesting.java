@@ -2052,6 +2052,36 @@ name|snapshot
 argument_list|()
 expr_stmt|;
 block|}
+DECL|field|ALL_PAIRED_STATS
+specifier|static
+specifier|final
+name|List
+argument_list|<
+name|PairedStats
+argument_list|>
+name|ALL_PAIRED_STATS
+init|=
+name|ImmutableList
+operator|.
+name|of
+argument_list|(
+name|EMPTY_PAIRED_STATS
+argument_list|,
+name|ONE_VALUE_PAIRED_STATS
+argument_list|,
+name|TWO_VALUES_PAIRED_STATS
+argument_list|,
+name|MANY_VALUES_PAIRED_STATS
+argument_list|,
+name|DUPLICATE_MANY_VALUES_PAIRED_STATS
+argument_list|,
+name|HORIZONTAL_VALUES_PAIRED_STATS
+argument_list|,
+name|VERTICAL_VALUES_PAIRED_STATS
+argument_list|,
+name|CONSTANT_VALUES_PAIRED_STATS
+argument_list|)
+decl_stmt|;
 comment|// Helper methods:
 DECL|method|assertStatsApproxEqual ( Stats expectedStats, Stats actualStats)
 specifier|static
