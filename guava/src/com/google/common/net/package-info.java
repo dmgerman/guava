@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_comment
-comment|/**  * This package contains utility methods and classes for working with net  * addresses (numeric IP and domain names).  *  *<p>This package is a part of the open-source  *<a href="http://guava-libraries.googlecode.com">Guava libraries</a>.  *  * @author Craig Berry  */
+comment|/**  * This package contains utility methods and classes for working with net  * addresses (numeric IP and domain names).  *  *<p>This package is a part of the open-source  *<a href="http://github.com/google/guava">Guava</a> library.  *  * @author Craig Berry  */
 end_comment
 
 begin_annotation

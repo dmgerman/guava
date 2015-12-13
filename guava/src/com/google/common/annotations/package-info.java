@@ -4,7 +4,7 @@ comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_comment
-comment|/**  * Common annotation types. This package is a part of the open-source  *<a href="http://guava-libraries.googlecode.com">Guava libraries</a>.  */
+comment|/**  * Common annotation types. This package is a part of the open-source  *<a href="http://github.com/google/guava">Guava</a> library.  */
 end_comment
 
 begin_package
