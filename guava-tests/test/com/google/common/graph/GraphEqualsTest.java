@@ -118,6 +118,9 @@ end_import
 
 begin_class
 annotation|@
+name|AndroidIncompatible
+comment|// TODO(cpovirk): Figure out Android JUnit 4 support. Does it work with Gingerbread? @RunWith?
+annotation|@
 name|RunWith
 argument_list|(
 name|Parameterized
