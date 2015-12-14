@@ -273,7 +273,6 @@ block|}
 DECL|method|done ()
 annotation|@
 name|Override
-specifier|protected
 specifier|final
 name|void
 name|done

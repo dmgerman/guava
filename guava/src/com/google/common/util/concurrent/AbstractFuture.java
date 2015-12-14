@@ -2685,12 +2685,9 @@ name|done
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@code done()} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing.    *    * @since 20.0    */
+comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
 comment|// TODO(cpovirk): @ForOverride https://github.com/google/error-prone/issues/342
-annotation|@
-name|Beta
 DECL|method|done ()
-specifier|protected
 name|void
 name|done
 parameter_list|()
