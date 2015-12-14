@@ -261,6 +261,7 @@ decl_stmt|;
 annotation|@
 name|Override
 DECL|method|done ()
+specifier|protected
 specifier|final
 name|void
 name|done
