@@ -18350,6 +18350,46 @@ return|return
 name|value
 return|;
 block|}
+comment|// Only becomes available in Java 8 when it's on the interface.
+comment|// @Override
+annotation|@
+name|Nullable
+DECL|method|getOrDefault (@ullable Object key, @Nullable V defaultValue)
+specifier|public
+name|V
+name|getOrDefault
+parameter_list|(
+annotation|@
+name|Nullable
+name|Object
+name|key
+parameter_list|,
+annotation|@
+name|Nullable
+name|V
+name|defaultValue
+parameter_list|)
+block|{
+name|V
+name|result
+init|=
+name|get
+argument_list|(
+name|key
+argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|result
+operator|!=
+literal|null
+operator|)
+condition|?
+name|result
+else|:
+name|defaultValue
+return|;
+block|}
 DECL|method|get (K key, CacheLoader<? super K, V> loader)
 name|V
 name|get
