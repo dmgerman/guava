@@ -1221,11 +1221,11 @@ operator|~
 literal|0x7
 decl_stmt|;
 return|return
+operator|(
 call|(
 name|int
 call|)
 argument_list|(
-operator|(
 operator|(
 name|lw
 operator|>>>
@@ -1233,9 +1233,14 @@ name|n
 operator|)
 operator|&
 name|UNSIGNED_MASK
+argument_list|)
 operator|)
 operator|-
 operator|(
+call|(
+name|int
+call|)
+argument_list|(
 operator|(
 name|rw
 operator|>>>
@@ -1243,8 +1248,8 @@ name|n
 operator|)
 operator|&
 name|UNSIGNED_MASK
-operator|)
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
