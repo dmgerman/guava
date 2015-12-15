@@ -596,6 +596,42 @@ name|trunc
 return|;
 block|}
 block|}
+comment|/**    * Determines whether the specified character sequence is a valid encoded string according to this    * encoding.    */
+annotation|@
+name|CheckReturnValue
+DECL|method|canDecode (CharSequence chars)
+specifier|public
+specifier|final
+name|boolean
+name|canDecode
+parameter_list|(
+name|CharSequence
+name|chars
+parameter_list|)
+block|{
+comment|// TODO(lowasser): Optimize this instead of decoding and catching the exception.
+try|try
+block|{
+name|decodeChecked
+argument_list|(
+name|chars
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|DecodingException
+name|badInput
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
 comment|/**    * Decodes the specified character sequence, and returns the resulting {@code byte[]}.    * This is the inverse operation to {@link #encode(byte[])}.    *    * @throws IllegalArgumentException if the input is not a valid encoded string according to this    *         encoding.    */
 DECL|method|decode (CharSequence chars)
 specifier|public
@@ -608,6 +644,7 @@ name|CharSequence
 name|chars
 parameter_list|)
 block|{
+comment|// TODO(kak): @CheckReturnValue
 try|try
 block|{
 return|return
@@ -645,6 +682,7 @@ parameter_list|)
 throws|throws
 name|DecodingException
 block|{
+comment|// TODO(kak): @CheckReturnValue
 name|chars
 operator|=
 name|padding
