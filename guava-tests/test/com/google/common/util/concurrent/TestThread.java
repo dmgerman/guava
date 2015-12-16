@@ -201,7 +201,7 @@ specifier|final
 name|long
 name|DUE_DILIGENCE_MILLIS
 init|=
-literal|50
+literal|100
 decl_stmt|;
 DECL|field|TIMEOUT_MILLIS
 specifier|private
