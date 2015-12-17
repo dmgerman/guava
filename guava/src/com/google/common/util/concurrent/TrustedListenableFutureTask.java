@@ -270,17 +270,18 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|method|done ()
+DECL|method|afterDone ()
 annotation|@
 name|Override
+specifier|protected
 specifier|final
 name|void
-name|done
+name|afterDone
 parameter_list|()
 block|{
 name|super
 operator|.
-name|done
+name|afterDone
 argument_list|()
 expr_stmt|;
 comment|// Free all resources associated with the running task

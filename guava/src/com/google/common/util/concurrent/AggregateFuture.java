@@ -260,15 +260,16 @@ name|runningState
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|done ()
+DECL|method|afterDone ()
+specifier|protected
 specifier|final
 name|void
-name|done
+name|afterDone
 parameter_list|()
 block|{
 name|super
 operator|.
-name|done
+name|afterDone
 argument_list|()
 expr_stmt|;
 comment|// Let go of the memory held by the running state

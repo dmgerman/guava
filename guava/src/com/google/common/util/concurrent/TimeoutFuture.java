@@ -433,9 +433,10 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|done ()
+DECL|method|afterDone ()
+specifier|protected
 name|void
-name|done
+name|afterDone
 parameter_list|()
 block|{
 name|maybePropagateCancellation

@@ -872,13 +872,14 @@ name|listeners
 operator|=
 literal|null
 expr_stmt|;
-name|done
+name|afterDone
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|done ()
+DECL|method|afterDone ()
+specifier|protected
 name|void
-name|done
+name|afterDone
 parameter_list|()
 block|{}
 DECL|method|trustedGetException ()

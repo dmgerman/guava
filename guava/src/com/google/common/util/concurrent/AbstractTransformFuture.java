@@ -719,10 +719,11 @@ name|Exception
 function_decl|;
 annotation|@
 name|Override
-DECL|method|done ()
+DECL|method|afterDone ()
+specifier|protected
 specifier|final
 name|void
-name|done
+name|afterDone
 parameter_list|()
 block|{
 name|maybePropagateCancellation

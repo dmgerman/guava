@@ -2676,20 +2676,23 @@ name|executor
 argument_list|)
 expr_stmt|;
 block|}
-comment|// We call this after the listeners on the theory that done() will only be used for 'cleanup'
-comment|// oriented tasks (e.g. clearing fields) and so can wait behind listeners which may be executing
-comment|// more important work.  A counter argument would be that done() is trusted code and therefore
-comment|// it would be safe to run before potentially slow or poorly behaved listeners.  Reevaluate this
-comment|// once we have more examples of done() implementations.
-name|done
+comment|// We call this after the listeners on the theory that afterDone() will only be used for
+comment|// 'cleanup' oriented tasks (e.g. clearing fields) and so can wait behind listeners which may be
+comment|// executing more important work.  A counter argument would be that done() is trusted code and
+comment|// therefore it would be safe to run before potentially slow or poorly behaved listeners.
+comment|// Reevaluate this once we have more examples of afterDone() implementations.
+name|afterDone
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Callback method that is called immediately after the future is completed.    *    *<p>This is called exactly once, after all listeners have executed.  By default it does nothing.    */
+comment|/**    * Callback method that is called exactly once after the future is completed.    *    *<p>If {@link #interruptTask} is also run during completion, {@link #afterDone} runs after it.    *    *<p>The default implementation of this method in {@code AbstractFuture} does nothing.    *    * @since 20.0    */
 comment|// TODO(cpovirk): @ForOverride https://github.com/google/error-prone/issues/342
-DECL|method|done ()
+annotation|@
+name|Beta
+DECL|method|afterDone ()
+specifier|protected
 name|void
-name|done
+name|afterDone
 parameter_list|()
 block|{}
 comment|/**    * Returns the exception that this {@code Future} completed with. This includes completion through    * a call to {@link setException} or {@link setFuture}{@code (failedFuture)} but not cancellation.    *    * @throws RuntimeException if the {@code Future} has not failed    */
