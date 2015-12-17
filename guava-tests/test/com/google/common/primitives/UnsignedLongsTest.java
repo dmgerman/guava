@@ -321,11 +321,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -334,11 +329,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|max
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -403,11 +401,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -416,11 +409,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|min
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -975,11 +971,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseLongFails ()
 specifier|public
 name|void
@@ -989,13 +980,16 @@ block|{
 try|try
 block|{
 comment|// One more than maximum value
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
 argument_list|(
 literal|"18446744073709551616"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1099,11 +1093,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testDecodeLongFails ()
 specifier|public
 name|void
@@ -1113,13 +1102,16 @@ block|{
 try|try
 block|{
 comment|// One more than maximum value
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"0xfffffffffffffffff"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1132,13 +1124,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"-5"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1151,13 +1146,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"-0x5"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1170,13 +1168,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|decode
 argument_list|(
 literal|"-05"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1223,11 +1224,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseLongWithRadixLimits ()
 specifier|public
 name|void
@@ -1322,6 +1318,9 @@ argument_list|(
 name|radix
 argument_list|)
 decl_stmt|;
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1330,7 +1329,7 @@ name|overflowAsString
 argument_list|,
 name|radix
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1364,11 +1363,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseLongThrowsExceptionForInvalidRadix ()
 specifier|public
 name|void
@@ -1378,6 +1372,9 @@ block|{
 comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX, inclusive.
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1390,7 +1387,7 @@ name|MIN_RADIX
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1403,6 +1400,9 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1415,7 +1415,7 @@ name|MAX_RADIX
 operator|+
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1429,6 +1429,9 @@ block|{     }
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|UnsignedLongs
 operator|.
 name|parseUnsignedLong
@@ -1438,7 +1441,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

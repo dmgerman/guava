@@ -124,6 +124,20 @@ name|common
 operator|.
 name|base
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
 name|Predicate
 import|;
 end_import
@@ -305,11 +319,6 @@ comment|/**  * Unit test for {@link FluentIterable}.  *  * @author Marcin Mikosi
 end_comment
 
 begin_class
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -1747,11 +1756,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testAppend_nullPointerException ()
 specifier|public
 name|void
@@ -1760,6 +1764,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|FluentIterable
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|FluentIterable
 operator|.
 expr|<
@@ -1785,7 +1795,7 @@ argument_list|>
 operator|)
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Appending null iterable should throw NPE."
@@ -2750,6 +2760,12 @@ literal|3
 argument_list|)
 decl_stmt|;
 name|FluentIterable
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
+name|FluentIterable
 operator|.
 name|from
 argument_list|(
@@ -2762,7 +2778,7 @@ operator|new
 name|RepeatedStringValueOfWildcardFunction
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 DECL|method|testFirst_list ()
 specifier|public
@@ -2831,6 +2847,12 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|Optional
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -2840,7 +2862,7 @@ argument_list|)
 operator|.
 name|first
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3105,6 +3127,12 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|Optional
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -3114,7 +3142,7 @@ argument_list|)
 operator|.
 name|last
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4253,11 +4281,6 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testSkip_illegalArgument ()
 specifier|public
 name|void
@@ -4266,6 +4289,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|FluentIterable
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -4285,7 +4314,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Skipping negative number of elements should throw IllegalArgumentException."
@@ -4375,11 +4404,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testLimit_illegalArgument ()
 specifier|public
 name|void
@@ -4388,6 +4412,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|FluentIterable
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -4409,7 +4439,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Passing negative number to limit(...) method should throw IllegalArgumentException"
@@ -4948,6 +4978,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableMap
+argument_list|<
+name|Integer
+argument_list|,
+name|String
+argument_list|>
+name|unused
+init|=
 name|fluent
 argument_list|(
 literal|1
@@ -4966,7 +5004,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4986,6 +5024,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableMap
+argument_list|<
+name|Integer
+argument_list|,
+name|Object
+argument_list|>
+name|unused
+init|=
 name|fluent
 argument_list|(
 literal|1
@@ -5004,7 +5050,7 @@ argument_list|(
 literal|null
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5137,6 +5183,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableListMultimap
+argument_list|<
+name|Object
+argument_list|,
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|fluent
 argument_list|(
 literal|1
@@ -5155,7 +5209,7 @@ argument_list|(
 literal|null
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5175,6 +5229,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableListMultimap
+argument_list|<
+name|String
+argument_list|,
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|fluent
 argument_list|(
 literal|1
@@ -5193,7 +5255,7 @@ argument_list|(
 literal|"foo"
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5305,6 +5367,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableMap
+argument_list|<
+name|Integer
+argument_list|,
+name|String
+argument_list|>
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -5351,7 +5421,7 @@ return|;
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5371,6 +5441,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableMap
+argument_list|<
+name|Object
+argument_list|,
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|fluent
 argument_list|(
 literal|1
@@ -5389,7 +5467,7 @@ argument_list|(
 literal|null
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5409,6 +5487,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|ImmutableMap
+argument_list|<
+name|Object
+argument_list|,
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|fluent
 argument_list|(
 literal|1
@@ -5452,7 +5538,7 @@ return|;
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5858,6 +5944,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -5879,7 +5968,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5892,6 +5981,9 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|FluentIterable
 operator|.
 name|from
@@ -5912,7 +6004,7 @@ name|get
 argument_list|(
 literal|3
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5937,19 +6029,16 @@ argument_list|>
 name|iterable
 parameter_list|)
 block|{
-for|for
-control|(
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|Object
-name|obj
-range|:
+name|unused
+init|=
+name|Iterables
+operator|.
+name|getLast
+argument_list|(
 name|iterable
-control|)
-block|{     }
+argument_list|)
+decl_stmt|;
 block|}
 DECL|method|fluent (Integer... elements)
 specifier|private

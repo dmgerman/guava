@@ -405,11 +405,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: could remove if we got NPT working in GWT somehow
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testPadStart_null ()
 specifier|public
 name|void
@@ -418,6 +413,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|Strings
 operator|.
 name|padStart
@@ -428,7 +426,7 @@ literal|5
 argument_list|,
 literal|'0'
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -639,11 +637,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: could remove if we got NPT working in GWT somehow
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testPadEnd_null ()
 specifier|public
 name|void
@@ -652,6 +645,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|Strings
 operator|.
 name|padEnd
@@ -662,7 +658,7 @@ literal|5
 argument_list|,
 literal|'0'
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -674,11 +670,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testRepeat ()
 specifier|public
 name|void
@@ -797,6 +788,9 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|Strings
 operator|.
 name|repeat
@@ -806,7 +800,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -820,6 +814,9 @@ block|{     }
 try|try
 block|{
 comment|// Massive string
+name|String
+name|unused
+init|=
 name|Strings
 operator|.
 name|repeat
@@ -834,7 +831,7 @@ operator|)
 operator|+
 literal|3
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -847,11 +844,6 @@ parameter_list|)
 block|{     }
 block|}
 comment|// TODO: could remove if we got NPT working in GWT somehow
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testRepeat_null ()
 specifier|public
 name|void
@@ -860,6 +852,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|Strings
 operator|.
 name|repeat
@@ -868,7 +863,7 @@ literal|null
 argument_list|,
 literal|5
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

@@ -743,11 +743,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testEncodedLengthFails (String invalidString, int invalidCodePointIndex)
 specifier|private
 specifier|static
@@ -763,13 +758,16 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|Utf8
 operator|.
 name|encodedLength
 argument_list|(
 name|invalidString
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

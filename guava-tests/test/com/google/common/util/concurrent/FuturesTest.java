@@ -688,11 +688,6 @@ end_comment
 
 begin_class
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
-annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -11291,6 +11286,15 @@ name|future2
 argument_list|)
 decl_stmt|;
 comment|// This next call is "unused," but it is an important part of the test. Don't remove it!
+name|ListenableFuture
+argument_list|<
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|Futures
 operator|.
 name|allAsList
@@ -11299,7 +11303,7 @@ name|future1
 argument_list|,
 name|future2
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|compound

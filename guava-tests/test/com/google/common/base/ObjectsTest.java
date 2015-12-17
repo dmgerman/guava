@@ -447,11 +447,6 @@ name|n2
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFirstNonNull_throwsNullPointerException ()
 specifier|public
 name|void
@@ -462,13 +457,16 @@ name|Exception
 block|{
 try|try
 block|{
+name|Object
+name|unused
+init|=
 name|firstNonNull
 argument_list|(
 literal|null
 argument_list|,
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"expected NullPointerException"

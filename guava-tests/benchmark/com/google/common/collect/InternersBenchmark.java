@@ -150,11 +150,6 @@ return|return
 name|reps
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|stringIntern (int reps)
 annotation|@
 name|Benchmark
@@ -180,6 +175,9 @@ name|i
 operator|++
 control|)
 block|{
+name|String
+name|unused
+init|=
 name|Double
 operator|.
 name|toHexString
@@ -192,7 +190,7 @@ argument_list|)
 operator|.
 name|intern
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 block|}
 return|return
 name|reps

@@ -1010,11 +1010,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testEnsureCapacity_fail ()
 specifier|public
 name|void
@@ -1023,6 +1018,10 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|boolean
+index|[]
+name|unused
+init|=
 name|Booleans
 operator|.
 name|ensureCapacity
@@ -1034,7 +1033,7 @@ literal|1
 argument_list|,
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1048,6 +1047,10 @@ block|{     }
 try|try
 block|{
 comment|// notice that this should even fail when no growth was needed
+name|boolean
+index|[]
+name|unused
+init|=
 name|Booleans
 operator|.
 name|ensureCapacity
@@ -1059,7 +1062,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1573,11 +1576,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testToArray_withNull ()
 specifier|public
 name|void
@@ -1603,13 +1601,17 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|boolean
+index|[]
+name|unused
+init|=
 name|Booleans
 operator|.
 name|toArray
 argument_list|(
 name|list
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

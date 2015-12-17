@@ -1212,7 +1212,7 @@ block|{
 try|try
 block|{
 name|UnsignedInteger
-name|ignored
+name|unused
 init|=
 name|UnsignedInteger
 operator|.
@@ -1334,11 +1334,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testModByZero ()
 specifier|public
 name|void
@@ -1356,6 +1351,9 @@ block|{
 try|try
 block|{
 name|UnsignedInteger
+name|unused
+init|=
+name|UnsignedInteger
 operator|.
 name|fromIntBits
 argument_list|(
@@ -1368,7 +1366,7 @@ name|UnsignedInteger
 operator|.
 name|ZERO
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"

@@ -514,11 +514,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|source_edgeNotInGraph ()
 specifier|public
 name|void
@@ -527,13 +522,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Integer
+name|unused
+init|=
 name|directedGraph
 operator|.
 name|source
 argument_list|(
 name|EDGE_NOT_IN_GRAPH
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 name|ERROR_EDGE_NOT_IN_GRAPH
@@ -585,11 +583,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|target_edgeNotInGraph ()
 specifier|public
 name|void
@@ -598,13 +591,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Integer
+name|unused
+init|=
 name|directedGraph
 operator|.
 name|target
 argument_list|(
 name|EDGE_NOT_IN_GRAPH
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 name|ERROR_EDGE_NOT_IN_GRAPH

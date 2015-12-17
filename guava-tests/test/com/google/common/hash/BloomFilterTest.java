@@ -1142,11 +1142,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testPreconditions ()
 specifier|public
 name|void
@@ -1155,6 +1150,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|BloomFilter
 operator|.
 name|create
@@ -1167,7 +1168,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1180,6 +1181,12 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|BloomFilter
 operator|.
 name|create
@@ -1194,7 +1201,7 @@ literal|1
 argument_list|,
 literal|0.03
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1207,6 +1214,12 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|BloomFilter
 operator|.
 name|create
@@ -1220,7 +1233,7 @@ literal|1
 argument_list|,
 literal|0.0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1234,6 +1247,12 @@ block|{}
 try|try
 block|{
 name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
+name|BloomFilter
 operator|.
 name|create
 argument_list|(
@@ -1246,7 +1265,7 @@ literal|1
 argument_list|,
 literal|1.0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1258,11 +1277,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFailureWhenMoreThan255HashFunctionsAreNeeded ()
 specifier|public
 name|void
@@ -1282,6 +1296,12 @@ init|=
 literal|0.00000000000000000000000000000000000000000000000000000000000000000000000000000001
 decl_stmt|;
 name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
+name|BloomFilter
 operator|.
 name|create
 argument_list|(
@@ -1294,7 +1314,7 @@ name|n
 argument_list|,
 name|p
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1423,11 +1443,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Tests that we always get a non-negative optimal size.    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testOptimalSize ()
 specifier|public
 name|void
@@ -1555,6 +1570,12 @@ expr_stmt|;
 try|try
 block|{
 name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
+name|BloomFilter
 operator|.
 name|create
 argument_list|(
@@ -1570,7 +1591,7 @@ name|Double
 operator|.
 name|MIN_VALUE
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"we can't represent such a large BF!"
@@ -1596,11 +1617,6 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
-annotation|@
 name|AndroidIncompatible
 comment|// OutOfMemoryError
 DECL|method|testLargeNumberOfInsertions ()
@@ -1610,6 +1626,12 @@ name|testLargeNumberOfInsertions
 parameter_list|()
 block|{
 comment|// We use horrible FPPs here to keep Java from OOM'ing
+name|BloomFilter
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|BloomFilter
 operator|.
 name|create
@@ -1627,7 +1649,9 @@ literal|2
 argument_list|,
 literal|0.28
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|unused
+operator|=
 name|BloomFilter
 operator|.
 name|create

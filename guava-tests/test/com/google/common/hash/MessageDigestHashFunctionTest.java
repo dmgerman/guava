@@ -344,11 +344,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testHashTwice ()
 specifier|public
 name|void
@@ -390,11 +385,14 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|sha1
 operator|.
 name|hash
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

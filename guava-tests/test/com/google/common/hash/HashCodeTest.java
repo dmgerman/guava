@@ -1403,11 +1403,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFromStringFailsWithInvalidHexChar ()
 specifier|public
 name|void
@@ -1417,12 +1412,15 @@ block|{
 try|try
 block|{
 name|HashCode
+name|unused
+init|=
+name|HashCode
 operator|.
 name|fromString
 argument_list|(
 literal|"7f8005ff0z"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1434,11 +1432,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFromStringFailsWithUpperCaseString ()
 specifier|public
 name|void
@@ -1471,12 +1464,15 @@ decl_stmt|;
 try|try
 block|{
 name|HashCode
+name|unused
+init|=
+name|HashCode
 operator|.
 name|fromString
 argument_list|(
 name|string
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1488,11 +1484,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFromStringFailsWithShortInputs ()
 specifier|public
 name|void
@@ -1502,12 +1493,15 @@ block|{
 try|try
 block|{
 name|HashCode
+name|unused
+init|=
+name|HashCode
 operator|.
 name|fromString
 argument_list|(
 literal|""
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1521,12 +1515,15 @@ block|{     }
 try|try
 block|{
 name|HashCode
+name|unused
+init|=
+name|HashCode
 operator|.
 name|fromString
 argument_list|(
 literal|"7"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1538,18 +1535,16 @@ name|expected
 parameter_list|)
 block|{     }
 name|HashCode
+name|unused
+init|=
+name|HashCode
 operator|.
 name|fromString
 argument_list|(
 literal|"7f"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFromStringFailsWithOddLengthInput ()
 specifier|public
 name|void
@@ -1559,12 +1554,15 @@ block|{
 try|try
 block|{
 name|HashCode
+name|unused
+init|=
+name|HashCode
 operator|.
 name|fromString
 argument_list|(
 literal|"7f8"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2212,11 +2210,6 @@ name|class
 argument_list|)
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertExpectedHashCode (ExpectedHashCode expectedHashCode, HashCode hash)
 specifier|private
 specifier|static
@@ -2312,11 +2305,14 @@ condition|)
 block|{
 try|try
 block|{
+name|long
+name|unused
+init|=
 name|hash
 operator|.
 name|asLong
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

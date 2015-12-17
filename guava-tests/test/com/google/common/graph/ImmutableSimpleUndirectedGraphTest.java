@@ -1030,11 +1030,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|copyOf_nullArgument ()
 specifier|public
 name|void
@@ -1044,12 +1039,20 @@ block|{
 try|try
 block|{
 name|ImmutableUndirectedGraph
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|unused
+init|=
+name|ImmutableUndirectedGraph
 operator|.
 name|copyOf
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected a null graph"

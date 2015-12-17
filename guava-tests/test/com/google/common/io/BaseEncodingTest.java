@@ -411,11 +411,6 @@ literal|"MZXW*6YTB*OI==*===="
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testSeparatorSameAsPadChar ()
 specifier|public
 name|void
@@ -424,6 +419,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|BaseEncoding
+name|unused
+init|=
 name|base64
 argument_list|()
 operator|.
@@ -433,7 +431,7 @@ literal|"="
 argument_list|,
 literal|3
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -448,6 +446,9 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|BaseEncoding
+name|unused
+init|=
 name|base64
 argument_list|()
 operator|.
@@ -462,7 +463,7 @@ literal|"!#!"
 argument_list|,
 literal|3
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -476,11 +477,6 @@ name|expected
 parameter_list|)
 block|{}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testAtMostOneSeparator ()
 specifier|public
 name|void
@@ -502,6 +498,9 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|BaseEncoding
+name|unused
+init|=
 name|separated
 operator|.
 name|withSeparator
@@ -510,7 +509,7 @@ literal|"$"
 argument_list|,
 literal|4
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected UnsupportedOperationException"
@@ -824,11 +823,6 @@ literal|"Invalid input length 1"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testBase64CannotUpperCase ()
 specifier|public
 name|void
@@ -837,12 +831,15 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|BaseEncoding
+name|unused
+init|=
 name|base64
 argument_list|()
 operator|.
 name|upperCase
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -856,11 +853,6 @@ block|{
 comment|// success
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testBase64CannotLowerCase ()
 specifier|public
 name|void
@@ -869,12 +861,15 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|BaseEncoding
+name|unused
+init|=
 name|base64
 argument_list|()
 operator|.
 name|lowerCase
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2678,11 +2673,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertFailsToDecode ( BaseEncoding encoding, String cannotDecode, @Nullable String expectedMessage)
 specifier|private
 specifier|static
@@ -2713,13 +2703,17 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|byte
+index|[]
+name|unused
+init|=
 name|encoding
 operator|.
 name|decode
 argument_list|(
 name|cannotDecode
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IllegalArgumentException"
@@ -2756,13 +2750,17 @@ block|}
 block|}
 try|try
 block|{
+name|byte
+index|[]
+name|unused
+init|=
 name|encoding
 operator|.
 name|decodeChecked
 argument_list|(
 name|cannotDecode
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected DecodingException"

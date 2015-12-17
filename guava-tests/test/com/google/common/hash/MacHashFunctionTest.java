@@ -526,11 +526,6 @@ block|}
 block|}
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
-annotation|@
 name|AndroidIncompatible
 comment|// sun.security
 DECL|method|testNoProviders ()
@@ -559,13 +554,16 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|HashFunction
+name|unused
+init|=
 name|Hashing
 operator|.
 name|hmacMd5
 argument_list|(
 name|MD5_KEY
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"expected ISE"
@@ -783,11 +781,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testCustomKey ()
 specifier|public
 name|void
@@ -866,11 +859,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testBadKey_emptyKey ()
 specifier|public
 name|void
@@ -924,13 +912,16 @@ block|}
 decl_stmt|;
 try|try
 block|{
+name|HashFunction
+name|unused
+init|=
 name|Hashing
 operator|.
 name|hmacMd5
 argument_list|(
 name|badKey
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1425,11 +1416,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testHashTwice ()
 specifier|public
 name|void
@@ -1471,11 +1457,14 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|hasher
 operator|.
 name|hash
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

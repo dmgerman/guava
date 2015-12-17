@@ -302,11 +302,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -315,11 +310,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|max
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -410,11 +408,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -423,11 +416,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|min
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -921,11 +917,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseIntFail ()
 specifier|public
 name|void
@@ -934,6 +925,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -947,7 +941,7 @@ operator|<<
 literal|32
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected NumberFormatException"
@@ -1021,11 +1015,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseIntWithRadixLimits ()
 specifier|public
 name|void
@@ -1108,6 +1097,9 @@ argument_list|,
 name|radix
 argument_list|)
 decl_stmt|;
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1116,7 +1108,7 @@ name|overflowAsString
 argument_list|,
 name|radix
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1129,11 +1121,6 @@ parameter_list|)
 block|{}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseIntThrowsExceptionForInvalidRadix ()
 specifier|public
 name|void
@@ -1144,6 +1131,9 @@ comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX,
 comment|// inclusive.
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1156,7 +1146,7 @@ name|MIN_RADIX
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1169,6 +1159,9 @@ parameter_list|)
 block|{}
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1181,7 +1174,7 @@ name|MAX_RADIX
 operator|+
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1195,6 +1188,9 @@ block|{}
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|parseUnsignedInt
@@ -1204,7 +1200,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1308,11 +1304,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testDecodeIntFails ()
 specifier|public
 name|void
@@ -1322,13 +1313,16 @@ block|{
 try|try
 block|{
 comment|// One more than maximum value
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"0xfffffffff"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1341,13 +1335,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"-5"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1360,13 +1357,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"-0x5"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1379,13 +1379,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|UnsignedInts
 operator|.
 name|decode
 argument_list|(
 literal|"-05"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

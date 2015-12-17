@@ -450,11 +450,6 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testNoSpecialNullBehavior ()
 specifier|public
 name|void
@@ -497,13 +492,16 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|J
 operator|.
 name|join
 argument_list|(
 name|ITERABLE_NULL
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -516,13 +514,16 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|J
 operator|.
 name|join
 argument_list|(
 name|ITERABLE_1_NULL_2
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -535,6 +536,9 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|J
 operator|.
 name|join
@@ -544,7 +548,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -557,6 +561,9 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|J
 operator|.
 name|join
@@ -566,7 +573,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1580,11 +1587,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMap ()
 specifier|public
 name|void
@@ -1673,13 +1675,16 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|j
 operator|.
 name|join
 argument_list|(
 name|mapWithNulls
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1749,11 +1754,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testEntries ()
 specifier|public
 name|void
@@ -1967,13 +1967,16 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|j
 operator|.
 name|join
 argument_list|(
 name|entriesWithNulls
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1986,6 +1989,9 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|j
 operator|.
 name|join
@@ -1995,7 +2001,7 @@ operator|.
 name|iterator
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2151,12 +2157,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
-comment|// testing for exception
 DECL|method|test_skipNulls_onMap ()
 specifier|public
 name|void
@@ -2178,13 +2178,18 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|Joiner
+operator|.
+name|MapJoiner
+name|unused
+init|=
 name|j
 operator|.
 name|withKeyValueSeparator
 argument_list|(
 literal|"/"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

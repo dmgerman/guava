@@ -224,11 +224,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testOf_null ()
 specifier|public
 name|void
@@ -238,12 +233,18 @@ block|{
 try|try
 block|{
 name|Optional
+argument_list|<
+name|Object
+argument_list|>
+name|unused
+init|=
+name|Optional
 operator|.
 name|of
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -346,11 +347,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testGet_absent ()
 specifier|public
 name|void
@@ -370,11 +366,14 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|String
+name|unused
+init|=
 name|optional
 operator|.
 name|get
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -510,11 +509,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testOr_nullSupplier_absent ()
 specifier|public
 name|void
@@ -547,13 +541,16 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|Object
+name|unused
+init|=
 name|absentOptional
 operator|.
 name|or
 argument_list|(
 name|nullSupplier
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -961,11 +958,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testTransform_present_functionReturnsNull ()
 specifier|public
 name|void
@@ -974,6 +966,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Optional
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|Optional
 operator|.
 name|of
@@ -1008,7 +1006,7 @@ return|;
 block|}
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Should throw if Function returns null."

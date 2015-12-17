@@ -1467,11 +1467,6 @@ name|MAX_SHARDS
 init|=
 literal|500
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testConsistentHash_outOfRange ()
 specifier|public
 name|void
@@ -1480,6 +1475,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|int
+name|unused
+init|=
 name|Hashing
 operator|.
 name|consistentHash
@@ -1488,7 +1486,7 @@ literal|5L
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1768,11 +1766,6 @@ name|RANDOM_SEED
 init|=
 literal|177L
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testCombineOrdered_empty ()
 specifier|public
 name|void
@@ -1781,6 +1774,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|Hashing
 operator|.
 name|combineOrdered
@@ -1793,7 +1789,7 @@ operator|>
 name|emptySet
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1805,11 +1801,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testCombineOrdered_differentBitLengths ()
 specifier|public
 name|void
@@ -1818,6 +1809,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|Hashing
 operator|.
 name|combineOrdered
@@ -1841,7 +1835,7 @@ literal|32L
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2106,11 +2100,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testCombineUnordered_empty ()
 specifier|public
 name|void
@@ -2119,6 +2108,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|Hashing
 operator|.
 name|combineUnordered
@@ -2131,7 +2123,7 @@ operator|>
 name|emptySet
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2143,11 +2135,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testCombineUnordered_differentBitLengths ()
 specifier|public
 name|void
@@ -2156,6 +2143,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|HashCode
+name|unused
+init|=
 name|Hashing
 operator|.
 name|combineUnordered
@@ -2179,7 +2169,7 @@ literal|32L
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

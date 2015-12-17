@@ -1162,11 +1162,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|config_expectedNodeCount_negative ()
 specifier|public
 name|void
@@ -1175,6 +1170,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|GraphConfig
+name|unused
+init|=
 name|config
 argument_list|()
 operator|.
@@ -1183,7 +1181,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 name|ERROR_NEGATIVE_NODE_COUNT
@@ -1470,11 +1468,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|config_expectedEdgeCount_negative ()
 specifier|public
 name|void
@@ -1483,6 +1476,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|GraphConfig
+name|unused
+init|=
 name|config
 argument_list|()
 operator|.
@@ -1491,7 +1487,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 name|ERROR_NEGATIVE_EDGE_COUNT
@@ -1738,23 +1734,21 @@ block|}
 comment|// Note that this test works precisely because config() returns a new object every time.
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|config_immutability ()
 specifier|public
 name|void
 name|config_immutability
 parameter_list|()
 block|{
+name|GraphConfig
+name|unused
+init|=
 name|config
 argument_list|()
 operator|.
 name|multigraph
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertThat
 argument_list|(
 name|config
@@ -1767,6 +1761,8 @@ operator|.
 name|isFalse
 argument_list|()
 expr_stmt|;
+name|unused
+operator|=
 name|config
 argument_list|()
 operator|.
@@ -1787,6 +1783,8 @@ operator|.
 name|isAbsent
 argument_list|()
 expr_stmt|;
+name|unused
+operator|=
 name|config
 argument_list|()
 operator|.
@@ -1807,6 +1805,8 @@ operator|.
 name|isAbsent
 argument_list|()
 expr_stmt|;
+name|unused
+operator|=
 name|config
 argument_list|()
 operator|.
@@ -2168,11 +2168,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|copyOf_nullArgument ()
 specifier|public
 name|void
@@ -2181,6 +2176,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|DirectedGraph
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|unused
+init|=
 name|copyOf
 argument_list|(
 operator|(
@@ -2188,7 +2191,7 @@ name|DirectedGraph
 operator|)
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected a null graph"
@@ -2203,6 +2206,14 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|UndirectedGraph
+argument_list|<
+name|Object
+argument_list|,
+name|Object
+argument_list|>
+name|unused
+init|=
 name|copyOf
 argument_list|(
 operator|(
@@ -2210,7 +2221,7 @@ name|UndirectedGraph
 operator|)
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Should have rejected a null graph"

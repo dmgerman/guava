@@ -173,11 +173,6 @@ argument_list|(
 literal|','
 argument_list|)
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testSplitNullString ()
 specifier|public
 name|void
@@ -186,13 +181,19 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Iterable
+argument_list|<
+name|String
+argument_list|>
+name|unused
+init|=
 name|COMMA_SPLITTER
 operator|.
 name|split
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1694,11 +1695,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testStringSplitWithEmptyString ()
 specifier|public
 name|void
@@ -1708,12 +1704,15 @@ block|{
 try|try
 block|{
 name|Splitter
+name|unused
+init|=
+name|Splitter
 operator|.
 name|on
 argument_list|(
 literal|""
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2885,11 +2884,6 @@ argument_list|()
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"java.util.regex.Pattern"
@@ -2903,6 +2897,9 @@ block|{
 try|try
 block|{
 name|Splitter
+name|unused
+init|=
+name|Splitter
 operator|.
 name|on
 argument_list|(
@@ -2913,7 +2910,7 @@ argument_list|(
 literal|"a*"
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3567,11 +3564,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFixedLengthSplitZeroChunkLen ()
 specifier|public
 name|void
@@ -3581,12 +3573,15 @@ block|{
 try|try
 block|{
 name|Splitter
+name|unused
+init|=
+name|Splitter
 operator|.
 name|fixedLength
 argument_list|(
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3598,11 +3593,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testFixedLengthSplitNegativeChunkLen ()
 specifier|public
 name|void
@@ -3612,13 +3602,16 @@ block|{
 try|try
 block|{
 name|Splitter
+name|unused
+init|=
+name|Splitter
 operator|.
 name|fixedLength
 argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4253,12 +4246,6 @@ name|isEmpty
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
-comment|// testing for exception
 DECL|method|testInvalidZeroLimit ()
 specifier|public
 name|void
@@ -4267,13 +4254,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Splitter
+name|unused
+init|=
 name|COMMA_SPLITTER
 operator|.
 name|limit
 argument_list|(
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4884,11 +4874,6 @@ name|inOrder
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMapSplitter_emptySeparator ()
 specifier|public
 name|void
@@ -4897,13 +4882,18 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Splitter
+operator|.
+name|MapSplitter
+name|unused
+init|=
 name|COMMA_SPLITTER
 operator|.
 name|withKeyValueSeparator
 argument_list|(
 literal|""
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4915,11 +4905,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMapSplitter_malformedEntry ()
 specifier|public
 name|void
@@ -4928,6 +4913,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|unused
+init|=
 name|COMMA_SPLITTER
 operator|.
 name|withKeyValueSeparator
@@ -4939,7 +4932,7 @@ name|split
 argument_list|(
 literal|"a=1,b,c=2"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5105,11 +5098,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMapSplitter_duplicateKeys ()
 specifier|public
 name|void
@@ -5118,6 +5106,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|unused
+init|=
 name|Splitter
 operator|.
 name|on
@@ -5134,7 +5130,7 @@ name|split
 argument_list|(
 literal|"a:1,b:2,a:3"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

@@ -404,11 +404,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertCastFails (long value)
 specifier|private
 specifier|static
@@ -421,13 +416,16 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|checkedCast
 argument_list|(
 name|value
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Cast to byte should have failed: "
@@ -570,11 +568,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -583,11 +576,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|max
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -670,11 +666,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -683,11 +674,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|min
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -810,11 +804,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertParseFails (String value)
 specifier|private
 specifier|static
@@ -827,13 +816,16 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
 argument_list|(
 name|value
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -941,11 +933,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertParseFails (String value, int radix)
 specifier|private
 specifier|static
@@ -961,6 +948,9 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -969,7 +959,7 @@ name|value
 argument_list|,
 name|radix
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1109,11 +1099,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testParseUnsignedByteThrowsExceptionForInvalidRadix ()
 specifier|public
 name|void
@@ -1124,6 +1109,9 @@ comment|// Valid radix values are Character.MIN_RADIX to Character.MAX_RADIX,
 comment|// inclusive.
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -1136,7 +1124,7 @@ name|MIN_RADIX
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1151,6 +1139,9 @@ comment|// expected
 block|}
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -1163,7 +1154,7 @@ name|MAX_RADIX
 operator|+
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1179,6 +1170,9 @@ block|}
 comment|// The radix is used as an array index, so try a negative value.
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|UnsignedBytes
 operator|.
 name|parseUnsignedByte
@@ -1188,7 +1182,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

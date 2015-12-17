@@ -481,11 +481,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertCastFails (long value)
 specifier|private
 specifier|static
@@ -498,13 +493,16 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|short
+name|unused
+init|=
 name|Shorts
 operator|.
 name|checkedCast
 argument_list|(
 name|value
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Cast to short should have failed: "
@@ -1607,11 +1605,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -1620,11 +1613,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|short
+name|unused
+init|=
 name|Shorts
 operator|.
 name|max
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -1715,11 +1711,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -1728,11 +1719,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|short
+name|unused
+init|=
 name|Shorts
 operator|.
 name|min
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2149,11 +2143,6 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
-annotation|@
 name|GwtIncompatible
 argument_list|(
 literal|"Shorts.fromByteArray"
@@ -2166,6 +2155,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|short
+name|unused
+init|=
 name|Shorts
 operator|.
 name|fromByteArray
@@ -2177,7 +2169,7 @@ block|{
 literal|0x01
 block|}
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2448,11 +2440,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testEnsureCapacity_fail ()
 specifier|public
 name|void
@@ -2461,6 +2448,10 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|short
+index|[]
+name|unused
+init|=
 name|Shorts
 operator|.
 name|ensureCapacity
@@ -2472,7 +2463,7 @@ literal|1
 argument_list|,
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2486,6 +2477,10 @@ block|{     }
 try|try
 block|{
 comment|// notice that this should even fail when no growth was needed
+name|short
+index|[]
+name|unused
+init|=
 name|Shorts
 operator|.
 name|ensureCapacity
@@ -2497,7 +2492,7 @@ argument_list|,
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3072,11 +3067,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testToArray_withNull ()
 specifier|public
 name|void
@@ -3108,13 +3098,17 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|short
+index|[]
+name|unused
+init|=
 name|Shorts
 operator|.
 name|toArray
 argument_list|(
 name|list
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -3955,11 +3949,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testStringConverter_convertError ()
 specifier|public
 name|void
@@ -3968,6 +3957,9 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|short
+name|unused
+init|=
 name|Shorts
 operator|.
 name|stringConverter
@@ -3977,7 +3969,7 @@ name|convert
 argument_list|(
 literal|"notanumber"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

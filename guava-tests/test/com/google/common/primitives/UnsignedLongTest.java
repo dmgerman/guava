@@ -1261,11 +1261,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"ReturnValueIgnored"
-argument_list|)
 DECL|method|testDivideByZeroThrows ()
 specifier|public
 name|void
@@ -1283,6 +1278,9 @@ block|{
 try|try
 block|{
 name|UnsignedLong
+name|unused
+init|=
+name|UnsignedLong
 operator|.
 name|fromLongBits
 argument_list|(
@@ -1295,7 +1293,7 @@ name|UnsignedLong
 operator|.
 name|ZERO
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"
@@ -1402,11 +1400,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testModByZero ()
 specifier|public
 name|void
@@ -1424,6 +1417,9 @@ block|{
 try|try
 block|{
 name|UnsignedLong
+name|unused
+init|=
+name|UnsignedLong
 operator|.
 name|fromLongBits
 argument_list|(
@@ -1436,7 +1432,7 @@ name|UnsignedLong
 operator|.
 name|ZERO
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected ArithmeticException"

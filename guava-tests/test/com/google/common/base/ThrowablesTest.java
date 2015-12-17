@@ -2130,11 +2130,6 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testGetCasualChainNull ()
 specifier|public
 name|void
@@ -2143,13 +2138,19 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|List
+argument_list|<
+name|Throwable
+argument_list|>
+name|unused
+init|=
 name|Throwables
 operator|.
 name|getCausalChain
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Should have throw NPE"

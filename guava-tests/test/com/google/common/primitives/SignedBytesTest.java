@@ -367,11 +367,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|assertCastFails (long value)
 specifier|private
 specifier|static
@@ -384,13 +379,16 @@ parameter_list|)
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|SignedBytes
 operator|.
 name|checkedCast
 argument_list|(
 name|value
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Cast to byte should have failed: "
@@ -566,11 +564,6 @@ block|}
 block|}
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMax_noArgs ()
 specifier|public
 name|void
@@ -579,11 +572,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|SignedBytes
 operator|.
 name|max
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -666,11 +662,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"CheckReturnValue"
-argument_list|)
 DECL|method|testMin_noArgs ()
 specifier|public
 name|void
@@ -679,11 +670,14 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|byte
+name|unused
+init|=
 name|SignedBytes
 operator|.
 name|min
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
