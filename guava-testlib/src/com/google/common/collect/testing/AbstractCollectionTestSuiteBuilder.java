@@ -26,20 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|testing
@@ -375,8 +361,6 @@ comment|/**  * Abstract superclass of all test-suite builders for collection int
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|AbstractCollectionTestSuiteBuilder
 specifier|public
 specifier|abstract

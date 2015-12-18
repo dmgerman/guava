@@ -26,20 +26,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|collect
 operator|.
 name|ForwardingQueue
@@ -85,8 +71,6 @@ comment|/**  * A {@link BlockingQueue} which forwards all its method calls to an
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|ForwardingBlockingQueue
 specifier|public
 specifier|abstract

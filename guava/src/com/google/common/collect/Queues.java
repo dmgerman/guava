@@ -38,20 +38,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Preconditions
@@ -209,8 +195,6 @@ comment|/**  * Static utility methods pertaining to {@link Queue} and {@link Deq
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|Queues
 specifier|public
 specifier|final

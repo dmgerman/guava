@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|annotation
@@ -51,8 +37,6 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace, not default serialization
-annotation|@
-name|GwtIncompatible
 DECL|class|DescendingImmutableSortedMultiset
 specifier|final
 class|class

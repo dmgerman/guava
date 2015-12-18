@@ -16,27 +16,11 @@ name|collect
 package|;
 end_package
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
 begin_comment
 comment|/**  * "Overrides" the {@link ImmutableSet} static methods that lack  * {@link ImmutableSortedSet} equivalents with deprecated, exception-throwing  * versions. This prevents accidents like the following:<pre>   {@code  *  *   List<Object> objects = ...;  *   // Sort them:  *   Set<Object> sorted = ImmutableSortedSet.copyOf(objects);  *   // BAD CODE! The returned set is actually an unsorted ImmutableSet!}</pre>  *  *<p>While we could put the overrides in {@link ImmutableSortedSet} itself, it  * seems clearer to separate these "do not call" methods from those intended for  * normal use.  *  * @author Chris Povirk  */
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|ImmutableSortedSetFauxverideShim
 specifier|abstract
 class|class

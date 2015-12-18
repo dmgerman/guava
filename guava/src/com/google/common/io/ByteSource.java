@@ -102,20 +102,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|base
 operator|.
 name|Ascii
@@ -313,8 +299,6 @@ comment|/**  * A readable source of bytes, such as a file. Unlike an {@link Inpu
 end_comment
 
 begin_class
-annotation|@
-name|GwtIncompatible
 DECL|class|ByteSource
 specifier|public
 specifier|abstract

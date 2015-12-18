@@ -72,20 +72,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|annotations
-operator|.
-name|GwtIncompatible
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|primitives
 operator|.
 name|Ints
@@ -123,8 +109,6 @@ argument_list|(
 literal|"serial"
 argument_list|)
 comment|// uses writeReplace, not default serialization
-annotation|@
-name|GwtIncompatible
 DECL|class|RegularImmutableSortedMultiset
 specifier|final
 class|class

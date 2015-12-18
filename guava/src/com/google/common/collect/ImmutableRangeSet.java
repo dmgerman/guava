@@ -241,8 +241,6 @@ end_comment
 begin_class
 annotation|@
 name|Beta
-annotation|@
-name|GwtIncompatible
 DECL|class|ImmutableRangeSet
 specifier|public
 specifier|final
