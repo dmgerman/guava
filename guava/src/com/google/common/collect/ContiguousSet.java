@@ -393,9 +393,7 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 annotation|@
 name|Override
 DECL|method|headSet (C toElement, boolean inclusive)
@@ -483,9 +481,7 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 annotation|@
 name|Override
 DECL|method|subSet ( C fromElement, boolean fromInclusive, C toElement, boolean toInclusive)
@@ -576,9 +572,7 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 annotation|@
 name|Override
 DECL|method|tailSet (C fromElement, boolean inclusive)

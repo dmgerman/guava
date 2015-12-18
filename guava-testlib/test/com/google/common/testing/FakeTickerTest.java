@@ -145,9 +145,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -561,9 +559,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|testConcurrentAdvance ()
 specifier|public
 name|void
@@ -649,9 +645,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|testConcurrentAutoIncrementStep ()
 specifier|public
 name|void
@@ -735,9 +729,7 @@ block|}
 comment|/**    * Runs {@code callable} concurrently {@code numberOfThreads} times.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|runConcurrentTest (int numberOfThreads, final Callable<Void> callable)
 specifier|private
 name|void

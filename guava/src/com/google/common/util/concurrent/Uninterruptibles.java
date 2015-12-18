@@ -209,9 +209,7 @@ comment|// methods is identical, save for method being invoked.
 comment|/**    * Invokes {@code latch.}{@link CountDownLatch#await() await()}    * uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|awaitUninterruptibly (CountDownLatch latch)
 specifier|public
 specifier|static
@@ -277,9 +275,7 @@ block|}
 comment|/**    * Invokes    * {@code latch.}{@link CountDownLatch#await(long, TimeUnit)    * await(timeout, unit)} uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|awaitUninterruptibly (CountDownLatch latch, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -385,9 +381,7 @@ block|}
 comment|/**    * Invokes {@code toJoin.}{@link Thread#join() join()} uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|joinUninterruptibly (Thread toJoin)
 specifier|public
 specifier|static
@@ -524,10 +518,8 @@ block|}
 comment|/**    * Invokes    * {@code future.}{@link Future#get(long, TimeUnit) get(timeout, unit)}    * uninterruptibly.    *    *<p>If instead, you wish to treat {@link InterruptedException} uniformly    * with other exceptions, see {@link Futures#getChecked(Future, Class)    * Futures.getChecked}.    *    * @throws ExecutionException if the computation threw an exception    * @throws CancellationException if the computation was cancelled    * @throws TimeoutException if the wait timed out    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
-DECL|method|getUninterruptibly ( Future<V> future, long timeout, TimeUnit unit)
+comment|// TODO
+DECL|method|getUninterruptibly (Future<V> future, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
 parameter_list|<
@@ -642,9 +634,7 @@ block|}
 comment|/**    * Invokes    * {@code unit.}{@link TimeUnit#timedJoin(Thread, long)    * timedJoin(toJoin, timeout)} uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|joinUninterruptibly (Thread toJoin, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -757,9 +747,7 @@ block|}
 comment|/**    * Invokes {@code queue.}{@link BlockingQueue#take() take()} uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|takeUninterruptibly (BlockingQueue<E> queue)
 specifier|public
 specifier|static
@@ -831,9 +819,7 @@ block|}
 comment|/**    * Invokes {@code queue.}{@link BlockingQueue#put(Object) put(element)}    * uninterruptibly.    *    * @throws ClassCastException if the class of the specified element prevents    *     it from being added to the given queue    * @throws IllegalArgumentException if some property of the specified element    *     prevents it from being added to the given queue    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|putUninterruptibly (BlockingQueue<E> queue, E element)
 specifier|public
 specifier|static
@@ -911,9 +897,7 @@ comment|// TODO(user): Support Sleeper somehow (wrapper or interface method)?
 comment|/**    * Invokes {@code unit.}{@link TimeUnit#sleep(long) sleep(sleepFor)}    * uninterruptibly.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|sleepUninterruptibly (long sleepFor, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1014,9 +998,7 @@ block|}
 comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit)    * tryAcquire(1, timeout, unit)} uninterruptibly.    *    * @since 18.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|tryAcquireUninterruptibly ( Semaphore semaphore, long timeout, TimeUnit unit)
 specifier|public
 specifier|static
@@ -1049,9 +1031,7 @@ block|}
 comment|/**    * Invokes {@code semaphore.}{@link Semaphore#tryAcquire(int, long, TimeUnit)    * tryAcquire(permits, timeout, unit)} uninterruptibly.    *    * @since 18.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|tryAcquireUninterruptibly ( Semaphore semaphore, int permits, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

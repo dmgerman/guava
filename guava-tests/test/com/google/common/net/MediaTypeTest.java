@@ -493,12 +493,10 @@ name|MediaTypeTest
 extends|extends
 name|TestCase
 block|{
-DECL|method|testParse_useConstants ()
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
+DECL|method|testParse_useConstants ()
 specifier|public
 name|void
 name|testParse_useConstants
@@ -532,12 +530,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testCreate_useConstants ()
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
+DECL|method|testCreate_useConstants ()
 specifier|public
 name|void
 name|testCreate_useConstants
@@ -584,12 +580,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testConstants_charset ()
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
+DECL|method|testConstants_charset ()
 specifier|public
 name|void
 name|testConstants_charset
@@ -664,12 +658,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|getConstantFields ()
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
+DECL|method|getConstantFields ()
 specifier|private
 specifier|static
 name|FluentIterable
@@ -755,12 +747,10 @@ block|}
 argument_list|)
 return|;
 block|}
-DECL|method|getConstants ()
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
+DECL|method|getConstants ()
 specifier|private
 specifier|static
 name|FluentIterable
@@ -2215,9 +2205,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testGetCharset_utf16 ()
 specifier|public
 name|void
@@ -2687,12 +2675,10 @@ name|testEquals
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testEquals_nonUtf8Charsets ()
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
+DECL|method|testEquals_nonUtf8Charsets ()
 specifier|public
 name|void
 name|testEquals_nonUtf8Charsets
@@ -2754,9 +2740,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.testing.NullPointerTester"
-argument_list|)
+comment|// com.google.common.testing.NullPointerTester
 DECL|method|testNullPointer ()
 specifier|public
 name|void

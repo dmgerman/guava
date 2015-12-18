@@ -1281,9 +1281,7 @@ block|}
 comment|// Don't allow default serialization.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectStreamException"
-argument_list|)
+comment|// java.io.ObjectStreamException
 DECL|method|readObjectNoData ()
 specifier|private
 name|void
@@ -1302,9 +1300,7 @@ throw|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not needed in emulated source."
-argument_list|)
+comment|// not needed in emulated source.
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

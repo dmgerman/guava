@@ -294,12 +294,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Interruption not supported"
-argument_list|)
-DECL|method|interruptTask ()
+comment|// Interruption not supported
 annotation|@
 name|Override
+DECL|method|interruptTask ()
 specifier|protected
 specifier|final
 name|void

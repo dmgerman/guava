@@ -271,12 +271,10 @@ block|}
 comment|// Null support depends on the underlying table and function.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
-DECL|method|testNullPointerInstance ()
+comment|// NullPointerTester
 annotation|@
 name|Override
+DECL|method|testNullPointerInstance ()
 specifier|public
 name|void
 name|testNullPointerInstance

@@ -725,9 +725,7 @@ block|}
 comment|/**    * Returns the elements from this fluent iterable that are instances of class {@code type}.    *    * @param type the type of elements desired    *    *<p><b>{@code Stream} equivalent:</b><pre>   {@code    *    *   @SuppressWarnings("unchecked") // safe by runtime check    *   Stream<T> result = (Stream) stream.filter(type::isInstance);}</pre>    *    * ... or if {@code type} is a class literal {@code MyType.class},<pre>   {@code    *    *   @SuppressWarnings("unchecked") // safe by runtime check    *   Stream<MyType> result = (Stream) stream.filter(e -> e instanceof MyType);}</pre>    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class.isInstance"
-argument_list|)
+comment|// Class.isInstance
 annotation|@
 name|CheckReturnValue
 DECL|method|filter (Class<T> type)
@@ -1487,9 +1485,7 @@ block|}
 comment|/**    * Returns an array containing all of the elements from this fluent iterable in iteration order.    *    *<p><b>{@code Stream} equivalent:</b> if an object array is acceptable, use    * {@code stream.toArray()}; if {@code type} is a class literal such as {@code MyType.class}, use    * {@code stream.toArray(MyType[]::new)}. Otherwise use {@code stream.toArray(    * len -> (E[]) Array.newInstance(type, len))}.    *    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of this fluent iterable have    *     been copied    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Array.newArray(Class, int)"
-argument_list|)
+comment|// Array.newArray(Class, int)
 annotation|@
 name|CheckReturnValue
 DECL|method|toArray (Class<E> type)

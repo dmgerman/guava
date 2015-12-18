@@ -565,9 +565,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"suite"
-argument_list|)
+comment|// suite
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1553,9 +1551,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterators.toArray(Iterator, Class)"
-argument_list|)
+comment|// Iterators.toArray(Iterator, Class)
 DECL|method|testToArrayEmpty ()
 specifier|public
 name|void
@@ -1613,9 +1609,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterators.toArray(Iterator, Class)"
-argument_list|)
+comment|// Iterators.toArray(Iterator, Class)
 DECL|method|testToArraySingleton ()
 specifier|public
 name|void
@@ -1673,9 +1667,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterators.toArray(Iterator, Class)"
-argument_list|)
+comment|// Iterators.toArray(Iterator, Class)
 DECL|method|testToArray ()
 specifier|public
 name|void
@@ -2066,9 +2058,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testFilterUsingIteratorTester ()
 specifier|public
 name|void
@@ -4631,9 +4621,7 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testCycleUsingIteratorTester ()
 specifier|public
 name|void
@@ -4716,9 +4704,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~5s)"
-argument_list|)
+comment|// slow (~5s)
 DECL|method|testConcatNoIteratorsYieldsEmpty ()
 specifier|public
 name|void
@@ -4759,9 +4745,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~5s)"
-argument_list|)
+comment|// slow (~5s)
 DECL|method|testConcatOneEmptyIteratorYieldsEmpty ()
 specifier|public
 name|void
@@ -4805,9 +4789,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~5s)"
-argument_list|)
+comment|// slow (~5s)
 DECL|method|testConcatMultipleEmptyIteratorsYieldsEmpty ()
 specifier|public
 name|void
@@ -4849,9 +4831,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~3s)"
-argument_list|)
+comment|// slow (~3s)
 DECL|method|testConcatSingletonYieldsSingleton ()
 specifier|public
 name|void
@@ -4897,9 +4877,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~5s)"
-argument_list|)
+comment|// slow (~5s)
 DECL|method|testConcatEmptyAndSingletonAndEmptyYieldsSingleton ()
 specifier|public
 name|void
@@ -4946,9 +4924,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"fairly slow (~40s)"
-argument_list|)
+comment|// fairly slow (~40s)
 DECL|method|testConcatSingletonAndSingletonYieldsDoubleton ()
 specifier|public
 name|void
@@ -4994,9 +4970,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"fairly slow (~40s)"
-argument_list|)
+comment|// fairly slow (~40s)
 DECL|method|testConcatSingletonAndSingletonWithEmptiesYieldsDoubleton ()
 specifier|public
 name|void
@@ -5048,9 +5022,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"fairly slow (~50s)"
-argument_list|)
+comment|// fairly slow (~50s)
 DECL|method|testConcatUnmodifiable ()
 specifier|public
 name|void
@@ -5514,9 +5486,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -5542,9 +5512,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Only used by @GwtIncompatible code"
-argument_list|)
+comment|// Only used by @GwtIncompatible code
 DECL|class|EmptyIteratorTester
 specifier|private
 specifier|static
@@ -5587,9 +5555,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Only used by @GwtIncompatible code"
-argument_list|)
+comment|// Only used by @GwtIncompatible code
 DECL|class|SingletonIteratorTester
 specifier|private
 specifier|static
@@ -5629,9 +5595,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Only used by @GwtIncompatible code"
-argument_list|)
+comment|// Only used by @GwtIncompatible code
 DECL|class|DoubletonIteratorTester
 specifier|private
 specifier|static
@@ -6404,9 +6368,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"fairly slow (~50s)"
-argument_list|)
+comment|// fairly slow (~50s)
 DECL|method|testPartition_general ()
 specifier|public
 name|void
@@ -6604,9 +6566,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"?"
-argument_list|)
+comment|// ?
 comment|// TODO: Figure out why this is failing in GWT.
 DECL|method|testPartitionRandomAccess ()
 specifier|public
@@ -6912,9 +6872,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"fairly slow (~50s)"
-argument_list|)
+comment|// fairly slow (~50s)
 DECL|method|testPaddedPartition_general ()
 specifier|public
 name|void
@@ -7576,9 +7534,7 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testForArrayUsingTester ()
 specifier|public
 name|void
@@ -7642,9 +7598,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testForArrayWithOffsetUsingTester ()
 specifier|public
 name|void
@@ -8726,9 +8680,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"fairly slow (~30s)"
-argument_list|)
+comment|// fairly slow (~30s)
 DECL|method|testLimitUsingIteratorTester ()
 specifier|public
 name|void
@@ -10017,9 +9969,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~4s)"
-argument_list|)
+comment|// slow (~4s)
 DECL|method|testSingletonIterator ()
 specifier|public
 name|void
@@ -10431,9 +10381,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ListTestSuiteBuilder"
-argument_list|)
+comment|// ListTestSuiteBuilder
 DECL|method|testsForRemoveAllAndRetainAll ()
 specifier|private
 specifier|static
@@ -10723,9 +10671,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"?"
-argument_list|)
+comment|// ?
 comment|// TODO: Figure out why this is failing in GWT.
 DECL|method|testConsumingIterator_duelingIterators ()
 specifier|public

@@ -1938,9 +1938,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSimpleSplit ()
 specifier|public
 name|void
@@ -1990,9 +1988,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSimpleSplitWithNoDelimiter ()
 specifier|public
 name|void
@@ -2038,9 +2034,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSplitWithDoubleDelimiter ()
 specifier|public
 name|void
@@ -2092,9 +2086,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSplitWithDoubleDelimiterAndSpace ()
 specifier|public
 name|void
@@ -2146,9 +2138,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSplitWithTrailingDelimiter ()
 specifier|public
 name|void
@@ -2200,9 +2190,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSplitWithLeadingDelimiter ()
 specifier|public
 name|void
@@ -2256,9 +2244,7 @@ comment|// TODO(kevinb): the name of this method suggests it might not actually 
 comment|// intends to be testing?
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Splitter.onPattern"
-argument_list|)
+comment|// Splitter.onPattern
 DECL|method|testPatternSplitWithMultipleLetters ()
 specifier|public
 name|void
@@ -2305,9 +2291,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|literalDotPattern ()
 specifier|private
 specifier|static
@@ -2326,9 +2310,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitWithDoubleDelimiterOmitEmptyStrings ()
 specifier|public
 name|void
@@ -2382,9 +2364,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 annotation|@
 name|AndroidIncompatible
 comment|// Bug in older versions of Android we test against, since fixed.
@@ -2445,9 +2425,7 @@ comment|// splits into chunks ending in :
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 annotation|@
 name|AndroidIncompatible
 comment|// Bug in older versions of Android we test against, since fixed.
@@ -2509,9 +2487,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitEmptyToken ()
 specifier|public
 name|void
@@ -2565,9 +2541,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitEmptyTokenOmitEmptyStrings ()
 specifier|public
 name|void
@@ -2622,9 +2596,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitOnOnlyDelimiter ()
 specifier|public
 name|void
@@ -2668,9 +2640,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitOnOnlyDelimitersOmitEmptyStrings ()
 specifier|public
 name|void
@@ -2710,9 +2680,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitMatchingIsGreedy ()
 specifier|public
 name|void
@@ -2767,9 +2735,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitWithLongLeadingDelimiter ()
 specifier|public
 name|void
@@ -2826,9 +2792,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitWithLongTrailingDelimiter ()
 specifier|public
 name|void
@@ -2885,9 +2849,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitInvalidPattern ()
 specifier|public
 name|void
@@ -2924,9 +2886,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testPatternSplitWithTrim ()
 specifier|public
 name|void
@@ -3049,9 +3009,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 DECL|method|testSplitterIterableIsUnmodifiable_pattern ()
 specifier|public
 name|void
@@ -3148,9 +3106,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.util.regex.Pattern"
-argument_list|)
+comment|// java.util.regex.Pattern
 annotation|@
 name|AndroidIncompatible
 comment|// not clear that j.u.r.Matcher promises to handle mutations during use
@@ -4277,9 +4233,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void

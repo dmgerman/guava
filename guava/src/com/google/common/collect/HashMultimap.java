@@ -444,9 +444,7 @@ block|}
 comment|/**    * @serialData expectedValuesPerKey, number of distinct keys, and then for    *     each distinct key: the key, number of values for that key, and the    *     key's values    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectOutputStream"
-argument_list|)
+comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -475,9 +473,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectInputStream"
-argument_list|)
+comment|// java.io.ObjectInputStream
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -545,9 +541,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Not needed in emulated source"
-argument_list|)
+comment|// Not needed in emulated source
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

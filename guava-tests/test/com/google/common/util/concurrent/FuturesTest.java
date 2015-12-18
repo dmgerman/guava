@@ -1056,9 +1056,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"immediateCancelledFuture"
-argument_list|)
+comment|// immediateCancelledFuture
 DECL|method|testImmediateCancelledFuture ()
 specifier|public
 name|void
@@ -1226,9 +1224,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|method|hasClassName (final Class<?> clazz)
 specifier|private
 specifier|static
@@ -1284,9 +1280,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|class|CallerClass1
 specifier|private
 specifier|static
@@ -1313,9 +1307,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|class|CallerClass2
 specifier|private
 specifier|static
@@ -1360,9 +1352,7 @@ name|Exception
 block|{    }
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"immediateCheckedFuture"
-argument_list|)
+comment|// immediateCheckedFuture
 DECL|method|testImmediateCheckedFuture ()
 specifier|public
 name|void
@@ -1422,9 +1412,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"immediateCheckedFuture"
-argument_list|)
+comment|// immediateCheckedFuture
 DECL|method|testMultipleImmediateCheckedFutures ()
 specifier|public
 name|void
@@ -1531,9 +1519,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"immediateFailedCheckedFuture"
-argument_list|)
+comment|// immediateFailedCheckedFuture
 DECL|method|testImmediateFailedCheckedFuture ()
 specifier|public
 name|void
@@ -2454,9 +2440,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testTransformAsync_interruptPropagatesToTransformingThread ()
 specifier|public
 name|void
@@ -3340,9 +3324,7 @@ block|{    }
 comment|/**    * Test that the function is invoked only once, even if it throws an exception. Also, test that    * that function's result is wrapped in an ExecutionException.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|testTransformExceptionRemainsMemoized ()
 specifier|public
 name|void
@@ -3492,10 +3474,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
-DECL|method|runGetIdempotencyTest (Future<Integer> transformedFuture, Class<? extends Throwable> expectedExceptionClass)
+comment|// reflection
+DECL|method|runGetIdempotencyTest ( Future<Integer> transformedFuture, Class<? extends Throwable> expectedExceptionClass)
 specifier|private
 specifier|static
 name|void
@@ -3576,9 +3556,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|method|newOneTimeExceptionThrower ()
 specifier|private
 specifier|static
@@ -3639,9 +3617,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|method|newOneTimeErrorThrower ()
 specifier|private
 specifier|static
@@ -3832,9 +3808,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"lazyTransform"
-argument_list|)
+comment|// lazyTransform
 DECL|method|testLazyTransform ()
 specifier|public
 name|void
@@ -3939,9 +3913,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"lazyTransform"
-argument_list|)
+comment|// lazyTransform
 DECL|method|testLazyTransform_exception ()
 specifier|public
 name|void
@@ -5417,9 +5389,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"mocks"
-argument_list|)
+comment|// mocks
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -6463,9 +6433,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"mocks"
-argument_list|)
+comment|// mocks
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -6728,9 +6696,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testCatchingAsync_interruptPropagatesToTransformingThread ()
 specifier|public
 name|void
@@ -7577,9 +7543,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"non-Throwable exceptionType"
-argument_list|)
+comment|// non-Throwable exceptionType
 DECL|method|testCatching_customTypeMatch ()
 specifier|public
 name|void
@@ -7647,9 +7611,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"non-Throwable exceptionType"
-argument_list|)
+comment|// non-Throwable exceptionType
 DECL|method|testCatching_customTypeNoMatch ()
 specifier|public
 name|void
@@ -7802,9 +7764,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"non-Throwable exceptionType"
-argument_list|)
+comment|// non-Throwable exceptionType
 DECL|method|testCatchingAsync_customTypeMatch ()
 specifier|public
 name|void
@@ -7872,9 +7832,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"non-Throwable exceptionType"
-argument_list|)
+comment|// non-Throwable exceptionType
 DECL|method|testCatchingAsync_customTypeNoMatch ()
 specifier|public
 name|void
@@ -8355,9 +8313,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"get() timeout"
-argument_list|)
+comment|// get() timeout
 DECL|method|testTransform_asyncFunction_timeout ()
 specifier|public
 name|void
@@ -8630,9 +8586,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testTransform_asyncFunction_cancelledWhileApplyingFunction ()
 specifier|public
 name|void
@@ -8815,9 +8769,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testTransform_asyncFunction_cancelledBeforeApplyingFunction ()
 specifier|public
 name|void
@@ -9151,9 +9103,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"get() timeout"
-argument_list|)
+comment|// get() timeout
 DECL|method|testTransformAsync_asyncFunction_timeout ()
 specifier|public
 name|void
@@ -9426,9 +9376,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testTransformAsync_asyncFunction_cancelledWhileApplyingFunction ()
 specifier|public
 name|void
@@ -10271,9 +10219,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
+comment|// allAsList
 DECL|method|testAllAsList_emptyList ()
 specifier|public
 name|void
@@ -10588,9 +10534,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
+comment|// allAsList
 DECL|method|testAllAsList_singleFailure ()
 specifier|public
 name|void
@@ -10675,9 +10619,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
+comment|// allAsList
 DECL|method|testAllAsList_immediateFailure ()
 specifier|public
 name|void
@@ -10777,9 +10719,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
+comment|// allAsList
 DECL|method|testAllAsList_error ()
 specifier|public
 name|void
@@ -12564,9 +12504,7 @@ comment|/*    * TODO(cpovirk): maybe pass around TestFuture instances instead of
 comment|/**    * A future in {@link TestFutureBatch} that also has a name for debugging purposes and a {@code    * finisher}, a task that will complete the future in some fashion when it is called, allowing for    * testing both before and after the completion of the future.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|class|TestFuture
 specifier|private
 specifier|static
@@ -12631,9 +12569,7 @@ block|}
 comment|/**    * A collection of several futures, covering cancellation, success, and failure (both {@link    * ExecutionException} and {@link RuntimeException}), both immediate and delayed. We use each    * possible pair of these futures in {@link FuturesTest#runExtensiveMergerTest}.    *    *<p>Each test requires a new {@link TestFutureBatch} because we need new delayed futures each    * time, as the old delayed futures were completed as part of the old test.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|class|TestFutureBatch
 specifier|private
 specifier|static
@@ -13668,9 +13604,7 @@ block|}
 comment|/**    * {@link Futures#allAsList(Iterable)} or {@link Futures#successfulAsList(Iterable)}, hidden    * behind a common interface for testing.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|interface|Merger
 specifier|private
 interface|interface
@@ -13801,10 +13735,8 @@ block|}
 comment|/**    * Very rough equivalent of a timed get, produced by calling the no-arg get method in another    * thread and waiting a short time for it.    *    *<p>We need this to test the behavior of no-arg get methods without hanging the main test thread    * forever in the case of failure.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
-DECL|method|pseudoTimedGetUninterruptibly ( final Future<V> input, long timeout, TimeUnit unit)
+comment|// threads
+DECL|method|pseudoTimedGetUninterruptibly (final Future<V> input, long timeout, TimeUnit unit)
 specifier|static
 parameter_list|<
 name|V
@@ -13937,9 +13869,7 @@ block|}
 comment|/**    * For each possible pair of futures from {@link TestFutureBatch}, for each possible completion    * order of those futures, test that various get calls (timed before future completion, untimed    * before future completion, and untimed after future completion) return or throw the proper    * values.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|method|runExtensiveMergerTest (Merger merger)
 specifier|private
 specifier|static
@@ -14434,9 +14364,7 @@ block|}
 comment|/**    * Call the non-timed {@link Future#get()} in a way that allows us to abort if it's expected to    * hang forever. More precisely, if it's expected to return, we simply call it[*], but if it's    * expected to hang (because one of the input futures that we know makes it up isn't done yet),    * then we call it in a separate thread (using pseudoTimedGet). The result is that we wait as long    * as necessary when the method is expected to return (at the cost of hanging forever if there is    * a bug in the class under test) but that we time out fairly promptly when the method is expected    * to hang (possibly too quickly, but too-quick failures should be very unlikely, given that we    * used to bail after 20ms during the expected-successful tests, and there we saw a failure rate    * of ~1/5000, meaning that the other thread's get() call nearly always completes within 20ms if    * it's going to complete at all).    *    * [*] To avoid hangs, I've disabled the in-thread calls. This makes the test take (very roughly)    * 2.5s longer. (2.5s is also the maximum length of time we will wait for a timed get that is    * expected to succeed; the fact that the numbers match is only a coincidence.) See the comment    * below for how to restore the fast but hang-y version.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|method|conditionalPseudoTimedGetUninterruptibly ( TestFutureBatch inputs, ListenableFuture<String> iFuture, ListenableFuture<String> jFuture, ListenableFuture<List<String>> future, int timeout, TimeUnit unit)
 specifier|private
 specifier|static
@@ -14515,9 +14443,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"allAsList"
-argument_list|)
+comment|// allAsList
 DECL|method|testAllAsList_extensive ()
 specifier|public
 name|void
@@ -14536,9 +14462,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_extensive ()
 specifier|public
 name|void
@@ -14557,9 +14481,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList ()
 specifier|public
 name|void
@@ -14744,9 +14666,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_emptyList ()
 specifier|public
 name|void
@@ -14837,9 +14757,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_emptyArray ()
 specifier|public
 name|void
@@ -14920,9 +14838,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_partialFailure ()
 specifier|public
 name|void
@@ -15078,9 +14994,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_totalFailure ()
 specifier|public
 name|void
@@ -15240,9 +15154,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_cancelled ()
 specifier|public
 name|void
@@ -15394,9 +15306,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_resultCancelled ()
 specifier|public
 name|void
@@ -15503,9 +15413,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_resultCancelledRacingInputDone ()
 specifier|public
 name|void
@@ -15599,9 +15507,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|doTestSuccessfulAsList_resultCancelledRacingInputDone ()
 specifier|private
 specifier|static
@@ -15786,9 +15692,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_resultInterrupted ()
 specifier|public
 name|void
@@ -15895,9 +15799,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"successfulAsList"
-argument_list|)
+comment|// successfulAsList
 DECL|method|testSuccessfulAsList_mixed ()
 specifier|public
 name|void
@@ -16286,9 +16188,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"nonCancellationPropagating"
-argument_list|)
+comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_successful ()
 specifier|public
 name|void
@@ -16364,9 +16264,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"nonCancellationPropagating"
-argument_list|)
+comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_failure ()
 specifier|public
 name|void
@@ -16464,9 +16362,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"nonCancellationPropagating"
-argument_list|)
+comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_delegateCancelled ()
 specifier|public
 name|void
@@ -16528,9 +16424,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"nonCancellationPropagating"
-argument_list|)
+comment|// nonCancellationPropagating
 DECL|method|testNonCancellationPropagating_doesNotPropagate ()
 specifier|public
 name|void
@@ -16608,9 +16502,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|class|TestException
 specifier|private
 specifier|static
@@ -16637,9 +16529,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|field|mapper
 specifier|private
 specifier|static
@@ -16722,9 +16612,7 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_mapsExecutionExceptions ()
 specifier|public
 name|void
@@ -16935,9 +16823,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_mapsInterruption ()
 specifier|public
 name|void
@@ -17125,9 +17011,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_mapsCancellation ()
 specifier|public
 name|void
@@ -17290,9 +17174,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_propagatesFailedMappers ()
 specifier|public
 name|void
@@ -17408,9 +17290,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_listenersRunOnceCompleted ()
 specifier|public
 name|void
@@ -17508,9 +17388,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_listenersRunOnCancel ()
 specifier|public
 name|void
@@ -17607,9 +17485,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"makeChecked"
-argument_list|)
+comment|// makeChecked
 DECL|method|testMakeChecked_listenersRunOnFailure ()
 specifier|public
 name|void
@@ -17711,9 +17587,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"used only in GwtIncompatible tests"
-argument_list|)
+comment|// used only in GwtIncompatible tests
 DECL|interface|MapperFunction
 specifier|private
 interface|interface
@@ -17725,12 +17599,10 @@ name|Throwable
 argument_list|,
 name|Exception
 argument_list|>
-block|{    }
+block|{}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"inCompletionOrder"
-argument_list|)
+comment|// inCompletionOrder
 DECL|method|testCompletionOrder ()
 specifier|public
 name|void
@@ -17900,9 +17772,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"inCompletionOrder"
-argument_list|)
+comment|// inCompletionOrder
 DECL|method|testCompletionOrderExceptionThrown ()
 specifier|public
 name|void
@@ -18119,9 +17989,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"inCompletionOrder"
-argument_list|)
+comment|// inCompletionOrder
 DECL|method|testCompletionOrderFutureCancelled ()
 specifier|public
 name|void
@@ -18321,9 +18189,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"inCompletionOrder"
-argument_list|)
+comment|// inCompletionOrder
 DECL|method|testCancellingADelegateDoesNotPropagate ()
 specifier|public
 name|void
@@ -18451,9 +18317,7 @@ block|}
 comment|// Mostly an example of how it would look like to use a list of mixed types
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"inCompletionOrder"
-argument_list|)
+comment|// inCompletionOrder
 DECL|method|testCompletionOrderMixedBagOTypes ()
 specifier|public
 name|void
@@ -18619,9 +18483,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ClassSanityTester"
-argument_list|)
+comment|// ClassSanityTester
 DECL|method|testFutures_nullChecks ()
 specifier|public
 name|void

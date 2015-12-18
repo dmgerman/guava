@@ -480,9 +480,7 @@ block|{}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the map uses {@link Equivalence#identity} to determine key equality when {@link    * #weakKeys} is specified, and {@link Equivalence#equals()} otherwise. The only place this is    * used is in {@link Interners.WeakInterner}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 annotation|@
 name|Override
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
@@ -742,9 +740,7 @@ block|}
 comment|/**    * Specifies that each key (not value) stored in the map should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of keys, which is a technical violation of the {@link Map}    * specification, and may not be what you expect.    *    * @throws IllegalStateException if the key strength was already set    * @see WeakReference    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
+comment|// java.lang.ref.WeakReference
 annotation|@
 name|Override
 DECL|method|weakKeys ()
@@ -837,9 +833,7 @@ block|}
 comment|/**    * Specifies that each value (not key) stored in the map should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p>Weak values will be garbage collected once they are weakly reachable. This makes them a poor    * candidate for caching; consider {@link #softValues} instead.    *    *<p><b>Warning:</b> when this method is used, the resulting map will use identity ({@code ==})    * comparison to determine equality of values. This technically violates the specifications of    * the methods {@link Map#containsValue containsValue},    * {@link ConcurrentMap#remove(Object, Object) remove(Object, Object)} and    * {@link ConcurrentMap#replace(Object, Object, Object) replace(K, V, V)}, and may not be what you    * expect.    *    * @throws IllegalStateException if the value strength was already set    * @see WeakReference    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
+comment|// java.lang.ref.WeakReference
 annotation|@
 name|Override
 DECL|method|weakValues ()
@@ -862,9 +856,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.SoftReference"
-argument_list|)
+comment|// java.lang.ref.SoftReference
 annotation|@
 name|Override
 DECL|method|softValues ()
@@ -1079,9 +1071,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 annotation|@
 name|Override
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
@@ -1185,15 +1175,13 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|removalListener (RemovalListener<K, V> listener)
-parameter_list|<
+argument_list|<
 name|K
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|GenericMapMaker
 argument_list|<
 name|K
@@ -1340,15 +1328,13 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"MapMakerInternalMap"
-argument_list|)
+comment|// MapMakerInternalMap
 DECL|method|makeCustomMap ()
-parameter_list|<
+argument_list|<
 name|K
-parameter_list|,
+argument_list|,
 name|V
-parameter_list|>
+argument_list|>
 name|MapMakerInternalMap
 argument_list|<
 name|K

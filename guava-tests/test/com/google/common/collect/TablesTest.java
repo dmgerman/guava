@@ -119,9 +119,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testImmutableEntrySerialization ()
 specifier|public
 name|void

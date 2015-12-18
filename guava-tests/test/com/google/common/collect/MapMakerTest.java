@@ -261,9 +261,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullParameters ()
 specifier|public
 name|void
@@ -291,9 +289,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testRemovalNotification_clear ()
 specifier|public
 name|void
@@ -546,9 +542,7 @@ comment|// "Basher tests", where we throw a bunch of stuff at a Cache and check 
 comment|/**    * This is a less carefully-controlled version of {@link #testRemovalNotification_clear} - this is    * a black-box test that tries to create lots of different thread-interleavings, and asserts that    * each computation is affected by a call to {@code clear()} (and therefore gets passed to the    * removal listener), or else is not affected by the {@code clear()} (and therefore exists in the    * map afterward).    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testRemovalNotification_clear_basher ()
 specifier|public
 name|void
@@ -966,9 +960,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|class|DelayingIdentityLoader
 specifier|static
 specifier|final

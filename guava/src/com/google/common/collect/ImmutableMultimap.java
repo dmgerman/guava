@@ -1401,9 +1401,7 @@ comment|// holder class makes sure they are not initialized unless an instance i
 comment|// deserialized.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java serialization is not supported"
-argument_list|)
+comment|// java serialization is not supported
 DECL|class|FieldSettersHolder
 specifier|static
 class|class
@@ -2710,9 +2708,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not present in emulated superclass"
-argument_list|)
+comment|// not present in emulated superclass
 annotation|@
 name|Override
 DECL|method|copyIntoArray (Object[] dst, int offset)

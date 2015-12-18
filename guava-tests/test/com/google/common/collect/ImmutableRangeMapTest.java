@@ -109,9 +109,7 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|class|ImmutableRangeMapTest
 specifier|public
 class|class

@@ -1749,9 +1749,7 @@ comment|// TODO: test adding element of wrong type
 comment|/**    * Returns {@link Method} instances for the {@code setCount()} tests that    * assume multisets support duplicates so that the test of {@code    * Multisets.forSet()} can suppress them.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getSetCountDuplicateInitializingMethods ()
 specifier|public
 specifier|static
@@ -1786,9 +1784,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getMethod (String methodName)
 specifier|private
 specifier|static

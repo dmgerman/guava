@@ -1909,9 +1909,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Chars.fromByteArray"
-argument_list|)
+comment|// Chars.fromByteArray
 DECL|method|testFromByteArray ()
 specifier|public
 name|void
@@ -1970,9 +1968,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Chars.fromByteArray"
-argument_list|)
+comment|// Chars.fromByteArray
 DECL|method|testFromByteArrayFails ()
 specifier|public
 name|void
@@ -2012,9 +2008,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Chars.fromBytes"
-argument_list|)
+comment|// Chars.fromBytes
 DECL|method|testFromBytes ()
 specifier|public
 name|void
@@ -2064,9 +2058,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Chars.fromByteArray, Chars.toByteArray"
-argument_list|)
+comment|// Chars.fromByteArray, Chars.toByteArray
 DECL|method|testByteArrayRoundTrips ()
 specifier|public
 name|void
@@ -2219,9 +2211,7 @@ comment|// sanity check
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Chars.fromByteArray, Chars.toByteArray"
-argument_list|)
+comment|// Chars.fromByteArray, Chars.toByteArray
 DECL|method|testByteArrayRoundTripsFails ()
 specifier|public
 name|void
@@ -2614,9 +2604,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testLexicographicalComparatorSerializable ()
 specifier|public
 name|void
@@ -3348,9 +3336,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void

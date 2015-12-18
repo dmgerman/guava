@@ -742,9 +742,7 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"suite"
-argument_list|)
+comment|// suite
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -2412,9 +2410,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"CopyOnWriteArrayList"
-argument_list|)
+comment|// CopyOnWriteArrayList
 DECL|method|testNewCOWALEmpty ()
 specifier|public
 name|void
@@ -2445,9 +2441,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"CopyOnWriteArrayList"
-argument_list|)
+comment|// CopyOnWriteArrayList
 DECL|method|testNewCOWALFromIterable ()
 specifier|public
 name|void
@@ -2477,9 +2471,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -2619,9 +2611,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testAsList1 ()
 specifier|public
 name|void
@@ -3063,9 +3053,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testAsList2Small ()
 specifier|public
 name|void
@@ -5347,9 +5335,7 @@ block|{}
 comment|/**    * This test depends on the fact that {@code AbstractSequentialList.iterator}    * transforms the {@code iterator()} call into a call on {@code    * listIterator(int)}. This is fine because the behavior is clearly    * documented so it's not expected to change.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"EsayMock"
-argument_list|)
+comment|// EsayMock
 DECL|method|testTransformedSequentialIterationUsesBackingListIterationOnly ()
 specifier|public
 name|void
@@ -6021,9 +6007,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ArrayList.subList doesn't implement RandomAccess in GWT."
-argument_list|)
+comment|// ArrayList.subList doesn't implement RandomAccess in GWT.
 DECL|method|testPartitionRandomAccessTrue ()
 specifier|public
 name|void
@@ -6415,9 +6399,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"cannot do such a big explicit copy"
-argument_list|)
+comment|// cannot do such a big explicit copy
 DECL|method|testPartitionSize_2 ()
 specifier|public
 name|void

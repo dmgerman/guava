@@ -397,9 +397,7 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not used in GWT"
-argument_list|)
+comment|// not used in GWT
 DECL|method|isHashCodeFast ()
 name|boolean
 name|isHashCodeFast
@@ -431,9 +429,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 annotation|@
 name|Override
 DECL|method|writeReplace ()
@@ -457,9 +453,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 DECL|class|EntrySetSerializedForm
 specifier|private
 specifier|static

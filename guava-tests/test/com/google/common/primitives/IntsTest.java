@@ -1934,9 +1934,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Ints.toByteArray"
-argument_list|)
+comment|// Ints.toByteArray
 DECL|method|testToByteArray ()
 specifier|public
 name|void
@@ -2014,9 +2012,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Ints.fromByteArray"
-argument_list|)
+comment|// Ints.fromByteArray
 DECL|method|testFromByteArray ()
 specifier|public
 name|void
@@ -2086,9 +2082,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Ints.fromByteArray"
-argument_list|)
+comment|// Ints.fromByteArray
 DECL|method|testFromByteArrayFails ()
 specifier|public
 name|void
@@ -2128,9 +2122,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Ints.fromBytes"
-argument_list|)
+comment|// Ints.fromBytes
 DECL|method|testFromBytes ()
 specifier|public
 name|void
@@ -2200,9 +2192,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Ints.fromByteArray, Ints.toByteArray"
-argument_list|)
+comment|// Ints.fromByteArray, Ints.toByteArray
 DECL|method|testByteArrayRoundTrips ()
 specifier|public
 name|void
@@ -2675,9 +2665,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testLexicographicalComparatorSerializable ()
 specifier|public
 name|void
@@ -2711,9 +2699,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testStringConverterSerialization ()
 specifier|public
 name|void
@@ -3705,9 +3691,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -4069,9 +4053,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testStringConverter_nullPointerTester ()
 specifier|public
 name|void

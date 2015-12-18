@@ -975,9 +975,7 @@ decl_stmt|;
 comment|/** Tests that round tripping of all two byte permutations work. */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
+comment|// java.nio.charset.Charset
 DECL|method|testIsWellFormed_1Byte ()
 specifier|public
 name|void
@@ -995,9 +993,7 @@ block|}
 comment|/** Tests that round tripping of all two byte permutations work. */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
+comment|// java.nio.charset.Charset
 DECL|method|testIsWellFormed_2Bytes ()
 specifier|public
 name|void
@@ -1015,9 +1011,7 @@ block|}
 comment|/** Tests that round tripping of all three byte permutations work. */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
+comment|// java.nio.charset.Charset
 DECL|method|testIsWellFormed_3Bytes ()
 specifier|public
 name|void
@@ -1558,9 +1552,7 @@ block|}
 comment|/**    * Helper to run the loop to test all the permutations for the number of bytes    * specified.    *    * @param numBytes the number of bytes in the byte array    * @param expectedCount the expected number of roundtrippable permutations    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
+comment|// java.nio.charset.Charset
 DECL|method|testBytes (int numBytes, long expectedCount)
 specifier|private
 specifier|static
@@ -1590,9 +1582,7 @@ block|}
 comment|/**    * Helper to run the loop to test all the permutations for the number of bytes    * specified. This overload is useful for debugging to get the loop to start    * at a certain character.    *    * @param numBytes the number of bytes in the byte array    * @param expectedCount the expected number of roundtrippable permutations    * @param start the starting bytes encoded as a long as big-endian    * @param lim the limit of bytes to process encoded as a long as big-endian,    *     or -1 to mean the max limit for numBytes    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.nio.charset.Charset"
-argument_list|)
+comment|// java.nio.charset.Charset
 DECL|method|testBytes (int numBytes, long expectedCount, long start, long lim)
 specifier|private
 specifier|static

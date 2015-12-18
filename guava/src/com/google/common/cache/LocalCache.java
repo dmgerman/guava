@@ -20069,9 +20069,7 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Not supported."
-argument_list|)
+comment|// Not supported.
 DECL|method|entrySet ()
 specifier|public
 name|Set

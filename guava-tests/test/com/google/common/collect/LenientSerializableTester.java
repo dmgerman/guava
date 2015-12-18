@@ -132,9 +132,7 @@ block|{
 comment|/*    * TODO(cpovirk): move this to c.g.c.testing if we allow for c.g.c.annotations dependencies so    * that it can be GWTified?    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|reserializeAndAssertLenient (Set<E> original)
 specifier|static
 parameter_list|<
@@ -184,9 +182,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|reserializeAndAssertLenient (Multiset<E> original)
 specifier|static
 parameter_list|<

@@ -77,9 +77,7 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TreeRangeSet"
-argument_list|)
+comment|// TreeRangeSet
 DECL|class|AbstractRangeSetTest
 specifier|public
 specifier|abstract

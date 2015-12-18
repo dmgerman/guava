@@ -885,9 +885,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~10s)"
-argument_list|)
+comment|// slow (~10s)
 DECL|method|testUnmodifiableArrayListMultimap ()
 specifier|public
 name|void
@@ -912,9 +910,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializingUnmodifiableArrayListMultimap ()
 specifier|public
 name|void
@@ -1122,9 +1118,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~10s)"
-argument_list|)
+comment|// slow (~10s)
 DECL|method|testUnmodifiableHashMultimap ()
 specifier|public
 name|void
@@ -1149,9 +1143,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializingUnmodifiableHashMultimap ()
 specifier|public
 name|void
@@ -1195,9 +1187,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~10s)"
-argument_list|)
+comment|// slow (~10s)
 DECL|method|testUnmodifiableTreeMultimap ()
 specifier|public
 name|void
@@ -1226,9 +1216,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializingUnmodifiableTreeMultimap ()
 specifier|public
 name|void
@@ -1272,9 +1260,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~10s)"
-argument_list|)
+comment|// slow (~10s)
 DECL|method|testUnmodifiableSynchronizedArrayListMultimap ()
 specifier|public
 name|void
@@ -1304,9 +1290,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializingUnmodifiableSynchronizedArrayListMultimap ()
 specifier|public
 name|void
@@ -1355,9 +1339,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~10s)"
-argument_list|)
+comment|// slow (~10s)
 DECL|method|testUnmodifiableSynchronizedHashMultimap ()
 specifier|public
 name|void
@@ -1387,9 +1369,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializingUnmodifiableSynchronizedHashMultimap ()
 specifier|public
 name|void
@@ -1438,9 +1418,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~10s)"
-argument_list|)
+comment|// slow (~10s)
 DECL|method|testUnmodifiableSynchronizedTreeMultimap ()
 specifier|public
 name|void
@@ -1509,9 +1487,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializingUnmodifiableSynchronizedTreeMultimap ()
 specifier|public
 name|void
@@ -3443,9 +3419,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testForMapSerialization ()
 specifier|public
 name|void
@@ -4745,9 +4719,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testNewMultimapSerialization ()
 specifier|public
 name|void
@@ -5065,9 +5037,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testNewListMultimapSerialization ()
 specifier|public
 name|void
@@ -5357,9 +5327,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testNewSetMultimapSerialization ()
 specifier|public
 name|void
@@ -5654,9 +5622,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testNewSortedSetMultimapSerialization ()
 specifier|public
 name|void
@@ -7506,9 +7472,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void

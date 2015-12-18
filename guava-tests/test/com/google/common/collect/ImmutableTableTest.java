@@ -2930,9 +2930,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Mind-bogglingly slow in GWT"
-argument_list|)
+comment|// Mind-bogglingly slow in GWT
 annotation|@
 name|AndroidIncompatible
 comment|// slow

@@ -185,9 +185,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|class|ImmutableRangeMap
 specifier|public
 class|class

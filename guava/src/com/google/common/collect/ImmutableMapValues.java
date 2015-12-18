@@ -357,9 +357,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 annotation|@
 name|Override
 DECL|method|writeReplace ()
@@ -380,9 +378,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 DECL|class|SerializedForm
 specifier|private
 specifier|static

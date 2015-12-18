@@ -155,9 +155,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"hasn't been tested yet"
-argument_list|)
+comment|// hasn't been tested yet
 DECL|class|ImmutableSortedMultiset
 specifier|public
 specifier|abstract

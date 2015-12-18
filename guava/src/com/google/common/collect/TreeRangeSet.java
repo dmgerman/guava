@@ -215,9 +215,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"uses NavigableMap"
-argument_list|)
+comment|// uses NavigableMap
 DECL|class|TreeRangeSet
 specifier|public
 class|class

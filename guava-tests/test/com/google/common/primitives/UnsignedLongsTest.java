@@ -822,9 +822,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Too slow in GWT (~3min fully optimized)"
-argument_list|)
+comment|// Too slow in GWT (~3min fully optimized)
 DECL|method|testDivideRemainderEuclideanProperty ()
 specifier|public
 name|void
@@ -1658,9 +1656,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void

@@ -484,9 +484,7 @@ decl_stmt|;
 comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -603,9 +601,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|log10Floor (long x)
 specifier|static
 name|int
@@ -786,9 +782,7 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|VisibleForTesting
 DECL|field|powersOf10
@@ -841,9 +835,7 @@ decl_stmt|;
 comment|// halfPowersOf10[i] = largest long less than 10^(i + 0.5)
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|VisibleForTesting
 DECL|field|halfPowersOf10
@@ -896,9 +888,7 @@ decl_stmt|;
 comment|/**    * Returns {@code b} to the {@code k}th power. Even if the result overflows, it will be equal to    * {@code BigInteger.valueOf(b).pow(k).longValue()}. This implementation runs in {@code O(log k)}    * time.    *    * @throws IllegalArgumentException if {@code k< 0}    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|pow (long b, int k)
 specifier|public
 specifier|static
@@ -1110,9 +1100,7 @@ block|}
 comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1303,9 +1291,7 @@ block|}
 comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1536,9 +1522,7 @@ block|}
 comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}.    * This differs from {@code x % m}, which might be negative.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *      Remainder Operator</a>    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|mod (long x, int m)
 specifier|public
 specifier|static
@@ -1571,9 +1555,7 @@ block|}
 comment|/**    * Returns {@code x mod m}, a non-negative value less than {@code m}.    * This differs from {@code x % m}, which might be negative.    *    *<p>For example:    *    *<pre> {@code    *    * mod(7, 4) == 3    * mod(-7, 4) == 1    * mod(-1, 4) == 3    * mod(-8, 4) == 0    * mod(8, 4) == 0}</pre>    *    * @throws ArithmeticException if {@code m<= 0}    * @see<a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.17.3">    *      Remainder Operator</a>    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|mod (long x, long m)
 specifier|public
 specifier|static
@@ -1788,9 +1770,7 @@ block|}
 comment|/**    * Returns the sum of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a + b} overflows in signed {@code long} arithmetic    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|checkedAdd (long a, long b)
 specifier|public
 specifier|static
@@ -1837,9 +1817,7 @@ block|}
 comment|/**    * Returns the difference of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a - b} overflows in signed {@code long} arithmetic    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|checkedSubtract (long a, long b)
 specifier|public
 specifier|static
@@ -1886,9 +1864,7 @@ block|}
 comment|/**    * Returns the product of {@code a} and {@code b}, provided it does not overflow.    *    * @throws ArithmeticException if {@code a * b} overflows in signed {@code long} arithmetic    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|checkedMultiply (long a, long b)
 specifier|public
 specifier|static
@@ -2003,9 +1979,7 @@ block|}
 comment|/**    * Returns the {@code b} to the {@code k}th power, provided it does not overflow.    *    * @throws ArithmeticException if {@code b} to the {@code k}th power overflows in signed    *         {@code long} arithmetic    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|checkedPow (long b, int k)
 specifier|public
 specifier|static
@@ -2815,9 +2789,7 @@ decl_stmt|;
 comment|/**    * Returns {@code n!}, that is, the product of the first {@code n} positive    * integers, {@code 1} if {@code n == 0}, or {@link Long#MAX_VALUE} if the    * result does not fit in a {@code long}.    *    * @throws IllegalArgumentException if {@code n< 0}    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|factorial (int n)
 specifier|public
 specifier|static

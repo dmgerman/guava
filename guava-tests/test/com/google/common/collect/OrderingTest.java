@@ -5082,9 +5082,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow"
-argument_list|)
+comment|// slow
 DECL|method|testLeastOf_reconcileAgainstSortAndSublist ()
 specifier|public
 name|void
@@ -6446,9 +6444,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"too slow"
-argument_list|)
+comment|// too slow
 DECL|method|testCombinationsExhaustively_startingFromExplicit ()
 specifier|public
 name|void
@@ -6480,9 +6476,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"too slow"
-argument_list|)
+comment|// too slow
 DECL|method|testCombinationsExhaustively_startingFromUsingToString ()
 specifier|public
 name|void
@@ -6506,9 +6500,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"too slow"
-argument_list|)
+comment|// too slow
 DECL|method|testCombinationsExhaustively_startingFromFromComparator ()
 specifier|public
 name|void
@@ -6538,9 +6530,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"too slow"
-argument_list|)
+comment|// too slow
 DECL|method|testCombinationsExhaustively_startingFromArbitrary ()
 specifier|public
 name|void
@@ -8250,9 +8240,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void

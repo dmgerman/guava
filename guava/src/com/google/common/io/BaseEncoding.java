@@ -469,9 +469,7 @@ block|}
 comment|/**    * Returns an {@code OutputStream} that encodes bytes using this encoding into the specified    * {@code Writer}.  When the returned {@code OutputStream} is closed, so is the backing    * {@code Writer}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Writer,OutputStream"
-argument_list|)
+comment|// Writer,OutputStream
 annotation|@
 name|CheckReturnValue
 DECL|method|encodingStream (Writer writer)
@@ -487,9 +485,7 @@ function_decl|;
 comment|/**    * Returns a {@code ByteSink} that writes base-encoded bytes to the specified {@code CharSink}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ByteSink,CharSink"
-argument_list|)
+comment|// ByteSink,CharSink
 annotation|@
 name|CheckReturnValue
 DECL|method|encodingSink (final CharSink encodedSink)
@@ -708,9 +704,7 @@ block|}
 comment|/**    * Returns an {@code InputStream} that decodes base-encoded input from the specified    * {@code Reader}.  The returned stream throws a {@link DecodingException} upon decoding-specific    * errors.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Reader,InputStream"
-argument_list|)
+comment|// Reader,InputStream
 annotation|@
 name|CheckReturnValue
 DECL|method|decodingStream (Reader reader)
@@ -726,9 +720,7 @@ function_decl|;
 comment|/**    * Returns a {@code ByteSource} that reads base-encoded bytes from the specified    * {@code CharSource}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ByteSource,CharSource"
-argument_list|)
+comment|// ByteSource,CharSource
 annotation|@
 name|CheckReturnValue
 DECL|method|decodingSource (final CharSource encodedSource)
@@ -1919,9 +1911,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Writer,OutputStream"
-argument_list|)
+comment|// Writer,OutputStream
 annotation|@
 name|Override
 DECL|method|encodingStream (final Writer out)
@@ -2748,9 +2738,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Reader,InputStream"
-argument_list|)
+comment|// Reader,InputStream
 annotation|@
 name|Override
 DECL|method|decodingStream (final Reader reader)
@@ -4204,9 +4192,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Reader"
-argument_list|)
+comment|// Reader
 DECL|method|ignoringReader (final Reader delegate, final CharMatcher toIgnore)
 specifier|static
 name|Reader
@@ -4460,9 +4446,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Writer"
-argument_list|)
+comment|// Writer
 DECL|method|separatingWriter ( final Writer delegate, final String separator, final int afterEveryChars)
 specifier|static
 name|Writer
@@ -4738,9 +4722,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Writer,OutputStream"
-argument_list|)
+comment|// Writer,OutputStream
 annotation|@
 name|Override
 DECL|method|encodingStream (final Writer output)
@@ -4890,9 +4872,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Reader,InputStream"
-argument_list|)
+comment|// Reader,InputStream
 annotation|@
 name|Override
 DECL|method|decodingStream (final Reader reader)

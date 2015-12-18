@@ -2385,9 +2385,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Double.toString returns different value in GWT."
-argument_list|)
+comment|// Double.toString returns different value in GWT.
 DECL|method|testJoin ()
 specifier|public
 name|void
@@ -2669,9 +2667,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testLexicographicalComparatorSerializable ()
 specifier|public
 name|void
@@ -2705,9 +2701,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testStringConverterSerialization ()
 specifier|public
 name|void
@@ -3760,9 +3754,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|checkTryParse (String input)
 specifier|private
 specifier|static
@@ -3885,9 +3877,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|checkTryParse (double expected, String input)
 specifier|private
 specifier|static
@@ -3933,9 +3923,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseHex ()
 specifier|public
 name|void
@@ -4105,9 +4093,7 @@ name|AndroidIncompatible
 comment|// slow
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseAllCodePoints ()
 specifier|public
 name|void
@@ -4178,9 +4164,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseOfToStringIsOriginal ()
 specifier|public
 name|void
@@ -4211,9 +4195,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseOfToHexStringIsOriginal ()
 specifier|public
 name|void
@@ -4244,9 +4226,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseNaN ()
 specifier|public
 name|void
@@ -4271,9 +4251,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseInfinity ()
 specifier|public
 name|void
@@ -4348,9 +4326,7 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Doubles.tryParse"
-argument_list|)
+comment|// Doubles.tryParse
 DECL|method|testTryParseFailures ()
 specifier|public
 name|void
@@ -4406,9 +4382,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -4643,9 +4617,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Double.toString returns different value in GWT."
-argument_list|)
+comment|// Double.toString returns different value in GWT.
 DECL|method|testStringConverter_reverse ()
 specifier|public
 name|void
@@ -4744,9 +4716,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testStringConverter_nullPointerTester ()
 specifier|public
 name|void

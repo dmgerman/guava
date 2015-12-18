@@ -822,9 +822,7 @@ block|}
 comment|/**    * Tests that nHMWES makes hash maps large enough that adding the expected    * number of elements won't cause a rehash.    *    * As of jdk7u40, HashMap has an empty-map optimization.  The argument to    * new HashMap(int) is noted, but the initial table is a zero-length array.    *    * This test may fail miserably on non-OpenJDK environments...    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 annotation|@
 name|AndroidIncompatible
 comment|// relies on assumptions about OpenJDK
@@ -892,9 +890,7 @@ block|}
 comment|/**    * Same test as above but for newLinkedHashMapWithExpectedSize    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 annotation|@
 name|AndroidIncompatible
 comment|// relies on assumptions about OpenJDK
@@ -959,9 +955,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|assertWontGrow ( int size, HashMap<Object, Object> map1, HashMap<Object, Object> map2)
 specifier|private
 specifier|static
@@ -1089,9 +1083,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|bucketsOf (HashMap<?, ?> hashMap)
 specifier|private
 specifier|static
@@ -2461,9 +2453,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -6186,9 +6176,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testAsMapReturnsNavigableMapForNavigableSetInput ()
 specifier|public
 name|void
@@ -6226,9 +6214,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testAsMapNavigable ()
 specifier|public
 name|void
@@ -6849,9 +6835,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testAsMapNavigableReadsThrough ()
 specifier|public
 name|void
@@ -7222,9 +7206,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testAsMapNavigableWritesThrough ()
 specifier|public
 name|void
@@ -7365,9 +7347,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testAsMapNavigableSubViewKeySetsDoNotSupportAdd ()
 specifier|public
 name|void
@@ -7549,9 +7529,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testAsMapNavigableEmpty ()
 specifier|public
 name|void
@@ -8371,9 +8349,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Maps.fromProperties"
-argument_list|)
+comment|// Maps.fromProperties
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -8718,9 +8694,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Maps.fromProperties"
-argument_list|)
+comment|// Maps.fromProperties
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -8813,9 +8787,7 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Maps.fromProperties"
-argument_list|)
+comment|// Maps.fromProperties
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -12631,9 +12603,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testTransformValuesSecretlyNavigable ()
 specifier|public
 name|void
@@ -12961,9 +12931,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testTransformEntriesSecretlyNavigable ()
 specifier|public
 name|void
@@ -13716,9 +13684,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testNavigableMapTransformValues ()
 specifier|public
 name|void
@@ -13889,9 +13855,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testNavigableMapTransformEntries ()
 specifier|public
 name|void
@@ -13997,9 +13961,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testUnmodifiableNavigableMap ()
 specifier|public
 name|void
@@ -14635,9 +14597,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|ensureNotDirectlyModifiable (NavigableMap<Integer, String> unmod)
 name|void
 name|ensureNotDirectlyModifiable
@@ -14764,9 +14724,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testSubMap_boundedRange ()
 specifier|public
 name|void
@@ -15366,9 +15324,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testSubMap_halfBoundedRange ()
 specifier|public
 name|void
@@ -15832,9 +15788,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testSubMap_unboundedRange ()
 specifier|public
 name|void
@@ -15897,9 +15851,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|method|testSubMap_unnaturalOrdering ()
 specifier|public
 name|void

@@ -895,9 +895,7 @@ block|}
 comment|/**    * Returns the {@link Method} instance for {@link    * #testAddAll_nullUnsupported()} so that tests can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5045147">Sun    * bug 5045147</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getAddAllNullUnsupportedMethod ()
 specifier|public
 specifier|static
@@ -921,9 +919,7 @@ block|}
 comment|/**    * Returns the {@link Method} instance for {@link    * #testAddAll_unsupportedNonePresent()} so that tests can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} while we figure out    * what to do with<a href="http://goo.gl/qJBruX">{@code ConcurrentHashMap}    * support for {@code entrySet().add()}</a>.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getAddAllUnsupportedNonePresentMethod ()
 specifier|public
 specifier|static
@@ -947,9 +943,7 @@ block|}
 comment|/**    * Returns the {@link Method} instance for {@link    * #testAddAll_unsupportedSomePresent()} so that tests can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} while we figure out    * what to do with<a href="http://goo.gl/qJBruX">{@code ConcurrentHashMap}    * support for {@code entrySet().add()}</a>.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getAddAllUnsupportedSomePresentMethod ()
 specifier|public
 specifier|static

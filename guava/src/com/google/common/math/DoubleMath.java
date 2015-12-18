@@ -343,9 +343,7 @@ block|{
 comment|/*    * This method returns a value y such that rounding y DOWN (towards zero) gives the same result    * as rounding x according to the specified mode.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"#isMathematicalInteger, com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// #isMathematicalInteger, com.google.common.math.DoubleUtils
 DECL|method|roundIntermediate (double x, RoundingMode mode)
 specifier|static
 name|double
@@ -581,9 +579,7 @@ block|}
 comment|/**    * Returns the {@code int} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified    *         rounding mode, is either less than {@code Integer.MIN_VALUE} or greater than {@code    *         Integer.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"#roundIntermediate"
-argument_list|)
+comment|// #roundIntermediate
 DECL|method|roundToInt (double x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -653,9 +649,7 @@ decl_stmt|;
 comment|/**    * Returns the {@code long} value that is equal to {@code x} rounded with the specified rounding    * mode, if possible.    *    * @throws ArithmeticException if    *<ul>    *<li>{@code x} is infinite or NaN    *<li>{@code x}, after being rounded to a mathematical integer using the specified    *         rounding mode, is either less than {@code Long.MIN_VALUE} or greater than {@code    *         Long.MAX_VALUE}    *<li>{@code x} is not a mathematical integer and {@code mode} is    *         {@link RoundingMode#UNNECESSARY}    *</ul>    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"#roundIntermediate"
-argument_list|)
+comment|// #roundIntermediate
 DECL|method|roundToLong (double x, RoundingMode mode)
 specifier|public
 specifier|static
@@ -825,9 +819,7 @@ block|}
 comment|/**    * Returns {@code true} if {@code x} is exactly equal to {@code 2^k} for some finite integer    * {@code k}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// com.google.common.math.DoubleUtils
 DECL|method|isPowerOfTwo (double x)
 specifier|public
 specifier|static
@@ -895,9 +887,7 @@ decl_stmt|;
 comment|/**    * Returns the base 2 logarithm of a double value, rounded with the specified rounding mode to an    * {@code int}.    *    *<p>Regardless of the rounding mode, this is faster than {@code (int) log2(x)}.    *    * @throws IllegalArgumentException if {@code x<= 0.0}, {@code x} is NaN, or {@code x} is    *         infinite    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.Math.getExponent, com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// java.lang.Math.getExponent, com.google.common.math.DoubleUtils
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1084,9 +1074,7 @@ block|}
 comment|/**    * Returns {@code true} if {@code x} represents a mathematical integer.    *    *<p>This is equivalent to, but not necessarily implemented as, the expression {@code    * !Double.isNaN(x)&& !Double.isInfinite(x)&& x == Math.rint(x)}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.Math.getExponent, com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// java.lang.Math.getExponent, com.google.common.math.DoubleUtils
 DECL|method|isMathematicalInteger (double x)
 specifier|public
 specifier|static
@@ -1415,9 +1403,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// com.google.common.math.DoubleUtils
 DECL|method|mean (double... values)
 specifier|public
 specifier|static
@@ -1654,9 +1640,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// com.google.common.math.DoubleUtils
 DECL|method|mean (Iterable<? extends Number> values)
 specifier|public
 specifier|static
@@ -1687,9 +1671,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// com.google.common.math.DoubleUtils
 DECL|method|mean (Iterator<? extends Number> values)
 specifier|public
 specifier|static
@@ -1777,9 +1759,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"com.google.common.math.DoubleUtils"
-argument_list|)
+comment|// com.google.common.math.DoubleUtils
 DECL|method|checkFinite (double argument)
 specifier|private
 specifier|static
