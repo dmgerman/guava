@@ -108,6 +108,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|testing
@@ -225,6 +239,8 @@ comment|/**  * A generic JUnit test which tests operations on a NavigableMap. Ca
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|NavigableMapNavigationTester
 specifier|public
 class|class

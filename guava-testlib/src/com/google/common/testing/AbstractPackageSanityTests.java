@@ -90,6 +90,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -386,6 +400,8 @@ begin_class
 annotation|@
 name|Beta
 comment|// TODO: Switch to JUnit 4 and use @Parameterized and @BeforeClass
+annotation|@
+name|GwtIncompatible
 annotation|@
 name|J2ObjCIncompatible
 comment|// com.google.common.reflect.ClassPath

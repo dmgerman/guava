@@ -44,6 +44,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -111,6 +125,8 @@ comment|/**  * A support class for {@code ListenableFuture} implementations to m
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|ExecutionList
 specifier|public
 specifier|final

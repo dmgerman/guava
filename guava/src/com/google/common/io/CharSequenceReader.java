@@ -66,6 +66,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -103,6 +117,8 @@ comment|// TODO(cgdecker): make this public? as a type, or a method in CharStrea
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|CharSequenceReader
 specifier|final
 class|class

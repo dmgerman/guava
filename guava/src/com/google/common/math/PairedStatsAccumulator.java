@@ -86,6 +86,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * A mutable object which accumulates paired double values (e.g. points on a plane) and tracks  * some basic statistics over all the values added so far. This class is not thread safe.  *  * @author Pete Gillin  * @since 20.0  */
 end_comment
@@ -93,6 +107,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
 DECL|class|PairedStatsAccumulator
 specifier|public
 specifier|final

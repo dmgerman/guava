@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -69,12 +83,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An object with an operational state, plus asynchronous {@link #startAsync()} and   * {@link #stopAsync()} lifecycle methods to transition between states. Example services include   * webservers, RPC servers and timers.  *  *<p>The normal lifecycle of a service is:  *<ul>  *<li>{@linkplain State#NEW NEW} -&gt;  *<li>{@linkplain State#STARTING STARTING} -&gt;  *<li>{@linkplain State#RUNNING RUNNING} -&gt;  *<li>{@linkplain State#STOPPING STOPPING} -&gt;  *<li>{@linkplain State#TERMINATED TERMINATED}  *</ul>  *  *<p>There are deviations from this if there are failures or if {@link Service#stopAsync} is called  * before the {@link Service} reaches the {@linkplain State#RUNNING RUNNING} state. The set of legal  * transitions form a<a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>,   * therefore every method of the listener will be called at most once. N.B. The {@link State#FAILED}  * and {@link State#TERMINATED} states are terminal states, once a service enters either of these  * states it cannot ever leave them.  *  *<p>Implementors of this interface are strongly encouraged to extend one of the abstract classes   * in this package which implement this interface and make the threading and state management   * easier.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 9.0 (in 1.0 as {@code com.google.common.base.Service})  */
+comment|/**  * An object with an operational state, plus asynchronous {@link #startAsync()} and  * {@link #stopAsync()} lifecycle methods to transition between states. Example services include  * webservers, RPC servers and timers.  *  *<p>The normal lifecycle of a service is:  *<ul>  *<li>{@linkplain State#NEW NEW} -&gt;  *<li>{@linkplain State#STARTING STARTING} -&gt;  *<li>{@linkplain State#RUNNING RUNNING} -&gt;  *<li>{@linkplain State#STOPPING STOPPING} -&gt;  *<li>{@linkplain State#TERMINATED TERMINATED}  *</ul>  *  *<p>There are deviations from this if there are failures or if {@link Service#stopAsync} is called  * before the {@link Service} reaches the {@linkplain State#RUNNING RUNNING} state. The set of legal  * transitions form a<a href="http://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>,  * therefore every method of the listener will be called at most once. N.B. The {@link State#FAILED}  * and {@link State#TERMINATED} states are terminal states, once a service enters either of these  * states it cannot ever leave them.  *  *<p>Implementors of this interface are strongly encouraged to extend one of the abstract classes  * in this package which implement this interface and make the threading and state management  * easier.  *  * @author Jesse Wilson  * @author Luke Sandberg  * @since 9.0 (in 1.0 as {@code com.google.common.base.Service})  */
 end_comment
 
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
 DECL|interface|Service
 specifier|public
 interface|interface

@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -43,6 +57,8 @@ comment|/**  * Creates, based on your criteria, a JUnit test suite that exhausti
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|IteratorTestSuiteBuilder
 specifier|public
 class|class

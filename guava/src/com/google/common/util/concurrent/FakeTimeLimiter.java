@@ -50,6 +50,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -79,6 +93,8 @@ end_comment
 begin_class
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
 DECL|class|FakeTimeLimiter
 specifier|public
 specifier|final

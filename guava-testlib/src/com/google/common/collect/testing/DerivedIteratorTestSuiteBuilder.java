@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -43,6 +57,8 @@ comment|/**  * Given a test iterable generator, builds a test suite for the  * i
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|DerivedIteratorTestSuiteBuilder
 specifier|public
 class|class

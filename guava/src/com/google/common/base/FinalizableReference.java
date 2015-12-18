@@ -16,11 +16,27 @@ name|base
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implemented by references that have code to run after garbage collection of their referents.  *  * @see FinalizableReferenceQueue  * @author Bob Lee  * @since 2.0  */
 end_comment
 
 begin_interface
+annotation|@
+name|GwtIncompatible
 DECL|interface|FinalizableReference
 specifier|public
 interface|interface

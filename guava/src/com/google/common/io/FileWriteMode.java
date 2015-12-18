@@ -16,11 +16,27 @@ name|io
 package|;
 end_package
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Modes for opening a file for writing. The default when mode when none is specified is to  * truncate the file before writing.  *  * @author Colin Decker  */
 end_comment
 
 begin_enum
+annotation|@
+name|GwtIncompatible
 DECL|enum|FileWriteMode
 specifier|public
 enum|enum

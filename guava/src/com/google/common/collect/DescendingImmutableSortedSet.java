@@ -45,6 +45,8 @@ comment|/**  * Skeletal implementation of {@link ImmutableSortedSet#descendingSe
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|DescendingImmutableSortedSet
 class|class
 name|DescendingImmutableSortedSet
