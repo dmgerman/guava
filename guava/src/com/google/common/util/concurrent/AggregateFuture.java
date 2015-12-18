@@ -371,7 +371,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Interruption not supported
+argument_list|(
+literal|"Interruption not supported"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|interruptTask ()

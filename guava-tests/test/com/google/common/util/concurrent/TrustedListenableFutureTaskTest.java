@@ -475,7 +475,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// blocking wait
+argument_list|(
+literal|"blocking wait"
+argument_list|)
 DECL|method|testCancel_interrupted ()
 specifier|public
 name|void
@@ -712,7 +714,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// blocking wait
+argument_list|(
+literal|"blocking wait"
+argument_list|)
 DECL|method|testRunIdempotency ()
 specifier|public
 name|void
@@ -907,7 +911,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// used only in GwtIncomaptible tests
+argument_list|(
+literal|"used only in GwtIncomaptible tests"
+argument_list|)
 DECL|method|awaitUnchecked (CyclicBarrier barrier)
 specifier|private
 name|int

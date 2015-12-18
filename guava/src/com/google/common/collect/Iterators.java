@@ -1242,7 +1242,9 @@ block|}
 comment|/**    * Copies an iterator's elements into an array. The iterator will be left    * exhausted: its {@code hasNext()} method will return {@code false}.    *    * @param iterator the iterator to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterator    *         have been copied    */
 annotation|@
 name|GwtIncompatible
-comment|// Array.newInstance(Class, int)
+argument_list|(
+literal|"Array.newInstance(Class, int)"
+argument_list|)
 DECL|method|toArray (Iterator<? extends T> iterator, Class<T> type)
 specifier|public
 specifier|static
@@ -2399,7 +2401,9 @@ argument_list|)
 comment|// can cast to<T> because non-Ts are removed
 annotation|@
 name|GwtIncompatible
-comment|// Class.isInstance
+argument_list|(
+literal|"Class.isInstance"
+argument_list|)
 annotation|@
 name|CheckReturnValue
 DECL|method|filter (Iterator<?> unfiltered, Class<T> desiredType)

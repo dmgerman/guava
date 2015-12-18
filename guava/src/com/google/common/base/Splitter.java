@@ -612,7 +612,9 @@ annotation|@
 name|CheckReturnValue
 annotation|@
 name|GwtIncompatible
-comment|// java.util.regex
+argument_list|(
+literal|"java.util.regex"
+argument_list|)
 DECL|method|on (final Pattern separatorPattern)
 specifier|public
 specifier|static
@@ -745,7 +747,9 @@ annotation|@
 name|CheckReturnValue
 annotation|@
 name|GwtIncompatible
-comment|// java.util.regex
+argument_list|(
+literal|"java.util.regex"
+argument_list|)
 DECL|method|onPattern (String separatorPattern)
 specifier|public
 specifier|static

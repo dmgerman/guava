@@ -458,7 +458,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -4324,7 +4326,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -4448,7 +4452,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testEmptySerialization ()
 specifier|public
 name|void
@@ -4483,7 +4489,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testSortedSerialization ()
 specifier|public
 name|void

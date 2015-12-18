@@ -119,7 +119,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-comment|// TreeRangeSet
+argument_list|(
+literal|"TreeRangeSet"
+argument_list|)
 DECL|class|TreeRangeSetTest
 specifier|public
 class|class
@@ -4640,7 +4642,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void

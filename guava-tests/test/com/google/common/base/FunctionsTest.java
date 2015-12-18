@@ -261,7 +261,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testIdentitySerializable ()
 specifier|public
 name|void
@@ -372,7 +374,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testToStringFunctionSerializable ()
 specifier|public
 name|void
@@ -390,7 +394,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -568,7 +574,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testForMapWithoutDefaultSerializable ()
 specifier|public
 name|void
@@ -769,7 +777,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testForMapWithDefault_includeSerializable ()
 specifier|public
 name|void
@@ -934,7 +944,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testForMapWithDefaultSerializable ()
 specifier|public
 name|void
@@ -1054,7 +1066,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testForMapWithDefault_null_compareWithSerializable ()
 specifier|public
 name|void
@@ -1501,7 +1515,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testComposition_includeReserializabled ()
 specifier|public
 name|void
@@ -2253,7 +2269,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testForPredicateSerializable ()
 specifier|public
 name|void
@@ -2452,7 +2470,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testConstantSerializable ()
 specifier|public
 name|void
@@ -2678,7 +2698,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testForSupplierSerializable ()
 specifier|public
 name|void
@@ -2700,7 +2722,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -2726,7 +2750,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 annotation|@
 name|AndroidIncompatible
 comment|// TODO(cpovirk): ClassNotFoundException: com.google.common.base.Function
@@ -2756,7 +2782,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|checkCanReserialize (Function<? super Integer, Y> f)
 specifier|private
 specifier|static
@@ -2871,7 +2899,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|checkCanReserializeSingleton (Function<? super String, Y> f)
 specifier|private
 specifier|static

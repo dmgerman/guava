@@ -253,7 +253,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static

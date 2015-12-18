@@ -160,7 +160,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for {@link #testHashCode()} so that    * list tests on unhashable objects can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()}.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getHashCodeMethod ()
 specifier|public
 specifier|static

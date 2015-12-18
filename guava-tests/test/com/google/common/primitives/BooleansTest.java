@@ -1251,7 +1251,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testLexicographicalComparatorSerializable ()
 specifier|public
 name|void
@@ -2444,7 +2446,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNulls ()
 specifier|public
 name|void

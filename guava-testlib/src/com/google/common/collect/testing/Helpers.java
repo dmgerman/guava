@@ -2704,7 +2704,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getMethod (Class<?> clazz, String name)
 specifier|public
 specifier|static

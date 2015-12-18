@@ -198,7 +198,9 @@ block|{}
 comment|/**    * Returns the {@link Field} in which {@code enumValue} is defined. For example, to get the    * {@code Description} annotation on the {@code GOLF} constant of enum {@code Sport}, use    * {@code Enums.getField(Sport.GOLF).getAnnotation(Description.class)}.    *    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getField (Enum<?> enumValue)
 specifier|public
 specifier|static
@@ -303,7 +305,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.ref.WeakReference
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 specifier|private
 specifier|static
 specifier|final
@@ -369,7 +373,9 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.ref.WeakReference
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|populateCache ( Class<T> enumClass)
 specifier|private
 specifier|static
@@ -488,7 +494,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.ref.WeakReference
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|getEnumConstants ( Class<T> enumClass)
 specifier|static
 parameter_list|<

@@ -1077,7 +1077,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testToArray_isPlainObjectArray()} so that tests of    * {@link Arrays#asList(Object[])} can suppress it with {@code    * FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6260652">Sun bug    * 6260652</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getToArrayIsPlainObjectArrayMethod ()
 specifier|public
 specifier|static

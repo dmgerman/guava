@@ -1362,7 +1362,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerInstance ()
 specifier|public
 name|void

@@ -694,7 +694,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getContainsEntryWithIncomparableKeyMethod ()
 specifier|public
 specifier|static
@@ -717,7 +719,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getContainsEntryWithIncomparableValueMethod ()
 specifier|public
 specifier|static

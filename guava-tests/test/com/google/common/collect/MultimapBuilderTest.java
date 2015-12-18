@@ -161,7 +161,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// doesn't build without explicit type parameters on build() methods
+argument_list|(
+literal|"doesn't build without explicit type parameters on build() methods"
+argument_list|)
 DECL|method|testGenerics ()
 specifier|public
 name|void
@@ -315,7 +317,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// doesn't build without explicit type parameters on build() methods
+argument_list|(
+literal|"doesn't build without explicit type parameters on build() methods"
+argument_list|)
 DECL|method|testTreeKeys ()
 specifier|public
 name|void
@@ -415,7 +419,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -526,7 +532,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|method|reserializeAndAssert (Object object)
 specifier|private
 specifier|static
@@ -570,7 +578,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|method|reserialize (Object object)
 specifier|private
 specifier|static

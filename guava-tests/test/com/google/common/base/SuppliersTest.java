@@ -614,7 +614,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testMemoizeSerialized ()
 specifier|public
 name|void
@@ -859,7 +861,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread.sleep
+argument_list|(
+literal|"Thread.sleep"
+argument_list|)
 DECL|method|testMemoizeWithExpiration ()
 specifier|public
 name|void
@@ -904,7 +908,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread.sleep, SerializationTester
+argument_list|(
+literal|"Thread.sleep, SerializationTester"
+argument_list|)
 DECL|method|testMemoizeWithExpirationSerialized ()
 specifier|public
 name|void
@@ -991,7 +997,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread.sleep
+argument_list|(
+literal|"Thread.sleep"
+argument_list|)
 DECL|method|checkExpiration ( CountingSupplier countingSupplier, Supplier<Integer> memoizedSupplier)
 specifier|private
 name|void
@@ -1197,7 +1205,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread
+argument_list|(
+literal|"Thread"
+argument_list|)
 DECL|method|testExpiringMemoizedSupplierThreadSafe ()
 specifier|public
 name|void
@@ -1278,7 +1288,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread
+argument_list|(
+literal|"Thread"
+argument_list|)
 DECL|method|testMemoizedSupplierThreadSafe ()
 specifier|public
 name|void
@@ -1351,8 +1363,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread
-DECL|method|testSupplierThreadSafe (Function<Supplier<Boolean>, Supplier<Boolean>> memoizer)
+argument_list|(
+literal|"Thread"
+argument_list|)
+DECL|method|testSupplierThreadSafe ( Function<Supplier<Boolean>, Supplier<Boolean>> memoizer)
 specifier|public
 name|void
 name|testSupplierThreadSafe
@@ -1703,7 +1717,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Thread
+argument_list|(
+literal|"Thread"
+argument_list|)
 DECL|method|testSynchronizedSupplierThreadSafe ()
 specifier|public
 name|void
@@ -1942,7 +1958,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializationTester
+argument_list|(
+literal|"SerializationTester"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -2098,7 +2116,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testSuppliersNullChecks ()
 specifier|public
 name|void
@@ -2124,7 +2144,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 annotation|@
 name|AndroidIncompatible
 comment|// TODO(cpovirk): ClassNotFoundException: com.google.common.base.Function

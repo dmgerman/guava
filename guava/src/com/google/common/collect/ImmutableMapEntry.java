@@ -63,7 +63,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-comment|// unnecessary
+argument_list|(
+literal|"unnecessary"
+argument_list|)
 DECL|class|ImmutableMapEntry
 class|class
 name|ImmutableMapEntry

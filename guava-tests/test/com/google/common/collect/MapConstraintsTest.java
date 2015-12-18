@@ -5054,7 +5054,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void

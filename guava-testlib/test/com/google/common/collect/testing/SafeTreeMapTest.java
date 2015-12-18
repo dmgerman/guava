@@ -605,7 +605,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testViewSerialization ()
 specifier|public
 name|void
@@ -688,7 +690,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|class|ReserializedMapTests
 specifier|public
 specifier|static

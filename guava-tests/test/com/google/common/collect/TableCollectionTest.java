@@ -533,7 +533,9 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -4717,7 +4719,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO(hhchan): ArrayTable
+argument_list|(
+literal|"TODO(hhchan): ArrayTable"
+argument_list|)
 DECL|class|ArrayRowTests
 specifier|public
 specifier|static
@@ -5656,7 +5660,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO(hhchan): ArrayTable
+argument_list|(
+literal|"TODO(hhchan): ArrayTable"
+argument_list|)
 DECL|class|ArrayColumnTests
 specifier|public
 specifier|static
@@ -6782,7 +6788,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO(hhchan): ArrayTable
+argument_list|(
+literal|"TODO(hhchan): ArrayTable"
+argument_list|)
 DECL|class|ArrayRowMapTests
 specifier|public
 specifier|static
@@ -8096,7 +8104,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO(hhchan): ArrayTable
+argument_list|(
+literal|"TODO(hhchan): ArrayTable"
+argument_list|)
 DECL|class|ArrayColumnMapTests
 specifier|public
 specifier|static

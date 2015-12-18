@@ -343,7 +343,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -564,7 +566,9 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilter ()
 specifier|private
 specifier|static
@@ -675,7 +679,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilterAll ()
 specifier|private
 specifier|static
@@ -772,7 +778,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilterLinkedList ()
 specifier|private
 specifier|static
@@ -883,7 +891,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilterNoNulls ()
 specifier|private
 specifier|static
@@ -997,7 +1007,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilterFiltered ()
 specifier|private
 specifier|static
@@ -1184,7 +1196,9 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForTransform ()
 specifier|private
 specifier|static
@@ -1294,7 +1308,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void

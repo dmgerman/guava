@@ -886,7 +886,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -3621,7 +3623,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|class|BuiltTests
 specifier|public
 specifier|static

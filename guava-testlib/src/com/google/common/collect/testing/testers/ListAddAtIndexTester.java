@@ -819,7 +819,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testAddAtIndex_nullSupported()} so that tests can suppress it. See    * {@link CollectionAddTester#getAddNullSupportedMethod()} for details.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getAddNullSupportedMethod ()
 specifier|public
 specifier|static

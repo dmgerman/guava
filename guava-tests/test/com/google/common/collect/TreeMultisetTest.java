@@ -351,7 +351,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -2676,7 +2678,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 annotation|@
 name|AndroidIncompatible
 comment|// Reflection bug, or actual binary compatibility problem?

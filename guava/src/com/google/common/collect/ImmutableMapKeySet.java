@@ -235,7 +235,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|writeReplace ()
@@ -256,7 +258,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|class|KeySetSerializedForm
 specifier|private
 specifier|static

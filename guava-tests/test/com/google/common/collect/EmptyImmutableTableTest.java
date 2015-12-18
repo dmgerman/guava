@@ -201,7 +201,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ArrayTable
+argument_list|(
+literal|"ArrayTable"
+argument_list|)
 DECL|method|testEqualsObjectNullValues ()
 specifier|public
 name|void

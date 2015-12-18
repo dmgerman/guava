@@ -184,7 +184,9 @@ parameter_list|>
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// To be supported
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|enum|NullListener
 enum|enum
 name|NullListener
@@ -219,7 +221,9 @@ block|}
 comment|// Set by MapMaker, but sits in this class to preserve the type relationship
 annotation|@
 name|GwtIncompatible
-comment|// To be supported
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|field|removalListener
 name|RemovalListener
 argument_list|<
@@ -237,7 +241,9 @@ block|{}
 comment|/**    * See {@link MapMaker#keyEquivalence}.    */
 annotation|@
 name|GwtIncompatible
-comment|// To be supported
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 specifier|abstract
 name|GenericMapMaker
@@ -305,7 +311,9 @@ function_decl|;
 comment|/**    * See {@link MapMaker#weakKeys}.    */
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.ref.WeakReference
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|weakKeys ()
 specifier|public
 specifier|abstract
@@ -321,7 +329,9 @@ function_decl|;
 comment|/**    * See {@link MapMaker#weakValues}.    */
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.ref.WeakReference
+argument_list|(
+literal|"java.lang.ref.WeakReference"
+argument_list|)
 DECL|method|weakValues ()
 specifier|public
 specifier|abstract
@@ -339,7 +349,9 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.ref.SoftReference
+argument_list|(
+literal|"java.lang.ref.SoftReference"
+argument_list|)
 DECL|method|softValues ()
 specifier|abstract
 name|GenericMapMaker
@@ -372,7 +384,9 @@ function_decl|;
 comment|/**    * See {@link MapMaker#expireAfterAccess}.    */
 annotation|@
 name|GwtIncompatible
-comment|// To be supported
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|expireAfterAccess (long duration, TimeUnit unit)
 specifier|abstract
 name|GenericMapMaker
@@ -399,17 +413,19 @@ argument_list|)
 comment|// safe covariant cast
 annotation|@
 name|GwtIncompatible
-comment|// To be supported
+argument_list|(
+literal|"To be supported"
+argument_list|)
 DECL|method|getRemovalListener ()
-argument_list|<
+parameter_list|<
 name|K
 extends|extends
 name|K0
-argument_list|,
+parameter_list|,
 name|V
 extends|extends
 name|V0
-argument_list|>
+parameter_list|>
 name|RemovalListener
 argument_list|<
 name|K
@@ -465,7 +481,9 @@ function_decl|;
 comment|/**    * See {@link MapMaker#makeCustomMap}.    */
 annotation|@
 name|GwtIncompatible
-comment|// MapMakerInternalMap
+argument_list|(
+literal|"MapMakerInternalMap"
+argument_list|)
 DECL|method|makeCustomMap ()
 specifier|abstract
 parameter_list|<

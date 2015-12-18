@@ -603,7 +603,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testBase64Streaming ()
 specifier|public
 name|void
@@ -964,7 +966,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testBase64StreamingAlternatePadding ()
 specifier|public
 name|void
@@ -1129,7 +1133,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testBase64StreamingOmitPadding ()
 specifier|public
 name|void
@@ -1368,7 +1374,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testBase32Streaming ()
 specifier|public
 name|void
@@ -1869,7 +1877,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testBase32HexStreaming ()
 specifier|public
 name|void
@@ -2785,7 +2795,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testStreamingEncodingWithCasing ( BaseEncoding encoding, String decoded, String encoded)
 specifier|private
 specifier|static
@@ -2850,7 +2862,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testStreamingEncodingWithSeparators ( BaseEncoding encoding, String decoded, String encoded)
 specifier|private
 specifier|static
@@ -2954,7 +2968,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader/Writer
+argument_list|(
+literal|"Reader/Writer"
+argument_list|)
 DECL|method|testStreamingEncoding (BaseEncoding encoding, String decoded, String encoded)
 specifier|private
 specifier|static
@@ -2994,7 +3010,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Writer
+argument_list|(
+literal|"Writer"
+argument_list|)
 DECL|method|testStreamingEncodes (BaseEncoding encoding, String decoded, String encoded)
 specifier|private
 specifier|static
@@ -3058,7 +3076,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Reader
+argument_list|(
+literal|"Reader"
+argument_list|)
 DECL|method|testStreamingDecodes (BaseEncoding encoding, String encoded, String decoded)
 specifier|private
 specifier|static

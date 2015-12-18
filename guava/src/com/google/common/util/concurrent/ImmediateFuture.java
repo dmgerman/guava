@@ -402,7 +402,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateSuccessfulCheckedFuture
 specifier|static
 class|class
@@ -553,7 +555,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateCancelledFuture
 specifier|static
 class|class
@@ -622,7 +626,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// TODO
+argument_list|(
+literal|"TODO"
+argument_list|)
 DECL|class|ImmediateFailedCheckedFuture
 specifier|static
 class|class

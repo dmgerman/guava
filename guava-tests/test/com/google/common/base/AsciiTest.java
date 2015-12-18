@@ -906,7 +906,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// String.toUpperCase() has browser semantics
+argument_list|(
+literal|"String.toUpperCase() has browser semantics"
+argument_list|)
 DECL|method|testEqualsIgnoreCaseUnicodeEquivalence ()
 specifier|public
 name|void

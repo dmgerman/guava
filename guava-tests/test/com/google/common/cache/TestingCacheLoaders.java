@@ -628,7 +628,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reload
+argument_list|(
+literal|"reload"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|reload (Integer key, Integer oldValue)

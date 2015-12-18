@@ -847,7 +847,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// String.format()
+argument_list|(
+literal|"String.format()"
+argument_list|)
 DECL|method|testToString ()
 specifier|public
 name|void

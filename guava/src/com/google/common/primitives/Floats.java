@@ -2237,7 +2237,9 @@ annotation|@
 name|CheckForNull
 annotation|@
 name|GwtIncompatible
-comment|// regular expressions
+argument_list|(
+literal|"regular expressions"
+argument_list|)
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static

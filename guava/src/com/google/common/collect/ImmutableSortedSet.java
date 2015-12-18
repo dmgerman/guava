@@ -1909,7 +1909,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|headSet (E toElement, boolean inclusive)
@@ -1973,7 +1975,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|subSet ( E fromElement, boolean fromInclusive, E toElement, boolean toInclusive)
@@ -2061,7 +2065,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|tailSet (E fromElement, boolean inclusive)
@@ -2146,7 +2152,9 @@ function_decl|;
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|lower (E e)
@@ -2180,7 +2188,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|floor (E e)
@@ -2214,7 +2224,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|ceiling (E e)
@@ -2245,7 +2257,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|higher (E e)
@@ -2310,7 +2324,9 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|pollFirst ()
@@ -2331,7 +2347,9 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|pollLast ()
@@ -2349,7 +2367,9 @@ throw|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|field|descendingSet
 specifier|transient
 name|ImmutableSortedSet
@@ -2361,7 +2381,9 @@ decl_stmt|;
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|descendingSet ()
@@ -2409,7 +2431,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|createDescendingSet ()
 name|ImmutableSortedSet
 argument_list|<
@@ -2432,7 +2456,9 @@ block|}
 comment|/**    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|descendingIterator ()

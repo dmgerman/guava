@@ -510,7 +510,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// weak references
+argument_list|(
+literal|"weak references"
+argument_list|)
 DECL|method|testGetIfPresent_doesNotPreventClassUnloading ()
 specifier|public
 name|void
@@ -543,7 +545,9 @@ comment|// (and therefore its ClassLoader) from being unloaded, then this WeakRe
 comment|// cleared.
 annotation|@
 name|GwtIncompatible
-comment|// weak references
+argument_list|(
+literal|"weak references"
+argument_list|)
 DECL|method|doTestClassUnloading ()
 specifier|private
 name|WeakReference
@@ -942,7 +946,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testStringConverter_nullPointerTester ()
 specifier|public
 name|void
@@ -1032,7 +1038,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Class.getName()
+argument_list|(
+literal|"Class.getName()"
+argument_list|)
 DECL|method|testStringConverter_toString ()
 specifier|public
 name|void
@@ -1080,7 +1088,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -1132,7 +1142,9 @@ name|BAR
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testGetField ()
 specifier|public
 name|void

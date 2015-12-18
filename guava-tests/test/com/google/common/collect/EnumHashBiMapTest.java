@@ -607,7 +607,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1439,7 +1441,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialize
+argument_list|(
+literal|"serialize"
+argument_list|)
 DECL|method|testSerializable ()
 specifier|public
 name|void
@@ -1463,7 +1467,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testNulls ()
 specifier|public
 name|void

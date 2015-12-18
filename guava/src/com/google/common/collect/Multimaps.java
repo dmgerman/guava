@@ -562,7 +562,9 @@ comment|// there's no way to generate the empty backing map.
 comment|/** @serialData the factory and the backing map */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -597,7 +599,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -675,7 +679,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java serialization not supported
+argument_list|(
+literal|"java serialization not supported"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -835,7 +841,9 @@ block|}
 comment|/** @serialData the factory and the backing map */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -870,7 +878,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -948,7 +958,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java serialization not supported
+argument_list|(
+literal|"java serialization not supported"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1108,7 +1120,9 @@ block|}
 comment|/** @serialData the factory and the backing map */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1143,7 +1157,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1221,7 +1237,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// not needed in emulated source
+argument_list|(
+literal|"not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -1418,7 +1436,9 @@ block|}
 comment|/** @serialData the factory and the backing map */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1453,7 +1473,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1541,7 +1563,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// not needed in emulated source
+argument_list|(
+literal|"not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

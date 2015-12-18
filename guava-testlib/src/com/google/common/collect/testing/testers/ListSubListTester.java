@@ -2536,7 +2536,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testSubList_originalListSetAffectsSubList()} so that tests    * of {@link CopyOnWriteArrayList} can suppress them with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570631">Sun bug    * 6570631</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getSubListOriginalListSetAffectsSubListMethod ()
 specifier|public
 specifier|static
@@ -2558,7 +2560,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testSubList_originalListSetAffectsSubListLargeList()} ()} so that    * tests of {@link CopyOnWriteArrayList} can suppress them with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570631">Sun bug    * 6570631</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getSubListOriginalListSetAffectsSubListLargeListMethod ()
 specifier|public
 specifier|static
@@ -2580,7 +2584,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testSubList_subListRemoveAffectsOriginalLargeList()} so that tests    * of {@link CopyOnWriteArrayList} can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug    * 6570575</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getSubListSubListRemoveAffectsOriginalLargeListMethod ()
 specifier|public
 specifier|static

@@ -628,7 +628,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToInt(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToInt(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundIntegralDoubleToInt ()
 specifier|public
 name|void
@@ -730,7 +732,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToInt(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToInt(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundFractionalDoubleToInt ()
 specifier|public
 name|void
@@ -832,7 +836,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToInt(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToInt(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundExactIntegralDoubleToInt ()
 specifier|public
 name|void
@@ -925,7 +931,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToInt(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToInt(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundExactFractionalDoubleToIntFails ()
 specifier|public
 name|void
@@ -967,7 +975,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToInt(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToInt(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundNaNToIntAlwaysFails ()
 specifier|public
 name|void
@@ -1011,7 +1021,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToInt(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToInt(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundInfiniteToIntAlwaysFails ()
 specifier|public
 name|void
@@ -1080,7 +1092,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToLong(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToLong(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundIntegralDoubleToLong ()
 specifier|public
 name|void
@@ -1182,7 +1196,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToLong(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToLong(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundFractionalDoubleToLong ()
 specifier|public
 name|void
@@ -1284,7 +1300,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToLong(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToLong(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundExactIntegralDoubleToLong ()
 specifier|public
 name|void
@@ -1378,7 +1396,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToLong(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToLong(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundExactFractionalDoubleToLongFails ()
 specifier|public
 name|void
@@ -1420,7 +1440,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToLong(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToLong(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundNaNToLongAlwaysFails ()
 specifier|public
 name|void
@@ -1464,7 +1486,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToLong(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToLong(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundInfiniteToLongAlwaysFails ()
 specifier|public
 name|void
@@ -1533,7 +1557,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundIntegralDoubleToBigInteger ()
 specifier|public
 name|void
@@ -1594,7 +1620,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundFractionalDoubleToBigInteger ()
 specifier|public
 name|void
@@ -1655,7 +1683,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundExactIntegralDoubleToBigInteger ()
 specifier|public
 name|void
@@ -1707,7 +1737,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundExactFractionalDoubleToBigIntegerFails ()
 specifier|public
 name|void
@@ -1749,7 +1781,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundNaNToBigIntegerAlwaysFails ()
 specifier|public
 name|void
@@ -1793,7 +1827,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundInfiniteToBigIntegerAlwaysFails ()
 specifier|public
 name|void
@@ -1862,7 +1898,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.roundToBigInteger(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.roundToBigInteger(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundLog2Floor ()
 specifier|public
 name|void
@@ -1923,7 +1961,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode), StrictMath
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode), StrictMath"
+argument_list|)
 DECL|method|testRoundLog2Ceiling ()
 specifier|public
 name|void
@@ -1989,7 +2029,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode), StrictMath
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode), StrictMath"
+argument_list|)
 DECL|method|testRoundLog2Down ()
 specifier|public
 name|void
@@ -2105,7 +2147,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode), StrictMath
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode), StrictMath"
+argument_list|)
 DECL|method|testRoundLog2Up ()
 specifier|public
 name|void
@@ -2221,7 +2265,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundLog2Half ()
 specifier|public
 name|void
@@ -2392,7 +2438,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundLog2Exact ()
 specifier|public
 name|void
@@ -2478,7 +2526,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundLog2ThrowsOnZerosInfinitiesAndNaN ()
 specifier|public
 name|void
@@ -2547,7 +2597,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.log2(double, RoundingMode)
+argument_list|(
+literal|"DoubleMath.log2(double, RoundingMode)"
+argument_list|)
 DECL|method|testRoundLog2ThrowsOnNegative ()
 specifier|public
 name|void
@@ -2599,7 +2651,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.isPowerOfTwo, DoubleMath.log2(double, RoundingMode), StrictMath
+argument_list|(
+literal|"DoubleMath.isPowerOfTwo, DoubleMath.log2(double, RoundingMode), StrictMath"
+argument_list|)
 DECL|method|testIsPowerOfTwoYes ()
 specifier|public
 name|void
@@ -2643,7 +2697,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.isPowerOfTwo, DoubleMath.log2(double, RoundingMode), StrictMath
+argument_list|(
+literal|"DoubleMath.isPowerOfTwo, DoubleMath.log2(double, RoundingMode), StrictMath"
+argument_list|)
 DECL|method|testIsPowerOfTwo ()
 specifier|public
 name|void
@@ -2715,7 +2771,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// #trueLog2, Math.ulp
+argument_list|(
+literal|"#trueLog2, Math.ulp"
+argument_list|)
 DECL|method|testLog2Accuracy ()
 specifier|public
 name|void
@@ -2931,7 +2989,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// StrictMath
+argument_list|(
+literal|"StrictMath"
+argument_list|)
 DECL|method|trueLog2 (double d)
 specifier|private
 specifier|strictfp
@@ -3069,7 +3129,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.isMathematicalInteger
+argument_list|(
+literal|"DoubleMath.isMathematicalInteger"
+argument_list|)
 DECL|method|testIsMathematicalIntegerIntegral ()
 specifier|public
 name|void
@@ -3098,7 +3160,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.isMathematicalInteger
+argument_list|(
+literal|"DoubleMath.isMathematicalInteger"
+argument_list|)
 DECL|method|testIsMathematicalIntegerFractional ()
 specifier|public
 name|void
@@ -3127,7 +3191,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.isMathematicalInteger
+argument_list|(
+literal|"DoubleMath.isMathematicalInteger"
+argument_list|)
 DECL|method|testIsMathematicalIntegerNotFinite ()
 specifier|public
 name|void
@@ -3171,7 +3237,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Math.ulp
+argument_list|(
+literal|"Math.ulp"
+argument_list|)
 DECL|method|testFactorial ()
 specifier|public
 name|void
@@ -3974,7 +4042,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_doubleVarargs ()
 specifier|public
 name|void
@@ -4067,7 +4137,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_intVarargs ()
 specifier|public
 name|void
@@ -4114,7 +4186,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_longVarargs ()
 specifier|public
 name|void
@@ -4161,7 +4235,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_emptyVarargs ()
 specifier|public
 name|void
@@ -4190,7 +4266,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_doubleIterable ()
 specifier|public
 name|void
@@ -4330,7 +4408,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_intIterable ()
 specifier|public
 name|void
@@ -4414,7 +4494,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_longIterable ()
 specifier|public
 name|void
@@ -4498,7 +4580,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_intIterator ()
 specifier|public
 name|void
@@ -4591,7 +4675,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// DoubleMath.mean
+argument_list|(
+literal|"DoubleMath.mean"
+argument_list|)
 DECL|method|testMean_longIterator ()
 specifier|public
 name|void
@@ -4684,7 +4770,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void

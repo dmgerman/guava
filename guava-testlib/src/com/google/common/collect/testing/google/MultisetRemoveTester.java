@@ -1022,7 +1022,9 @@ block|}
 comment|/**    * Returns {@link Method} instances for the remove tests that assume multisets    * support duplicates so that the test of {@code Multisets.forSet()} can    * suppress them.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getRemoveDuplicateInitializingMethods ()
 specifier|public
 specifier|static

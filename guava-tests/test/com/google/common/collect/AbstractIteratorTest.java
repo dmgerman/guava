@@ -526,7 +526,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// weak references
+argument_list|(
+literal|"weak references"
+argument_list|)
 DECL|method|testFreesNextReference ()
 specifier|public
 name|void

@@ -1905,7 +1905,9 @@ block|}
 comment|/**      * @serialData the forward bimap      */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOuputStream
+argument_list|(
+literal|"java.io.ObjectOuputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -1933,7 +1935,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1977,7 +1981,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Not needed in the emulated source.
+argument_list|(
+literal|"Not needed in the emulated source."
+argument_list|)
 DECL|method|readResolve ()
 name|Object
 name|readResolve
@@ -1993,7 +1999,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Not needed in emulated source.
+argument_list|(
+literal|"Not needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -2006,7 +2014,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Not needed in emulated source.
+argument_list|(
+literal|"Not needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

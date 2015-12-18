@@ -166,7 +166,9 @@ block|}
 comment|/**    * Wraps the given callable such that for the duration of {@link Callable#call} the thread that is    * running will have the given name.    *    *    * @param callable The callable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
 annotation|@
 name|GwtIncompatible
-comment|// threads
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|threadRenaming ( final Callable<T> callable, final Supplier<String> nameSupplier)
 specifier|static
 parameter_list|<
@@ -281,7 +283,9 @@ block|}
 comment|/**    * Wraps the given runnable such that for the duration of {@link Runnable#run} the thread that is    * running with have the given name.    *    *    * @param task The Runnable to wrap    * @param nameSupplier The supplier of thread names, {@link Supplier#get get} will be called once    *     for each invocation of the wrapped callable.    */
 annotation|@
 name|GwtIncompatible
-comment|// threads
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|threadRenaming (final Runnable task, final Supplier<String> nameSupplier)
 specifier|static
 name|Runnable
@@ -381,7 +385,9 @@ block|}
 comment|/** Tries to set name of the given {@link Thread}, returns true if successful. */
 annotation|@
 name|GwtIncompatible
-comment|// threads
+argument_list|(
+literal|"threads"
+argument_list|)
 DECL|method|trySetName (final String threadName, Thread currentThread)
 specifier|private
 specifier|static

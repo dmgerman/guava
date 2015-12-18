@@ -274,7 +274,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullArguments ()
 specifier|public
 name|void

@@ -3283,7 +3283,9 @@ block|}
 comment|/**    * @serialData the number of distinct keys, and then for each distinct key:    *     the first key, the number of values for that key, and the key's values,    *     followed by successive keys and values from the entries() ordering    */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -3346,7 +3348,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -3440,7 +3444,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java serialization not supported
+argument_list|(
+literal|"java serialization not supported"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

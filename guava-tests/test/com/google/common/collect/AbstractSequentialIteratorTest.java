@@ -155,7 +155,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// Too slow
+argument_list|(
+literal|"Too slow"
+argument_list|)
 DECL|method|testDoublerExhaustive ()
 specifier|public
 name|void

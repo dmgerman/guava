@@ -77,7 +77,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-comment|// no precomputation is done in GWT
+argument_list|(
+literal|"no precomputation is done in GWT"
+argument_list|)
 DECL|class|SmallCharMatcher
 specifier|final
 class|class

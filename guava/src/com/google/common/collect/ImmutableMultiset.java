@@ -1028,7 +1028,9 @@ throw|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// not present in emulated superclass
+argument_list|(
+literal|"not present in emulated superclass"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|copyIntoArray (Object[] dst, int offset)

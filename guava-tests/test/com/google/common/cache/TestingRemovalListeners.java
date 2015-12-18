@@ -117,7 +117,9 @@ block|}
 comment|/**    * Type-inferring factory method for creating a {@link QueuingRemovalListener}.    */
 annotation|@
 name|GwtIncompatible
-comment|// ConcurrentLinkedQueue
+argument_list|(
+literal|"ConcurrentLinkedQueue"
+argument_list|)
 DECL|method|queuingRemovalListener ()
 specifier|static
 parameter_list|<
@@ -176,7 +178,9 @@ block|}
 comment|/**    * {@link RemovalListener} that adds all {@link RemovalNotification} objects to a queue.    */
 annotation|@
 name|GwtIncompatible
-comment|// ConcurrentLinkedQueue
+argument_list|(
+literal|"ConcurrentLinkedQueue"
+argument_list|)
 DECL|class|QueuingRemovalListener
 specifier|static
 class|class

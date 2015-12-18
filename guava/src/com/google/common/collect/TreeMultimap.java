@@ -578,7 +578,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableMap
+argument_list|(
+literal|"NavigableMap"
+argument_list|)
 DECL|method|backingMap ()
 name|NavigableMap
 argument_list|<
@@ -615,7 +617,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|get (@ullable K key)
 specifier|public
 name|NavigableSet
@@ -649,7 +653,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|unmodifiableCollectionSubclass (Collection<V> collection)
 name|Collection
 argument_list|<
@@ -683,7 +689,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|wrapCollection (K key, Collection<V> collection)
 name|Collection
 argument_list|<
@@ -724,7 +732,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|keySet ()
 specifier|public
 name|NavigableSet
@@ -751,7 +761,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|createKeySet ()
 name|NavigableSet
 argument_list|<
@@ -774,7 +786,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableMap
+argument_list|(
+literal|"NavigableMap"
+argument_list|)
 DECL|method|asMap ()
 specifier|public
 name|NavigableMap
@@ -811,7 +825,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// NavigableMap
+argument_list|(
+literal|"NavigableMap"
+argument_list|)
 DECL|method|createAsMap ()
 name|NavigableMap
 argument_list|<
@@ -837,7 +853,9 @@ block|}
 comment|/**    * @serialData key comparator, value comparator, number of distinct keys, and    *     then for each distinct key: the key, number of values for that key, and    *     key values    */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -882,7 +900,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -972,7 +992,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// not needed in emulated source
+argument_list|(
+literal|"not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

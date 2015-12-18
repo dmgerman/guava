@@ -1758,7 +1758,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// slow (~40s)
+argument_list|(
+literal|"slow (~40s)"
+argument_list|)
 DECL|method|testIterator_oneElement ()
 specifier|public
 name|void
@@ -1817,7 +1819,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// slow (~30s)
+argument_list|(
+literal|"slow (~30s)"
+argument_list|)
 DECL|method|testIterator_general ()
 specifier|public
 name|void
@@ -3161,7 +3165,9 @@ comment|// TODO(benyu): turn this into a test once all copyOf(Collection) are
 comment|// thread-safe
 annotation|@
 name|GwtIncompatible
-comment|// GWT is single threaded
+argument_list|(
+literal|"GWT is single threaded"
+argument_list|)
 DECL|method|verifyThreadSafe ()
 name|void
 name|verifyThreadSafe

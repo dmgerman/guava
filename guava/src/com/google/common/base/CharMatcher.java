@@ -836,7 +836,9 @@ decl_stmt|;
 comment|/**    * This is the actual implementation of {@link #precomputed}, but we bounce calls through a    * method on {@link Platform} so that we can have different behavior in GWT.    *    *<p>This implementation tries to be smart in a number of ways.  It recognizes cases where    * the negation is cheaper to precompute than the matcher itself; it tries to build small    * hash tables for matchers that only match a few characters, and so on.  In the worst-case    * scenario, it constructs an eight-kilobyte bit array and queries that.    * In many situations this produces a matcher which is faster to query than the original.    */
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|precomputedInternal ()
 name|CharMatcher
 name|precomputedInternal
@@ -984,7 +986,9 @@ block|}
 comment|/**    * Helper method for {@link #precomputedInternal} that doesn't test if the negation is cheaper.    */
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|precomputedPositive ( int totalCharacters, BitSet table, String description)
 specifier|private
 specifier|static
@@ -1102,7 +1106,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SmallCharMatcher
+argument_list|(
+literal|"SmallCharMatcher"
+argument_list|)
 DECL|method|isSmall (int totalCharacters, int tableLength)
 specifier|private
 specifier|static
@@ -1140,7 +1146,9 @@ block|}
 comment|/**    * Sets bits in {@code table} matched by this matcher.    */
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|setBits (BitSet table)
 name|void
 name|setBits
@@ -2772,7 +2780,9 @@ block|}
 comment|/** Fast matcher using a {@link BitSet} table of matching characters. */
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|class|BitSetMatcher
 specifier|private
 specifier|static
@@ -3782,7 +3792,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -4862,7 +4874,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -5011,7 +5025,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -5133,7 +5149,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -5354,7 +5372,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -5496,7 +5516,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -5662,7 +5684,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)
@@ -5788,7 +5812,9 @@ annotation|@
 name|Override
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|setBits (BitSet table)
 name|void
 name|setBits
@@ -5940,7 +5966,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|setBits (BitSet table)

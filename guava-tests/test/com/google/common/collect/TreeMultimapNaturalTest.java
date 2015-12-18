@@ -493,7 +493,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -2987,7 +2989,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testExplicitComparatorSerialization ()
 specifier|public
 name|void
@@ -3097,7 +3101,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testTreeMultimapDerived ()
 specifier|public
 name|void
@@ -3335,7 +3341,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testTreeMultimapNonGeneric ()
 specifier|public
 name|void
@@ -3905,7 +3913,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testKeySetBridgeMethods ()
 specifier|public
 name|void
@@ -3961,7 +3971,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testAsMapBridgeMethods ()
 specifier|public
 name|void
@@ -4012,7 +4024,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|testGetBridgeMethods ()
 specifier|public
 name|void

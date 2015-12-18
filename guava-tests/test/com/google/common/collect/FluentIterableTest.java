@@ -335,7 +335,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -1915,7 +1917,9 @@ name|TypeB
 block|{}
 annotation|@
 name|GwtIncompatible
-comment|// Iterables.filter(Iterable, Class)
+argument_list|(
+literal|"Iterables.filter(Iterable, Class)"
+argument_list|)
 DECL|method|testFilterByType ()
 specifier|public
 name|void

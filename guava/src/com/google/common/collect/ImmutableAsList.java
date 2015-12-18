@@ -190,7 +190,9 @@ block|}
 comment|/**    * Serialized form that leads to the same performance as the original list.    */
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|class|SerializedForm
 specifier|static
 class|class
@@ -247,7 +249,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -269,7 +273,9 @@ throw|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// serialization
+argument_list|(
+literal|"serialization"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|writeReplace ()

@@ -421,7 +421,9 @@ block|}
 comment|/**    * @serialData the key class, number of entries, first key, first value,    *     second key, second value, and so on.    */
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -463,7 +465,9 @@ argument_list|)
 comment|// reading field populated by writeObject
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectInputStream
+argument_list|(
+literal|"java.io.ObjectInputStream"
+argument_list|)
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -546,7 +550,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// only needed in emulated source.
+argument_list|(
+literal|"only needed in emulated source."
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

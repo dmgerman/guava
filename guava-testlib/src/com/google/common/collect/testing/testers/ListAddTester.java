@@ -392,7 +392,9 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testAdd_supportedNullPresent()} so that tests can suppress it. See    * {@link CollectionAddTester#getAddNullSupportedMethod()} for details.    */
 annotation|@
 name|GwtIncompatible
-comment|// reflection
+argument_list|(
+literal|"reflection"
+argument_list|)
 DECL|method|getAddSupportedNullPresentMethod ()
 specifier|public
 specifier|static

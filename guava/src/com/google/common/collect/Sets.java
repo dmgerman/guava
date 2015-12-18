@@ -1251,7 +1251,9 @@ block|}
 comment|/**    * Creates an empty {@code CopyOnWriteArraySet} instance.    *    *<p><b>Note:</b> if you need an immutable empty {@link Set}, use    * {@link Collections#emptySet} instead.    *    * @return a new, empty {@code CopyOnWriteArraySet}    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// CopyOnWriteArraySet
+argument_list|(
+literal|"CopyOnWriteArraySet"
+argument_list|)
 DECL|method|newCopyOnWriteArraySet ()
 specifier|public
 specifier|static
@@ -1277,7 +1279,9 @@ block|}
 comment|/**    * Creates a {@code CopyOnWriteArraySet} instance containing the given elements.    *    * @param elements the elements that the set should contain, in order    * @return a new {@code CopyOnWriteArraySet} containing those elements    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// CopyOnWriteArraySet
+argument_list|(
+literal|"CopyOnWriteArraySet"
+argument_list|)
 DECL|method|newCopyOnWriteArraySet (Iterable<? extends E> elements)
 specifier|public
 specifier|static
@@ -3110,7 +3114,9 @@ block|}
 comment|/**    * Returns the elements of a {@code NavigableSet}, {@code unfiltered}, that    * satisfy a predicate. The returned set is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. When given an element that doesn't satisfy    * the predicate, the set's {@code add()} and {@code addAll()} methods throw    * an {@link IllegalArgumentException}. When methods such as    * {@code removeAll()} and {@code clear()} are called on the filtered set,    * only elements that satisfy the filter will be removed from the underlying    * set.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate across    * every element in the underlying set and determine which elements satisfy    * the filter. When a live view is<i>not</i> needed, it may be faster to copy    * {@code Iterables.filter(unfiltered, predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with    * equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    *    * @since 14.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3230,7 +3236,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|class|FilteredNavigableSet
 specifier|private
 specifier|static
@@ -4901,7 +4909,9 @@ block|}
 comment|/**    * Returns an unmodifiable view of the specified navigable set. This method    * allows modules to provide users with "read-only" access to internal    * navigable sets. Query operations on the returned set "read through" to the    * specified set, and attempts to modify the returned set, whether direct or    * via its collection views, result in an    * {@code UnsupportedOperationException}.    *    *<p>The returned navigable set will be serializable if the specified    * navigable set is serializable.    *    * @param set the navigable set for which an unmodifiable view is to be    *        returned    * @return an unmodifiable view of the specified navigable set    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|unmodifiableNavigableSet (NavigableSet<E> set)
 specifier|public
 specifier|static
@@ -4949,7 +4959,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|class|UnmodifiableNavigableSet
 specifier|static
 specifier|final
@@ -5329,7 +5341,9 @@ block|}
 comment|/**    * Returns a synchronized (thread-safe) navigable set backed by the specified    * navigable set.  In order to guarantee serial access, it is critical that    *<b>all</b> access to the backing navigable set is accomplished    * through the returned navigable set (or its views).    *    *<p>It is imperative that the user manually synchronize on the returned    * sorted set when iterating over it or any of its {@code descendingSet},    * {@code subSet}, {@code headSet}, or {@code tailSet} views.<pre>   {@code    *    *   NavigableSet<E> set = synchronizedNavigableSet(new TreeSet<E>());    *    ...    *   synchronized (set) {    *     // Must be in the synchronized block    *     Iterator<E> it = set.iterator();    *     while (it.hasNext()) {    *       foo(it.next());    *     }    *   }}</pre>    *    *<p>or:<pre>   {@code    *    *   NavigableSet<E> set = synchronizedNavigableSet(new TreeSet<E>());    *   NavigableSet<E> set2 = set.descendingSet().headSet(foo);    *    ...    *   synchronized (set) { // Note: set, not set2!!!    *     // Must be in the synchronized block    *     Iterator<E> it = set2.descendingIterator();    *     while (it.hasNext())    *       foo(it.next());    *     }    *   }}</pre>    *    *<p>Failure to follow this advice may result in non-deterministic behavior.    *    *<p>The returned navigable set will be serializable if the specified    * navigable set is serializable.    *    * @param navigableSet the navigable set to be "wrapped" in a synchronized    *    navigable set.    * @return a synchronized view of the specified navigable set.    * @since 13.0    */
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|synchronizedNavigableSet (NavigableSet<E> navigableSet)
 specifier|public
 specifier|static
@@ -5503,7 +5517,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|class|DescendingSet
 specifier|static
 class|class
@@ -6069,7 +6085,9 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|subSet ( NavigableSet<K> set, Range<K> range)
 specifier|public
 specifier|static

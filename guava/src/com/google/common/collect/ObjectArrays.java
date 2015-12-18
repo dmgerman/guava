@@ -131,7 +131,9 @@ block|{}
 comment|/**    * Returns a new array of the given length with the specified component type.    *    * @param type the component type    * @param length the length of the new array    */
 annotation|@
 name|GwtIncompatible
-comment|// Array.newInstance(Class, int)
+argument_list|(
+literal|"Array.newInstance(Class, int)"
+argument_list|)
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -205,7 +207,9 @@ block|}
 comment|/**    * Returns a new array that contains the concatenated contents of two arrays.    *    * @param first the first array of elements to concatenate    * @param second the second array of elements to concatenate    * @param type the component type of the returned array    */
 annotation|@
 name|GwtIncompatible
-comment|// Array.newInstance(Class, int)
+argument_list|(
+literal|"Array.newInstance(Class, int)"
+argument_list|)
 DECL|method|concat (T[] first, T[] second, Class<T> type)
 specifier|public
 specifier|static

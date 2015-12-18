@@ -82,7 +82,9 @@ block|{}
 comment|/**    * US-ASCII: seven-bit ASCII, the Basic Latin block of the Unicode character set (ISO646-US).    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#US_ASCII} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|field|US_ASCII
 specifier|public
 specifier|static
@@ -100,7 +102,9 @@ decl_stmt|;
 comment|/**    * ISO-8859-1: ISO Latin Alphabet Number 1 (ISO-LATIN-1).    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#ISO_8859_1} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|field|ISO_8859_1
 specifier|public
 specifier|static
@@ -133,7 +137,9 @@ decl_stmt|;
 comment|/**    * UTF-16BE: sixteen-bit UCS Transformation Format, big-endian byte order.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_16BE} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|field|UTF_16BE
 specifier|public
 specifier|static
@@ -151,7 +157,9 @@ decl_stmt|;
 comment|/**    * UTF-16LE: sixteen-bit UCS Transformation Format, little-endian byte order.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_16LE} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|field|UTF_16LE
 specifier|public
 specifier|static
@@ -169,7 +177,9 @@ decl_stmt|;
 comment|/**    * UTF-16: sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order    * mark.    *    *<p><b>Note for Java 7 and later:</b> this constant should be treated as deprecated; use    * {@link java.nio.charset.StandardCharsets#UTF_16} instead.    *    */
 annotation|@
 name|GwtIncompatible
-comment|// Non-UTF-8 Charset
+argument_list|(
+literal|"Non-UTF-8 Charset"
+argument_list|)
 DECL|field|UTF_16
 specifier|public
 specifier|static

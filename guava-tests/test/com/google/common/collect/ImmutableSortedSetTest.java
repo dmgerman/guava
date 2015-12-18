@@ -497,7 +497,9 @@ name|AbstractImmutableSetTest
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1334,7 +1336,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointers ()
 specifier|public
 name|void
@@ -1536,7 +1540,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testEmpty_serialization ()
 specifier|public
 name|void
@@ -1917,7 +1923,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testSingle_serialization ()
 specifier|public
 name|void
@@ -2589,7 +2597,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testOf_subSetSerialization ()
 specifier|public
 name|void
@@ -2704,7 +2714,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testOf_serialization ()
 specifier|public
 name|void
@@ -3632,7 +3644,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testExplicitEmpty_serialization ()
 specifier|public
 name|void
@@ -3700,7 +3714,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testExplicit_serialization ()
 specifier|public
 name|void
@@ -6013,7 +6029,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testDifferentComparator_serialization ()
 specifier|public
 name|void
@@ -6786,7 +6804,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester, ImmutableSortedAsList
+argument_list|(
+literal|"SerializableTester, ImmutableSortedAsList"
+argument_list|)
 DECL|method|testAsListReturnTypeAndSerialization ()
 specifier|public
 name|void
@@ -6929,7 +6949,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester, ImmutableSortedAsList
+argument_list|(
+literal|"SerializableTester, ImmutableSortedAsList"
+argument_list|)
 DECL|method|testSubsetAsListReturnTypeAndSerialization ()
 specifier|public
 name|void

@@ -291,7 +291,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testStaticNullPointers ()
 specifier|public
 name|void
@@ -549,7 +551,9 @@ comment|// The next tests require ICU4J and have, at least for now, been sliced 
 comment|// of the open-source view of the tests.
 annotation|@
 name|GwtIncompatible
-comment|// Character.isISOControl
+argument_list|(
+literal|"Character.isISOControl"
+argument_list|)
 DECL|method|testJavaIsoControl ()
 specifier|public
 name|void
@@ -611,7 +615,9 @@ comment|// method, but by overall "scenario". Also, the variety of actual tests 
 comment|// do borders on absurd overkill. Better safe than sorry, though?
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|testSetBits ()
 specifier|public
 name|void
@@ -771,7 +777,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|doTestSetBits (CharMatcher matcher)
 specifier|private
 name|void
@@ -942,7 +950,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNull ()
 specifier|public
 name|void
@@ -1272,7 +1282,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|doTestNull (CharMatcher matcher)
 specifier|private
 specifier|static
@@ -5520,7 +5532,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|bitSet (String chars)
 specifier|private
 specifier|static
@@ -5543,7 +5557,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.BitSet
+argument_list|(
+literal|"java.util.BitSet"
+argument_list|)
 DECL|method|bitSet (char[] chars)
 specifier|private
 specifier|static
@@ -5584,7 +5600,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.util.Random, java.util.BitSet
+argument_list|(
+literal|"java.util.Random, java.util.BitSet"
+argument_list|)
 DECL|method|testSmallCharMatcher ()
 specifier|public
 name|void

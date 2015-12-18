@@ -319,7 +319,9 @@ name|AbstractImmutableSetTest
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1114,7 +1116,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ImmutableSet.chooseTableSize
+argument_list|(
+literal|"ImmutableSet.chooseTableSize"
+argument_list|)
 DECL|method|testChooseTableSize ()
 specifier|public
 name|void
@@ -1239,7 +1243,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// RegularImmutableSet.table not in emulation
+argument_list|(
+literal|"RegularImmutableSet.table not in emulation"
+argument_list|)
 DECL|method|testResizeTable ()
 specifier|public
 name|void
@@ -1303,7 +1309,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// RegularImmutableSet.table not in emulation
+argument_list|(
+literal|"RegularImmutableSet.table not in emulation"
+argument_list|)
 DECL|method|verifyTableSize (int inputSize, int setSize, int tableSize)
 specifier|private
 name|void
@@ -1443,7 +1451,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// GWT is single threaded
+argument_list|(
+literal|"GWT is single threaded"
+argument_list|)
 DECL|method|testCopyOf_threadSafe ()
 specifier|public
 name|void

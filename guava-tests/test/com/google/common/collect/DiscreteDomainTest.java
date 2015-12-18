@@ -63,7 +63,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|class|DiscreteDomainTest
 specifier|public
 class|class

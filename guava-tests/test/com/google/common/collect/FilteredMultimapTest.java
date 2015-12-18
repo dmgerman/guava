@@ -93,7 +93,9 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-comment|// nottested
+argument_list|(
+literal|"nottested"
+argument_list|)
 DECL|class|FilteredMultimapTest
 specifier|public
 class|class

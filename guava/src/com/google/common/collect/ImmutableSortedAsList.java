@@ -170,7 +170,9 @@ block|}
 comment|// Override indexOf() and lastIndexOf() to be O(log N) instead of O(N).
 annotation|@
 name|GwtIncompatible
-comment|// ImmutableSortedSet.indexOf
+argument_list|(
+literal|"ImmutableSortedSet.indexOf"
+argument_list|)
 comment|// TODO(cpovirk): consider manual binary search under GWT to preserve O(log N) lookup
 annotation|@
 name|Override
@@ -225,7 +227,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ImmutableSortedSet.indexOf
+argument_list|(
+literal|"ImmutableSortedSet.indexOf"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|lastIndexOf (@ullable Object target)
@@ -269,7 +273,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// super.subListUnchecked does not exist; inherited subList is valid if slow
+argument_list|(
+literal|"super.subListUnchecked does not exist; inherited subList is valid if slow"
+argument_list|)
 comment|/*    * TODO(cpovirk): if we start to override indexOf/lastIndexOf under GWT, we'll want some way to    * override subList to return an ImmutableSortedAsList for better performance. Right now, I'm not    * sure there's any performance hit from our failure to override subListUnchecked under GWT    */
 annotation|@
 name|Override

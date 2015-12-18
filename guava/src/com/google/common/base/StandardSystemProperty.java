@@ -73,7 +73,9 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-comment|// java.lang.System#getProperty
+argument_list|(
+literal|"java.lang.System#getProperty"
+argument_list|)
 annotation|@
 name|CheckReturnValue
 DECL|enum|StandardSystemProperty

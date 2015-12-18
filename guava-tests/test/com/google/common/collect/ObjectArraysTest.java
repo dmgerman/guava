@@ -135,7 +135,9 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -161,7 +163,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.newArray(Class, int)
+argument_list|(
+literal|"ObjectArrays.newArray(Class, int)"
+argument_list|)
 DECL|method|testNewArray_fromClass_Empty ()
 specifier|public
 name|void
@@ -207,7 +211,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.newArray(Class, int)
+argument_list|(
+literal|"ObjectArrays.newArray(Class, int)"
+argument_list|)
 DECL|method|testNewArray_fromClass_Nonempty ()
 specifier|public
 name|void
@@ -263,7 +269,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.newArray(Class, int)
+argument_list|(
+literal|"ObjectArrays.newArray(Class, int)"
+argument_list|)
 DECL|method|testNewArray_fromClass_OfArray ()
 specifier|public
 name|void
@@ -475,7 +483,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.concat(Object[], Object[], Class)
+argument_list|(
+literal|"ObjectArrays.concat(Object[], Object[], Class)"
+argument_list|)
 DECL|method|testConcatEmptyEmpty ()
 specifier|public
 name|void
@@ -531,7 +541,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.concat(Object[], Object[], Class)
+argument_list|(
+literal|"ObjectArrays.concat(Object[], Object[], Class)"
+argument_list|)
 DECL|method|testConcatEmptyNonempty ()
 specifier|public
 name|void
@@ -600,7 +612,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.concat(Object[], Object[], Class)
+argument_list|(
+literal|"ObjectArrays.concat(Object[], Object[], Class)"
+argument_list|)
 DECL|method|testConcatNonemptyEmpty ()
 specifier|public
 name|void
@@ -669,7 +683,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.concat(Object[], Object[], Class)
+argument_list|(
+literal|"ObjectArrays.concat(Object[], Object[], Class)"
+argument_list|)
 DECL|method|testConcatBasic ()
 specifier|public
 name|void
@@ -745,7 +761,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// ObjectArrays.concat(Object[], Object[], Class)
+argument_list|(
+literal|"ObjectArrays.concat(Object[], Object[], Class)"
+argument_list|)
 DECL|method|testConcatWithMoreGeneralType ()
 specifier|public
 name|void

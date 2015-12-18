@@ -903,7 +903,9 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1585,7 +1587,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilter ()
 specifier|private
 specifier|static
@@ -1700,7 +1704,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilterNoNulls ()
 specifier|private
 specifier|static
@@ -1971,7 +1977,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|testsForFilterFiltered ()
 specifier|private
 specifier|static
@@ -2213,7 +2221,9 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testImmutableEnumSet_serialized ()
 specifier|public
 name|void
@@ -2390,7 +2400,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java serialization not supported in GWT.
+argument_list|(
+literal|"java serialization not supported in GWT."
+argument_list|)
 DECL|method|testImmutableEnumSet_deserializationMakesDefensiveCopy ()
 specifier|public
 name|void
@@ -2515,8 +2527,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java serialization not supported in GWT.
-DECL|method|serializeWithBackReference (Object original, int handleOffset)
+argument_list|(
+literal|"java serialization not supported in GWT."
+argument_list|)
+DECL|method|serializeWithBackReference ( Object original, int handleOffset)
 specifier|private
 specifier|static
 name|byte
@@ -2650,7 +2664,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// java.nio.ByteBuffer
+argument_list|(
+literal|"java.nio.ByteBuffer"
+argument_list|)
 DECL|method|toByteArray (int h)
 specifier|private
 specifier|static
@@ -3734,7 +3750,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// CopyOnWriteArraySet
+argument_list|(
+literal|"CopyOnWriteArraySet"
+argument_list|)
 DECL|method|testNewCOWASEmpty ()
 specifier|public
 name|void
@@ -3762,7 +3780,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// CopyOnWriteArraySet
+argument_list|(
+literal|"CopyOnWriteArraySet"
+argument_list|)
 DECL|method|testNewCOWASFromIterable ()
 specifier|public
 name|void
@@ -4217,7 +4237,9 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NullPointerTester
+argument_list|(
+literal|"NullPointerTester"
+argument_list|)
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -4302,7 +4324,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// SerializableTester
+argument_list|(
+literal|"SerializableTester"
+argument_list|)
 DECL|method|testNewSetFromMapSerialization ()
 specifier|public
 name|void
@@ -6131,7 +6155,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// too slow for GWT
+argument_list|(
+literal|"too slow for GWT"
+argument_list|)
 DECL|method|testPowerSetIteration_iteratorTester ()
 specifier|public
 name|void
@@ -7683,7 +7709,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|testUnmodifiableNavigableSet ()
 specifier|public
 name|void
@@ -8047,7 +8075,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|ensureNotDirectlyModifiable (NavigableSet<Integer> unmod)
 name|void
 name|ensureNotDirectlyModifiable
@@ -8238,7 +8268,9 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|testSubSet_boundedRange ()
 specifier|public
 name|void
@@ -8780,7 +8812,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|testSubSet_halfBoundedRange ()
 specifier|public
 name|void
@@ -9190,7 +9224,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|testSubSet_unboundedRange ()
 specifier|public
 name|void
@@ -9241,7 +9277,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|testSubSet_unnaturalOrdering ()
 specifier|public
 name|void

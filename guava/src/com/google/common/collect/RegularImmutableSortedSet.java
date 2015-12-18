@@ -343,7 +343,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|descendingIterator ()

@@ -321,7 +321,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// suite
+argument_list|(
+literal|"suite"
+argument_list|)
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -983,7 +985,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInsertionOrder ()
 specifier|public
 name|void
@@ -1074,7 +1078,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInsertionOrderAfterRemoveFirst ()
 specifier|public
 name|void
@@ -1163,7 +1169,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInsertionOrderAfterRemoveMiddle ()
 specifier|public
 name|void
@@ -1252,7 +1260,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInsertionOrderAfterRemoveLast ()
 specifier|public
 name|void
@@ -1341,7 +1351,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInsertionOrderAfterForcePut ()
 specifier|public
 name|void
@@ -1432,7 +1444,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInsertionOrderAfterInverseForcePut ()
 specifier|public
 name|void
@@ -1526,7 +1540,9 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// insertion order currently not preserved in GWT
+argument_list|(
+literal|"insertion order currently not preserved in GWT"
+argument_list|)
 DECL|method|testInverseInsertionOrderAfterInverseForcePut ()
 specifier|public
 name|void

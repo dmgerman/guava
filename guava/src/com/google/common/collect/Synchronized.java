@@ -378,7 +378,9 @@ comment|// they don't contain any non-transient member variables, while the
 comment|// following writeObject() handles the SynchronizedObject members.
 annotation|@
 name|GwtIncompatible
-comment|// java.io.ObjectOutputStream
+argument_list|(
+literal|"java.io.ObjectOutputStream"
+argument_list|)
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -404,7 +406,9 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// not needed in emulated source
+argument_list|(
+literal|"not needed in emulated source"
+argument_list|)
 DECL|field|serialVersionUID
 specifier|private
 specifier|static
@@ -6296,7 +6300,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 annotation|@
 name|VisibleForTesting
 DECL|class|SynchronizedNavigableSet
@@ -6822,7 +6828,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|navigableSet (NavigableSet<E> navigableSet, @Nullable Object mutex)
 specifier|static
 parameter_list|<
@@ -6861,7 +6869,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableSet
+argument_list|(
+literal|"NavigableSet"
+argument_list|)
 DECL|method|navigableSet (NavigableSet<E> navigableSet)
 specifier|static
 parameter_list|<
@@ -6891,7 +6901,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableMap
+argument_list|(
+literal|"NavigableMap"
+argument_list|)
 DECL|method|navigableMap (NavigableMap<K, V> navigableMap)
 specifier|static
 parameter_list|<
@@ -6927,7 +6939,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableMap
+argument_list|(
+literal|"NavigableMap"
+argument_list|)
 DECL|method|navigableMap ( NavigableMap<K, V> navigableMap, @Nullable Object mutex)
 specifier|static
 parameter_list|<
@@ -6974,7 +6988,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// NavigableMap
+argument_list|(
+literal|"NavigableMap"
+argument_list|)
 annotation|@
 name|VisibleForTesting
 DECL|class|SynchronizedNavigableMap
@@ -7844,7 +7860,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// works but is needed only for NavigableMap
+argument_list|(
+literal|"works but is needed only for NavigableMap"
+argument_list|)
 DECL|method|nullableSynchronizedEntry ( @ullable Entry<K, V> entry, @Nullable Object mutex)
 specifier|private
 specifier|static
@@ -7905,7 +7923,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// works but is needed only for NavigableMap
+argument_list|(
+literal|"works but is needed only for NavigableMap"
+argument_list|)
 DECL|class|SynchronizedEntry
 specifier|private
 specifier|static
@@ -8350,7 +8370,9 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Deque
+argument_list|(
+literal|"Deque"
+argument_list|)
 DECL|method|deque (Deque<E> deque, @Nullable Object mutex)
 specifier|static
 parameter_list|<
@@ -8389,7 +8411,9 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-comment|// Deque
+argument_list|(
+literal|"Deque"
+argument_list|)
 DECL|class|SynchronizedDeque
 specifier|private
 specifier|static

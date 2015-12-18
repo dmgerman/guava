@@ -241,7 +241,10 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-comment|// suite // TODO(cpovirk): set up collect/gwt/suites version
+argument_list|(
+literal|"suite"
+argument_list|)
+comment|// TODO(cpovirk): set up collect/gwt/suites version
 DECL|class|MultisetsCollectionTest
 specifier|public
 class|class
