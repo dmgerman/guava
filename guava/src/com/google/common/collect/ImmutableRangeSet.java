@@ -876,6 +876,9 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeSet} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|add (Range<C> range)
@@ -896,6 +899,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeSet} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|addAll (RangeSet<C> other)
@@ -916,6 +922,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeSet} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|remove (Range<C> range)
@@ -936,6 +945,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeSet} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|removeAll (RangeSet<C> other)

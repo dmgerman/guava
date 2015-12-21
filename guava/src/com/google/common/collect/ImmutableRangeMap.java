@@ -1318,6 +1318,9 @@ name|upperBound
 argument_list|)
 return|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeMap} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|put (Range<K> range, V value)
@@ -1341,6 +1344,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeMap} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|putAll (RangeMap<K, V> rangeMap)
@@ -1363,6 +1369,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeMap} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|clear ()
@@ -1377,6 +1386,9 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+comment|/**    * Guaranteed to throw an exception and leave the {@code RangeMap} unmodified.    *    * @throws UnsupportedOperationException always    * @deprecated Unsupported operation.    */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 DECL|method|remove (Range<K> range)
