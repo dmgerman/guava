@@ -279,6 +279,31 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|intersects (Range<C> otherRange)
+specifier|public
+name|boolean
+name|intersects
+parameter_list|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|otherRange
+parameter_list|)
+block|{
+return|return
+operator|!
+name|subRangeSet
+argument_list|(
+name|otherRange
+argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|encloses (Range<C> otherRange)
 specifier|public
 specifier|abstract

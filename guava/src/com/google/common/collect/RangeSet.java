@@ -99,6 +99,18 @@ name|C
 name|value
 parameter_list|)
 function_decl|;
+comment|/**    * Returns {@code true} if there exists a non-empty range enclosed by both a member range in this    * range set and the specified range. This is equivalent to calling    * {@code subRangeSet(otherRange)} and testing whether the resulting range set is non-empty.    */
+DECL|method|intersects (Range<C> otherRange)
+name|boolean
+name|intersects
+parameter_list|(
+name|Range
+argument_list|<
+name|C
+argument_list|>
+name|otherRange
+parameter_list|)
+function_decl|;
 comment|/**    * Returns {@code true} if there exists a member range in this range set which    * {@linkplain Range#encloses encloses} the specified range.    */
 DECL|method|encloses (Range<C> otherRange)
 name|boolean
