@@ -1659,13 +1659,42 @@ init|=
 operator|new
 name|AssertionFailedError
 argument_list|(
-literal|"wrong exception thrown from "
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"wrong exception thrown from %s when passing null to %s parameter at index %s.%n"
 operator|+
+literal|"Full parameters: %s%n"
+operator|+
+literal|"Actual exception message: %s"
+argument_list|,
 name|invokable
-operator|+
-literal|": "
-operator|+
+argument_list|,
+name|invokable
+operator|.
+name|getParameters
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|paramIndex
+argument_list|)
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|paramIndex
+argument_list|,
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
 name|cause
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|error
