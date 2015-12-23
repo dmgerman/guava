@@ -686,6 +686,15 @@ name|toString
 argument_list|()
 return|;
 block|}
+DECL|method|sumOfProductsOfDeltas ()
+name|double
+name|sumOfProductsOfDeltas
+parameter_list|()
+block|{
+return|return
+name|sumOfProductsOfDeltas
+return|;
+block|}
 DECL|method|ensurePositive (double value)
 specifier|private
 specifier|static
