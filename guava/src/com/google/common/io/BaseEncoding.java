@@ -610,6 +610,8 @@ name|chars
 parameter_list|)
 function_decl|;
 comment|/**    * Decodes the specified character sequence, and returns the resulting {@code byte[]}.    * This is the inverse operation to {@link #encode(byte[])}.    *    * @throws IllegalArgumentException if the input is not a valid encoded string according to this    *         encoding.    */
+annotation|@
+name|CheckReturnValue
 DECL|method|decode (CharSequence chars)
 specifier|public
 specifier|final
@@ -621,7 +623,6 @@ name|CharSequence
 name|chars
 parameter_list|)
 block|{
-comment|// TODO(kak): @CheckReturnValue
 try|try
 block|{
 return|return
@@ -648,6 +649,8 @@ block|}
 block|}
 comment|/**    * Decodes the specified character sequence, and returns the resulting {@code byte[]}.    * This is the inverse operation to {@link #encode(byte[])}.    *    * @throws DecodingException if the input is not a valid encoded string according to this    *         encoding.    */
 DECL|method|decodeChecked (CharSequence chars)
+annotation|@
+name|CheckReturnValue
 specifier|final
 name|byte
 index|[]
@@ -659,7 +662,6 @@ parameter_list|)
 throws|throws
 name|DecodingException
 block|{
-comment|// TODO(kak): @CheckReturnValue
 name|chars
 operator|=
 name|padding
