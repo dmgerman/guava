@@ -4188,7 +4188,7 @@ operator|&
 literal|0xFFFFFFFFL
 decl_stmt|;
 comment|//< 2^32
-comment|/*          * a * b == aHi * bHi * 2^64 + (aHi * bLo + aLo * bHi) * 2^63 + aLo * bLo.          *       == (aHi * bHi * 2^32 + aHi * bLo + aLo * bHi) * 2^32 + aLo * bLo          *          * We carry out this computation in modular arithmetic.  Since times2ToThe32Mod accepts          * any unsigned long, we don't have to do a mod on every operation, only when intermediate          * results can exceed 2^63.          */
+comment|/*          * a * b == aHi * bHi * 2^64 + (aHi * bLo + aLo * bHi) * 2^32 + aLo * bLo.          *       == (aHi * bHi * 2^32 + aHi * bLo + aLo * bHi) * 2^32 + aLo * bLo          *          * We carry out this computation in modular arithmetic.  Since times2ToThe32Mod accepts          * any unsigned long, we don't have to do a mod on every operation, only when intermediate          * results can exceed 2^63.          */
 name|long
 name|result
 init|=
