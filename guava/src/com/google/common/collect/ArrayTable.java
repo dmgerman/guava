@@ -1322,9 +1322,7 @@ block|}
 comment|/**    * Returns a two-dimensional array with the table contents. The row and column    * indices correspond to the positions of the row and column in the iterables    * provided during table construction. If the table lacks a mapping for a    * given row and column, the corresponding array element is null.    *    *<p>Subsequent table changes will not modify the array, and vice versa.    *    * @param valueClass class of values stored in the returned array    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|toArray (Class<V> valueClass)
 specifier|public
 name|V

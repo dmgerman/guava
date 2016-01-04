@@ -1208,9 +1208,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterables.toArray(Iterable, Class)"
-argument_list|)
+comment|// Iterables.toArray(Iterable, Class)
 DECL|method|testToArrayEmpty ()
 specifier|public
 name|void
@@ -1262,9 +1260,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterables.toArray(Iterable, Class)"
-argument_list|)
+comment|// Iterables.toArray(Iterable, Class)
 DECL|method|testToArraySingleton ()
 specifier|public
 name|void
@@ -1319,9 +1315,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterables.toArray(Iterable, Class)"
-argument_list|)
+comment|// Iterables.toArray(Iterable, Class)
 DECL|method|testToArray ()
 specifier|public
 name|void
@@ -1898,9 +1892,7 @@ name|TypeB
 block|{}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Iterables.filter(Iterable, Class)"
-argument_list|)
+comment|// Iterables.filter(Iterable, Class)
 DECL|method|testFilterByType ()
 specifier|public
 name|void
@@ -3044,9 +3036,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"?"
-argument_list|)
+comment|// ?
 comment|// TODO: Figure out why this is failing in GWT.
 DECL|method|testPartitionRandomAccessInput ()
 specifier|public
@@ -3124,9 +3114,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"?"
-argument_list|)
+comment|// ?
 comment|// TODO: Figure out why this is failing in GWT.
 DECL|method|testPartitionNonRandomAccessInput ()
 specifier|public
@@ -3536,9 +3524,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointerExceptions ()
 specifier|public
 name|void
@@ -4500,9 +4486,7 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~35s)"
-argument_list|)
+comment|// slow (~35s)
 DECL|method|testSkip_iterator ()
 specifier|public
 name|void
@@ -4573,9 +4557,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"slow (~35s)"
-argument_list|)
+comment|// slow (~35s)
 DECL|method|testSkip_iteratorList ()
 specifier|public
 name|void
@@ -8129,9 +8111,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"?"
-argument_list|)
+comment|// ?
 comment|// TODO: Figure out why this is failing in GWT.
 DECL|method|testConsumingIterable_duelingIterators ()
 specifier|public
@@ -9396,9 +9376,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|testIterables_nullCheck ()
 specifier|public
 name|void

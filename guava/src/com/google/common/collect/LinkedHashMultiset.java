@@ -267,9 +267,7 @@ block|}
 comment|/**    * @serialData the number of distinct elements, the first element, its count,    *     the second element, its count, and so on    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectOutputStream"
-argument_list|)
+comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -298,9 +296,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectInputStream"
-argument_list|)
+comment|// java.io.ObjectInputStream
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -355,9 +351,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not needed in emulated source"
-argument_list|)
+comment|// not needed in emulated source
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

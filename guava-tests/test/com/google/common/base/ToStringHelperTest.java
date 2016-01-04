@@ -104,9 +104,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testConstructor_instance ()
 specifier|public
 name|void
@@ -168,9 +166,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testConstructor_innerClass ()
 specifier|public
 name|void
@@ -236,9 +232,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testConstructor_anonymousClass ()
 specifier|public
 name|void
@@ -306,9 +300,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testConstructor_classObject ()
 specifier|public
 name|void
@@ -401,9 +393,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringHelper_localInnerClass ()
 specifier|public
 name|void
@@ -476,9 +466,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringHelper_localInnerNestedClass ()
 specifier|public
 name|void
@@ -566,9 +554,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringHelper_moreThanNineAnonymousClasses ()
 specifier|public
 name|void
@@ -793,9 +779,7 @@ block|}
 comment|// all remaining test are on an inner class with various fields
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_oneField ()
 specifier|public
 name|void
@@ -834,9 +818,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_oneIntegerField ()
 specifier|public
 name|void
@@ -879,9 +861,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_nullInteger ()
 specifier|public
 name|void
@@ -1053,9 +1033,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_complexFields ()
 specifier|public
 name|void
@@ -1329,9 +1307,7 @@ block|{     }
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_addWithNullValue ()
 specifier|public
 name|void
@@ -1413,9 +1389,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_ToStringTwice ()
 specifier|public
 name|void
@@ -1509,9 +1483,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_addValue ()
 specifier|public
 name|void
@@ -1637,9 +1609,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToString_addValueWithNullValue ()
 specifier|public
 name|void
@@ -1749,9 +1719,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_oneField ()
 specifier|public
 name|void
@@ -1793,9 +1761,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_manyFieldsFirstNull ()
 specifier|public
 name|void
@@ -1851,9 +1817,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_manyFieldsOmitAfterNull ()
 specifier|public
 name|void
@@ -1909,9 +1873,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_manyFieldsLastNull ()
 specifier|public
 name|void
@@ -1967,9 +1929,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_oneValue ()
 specifier|public
 name|void
@@ -2009,9 +1969,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_manyValuesFirstNull ()
 specifier|public
 name|void
@@ -2061,9 +2019,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_manyValuesLastNull ()
 specifier|public
 name|void
@@ -2113,9 +2069,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_differentOrder ()
 specifier|public
 name|void
@@ -2222,9 +2176,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class names are obfuscated in GWT"
-argument_list|)
+comment|// Class names are obfuscated in GWT
 DECL|method|testToStringOmitNullValues_canBeCalledManyTimes ()
 specifier|public
 name|void

@@ -97,9 +97,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testUsAscii ()
 specifier|public
 name|void
@@ -123,9 +121,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testIso88591 ()
 specifier|public
 name|void
@@ -170,9 +166,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testUtf16be ()
 specifier|public
 name|void
@@ -196,9 +190,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testUtf16le ()
 specifier|public
 name|void
@@ -222,9 +214,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testUtf16 ()
 specifier|public
 name|void
@@ -248,9 +238,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Non-UTF-8 Charset"
-argument_list|)
+comment|// Non-UTF-8 Charset
 DECL|method|testWhyUsAsciiIsDangerous ()
 specifier|public
 name|void

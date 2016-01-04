@@ -478,9 +478,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|getExitingExecutorService ( ThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -517,9 +515,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -556,9 +552,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|addDelayedShutdownHook ( ExecutorService service, long terminationTimeout, TimeUnit timeUnit)
 specifier|public
 specifier|static
@@ -594,9 +588,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|getExitingExecutorService (ThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -623,9 +615,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|getExitingScheduledExecutorService ( ScheduledThreadPoolExecutor executor)
 specifier|public
 specifier|static
@@ -650,9 +640,7 @@ block|}
 comment|/** Represents the current application to register shutdown hooks. */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|VisibleForTesting
 DECL|class|Application
@@ -899,9 +887,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|useDaemonThreadFactory (ThreadPoolExecutor executor)
 specifier|private
 specifier|static
@@ -943,9 +929,7 @@ annotation|@
 name|Deprecated
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|sameThreadExecutor ()
 specifier|public
 specifier|static
@@ -962,9 +946,7 @@ block|}
 comment|// See sameThreadExecutor javadoc for behavioral notes.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|class|DirectExecutorService
 specifier|private
 specifier|static
@@ -1297,9 +1279,7 @@ block|}
 comment|/**    * Creates an executor service that runs each task in the thread    * that invokes {@code execute/submit}, as in {@link CallerRunsPolicy}  This    * applies both to individually submitted tasks and to collections of tasks    * submitted via {@code invokeAll} or {@code invokeAny}.  In the latter case,    * tasks will run serially on the calling thread.  Tasks are run to    * completion before a {@code Future} is returned to the caller (unless the    * executor has been shutdown).    *    *<p>Although all tasks are immediately executed in the thread that    * submitted the task, this {@code ExecutorService} imposes a small    * locking overhead on each task submission in order to implement shutdown    * and termination behavior.    *    *<p>The implementation deviates from the {@code ExecutorService}    * specification with regards to the {@code shutdownNow} method.  First,    * "best-effort" with regards to canceling running tasks is implemented    * as "no-effort".  No interrupts or other attempts are made to stop    * threads executing tasks.  Second, the returned list will always be empty,    * as any submitted task is considered to have started execution.    * This applies also to tasks given to {@code invokeAll} or {@code invokeAny}    * which are pending serial execution, even the subset of the tasks that    * have not yet started execution.  It is unclear from the    * {@code ExecutorService} specification if these should be included, and    * it's much easier to implement the interpretation that they not be.    * Finally, a call to {@code shutdown} or {@code shutdownNow} may result    * in concurrent calls to {@code invokeAll/invokeAny} throwing    * RejectedExecutionException, although a subset of the tasks may already    * have been executed.    *    * @since 18.0 (present as MoreExecutors.sameThreadExecutor() since 10.0)    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|newDirectExecutorService ()
 specifier|public
 specifier|static
@@ -1371,10 +1351,8 @@ block|}
 comment|/**    * Creates an {@link ExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the    * given delegate executor. Those methods, as well as {@code execute} and    * {@code invokeAny}, are implemented in terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the    * delegate. This implies that the returned {@code ListeningExecutorService}    * never calls the delegate's {@code submit}, {@code invokeAll}, and {@code    * invokeAny} methods, so any special handling of tasks must be implemented in    * the delegate's {@code execute} method or by wrapping the returned {@code    * ListeningExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningExecutorService}, it is returned untouched, and the rest of this    * documentation does not apply.    *    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
-DECL|method|listeningDecorator ( ExecutorService delegate)
+comment|// TODO
+DECL|method|listeningDecorator (ExecutorService delegate)
 specifier|public
 specifier|static
 name|ListeningExecutorService
@@ -1421,9 +1399,7 @@ block|}
 comment|/**    * Creates a {@link ScheduledExecutorService} whose {@code submit} and {@code    * invokeAll} methods submit {@link ListenableFutureTask} instances to the    * given delegate executor. Those methods, as well as {@code execute} and    * {@code invokeAny}, are implemented in terms of calls to {@code    * delegate.execute}. All other methods are forwarded unchanged to the    * delegate. This implies that the returned {@code    * ListeningScheduledExecutorService} never calls the delegate's {@code    * submit}, {@code invokeAll}, and {@code invokeAny} methods, so any special    * handling of tasks must be implemented in the delegate's {@code execute}    * method or by wrapping the returned {@code    * ListeningScheduledExecutorService}.    *    *<p>If the delegate executor was already an instance of {@code    * ListeningScheduledExecutorService}, it is returned untouched, and the rest    * of this documentation does not apply.    *    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|listeningDecorator ( ScheduledExecutorService delegate)
 specifier|public
 specifier|static
@@ -1455,9 +1431,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|class|ListeningDecorator
 specifier|private
 specifier|static
@@ -1606,9 +1580,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|class|ScheduledListeningDecorator
 specifier|private
 specifier|static
@@ -2055,9 +2027,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|class|NeverSuccessfulListenableFutureTask
 specifier|private
 specifier|static
@@ -2137,12 +2107,9 @@ block|}
 block|}
 comment|/*    * This following method is a modified version of one found in    * http://gee.cs.oswego.edu/cgi-bin/viewcvs.cgi/jsr166/src/test/tck/AbstractExecutorServiceTest.java?revision=1.30    * which contained the following notice:    *    * Written by Doug Lea with assistance from members of JCP JSR-166    * Expert Group and released to the public domain, as explained at    * http://creativecommons.org/publicdomain/zero/1.0/    * Other contributors include Andrew Wright, Jeffrey Hayes,    * Pat Fisher, Mike Judd.    */
 comment|/**    * An implementation of {@link ExecutorService#invokeAny} for {@link ListeningExecutorService}    * implementations.    */
-DECL|method|invokeAnyImpl (ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long nanos)
+DECL|method|invokeAnyImpl ( ListeningExecutorService executorService, Collection<? extends Callable<T>> tasks, boolean timed, long nanos)
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
 specifier|static
 parameter_list|<
 name|T
@@ -2514,9 +2481,7 @@ block|}
 comment|/**    * Submits the task and adds a listener that adds the future to {@code queue} when it completes.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|submitAndAddQueueListener ( ListeningExecutorService executorService, Callable<T> task, final BlockingQueue<Future<T>> queue)
 specifier|private
 specifier|static
@@ -2601,9 +2566,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|platformThreadFactory ()
 specifier|public
 specifier|static
@@ -2718,9 +2681,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|isAppEngine ()
 specifier|private
 specifier|static
@@ -2816,9 +2777,7 @@ block|}
 comment|/**    * Creates a thread using {@link #platformThreadFactory}, and sets its name to {@code name}    * unless changing the name is forbidden by the security manager.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|newThread (String name, Runnable runnable)
 specifier|static
 name|Thread
@@ -2880,9 +2839,7 @@ comment|// calculate names?
 comment|/**    * Creates an {@link Executor} that renames the {@link Thread threads} that its tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param executor The executor to decorate    * @param nameSupplier The source of names for each task    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|renamingDecorator (final Executor executor, final Supplier<String> nameSupplier)
 specifier|static
 name|Executor
@@ -2957,10 +2914,8 @@ block|}
 comment|/**    * Creates an {@link ExecutorService} that renames the {@link Thread threads} that its tasks run    * in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
-DECL|method|renamingDecorator (final ExecutorService service, final Supplier<String> nameSupplier)
+comment|// concurrency
+DECL|method|renamingDecorator ( final ExecutorService service, final Supplier<String> nameSupplier)
 specifier|static
 name|ExecutorService
 name|renamingDecorator
@@ -3062,10 +3017,8 @@ block|}
 comment|/**    * Creates a {@link ScheduledExecutorService} that renames the {@link Thread threads} that its    * tasks run in.    *    *<p>The names are retrieved from the {@code nameSupplier} on the thread that is being renamed    * right before each task is run.  The renaming is best effort, if a {@link SecurityManager}    * prevents the renaming then it will be skipped but the tasks will still execute.    *    *    * @param service The executor to decorate    * @param nameSupplier The source of names for each task    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
-DECL|method|renamingDecorator (final ScheduledExecutorService service, final Supplier<String> nameSupplier)
+comment|// concurrency
+DECL|method|renamingDecorator ( final ScheduledExecutorService service, final Supplier<String> nameSupplier)
 specifier|static
 name|ScheduledExecutorService
 name|renamingDecorator
@@ -3169,9 +3122,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"concurrency"
-argument_list|)
+comment|// concurrency
 DECL|method|shutdownAndAwaitTermination ( ExecutorService service, long timeout, TimeUnit unit)
 specifier|public
 specifier|static

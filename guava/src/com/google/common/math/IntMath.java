@@ -478,9 +478,7 @@ decl_stmt|;
 comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"need BigIntegerMath to adequately test"
-argument_list|)
+comment|// need BigIntegerMath to adequately test
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -779,9 +777,7 @@ decl_stmt|;
 comment|/**    * Returns {@code b} to the {@code k}th power. Even if the result overflows, it will be equal to    * {@code BigInteger.valueOf(b).pow(k).intValue()}. This implementation runs in {@code O(log k)}    * time.    *    *<p>Compare {@link #checkedPow}, which throws an {@link ArithmeticException} upon overflow.    *    * @throws IllegalArgumentException if {@code k< 0}    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"failing tests"
-argument_list|)
+comment|// failing tests
 DECL|method|pow (int b, int k)
 specifier|public
 specifier|static
@@ -977,9 +973,7 @@ block|}
 comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"need BigIntegerMath to adequately test"
-argument_list|)
+comment|// need BigIntegerMath to adequately test
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2468,9 +2462,7 @@ decl_stmt|;
 comment|/**    * Returns {@code n} choose {@code k}, also known as the binomial coefficient of {@code n} and    * {@code k}, or {@link Integer#MAX_VALUE} if the result does not fit in an {@code int}.    *    * @throws IllegalArgumentException if {@code n< 0}, {@code k< 0} or {@code k> n}    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"need BigIntegerMath to adequately test"
-argument_list|)
+comment|// need BigIntegerMath to adequately test
 DECL|method|binomial (int n, int k)
 specifier|public
 specifier|static

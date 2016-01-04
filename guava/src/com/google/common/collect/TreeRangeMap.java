@@ -289,9 +289,7 @@ annotation|@
 name|Beta
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|class|TreeRangeMap
 specifier|public
 specifier|final

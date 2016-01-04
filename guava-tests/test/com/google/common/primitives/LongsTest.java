@@ -313,9 +313,7 @@ block|}
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Long.hashCode returns different values in GWT."
-argument_list|)
+comment|// Long.hashCode returns different values in GWT.
 DECL|method|testHashCode ()
 specifier|public
 name|void
@@ -2601,9 +2599,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testLexicographicalComparatorSerializable ()
 specifier|public
 name|void
@@ -2637,9 +2633,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testStringConverterSerialization ()
 specifier|public
 name|void
@@ -3634,9 +3628,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -3995,9 +3987,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testStringConverter_nullPointerTester ()
 specifier|public
 name|void

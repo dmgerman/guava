@@ -2410,9 +2410,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"StringBuilder.append in GWT invokes Object.toString(), unlike the JRE version."
-argument_list|)
+comment|// StringBuilder.append in GWT invokes Object.toString(), unlike the JRE version.
 DECL|method|testDontConvertCharSequenceToString ()
 specifier|public
 name|void
@@ -2475,9 +2473,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void

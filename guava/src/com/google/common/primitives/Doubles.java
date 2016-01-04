@@ -2245,9 +2245,7 @@ block|}
 comment|/**    * This is adapted from the regex suggested by {@link Double#valueOf(String)}    * for prevalidating inputs.  All valid inputs must pass this regex, but it's    * semantically fine if not all inputs that pass this regex are valid --    * only a performance hit is incurred, not a semantics bug.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"regular expressions"
-argument_list|)
+comment|// regular expressions
 DECL|field|FLOATING_POINT_PATTERN
 specifier|static
 specifier|final
@@ -2259,9 +2257,7 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"regular expressions"
-argument_list|)
+comment|// regular expressions
 DECL|method|fpPattern ()
 specifier|private
 specifier|static
@@ -2326,9 +2322,7 @@ annotation|@
 name|CheckForNull
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"regular expressions"
-argument_list|)
+comment|// regular expressions
 DECL|method|tryParse (String string)
 specifier|public
 specifier|static

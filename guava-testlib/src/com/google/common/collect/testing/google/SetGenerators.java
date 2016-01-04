@@ -867,9 +867,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 DECL|class|ImmutableSortedSetDescendingGenerator
 specifier|public
 specifier|static
@@ -1404,9 +1402,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 DECL|class|ImmutableSortedSetDescendingAsListGenerator
 specifier|public
 specifier|static
@@ -2140,9 +2136,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 DECL|class|ContiguousSetDescendingGenerator
 specifier|public
 specifier|static

@@ -3549,9 +3549,7 @@ block|}
 comment|/**    * @serialData the number of entries, first key, first value, second key, second value, and so on.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectOutputStream"
-argument_list|)
+comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -3580,9 +3578,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectInputStream"
-argument_list|)
+comment|// java.io.ObjectInputStream
 DECL|method|readObject (ObjectInputStream stream)
 specifier|private
 name|void
@@ -3630,9 +3626,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Not needed in emulated source"
-argument_list|)
+comment|// Not needed in emulated source
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

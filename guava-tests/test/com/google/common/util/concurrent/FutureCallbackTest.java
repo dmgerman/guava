@@ -530,9 +530,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Mockito"
-argument_list|)
+comment|// Mockito
 DECL|method|testOnSuccessThrowsRuntimeException ()
 specifier|public
 name|void
@@ -650,9 +648,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Mockito"
-argument_list|)
+comment|// Mockito
 DECL|method|testOnSuccessThrowsError ()
 specifier|public
 name|void

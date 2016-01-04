@@ -504,9 +504,7 @@ block|}
 comment|/**    * Returns a string representation of the current elapsed time.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"String.format()"
-argument_list|)
+comment|// String.format()
 annotation|@
 name|Override
 DECL|method|toString ()

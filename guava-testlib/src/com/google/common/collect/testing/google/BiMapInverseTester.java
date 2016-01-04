@@ -396,9 +396,7 @@ block|}
 comment|/**    * Returns {@link Method} instances for the tests that assume that the inverse will be the same    * after serialization.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getInverseSameAfterSerializingMethods ()
 specifier|public
 specifier|static
@@ -423,9 +421,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getMethod (String methodName)
 specifier|private
 specifier|static

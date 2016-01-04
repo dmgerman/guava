@@ -228,9 +228,7 @@ argument_list|)
 decl_stmt|;
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -4241,9 +4239,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testModify_basher ()
 specifier|public
 name|void

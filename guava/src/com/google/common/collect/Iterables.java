@@ -1286,9 +1286,7 @@ block|}
 comment|/**    * Copies an iterable's elements into an array.    *    * @param iterable the iterable to copy    * @param type the type of the elements    * @return a newly-allocated array into which all the elements of the iterable    *     have been copied    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Array.newInstance(Class, int)"
-argument_list|)
+comment|// Array.newInstance(Class, int)
 DECL|method|toArray (Iterable<? extends T> iterable, Class<T> type)
 specifier|public
 specifier|static
@@ -2300,9 +2298,7 @@ block|}
 comment|/**    * Returns all elements in {@code unfiltered} that are of the type {@code desiredType}.    * The returned iterable's iterator does not support {@code remove()}.    *    * @param unfiltered an iterable containing objects of any type, to be filtered on    * @param desiredType the type of elements desired in the result iterable    * @return an unmodifiable iterable containing all elements of the original    *     iterable that were of the requested type    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class.isInstance"
-argument_list|)
+comment|// Class.isInstance
 annotation|@
 name|CheckReturnValue
 DECL|method|filter (final Iterable<?> unfiltered, final Class<T> desiredType)

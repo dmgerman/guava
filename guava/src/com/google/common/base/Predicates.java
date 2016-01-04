@@ -651,9 +651,7 @@ block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the object being    * tested is an instance of the given class. If the object being tested    * is {@code null} this predicate evaluates to {@code false}.    *    *<p>If you want to filter an {@code Iterable} to narrow its type, consider    * using {@link com.google.common.collect.Iterables#filter(Iterable, Class)}    * in preference.    *    *<p><b>Warning:</b> contrary to the typical assumptions about predicates (as    * documented at {@link Predicate#apply}), the returned predicate may not be    *<i>consistent with equals</i>. For example, {@code    * instanceOf(ArrayList.class)} will yield different results for the two equal    * instances {@code Lists.newArrayList(1)} and {@code Arrays.asList(1)}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class.isInstance"
-argument_list|)
+comment|// Class.isInstance
 DECL|method|instanceOf (Class<?> clazz)
 specifier|public
 specifier|static
@@ -681,9 +679,7 @@ block|}
 comment|/**    * Returns a predicate that evaluates to {@code true} if the class being    * tested is assignable from the given class.  The returned predicate    * does not allow null inputs.    *    * @since 10.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class.isAssignableFrom"
-argument_list|)
+comment|// Class.isAssignableFrom
 annotation|@
 name|Beta
 DECL|method|assignableFrom (Class<?> clazz)
@@ -1775,9 +1771,7 @@ block|}
 comment|/** @see Predicates#instanceOf(Class) */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class.isInstance"
-argument_list|)
+comment|// Class.isInstance
 DECL|class|InstanceOfPredicate
 specifier|private
 specifier|static
@@ -1930,9 +1924,7 @@ block|}
 comment|/** @see Predicates#assignableFrom(Class) */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Class.isAssignableFrom"
-argument_list|)
+comment|// Class.isAssignableFrom
 DECL|class|AssignableFromPredicate
 specifier|private
 specifier|static
@@ -2488,9 +2480,7 @@ block|}
 comment|/** @see Predicates#contains(Pattern) */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Only used by other GWT-incompatible code."
-argument_list|)
+comment|// Only used by other GWT-incompatible code.
 DECL|class|ContainsPatternPredicate
 specifier|private
 specifier|static
@@ -2708,9 +2698,7 @@ block|}
 comment|/** @see Predicates#containsPattern(String) */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Only used by other GWT-incompatible code."
-argument_list|)
+comment|// Only used by other GWT-incompatible code.
 DECL|class|ContainsPatternFromStringPredicate
 specifier|private
 specifier|static

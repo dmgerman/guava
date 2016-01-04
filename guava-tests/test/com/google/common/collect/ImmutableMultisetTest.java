@@ -411,10 +411,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"suite"
-argument_list|)
-comment|// TODO(cpovirk): add to collect/gwt/suites
+comment|// suite // TODO(cpovirk): add to collect/gwt/suites
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -2971,9 +2968,7 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void
@@ -2999,9 +2994,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerialization_empty ()
 specifier|public
 name|void
@@ -3034,9 +3027,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerialization_multiple ()
 specifier|public
 name|void
@@ -3093,9 +3084,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerialization_elementSet ()
 specifier|public
 name|void
@@ -3153,9 +3142,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerialization_entrySet ()
 specifier|public
 name|void
@@ -3443,9 +3430,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerialization_asList ()
 specifier|public
 name|void

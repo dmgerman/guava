@@ -477,9 +477,7 @@ block|}
 comment|// TODO(cpovirk): instead of skipping, use a smaller number of steps
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"works but takes 5 minutes to run"
-argument_list|)
+comment|// works but takes 5 minutes to run
 DECL|method|testPeekingIteratorBehavesLikeIteratorOnThreeElementIterable ()
 specifier|public
 name|void
@@ -503,9 +501,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"works but takes 5 minutes to run"
-argument_list|)
+comment|// works but takes 5 minutes to run
 DECL|method|testPeekingIteratorAcceptsNullElements ()
 specifier|public
 name|void

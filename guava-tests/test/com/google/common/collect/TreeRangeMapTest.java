@@ -245,9 +245,7 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableMap"
-argument_list|)
+comment|// NavigableMap
 DECL|class|TreeRangeMapTest
 specifier|public
 class|class

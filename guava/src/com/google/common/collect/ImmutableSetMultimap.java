@@ -2324,9 +2324,7 @@ block|}
 comment|/**    * @serialData number of distinct keys, and then for each distinct key: the    *     key, the number of values for that key, and the key's values    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectOutputStream"
-argument_list|)
+comment|// java.io.ObjectOutputStream
 DECL|method|writeObject (ObjectOutputStream stream)
 specifier|private
 name|void
@@ -2396,9 +2394,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.io.ObjectInputStream"
-argument_list|)
+comment|// java.io.ObjectInputStream
 comment|// Serialization type safety is at the caller's mercy.
 annotation|@
 name|SuppressWarnings
@@ -2705,9 +2701,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not needed in emulated source."
-argument_list|)
+comment|// not needed in emulated source.
 DECL|field|serialVersionUID
 specifier|private
 specifier|static

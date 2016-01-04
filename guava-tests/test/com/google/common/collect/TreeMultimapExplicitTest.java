@@ -1474,9 +1474,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testExplicitComparatorSerialization ()
 specifier|public
 name|void

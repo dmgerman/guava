@@ -698,9 +698,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"suite"
-argument_list|)
+comment|// suite
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -1992,9 +1990,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 DECL|method|testSerializable ()
 specifier|public
 name|void
@@ -2027,9 +2023,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|testNulls ()
 specifier|public
 name|void

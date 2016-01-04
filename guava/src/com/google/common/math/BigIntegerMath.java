@@ -492,9 +492,7 @@ decl_stmt|;
 comment|/**    * Returns the base-10 logarithm of {@code x}, rounded according to the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x<= 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and {@code x}    *         is not a power of ten    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -844,9 +842,7 @@ decl_stmt|;
 comment|/**    * Returns the square root of {@code x}, rounded with the specified rounding mode.    *    * @throws IllegalArgumentException if {@code x< 0}    * @throws ArithmeticException if {@code mode} is {@link RoundingMode#UNNECESSARY} and    *         {@code sqrt(x)} is not an integer    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1054,9 +1050,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|sqrtFloor (BigInteger x)
 specifier|private
 specifier|static
@@ -1214,9 +1208,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|sqrtApproxWithDoubles (BigInteger x)
 specifier|private
 specifier|static
@@ -1251,9 +1243,7 @@ block|}
 comment|/**    * Returns the result of dividing {@code p} by {@code q}, rounding using the specified    * {@code RoundingMode}.    *    * @throws ArithmeticException if {@code q == 0}, or if {@code mode == UNNECESSARY} and {@code a}    *         is not an integer multiple of {@code b}    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|divide (BigInteger p, BigInteger q, RoundingMode mode)
 specifier|public
 specifier|static
@@ -2040,9 +2030,7 @@ block|}
 comment|// Returns true if BigInteger.valueOf(x.longValue()).equals(x).
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|fitsInLong (BigInteger x)
 specifier|static
 name|boolean

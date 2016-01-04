@@ -575,9 +575,7 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testListIterator_fullyModifiable()} so that tests of    * {@link CopyOnWriteArraySet} can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()} until<a    * href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6570575">Sun bug    * 6570575</a> is fixed.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getListIteratorFullyModifiableMethod ()
 specifier|public
 specifier|static
@@ -601,9 +599,7 @@ block|}
 comment|/**    * Returns the {@link Method} instance for    * {@link #testListIterator_unmodifiable()} so that it can be suppressed in    * GWT tests.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getListIteratorUnmodifiableMethod ()
 specifier|public
 specifier|static

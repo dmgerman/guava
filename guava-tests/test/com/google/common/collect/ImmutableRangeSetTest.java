@@ -201,9 +201,7 @@ end_comment
 begin_class
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ImmutableRangeSet"
-argument_list|)
+comment|// ImmutableRangeSet
 DECL|class|ImmutableRangeSetTest
 specifier|public
 class|class

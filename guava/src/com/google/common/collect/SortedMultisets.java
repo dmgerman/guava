@@ -409,9 +409,7 @@ block|}
 comment|/**    * A skeleton navigable implementation for {@link SortedMultiset#elementSet}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Navigable"
-argument_list|)
+comment|// Navigable
 DECL|class|NavigableElementSet
 specifier|static
 class|class

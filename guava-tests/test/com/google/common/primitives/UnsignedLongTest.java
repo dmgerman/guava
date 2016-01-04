@@ -683,9 +683,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"too slow"
-argument_list|)
+comment|// too slow
 DECL|method|testToStringRadix ()
 specifier|public
 name|void
@@ -1517,9 +1515,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"too slow"
-argument_list|)
+comment|// too slow
 DECL|method|testEquals ()
 specifier|public
 name|void
@@ -1675,9 +1671,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 DECL|method|testSerialization ()
 specifier|public
 name|void
@@ -1708,9 +1702,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNulls ()
 specifier|public
 name|void

@@ -413,9 +413,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"suite"
-argument_list|)
+comment|// suite
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -928,9 +926,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SeriazableTester"
-argument_list|)
+comment|// SeriazableTester
 DECL|method|testSerializationOrdering ()
 specifier|public
 name|void
@@ -971,9 +967,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SeriazableTester"
-argument_list|)
+comment|// SeriazableTester
 DECL|method|testSerializationOrderingKeysAndEntries ()
 specifier|public
 name|void
@@ -2143,9 +2137,7 @@ block|{}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testGetIteration ()
 specifier|public
 name|void
@@ -2304,9 +2296,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testEntriesIteration ()
 specifier|public
 name|void
@@ -2527,9 +2517,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testKeysIteration ()
 specifier|public
 name|void
@@ -2679,9 +2667,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testValuesIteration ()
 specifier|public
 name|void
@@ -2831,9 +2817,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testKeySetIteration ()
 specifier|public
 name|void
@@ -3040,9 +3024,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"unreasonably slow"
-argument_list|)
+comment|// unreasonably slow
 DECL|method|testAsSetIteration ()
 specifier|public
 name|void

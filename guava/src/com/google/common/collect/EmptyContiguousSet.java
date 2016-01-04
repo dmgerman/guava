@@ -317,9 +317,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not used by GWT emulation"
-argument_list|)
+comment|// not used by GWT emulation
 annotation|@
 name|Override
 DECL|method|indexOf (Object target)
@@ -355,9 +353,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 annotation|@
 name|Override
 DECL|method|descendingIterator ()
@@ -476,9 +472,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"not used in GWT"
-argument_list|)
+comment|// not used in GWT
 annotation|@
 name|Override
 DECL|method|isHashCodeFast ()
@@ -504,9 +498,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 DECL|class|SerializedForm
 specifier|private
 specifier|static
@@ -577,9 +569,7 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialization"
-argument_list|)
+comment|// serialization
 annotation|@
 name|Override
 DECL|method|writeReplace ()
@@ -600,9 +590,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 DECL|method|createDescendingSet ()
 name|ImmutableSortedSet
 argument_list|<

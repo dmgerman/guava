@@ -225,9 +225,7 @@ function_decl|;
 comment|/**    * Computes or retrieves a replacement value corresponding to an already-cached {@code key}. This    * method is called when an existing cache entry is refreshed by    * {@link CacheBuilder#refreshAfterWrite}, or through a call to {@link LoadingCache#refresh}.    *    *<p>This implementation synchronously delegates to {@link #load}. It is recommended that it be    * overridden with an asynchronous implementation when using    * {@link CacheBuilder#refreshAfterWrite}.    *    *<p><b>Note:</b><i>all exceptions thrown by this method will be logged and then swallowed</i>.    *    * @param key the non-null key whose value should be loaded    * @param oldValue the non-null old value corresponding to {@code key}    * @return the future new value associated with {@code key};    *<b>must not be null, must not return null</b>    * @throws Exception if unable to reload the result    * @throws InterruptedException if this method is interrupted. {@code InterruptedException} is    *     treated like any other {@code Exception} in all respects except that, when it is caught,    *     the thread's interrupt status is set    * @since 11.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Futures"
-argument_list|)
+comment|// Futures
 DECL|method|reload (K key, V oldValue)
 specifier|public
 name|ListenableFuture
@@ -460,10 +458,8 @@ block|}
 comment|/**    * Returns a {@code CacheLoader} which wraps {@code loader}, executing calls to    * {@link CacheLoader#reload} using {@code executor}.    *    *<p>This method is useful only when {@code loader.reload} has a synchronous implementation,    * such as {@linkplain #reload the default implementation}.    *    * @since 17.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Executor + Futures"
-argument_list|)
-DECL|method|asyncReloading (final CacheLoader<K, V> loader, final Executor executor)
+comment|// Executor + Futures
+DECL|method|asyncReloading ( final CacheLoader<K, V> loader, final Executor executor)
 specifier|public
 specifier|static
 parameter_list|<

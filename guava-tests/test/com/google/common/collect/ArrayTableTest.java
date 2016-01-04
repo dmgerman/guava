@@ -1940,9 +1940,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|testNullPointerStatic ()
 specifier|public
 name|void
@@ -3122,9 +3120,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"ArrayTable.toArray(Class)"
-argument_list|)
+comment|// ArrayTable.toArray(Class)
 DECL|method|testToArray ()
 specifier|public
 name|void
@@ -3716,9 +3712,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|testNulls ()
 specifier|public
 name|void
@@ -3738,9 +3732,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"serialize"
-argument_list|)
+comment|// serialize
 DECL|method|testSerializable ()
 specifier|public
 name|void

@@ -327,9 +327,7 @@ block|}
 comment|/**    * Returns the {@link Method} instances for the test methods in this class    * which call {@code hashCode()} on the set values so that set tests on    * unhashable objects can suppress it with    * {@code FeatureSpecificTestSuiteBuilder.suppressing()}.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"reflection"
-argument_list|)
+comment|// reflection
 DECL|method|getHashCodeMethods ()
 specifier|public
 specifier|static

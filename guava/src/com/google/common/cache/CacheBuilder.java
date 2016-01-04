@@ -766,9 +766,7 @@ block|}
 comment|/**    * Constructs a new {@code CacheBuilder} instance with the settings specified in {@code spec}.    *    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|from (CacheBuilderSpec spec)
 specifier|public
 specifier|static
@@ -797,9 +795,7 @@ block|}
 comment|/**    * Constructs a new {@code CacheBuilder} instance with the settings specified in {@code spec}.    * This is especially useful for command-line configuration of a {@code CacheBuilder}.    *    * @param spec a String in the format specified by {@link CacheBuilderSpec}    * @since 12.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|from (String spec)
 specifier|public
 specifier|static
@@ -830,9 +826,7 @@ block|}
 comment|/**    * Enables lenient parsing. Useful for tests and spec parsing.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|lenientParsing ()
 name|CacheBuilder
 argument_list|<
@@ -854,9 +848,7 @@ block|}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing keys.    *    *<p>By default, the cache uses {@link Equivalence#identity} to determine key equality when    * {@link #weakKeys} is specified, and {@link Equivalence#equals()} otherwise.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|keyEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
@@ -921,9 +913,7 @@ block|}
 comment|/**    * Sets a custom {@code Equivalence} strategy for comparing values.    *    *<p>By default, the cache uses {@link Equivalence#identity} to determine value equality when    * {@link #weakValues} or {@link #softValues} is specified, and {@link Equivalence#equals()}    * otherwise.    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|valueEquivalence (Equivalence<Object> equivalence)
 name|CacheBuilder
 argument_list|<
@@ -1193,9 +1183,7 @@ block|}
 comment|/**    * Specifies the maximum weight of entries the cache may contain. Weight is determined using the    * {@link Weigher} specified with {@link #weigher}, and use of this method requires a    * corresponding call to {@link #weigher} prior to calling {@link #build}.    *    *<p>Note that the cache<b>may evict an entry before this limit is exceeded</b>. As the cache    * size grows close to the maximum, the cache evicts entries that are less likely to be used    * again. For example, the cache may evict an entry because it hasn't been used recently or very    * often.    *    *<p>When {@code weight} is zero, elements will be evicted immediately after being loaded into    * cache. This can be useful in testing, or to disable caching temporarily without a code    * change.    *    *<p>Note that weight is only used to determine whether the cache is over capacity; it has no    * effect on selecting which entry should be evicted next.    *    *<p>This feature cannot be used in conjunction with {@link #maximumSize}.    *    * @param weight the maximum total weight of entries the cache may contain    * @throws IllegalArgumentException if {@code weight} is negative    * @throws IllegalStateException if a maximum weight or size was already set    * @since 11.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|maximumWeight (long weight)
 specifier|public
 name|CacheBuilder
@@ -1262,9 +1250,7 @@ block|}
 comment|/**    * Specifies the weigher to use in determining the weight of entries. Entry weight is taken    * into consideration by {@link #maximumWeight(long)} when determining which entries to evict, and    * use of this method requires a corresponding call to {@link #maximumWeight(long)} prior to    * calling {@link #build}. Weights are measured and recorded when entries are inserted into the    * cache, and are thus effectively static during the lifetime of a cache entry.    *    *<p>When the weight of an entry is zero it will not be considered for size-based eviction    * (though it still may be evicted by other means).    *    *<p><b>Important note:</b> Instead of returning<em>this</em> as a {@code CacheBuilder}    * instance, this method returns {@code CacheBuilder<K1, V1>}. From this point on, either the    * original reference or the returned reference may be used to complete configuration and build    * the cache, but only the "generic" one is type-safe. That is, it will properly prevent you from    * building caches whose key or value types are incompatible with the types accepted by the    * weigher already provided; the {@code CacheBuilder} type cannot do this. For best results,    * simply use the standard method-chaining idiom, as illustrated in the documentation at top,    * configuring a {@code CacheBuilder} and building your {@link Cache} all in a single statement.    *    *<p><b>Warning:</b> if you ignore the above advice, and use this {@code CacheBuilder} to build    * a cache whose key or value type is incompatible with the weigher, you will likely experience    * a {@link ClassCastException} at some<i>undefined</i> point in the future.    *    * @param weigher the weigher to use in calculating the weight of cache entries    * @throws IllegalArgumentException if {@code size} is negative    * @throws IllegalStateException if a maximum size was already set    * @since 11.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported"
-argument_list|)
+comment|// To be supported
 DECL|method|weigher ( Weigher<? super K1, ? super V1> weigher)
 specifier|public
 parameter_list|<
@@ -1445,9 +1431,7 @@ block|}
 comment|/**    * Specifies that each key (not value) stored in the cache should be wrapped in a {@link    * WeakReference} (by default, strong references are used).    *    *<p><b>Warning:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of keys.    *    *<p>Entries with keys that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations; such entries are cleaned up as part of    * the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the key strength was already set    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
+comment|// java.lang.ref.WeakReference
 DECL|method|weakKeys ()
 specifier|public
 name|CacheBuilder
@@ -1524,9 +1508,7 @@ block|}
 comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link WeakReference} (by default, strong references are used).    *    *<p>Weak values will be garbage collected once they are weakly reachable. This makes them a poor    * candidate for caching; consider {@link #softValues} instead.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    *<p>Entries with values that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations; such entries are cleaned up as part of    * the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the value strength was already set    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.WeakReference"
-argument_list|)
+comment|// java.lang.ref.WeakReference
 DECL|method|weakValues ()
 specifier|public
 name|CacheBuilder
@@ -1550,9 +1532,7 @@ block|}
 comment|/**    * Specifies that each value (not key) stored in the cache should be wrapped in a    * {@link SoftReference} (by default, strong references are used). Softly-referenced objects will    * be garbage-collected in a<i>globally</i> least-recently-used manner, in response to memory    * demand.    *    *<p><b>Warning:</b> in most circumstances it is better to set a per-cache {@linkplain    * #maximumSize(long) maximum size} instead of using soft references. You should only use this    * method if you are well familiar with the practical consequences of soft references.    *    *<p><b>Note:</b> when this method is used, the resulting cache will use identity ({@code ==})    * comparison to determine equality of values.    *    *<p>Entries with values that have been garbage collected may be counted in {@link Cache#size},    * but will never be visible to read or write operations; such entries are cleaned up as part of    * the routine maintenance described in the class javadoc.    *    * @throws IllegalStateException if the value strength was already set    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.lang.ref.SoftReference"
-argument_list|)
+comment|// java.lang.ref.SoftReference
 DECL|method|softValues ()
 specifier|public
 name|CacheBuilder
@@ -1777,9 +1757,7 @@ block|}
 comment|/**    * Specifies that active entries are eligible for automatic refresh once a fixed duration has    * elapsed after the entry's creation, or the most recent replacement of its value. The semantics    * of refreshes are specified in {@link LoadingCache#refresh}, and are performed by calling    * {@link CacheLoader#reload}.    *    *<p>As the default implementation of {@link CacheLoader#reload} is synchronous, it is    * recommended that users of this method override {@link CacheLoader#reload} with an asynchronous    * implementation; otherwise refreshes will be performed during unrelated cache read and write    * operations.    *    *<p>Currently automatic refreshes are performed when the first stale request for an entry    * occurs. The request triggering refresh will make a blocking call to {@link CacheLoader#reload}    * and immediately return the new value if the returned future is complete, and the old value    * otherwise.    *    *<p><b>Note:</b><i>all exceptions thrown during refresh will be logged and then swallowed</i>.    *    * @param duration the length of time after an entry is created that it should be considered    *     stale, and thus eligible for refresh    * @param unit the unit that {@code duration} is expressed in    * @throws IllegalArgumentException if {@code duration} is negative    * @throws IllegalStateException if the refresh interval was already set    * @since 11.0    */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"To be supported (synchronously)."
-argument_list|)
+comment|// To be supported (synchronously).
 DECL|method|refreshAfterWrite (long duration, TimeUnit unit)
 specifier|public
 name|CacheBuilder

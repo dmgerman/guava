@@ -190,9 +190,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testRenaming ()
 specifier|public
 name|void
@@ -298,9 +296,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testRenaming_exceptionalReturn ()
 specifier|public
 name|void
@@ -425,9 +421,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"threads"
-argument_list|)
+comment|// threads
 DECL|method|testRenaming_noPermissions ()
 specifier|public
 name|void

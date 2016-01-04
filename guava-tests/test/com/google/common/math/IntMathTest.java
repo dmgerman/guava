@@ -283,10 +283,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantMaxPowerOfSqrt2Unsigned ()
 specifier|public
 name|void
@@ -328,9 +325,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"pow()"
-argument_list|)
+comment|// pow()
 DECL|method|testConstantsPowersOf10 ()
 specifier|public
 name|void
@@ -381,10 +376,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testMaxLog10ForLeadingZeros ()
 specifier|public
 name|void
@@ -442,10 +434,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantsHalfPowersOf10 ()
 specifier|public
 name|void
@@ -515,10 +504,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testConstantsBiggestBinomials ()
 specifier|public
 name|void
@@ -629,9 +615,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"sqrt"
-argument_list|)
+comment|// sqrt
 DECL|method|testPowersSqrtMaxInt ()
 specifier|public
 name|void
@@ -735,9 +719,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.math.BigInteger"
-argument_list|)
+comment|// java.math.BigInteger
 DECL|method|testIsPowerOfTwo ()
 specifier|public
 name|void
@@ -1001,9 +983,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"log10"
-argument_list|)
+comment|// log10
 DECL|method|testLog10ZeroAlwaysThrows ()
 specifier|public
 name|void
@@ -1045,9 +1025,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"log10"
-argument_list|)
+comment|// log10
 DECL|method|testLog10NegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1099,10 +1077,7 @@ block|}
 comment|// Relies on the correctness of BigIntegerMath.log10 for all modes except UNNECESSARY.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testLog10MatchesBigInteger ()
 specifier|public
 name|void
@@ -1156,9 +1131,7 @@ block|}
 comment|// Relies on the correctness of log10(int, FLOOR) and of pow(int, int).
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"pow()"
-argument_list|)
+comment|// pow()
 DECL|method|testLog10Exact ()
 specifier|public
 name|void
@@ -1237,9 +1210,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"log10"
-argument_list|)
+comment|// log10
 DECL|method|testLog10TrivialOnPowerOfTen ()
 specifier|public
 name|void
@@ -1278,9 +1249,7 @@ block|}
 comment|// Simple test to cover sqrt(0) for all types and all modes.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"sqrt"
-argument_list|)
+comment|// sqrt
 DECL|method|testSqrtZeroAlwaysZero ()
 specifier|public
 name|void
@@ -1313,9 +1282,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"sqrt"
-argument_list|)
+comment|// sqrt
 DECL|method|testSqrtNegativeAlwaysThrows ()
 specifier|public
 name|void
@@ -1370,10 +1337,7 @@ block|}
 comment|/* Relies on the correctness of BigIntegerMath.sqrt for all modes except UNNECESSARY. */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testSqrtMatchesBigInteger ()
 specifier|public
 name|void
@@ -1432,9 +1396,7 @@ block|}
 comment|/* Relies on the correctness of sqrt(int, FLOOR). */
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"sqrt"
-argument_list|)
+comment|// sqrt
 DECL|method|testSqrtExactMatchesFloorOrThrows ()
 specifier|public
 name|void
@@ -1511,9 +1473,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"2147483646^2 expected=4"
-argument_list|)
+comment|// 2147483646^2 expected=4
 DECL|method|testPow ()
 specifier|public
 name|void
@@ -2646,9 +2606,7 @@ name|AndroidIncompatible
 comment|// slow
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|testSaturatedAdd ()
 specifier|public
 name|void
@@ -2713,9 +2671,7 @@ name|AndroidIncompatible
 comment|// slow
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|testSaturatedSubtract ()
 specifier|public
 name|void
@@ -2780,9 +2736,7 @@ name|AndroidIncompatible
 comment|// slow
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|testSaturatedMultiply ()
 specifier|public
 name|void
@@ -2844,9 +2798,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"TODO"
-argument_list|)
+comment|// TODO
 DECL|method|testSaturatedPow ()
 specifier|public
 name|void
@@ -3144,10 +3096,7 @@ block|}
 comment|// Depends on the correctness of BigIntegerMath.binomial.
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"BigIntegerMath"
-argument_list|)
-comment|// TODO(cpovirk): GWT-enable BigIntegerMath
+comment|// BigIntegerMath // TODO(cpovirk): GWT-enable BigIntegerMath
 DECL|method|testBinomial ()
 specifier|public
 name|void
@@ -3232,9 +3181,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"binomial"
-argument_list|)
+comment|// binomial
 DECL|method|testBinomialOutside ()
 specifier|public
 name|void
@@ -3309,9 +3256,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"binomial"
-argument_list|)
+comment|// binomial
 DECL|method|testBinomialNegative ()
 specifier|public
 name|void
@@ -3356,9 +3301,7 @@ name|AndroidIncompatible
 comment|// slow
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"java.math.BigInteger"
-argument_list|)
+comment|// java.math.BigInteger
 DECL|method|testMean ()
 specifier|public
 name|void
@@ -3784,9 +3727,7 @@ return|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NullPointerTester"
-argument_list|)
+comment|// NullPointerTester
 DECL|method|testNullPointers ()
 specifier|public
 name|void

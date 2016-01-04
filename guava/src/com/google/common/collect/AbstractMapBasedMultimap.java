@@ -2630,9 +2630,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 annotation|@
 name|WeakOuter
 DECL|class|WrappedNavigableSet
@@ -4254,9 +4252,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableSet"
-argument_list|)
+comment|// NavigableSet
 annotation|@
 name|WeakOuter
 DECL|class|NavigableKeySet
@@ -6137,9 +6133,7 @@ block|}
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"NavigableAsMap"
-argument_list|)
+comment|// NavigableAsMap
 DECL|class|NavigableAsMap
 class|class
 name|NavigableAsMap

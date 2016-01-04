@@ -231,9 +231,7 @@ name|TestCase
 block|{
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"suite"
-argument_list|)
+comment|// suite
 DECL|method|suite ()
 specifier|public
 specifier|static
@@ -517,9 +515,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializationContainingSelf ()
 specifier|public
 name|void
@@ -591,9 +587,7 @@ expr_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"Only used by @GwtIncompatible code"
-argument_list|)
+comment|// Only used by @GwtIncompatible code
 DECL|class|MultisetHolder
 specifier|private
 specifier|static
@@ -639,9 +633,7 @@ decl_stmt|;
 block|}
 annotation|@
 name|GwtIncompatible
-argument_list|(
-literal|"SerializableTester"
-argument_list|)
+comment|// SerializableTester
 DECL|method|testSerializationIndirectSelfReference ()
 specifier|public
 name|void
