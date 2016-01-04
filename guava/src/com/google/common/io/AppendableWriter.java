@@ -34,6 +34,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -87,6 +101,8 @@ comment|/**  * Writer that places all output on an {@link Appendable} target. If
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|AppendableWriter
 class|class
 name|AppendableWriter

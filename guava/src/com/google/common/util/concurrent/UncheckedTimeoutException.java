@@ -20,6 +20,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -33,6 +47,8 @@ comment|/**  * Unchecked version of {@link java.util.concurrent.TimeoutException
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|UncheckedTimeoutException
 specifier|public
 class|class

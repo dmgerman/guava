@@ -30,6 +30,20 @@ name|Beta
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides equivalent behavior to {@link String#intern} for other immutable  * types.  *  * @author Kevin Bourrillion  * @since 3.0  */
 end_comment
@@ -37,6 +51,8 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
+annotation|@
+name|GwtIncompatible
 DECL|interface|Interner
 specifier|public
 interface|interface

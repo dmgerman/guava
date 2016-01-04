@@ -46,6 +46,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -243,6 +257,8 @@ comment|/**  * A ScheduledExecutorService that executes all scheduled actions im
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|SameThreadScheduledExecutorService
 class|class
 name|SameThreadScheduledExecutorService

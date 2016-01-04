@@ -118,6 +118,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|math
@@ -131,6 +145,8 @@ comment|/**  * Utilities for {@code double} primitives.  *  * @author Louis Wass
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|DoubleUtils
 specifier|final
 class|class

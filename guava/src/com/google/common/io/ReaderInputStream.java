@@ -72,6 +72,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|primitives
 operator|.
 name|UnsignedBytes
@@ -201,6 +215,8 @@ comment|/**  * An {@link InputStream} that converts characters from a {@link Rea
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|ReaderInputStream
 specifier|final
 class|class

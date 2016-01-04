@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -75,6 +89,8 @@ comment|/**  * A {@link Reader} that concatenates multiple readers.  *  * @autho
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|MultiReader
 class|class
 name|MultiReader

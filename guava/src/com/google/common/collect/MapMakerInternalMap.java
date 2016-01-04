@@ -58,6 +58,20 @@ name|common
 operator|.
 name|annotations
 operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
 name|VisibleForTesting
 import|;
 end_import
@@ -547,6 +561,8 @@ comment|/**  * The concurrent hash map implementation built by {@link MapMaker}.
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|MapMakerInternalMap
 class|class
 name|MapMakerInternalMap

@@ -26,6 +26,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|ForwardingObject
@@ -129,6 +143,8 @@ comment|/**  * An executor service which forwards all its method calls to anothe
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|ForwardingExecutorService
 specifier|public
 specifier|abstract

@@ -44,6 +44,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|base
 operator|.
 name|Preconditions
@@ -125,6 +139,8 @@ comment|/**  * Implementation of {@code Futures#withTimeout}.  *  *<p>Future tha
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|TimeoutFuture
 specifier|final
 class|class

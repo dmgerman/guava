@@ -24,6 +24,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Maps
@@ -107,6 +121,8 @@ comment|/**  * Skeletal implementation of {@link NavigableMap}.  *  * @author Lo
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|AbstractNavigableMap
 specifier|abstract
 class|class

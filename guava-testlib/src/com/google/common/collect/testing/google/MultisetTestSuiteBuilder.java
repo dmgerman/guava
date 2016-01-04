@@ -44,6 +44,20 @@ name|google
 operator|.
 name|common
 operator|.
+name|annotations
+operator|.
+name|GwtIncompatible
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
 name|collect
 operator|.
 name|Multiset
@@ -381,6 +395,8 @@ comment|/**  * Creates, based on your criteria, a JUnit test suite that exhausti
 end_comment
 
 begin_class
+annotation|@
+name|GwtIncompatible
 DECL|class|MultisetTestSuiteBuilder
 specifier|public
 class|class
