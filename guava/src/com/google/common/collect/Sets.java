@@ -1567,7 +1567,7 @@ name|map
 parameter_list|)
 block|{
 return|return
-name|Platform
+name|Collections
 operator|.
 name|newSetFromMap
 argument_list|(
