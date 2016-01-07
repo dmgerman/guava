@@ -445,12 +445,6 @@ argument_list|,
 literal|0
 argument_list|)
 block|{
-block|{
-comment|// TODO: don't set this universally
-name|stopTestingWhenAddThrowsException
-parameter_list|()
-constructor_decl|;
-block|}
 annotation|@
 name|Override
 specifier|protected

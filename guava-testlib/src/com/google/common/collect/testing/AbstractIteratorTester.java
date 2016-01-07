@@ -198,40 +198,6 @@ name|E
 parameter_list|>
 parameter_list|>
 block|{
-DECL|field|whenNextThrowsExceptionStopTestingCallsToRemove
-specifier|private
-name|boolean
-name|whenNextThrowsExceptionStopTestingCallsToRemove
-decl_stmt|;
-DECL|field|whenAddThrowsExceptionStopTesting
-specifier|private
-name|boolean
-name|whenAddThrowsExceptionStopTesting
-decl_stmt|;
-comment|/**    * Don't verify iterator behavior on remove() after a call to next()    * throws an exception.    *    *<p>JDK 6 currently has a bug where some iterators get into a undefined    * state when next() throws a NoSuchElementException. The correct    * behavior is for remove() to remove the last element returned by    * next, even if a subsequent next() call threw an exception; however    * JDK 6's HashMap and related classes throw an IllegalStateException    * in this case.    *    *<p>Calling this method causes the iterator tester to skip testing    * any remove() in a stimulus sequence after the reference iterator    * throws an exception in next().    *    *<p>TODO: remove this once we're on 6u5, which has the fix.    *    * @see<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6529795">    *     Sun Java Bug 6529795</a>    */
-DECL|method|ignoreSunJavaBug6529795 ()
-specifier|public
-name|void
-name|ignoreSunJavaBug6529795
-parameter_list|()
-block|{
-name|whenNextThrowsExceptionStopTestingCallsToRemove
-operator|=
-literal|true
-expr_stmt|;
-block|}
-comment|/**    * Don't verify iterator behavior after a call to add() throws an exception.    *    *<p>AbstractList's ListIterator implementation gets into a undefined state    * when add() throws an UnsupportedOperationException. Instead of leaving the    * iterator's position unmodified, it increments it, skipping an element or    * even moving past the end of the list.    *    *<p>Calling this method causes the iterator tester to skip testing in a    * stimulus sequence after the iterator under test throws an exception in    * add().    *    *<p>TODO: remove this once the behavior is fixed.    *    * @see<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6533203">    *     Sun Java Bug 6533203</a>    */
-DECL|method|stopTestingWhenAddThrowsException ()
-specifier|public
-name|void
-name|stopTestingWhenAddThrowsException
-parameter_list|()
-block|{
-name|whenAddThrowsExceptionStopTesting
-operator|=
-literal|true
-expr_stmt|;
-block|}
 DECL|field|stimuli
 specifier|private
 name|Stimulus
@@ -1344,11 +1310,6 @@ init|=
 name|newTargetIterator
 argument_list|()
 decl_stmt|;
-name|boolean
-name|shouldStopTestingCallsToRemove
-init|=
-literal|false
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1366,41 +1327,12 @@ name|i
 operator|++
 control|)
 block|{
-name|Stimulus
-argument_list|<
-name|E
-argument_list|,
-name|?
-super|super
-name|I
-argument_list|>
-name|stimulus
-init|=
+try|try
+block|{
 name|stimuli
 index|[
 name|i
 index|]
-decl_stmt|;
-if|if
-condition|(
-name|stimulus
-operator|.
-name|equals
-argument_list|(
-name|remove
-argument_list|)
-operator|&&
-name|shouldStopTestingCallsToRemove
-condition|)
-block|{
-break|break;
-block|}
-try|try
-block|{
-name|boolean
-name|threwException
-init|=
-name|stimulus
 operator|.
 name|executeAndCompare
 argument_list|(
@@ -1408,56 +1340,13 @@ name|reference
 argument_list|,
 name|target
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|threwException
-operator|&&
-name|stimulus
-operator|.
-name|equals
-argument_list|(
-name|next
-argument_list|)
-operator|&&
-name|whenNextThrowsExceptionStopTestingCallsToRemove
-condition|)
-block|{
-name|shouldStopTestingCallsToRemove
-operator|=
-literal|true
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|threwException
-operator|&&
-name|stimulus
-operator|.
-name|equals
+name|verify
 argument_list|(
-name|add
-argument_list|)
-operator|&&
-name|whenAddThrowsExceptionStopTesting
-condition|)
-block|{
-break|break;
-block|}
-name|List
-argument_list|<
-name|E
-argument_list|>
-name|elements
-init|=
 name|reference
 operator|.
 name|getElements
 argument_list|()
-decl_stmt|;
-name|verify
-argument_list|(
-name|elements
 argument_list|)
 expr_stmt|;
 block|}
@@ -1557,7 +1446,7 @@ name|iterator
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * Apply this method to both iterators and return normally only if both    * produce the same response.    *    * @return {@code true} if an exception was thrown by the iterators.    *    * @see Stimulus#executeAndCompare(ListIterator, Iterator)    */
+comment|/**    * Apply this method to both iterators and return normally only if both    * produce the same response.    *    * @see Stimulus#executeAndCompare(ListIterator, Iterator)    */
 DECL|method|internalExecuteAndCompare ( T reference, T target, IteratorOperation method)
 specifier|private
 parameter_list|<
@@ -1568,7 +1457,7 @@ argument_list|<
 name|E
 argument_list|>
 parameter_list|>
-name|boolean
+name|void
 name|internalExecuteAndCompare
 parameter_list|(
 name|T
@@ -1580,8 +1469,6 @@ parameter_list|,
 name|IteratorOperation
 name|method
 parameter_list|)
-throws|throws
-name|AssertionFailedError
 block|{
 name|Object
 name|referenceReturnValue
@@ -1748,9 +1635,7 @@ argument_list|,
 name|targetReturnValue
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
+return|return;
 block|}
 if|if
 condition|(
@@ -1775,9 +1660,6 @@ argument_list|(
 name|targetException
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
 DECL|field|REMOVE_METHOD
 specifier|private
@@ -2059,10 +1941,10 @@ operator|=
 name|toString
 expr_stmt|;
 block|}
-comment|/**      * Send this stimulus to both iterators and return normally only if both      * produce the same response.      *      * @return {@code true} if an exception was thrown by the iterators.      */
+comment|/**      * Send this stimulus to both iterators and return normally only if both      * produce the same response.      */
 DECL|method|executeAndCompare (ListIterator<E> reference, T target)
 specifier|abstract
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2116,7 +1998,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2132,7 +2014,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-comment|// return only if both are true or both are false
 name|assertEquals
 argument_list|(
 name|reference
@@ -2146,9 +2027,6 @@ name|hasNext
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 block|}
 decl_stmt|;
@@ -2180,7 +2058,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2196,7 +2074,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-return|return
 name|internalExecuteAndCompare
 argument_list|(
 name|reference
@@ -2205,7 +2082,7 @@ name|target
 argument_list|,
 name|NEXT_METHOD
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
@@ -2237,7 +2114,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2253,7 +2130,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-return|return
 name|internalExecuteAndCompare
 argument_list|(
 name|reference
@@ -2262,7 +2138,7 @@ name|target
 argument_list|,
 name|REMOVE_METHOD
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
@@ -2328,7 +2204,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2344,7 +2220,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-comment|// return only if both are true or both are false
 name|assertEquals
 argument_list|(
 name|reference
@@ -2358,9 +2233,6 @@ name|hasPrevious
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 block|}
 decl_stmt|;
@@ -2392,7 +2264,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2421,9 +2293,6 @@ name|nextIndex
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 block|}
 decl_stmt|;
@@ -2455,7 +2324,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2484,9 +2353,6 @@ name|previousIndex
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 block|}
 decl_stmt|;
@@ -2518,7 +2384,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2534,7 +2400,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-return|return
 name|internalExecuteAndCompare
 argument_list|(
 name|reference
@@ -2543,7 +2408,7 @@ name|target
 argument_list|,
 name|PREVIOUS_METHOD
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
@@ -2575,7 +2440,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2591,7 +2456,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-return|return
 name|internalExecuteAndCompare
 argument_list|(
 name|reference
@@ -2601,7 +2465,7 @@ argument_list|,
 name|newAddMethod
 argument_list|()
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
@@ -2633,7 +2497,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-name|boolean
+name|void
 name|executeAndCompare
 parameter_list|(
 name|ListIterator
@@ -2649,7 +2513,6 @@ argument_list|>
 name|target
 parameter_list|)
 block|{
-return|return
 name|internalExecuteAndCompare
 argument_list|(
 name|reference
@@ -2659,7 +2522,7 @@ argument_list|,
 name|newSetMethod
 argument_list|()
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 decl_stmt|;
