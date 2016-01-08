@@ -4596,6 +4596,7 @@ index|[]
 name|actual
 parameter_list|)
 block|{
+comment|// TODO(b/25905237): Use ofElementsIn(expected) when that's available in guava
 name|assertThat
 argument_list|(
 name|actual
