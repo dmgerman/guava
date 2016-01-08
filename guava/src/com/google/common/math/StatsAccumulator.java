@@ -460,8 +460,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Adds the given statistics to the dataset, as if the individual values used to compute the    * statistics had been added directly.    */
-comment|// TODO(b/26080783): Make public once ready (including exhaustive tests for edge cases).
 DECL|method|addAll (Stats values)
+specifier|public
 name|void
 name|addAll
 parameter_list|(
