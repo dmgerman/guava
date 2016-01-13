@@ -376,6 +376,16 @@ name|REFERER
 init|=
 literal|"Referer"
 decl_stmt|;
+comment|/** The HTTP {@code Service-Worker} header field name. */
+DECL|field|SERVICE_WORKER
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SERVICE_WORKER
+init|=
+literal|"Service-Worker"
+decl_stmt|;
 comment|/** The HTTP {@code TE} header field name. */
 DECL|field|TE
 specifier|public
