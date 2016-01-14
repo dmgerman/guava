@@ -280,8 +280,6 @@ literal|"fOo"
 argument_list|,
 literal|"f--o"
 argument_list|,
-literal|"foo-.com"
-argument_list|,
 literal|"f_a"
 argument_list|,
 literal|"foo.net.us\uFF61ocm"
@@ -325,7 +323,7 @@ literal|"13"
 argument_list|,
 literal|"abc.12c"
 argument_list|,
-literal|"foo_.com"
+literal|"foo-.com"
 argument_list|,
 literal|"_bar.quux"
 argument_list|,

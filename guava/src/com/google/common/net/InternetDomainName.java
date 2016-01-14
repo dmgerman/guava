@@ -553,7 +553,7 @@ return|return
 name|NO_PUBLIC_SUFFIX_FOUND
 return|;
 block|}
-comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted within parts (not the first or    *     last character).    *<li>Dashes ('-') are permitted as the last character of parts (in    *     addition to being permitted within parts, per the standard).    *<li>Parts other than the final part may start with a digit, as mandated    *     by<a href="https://tools.ietf.org/html/rfc1123#section-2">RFC    *     1123</a>.    *</ul>    *    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValid}    * @since 10.0 (previously named {@code fromLenient})    */
+comment|/**    * Returns an instance of {@link InternetDomainName} after lenient    * validation.  Specifically, validation against<a    * href="http://www.ietf.org/rfc/rfc3490.txt">RFC 3490</a>    * ("Internationalizing Domain Names in Applications") is skipped, while    * validation against<a    * href="http://www.ietf.org/rfc/rfc1035.txt">RFC 1035</a> is relaxed in    * the following ways:    *<ul>    *<li>Any part containing non-ASCII characters is considered valid.    *<li>Underscores ('_') are permitted wherever dashes ('-') are permitted.    *<li>Parts other than the final part may start with a digit, as mandated    *     by<a href="https://tools.ietf.org/html/rfc1123#section-2">RFC    *     1123</a>.    *</ul>    *    *    * @param domain A domain name (not IP address)    * @throws IllegalArgumentException if {@code name} is not syntactically valid    *     according to {@link #isValid}    * @since 10.0 (previously named {@code fromLenient})    */
 DECL|method|from (String domain)
 specifier|public
 specifier|static
@@ -666,26 +666,12 @@ return|return
 literal|true
 return|;
 block|}
-DECL|field|UNDERSCORE_MATCHER
+DECL|field|DASH_MATCHER
 specifier|private
 specifier|static
 specifier|final
 name|CharMatcher
-name|UNDERSCORE_MATCHER
-init|=
-name|CharMatcher
-operator|.
-name|is
-argument_list|(
-literal|'_'
-argument_list|)
-decl_stmt|;
-DECL|field|DASH_OR_UNDERSCORE_MATCHER
-specifier|private
-specifier|static
-specifier|final
-name|CharMatcher
-name|DASH_OR_UNDERSCORE_MATCHER
+name|DASH_MATCHER
 init|=
 name|CharMatcher
 operator|.
@@ -707,7 +693,7 @@ name|JAVA_LETTER_OR_DIGIT
 operator|.
 name|or
 argument_list|(
-name|DASH_OR_UNDERSCORE_MATCHER
+name|DASH_MATCHER
 argument_list|)
 decl_stmt|;
 comment|/**    * Helper method for {@link #validateSyntax(List)}. Validates that one part of    * a domain name is valid.    *    * @param part The domain name part to be validated    * @param isFinalPart Is this the final (rightmost) domain part?    * @return Whether the part is valid    */
@@ -775,10 +761,10 @@ return|return
 literal|false
 return|;
 block|}
-comment|// No initial dash or underscore. No final underscore.
+comment|// No initial or final dashes or underscores.
 if|if
 condition|(
-name|DASH_OR_UNDERSCORE_MATCHER
+name|DASH_MATCHER
 operator|.
 name|matches
 argument_list|(
@@ -790,7 +776,7 @@ literal|0
 argument_list|)
 argument_list|)
 operator|||
-name|UNDERSCORE_MATCHER
+name|DASH_MATCHER
 operator|.
 name|matches
 argument_list|(
