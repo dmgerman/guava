@@ -251,7 +251,7 @@ name|ImmutableMap
 argument_list|<
 name|E
 argument_list|,
-name|ImmutableSet
+name|UndirectedIncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -351,7 +351,7 @@ name|Builder
 argument_list|<
 name|E
 argument_list|,
-name|ImmutableSet
+name|UndirectedIncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -380,9 +380,9 @@ name|put
 argument_list|(
 name|edge
 argument_list|,
-name|ImmutableSet
+name|UndirectedIncidentNodes
 operator|.
-name|copyOf
+name|of
 argument_list|(
 name|undirectedGraph
 operator|.
@@ -478,7 +478,7 @@ argument_list|,
 literal|"node"
 argument_list|)
 expr_stmt|;
-name|Set
+name|ImmutableSet
 argument_list|<
 name|E
 argument_list|>
@@ -527,7 +527,7 @@ argument_list|,
 literal|"edge"
 argument_list|)
 expr_stmt|;
-name|Set
+name|UndirectedIncidentNodes
 argument_list|<
 name|N
 argument_list|>
@@ -751,7 +751,6 @@ range|:
 name|incidentEdgesN1
 control|)
 block|{
-comment|// An edge is a self-loop iff it has exactly one incident node.
 if|if
 condition|(
 name|edgeToIncidentNodes
@@ -761,10 +760,8 @@ argument_list|(
 name|edge
 argument_list|)
 operator|.
-name|size
+name|isSelfLoop
 argument_list|()
-operator|==
-literal|1
 condition|)
 block|{
 name|returnSet
