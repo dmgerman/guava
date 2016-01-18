@@ -4644,6 +4644,47 @@ name|expected
 parameter_list|)
 block|{     }
 block|}
+DECL|method|testTryParse_withNullGwt ()
+specifier|public
+name|void
+name|testTryParse_withNullGwt
+parameter_list|()
+block|{
+name|assertNull
+argument_list|(
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+literal|"null"
+argument_list|)
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|int
+name|unused
+init|=
+name|Ints
+operator|.
+name|tryParse
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+name|fail
+argument_list|(
+literal|"Expected NPE"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NullPointerException
+name|expected
+parameter_list|)
+block|{     }
+block|}
 block|}
 end_class
 
