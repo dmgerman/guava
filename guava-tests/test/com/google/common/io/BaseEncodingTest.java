@@ -3136,8 +3136,6 @@ name|assertEquals
 argument_list|(
 literal|"BaseEncoding.base64().withPadChar(=)"
 argument_list|,
-name|BaseEncoding
-operator|.
 name|base64
 argument_list|()
 operator|.
@@ -3149,8 +3147,6 @@ name|assertEquals
 argument_list|(
 literal|"BaseEncoding.base32Hex().omitPadding()"
 argument_list|,
-name|BaseEncoding
-operator|.
 name|base32Hex
 argument_list|()
 operator|.
@@ -3165,8 +3161,6 @@ name|assertEquals
 argument_list|(
 literal|"BaseEncoding.base32().lowerCase().withPadChar($)"
 argument_list|,
-name|BaseEncoding
-operator|.
 name|base32
 argument_list|()
 operator|.
@@ -3186,8 +3180,6 @@ name|assertEquals
 argument_list|(
 literal|"BaseEncoding.base16().withSeparator(\"\n\", 10)"
 argument_list|,
-name|BaseEncoding
-operator|.
 name|base16
 argument_list|()
 operator|.
