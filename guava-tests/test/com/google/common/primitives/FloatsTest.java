@@ -4571,7 +4571,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|float
+name|Float
 name|unused
 init|=
 name|Floats

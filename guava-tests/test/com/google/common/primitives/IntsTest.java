@@ -4662,7 +4662,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|int
+name|Integer
 name|unused
 init|=
 name|Ints

@@ -4763,7 +4763,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|double
+name|Double
 name|unused
 init|=
 name|Doubles

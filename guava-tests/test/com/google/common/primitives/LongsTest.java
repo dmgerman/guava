@@ -4585,7 +4585,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|long
+name|Long
 name|unused
 init|=
 name|Longs
