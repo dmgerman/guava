@@ -1171,6 +1171,21 @@ argument_list|,
 literal|"webm"
 argument_list|)
 decl_stmt|;
+comment|/**    * Media type for L24 audio, as defined by    *<a href="https://tools.ietf.org/html/rfc3190">RFC 3190</a>.    *    * @since 20.0    */
+DECL|field|L24_AUDIO
+specifier|public
+specifier|static
+specifier|final
+name|MediaType
+name|L24_AUDIO
+init|=
+name|createConstant
+argument_list|(
+name|AUDIO_TYPE
+argument_list|,
+literal|"l24"
+argument_list|)
+decl_stmt|;
 comment|/**    * Media type for Basic Audio, as defined by    *<a href="http://tools.ietf.org/html/rfc2046#section-4.3">RFC 2046</a>.    *    * @since 20.0    */
 DECL|field|BASIC_AUDIO
 specifier|public
