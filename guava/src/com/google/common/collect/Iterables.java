@@ -1738,16 +1738,13 @@ name|b
 parameter_list|)
 block|{
 return|return
-name|concat
-argument_list|(
-name|ImmutableList
+name|FluentIterable
 operator|.
-name|of
+name|concat
 argument_list|(
 name|a
 argument_list|,
 name|b
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1790,18 +1787,15 @@ name|c
 parameter_list|)
 block|{
 return|return
-name|concat
-argument_list|(
-name|ImmutableList
+name|FluentIterable
 operator|.
-name|of
+name|concat
 argument_list|(
 name|a
 argument_list|,
 name|b
 argument_list|,
 name|c
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1852,11 +1846,9 @@ name|d
 parameter_list|)
 block|{
 return|return
-name|concat
-argument_list|(
-name|ImmutableList
+name|FluentIterable
 operator|.
-name|of
+name|concat
 argument_list|(
 name|a
 argument_list|,
@@ -1865,7 +1857,6 @@ argument_list|,
 name|c
 argument_list|,
 name|d
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1905,7 +1896,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Combines multiple iterables into a single iterable. The returned iterable    * has an iterator that traverses the elements of each iterable in    * {@code inputs}. The input iterators are not polled until necessary.    *    *<p>The returned iterable's iterator supports {@code remove()} when the    * corresponding input iterator supports it. The methods of the returned    * iterable may throw {@code NullPointerException} if any of the input    * iterators is null.    */
-DECL|method|concat (final Iterable<? extends Iterable<? extends T>> inputs)
+DECL|method|concat (Iterable<? extends Iterable<? extends T>> inputs)
 specifier|public
 specifier|static
 parameter_list|<
@@ -1917,7 +1908,6 @@ name|T
 argument_list|>
 name|concat
 parameter_list|(
-specifier|final
 name|Iterable
 argument_list|<
 name|?
@@ -1932,55 +1922,13 @@ argument_list|>
 name|inputs
 parameter_list|)
 block|{
-name|checkNotNull
-argument_list|(
-name|inputs
-argument_list|)
-expr_stmt|;
 return|return
-operator|new
 name|FluentIterable
-argument_list|<
-name|T
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|Iterator
-argument_list|<
-name|T
-argument_list|>
-name|iterator
-parameter_list|()
-block|{
-return|return
-name|Iterators
 operator|.
 name|concat
 argument_list|(
-name|Iterables
-operator|.
-name|transform
-argument_list|(
 name|inputs
-argument_list|,
-name|Iterables
-operator|.
-expr|<
-name|T
-operator|>
-name|toIterator
-argument_list|()
 argument_list|)
-operator|.
-name|iterator
-argument_list|()
-argument_list|)
-return|;
-block|}
-block|}
 return|;
 block|}
 comment|/**    * Divides an iterable into unmodifiable sublists of the given size (the final    * iterable may be smaller). For example, partitioning an iterable containing    * {@code [a, b, c, d, e]} with a partition size of 3 yields {@code    * [[a, b, c], [d, e]]} -- an outer iterable containing two inner lists of    * three and two elements, all in the original order.    *    *<p>Iterators returned by the returned iterable do not support the {@link    * Iterator#remove()} method. The returned lists implement {@link    * RandomAccess}, whether or not the input list does.    *    *<p><b>Note:</b> if {@code iterable} is a {@link List}, use {@link    * Lists#partition(List, int)} instead.    *    * @param iterable the iterable to return a partitioned view of    * @param size the desired size of each partition (the last may be smaller)    * @return an iterable of unmodifiable lists containing the elements of {@code    *     iterable} divided into partitions    * @throws IllegalArgumentException if {@code size} is nonpositive    */
@@ -3642,7 +3590,6 @@ block|}
 comment|// TODO(user): Is this the best place for this? Move to fluent functions?
 comment|// Useful as a public method?
 DECL|method|toIterator ()
-specifier|private
 specifier|static
 parameter_list|<
 name|T
