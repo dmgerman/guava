@@ -3134,7 +3134,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-literal|"BaseEncoding.base64().withPadChar(=)"
+literal|"BaseEncoding.base64().withPadChar('=')"
 argument_list|,
 name|base64
 argument_list|()
@@ -3159,7 +3159,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"BaseEncoding.base32().lowerCase().withPadChar($)"
+literal|"BaseEncoding.base32().lowerCase().withPadChar('$')"
 argument_list|,
 name|base32
 argument_list|()
