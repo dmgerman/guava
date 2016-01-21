@@ -287,7 +287,8 @@ name|useNew
 condition|?
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 else|:
 name|OLD_WHITESPACE
 expr_stmt|;

@@ -638,7 +638,8 @@ name|on
 argument_list|(
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 argument_list|)
 operator|.
 name|split
@@ -993,7 +994,8 @@ name|or
 argument_list|(
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -1905,7 +1907,8 @@ name|or
 argument_list|(
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.
@@ -2931,7 +2934,8 @@ name|or
 argument_list|(
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 argument_list|)
 argument_list|)
 operator|.

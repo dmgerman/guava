@@ -242,7 +242,8 @@ literal|false
 argument_list|,
 name|CharMatcher
 operator|.
-name|NONE
+name|none
+argument_list|()
 argument_list|,
 name|Integer
 operator|.
@@ -936,7 +937,7 @@ name|limit
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * automatically removes leading and trailing {@linkplain    * CharMatcher#WHITESPACE whitespace} from each returned substring; equivalent    * to {@code trimResults(CharMatcher.WHITESPACE)}. For example, {@code    * Splitter.on(',').trimResults().split(" a, b ,c ")} returns an iterable    * containing {@code ["a", "b", "c"]}.    *    * @return a splitter with the desired configuration    */
+comment|/**    * Returns a splitter that behaves equivalently to {@code this} splitter, but    * automatically removes leading and trailing {@linkplain    * CharMatcher#WHITESPACE whitespace} from each returned substring; equivalent    * to {@code trimResults(CharMatcher.whitespace())}. For example, {@code    * Splitter.on(',').trimResults().split(" a, b ,c ")} returns an iterable    * containing {@code ["a", "b", "c"]}.    *    * @return a splitter with the desired configuration    */
 annotation|@
 name|CheckReturnValue
 DECL|method|trimResults ()
@@ -950,7 +951,8 @@ name|trimResults
 argument_list|(
 name|CharMatcher
 operator|.
-name|WHITESPACE
+name|whitespace
+argument_list|()
 argument_list|)
 return|;
 block|}
