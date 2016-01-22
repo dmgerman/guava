@@ -1867,7 +1867,8 @@ name|class
 argument_list|,
 name|CharMatcher
 operator|.
-name|NONE
+name|none
+argument_list|()
 argument_list|)
 operator|.
 name|put
