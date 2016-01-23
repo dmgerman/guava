@@ -195,7 +195,9 @@ operator|.
 name|supportsClone
 operator|=
 name|supportsClone
-argument_list|()
+argument_list|(
+name|prototype
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -210,15 +212,19 @@ return|return
 name|bits
 return|;
 block|}
-DECL|method|supportsClone ()
+DECL|method|supportsClone (Mac mac)
 specifier|private
+specifier|static
 name|boolean
 name|supportsClone
-parameter_list|()
+parameter_list|(
+name|Mac
+name|mac
+parameter_list|)
 block|{
 try|try
 block|{
-name|prototype
+name|mac
 operator|.
 name|clone
 argument_list|()

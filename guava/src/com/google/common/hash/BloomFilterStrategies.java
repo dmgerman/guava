@@ -94,6 +94,16 @@ name|Arrays
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Collections of strategies of generating the k * log(M) bits required for an element to  * be mapped to a BloomFilter of M bits and k hash functions. These  * strategies are part of the serialized form of the Bloom filters that use them, thus they must be  * preserved as is (no updates allowed, only introduction of new versions).  *  * Important: the order of the constants cannot change, and they cannot be deleted - we depend  * on their ordinal for BloomFilter serialization.  *  * @author Dimitris Andreou  * @author Kurt Alfred Kluever  */
 end_comment
@@ -1064,11 +1074,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|equals (Object o)
+DECL|method|equals (@ullable Object o)
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
 name|Object
 name|o
 parameter_list|)

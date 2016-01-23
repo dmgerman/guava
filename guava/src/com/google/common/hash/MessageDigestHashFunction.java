@@ -184,7 +184,9 @@ operator|.
 name|supportsClone
 operator|=
 name|supportsClone
-argument_list|()
+argument_list|(
+name|prototype
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|MessageDigestHashFunction (String algorithmName, int bytes, String toString)
@@ -254,18 +256,24 @@ operator|.
 name|supportsClone
 operator|=
 name|supportsClone
-argument_list|()
+argument_list|(
+name|prototype
+argument_list|)
 expr_stmt|;
 block|}
-DECL|method|supportsClone ()
+DECL|method|supportsClone (MessageDigest digest)
 specifier|private
+specifier|static
 name|boolean
 name|supportsClone
-parameter_list|()
+parameter_list|(
+name|MessageDigest
+name|digest
+parameter_list|)
 block|{
 try|try
 block|{
-name|prototype
+name|digest
 operator|.
 name|clone
 argument_list|()
