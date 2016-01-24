@@ -30,23 +30,11 @@ name|GwtCompatible
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * A string to be parsed as a number and the radix to interpret it in.  */
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|class|ParseRequest

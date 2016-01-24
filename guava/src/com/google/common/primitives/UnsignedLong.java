@@ -64,6 +64,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -79,16 +93,6 @@ operator|.
 name|math
 operator|.
 name|BigInteger
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -220,6 +224,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code UnsignedLong} representing the same value as the specified {@code long}.    *    * @throws IllegalArgumentException if {@code value} is negative    * @since 14.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|valueOf (long value)
 specifier|public
 specifier|static
@@ -249,6 +255,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a {@code UnsignedLong} representing the same value as the specified    * {@code BigInteger}. This is the inverse operation of {@link #bigIntegerValue()}.    *    * @throws IllegalArgumentException if {@code value} is negative or {@code value>= 2^64}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|valueOf (BigInteger value)
 specifier|public
 specifier|static
@@ -298,6 +306,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *     value    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|valueOf (String string)
 specifier|public
 specifier|static
@@ -318,6 +328,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an {@code UnsignedLong} holding the value of the specified {@code String}, parsed as    * an unsigned {@code long} value in the specified radix.    *    * @throws NumberFormatException if the string does not contain a parsable unsigned {@code long}    *     value, or {@code radix} is not between {@link Character#MIN_RADIX} and    *     {@link Character#MAX_RADIX}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|valueOf (String string, int radix)
 specifier|public
 specifier|static
@@ -346,8 +358,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of adding this and {@code val}. If the result would have more than 64 bits,    * returns the low 64 bits of the result.    *    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|plus (UnsignedLong val)
 specifier|public
 name|UnsignedLong
@@ -374,8 +384,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of subtracting this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|minus (UnsignedLong val)
 specifier|public
 name|UnsignedLong
@@ -402,8 +410,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of multiplying this and {@code val}. If the result would have more than 64    * bits, returns the low 64 bits of the result.    *    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|times (UnsignedLong val)
 specifier|public
 name|UnsignedLong
@@ -428,8 +434,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the result of dividing this by {@code val}.    *    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|dividedBy (UnsignedLong val)
 specifier|public
 name|UnsignedLong
@@ -459,8 +463,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns this modulo {@code val}.    *    * @since 14.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|mod (UnsignedLong val)
 specifier|public
 name|UnsignedLong

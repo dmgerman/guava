@@ -4,12 +4,17 @@ comment|/*  * Copyright (C) 2010 The Guava Authors  *  * Licensed under the Apac
 end_comment
 
 begin_comment
-comment|/**  * Static utilities for working with the eight primitive types and {@code void},  * and value types for treating them as unsigned.  *  *<p>This package is a part of the open-source  *<a href="http://github.com/google/guava">Guava</a> library.  *   *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  *<h2>Contents</h2>  *  *<h3>General static utilities</h3>  *  *<ul>  *<li>{@link com.google.common.primitives.Primitives}  *</ul>  *  *<h3>Per-type static utilities</h3>  *  *<ul>  *<li>{@link com.google.common.primitives.Booleans}  *<li>{@link com.google.common.primitives.Bytes}  *<ul>  *<li>{@link com.google.common.primitives.SignedBytes}  *<li>{@link com.google.common.primitives.UnsignedBytes}  *</ul>  *<li>{@link com.google.common.primitives.Chars}  *<li>{@link com.google.common.primitives.Doubles}  *<li>{@link com.google.common.primitives.Floats}  *<li>{@link com.google.common.primitives.Ints}  *<ul>  *<li>{@link com.google.common.primitives.UnsignedInts}  *</ul>  *<li>{@link com.google.common.primitives.Longs}  *<ul>  *<li>{@link com.google.common.primitives.UnsignedLongs}  *</ul>  *<li>{@link com.google.common.primitives.Shorts}  *</ul>  *  *<h3>Value types</h3>  *<ul>  *<li>{@link com.google.common.primitives.UnsignedInteger}  *<li>{@link com.google.common.primitives.UnsignedLong}  *</ul>  */
+comment|/**  * Static utilities for working with the eight primitive types and {@code void},  * and value types for treating them as unsigned.  *  *<p>This package is a part of the open-source  *<a href="http://github.com/google/guava">Guava</a> library.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  *<h2>Contents</h2>  *  *<h3>General static utilities</h3>  *  *<ul>  *<li>{@link com.google.common.primitives.Primitives}  *</ul>  *  *<h3>Per-type static utilities</h3>  *  *<ul>  *<li>{@link com.google.common.primitives.Booleans}  *<li>{@link com.google.common.primitives.Bytes}  *<ul>  *<li>{@link com.google.common.primitives.SignedBytes}  *<li>{@link com.google.common.primitives.UnsignedBytes}  *</ul>  *<li>{@link com.google.common.primitives.Chars}  *<li>{@link com.google.common.primitives.Doubles}  *<li>{@link com.google.common.primitives.Floats}  *<li>{@link com.google.common.primitives.Ints}  *<ul>  *<li>{@link com.google.common.primitives.UnsignedInts}  *</ul>  *<li>{@link com.google.common.primitives.Longs}  *<ul>  *<li>{@link com.google.common.primitives.UnsignedLongs}  *</ul>  *<li>{@link com.google.common.primitives.Shorts}  *</ul>  *  *<h3>Value types</h3>  *<ul>  *<li>{@link com.google.common.primitives.UnsignedInteger}  *<li>{@link com.google.common.primitives.UnsignedLong}  *</ul>  */
 end_comment
 
 begin_annotation
 annotation|@
 name|ParametersAreNonnullByDefault
+end_annotation
+
+begin_annotation
+annotation|@
+name|CheckReturnValue
 end_annotation
 
 begin_package
@@ -24,6 +29,16 @@ operator|.
 name|primitives
 package|;
 end_package
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|CheckReturnValue
+import|;
+end_import
 
 begin_import
 import|import

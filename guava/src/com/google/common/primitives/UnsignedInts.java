@@ -78,6 +78,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -93,16 +107,6 @@ operator|.
 name|util
 operator|.
 name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -152,8 +156,6 @@ name|MIN_VALUE
 return|;
 block|}
 comment|/**    * Compares the two specified {@code int} values, treating them as unsigned values between    * {@code 0} and {@code 2^32 - 1} inclusive.    *    * @param a the first unsigned {@code int} to compare    * @param b the second unsigned {@code int} to compare    * @return a negative value if {@code a} is less than {@code b}; a positive value if {@code a} is    *         greater than {@code b}; or zero if they are equal    */
-annotation|@
-name|CheckReturnValue
 DECL|method|compare (int a, int b)
 specifier|public
 specifier|static
@@ -185,8 +187,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the value of the given {@code int} as a {@code long}, when treated as unsigned.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toLong (int value)
 specifier|public
 specifier|static
@@ -204,8 +204,6 @@ name|INT_MASK
 return|;
 block|}
 comment|/**    * Returns the least value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of unsigned {@code int} values    * @return the value present in {@code array} that is less than or equal to every other value in    *         the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
-annotation|@
-name|CheckReturnValue
 DECL|method|min (int... array)
 specifier|public
 specifier|static
@@ -286,8 +284,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the greatest value present in {@code array}, treating values as unsigned.    *    * @param array a<i>nonempty</i> array of unsigned {@code int} values    * @return the value present in {@code array} that is greater than or equal to every other value    *         in the array according to {@link #compare}    * @throws IllegalArgumentException if {@code array} is empty    */
-annotation|@
-name|CheckReturnValue
 DECL|method|max (int... array)
 specifier|public
 specifier|static
@@ -368,8 +364,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the supplied unsigned {@code int} values separated by    * {@code separator}. For example, {@code join("-", 1, 2, 3)} returns the string {@code "1-2-3"}.    *    * @param separator the text that should appear between consecutive values in the resulting    *        string (but not at the start or end)    * @param array an array of unsigned {@code int} values, possibly empty    */
-annotation|@
-name|CheckReturnValue
 DECL|method|join (String separator, int... array)
 specifier|public
 specifier|static
@@ -473,8 +467,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a comparator that compares two arrays of unsigned {@code int} values lexicographically.    * That is, it compares, using {@link #compare(int, int)}), the first pair of values that follow    * any common prefix, or when one array is a prefix of the other, treats the shorter array as the    * lesser. For example, {@code []< [1]< [1, 2]< [2]< [1<< 31]}.    *    *<p>The returned comparator is inconsistent with {@link Object#equals(Object)} (since arrays    * support only identity equality), but it is consistent with {@link Arrays#equals(int[], int[])}.    *    * @see<a href="http://en.wikipedia.org/wiki/Lexicographical_order"> Lexicographical order    *      article at Wikipedia</a>    */
-annotation|@
-name|CheckReturnValue
 DECL|method|lexicographicalComparator ()
 specifier|public
 specifier|static
@@ -607,8 +599,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns dividend / divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|divide (int dividend, int divisor)
 specifier|public
 specifier|static
@@ -640,8 +630,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns dividend % divisor, where the dividend and divisor are treated as unsigned 32-bit    * quantities.    *    * @param dividend the dividend (numerator)    * @param divisor the divisor (denominator)    * @throws ArithmeticException if divisor is 0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|remainder (int dividend, int divisor)
 specifier|public
 specifier|static
@@ -673,6 +661,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the unsigned {@code int} value represented by the given string.    *    * Accepts a decimal, hexadecimal, or octal number given by specifying the following prefix:    *    *<ul>    *<li>{@code 0x}<i>HexDigits</i>    *<li>{@code 0X}<i>HexDigits</i>    *<li>{@code #}<i>HexDigits</i>    *<li>{@code 0}<i>OctalDigits</i>    *</ul>    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int} value    * @since 13.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|decode (String stringValue)
 specifier|public
 specifier|static
@@ -738,6 +728,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Returns the unsigned {@code int} value represented by the given decimal string.    *    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int} value    * @throws NullPointerException if {@code s} is null    *         (in contrast to {@link Integer#parseInt(String)})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|parseUnsignedInt (String s)
 specifier|public
 specifier|static
@@ -758,6 +750,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns the unsigned {@code int} value represented by a string with the given radix.    *    * @param string the string containing the unsigned integer representation to be parsed.    * @param radix the radix to use while parsing {@code s}; must be between    *        {@link Character#MIN_RADIX} and {@link Character#MAX_RADIX}.    * @throws NumberFormatException if the string does not contain a valid unsigned {@code int}, or    *         if supplied radix is invalid.    * @throws NullPointerException if {@code s} is null    *         (in contrast to {@link Integer#parseInt(String)})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|parseUnsignedInt (String string, int radix)
 specifier|public
 specifier|static
@@ -823,8 +817,6 @@ name|result
 return|;
 block|}
 comment|/**    * Returns a string representation of x, where x is treated as unsigned.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toString (int x)
 specifier|public
 specifier|static
@@ -845,8 +837,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string representation of {@code x} for the given radix, where {@code x} is treated    * as unsigned.    *    * @param x the value to convert to a string.    * @param radix the radix to use while working with {@code x}    * @throws IllegalArgumentException if {@code radix} is not between {@link Character#MIN_RADIX}    *         and {@link Character#MAX_RADIX}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|toString (int x, int radix)
 specifier|public
 specifier|static

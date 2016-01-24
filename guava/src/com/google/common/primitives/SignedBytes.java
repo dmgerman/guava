@@ -72,16 +72,6 @@ name|Comparator
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * Static utility methods pertaining to {@code byte} primitives that  * interpret values as signed. The corresponding methods that treat the values  * as unsigned are found in {@link UnsignedBytes}, and the methods for which  * signedness is not an issue are in {@link Bytes}.  *  *<p>See the Guava User Guide article on<a href=  * "https://github.com/google/guava/wiki/PrimitivesExplained">  * primitive utilities</a>.  *  * @author Kevin Bourrillion  * @since 1.0  */
 end_comment
@@ -95,8 +85,6 @@ comment|// javadoc?
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|class|SignedBytes
