@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -189,6 +203,8 @@ comment|// API (consumer-side) methods
 comment|/**    * Returns a representation of {@code a} as an instance of type {@code B}.    *    * @return the converted value; is null<i>if and only if</i> {@code a} is null    */
 annotation|@
 name|Nullable
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|convert (@ullable A a)
 specifier|public
 specifier|final
@@ -297,6 +313,8 @@ return|;
 block|}
 block|}
 comment|/**    * Returns an iterable that applies {@code convert} to each element of {@code fromIterable}. The    * conversion is done lazily.    *    *<p>The returned iterable's iterator supports {@code remove()} if the input iterator does. After    * a successful {@code remove()} call, {@code fromIterable} no longer contains the corresponding    * element.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|convertAll (final Iterable<? extends A> fromIterable)
 specifier|public
 name|Iterable
@@ -415,6 +433,8 @@ return|;
 block|}
 comment|/**    * Returns the reversed view of this converter, which converts {@code this.convert(a)} back to a    * value roughly equivalent to {@code a}.    *    *<p>The returned converter is serializable if {@code this} converter is.    */
 comment|// TODO(kak): Make this method final
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|reverse ()
 specifier|public
 name|Converter
@@ -1069,6 +1089,8 @@ annotation|@
 name|Override
 annotation|@
 name|Nullable
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|apply (@ullable A a)
 specifier|public
 specifier|final

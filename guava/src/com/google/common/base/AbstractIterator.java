@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -129,6 +143,8 @@ name|T
 name|computeNext
 parameter_list|()
 function_decl|;
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|endOfData ()
 specifier|protected
 specifier|final

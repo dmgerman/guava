@@ -500,9 +500,12 @@ name|Integer
 name|computeNext
 parameter_list|()
 block|{
+name|Integer
+name|unused
+init|=
 name|endOfData
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 throw|throw
 operator|new
 name|SomeUncheckedException
@@ -513,11 +516,14 @@ block|}
 decl_stmt|;
 try|try
 block|{
+name|boolean
+name|unused
+init|=
 name|iter
 operator|.
 name|hasNext
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"No exception thrown"
@@ -565,9 +571,12 @@ condition|(
 name|haveBeenCalled
 condition|)
 block|{
+name|Integer
+name|unused
+init|=
 name|endOfData
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 block|}
 name|haveBeenCalled
 operator|=
@@ -701,9 +710,12 @@ name|Integer
 name|computeNext
 parameter_list|()
 block|{
+name|boolean
+name|unused
+init|=
 name|hasNext
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 return|return
 literal|null
 return|;

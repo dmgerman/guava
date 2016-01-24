@@ -100,6 +100,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -179,16 +193,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -401,6 +405,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Propagates {@code throwable} as-is if it is an instance of {@link RuntimeException} or {@link    * Error}, or else as a last resort, wraps it in a {@code RuntimeException} and then propagates.    *<p>    * This method always throws an exception. The {@code RuntimeException} return type    * allows client code to signal to the compiler that statements after the call are    * unreachable. Example usage:    *<pre>    *   T doSomething() {    *     try {    *       return someMethodThatCouldThrowAnything();    *     } catch (IKnowWhatToDoWithThisException e) {    *       return handle(e);    *     } catch (Throwable t) {    *       throw Throwables.propagate(t);    *     }    *   }    *</pre>    *    * @param throwable the Throwable to propagate    * @return nothing will ever be returned; this return type is only for your convenience, as    *     illustrated in the example above    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|propagate (Throwable throwable)
 specifier|public
 specifier|static
@@ -428,8 +434,6 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Returns the innermost cause of {@code throwable}. The first throwable in a    * chain provides context from when the error or exception was initially    * detected. Example usage:    *<pre>    *   assertEquals("Unable to assign a customer id", Throwables.getRootCause(e).getMessage());    *</pre>    */
-annotation|@
-name|CheckReturnValue
 DECL|method|getRootCause (Throwable throwable)
 specifier|public
 specifier|static
@@ -470,8 +474,6 @@ comment|/**    * Gets a {@code Throwable} cause chain as a list.  The first entr
 annotation|@
 name|Beta
 comment|// TODO(kevinb): decide best return type
-annotation|@
-name|CheckReturnValue
 DECL|method|getCausalChain (Throwable throwable)
 specifier|public
 specifier|static
@@ -537,8 +539,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the result of {@link Throwable#toString() toString()}, followed by    * the full, recursive stack trace of {@code throwable}. Note that you probably should not be    * parsing the resulting string; if you need programmatic access to the stack frames, you can call    * {@link Throwable#getStackTrace()}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|getStackTraceAsString (Throwable throwable)
 specifier|public
 specifier|static
@@ -578,8 +578,6 @@ comment|/**    * Returns the stack trace of {@code throwable}, possibly providin
 comment|// TODO(cpovirk): Say something about the possibility that List access could fail at runtime?
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|lazyStackTrace (Throwable throwable)
 specifier|public
 specifier|static
@@ -617,8 +615,6 @@ block|}
 comment|/**    * Returns whether {@link #lazyStackTrace} will use the special implementation described in its    * documentation.    *    * @since 19.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|lazyStackTraceIsLazy ()
 specifier|public
 specifier|static

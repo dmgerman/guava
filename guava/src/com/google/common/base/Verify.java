@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -152,6 +166,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a default    * message otherwise.    *    * @return {@code reference}, guaranteed to be non-null, for convenience    * @throws VerifyException if {@code reference} is {@code null}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|verifyNotNull (@ullable T reference)
 specifier|public
 specifier|static
@@ -177,6 +193,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Ensures that {@code reference} is non-null, throwing a {@code VerifyException} with a custom    * message otherwise.    *    * @param errorMessageTemplate a template for the exception message should the    *     check fail. The message is formed by replacing each {@code %s}    *     placeholder in the template with an argument. These are matched by    *     position - the first {@code %s} gets {@code errorMessageArgs[0]}, etc.    *     Unmatched arguments will be appended to the formatted message in square    *     braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message    *     template. Arguments are converted to strings using    *     {@link String#valueOf(Object)}.    * @return {@code reference}, guaranteed to be non-null, for convenience    * @throws VerifyException if {@code reference} is {@code null}    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|verifyNotNull ( @ullable T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static

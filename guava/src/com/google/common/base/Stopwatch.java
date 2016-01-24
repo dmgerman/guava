@@ -176,6 +176,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -193,16 +207,6 @@ operator|.
 name|concurrent
 operator|.
 name|TimeUnit
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -246,8 +250,6 @@ name|long
 name|startTick
 decl_stmt|;
 comment|/**    * Creates (but does not start) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @since 15.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createUnstarted ()
 specifier|public
 specifier|static
@@ -262,8 +264,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates (but does not start) a new stopwatch, using the specified time    * source.    *    * @since 15.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createUnstarted (Ticker ticker)
 specifier|public
 specifier|static
@@ -283,8 +283,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates (and starts) a new stopwatch using {@link System#nanoTime}    * as its time source.    *    * @since 15.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createStarted ()
 specifier|public
 specifier|static
@@ -302,8 +300,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates (and starts) a new stopwatch, using the specified time    * source.    *    * @since 15.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createStarted (Ticker ticker)
 specifier|public
 specifier|static
@@ -359,8 +355,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns {@code true} if {@link #start()} has been called on this stopwatch,    * and {@link #stop()} has not been called since the last call to {@code    * start()}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|isRunning ()
 specifier|public
 name|boolean
@@ -372,6 +366,8 @@ name|isRunning
 return|;
 block|}
 comment|/**    * Starts the stopwatch.    *    * @return this {@code Stopwatch} instance    * @throws IllegalStateException if the stopwatch is already running.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|start ()
 specifier|public
 name|Stopwatch
@@ -402,6 +398,8 @@ name|this
 return|;
 block|}
 comment|/**    * Stops the stopwatch. Future reads will return the fixed duration that had    * elapsed up to this point.    *    * @return this {@code Stopwatch} instance    * @throws IllegalStateException if the stopwatch is already stopped.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|stop ()
 specifier|public
 name|Stopwatch
@@ -438,6 +436,8 @@ name|this
 return|;
 block|}
 comment|/**    * Sets the elapsed time for this stopwatch to zero,    * and places it in a stopped state.    *    * @return this {@code Stopwatch} instance    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|reset ()
 specifier|public
 name|Stopwatch
@@ -478,8 +478,6 @@ name|elapsedNanos
 return|;
 block|}
 comment|/**    * Returns the current elapsed time shown on this stopwatch, expressed    * in the desired time unit, with any fraction rounded down.    *    *<p>Note that the overhead of measurement can be more than a microsecond, so    * it is generally not useful to specify {@link TimeUnit#NANOSECONDS}    * precision here.    *    * @since 14.0 (since 10.0 as {@code elapsedTime()})    */
-annotation|@
-name|CheckReturnValue
 DECL|method|elapsed (TimeUnit desiredUnit)
 specifier|public
 name|long

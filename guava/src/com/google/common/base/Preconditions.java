@@ -32,6 +32,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|annotation
@@ -263,6 +277,8 @@ throw|;
 block|}
 block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T reference)
 specifier|public
 specifier|static
@@ -294,6 +310,8 @@ name|reference
 return|;
 block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessage the exception message to use if the check fails; will be converted to a    *     string using {@link String#valueOf(Object)}    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkNotNull (T reference, @Nullable Object errorMessage)
 specifier|public
 specifier|static
@@ -337,6 +355,8 @@ name|reference
 return|;
 block|}
 comment|/**    * Ensures that an object reference passed as a parameter to the calling method is not null.    *    * @param reference an object reference    * @param errorMessageTemplate a template for the exception message should the check fail. The    *     message is formed by replacing each {@code %s} placeholder in the template with an    *     argument. These are matched by position - the first {@code %s} gets {@code    *     errorMessageArgs[0]}, etc.  Unmatched arguments will be appended to the formatted message    *     in square braces. Unmatched placeholders will be left as-is.    * @param errorMessageArgs the arguments to be substituted into the message template. Arguments    *     are converted to strings using {@link String#valueOf(Object)}.    * @return the non-null reference that was validated    * @throws NullPointerException if {@code reference} is null    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkNotNull ( T reference, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
 specifier|public
 specifier|static
@@ -388,6 +408,8 @@ return|;
 block|}
 comment|/*    * All recent hotspots (as of 2009) *really* like to have the natural code    *    * if (guardExpression) {    *    throw new BadException(messageExpression);    * }    *    * refactored so that messageExpression is moved to a separate String-returning method.    *    * if (guardExpression) {    *    throw new BadException(badMsg(...));    * }    *    * The alternative natural refactorings into void or Exception-returning methods are much slower.    * This is a big deal - we're talking factors of 2-8 in microbenchmarks, not just 10-20%.  (This    * is a hotspot optimizer bug, which should be fixed, but that's a separate, big project).    *    * The coding pattern above is heavily used in java.util, e.g. in ArrayList.  There is a    * RangeCheckMicroBenchmark in the JDK that was used to test this.    *    * But the methods in this class want to throw different exceptions, depending on the args, so it    * appears that this pattern is not directly applicable.  But we can use the ridiculous, devious    * trick of throwing an exception in the middle of the construction of another exception.  Hotspot    * is fine with that.    */
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array, list or string of size    * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list or string    * @param size the size of that array, list or string    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkElementIndex (int index, int size)
 specifier|public
 specifier|static
@@ -413,6 +435,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Ensures that {@code index} specifies a valid<i>element</i> in an array, list or string of size    * {@code size}. An element index may range from zero, inclusive, to {@code size}, exclusive.    *    * @param index a user-supplied index identifying an element of an array, list or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is not less than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkElementIndex (int index, int size, @Nullable String desc)
 specifier|public
 specifier|static
@@ -532,6 +556,8 @@ return|;
 block|}
 block|}
 comment|/**    * Ensures that {@code index} specifies a valid<i>position</i> in an array, list or string of    * size {@code size}. A position index may range from zero to {@code size}, inclusive.    *    * @param index a user-supplied index identifying a position in an array, list or string    * @param size the size of that array, list or string    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkPositionIndex (int index, int size)
 specifier|public
 specifier|static
@@ -557,6 +583,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Ensures that {@code index} specifies a valid<i>position</i> in an array, list or string of    * size {@code size}. A position index may range from zero to {@code size}, inclusive.    *    * @param index a user-supplied index identifying a position in an array, list or string    * @param size the size of that array, list or string    * @param desc the text to use to describe this index in an error message    * @return the value of {@code index}    * @throws IndexOutOfBoundsException if {@code index} is negative or is greater than {@code size}    * @throws IllegalArgumentException if {@code size} is negative    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|checkPositionIndex (int index, int size, @Nullable String desc)
 specifier|public
 specifier|static

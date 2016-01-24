@@ -46,11 +46,15 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|com
 operator|.
-name|annotation
+name|google
 operator|.
-name|CheckReturnValue
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
 import|;
 end_import
 
@@ -76,6 +80,9 @@ name|Ticker
 parameter_list|()
 block|{}
 comment|/**    * Returns the number of nanoseconds elapsed since this ticker's fixed    * point of reference.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Consider removing this
 DECL|method|read ()
 specifier|public
 specifier|abstract
@@ -84,8 +91,6 @@ name|read
 parameter_list|()
 function_decl|;
 comment|/**    * A ticker that reads the current time using {@link System#nanoTime}.    *    * @since 10.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|systemTicker ()
 specifier|public
 specifier|static

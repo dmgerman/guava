@@ -62,6 +62,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -128,16 +142,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -155,8 +159,6 @@ class|class
 name|Joiner
 block|{
 comment|/**    * Returns a joiner which automatically places {@code separator} between consecutive elements.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|on (String separator)
 specifier|public
 specifier|static
@@ -176,8 +178,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a joiner which automatically places {@code separator} between consecutive elements.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|on (char separator)
 specifier|public
 specifier|static
@@ -243,6 +243,8 @@ name|separator
 expr_stmt|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, Iterable<?> parts)
 specifier|public
 parameter_list|<
@@ -278,6 +280,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    *    * @since 11.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, Iterator<?> parts)
 specifier|public
 parameter_list|<
@@ -361,6 +365,8 @@ name|appendable
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code appendable}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, Object[] parts)
 specifier|public
 specifier|final
@@ -397,6 +403,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends to {@code appendable} the string representation of each of the remaining arguments.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo ( A appendable, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
@@ -445,6 +453,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Iterable<?> parts)
 specifier|public
 specifier|final
@@ -474,6 +484,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    *    * @since 11.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Iterator<?> parts)
 specifier|public
 specifier|final
@@ -522,6 +534,8 @@ name|builder
 return|;
 block|}
 comment|/**    * Appends the string representation of each of {@code parts}, using the previously configured    * separator between each, to {@code builder}. Identical to {@link #appendTo(Appendable,    * Iterable)}, except that it does not throw {@link IOException}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Object[] parts)
 specifier|public
 specifier|final
@@ -551,6 +565,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Appends to {@code builder} the string representation of each of the remaining arguments.    * Identical to {@link #appendTo(Appendable, Object, Object, Object...)}, except that it does not    * throw {@link IOException}.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo ( StringBuilder builder, @Nullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
@@ -592,8 +608,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Iterable<?> parts)
 specifier|public
 specifier|final
@@ -618,8 +632,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    *    * @since 11.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Iterator<?> parts)
 specifier|public
 specifier|final
@@ -648,8 +660,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each of {@code parts}, using the    * previously configured separator between each.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Object[] parts)
 specifier|public
 specifier|final
@@ -674,8 +684,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a string containing the string representation of each argument, using the previously    * configured separator between each.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|join (@ullable Object first, @Nullable Object second, Object... rest)
 specifier|public
 specifier|final
@@ -712,8 +720,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a joiner with the same behavior as this one, except automatically substituting {@code    * nullText} for any provided null elements.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|useForNull (final String nullText)
 specifier|public
 name|Joiner
@@ -803,8 +809,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a joiner with the same behavior as this joiner, except automatically skipping over any    * provided null elements.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|skipNulls ()
 specifier|public
 name|Joiner
@@ -985,8 +989,6 @@ block|}
 return|;
 block|}
 comment|/**    * Returns a {@code MapJoiner} using the given key-value separator, and the same configuration as    * this {@code Joiner} otherwise.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|withKeyValueSeparator (String keyValueSeparator)
 specifier|public
 name|MapJoiner
@@ -1055,6 +1057,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code appendable}.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, Map<?, ?> map)
 specifier|public
 parameter_list|<
@@ -1092,6 +1096,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Appends the string representation of each entry of {@code map}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Map)}, except that it does not throw {@link IOException}.      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Map<?, ?> map)
 specifier|public
 name|StringBuilder
@@ -1122,8 +1128,6 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns a string containing the string representation of each entry of {@code map}, using the      * previously configured separator and key-value separator.      */
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Map<?, ?> map)
 specifier|public
 name|String
@@ -1151,6 +1155,8 @@ block|}
 comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code appendable}.      *      * @since 10.0      */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, Iterable<? extends Entry<?, ?>> entries)
 specifier|public
 parameter_list|<
@@ -1195,6 +1201,8 @@ block|}
 comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code appendable}.      *      * @since 11.0      */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (A appendable, Iterator<? extends Entry<?, ?>> parts)
 specifier|public
 parameter_list|<
@@ -1363,6 +1371,8 @@ block|}
 comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 10.0      */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Iterable<? extends Entry<?, ?>> entries)
 specifier|public
 name|StringBuilder
@@ -1400,6 +1410,8 @@ block|}
 comment|/**      * Appends the string representation of each entry in {@code entries}, using the previously      * configured separator and key-value separator, to {@code builder}. Identical to {@link      * #appendTo(Appendable, Iterable)}, except that it does not throw {@link IOException}.      *      * @since 11.0      */
 annotation|@
 name|Beta
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|appendTo (StringBuilder builder, Iterator<? extends Entry<?, ?>> entries)
 specifier|public
 name|StringBuilder
@@ -1456,8 +1468,6 @@ block|}
 comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since 10.0      */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Iterable<? extends Entry<?, ?>> entries)
 specifier|public
 name|String
@@ -1490,8 +1500,6 @@ block|}
 comment|/**      * Returns a string containing the string representation of each entry in {@code entries}, using      * the previously configured separator and key-value separator.      *      * @since 11.0      */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|join (Iterator<? extends Entry<?, ?>> entries)
 specifier|public
 name|String
@@ -1526,8 +1534,6 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Returns a map joiner with the same behavior as this one, except automatically substituting      * {@code nullText} for any provided null keys or values.      */
-annotation|@
-name|CheckReturnValue
 DECL|method|useForNull (String nullText)
 specifier|public
 name|MapJoiner

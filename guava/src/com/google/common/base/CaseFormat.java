@@ -76,16 +76,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -95,8 +85,6 @@ comment|/**  * Utility class for converting between various ASCII case formats. 
 end_comment
 
 begin_enum
-annotation|@
-name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 DECL|enum|CaseFormat

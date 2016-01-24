@@ -30,6 +30,20 @@ name|GwtCompatible
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class that can supply objects of a single type.  Semantically, this could  * be a factory, generator, builder, closure, or something else entirely. No  * guarantees are implied by this interface.  *  * @author Harry Heymann  * @since 2.0  */
 end_comment
@@ -46,6 +60,8 @@ name|T
 parameter_list|>
 block|{
 comment|/**    * Retrieves an instance of the appropriate type. The returned object may or    * may not be a new instance, depending on the implementation.    *    * @return an instance of the appropriate type    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|get ()
 name|T
 name|get
