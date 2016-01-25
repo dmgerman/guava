@@ -300,6 +300,7 @@ argument_list|<
 name|V
 argument_list|>
 block|{
+comment|// NOTE: Whenever both tests are cheap and functional, it's faster to use&, | instead of&&, ||
 DECL|field|GENERATE_CANCELLATION_CAUSES
 specifier|private
 specifier|static
