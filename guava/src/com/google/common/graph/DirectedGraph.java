@@ -30,16 +30,6 @@ name|Beta
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * A subinterface of {@code Graph} for graphs whose edges are all directed.  *  * @author Joshua O'Madadhain  * @param<N> Node parameter type  * @param<E> Edge parameter type  * @since 20.0  */
 end_comment
@@ -47,8 +37,6 @@ end_comment
 begin_interface
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|interface|DirectedGraph
 specifier|public
 interface|interface

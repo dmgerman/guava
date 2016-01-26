@@ -58,6 +58,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -357,6 +371,8 @@ name|createGraph
 parameter_list|()
 function_decl|;
 comment|/**    * A proxy method that adds the node {@code n} to the graph being tested.    * In case of Immutable graph implementations, this method should add {@code n} to the graph    * builder and build a new graph with the current builder state.    *    * @return {@code true} iff the graph was modified as a result of this call    * TODO(user): Consider changing access modifier to be protected.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (Integer n)
 specifier|abstract
 name|boolean
@@ -367,6 +383,8 @@ name|n
 parameter_list|)
 function_decl|;
 comment|/**    * A proxy method that adds the edge {@code e} to the graph    * being tested. In case of Immutable graph implementations, this method    * should add {@code e} to the graph builder and build a new graph with the current    * builder state.    *    *<p>This method should be used in tests of specific implementations if you want to    * ensure uniform behavior (including side effects) with how edges are added elsewhere    * in the tests.  For example, the existing implementations of this method explicitly    * add the supplied nodes to the graph, and then call {@code graph.addEdge()} to connect    * the edge to the nodes; this is not part of the contract of {@code graph.addEdge()}    * and is done for convenience.  In cases where you want to avoid such side effects    * (e.g., if you're testing what happens in your implementation if you add an edge    * whose end-points don't already exist in the graph), you should<b>not</b> use this    * method.    *    * @return {@code true} iff the graph was modified as a result of this call    * TODO(user): Consider changing access modifier to be protected.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (String e, Integer n1, Integer n2)
 specifier|abstract
 name|boolean

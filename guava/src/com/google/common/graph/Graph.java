@@ -32,21 +32,25 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|google
 operator|.
-name|Set
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
 import|;
 end_import
 
 begin_import
 import|import
-name|javax
+name|java
 operator|.
-name|annotation
+name|util
 operator|.
-name|CheckReturnValue
+name|Set
 import|;
 end_import
 
@@ -78,8 +82,6 @@ name|E
 parameter_list|>
 block|{
 comment|/** Returns all nodes in this graph. */
-annotation|@
-name|CheckReturnValue
 DECL|method|nodes ()
 name|Set
 argument_list|<
@@ -89,8 +91,6 @@ name|nodes
 parameter_list|()
 function_decl|;
 comment|/** Returns all edges in this graph. */
-annotation|@
-name|CheckReturnValue
 DECL|method|edges ()
 name|Set
 argument_list|<
@@ -100,8 +100,6 @@ name|edges
 parameter_list|()
 function_decl|;
 comment|/** Returns the {@link GraphConfig} that defines this instance's configuration. */
-annotation|@
-name|CheckReturnValue
 DECL|method|config ()
 name|GraphConfig
 name|config
@@ -111,8 +109,6 @@ comment|//
 comment|// Element-level accessors
 comment|//
 comment|/**    * Returns the edges whose endpoints in this graph include {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|incidentEdges (Object node)
 name|Set
 argument_list|<
@@ -125,8 +121,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the nodes which are the endpoints of {@code edge} in this graph.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|incidentNodes (Object edge)
 name|Set
 argument_list|<
@@ -139,8 +133,6 @@ name|edge
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the nodes which have an {@linkplain #incidentEdges(Object) incident edge}    * in common with {@code node} in this graph.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|adjacentNodes (Object node)
 name|Set
 argument_list|<
@@ -153,8 +145,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the edges which have an {@linkplain #incidentNodes(Object) incident node}    * in common with {@code edge} in this graph.    *    *<p>Whether an edge is considered adjacent to itself is not defined by this interface, but    * generally for non-hypergraphs, edges are not considered to be self-adjacent.    *    * @throws IllegalArgumentException if {@code edge} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|adjacentEdges (Object edge)
 name|Set
 argument_list|<
@@ -167,8 +157,6 @@ name|edge
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the edges that are {@linkplain #incidentEdges(Object) incident} in this graph    * to both nodes {@code node1} and {@code node2}.    *    *<p>If the graph is directed, the {@linkplain #source(Object) source} and    * {@linkplain DirectedGraph#target(Object) target} of the edges returned must be {@code node1}    * and {@code node2}, respectively.    *    * @throws IllegalArgumentException if {@code node1} or {@code node2} is not an element    *     of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|edgesConnecting (Object node1, Object node2)
 name|Set
 argument_list|<
@@ -184,8 +172,6 @@ name|node2
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all edges in this graph which can be traversed in the direction (if any) of the edge    * to end at {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|inEdges (Object node)
 name|Set
 argument_list|<
@@ -198,8 +184,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all edges in this graph which can be traversed in the direction (if any) of the edge    * starting from {@code node}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|outEdges (Object node)
 name|Set
 argument_list|<
@@ -212,8 +196,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s {@linkplain #inEdges(Object) incoming edges}<i>against</i> the direction    * (if any) of the edge.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|predecessors (Object node)
 name|Set
 argument_list|<
@@ -226,8 +208,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns all nodes in this graph adjacent to {@code node} which can be reached by traversing    * {@code node}'s {@linkplain #outEdges(Object) outgoing edges} in the direction (if any) of the    * edge.    *    *<p>This is<i>not</i> the same as "all nodes reachable from {@code node} by following outgoing    * edges" (also known as {@code node}'s transitive closure).    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|successors (Object node)
 name|Set
 argument_list|<
@@ -243,8 +223,6 @@ comment|//
 comment|// Element-level queries
 comment|//
 comment|/**    * Returns the number of edges {@linkplain #incidentEdges(Object) incident} in this graph    * to {@code node}.    *    *<p>Equivalent to {@code incidentEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|degree (Object node)
 name|long
 name|degree
@@ -254,8 +232,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the number of {@linkplain #inEdges(Object) incoming edges} in this graph    * of {@code node}.    *    *<p>Equivalent to {@code inEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|inDegree (Object node)
 name|long
 name|inDegree
@@ -265,8 +241,6 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Returns the number of {@linkplain #outEdges(Object) outgoing edges} in this graph    * of {@code node}.    *    *<p>Equivalent to {@code outEdges(node).size()}.    *    * @throws IllegalArgumentException if {@code node} is not an element of this graph    */
-annotation|@
-name|CheckReturnValue
 DECL|method|outDegree (Object node)
 name|long
 name|outDegree
@@ -279,6 +253,8 @@ comment|//
 comment|// Element mutations
 comment|//
 comment|/**    * Adds {@code node} to this graph (optional operation).    *    *<p><b>Nodes must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws UnsupportedOperationException if the add operation is not supported by this graph    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
 name|boolean
 name|addNode
@@ -288,6 +264,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Adds {@code edge} to this graph, connecting {@code node1} and {@code node2}    * (optional operation).    *    *<p><b>Edges must be unique</b>, just as {@code Map} keys must be; they must also be non-null.    *    *<p>If the graph is directed, {@code node1} is {@code edge}âs source,    * {@code node2} is {@code edge}âs target, and {@code edge} is an outgoing edge of    * {@code node1} and an incoming edge of {@code node2}.    *    *<p>If {@code edge} already connects {@code node1} to {@code node2} in this graph    * (in the specified order if order is significant, as for directed graphs, else in any order),    * then this method will have no effect and will return {@code false}.    *    *<p>Behavior if {@code node1} and {@code node2} are not already elements of the graph is    * unspecified. Suggested behaviors include (a) silently adding {@code node1} and {@code node2}    * to the graph or (b) throwing {@code IllegalArgumentException}.    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws IllegalArgumentException if {@code edge} already exists and connects nodes other than    *     {@code node1} and {@code node2}, or if the graph is not a multigraph and {@code node1} is    *     already connected to {@code node2}    * @throws UnsupportedOperationException if the add operation is not supported by this graph    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (E edge, N node1, N node2)
 name|boolean
 name|addEdge
@@ -303,6 +281,8 @@ name|node2
 parameter_list|)
 function_decl|;
 comment|/**    * Removes {@code node} from this graph, if it is present (optional operation).    * In general, all edges incident to {@code node} in this graph will also be removed.    * (This is not true for hyperedges.)    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws UnsupportedOperationException if the remove operation is not supported by this graph    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeNode (Object node)
 name|boolean
 name|removeNode
@@ -312,6 +292,8 @@ name|node
 parameter_list|)
 function_decl|;
 comment|/**    * Removes {@code edge} from this graph, if it is present (optional operation).    * In general, nodes incident to {@code edge} are unaffected (although implementations may choose    * to disallow certain configurations, e.g., isolated nodes).    *    * @return {@code true} iff the graph was modified as a result of this call    * @throws UnsupportedOperationException if the remove operation is not supported by this graph    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeEdge (Object edge)
 name|boolean
 name|removeEdge
@@ -323,8 +305,6 @@ function_decl|;
 comment|/**    * Returns {@code true} iff {@code object} is the same type of graph (directed, undirected,    * hypergraph) as this graph, and the same node/edge relationships exist in both graphs.    *    *<p>Thus, two graphs A and B are equal if<b>all</b> of the following are true:    *<ul>    *<li>A and B are of the same type ({@code DirectedGraph, UndirectedGraph, Hypergraph})    *<li>A and B have the same node set    *<li>A and B have the same edge set    *<li>A and B have the same incidence relationships, e.g., for each node/edge in A and in B    *     its incident edge/node set in A is the same as its incident edge/node set in B.    *<br>Thus, even if a {@code node} has the same sets of<i>adjacent</i> nodes    *         (neighbors) in both A and B, if the sets of edges by which {@code node} is connected to    *         its adjacent nodes are not the same in both A and B, then A and B are not equal.    *</ul>    *    *<p>Properties that are<b>not</b> respected by this method:    *<ul>    *<li>{@code GraphConfig} configurations.  If two graphs are equal by the above criteria but have    * different configurations, they are still equal.  (For example: two graphs may be considered    * equal even if one allows parallel edges and the other doesn't.)    *<li>Edge/node ordering.  The order in which edges or nodes are added to the graph, and the    * order in which they are iterated over, are irrelevant.    *</ul>    */
 annotation|@
 name|Override
-annotation|@
-name|CheckReturnValue
 DECL|method|equals (@ullable Object object)
 name|boolean
 name|equals

@@ -70,6 +70,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -145,6 +159,8 @@ name|builder
 decl_stmt|;
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (Integer n)
 specifier|final
 name|boolean
@@ -174,6 +190,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (String e, Integer n1, Integer n2)
 specifier|final
 name|boolean
@@ -642,13 +660,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Integer
+name|unused
+init|=
 name|immutableGraph
 operator|.
 name|source
 argument_list|(
 name|EDGE_NOT_IN_GRAPH
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 name|ERROR_EDGE_NOT_IN_GRAPH
@@ -708,13 +729,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Integer
+name|unused
+init|=
 name|immutableGraph
 operator|.
 name|target
 argument_list|(
 name|EDGE_NOT_IN_GRAPH
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 name|ERROR_EDGE_NOT_IN_GRAPH

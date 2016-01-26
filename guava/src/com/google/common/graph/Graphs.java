@@ -108,6 +108,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -123,16 +137,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -183,8 +187,6 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
-name|CheckReturnValue
 DECL|method|oppositeNode ( UndirectedGraph<N, ?> undirectedGraph, Object edge, Object node)
 specifier|public
 specifier|static
@@ -286,6 +288,8 @@ name|node
 return|;
 block|}
 comment|/**    * Adds {@code edge} to {@code graph} with the specified incident {@code nodes}, in the order    * returned by {@code nodes}' iterator.    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (Graph<N, E> graph, E edge, Iterable<N> nodes)
 specifier|public
 specifier|static
@@ -454,8 +458,6 @@ return|;
 block|}
 block|}
 comment|/**    * Creates a mutable copy of {@code graph}, using the same node and edge elements.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|copyOf (DirectedGraph<N, E> graph)
 specifier|public
 specifier|static
@@ -545,8 +547,6 @@ name|copy
 return|;
 block|}
 comment|/**    * Creates a mutable copy of {@code graph}, using all of its elements that satisfy    * {@code nodePredicate} and {@code edgePredicate}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|copyOf ( DirectedGraph<N, E> graph, Predicate<? super N> nodePredicate, Predicate<? super E> edgePredicate)
 specifier|public
 specifier|static
@@ -1182,8 +1182,6 @@ block|}
 block|}
 block|}
 comment|/**    * Creates a mutable copy of {@code graph}, using the same node and edge elements.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|copyOf (UndirectedGraph<N, E> graph)
 specifier|public
 specifier|static
@@ -1273,8 +1271,6 @@ name|copy
 return|;
 block|}
 comment|/**    * Creates a mutable copy of {@code graph}, using all of its elements that satisfy    * {@code nodePredicate} and {@code edgePredicate}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|copyOf ( UndirectedGraph<N, E> graph, Predicate<? super N> nodePredicate, Predicate<? super E> edgePredicate)
 specifier|public
 specifier|static
@@ -1771,8 +1767,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a new default instance of {@code GraphConfig}.    *    * @see GraphConfig    */
-annotation|@
-name|CheckReturnValue
 DECL|method|config ()
 specifier|public
 specifier|static
@@ -1787,8 +1781,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a new instance of {@link DirectedGraph} with the default    * graph configuration.    *    * @see GraphConfig    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createDirected ()
 specifier|public
 specifier|static
@@ -1821,8 +1813,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new instance of {@link DirectedGraph} with the graph    * configuration specified by {@code config}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createDirected (GraphConfig config)
 specifier|public
 specifier|static
@@ -1857,8 +1847,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new instance of {@link UndirectedGraph} with the default    * graph configuration.    *    * @see GraphConfig    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createUndirected ()
 specifier|public
 specifier|static
@@ -1891,8 +1879,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a new instance of {@link UndirectedGraph} with the graph    * configuration specified by {@code config}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|createUndirected (GraphConfig config)
 specifier|public
 specifier|static
@@ -1927,8 +1913,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns true iff {@code g1} and {@code g2} have the same node and edge sets and each edge    * has the same source and target in both graphs.    *    * @see Graph#equals(Object)    */
-annotation|@
-name|CheckReturnValue
 DECL|method|equal ( @ullable DirectedGraph<?, ?> g1, @Nullable DirectedGraph<?, ?> g2)
 specifier|public
 specifier|static
@@ -2082,8 +2066,6 @@ literal|true
 return|;
 block|}
 comment|/**    * Returns true iff {@code g1} and {@code g2} have the same node and edge sets and each edge    * has the same incident node set in both graphs.    *    * @see Graph#equals(Object)    */
-annotation|@
-name|CheckReturnValue
 DECL|method|equal (@ullable Graph<?, ?> g1, @Nullable Graph<?, ?> g2)
 specifier|public
 specifier|static
@@ -2214,8 +2196,6 @@ literal|true
 return|;
 block|}
 comment|/**    * Returns a {@link Predicate} that returns {@code true} if the input edge is not a self-loop in    * {@code graph}. A self-loop is defined as an edge whose set of incident nodes has exactly one    * element. The predicate's {@code apply} method will throw a {@link IllegalStateException} if    * {@code graph} does not contain {@code edge}.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|noSelfLoopPredicate (final Graph<?, E> graph)
 specifier|public
 specifier|static

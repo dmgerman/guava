@@ -92,23 +92,11 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * An immutable set representing the nodes incident to an undirected edge.  *  * @author James Sexton  * @param<N> Node parameter type  */
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 DECL|class|UndirectedIncidentNodes
 specifier|abstract
 class|class

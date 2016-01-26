@@ -72,6 +72,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -95,6 +109,8 @@ name|AbstractGraphTest
 block|{
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (Integer n)
 specifier|final
 name|boolean
@@ -116,6 +132,8 @@ block|}
 comment|/**    * Explicitly adds the supplied incident nodes to the graph (they need not be    * elements of the graph), then adds the edge connecting them.    */
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (String e, Integer n1, Integer n2)
 specifier|final
 name|boolean

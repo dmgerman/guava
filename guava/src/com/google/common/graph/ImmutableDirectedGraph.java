@@ -138,6 +138,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -153,16 +167,6 @@ operator|.
 name|util
 operator|.
 name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
 import|;
 end_import
 
@@ -1218,8 +1222,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@code Builder} constructor.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|builder ()
 specifier|public
 specifier|static
@@ -1249,8 +1251,6 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Returns a new builder. The generated builder is equivalent to the builder    * created by the {@code Builder} constructor.    *    * @param config an instance of {@code GraphConfig} with the intended    *        graph configuration.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|builder (GraphConfig config)
 specifier|public
 specifier|static
@@ -1285,8 +1285,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns an immutable copy of the input graph.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|copyOf (DirectedGraph<N, E> graph)
 specifier|public
 specifier|static
@@ -1460,6 +1458,8 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
 specifier|public
 name|Builder
@@ -1487,6 +1487,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (E edge, N node1, N node2)
 specifier|public
 name|Builder
@@ -1523,6 +1525,8 @@ name|this
 return|;
 block|}
 comment|/**      * Adds all elements of {@code graph} to the graph being built.      *      * @throws IllegalArgumentException under either of two conditions:      *     (1) the {@code GraphConfig} objects held by the graph being built and by {@code graph}      *     are not compatible      *     (2) calling {@code Graph.addEdge(e, n1, n2)} on the graph being built throws IAE      * @see Graph#addEdge(e, n1, n2)      */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addGraph (DirectedGraph<N, E> graph)
 specifier|public
 name|Builder
@@ -1630,8 +1634,6 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|CheckReturnValue
 DECL|method|build ()
 specifier|public
 name|ImmutableDirectedGraph

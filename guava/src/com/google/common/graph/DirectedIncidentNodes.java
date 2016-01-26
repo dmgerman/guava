@@ -66,16 +66,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -85,8 +75,6 @@ comment|/**  * An immutable pair representing the incident nodes (source and tar
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 DECL|class|DirectedIncidentNodes
 specifier|final
 class|class

@@ -60,23 +60,11 @@ name|Set
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * An unmodifiable view of a set which may be backed by other sets; this view  * will change as the backing sets do.  */
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 DECL|class|SetView
 specifier|abstract
 class|class

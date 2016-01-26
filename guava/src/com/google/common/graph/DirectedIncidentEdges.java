@@ -100,16 +100,6 @@ name|javax
 operator|.
 name|annotation
 operator|.
-name|CheckReturnValue
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
 name|Nullable
 import|;
 end_import
@@ -119,8 +109,6 @@ comment|/**  * A class representing the edges incident to a node in a directed g
 end_comment
 
 begin_class
-annotation|@
-name|CheckReturnValue
 DECL|class|DirectedIncidentEdges
 specifier|final
 class|class

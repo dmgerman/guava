@@ -84,16 +84,6 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|annotation
-operator|.
-name|CheckReturnValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * Static utility methods for calculating properties of {@link Graph} instances.  *  * @author Joshua O'Madadhain  * @since 20.0  */
 end_comment
@@ -101,8 +91,6 @@ end_comment
 begin_class
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|class|GraphProperties
 specifier|public
 specifier|final

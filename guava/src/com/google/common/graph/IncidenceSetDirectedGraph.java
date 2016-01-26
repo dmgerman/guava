@@ -186,6 +186,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -1375,6 +1389,8 @@ block|}
 comment|// Element Mutation
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addNode (N node)
 specifier|public
 name|boolean
@@ -1427,6 +1443,8 @@ block|}
 comment|/**    * Add nodes that are not elements of the graph, then add {@code edge} between them.    * Return {@code false} if {@code edge} already exists between {@code node1} and {@code node2},    * and in the same direction.    *    *<p>If this graph is not a multigraph (does not support parallel edges), this method may call    * {@code edgesConnecting(node1, node2)} to discover whether node1 and node2 are already    * connected.    *    * @throws IllegalArgumentException if an edge (other than {@code edge}) already    *         exists from {@code node1} to {@code node2}, and this is not a multigraph.    *         Also, if self-loops are not allowed, and {@code node1} is equal to {@code node2}.    */
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|addEdge (E edge, N node1, N node2)
 specifier|public
 name|boolean
@@ -1646,6 +1664,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeNode (Object node)
 specifier|public
 name|boolean
@@ -1711,6 +1731,8 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeEdge (Object edge)
 specifier|public
 name|boolean
