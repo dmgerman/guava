@@ -28,7 +28,7 @@ name|base
 operator|.
 name|CharMatcher
 operator|.
-name|ASCII
+name|ascii
 import|;
 end_import
 
@@ -44,7 +44,7 @@ name|base
 operator|.
 name|CharMatcher
 operator|.
-name|JAVA_ISO_CONTROL
+name|javaIsoControl
 import|;
 end_import
 
@@ -505,11 +505,13 @@ specifier|final
 name|CharMatcher
 name|TOKEN_MATCHER
 init|=
-name|ASCII
+name|ascii
+argument_list|()
 operator|.
 name|and
 argument_list|(
-name|JAVA_ISO_CONTROL
+name|javaIsoControl
+argument_list|()
 operator|.
 name|negate
 argument_list|()
@@ -542,7 +544,8 @@ specifier|final
 name|CharMatcher
 name|QUOTED_TEXT_MATCHER
 init|=
-name|ASCII
+name|ascii
+argument_list|()
 operator|.
 name|and
 argument_list|(
@@ -3146,7 +3149,8 @@ name|tokenizer
 operator|.
 name|consumeCharacter
 argument_list|(
-name|ASCII
+name|ascii
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

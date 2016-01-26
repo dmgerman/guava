@@ -1083,7 +1083,8 @@ comment|// entirely numeric whereas local classes have the user supplied name as
 return|return
 name|CharMatcher
 operator|.
-name|DIGIT
+name|digit
+argument_list|()
 operator|.
 name|trimLeadingFrom
 argument_list|(

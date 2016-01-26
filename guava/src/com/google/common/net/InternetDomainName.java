@@ -689,7 +689,8 @@ name|PART_CHAR_MATCHER
 init|=
 name|CharMatcher
 operator|.
-name|JAVA_LETTER_OR_DIGIT
+name|javaLetterOrDigit
+argument_list|()
 operator|.
 name|or
 argument_list|(
@@ -739,7 +740,8 @@ name|asciiChars
 init|=
 name|CharMatcher
 operator|.
-name|ASCII
+name|ascii
+argument_list|()
 operator|.
 name|retainFrom
 argument_list|(
@@ -805,7 +807,8 @@ name|isFinalPart
 operator|&&
 name|CharMatcher
 operator|.
-name|DIGIT
+name|digit
+argument_list|()
 operator|.
 name|matches
 argument_list|(
