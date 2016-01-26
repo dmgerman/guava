@@ -202,6 +202,48 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|io
+operator|.
+name|ByteSource
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|io
+operator|.
+name|CharSource
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|io
+operator|.
+name|Resources
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -247,6 +289,18 @@ operator|.
 name|net
 operator|.
 name|URLClassLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|Charset
 import|;
 end_import
 
@@ -853,15 +907,13 @@ name|loader
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the url identifying the resource.      *      *<p>See {@link ClassLoader#getResource}      * @throws NoSuchElementException if the resource cannot be loaded through the class loader,      *         despite physically existing in the class path.      */
+comment|/**      * Returns the url identifying the resource.      *      *<p>See {@link ClassLoader#getResource}      *      * @throws NoSuchElementException if the resource cannot be loaded through the class loader,      *     despite physically existing in the class path.      */
 DECL|method|url ()
 specifier|public
 specifier|final
 name|URL
 name|url
 parameter_list|()
-throws|throws
-name|NoSuchElementException
 block|{
 name|URL
 name|url
@@ -890,6 +942,47 @@ throw|;
 block|}
 return|return
 name|url
+return|;
+block|}
+comment|/**      * Returns a {@link ByteSource} view of the resource from which its bytes can be read.      *      * @throws NoSuchElementException if the resource cannot be loaded through the class loader,      *     despite physically existing in the class path.      * @since 20.0      */
+DECL|method|asByteSource ()
+specifier|public
+specifier|final
+name|ByteSource
+name|asByteSource
+parameter_list|()
+block|{
+return|return
+name|Resources
+operator|.
+name|asByteSource
+argument_list|(
+name|url
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/**      * Returns a {@link CharSource} view of the resource from which its bytes can be read as      * characters decoded with the given {@code charset}.      *      * @throws NoSuchElementException if the resource cannot be loaded through the class loader,      *     despite physically existing in the class path.      * @since 20.0      */
+DECL|method|asCharSource (Charset charset)
+specifier|public
+specifier|final
+name|CharSource
+name|asCharSource
+parameter_list|(
+name|Charset
+name|charset
+parameter_list|)
+block|{
+return|return
+name|Resources
+operator|.
+name|asCharSource
+argument_list|(
+name|url
+argument_list|()
+argument_list|,
+name|charset
+argument_list|)
 return|;
 block|}
 comment|/** Returns the fully qualified name of the resource. Such as "com/mycomp/foo/bar.txt". */
