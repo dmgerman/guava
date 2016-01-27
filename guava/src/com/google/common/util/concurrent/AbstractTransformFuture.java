@@ -205,6 +205,8 @@ parameter_list|,
 name|O
 parameter_list|,
 name|F
+parameter_list|,
+name|T
 parameter_list|>
 extends|extends
 name|AbstractFuture
@@ -575,8 +577,6 @@ name|void
 name|run
 parameter_list|()
 block|{
-try|try
-block|{
 name|ListenableFuture
 argument_list|<
 name|?
@@ -616,6 +616,7 @@ name|function
 operator|=
 literal|null
 expr_stmt|;
+comment|/*      * Any of the setException() calls below can fail if the output Future is cancelled between now      * and then. This means that we're silently swallowing an exception -- maybe even an Error. But      * this is no worse than what FutureTask does in that situation. Additionally, because the      * Future was cancelled, its listeners have been run, so its consumers will not hang.      *      * Contrast this to the situation we have if setResult() throws, a situation described below.      */
 name|I
 name|sourceResult
 decl_stmt|;
@@ -662,6 +663,41 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+comment|// Bug in inputFuture.get(). Propagate to the output Future so that its consumers don't hang.
+name|setException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+catch|catch
+parameter_list|(
+name|Error
+name|e
+parameter_list|)
+block|{
+comment|/*        * StackOverflowError, OutOfMemoryError (e.g., from allocating ExecutionException), or        * something. Try to treat it like a RuntimeException. If we overflow the stack again, the        * resulting Error will propagate upward up to the root call to set().        */
+name|setException
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+name|T
+name|transformResult
+decl_stmt|;
+try|try
+block|{
+name|transformResult
+operator|=
 name|doTransform
 argument_list|(
 name|localFunction
@@ -685,6 +721,7 @@ name|getCause
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -698,14 +735,21 @@ argument_list|(
 name|t
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
+comment|/*      * If set()/setValue() throws an Error, we let it propagate. Why? The most likely Error is a      * StackOverflowError (from deep transform(..., directExecutor()) nesting), and calling      * setException(stackOverflowError) would fail:      *      * - If the stack overflowed before set()/setValue() could even store the result in the output      * Future, then a call setException() would likely also overflow.      *      * - If the stack overflowed after set()/setValue() stored its result, then a call to      * setException() will be a no-op because the Future is already done.      *      * Both scenarios are bad: The output Future might never complete, or, if it does complete, it      * might not run some of its listeners. The likely result is that the app will hang. (And of      * course stack overflows are bad news in general. For example, we may have overflowed in the      * middle of defining a class. If so, that class will never be loadable in this process.) The      * best we can do (since logging may overflow the stack) is to let the error propagate. Because      * it is an Error, it won't be caught and logged by AbstractFuture.executeListener. Instead, it      * can propagate through many layers of AbstractTransformFuture up to the root call to set().      *      * https://github.com/google/guava/issues/2254      *      * Other kinds of Errors are possible:      *      * - OutOfMemoryError from allocations in setFuture(): The calculus here is similar to      * StackOverflowError: We can't reliably call setException(error).      *      * - Any kind of Error from a listener. Even if we could distinguish that case (by exposing some      * extra state from AbstractFuture), our options are limited: A call to setException() would be      * a no-op. We could log, but if that's what we really want, we should modify      * AbstractFuture.executeListener to do so, since that method would have the ability to continue      * to execute other listeners.      *      * What about RuntimeException? If there is a bug in set()/setValue() that produces one, it will      * propagate, too, but only as far as AbstractFuture.executeListener, which will catch and log      * it.      */
+name|setResult
+argument_list|(
+name|transformResult
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Template method for subtypes to actually run the transform. */
 annotation|@
 name|ForOverride
 DECL|method|doTransform (F function, I result)
 specifier|abstract
-name|void
+name|T
 name|doTransform
 parameter_list|(
 name|F
@@ -716,6 +760,18 @@ name|result
 parameter_list|)
 throws|throws
 name|Exception
+function_decl|;
+comment|/** Template method for subtypes to actually set the result. */
+annotation|@
+name|ForOverride
+DECL|method|setResult (T result)
+specifier|abstract
+name|void
+name|setResult
+parameter_list|(
+name|T
+name|result
+parameter_list|)
 function_decl|;
 annotation|@
 name|Override
@@ -744,7 +800,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * An {@link AbstractTransformFuture} that delegates to an {@link AsyncFunction} and    * {@link #setFuture(ListenableFuture)} to implement {@link #doTransform}.    */
+comment|/**    * An {@link AbstractTransformFuture} that delegates to an {@link AsyncFunction} and    * {@link #setFuture(ListenableFuture)}.    */
 DECL|class|AsyncTransformFuture
 specifier|private
 specifier|static
@@ -769,6 +825,13 @@ name|?
 super|super
 name|I
 argument_list|,
+name|?
+extends|extends
+name|O
+argument_list|>
+argument_list|,
+name|ListenableFuture
+argument_list|<
 name|?
 extends|extends
 name|O
@@ -809,8 +872,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|doTransform (AsyncFunction<? super I, ? extends O> function, I input)
-name|void
+DECL|method|doTransform ( AsyncFunction<? super I, ? extends O> function, I input)
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|O
+argument_list|>
 name|doTransform
 parameter_list|(
 name|AsyncFunction
@@ -855,14 +923,33 @@ operator|+
 literal|"Did you mean to return immediateFuture(null)?"
 argument_list|)
 expr_stmt|;
+return|return
+name|outputFuture
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setResult (ListenableFuture<? extends O> result)
+name|void
+name|setResult
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|O
+argument_list|>
+name|result
+parameter_list|)
+block|{
 name|setFuture
 argument_list|(
-name|outputFuture
+name|result
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * An {@link AbstractTransformFuture} that delegates to a {@link Function} and    * {@link #set(Object)} to implement {@link #doTransform}.    */
+comment|/**    * An {@link AbstractTransformFuture} that delegates to a {@link Function} and    * {@link #set(Object)}.    */
 DECL|class|TransformFuture
 specifier|private
 specifier|static
@@ -891,6 +978,8 @@ name|?
 extends|extends
 name|O
 argument_list|>
+argument_list|,
+name|O
 argument_list|>
 block|{
 DECL|method|TransformFuture ( ListenableFuture<? extends I> inputFuture, Function<? super I, ? extends O> function)
@@ -928,7 +1017,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|doTransform (Function<? super I, ? extends O> function, I input)
-name|void
+name|O
 name|doTransform
 parameter_list|(
 name|Function
@@ -947,15 +1036,29 @@ name|I
 name|input
 parameter_list|)
 block|{
-comment|// TODO(lukes): move the UndeclaredThrowable catch block here?
-name|set
-argument_list|(
+return|return
 name|function
 operator|.
 name|apply
 argument_list|(
 name|input
 argument_list|)
+return|;
+comment|// TODO(lukes): move the UndeclaredThrowable catch block here?
+block|}
+annotation|@
+name|Override
+DECL|method|setResult (O result)
+name|void
+name|setResult
+parameter_list|(
+name|O
+name|result
+parameter_list|)
+block|{
+name|set
+argument_list|(
+name|result
 argument_list|)
 expr_stmt|;
 block|}

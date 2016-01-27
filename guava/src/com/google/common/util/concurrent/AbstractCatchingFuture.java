@@ -201,6 +201,8 @@ extends|extends
 name|Throwable
 parameter_list|,
 name|F
+parameter_list|,
+name|T
 parameter_list|>
 extends|extends
 name|AbstractFuture
@@ -681,20 +683,26 @@ name|fallback
 operator|=
 literal|null
 expr_stmt|;
+comment|// For an explanation of the cases here, see the comments on AbstractTransformFuture.run.
+name|V
+name|sourceResult
+init|=
+literal|null
+decl_stmt|;
 name|Throwable
 name|throwable
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
-name|set
-argument_list|(
+name|sourceResult
+operator|=
 name|getUninterruptibly
 argument_list|(
 name|localInputFuture
 argument_list|)
-argument_list|)
 expr_stmt|;
-return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -704,10 +712,13 @@ parameter_list|)
 block|{
 name|throwable
 operator|=
+name|checkNotNull
+argument_list|(
 name|e
 operator|.
 name|getCause
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -722,10 +733,23 @@ operator|=
 name|e
 expr_stmt|;
 block|}
-try|try
-block|{
 if|if
 condition|(
+name|throwable
+operator|==
+literal|null
+condition|)
+block|{
+name|set
+argument_list|(
+name|sourceResult
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+if|if
+condition|(
+operator|!
 name|isInstanceOfThrowableClass
 argument_list|(
 name|throwable
@@ -734,12 +758,20 @@ name|localExceptionType
 argument_list|)
 condition|)
 block|{
+name|setException
+argument_list|(
+name|throwable
+argument_list|)
+expr_stmt|;
+comment|// TODO(cpovirk): Test that fallback is not run in this case.
+return|return;
+block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-comment|// verified safe by isInstance
+comment|// verified safe by isInstanceOfThrowableClass
 name|X
 name|castThrowable
 init|=
@@ -748,6 +780,13 @@ name|X
 operator|)
 name|throwable
 decl_stmt|;
+name|T
+name|fallbackResult
+decl_stmt|;
+try|try
+block|{
+name|fallbackResult
+operator|=
 name|doFallback
 argument_list|(
 name|localFallback
@@ -756,34 +795,31 @@ name|castThrowable
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-name|setException
-argument_list|(
-name|throwable
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 catch|catch
 parameter_list|(
 name|Throwable
-name|e
+name|t
 parameter_list|)
 block|{
 name|setException
 argument_list|(
-name|e
+name|t
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
+name|setResult
+argument_list|(
+name|fallbackResult
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Template method for subtypes to actually run the fallback. */
 annotation|@
 name|ForOverride
 DECL|method|doFallback (F fallback, X throwable)
 specifier|abstract
-name|void
+name|T
 name|doFallback
 parameter_list|(
 name|F
@@ -794,6 +830,18 @@ name|throwable
 parameter_list|)
 throws|throws
 name|Exception
+function_decl|;
+comment|/** Template method for subtypes to actually set the result. */
+annotation|@
+name|ForOverride
+DECL|method|setResult (T result)
+specifier|abstract
+name|void
+name|setResult
+parameter_list|(
+name|T
+name|result
+parameter_list|)
 function_decl|;
 annotation|@
 name|Override
@@ -828,7 +876,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**    * An {@link AbstractCatchingFuture} that delegates to an {@link AsyncFunction} and    * {@link #setFuture(ListenableFuture)} to implement {@link #doFallback}    */
+comment|/**    * An {@link AbstractCatchingFuture} that delegates to an {@link AsyncFunction} and    * {@link #setFuture(ListenableFuture)}.    */
 DECL|class|AsyncCatchingFuture
 specifier|private
 specifier|static
@@ -855,6 +903,13 @@ name|?
 super|super
 name|X
 argument_list|,
+name|?
+extends|extends
+name|V
+argument_list|>
+argument_list|,
+name|ListenableFuture
+argument_list|<
 name|?
 extends|extends
 name|V
@@ -903,8 +958,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|doFallback (AsyncFunction<? super X, ? extends V> fallback, X cause)
-name|void
+DECL|method|doFallback ( AsyncFunction<? super X, ? extends V> fallback, X cause)
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|V
+argument_list|>
 name|doFallback
 parameter_list|(
 name|AsyncFunction
@@ -949,14 +1009,33 @@ operator|+
 literal|"Did you mean to return immediateFuture(null)?"
 argument_list|)
 expr_stmt|;
+return|return
+name|replacement
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setResult (ListenableFuture<? extends V> result)
+name|void
+name|setResult
+parameter_list|(
+name|ListenableFuture
+argument_list|<
+name|?
+extends|extends
+name|V
+argument_list|>
+name|result
+parameter_list|)
+block|{
 name|setFuture
 argument_list|(
-name|replacement
+name|result
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * An {@link AbstractCatchingFuture} that delegates to a {@link Function} and {@link #set(Object)}    * to implement {@link #doFallback}    */
+comment|/**    * An {@link AbstractCatchingFuture} that delegates to a {@link Function} and {@link    * #set(Object)}.    */
 DECL|class|CatchingFuture
 specifier|private
 specifier|static
@@ -987,6 +1066,8 @@ name|?
 extends|extends
 name|V
 argument_list|>
+argument_list|,
+name|V
 argument_list|>
 block|{
 DECL|method|CatchingFuture ( ListenableFuture<? extends V> input, Class<X> exceptionType, Function<? super X, ? extends V> fallback)
@@ -1032,7 +1113,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|doFallback (Function<? super X, ? extends V> fallback, X cause)
-name|void
+name|V
 name|doFallback
 parameter_list|(
 name|Function
@@ -1053,19 +1134,28 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|V
-name|replacement
-init|=
+return|return
 name|fallback
 operator|.
 name|apply
 argument_list|(
 name|cause
 argument_list|)
-decl_stmt|;
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|setResult (V result)
+name|void
+name|setResult
+parameter_list|(
+name|V
+name|result
+parameter_list|)
+block|{
 name|set
 argument_list|(
-name|replacement
+name|result
 argument_list|)
 expr_stmt|;
 block|}
