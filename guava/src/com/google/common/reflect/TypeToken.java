@@ -1604,49 +1604,6 @@ return|return
 name|subtype
 return|;
 block|}
-comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @deprecated Use the method under its new name, {@link #isSupertypeOf(TypeToken)}. This method    *     will be removed in Guava release 20.0.    */
-annotation|@
-name|Deprecated
-DECL|method|isAssignableFrom (TypeToken<?> type)
-specifier|public
-specifier|final
-name|boolean
-name|isAssignableFrom
-parameter_list|(
-name|TypeToken
-argument_list|<
-name|?
-argument_list|>
-name|type
-parameter_list|)
-block|{
-return|return
-name|isSupertypeOf
-argument_list|(
-name|type
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @deprecated Use the method under its new name, {@link #isSupertypeOf(Type)}. This method will    *     be removed in Guava release 20.0.    */
-annotation|@
-name|Deprecated
-DECL|method|isAssignableFrom (Type type)
-specifier|public
-specifier|final
-name|boolean
-name|isAssignableFrom
-parameter_list|(
-name|Type
-name|type
-parameter_list|)
-block|{
-return|return
-name|isSupertypeOf
-argument_list|(
-name|type
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns true if this type is a supertype of the given {@code type}. "Supertype" is defined    * according to<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.5.1"    *>the rules for type arguments</a> introduced with Java generics.    *    * @since 19.0    */
 DECL|method|isSupertypeOf (TypeToken<?> type)
 specifier|public
