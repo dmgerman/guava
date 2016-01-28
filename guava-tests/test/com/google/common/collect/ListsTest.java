@@ -2039,6 +2039,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|List
+argument_list|<
+name|Object
+argument_list|>
+name|unused
+init|=
 name|Lists
 operator|.
 name|newArrayListWithCapacity
@@ -2046,7 +2052,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -2119,6 +2125,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|List
+argument_list|<
+name|Object
+argument_list|>
+name|unused
+init|=
 name|Lists
 operator|.
 name|newArrayListWithExpectedSize
@@ -2126,7 +2138,7 @@ argument_list|(
 operator|-
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4212,6 +4224,15 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|Lists
 operator|.
 name|cartesianProduct
@@ -4226,7 +4247,7 @@ name|list
 argument_list|,
 name|list
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IAE"
@@ -5637,6 +5658,15 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|List
+argument_list|<
+name|List
+argument_list|<
+name|Integer
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|Lists
 operator|.
 name|partition
@@ -5645,7 +5675,7 @@ name|source
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;

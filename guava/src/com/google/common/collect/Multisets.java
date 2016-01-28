@@ -182,6 +182,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -277,6 +291,8 @@ end_comment
 begin_class
 annotation|@
 name|GwtCompatible
+annotation|@
+name|CheckReturnValue
 DECL|class|Multisets
 specifier|public
 specifier|final
@@ -1025,8 +1041,6 @@ block|}
 comment|/**    * Returns a view of the elements of {@code unfiltered} that satisfy a predicate. The returned    * multiset is a live view of {@code unfiltered}; changes to one affect the other.    *    *<p>The resulting multiset's iterators, and those of its {@code entrySet()} and    * {@code elementSet()}, do not support {@code remove()}.  However, all other multiset methods    * supported by {@code unfiltered} are supported by the returned multiset. When given an element    * that doesn't satisfy the predicate, the multiset's {@code add()} and {@code addAll()} methods    * throw an {@link IllegalArgumentException}. When methods such as {@code removeAll()} and    * {@code clear()} are called on the filtered multiset, only elements that satisfy the filter    * will be removed from the underlying multiset.    *    *<p>The returned multiset isn't threadsafe or serializable, even if {@code unfiltered} is.    *    *<p>Many of the filtered multiset's methods, such as {@code size()}, iterate across every    * element in the underlying multiset and determine which elements satisfy the filter. When a    * live view is<i>not</i> needed, it may be faster to copy the returned multiset and use the    * copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>, as documented at    * {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with equals. (See    * {@link Iterables#filter(Iterable, Class)} for related functionality.)    *    * @since 14.0    */
 annotation|@
 name|Beta
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (Multiset<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
@@ -2804,6 +2818,8 @@ block|}
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@code subMultiset.count(o)<=    * superMultiset.count(o)} for all {@code o}.    *    * @since 10.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|containsOccurrences (Multiset<?> superMultiset, Multiset<?> subMultiset)
 specifier|public
 specifier|static
@@ -2880,6 +2896,8 @@ literal|true
 return|;
 block|}
 comment|/**    * Modifies {@code multisetToModify} so that its count for an element    * {@code e} is at most {@code multisetToRetain.count(e)}.    *    *<p>To be precise, {@code multisetToModify.count(e)} is set to    * {@code Math.min(multisetToModify.count(e),    * multisetToRetain.count(e))}. This is similar to    * {@link #intersection(Multiset, Multiset) intersection}    * {@code (multisetToModify, multisetToRetain)}, but mutates    * {@code multisetToModify} instead of returning a view.    *    *<p>In contrast, {@code multisetToModify.retainAll(multisetToRetain)} keeps    * all occurrences of elements that appear at all in {@code    * multisetToRetain}, and deletes all occurrences of all other elements.    *    * @return {@code true} if {@code multisetToModify} was changed as a result    *         of this operation    * @since 10.0    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|retainOccurrences ( Multiset<?> multisetToModify, Multiset<?> multisetToRetain)
 specifier|public
 specifier|static
@@ -3047,6 +3065,8 @@ name|changed
 return|;
 block|}
 comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * Iterables.frequency(occurrencesToRemove, e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 18.0 (present in 10.0 with a requirement that the second parameter    *     be a {@code Multiset})    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Iterable<?> occurrencesToRemove)
 specifier|public
 specifier|static
@@ -3129,6 +3149,8 @@ return|;
 block|}
 block|}
 comment|/**    * For each occurrence of an element {@code e} in {@code occurrencesToRemove},    * removes one occurrence of {@code e} in {@code multisetToModify}.    *    *<p>Equivalently, this method modifies {@code multisetToModify} so that    * {@code multisetToModify.count(e)} is set to    * {@code Math.max(0, multisetToModify.count(e) -    * occurrencesToRemove.count(e))}.    *    *<p>This is<i>not</i> the same as {@code multisetToModify.}    * {@link Multiset#removeAll removeAll}{@code (occurrencesToRemove)}, which    * removes all occurrences of elements that appear in    * {@code occurrencesToRemove}. However, this operation<i>is</i> equivalent    * to, albeit sometimes more efficient than, the following:<pre>   {@code    *    *   for (E e : occurrencesToRemove) {    *     multisetToModify.remove(e);    *   }}</pre>    *    * @return {@code true} if {@code multisetToModify} was changed as a result of    *         this operation    * @since 10.0 (missing in 18.0 when only the overload taking an {@code Iterable} was present)    */
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|removeOccurrences ( Multiset<?> multisetToModify, Multiset<?> occurrencesToRemove)
 specifier|public
 specifier|static

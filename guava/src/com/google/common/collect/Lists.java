@@ -258,6 +258,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -434,6 +448,8 @@ end_comment
 
 begin_class
 annotation|@
+name|CheckReturnValue
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|emulated
@@ -483,6 +499,9 @@ argument_list|()
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given    * elements.    *    *<p><b>Note:</b> essentially the only reason to use this method is when you    * will need to add or remove elements later. Otherwise, for non-null elements    * use {@link ImmutableList#of()} (for varargs) or {@link    * ImmutableList#copyOf(Object[])} (for an array) instead. If any elements    * might be null, or you need support for {@link List#set(int, Object)}, use    * {@link Arrays#asList}.    *    *<p>Note that even when you do need the ability to add or remove, this method    * provides only a tiny bit of syntactic sugar for {@code newArrayList(}{@link    * Arrays#asList asList}{@code (...))}, or for creating an empty list then    * calling {@link Collections#addAll}. This method is not actually very useful    * and will likely be deprecated in the future.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Remove this
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -590,6 +609,9 @@ return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given    * elements; a very thin shortcut for creating an empty list then calling    * {@link Iterables#addAll}.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use {@link ImmutableList#copyOf(Iterable)} instead. (Or, change    * {@code elements} to be a {@link FluentIterable} and call    * {@code elements.toList()}.)    *    *<p><b>Note for Java 7 and later:</b> if {@code elements} is a {@link    * Collection}, you don't need this method. Use the {@code ArrayList}    * {@linkplain ArrayList#ArrayList(Collection) constructor} directly, taking    * advantage of the new<a href="http://goo.gl/iz2Wi">"diamond" syntax</a>.    */
 annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Remove this
+annotation|@
 name|GwtCompatible
 argument_list|(
 name|serializable
@@ -655,6 +677,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a<i>mutable</i> {@code ArrayList} instance containing the given    * elements; a very thin shortcut for creating an empty list and then calling    * {@link Iterators#addAll}.    *    *<p><b>Note:</b> if mutability is not required and the elements are    * non-null, use {@link ImmutableList#copyOf(Iterator)} instead.    */
+annotation|@
+name|CanIgnoreReturnValue
+comment|// TODO(kak): Remove this
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -1386,8 +1411,6 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Returns a list that applies {@code function} to each element of {@code    * fromList}. The returned list is a transformed view of {@code fromList};    * changes to {@code fromList} will be reflected in the returned list and vice    * versa.    *    *<p>Since functions are not reversible, the transform is one-way and new    * items cannot be stored in the returned list. The {@code add},    * {@code addAll} and {@code set} methods are unsupported in the returned    * list.    *    *<p>The function is applied lazily, invoked when needed. This is necessary    * for the returned list to be a view, but it means that the function will be    * applied many times for bulk operations like {@link List#contains} and    * {@link List#hashCode}. For this to perform well, {@code function} should be    * fast. To avoid lazy evaluation when the returned list doesn't need to be a    * view, copy the returned list into a new list of your choosing.    *    *<p>If {@code fromList} implements {@link RandomAccess}, so will the    * returned list. The returned list is threadsafe if the supplied list and    * function are.    *    *<p>If only a {@code Collection} or {@code Iterable} input is available, use    * {@link Collections2#transform} or {@link Iterables#transform}.    *    *<p><b>Note:</b> serializing the returned list is implemented by serializing    * {@code fromList}, its contents, and {@code function} --<i>not</i> by    * serializing the transformed values. This can lead to surprising behavior,    * so serializing the returned list is<b>not recommended</b>. Instead,    * copy the list using {@link ImmutableList#copyOf(Collection)} (for example),    * then serialize the copy. Other methods similar to this do not implement    * serialization at all for this reason.    */
-annotation|@
-name|CheckReturnValue
 DECL|method|transform ( List<F> fromList, Function<? super F, ? extends T> function)
 specifier|public
 specifier|static
@@ -2483,8 +2506,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns a reversed view of the specified list. For example, {@code    * Lists.reverse(Arrays.asList(1, 2, 3))} returns a list containing {@code 3,    * 2, 1}. The returned list is backed by this list, so changes in the returned    * list are reflected in this list, and vice-versa. The returned list supports    * all of the optional list operations supported by this list.    *    *<p>The returned list is random-access if the specified list is random    * access.    *    * @since 7.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|reverse (List<T> list)
 specifier|public
 specifier|static

@@ -4197,13 +4197,19 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|Set
+argument_list|<
+name|SomeEnum
+argument_list|>
+name|unused
+init|=
 name|Sets
 operator|.
 name|complementOf
 argument_list|(
 name|set
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -4399,13 +4405,19 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|Set
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|Sets
 operator|.
 name|newSetFromMap
 argument_list|(
 name|map
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -5215,6 +5227,15 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|Set
+argument_list|<
+name|List
+argument_list|<
+name|Integer
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|Sets
 operator|.
 name|cartesianProduct
@@ -5229,7 +5250,7 @@ name|set
 argument_list|,
 name|set
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"Expected IAE"
@@ -5241,7 +5262,7 @@ parameter_list|(
 name|IllegalArgumentException
 name|expected
 parameter_list|)
-block|{}
+block|{     }
 block|}
 annotation|@
 name|SuppressWarnings
@@ -6545,6 +6566,15 @@ parameter_list|()
 block|{
 try|try
 block|{
+name|Set
+argument_list|<
+name|Set
+argument_list|<
+name|Character
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|powerSet
 argument_list|(
 name|newHashSet
@@ -6612,7 +6642,7 @@ argument_list|,
 literal|'5'
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -6625,6 +6655,15 @@ parameter_list|)
 block|{     }
 try|try
 block|{
+name|Set
+argument_list|<
+name|Set
+argument_list|<
+name|Object
+argument_list|>
+argument_list|>
+name|unused
+init|=
 name|powerSet
 argument_list|(
 name|singleton
@@ -6632,7 +6671,7 @@ argument_list|(
 literal|null
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|()
 expr_stmt|;
@@ -9280,6 +9319,12 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|Set
+argument_list|<
+name|Integer
+argument_list|>
+name|unused
+init|=
 name|Sets
 operator|.
 name|subSet
@@ -9295,7 +9340,7 @@ argument_list|,
 literal|8
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|fail
 argument_list|(
 literal|"IllegalArgumentException expected"

@@ -136,6 +136,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|errorprone
+operator|.
+name|annotations
+operator|.
+name|CanIgnoreReturnValue
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -353,6 +367,8 @@ comment|/**  * Static utility methods pertaining to {@link Set} instances. Also 
 end_comment
 
 begin_class
+annotation|@
+name|CheckReturnValue
 annotation|@
 name|GwtCompatible
 argument_list|(
@@ -1619,6 +1635,8 @@ block|}
 comment|/**      * Copies the current contents of this set view into an existing set. This      * method has equivalent behavior to {@code set.addAll(this)}, assuming that      * all the sets involved are based on the same notion of equivalence.      *      * @return a reference to {@code set}, for convenience      */
 comment|// Note: S should logically extend Set<? super E> but can't due to either
 comment|// some javac bug or some weirdness in the spec, not sure which.
+annotation|@
+name|CanIgnoreReturnValue
 DECL|method|copyInto (S set)
 specifier|public
 parameter_list|<
@@ -2465,8 +2483,6 @@ return|;
 block|}
 comment|/**    * Returns the elements of {@code unfiltered} that satisfy a predicate. The    * returned set is a live view of {@code unfiltered}; changes to one affect    * the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. When given an element that doesn't satisfy    * the predicate, the set's {@code add()} and {@code addAll()} methods throw    * an {@link IllegalArgumentException}. When methods such as {@code    * removeAll()} and {@code clear()} are called on the filtered set, only    * elements that satisfy the filter will be removed from the underlying set.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate    * across every element in the underlying set and determine which elements    * satisfy the filter. When a live view is<i>not</i> needed, it may be faster    * to copy {@code Iterables.filter(unfiltered, predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such    * as {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent    * with equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    */
 comment|// TODO(kevinb): how to omit that last sentence when building GWT javadoc?
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (Set<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
@@ -2683,8 +2699,6 @@ return|;
 block|}
 block|}
 comment|/**    * Returns the elements of a {@code SortedSet}, {@code unfiltered}, that    * satisfy a predicate. The returned set is a live view of {@code unfiltered};    * changes to one affect the other.    *    *<p>The resulting set's iterator does not support {@code remove()}, but all    * other set methods are supported. When given an element that doesn't satisfy    * the predicate, the set's {@code add()} and {@code addAll()} methods throw    * an {@link IllegalArgumentException}. When methods such as    * {@code removeAll()} and {@code clear()} are called on the filtered set,    * only elements that satisfy the filter will be removed from the underlying    * set.    *    *<p>The returned set isn't threadsafe or serializable, even if    * {@code unfiltered} is.    *    *<p>Many of the filtered set's methods, such as {@code size()}, iterate across    * every element in the underlying set and determine which elements satisfy    * the filter. When a live view is<i>not</i> needed, it may be faster to copy    * {@code Iterables.filter(unfiltered, predicate)} and use the copy.    *    *<p><b>Warning:</b> {@code predicate} must be<i>consistent with equals</i>,    * as documented at {@link Predicate#apply}. Do not provide a predicate such as    * {@code Predicates.instanceOf(ArrayList.class)}, which is inconsistent with    * equals. (See {@link Iterables#filter(Iterable, Class)} for related    * functionality.)    *    * @since 11.0    */
-annotation|@
-name|CheckReturnValue
 DECL|method|filter (SortedSet<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
@@ -3116,8 +3130,6 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-annotation|@
-name|CheckReturnValue
 DECL|method|filter ( NavigableSet<E> unfiltered, Predicate<? super E> predicate)
 specifier|public
 specifier|static
