@@ -174,7 +174,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -198,7 +198,7 @@ argument_list|()
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -255,7 +255,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -278,10 +278,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|addEdge_builder_parallelEdge ()
+DECL|method|addEdge_parallelEdge ()
 specifier|public
 name|void
-name|addEdge_builder_parallelEdge
+name|addEdge_parallelEdge
 parameter_list|()
 block|{
 name|assertTrue
@@ -322,7 +322,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edges
 argument_list|()
@@ -343,10 +343,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|addEdge_builder_parallelSelfLoopEdge ()
+DECL|method|addEdge_parallelSelfLoopEdge ()
 specifier|public
 name|void
-name|addEdge_builder_parallelSelfLoopEdge
+name|addEdge_parallelSelfLoopEdge
 parameter_list|()
 block|{
 name|assertTrue
@@ -375,7 +375,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edges
 argument_list|()
@@ -485,6 +485,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|populateInputGraph (UndirectedGraph<Integer, String> graph)
 specifier|protected
 name|void

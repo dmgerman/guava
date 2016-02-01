@@ -115,7 +115,7 @@ specifier|abstract
 class|class
 name|AbstractUndirectedGraphTest
 extends|extends
-name|AbstractMutableGraphTest
+name|AbstractGraphTest
 block|{
 DECL|field|undirectedGraph
 name|UndirectedGraph

@@ -17,34 +17,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|truth
-operator|.
-name|Truth
-operator|.
-name|assertThat
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -77,17 +49,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for testing immutable implementations of the {@link Graph}  * interface.  *  *<p>This class is testing that all mutation methods called directly  * on the immutable graph will throw {@code UnsupportedOperationException}. Also,  * it tests the builder mutation methods {@code addNode} and {@code addEdge}.  * Any other test cases should be either included in the superclasses or subclasses.  *  */
+comment|/**  * Abstract base class for testing immutable implementations of the {@link UndirectedGraph}  * interface.  *  *<p>This class is testing that all mutation methods called directly  * on the immutable graph will throw {@code UnsupportedOperationException}. Also,  * it tests the builder mutation methods {@code addNode} and {@code addEdge}.  * Any other test cases should be either included in the superclasses or subclasses.  *  */
 end_comment
 
 begin_class
-DECL|class|AbstractImmutableGraphTest
+DECL|class|AbstractImmutableUndirectedGraphTest
 specifier|public
 specifier|abstract
 class|class
-name|AbstractImmutableGraphTest
+name|AbstractImmutableUndirectedGraphTest
 extends|extends
-name|AbstractGraphTest
+name|AbstractUndirectedGraphTest
 block|{
 DECL|field|expectedException
 annotation|@
@@ -514,15 +486,106 @@ name|N2
 argument_list|)
 expr_stmt|;
 block|}
-comment|// We want to test calling the mutation methods directly on the graph,
-comment|// hence the proxy methods are not needed. In case of immutable graphs,
-comment|// proxy methods add nodes/edges to the builder then build a new graph.
+comment|// Builder mutation methods only support addition, not removal, so these tests would fail.
 annotation|@
-name|Test
-DECL|method|addNode ()
+name|Override
+DECL|method|removeNode_existingNode ()
 specifier|public
 name|void
-name|addNode
+name|removeNode_existingNode
+parameter_list|()
+block|{
+name|expectedException
+operator|.
+name|expect
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|removeNode_existingNode
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|removeNode_invalidArgument ()
+specifier|public
+name|void
+name|removeNode_invalidArgument
+parameter_list|()
+block|{
+name|expectedException
+operator|.
+name|expect
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|removeNode_invalidArgument
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|removeEdge_existingEdge ()
+specifier|public
+name|void
+name|removeEdge_existingEdge
+parameter_list|()
+block|{
+name|expectedException
+operator|.
+name|expect
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|removeEdge_existingEdge
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|removeEdge_invalidArgument ()
+specifier|public
+name|void
+name|removeEdge_invalidArgument
+parameter_list|()
+block|{
+name|expectedException
+operator|.
+name|expect
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|removeEdge_invalidArgument
+argument_list|()
+expr_stmt|;
+block|}
+comment|// Test that adding to the graph directly (as opposed to via the proxy methods) is not supported.
+annotation|@
+name|Test
+DECL|method|addNode_immutable ()
+specifier|public
+name|void
+name|addNode_immutable
 parameter_list|()
 block|{
 name|expectedException
@@ -544,10 +607,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|addEdge ()
+DECL|method|addEdge_immutable ()
 specifier|public
 name|void
-name|addEdge
+name|addEdge_immutable
 parameter_list|()
 block|{
 name|expectedException
@@ -568,87 +631,6 @@ argument_list|,
 name|N1
 argument_list|,
 name|N3
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|removeNode ()
-specifier|public
-name|void
-name|removeNode
-parameter_list|()
-block|{
-name|expectedException
-operator|.
-name|expect
-argument_list|(
-name|UnsupportedOperationException
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|graph
-operator|.
-name|removeNode
-argument_list|(
-name|N1
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|removeEdge ()
-specifier|public
-name|void
-name|removeEdge
-parameter_list|()
-block|{
-name|expectedException
-operator|.
-name|expect
-argument_list|(
-name|UnsupportedOperationException
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-name|graph
-operator|.
-name|removeEdge
-argument_list|(
-name|E12
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Builder mutation methods
-annotation|@
-name|Test
-DECL|method|addNode_builder_newNode ()
-specifier|public
-name|void
-name|addNode_builder_newNode
-parameter_list|()
-block|{
-name|assertTrue
-argument_list|(
-name|addNode
-argument_list|(
-name|N1
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertThat
-argument_list|(
-name|graph
-operator|.
-name|nodes
-argument_list|()
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-name|N1
 argument_list|)
 expr_stmt|;
 block|}

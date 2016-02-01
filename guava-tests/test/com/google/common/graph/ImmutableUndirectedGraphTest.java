@@ -367,7 +367,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -393,7 +393,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -410,7 +410,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -445,7 +445,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|inEdges
 argument_list|(
@@ -469,7 +469,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|inEdges
 argument_list|(
@@ -507,7 +507,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|outEdges
 argument_list|(
@@ -531,7 +531,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|outEdges
 argument_list|(
@@ -569,7 +569,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|predecessors
 argument_list|(
@@ -593,7 +593,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|predecessors
 argument_list|(
@@ -631,7 +631,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|successors
 argument_list|(
@@ -655,7 +655,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|successors
 argument_list|(
@@ -746,7 +746,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|inDegree
 argument_list|(
@@ -767,7 +767,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|inDegree
 argument_list|(
@@ -797,7 +797,7 @@ name|assertEquals
 argument_list|(
 literal|1
 argument_list|,
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|outDegree
 argument_list|(
@@ -818,7 +818,7 @@ name|assertEquals
 argument_list|(
 literal|2
 argument_list|,
-name|immutableGraph
+name|undirectedGraph
 operator|.
 name|outDegree
 argument_list|(
@@ -830,10 +830,10 @@ block|}
 comment|// Builder mutation methods
 annotation|@
 name|Override
-DECL|method|addEdge_builder_selfLoop ()
+DECL|method|addEdge_selfLoop ()
 specifier|public
 name|void
-name|addEdge_builder_selfLoop
+name|addEdge_selfLoop
 parameter_list|()
 block|{
 name|assertTrue
@@ -881,10 +881,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|addEdge_builder_existingEdgeBetweenDifferentNodes_selfLoops ()
+DECL|method|addEdge_existingEdgeBetweenDifferentNodes_selfLoops ()
 specifier|public
 name|void
-name|addEdge_builder_existingEdgeBetweenDifferentNodes_selfLoops
+name|addEdge_existingEdgeBetweenDifferentNodes_selfLoops
 parameter_list|()
 block|{
 name|addEdge
@@ -1019,10 +1019,10 @@ block|}
 block|}
 annotation|@
 name|Test
-DECL|method|addEdge_builder_parallelSelfLoopEdge ()
+DECL|method|addEdge_parallelSelfLoopEdge ()
 specifier|public
 name|void
-name|addEdge_builder_parallelSelfLoopEdge
+name|addEdge_parallelSelfLoopEdge
 parameter_list|()
 block|{
 name|addEdge

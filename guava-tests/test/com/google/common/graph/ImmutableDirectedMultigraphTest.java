@@ -162,7 +162,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|directedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -186,7 +186,7 @@ comment|// Passed nodes should be in the correct edge direction, first is the
 comment|// source node and the second is the target node
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|directedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -234,7 +234,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|directedGraph
 operator|.
 name|edgesConnecting
 argument_list|(
@@ -257,10 +257,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|addEdge_builder_parallelEdge ()
+DECL|method|addEdge_parallelEdge ()
 specifier|public
 name|void
-name|addEdge_builder_parallelEdge
+name|addEdge_parallelEdge
 parameter_list|()
 block|{
 name|assertTrue
@@ -289,7 +289,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|directedGraph
 operator|.
 name|edges
 argument_list|()
@@ -308,10 +308,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|addEdge_builder_parallelSelfLoopEdge ()
+DECL|method|addEdge_parallelSelfLoopEdge ()
 specifier|public
 name|void
-name|addEdge_builder_parallelSelfLoopEdge
+name|addEdge_parallelSelfLoopEdge
 parameter_list|()
 block|{
 name|assertTrue
@@ -340,7 +340,7 @@ argument_list|)
 expr_stmt|;
 name|assertThat
 argument_list|(
-name|immutableGraph
+name|directedGraph
 operator|.
 name|edges
 argument_list|()
@@ -456,6 +456,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|populateInputGraph (DirectedGraph<Integer, String> graph)
 specifier|protected
 name|void
